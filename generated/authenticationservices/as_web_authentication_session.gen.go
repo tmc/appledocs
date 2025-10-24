@@ -32,17 +32,17 @@ type _WebAuthenticationSessionClass struct {
 type IWebAuthenticationSession interface {
 	objectivec.IObject
 	// properties:
-	AdditionalHeaderFields() foundation.IDictionary /* already interface */
-	SetAdditionalHeaderFields(value foundation.IDictionary /* already interface */)
+	AdditionalHeaderFields() foundation.IDictionary
+	SetAdditionalHeaderFields(value foundation.IDictionary)
 	PresentationContextProvider() objc.ID
 	SetPresentationContextProvider(value objc.ID)
-	CanStart() bool /* primitive/slice/pointer. */
-	SetCanStart(value bool /* primitive/slice/pointer. */)
-	PrefersEphemeralWebBrowserSession() bool /* primitive/slice/pointer. */
-	SetPrefersEphemeralWebBrowserSession(value bool /* primitive/slice/pointer. */)
-	ASWebAuthenticationSessionErrorDomain() string /* primitive/slice/pointer. */
+	CanStart() bool
+	SetCanStart(value bool)
+	PrefersEphemeralWebBrowserSession() bool
+	SetPrefersEphemeralWebBrowserSession(value bool)
+	ASWebAuthenticationSessionErrorDomain() objc.IObject /* cross-framework: NSString */
 	// methods:
-	Start() bool /* primitive/slice/pointer. */
+	Start() bool
 }
 
 // A session that an app uses to authenticate a user through a web service.
@@ -100,7 +100,7 @@ func NewWebAuthenticationSession() WebAuthenticationSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callback:completionHandler:)
-func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.objc.IObject /* cross-framework URL */, callback objc.IObject /* cross-framework WebAuthenticationSessionCallback */, completionHandler WebAuthenticationSessionCompletionHandler /* not a class type */) WebAuthenticationSession {
+func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL objc.IObject /* cross-framework: NSURL */, callback objc.IObject /* cross-framework: WebAuthenticationSessionCallback */, completionHandler WebAuthenticationSessionCompletionHandler /* not a class type */) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
 	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callback:completionHandler:"), URL, callback, completionHandler)
 	rv.Autorelease()
@@ -112,9 +112,9 @@ func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callbackURLScheme:completionHandler:)
-func NewWebAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL foundation.objc.IObject /* cross-framework URL */, callbackURLScheme string /* primitive/slice/pointer. */, completionHandler WebAuthenticationSessionCompletionHandler /* not a class type */) WebAuthenticationSession {
+func NewWebAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL objc.IObject /* cross-framework: NSURL */, callbackURLScheme objc.IObject /* cross-framework: NSString */, completionHandler WebAuthenticationSessionCompletionHandler /* not a class type */) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
-	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callbackURLScheme:completionHandler:"), URL, objc.String(callbackURLScheme), completionHandler)
+	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callbackURLScheme:completionHandler:"), URL, callbackURLScheme, completionHandler)
 	rv.Autorelease()
 	return rv
 }
@@ -125,7 +125,7 @@ func NewWebAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/start()
-func (w_ WebAuthenticationSession) Start() bool /* primitive/slice/pointer. */ {
+func (w_ WebAuthenticationSession) Start() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("start"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (w_ WebAuthenticationSession) Start() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-func (w_ WebAuthenticationSession) AdditionalHeaderFields() foundation.IDictionary /* already interface */ {
+func (w_ WebAuthenticationSession) AdditionalHeaderFields() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("additionalHeaderFields"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (w_ WebAuthenticationSession) AdditionalHeaderFields() foundation.IDictiona
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value foundation.IDictionary /* already interface */) {
+func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value foundation.IDictionary) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAdditionalHeaderFields:"), value)
 }
 
@@ -169,7 +169,7 @@ func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/canstart
-func (w_ WebAuthenticationSession) CanStart() bool /* primitive/slice/pointer. */ {
+func (w_ WebAuthenticationSession) CanStart() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canStart"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (w_ WebAuthenticationSession) CanStart() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/canstart
-func (w_ WebAuthenticationSession) SetCanStart(value bool /* primitive/slice/pointer. */) {
+func (w_ WebAuthenticationSession) SetCanStart(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanStart:"), value)
 }
 
@@ -188,7 +188,7 @@ func (w_ WebAuthenticationSession) SetCanStart(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/prefersephemeralwebbrowsersession
-func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool /* primitive/slice/pointer. */ {
+func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("prefersEphemeralWebBrowserSession"))
 	return rv
 }
@@ -198,7 +198,7 @@ func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/prefersephemeralwebbrowsersession
-func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool /* primitive/slice/pointer. */) {
+func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
 
@@ -207,8 +207,8 @@ func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain
-func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
+func (w_ WebAuthenticationSession) ASWebAuthenticationSessionErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("ASWebAuthenticationSessionErrorDomain"))
 	return rv
 }
 

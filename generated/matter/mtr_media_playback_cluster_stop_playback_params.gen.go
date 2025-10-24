@@ -30,13 +30,17 @@ type _MTRMediaPlaybackClusterStopPlaybackParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterStopPlaybackParams] class.
 type IMTRMediaPlaybackClusterStopPlaybackParams interface {
 	IMTRMediaPlaybackClusterStopParams
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStopPlaybackParams
 type MTRMediaPlaybackClusterStopPlaybackParams struct {
 	MTRMediaPlaybackClusterStopParams
@@ -81,33 +85,33 @@ func NewMTRMediaPlaybackClusterStopPlaybackParams() MTRMediaPlaybackClusterStopP
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

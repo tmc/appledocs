@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,18 @@ type _ThumbnailReplyClass struct {
 // An interface definition for the [ThumbnailReply] class.
 type IThumbnailReply interface {
 	objectivec.IObject
-	ExtensionBadge() string
-	SetExtensionBadge(value string)
+	// properties:
+	ExtensionBadge() objc.IObject /* cross-framework: NSString */
+	SetExtensionBadge(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // The object that provides a thumbnail for a custom file type.
+
+
+// The object that provides a thumbnail for a custom file type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply
 type ThumbnailReply struct {
 	objectivec.Object
@@ -82,58 +89,63 @@ func NewThumbnailReply() ThumbnailReply {
 
 
 
-
 // Creates a new thumbnail for a custom file type in the current context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:currentContextDrawing:)
-func NewThumbnailReplyWithContextSizeCurrentContextDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) ThumbnailReply {
+func NewThumbnailReplyWithContextSizeCurrentContextDrawingBlock(contextSize objc.IObject /* cross-framework: Size */, drawingBlock unsafe.Pointer) ThumbnailReply {
 	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:currentContextDrawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
 
 
-
 // Creates a new thumbnail for a custom file type in the given context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:drawing:)
-func NewThumbnailReplyWithContextSizeDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) ThumbnailReply {
+func NewThumbnailReplyWithContextSizeDrawingBlock(contextSize objc.IObject /* cross-framework: Size */, drawingBlock unsafe.Pointer) ThumbnailReply {
 	rv := objc.Send[ThumbnailReply](objc.ID(getThumbnailReplyClass().class), objc.Sel("replyWithContextSize:drawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
 
 
+
 // Creates a new thumbnail for a custom file type in the current context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:currentContextDrawing:)
-func (tc _ThumbnailReplyClass) ReplyWithContextSizeCurrentContextDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) unsafe.Pointer {
+func (tc _ThumbnailReplyClass) ReplyWithContextSizeCurrentContextDrawingBlock(contextSize objc.IObject /* cross-framework: Size */, drawingBlock unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("replyWithContextSize:currentContextDrawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
 
+
 // Creates a new thumbnail for a custom file type in the given context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/init(contextSize:drawing:)
-func (tc _ThumbnailReplyClass) ReplyWithContextSizeDrawingBlock(contextSize coregraphics.CGSize, drawingBlock unsafe.Pointer) unsafe.Pointer {
+func (tc _ThumbnailReplyClass) ReplyWithContextSizeDrawingBlock(contextSize objc.IObject /* cross-framework: Size */, drawingBlock unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("replyWithContextSize:drawingBlock:"), contextSize, drawingBlock)
 	return rv
 }
 
+
 // A short string that identifies the file type that the system uses as a badge when producing an icon thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) ExtensionBadge() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("extensionBadge"))
+func (t_ ThumbnailReply) ExtensionBadge() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("extensionBadge"))
 	return rv
 }
 
 
-// SetExtensionBadge sets the value of the extensionBadge property.
 // A short string that identifies the file type that the system uses as a badge when producing an icon thumbnail.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailReply/extensionBadge
-func (t_ ThumbnailReply) SetExtensionBadge(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), objc.String(value))
+func (t_ ThumbnailReply) SetExtensionBadge(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setExtensionBadge:"), value)
 }
 
 

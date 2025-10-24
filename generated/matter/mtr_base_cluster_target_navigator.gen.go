@@ -29,9 +29,13 @@ type _MTRBaseClusterTargetNavigatorClass struct {
 // An interface definition for the [MTRBaseClusterTargetNavigator] class.
 type IMTRBaseClusterTargetNavigator interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterTargetNavigator
 type MTRBaseClusterTargetNavigator struct {
 	MTRGenericBaseCluster

@@ -30,12 +30,18 @@ type _ScreenSaverDefaultsClass struct {
 // An interface definition for the [ScreenSaverDefaults] class.
 type IScreenSaverDefaults interface {
 	foundation.IUserDefaults
+	// properties:
+	// methods:
 }
 
 // A class that defines a set of methods for saving and restoring user defaults for screen savers.
 //
 // gives you access to preference values you need to configure your screen saver. Because multiple apps can load a screen saver, you can’t use the standard object to store preferences. Instead, instantiate this class using the method, which takes your screen saver’s bundle identifier as a parameter. The resulting object gives you a way to store your preference values and associate them only with your screen saver. Use the inherited methods to load, store, or modify values.
+
+
+// A class that defines a set of methods for saving and restoring user defaults for screen savers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults
 type ScreenSaverDefaults struct {
 	foundation.UserDefaults
@@ -83,21 +89,23 @@ func NewScreenSaverDefaults() ScreenSaverDefaults {
 
 
 
-
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func NewScreenSaverDefaultsForModuleWithName(inModuleName string) ScreenSaverDefaults {
-	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
+func NewScreenSaverDefaultsForModuleWithName(inModuleName objc.IObject /* cross-framework: NSString */) ScreenSaverDefaults {
+	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
 	return rv
 }
 
 
+
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
+func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,18 @@ type _MusicPlayerPlayParametersClass struct {
 // An interface definition for the [MusicPlayerPlayParameters] class.
 type IMusicPlayerPlayParameters interface {
 	objectivec.IObject
-	Dictionary() string
-	SetDictionary(value string)
+	// properties:
+	Dictionary() objc.IObject /* cross-framework: NSString */
+	SetDictionary(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // The MusicKit parameters that describe items to play.
+
+
+// The MusicKit parameters that describe items to play.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParameters
 type MusicPlayerPlayParameters struct {
 	objectivec.Object
@@ -80,22 +87,23 @@ func NewMusicPlayerPlayParameters() MusicPlayerPlayParameters {
 }
 
 
+
 // The information returned from a MusicKit query and stored in a play parameters object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) Dictionary() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("dictionary"))
+func (m_ MusicPlayerPlayParameters) Dictionary() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("dictionary"))
 	return rv
 }
 
 
-// SetDictionary sets the value of the dictionary property.
 // The information returned from a MusicKit query and stored in a play parameters object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) SetDictionary(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), objc.String(value))
+func (m_ MusicPlayerPlayParameters) SetDictionary(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), value)
 }
 
 

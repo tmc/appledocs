@@ -33,8 +33,8 @@ type IDetector interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	FeaturesInImage(image ICIImage) []Feature /* primitive/slice/pointer. */
-	FeaturesInImageOptions(image ICIImage, options foundation.IDictionary /* already interface */) []Feature /* primitive/slice/pointer. */
+	FeaturesInImage(image ICIImage) []IFeature
+	FeaturesInImageOptions(image ICIImage, options foundation.IDictionary) []IFeature
 }
 
 // An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
@@ -94,8 +94,8 @@ func NewDetector() Detector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func NewDetectorOfTypeContextOptions(type_ string /* primitive/slice/pointer. */, context ICIContext, options foundation.IDictionary /* already interface */) Detector {
-	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
+func NewDetectorOfTypeContextOptions(type_ objc.IObject /* cross-framework: NSString */, context ICIContext, options foundation.IDictionary) Detector {
+	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
 	return rv
 }
 
@@ -105,8 +105,8 @@ func NewDetectorOfTypeContextOptions(type_ string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string /* primitive/slice/pointer. */, context ICIContext, options foundation.IDictionary /* already interface */) IDetector {
-	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
+func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ objc.IObject /* cross-framework: NSString */, context ICIContext, options foundation.IDictionary) IDetector {
+	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), type_, context, options)
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:)
-func (d_ Detector) FeaturesInImage(image ICIImage) []Feature /* primitive/slice/pointer. */ {
+func (d_ Detector) FeaturesInImage(image ICIImage) []IFeature {
 	rv := objc.Send[[]Feature](d_.ID, objc.Sel("featuresInImage:"), image)
 	return rv
 }
@@ -125,7 +125,7 @@ func (d_ Detector) FeaturesInImage(image ICIImage) []Feature /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:options:)
-func (d_ Detector) FeaturesInImageOptions(image ICIImage, options foundation.IDictionary /* already interface */) []Feature /* primitive/slice/pointer. */ {
+func (d_ Detector) FeaturesInImageOptions(image ICIImage, options foundation.IDictionary) []IFeature {
 	rv := objc.Send[[]Feature](d_.ID, objc.Sel("featuresInImage:options:"), image, options)
 	return rv
 }

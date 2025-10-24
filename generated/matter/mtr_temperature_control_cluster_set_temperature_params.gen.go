@@ -31,17 +31,21 @@ type _MTRTemperatureControlClusterSetTemperatureParamsClass struct {
 // An interface definition for the [MTRTemperatureControlClusterSetTemperatureParams] class.
 type IMTRTemperatureControlClusterSetTemperatureParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TargetTemperature() foundation.Number
-	SetTargetTemperature(value foundation.INumber)
-	TargetTemperatureLevel() foundation.Number
-	SetTargetTemperatureLevel(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TargetTemperature() objc.IObject /* cross-framework: NSNumber */
+	SetTargetTemperature(value objc.IObject /* cross-framework: NSNumber */)
+	TargetTemperatureLevel() objc.IObject /* cross-framework: NSNumber */
+	SetTargetTemperatureLevel(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams
 type MTRTemperatureControlClusterSetTemperatureParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRTemperatureControlClusterSetTemperatureParams() MTRTemperatureControl
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTemperature"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperature"))
 	return rv
 }
 
 
-// SetTargetTemperature sets the value of the targetTemperature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value foundation.INumber) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTemperatureLevel"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperatureLevel"))
 	return rv
 }
 
 
-// SetTargetTemperatureLevel sets the value of the targetTemperatureLevel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value foundation.INumber) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

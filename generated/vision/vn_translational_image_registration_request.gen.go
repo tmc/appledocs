@@ -29,14 +29,20 @@ type _TranslationalImageRegistrationRequestClass struct {
 // An interface definition for the [TranslationalImageRegistrationRequest] class.
 type ITranslationalImageRegistrationRequest interface {
 	IImageRegistrationRequest
-	Results() VNImageTranslationAlignmentObservation
+	// properties:
+	Results() IVNImageTranslationAlignmentObservation
 	SetResults(value IVNImageTranslationAlignmentObservation)
+	// methods:
 }
 
 // An image-analysis request that determines the affine transform necessary to align the content of two images.
 //
 // Create and perform a translational image registration request to align content in two images through translation.
+
+
+// An image-analysis request that determines the affine transform necessary to align the content of two images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTranslationalImageRegistrationRequest
 type TranslationalImageRegistrationRequest struct {
 	ImageRegistrationRequest
@@ -83,19 +89,20 @@ func NewTranslationalImageRegistrationRequest() TranslationalImageRegistrationRe
 }
 
 
+
 // The results of a translational image alignment request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest/results
-func (t_ TranslationalImageRegistrationRequest) Results() VNImageTranslationAlignmentObservation {
-	rv := objc.Send[VNImageTranslationAlignmentObservation](t_.ID, objc.Sel("results"))
+func (t_ TranslationalImageRegistrationRequest) Results() IVNImageTranslationAlignmentObservation {
+	rv := objc.Send[ImageTranslationAlignmentObservation](t_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of a translational image alignment request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest/results
 func (t_ TranslationalImageRegistrationRequest) SetResults(value IVNImageTranslationAlignmentObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)

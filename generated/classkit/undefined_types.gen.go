@@ -9,10 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in ClassKit
 	ImageRef = _undefined // referenced in ClassKit
 	Kind = _undefined // referenced in ClassKit
-	Predicate = _undefined // referenced in ClassKit
 )
 
 

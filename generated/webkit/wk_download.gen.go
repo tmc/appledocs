@@ -31,20 +31,25 @@ type _DownloadClass struct {
 // An interface definition for the [Download] class.
 type IDownload interface {
 	objectivec.IObject
-	Cancel(completionHandler unsafe.Pointer)
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	WebView() WKWebView
+	WebView() IWKWebView
 	IsUserInitiated() bool
 	SetIsUserInitiated(value bool)
-	OriginalRequest() foundation.URLRequest
-	SetOriginalRequest(value foundation.IURLRequest)
-	OriginatingFrame() WKFrameInfo
+	OriginalRequest() objc.IObject /* cross-framework: URLRequest */
+	SetOriginalRequest(value objc.IObject /* cross-framework: URLRequest */)
+	OriginatingFrame() IWKFrameInfo
 	SetOriginatingFrame(value IWKFrameInfo)
+	// methods:
 }
 
 // An object that represents the download of a web resource.
+
+
+// An object that represents the download of a web resource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload
 type Download struct {
 	objectivec.Object
@@ -89,15 +94,10 @@ func NewDownload() Download {
 }
 
 
-// Cancels the download, and optionally captures data so that you can resume the download later.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/cancel(_:)
-func (d_ Download) Cancel(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("cancel:"), completionHandler)
-}
 
 // An object you use to track download progress and handle redirects, authentication challenges, and failures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/delegate
 func (d_ Download) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("delegate"))
@@ -105,24 +105,26 @@ func (d_ Download) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object you use to track download progress and handle redirects, authentication challenges, and failures.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/delegate
 func (d_ Download) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The web view where the download initiated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/webView
-func (d_ Download) WebView() WKWebView {
-	rv := objc.Send[WKWebView](d_.ID, objc.Sel("webView"))
+func (d_ Download) WebView() IWKWebView {
+	rv := objc.Send[WebView](d_.ID, objc.Sel("webView"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
 func (d_ Download) IsUserInitiated() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isUserInitiated"))
@@ -130,41 +132,41 @@ func (d_ Download) IsUserInitiated() bool {
 }
 
 
-// SetIsUserInitiated sets the value of the isUserInitiated property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/isuserinitiated
 func (d_ Download) SetIsUserInitiated(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsUserInitiated:"), value)
 }
 
+
 // An object that represents the request that initiated the download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) OriginalRequest() foundation.URLRequest {
+func (d_ Download) OriginalRequest() objc.IObject /* cross-framework: URLRequest */ {
 	rv := objc.Send[foundation.URLRequest](d_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 
 
-// SetOriginalRequest sets the value of the originalRequest property.
 // An object that represents the request that initiated the download.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) SetOriginalRequest(value foundation.IURLRequest) {
+func (d_ Download) SetOriginalRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginalRequest:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
-func (d_ Download) OriginatingFrame() WKFrameInfo {
-	rv := objc.Send[WKFrameInfo](d_.ID, objc.Sel("originatingFrame"))
+func (d_ Download) OriginatingFrame() IWKFrameInfo {
+	rv := objc.Send[FrameInfo](d_.ID, objc.Sel("originatingFrame"))
 	return rv
 }
 
 
-// SetOriginatingFrame sets the value of the originatingFrame property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
 func (d_ Download) SetOriginatingFrame(value IWKFrameInfo) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginatingFrame:"), value)

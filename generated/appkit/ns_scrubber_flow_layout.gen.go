@@ -7,8 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ScrubberFlowLayout] class.
@@ -31,11 +30,12 @@ type _ScrubberFlowLayoutClass struct {
 // An interface definition for the [ScrubberFlowLayout] class.
 type IScrubberFlowLayout interface {
 	IScrubberLayout
-	InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet)
-	ItemSize() coregraphics.CGSize
-	SetItemSize(value coregraphics.CGSize)
+	// properties:
+	ItemSize() objc.IObject /* cross-framework: Size */
+	SetItemSize(value objc.IObject /* cross-framework: Size */)
 	ItemSpacing() float64
 	SetItemSpacing(value float64)
+	// methods:
 }
 
 // A concrete layout object that arranges items end-to-end in a linear strip.
@@ -93,21 +93,12 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 
 
 
-// Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
-func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IIndexSet) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
-}
-
-
 // The frame size for each item in the scrubber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
-func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("itemSize"))
+func (s_ ScrubberFlowLayout) ItemSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("itemSize"))
 	return rv
 }
 
@@ -116,7 +107,7 @@ func (s_ ScrubberFlowLayout) ItemSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
-func (s_ ScrubberFlowLayout) SetItemSize(value coregraphics.CGSize) {
+func (s_ ScrubberFlowLayout) SetItemSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSize:"), value)
 }
 

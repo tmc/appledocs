@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZSingleDirectoryShare
 
-// ExampleNewVZSingleDirectoryShareWithDirectory demonstrates how to create a VZSingleDirectoryShare instance using NewVZSingleDirectoryShareWithDirectory.
-// Creates a directory share with a directory that you specify on the host.
-func ExampleNewVZSingleDirectoryShareWithDirectory() {
-	_ = virtualization.NewVZSingleDirectoryShareWithDirectory(
-		virtualization.VZSharedDirectory{}, // directory VZSharedDirectory
-	)
-	// Output:
-}

@@ -31,11 +31,15 @@ type _MTRDoorLockClusterDoorStateChangeEventClass struct {
 // An interface definition for the [MTRDoorLockClusterDoorStateChangeEvent] class.
 type IMTRDoorLockClusterDoorStateChangeEvent interface {
 	objectivec.IObject
-	DoorState() foundation.Number
-	SetDoorState(value foundation.INumber)
+	// properties:
+	DoorState() objc.IObject /* cross-framework: NSNumber */
+	SetDoorState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterDoorStateChangeEvent
 type MTRDoorLockClusterDoorStateChangeEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRDoorLockClusterDoorStateChangeEvent() MTRDoorLockClusterDoorStateChan
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorstatechangeevent/doorstate
-func (m_ MTRDoorLockClusterDoorStateChangeEvent) DoorState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("doorState"))
+func (m_ MTRDoorLockClusterDoorStateChangeEvent) DoorState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("doorState"))
 	return rv
 }
 
 
-// SetDoorState sets the value of the doorState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorstatechangeevent/doorstate
-func (m_ MTRDoorLockClusterDoorStateChangeEvent) SetDoorState(value foundation.INumber) {
+func (m_ MTRDoorLockClusterDoorStateChangeEvent) SetDoorState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoorState:"), value)
 }
 

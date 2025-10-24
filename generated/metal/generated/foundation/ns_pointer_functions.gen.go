@@ -37,18 +37,18 @@ type IPointerFunctions interface {
 	SetAcquireFunction(value unsafe.Pointer)
 	DescriptionFunction() IString
 	SetDescriptionFunction(value IString)
-	HashFunction() int /* primitive/slice/pointer. */
-	SetHashFunction(value int /* primitive/slice/pointer. */)
+	HashFunction() int
+	SetHashFunction(value int)
 	IsEqualFunction() unsafe.Pointer
 	SetIsEqualFunction(value unsafe.Pointer)
 	RelinquishFunction() unsafe.Pointer
 	SetRelinquishFunction(value unsafe.Pointer)
-	SizeFunction() int /* primitive/slice/pointer. */
-	SetSizeFunction(value int /* primitive/slice/pointer. */)
-	UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */
-	SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */)
-	UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */
-	SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */)
+	SizeFunction() int
+	SetSizeFunction(value int)
+	UsesStrongWriteBarrier() bool
+	SetUsesStrongWriteBarrier(value bool)
+	UsesWeakReadAndWriteBarriers() bool
+	SetUsesWeakReadAndWriteBarriers(value bool)
 	// methods:
 }
 
@@ -166,7 +166,7 @@ func (p_ PointerFunctions) SetDescriptionFunction(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) HashFunction() int /* primitive/slice/pointer. */ {
+func (p_ PointerFunctions) HashFunction() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("hashFunction"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (p_ PointerFunctions) HashFunction() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) SetHashFunction(value int /* primitive/slice/pointer. */) {
+func (p_ PointerFunctions) SetHashFunction(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHashFunction:"), value)
 }
 
@@ -223,7 +223,7 @@ func (p_ PointerFunctions) SetRelinquishFunction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/sizefunction
-func (p_ PointerFunctions) SizeFunction() int /* primitive/slice/pointer. */ {
+func (p_ PointerFunctions) SizeFunction() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("sizeFunction"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (p_ PointerFunctions) SizeFunction() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/sizefunction
-func (p_ PointerFunctions) SetSizeFunction(value int /* primitive/slice/pointer. */) {
+func (p_ PointerFunctions) SetSizeFunction(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSizeFunction:"), value)
 }
 
@@ -242,7 +242,7 @@ func (p_ PointerFunctions) SetSizeFunction(value int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */ {
+func (p_ PointerFunctions) UsesStrongWriteBarrier() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */) {
+func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
 }
 
@@ -261,7 +261,7 @@ func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */ {
+func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
 	return rv
 }
@@ -271,7 +271,7 @@ func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */) {
+func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
 }
 

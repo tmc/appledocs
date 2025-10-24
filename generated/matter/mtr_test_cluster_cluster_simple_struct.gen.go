@@ -30,25 +30,29 @@ type _MTRTestClusterClusterSimpleStructClass struct {
 // An interface definition for the [MTRTestClusterClusterSimpleStruct] class.
 type IMTRTestClusterClusterSimpleStruct interface {
 	IMTRUnitTestingClusterSimpleStruct
-	A() foundation.Number
-	SetA(value foundation.INumber)
-	B() foundation.Number
-	SetB(value foundation.INumber)
-	C() foundation.Number
-	SetC(value foundation.INumber)
-	D() foundation.Data
-	SetD(value foundation.IData)
-	E() string
-	SetE(value string)
-	F() foundation.Number
-	SetF(value foundation.INumber)
-	G() foundation.Number
-	SetG(value foundation.INumber)
-	H() foundation.Number
-	SetH(value foundation.INumber)
+	// properties:
+	A() objc.IObject /* cross-framework: NSNumber */
+	SetA(value objc.IObject /* cross-framework: NSNumber */)
+	B() objc.IObject /* cross-framework: NSNumber */
+	SetB(value objc.IObject /* cross-framework: NSNumber */)
+	C() objc.IObject /* cross-framework: NSNumber */
+	SetC(value objc.IObject /* cross-framework: NSNumber */)
+	D() objc.IObject /* cross-framework: Data */
+	SetD(value objc.IObject /* cross-framework: Data */)
+	E() objc.IObject /* cross-framework: NSString */
+	SetE(value objc.IObject /* cross-framework: NSString */)
+	F() objc.IObject /* cross-framework: NSNumber */
+	SetF(value objc.IObject /* cross-framework: NSNumber */)
+	G() objc.IObject /* cross-framework: NSNumber */
+	SetG(value objc.IObject /* cross-framework: NSNumber */)
+	H() objc.IObject /* cross-framework: NSNumber */
+	SetH(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterSimpleStruct
 type MTRTestClusterClusterSimpleStruct struct {
 	MTRUnitTestingClusterSimpleStruct
@@ -93,123 +97,123 @@ func NewMTRTestClusterClusterSimpleStruct() MTRTestClusterClusterSimpleStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/a
-func (m_ MTRTestClusterClusterSimpleStruct) A() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("a"))
+func (m_ MTRTestClusterClusterSimpleStruct) A() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("a"))
 	return rv
 }
 
 
-// SetA sets the value of the a property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/a
-func (m_ MTRTestClusterClusterSimpleStruct) SetA(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/b
-func (m_ MTRTestClusterClusterSimpleStruct) B() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("b"))
+func (m_ MTRTestClusterClusterSimpleStruct) B() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("b"))
 	return rv
 }
 
 
-// SetB sets the value of the b property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/b
-func (m_ MTRTestClusterClusterSimpleStruct) SetB(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
-func (m_ MTRTestClusterClusterSimpleStruct) C() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("c"))
+func (m_ MTRTestClusterClusterSimpleStruct) C() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("c"))
 	return rv
 }
 
 
-// SetC sets the value of the c property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
-func (m_ MTRTestClusterClusterSimpleStruct) SetC(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetC(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/d
-func (m_ MTRTestClusterClusterSimpleStruct) D() foundation.Data {
+func (m_ MTRTestClusterClusterSimpleStruct) D() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("d"))
 	return rv
 }
 
 
-// SetD sets the value of the d property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/d
-func (m_ MTRTestClusterClusterSimpleStruct) SetD(value foundation.IData) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetD(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setD:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) E() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("e"))
+func (m_ MTRTestClusterClusterSimpleStruct) E() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("e"))
 	return rv
 }
 
 
-// SetE sets the value of the e property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
-func (m_ MTRTestClusterClusterSimpleStruct) SetE(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), objc.String(value))
+func (m_ MTRTestClusterClusterSimpleStruct) SetE(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
-func (m_ MTRTestClusterClusterSimpleStruct) F() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("f"))
+func (m_ MTRTestClusterClusterSimpleStruct) F() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("f"))
 	return rv
 }
 
 
-// SetF sets the value of the f property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
-func (m_ MTRTestClusterClusterSimpleStruct) SetF(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetF(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
-func (m_ MTRTestClusterClusterSimpleStruct) G() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("g"))
+func (m_ MTRTestClusterClusterSimpleStruct) G() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("g"))
 	return rv
 }
 
 
-// SetG sets the value of the g property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
-func (m_ MTRTestClusterClusterSimpleStruct) SetG(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetG(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
-func (m_ MTRTestClusterClusterSimpleStruct) H() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("h"))
+func (m_ MTRTestClusterClusterSimpleStruct) H() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("h"))
 	return rv
 }
 
 
-// SetH sets the value of the h property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
-func (m_ MTRTestClusterClusterSimpleStruct) SetH(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStruct) SetH(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setH:"), value)
 }
 

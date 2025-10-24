@@ -32,8 +32,8 @@ type IGCControllerTouchpad interface {
 	// properties:
 	Button() objc.IObject /* cross-framework: GCControllerButtonInput */
 	SetButton(value objc.IObject /* cross-framework: GCControllerButtonInput */)
-	ReportsAbsoluteTouchSurfaceValues() bool /* primitive/slice/pointer. */
-	SetReportsAbsoluteTouchSurfaceValues(value bool /* primitive/slice/pointer. */)
+	ReportsAbsoluteTouchSurfaceValues() bool
+	SetReportsAbsoluteTouchSurfaceValues(value bool)
 	TouchDown() unsafe.Pointer
 	SetTouchDown(value unsafe.Pointer)
 	TouchMoved() unsafe.Pointer
@@ -125,7 +125,7 @@ func (g_ GCControllerTouchpad) SetButton(value objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool /* primitive/slice/pointer. */ {
+func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reportsAbsoluteTouchSurfaceValues"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool /* primitive/slice/pointer. */) {
+func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReportsAbsoluteTouchSurfaceValues:"), value)
 }
 

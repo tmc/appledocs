@@ -29,12 +29,14 @@ type _PanGestureRecognizerClass struct {
 // An interface definition for the [PanGestureRecognizer] class.
 type IPanGestureRecognizer interface {
 	IGestureRecognizer
-	ButtonMask() uint
-	SetButtonMask(value uint)
-	NumberOfTouchesRequired() int
-	SetNumberOfTouchesRequired(value int)
+	// properties:
 	DelaysPrimaryMouseButtonEvents() bool
 	SetDelaysPrimaryMouseButtonEvents(value bool)
+	ButtonMask() int
+	SetButtonMask(value int)
+	NumberOfTouchesRequired() int
+	SetNumberOfTouchesRequired(value int)
+	// methods:
 }
 
 // A continuous gesture recognizer for panning gestures.
@@ -92,44 +94,6 @@ func NewPanGestureRecognizer() PanGestureRecognizer {
 
 
 
-// A bit mask of the button (or buttons) required to recognize this gesture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/buttonMask
-func (p_ PanGestureRecognizer) ButtonMask() uint {
-	rv := objc.Send[uint](p_.ID, objc.Sel("buttonMask"))
-	return rv
-}
-
-
-// A bit mask of the button (or buttons) required to recognize this gesture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/buttonMask
-func (p_ PanGestureRecognizer) SetButtonMask(value uint) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
-}
-
-
-// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/numberOfTouchesRequired
-func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("numberOfTouchesRequired"))
-	return rv
-}
-
-
-// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanGestureRecognizer/numberOfTouchesRequired
-func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
-}
-
-
 // A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
 //
 // [Full Topic]
@@ -146,6 +110,44 @@ func (p_ PanGestureRecognizer) DelaysPrimaryMouseButtonEvents() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents
 func (p_ PanGestureRecognizer) SetDelaysPrimaryMouseButtonEvents(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelaysPrimaryMouseButtonEvents:"), value)
+}
+
+
+// A bit mask of the button (or buttons) required to recognize this gesture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspangesturerecognizer/buttonmask
+func (p_ PanGestureRecognizer) ButtonMask() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("buttonMask"))
+	return rv
+}
+
+
+// A bit mask of the button (or buttons) required to recognize this gesture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspangesturerecognizer/buttonmask
+func (p_ PanGestureRecognizer) SetButtonMask(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
+}
+
+
+// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspangesturerecognizer/numberoftouchesrequired
+func (p_ PanGestureRecognizer) NumberOfTouchesRequired() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("numberOfTouchesRequired"))
+	return rv
+}
+
+
+// The number of necessary touches on a Touch Bar for the gesture recognizer to match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspangesturerecognizer/numberoftouchesrequired
+func (p_ PanGestureRecognizer) SetNumberOfTouchesRequired(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }
 
 

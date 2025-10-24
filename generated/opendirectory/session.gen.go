@@ -30,9 +30,13 @@ type _sessionClass struct {
 // An interface definition for the [session] class.
 type Isession interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/session
 type session struct {
 	objectivec.Object

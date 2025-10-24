@@ -32,55 +32,59 @@ type _ODConfigurationClass struct {
 // An interface definition for the [ODConfiguration] class.
 type IODConfiguration interface {
 	objectivec.IObject
-	AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType string, account string, accountPassword string, username string, password string, join bool, error_ unsafe.Pointer) bool
-	RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username string, password string, deleteAccount bool, error_ unsafe.Pointer) bool
-	SaveUsingAuthorizationError(authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool
-	AuthenticationModuleEntries() objc.ID
-	SetAuthenticationModuleEntries(value objc.ID)
-	Comment() string
-	SetComment(value string)
+	// properties:
+	AuthenticationModuleEntries() objc.IObject /* cross-framework: NSArray */
+	SetAuthenticationModuleEntries(value objc.IObject /* cross-framework: NSArray */)
+	Comment() objc.IObject /* cross-framework: NSString */
+	SetComment(value objc.IObject /* cross-framework: NSString */)
 	ConnectionIdleTimeoutInSeconds() int
 	SetConnectionIdleTimeoutInSeconds(value int)
 	ConnectionSetupTimeoutInSeconds() int
 	SetConnectionSetupTimeoutInSeconds(value int)
-	DefaultMappings() ODMappings
+	DefaultMappings() IODMappings
 	SetDefaultMappings(value IODMappings)
-	DefaultModuleEntries() objc.ID
-	SetDefaultModuleEntries(value objc.ID)
-	DiscoveryModuleEntries() objc.ID
-	SetDiscoveryModuleEntries(value objc.ID)
-	GeneralModuleEntries() objc.ID
-	SetGeneralModuleEntries(value objc.ID)
+	DefaultModuleEntries() objc.IObject /* cross-framework: NSArray */
+	SetDefaultModuleEntries(value objc.IObject /* cross-framework: NSArray */)
+	DiscoveryModuleEntries() objc.IObject /* cross-framework: NSArray */
+	SetDiscoveryModuleEntries(value objc.IObject /* cross-framework: NSArray */)
+	GeneralModuleEntries() objc.IObject /* cross-framework: NSArray */
+	SetGeneralModuleEntries(value objc.IObject /* cross-framework: NSArray */)
 	HideRegistration() bool
 	SetHideRegistration(value bool)
 	ManInTheMiddleProtection() bool
 	SetManInTheMiddleProtection(value bool)
-	NodeName() string
-	SetNodeName(value string)
+	NodeName() objc.IObject /* cross-framework: NSString */
+	SetNodeName(value objc.IObject /* cross-framework: NSString */)
 	PacketEncryption() int
 	SetPacketEncryption(value int)
 	PacketSigning() int
 	SetPacketSigning(value int)
-	PreferredDestinationHostName() string
-	SetPreferredDestinationHostName(value string)
-	PreferredDestinationHostPort() unsafe.Pointer
-	SetPreferredDestinationHostPort(value unsafe.Pointer)
+	PreferredDestinationHostName() objc.IObject /* cross-framework: NSString */
+	SetPreferredDestinationHostName(value objc.IObject /* cross-framework: NSString */)
+	PreferredDestinationHostPort() uint16 /* not a class type */
+	SetPreferredDestinationHostPort(value uint16 /* not a class type */)
 	QueryTimeoutInSeconds() int
 	SetQueryTimeoutInSeconds(value int)
-	TemplateName() string
-	SetTemplateName(value string)
-	TrustAccount() string
-	TrustKerberosPrincipal() string
-	TrustMetaAccount() string
-	TrustType() string
+	TemplateName() objc.IObject /* cross-framework: NSString */
+	SetTemplateName(value objc.IObject /* cross-framework: NSString */)
+	TrustAccount() objc.IObject /* cross-framework: NSString */
+	TrustKerberosPrincipal() objc.IObject /* cross-framework: NSString */
+	TrustMetaAccount() objc.IObject /* cross-framework: NSString */
+	TrustType() objc.IObject /* cross-framework: NSString */
 	TrustUsesKerberosKeytab() bool
 	TrustUsesMutualAuthentication() bool
 	TrustUsesSystemKeychain() bool
-	VirtualSubnodes() objc.ID
-	SetVirtualSubnodes(value objc.ID)
+	VirtualSubnodes() objc.IObject /* cross-framework: NSArray */
+	SetVirtualSubnodes(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
+	AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType objc.IObject /* cross-framework: NSString */, account objc.IObject /* cross-framework: NSString */, accountPassword objc.IObject /* cross-framework: NSString */, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, join bool, error_ unsafe.Pointer) bool
+	RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, deleteAccount bool, error_ unsafe.Pointer) bool
+	SaveUsingAuthorizationError(authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration
 type ODConfiguration struct {
 	objectivec.Object
@@ -123,79 +127,86 @@ func NewODConfiguration() ODConfiguration {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/configuration
 func (oc _ODConfigurationClass) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("configuration"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustAccount(_:)
-func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), objc.String(hostname))
+func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), hostname)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustPassword(_:)
-func (oc _ODConfigurationClass) SuggestedTrustPassword(length Iuintptr) foundation.String {
+func (oc _ODConfigurationClass) SuggestedTrustPassword(length uintptr /* not a class type */) objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustPassword:"), length)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/addTrustType(_:trustAccount:trustPassword:username:password:joinExisting:)
-func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType string, account string, accountPassword string, username string, password string, join bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:"), objc.String(trustType), objc.String(account), objc.String(accountPassword), objc.String(username), objc.String(password), join, error_)
+func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType objc.IObject /* cross-framework: NSString */, account objc.IObject /* cross-framework: NSString */, accountPassword objc.IObject /* cross-framework: NSString */, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, join bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:"), trustType, account, accountPassword, username, password, join, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/removeTrust(usingUsername:password:deleteTrustAccount:)
-func (o_ ODConfiguration) RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username string, password string, deleteAccount bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("removeTrustUsingUsername:password:deleteTrustAccount:error:"), objc.String(username), objc.String(password), deleteAccount, error_)
+func (o_ ODConfiguration) RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, deleteAccount bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("removeTrustUsingUsername:password:deleteTrustAccount:error:"), username, password, deleteAccount, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/save(using:)
-func (o_ ODConfiguration) SaveUsingAuthorizationError(authorization securityfoundation.ISFAuthorization, error_ unsafe.Pointer) bool {
+func (o_ ODConfiguration) SaveUsingAuthorizationError(authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("saveUsingAuthorization:error:"), authorization, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/authenticationModuleEntries-swift.property
-func (o_ ODConfiguration) AuthenticationModuleEntries() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("authenticationModuleEntries"))
+func (o_ ODConfiguration) AuthenticationModuleEntries() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("authenticationModuleEntries"))
 	return rv
 }
 
 
-// SetAuthenticationModuleEntries sets the value of the authenticationModuleEntries property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/authenticationModuleEntries-swift.property
-func (o_ ODConfiguration) SetAuthenticationModuleEntries(value objc.ID) {
+func (o_ ODConfiguration) SetAuthenticationModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAuthenticationModuleEntries:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) Comment() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
+func (o_ ODConfiguration) Comment() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
 
-// SetComment sets the value of the comment property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
-func (o_ ODConfiguration) SetComment(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
+func (o_ ODConfiguration) SetComment(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) ConnectionIdleTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("connectionIdleTimeoutInSeconds"))
@@ -203,14 +214,14 @@ func (o_ ODConfiguration) ConnectionIdleTimeoutInSeconds() int {
 }
 
 
-// SetConnectionIdleTimeoutInSeconds sets the value of the connectionIdleTimeoutInSeconds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetConnectionIdleTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionIdleTimeoutInSeconds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionSetupTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) ConnectionSetupTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("connectionSetupTimeoutInSeconds"))
@@ -218,74 +229,74 @@ func (o_ ODConfiguration) ConnectionSetupTimeoutInSeconds() int {
 }
 
 
-// SetConnectionSetupTimeoutInSeconds sets the value of the connectionSetupTimeoutInSeconds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionSetupTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetConnectionSetupTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionSetupTimeoutInSeconds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultMappings-swift.property
-func (o_ ODConfiguration) DefaultMappings() ODMappings {
+func (o_ ODConfiguration) DefaultMappings() IODMappings {
 	rv := objc.Send[ODMappings](o_.ID, objc.Sel("defaultMappings"))
 	return rv
 }
 
 
-// SetDefaultMappings sets the value of the defaultMappings property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultMappings-swift.property
 func (o_ ODConfiguration) SetDefaultMappings(value IODMappings) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultMappings:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-swift.property
-func (o_ ODConfiguration) DefaultModuleEntries() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("defaultModuleEntries"))
+func (o_ ODConfiguration) DefaultModuleEntries() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("defaultModuleEntries"))
 	return rv
 }
 
 
-// SetDefaultModuleEntries sets the value of the defaultModuleEntries property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-swift.property
-func (o_ ODConfiguration) SetDefaultModuleEntries(value objc.ID) {
+func (o_ ODConfiguration) SetDefaultModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultModuleEntries:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/discoveryModuleEntries-swift.property
-func (o_ ODConfiguration) DiscoveryModuleEntries() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("discoveryModuleEntries"))
+func (o_ ODConfiguration) DiscoveryModuleEntries() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("discoveryModuleEntries"))
 	return rv
 }
 
 
-// SetDiscoveryModuleEntries sets the value of the discoveryModuleEntries property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/discoveryModuleEntries-swift.property
-func (o_ ODConfiguration) SetDiscoveryModuleEntries(value objc.ID) {
+func (o_ ODConfiguration) SetDiscoveryModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDiscoveryModuleEntries:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/generalModuleEntries-swift.property
-func (o_ ODConfiguration) GeneralModuleEntries() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("generalModuleEntries"))
+func (o_ ODConfiguration) GeneralModuleEntries() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("generalModuleEntries"))
 	return rv
 }
 
 
-// SetGeneralModuleEntries sets the value of the generalModuleEntries property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/generalModuleEntries-swift.property
-func (o_ ODConfiguration) SetGeneralModuleEntries(value objc.ID) {
+func (o_ ODConfiguration) SetGeneralModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setGeneralModuleEntries:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/hideRegistration-swift.property
 func (o_ ODConfiguration) HideRegistration() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hideRegistration"))
@@ -293,14 +304,14 @@ func (o_ ODConfiguration) HideRegistration() bool {
 }
 
 
-// SetHideRegistration sets the value of the hideRegistration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/hideRegistration-swift.property
 func (o_ ODConfiguration) SetHideRegistration(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setHideRegistration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/manInTheMiddleProtection-swift.property
 func (o_ ODConfiguration) ManInTheMiddleProtection() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("manInTheMiddleProtection"))
@@ -308,29 +319,29 @@ func (o_ ODConfiguration) ManInTheMiddleProtection() bool {
 }
 
 
-// SetManInTheMiddleProtection sets the value of the manInTheMiddleProtection property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/manInTheMiddleProtection-swift.property
 func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManInTheMiddleProtection:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) NodeName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("nodeName"))
+func (o_ ODConfiguration) NodeName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("nodeName"))
 	return rv
 }
 
 
-// SetNodeName sets the value of the nodeName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
-func (o_ ODConfiguration) SetNodeName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), objc.String(value))
+func (o_ ODConfiguration) SetNodeName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-swift.property
 func (o_ ODConfiguration) PacketEncryption() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("packetEncryption"))
@@ -338,14 +349,14 @@ func (o_ ODConfiguration) PacketEncryption() int {
 }
 
 
-// SetPacketEncryption sets the value of the packetEncryption property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-swift.property
 func (o_ ODConfiguration) SetPacketEncryption(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketEncryption:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetSigning-swift.property
 func (o_ ODConfiguration) PacketSigning() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("packetSigning"))
@@ -353,44 +364,44 @@ func (o_ ODConfiguration) PacketSigning() int {
 }
 
 
-// SetPacketSigning sets the value of the packetSigning property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetSigning-swift.property
 func (o_ ODConfiguration) SetPacketSigning(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketSigning:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) PreferredDestinationHostName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("preferredDestinationHostName"))
+func (o_ ODConfiguration) PreferredDestinationHostName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("preferredDestinationHostName"))
 	return rv
 }
 
 
-// SetPreferredDestinationHostName sets the value of the preferredDestinationHostName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
-func (o_ ODConfiguration) SetPreferredDestinationHostName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), objc.String(value))
+func (o_ ODConfiguration) SetPreferredDestinationHostName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-swift.property
-func (o_ ODConfiguration) PreferredDestinationHostPort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("preferredDestinationHostPort"))
+func (o_ ODConfiguration) PreferredDestinationHostPort() uint16 /* not a class type */ {
+	rv := objc.Send[uint16](o_.ID, objc.Sel("preferredDestinationHostPort"))
 	return rv
 }
 
 
-// SetPreferredDestinationHostPort sets the value of the preferredDestinationHostPort property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-swift.property
-func (o_ ODConfiguration) SetPreferredDestinationHostPort(value unsafe.Pointer) {
+func (o_ ODConfiguration) SetPreferredDestinationHostPort(value uint16 /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostPort:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/queryTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) QueryTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("queryTimeoutInSeconds"))
@@ -398,89 +409,95 @@ func (o_ ODConfiguration) QueryTimeoutInSeconds() int {
 }
 
 
-// SetQueryTimeoutInSeconds sets the value of the queryTimeoutInSeconds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/queryTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueryTimeoutInSeconds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) TemplateName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
+func (o_ ODConfiguration) TemplateName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("templateName"))
 	return rv
 }
 
 
-// SetTemplateName sets the value of the templateName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
-func (o_ ODConfiguration) SetTemplateName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
+func (o_ ODConfiguration) SetTemplateName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustAccount-swift.property
-func (o_ ODConfiguration) TrustAccount() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("trustAccount"))
+func (o_ ODConfiguration) TrustAccount() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustAccount"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustKerberosPrincipal-swift.property
-func (o_ ODConfiguration) TrustKerberosPrincipal() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("trustKerberosPrincipal"))
+func (o_ ODConfiguration) TrustKerberosPrincipal() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustKerberosPrincipal"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustMetaAccount-swift.property
-func (o_ ODConfiguration) TrustMetaAccount() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("trustMetaAccount"))
+func (o_ ODConfiguration) TrustMetaAccount() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustMetaAccount"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustType-swift.property
-func (o_ ODConfiguration) TrustType() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("trustType"))
+func (o_ ODConfiguration) TrustType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesKerberosKeytab-swift.property
 func (o_ ODConfiguration) TrustUsesKerberosKeytab() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesKerberosKeytab"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesMutualAuthentication-swift.property
 func (o_ ODConfiguration) TrustUsesMutualAuthentication() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesMutualAuthentication"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesSystemKeychain-swift.property
 func (o_ ODConfiguration) TrustUsesSystemKeychain() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesSystemKeychain"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/virtualSubnodes-swift.property
-func (o_ ODConfiguration) VirtualSubnodes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("virtualSubnodes"))
+func (o_ ODConfiguration) VirtualSubnodes() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("virtualSubnodes"))
 	return rv
 }
 
 
-// SetVirtualSubnodes sets the value of the virtualSubnodes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/virtualSubnodes-swift.property
-func (o_ ODConfiguration) SetVirtualSubnodes(value objc.ID) {
+func (o_ ODConfiguration) SetVirtualSubnodes(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setVirtualSubnodes:"), value)
 }
 

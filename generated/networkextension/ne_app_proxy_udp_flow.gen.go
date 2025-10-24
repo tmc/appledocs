@@ -30,18 +30,22 @@ type _NEAppProxyUDPFlowClass struct {
 // An interface definition for the [NEAppProxyUDPFlow] class.
 type INEAppProxyUDPFlow interface {
 	INEAppProxyFlow
-	ReadDatagramsWithCompletionHandler(completionHandler unsafe.Pointer)
-	ReadDatagramsAndFlowEndpointsWithCompletionHandler(completionHandler unsafe.Pointer)
-	WriteDatagramsSentByEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints []NWEndpoint, completionHandler unsafe.Pointer)
-	WriteDatagramsSentByFlowEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints unsafe.Pointer, completionHandler unsafe.Pointer)
-	LocalEndpoint() NWEndpoint
-	LocalFlowEndpoint() unsafe.Pointer
+	// properties:
+	LocalEndpoint() INWEndpoint
+	LocalFlowEndpoint() INWEndpoint
+	SetLocalFlowEndpoint(value INWEndpoint)
+	// methods:
+	WriteDatagramsSentByFlowEndpointsCompletionHandler(datagrams []objc.IObject /* cross-framework: Data */, remoteEndpoints unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
 // An object for reading and writing data to and from a UDP conversation being proxied by the provider.
 //
 // App Proxy Providers receive UDP connections to be proxied in the form of objects.
+
+
+// An object for reading and writing data to and from a UDP conversation being proxied by the provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow
 type NEAppProxyUDPFlow struct {
 	NEAppProxyFlow
@@ -88,45 +92,36 @@ func NewNEAppProxyUDPFlow() NEAppProxyUDPFlow {
 }
 
 
-// Read datagrams from the flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/readDatagrams(completionHandler:)-9z8gw
-func (n_ NEAppProxyUDPFlow) ReadDatagramsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("readDatagramsWithCompletionHandler:"), completionHandler)
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/readDatagramsAndFlowEndpointsWithCompletionHandler:
-func (n_ NEAppProxyUDPFlow) ReadDatagramsAndFlowEndpointsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("readDatagramsAndFlowEndpointsWithCompletionHandler:"), completionHandler)
-}
-
-// Write datagrams to the flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/writeDatagrams(_:sentBy:completionHandler:)
-func (n_ NEAppProxyUDPFlow) WriteDatagramsSentByEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints []NWEndpoint, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("writeDatagrams:sentByEndpoints:completionHandler:"), datagrams, remoteEndpoints, completionHandler)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/writeDatagrams:sentByFlowEndpoints:completionHandler:
-func (n_ NEAppProxyUDPFlow) WriteDatagramsSentByFlowEndpointsCompletionHandler(datagrams []foundation.IData, remoteEndpoints unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (n_ NEAppProxyUDPFlow) WriteDatagramsSentByFlowEndpointsCompletionHandler(datagrams []objc.IObject /* cross-framework: Data */, remoteEndpoints unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("writeDatagrams:sentByFlowEndpoints:completionHandler:"), datagrams, remoteEndpoints, completionHandler)
 }
 
+
 // An object containing information about the local endpoint of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/localEndpoint
-func (n_ NEAppProxyUDPFlow) LocalEndpoint() NWEndpoint {
+func (n_ NEAppProxyUDPFlow) LocalEndpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localEndpoint"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyUDPFlow/localFlowEndpoint-9a8gj
-func (n_ NEAppProxyUDPFlow) LocalFlowEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localFlowEndpoint"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyudpflow/localflowendpoint-7ukb6
+func (n_ NEAppProxyUDPFlow) LocalFlowEndpoint() INWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localFlowEndpoint"))
 	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyudpflow/localflowendpoint-7ukb6
+func (n_ NEAppProxyUDPFlow) SetLocalFlowEndpoint(value INWEndpoint) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalFlowEndpoint:"), value)
 }
 
 

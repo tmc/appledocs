@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/audiotoolbox"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,19 +34,19 @@ type _SampleBufferRenderSynchronizerClass struct {
 type ISampleBufferRenderSynchronizer interface {
 	objectivec.IObject
 	// properties:
-	DelaysRateChangeUntilHasSufficientMediaData() bool /* primitive/slice/pointer. */
-	SetDelaysRateChangeUntilHasSufficientMediaData(value bool /* primitive/slice/pointer. */)
+	DelaysRateChangeUntilHasSufficientMediaData() bool
+	SetDelaysRateChangeUntilHasSufficientMediaData(value bool)
 	IntendedSpatialAudioExperience() objc.IObject /* cross-framework: SpatialAudioExperience */
 	SetIntendedSpatialAudioExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */)
-	Rate() float32 /* primitive/slice/pointer. */
-	SetRate(value float32 /* primitive/slice/pointer. */)
+	Rate() float32
+	SetRate(value float32)
 	Renderers() QueuedSampleBufferRendering /* not a class type */
 	SetRenderers(value QueuedSampleBufferRendering /* not a class type */)
 	Timebase() Timebase /* not a class type */
 	SetTimebase(value Timebase /* not a class type */)
 	// methods:
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times objc.IObject /* cross-framework Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	SetRateTime(rate float32 /* primitive/slice/pointer. */, time Time /* not a class type */)
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []objc.IObject /* cross-framework: Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	SetRateTime(rate float32, time objc.IObject /* cross-framework: Time */)
 }
 
 // An object used to synchronize multiple queued sample buffers to a single timeline.
@@ -105,7 +106,7 @@ func NewSampleBufferRenderSynchronizer() SampleBufferRenderSynchronizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times objc.IObject /* cross-framework Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []objc.IObject /* cross-framework: Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
@@ -115,7 +116,7 @@ func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/setRate(_:time:)
-func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32 /* primitive/slice/pointer. */, time Time /* not a class type */) {
+func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32, time objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:time:"), rate, time)
 }
 
@@ -124,7 +125,7 @@ func (s_ SampleBufferRenderSynchronizer) SetRateTime(rate float32 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/delaysratechangeuntilhassufficientmediadata
-func (s_ SampleBufferRenderSynchronizer) DelaysRateChangeUntilHasSufficientMediaData() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferRenderSynchronizer) DelaysRateChangeUntilHasSufficientMediaData() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("delaysRateChangeUntilHasSufficientMediaData"))
 	return rv
 }
@@ -134,7 +135,7 @@ func (s_ SampleBufferRenderSynchronizer) DelaysRateChangeUntilHasSufficientMedia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/delaysratechangeuntilhassufficientmediadata
-func (s_ SampleBufferRenderSynchronizer) SetDelaysRateChangeUntilHasSufficientMediaData(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferRenderSynchronizer) SetDelaysRateChangeUntilHasSufficientMediaData(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelaysRateChangeUntilHasSufficientMediaData:"), value)
 }
 
@@ -162,7 +163,7 @@ func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
-func (s_ SampleBufferRenderSynchronizer) Rate() float32 /* primitive/slice/pointer. */ {
+func (s_ SampleBufferRenderSynchronizer) Rate() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
 	return rv
 }
@@ -172,7 +173,7 @@ func (s_ SampleBufferRenderSynchronizer) Rate() float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/rate
-func (s_ SampleBufferRenderSynchronizer) SetRate(value float32 /* primitive/slice/pointer. */) {
+func (s_ SampleBufferRenderSynchronizer) SetRate(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
 

@@ -33,31 +33,31 @@ type IMutableAttributedString interface {
 	// properties:
 	MutableString() IMutableString
 	// methods:
-	AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ Range /* not a class type */)
-	AddAttributesRange(attrs IDictionary /* already interface */, range_ Range /* not a class type */)
+	AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ objc.IObject /* cross-framework: Range */)
+	AddAttributesRange(attrs IDictionary, range_ objc.IObject /* cross-framework: Range */)
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
-	ApplyFontTraitsRange(traitMask FontTraitMask /* not a class type */, range_ Range /* not a class type */)
+	ApplyFontTraitsRange(traitMask FontTraitMask /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
 	BeginEditing()
-	DeleteCharactersInRange(range_ Range /* not a class type */)
+	DeleteCharactersInRange(range_ objc.IObject /* cross-framework: Range */)
 	EndEditing()
-	FixAttachmentAttributeInRange(range_ Range /* not a class type */)
-	FixAttributesInRange(range_ Range /* not a class type */)
-	FixFontAttributeInRange(range_ Range /* not a class type */)
-	FixParagraphStyleAttributeInRange(range_ Range /* not a class type */)
-	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint /* primitive/slice/pointer. */)
-	ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */
-	ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */
-	RemoveAttributeRange(name objc.IObject /* cross-framework: AttributedStringKey */, range_ Range /* not a class type */)
-	ReplaceCharactersInRangeWithAttributedString(range_ Range /* not a class type */, attrString IAttributedString)
-	ReplaceCharactersInRangeWithString(range_ Range /* not a class type */, str IString)
-	SetAlignmentRange(alignment TextAlignment /* not a class type */, range_ Range /* not a class type */)
+	FixAttachmentAttributeInRange(range_ objc.IObject /* cross-framework: Range */)
+	FixAttributesInRange(range_ objc.IObject /* cross-framework: Range */)
+	FixFontAttributeInRange(range_ objc.IObject /* cross-framework: Range */)
+	FixParagraphStyleAttributeInRange(range_ objc.IObject /* cross-framework: Range */)
+	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
+	ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary, dict IDictionary, error_ IError) bool
+	ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary, dict IDictionary, error_ IError) bool
+	RemoveAttributeRange(name objc.IObject /* cross-framework: AttributedStringKey */, range_ objc.IObject /* cross-framework: Range */)
+	ReplaceCharactersInRangeWithAttributedString(range_ objc.IObject /* cross-framework: Range */, attrString IAttributedString)
+	ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, str IString)
+	SetAlignmentRange(alignment TextAlignment /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
 	SetAttributedString(attrString IAttributedString)
-	SetAttributesRange(attrs IDictionary /* already interface */, range_ Range /* not a class type */)
-	SetBaseWritingDirectionRange(writingDirection WritingDirection /* not a class type */, range_ Range /* not a class type */)
-	SubscriptRange(range_ Range /* not a class type */)
-	SuperscriptRange(range_ Range /* not a class type */)
-	UnscriptRange(range_ Range /* not a class type */)
+	SetAttributesRange(attrs IDictionary, range_ objc.IObject /* cross-framework: Range */)
+	SetBaseWritingDirectionRange(writingDirection WritingDirection /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
+	SubscriptRange(range_ objc.IObject /* cross-framework: Range */)
+	SuperscriptRange(range_ objc.IObject /* cross-framework: Range */)
+	UnscriptRange(range_ objc.IObject /* cross-framework: Range */)
 	UpdateAttachmentsFromPath(path IString)
 }
 
@@ -120,7 +120,7 @@ func NewMutableAttributedString() MutableAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/addAttribute(_:value:range:)
-func (m_ MutableAttributedString) AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addAttribute:value:range:"), name, value, range_)
 }
 
@@ -129,7 +129,7 @@ func (m_ MutableAttributedString) AddAttributeValueRange(name objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/addAttributes(_:range:)
-func (m_ MutableAttributedString) AddAttributesRange(attrs IDictionary /* already interface */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) AddAttributesRange(attrs IDictionary, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addAttributes:range:"), attrs, range_)
 }
 
@@ -154,7 +154,7 @@ func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/applyFontTraits(_:range:)
-func (m_ MutableAttributedString) ApplyFontTraitsRange(traitMask FontTraitMask /* not a class type */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) ApplyFontTraitsRange(traitMask FontTraitMask /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("applyFontTraits:range:"), traitMask, range_)
 }
 
@@ -172,7 +172,7 @@ func (m_ MutableAttributedString) BeginEditing() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/deleteCharacters(in:)
-func (m_ MutableAttributedString) DeleteCharactersInRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) DeleteCharactersInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
 }
 
@@ -190,7 +190,7 @@ func (m_ MutableAttributedString) EndEditing() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixAttachmentAttribute(in:)
-func (m_ MutableAttributedString) FixAttachmentAttributeInRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) FixAttachmentAttributeInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("fixAttachmentAttributeInRange:"), range_)
 }
 
@@ -199,7 +199,7 @@ func (m_ MutableAttributedString) FixAttachmentAttributeInRange(range_ Range /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixAttributes(in:)
-func (m_ MutableAttributedString) FixAttributesInRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) FixAttributesInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("fixAttributesInRange:"), range_)
 }
 
@@ -208,7 +208,7 @@ func (m_ MutableAttributedString) FixAttributesInRange(range_ Range /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixFontAttribute(in:)
-func (m_ MutableAttributedString) FixFontAttributeInRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) FixFontAttributeInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("fixFontAttributeInRange:"), range_)
 }
 
@@ -217,7 +217,7 @@ func (m_ MutableAttributedString) FixFontAttributeInRange(range_ Range /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/fixParagraphStyleAttribute(in:)
-func (m_ MutableAttributedString) FixParagraphStyleAttributeInRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) FixParagraphStyleAttributeInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("fixParagraphStyleAttributeInRange:"), range_)
 }
 
@@ -226,7 +226,7 @@ func (m_ MutableAttributedString) FixParagraphStyleAttributeInRange(range_ Range
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/insert(_:at:)
-func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttributedString, loc uint /* primitive/slice/pointer. */) {
+func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttributedString, loc uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertAttributedString:atIndex:"), attrString, loc)
 }
 
@@ -235,7 +235,7 @@ func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/read(from:options:documentAttributes:)-54wth
-func (m_ MutableAttributedString) ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (m_ MutableAttributedString) ReadFromURLOptionsDocumentAttributesError(url IURL, opts IDictionary, dict IDictionary, error_ IError) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("readFromURL:options:documentAttributes:error:"), url, opts, dict, error_)
 	return rv
 }
@@ -245,7 +245,7 @@ func (m_ MutableAttributedString) ReadFromURLOptionsDocumentAttributesError(url 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/read(from:options:documentAttributes:)-5mbcx
-func (m_ MutableAttributedString) ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary /* already interface */, dict IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (m_ MutableAttributedString) ReadFromDataOptionsDocumentAttributesError(data IData, opts IDictionary, dict IDictionary, error_ IError) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("readFromData:options:documentAttributes:error:"), data, opts, dict, error_)
 	return rv
 }
@@ -255,7 +255,7 @@ func (m_ MutableAttributedString) ReadFromDataOptionsDocumentAttributesError(dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/removeAttribute(_:range:)
-func (m_ MutableAttributedString) RemoveAttributeRange(name objc.IObject /* cross-framework: AttributedStringKey */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) RemoveAttributeRange(name objc.IObject /* cross-framework: AttributedStringKey */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAttribute:range:"), name, range_)
 }
 
@@ -264,7 +264,7 @@ func (m_ MutableAttributedString) RemoveAttributeRange(name objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range /* not a class type */, attrString IAttributedString) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ objc.IObject /* cross-framework: Range */, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
 }
 
@@ -273,7 +273,7 @@ func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-6oq9r
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithString(range_ Range /* not a class type */, str IString) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, str IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, str)
 }
 
@@ -282,7 +282,7 @@ func (m_ MutableAttributedString) ReplaceCharactersInRangeWithString(range_ Rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAlignment(_:range:)
-func (m_ MutableAttributedString) SetAlignmentRange(alignment TextAlignment /* not a class type */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) SetAlignmentRange(alignment TextAlignment /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:range:"), alignment, range_)
 }
 
@@ -300,7 +300,7 @@ func (m_ MutableAttributedString) SetAttributedString(attrString IAttributedStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAttributes(_:range:)
-func (m_ MutableAttributedString) SetAttributesRange(attrs IDictionary /* already interface */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) SetAttributesRange(attrs IDictionary, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:range:"), attrs, range_)
 }
 
@@ -309,7 +309,7 @@ func (m_ MutableAttributedString) SetAttributesRange(attrs IDictionary /* alread
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setBaseWritingDirection(_:range:)
-func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection WritingDirection /* not a class type */, range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection WritingDirection /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:range:"), writingDirection, range_)
 }
 
@@ -318,7 +318,7 @@ func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/subscriptRange(_:)
-func (m_ MutableAttributedString) SubscriptRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) SubscriptRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscriptRange:"), range_)
 }
 
@@ -327,7 +327,7 @@ func (m_ MutableAttributedString) SubscriptRange(range_ Range /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/superscriptRange(_:)
-func (m_ MutableAttributedString) SuperscriptRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) SuperscriptRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("superscriptRange:"), range_)
 }
 
@@ -336,7 +336,7 @@ func (m_ MutableAttributedString) SuperscriptRange(range_ Range /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/unscriptRange(_:)
-func (m_ MutableAttributedString) UnscriptRange(range_ Range /* not a class type */) {
+func (m_ MutableAttributedString) UnscriptRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unscriptRange:"), range_)
 }
 
@@ -358,6 +358,5 @@ func (m_ MutableAttributedString) MutableString() IMutableString {
 	rv := objc.Send[MutableString](m_.ID, objc.Sel("mutableString"))
 	return rv
 }
-
 
 

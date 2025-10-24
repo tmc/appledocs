@@ -31,7 +31,8 @@ type _MetadataItemClass struct {
 type IMetadataItem interface {
 	objectivec.IObject
 	// properties:
-	Attributes() []string /* primitive/slice/pointer. */
+	Attributes() IString
+	SetAttributes(value IString)
 	NSMetadataItemAcquisitionMakeKey() IString
 	NSMetadataItemAcquisitionModelKey() IString
 	NSMetadataItemAlbumKey() IString
@@ -214,8 +215,6 @@ type IMetadataItem interface {
 	NSMetadataUbiquitousSharedItemRoleOwner() IString
 	NSMetadataUbiquitousSharedItemRoleParticipant() IString
 	// methods:
-	ValueForAttribute(key IString) objc.ID
-	ValuesForAttributes(keys []string /* primitive/slice/pointer. */) IDictionary /* already interface */
 }
 
 // The metadata associated with a file.
@@ -271,35 +270,12 @@ func NewMetadataItem() MetadataItem {
 
 
 
-// Initializes a metadata item with a given URL.
+// An array containing the attribute keys for the metadata item’s values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/init(url:)
-func NewMetadataItemWithURL(url IURL) MetadataItem {
-	instance := getMetadataItemClass().Alloc()
-	rv := objc.Send[MetadataItem](instance.ID, objc.Sel("initWithURL:"), url)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the receiver’s metadata attribute name specified by a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/value(forAttribute:)
-func (m_ MetadataItem) ValueForAttribute(key IString) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForAttribute:"), key)
-	return rv
-}
-
-
-// Returns a dictionary containing the key-value pairs for the attribute names specified by a given array of keys.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/values(forAttributes:)
-func (m_ MetadataItem) ValuesForAttributes(keys []string /* primitive/slice/pointer. */) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](m_.ID, objc.Sel("valuesForAttributes:"), keys)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitem/attributes
+func (m_ MetadataItem) Attributes() IString {
+	rv := objc.Send[String](m_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -307,10 +283,9 @@ func (m_ MetadataItem) ValuesForAttributes(keys []string /* primitive/slice/poin
 // An array containing the attribute keys for the metadata item’s values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/attributes
-func (m_ MetadataItem) Attributes() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](m_.ID, objc.Sel("attributes"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitem/attributes
+func (m_ MetadataItem) SetAttributes(value IString) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
 }
 
 
@@ -1760,5 +1735,6 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleParticipant() IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemRoleParticipant"))
 	return rv
 }
+
 
 

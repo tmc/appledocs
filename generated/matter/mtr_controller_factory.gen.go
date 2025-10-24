@@ -30,11 +30,15 @@ type _MTRControllerFactoryClass struct {
 // An interface definition for the [MTRControllerFactory] class.
 type IMTRControllerFactory interface {
 	objectivec.IObject
+	// properties:
 	IsRunning() bool
 	SetIsRunning(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactory
 type MTRControllerFactory struct {
 	objectivec.Object
@@ -77,7 +81,8 @@ func NewMTRControllerFactory() MTRControllerFactory {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactory/isrunning
 func (m_ MTRControllerFactory) IsRunning() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
@@ -85,8 +90,7 @@ func (m_ MTRControllerFactory) IsRunning() bool {
 }
 
 
-// SetIsRunning sets the value of the isRunning property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactory/isrunning
 func (m_ MTRControllerFactory) SetIsRunning(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)

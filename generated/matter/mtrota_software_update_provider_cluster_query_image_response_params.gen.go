@@ -31,27 +31,31 @@ type _MTROTASoftwareUpdateProviderClusterQueryImageResponseParamsClass struct {
 // An interface definition for the [MTROTASoftwareUpdateProviderClusterQueryImageResponseParams] class.
 type IMTROTASoftwareUpdateProviderClusterQueryImageResponseParams interface {
 	objectivec.IObject
-	DelayedActionTime() foundation.Number
-	SetDelayedActionTime(value foundation.INumber)
-	ImageURI() string
-	SetImageURI(value string)
-	MetadataForRequestor() foundation.Data
-	SetMetadataForRequestor(value foundation.IData)
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
-	SoftwareVersionString() string
-	SetSoftwareVersionString(value string)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UpdateToken() foundation.Data
-	SetUpdateToken(value foundation.IData)
-	UserConsentNeeded() foundation.Number
-	SetUserConsentNeeded(value foundation.INumber)
+	// properties:
+	DelayedActionTime() objc.IObject /* cross-framework: NSNumber */
+	SetDelayedActionTime(value objc.IObject /* cross-framework: NSNumber */)
+	ImageURI() objc.IObject /* cross-framework: NSString */
+	SetImageURI(value objc.IObject /* cross-framework: NSString */)
+	MetadataForRequestor() objc.IObject /* cross-framework: Data */
+	SetMetadataForRequestor(value objc.IObject /* cross-framework: Data */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	SoftwareVersionString() objc.IObject /* cross-framework: NSString */
+	SetSoftwareVersionString(value objc.IObject /* cross-framework: NSString */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UpdateToken() objc.IObject /* cross-framework: Data */
+	SetUpdateToken(value objc.IObject /* cross-framework: Data */)
+	UserConsentNeeded() objc.IObject /* cross-framework: NSNumber */
+	SetUserConsentNeeded(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTASoftwareUpdateProviderClusterQueryImageResponseParams-6wuvt
 type MTROTASoftwareUpdateProviderClusterQueryImageResponseParams struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTROTASoftwareUpdateProviderClusterQueryImageResponseParams() MTROTASoft
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) DelayedActionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) DelayedActionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("delayedActionTime"))
 	return rv
 }
 
 
-// SetDelayedActionTime sets the value of the delayedActionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/delayedactiontime
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetDelayedActionTime(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetDelayedActionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/imageuri
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) ImageURI() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("imageURI"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) ImageURI() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("imageURI"))
 	return rv
 }
 
 
-// SetImageURI sets the value of the imageURI property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/imageuri
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetImageURI(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageURI:"), objc.String(value))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetImageURI(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImageURI:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) MetadataForRequestor() foundation.Data {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) MetadataForRequestor() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("metadataForRequestor"))
 	return rv
 }
 
 
-// SetMetadataForRequestor sets the value of the metadataForRequestor property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/metadataforrequestor
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetMetadataForRequestor(value foundation.IData) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetMetadataForRequestor(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForRequestor:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversion
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversionstring
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersionString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SoftwareVersionString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
 
-// SetSoftwareVersionString sets the value of the softwareVersionString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/softwareversionstring
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersionString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetSoftwareVersionString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/status
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UpdateToken() foundation.Data {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UpdateToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("updateToken"))
 	return rv
 }
 
 
-// SetUpdateToken sets the value of the updateToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUpdateToken(value foundation.IData) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUpdateToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UserConsentNeeded() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userConsentNeeded"))
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) UserConsentNeeded() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userConsentNeeded"))
 	return rv
 }
 
 
-// SetUserConsentNeeded sets the value of the userConsentNeeded property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageresponseparams-6wuvt/userconsentneeded
-func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUserConsentNeeded(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterQueryImageResponseParams) SetUserConsentNeeded(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserConsentNeeded:"), value)
 }
 

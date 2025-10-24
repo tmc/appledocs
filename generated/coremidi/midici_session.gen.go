@@ -32,10 +32,10 @@ type _MIDICISessionClass struct {
 type IMIDICISession interface {
 	objectivec.IObject
 	// properties:
-	MaxPropertyRequests() foundation.objc.IObject /* cross-framework: Number */
-	MaxSysExSize() foundation.objc.IObject /* cross-framework: Number */
-	SupportsProfileCapability() bool /* primitive/slice/pointer. */
-	SupportsPropertyCapability() bool /* primitive/slice/pointer. */
+	MaxPropertyRequests() objc.IObject /* cross-framework: NSNumber */
+	MaxSysExSize() objc.IObject /* cross-framework: NSNumber */
+	SupportsProfileCapability() bool
+	SupportsPropertyCapability() bool
 	DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */
 	SetDeviceInfo(value objc.IObject /* cross-framework: MIDICIDeviceInfo */)
 	MidiDestination() MIDIEntityRef /* typedef */
@@ -118,8 +118,8 @@ func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discove
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxPropertyRequests
-func (m_ MIDICISession) MaxPropertyRequests() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPropertyRequests"))
+func (m_ MIDICISession) MaxPropertyRequests() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxPropertyRequests"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (m_ MIDICISession) MaxPropertyRequests() foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxSysExSize
-func (m_ MIDICISession) MaxSysExSize() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
+func (m_ MIDICISession) MaxSysExSize() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (m_ MIDICISession) MaxSysExSize() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/supportsProfileCapability
-func (m_ MIDICISession) SupportsProfileCapability() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICISession) SupportsProfileCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileCapability"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (m_ MIDICISession) SupportsProfileCapability() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/supportsPropertyCapability
-func (m_ MIDICISession) SupportsPropertyCapability() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICISession) SupportsPropertyCapability() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyCapability"))
 	return rv
 }

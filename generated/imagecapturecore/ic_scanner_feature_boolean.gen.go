@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ICScannerFeatureBoolean] class.
@@ -29,10 +28,10 @@ type _ICScannerFeatureBooleanClass struct {
 
 // An interface definition for the [ICScannerFeatureBoolean] class.
 type IICScannerFeatureBoolean interface {
-	objectivec.IObject
+	IICScannerFeature
 	// properties:
-	Value() bool /* primitive/slice/pointer. */
-	SetValue(value bool /* primitive/slice/pointer. */)
+	Value() bool
+	SetValue(value bool)
 	// methods:
 }
 
@@ -44,14 +43,16 @@ type IICScannerFeatureBoolean interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerFeatureBoolean
 type ICScannerFeatureBoolean struct {
-	objectivec.Object
+	ICScannerFeature
 }
 
 // ICScannerFeatureBooleanFrom constructs a [ICScannerFeatureBoolean] from an unsafe.Pointer.
 //
 // A feature with a value of or .
 func ICScannerFeatureBooleanFrom(ptr unsafe.Pointer) ICScannerFeatureBoolean {
-	return ICScannerFeatureBoolean{objectivec.Object{objc.ID(ptr)}}
+	return ICScannerFeatureBoolean{
+		ICScannerFeature: ICScannerFeatureFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -89,7 +90,7 @@ func NewICScannerFeatureBoolean() ICScannerFeatureBoolean {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerfeatureboolean/value
-func (i_ ICScannerFeatureBoolean) Value() bool /* primitive/slice/pointer. */ {
+func (i_ ICScannerFeatureBoolean) Value() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("value"))
 	return rv
 }
@@ -97,7 +98,7 @@ func (i_ ICScannerFeatureBoolean) Value() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerfeatureboolean/value
-func (i_ ICScannerFeatureBoolean) SetValue(value bool /* primitive/slice/pointer. */) {
+func (i_ ICScannerFeatureBoolean) SetValue(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
 }
 

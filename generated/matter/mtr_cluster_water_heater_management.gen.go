@@ -30,24 +30,30 @@ type _MTRClusterWaterHeaterManagementClass struct {
 // An interface definition for the [MTRClusterWaterHeaterManagement] class.
 type IMTRClusterWaterHeaterManagement interface {
 	IMTRGenericCluster
-	BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeBoostStateWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeHeatDemandWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeHeaterTypesWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeTankPercentageWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeTankVolumeWithParams(params IMTRReadParams) unsafe.Pointer
+	// properties:
+	// methods:
+	BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeBoostStateWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeHeatDemandWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeHeaterTypesWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeTankPercentageWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeTankVolumeWithParams(params IMTRReadParams) foundation.IDictionary
 }
 
 // Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
+
+
+// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement
 type MTRClusterWaterHeaterManagement struct {
 	MTRGenericCluster
@@ -95,11 +101,11 @@ func NewMTRClusterWaterHeaterManagement() MTRClusterWaterHeaterManagement {
 
 
 
-
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/init(device:endpointID:queue:)
-func NewMTRClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterWaterHeaterManagement {
+func NewMTRClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterWaterHeaterManagement {
 	instance := getMTRClusterWaterHeaterManagementClass().Alloc()
 	rv := objc.Send[MTRClusterWaterHeaterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -107,98 +113,112 @@ func NewMTRClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device IMTRDevi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/boost(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterWaterHeaterManagement) BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("boostWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/cancelBoost(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelBoostWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/cancelBoost(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelBoostWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeBoostState(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeBoostStateWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeBoostStateWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeBoostStateWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeBoostStateWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeEstimatedHeatRequired(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeEstimatedHeatRequiredWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeEstimatedHeatRequiredWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeHeatDemand(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeatDemandWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeHeatDemandWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeatDemandWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeHeatDemandWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeHeaterTypes(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeaterTypesWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeHeaterTypesWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeaterTypesWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeHeaterTypesWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeTankPercentage(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankPercentageWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeTankPercentageWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankPercentageWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeTankPercentageWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeTankVolume(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankVolumeWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeTankVolumeWithParams:"), params)
+func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankVolumeWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeTankVolumeWithParams:"), params)
 	return rv
 }
 

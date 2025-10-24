@@ -31,25 +31,20 @@ type _ControllerClass struct {
 type IController interface {
 	objectivec.IObject
 	// properties:
-	IsEditing() bool /* primitive/slice/pointer. */
-	SetIsEditing(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
-// An abstract class that implements the and informal protocols required for controller classes.
+// A parent class referenced by other AppKit classes.
 
 
-// An abstract class that implements the and informal protocols required for controller classes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController
+// A parent class referenced by other AppKit classes. [Full Topic]
 type Controller struct {
 	objectivec.Object
 }
 
 // ControllerFrom constructs a [Controller] from an unsafe.Pointer.
 //
-// An abstract class that implements the and informal protocols required for controller classes.
+// A parent class referenced by other AppKit classes.
 func ControllerFrom(ptr unsafe.Pointer) Controller {
 	return Controller{objectivec.Object{objc.ID(ptr)}}
 }
@@ -85,25 +80,6 @@ func NewController() Controller {
 	return getControllerClass().New()
 }
 
-
-
-// A Boolean value indicating if any editors are registered with the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-func (c_ Controller) IsEditing() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEditing"))
-	return rv
-}
-
-
-// A Boolean value indicating if any editors are registered with the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-func (c_ Controller) SetIsEditing(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
-}
 
 
 

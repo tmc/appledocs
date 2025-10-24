@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,28 +32,35 @@ type _PDFDestinationClass struct {
 // An interface definition for the [PDFDestination] class.
 type IPDFDestination interface {
 	objectivec.IObject
-	Page() PDFPage
-	Action() PDFAction
+	// properties:
+	Action() IPDFAction
 	SetAction(value IPDFAction)
-	ModificationDate() foundation.Date
-	SetModificationDate(value foundation.IDate)
-	Type() string
-	SetType(value string)
-	UserName() string
-	SetUserName(value string)
-	Point() coregraphics.CGPoint
-	SetPoint(value coregraphics.CGPoint)
+	ModificationDate() objc.IObject /* cross-framework: Date */
+	SetModificationDate(value objc.IObject /* cross-framework: Date */)
+	Page() IPDFPage
+	SetPage(value IPDFPage)
+	Type() objc.IObject /* cross-framework: NSString */
+	SetType(value objc.IObject /* cross-framework: NSString */)
+	UserName() objc.IObject /* cross-framework: NSString */
+	SetUserName(value objc.IObject /* cross-framework: NSString */)
+	Point() objc.IObject /* cross-framework: Point */
+	SetPoint(value objc.IObject /* cross-framework: Point */)
 	Zoom() float64
 	SetZoom(value float64)
-	CurrentDestination() PDFDestination
+	CurrentDestination() IPDFDestination
 	SetCurrentDestination(value IPDFDestination)
 	KPDFDestinationUnspecifiedValue() float64
+	// methods:
 }
 
 // A object describes a point on a PDF page.
 //
 // In typical usage, you do not initialize objects but rather get them as either attributes of or objects, or in response to the method .
+
+
+// A object describes a point on a PDF page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDestination
 type PDFDestination struct {
 	objectivec.Object
@@ -98,105 +105,122 @@ func NewPDFDestination() PDFDestination {
 }
 
 
-// Returns the page that the destination refers to.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDestination/page
-func (p_ PDFDestination) Page() PDFPage {
-	rv := objc.Send[PDFPage](p_.ID, objc.Sel("page"))
-	return rv
-}
 
 // An object that represents an action for a PDF element, such as a link annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFDestination) Action() PDFAction {
+func (p_ PDFDestination) Action() IPDFAction {
 	rv := objc.Send[PDFAction](p_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
 // An object that represents an action for a PDF element, such as a link annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
 func (p_ PDFDestination) SetAction(value IPDFAction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
+
 // Returns the modification date of the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFDestination) ModificationDate() foundation.Date {
+func (p_ PDFDestination) ModificationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
 
-// SetModificationDate sets the value of the modificationDate property.
 // Returns the modification date of the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFDestination) SetModificationDate(value foundation.IDate) {
+func (p_ PDFDestination) SetModificationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
 }
 
-// Returns the type of the annotation.
+
+// Returns the page that the annotation is associated with.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
+func (p_ PDFDestination) Page() IPDFPage {
+	rv := objc.Send[PDFPage](p_.ID, objc.Sel("page"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-// Returns the type of the annotation.
-
+// Returns the page that the annotation is associated with.
 //
-// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) SetType(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
+func (p_ PDFDestination) SetPage(value IPDFPage) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPage:"), value)
 }
+
+
+// Returns the type of the annotation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
+func (p_ PDFDestination) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// Returns the type of the annotation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
+func (p_ PDFDestination) SetType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+}
+
 
 // Returns the name of the user who created the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) UserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
+func (p_ PDFDestination) UserName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
 
-// SetUserName sets the value of the userName property.
 // Returns the name of the user who created the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) SetUserName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
+func (p_ PDFDestination) SetUserName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
 }
+
 
 // Returns the point, in page space, that the destination refers to.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/point
-func (p_ PDFDestination) Point() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](p_.ID, objc.Sel("point"))
+func (p_ PDFDestination) Point() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](p_.ID, objc.Sel("point"))
 	return rv
 }
 
 
-// SetPoint sets the value of the point property.
 // Returns the point, in page space, that the destination refers to.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/point
-func (p_ PDFDestination) SetPoint(value coregraphics.CGPoint) {
+func (p_ PDFDestination) SetPoint(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
 func (p_ PDFDestination) Zoom() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("zoom"))
@@ -204,32 +228,33 @@ func (p_ PDFDestination) Zoom() float64 {
 }
 
 
-// SetZoom sets the value of the zoom property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfdestination/zoom
 func (p_ PDFDestination) SetZoom(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setZoom:"), value)
 }
 
+
 // Returns a
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
-func (p_ PDFDestination) CurrentDestination() PDFDestination {
+func (p_ PDFDestination) CurrentDestination() IPDFDestination {
 	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("currentDestination"))
 	return rv
 }
 
 
-// SetCurrentDestination sets the value of the currentDestination property.
 // Returns a
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
 func (p_ PDFDestination) SetCurrentDestination(value IPDFDestination) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDestination:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/kpdfdestinationunspecifiedvalue
 func (p_ PDFDestination) KPDFDestinationUnspecifiedValue() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("kPDFDestinationUnspecifiedValue"))

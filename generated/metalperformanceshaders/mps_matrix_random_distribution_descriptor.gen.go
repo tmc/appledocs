@@ -30,19 +30,23 @@ type _MatrixRandomDistributionDescriptorClass struct {
 // An interface definition for the [MatrixRandomDistributionDescriptor] class.
 type IMatrixRandomDistributionDescriptor interface {
 	objectivec.IObject
+	// properties:
 	Minimum() float32
 	SetMinimum(value float32)
 	StandardDeviation() float32
 	SetStandardDeviation(value float32)
-	DistributionType() unsafe.Pointer
-	SetDistributionType(value unsafe.Pointer)
+	DistributionType() MatrixRandomDistribution /* not a class type */
+	SetDistributionType(value MatrixRandomDistribution /* not a class type */)
 	Maximum() float32
 	SetMaximum(value float32)
 	Mean() float32
 	SetMean(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor
 type MatrixRandomDistributionDescriptor struct {
 	objectivec.Object
@@ -85,14 +89,16 @@ func NewMatrixRandomDistributionDescriptor() MatrixRandomDistributionDescriptor 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/normalDistributionDescriptor(withMean:standardDeviation:minimum:maximum:)
-func (mc _MatrixRandomDistributionDescriptorClass) NormalDistributionDescriptorWithMeanStandardDeviationMinimumMaximum(mean float32, standardDeviation float32, minimum float32, maximum float32) MatrixRandomDistributionDescriptor {
+func (mc _MatrixRandomDistributionDescriptorClass) NormalDistributionDescriptorWithMeanStandardDeviationMinimumMaximum(mean float32, standardDeviation float32, minimum float32, maximum float32) IMatrixRandomDistributionDescriptor {
 	rv := objc.Send[MatrixRandomDistributionDescriptor](objc.ID(mc.class), objc.Sel("normalDistributionDescriptorWithMean:standardDeviation:minimum:maximum:"), mean, standardDeviation, minimum, maximum)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/minimum
 func (m_ MatrixRandomDistributionDescriptor) Minimum() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("minimum"))
@@ -100,14 +106,14 @@ func (m_ MatrixRandomDistributionDescriptor) Minimum() float32 {
 }
 
 
-// SetMinimum sets the value of the minimum property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/minimum
 func (m_ MatrixRandomDistributionDescriptor) SetMinimum(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimum:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/standardDeviation
 func (m_ MatrixRandomDistributionDescriptor) StandardDeviation() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("standardDeviation"))
@@ -115,29 +121,29 @@ func (m_ MatrixRandomDistributionDescriptor) StandardDeviation() float32 {
 }
 
 
-// SetStandardDeviation sets the value of the standardDeviation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomDistributionDescriptor/standardDeviation
 func (m_ MatrixRandomDistributionDescriptor) SetStandardDeviation(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStandardDeviation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/distributiontype
-func (m_ MatrixRandomDistributionDescriptor) DistributionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
+func (m_ MatrixRandomDistributionDescriptor) DistributionType() MatrixRandomDistribution /* not a class type */ {
+	rv := objc.Send[MatrixRandomDistribution](m_.ID, objc.Sel("distributionType"))
 	return rv
 }
 
 
-// SetDistributionType sets the value of the distributionType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/distributiontype
-func (m_ MatrixRandomDistributionDescriptor) SetDistributionType(value unsafe.Pointer) {
+func (m_ MatrixRandomDistributionDescriptor) SetDistributionType(value MatrixRandomDistribution /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/maximum
 func (m_ MatrixRandomDistributionDescriptor) Maximum() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("maximum"))
@@ -145,14 +151,14 @@ func (m_ MatrixRandomDistributionDescriptor) Maximum() float32 {
 }
 
 
-// SetMaximum sets the value of the maximum property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/maximum
 func (m_ MatrixRandomDistributionDescriptor) SetMaximum(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximum:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/mean
 func (m_ MatrixRandomDistributionDescriptor) Mean() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("mean"))
@@ -160,8 +166,7 @@ func (m_ MatrixRandomDistributionDescriptor) Mean() float32 {
 }
 
 
-// SetMean sets the value of the mean property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor/mean
 func (m_ MatrixRandomDistributionDescriptor) SetMean(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMean:"), value)

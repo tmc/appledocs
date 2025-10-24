@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/photos"
 )
 
@@ -32,31 +32,36 @@ type _PHLivePhotoViewClass struct {
 // An interface definition for the [PHLivePhotoView] class.
 type IPHLivePhotoView interface {
 	appkit.IView
-	StartPlaybackWithStyle(playbackStyle PHLivePhotoViewPlaybackStyle)
-	StopPlayback()
-	StopPlaybackAnimated(animated bool)
+	// properties:
 	AudioVolume() float32
 	SetAudioVolume(value float32)
-	ContentMode() PHLivePhotoViewContentMode
-	SetContentMode(value PHLivePhotoViewContentMode)
-	ContentsRect() coregraphics.CGRect
-	SetContentsRect(value coregraphics.CGRect)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Muted() bool
-	SetMuted(value bool)
-	LivePhoto() photos.PHLivePhoto
-	SetLivePhoto(value photos.IPHLivePhoto)
-	LivePhotoBadgeView() appkit.View
-	PlaybackGestureRecognizer() appkit.GestureRecognizer
+	ContentMode() unsafe.Pointer
+	SetContentMode(value unsafe.Pointer)
+	ContentsRect() objc.IObject /* cross-framework: Rect */
+	SetContentsRect(value objc.IObject /* cross-framework: Rect */)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IntrinsicContentSize() objc.IObject /* cross-framework: Size */
+	SetIntrinsicContentSize(value objc.IObject /* cross-framework: Size */)
 	IsMuted() bool
 	SetIsMuted(value bool)
+	LivePhoto() objc.IObject /* cross-framework: PHLivePhoto */
+	SetLivePhoto(value objc.IObject /* cross-framework: PHLivePhoto */)
+	LivePhotoBadgeView() objc.IObject /* cross-framework: View */
+	SetLivePhotoBadgeView(value objc.IObject /* cross-framework: View */)
+	PlaybackGestureRecognizer() objc.IObject /* cross-framework: GestureRecognizer */
+	SetPlaybackGestureRecognizer(value objc.IObject /* cross-framework: GestureRecognizer */)
+	// methods:
 }
 
 // A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.
 //
 // Use a Live Photo view to display the photo and control playback of its motion and sound content. In iOS and tvOS, you can obtain Live Photo objects from the Photos library, using the or and classes, or by creating one from asset resources exported from a Photos library. In macOS, Live Photo objects are available only when editing Live Photo content in a photo editing extension that runs in the Photos app—see the class to access Live Photo content in an editing session. By default, a Live Photo view uses its own gesture recognizer to allow the user to play the motion and sound content of a Live Photo with the same interactions and visual effects seen in the Photos app. To customize this gesture recognizer—for example, to install it on a different view for proper event handling in your app’s view hierarchy—use the property. To animate the view briefly to hint that a picture is a Live Photo, use the method with the option.
+
+
+// A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView
 type PHLivePhotoView struct {
 	appkit.View
@@ -103,158 +108,97 @@ func NewPHLivePhotoView() PHLivePhotoView {
 }
 
 
-// Returns an icon image for the specified Live Photo semantic options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhotoBadgeImage(options:)
-func (pc _PHLivePhotoViewClass) LivePhotoBadgeImageWithOptions(badgeOptions PHLivePhotoBadgeOptions) appkit.Image {
-	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("livePhotoBadgeImageWithOptions:"), badgeOptions)
-	return rv
-}
-
-// Begins playback of Live Photo content in the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/startPlayback(with:)
-func (p_ PHLivePhotoView) StartPlaybackWithStyle(playbackStyle PHLivePhotoViewPlaybackStyle) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("startPlaybackWithStyle:"), playbackStyle)
-}
-
-// Stops playback of a Live Photo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/stopPlayback()
-func (p_ PHLivePhotoView) StopPlayback() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("stopPlayback"))
-}
-
-// Stops playback of a Live Photo in an animated manner.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/stopPlayback(animated:)
-func (p_ PHLivePhotoView) StopPlaybackAnimated(animated bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("stopPlaybackAnimated:"), animated)
-}
 
 // The audio gain to apply to the Live Photo’s movie content during playback.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/audioVolume
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/audiovolume
 func (p_ PHLivePhotoView) AudioVolume() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("audioVolume"))
 	return rv
 }
 
 
-// SetAudioVolume sets the value of the audioVolume property.
 // The audio gain to apply to the Live Photo’s movie content during playback.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/audioVolume
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/audiovolume
 func (p_ PHLivePhotoView) SetAudioVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
 
+
 // The mode in which the view displays its content.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentMode
-func (p_ PHLivePhotoView) ContentMode() PHLivePhotoViewContentMode {
-	rv := objc.Send[PHLivePhotoViewContentMode](p_.ID, objc.Sel("contentMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentmode
+func (p_ PHLivePhotoView) ContentMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentMode"))
 	return rv
 }
 
 
-// SetContentMode sets the value of the contentMode property.
 // The mode in which the view displays its content.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentMode
-func (p_ PHLivePhotoView) SetContentMode(value PHLivePhotoViewContentMode) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentmode
+func (p_ PHLivePhotoView) SetContentMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMode:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentsRect
-func (p_ PHLivePhotoView) ContentsRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("contentsRect"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentsrect
+func (p_ PHLivePhotoView) ContentsRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("contentsRect"))
 	return rv
 }
 
 
-// SetContentsRect sets the value of the contentsRect property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentsRect
-func (p_ PHLivePhotoView) SetContentsRect(value coregraphics.CGRect) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentsrect
+func (p_ PHLivePhotoView) SetContentsRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentsRect:"), value)
 }
 
+
 // An object to be notified when Live Photo playback begins or ends.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/delegate
-func (p_ PHLivePhotoView) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/delegate
+func (p_ PHLivePhotoView) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object to be notified when Live Photo playback begins or ends.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/delegate
-func (p_ PHLivePhotoView) SetDelegate(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/delegate
+func (p_ PHLivePhotoView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
-// A Boolean value that determines whether the view plays the audio content of its Live Photo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/isMuted
-func (p_ PHLivePhotoView) Muted() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("muted"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/intrinsiccontentsize
+func (p_ PHLivePhotoView) IntrinsicContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("intrinsicContentSize"))
 	return rv
 }
 
 
-// SetMuted sets the value of the muted property.
-// A Boolean value that determines whether the view plays the audio content of its Live Photo.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/isMuted
-func (p_ PHLivePhotoView) SetMuted(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/intrinsiccontentsize
+func (p_ PHLivePhotoView) SetIntrinsicContentSize(value objc.IObject /* cross-framework: Size */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIntrinsicContentSize:"), value)
 }
 
-// The Live Photo displayed in the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhoto
-func (p_ PHLivePhotoView) LivePhoto() photos.PHLivePhoto {
-	rv := objc.Send[photos.PHLivePhoto](p_.ID, objc.Sel("livePhoto"))
-	return rv
-}
-
-
-// SetLivePhoto sets the value of the livePhoto property.
-// The Live Photo displayed in the view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhoto
-func (p_ PHLivePhotoView) SetLivePhoto(value photos.IPHLivePhoto) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
-}
-
-// A view for displaying Live Photo status.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhotoBadgeView
-func (p_ PHLivePhotoView) LivePhotoBadgeView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("livePhotoBadgeView"))
-	return rv
-}
-
-// A gesture recognizer that controls playback of the Live Photo in the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/playbackGestureRecognizer
-func (p_ PHLivePhotoView) PlaybackGestureRecognizer() appkit.GestureRecognizer {
-	rv := objc.Send[appkit.GestureRecognizer](p_.ID, objc.Sel("playbackGestureRecognizer"))
-	return rv
-}
 
 // A Boolean value that determines whether the view plays the audio content of its Live Photo.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
 func (p_ PHLivePhotoView) IsMuted() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
@@ -262,13 +206,69 @@ func (p_ PHLivePhotoView) IsMuted() bool {
 }
 
 
-// SetIsMuted sets the value of the isMuted property.
 // A Boolean value that determines whether the view plays the audio content of its Live Photo.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/ismuted
 func (p_ PHLivePhotoView) SetIsMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
+}
+
+
+// The Live Photo displayed in the view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/livephoto
+func (p_ PHLivePhotoView) LivePhoto() objc.IObject /* cross-framework: PHLivePhoto */ {
+	rv := objc.Send[photos.PHLivePhoto](p_.ID, objc.Sel("livePhoto"))
+	return rv
+}
+
+
+// The Live Photo displayed in the view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/livephoto
+func (p_ PHLivePhotoView) SetLivePhoto(value objc.IObject /* cross-framework: PHLivePhoto */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
+}
+
+
+// A view for displaying Live Photo status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/livephotobadgeview
+func (p_ PHLivePhotoView) LivePhotoBadgeView() objc.IObject /* cross-framework: View */ {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("livePhotoBadgeView"))
+	return rv
+}
+
+
+// A view for displaying Live Photo status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/livephotobadgeview
+func (p_ PHLivePhotoView) SetLivePhotoBadgeView(value objc.IObject /* cross-framework: View */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhotoBadgeView:"), value)
+}
+
+
+// A gesture recognizer that controls playback of the Live Photo in the view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/playbackgesturerecognizer
+func (p_ PHLivePhotoView) PlaybackGestureRecognizer() objc.IObject /* cross-framework: GestureRecognizer */ {
+	rv := objc.Send[appkit.GestureRecognizer](p_.ID, objc.Sel("playbackGestureRecognizer"))
+	return rv
+}
+
+
+// A gesture recognizer that controls playback of the Live Photo in the view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/playbackgesturerecognizer
+func (p_ PHLivePhotoView) SetPlaybackGestureRecognizer(value objc.IObject /* cross-framework: GestureRecognizer */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackGestureRecognizer:"), value)
 }
 
 

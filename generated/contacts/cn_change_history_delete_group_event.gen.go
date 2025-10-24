@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNChangeHistoryDeleteGroupEvent] class.
@@ -30,7 +31,7 @@ type _CNChangeHistoryDeleteGroupEventClass struct {
 type ICNChangeHistoryDeleteGroupEvent interface {
 	ICNChangeHistoryEvent
 	// properties:
-	GroupIdentifier() string /* primitive/slice/pointer. */
+	GroupIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -91,8 +92,8 @@ func NewCNChangeHistoryDeleteGroupEvent() CNChangeHistoryDeleteGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteGroupEvent/groupIdentifier
-func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
+func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 

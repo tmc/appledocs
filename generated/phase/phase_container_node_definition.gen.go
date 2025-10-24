@@ -29,12 +29,18 @@ type _PHASEContainerNodeDefinitionClass struct {
 // An interface definition for the [PHASEContainerNodeDefinition] class.
 type IPHASEContainerNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
+	// properties:
+	// methods:
 }
 
 // A node that plays all its children at the same time.
 //
 // This node adds structure to the sound event tree while performing no conditional logic or audio playback of its own. By passing invocation to all its children at once, this class invokes the child nodes’ actions simultaneously.
+
+
+// A node that plays all its children at the same time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEContainerNodeDefinition
 type PHASEContainerNodeDefinition struct {
 	PHASESoundEventNodeDefinition

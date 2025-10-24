@@ -29,8 +29,10 @@ type _VZMacTrackpadConfigurationClass struct {
 // An interface definition for the [VZMacTrackpadConfiguration] class.
 type IVZMacTrackpadConfiguration interface {
 	IVZPointingDeviceConfiguration
+	// properties:
 	PointingDevices() IVZPointingDeviceConfiguration
 	SetPointingDevices(value IVZPointingDeviceConfiguration)
+	// methods:
 }
 
 // The class that represents the configuration for a Mac trackpad.

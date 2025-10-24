@@ -29,18 +29,24 @@ type _CNNConvolutionTransposeGradientNodeClass struct {
 
 // An interface definition for the [CNNConvolutionTransposeGradientNode] class.
 type ICNNConvolutionTransposeGradientNode interface {
-	objectivec.IObject
+	ICNNConvolutionGradientNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientNode
 type CNNConvolutionTransposeGradientNode struct {
-	objectivec.Object
+	CNNConvolutionGradientNode
 }
 
 // CNNConvolutionTransposeGradientNodeFrom constructs a [CNNConvolutionTransposeGradientNode] from an unsafe.Pointer.
 func CNNConvolutionTransposeGradientNodeFrom(ptr unsafe.Pointer) CNNConvolutionTransposeGradientNode {
-	return CNNConvolutionTransposeGradientNode{objectivec.Object{objc.ID(ptr)}}
+	return CNNConvolutionTransposeGradientNode{
+		CNNConvolutionGradientNode: CNNConvolutionGradientNodeFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -75,7 +81,8 @@ func NewCNNConvolutionTransposeGradientNode() CNNConvolutionTransposeGradientNod
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientNode/nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:
 func (cc _CNNConvolutionTransposeGradientNodeClass) NodeWithSourceGradientSourceImageConvolutionTransposeGradientStateWeights(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState IMPSCNNConvolutionTransposeGradientStateNode, weights objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:"), sourceGradient, sourceImage, gradientState, weights)

@@ -32,7 +32,6 @@ type ICXEndCallAction interface {
 	ICXCallAction
 	// properties:
 	// methods:
-	FulfillWithDateEnded(dateEnded foundation.objc.IObject /* cross-framework NSDate */)
 }
 
 // An encapsulation of the act of ending a call.
@@ -86,16 +85,6 @@ func (c_ CXEndCallAction) Autorelease() CXEndCallAction {
 // NewCXEndCallAction creates a new CXEndCallAction instance.
 func NewCXEndCallAction() CXEndCallAction {
 	return getCXEndCallActionClass().New()
-}
-
-
-
-// Reports the successful execution of the action at the specified time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction/fulfill(withDateEnded:)
-func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.objc.IObject /* cross-framework NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateEnded:"), dateEnded)
 }
 
 

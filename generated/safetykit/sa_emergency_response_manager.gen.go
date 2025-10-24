@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,21 @@ type _SAEmergencyResponseManagerClass struct {
 // An interface definition for the [SAEmergencyResponseManager] class.
 type ISAEmergencyResponseManager interface {
 	objectivec.IObject
-	DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber string, handler unsafe.Pointer)
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
+	DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer)
 }
 
 // Provides actions in response to a Crash Detection event.
 //
 // Use the manager to place a voice call to an emergency contact upon receipt of a Crash Detection event. Provide an object that adopts in order to respond to the status of the voice call.
+
+
+// Provides actions in response to a Crash Detection event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager
 type SAEmergencyResponseManager struct {
 	objectivec.Object
@@ -83,15 +90,19 @@ func NewSAEmergencyResponseManager() SAEmergencyResponseManager {
 }
 
 
+
 // Request the system to dial a voice call on behalf of someone involved in a crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/dialVoiceCall(toPhoneNumber:completionHandler:)
-func (s_ SAEmergencyResponseManager) DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("dialVoiceCallToPhoneNumber:completionHandler:"), objc.String(phoneNumber), handler)
+func (s_ SAEmergencyResponseManager) DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("dialVoiceCallToPhoneNumber:completionHandler:"), phoneNumber, handler)
 }
+
 
 // The object that receives voice call status updates and requested emergency response actions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/delegate
 func (s_ SAEmergencyResponseManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
@@ -99,10 +110,9 @@ func (s_ SAEmergencyResponseManager) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that receives voice call status updates and requested emergency response actions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/delegate
 func (s_ SAEmergencyResponseManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)

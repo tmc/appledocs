@@ -29,9 +29,13 @@ type _MTRBaseClusterGroupsClass struct {
 // An interface definition for the [MTRBaseClusterGroups] class.
 type IMTRBaseClusterGroups interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterGroups
 type MTRBaseClusterGroups struct {
 	MTRGenericBaseCluster

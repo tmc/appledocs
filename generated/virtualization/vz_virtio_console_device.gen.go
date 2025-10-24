@@ -29,13 +29,19 @@ type _VZVirtioConsoleDeviceClass struct {
 // An interface definition for the [VZVirtioConsoleDevice] class.
 type IVZVirtioConsoleDevice interface {
 	IVZConsoleDevice
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Ports() VZVirtioConsolePortArray
+	Ports() IVZVirtioConsolePortArray
+	// methods:
 }
 
 // A class that represents a Virtio console device in a virtual machine.
+
+
+// A class that represents a Virtio console device in a virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice
 type VZVirtioConsoleDevice struct {
 	VZConsoleDevice
@@ -82,8 +88,10 @@ func NewVZVirtioConsoleDevice() VZVirtioConsoleDevice {
 }
 
 
+
 // The delegate object for the console device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice/delegate
 func (v_ VZVirtioConsoleDevice) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("delegate"))
@@ -91,19 +99,20 @@ func (v_ VZVirtioConsoleDevice) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object for the console device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice/delegate
 func (v_ VZVirtioConsoleDevice) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The array of console ports that a specific device uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice/ports
-func (v_ VZVirtioConsoleDevice) Ports() VZVirtioConsolePortArray {
+func (v_ VZVirtioConsoleDevice) Ports() IVZVirtioConsolePortArray {
 	rv := objc.Send[VZVirtioConsolePortArray](v_.ID, objc.Sel("ports"))
 	return rv
 }

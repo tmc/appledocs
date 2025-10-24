@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TargetedImageRequest] class.
@@ -30,12 +29,18 @@ type _TargetedImageRequestClass struct {
 // An interface definition for the [TargetedImageRequest] class.
 type ITargetedImageRequest interface {
 	IImageBasedRequest
+	// properties:
+	// methods:
 }
 
 // The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
 //
 // Other Vision request handlers that operate on both the processed image and a secondary image inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis, and pass in auxiliary image data by filling in the dictionary at initialization.
+
+
+// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest
 type TargetedImageRequest struct {
 	ImageBasedRequest
@@ -81,18 +86,6 @@ func NewTargetedImageRequest() TargetedImageRequest {
 	return getTargetedImageRequestClass().New()
 }
 
-
-
-
-// Creates a new request targeting an image at the specified URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:options:
-func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL foundation.IURL, options unsafe.Pointer) TargetedImageRequest {
-	instance := getTargetedImageRequestClass().Alloc()
-	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:"), imageURL, options)
-	rv.Autorelease()
-	return rv
-}
 
 
 

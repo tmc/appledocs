@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ParameterGroup] class.
@@ -30,10 +31,10 @@ type _ParameterGroupClass struct {
 type IParameterGroup interface {
 	IParameterNode
 	// properties:
-	AllParameters() []Parameter /* primitive/slice/pointer. */
-	Children() []ParameterNode /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	AllParameters() []IParameter
+	Children() []IParameterNode
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -96,7 +97,7 @@ func NewParameterGroup() ParameterGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters
-func (p_ ParameterGroup) AllParameters() []Parameter /* primitive/slice/pointer. */ {
+func (p_ ParameterGroup) AllParameters() []IParameter {
 	rv := objc.Send[[]Parameter](p_.ID, objc.Sel("allParameters"))
 	return rv
 }
@@ -106,7 +107,7 @@ func (p_ ParameterGroup) AllParameters() []Parameter /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/children
-func (p_ ParameterGroup) Children() []ParameterNode /* primitive/slice/pointer. */ {
+func (p_ ParameterGroup) Children() []IParameterNode {
 	rv := objc.Send[[]ParameterNode](p_.ID, objc.Sel("children"))
 	return rv
 }
@@ -116,8 +117,8 @@ func (p_ ParameterGroup) Children() []ParameterNode /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ ParameterGroup) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (p_ ParameterGroup) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ ParameterGroup) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

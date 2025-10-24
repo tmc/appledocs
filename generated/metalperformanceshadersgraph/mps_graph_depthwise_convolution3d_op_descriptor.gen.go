@@ -30,22 +30,28 @@ type _GraphDepthwiseConvolution3DOpDescriptorClass struct {
 // An interface definition for the [GraphDepthwiseConvolution3DOpDescriptor] class.
 type IGraphDepthwiseConvolution3DOpDescriptor interface {
 	IGraphObject
+	// properties:
 	ChannelDimensionIndex() int
 	SetChannelDimensionIndex(value int)
-	DilationRates() foundation.Number
-	SetDilationRates(value foundation.INumber)
+	DilationRates() objc.IObject /* cross-framework: NSNumber */
+	SetDilationRates(value objc.IObject /* cross-framework: NSNumber */)
 	PaddingStyle() GraphPaddingStyle
 	SetPaddingStyle(value GraphPaddingStyle)
-	PaddingValues() foundation.Number
-	SetPaddingValues(value foundation.INumber)
-	Strides() foundation.Number
-	SetStrides(value foundation.INumber)
+	PaddingValues() objc.IObject /* cross-framework: NSNumber */
+	SetPaddingValues(value objc.IObject /* cross-framework: NSNumber */)
+	Strides() objc.IObject /* cross-framework: NSNumber */
+	SetStrides(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The class that defines the parameters for a 3D-depthwise convolution operation.
 //
 // A defines constant parameters for 3D depthwise convolutions. Use this class with , and methods.
+
+
+// The class that defines the parameters for a 3D-depthwise convolution operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution3DOpDescriptor
 type GraphDepthwiseConvolution3DOpDescriptor struct {
 	GraphObject
@@ -93,26 +99,9 @@ func NewGraphDepthwiseConvolution3DOpDescriptor() GraphDepthwiseConvolution3DOpD
 
 
 
-
-// Creates a 3D depthwise convolution descriptor with default values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution3DOpDescriptor/init(paddingStyle:)
-func NewGraphDepthwiseConvolution3DOpDescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) GraphDepthwiseConvolution3DOpDescriptor {
-	rv := objc.Send[GraphDepthwiseConvolution3DOpDescriptor](objc.ID(getGraphDepthwiseConvolution3DOpDescriptorClass().class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
-	return rv
-}
-
-
-// Creates a 3D depthwise convolution descriptor with default values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution3DOpDescriptor/init(paddingStyle:)
-func (gc _GraphDepthwiseConvolution3DOpDescriptorClass) DescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
-	return rv
-}
-
 // The axis that contains the channels in the input and the weights, within
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/channeldimensionindex
 func (g_ GraphDepthwiseConvolution3DOpDescriptor) ChannelDimensionIndex() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("channelDimensionIndex"))
@@ -120,35 +109,37 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) ChannelDimensionIndex() int {
 }
 
 
-// SetChannelDimensionIndex sets the value of the channelDimensionIndex property.
 // The axis that contains the channels in the input and the weights, within
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/channeldimensionindex
 func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetChannelDimensionIndex(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setChannelDimensionIndex:"), value)
 }
 
+
 // The dilation rates for spatial dimensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/dilationrates
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) DilationRates() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("dilationRates"))
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) DilationRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("dilationRates"))
 	return rv
 }
 
 
-// SetDilationRates sets the value of the dilationRates property.
 // The dilation rates for spatial dimensions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/dilationrates
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetDilationRates(value foundation.INumber) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetDilationRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }
 
+
 // The padding style for the operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingstyle
 func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingStyle() GraphPaddingStyle {
 	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
@@ -156,49 +147,51 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingStyle() GraphPaddingSty
 }
 
 
-// SetPaddingStyle sets the value of the paddingStyle property.
 // The padding style for the operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingstyle
 func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
+
 // The padding values for spatial dimensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingvalues
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingValues() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("paddingValues"))
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingValues() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("paddingValues"))
 	return rv
 }
 
 
-// SetPaddingValues sets the value of the paddingValues property.
 // The padding values for spatial dimensions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingvalues
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingValues(value foundation.INumber) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingValues(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingValues:"), value)
 }
 
+
 // The strides for spatial dimensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/strides
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) Strides() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("strides"))
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) Strides() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("strides"))
 	return rv
 }
 
 
-// SetStrides sets the value of the strides property.
 // The strides for spatial dimensions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/strides
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetStrides(value foundation.INumber) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetStrides(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }
+
 
 

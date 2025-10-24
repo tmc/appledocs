@@ -31,17 +31,17 @@ type _VZMacOSRestoreImageClass struct {
 // An interface definition for the [VZMacOSRestoreImage] class.
 type IVZMacOSRestoreImage interface {
 	objectivec.IObject
-	BuildVersion() string
+	// properties:
+	BuildVersion() objc.IObject /* cross-framework: NSString */
 	Supported() bool
-	OperatingSystemVersion() unsafe.Pointer
+	MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements
+	OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */
+	URL() objc.IObject /* cross-framework: NSURL */
 	IsSupported() bool
 	SetIsSupported(value bool)
-	MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements
-	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
 	HardwareModel() IVZMacHardwareModel
 	SetHardwareModel(value IVZMacHardwareModel)
+	// methods:
 }
 
 // An object that describes a version of macOS to install on to a virtual machine.
@@ -101,7 +101,7 @@ func NewVZMacOSRestoreImage() VZMacOSRestoreImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/image(from:)
-func (vc _VZMacOSRestoreImageClass) LoadFileURLCompletionHandler(fileURL foundation.URL, completionHandler unsafe.Pointer) {
+func (vc _VZMacOSRestoreImageClass) LoadFileURLCompletionHandler(fileURL objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("loadFileURL:completionHandler:"), fileURL, completionHandler)
 }
 
@@ -119,8 +119,8 @@ func (vc _VZMacOSRestoreImageClass) FetchLatestSupportedWithCompletionHandler(co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/buildVersion
-func (v_ VZMacOSRestoreImage) BuildVersion() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("buildVersion"))
+func (v_ VZMacOSRestoreImage) BuildVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("buildVersion"))
 	return rv
 }
 
@@ -135,12 +135,32 @@ func (v_ VZMacOSRestoreImage) Supported() bool {
 }
 
 
+// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/mostFeaturefulSupportedConfiguration
+func (v_ VZMacOSRestoreImage) MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements {
+	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+	return rv
+}
+
+
 // The operating system version this restore image contains.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/operatingSystemVersion
-func (v_ VZMacOSRestoreImage) OperatingSystemVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("operatingSystemVersion"))
+func (v_ VZMacOSRestoreImage) OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */ {
+	rv := objc.Send[foundation.OperatingSystemVersion](v_.ID, objc.Sel("operatingSystemVersion"))
+	return rv
+}
+
+
+// The URL of this restore image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/url
+func (v_ VZMacOSRestoreImage) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -161,44 +181,6 @@ func (v_ VZMacOSRestoreImage) IsSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/issupported
 func (v_ VZMacOSRestoreImage) SetIsSupported(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsSupported:"), value)
-}
-
-
-// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacOSRestoreImage) MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements {
-	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
-	return rv
-}
-
-
-// This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacOSRestoreImage) SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
-}
-
-
-// The URL of this restore image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/url
-func (v_ VZMacOSRestoreImage) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// The URL of this restore image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/url
-func (v_ VZMacOSRestoreImage) SetUrl(value foundation.URL) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
 
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterLocalizationConfigurationClass struct {
 // An interface definition for the [MTRBaseClusterLocalizationConfiguration] class.
 type IMTRBaseClusterLocalizationConfiguration interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLocalizationConfiguration
 type MTRBaseClusterLocalizationConfiguration struct {
 	MTRGenericBaseCluster

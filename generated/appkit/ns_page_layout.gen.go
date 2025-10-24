@@ -31,14 +31,11 @@ type _PageLayoutClass struct {
 type IPageLayout interface {
 	objectivec.IObject
 	// properties:
-	AccessoryControllers() []ViewController /* primitive/slice/pointer. */
+	AccessoryControllers() objc.IObject /* cross-framework: ViewController */
+	SetAccessoryControllers(value objc.IObject /* cross-framework: ViewController */)
 	PrintInfo() IPrintInfo
+	SetPrintInfo(value IPrintInfo)
 	// methods:
-	AddAccessoryController(accessoryController IViewController)
-	BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer)
-	RemoveAccessoryController(accessoryController IViewController)
-	RunModal() int /* primitive/slice/pointer. */
-	RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */
 }
 
 // A panel that queries the user for information such as paper type and orientation.
@@ -94,57 +91,12 @@ func NewPageLayout() PageLayout {
 
 
 
-// Returns a newly created page layout object.
+// An array of accessory view controllers belonging to the page layout panel.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/pageLayout
-func (pc _PageLayoutClass) PageLayout() IPageLayout {
-	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("pageLayout"))
-	return rv
-}
-
-
-// Adds the specified controller of an accessory view to be presented in the page setup panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/addAccessoryController(_:)
-func (p_ PageLayout) AddAccessoryController(accessoryController IViewController) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addAccessoryController:"), accessoryController)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/beginSheet(using:on:completionHandler:)
-func (p_ PageLayout) BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("beginSheetUsingPrintInfo:onWindow:completionHandler:"), printInfo, parentWindow, handler)
-}
-
-
-// Removes the specified controller of an accessory view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/removeAccessoryController(_:)
-func (p_ PageLayout) RemoveAccessoryController(accessoryController IViewController) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("removeAccessoryController:"), accessoryController)
-}
-
-
-// Displays the page layout panel and begins the modal loop using the shared print info object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/runModal()
-func (p_ PageLayout) RunModal() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("runModal"))
-	return rv
-}
-
-
-// Displays the page layout panel and begins the modal loop using the specified print info object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/runModal(with:)
-func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("runModalWithPrintInfo:"), printInfo)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/accessorycontrollers
+func (p_ PageLayout) AccessoryControllers() objc.IObject /* cross-framework: ViewController */ {
+	rv := objc.Send[ViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
 
@@ -152,9 +104,18 @@ func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitiv
 // An array of accessory view controllers belonging to the page layout panel.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryControllers
-func (p_ PageLayout) AccessoryControllers() []ViewController /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("accessoryControllers"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/accessorycontrollers
+func (p_ PageLayout) SetAccessoryControllers(value objc.IObject /* cross-framework: ViewController */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryControllers:"), value)
+}
+
+
+// The printing information object used when the page layout panel is run.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+func (p_ PageLayout) PrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
@@ -162,10 +123,9 @@ func (p_ PageLayout) AccessoryControllers() []ViewController /* primitive/slice/
 // The printing information object used when the page layout panel is run.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/printInfo
-func (p_ PageLayout) PrintInfo() IPrintInfo {
-	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspagelayout/printinfo
+func (p_ PageLayout) SetPrintInfo(value IPrintInfo) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }
 
 

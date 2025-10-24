@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -123,7 +125,7 @@ func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallContentViewC
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
 func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[View](p_.ID, objc.Sel("activeVideoCallSourceView"))
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 
@@ -142,7 +144,7 @@ func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallSourceView(v
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
 func (p_ PictureInPictureControllerContentSource) PlayerLayer() objc.IObject /* cross-framework: PlayerLayer */ {
-	rv := objc.Send[PlayerLayer](p_.ID, objc.Sel("playerLayer"))
+	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
 }
 
@@ -161,7 +163,7 @@ func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value objc.IObj
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
 func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() objc.IObject /* cross-framework: SampleBufferDisplayLayer */ {
-	rv := objc.Send[SampleBufferDisplayLayer](p_.ID, objc.Sel("sampleBufferDisplayLayer"))
+	rv := objc.Send[avfoundation.SampleBufferDisplayLayer](p_.ID, objc.Sel("sampleBufferDisplayLayer"))
 	return rv
 }
 

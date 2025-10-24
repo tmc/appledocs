@@ -29,11 +29,15 @@ type _NDArrayGatherClass struct {
 // An interface definition for the [NDArrayGather] class.
 type INDArrayGather interface {
 	INDArrayBinaryKernel
+	// properties:
 	Axis() int
 	SetAxis(value int)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGather
 type NDArrayGather struct {
 	NDArrayBinaryKernel
@@ -78,7 +82,8 @@ func NewNDArrayGather() NDArrayGather {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather/axis
 func (n_ NDArrayGather) Axis() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("axis"))
@@ -86,8 +91,7 @@ func (n_ NDArrayGather) Axis() int {
 }
 
 
-// SetAxis sets the value of the axis property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather/axis
 func (n_ NDArrayGather) SetAxis(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAxis:"), value)

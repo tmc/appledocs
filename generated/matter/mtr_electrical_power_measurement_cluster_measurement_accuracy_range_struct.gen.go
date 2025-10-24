@@ -31,25 +31,29 @@ type _MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStructClass st
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct interface {
 	objectivec.IObject
-	FixedMax() foundation.Number
-	SetFixedMax(value foundation.INumber)
-	FixedMin() foundation.Number
-	SetFixedMin(value foundation.INumber)
-	FixedTypical() foundation.Number
-	SetFixedTypical(value foundation.INumber)
-	PercentMax() foundation.Number
-	SetPercentMax(value foundation.INumber)
-	PercentMin() foundation.Number
-	SetPercentMin(value foundation.INumber)
-	PercentTypical() foundation.Number
-	SetPercentTypical(value foundation.INumber)
-	RangeMax() foundation.Number
-	SetRangeMax(value foundation.INumber)
-	RangeMin() foundation.Number
-	SetRangeMin(value foundation.INumber)
+	// properties:
+	FixedMax() objc.IObject /* cross-framework: NSNumber */
+	SetFixedMax(value objc.IObject /* cross-framework: NSNumber */)
+	FixedMin() objc.IObject /* cross-framework: NSNumber */
+	SetFixedMin(value objc.IObject /* cross-framework: NSNumber */)
+	FixedTypical() objc.IObject /* cross-framework: NSNumber */
+	SetFixedTypical(value objc.IObject /* cross-framework: NSNumber */)
+	PercentMax() objc.IObject /* cross-framework: NSNumber */
+	SetPercentMax(value objc.IObject /* cross-framework: NSNumber */)
+	PercentMin() objc.IObject /* cross-framework: NSNumber */
+	SetPercentMin(value objc.IObject /* cross-framework: NSNumber */)
+	PercentTypical() objc.IObject /* cross-framework: NSNumber */
+	SetPercentTypical(value objc.IObject /* cross-framework: NSNumber */)
+	RangeMax() objc.IObject /* cross-framework: NSNumber */
+	SetRangeMax(value objc.IObject /* cross-framework: NSNumber */)
+	RangeMin() objc.IObject /* cross-framework: NSNumber */
+	SetRangeMin(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct
 type MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct struct {
 	objectivec.Object
@@ -92,123 +96,123 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct() MTR
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedMax() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedMax"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedMax() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fixedMax"))
 	return rv
 }
 
 
-// SetFixedMax sets the value of the fixedMax property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMax:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedMin() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedMin"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedMin() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fixedMin"))
 	return rv
 }
 
 
-// SetFixedMin sets the value of the fixedMin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMin:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedtypical
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedTypical() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fixedTypical"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedTypical() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fixedTypical"))
 	return rv
 }
 
 
-// SetFixedTypical sets the value of the fixedTypical property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedtypical
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedTypical:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentMax() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentMax"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentMax() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("percentMax"))
 	return rv
 }
 
 
-// SetPercentMax sets the value of the percentMax property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMax:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentMin() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentMin"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentMin() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("percentMin"))
 	return rv
 }
 
 
-// SetPercentMin sets the value of the percentMin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMin:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percenttypical
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentTypical() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentTypical"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) PercentTypical() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("percentTypical"))
 	return rv
 }
 
 
-// SetPercentTypical sets the value of the percentTypical property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percenttypical
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentTypical:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) RangeMax() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rangeMax"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) RangeMax() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rangeMax"))
 	return rv
 }
 
 
-// SetRangeMax sets the value of the rangeMax property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemax
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMax:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) RangeMin() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rangeMin"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) RangeMin() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rangeMin"))
 	return rv
 }
 
 
-// SetRangeMin sets the value of the rangeMin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemin
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMin:"), value)
 }
 

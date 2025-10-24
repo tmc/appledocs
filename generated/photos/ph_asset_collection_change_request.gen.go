@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAssetCollectionChangeRequest] class.
@@ -29,16 +30,22 @@ type _PHAssetCollectionChangeRequestClass struct {
 // An interface definition for the [PHAssetCollectionChangeRequest] class.
 type IPHAssetCollectionChangeRequest interface {
 	IPHChangeRequest
-	PlaceholderForCreatedAssetCollection() PHObjectPlaceholder
+	// properties:
+	PlaceholderForCreatedAssetCollection() IPHObjectPlaceholder
 	SetPlaceholderForCreatedAssetCollection(value IPHObjectPlaceholder)
-	Title() string
-	SetTitle(value string)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
 //
 // You use the class to request changes for objects. To make changes to asset collections (such as user-created albums) in the Photos library, create a change request using the appropriate class method for the change you want to perform. Call the method to create a new asset collection. Call the method to delete existing asset collections. Call the or method to modify a collection’s metadata or list of member assets. Before creating a change request, use the method to verify that the collection allows the edit operation you’re requesting. If you attempt to perform an unsupported edit operation, Photos throws an exception. A change request for creating or modifying an asset collection works like a mutable version of the asset collection object. Use the change request’s properties and instance methods to request changes to the asset collection itself. For example, the following code removes an asset from an album. After Photos runs the change block and calls your completion handler, the asset collection’s state reflects the changes you requested in the block. If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see .
+
+
+// A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollectionChangeRequest
 type PHAssetCollectionChangeRequest struct {
 	PHChangeRequest
@@ -85,48 +92,42 @@ func NewPHAssetCollectionChangeRequest() PHAssetCollectionChangeRequest {
 }
 
 
-// Creates a request for adding a new asset collection to the Photos library.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollectionChangeRequest/creationRequestForAssetCollection(withTitle:)
-func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollectionWithTitle(title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForAssetCollectionWithTitle:"), objc.String(title))
-	return rv
-}
 
 // A placeholder object for the asset collection that the change request creates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
-func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() PHObjectPlaceholder {
+func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() IPHObjectPlaceholder {
 	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedAssetCollection"))
 	return rv
 }
 
 
-// SetPlaceholderForCreatedAssetCollection sets the value of the placeholderForCreatedAssetCollection property.
 // A placeholder object for the asset collection that the change request creates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
 func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection(value IPHObjectPlaceholder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAssetCollection:"), value)
 }
 
+
 // The displayed name of the asset collection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PHAssetCollectionChangeRequest) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The displayed name of the asset collection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PHAssetCollectionChangeRequest) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

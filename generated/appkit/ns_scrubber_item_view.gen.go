@@ -29,6 +29,8 @@ type _ScrubberItemViewClass struct {
 // An interface definition for the [ScrubberItemView] class.
 type IScrubberItemView interface {
 	IScrubberArrangedView
+	// properties:
+	// methods:
 }
 
 // An item at a specific index position in the scrubber.

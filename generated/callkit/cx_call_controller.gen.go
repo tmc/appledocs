@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,8 @@ type _CXCallControllerClass struct {
 type ICXCallController interface {
 	objectivec.IObject
 	// properties:
-	CallObserver() ICXCallObserver
-	CXErrorDomainRequestTransaction() string /* primitive/slice/pointer. */
+	CXErrorDomainRequestTransaction() objc.IObject /* cross-framework: NSString */
 	// methods:
-	RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer)
-	RequestTransactionWithActionsCompletion(actions []CXAction /* primitive/slice/pointer. */, completion unsafe.Pointer)
-	RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer)
 }
 
 // A programmatic interface for interacting with and observing calls.
@@ -105,49 +102,12 @@ func NewCXCallControllerWithQueue(queue unsafe.Pointer) CXCallController {
 
 
 
-// Requests that the actions in the specified transaction be asynchronously performed by the telephony provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/request(_:completion:)
-func (c_ CXCallController) RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransaction:completion:"), transaction, completion)
-}
-
-
-// Requests that the transaction that contains the specified actions be asynchronously performed by the telephony provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4
-func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []CXAction /* primitive/slice/pointer. */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithActions:completion:"), actions, completion)
-}
-
-
-// Requests that the transaction that contains the specified action be asynchronously performed by the telephony provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme
-func (c_ CXCallController) RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithAction:completion:"), action, completion)
-}
-
-
-// Returns an observer for active calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/callObserver
-func (c_ CXCallController) CallObserver() ICXCallObserver {
-	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
-	return rv
-}
-
-
 // Domain for errors when requesting a transaction from a call controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction
-func (c_ CXCallController) CXErrorDomainRequestTransaction() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
+func (c_ CXCallController) CXErrorDomainRequestTransaction() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
 	return rv
 }
 

@@ -30,10 +30,14 @@ type _NDArrayIdentityClass struct {
 // An interface definition for the [NDArrayIdentity] class.
 type INDArrayIdentity interface {
 	INDArrayUnaryKernel
-	ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder objectivec.IObject, cmdBuf objectivec.IObject, sourceArray IMPSNDArray, numberOfDimensions uint, dimensionSizes unsafe.Pointer, destinationArray IMPSNDArray) NDArray
+	// properties:
+	// methods:
+	ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder objectivec.IObject, cmdBuf objectivec.IObject, sourceArray IMPSNDArray, numberOfDimensions uint, dimensionSizes UInteger /* not a class type */, destinationArray IMPSNDArray) INDArray
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayIdentity
 type NDArrayIdentity struct {
 	NDArrayUnaryKernel
@@ -78,9 +82,10 @@ func NewNDArrayIdentity() NDArrayIdentity {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayIdentity/reshape(with:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)
-func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder objectivec.IObject, cmdBuf objectivec.IObject, sourceArray IMPSNDArray, numberOfDimensions uint, dimensionSizes unsafe.Pointer, destinationArray IMPSNDArray) NDArray {
+func (n_ NDArrayIdentity) ReshapeWithCommandEncoderCommandBufferSourceArrayDimensionCountDimensionSizesDestinationArray(encoder objectivec.IObject, cmdBuf objectivec.IObject, sourceArray IMPSNDArray, numberOfDimensions uint, dimensionSizes UInteger /* not a class type */, destinationArray IMPSNDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:"), encoder, cmdBuf, sourceArray, numberOfDimensions, dimensionSizes, destinationArray)
 	return rv
 }

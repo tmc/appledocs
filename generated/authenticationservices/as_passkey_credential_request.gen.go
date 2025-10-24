@@ -32,8 +32,8 @@ type _PasskeyCredentialRequestClass struct {
 type IPasskeyCredentialRequest interface {
 	objectivec.IObject
 	// properties:
-	ClientDataHash() foundation.objc.IObject /* cross-framework: Data */
-	SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */)
+	ClientDataHash() objc.IObject /* cross-framework: Data */
+	SetClientDataHash(value objc.IObject /* cross-framework: Data */)
 	ExcludedCredentials() AuthorizationPlatformPublicKeyCredentialDescriptor /* not a class type */
 	SetExcludedCredentials(value AuthorizationPlatformPublicKeyCredentialDescriptor /* not a class type */)
 	ExtensionInput() PasskeyCredentialExtensionInput /* not a class type */
@@ -100,7 +100,7 @@ func NewPasskeyCredentialRequest() PasskeyCredentialRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequest/clientdatahash
-func (p_ PasskeyCredentialRequest) ClientDataHash() foundation.objc.IObject /* cross-framework: Data */ {
+func (p_ PasskeyCredentialRequest) ClientDataHash() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (p_ PasskeyCredentialRequest) ClientDataHash() foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequest/clientdatahash
-func (p_ PasskeyCredentialRequest) SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */) {
+func (p_ PasskeyCredentialRequest) SetClientDataHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 

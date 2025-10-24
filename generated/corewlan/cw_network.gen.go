@@ -32,20 +32,20 @@ type _CWNetworkClass struct {
 type ICWNetwork interface {
 	objectivec.IObject
 	// properties:
-	BeaconInterval() int /* primitive/slice/pointer. */
-	Bssid() string /* primitive/slice/pointer. */
-	CountryCode() string /* primitive/slice/pointer. */
-	Ibss() bool /* primitive/slice/pointer. */
-	InformationElementData() foundation.objc.IObject /* cross-framework: NSData */
-	NoiseMeasurement() int /* primitive/slice/pointer. */
-	RssiValue() int /* primitive/slice/pointer. */
-	Ssid() string /* primitive/slice/pointer. */
-	SsidData() foundation.objc.IObject /* cross-framework: NSData */
+	BeaconInterval() int
+	Bssid() objc.IObject /* cross-framework: NSString */
+	CountryCode() objc.IObject /* cross-framework: NSString */
+	Ibss() bool
+	InformationElementData() objc.IObject /* cross-framework: NSData */
+	NoiseMeasurement() int
+	RssiValue() int
+	Ssid() objc.IObject /* cross-framework: NSString */
+	SsidData() objc.IObject /* cross-framework: NSData */
 	WlanChannel() ICWChannel
 	// methods:
-	IsEqualToNetwork(network ICWNetwork) bool /* primitive/slice/pointer. */
-	SupportsPHYMode(phyMode CWPHYMode) bool /* primitive/slice/pointer. */
-	SupportsSecurity(security CWSecurity) bool /* primitive/slice/pointer. */
+	IsEqualToNetwork(network ICWNetwork) bool
+	SupportsPHYMode(phyMode CWPHYMode) bool
+	SupportsSecurity(security CWSecurity) bool
 }
 
 // Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
@@ -103,7 +103,7 @@ func NewCWNetwork() CWNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/isEqual(to:)
-func (c_ CWNetwork) IsEqualToNetwork(network ICWNetwork) bool /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) IsEqualToNetwork(network ICWNetwork) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToNetwork:"), network)
 	return rv
 }
@@ -113,7 +113,7 @@ func (c_ CWNetwork) IsEqualToNetwork(network ICWNetwork) bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsPHYMode(_:)
-func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsPHYMode:"), phyMode)
 	return rv
 }
@@ -123,7 +123,7 @@ func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsSecurity(_:)
-func (c_ CWNetwork) SupportsSecurity(security CWSecurity) bool /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) SupportsSecurity(security CWSecurity) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsSecurity:"), security)
 	return rv
 }
@@ -133,7 +133,7 @@ func (c_ CWNetwork) SupportsSecurity(security CWSecurity) bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/beaconInterval
-func (c_ CWNetwork) BeaconInterval() int /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) BeaconInterval() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("beaconInterval"))
 	return rv
 }
@@ -143,8 +143,8 @@ func (c_ CWNetwork) BeaconInterval() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/bssid
-func (c_ CWNetwork) Bssid() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("bssid"))
+func (c_ CWNetwork) Bssid() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("bssid"))
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (c_ CWNetwork) Bssid() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/countryCode
-func (c_ CWNetwork) CountryCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
+func (c_ CWNetwork) CountryCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (c_ CWNetwork) CountryCode() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ibss
-func (c_ CWNetwork) Ibss() bool /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) Ibss() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ibss"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (c_ CWNetwork) Ibss() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/informationElementData
-func (c_ CWNetwork) InformationElementData() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CWNetwork) InformationElementData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("informationElementData"))
 	return rv
 }
@@ -183,7 +183,7 @@ func (c_ CWNetwork) InformationElementData() foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/noiseMeasurement
-func (c_ CWNetwork) NoiseMeasurement() int /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) NoiseMeasurement() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("noiseMeasurement"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (c_ CWNetwork) NoiseMeasurement() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/rssiValue
-func (c_ CWNetwork) RssiValue() int /* primitive/slice/pointer. */ {
+func (c_ CWNetwork) RssiValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("rssiValue"))
 	return rv
 }
@@ -203,8 +203,8 @@ func (c_ CWNetwork) RssiValue() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssid
-func (c_ CWNetwork) Ssid() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetwork) Ssid() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (c_ CWNetwork) Ssid() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/ssidData
-func (c_ CWNetwork) SsidData() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CWNetwork) SsidData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ClipView] class.
@@ -30,28 +32,28 @@ type _ClipViewClass struct {
 type IClipView interface {
 	IView
 	// properties:
-	AutomaticallyAdjustsContentInsets() bool /* primitive/slice/pointer. */
-	SetAutomaticallyAdjustsContentInsets(value bool /* primitive/slice/pointer. */)
+	AutomaticallyAdjustsContentInsets() bool
+	SetAutomaticallyAdjustsContentInsets(value bool)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	ContentInsets() objc.IObject /* cross-framework: EdgeInsets */
 	SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */)
-	CopiesOnScroll() bool /* primitive/slice/pointer. */
-	SetCopiesOnScroll(value bool /* primitive/slice/pointer. */)
+	CopiesOnScroll() bool
+	SetCopiesOnScroll(value bool)
 	DocumentCursor() ICursor
 	SetDocumentCursor(value ICursor)
 	DocumentRect() objc.IObject /* cross-framework: Rect */
 	DocumentView() IView
 	SetDocumentView(value IView)
 	DocumentVisibleRect() objc.IObject /* cross-framework: Rect */
-	DrawsBackground() bool /* primitive/slice/pointer. */
-	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
 	// methods:
-	Autoscroll(event IEvent) bool /* primitive/slice/pointer. */
-	ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ScrollToPoint(newOrigin objc.IObject /* cross-framework Point */)
-	ViewBoundsChanged(notification objc.IObject /* cross-framework Notification */)
-	ViewFrameChanged(notification objc.IObject /* cross-framework Notification */)
+	Autoscroll(event IEvent) bool
+	ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ScrollToPoint(newOrigin objc.IObject /* cross-framework: Point */)
+	ViewBoundsChanged(notification objc.IObject /* cross-framework: Notification */)
+	ViewFrameChanged(notification objc.IObject /* cross-framework: Notification */)
 }
 
 // An object that clips a document view to a scroll view’s frame.
@@ -113,7 +115,7 @@ func NewClipView() ClipView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/autoscroll(with:)
-func (c_ ClipView) Autoscroll(event IEvent) bool /* primitive/slice/pointer. */ {
+func (c_ ClipView) Autoscroll(event IEvent) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("autoscroll:"), event)
 	return rv
 }
@@ -123,8 +125,8 @@ func (c_ ClipView) Autoscroll(event IEvent) bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/constrainBoundsRect(_:)
-func (c_ ClipView) ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("constrainBoundsRect:"), proposedBounds)
+func (c_ ClipView) ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("constrainBoundsRect:"), proposedBounds)
 	return rv
 }
 
@@ -133,7 +135,7 @@ func (c_ ClipView) ConstrainBoundsRect(proposedBounds objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/scroll(to:)
-func (c_ ClipView) ScrollToPoint(newOrigin objc.IObject /* cross-framework Point */) {
+func (c_ ClipView) ScrollToPoint(newOrigin objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("scrollToPoint:"), newOrigin)
 }
 
@@ -142,7 +144,7 @@ func (c_ ClipView) ScrollToPoint(newOrigin objc.IObject /* cross-framework Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewBoundsChanged(_:)
-func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framework Notification */) {
+func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framework: Notification */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewBoundsChanged:"), notification)
 }
 
@@ -151,7 +153,7 @@ func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewFrameChanged(_:)
-func (c_ ClipView) ViewFrameChanged(notification objc.IObject /* cross-framework Notification */) {
+func (c_ ClipView) ViewFrameChanged(notification objc.IObject /* cross-framework: Notification */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewFrameChanged:"), notification)
 }
 
@@ -160,7 +162,7 @@ func (c_ ClipView) ViewFrameChanged(notification objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/automaticallyAdjustsContentInsets
-func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool /* primitive/slice/pointer. */ {
+func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyAdjustsContentInsets"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (c_ ClipView) AutomaticallyAdjustsContentInsets() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/automaticallyAdjustsContentInsets
-func (c_ ClipView) SetAutomaticallyAdjustsContentInsets(value bool /* primitive/slice/pointer. */) {
+func (c_ ClipView) SetAutomaticallyAdjustsContentInsets(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyAdjustsContentInsets:"), value)
 }
 
@@ -199,7 +201,7 @@ func (c_ ClipView) SetBackgroundColor(value IColor) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
 func (c_ ClipView) ContentInsets() objc.IObject /* cross-framework: EdgeInsets */ {
-	rv := objc.Send[EdgeInsets](c_.ID, objc.Sel("contentInsets"))
+	rv := objc.Send[foundation.EdgeInsets](c_.ID, objc.Sel("contentInsets"))
 	return rv
 }
 
@@ -217,7 +219,7 @@ func (c_ ClipView) SetContentInsets(value objc.IObject /* cross-framework: EdgeI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/copiesOnScroll
-func (c_ ClipView) CopiesOnScroll() bool /* primitive/slice/pointer. */ {
+func (c_ ClipView) CopiesOnScroll() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("copiesOnScroll"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (c_ ClipView) CopiesOnScroll() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/copiesOnScroll
-func (c_ ClipView) SetCopiesOnScroll(value bool /* primitive/slice/pointer. */) {
+func (c_ ClipView) SetCopiesOnScroll(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCopiesOnScroll:"), value)
 }
 
@@ -256,7 +258,7 @@ func (c_ ClipView) SetDocumentCursor(value ICursor) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentRect
 func (c_ ClipView) DocumentRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("documentRect"))
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("documentRect"))
 	return rv
 }
 
@@ -285,7 +287,7 @@ func (c_ ClipView) SetDocumentView(value IView) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentVisibleRect
 func (c_ ClipView) DocumentVisibleRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("documentVisibleRect"))
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("documentVisibleRect"))
 	return rv
 }
 
@@ -294,7 +296,7 @@ func (c_ ClipView) DocumentVisibleRect() objc.IObject /* cross-framework: Rect *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/drawsBackground
-func (c_ ClipView) DrawsBackground() bool /* primitive/slice/pointer. */ {
+func (c_ ClipView) DrawsBackground() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -304,7 +306,7 @@ func (c_ ClipView) DrawsBackground() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/drawsBackground
-func (c_ ClipView) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
+func (c_ ClipView) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 

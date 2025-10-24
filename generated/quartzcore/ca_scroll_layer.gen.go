@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ScrollLayer] class.
@@ -30,16 +30,21 @@ type _ScrollLayerClass struct {
 // An interface definition for the [ScrollLayer] class.
 type IScrollLayer interface {
 	ILayer
-	ScrollToPoint(p coregraphics.CGPoint)
-	ScrollToRect(r coregraphics.CGRect)
-	ScrollMode() ScrollLayerScrollMode
-	SetScrollMode(value ScrollLayerScrollMode)
+	// properties:
+	ScrollMode() ScrollLayerScrollMode /* not a class type */
+	SetScrollMode(value ScrollLayerScrollMode /* not a class type */)
+	// methods:
+	ScrollToRect(r objc.IObject /* cross-framework: Rect */)
 }
 
 // A layer that displays scrollable content larger than its own bounds.
 //
 // The class is a subclass of that simplifies displaying a portion of a layer. The extent of the scrollable area of the is defined by the layout of its sublayers. The visible portion of the layer content is set by specifying the origin as a point or a rectangular area of the contents to be displayed. does not provide keyboard or mouse event-handling, nor does it provide visible scrollers.
+
+
+// A layer that displays scrollable content larger than its own bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
 type ScrollLayer struct {
 	Layer
@@ -86,35 +91,31 @@ func NewScrollLayer() ScrollLayer {
 }
 
 
-// Changes the origin of the receiver to the specified point.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-37q0p
-func (s_ ScrollLayer) ScrollToPoint(p coregraphics.CGPoint) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("scrollToPoint:"), p)
-}
 
 // Scroll the contents of the receiver to ensure that the rectangle is visible.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-782vd
-func (s_ ScrollLayer) ScrollToRect(r coregraphics.CGRect) {
+func (s_ ScrollLayer) ScrollToRect(r objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollToRect:"), r)
 }
 
+
 // Defines the axes in which the layer may be scrolled.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
-func (s_ ScrollLayer) ScrollMode() ScrollLayerScrollMode {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cascrolllayer/scrollmode
+func (s_ ScrollLayer) ScrollMode() ScrollLayerScrollMode /* not a class type */ {
 	rv := objc.Send[ScrollLayerScrollMode](s_.ID, objc.Sel("scrollMode"))
 	return rv
 }
 
 
-// SetScrollMode sets the value of the scrollMode property.
 // Defines the axes in which the layer may be scrolled.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
-func (s_ ScrollLayer) SetScrollMode(value ScrollLayerScrollMode) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cascrolllayer/scrollmode
+func (s_ ScrollLayer) SetScrollMode(value ScrollLayerScrollMode /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollMode:"), value)
 }
 

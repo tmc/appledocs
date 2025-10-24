@@ -101,7 +101,7 @@ func (jc _JSONSerializationClass) DataWithJSONObjectOptionsError(obj objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/isValidJSONObject(_:)
-func (jc _JSONSerializationClass) IsValidJSONObject(obj objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (jc _JSONSerializationClass) IsValidJSONObject(obj objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(jc.class), objc.Sel("isValidJSONObject:"), obj)
 	return rv
 }
@@ -131,7 +131,7 @@ func (jc _JSONSerializationClass) JSONObjectWithDataOptionsError(data IData, opt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/writeJSONObject(_:to:options:error:)
-func (jc _JSONSerializationClass) WriteJSONObjectToStreamOptionsError(obj objectivec.IObject, stream IOutputStream, opt JSONWritingOptions, error_ IError) int /* primitive/slice/pointer. */ {
+func (jc _JSONSerializationClass) WriteJSONObjectToStreamOptionsError(obj objectivec.IObject, stream IOutputStream, opt JSONWritingOptions, error_ IError) int {
 	rv := objc.Send[int](objc.ID(jc.class), objc.Sel("writeJSONObject:toStream:options:error:"), obj, stream, opt, error_)
 	return rv
 }

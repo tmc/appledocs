@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchedPropertyDescription] class.
@@ -34,12 +35,12 @@ type IFetchedPropertyDescription interface {
 	SetFetchRequest(value IFetchRequest)
 	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
-	FetchBatchSize() int /* primitive/slice/pointer. */
-	SetFetchBatchSize(value int /* primitive/slice/pointer. */)
-	FetchLimit() int /* primitive/slice/pointer. */
-	SetFetchLimit(value int /* primitive/slice/pointer. */)
-	FetchOffset() int /* primitive/slice/pointer. */
-	SetFetchOffset(value int /* primitive/slice/pointer. */)
+	FetchBatchSize() int
+	SetFetchBatchSize(value int)
+	FetchLimit() int
+	SetFetchLimit(value int)
+	FetchOffset() int
+	SetFetchOffset(value int)
 	Predicate() objc.IObject /* cross-framework: Predicate */
 	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	// methods:
@@ -142,7 +143,7 @@ func (f_ FetchedPropertyDescription) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) FetchBatchSize() int /* primitive/slice/pointer. */ {
+func (f_ FetchedPropertyDescription) FetchBatchSize() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -152,7 +153,7 @@ func (f_ FetchedPropertyDescription) FetchBatchSize() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int /* primitive/slice/pointer. */) {
+func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -161,7 +162,7 @@ func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchedPropertyDescription) FetchLimit() int /* primitive/slice/pointer. */ {
+func (f_ FetchedPropertyDescription) FetchLimit() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -171,7 +172,7 @@ func (f_ FetchedPropertyDescription) FetchLimit() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchedPropertyDescription) SetFetchLimit(value int /* primitive/slice/pointer. */) {
+func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -180,7 +181,7 @@ func (f_ FetchedPropertyDescription) SetFetchLimit(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchedPropertyDescription) FetchOffset() int /* primitive/slice/pointer. */ {
+func (f_ FetchedPropertyDescription) FetchOffset() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -190,7 +191,7 @@ func (f_ FetchedPropertyDescription) FetchOffset() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchedPropertyDescription) SetFetchOffset(value int /* primitive/slice/pointer. */) {
+func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -200,7 +201,7 @@ func (f_ FetchedPropertyDescription) SetFetchOffset(value int /* primitive/slice
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
 func (f_ FetchedPropertyDescription) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](f_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 

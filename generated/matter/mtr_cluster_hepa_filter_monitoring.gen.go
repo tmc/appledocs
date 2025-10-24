@@ -29,9 +29,13 @@ type _MTRClusterHEPAFilterMonitoringClass struct {
 // An interface definition for the [MTRClusterHEPAFilterMonitoring] class.
 type IMTRClusterHEPAFilterMonitoring interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterHEPAFilterMonitoring
 type MTRClusterHEPAFilterMonitoring struct {
 	MTRGenericCluster

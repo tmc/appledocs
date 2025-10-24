@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEventClass s
 // An interface definition for the [MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent] class.
 type IMTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent
 type MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent struct {
 	objectivec.Object

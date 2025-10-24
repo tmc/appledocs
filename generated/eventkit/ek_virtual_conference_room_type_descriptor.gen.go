@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IEKVirtualConferenceRoomTypeDescriptor interface {
 	objectivec.IObject
 	// properties:
 	Identifier() EKVirtualConferenceRoomTypeIdentifier /* typedef */
-	Title() string /* primitive/slice/pointer. */
+	Title() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -93,9 +94,9 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)
-func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string /* primitive/slice/pointer. */, identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */) EKVirtualConferenceRoomTypeDescriptor {
+func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title objc.IObject /* cross-framework: NSString */, identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */) EKVirtualConferenceRoomTypeDescriptor {
 	instance := getEKVirtualConferenceRoomTypeDescriptorClass().Alloc()
-	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), objc.String(title), identifier)
+	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), title, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -116,8 +117,8 @@ func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConference
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/title
-func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
 }
 

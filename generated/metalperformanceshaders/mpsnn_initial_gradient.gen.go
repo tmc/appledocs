@@ -29,18 +29,24 @@ type _InitialGradientClass struct {
 
 // An interface definition for the [InitialGradient] class.
 type IInitialGradient interface {
-	objectivec.IObject
+	ICNNKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradient
 type InitialGradient struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // InitialGradientFrom constructs a [InitialGradient] from an unsafe.Pointer.
 func InitialGradientFrom(ptr unsafe.Pointer) InitialGradient {
-	return InitialGradient{objectivec.Object{objc.ID(ptr)}}
+	return InitialGradient{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -75,7 +81,8 @@ func NewInitialGradient() InitialGradient {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradient/init(device:)
 func NewInitialGradientWithDevice(device objectivec.IObject) InitialGradient {
 	instance := getInitialGradientClass().Alloc()

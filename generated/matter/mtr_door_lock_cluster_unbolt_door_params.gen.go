@@ -31,15 +31,19 @@ type _MTRDoorLockClusterUnboltDoorParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterUnboltDoorParams] class.
 type IMTRDoorLockClusterUnboltDoorParams interface {
 	objectivec.IObject
-	PinCode() foundation.NSData
-	SetPinCode(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	PinCode() objc.IObject /* cross-framework: NSData */
+	SetPinCode(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams
 type MTRDoorLockClusterUnboltDoorParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRDoorLockClusterUnboltDoorParams() MTRDoorLockClusterUnboltDoorParams 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/pinCode
-func (m_ MTRDoorLockClusterUnboltDoorParams) PinCode() foundation.NSData {
+func (m_ MTRDoorLockClusterUnboltDoorParams) PinCode() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("pinCode"))
 	return rv
 }
 
 
-// SetPinCode sets the value of the pinCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/pinCode
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetPinCode(value foundation.IData) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetPinCode(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterUnboltDoorParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterUnboltDoorParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterUnboltDoorParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterUnboltDoorParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

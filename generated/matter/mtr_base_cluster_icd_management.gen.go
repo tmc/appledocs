@@ -30,6 +30,8 @@ type _MTRBaseClusterICDManagementClass struct {
 // An interface definition for the [MTRBaseClusterICDManagement] class.
 type IMTRBaseClusterICDManagement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeActiveModeDurationWithCompletion(completion unsafe.Pointer)
 	ReadAttributeActiveModeThresholdWithCompletion(completion unsafe.Pointer)
@@ -68,7 +70,11 @@ type IMTRBaseClusterICDManagement interface {
 // Cluster ICD Management
 //
 // Allows servers to ensure that listed clients are notified when a server is available for communication.
+
+
+// Cluster ICD Management
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement
 type MTRBaseClusterICDManagement struct {
 	MTRGenericBaseCluster
@@ -116,11 +122,11 @@ func NewMTRBaseClusterICDManagement() MTRBaseClusterICDManagement {
 
 
 
-
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/init(device:endpointID:queue:)
-func NewMTRBaseClusterICDManagementWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRBaseClusterICDManagement {
+func NewMTRBaseClusterICDManagementWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterICDManagement {
 	instance := getMTRBaseClusterICDManagementClass().Alloc()
 	rv := objc.Send[MTRBaseClusterICDManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -128,292 +134,343 @@ func NewMTRBaseClusterICDManagementWithDeviceEndpointIDQueue(device IMTRBaseDevi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeActiveModeDuration(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeActiveModeDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeActiveModeDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeActiveModeDurationWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeActiveModeThreshold(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeActiveModeThresholdWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeActiveModeThresholdWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeActiveModeThresholdWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeClientsSupportedPerFabric(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeClientsSupportedPerFabricWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeClientsSupportedPerFabricWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClientsSupportedPerFabricWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeICDCounter(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeICDCounterWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeICDCounterWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeICDCounterWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeIdleModeDuration(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeIdleModeDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeIdleModeDurationWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeIdleModeDurationWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeMaximumCheckInBackOff(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeMaximumCheckInBackOffWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeMaximumCheckInBackOffWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMaximumCheckInBackOffWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeOperatingMode(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeOperatingModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeOperatingModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeOperatingModeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeRegisteredClients(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeRegisteredClientsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeRegisteredClientsWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeRegisteredClientsWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeUserActiveModeTriggerHint(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeUserActiveModeTriggerHintWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeUserActiveModeTriggerHintWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeUserActiveModeTriggerHintWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeUserActiveModeTriggerInstruction(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterICDManagementClass) ReadAttributeUserActiveModeTriggerInstructionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterICDManagementClass) ReadAttributeUserActiveModeTriggerInstructionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeUserActiveModeTriggerInstructionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeAcceptedCommandList(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeActiveModeDuration(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeActiveModeDurationWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeActiveModeDurationWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeActiveModeThreshold(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeActiveModeThresholdWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeActiveModeThresholdWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeAttributeList(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeClientsSupportedPerFabric(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeClientsSupportedPerFabricWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClientsSupportedPerFabricWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeClusterRevision(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeFeatureMap(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeGeneratedCommandList(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeICDCounter(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeICDCounterWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeICDCounterWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeIdleModeDuration(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeIdleModeDurationWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeIdleModeDurationWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeMaximumCheckInBackOff(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeMaximumCheckInBackOffWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeMaximumCheckInBackOffWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeOperatingMode(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeOperatingModeWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeOperatingModeWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeRegisteredClients(with:completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeRegisteredClientsWithParamsCompletion(params IMTRReadParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeRegisteredClientsWithParams:completion:"), params, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeUserActiveModeTriggerHint(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeUserActiveModeTriggerHintWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerHintWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/readAttributeUserActiveModeTriggerInstruction(completion:)
 func (m_ MTRBaseClusterICDManagement) ReadAttributeUserActiveModeTriggerInstructionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerInstructionWithCompletion:"), completion)
 }
 
+
 // Command RegisterClient
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/registerClient(with:completion:)
 func (m_ MTRBaseClusterICDManagement) RegisterClientWithParamsCompletion(params IMTRICDManagementClusterRegisterClientParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("registerClientWithParams:completion:"), params, completion)
 }
 
+
 // Command StayActiveRequest
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/stayActiveRequest(with:completion:)
 func (m_ MTRBaseClusterICDManagement) StayActiveRequestWithParamsCompletion(params IMTRICDManagementClusterStayActiveRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stayActiveRequestWithParams:completion:"), params, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeActiveModeDuration(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeActiveModeDurationWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeActiveModeDurationWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeActiveModeThreshold(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeActiveModeThresholdWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeActiveModeThresholdWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeClientsSupportedPerFabric(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeClientsSupportedPerFabricWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClientsSupportedPerFabricWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeICDCounter(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeICDCounterWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeICDCounterWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeIdleModeDuration(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeIdleModeDurationWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeIdleModeDurationWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeMaximumCheckInBackOff(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeMaximumCheckInBackOffWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeMaximumCheckInBackOffWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeOperatingMode(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeOperatingModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeOperatingModeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeRegisteredClients(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeRegisteredClientsWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeRegisteredClientsWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeUserActiveModeTriggerHint(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeUserActiveModeTriggerHintWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeUserActiveModeTriggerHintWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/subscribeAttributeUserActiveModeTriggerInstruction(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterICDManagement) SubscribeAttributeUserActiveModeTriggerInstructionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeUserActiveModeTriggerInstructionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
+
 // Command UnregisterClient
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterICDManagement/unregisterClient(with:completion:)
 func (m_ MTRBaseClusterICDManagement) UnregisterClientWithParamsCompletion(params IMTRICDManagementClusterUnregisterClientParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unregisterClientWithParams:completion:"), params, completion)

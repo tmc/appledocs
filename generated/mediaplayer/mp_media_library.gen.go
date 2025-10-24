@@ -31,17 +31,18 @@ type _MediaLibraryClass struct {
 // An interface definition for the [MediaLibrary] class.
 type IMediaLibrary interface {
 	objectivec.IObject
-	AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer)
-	BeginGeneratingLibraryChangeNotifications()
-	EndGeneratingLibraryChangeNotifications()
-	GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.IUUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer)
-	LastModifiedDate() foundation.NSDate
+	// properties:
+	// methods:
 }
 
 // An object that represents the state of synced media items on a device.
 //
 // A user may sync their device, changing the contents on the device, while your app is running. You can use the notification provided by this class to ensure that your app’s cache of the user’s library is up-to-date. To retrieve media items from the media library, build a custom query as described in and .
+
+
+// An object that represents the state of synced media items on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary
 type MediaLibrary struct {
 	objectivec.Object
@@ -86,64 +87,33 @@ func NewMediaLibrary() MediaLibrary {
 }
 
 
+
 // Returns whether the app can access the user’s media library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/authorizationStatus()
 func (mc _MediaLibraryClass) AuthorizationStatus() MediaLibraryAuthorizationStatus {
 	rv := objc.Send[MediaLibraryAuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // Returns an instance of the default media library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/default()
-func (mc _MediaLibraryClass) DefaultMediaLibrary() MediaLibrary {
+func (mc _MediaLibraryClass) DefaultMediaLibrary() IMediaLibrary {
 	rv := objc.Send[MediaLibrary](objc.ID(mc.class), objc.Sel("defaultMediaLibrary"))
 	return rv
 }
 
+
 // Displays a user interface so that the user can authorize whether your app may view the media library’s contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/requestAuthorization(_:)
 func (mc _MediaLibraryClass) RequestAuthorization(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("requestAuthorization:"), completionHandler)
 }
-
-// Adds the designated item to the user’s music library.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/addItem(withProductID:completionHandler:)
-func (m_ MediaLibrary) AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), objc.String(productID), completionHandler)
-}
-
-// Asks the media library to turn on notifications for whenever the library changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/beginGeneratingLibraryChangeNotifications()
-func (m_ MediaLibrary) BeginGeneratingLibraryChangeNotifications() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("beginGeneratingLibraryChangeNotifications"))
-}
-
-// Asks the media library to turn off notifications for whenever the library changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/endGeneratingLibraryChangeNotifications()
-func (m_ MediaLibrary) EndGeneratingLibraryChangeNotifications() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("endGeneratingLibraryChangeNotifications"))
-}
-
-// Retrieves an app maintained existing playlist or creates a new playlist when no playlist exists.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/getPlaylist(with:creationMetadata:completionHandler:)
-func (m_ MediaLibrary) GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.IUUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getPlaylistWithUUID:creationMetadata:completionHandler:"), uuid, creationMetadata, completionHandler)
-}
-
-// The calendar date on which the media library was last modified.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/lastModifiedDate
-func (m_ MediaLibrary) LastModifiedDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("lastModifiedDate"))
-	return rv
-}
-
 
 

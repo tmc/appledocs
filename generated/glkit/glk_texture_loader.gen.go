@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -93,7 +93,7 @@ func NewGLKTextureLoader() GLKTextureLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(share:)
-func NewGLKTextureLoaderWithShareContext(context objc.IObject /* cross-framework OpenGLContext */) GLKTextureLoader {
+func NewGLKTextureLoaderWithShareContext(context objc.IObject /* cross-framework: OpenGLContext */) GLKTextureLoader {
 	instance := getGLKTextureLoaderClass().Alloc()
 	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithShareContext:"), context)
 	rv.Autorelease()
@@ -118,7 +118,7 @@ func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoad
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOf:options:)
-func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url foundation.objc.IObject /* cross-framework URL */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
 }
@@ -128,8 +128,8 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOfFile:options:)
-func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path string /* primitive/slice/pointer. */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFile:options:error:"), objc.String(path), options, outError)
+func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path objc.IObject /* cross-framework: NSString */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFile:options:error:"), path, options, outError)
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/cubeMap(withContentsOfFiles:options:)
-func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFilesOptionsError(paths []objc.ID /* already interface */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFilesOptionsError(paths []objc.ID, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFiles:options:error:"), paths, options, outError)
 	return rv
 }
@@ -148,7 +148,7 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFilesOptionsError(paths []
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(with:options:)
-func (gc _GLKTextureLoaderClass) TextureWithCGImageOptionsError(cgImage coregraphics.ImageRef /* not a class type */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) TextureWithCGImageOptionsError(cgImage ImageRef /* not a class type */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithCGImage:options:error:"), cgImage, options, outError)
 	return rv
 }
@@ -158,7 +158,7 @@ func (gc _GLKTextureLoaderClass) TextureWithCGImageOptionsError(cgImage coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOf:options:)-2ljxb
-func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data foundation.objc.IObject /* cross-framework NSData */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfData:options:error:"), data, options, outError)
 	return rv
 }
@@ -168,7 +168,7 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOf:options:)-708ft
-func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url foundation.objc.IObject /* cross-framework URL */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
 }
@@ -178,16 +178,16 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withContentsOfFile:options:)
-func (gc _GLKTextureLoaderClass) TextureWithContentsOfFileOptionsError(path string /* primitive/slice/pointer. */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfFile:options:error:"), objc.String(path), options, outError)
+func (gc _GLKTextureLoaderClass) TextureWithContentsOfFileOptionsError(path objc.IObject /* cross-framework: NSString */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfFile:options:error:"), path, options, outError)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withName:scaleFactor:bundle:options:)
-func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name string /* primitive/slice/pointer. */, scaleFactor float64 /* primitive/slice/pointer. */, bundle objc.IObject /* cross-framework Bundle */, options foundation.IDictionary /* already interface */, outError unsafe.Pointer) IGLKTextureInfo {
-	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithName:scaleFactor:bundle:options:error:"), objc.String(name), scaleFactor, bundle, options, outError)
+func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name objc.IObject /* cross-framework: NSString */, scaleFactor float64, bundle objc.IObject /* cross-framework: Bundle */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
+	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithName:scaleFactor:bundle:options:error:"), name, scaleFactor, bundle, options, outError)
 	return rv
 }
 

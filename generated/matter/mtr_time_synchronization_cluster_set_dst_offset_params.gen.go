@@ -31,15 +31,19 @@ type _MTRTimeSynchronizationClusterSetDSTOffsetParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetDSTOffsetParams] class.
 type IMTRTimeSynchronizationClusterSetDSTOffsetParams interface {
 	objectivec.IObject
-	DstOffset() objc.ID
-	SetDstOffset(value objc.ID)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DstOffset() objc.IObject /* cross-framework: NSArray */
+	SetDstOffset(value objc.IObject /* cross-framework: NSArray */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams
 type MTRTimeSynchronizationClusterSetDSTOffsetParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRTimeSynchronizationClusterSetDSTOffsetParams() MTRTimeSynchronization
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/dstOffset
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("dstOffset"))
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("dstOffset"))
 	return rv
 }
 
 
-// SetDstOffset sets the value of the dstOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/dstOffset
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetDstOffset(value objc.ID) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetDstOffset(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffset:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

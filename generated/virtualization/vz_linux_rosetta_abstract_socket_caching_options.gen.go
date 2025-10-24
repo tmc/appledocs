@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZLinuxRosettaAbstractSocketCachingOptions] class.
@@ -29,13 +30,19 @@ type _VZLinuxRosettaAbstractSocketCachingOptionsClass struct {
 // An interface definition for the [VZLinuxRosettaAbstractSocketCachingOptions] class.
 type IVZLinuxRosettaAbstractSocketCachingOptions interface {
 	IVZLinuxRosettaCachingOptions
-	Name() string
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // Caching options for an abstract socket.
 //
 // Use this object to configure Rosetta to communicate with the Rosetta daemon using an abstract socket.
+
+
+// Caching options for an abstract socket.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions
 type VZLinuxRosettaAbstractSocketCachingOptions struct {
 	VZLinuxRosettaCachingOptions
@@ -83,38 +90,44 @@ func NewVZLinuxRosettaAbstractSocketCachingOptions() VZLinuxRosettaAbstractSocke
 
 
 
-
 // Initialize options to set on a Rosetta directory share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/initWithName:error:
-func NewVZLinuxRosettaAbstractSocketCachingOptionsWithNameError(name string, error_ unsafe.Pointer) VZLinuxRosettaAbstractSocketCachingOptions {
+func NewVZLinuxRosettaAbstractSocketCachingOptionsWithNameError(name objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) VZLinuxRosettaAbstractSocketCachingOptions {
 	instance := getVZLinuxRosettaAbstractSocketCachingOptionsClass().Alloc()
-	rv := objc.Send[VZLinuxRosettaAbstractSocketCachingOptions](instance.ID, objc.Sel("initWithName:error:"), objc.String(name), error_)
+	rv := objc.Send[VZLinuxRosettaAbstractSocketCachingOptions](instance.ID, objc.Sel("initWithName:error:"), name, error_)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // The maximum length of name that the framework allows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/maximumNameLength
 func (vc _VZLinuxRosettaAbstractSocketCachingOptionsClass) MaximumNameLength() uint {
 	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumNameLength"))
 	return rv
 }
+
 // The maximum length of name that the framework allows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/maximumNameLength
 func (v_ VZLinuxRosettaAbstractSocketCachingOptions) MaximumNameLength() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("maximumNameLength"))
 	return rv
 }
 
+
 // The name of the abstract socket that Rosetta uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/name
-func (v_ VZLinuxRosettaAbstractSocketCachingOptions) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VZLinuxRosettaAbstractSocketCachingOptions) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("name"))
 	return rv
 }
 

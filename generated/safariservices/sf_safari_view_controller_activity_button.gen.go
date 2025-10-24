@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,15 @@ type _SFSafariViewControllerActivityButtonClass struct {
 // An interface definition for the [SFSafariViewControllerActivityButton] class.
 type ISFSafariViewControllerActivityButton interface {
 	objectivec.IObject
-	ExtensionIdentifier() string
-	TemplateImage() appkit.Image
-	SetTemplateImage(value appkit.IImage)
+	// properties:
+	TemplateImage() objc.IObject /* cross-framework: Image */
+	SetTemplateImage(value objc.IObject /* cross-framework: Image */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton
 type SFSafariViewControllerActivityButton struct {
 	objectivec.Object
@@ -79,35 +83,29 @@ func NewSFSafariViewControllerActivityButton() SFSafariViewControllerActivityBut
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/init(templateImage:extensionIdentifier:)
-func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage appkit.IImage, extensionIdentifier string) SFSafariViewControllerActivityButton {
+func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage objc.IObject /* cross-framework: Image */, extensionIdentifier objc.IObject /* cross-framework: NSString */) SFSafariViewControllerActivityButton {
 	instance := getSFSafariViewControllerActivityButtonClass().Alloc()
-	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, objc.String(extensionIdentifier))
+	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, extensionIdentifier)
 	rv.Autorelease()
 	return rv
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
-func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
-	return rv
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) TemplateImage() appkit.Image {
+func (s_ SFSafariViewControllerActivityButton) TemplateImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](s_.ID, objc.Sel("templateImage"))
 	return rv
 }
 
 
-// SetTemplateImage sets the value of the templateImage property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value appkit.IImage) {
+func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTemplateImage:"), value)
 }
 

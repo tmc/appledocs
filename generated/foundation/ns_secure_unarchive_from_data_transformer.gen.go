@@ -92,7 +92,7 @@ func NewSecureUnarchiveFromDataTransformer() SecureUnarchiveFromDataTransformer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
-func (sc _SecureUnarchiveFromDataTransformerClass) AllowedTopLevelClasses() []objc.Class /* not a class type */ {
+func (sc _SecureUnarchiveFromDataTransformerClass) AllowedTopLevelClasses() []objc.Class {
 	rv := objc.Send[[]objc.Class](objc.ID(sc.class), objc.Sel("allowedTopLevelClasses"))
 	return rv
 }
@@ -101,7 +101,7 @@ func (sc _SecureUnarchiveFromDataTransformerClass) AllowedTopLevelClasses() []ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
-func (s_ SecureUnarchiveFromDataTransformer) AllowedTopLevelClasses() []objc.Class /* not a class type */ {
+func (s_ SecureUnarchiveFromDataTransformer) AllowedTopLevelClasses() []objc.Class {
 	rv := objc.Send[[]objc.Class](s_.ID, objc.Sel("allowedTopLevelClasses"))
 	return rv
 }

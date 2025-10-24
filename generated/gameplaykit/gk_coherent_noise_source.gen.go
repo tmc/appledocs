@@ -30,14 +30,14 @@ type _CoherentNoiseSourceClass struct {
 type ICoherentNoiseSource interface {
 	INoiseSource
 	// properties:
-	Frequency() float64 /* primitive/slice/pointer. */
-	SetFrequency(value float64 /* primitive/slice/pointer. */)
-	Lacunarity() float64 /* primitive/slice/pointer. */
-	SetLacunarity(value float64 /* primitive/slice/pointer. */)
-	OctaveCount() int /* primitive/slice/pointer. */
-	SetOctaveCount(value int /* primitive/slice/pointer. */)
-	Seed() unsafe.Pointer
-	SetSeed(value unsafe.Pointer)
+	Frequency() float64
+	SetFrequency(value float64)
+	Lacunarity() float64
+	SetLacunarity(value float64)
+	OctaveCount() int
+	SetOctaveCount(value int)
+	Seed() int32 /* not a class type */
+	SetSeed(value int32 /* not a class type */)
 	// methods:
 }
 
@@ -100,7 +100,7 @@ func NewCoherentNoiseSource() CoherentNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-func (c_ CoherentNoiseSource) Frequency() float64 /* primitive/slice/pointer. */ {
+func (c_ CoherentNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("frequency"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (c_ CoherentNoiseSource) Frequency() float64 /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/frequency
-func (c_ CoherentNoiseSource) SetFrequency(value float64 /* primitive/slice/pointer. */) {
+func (c_ CoherentNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFrequency:"), value)
 }
 
@@ -119,7 +119,7 @@ func (c_ CoherentNoiseSource) SetFrequency(value float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-func (c_ CoherentNoiseSource) Lacunarity() float64 /* primitive/slice/pointer. */ {
+func (c_ CoherentNoiseSource) Lacunarity() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("lacunarity"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (c_ CoherentNoiseSource) Lacunarity() float64 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/lacunarity
-func (c_ CoherentNoiseSource) SetLacunarity(value float64 /* primitive/slice/pointer. */) {
+func (c_ CoherentNoiseSource) SetLacunarity(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLacunarity:"), value)
 }
 
@@ -138,7 +138,7 @@ func (c_ CoherentNoiseSource) SetLacunarity(value float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/octaveCount
-func (c_ CoherentNoiseSource) OctaveCount() int /* primitive/slice/pointer. */ {
+func (c_ CoherentNoiseSource) OctaveCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("octaveCount"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (c_ CoherentNoiseSource) OctaveCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/octaveCount
-func (c_ CoherentNoiseSource) SetOctaveCount(value int /* primitive/slice/pointer. */) {
+func (c_ CoherentNoiseSource) SetOctaveCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOctaveCount:"), value)
 }
 
@@ -157,8 +157,8 @@ func (c_ CoherentNoiseSource) SetOctaveCount(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/seed
-func (c_ CoherentNoiseSource) Seed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("seed"))
+func (c_ CoherentNoiseSource) Seed() int32 /* not a class type */ {
+	rv := objc.Send[int32](c_.ID, objc.Sel("seed"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (c_ CoherentNoiseSource) Seed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCoherentNoiseSource/seed
-func (c_ CoherentNoiseSource) SetSeed(value unsafe.Pointer) {
+func (c_ CoherentNoiseSource) SetSeed(value int32 /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
 

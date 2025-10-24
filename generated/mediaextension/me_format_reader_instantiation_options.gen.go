@@ -30,13 +30,19 @@ type _MEFormatReaderInstantiationOptionsClass struct {
 // An interface definition for the [MEFormatReaderInstantiationOptions] class.
 type IMEFormatReaderInstantiationOptions interface {
 	objectivec.IObject
+	// properties:
 	AllowIncrementalFragmentParsing() bool
+	// methods:
 }
 
 // An object that contains options to pass to a format reader extension.
 //
 // This object is mutable with options set through instance properties.
+
+
+// An object that contains options to pass to a format reader extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFormatReaderInstantiationOptions
 type MEFormatReaderInstantiationOptions struct {
 	objectivec.Object
@@ -81,8 +87,10 @@ func NewMEFormatReaderInstantiationOptions() MEFormatReaderInstantiationOptions 
 }
 
 
+
 // Enables support for parsing additional fragments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFormatReaderInstantiationOptions/allowIncrementalFragmentParsing
 func (m_ MEFormatReaderInstantiationOptions) AllowIncrementalFragmentParsing() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowIncrementalFragmentParsing"))

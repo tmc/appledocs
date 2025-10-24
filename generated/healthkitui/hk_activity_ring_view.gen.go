@@ -34,24 +34,24 @@ type IHKActivityRingView interface {
 	// properties:
 	ActivityMoveMode() unsafe.Pointer
 	SetActivityMoveMode(value unsafe.Pointer)
-	ActiveEnergyBurned() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetActiveEnergyBurned(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	ActiveEnergyBurnedGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetActiveEnergyBurnedGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleExerciseTime() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleExerciseTime(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleExerciseTimeGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleExerciseTimeGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleMoveTime() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleMoveTime(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleMoveTimeGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleMoveTimeGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleStandHours() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleStandHours(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	AppleStandHoursGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */
-	SetAppleStandHoursGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */)
-	ActivitySummary() healthkit.objc.IObject /* cross-framework: HKActivitySummary */
-	SetActivitySummary(value healthkit.objc.IObject /* cross-framework: HKActivitySummary */)
+	ActiveEnergyBurned() objc.IObject /* cross-framework: HKQuantity */
+	SetActiveEnergyBurned(value objc.IObject /* cross-framework: HKQuantity */)
+	ActiveEnergyBurnedGoal() objc.IObject /* cross-framework: HKQuantity */
+	SetActiveEnergyBurnedGoal(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleExerciseTime() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleExerciseTime(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleExerciseTimeGoal() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleExerciseTimeGoal(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleMoveTime() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleMoveTime(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleMoveTimeGoal() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleMoveTimeGoal(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleStandHours() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleStandHours(value objc.IObject /* cross-framework: HKQuantity */)
+	AppleStandHoursGoal() objc.IObject /* cross-framework: HKQuantity */
+	SetAppleStandHoursGoal(value objc.IObject /* cross-framework: HKQuantity */)
+	ActivitySummary() objc.IObject /* cross-framework: HKActivitySummary */
+	SetActivitySummary(value objc.IObject /* cross-framework: HKActivitySummary */)
 	// methods:
 }
 
@@ -133,7 +133,7 @@ func (h_ HKActivityRingView) SetActivityMoveMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
-func (h_ HKActivityRingView) ActiveEnergyBurned() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) ActiveEnergyBurned() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("activeEnergyBurned"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (h_ HKActivityRingView) ActiveEnergyBurned() healthkit.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
-func (h_ HKActivityRingView) SetActiveEnergyBurned(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetActiveEnergyBurned(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurned:"), value)
 }
 
@@ -152,7 +152,7 @@ func (h_ HKActivityRingView) SetActiveEnergyBurned(value healthkit.objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
-func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("activeEnergyBurnedGoal"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() healthkit.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
-func (h_ HKActivityRingView) SetActiveEnergyBurnedGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetActiveEnergyBurnedGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurnedGoal:"), value)
 }
 
@@ -171,7 +171,7 @@ func (h_ HKActivityRingView) SetActiveEnergyBurnedGoal(value healthkit.objc.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
-func (h_ HKActivityRingView) AppleExerciseTime() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleExerciseTime() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleExerciseTime"))
 	return rv
 }
@@ -181,7 +181,7 @@ func (h_ HKActivityRingView) AppleExerciseTime() healthkit.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
-func (h_ HKActivityRingView) SetAppleExerciseTime(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleExerciseTime(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTime:"), value)
 }
 
@@ -190,7 +190,7 @@ func (h_ HKActivityRingView) SetAppleExerciseTime(value healthkit.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
-func (h_ HKActivityRingView) AppleExerciseTimeGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleExerciseTimeGoal() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleExerciseTimeGoal"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (h_ HKActivityRingView) AppleExerciseTimeGoal() healthkit.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
-func (h_ HKActivityRingView) SetAppleExerciseTimeGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleExerciseTimeGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTimeGoal:"), value)
 }
 
@@ -209,7 +209,7 @@ func (h_ HKActivityRingView) SetAppleExerciseTimeGoal(value healthkit.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
-func (h_ HKActivityRingView) AppleMoveTime() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleMoveTime() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleMoveTime"))
 	return rv
 }
@@ -219,7 +219,7 @@ func (h_ HKActivityRingView) AppleMoveTime() healthkit.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
-func (h_ HKActivityRingView) SetAppleMoveTime(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleMoveTime(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
 }
 
@@ -228,7 +228,7 @@ func (h_ HKActivityRingView) SetAppleMoveTime(value healthkit.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
-func (h_ HKActivityRingView) AppleMoveTimeGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleMoveTimeGoal() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleMoveTimeGoal"))
 	return rv
 }
@@ -238,7 +238,7 @@ func (h_ HKActivityRingView) AppleMoveTimeGoal() healthkit.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
-func (h_ HKActivityRingView) SetAppleMoveTimeGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleMoveTimeGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTimeGoal:"), value)
 }
 
@@ -247,7 +247,7 @@ func (h_ HKActivityRingView) SetAppleMoveTimeGoal(value healthkit.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
-func (h_ HKActivityRingView) AppleStandHours() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleStandHours() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleStandHours"))
 	return rv
 }
@@ -257,7 +257,7 @@ func (h_ HKActivityRingView) AppleStandHours() healthkit.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
-func (h_ HKActivityRingView) SetAppleStandHours(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleStandHours(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHours:"), value)
 }
 
@@ -266,7 +266,7 @@ func (h_ HKActivityRingView) SetAppleStandHours(value healthkit.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
-func (h_ HKActivityRingView) AppleStandHoursGoal() healthkit.objc.IObject /* cross-framework: HKQuantity */ {
+func (h_ HKActivityRingView) AppleStandHoursGoal() objc.IObject /* cross-framework: HKQuantity */ {
 	rv := objc.Send[healthkit.HKQuantity](h_.ID, objc.Sel("appleStandHoursGoal"))
 	return rv
 }
@@ -276,7 +276,7 @@ func (h_ HKActivityRingView) AppleStandHoursGoal() healthkit.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
-func (h_ HKActivityRingView) SetAppleStandHoursGoal(value healthkit.objc.IObject /* cross-framework: HKQuantity */) {
+func (h_ HKActivityRingView) SetAppleStandHoursGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHoursGoal:"), value)
 }
 
@@ -285,7 +285,7 @@ func (h_ HKActivityRingView) SetAppleStandHoursGoal(value healthkit.objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkitui/hkactivityringview/activitysummary
-func (h_ HKActivityRingView) ActivitySummary() healthkit.objc.IObject /* cross-framework: HKActivitySummary */ {
+func (h_ HKActivityRingView) ActivitySummary() objc.IObject /* cross-framework: HKActivitySummary */ {
 	rv := objc.Send[healthkit.HKActivitySummary](h_.ID, objc.Sel("activitySummary"))
 	return rv
 }
@@ -295,7 +295,7 @@ func (h_ HKActivityRingView) ActivitySummary() healthkit.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkitui/hkactivityringview/activitysummary
-func (h_ HKActivityRingView) SetActivitySummary(value healthkit.objc.IObject /* cross-framework: HKActivitySummary */) {
+func (h_ HKActivityRingView) SetActivitySummary(value objc.IObject /* cross-framework: HKActivitySummary */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivitySummary:"), value)
 }
 

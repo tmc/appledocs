@@ -40,8 +40,8 @@ type IMediaSelectionOption interface {
 	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
 	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
 	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
-	IsPlayable() bool /* primitive/slice/pointer. */
-	SetIsPlayable(value bool /* primitive/slice/pointer. */)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
 	Locale() objc.IObject /* cross-framework: Locale */
 	SetLocale(value objc.IObject /* cross-framework: Locale */)
 	MediaSubTypes() objc.IObject /* cross-framework: NSNumber */
@@ -182,7 +182,7 @@ func (m_ MediaSelectionOption) SetExtendedLanguageTag(value objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-func (m_ MediaSelectionOption) IsPlayable() bool /* primitive/slice/pointer. */ {
+func (m_ MediaSelectionOption) IsPlayable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPlayable"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (m_ MediaSelectionOption) IsPlayable() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/pointer. */) {
+func (m_ MediaSelectionOption) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlayable:"), value)
 }
 

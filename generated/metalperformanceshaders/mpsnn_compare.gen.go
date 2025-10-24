@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Compare] class.
@@ -29,22 +28,28 @@ type _CompareClass struct {
 
 // An interface definition for the [Compare] class.
 type ICompare interface {
-	objectivec.IObject
+	ICNNArithmetic
+	// properties:
 	ComparisonType() ComparisonType
 	SetComparisonType(value ComparisonType)
 	Threshold() float32
 	SetThreshold(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare
 type Compare struct {
-	objectivec.Object
+	CNNArithmetic
 }
 
 // CompareFrom constructs a [Compare] from an unsafe.Pointer.
 func CompareFrom(ptr unsafe.Pointer) Compare {
-	return Compare{objectivec.Object{objc.ID(ptr)}}
+	return Compare{
+		CNNArithmetic: CNNArithmeticFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -79,7 +84,8 @@ func NewCompare() Compare {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/comparisonType
 func (c_ Compare) ComparisonType() ComparisonType {
 	rv := objc.Send[ComparisonType](c_.ID, objc.Sel("comparisonType"))
@@ -87,14 +93,14 @@ func (c_ Compare) ComparisonType() ComparisonType {
 }
 
 
-// SetComparisonType sets the value of the comparisonType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/comparisonType
 func (c_ Compare) SetComparisonType(value ComparisonType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/threshold
 func (c_ Compare) Threshold() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("threshold"))
@@ -102,8 +108,7 @@ func (c_ Compare) Threshold() float32 {
 }
 
 
-// SetThreshold sets the value of the threshold property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCompare/threshold
 func (c_ Compare) SetThreshold(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setThreshold:"), value)

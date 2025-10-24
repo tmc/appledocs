@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +32,8 @@ type _CNBoundsPredictionClass struct {
 type ICNBoundsPrediction interface {
 	objectivec.IObject
 	// properties:
-	NormalizedBounds() coregraphics.CGRect
-	SetNormalizedBounds(value coregraphics.CGRect)
+	NormalizedBounds() objc.IObject /* cross-framework: Rect */
+	SetNormalizedBounds(value objc.IObject /* cross-framework: Rect */)
 	// methods:
 }
 
@@ -92,8 +92,8 @@ func NewCNBoundsPrediction() CNBoundsPrediction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
-func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedBounds"))
+func (c_ CNBoundsPrediction) NormalizedBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("normalizedBounds"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (c_ CNBoundsPrediction) NormalizedBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/normalizedBounds
-func (c_ CNBoundsPrediction) SetNormalizedBounds(value coregraphics.CGRect) {
+func (c_ CNBoundsPrediction) SetNormalizedBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedBounds:"), value)
 }
 

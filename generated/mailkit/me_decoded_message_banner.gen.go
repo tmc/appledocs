@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _MEDecodedMessageBannerClass struct {
 type IMEDecodedMessageBanner interface {
 	objectivec.IObject
 	// properties:
-	PrimaryActionTitle() string /* primitive/slice/pointer. */
-	IsDismissable() bool /* primitive/slice/pointer. */
-	SetIsDismissable(value bool /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	PrimaryActionTitle() objc.IObject /* cross-framework: NSString */
+	IsDismissable() bool
+	SetIsDismissable(value bool)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -87,9 +88,9 @@ func NewMEDecodedMessageBanner() MEDecodedMessageBanner {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/init(title:primaryActionTitle:dismissable:)
-func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title string /* primitive/slice/pointer. */, primaryActionTitle string /* primitive/slice/pointer. */, dismissable bool /* primitive/slice/pointer. */) MEDecodedMessageBanner {
+func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title objc.IObject /* cross-framework: NSString */, primaryActionTitle objc.IObject /* cross-framework: NSString */, dismissable bool) MEDecodedMessageBanner {
 	instance := getMEDecodedMessageBannerClass().Alloc()
-	rv := objc.Send[MEDecodedMessageBanner](instance.ID, objc.Sel("initWithTitle:primaryActionTitle:dismissable:"), objc.String(title), objc.String(primaryActionTitle), dismissable)
+	rv := objc.Send[MEDecodedMessageBanner](instance.ID, objc.Sel("initWithTitle:primaryActionTitle:dismissable:"), title, primaryActionTitle, dismissable)
 	rv.Autorelease()
 	return rv
 }
@@ -98,15 +99,15 @@ func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title strin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/primaryActionTitle
-func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("primaryActionTitle"))
+func (m_ MEDecodedMessageBanner) PrimaryActionTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("primaryActionTitle"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
-func (m_ MEDecodedMessageBanner) IsDismissable() bool /* primitive/slice/pointer. */ {
+func (m_ MEDecodedMessageBanner) IsDismissable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDismissable"))
 	return rv
 }
@@ -114,23 +115,23 @@ func (m_ MEDecodedMessageBanner) IsDismissable() bool /* primitive/slice/pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
-func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool /* primitive/slice/pointer. */) {
+func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDismissable:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MEDecodedMessageBanner) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("title"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (m_ MEDecodedMessageBanner) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
 }
 
 

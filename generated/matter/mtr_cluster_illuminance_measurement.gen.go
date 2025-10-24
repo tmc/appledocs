@@ -29,9 +29,13 @@ type _MTRClusterIlluminanceMeasurementClass struct {
 // An interface definition for the [MTRClusterIlluminanceMeasurement] class.
 type IMTRClusterIlluminanceMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterIlluminanceMeasurement
 type MTRClusterIlluminanceMeasurement struct {
 	MTRGenericCluster

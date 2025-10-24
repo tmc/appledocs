@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RPBroadcastActivityViewController] class.
@@ -30,14 +31,18 @@ type _RPBroadcastActivityViewControllerClass struct {
 // An interface definition for the [RPBroadcastActivityViewController] class.
 type IRPBroadcastActivityViewController interface {
 	appkit.IViewController
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	// methods:
 }
 
 // A view controller that displays a user interface where users choose a broadcast service.
 //
 // The view controller displays the broadcast services currently installed on the device. On iPad, you must present the broadcast activity view controller as a popover.
+
+
+// A view controller that displays a user interface where users choose a broadcast service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController
 type RPBroadcastActivityViewController struct {
 	appkit.ViewController
@@ -84,37 +89,22 @@ func NewRPBroadcastActivityViewController() RPBroadcastActivityViewController {
 }
 
 
+
 // Loads a broadcast activity view controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/load(handler:)
-func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithHandler(handler unsafe.Pointer) {
+func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithHandler(handler func(unsafe.Pointer, unsafe.Pointer)) {
 	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("loadBroadcastActivityViewControllerWithHandler:"), handler)
 }
 
+
 // Loads a broadcast activity view controller with a preferred extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/load(withPreferredExtension:handler:)
-func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithPreferredExtensionHandler(preferredExtension string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("loadBroadcastActivityViewControllerWithPreferredExtension:handler:"), objc.String(preferredExtension), handler)
+func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithPreferredExtensionHandler(preferredExtension objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("loadBroadcastActivityViewControllerWithPreferredExtension:handler:"), preferredExtension, handler)
 }
-
-// The delegate for the broadcast activity view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/delegate
-func (r_ RPBroadcastActivityViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The delegate for the broadcast activity view controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/delegate
-func (r_ RPBroadcastActivityViewController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
-}
-
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,18 @@ type _MediaPlaylistCreationMetadataClass struct {
 // An interface definition for the [MediaPlaylistCreationMetadata] class.
 type IMediaPlaylistCreationMetadata interface {
 	objectivec.IObject
-	AuthorDisplayName() string
-	SetAuthorDisplayName(value string)
-	DescriptionText() string
-	SetDescriptionText(value string)
-	Name() string
+	// properties:
+	// methods:
 }
 
 // A set of attributes for describing a playlist when creating it.
 //
 // Use this class when creating a new playlist using the method. The system adds the metadata to the playlist when you create it, however it ignores the metadata if the playlist already exists.
+
+
+// A set of attributes for describing a playlist when creating it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata
 type MediaPlaylistCreationMetadata struct {
 	objectivec.Object
@@ -86,60 +88,16 @@ func NewMediaPlaylistCreationMetadata() MediaPlaylistCreationMetadata {
 
 
 
-
 // Creates a new playlist metadata object with the designated name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/init(name:)
-func NewMediaPlaylistCreationMetadataWithName(name string) MediaPlaylistCreationMetadata {
+func NewMediaPlaylistCreationMetadataWithName(name objc.IObject /* cross-framework: NSString */) MediaPlaylistCreationMetadata {
 	instance := getMediaPlaylistCreationMetadataClass().Alloc()
-	rv := objc.Send[MediaPlaylistCreationMetadata](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv := objc.Send[MediaPlaylistCreationMetadata](instance.ID, objc.Sel("initWithName:"), name)
 	rv.Autorelease()
 	return rv
 }
 
-
-// App defined display name for the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
-	return rv
-}
-
-
-// SetAuthorDisplayName sets the value of the authorDisplayName property.
-// App defined display name for the playlist.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), objc.String(value))
-}
-
-// The descriptive text for the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) DescriptionText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
-	return rv
-}
-
-
-// SetDescriptionText sets the value of the descriptionText property.
-// The descriptive text for the playlist.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), objc.String(value))
-}
-
-// The playlist’s displayed name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/name
-func (m_ MediaPlaylistCreationMetadata) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
-	return rv
-}
 
 

@@ -30,9 +30,13 @@ type _MatrixRandomPhiloxClass struct {
 // An interface definition for the [MatrixRandomPhilox] class.
 type IMatrixRandomPhilox interface {
 	IMatrixRandom
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomPhilox
 type MatrixRandomPhilox struct {
 	MatrixRandom
@@ -77,9 +81,10 @@ func NewMatrixRandomPhilox() MatrixRandomPhilox {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomPhilox/init(device:destinationDataType:seed:distributionDescriptor:)
-func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescriptor(device objectivec.IObject, destinationDataType unsafe.Pointer, seed uint, distributionDescriptor IMPSMatrixRandomDistributionDescriptor) MatrixRandomPhilox {
+func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescriptor(device objectivec.IObject, destinationDataType DataType /* not a class type */, seed uint, distributionDescriptor IMPSMatrixRandomDistributionDescriptor) MatrixRandomPhilox {
 	instance := getMatrixRandomPhiloxClass().Alloc()
 	rv := objc.Send[MatrixRandomPhilox](instance.ID, objc.Sel("initWithDevice:destinationDataType:seed:distributionDescriptor:"), device, destinationDataType, seed, distributionDescriptor)
 	rv.Autorelease()

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,7 +36,7 @@ type ITrackingArea interface {
 	Options() TrackingAreaOptions
 	Owner() objc.ID
 	Rect() objc.IObject /* cross-framework: Rect */
-	UserInfo() foundation.IDictionary /* already interface */
+	UserInfo() foundation.IDictionary
 	VisibleRect() objc.IObject /* cross-framework: Rect */
 	SetVisibleRect(value objc.IObject /* cross-framework: Rect */)
 	// methods:
@@ -98,7 +99,7 @@ func NewTrackingArea() TrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
-func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect objc.IObject /* cross-framework Rect */, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary /* already interface */) TrackingArea {
+func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect objc.IObject /* cross-framework: Rect */, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary) TrackingArea {
 	instance := getTrackingAreaClass().Alloc()
 	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
 	rv.Autorelease()
@@ -132,7 +133,7 @@ func (t_ TrackingArea) Owner() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/rect
 func (t_ TrackingArea) Rect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](t_.ID, objc.Sel("rect"))
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("rect"))
 	return rv
 }
 
@@ -141,7 +142,7 @@ func (t_ TrackingArea) Rect() objc.IObject /* cross-framework: Rect */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/userInfo
-func (t_ TrackingArea) UserInfo() foundation.IDictionary /* already interface */ {
+func (t_ TrackingArea) UserInfo() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -152,7 +153,7 @@ func (t_ TrackingArea) UserInfo() foundation.IDictionary /* already interface */
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/visiblerect
 func (t_ TrackingArea) VisibleRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](t_.ID, objc.Sel("visibleRect"))
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("visibleRect"))
 	return rv
 }
 

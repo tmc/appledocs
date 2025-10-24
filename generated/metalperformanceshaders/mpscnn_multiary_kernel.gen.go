@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [CNNMultiaryKernel] class.
@@ -30,24 +29,28 @@ type _CNNMultiaryKernelClass struct {
 // An interface definition for the [CNNMultiaryKernel] class.
 type ICNNMultiaryKernel interface {
 	IKernel
-	DilationRateYatIndex(index uint) uint
-	ClipRect() corelocation.Region
-	SetClipRect(value corelocation.IRegion)
+	// properties:
+	ClipRect() objc.IObject /* cross-framework: MTLRegion */
+	SetClipRect(value objc.IObject /* cross-framework: MTLRegion */)
 	DestinationFeatureChannelOffset() int
 	SetDestinationFeatureChannelOffset(value int)
-	DestinationImageAllocator() unsafe.Pointer
-	SetDestinationImageAllocator(value unsafe.Pointer)
+	DestinationImageAllocator() ImageAllocator /* not a class type */
+	SetDestinationImageAllocator(value ImageAllocator /* not a class type */)
 	IsBackwards() bool
 	SetIsBackwards(value bool)
 	IsStateModified() bool
 	SetIsStateModified(value bool)
-	Padding() unsafe.Pointer
-	SetPadding(value unsafe.Pointer)
+	Padding() Padding /* not a class type */
+	SetPadding(value Padding /* not a class type */)
 	SourceCount() int
 	SetSourceCount(value int)
+	// methods:
+	DilationRateYatIndex(index uint) uint
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNMultiaryKernel
 type CNNMultiaryKernel struct {
 	Kernel
@@ -92,29 +95,31 @@ func NewCNNMultiaryKernel() CNNMultiaryKernel {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNMultiaryKernel/dilationRateYatIndex(_:)
 func (c_ CNNMultiaryKernel) DilationRateYatIndex(index uint) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("dilationRateYatIndex:"), index)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) ClipRect() corelocation.Region {
-	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("clipRect"))
+func (c_ CNNMultiaryKernel) ClipRect() objc.IObject /* cross-framework: MTLRegion */ {
+	rv := objc.Send[Region](c_.ID, objc.Sel("clipRect"))
 	return rv
 }
 
 
-// SetClipRect sets the value of the clipRect property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) SetClipRect(value corelocation.IRegion) {
+func (c_ CNNMultiaryKernel) SetClipRect(value objc.IObject /* cross-framework: MTLRegion */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClipRect:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/destinationfeaturechanneloffset
 func (c_ CNNMultiaryKernel) DestinationFeatureChannelOffset() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("destinationFeatureChannelOffset"))
@@ -122,29 +127,29 @@ func (c_ CNNMultiaryKernel) DestinationFeatureChannelOffset() int {
 }
 
 
-// SetDestinationFeatureChannelOffset sets the value of the destinationFeatureChannelOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/destinationfeaturechanneloffset
 func (c_ CNNMultiaryKernel) SetDestinationFeatureChannelOffset(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDestinationFeatureChannelOffset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/destinationimageallocator
-func (c_ CNNMultiaryKernel) DestinationImageAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("destinationImageAllocator"))
+func (c_ CNNMultiaryKernel) DestinationImageAllocator() ImageAllocator /* not a class type */ {
+	rv := objc.Send[ImageAllocator](c_.ID, objc.Sel("destinationImageAllocator"))
 	return rv
 }
 
 
-// SetDestinationImageAllocator sets the value of the destinationImageAllocator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/destinationimageallocator
-func (c_ CNNMultiaryKernel) SetDestinationImageAllocator(value unsafe.Pointer) {
+func (c_ CNNMultiaryKernel) SetDestinationImageAllocator(value ImageAllocator /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDestinationImageAllocator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
 func (c_ CNNMultiaryKernel) IsBackwards() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBackwards"))
@@ -152,14 +157,14 @@ func (c_ CNNMultiaryKernel) IsBackwards() bool {
 }
 
 
-// SetIsBackwards sets the value of the isBackwards property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isbackwards
 func (c_ CNNMultiaryKernel) SetIsBackwards(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBackwards:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
 func (c_ CNNMultiaryKernel) IsStateModified() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isStateModified"))
@@ -167,29 +172,29 @@ func (c_ CNNMultiaryKernel) IsStateModified() bool {
 }
 
 
-// SetIsStateModified sets the value of the isStateModified property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/isstatemodified
 func (c_ CNNMultiaryKernel) SetIsStateModified(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStateModified:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
-func (c_ CNNMultiaryKernel) Padding() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("padding"))
+func (c_ CNNMultiaryKernel) Padding() Padding /* not a class type */ {
+	rv := objc.Send[Padding](c_.ID, objc.Sel("padding"))
 	return rv
 }
 
 
-// SetPadding sets the value of the padding property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/padding
-func (c_ CNNMultiaryKernel) SetPadding(value unsafe.Pointer) {
+func (c_ CNNMultiaryKernel) SetPadding(value Padding /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPadding:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
 func (c_ CNNMultiaryKernel) SourceCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sourceCount"))
@@ -197,8 +202,7 @@ func (c_ CNNMultiaryKernel) SourceCount() int {
 }
 
 
-// SetSourceCount sets the value of the sourceCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/sourcecount
 func (c_ CNNMultiaryKernel) SetSourceCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceCount:"), value)

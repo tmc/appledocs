@@ -29,11 +29,17 @@ type _MXDisplayMetricClass struct {
 // An interface definition for the [MXDisplayMetric] class.
 type IMXDisplayMetric interface {
 	IMXMetric
+	// properties:
 	AveragePixelLuminance() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the power used to display the app on the screen.
+
+
+// An object representing metrics about the power used to display the app on the screen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDisplayMetric
 type MXDisplayMetric struct {
 	MXMetric
@@ -80,8 +86,10 @@ func NewMXDisplayMetric() MXDisplayMetric {
 }
 
 
+
 // The average amount of luminosity of the pixels on an OLED display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDisplayMetric/averagePixelLuminance
 func (m_ MXDisplayMetric) AveragePixelLuminance() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averagePixelLuminance"))

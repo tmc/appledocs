@@ -30,13 +30,17 @@ type _MTRPowerSourceClusterWiredFaultChangeEventClass struct {
 // An interface definition for the [MTRPowerSourceClusterWiredFaultChangeEvent] class.
 type IMTRPowerSourceClusterWiredFaultChangeEvent interface {
 	objectivec.IObject
+	// properties:
 	Current() unsafe.Pointer
 	SetCurrent(value unsafe.Pointer)
 	Previous() unsafe.Pointer
 	SetPrevious(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeEvent
 type MTRPowerSourceClusterWiredFaultChangeEvent struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRPowerSourceClusterWiredFaultChangeEvent() MTRPowerSourceClusterWiredF
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangeevent/current
 func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -87,14 +92,14 @@ func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) Current() unsafe.Pointer {
 }
 
 
-// SetCurrent sets the value of the current property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangeevent/current
 func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangeevent/previous
 func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) Previous() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
@@ -102,8 +107,7 @@ func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) Previous() unsafe.Pointer {
 }
 
 
-// SetPrevious sets the value of the previous property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangeevent/previous
 func (m_ MTRPowerSourceClusterWiredFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)

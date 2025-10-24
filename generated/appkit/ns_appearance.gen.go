@@ -31,8 +31,8 @@ type _AppearanceClass struct {
 type IAppearance interface {
 	objectivec.IObject
 	// properties:
-	AllowsVibrancy() bool /* primitive/slice/pointer. */
-	SetAllowsVibrancy(value bool /* primitive/slice/pointer. */)
+	AllowsVibrancy() bool
+	SetAllowsVibrancy(value bool)
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	Appearance() IAppearance
@@ -144,7 +144,7 @@ func (a_ Appearance) CurrentDrawingAppearance() IAppearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
-func (a_ Appearance) AllowsVibrancy() bool /* primitive/slice/pointer. */ {
+func (a_ Appearance) AllowsVibrancy() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsVibrancy"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (a_ Appearance) AllowsVibrancy() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
-func (a_ Appearance) SetAllowsVibrancy(value bool /* primitive/slice/pointer. */) {
+func (a_ Appearance) SetAllowsVibrancy(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsVibrancy:"), value)
 }
 

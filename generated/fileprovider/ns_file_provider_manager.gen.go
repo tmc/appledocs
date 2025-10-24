@@ -32,10 +32,10 @@ type _FileProviderManagerClass struct {
 type IFileProviderManager interface {
 	objectivec.IObject
 	// properties:
-	DocumentStorageURL() foundation.objc.IObject /* cross-framework: URL */
-	SetDocumentStorageURL(value foundation.objc.IObject /* cross-framework: URL */)
-	ProviderIdentifier() string /* primitive/slice/pointer. */
-	SetProviderIdentifier(value string /* primitive/slice/pointer. */)
+	DocumentStorageURL() objc.IObject /* cross-framework: URL */
+	SetDocumentStorageURL(value objc.IObject /* cross-framework: URL */)
+	ProviderIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProviderIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -112,7 +112,7 @@ func (fc _FileProviderManagerClass) GetDomainsWithCompletionHandler(completionHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/import(_:fromDirectoryAt:completionHandler:)
-func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain IFileProviderDomain, url foundation.objc.IObject /* cross-framework URL */, completionHandler unsafe.Pointer) {
+func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain IFileProviderDomain, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("importDomain:fromDirectoryAtURL:completionHandler:"), domain, url, completionHandler)
 }
 
@@ -121,7 +121,7 @@ func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/documentstorageurl
-func (f_ FileProviderManager) DocumentStorageURL() foundation.objc.IObject /* cross-framework: URL */ {
+func (f_ FileProviderManager) DocumentStorageURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("documentStorageURL"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (f_ FileProviderManager) DocumentStorageURL() foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/documentstorageurl
-func (f_ FileProviderManager) SetDocumentStorageURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (f_ FileProviderManager) SetDocumentStorageURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentStorageURL:"), value)
 }
 
@@ -140,8 +140,8 @@ func (f_ FileProviderManager) SetDocumentStorageURL(value foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/provideridentifier
-func (f_ FileProviderManager) ProviderIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
+func (f_ FileProviderManager) ProviderIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 
@@ -150,8 +150,8 @@ func (f_ FileProviderManager) ProviderIdentifier() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/provideridentifier
-func (f_ FileProviderManager) SetProviderIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setProviderIdentifier:"), objc.String(value))
+func (f_ FileProviderManager) SetProviderIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setProviderIdentifier:"), value)
 }
 
 

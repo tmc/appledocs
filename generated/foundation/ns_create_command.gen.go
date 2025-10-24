@@ -31,7 +31,7 @@ type ICreateCommand interface {
 	IScriptCommand
 	// properties:
 	CreateClassDescription() IScriptClassDescription
-	ResolvedKeyDictionary() IDictionary /* already interface */
+	ResolvedKeyDictionary() IDictionary
 	// methods:
 }
 
@@ -104,8 +104,8 @@ func (c_ CreateCommand) CreateClassDescription() IScriptClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
-func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](c_.ID, objc.Sel("resolvedKeyDictionary"))
+func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
 }
 

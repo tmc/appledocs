@@ -29,7 +29,8 @@ type _CachedImageRepClass struct {
 // An interface definition for the [CachedImageRep] class.
 type ICachedImageRep interface {
 	IImageRep
-	Window() Window
+	// properties:
+	// methods:
 }
 
 // An object that stores image data in a form that can be readily transferred to the screen.
@@ -85,16 +86,6 @@ func NewCachedImageRep() CachedImageRep {
 	return getCachedImageRepClass().New()
 }
 
-
-
-// Returns the window where the representation is cached.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep/window
-func (c_ CachedImageRep) Window() Window {
-	rv := objc.Send[Window](c_.ID, objc.Sel("window"))
-	return rv
-}
 
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ColorPickerTouchBarItem] class.
@@ -29,24 +30,24 @@ type _ColorPickerTouchBarItemClass struct {
 // An interface definition for the [ColorPickerTouchBarItem] class.
 type IColorPickerTouchBarItem interface {
 	ITouchBarItem
-	AllowedColorSpaces() []ColorSpace
-	SetAllowedColorSpaces(value []ColorSpace)
-	ColorList() NSColorList
-	SetColorList(value IColorList)
-	Enabled() bool
-	SetEnabled(value bool)
+	// properties:
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	Color() Color
-	SetColor(value IColor)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
+	AllowedColorSpaces() objc.IObject /* cross-framework: ColorSpace */
+	SetAllowedColorSpaces(value objc.IObject /* cross-framework: ColorSpace */)
+	Color() objc.IObject /* cross-framework: Color */
+	SetColor(value objc.IObject /* cross-framework: Color */)
+	ColorList() objc.IObject /* cross-framework: ColorList */
+	SetColorList(value objc.IObject /* cross-framework: ColorList */)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	ShowsAlpha() bool
 	SetShowsAlpha(value bool)
 	Target() unsafe.Pointer
 	SetTarget(value unsafe.Pointer)
+	// methods:
 }
 
 // A bar item that provides a system-defined color picker.
@@ -104,93 +105,6 @@ func NewColorPickerTouchBarItem() ColorPickerTouchBarItem {
 
 
 
-// Creates a bar item with the standard color picker icon.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:)
-func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifier(identifier ITouchBarItemIdentifier) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:"), identifier)
-	return rv
-}
-
-
-// Creates a color picker bar item using the supplied image as its icon.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorPicker(withIdentifier:buttonImage:)
-func (cc _ColorPickerTouchBarItemClass) ColorPickerWithIdentifierButtonImage(identifier ITouchBarItemIdentifier, image IImage) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorPickerWithIdentifier:buttonImage:"), identifier, image)
-	return rv
-}
-
-
-// Controls the color spaces that the color picker can produce.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/allowedColorSpaces
-func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() []ColorSpace {
-	rv := objc.Send[[]ColorSpace](c_.ID, objc.Sel("allowedColorSpaces"))
-	return rv
-}
-
-
-// Controls the color spaces that the color picker can produce.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/allowedColorSpaces
-func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value []ColorSpace) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedColorSpaces:"), nsArray)
-}
-
-
-// The list of colors displayed in the color picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-func (c_ ColorPickerTouchBarItem) ColorList() NSColorList {
-	rv := objc.Send[NSColorList](c_.ID, objc.Sel("colorList"))
-	return rv
-}
-
-
-// The list of colors displayed in the color picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/colorList
-func (c_ ColorPickerTouchBarItem) SetColorList(value IColorList) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorList:"), value)
-}
-
-
-// A Boolean value that determines whether the color picker is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/isEnabled
-func (c_ ColorPickerTouchBarItem) Enabled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the color picker is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPickerTouchBarItem/isEnabled
-func (c_ ColorPickerTouchBarItem) SetEnabled(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
-}
-
-
 // The selector on the target object that is invoked when a user interacts with the color picker.
 //
 // [Full Topic]
@@ -210,11 +124,30 @@ func (c_ ColorPickerTouchBarItem) SetAction(value unsafe.Pointer) {
 }
 
 
+// Controls the color spaces that the color picker can produce.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/allowedcolorspaces
+func (c_ ColorPickerTouchBarItem) AllowedColorSpaces() objc.IObject /* cross-framework: ColorSpace */ {
+	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("allowedColorSpaces"))
+	return rv
+}
+
+
+// Controls the color spaces that the color picker can produce.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/allowedcolorspaces
+func (c_ ColorPickerTouchBarItem) SetAllowedColorSpaces(value objc.IObject /* cross-framework: ColorSpace */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedColorSpaces:"), value)
+}
+
+
 // The picker’s currently selected color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-func (c_ ColorPickerTouchBarItem) Color() Color {
+func (c_ ColorPickerTouchBarItem) Color() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
 	return rv
 }
@@ -224,8 +157,27 @@ func (c_ ColorPickerTouchBarItem) Color() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/color
-func (c_ ColorPickerTouchBarItem) SetColor(value IColor) {
+func (c_ ColorPickerTouchBarItem) SetColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+
+// The list of colors displayed in the color picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/colorlist
+func (c_ ColorPickerTouchBarItem) ColorList() objc.IObject /* cross-framework: ColorList */ {
+	rv := objc.Send[ColorList](c_.ID, objc.Sel("colorList"))
+	return rv
+}
+
+
+// The list of colors displayed in the color picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/colorlist
+func (c_ ColorPickerTouchBarItem) SetColorList(value objc.IObject /* cross-framework: ColorList */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorList:"), value)
 }
 
 
@@ -233,8 +185,8 @@ func (c_ ColorPickerTouchBarItem) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
-func (c_ ColorPickerTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
+func (c_ ColorPickerTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
@@ -243,8 +195,8 @@ func (c_ ColorPickerTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem/customizationlabel
-func (c_ ColorPickerTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (c_ ColorPickerTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 

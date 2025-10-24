@@ -31,19 +31,23 @@ type _MTRFanControlClusterStepParamsClass struct {
 // An interface definition for the [MTRFanControlClusterStepParams] class.
 type IMTRFanControlClusterStepParams interface {
 	objectivec.IObject
-	Direction() foundation.Number
-	SetDirection(value foundation.INumber)
-	LowestOff() foundation.Number
-	SetLowestOff(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Wrap() foundation.Number
-	SetWrap(value foundation.INumber)
+	// properties:
+	Direction() objc.IObject /* cross-framework: NSNumber */
+	SetDirection(value objc.IObject /* cross-framework: NSNumber */)
+	LowestOff() objc.IObject /* cross-framework: NSNumber */
+	SetLowestOff(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Wrap() objc.IObject /* cross-framework: NSNumber */
+	SetWrap(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFanControlClusterStepParams
 type MTRFanControlClusterStepParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRFanControlClusterStepParams() MTRFanControlClusterStepParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
-func (m_ MTRFanControlClusterStepParams) Direction() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("direction"))
+func (m_ MTRFanControlClusterStepParams) Direction() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("direction"))
 	return rv
 }
 
 
-// SetDirection sets the value of the direction property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
-func (m_ MTRFanControlClusterStepParams) SetDirection(value foundation.INumber) {
+func (m_ MTRFanControlClusterStepParams) SetDirection(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
-func (m_ MTRFanControlClusterStepParams) LowestOff() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lowestOff"))
+func (m_ MTRFanControlClusterStepParams) LowestOff() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lowestOff"))
 	return rv
 }
 
 
-// SetLowestOff sets the value of the lowestOff property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
-func (m_ MTRFanControlClusterStepParams) SetLowestOff(value foundation.INumber) {
+func (m_ MTRFanControlClusterStepParams) SetLowestOff(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLowestOff:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
-func (m_ MTRFanControlClusterStepParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRFanControlClusterStepParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
-func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
-func (m_ MTRFanControlClusterStepParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRFanControlClusterStepParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
-func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
-func (m_ MTRFanControlClusterStepParams) Wrap() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wrap"))
+func (m_ MTRFanControlClusterStepParams) Wrap() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("wrap"))
 	return rv
 }
 
 
-// SetWrap sets the value of the wrap property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
-func (m_ MTRFanControlClusterStepParams) SetWrap(value foundation.INumber) {
+func (m_ MTRFanControlClusterStepParams) SetWrap(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWrap:"), value)
 }
 

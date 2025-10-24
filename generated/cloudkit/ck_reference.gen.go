@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type ICKReference interface {
 	RecordID() objc.IObject /* cross-framework: CKRecordID */
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	RecordChangeTag() string /* primitive/slice/pointer. */
-	SetRecordChangeTag(value string /* primitive/slice/pointer. */)
+	RecordChangeTag() objc.IObject /* cross-framework: NSString */
+	SetRecordChangeTag(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -109,7 +110,7 @@ func NewCKReferenceWithRecordAction(record ICKRecord, action unsafe.Pointer) CKR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
-func NewCKReferenceWithRecordIDAction(recordID objc.IObject /* cross-framework CKRecordID */, action unsafe.Pointer) CKReference {
+func NewCKReferenceWithRecordIDAction(recordID objc.IObject /* cross-framework: CKRecordID */, action unsafe.Pointer) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
 	rv.Autorelease()
@@ -161,8 +162,8 @@ func (c_ CKReference) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKReference) RecordChangeTag() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+func (c_ CKReference) RecordChangeTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (c_ CKReference) RecordChangeTag() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKReference) SetRecordChangeTag(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
+func (c_ CKReference) SetRecordChangeTag(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), value)
 }
 
 

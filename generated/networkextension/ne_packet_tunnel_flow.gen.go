@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +30,18 @@ type _NEPacketTunnelFlowClass struct {
 // An interface definition for the [NEPacketTunnelFlow] class.
 type INEPacketTunnelFlow interface {
 	objectivec.IObject
-	ReadPacketObjectsWithCompletionHandler(completionHandler unsafe.Pointer)
-	ReadPacketsWithCompletionHandler(completionHandler unsafe.Pointer)
-	WritePacketObjects(packets []NEPacket) bool
-	WritePacketsWithProtocols(packets []foundation.IData, protocols []foundation.INumber) bool
+	// properties:
+	// methods:
 }
 
 // An object you use to read and write packets to and from the tunnel’s virtual interface.
 //
 // Use the class to implement a custom-IP tunneling protocol for your packet tunnel. For example, use the APIs in this class to read packets from the virtual interface, so you can then encapsulate these packets and send them to a packet-tunnel server. Likewise, read packets from your packet-tunnel server and use these APIs to write the packets back to the tunnel’s virtual interface.
+
+
+// An object you use to read and write packets to and from the tunnel’s virtual interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow
 type NEPacketTunnelFlow struct {
 	objectivec.Object
@@ -84,36 +85,6 @@ func NewNEPacketTunnelFlow() NEPacketTunnelFlow {
 	return getNEPacketTunnelFlowClass().New()
 }
 
-
-// Read multiple IP packets from the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/readPacketObjects(completionHandler:)
-func (n_ NEPacketTunnelFlow) ReadPacketObjectsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("readPacketObjectsWithCompletionHandler:"), completionHandler)
-}
-
-// Reads IP packets from the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/readPackets(completionHandler:)
-func (n_ NEPacketTunnelFlow) ReadPacketsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("readPacketsWithCompletionHandler:"), completionHandler)
-}
-
-// Write multiple IP packets to the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/writePacketObjects(_:)
-func (n_ NEPacketTunnelFlow) WritePacketObjects(packets []NEPacket) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("writePacketObjects:"), packets)
-	return rv
-}
-
-// Writes IP packets to the TUN interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/writePackets(_:withProtocols:)
-func (n_ NEPacketTunnelFlow) WritePacketsWithProtocols(packets []foundation.IData, protocols []foundation.INumber) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("writePackets:withProtocols:"), packets, protocols)
-	return rv
-}
 
 
 

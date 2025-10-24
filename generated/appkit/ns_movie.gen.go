@@ -30,7 +30,8 @@ type _MovieClass struct {
 // An interface definition for the [Movie] class.
 type IMovie interface {
 	objectivec.IObject
-	QTMovie() unsafe.Pointer
+	// properties:
+	// methods:
 }
 
 
@@ -77,14 +78,6 @@ func NewMovie() Movie {
 	return getMovieClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie/QTMovie
-func (m_ Movie) QTMovie() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("QTMovie"))
-	return rv
-}
 
 
 

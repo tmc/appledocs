@@ -33,40 +33,29 @@ type IOperation interface {
 	// properties:
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
-	Dependencies() []Operation /* primitive/slice/pointer. */
-	Asynchronous() bool /* primitive/slice/pointer. */
-	Cancelled() bool /* primitive/slice/pointer. */
-	Concurrent() bool /* primitive/slice/pointer. */
-	Executing() bool /* primitive/slice/pointer. */
-	Finished() bool /* primitive/slice/pointer. */
-	Ready() bool /* primitive/slice/pointer. */
+	Dependencies() IOperation
+	SetDependencies(value IOperation)
+	IsAsynchronous() bool
+	SetIsAsynchronous(value bool)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsConcurrent() bool
+	SetIsConcurrent(value bool)
+	IsExecuting() bool
+	SetIsExecuting(value bool)
+	IsFinished() bool
+	SetIsFinished(value bool)
+	IsReady() bool
+	SetIsReady(value bool)
 	Name() IString
 	SetName(value IString)
-	QualityOfService() QualityOfService
-	SetQualityOfService(value QualityOfService)
-	QueuePriority() OperationQueuePriority
-	SetQueuePriority(value OperationQueuePriority)
-	ThreadPriority() float64 /* primitive/slice/pointer. */
-	SetThreadPriority(value float64 /* primitive/slice/pointer. */)
-	IsAsynchronous() bool /* primitive/slice/pointer. */
-	SetIsAsynchronous(value bool /* primitive/slice/pointer. */)
-	IsCancelled() bool /* primitive/slice/pointer. */
-	SetIsCancelled(value bool /* primitive/slice/pointer. */)
-	IsConcurrent() bool /* primitive/slice/pointer. */
-	SetIsConcurrent(value bool /* primitive/slice/pointer. */)
-	IsExecuting() bool /* primitive/slice/pointer. */
-	SetIsExecuting(value bool /* primitive/slice/pointer. */)
-	IsFinished() bool /* primitive/slice/pointer. */
-	SetIsFinished(value bool /* primitive/slice/pointer. */)
-	IsReady() bool /* primitive/slice/pointer. */
-	SetIsReady(value bool /* primitive/slice/pointer. */)
+	QualityOfService() unsafe.Pointer
+	SetQualityOfService(value unsafe.Pointer)
+	QueuePriority() unsafe.Pointer
+	SetQueuePriority(value unsafe.Pointer)
+	ThreadPriority() float64
+	SetThreadPriority(value float64)
 	// methods:
-	AddDependency(op IOperation)
-	Cancel()
-	Main()
-	RemoveDependency(op IOperation)
-	Start()
-	WaitUntilFinished()
 }
 
 // An abstract class that represents the code and data associated with a single task.
@@ -122,64 +111,10 @@ func NewOperation() Operation {
 
 
 
-// Makes the receiver dependent on the completion of the specified operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/addDependency(_:)
-func (o_ Operation) AddDependency(op IOperation) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addDependency:"), op)
-}
-
-
-// Advises the operation object that it should stop executing its task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/cancel()
-func (o_ Operation) Cancel() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("cancel"))
-}
-
-
-// Performs the receiver’s non-concurrent task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/main()
-func (o_ Operation) Main() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("main"))
-}
-
-
-// Removes the receiver’s dependence on the specified operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/removeDependency(_:)
-func (o_ Operation) RemoveDependency(op IOperation) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeDependency:"), op)
-}
-
-
-// Begins the execution of the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/start()
-func (o_ Operation) Start() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("start"))
-}
-
-
-// Blocks execution of the current thread until the operation object finishes its task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/waitUntilFinished()
-func (o_ Operation) WaitUntilFinished() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("waitUntilFinished"))
-}
-
-
 // The block to execute after the operation’s main task is completed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/completionblock
 func (o_ Operation) CompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("completionBlock"))
 	return rv
@@ -189,7 +124,7 @@ func (o_ Operation) CompletionBlock() unsafe.Pointer {
 // The block to execute after the operation’s main task is completed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/completionblock
 func (o_ Operation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCompletionBlock:"), value)
 }
@@ -198,146 +133,19 @@ func (o_ Operation) SetCompletionBlock(value unsafe.Pointer) {
 // An array of the operation objects that must finish executing before the current object can begin executing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/dependencies
-func (o_ Operation) Dependencies() []Operation /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]Operation](o_.ID, objc.Sel("dependencies"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/dependencies
+func (o_ Operation) Dependencies() IOperation {
+	rv := objc.Send[Operation](o_.ID, objc.Sel("dependencies"))
 	return rv
 }
 
 
-// A Boolean value indicating whether the operation executes its task asynchronously.
+// An array of the operation objects that must finish executing before the current object can begin executing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isAsynchronous
-func (o_ Operation) Asynchronous() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("asynchronous"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the operation has been cancelled
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isCancelled
-func (o_ Operation) Cancelled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("cancelled"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the operation executes its task asynchronously.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isConcurrent
-func (o_ Operation) Concurrent() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("concurrent"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the operation is currently executing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isExecuting
-func (o_ Operation) Executing() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("executing"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the operation has finished executing its task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isFinished
-func (o_ Operation) Finished() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("finished"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the operation can be performed now.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/isReady
-func (o_ Operation) Ready() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](o_.ID, objc.Sel("ready"))
-	return rv
-}
-
-
-// The name of the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) Name() IString {
-	rv := objc.Send[String](o_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The name of the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) SetName(value IString) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
-}
-
-
-// The relative amount of importance for granting system resources to the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) QualityOfService() QualityOfService {
-	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// The relative amount of importance for granting system resources to the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) SetQualityOfService(value QualityOfService) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
-}
-
-
-// The execution priority of the operation in an operation queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) QueuePriority() OperationQueuePriority {
-	rv := objc.Send[OperationQueuePriority](o_.ID, objc.Sel("queuePriority"))
-	return rv
-}
-
-
-// The execution priority of the operation in an operation queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) SetQueuePriority(value OperationQueuePriority) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
-}
-
-
-// The thread priority to use when executing the operation
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
-func (o_ Operation) ThreadPriority() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](o_.ID, objc.Sel("threadPriority"))
-	return rv
-}
-
-
-// The thread priority to use when executing the operation
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
-func (o_ Operation) SetThreadPriority(value float64 /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setThreadPriority:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/dependencies
+func (o_ Operation) SetDependencies(value IOperation) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDependencies:"), value)
 }
 
 
@@ -345,7 +153,7 @@ func (o_ Operation) SetThreadPriority(value float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isasynchronous
-func (o_ Operation) IsAsynchronous() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsAsynchronous() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAsynchronous"))
 	return rv
 }
@@ -355,7 +163,7 @@ func (o_ Operation) IsAsynchronous() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isasynchronous
-func (o_ Operation) SetIsAsynchronous(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsAsynchronous(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAsynchronous:"), value)
 }
 
@@ -364,7 +172,7 @@ func (o_ Operation) SetIsAsynchronous(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
-func (o_ Operation) IsCancelled() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsCancelled() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -374,7 +182,7 @@ func (o_ Operation) IsCancelled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/iscancelled
-func (o_ Operation) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -383,7 +191,7 @@ func (o_ Operation) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) IsConcurrent() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsConcurrent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isConcurrent"))
 	return rv
 }
@@ -393,7 +201,7 @@ func (o_ Operation) IsConcurrent() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isconcurrent
-func (o_ Operation) SetIsConcurrent(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsConcurrent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsConcurrent:"), value)
 }
 
@@ -402,7 +210,7 @@ func (o_ Operation) SetIsConcurrent(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
-func (o_ Operation) IsExecuting() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsExecuting() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isExecuting"))
 	return rv
 }
@@ -412,7 +220,7 @@ func (o_ Operation) IsExecuting() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isexecuting
-func (o_ Operation) SetIsExecuting(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsExecuting(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsExecuting:"), value)
 }
 
@@ -421,7 +229,7 @@ func (o_ Operation) SetIsExecuting(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
-func (o_ Operation) IsFinished() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsFinished() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isFinished"))
 	return rv
 }
@@ -431,7 +239,7 @@ func (o_ Operation) IsFinished() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isfinished
-func (o_ Operation) SetIsFinished(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsFinished(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsFinished:"), value)
 }
 
@@ -440,7 +248,7 @@ func (o_ Operation) SetIsFinished(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ Operation) IsReady() bool /* primitive/slice/pointer. */ {
+func (o_ Operation) IsReady() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isReady"))
 	return rv
 }
@@ -450,8 +258,84 @@ func (o_ Operation) IsReady() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ Operation) SetIsReady(value bool /* primitive/slice/pointer. */) {
+func (o_ Operation) SetIsReady(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
+}
+
+
+// The name of the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/name
+func (o_ Operation) Name() IString {
+	rv := objc.Send[String](o_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The name of the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/name
+func (o_ Operation) SetName(value IString) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
+}
+
+
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/qualityofservice
+func (o_ Operation) QualityOfService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("qualityOfService"))
+	return rv
+}
+
+
+// The relative amount of importance for granting system resources to the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/qualityofservice
+func (o_ Operation) SetQualityOfService(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
+}
+
+
+// The execution priority of the operation in an operation queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ Operation) QueuePriority() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
+	return rv
+}
+
+
+// The execution priority of the operation in an operation queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.property
+func (o_ Operation) SetQueuePriority(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
+}
+
+
+// The thread priority to use when executing the operation
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/threadpriority
+func (o_ Operation) ThreadPriority() float64 {
+	rv := objc.Send[float64](o_.ID, objc.Sel("threadPriority"))
+	return rv
+}
+
+
+// The thread priority to use when executing the operation
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/operation/threadpriority
+func (o_ Operation) SetThreadPriority(value float64) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setThreadPriority:"), value)
 }
 
 

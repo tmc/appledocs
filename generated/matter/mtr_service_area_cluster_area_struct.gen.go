@@ -31,15 +31,19 @@ type _MTRServiceAreaClusterAreaStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterAreaStruct] class.
 type IMTRServiceAreaClusterAreaStruct interface {
 	objectivec.IObject
-	AreaID() foundation.Number
-	SetAreaID(value foundation.INumber)
-	AreaInfo() MTRServiceAreaClusterAreaInfoStruct
+	// properties:
+	AreaID() objc.IObject /* cross-framework: NSNumber */
+	SetAreaID(value objc.IObject /* cross-framework: NSNumber */)
+	AreaInfo() IMTRServiceAreaClusterAreaInfoStruct
 	SetAreaInfo(value IMTRServiceAreaClusterAreaInfoStruct)
-	MapID() foundation.Number
-	SetMapID(value foundation.INumber)
+	MapID() objc.IObject /* cross-framework: NSNumber */
+	SetMapID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct
 type MTRServiceAreaClusterAreaStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRServiceAreaClusterAreaStruct() MTRServiceAreaClusterAreaStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaID
-func (m_ MTRServiceAreaClusterAreaStruct) AreaID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaID"))
+func (m_ MTRServiceAreaClusterAreaStruct) AreaID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("areaID"))
 	return rv
 }
 
 
-// SetAreaID sets the value of the areaID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaID
-func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaInfo
-func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() MTRServiceAreaClusterAreaInfoStruct {
+func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() IMTRServiceAreaClusterAreaInfoStruct {
 	rv := objc.Send[MTRServiceAreaClusterAreaInfoStruct](m_.ID, objc.Sel("areaInfo"))
 	return rv
 }
 
 
-// SetAreaInfo sets the value of the areaInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaInfo
 func (m_ MTRServiceAreaClusterAreaStruct) SetAreaInfo(value IMTRServiceAreaClusterAreaInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaInfo:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
-func (m_ MTRServiceAreaClusterAreaStruct) MapID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mapID"))
+func (m_ MTRServiceAreaClusterAreaStruct) MapID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mapID"))
 	return rv
 }
 
 
-// SetMapID sets the value of the mapID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
-func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 

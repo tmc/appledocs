@@ -30,9 +30,13 @@ type _MTRTimeSynchronizationClusterMissingTrustedTimeSourceEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent] class.
 type IMTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent
 type MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent struct {
 	objectivec.Object

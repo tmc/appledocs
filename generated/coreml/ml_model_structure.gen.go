@@ -93,7 +93,7 @@ func NewModelStructure() ModelStructure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, handler unsafe.Pointer) {
+func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url objc.IObject /* cross-framework: NSURL */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
 

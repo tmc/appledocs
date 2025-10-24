@@ -35,14 +35,14 @@ type ISavePanel interface {
 	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	AllowedContentTypes() objc.IObject /* cross-framework: UTType */
-	SetAllowedContentTypes(value objc.IObject /* cross-framework: UTType */)
-	AllowsOtherFileTypes() bool /* primitive/slice/pointer. */
-	SetAllowsOtherFileTypes(value bool /* primitive/slice/pointer. */)
-	CanCreateDirectories() bool /* primitive/slice/pointer. */
-	SetCanCreateDirectories(value bool /* primitive/slice/pointer. */)
-	CanSelectHiddenExtension() bool /* primitive/slice/pointer. */
-	SetCanSelectHiddenExtension(value bool /* primitive/slice/pointer. */)
+	AllowedContentTypes() []objc.IObject /* cross-framework: UTType */
+	SetAllowedContentTypes(value []objc.IObject /* cross-framework: UTType */)
+	AllowsOtherFileTypes() bool
+	SetAllowsOtherFileTypes(value bool)
+	CanCreateDirectories() bool
+	SetCanCreateDirectories(value bool)
+	CanSelectHiddenExtension() bool
+	SetCanSelectHiddenExtension(value bool)
 	CurrentContentType() objc.IObject /* cross-framework: UTType */
 	SetCurrentContentType(value objc.IObject /* cross-framework: UTType */)
 	Delegate() objc.ID
@@ -51,9 +51,9 @@ type ISavePanel interface {
 	SetDirectoryURL(value objc.IObject /* cross-framework: NSURL */)
 	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
 	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
-	Expanded() bool /* primitive/slice/pointer. */
-	ExtensionHidden() bool /* primitive/slice/pointer. */
-	SetExtensionHidden(value bool /* primitive/slice/pointer. */)
+	Expanded() bool
+	ExtensionHidden() bool
+	SetExtensionHidden(value bool)
 	Message() objc.IObject /* cross-framework: NSString */
 	SetMessage(value objc.IObject /* cross-framework: NSString */)
 	NameFieldLabel() objc.IObject /* cross-framework: NSString */
@@ -62,23 +62,23 @@ type ISavePanel interface {
 	SetNameFieldStringValue(value objc.IObject /* cross-framework: NSString */)
 	Prompt() objc.IObject /* cross-framework: NSString */
 	SetPrompt(value objc.IObject /* cross-framework: NSString */)
-	ShowsContentTypes() bool /* primitive/slice/pointer. */
-	SetShowsContentTypes(value bool /* primitive/slice/pointer. */)
-	ShowsHiddenFiles() bool /* primitive/slice/pointer. */
-	SetShowsHiddenFiles(value bool /* primitive/slice/pointer. */)
-	ShowsTagField() bool /* primitive/slice/pointer. */
-	SetShowsTagField(value bool /* primitive/slice/pointer. */)
-	TagNames() []string /* primitive/slice/pointer. */
-	SetTagNames(value []string /* primitive/slice/pointer. */)
+	ShowsContentTypes() bool
+	SetShowsContentTypes(value bool)
+	ShowsHiddenFiles() bool
+	SetShowsHiddenFiles(value bool)
+	ShowsTagField() bool
+	SetShowsTagField(value bool)
+	TagNames() []string
+	SetTagNames(value []string)
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
-	TreatsFilePackagesAsDirectories() bool /* primitive/slice/pointer. */
-	SetTreatsFilePackagesAsDirectories(value bool /* primitive/slice/pointer. */)
+	TreatsFilePackagesAsDirectories() bool
+	SetTreatsFilePackagesAsDirectories(value bool)
 	URL() objc.IObject /* cross-framework: NSURL */
-	IsExpanded() bool /* primitive/slice/pointer. */
-	SetIsExpanded(value bool /* primitive/slice/pointer. */)
-	IsExtensionHidden() bool /* primitive/slice/pointer. */
-	SetIsExtensionHidden(value bool /* primitive/slice/pointer. */)
+	IsExpanded() bool
+	SetIsExpanded(value bool)
+	IsExtensionHidden() bool
+	SetIsExtensionHidden(value bool)
 	// methods:
 	BeginWithCompletionHandler(handler unsafe.Pointer)
 	BeginSheetModalForWindowCompletionHandler(window IWindow, handler unsafe.Pointer)
@@ -231,7 +231,7 @@ func (s_ SavePanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() objc.IObject /* cross-framework: UTType */ {
+func (s_ SavePanel) AllowedContentTypes() []objc.IObject /* cross-framework: UTType */ {
 	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
@@ -241,7 +241,7 @@ func (s_ SavePanel) AllowedContentTypes() objc.IObject /* cross-framework: UTTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value objc.IObject /* cross-framework: UTType */) {
+func (s_ SavePanel) SetAllowedContentTypes(value []objc.IObject /* cross-framework: UTType */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -260,7 +260,7 @@ func (s_ SavePanel) SetAllowedContentTypes(value objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowsOtherFileTypes
-func (s_ SavePanel) AllowsOtherFileTypes() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) AllowsOtherFileTypes() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsOtherFileTypes"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (s_ SavePanel) AllowsOtherFileTypes() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowsOtherFileTypes
-func (s_ SavePanel) SetAllowsOtherFileTypes(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetAllowsOtherFileTypes(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsOtherFileTypes:"), value)
 }
 
@@ -279,7 +279,7 @@ func (s_ SavePanel) SetAllowsOtherFileTypes(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canCreateDirectories
-func (s_ SavePanel) CanCreateDirectories() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) CanCreateDirectories() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canCreateDirectories"))
 	return rv
 }
@@ -289,7 +289,7 @@ func (s_ SavePanel) CanCreateDirectories() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canCreateDirectories
-func (s_ SavePanel) SetCanCreateDirectories(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetCanCreateDirectories(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCreateDirectories:"), value)
 }
 
@@ -298,7 +298,7 @@ func (s_ SavePanel) SetCanCreateDirectories(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canSelectHiddenExtension
-func (s_ SavePanel) CanSelectHiddenExtension() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) CanSelectHiddenExtension() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canSelectHiddenExtension"))
 	return rv
 }
@@ -308,7 +308,7 @@ func (s_ SavePanel) CanSelectHiddenExtension() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/canSelectHiddenExtension
-func (s_ SavePanel) SetCanSelectHiddenExtension(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanSelectHiddenExtension:"), value)
 }
 
@@ -389,7 +389,7 @@ func (s_ SavePanel) SetIdentifier(value objc.IObject /* cross-framework: UserInt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExpanded
-func (s_ SavePanel) Expanded() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) Expanded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("expanded"))
 	return rv
 }
@@ -399,7 +399,7 @@ func (s_ SavePanel) Expanded() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExtensionHidden
-func (s_ SavePanel) ExtensionHidden() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) ExtensionHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("extensionHidden"))
 	return rv
 }
@@ -409,7 +409,7 @@ func (s_ SavePanel) ExtensionHidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/isExtensionHidden
-func (s_ SavePanel) SetExtensionHidden(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetExtensionHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setExtensionHidden:"), value)
 }
 
@@ -494,7 +494,7 @@ func (s_ SavePanel) SetPrompt(value objc.IObject /* cross-framework: NSString */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-func (s_ SavePanel) ShowsContentTypes() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) ShowsContentTypes() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsContentTypes"))
 	return rv
 }
@@ -504,7 +504,7 @@ func (s_ SavePanel) ShowsContentTypes() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-func (s_ SavePanel) SetShowsContentTypes(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetShowsContentTypes(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsContentTypes:"), value)
 }
 
@@ -513,7 +513,7 @@ func (s_ SavePanel) SetShowsContentTypes(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsHiddenFiles
-func (s_ SavePanel) ShowsHiddenFiles() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) ShowsHiddenFiles() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsHiddenFiles"))
 	return rv
 }
@@ -523,7 +523,7 @@ func (s_ SavePanel) ShowsHiddenFiles() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsHiddenFiles
-func (s_ SavePanel) SetShowsHiddenFiles(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetShowsHiddenFiles(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsHiddenFiles:"), value)
 }
 
@@ -532,7 +532,7 @@ func (s_ SavePanel) SetShowsHiddenFiles(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsTagField
-func (s_ SavePanel) ShowsTagField() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) ShowsTagField() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsTagField"))
 	return rv
 }
@@ -542,7 +542,7 @@ func (s_ SavePanel) ShowsTagField() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsTagField
-func (s_ SavePanel) SetShowsTagField(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetShowsTagField(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsTagField:"), value)
 }
 
@@ -551,7 +551,7 @@ func (s_ SavePanel) SetShowsTagField(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-func (s_ SavePanel) TagNames() []string /* primitive/slice/pointer. */ {
+func (s_ SavePanel) TagNames() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("tagNames"))
 	return rv
 }
@@ -561,7 +561,7 @@ func (s_ SavePanel) TagNames() []string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/tagNames
-func (s_ SavePanel) SetTagNames(value []string /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetTagNames(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -599,7 +599,7 @@ func (s_ SavePanel) SetTitle(value objc.IObject /* cross-framework: NSString */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/treatsFilePackagesAsDirectories
-func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("treatsFilePackagesAsDirectories"))
 	return rv
 }
@@ -609,7 +609,7 @@ func (s_ SavePanel) TreatsFilePackagesAsDirectories() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/treatsFilePackagesAsDirectories
-func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetTreatsFilePackagesAsDirectories(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTreatsFilePackagesAsDirectories:"), value)
 }
 
@@ -628,7 +628,7 @@ func (s_ SavePanel) URL() objc.IObject /* cross-framework: NSURL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
-func (s_ SavePanel) IsExpanded() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) IsExpanded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isExpanded"))
 	return rv
 }
@@ -638,7 +638,7 @@ func (s_ SavePanel) IsExpanded() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isexpanded
-func (s_ SavePanel) SetIsExpanded(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetIsExpanded(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExpanded:"), value)
 }
 
@@ -647,7 +647,7 @@ func (s_ SavePanel) SetIsExpanded(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
-func (s_ SavePanel) IsExtensionHidden() bool /* primitive/slice/pointer. */ {
+func (s_ SavePanel) IsExtensionHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isExtensionHidden"))
 	return rv
 }
@@ -657,7 +657,7 @@ func (s_ SavePanel) IsExtensionHidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
-func (s_ SavePanel) SetIsExtensionHidden(value bool /* primitive/slice/pointer. */) {
+func (s_ SavePanel) SetIsExtensionHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExtensionHidden:"), value)
 }
 

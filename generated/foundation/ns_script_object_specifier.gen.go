@@ -31,33 +31,29 @@ type _ScriptObjectSpecifierClass struct {
 type IScriptObjectSpecifier interface {
 	objectivec.IObject
 	// properties:
-	ChildSpecifier() IScriptObjectSpecifier
-	SetChildSpecifier(value IScriptObjectSpecifier)
-	ContainerSpecifier() IScriptObjectSpecifier
-	SetContainerSpecifier(value IScriptObjectSpecifier)
-	ContainerClassDescription() IScriptClassDescription
-	SetContainerClassDescription(value IScriptClassDescription)
-	ContainerIsObjectBeingTested() bool /* primitive/slice/pointer. */
-	SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer. */)
-	ContainerIsRangeContainerObject() bool /* primitive/slice/pointer. */
-	SetContainerIsRangeContainerObject(value bool /* primitive/slice/pointer. */)
-	Descriptor() IAppleEventDescriptor
-	EvaluationErrorSpecifier() IScriptObjectSpecifier
-	EvaluationErrorNumber() int /* primitive/slice/pointer. */
-	SetEvaluationErrorNumber(value int /* primitive/slice/pointer. */)
-	Key() IString
-	SetKey(value IString)
-	KeyClassDescription() IScriptClassDescription
-	ObjectsByEvaluatingSpecifier() objc.ID
 	Child() IScriptObjectSpecifier
 	SetChild(value IScriptObjectSpecifier)
 	Container() IScriptObjectSpecifier
 	SetContainer(value IScriptObjectSpecifier)
+	ContainerClassDescription() IScriptClassDescription
+	SetContainerClassDescription(value IScriptClassDescription)
+	ContainerIsObjectBeingTested() bool
+	SetContainerIsObjectBeingTested(value bool)
+	ContainerIsRangeContainerObject() bool
+	SetContainerIsRangeContainerObject(value bool)
+	Descriptor() IAppleEventDescriptor
+	SetDescriptor(value IAppleEventDescriptor)
 	EvaluationError() IScriptObjectSpecifier
 	SetEvaluationError(value IScriptObjectSpecifier)
+	EvaluationErrorNumber() int
+	SetEvaluationErrorNumber(value int)
+	Key() IString
+	SetKey(value IString)
+	KeyClassDescription() IScriptClassDescription
+	SetKeyClassDescription(value IScriptClassDescription)
+	ObjectsByEvaluatingSpecifier() unsafe.Pointer
+	SetObjectsByEvaluatingSpecifier(value unsafe.Pointer)
 	// methods:
-	IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count Integer /* not a class type */) int /* primitive/slice/pointer. */
-	ObjectsByEvaluatingWithContainers(containers objectivec.IObject) objc.ID
 }
 
 // An abstract class used to represent natural language expressions.
@@ -113,254 +109,6 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(coder:)
-func NewScriptObjectSpecifierWithCoder(inCoder ICoder) ScriptObjectSpecifier {
-	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithCoder:"), inCoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized with the given attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString) ScriptObjectSpecifier {
-	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, property)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized with a given container specifier and key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property IString) ScriptObjectSpecifier {
-	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, property)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns a new object specifier for an Apple event descriptor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(descriptor:)
-func NewScriptObjectSpecifierWithDescriptor(descriptor IAppleEventDescriptor) ScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](objc.ID(getScriptObjectSpecifierClass().class), objc.Sel("objectSpecifierWithDescriptor:"), descriptor)
-	return rv
-}
-
-
-
-// Returns a new object specifier for an Apple event descriptor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(descriptor:)
-func (sc _ScriptObjectSpecifierClass) ObjectSpecifierWithDescriptor(descriptor IAppleEventDescriptor) IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](objc.ID(sc.class), objc.Sel("objectSpecifierWithDescriptor:"), descriptor)
-	return rv
-}
-
-
-// This primitive method must be overridden by subclasses to return a pointer to an array of indices identifying objects in the key of a given container that are identified by the receiver of the message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/indicesOfObjectsByEvaluating(withContainer:count:)
-func (s_ ScriptObjectSpecifier) IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count Integer /* not a class type */) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](s_.ID, objc.Sel("indicesOfObjectsByEvaluatingWithContainer:count:"), container, count)
-	return rv
-}
-
-
-// Returns the actual object or objects specified by the receiver as evaluated in the context of given container object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/objectsByEvaluating(withContainers:)
-func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingWithContainers(containers objectivec.IObject) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("objectsByEvaluatingWithContainers:"), containers)
-	return rv
-}
-
-
-// Sets the receiver’s child reference.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/child
-func (s_ ScriptObjectSpecifier) ChildSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("childSpecifier"))
-	return rv
-}
-
-
-// Sets the receiver’s child reference.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/child
-func (s_ ScriptObjectSpecifier) SetChildSpecifier(value IScriptObjectSpecifier) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setChildSpecifier:"), value)
-}
-
-
-// Sets the container specifier of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/container
-func (s_ ScriptObjectSpecifier) ContainerSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("containerSpecifier"))
-	return rv
-}
-
-
-// Sets the container specifier of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/container
-func (s_ ScriptObjectSpecifier) SetContainerSpecifier(value IScriptObjectSpecifier) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerSpecifier:"), value)
-}
-
-
-// Sets the class description of the receiver’s container specifier to a given specifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerClassDescription
-func (s_ ScriptObjectSpecifier) ContainerClassDescription() IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("containerClassDescription"))
-	return rv
-}
-
-
-// Sets the class description of the receiver’s container specifier to a given specifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerClassDescription
-func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value IScriptClassDescription) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerClassDescription:"), value)
-}
-
-
-// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsObjectBeingTested
-func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
-	return rv
-}
-
-
-// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsObjectBeingTested
-func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
-}
-
-
-// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsRangeContainerObject
-func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsRangeContainerObject"))
-	return rv
-}
-
-
-// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsRangeContainerObject
-func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsRangeContainerObject:"), value)
-}
-
-
-// Returns an Apple event descriptor that represents the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/descriptor
-func (s_ ScriptObjectSpecifier) Descriptor() IAppleEventDescriptor {
-	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("descriptor"))
-	return rv
-}
-
-
-// Returns the object specifier in which an evaluation error occurred.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationError
-func (s_ ScriptObjectSpecifier) EvaluationErrorSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("evaluationErrorSpecifier"))
-	return rv
-}
-
-
-// Sets the value of the evaluation error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationErrorNumber
-func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](s_.ID, objc.Sel("evaluationErrorNumber"))
-	return rv
-}
-
-
-// Sets the value of the evaluation error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationErrorNumber
-func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationErrorNumber:"), value)
-}
-
-
-// Sets the key of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/key
-func (s_ ScriptObjectSpecifier) Key() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("key"))
-	return rv
-}
-
-
-// Sets the key of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/key
-func (s_ ScriptObjectSpecifier) SetKey(value IString) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), value)
-}
-
-
-// Returns the class description of the objects specified by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/keyClassDescription
-func (s_ ScriptObjectSpecifier) KeyClassDescription() IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("keyClassDescription"))
-	return rv
-}
-
-
-// Returns the actual object represented by the nested series of object specifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/objectsByEvaluatingSpecifier
-func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingSpecifier() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("objectsByEvaluatingSpecifier"))
-	return rv
-}
-
-
 // Sets the receiver’s child reference.
 //
 // [Full Topic]
@@ -399,6 +147,82 @@ func (s_ ScriptObjectSpecifier) SetContainer(value IScriptObjectSpecifier) {
 }
 
 
+// Sets the class description of the receiver’s container specifier to a given specifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
+func (s_ ScriptObjectSpecifier) ContainerClassDescription() IScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("containerClassDescription"))
+	return rv
+}
+
+
+// Sets the class description of the receiver’s container specifier to a given specifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
+func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value IScriptClassDescription) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerClassDescription:"), value)
+}
+
+
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
+	return rv
+}
+
+
+// Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
+func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
+}
+
+
+// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisrangecontainerobject
+func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsRangeContainerObject"))
+	return rv
+}
+
+
+// Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisrangecontainerobject
+func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsRangeContainerObject:"), value)
+}
+
+
+// Returns an Apple event descriptor that represents the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
+func (s_ ScriptObjectSpecifier) Descriptor() IAppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](s_.ID, objc.Sel("descriptor"))
+	return rv
+}
+
+
+// Returns an Apple event descriptor that represents the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
+func (s_ ScriptObjectSpecifier) SetDescriptor(value IAppleEventDescriptor) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDescriptor:"), value)
+}
+
+
 // Returns the object specifier in which an evaluation error occurred.
 //
 // [Full Topic]
@@ -416,5 +240,82 @@ func (s_ ScriptObjectSpecifier) EvaluationError() IScriptObjectSpecifier {
 func (s_ ScriptObjectSpecifier) SetEvaluationError(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationError:"), value)
 }
+
+
+// Sets the value of the evaluation error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerrornumber
+func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("evaluationErrorNumber"))
+	return rv
+}
+
+
+// Sets the value of the evaluation error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerrornumber
+func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationErrorNumber:"), value)
+}
+
+
+// Sets the key of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
+func (s_ ScriptObjectSpecifier) Key() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("key"))
+	return rv
+}
+
+
+// Sets the key of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
+func (s_ ScriptObjectSpecifier) SetKey(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), value)
+}
+
+
+// Returns the class description of the objects specified by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
+func (s_ ScriptObjectSpecifier) KeyClassDescription() IScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("keyClassDescription"))
+	return rv
+}
+
+
+// Returns the class description of the objects specified by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
+func (s_ ScriptObjectSpecifier) SetKeyClassDescription(value IScriptClassDescription) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyClassDescription:"), value)
+}
+
+
+// Returns the actual object represented by the nested series of object specifiers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
+func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingSpecifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsByEvaluatingSpecifier"))
+	return rv
+}
+
+
+// Returns the actual object represented by the nested series of object specifiers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
+func (s_ ScriptObjectSpecifier) SetObjectsByEvaluatingSpecifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setObjectsByEvaluatingSpecifier:"), value)
+}
+
 
 

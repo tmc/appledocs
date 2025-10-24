@@ -32,50 +32,49 @@ type _TouchBarClass struct {
 type ITouchBar interface {
 	objectivec.IObject
 	// properties:
-	CustomizationAllowedItemIdentifiers() []string /* primitive/slice/pointer. */
-	SetCustomizationAllowedItemIdentifiers(value []string /* primitive/slice/pointer. */)
-	CustomizationIdentifier() objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */
-	SetCustomizationIdentifier(value objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */)
-	CustomizationRequiredItemIdentifiers() []string /* primitive/slice/pointer. */
-	SetCustomizationRequiredItemIdentifiers(value []string /* primitive/slice/pointer. */)
-	DefaultItemIdentifiers() []string /* primitive/slice/pointer. */
-	SetDefaultItemIdentifiers(value []string /* primitive/slice/pointer. */)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	EscapeKeyReplacementItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */
-	SetEscapeKeyReplacementItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */)
-	Visible() bool /* primitive/slice/pointer. */
-	ItemIdentifiers() []string /* primitive/slice/pointer. */
-	PrincipalItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */
-	SetPrincipalItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */)
-	TemplateItems() unsafe.Pointer
-	SetTemplateItems(value unsafe.Pointer)
-	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */
-	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */)
-	BezelColor() IColor
-	SetBezelColor(value IColor)
-	AllowedTouchTypes() TouchTypeMask
-	SetAllowedTouchTypes(value TouchTypeMask)
+	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool
+	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
+	BezelColor() objc.IObject /* cross-framework: Color */
+	SetBezelColor(value objc.IObject /* cross-framework: Color */)
+	AllowedTouchTypes() unsafe.Pointer
+	SetAllowedTouchTypes(value unsafe.Pointer)
 	GroupTouchBar() ITouchBar
 	SetGroupTouchBar(value ITouchBar)
 	PopoverTouchBar() ITouchBar
 	SetPopoverTouchBar(value ITouchBar)
 	PressAndHoldTouchBar() ITouchBar
 	SetPressAndHoldTouchBar(value ITouchBar)
-	SelectedSegmentBezelColor() IColor
-	SetSelectedSegmentBezelColor(value IColor)
-	TrackFillColor() IColor
-	SetTrackFillColor(value IColor)
-	IsVisible() bool /* primitive/slice/pointer. */
-	SetIsVisible(value bool /* primitive/slice/pointer. */)
+	SelectedSegmentBezelColor() objc.IObject /* cross-framework: Color */
+	SetSelectedSegmentBezelColor(value objc.IObject /* cross-framework: Color */)
+	TrackFillColor() objc.IObject /* cross-framework: Color */
+	SetTrackFillColor(value objc.IObject /* cross-framework: Color */)
+	CustomizationAllowedItemIdentifiers() unsafe.Pointer
+	SetCustomizationAllowedItemIdentifiers(value unsafe.Pointer)
+	CustomizationIdentifier() unsafe.Pointer
+	SetCustomizationIdentifier(value unsafe.Pointer)
+	CustomizationRequiredItemIdentifiers() unsafe.Pointer
+	SetCustomizationRequiredItemIdentifiers(value unsafe.Pointer)
+	DefaultItemIdentifiers() unsafe.Pointer
+	SetDefaultItemIdentifiers(value unsafe.Pointer)
+	Delegate() TouchBarDelegate /* not a class type */
+	SetDelegate(value TouchBarDelegate /* not a class type */)
+	EscapeKeyReplacementItemIdentifier() unsafe.Pointer
+	SetEscapeKeyReplacementItemIdentifier(value unsafe.Pointer)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	ItemIdentifiers() unsafe.Pointer
+	SetItemIdentifiers(value unsafe.Pointer)
+	PrincipalItemIdentifier() unsafe.Pointer
+	SetPrincipalItemIdentifier(value unsafe.Pointer)
+	TemplateItems() ITouchBarItem
+	SetTemplateItems(value ITouchBarItem)
 	CustomizationLabel() objc.IObject /* cross-framework: NSString */
 	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
-	AcceptsTouchEvents() bool /* primitive/slice/pointer. */
-	SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */)
+	AcceptsTouchEvents() bool
+	SetAcceptsTouchEvents(value bool)
 	// methods:
-	ItemForIdentifier(identifier objc.IObject /* cross-framework TouchBarItemIdentifier */) objc.IObject /* cross-framework: TouchBarItem */
 }
 
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
@@ -131,264 +130,11 @@ func NewTouchBar() TouchBar {
 
 
 
-// Creates a Touch Bar object from a coder object provided by a storyboard or NIB file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder objc.IObject /* cross-framework Coder */) TouchBar {
-	instance := getTouchBarClass().Alloc()
-	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
-	return rv
-}
-
-// Returns the Touch Bar item that corresponds to a given identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
-func (t_ TouchBar) ItemForIdentifier(identifier objc.IObject /* cross-framework TouchBarItemIdentifier */) objc.IObject /* cross-framework: TouchBarItem */ {
-	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
-	return rv
-}
-
-
-// A list of identifiers for items to show in the Touch Bar’s customization UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
-	return rv
-}
-
-
-// A list of identifiers for items to show in the Touch Bar’s customization UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), nsArray)
-}
-
-
-// A globally unique string that makes the Touch Bar eligible for user customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) CustomizationIdentifier() objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */ {
-	rv := objc.Send[TouchBarCustomizationIdentifier](t_.ID, objc.Sel("customizationIdentifier"))
-	return rv
-}
-
-
-// A globally unique string that makes the Touch Bar eligible for user customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) SetCustomizationIdentifier(value objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
-}
-
-
-// An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
-	return rv
-}
-
-
-// An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), nsArray)
-}
-
-
-// A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) DefaultItemIdentifiers() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("defaultItemIdentifiers"))
-	return rv
-}
-
-
-// A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) SetDefaultItemIdentifiers(value []string /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), nsArray)
-}
-
-
-// The delegate that provides items to the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/delegate
-func (t_ TouchBar) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate that provides items to the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/delegate
-func (t_ TouchBar) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The identifier of an item that replaces the system-provided button in the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */ {
-	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("escapeKeyReplacementItemIdentifier"))
-	return rv
-}
-
-
-// The identifier of an item that replaces the system-provided button in the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
-}
-
-
-// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (t_ TouchBar) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
-}
-
-
-// A Boolean value that Indicates whether the Touch Bar is eligible for display.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isVisible
-func (t_ TouchBar) Visible() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
-	return rv
-}
-
-
-// The list of identifiers for the current items in the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/itemIdentifiers
-func (t_ TouchBar) ItemIdentifiers() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
-	return rv
-}
-
-
-// The identifier of an item you want the system to center in the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) PrincipalItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */ {
-	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("principalItemIdentifier"))
-	return rv
-}
-
-
-// The identifier of an item you want the system to center in the Touch Bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) SetPrincipalItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
-}
-
-
-// The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/templateItems
-func (t_ TouchBar) TemplateItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("templateItems"))
-	return rv
-}
-
-
-// The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/templateItems
-func (t_ TouchBar) SetTemplateItems(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTemplateItems:"), value)
-}
-
-
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
-func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
+func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
@@ -398,7 +144,7 @@ func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
-func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */) {
+func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
 
@@ -407,7 +153,7 @@ func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
-func (t_ TouchBar) BezelColor() IColor {
+func (t_ TouchBar) BezelColor() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](t_.ID, objc.Sel("bezelColor"))
 	return rv
 }
@@ -417,22 +163,22 @@ func (t_ TouchBar) BezelColor() IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
-func (t_ TouchBar) SetBezelColor(value IColor) {
+func (t_ TouchBar) SetBezelColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) AllowedTouchTypes() TouchTypeMask {
-	rv := objc.Send[TouchTypeMask](t_.ID, objc.Sel("allowedTouchTypes"))
+func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) SetAllowedTouchTypes(value TouchTypeMask) {
+func (t_ TouchBar) SetAllowedTouchTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -498,7 +244,7 @@ func (t_ TouchBar) SetPressAndHoldTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
-func (t_ TouchBar) SelectedSegmentBezelColor() IColor {
+func (t_ TouchBar) SelectedSegmentBezelColor() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](t_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
 }
@@ -508,7 +254,7 @@ func (t_ TouchBar) SelectedSegmentBezelColor() IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
-func (t_ TouchBar) SetSelectedSegmentBezelColor(value IColor) {
+func (t_ TouchBar) SetSelectedSegmentBezelColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
 
@@ -517,7 +263,7 @@ func (t_ TouchBar) SetSelectedSegmentBezelColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
-func (t_ TouchBar) TrackFillColor() IColor {
+func (t_ TouchBar) TrackFillColor() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](t_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
@@ -527,8 +273,122 @@ func (t_ TouchBar) TrackFillColor() IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
-func (t_ TouchBar) SetTrackFillColor(value IColor) {
+func (t_ TouchBar) SetTrackFillColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackFillColor:"), value)
+}
+
+
+// A list of identifiers for items to show in the Touch Bar’s customization UI.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationalloweditemidentifiers
+func (t_ TouchBar) CustomizationAllowedItemIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
+	return rv
+}
+
+
+// A list of identifiers for items to show in the Touch Bar’s customization UI.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationalloweditemidentifiers
+func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), value)
+}
+
+
+// A globally unique string that makes the Touch Bar eligible for user customization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationidentifier-swift.property
+func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationIdentifier"))
+	return rv
+}
+
+
+// A globally unique string that makes the Touch Bar eligible for user customization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationidentifier-swift.property
+func (t_ TouchBar) SetCustomizationIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
+}
+
+
+// An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationrequireditemidentifiers
+func (t_ TouchBar) CustomizationRequiredItemIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
+	return rv
+}
+
+
+// An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/customizationrequireditemidentifiers
+func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), value)
+}
+
+
+// A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/defaultitemidentifiers
+func (t_ TouchBar) DefaultItemIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultItemIdentifiers"))
+	return rv
+}
+
+
+// A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/defaultitemidentifiers
+func (t_ TouchBar) SetDefaultItemIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), value)
+}
+
+
+// The delegate that provides items to the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/delegate
+func (t_ TouchBar) Delegate() TouchBarDelegate /* not a class type */ {
+	rv := objc.Send[TouchBarDelegate](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The delegate that provides items to the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/delegate
+func (t_ TouchBar) SetDelegate(value TouchBarDelegate /* not a class type */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The identifier of an item that replaces the system-provided button in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/escapekeyreplacementitemidentifier
+func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("escapeKeyReplacementItemIdentifier"))
+	return rv
+}
+
+
+// The identifier of an item that replaces the system-provided button in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/escapekeyreplacementitemidentifier
+func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
 }
 
 
@@ -536,7 +396,7 @@ func (t_ TouchBar) SetTrackFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
-func (t_ TouchBar) IsVisible() bool /* primitive/slice/pointer. */ {
+func (t_ TouchBar) IsVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -546,8 +406,65 @@ func (t_ TouchBar) IsVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
-func (t_ TouchBar) SetIsVisible(value bool /* primitive/slice/pointer. */) {
+func (t_ TouchBar) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+
+// The list of identifiers for the current items in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers
+func (t_ TouchBar) ItemIdentifiers() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("itemIdentifiers"))
+	return rv
+}
+
+
+// The list of identifiers for the current items in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers
+func (t_ TouchBar) SetItemIdentifiers(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), value)
+}
+
+
+// The identifier of an item you want the system to center in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
+func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("principalItemIdentifier"))
+	return rv
+}
+
+
+// The identifier of an item you want the system to center in the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier
+func (t_ TouchBar) SetPrincipalItemIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
+}
+
+
+// The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/templateitems
+func (t_ TouchBar) TemplateItems() ITouchBarItem {
+	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("templateItems"))
+	return rv
+}
+
+
+// The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/templateitems
+func (t_ TouchBar) SetTemplateItems(value ITouchBarItem) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTemplateItems:"), value)
 }
 
 
@@ -593,7 +510,7 @@ func (t_ TouchBar) SetTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
-func (t_ TouchBar) AcceptsTouchEvents() bool /* primitive/slice/pointer. */ {
+func (t_ TouchBar) AcceptsTouchEvents() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsTouchEvents"))
 	return rv
 }
@@ -603,8 +520,9 @@ func (t_ TouchBar) AcceptsTouchEvents() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
-func (t_ TouchBar) SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */) {
+func (t_ TouchBar) SetAcceptsTouchEvents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsTouchEvents:"), value)
 }
+
 
 

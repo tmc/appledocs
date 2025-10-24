@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AVFAudio without requiring cgo.
-
-// Play, record, and process audio; configure your app’s system audio behavior.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio
+// See: https://developer.apple.com/documentation/AVFAudio
 package avfaudio
 
 import (

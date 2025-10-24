@@ -30,16 +30,22 @@ type _PHASEShapeElementClass struct {
 // An interface definition for the [PHASEShapeElement] class.
 type IPHASEShapeElement interface {
 	objectivec.IObject
-	Material() PHASEMaterial
+	// properties:
+	Material() IPHASEMaterial
 	SetMaterial(value IPHASEMaterial)
-	Elements() PHASEShapeElement
+	Elements() IPHASEShapeElement
 	SetElements(value IPHASEShapeElement)
+	// methods:
 }
 
 // An object that describes the characteristics of a physical surface.
 //
 // This class defines the material that makes up a object. You don’t instantiate instances of this class yourself; the framework creates an instance of this class for every material you pass into the initializer. The shape’s array provides read-only access to the instances.
+
+
+// An object that describes the characteristics of a physical surface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element
 type PHASEShapeElement struct {
 	objectivec.Object
@@ -84,37 +90,39 @@ func NewPHASEShapeElement() PHASEShapeElement {
 }
 
 
+
 // A surface characteristic that determines the acoustic properties of an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element/material
-func (p_ PHASEShapeElement) Material() PHASEMaterial {
+func (p_ PHASEShapeElement) Material() IPHASEMaterial {
 	rv := objc.Send[PHASEMaterial](p_.ID, objc.Sel("material"))
 	return rv
 }
 
 
-// SetMaterial sets the value of the material property.
 // A surface characteristic that determines the acoustic properties of an object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element/material
 func (p_ PHASEShapeElement) SetMaterial(value IPHASEMaterial) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaterial:"), value)
 }
 
+
 // An array of objects that collectively describe the physical characteristics of a surface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
-func (p_ PHASEShapeElement) Elements() PHASEShapeElement {
+func (p_ PHASEShapeElement) Elements() IPHASEShapeElement {
 	rv := objc.Send[PHASEShapeElement](p_.ID, objc.Sel("elements"))
 	return rv
 }
 
 
-// SetElements sets the value of the elements property.
 // An array of objects that collectively describe the physical characteristics of a surface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
 func (p_ PHASEShapeElement) SetElements(value IPHASEShapeElement) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setElements:"), value)

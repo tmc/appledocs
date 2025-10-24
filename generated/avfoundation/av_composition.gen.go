@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -39,52 +41,52 @@ type IComposition interface {
 	SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value MediaCharacteristic /* not a class type */)
 	AvailableMetadataFormats() MetadataFormat /* not a class type */
 	SetAvailableMetadataFormats(value MetadataFormat /* not a class type */)
-	CanContainFragments() bool /* primitive/slice/pointer. */
-	SetCanContainFragments(value bool /* primitive/slice/pointer. */)
+	CanContainFragments() bool
+	SetCanContainFragments(value bool)
 	CommonMetadata() IAVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
-	ContainsFragments() bool /* primitive/slice/pointer. */
-	SetContainsFragments(value bool /* primitive/slice/pointer. */)
+	ContainsFragments() bool
+	SetContainsFragments(value bool)
 	CreationDate() IAVMetadataItem
 	SetCreationDate(value IAVMetadataItem)
-	Duration() Time /* not a class type */
-	SetDuration(value Time /* not a class type */)
-	HasProtectedContent() bool /* primitive/slice/pointer. */
-	SetHasProtectedContent(value bool /* primitive/slice/pointer. */)
-	IsCompatibleWithAirPlayVideo() bool /* primitive/slice/pointer. */
-	SetIsCompatibleWithAirPlayVideo(value bool /* primitive/slice/pointer. */)
-	IsCompatibleWithSavedPhotosAlbum() bool /* primitive/slice/pointer. */
-	SetIsCompatibleWithSavedPhotosAlbum(value bool /* primitive/slice/pointer. */)
-	IsComposable() bool /* primitive/slice/pointer. */
-	SetIsComposable(value bool /* primitive/slice/pointer. */)
-	IsExportable() bool /* primitive/slice/pointer. */
-	SetIsExportable(value bool /* primitive/slice/pointer. */)
-	IsPlayable() bool /* primitive/slice/pointer. */
-	SetIsPlayable(value bool /* primitive/slice/pointer. */)
-	IsReadable() bool /* primitive/slice/pointer. */
-	SetIsReadable(value bool /* primitive/slice/pointer. */)
+	Duration() objc.IObject /* cross-framework: Time */
+	SetDuration(value objc.IObject /* cross-framework: Time */)
+	HasProtectedContent() bool
+	SetHasProtectedContent(value bool)
+	IsCompatibleWithAirPlayVideo() bool
+	SetIsCompatibleWithAirPlayVideo(value bool)
+	IsCompatibleWithSavedPhotosAlbum() bool
+	SetIsCompatibleWithSavedPhotosAlbum(value bool)
+	IsComposable() bool
+	SetIsComposable(value bool)
+	IsExportable() bool
+	SetIsExportable(value bool)
+	IsPlayable() bool
+	SetIsPlayable(value bool)
+	IsReadable() bool
+	SetIsReadable(value bool)
 	Lyrics() objc.IObject /* cross-framework: NSString */
 	SetLyrics(value objc.IObject /* cross-framework: NSString */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MinimumTimeOffsetFromLive() Time /* not a class type */
-	SetMinimumTimeOffsetFromLive(value Time /* not a class type */)
+	MinimumTimeOffsetFromLive() objc.IObject /* cross-framework: Time */
+	SetMinimumTimeOffsetFromLive(value objc.IObject /* cross-framework: Time */)
 	NaturalSize() objc.IObject /* cross-framework: Size */
 	SetNaturalSize(value objc.IObject /* cross-framework: Size */)
-	OverallDurationHint() Time /* not a class type */
-	SetOverallDurationHint(value Time /* not a class type */)
+	OverallDurationHint() objc.IObject /* cross-framework: Time */
+	SetOverallDurationHint(value objc.IObject /* cross-framework: Time */)
 	PreferredDisplayCriteria() objc.IObject /* cross-framework: DisplayCriteria */
 	SetPreferredDisplayCriteria(value objc.IObject /* cross-framework: DisplayCriteria */)
 	PreferredMediaSelection() IAVMediaSelection
 	SetPreferredMediaSelection(value IAVMediaSelection)
-	PreferredRate() float32 /* primitive/slice/pointer. */
-	SetPreferredRate(value float32 /* primitive/slice/pointer. */)
+	PreferredRate() float32
+	SetPreferredRate(value float32)
 	PreferredTransform() objc.IObject /* cross-framework: AffineTransform */
 	SetPreferredTransform(value objc.IObject /* cross-framework: AffineTransform */)
-	PreferredVolume() float32 /* primitive/slice/pointer. */
-	SetPreferredVolume(value float32 /* primitive/slice/pointer. */)
-	ProvidesPreciseDurationAndTiming() bool /* primitive/slice/pointer. */
-	SetProvidesPreciseDurationAndTiming(value bool /* primitive/slice/pointer. */)
+	PreferredVolume() float32
+	SetPreferredVolume(value float32)
+	ProvidesPreciseDurationAndTiming() bool
+	SetProvidesPreciseDurationAndTiming(value bool)
 	TrackGroups() IAVAssetTrackGroup
 	SetTrackGroups(value IAVAssetTrackGroup)
 	Tracks() objc.IObject /* cross-framework: CompositionTrack */
@@ -229,7 +231,7 @@ func (c_ Composition) SetAvailableMetadataFormats(value MetadataFormat /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/cancontainfragments
-func (c_ Composition) CanContainFragments() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) CanContainFragments() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canContainFragments"))
 	return rv
 }
@@ -239,7 +241,7 @@ func (c_ Composition) CanContainFragments() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/cancontainfragments
-func (c_ Composition) SetCanContainFragments(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetCanContainFragments(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCanContainFragments:"), value)
 }
 
@@ -267,7 +269,7 @@ func (c_ Composition) SetCommonMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/containsfragments
-func (c_ Composition) ContainsFragments() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) ContainsFragments() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsFragments"))
 	return rv
 }
@@ -277,7 +279,7 @@ func (c_ Composition) ContainsFragments() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/containsfragments
-func (c_ Composition) SetContainsFragments(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetContainsFragments(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainsFragments:"), value)
 }
 
@@ -305,8 +307,8 @@ func (c_ Composition) SetCreationDate(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/duration
-func (c_ Composition) Duration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("duration"))
+func (c_ Composition) Duration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -315,7 +317,7 @@ func (c_ Composition) Duration() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/duration
-func (c_ Composition) SetDuration(value Time /* not a class type */) {
+func (c_ Composition) SetDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -324,7 +326,7 @@ func (c_ Composition) SetDuration(value Time /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/hasprotectedcontent
-func (c_ Composition) HasProtectedContent() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) HasProtectedContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasProtectedContent"))
 	return rv
 }
@@ -334,7 +336,7 @@ func (c_ Composition) HasProtectedContent() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/hasprotectedcontent
-func (c_ Composition) SetHasProtectedContent(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetHasProtectedContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasProtectedContent:"), value)
 }
 
@@ -343,7 +345,7 @@ func (c_ Composition) SetHasProtectedContent(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscompatiblewithairplayvideo
-func (c_ Composition) IsCompatibleWithAirPlayVideo() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsCompatibleWithAirPlayVideo() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCompatibleWithAirPlayVideo"))
 	return rv
 }
@@ -353,7 +355,7 @@ func (c_ Composition) IsCompatibleWithAirPlayVideo() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscompatiblewithairplayvideo
-func (c_ Composition) SetIsCompatibleWithAirPlayVideo(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsCompatibleWithAirPlayVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCompatibleWithAirPlayVideo:"), value)
 }
 
@@ -362,7 +364,7 @@ func (c_ Composition) SetIsCompatibleWithAirPlayVideo(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscompatiblewithsavedphotosalbum
-func (c_ Composition) IsCompatibleWithSavedPhotosAlbum() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsCompatibleWithSavedPhotosAlbum() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCompatibleWithSavedPhotosAlbum"))
 	return rv
 }
@@ -372,7 +374,7 @@ func (c_ Composition) IsCompatibleWithSavedPhotosAlbum() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscompatiblewithsavedphotosalbum
-func (c_ Composition) SetIsCompatibleWithSavedPhotosAlbum(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsCompatibleWithSavedPhotosAlbum(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCompatibleWithSavedPhotosAlbum:"), value)
 }
 
@@ -381,7 +383,7 @@ func (c_ Composition) SetIsCompatibleWithSavedPhotosAlbum(value bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscomposable
-func (c_ Composition) IsComposable() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsComposable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComposable"))
 	return rv
 }
@@ -391,7 +393,7 @@ func (c_ Composition) IsComposable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/iscomposable
-func (c_ Composition) SetIsComposable(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsComposable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComposable:"), value)
 }
 
@@ -400,7 +402,7 @@ func (c_ Composition) SetIsComposable(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isexportable
-func (c_ Composition) IsExportable() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsExportable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isExportable"))
 	return rv
 }
@@ -410,7 +412,7 @@ func (c_ Composition) IsExportable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isexportable
-func (c_ Composition) SetIsExportable(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsExportable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsExportable:"), value)
 }
 
@@ -419,7 +421,7 @@ func (c_ Composition) SetIsExportable(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isplayable
-func (c_ Composition) IsPlayable() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsPlayable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPlayable"))
 	return rv
 }
@@ -429,7 +431,7 @@ func (c_ Composition) IsPlayable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isplayable
-func (c_ Composition) SetIsPlayable(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPlayable:"), value)
 }
 
@@ -438,7 +440,7 @@ func (c_ Composition) SetIsPlayable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isreadable
-func (c_ Composition) IsReadable() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) IsReadable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isReadable"))
 	return rv
 }
@@ -448,7 +450,7 @@ func (c_ Composition) IsReadable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/isreadable
-func (c_ Composition) SetIsReadable(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetIsReadable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsReadable:"), value)
 }
 
@@ -495,8 +497,8 @@ func (c_ Composition) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/minimumtimeoffsetfromlive
-func (c_ Composition) MinimumTimeOffsetFromLive() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("minimumTimeOffsetFromLive"))
+func (c_ Composition) MinimumTimeOffsetFromLive() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("minimumTimeOffsetFromLive"))
 	return rv
 }
 
@@ -505,7 +507,7 @@ func (c_ Composition) MinimumTimeOffsetFromLive() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/minimumtimeoffsetfromlive
-func (c_ Composition) SetMinimumTimeOffsetFromLive(value Time /* not a class type */) {
+func (c_ Composition) SetMinimumTimeOffsetFromLive(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumTimeOffsetFromLive:"), value)
 }
 
@@ -515,7 +517,7 @@ func (c_ Composition) SetMinimumTimeOffsetFromLive(value Time /* not a class typ
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/naturalsize
 func (c_ Composition) NaturalSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](c_.ID, objc.Sel("naturalSize"))
+	rv := objc.Send[corefoundation.Size](c_.ID, objc.Sel("naturalSize"))
 	return rv
 }
 
@@ -533,8 +535,8 @@ func (c_ Composition) SetNaturalSize(value objc.IObject /* cross-framework: Size
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/overalldurationhint
-func (c_ Composition) OverallDurationHint() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("overallDurationHint"))
+func (c_ Composition) OverallDurationHint() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("overallDurationHint"))
 	return rv
 }
 
@@ -543,7 +545,7 @@ func (c_ Composition) OverallDurationHint() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/overalldurationhint
-func (c_ Composition) SetOverallDurationHint(value Time /* not a class type */) {
+func (c_ Composition) SetOverallDurationHint(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverallDurationHint:"), value)
 }
 
@@ -590,7 +592,7 @@ func (c_ Composition) SetPreferredMediaSelection(value IAVMediaSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredrate
-func (c_ Composition) PreferredRate() float32 /* primitive/slice/pointer. */ {
+func (c_ Composition) PreferredRate() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("preferredRate"))
 	return rv
 }
@@ -600,7 +602,7 @@ func (c_ Composition) PreferredRate() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredrate
-func (c_ Composition) SetPreferredRate(value float32 /* primitive/slice/pointer. */) {
+func (c_ Composition) SetPreferredRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredRate:"), value)
 }
 
@@ -610,7 +612,7 @@ func (c_ Composition) SetPreferredRate(value float32 /* primitive/slice/pointer.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredtransform
 func (c_ Composition) PreferredTransform() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[AffineTransform](c_.ID, objc.Sel("preferredTransform"))
+	rv := objc.Send[corefoundation.AffineTransform](c_.ID, objc.Sel("preferredTransform"))
 	return rv
 }
 
@@ -628,7 +630,7 @@ func (c_ Composition) SetPreferredTransform(value objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredvolume
-func (c_ Composition) PreferredVolume() float32 /* primitive/slice/pointer. */ {
+func (c_ Composition) PreferredVolume() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
@@ -638,7 +640,7 @@ func (c_ Composition) PreferredVolume() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredvolume
-func (c_ Composition) SetPreferredVolume(value float32 /* primitive/slice/pointer. */) {
+func (c_ Composition) SetPreferredVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 
@@ -647,7 +649,7 @@ func (c_ Composition) SetPreferredVolume(value float32 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/providesprecisedurationandtiming
-func (c_ Composition) ProvidesPreciseDurationAndTiming() bool /* primitive/slice/pointer. */ {
+func (c_ Composition) ProvidesPreciseDurationAndTiming() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("providesPreciseDurationAndTiming"))
 	return rv
 }
@@ -657,7 +659,7 @@ func (c_ Composition) ProvidesPreciseDurationAndTiming() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/providesprecisedurationandtiming
-func (c_ Composition) SetProvidesPreciseDurationAndTiming(value bool /* primitive/slice/pointer. */) {
+func (c_ Composition) SetProvidesPreciseDurationAndTiming(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProvidesPreciseDurationAndTiming:"), value)
 }
 

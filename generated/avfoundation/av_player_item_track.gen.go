@@ -34,10 +34,10 @@ type IPlayerItemTrack interface {
 	// properties:
 	AssetTrack() IAVAssetTrack
 	SetAssetTrack(value IAVAssetTrack)
-	CurrentVideoFrameRate() float32 /* primitive/slice/pointer. */
-	SetCurrentVideoFrameRate(value float32 /* primitive/slice/pointer. */)
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	CurrentVideoFrameRate() float32
+	SetCurrentVideoFrameRate(value float32)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 	VideoFieldMode() objc.IObject /* cross-framework: NSString */
 	SetVideoFieldMode(value objc.IObject /* cross-framework: NSString */)
 	AVPlayerItemTrackVideoFieldModeDeinterlaceFields() objc.IObject /* cross-framework: NSString */
@@ -118,7 +118,7 @@ func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
-func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("currentVideoFrameRate"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
-func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentVideoFrameRate:"), value)
 }
 
@@ -137,7 +137,7 @@ func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-func (p_ PlayerItemTrack) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerItemTrack) IsEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (p_ PlayerItemTrack) IsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-func (p_ PlayerItemTrack) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

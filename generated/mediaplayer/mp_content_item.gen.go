@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,10 @@ type _ContentItemClass struct {
 // An interface definition for the [ContentItem] class.
 type IContentItem interface {
 	objectivec.IObject
-	Artwork() MPMediaItemArtwork
+	// properties:
+	Artwork() IMPMediaItemArtwork
 	SetArtwork(value IMPMediaItemArtwork)
-	Identifier() string
+	Identifier() objc.IObject /* cross-framework: NSString */
 	Container() bool
 	SetContainer(value bool)
 	ExplicitContent() bool
@@ -43,10 +45,10 @@ type IContentItem interface {
 	SetStreamingContent(value bool)
 	PlaybackProgress() float32
 	SetPlaybackProgress(value float32)
-	Subtitle() string
-	SetSubtitle(value string)
-	Title() string
-	SetTitle(value string)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	IsContainer() bool
 	SetIsContainer(value bool)
 	IsExplicitContent() bool
@@ -55,12 +57,17 @@ type IContentItem interface {
 	SetIsPlayable(value bool)
 	IsStreamingContent() bool
 	SetIsStreamingContent(value bool)
+	// methods:
 }
 
 // An object that contains the information for a displayed media item.
 //
 // This object represents a media item such as a song, movie, radio station, or podcast episode. The media player displays the information stored in it. Update this object by changing its properties during runtime or by creating a new object with new property values, but with the same identifier as the object to change. Use the and methods found in to update several objects at once.
+
+
+// An object that contains the information for a displayed media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem
 type ContentItem struct {
 	objectivec.Object
@@ -106,46 +113,51 @@ func NewContentItem() ContentItem {
 
 
 
-
 // Sets the identifier for a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/init(identifier:)
-func NewContentItemWithIdentifier(identifier string) ContentItem {
+func NewContentItemWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) ContentItem {
 	instance := getContentItemClass().Alloc()
-	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // A single image that’s associated with the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/artwork
-func (c_ ContentItem) Artwork() MPMediaItemArtwork {
-	rv := objc.Send[MPMediaItemArtwork](c_.ID, objc.Sel("artwork"))
+func (c_ ContentItem) Artwork() IMPMediaItemArtwork {
+	rv := objc.Send[MediaItemArtwork](c_.ID, objc.Sel("artwork"))
 	return rv
 }
 
 
-// SetArtwork sets the value of the artwork property.
 // A single image that’s associated with the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/artwork
 func (c_ ContentItem) SetArtwork(value IMPMediaItemArtwork) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setArtwork:"), value)
 }
 
+
 // The unique identifier for the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/identifier
-func (c_ ContentItem) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ ContentItem) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether a media item is container of other items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isContainer
 func (c_ ContentItem) Container() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("container"))
@@ -153,17 +165,18 @@ func (c_ ContentItem) Container() bool {
 }
 
 
-// SetContainer sets the value of the container property.
 // A Boolean value that indicates whether a media item is container of other items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isContainer
 func (c_ ContentItem) SetContainer(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
 
+
 // A Boolean value that indicates whether the media item contains explicit content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isExplicitContent
 func (c_ ContentItem) ExplicitContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("explicitContent"))
@@ -171,17 +184,18 @@ func (c_ ContentItem) ExplicitContent() bool {
 }
 
 
-// SetExplicitContent sets the value of the explicitContent property.
 // A Boolean value that indicates whether the media item contains explicit content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isExplicitContent
 func (c_ ContentItem) SetExplicitContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExplicitContent:"), value)
 }
 
+
 // A Boolean value that indicates whether a media item is able to be played.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isPlayable
 func (c_ ContentItem) Playable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("playable"))
@@ -189,17 +203,18 @@ func (c_ ContentItem) Playable() bool {
 }
 
 
-// SetPlayable sets the value of the playable property.
 // A Boolean value that indicates whether a media item is able to be played.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isPlayable
 func (c_ ContentItem) SetPlayable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayable:"), value)
 }
 
+
 // A Boolean value that indicates whether the content item is streaming content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isStreamingContent
 func (c_ ContentItem) StreamingContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("streamingContent"))
@@ -207,17 +222,18 @@ func (c_ ContentItem) StreamingContent() bool {
 }
 
 
-// SetStreamingContent sets the value of the streamingContent property.
 // A Boolean value that indicates whether the content item is streaming content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/isStreamingContent
 func (c_ ContentItem) SetStreamingContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStreamingContent:"), value)
 }
 
+
 // The amount of content played for the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/playbackProgress
 func (c_ ContentItem) PlaybackProgress() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("playbackProgress"))
@@ -225,53 +241,56 @@ func (c_ ContentItem) PlaybackProgress() float32 {
 }
 
 
-// SetPlaybackProgress sets the value of the playbackProgress property.
 // The amount of content played for the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/playbackProgress
 func (c_ ContentItem) SetPlaybackProgress(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackProgress:"), value)
 }
 
+
 // A secondary designator for the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) Subtitle() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
+func (c_ ContentItem) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
 
-// SetSubtitle sets the value of the subtitle property.
 // A secondary designator for the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) SetSubtitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (c_ ContentItem) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
 }
+
 
 // The public name of the media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) Title() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ ContentItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The public name of the media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) SetTitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ ContentItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
+
 
 // A Boolean value that indicates whether a media item is container of other items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/iscontainer
 func (c_ ContentItem) IsContainer() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContainer"))
@@ -279,17 +298,18 @@ func (c_ ContentItem) IsContainer() bool {
 }
 
 
-// SetIsContainer sets the value of the isContainer property.
 // A Boolean value that indicates whether a media item is container of other items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/iscontainer
 func (c_ ContentItem) SetIsContainer(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContainer:"), value)
 }
 
+
 // A Boolean value that indicates whether the media item contains explicit content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isexplicitcontent
 func (c_ ContentItem) IsExplicitContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isExplicitContent"))
@@ -297,17 +317,18 @@ func (c_ ContentItem) IsExplicitContent() bool {
 }
 
 
-// SetIsExplicitContent sets the value of the isExplicitContent property.
 // A Boolean value that indicates whether the media item contains explicit content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isexplicitcontent
 func (c_ ContentItem) SetIsExplicitContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsExplicitContent:"), value)
 }
 
+
 // A Boolean value that indicates whether a media item is able to be played.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isplayable
 func (c_ ContentItem) IsPlayable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPlayable"))
@@ -315,17 +336,18 @@ func (c_ ContentItem) IsPlayable() bool {
 }
 
 
-// SetIsPlayable sets the value of the isPlayable property.
 // A Boolean value that indicates whether a media item is able to be played.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isplayable
 func (c_ ContentItem) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPlayable:"), value)
 }
 
+
 // A Boolean value that indicates whether the content item is streaming content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isstreamingcontent
 func (c_ ContentItem) IsStreamingContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isStreamingContent"))
@@ -333,10 +355,9 @@ func (c_ ContentItem) IsStreamingContent() bool {
 }
 
 
-// SetIsStreamingContent sets the value of the isStreamingContent property.
 // A Boolean value that indicates whether the content item is streaming content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpcontentitem/isstreamingcontent
 func (c_ ContentItem) SetIsStreamingContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStreamingContent:"), value)

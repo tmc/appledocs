@@ -32,11 +32,17 @@ type IURLAuthenticationChallenge interface {
 	objectivec.IObject
 	// properties:
 	Error() IError
+	SetError(value IError)
 	FailureResponse() IURLResponse
-	PreviousFailureCount() int /* primitive/slice/pointer. */
+	SetFailureResponse(value IURLResponse)
+	PreviousFailureCount() int
+	SetPreviousFailureCount(value int)
 	ProposedCredential() IURLCredential
+	SetProposedCredential(value IURLCredential)
 	ProtectionSpace() IURLProtectionSpace
-	Sender() objc.ID
+	SetProtectionSpace(value IURLProtectionSpace)
+	Sender() unsafe.Pointer
+	SetSender(value unsafe.Pointer)
 	// methods:
 }
 
@@ -93,37 +99,31 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 
 
 
-// Creates an authentication challenge from an existing challenge instance.
+// The error object representing the last authentication failure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/init(authenticationChallenge:sender:)
-func NewURLAuthenticationChallengeWithAuthenticationChallengeSender(challenge IURLAuthenticationChallenge, sender objectivec.IObject) URLAuthenticationChallenge {
-	instance := getURLAuthenticationChallengeClass().Alloc()
-	rv := objc.Send[URLAuthenticationChallenge](instance.ID, objc.Sel("initWithAuthenticationChallenge:sender:"), challenge, sender)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) Error() IError {
+	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
 	return rv
 }
-
-
-// Initializes an authentication challenge from parameters you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/init(protectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:)
-func NewURLAuthenticationChallengeWithProtectionSpaceProposedCredentialPreviousFailureCountFailureResponseErrorSender(space IURLProtectionSpace, credential IURLCredential, previousFailureCount int /* primitive/slice/pointer. */, response IURLResponse, error_ IError, sender objectivec.IObject) URLAuthenticationChallenge {
-	instance := getURLAuthenticationChallengeClass().Alloc()
-	rv := objc.Send[URLAuthenticationChallenge](instance.ID, objc.Sel("initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:"), space, credential, previousFailureCount, response, error_, sender)
-	rv.Autorelease()
-	return rv
-}
-
 
 
 // The error object representing the last authentication failure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/error
-func (u_ URLAuthenticationChallenge) Error() IError {
-	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/error
+func (u_ URLAuthenticationChallenge) SetError(value IError) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
+}
+
+
+// The URL response object representing the last authentication failure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/failureresponse
+func (u_ URLAuthenticationChallenge) FailureResponse() IURLResponse {
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("failureResponse"))
 	return rv
 }
 
@@ -131,9 +131,18 @@ func (u_ URLAuthenticationChallenge) Error() IError {
 // The URL response object representing the last authentication failure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/failureResponse
-func (u_ URLAuthenticationChallenge) FailureResponse() IURLResponse {
-	rv := objc.Send[URLResponse](u_.ID, objc.Sel("failureResponse"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/failureresponse
+func (u_ URLAuthenticationChallenge) SetFailureResponse(value IURLResponse) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setFailureResponse:"), value)
+}
+
+
+// The receiver’s count of failed authentication attempts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/previousfailurecount
+func (u_ URLAuthenticationChallenge) PreviousFailureCount() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("previousFailureCount"))
 	return rv
 }
 
@@ -141,9 +150,18 @@ func (u_ URLAuthenticationChallenge) FailureResponse() IURLResponse {
 // The receiver’s count of failed authentication attempts.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/previousFailureCount
-func (u_ URLAuthenticationChallenge) PreviousFailureCount() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](u_.ID, objc.Sel("previousFailureCount"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/previousfailurecount
+func (u_ URLAuthenticationChallenge) SetPreviousFailureCount(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPreviousFailureCount:"), value)
+}
+
+
+// The proposed credential for this challenge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/proposedcredential
+func (u_ URLAuthenticationChallenge) ProposedCredential() IURLCredential {
+	rv := objc.Send[URLCredential](u_.ID, objc.Sel("proposedCredential"))
 	return rv
 }
 
@@ -151,9 +169,18 @@ func (u_ URLAuthenticationChallenge) PreviousFailureCount() int /* primitive/sli
 // The proposed credential for this challenge.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/proposedCredential
-func (u_ URLAuthenticationChallenge) ProposedCredential() IURLCredential {
-	rv := objc.Send[URLCredential](u_.ID, objc.Sel("proposedCredential"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/proposedcredential
+func (u_ URLAuthenticationChallenge) SetProposedCredential(value IURLCredential) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProposedCredential:"), value)
+}
+
+
+// The receiver’s protection space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+func (u_ URLAuthenticationChallenge) ProtectionSpace() IURLProtectionSpace {
+	rv := objc.Send[URLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
 	return rv
 }
 
@@ -161,9 +188,18 @@ func (u_ URLAuthenticationChallenge) ProposedCredential() IURLCredential {
 // The receiver’s protection space.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/protectionSpace
-func (u_ URLAuthenticationChallenge) ProtectionSpace() IURLProtectionSpace {
-	rv := objc.Send[URLProtectionSpace](u_.ID, objc.Sel("protectionSpace"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/protectionspace
+func (u_ URLAuthenticationChallenge) SetProtectionSpace(value IURLProtectionSpace) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProtectionSpace:"), value)
+}
+
+
+// The sender of the challenge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/sender
+func (u_ URLAuthenticationChallenge) Sender() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sender"))
 	return rv
 }
 
@@ -171,10 +207,10 @@ func (u_ URLAuthenticationChallenge) ProtectionSpace() IURLProtectionSpace {
 // The sender of the challenge.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/sender
-func (u_ URLAuthenticationChallenge) Sender() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("sender"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/sender
+func (u_ URLAuthenticationChallenge) SetSender(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSender:"), value)
 }
+
 
 

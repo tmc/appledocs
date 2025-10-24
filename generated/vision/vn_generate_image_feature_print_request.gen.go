@@ -29,17 +29,23 @@ type _GenerateImageFeaturePrintRequestClass struct {
 // An interface definition for the [GenerateImageFeaturePrintRequest] class.
 type IGenerateImageFeaturePrintRequest interface {
 	IImageBasedRequest
-	ImageCropAndScaleOption() ImageCropAndScaleOption
-	SetImageCropAndScaleOption(value IImageCropAndScaleOption)
-	Results() VNFeaturePrintObservation
+	// properties:
+	ImageCropAndScaleOption() ImageCropAndScaleOption /* not a class type */
+	SetImageCropAndScaleOption(value ImageCropAndScaleOption /* not a class type */)
+	Results() IVNFeaturePrintObservation
 	SetResults(value IVNFeaturePrintObservation)
 	VNGenerateImageFeaturePrintRequestRevision1() int
+	// methods:
 }
 
 // An image-based request to generate feature prints from an image.
 //
 // This request returns the feature print data it generates as an array of objects.
+
+
+// An image-based request to generate feature prints from an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateImageFeaturePrintRequest
 type GenerateImageFeaturePrintRequest struct {
 	ImageBasedRequest
@@ -86,44 +92,48 @@ func NewGenerateImageFeaturePrintRequest() GenerateImageFeaturePrintRequest {
 }
 
 
+
 // An optional setting that tells the algorithm how to scale an input image before generating the feature print.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() ImageCropAndScaleOption {
+func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() ImageCropAndScaleOption /* not a class type */ {
 	rv := objc.Send[ImageCropAndScaleOption](g_.ID, objc.Sel("imageCropAndScaleOption"))
 	return rv
 }
 
 
-// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
 // An optional setting that tells the algorithm how to scale an input image before generating the feature print.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value IImageCropAndScaleOption) {
+func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value ImageCropAndScaleOption /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
+
 // The results of the feature print request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/results
-func (g_ GenerateImageFeaturePrintRequest) Results() VNFeaturePrintObservation {
-	rv := objc.Send[VNFeaturePrintObservation](g_.ID, objc.Sel("results"))
+func (g_ GenerateImageFeaturePrintRequest) Results() IVNFeaturePrintObservation {
+	rv := objc.Send[FeaturePrintObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the feature print request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/results
 func (g_ GenerateImageFeaturePrintRequest) SetResults(value IVNFeaturePrintObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying the first revision of the feature-print request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1
 func (g_ GenerateImageFeaturePrintRequest) VNGenerateImageFeaturePrintRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateImageFeaturePrintRequestRevision1"))

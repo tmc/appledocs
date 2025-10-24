@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,15 @@ type _MTREnergyEVSEClusterGetTargetsResponseParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterGetTargetsResponseParams] class.
 type IMTREnergyEVSEClusterGetTargetsResponseParams interface {
 	objectivec.IObject
-	ChargingTargetSchedules() objc.ID
-	SetChargingTargetSchedules(value objc.ID)
+	// properties:
+	ChargingTargetSchedules() objc.IObject /* cross-framework: NSArray */
+	SetChargingTargetSchedules(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams
 type MTREnergyEVSEClusterGetTargetsResponseParams struct {
 	objectivec.Object
@@ -78,11 +83,11 @@ func NewMTREnergyEVSEClusterGetTargetsResponseParams() MTREnergyEVSEClusterGetTa
 
 
 
-
 // Initialize an MTREnergyEVSEClusterGetTargetsResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/init(responseValue:)
-func NewMTREnergyEVSEClusterGetTargetsResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTREnergyEVSEClusterGetTargetsResponseParams {
+func NewMTREnergyEVSEClusterGetTargetsResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTREnergyEVSEClusterGetTargetsResponseParams {
 	instance := getMTREnergyEVSEClusterGetTargetsResponseParamsClass().Alloc()
 	rv := objc.Send[MTREnergyEVSEClusterGetTargetsResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -90,18 +95,18 @@ func NewMTREnergyEVSEClusterGetTargetsResponseParamsWithResponseValueError(respo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("chargingTargetSchedules"))
+func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("chargingTargetSchedules"))
 	return rv
 }
 
 
-// SetChargingTargetSchedules sets the value of the chargingTargetSchedules property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) SetChargingTargetSchedules(value objc.ID) {
+func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) SetChargingTargetSchedules(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargetSchedules:"), value)
 }
 

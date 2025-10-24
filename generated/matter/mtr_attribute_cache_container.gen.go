@@ -30,9 +30,13 @@ type _MTRAttributeCacheContainerClass struct {
 // An interface definition for the [MTRAttributeCacheContainer] class.
 type IMTRAttributeCacheContainer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeCacheContainer
 type MTRAttributeCacheContainer struct {
 	objectivec.Object

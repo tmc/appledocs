@@ -30,6 +30,8 @@ type _InputManagerClass struct {
 // An interface definition for the [InputManager] class.
 type IInputManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -88,4 +88,23 @@ func NewUnitAcceleration() UnitAcceleration {
 
 
 
+// Returns the gravity unit of acceleration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
+func (uc _UnitAccelerationClass) Gravity() UnitAcceleration {
+	rv := objc.Send[UnitAcceleration](objc.ID(uc.class), objc.Sel("gravity"))
+	return rv
+}
+
+// Returns the gravity unit of acceleration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
+func (u_ UnitAcceleration) Gravity() IUnitAcceleration {
+	rv := objc.Send[UnitAcceleration](u_.ID, objc.Sel("gravity"))
+	return rv
+}
+
+
 

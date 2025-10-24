@@ -29,11 +29,17 @@ type _VZMacGraphicsDisplayClass struct {
 // An interface definition for the [VZMacGraphicsDisplay] class.
 type IVZMacGraphicsDisplay interface {
 	IVZGraphicsDisplay
+	// properties:
 	PixelsPerInch() int
+	// methods:
 }
 
 // An object that represents the graphics display on a Mac.
+
+
+// An object that represents the graphics display on a Mac.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplay
 type VZMacGraphicsDisplay struct {
 	VZGraphicsDisplay
@@ -80,8 +86,10 @@ func NewVZMacGraphicsDisplay() VZMacGraphicsDisplay {
 }
 
 
+
 // Returns the pixel density of the display in pixels per inch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplay/pixelsPerInch
 func (v_ VZMacGraphicsDisplay) PixelsPerInch() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("pixelsPerInch"))

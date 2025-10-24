@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,12 +37,12 @@ type ITextLayoutManager interface {
 	SetDelegate(value TextLayoutManagerDelegate /* not a class type */)
 	LayoutQueue() objc.IObject /* cross-framework: OperationQueue */
 	SetLayoutQueue(value objc.IObject /* cross-framework: OperationQueue */)
-	LimitsLayoutForSuspiciousContents() bool /* primitive/slice/pointer. */
-	SetLimitsLayoutForSuspiciousContents(value bool /* primitive/slice/pointer. */)
+	LimitsLayoutForSuspiciousContents() bool
+	SetLimitsLayoutForSuspiciousContents(value bool)
 	RenderingAttributesValidator() unsafe.Pointer
 	SetRenderingAttributesValidator(value unsafe.Pointer)
-	ResolvesNaturalAlignmentWithBaseWritingDirection() bool /* primitive/slice/pointer. */
-	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool /* primitive/slice/pointer. */)
+	ResolvesNaturalAlignmentWithBaseWritingDirection() bool
+	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool)
 	TextContainer() ITextContainer
 	SetTextContainer(value ITextContainer)
 	TextContentManager() objc.IObject /* cross-framework: TextContentManager */
@@ -54,12 +55,12 @@ type ITextLayoutManager interface {
 	SetTextViewportLayoutController(value objc.IObject /* cross-framework: TextViewportLayoutController */)
 	UsageBoundsForTextContainer() objc.IObject /* cross-framework: Rect */
 	SetUsageBoundsForTextContainer(value objc.IObject /* cross-framework: Rect */)
-	UsesFontLeading() bool /* primitive/slice/pointer. */
-	SetUsesFontLeading(value bool /* primitive/slice/pointer. */)
-	UsesHyphenation() bool /* primitive/slice/pointer. */
-	SetUsesHyphenation(value bool /* primitive/slice/pointer. */)
+	UsesFontLeading() bool
+	SetUsesFontLeading(value bool)
+	UsesHyphenation() bool
+	SetUsesHyphenation(value bool)
 	// methods:
-	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary /* already interface */, textRange ITextRange)
+	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange)
 }
 
 // The primary class that you use to manage text layout and presentation for custom text displays.
@@ -119,7 +120,7 @@ func NewTextLayoutManager() TextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/setRenderingAttributes(_:for:)
-func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary /* already interface */, textRange ITextRange) {
+func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingAttributes:forTextRange:"), renderingAttributes, textRange)
 }
 
@@ -148,7 +149,7 @@ func (t_ TextLayoutManager) SetDelegate(value TextLayoutManagerDelegate /* not a
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
 func (t_ TextLayoutManager) LayoutQueue() objc.IObject /* cross-framework: OperationQueue */ {
-	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
+	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (t_ TextLayoutManager) SetLayoutQueue(value objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/limitslayoutforsuspiciouscontents
-func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool /* primitive/slice/pointer. */ {
+func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("limitsLayoutForSuspiciousContents"))
 	return rv
 }
@@ -176,7 +177,7 @@ func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/limitslayoutforsuspiciouscontents
-func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool /* primitive/slice/pointer. */) {
+func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLimitsLayoutForSuspiciousContents:"), value)
 }
 
@@ -204,7 +205,7 @@ func (t_ TextLayoutManager) SetRenderingAttributesValidator(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/resolvesnaturalalignmentwithbasewritingdirection
-func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() bool /* primitive/slice/pointer. */ {
+func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resolvesNaturalAlignmentWithBaseWritingDirection"))
 	return rv
 }
@@ -214,7 +215,7 @@ func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/resolvesnaturalalignmentwithbasewritingdirection
-func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool /* primitive/slice/pointer. */) {
+func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResolvesNaturalAlignmentWithBaseWritingDirection:"), value)
 }
 
@@ -319,7 +320,7 @@ func (t_ TextLayoutManager) SetTextViewportLayoutController(value objc.IObject /
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usageboundsfortextcontainer
 func (t_ TextLayoutManager) UsageBoundsForTextContainer() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
 	return rv
 }
 
@@ -337,7 +338,7 @@ func (t_ TextLayoutManager) SetUsageBoundsForTextContainer(value objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usesfontleading
-func (t_ TextLayoutManager) UsesFontLeading() bool /* primitive/slice/pointer. */ {
+func (t_ TextLayoutManager) UsesFontLeading() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontLeading"))
 	return rv
 }
@@ -347,7 +348,7 @@ func (t_ TextLayoutManager) UsesFontLeading() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usesfontleading
-func (t_ TextLayoutManager) SetUsesFontLeading(value bool /* primitive/slice/pointer. */) {
+func (t_ TextLayoutManager) SetUsesFontLeading(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontLeading:"), value)
 }
 
@@ -356,7 +357,7 @@ func (t_ TextLayoutManager) SetUsesFontLeading(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/useshyphenation
-func (t_ TextLayoutManager) UsesHyphenation() bool /* primitive/slice/pointer. */ {
+func (t_ TextLayoutManager) UsesHyphenation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesHyphenation"))
 	return rv
 }
@@ -366,7 +367,7 @@ func (t_ TextLayoutManager) UsesHyphenation() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/useshyphenation
-func (t_ TextLayoutManager) SetUsesHyphenation(value bool /* primitive/slice/pointer. */) {
+func (t_ TextLayoutManager) SetUsesHyphenation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesHyphenation:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _CSSearchQueryContextClass struct {
 type ICSSearchQueryContext interface {
 	objectivec.IObject
 	// properties:
-	FetchAttributes() []string /* primitive/slice/pointer. */
-	SetFetchAttributes(value []string /* primitive/slice/pointer. */)
-	FilterQueries() []string /* primitive/slice/pointer. */
-	SetFilterQueries(value []string /* primitive/slice/pointer. */)
-	KeyboardLanguage() string /* primitive/slice/pointer. */
-	SetKeyboardLanguage(value string /* primitive/slice/pointer. */)
+	FetchAttributes() []string
+	SetFetchAttributes(value []string)
+	FilterQueries() []string
+	SetFilterQueries(value []string)
+	KeyboardLanguage() objc.IObject /* cross-framework: NSString */
+	SetKeyboardLanguage(value objc.IObject /* cross-framework: NSString */)
 	SourceOptions() CSSearchQuerySourceOptions
 	SetSourceOptions(value CSSearchQuerySourceOptions)
 	// methods:
@@ -97,7 +98,7 @@ func NewCSSearchQueryContext() CSSearchQueryContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
-func (c_ CSSearchQueryContext) FetchAttributes() []string /* primitive/slice/pointer. */ {
+func (c_ CSSearchQueryContext) FetchAttributes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("fetchAttributes"))
 	return rv
 }
@@ -107,7 +108,7 @@ func (c_ CSSearchQueryContext) FetchAttributes() []string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
-func (c_ CSSearchQueryContext) SetFetchAttributes(value []string /* primitive/slice/pointer. */) {
+func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -126,7 +127,7 @@ func (c_ CSSearchQueryContext) SetFetchAttributes(value []string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
-func (c_ CSSearchQueryContext) FilterQueries() []string /* primitive/slice/pointer. */ {
+func (c_ CSSearchQueryContext) FilterQueries() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("filterQueries"))
 	return rv
 }
@@ -136,7 +137,7 @@ func (c_ CSSearchQueryContext) FilterQueries() []string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
-func (c_ CSSearchQueryContext) SetFilterQueries(value []string /* primitive/slice/pointer. */) {
+func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -155,8 +156,8 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) KeyboardLanguage() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
+func (c_ CSSearchQueryContext) KeyboardLanguage() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
 
@@ -165,8 +166,8 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
+func (c_ CSSearchQueryContext) SetKeyboardLanguage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), value)
 }
 
 

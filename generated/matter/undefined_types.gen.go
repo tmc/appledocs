@@ -9,14 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in Matter
-	Dictionary = _undefined // referenced in Matter
-	MTRAsyncCallbackReadyHandler = _undefined // referenced in Matter
-	MTRStatusCompletion = _undefined // referenced in Matter
-	MTRSubscriptionEstablishedHandler = _undefined // referenced in Matter
-	String = _undefined // referenced in Matter
-	UInt16 = _undefined // referenced in Matter
-	Void = _undefined // referenced in Matter
 	XPCConnection = _undefined // referenced in Matter
 )
 

@@ -31,11 +31,15 @@ type _MTRWiFiNetworkDiagnosticsClusterConnectionStatusEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent interface {
 	objectivec.IObject
-	ConnectionStatus() foundation.Number
-	SetConnectionStatus(value foundation.INumber)
+	// properties:
+	ConnectionStatus() objc.IObject /* cross-framework: NSNumber */
+	SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent
 type MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent() MTRWiFiNetworkDi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("connectionStatus"))
+func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("connectionStatus"))
 	return rv
 }
 
 
-// SetConnectionStatus sets the value of the connectionStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.INumber) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
 }
 

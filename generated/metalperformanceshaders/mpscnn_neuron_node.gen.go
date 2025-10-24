@@ -29,16 +29,22 @@ type _CNNNeuronNodeClass struct {
 // An interface definition for the [CNNNeuronNode] class.
 type ICNNNeuronNode interface {
 	IFilterNode
+	// properties:
 	A() float32
 	SetA(value float32)
 	B() float32
 	SetB(value float32)
 	C() float32
 	SetC(value float32)
+	// methods:
 }
 
 // The virtual base class for MPS CNN neuron nodes.
+
+
+// The virtual base class for MPS CNN neuron nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronNode
 type CNNNeuronNode struct {
 	FilterNode
@@ -85,7 +91,8 @@ func NewCNNNeuronNode() CNNNeuronNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
 func (c_ CNNNeuronNode) A() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("a"))
@@ -93,14 +100,14 @@ func (c_ CNNNeuronNode) A() float32 {
 }
 
 
-// SetA sets the value of the a property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/a
 func (c_ CNNNeuronNode) SetA(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setA:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/b
 func (c_ CNNNeuronNode) B() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("b"))
@@ -108,14 +115,14 @@ func (c_ CNNNeuronNode) B() float32 {
 }
 
 
-// SetB sets the value of the b property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/b
 func (c_ CNNNeuronNode) SetB(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setB:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/c
 func (c_ CNNNeuronNode) C() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("c"))
@@ -123,8 +130,7 @@ func (c_ CNNNeuronNode) C() float32 {
 }
 
 
-// SetC sets the value of the c property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode/c
 func (c_ CNNNeuronNode) SetC(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setC:"), value)

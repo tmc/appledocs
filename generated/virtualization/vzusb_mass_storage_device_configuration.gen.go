@@ -29,10 +29,16 @@ type _VZUSBMassStorageDeviceConfigurationClass struct {
 // An interface definition for the [VZUSBMassStorageDeviceConfiguration] class.
 type IVZUSBMassStorageDeviceConfiguration interface {
 	IVZStorageDeviceConfiguration
+	// properties:
+	// methods:
 }
 
 // The configuration object that represents a USB Mass storage device.
+
+
+// The configuration object that represents a USB Mass storage device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBMassStorageDeviceConfiguration
 type VZUSBMassStorageDeviceConfiguration struct {
 	VZStorageDeviceConfiguration
@@ -78,6 +84,18 @@ func NewVZUSBMassStorageDeviceConfiguration() VZUSBMassStorageDeviceConfiguratio
 	return getVZUSBMassStorageDeviceConfigurationClass().New()
 }
 
+
+
+// Creates a new storage device configuration with the specified attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBMassStorageDeviceConfiguration/init(attachment:)
+func NewVZUSBMassStorageDeviceConfigurationWithAttachment(attachment IVZStorageDeviceAttachment) VZUSBMassStorageDeviceConfiguration {
+	instance := getVZUSBMassStorageDeviceConfigurationClass().Alloc()
+	rv := objc.Send[VZUSBMassStorageDeviceConfiguration](instance.ID, objc.Sel("initWithAttachment:"), attachment)
+	rv.Autorelease()
+	return rv
+}
 
 
 

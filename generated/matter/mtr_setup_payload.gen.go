@@ -31,33 +31,37 @@ type _MTRSetupPayloadClass struct {
 // An interface definition for the [MTRSetupPayload] class.
 type IMTRSetupPayload interface {
 	objectivec.IObject
+	// properties:
 	CommissioningFlow() MTRCommissioningFlow
-	SetCommissioningFlow(value IMTRCommissioningFlow)
+	SetCommissioningFlow(value MTRCommissioningFlow)
 	DiscoveryCapabilities() MTRDiscoveryCapabilities
-	SetDiscoveryCapabilities(value IMTRDiscoveryCapabilities)
-	Discriminator() foundation.Number
-	SetDiscriminator(value foundation.INumber)
+	SetDiscoveryCapabilities(value MTRDiscoveryCapabilities)
+	Discriminator() objc.IObject /* cross-framework: NSNumber */
+	SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */)
 	HasShortDiscriminator() bool
 	SetHasShortDiscriminator(value bool)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	RendezvousInformation() foundation.Number
-	SetRendezvousInformation(value foundation.INumber)
-	SerialNumber() string
-	SetSerialNumber(value string)
-	SetUpPINCode() foundation.Number
-	SetSetUpPINCode(value foundation.INumber)
-	SetupPasscode() foundation.Number
-	SetSetupPasscode(value foundation.INumber)
-	VendorElements() MTROptionalQRCodeInfo
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	RendezvousInformation() objc.IObject /* cross-framework: NSNumber */
+	SetRendezvousInformation(value objc.IObject /* cross-framework: NSNumber */)
+	SerialNumber() objc.IObject /* cross-framework: NSString */
+	SetSerialNumber(value objc.IObject /* cross-framework: NSString */)
+	SetUpPINCode() objc.IObject /* cross-framework: NSNumber */
+	SetSetUpPINCode(value objc.IObject /* cross-framework: NSNumber */)
+	SetupPasscode() objc.IObject /* cross-framework: NSNumber */
+	SetSetupPasscode(value objc.IObject /* cross-framework: NSNumber */)
+	VendorElements() IMTROptionalQRCodeInfo
 	SetVendorElements(value IMTROptionalQRCodeInfo)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
-	Version() foundation.Number
-	SetVersion(value foundation.INumber)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	Version() objc.IObject /* cross-framework: NSNumber */
+	SetVersion(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetupPayload
 type MTRSetupPayload struct {
 	objectivec.Object
@@ -100,22 +104,25 @@ func NewMTRSetupPayload() MTRSetupPayload {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)
-func NewMTRSetupPayloadWithOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(getMTRSetupPayloadClass().class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
+func NewMTRSetupPayloadWithOnboardingPayloadError(onboardingPayload objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) MTRSetupPayload {
+	rv := objc.Send[MTRSetupPayload](objc.ID(getMTRSetupPayloadClass().class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), onboardingPayload, error_)
 	return rv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetupPayload/init(onboardingPayload:)
-func (mc _MTRSetupPayloadClass) SetupPayloadWithOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
+func (mc _MTRSetupPayloadClass) SetupPayloadWithOnboardingPayloadError(onboardingPayload objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) MTRSetupPayload {
+	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadWithOnboardingPayload:error:"), onboardingPayload, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
 func (m_ MTRSetupPayload) CommissioningFlow() MTRCommissioningFlow {
 	rv := objc.Send[MTRCommissioningFlow](m_.ID, objc.Sel("commissioningFlow"))
@@ -123,14 +130,14 @@ func (m_ MTRSetupPayload) CommissioningFlow() MTRCommissioningFlow {
 }
 
 
-// SetCommissioningFlow sets the value of the commissioningFlow property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/commissioningflow
-func (m_ MTRSetupPayload) SetCommissioningFlow(value IMTRCommissioningFlow) {
+func (m_ MTRSetupPayload) SetCommissioningFlow(value MTRCommissioningFlow) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningFlow:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discoverycapabilities
 func (m_ MTRSetupPayload) DiscoveryCapabilities() MTRDiscoveryCapabilities {
 	rv := objc.Send[MTRDiscoveryCapabilities](m_.ID, objc.Sel("discoveryCapabilities"))
@@ -138,29 +145,29 @@ func (m_ MTRSetupPayload) DiscoveryCapabilities() MTRDiscoveryCapabilities {
 }
 
 
-// SetDiscoveryCapabilities sets the value of the discoveryCapabilities property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discoverycapabilities
-func (m_ MTRSetupPayload) SetDiscoveryCapabilities(value IMTRDiscoveryCapabilities) {
+func (m_ MTRSetupPayload) SetDiscoveryCapabilities(value MTRDiscoveryCapabilities) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscoveryCapabilities:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
-func (m_ MTRSetupPayload) Discriminator() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+func (m_ MTRSetupPayload) Discriminator() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("discriminator"))
 	return rv
 }
 
 
-// SetDiscriminator sets the value of the discriminator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/discriminator
-func (m_ MTRSetupPayload) SetDiscriminator(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/hasshortdiscriminator
 func (m_ MTRSetupPayload) HasShortDiscriminator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasShortDiscriminator"))
@@ -168,130 +175,129 @@ func (m_ MTRSetupPayload) HasShortDiscriminator() bool {
 }
 
 
-// SetHasShortDiscriminator sets the value of the hasShortDiscriminator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/hasshortdiscriminator
 func (m_ MTRSetupPayload) SetHasShortDiscriminator(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasShortDiscriminator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
-func (m_ MTRSetupPayload) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRSetupPayload) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/productid
-func (m_ MTRSetupPayload) SetProductID(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/rendezvousinformation
-func (m_ MTRSetupPayload) RendezvousInformation() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rendezvousInformation"))
+func (m_ MTRSetupPayload) RendezvousInformation() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rendezvousInformation"))
 	return rv
 }
 
 
-// SetRendezvousInformation sets the value of the rendezvousInformation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/rendezvousinformation
-func (m_ MTRSetupPayload) SetRendezvousInformation(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetRendezvousInformation(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRendezvousInformation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/serialnumber
-func (m_ MTRSetupPayload) SerialNumber() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serialNumber"))
+func (m_ MTRSetupPayload) SerialNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("serialNumber"))
 	return rv
 }
 
 
-// SetSerialNumber sets the value of the serialNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/serialnumber
-func (m_ MTRSetupPayload) SetSerialNumber(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSerialNumber:"), objc.String(value))
+func (m_ MTRSetupPayload) SetSerialNumber(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSerialNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
-func (m_ MTRSetupPayload) SetUpPINCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setUpPINCode"))
+func (m_ MTRSetupPayload) SetUpPINCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("setUpPINCode"))
 	return rv
 }
 
 
-// SetSetUpPINCode sets the value of the setUpPINCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppincode
-func (m_ MTRSetupPayload) SetSetUpPINCode(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetSetUpPINCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSetUpPINCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
-func (m_ MTRSetupPayload) SetupPasscode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("setupPasscode"))
+func (m_ MTRSetupPayload) SetupPasscode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("setupPasscode"))
 	return rv
 }
 
 
-// SetSetupPasscode sets the value of the setupPasscode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/setuppasscode
-func (m_ MTRSetupPayload) SetSetupPasscode(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetSetupPasscode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPasscode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
-func (m_ MTRSetupPayload) VendorElements() MTROptionalQRCodeInfo {
+func (m_ MTRSetupPayload) VendorElements() IMTROptionalQRCodeInfo {
 	rv := objc.Send[MTROptionalQRCodeInfo](m_.ID, objc.Sel("vendorElements"))
 	return rv
 }
 
 
-// SetVendorElements sets the value of the vendorElements property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorelements
 func (m_ MTRSetupPayload) SetVendorElements(value IMTROptionalQRCodeInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorElements:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
-func (m_ MTRSetupPayload) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRSetupPayload) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/vendorid
-func (m_ MTRSetupPayload) SetVendorID(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/version
-func (m_ MTRSetupPayload) Version() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("version"))
+func (m_ MTRSetupPayload) Version() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("version"))
 	return rv
 }
 
 
-// SetVersion sets the value of the version property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsetuppayload/version
-func (m_ MTRSetupPayload) SetVersion(value foundation.INumber) {
+func (m_ MTRSetupPayload) SetVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersion:"), value)
 }
 

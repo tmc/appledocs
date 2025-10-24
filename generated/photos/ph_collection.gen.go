@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHCollection] class.
@@ -29,16 +30,22 @@ type _PHCollectionClass struct {
 // An interface definition for the [PHCollection] class.
 type IPHCollection interface {
 	IPHObject
-	CanPerformEditOperation(anOperation IPHCollectionEditOperation) bool
+	// properties:
 	CanContainAssets() bool
 	CanContainCollections() bool
-	LocalizedTitle() string
+	LocalizedTitle() objc.IObject /* cross-framework: NSString */
+	// methods:
+	CanPerformEditOperation(anOperation PHCollectionEditOperation) bool
 }
 
 // The abstract superclass for Photos asset collections and collection lists.
 //
 // You do not create or work with instances of this class directly. Instead, use one of its two concrete subclasses, or . A object represents a collection of photo or video assets, such as an album, moment, or Shared Photo Stream. A object represents a collection that contains other collections, such as a a folder containing albums or the set of all moments in a calendar year.
+
+
+// The abstract superclass for Photos asset collections and collection lists.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection
 type PHCollection struct {
 	PHObject
@@ -85,51 +92,63 @@ func NewPHCollection() PHCollection {
 }
 
 
+
 // Retrieves collections from the specified collection list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/fetchCollections(in:options:)
-func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionList IPHCollectionList, options PHFetchOptions) unsafe.Pointer {
+func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionList IPHCollectionList, options IPHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionsInCollectionList:options:"), collectionList, options)
 	return rv
 }
 
+
 // Retrieves collections from the root of the photo library’s hierarchy of user-created albums and folders.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/fetchTopLevelUserCollections(with:)
-func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options PHFetchOptions) unsafe.Pointer {
+func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options IPHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchTopLevelUserCollectionsWithOptions:"), options)
 	return rv
 }
 
+
 // Returns whether the collection supports the specified editing operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/canPerform(_:)
-func (p_ PHCollection) CanPerformEditOperation(anOperation IPHCollectionEditOperation) bool {
+func (p_ PHCollection) CanPerformEditOperation(anOperation PHCollectionEditOperation) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPerformEditOperation:"), anOperation)
 	return rv
 }
 
+
 // A Boolean value indicating whether the collection can contain assets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/canContainAssets
 func (p_ PHCollection) CanContainAssets() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canContainAssets"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the collection can contain other collections.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/canContainCollections
 func (p_ PHCollection) CanContainCollections() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canContainCollections"))
 	return rv
 }
 
+
 // The localized name of the collection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/localizedTitle
-func (p_ PHCollection) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHCollection) LocalizedTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 

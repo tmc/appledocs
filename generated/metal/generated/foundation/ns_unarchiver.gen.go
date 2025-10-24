@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Unarchiver] class.
@@ -31,10 +30,10 @@ type _UnarchiverClass struct {
 type IUnarchiver interface {
 	ICoder
 	// properties:
-	AtEnd() bool /* primitive/slice/pointer. */
+	IsAtEnd() bool
+	SetIsAtEnd(value bool)
 	SystemVersion() unsafe.Pointer
-	IsAtEnd() bool /* primitive/slice/pointer. */
-	SetIsAtEnd(value bool /* primitive/slice/pointer. */)
+	SetSystemVersion(value unsafe.Pointer)
 	// methods:
 }
 
@@ -93,83 +92,11 @@ func NewUnarchiver() Unarchiver {
 
 
 
-// Returns an object initialized to read an archive from a given data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/init(forReadingWith:)
-func NewUnarchiverForReadingWithData(data IData) Unarchiver {
-	instance := getUnarchiverClass().Alloc()
-	rv := objc.Send[Unarchiver](instance.ID, objc.Sel("initForReadingWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the name of the class used when instantiating objects whose ostensible class, according to the archived data, is a given name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/classNameDecoded(forArchiveClassName:)-swift.type.method
-func (uc _UnarchiverClass) ClassNameDecodedForArchiveClassName(inArchiveName IString) IString {
-	rv := objc.Send[String](objc.ID(uc.class), objc.Sel("classNameDecodedForArchiveClassName:"), inArchiveName)
-	return rv
-}
-
-
-// Instructs instances of to use the class with a given name when instantiating objects whose ostensible class, according to the archived data, is another given name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/decodeClassName(_:asClassName:)-swift.type.method
-func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName IString, trueName IString) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("decodeClassName:asClassName:"), inArchiveName, trueName)
-}
-
-
-// Decodes and returns the object archived in a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(with:)
-func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithData:"), data)
-	return rv
-}
-
-
-// Decodes and returns the object archived in the file .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(withFile:)
-func (uc _UnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithFile:"), path)
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/isAtEnd
-func (u_ Unarchiver) AtEnd() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("atEnd"))
-	return rv
-}
-
-
-// The system version number in effect when the archive was created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/systemVersion-swift.property
-func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) IsAtEnd() bool /* primitive/slice/pointer. */ {
+func (u_ Unarchiver) IsAtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
@@ -179,8 +106,28 @@ func (u_ Unarchiver) IsAtEnd() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) SetIsAtEnd(value bool /* primitive/slice/pointer. */) {
+func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
 }
+
+
+// The system version number in effect when the archive was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("systemVersion"))
+	return rv
+}
+
+
+// The system version number in effect when the archive was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/systemversion-swift.property
+func (u_ Unarchiver) SetSystemVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSystemVersion:"), value)
+}
+
 
 

@@ -31,15 +31,19 @@ type _MTRServiceAreaClusterProgressStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterProgressStruct] class.
 type IMTRServiceAreaClusterProgressStruct interface {
 	objectivec.IObject
-	AreaID() foundation.Number
-	SetAreaID(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TotalOperationalTime() foundation.Number
-	SetTotalOperationalTime(value foundation.INumber)
+	// properties:
+	AreaID() objc.IObject /* cross-framework: NSNumber */
+	SetAreaID(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TotalOperationalTime() objc.IObject /* cross-framework: NSNumber */
+	SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct
 type MTRServiceAreaClusterProgressStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRServiceAreaClusterProgressStruct() MTRServiceAreaClusterProgressStruc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/areaID
-func (m_ MTRServiceAreaClusterProgressStruct) AreaID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaID"))
+func (m_ MTRServiceAreaClusterProgressStruct) AreaID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("areaID"))
 	return rv
 }
 
 
-// SetAreaID sets the value of the areaID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/areaID
-func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
-func (m_ MTRServiceAreaClusterProgressStruct) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRServiceAreaClusterProgressStruct) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
-func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
-func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalOperationalTime"))
+func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("totalOperationalTime"))
 	return rv
 }
 
 
-// SetTotalOperationalTime sets the value of the totalOperationalTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
-func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

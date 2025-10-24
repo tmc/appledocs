@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GSS without requiring cgo.
-
-// Conduct secure, authenticated network transactions.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GSS
+// See: https://developer.apple.com/documentation/GSS
 package gss
 
 import (

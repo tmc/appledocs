@@ -2,12 +2,12 @@
 
 // Package realitykit provides Go bindings for the RealityKit framework.
 //
-// Simulate and render 3D content for use in your augmented reality apps. [Full Topic]
+// Simulate and render 3D content for use in your augmented reality apps.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to RealityKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/RealityKit
+// See: https://developer.apple.com/documentation/RealityKit
 package realitykit
 
 import (

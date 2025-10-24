@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,13 +32,19 @@ type _MediaItemArtworkClass struct {
 // An interface definition for the [MediaItemArtwork] class.
 type IMediaItemArtwork interface {
 	objectivec.IObject
-	ImageWithSize(size coregraphics.CGSize) appkit.Image
-	Bounds() coregraphics.CGRect
-	ImageCropRect() coregraphics.CGRect
+	// properties:
+	Bounds() objc.IObject /* cross-framework: Rect */
+	ImageCropRect() objc.IObject /* cross-framework: Rect */
+	// methods:
+	ImageWithSize(size objc.IObject /* cross-framework: Size */) objc.IObject /* cross-framework: Image */
 }
 
 // A graphical image, such as music album cover art, associated with a media item.
+
+
+// A graphical image, such as music album cover art, associated with a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork
 type MediaItemArtwork struct {
 	objectivec.Object
@@ -84,11 +90,11 @@ func NewMediaItemArtwork() MediaItemArtwork {
 
 
 
-
 // Creates a new image from existing artwork with the specified bounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(boundsSize:requestHandler:)
-func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize coregraphics.CGSize, requestHandler unsafe.Pointer) MediaItemArtwork {
+func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize objc.IObject /* cross-framework: Size */, requestHandler Image  * (^)( CGSize size /* not a class type */) MediaItemArtwork {
 	instance := getMediaItemArtworkClass().Alloc()
 	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithBoundsSize:requestHandler:"), boundsSize, requestHandler)
 	rv.Autorelease()
@@ -96,11 +102,11 @@ func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize coregraphics.CGS
 }
 
 
-
 // Initializes a media item artwork instance with a full-size image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)
-func NewMediaItemArtworkWithImage(image appkit.IImage) MediaItemArtwork {
+func NewMediaItemArtworkWithImage(image objc.IObject /* cross-framework: Image */) MediaItemArtwork {
 	instance := getMediaItemArtworkClass().Alloc()
 	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithImage:"), image)
 	rv.Autorelease()
@@ -108,27 +114,33 @@ func NewMediaItemArtworkWithImage(image appkit.IImage) MediaItemArtwork {
 }
 
 
+
 // Returns the artwork image for an item at the given size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/image(at:)
-func (m_ MediaItemArtwork) ImageWithSize(size coregraphics.CGSize) appkit.Image {
+func (m_ MediaItemArtwork) ImageWithSize(size objc.IObject /* cross-framework: Size */) objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("imageWithSize:"), size)
 	return rv
 }
 
+
 // The maximum size, in points, of the image associated with the media item artwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/bounds
-func (m_ MediaItemArtwork) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("bounds"))
+func (m_ MediaItemArtwork) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("bounds"))
 	return rv
 }
 
+
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/imageCropRect
-func (m_ MediaItemArtwork) ImageCropRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+func (m_ MediaItemArtwork) ImageCropRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("imageCropRect"))
 	return rv
 }
 

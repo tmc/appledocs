@@ -30,16 +30,18 @@ type _ResponderStateClass struct {
 // An interface definition for the [ResponderState] class.
 type IResponderState interface {
 	objectivec.IObject
-	ActiveToolPicker() PKToolPicker
-	SetActiveToolPicker(value IPKToolPicker)
-	ToolPickerVisibility() ToolPickerVisibility
-	SetToolPickerVisibility(value IToolPickerVisibility)
+	// properties:
+	// methods:
 }
 
 // The state of PencilKit behavior related to a .
 //
 // Control the behavior of responders via the property.
+
+
+// The state of PencilKit behavior related to a .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState
 type ResponderState struct {
 	objectivec.Object
@@ -81,43 +83,6 @@ func (r_ ResponderState) Autorelease() ResponderState {
 // NewResponderState creates a new ResponderState instance.
 func NewResponderState() ResponderState {
 	return getResponderStateClass().New()
-}
-
-
-// The current tool picker.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/activeToolPicker
-func (r_ ResponderState) ActiveToolPicker() PKToolPicker {
-	rv := objc.Send[PKToolPicker](r_.ID, objc.Sel("activeToolPicker"))
-	return rv
-}
-
-
-// SetActiveToolPicker sets the value of the activeToolPicker property.
-// The current tool picker.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/activeToolPicker
-func (r_ ResponderState) SetActiveToolPicker(value IPKToolPicker) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveToolPicker:"), value)
-}
-
-// The visibility state of the tool picker.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/toolPickerVisibility-7hikj
-func (r_ ResponderState) ToolPickerVisibility() ToolPickerVisibility {
-	rv := objc.Send[ToolPickerVisibility](r_.ID, objc.Sel("toolPickerVisibility"))
-	return rv
-}
-
-
-// SetToolPickerVisibility sets the value of the toolPickerVisibility property.
-// The visibility state of the tool picker.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/toolPickerVisibility-7hikj
-func (r_ ResponderState) SetToolPickerVisibility(value IToolPickerVisibility) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setToolPickerVisibility:"), value)
 }
 
 

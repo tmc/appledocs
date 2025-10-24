@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,17 @@ type _MTRChannelClusterSeriesInfoStructClass struct {
 // An interface definition for the [MTRChannelClusterSeriesInfoStruct] class.
 type IMTRChannelClusterSeriesInfoStruct interface {
 	objectivec.IObject
-	Episode() string
-	SetEpisode(value string)
-	Season() string
-	SetSeason(value string)
+	// properties:
+	Episode() objc.IObject /* cross-framework: NSString */
+	SetEpisode(value objc.IObject /* cross-framework: NSString */)
+	Season() objc.IObject /* cross-framework: NSString */
+	SetSeason(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct
 type MTRChannelClusterSeriesInfoStruct struct {
 	objectivec.Object
@@ -79,34 +84,34 @@ func NewMTRChannelClusterSeriesInfoStruct() MTRChannelClusterSeriesInfoStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/episode
-func (m_ MTRChannelClusterSeriesInfoStruct) Episode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("episode"))
+func (m_ MTRChannelClusterSeriesInfoStruct) Episode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("episode"))
 	return rv
 }
 
 
-// SetEpisode sets the value of the episode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/episode
-func (m_ MTRChannelClusterSeriesInfoStruct) SetEpisode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEpisode:"), objc.String(value))
+func (m_ MTRChannelClusterSeriesInfoStruct) SetEpisode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEpisode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/season
-func (m_ MTRChannelClusterSeriesInfoStruct) Season() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("season"))
+func (m_ MTRChannelClusterSeriesInfoStruct) Season() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("season"))
 	return rv
 }
 
 
-// SetSeason sets the value of the season property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSeriesInfoStruct/season
-func (m_ MTRChannelClusterSeriesInfoStruct) SetSeason(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSeason:"), objc.String(value))
+func (m_ MTRChannelClusterSeriesInfoStruct) SetSeason(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSeason:"), value)
 }
 
 

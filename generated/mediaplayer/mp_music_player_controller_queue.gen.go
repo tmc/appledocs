@@ -30,13 +30,18 @@ type _MusicPlayerControllerQueueClass struct {
 // An interface definition for the [MusicPlayerControllerQueue] class.
 type IMusicPlayerControllerQueue interface {
 	objectivec.IObject
-	Items() []MediaItem
+	// properties:
+	// methods:
 }
 
 // An immutable queue containing the media items to play.
 //
 // An object contains the current queue for an application queue music player. To add or remove media items from a playing queue, use . The results of the method is an object that updates the playing queue. You don’t create your own instance of this class.
+
+
+// An immutable queue containing the media items to play.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerControllerQueue
 type MusicPlayerControllerQueue struct {
 	objectivec.Object
@@ -78,15 +83,6 @@ func (m_ MusicPlayerControllerQueue) Autorelease() MusicPlayerControllerQueue {
 // NewMusicPlayerControllerQueue creates a new MusicPlayerControllerQueue instance.
 func NewMusicPlayerControllerQueue() MusicPlayerControllerQueue {
 	return getMusicPlayerControllerQueueClass().New()
-}
-
-
-// The media items in the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerControllerQueue/items
-func (m_ MusicPlayerControllerQueue) Items() []MediaItem {
-	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
-	return rv
 }
 
 

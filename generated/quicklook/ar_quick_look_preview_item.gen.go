@@ -31,13 +31,17 @@ type _QuickLookPreviewItemClass struct {
 // An interface definition for the [QuickLookPreviewItem] class.
 type IQuickLookPreviewItem interface {
 	objectivec.IObject
+	// properties:
 	AllowsContentScaling() bool
 	SetAllowsContentScaling(value bool)
-	CanonicalWebPageURL() foundation.URL
-	SetCanonicalWebPageURL(value foundation.IURL)
+	CanonicalWebPageURL() objc.IObject /* cross-framework: URL */
+	SetCanonicalWebPageURL(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem
 type QuickLookPreviewItem struct {
 	objectivec.Object
@@ -81,11 +85,11 @@ func NewQuickLookPreviewItem() QuickLookPreviewItem {
 
 
 
-
 // Creates an object representing the 3D content that will be previewed in AR Quick Look.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/init(fileAt:)
-func NewQuickLookPreviewItemWithFileAtURL(url foundation.IURL) QuickLookPreviewItem {
+func NewQuickLookPreviewItemWithFileAtURL(url objc.IObject /* cross-framework: NSURL */) QuickLookPreviewItem {
 	instance := getQuickLookPreviewItemClass().Alloc()
 	rv := objc.Send[QuickLookPreviewItem](instance.ID, objc.Sel("initWithFileAtURL:"), url)
 	rv.Autorelease()
@@ -93,39 +97,41 @@ func NewQuickLookPreviewItemWithFileAtURL(url foundation.IURL) QuickLookPreviewI
 }
 
 
-// Whether or not AR Quick Look allows content scaling in AR mode. Defaults to which allows scaling content in AR mode.
+
+// Whether or not AR Quick Look allows content scaling in AR mode.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/allowsContentScaling
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/allowscontentscaling
 func (q_ QuickLookPreviewItem) AllowsContentScaling() bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("allowsContentScaling"))
 	return rv
 }
 
 
-// SetAllowsContentScaling sets the value of the allowsContentScaling property.
-// Whether or not AR Quick Look allows content scaling in AR mode. Defaults to which allows scaling content in AR mode.
-
+// Whether or not AR Quick Look allows content scaling in AR mode.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/allowsContentScaling
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/allowscontentscaling
 func (q_ QuickLookPreviewItem) SetAllowsContentScaling(value bool) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setAllowsContentScaling:"), value)
 }
 
+
 // An optional canonical web page URL for the 3D content that will be shared.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
-func (q_ QuickLookPreviewItem) CanonicalWebPageURL() foundation.URL {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/canonicalwebpageurl
+func (q_ QuickLookPreviewItem) CanonicalWebPageURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](q_.ID, objc.Sel("canonicalWebPageURL"))
 	return rv
 }
 
 
-// SetCanonicalWebPageURL sets the value of the canonicalWebPageURL property.
 // An optional canonical web page URL for the 3D content that will be shared.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
-func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value foundation.IURL) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/canonicalwebpageurl
+func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setCanonicalWebPageURL:"), value)
 }
 

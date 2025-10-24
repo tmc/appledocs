@@ -30,13 +30,17 @@ type _MTRGeneralDiagnosticsClusterRadioFaultChangeEventClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterRadioFaultChangeEvent] class.
 type IMTRGeneralDiagnosticsClusterRadioFaultChangeEvent interface {
 	objectivec.IObject
+	// properties:
 	Current() unsafe.Pointer
 	SetCurrent(value unsafe.Pointer)
 	Previous() unsafe.Pointer
 	SetPrevious(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterRadioFaultChangeEvent
 type MTRGeneralDiagnosticsClusterRadioFaultChangeEvent struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRGeneralDiagnosticsClusterRadioFaultChangeEvent() MTRGeneralDiagnostic
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -87,14 +92,14 @@ func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Current() unsafe.Poi
 }
 
 
-// SetCurrent sets the value of the current property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Previous() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
@@ -102,8 +107,7 @@ func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Previous() unsafe.Po
 }
 
 
-// SetPrevious sets the value of the previous property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)

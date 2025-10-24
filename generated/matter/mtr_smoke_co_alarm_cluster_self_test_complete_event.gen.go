@@ -30,9 +30,13 @@ type _MTRSmokeCOAlarmClusterSelfTestCompleteEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterSelfTestCompleteEvent] class.
 type IMTRSmokeCOAlarmClusterSelfTestCompleteEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterSelfTestCompleteEvent
 type MTRSmokeCOAlarmClusterSelfTestCompleteEvent struct {
 	objectivec.Object

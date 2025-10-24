@@ -34,8 +34,11 @@ type IURLResponse interface {
 	ExpectedContentLength() unsafe.Pointer
 	MIMEType() IString
 	SuggestedFilename() IString
+	SetSuggestedFilename(value IString)
 	TextEncodingName() IString
-	URL() IURL
+	SetTextEncodingName(value IString)
+	Url() IURL
+	SetUrl(value IURL)
 	// methods:
 }
 
@@ -92,19 +95,6 @@ func NewURLResponse() URLResponse {
 
 
 
-// Creates an initialized object with the URL, MIME type, length, and text encoding set to given values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/init(url:mimeType:expectedContentLength:textEncodingName:)
-func NewURLResponseWithURLMIMETypeExpectedContentLengthTextEncodingName(URL IURL, MIMEType IString, length int /* primitive/slice/pointer. */, name IString) URLResponse {
-	instance := getURLResponseClass().Alloc()
-	rv := objc.Send[URLResponse](instance.ID, objc.Sel("initWithURL:MIMEType:expectedContentLength:textEncodingName:"), URL, MIMEType, length, name)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The expected length of the response’s content.
 //
 // [Full Topic]
@@ -128,9 +118,28 @@ func (u_ URLResponse) MIMEType() IString {
 // A suggested filename for the response data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/suggestedFilename
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
 func (u_ URLResponse) SuggestedFilename() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("suggestedFilename"))
+	return rv
+}
+
+
+// A suggested filename for the response data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
+func (u_ URLResponse) SetSuggestedFilename(value IString) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), value)
+}
+
+
+// The name of the text encoding provided by the response’s originating source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+func (u_ URLResponse) TextEncodingName() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("textEncodingName"))
 	return rv
 }
 
@@ -138,9 +147,18 @@ func (u_ URLResponse) SuggestedFilename() IString {
 // The name of the text encoding provided by the response’s originating source.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/textEncodingName
-func (u_ URLResponse) TextEncodingName() IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("textEncodingName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
+func (u_ URLResponse) SetTextEncodingName(value IString) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), value)
+}
+
+
+// The URL for the response.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
+func (u_ URLResponse) Url() IURL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -148,10 +166,10 @@ func (u_ URLResponse) TextEncodingName() IString {
 // The URL for the response.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
-func (u_ URLResponse) URL() IURL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
+func (u_ URLResponse) SetUrl(value IURL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }
+
 
 

@@ -29,12 +29,18 @@ type _VZNVMExpressControllerDeviceConfigurationClass struct {
 // An interface definition for the [VZNVMExpressControllerDeviceConfiguration] class.
 type IVZNVMExpressControllerDeviceConfiguration interface {
 	IVZStorageDeviceConfiguration
+	// properties:
+	// methods:
 }
 
 // The configuration object that represents an NVM Express Controller storage device.
 //
 // This device configuration creates a storage device that conforms to the . The device configuration is valid only if used with .
+
+
+// The configuration object that represents an NVM Express Controller storage device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNVMExpressControllerDeviceConfiguration
 type VZNVMExpressControllerDeviceConfiguration struct {
 	VZStorageDeviceConfiguration
@@ -80,6 +86,18 @@ func NewVZNVMExpressControllerDeviceConfiguration() VZNVMExpressControllerDevice
 	return getVZNVMExpressControllerDeviceConfigurationClass().New()
 }
 
+
+
+// Creates a new NVM Express controller configuration with the storage device attachment you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNVMExpressControllerDeviceConfiguration/init(attachment:)
+func NewVZNVMExpressControllerDeviceConfigurationWithAttachment(attachment IVZStorageDeviceAttachment) VZNVMExpressControllerDeviceConfiguration {
+	instance := getVZNVMExpressControllerDeviceConfigurationClass().Alloc()
+	rv := objc.Send[VZNVMExpressControllerDeviceConfiguration](instance.ID, objc.Sel("initWithAttachment:"), attachment)
+	rv.Autorelease()
+	return rv
+}
 
 
 

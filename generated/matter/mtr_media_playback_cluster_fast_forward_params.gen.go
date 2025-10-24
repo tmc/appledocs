@@ -31,15 +31,19 @@ type _MTRMediaPlaybackClusterFastForwardParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterFastForwardParams] class.
 type IMTRMediaPlaybackClusterFastForwardParams interface {
 	objectivec.IObject
-	AudioAdvanceUnmuted() foundation.Number
-	SetAudioAdvanceUnmuted(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	AudioAdvanceUnmuted() objc.IObject /* cross-framework: NSNumber */
+	SetAudioAdvanceUnmuted(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterFastForwardParams
 type MTRMediaPlaybackClusterFastForwardParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRMediaPlaybackClusterFastForwardParams() MTRMediaPlaybackClusterFastFo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/audioadvanceunmuted
-func (m_ MTRMediaPlaybackClusterFastForwardParams) AudioAdvanceUnmuted() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("audioAdvanceUnmuted"))
+func (m_ MTRMediaPlaybackClusterFastForwardParams) AudioAdvanceUnmuted() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("audioAdvanceUnmuted"))
 	return rv
 }
 
 
-// SetAudioAdvanceUnmuted sets the value of the audioAdvanceUnmuted property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/audioadvanceunmuted
-func (m_ MTRMediaPlaybackClusterFastForwardParams) SetAudioAdvanceUnmuted(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterFastForwardParams) SetAudioAdvanceUnmuted(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterFastForwardParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaPlaybackClusterFastForwardParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterFastForwardParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterFastForwardParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterFastForwardParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterFastForwardParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterfastforwardparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterFastForwardParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterFastForwardParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

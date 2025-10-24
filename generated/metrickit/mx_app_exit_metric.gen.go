@@ -29,12 +29,18 @@ type _MXAppExitMetricClass struct {
 // An interface definition for the [MXAppExitMetric] class.
 type IMXAppExitMetric interface {
 	IMXMetric
-	BackgroundExitData() MXBackgroundExitData
-	ForegroundExitData() MXForegroundExitData
+	// properties:
+	BackgroundExitData() IMXBackgroundExitData
+	ForegroundExitData() IMXForegroundExitData
+	// methods:
 }
 
 // An object representing metrics about the types of foreground and background app exits.
+
+
+// An object representing metrics about the types of foreground and background app exits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppExitMetric
 type MXAppExitMetric struct {
 	MXMetric
@@ -81,18 +87,22 @@ func NewMXAppExitMetric() MXAppExitMetric {
 }
 
 
+
 // The metrics for the background app exits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppExitMetric/backgroundExitData
-func (m_ MXAppExitMetric) BackgroundExitData() MXBackgroundExitData {
+func (m_ MXAppExitMetric) BackgroundExitData() IMXBackgroundExitData {
 	rv := objc.Send[MXBackgroundExitData](m_.ID, objc.Sel("backgroundExitData"))
 	return rv
 }
 
+
 // The metrics for the foreground app exits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppExitMetric/foregroundExitData
-func (m_ MXAppExitMetric) ForegroundExitData() MXForegroundExitData {
+func (m_ MXAppExitMetric) ForegroundExitData() IMXForegroundExitData {
 	rv := objc.Send[MXForegroundExitData](m_.ID, objc.Sel("foregroundExitData"))
 	return rv
 }

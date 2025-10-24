@@ -29,12 +29,18 @@ type _VZMacOSVirtualMachineStartOptionsClass struct {
 // An interface definition for the [VZMacOSVirtualMachineStartOptions] class.
 type IVZMacOSVirtualMachineStartOptions interface {
 	IVZVirtualMachineStartOptions
+	// properties:
 	StartUpFromMacOSRecovery() bool
 	SetStartUpFromMacOSRecovery(value bool)
+	// methods:
 }
 
 // A class that describes start options for macOS VMs.
+
+
+// A class that describes start options for macOS VMs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSVirtualMachineStartOptions
 type VZMacOSVirtualMachineStartOptions struct {
 	VZVirtualMachineStartOptions
@@ -81,8 +87,10 @@ func NewVZMacOSVirtualMachineStartOptions() VZMacOSVirtualMachineStartOptions {
 }
 
 
+
 // A Boolean value that indicates whether the macOS guest should start in recovery mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSVirtualMachineStartOptions/startUpFromMacOSRecovery
 func (v_ VZMacOSVirtualMachineStartOptions) StartUpFromMacOSRecovery() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("startUpFromMacOSRecovery"))
@@ -90,10 +98,9 @@ func (v_ VZMacOSVirtualMachineStartOptions) StartUpFromMacOSRecovery() bool {
 }
 
 
-// SetStartUpFromMacOSRecovery sets the value of the startUpFromMacOSRecovery property.
 // A Boolean value that indicates whether the macOS guest should start in recovery mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSVirtualMachineStartOptions/startUpFromMacOSRecovery
 func (v_ VZMacOSVirtualMachineStartOptions) SetStartUpFromMacOSRecovery(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStartUpFromMacOSRecovery:"), value)

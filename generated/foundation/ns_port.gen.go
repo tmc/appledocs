@@ -31,18 +31,11 @@ type _PortClass struct {
 type IPort interface {
 	objectivec.IObject
 	// properties:
-	Valid() bool /* primitive/slice/pointer. */
-	ReservedSpaceLength() uint /* primitive/slice/pointer. */
-	IsValid() bool /* primitive/slice/pointer. */
-	SetIsValid(value bool /* primitive/slice/pointer. */)
+	IsValid() bool
+	SetIsValid(value bool)
+	ReservedSpaceLength() int
+	SetReservedSpaceLength(value int)
 	// methods:
-	Delegate() objc.ID
-	Invalidate()
-	RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode /* not a class type */)
-	ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode /* not a class type */)
-	SendBeforeDateComponentsFromReserved(limitDate IDate, components IMutableArray, receivePort IPort, headerSpaceReserved uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SendBeforeDateMsgidComponentsFromReserved(limitDate IDate, msgID uint /* primitive/slice/pointer. */, components IMutableArray, receivePort IPort, headerSpaceReserved uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetDelegate(anObject objectivec.IObject)
 }
 
 // An abstract class that represents a communication channel.
@@ -98,107 +91,11 @@ func NewPort() Port {
 
 
 
-// Creates and returns a new object capable of both sending and receiving messages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPort/port
-func (pc _PortClass) Port() IPort {
-	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("port"))
-	return rv
-}
-
-
-// Returns the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/delegate()
-func (p_ Port) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Marks the receiver as invalid and posts an to the default notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/invalidate()
-func (p_ Port) Invalidate() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("invalidate"))
-}
-
-
-// This method should be implemented by a subclass to stop monitoring of a port when removed from a give run loop in a given input mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/remove(from:forMode:)
-func (p_ Port) RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("removeFromRunLoop:forMode:"), runLoop, mode)
-}
-
-
-// This method should be implemented by a subclass to set up monitoring of a port when added to a given run loop in a given input mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/schedule(in:forMode:)
-func (p_ Port) ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("scheduleInRunLoop:forMode:"), runLoop, mode)
-}
-
-
-// This method is provided for subclasses that have custom types of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/send(before:components:from:reserved:)
-func (p_ Port) SendBeforeDateComponentsFromReserved(limitDate IDate, components IMutableArray, receivePort IPort, headerSpaceReserved uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:components:from:reserved:"), limitDate, components, receivePort, headerSpaceReserved)
-	return rv
-}
-
-
-// This method is provided for subclasses that have custom types of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/send(before:msgid:components:from:reserved:)
-func (p_ Port) SendBeforeDateMsgidComponentsFromReserved(limitDate IDate, msgID uint /* primitive/slice/pointer. */, components IMutableArray, receivePort IPort, headerSpaceReserved uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:msgid:components:from:reserved:"), limitDate, msgID, components, receivePort, headerSpaceReserved)
-	return rv
-}
-
-
-// Sets the receiver’s delegate to a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/setDelegate(_:)
-func (p_ Port) SetDelegate(anObject objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), anObject)
-}
-
-
-// A Boolean value that indicates whether the receiver is valid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/isValid
-func (p_ Port) Valid() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("valid"))
-	return rv
-}
-
-
-// The number of bytes of space reserved by the receiver for sending data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/reservedSpaceLength
-func (p_ Port) ReservedSpaceLength() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](p_.ID, objc.Sel("reservedSpaceLength"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the receiver is valid.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
-func (p_ Port) IsValid() bool /* primitive/slice/pointer. */ {
+func (p_ Port) IsValid() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isValid"))
 	return rv
 }
@@ -208,8 +105,27 @@ func (p_ Port) IsValid() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
-func (p_ Port) SetIsValid(value bool /* primitive/slice/pointer. */) {
+func (p_ Port) SetIsValid(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsValid:"), value)
+}
+
+
+// The number of bytes of space reserved by the receiver for sending data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
+func (p_ Port) ReservedSpaceLength() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("reservedSpaceLength"))
+	return rv
+}
+
+
+// The number of bytes of space reserved by the receiver for sending data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
+func (p_ Port) SetReservedSpaceLength(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setReservedSpaceLength:"), value)
 }
 
 

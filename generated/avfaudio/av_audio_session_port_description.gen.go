@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,20 +42,20 @@ type IAudioSessionPortDescription interface {
 	SetChannels(value AudioSessionChannelDescription /* not a class type */)
 	DataSources() IAVAudioSessionDataSourceDescription
 	SetDataSources(value IAVAudioSessionDataSourceDescription)
-	HasHardwareVoiceCallProcessing() bool /* primitive/slice/pointer. */
-	SetHasHardwareVoiceCallProcessing(value bool /* primitive/slice/pointer. */)
-	IsSpatialAudioEnabled() bool /* primitive/slice/pointer. */
-	SetIsSpatialAudioEnabled(value bool /* primitive/slice/pointer. */)
-	PortName() string /* primitive/slice/pointer. */
-	SetPortName(value string /* primitive/slice/pointer. */)
-	PortType() unsafe.Pointer
-	SetPortType(value unsafe.Pointer)
+	HasHardwareVoiceCallProcessing() bool
+	SetHasHardwareVoiceCallProcessing(value bool)
+	IsSpatialAudioEnabled() bool
+	SetIsSpatialAudioEnabled(value bool)
+	PortName() objc.IObject /* cross-framework: NSString */
+	SetPortName(value objc.IObject /* cross-framework: NSString */)
+	PortType() objc.IObject /* cross-framework: Port */
+	SetPortType(value objc.IObject /* cross-framework: Port */)
 	PreferredDataSource() IAVAudioSessionDataSourceDescription
 	SetPreferredDataSource(value IAVAudioSessionDataSourceDescription)
 	SelectedDataSource() IAVAudioSessionDataSourceDescription
 	SetSelectedDataSource(value IAVAudioSessionDataSourceDescription)
-	Uid() string /* primitive/slice/pointer. */
-	SetUid(value string /* primitive/slice/pointer. */)
+	Uid() objc.IObject /* cross-framework: NSString */
+	SetUid(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -210,7 +211,7 @@ func (a_ AudioSessionPortDescription) SetDataSources(value IAVAudioSessionDataSo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
-func (a_ AudioSessionPortDescription) HasHardwareVoiceCallProcessing() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionPortDescription) HasHardwareVoiceCallProcessing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasHardwareVoiceCallProcessing"))
 	return rv
 }
@@ -220,7 +221,7 @@ func (a_ AudioSessionPortDescription) HasHardwareVoiceCallProcessing() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/hashardwarevoicecallprocessing
-func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasHardwareVoiceCallProcessing:"), value)
 }
 
@@ -229,7 +230,7 @@ func (a_ AudioSessionPortDescription) SetHasHardwareVoiceCallProcessing(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSpatialAudioEnabled"))
 	return rv
 }
@@ -239,7 +240,7 @@ func (a_ AudioSessionPortDescription) IsSpatialAudioEnabled() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/isspatialaudioenabled
-func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSpatialAudioEnabled:"), value)
 }
 
@@ -248,8 +249,8 @@ func (a_ AudioSessionPortDescription) SetIsSpatialAudioEnabled(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) PortName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("portName"))
+func (a_ AudioSessionPortDescription) PortName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("portName"))
 	return rv
 }
 
@@ -258,8 +259,8 @@ func (a_ AudioSessionPortDescription) PortName() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/portname
-func (a_ AudioSessionPortDescription) SetPortName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), objc.String(value))
+func (a_ AudioSessionPortDescription) SetPortName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPortName:"), value)
 }
 
 
@@ -267,8 +268,8 @@ func (a_ AudioSessionPortDescription) SetPortName(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
-func (a_ AudioSessionPortDescription) PortType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("portType"))
+func (a_ AudioSessionPortDescription) PortType() objc.IObject /* cross-framework: Port */ {
+	rv := objc.Send[foundation.Port](a_.ID, objc.Sel("portType"))
 	return rv
 }
 
@@ -277,7 +278,7 @@ func (a_ AudioSessionPortDescription) PortType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
-func (a_ AudioSessionPortDescription) SetPortType(value unsafe.Pointer) {
+func (a_ AudioSessionPortDescription) SetPortType(value objc.IObject /* cross-framework: Port */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortType:"), value)
 }
 
@@ -324,8 +325,8 @@ func (a_ AudioSessionPortDescription) SetSelectedDataSource(value IAVAudioSessio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) Uid() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("uid"))
+func (a_ AudioSessionPortDescription) Uid() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("uid"))
 	return rv
 }
 
@@ -334,8 +335,8 @@ func (a_ AudioSessionPortDescription) Uid() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/uid
-func (a_ AudioSessionPortDescription) SetUid(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), objc.String(value))
+func (a_ AudioSessionPortDescription) SetUid(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUid:"), value)
 }
 
 

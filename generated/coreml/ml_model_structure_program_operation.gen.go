@@ -32,10 +32,10 @@ type _ModelStructureProgramOperationClass struct {
 type IModelStructureProgramOperation interface {
 	objectivec.IObject
 	// properties:
-	Blocks() []ModelStructureProgramBlock /* primitive/slice/pointer. */
-	Inputs() foundation.IDictionary /* already interface */
-	OperatorName() string /* primitive/slice/pointer. */
-	Outputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */
+	Blocks() []IModelStructureProgramBlock
+	Inputs() foundation.IDictionary
+	OperatorName() objc.IObject /* cross-framework: NSString */
+	Outputs() []IModelStructureProgramNamedValueType
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewModelStructureProgramOperation() ModelStructureProgramOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/blocks
-func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramOperation) Blocks() []IModelStructureProgramBlock {
 	rv := objc.Send[[]ModelStructureProgramBlock](m_.ID, objc.Sel("blocks"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/inputs
-func (m_ ModelStructureProgramOperation) Inputs() foundation.IDictionary /* already interface */ {
+func (m_ ModelStructureProgramOperation) Inputs() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("inputs"))
 	return rv
 }
@@ -114,8 +114,8 @@ func (m_ ModelStructureProgramOperation) Inputs() foundation.IDictionary /* alre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/operatorName
-func (m_ ModelStructureProgramOperation) OperatorName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
+func (m_ ModelStructureProgramOperation) OperatorName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (m_ ModelStructureProgramOperation) OperatorName() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/outputs
-func (m_ ModelStructureProgramOperation) Outputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramOperation) Outputs() []IModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("outputs"))
 	return rv
 }

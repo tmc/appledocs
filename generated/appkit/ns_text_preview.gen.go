@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +32,14 @@ type _TextPreviewClass struct {
 // An interface definition for the [TextPreview] class.
 type ITextPreview interface {
 	objectivec.IObject
-	CandidateRects() foundation.Value
-	SetCandidateRects(value foundation.IValue)
-	PresentationFrame() coregraphics.CGRect
-	SetPresentationFrame(value coregraphics.CGRect)
-	PreviewImage() Image
+	// properties:
+	CandidateRects() objc.IObject /* cross-framework: Value */
+	SetCandidateRects(value objc.IObject /* cross-framework: Value */)
+	PresentationFrame() objc.IObject /* cross-framework: Rect */
+	SetPresentationFrame(value objc.IObject /* cross-framework: Rect */)
+	PreviewImage() IImage
 	SetPreviewImage(value IImage)
+	// methods:
 }
 
 // A snapshot of the text in your view, which the system uses to create user-visible effects.
@@ -97,7 +99,7 @@ func NewTextPreview() TextPreview {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) CandidateRects() foundation.Value {
+func (t_ TextPreview) CandidateRects() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("candidateRects"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (t_ TextPreview) CandidateRects() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) SetCandidateRects(value foundation.IValue) {
+func (t_ TextPreview) SetCandidateRects(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
 }
 
@@ -116,8 +118,8 @@ func (t_ TextPreview) SetCandidateRects(value foundation.IValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
-func (t_ TextPreview) PresentationFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("presentationFrame"))
+func (t_ TextPreview) PresentationFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("presentationFrame"))
 	return rv
 }
 
@@ -126,7 +128,7 @@ func (t_ TextPreview) PresentationFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
-func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
+func (t_ TextPreview) SetPresentationFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPresentationFrame:"), value)
 }
 
@@ -135,7 +137,7 @@ func (t_ TextPreview) SetPresentationFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-func (t_ TextPreview) PreviewImage() Image {
+func (t_ TextPreview) PreviewImage() IImage {
 	rv := objc.Send[Image](t_.ID, objc.Sel("previewImage"))
 	return rv
 }

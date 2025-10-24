@@ -31,13 +31,17 @@ type _MTRTimeSynchronizationClusterTimeZoneStatusEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTimeZoneStatusEvent] class.
 type IMTRTimeSynchronizationClusterTimeZoneStatusEvent interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	Offset() foundation.Number
-	SetOffset(value foundation.INumber)
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Offset() objc.IObject /* cross-framework: NSNumber */
+	SetOffset(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent
 type MTRTimeSynchronizationClusterTimeZoneStatusEvent struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRTimeSynchronizationClusterTimeZoneStatusEvent() MTRTimeSynchronizatio
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offset"))
 	return rv
 }
 
 
-// SetOffset sets the value of the offset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _ShadowClass struct {
 type IShadow interface {
 	objectivec.IObject
 	// properties:
-	ShadowBlurRadius() float64 /* primitive/slice/pointer. */
-	SetShadowBlurRadius(value float64 /* primitive/slice/pointer. */)
+	ShadowBlurRadius() float64
+	SetShadowBlurRadius(value float64)
 	ShadowColor() IColor
 	SetShadowColor(value IColor)
 	ShadowOffset() objc.IObject /* cross-framework: Size */
@@ -108,7 +109,7 @@ func (s_ Shadow) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) ShadowBlurRadius() float64 /* primitive/slice/pointer. */ {
+func (s_ Shadow) ShadowBlurRadius() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
 	return rv
 }
@@ -118,7 +119,7 @@ func (s_ Shadow) ShadowBlurRadius() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) SetShadowBlurRadius(value float64 /* primitive/slice/pointer. */) {
+func (s_ Shadow) SetShadowBlurRadius(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
 }
 
@@ -147,7 +148,7 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
 func (s_ Shadow) ShadowOffset() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](s_.ID, objc.Sel("shadowOffset"))
+	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("shadowOffset"))
 	return rv
 }
 

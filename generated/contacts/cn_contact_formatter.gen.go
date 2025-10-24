@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNContactFormatter] class.
@@ -30,12 +29,12 @@ type _CNContactFormatterClass struct {
 
 // An interface definition for the [CNContactFormatter] class.
 type ICNContactFormatter interface {
-	foundation.IFormatter
+	IFormatter
 	// properties:
 	Style() CNContactFormatterStyle
 	SetStyle(value CNContactFormatterStyle)
 	// methods:
-	AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
+	AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */
 	StringFromContact(contact ICNContact) objc.IObject /* cross-framework: String */
 }
 
@@ -49,7 +48,7 @@ type ICNContactFormatter interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter
 type CNContactFormatter struct {
-	foundation.Formatter
+	Formatter
 }
 
 // CNContactFormatterFrom constructs a [CNContactFormatter] from an unsafe.Pointer.
@@ -57,7 +56,7 @@ type CNContactFormatter struct {
 // An object that you use to format contact information before displaying it to the user.
 func CNContactFormatterFrom(ptr unsafe.Pointer) CNContactFormatter {
 	return CNContactFormatter{
-		Formatter: foundation.FormatterFrom(ptr),
+		Formatter: FormatterFrom(ptr),
 	}
 }
 
@@ -98,8 +97,8 @@ func NewCNContactFormatter() CNContactFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:style:defaultAttributes:)
-func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact ICNContact, style CNContactFormatterStyle, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
+func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact ICNContact, style CNContactFormatterStyle, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
 	return rv
 }
 
@@ -109,7 +108,7 @@ func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttrib
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/delimiter(for:)
 func (cc _CNContactFormatterClass) DelimiterForContact(contact ICNContact) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
 	return rv
 }
 
@@ -139,7 +138,7 @@ func (cc _CNContactFormatterClass) NameOrderForContact(contact ICNContact) CNCon
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:style:)
 func (cc _CNContactFormatterClass) StringFromContactStyle(contact ICNContact, style CNContactFormatterStyle) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
 	return rv
 }
 
@@ -166,8 +165,8 @@ func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForNameOrder() objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:defaultAttributes:)
-func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
+func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
 	return rv
 }
 
@@ -177,7 +176,7 @@ func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contac
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
 func (c_ CNContactFormatter) StringFromContact(contact ICNContact) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](c_.ID, objc.Sel("stringFromContact:"), contact)
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("stringFromContact:"), contact)
 	return rv
 }
 

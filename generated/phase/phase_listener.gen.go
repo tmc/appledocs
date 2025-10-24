@@ -29,16 +29,22 @@ type _PHASEListenerClass struct {
 // An interface definition for the [PHASEListener] class.
 type IPHASEListener interface {
 	IPHASEObject
+	// properties:
 	AutomaticHeadTrackingFlags() PHASEAutomaticHeadTrackingFlags
 	SetAutomaticHeadTrackingFlags(value PHASEAutomaticHeadTrackingFlags)
 	Gain() float64
 	SetGain(value float64)
+	// methods:
 }
 
 // A central point of reference that defines the location within the scene that’s most audible to the user.
 //
 // PHASE requires an instance of this class to play ambient or spatial audio. To output sound through an ambient mixer or spatial mixer, the app adds an instance of this class to a sound event by using . For an example that demonstrates listeners, see .
+
+
+// A central point of reference that defines the location within the scene that’s most audible to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener
 type PHASEListener struct {
 	PHASEObject
@@ -86,9 +92,9 @@ func NewPHASEListener() PHASEListener {
 
 
 
-
 // Creates a listener with the given engine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/init(engine:)
 func NewPHASEListenerWithEngine(engine IPHASEEngine) PHASEListener {
 	instance := getPHASEListenerClass().Alloc()
@@ -98,7 +104,8 @@ func NewPHASEListenerWithEngine(engine IPHASEEngine) PHASEListener {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/automaticHeadTrackingFlags
 func (p_ PHASEListener) AutomaticHeadTrackingFlags() PHASEAutomaticHeadTrackingFlags {
 	rv := objc.Send[PHASEAutomaticHeadTrackingFlags](p_.ID, objc.Sel("automaticHeadTrackingFlags"))
@@ -106,15 +113,16 @@ func (p_ PHASEListener) AutomaticHeadTrackingFlags() PHASEAutomaticHeadTrackingF
 }
 
 
-// SetAutomaticHeadTrackingFlags sets the value of the automaticHeadTrackingFlags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/automaticHeadTrackingFlags
 func (p_ PHASEListener) SetAutomaticHeadTrackingFlags(value PHASEAutomaticHeadTrackingFlags) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticHeadTrackingFlags:"), value)
 }
 
+
 // Modifies the volume of all audio playback for the listener’s mixers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/gain
 func (p_ PHASEListener) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
@@ -122,10 +130,9 @@ func (p_ PHASEListener) Gain() float64 {
 }
 
 
-// SetGain sets the value of the gain property.
 // Modifies the volume of all audio playback for the listener’s mixers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/gain
 func (p_ PHASEListener) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)

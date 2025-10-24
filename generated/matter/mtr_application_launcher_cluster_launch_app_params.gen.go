@@ -31,17 +31,21 @@ type _MTRApplicationLauncherClusterLaunchAppParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterLaunchAppParams] class.
 type IMTRApplicationLauncherClusterLaunchAppParams interface {
 	objectivec.IObject
-	Application() MTRApplicationLauncherClusterApplicationStruct
+	// properties:
+	Application() IMTRApplicationLauncherClusterApplicationStruct
 	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
-	Data() foundation.Data
-	SetData(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterLaunchAppParams
 type MTRApplicationLauncherClusterLaunchAppParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRApplicationLauncherClusterLaunchAppParams() MTRApplicationLauncherClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() MTRApplicationLauncherClusterApplicationStruct {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() IMTRApplicationLauncherClusterApplicationStruct {
 	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
 
-// SetApplication sets the value of the application property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
 func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() foundation.Data {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value foundation.IData) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

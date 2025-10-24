@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AVFoundation without requiring cgo.
-
-// Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation
+// See: https://developer.apple.com/documentation/AVFoundation
 package avfoundation
 
 import (

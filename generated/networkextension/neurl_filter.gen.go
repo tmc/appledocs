@@ -30,12 +30,18 @@ type _NEURLFilterClass struct {
 // An interface definition for the [NEURLFilter] class.
 type INEURLFilter interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
 //
 // When using networking frameworks other than WebKit or Foundation’s , use the API to evaluate URLs before potentially connecting to a restricted or malicious site. Call the class method to check a URL and honor the “allow” or “deny” verdict. Don’t connect to any URL that receives a “deny” verdict.
+
+
+// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter
 type NEURLFilter struct {
 	objectivec.Object

@@ -30,12 +30,18 @@ type _VZKeyboardConfigurationClass struct {
 // An interface definition for the [VZKeyboardConfiguration] class.
 type IVZKeyboardConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a configuring a keyboard.
 //
 // defines the abstract interface that defines a virtual keyboard that you connect to a guest operating system. Don’t instantiate directly, use one of its subclasses such as instead.
+
+
+// The base class for a configuring a keyboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZKeyboardConfiguration
 type VZKeyboardConfiguration struct {
 	objectivec.Object

@@ -31,15 +31,20 @@ type _MAFlashingLightsProcessorClass struct {
 // An interface definition for the [MAFlashingLightsProcessor] class.
 type IMAFlashingLightsProcessor interface {
 	objectivec.IObject
-	CanProcessSurface(surface unsafe.Pointer) bool
-	ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) MAFlashingLightsProcessorResult
-	KMADimFlashingLightsChangedNotification() foundation.String
+	// properties:
+	KMADimFlashingLightsChangedNotification() objc.IObject /* cross-framework: String */
+	// methods:
+	ProcessSurfaceOutSurfaceTimestampOptions(inSurface SurfaceRef /* not a class type */, outSurface SurfaceRef /* not a class type */, timestamp AbsoluteTime /* not a class type */, options foundation.IDictionary) IMAFlashingLightsProcessorResult
 }
 
 // A class that processes a framebuffer object to detect and dim sequences of flashing lights.
 //
 // A device with the Dim Flashing Lights setting on automatically dims the brightness of flashing effect sequences when it detects them in video content. If your app performs custom video drawing instead of using APIs, you can use the class to detect and mitigate sequences of flashing effects in your video content. The following example shows how you might incorporate into code that uses APIs. For more information, see .
+
+
+// A class that processes a framebuffer object to detect and dim sequences of flashing lights.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessor
 type MAFlashingLightsProcessor struct {
 	objectivec.Object
@@ -84,26 +89,22 @@ func NewMAFlashingLightsProcessor() MAFlashingLightsProcessor {
 }
 
 
-// Returns a Boolean value that indicates whether the flashing lights processor can process the content in the surface for sequences of flashing lights.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessor/canProcessSurface(_:)
-func (m_ MAFlashingLightsProcessor) CanProcessSurface(surface unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("canProcessSurface:"), surface)
-	return rv
-}
 
 // Processes a surface by analyzing pixels for sequences of flashing lights and mitigates them by dimming the content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface:outSurface:timestamp:options:
-func (m_ MAFlashingLightsProcessor) ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) MAFlashingLightsProcessorResult {
+func (m_ MAFlashingLightsProcessor) ProcessSurfaceOutSurfaceTimestampOptions(inSurface SurfaceRef /* not a class type */, outSurface SurfaceRef /* not a class type */, timestamp AbsoluteTime /* not a class type */, options foundation.IDictionary) IMAFlashingLightsProcessorResult {
 	rv := objc.Send[MAFlashingLightsProcessorResult](m_.ID, objc.Sel("processSurface:outSurface:timestamp:options:"), inSurface, outSurface, timestamp, options)
 	return rv
 }
 
+
 // A notification that posts when a person changes the flashing lights setting on the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaaccessibility/kmadimflashinglightschangednotification
-func (m_ MAFlashingLightsProcessor) KMADimFlashingLightsChangedNotification() foundation.String {
+func (m_ MAFlashingLightsProcessor) KMADimFlashingLightsChangedNotification() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](m_.ID, objc.Sel("kMADimFlashingLightsChangedNotification"))
 	return rv
 }

@@ -11,7 +11,6 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 10.0+
 //   - iPadOS 10.0+
 //   - macOS 10.14+
-//   - tvOS 10.0+
 //   - visionOS 1.0+
 //   - watchOS 3.0+
 //

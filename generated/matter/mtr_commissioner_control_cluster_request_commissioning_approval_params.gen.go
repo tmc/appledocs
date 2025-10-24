@@ -31,21 +31,25 @@ type _MTRCommissionerControlClusterRequestCommissioningApprovalParamsClass struc
 // An interface definition for the [MTRCommissionerControlClusterRequestCommissioningApprovalParams] class.
 type IMTRCommissionerControlClusterRequestCommissioningApprovalParams interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	RequestID() foundation.Number
-	SetRequestID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	RequestID() objc.IObject /* cross-framework: NSNumber */
+	SetRequestID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams
 type MTRCommissionerControlClusterRequestCommissioningApprovalParams struct {
 	objectivec.Object
@@ -88,99 +92,101 @@ func NewMTRCommissionerControlClusterRequestCommissioningApprovalParams() MTRCom
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) RequestID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) RequestID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("requestID"))
 	return rv
 }
 
 
-// SetRequestID sets the value of the requestID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

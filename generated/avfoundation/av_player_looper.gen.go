@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _PlayerLooperClass struct {
 type IPlayerLooper interface {
 	objectivec.IObject
 	// properties:
-	Error() Error
-	SetError(value Error)
-	LoopCount() int /* primitive/slice/pointer. */
-	SetLoopCount(value int /* primitive/slice/pointer. */)
+	Error() coretelephony.Error
+	SetError(value coretelephony.Error)
+	LoopCount() int
+	SetLoopCount(value int)
 	LoopingPlayerItems() IAVPlayerItem
 	SetLoopingPlayerItems(value IAVPlayerItem)
 	Status() unsafe.Pointer
@@ -99,8 +100,8 @@ func NewPlayerLooper() PlayerLooper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) Error() Error {
-	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
+func (p_ PlayerLooper) Error() coretelephony.Error {
+	rv := objc.Send[coretelephony.Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (p_ PlayerLooper) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) SetError(value Error) {
+func (p_ PlayerLooper) SetError(value coretelephony.Error) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 
@@ -118,7 +119,7 @@ func (p_ PlayerLooper) SetError(value Error) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer. */ {
+func (p_ PlayerLooper) LoopCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
 }
@@ -128,7 +129,7 @@ func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) SetLoopCount(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerLooper) SetLoopCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
 }
 

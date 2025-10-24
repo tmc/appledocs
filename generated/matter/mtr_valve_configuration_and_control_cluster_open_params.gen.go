@@ -31,17 +31,21 @@ type _MTRValveConfigurationAndControlClusterOpenParamsClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterOpenParams] class.
 type IMTRValveConfigurationAndControlClusterOpenParams interface {
 	objectivec.IObject
-	OpenDuration() foundation.Number
-	SetOpenDuration(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TargetLevel() foundation.Number
-	SetTargetLevel(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	OpenDuration() objc.IObject /* cross-framework: NSNumber */
+	SetOpenDuration(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TargetLevel() objc.IObject /* cross-framework: NSNumber */
+	SetTargetLevel(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterOpenParams
 type MTRValveConfigurationAndControlClusterOpenParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRValveConfigurationAndControlClusterOpenParams() MTRValveConfiguration
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/openduration
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) OpenDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("openDuration"))
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) OpenDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("openDuration"))
 	return rv
 }
 
 
-// SetOpenDuration sets the value of the openDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/openduration
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetOpenDuration(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetOpenDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOpenDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/serversideprocessingtimeout
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/serversideprocessingtimeout
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/targetlevel
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) TargetLevel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetLevel"))
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) TargetLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetLevel"))
 	return rv
 }
 
 
-// SetTargetLevel sets the value of the targetLevel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/targetlevel
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTargetLevel(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTargetLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetLevel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/timedinvoketimeoutms
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/timedinvoketimeoutms
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

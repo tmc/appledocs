@@ -30,7 +30,7 @@ type _CNCustomDetectionTrackClass struct {
 type ICNCustomDetectionTrack interface {
 	ICNDetectionTrack
 	// properties:
-	AllDetections() []CNDetection /* primitive/slice/pointer. */
+	AllDetections() []ICNDetection
 	// methods:
 }
 
@@ -91,7 +91,7 @@ func NewCNCustomDetectionTrack() CNCustomDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/initWithDetections:smooth:
-func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection /* primitive/slice/pointer. */, applySmoothing bool /* primitive/slice/pointer. */) CNCustomDetectionTrack {
+func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []ICNDetection, applySmoothing bool) CNCustomDetectionTrack {
 	instance := getCNCustomDetectionTrackClass().Alloc()
 	rv := objc.Send[CNCustomDetectionTrack](instance.ID, objc.Sel("initWithDetections:smooth:"), detections, applySmoothing)
 	rv.Autorelease()
@@ -104,7 +104,7 @@ func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/allDetections
-func (c_ CNCustomDetectionTrack) AllDetections() []CNDetection /* primitive/slice/pointer. */ {
+func (c_ CNCustomDetectionTrack) AllDetections() []ICNDetection {
 	rv := objc.Send[[]CNDetection](c_.ID, objc.Sel("allDetections"))
 	return rv
 }

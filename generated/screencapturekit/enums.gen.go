@@ -6,104 +6,126 @@ package screencapturekit
 // SCContentSharingPickerMode - Available modes for selecting streaming content from a picker presented by the operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerMode
-type ContentSharingPickerMode uint
+type SCContentSharingPickerMode uint
 
 const (
-	// ContentSharingPickerModeSingleDisplay - The mode allowing the selection of a single display through the presented picker.
+	// SCContentSharingPickerModeSingleApplication - The mode allowing the selection of a single application through the presented picker.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerMode/singleDisplay
-	ContentSharingPickerModeSingleDisplay ContentSharingPickerMode = 0
-	// ContentSharingPickerModeSingleWindow - The mode allowing the selection of a single window through the presented picker.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerMode/singleWindow
-	ContentSharingPickerModeSingleWindow ContentSharingPickerMode = 0
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerMode/singleApplication
+	SCContentSharingPickerModeSingleApplication SCContentSharingPickerMode = 0
 )
 
 // SCFrameStatus - Status values for a frame from a stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCFrameStatus
-type FrameStatus uint
+type SCFrameStatus uint
 
 const (
-	// FrameStatusIdle - A status that indicates the system didn’t generate a new frame because the display didn’t change.
+	// SCFrameStatusComplete - A status that indicates the system successfully generated a new frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCFrameStatus/complete
+	SCFrameStatusComplete SCFrameStatus = 0
+	// SCFrameStatusIdle - A status that indicates the system didn’t generate a new frame because the display didn’t change.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCFrameStatus/idle
-	FrameStatusIdle FrameStatus = 0
+	SCFrameStatusIdle SCFrameStatus = 0
+	// SCFrameStatusStopped - A status that indicates the frame is in a stopped state.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCFrameStatus/stopped
+	SCFrameStatusStopped SCFrameStatus = 0
 )
 
-// SCScreenshotDisplayIntent enum type
+// SCScreenshotDisplayIntent - A value that specifies the type of display a screenshot rendering optimizes for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DisplayIntent-swift.enum
-type ScreenshotDisplayIntent uint
+type SCScreenshotDisplayIntent uint
 
 const (
+	// SCScreenshotDisplayIntentCanonical - Specifies that the screenshot renders with canonical display attributes optimizing output for presentation on a high dynamic range display.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DisplayIntent-swift.enum/canonical
-	ScreenshotDisplayIntentCanonical ScreenshotDisplayIntent = 0
+	SCScreenshotDisplayIntentCanonical SCScreenshotDisplayIntent = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DisplayIntent-swift.enum/local
-	ScreenshotDisplayIntentLocal ScreenshotDisplayIntent = 0
+	SCScreenshotDisplayIntentLocal SCScreenshotDisplayIntent = 0
 )
 
-// SCScreenshotDynamicRange enum type
+// SCScreenshotDynamicRange - Specifies the type of images returned to the client; standard dynamic range, high dynamic range, or both.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DynamicRange-swift.enum
-type ScreenshotDynamicRange uint
+type SCScreenshotDynamicRange uint
 
 const (
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DynamicRange-swift.enum/hdr
-	ScreenshotDynamicRangeHDR ScreenshotDynamicRange = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotConfiguration/DynamicRange-swift.enum/sdr
-	ScreenshotDynamicRangeSDR ScreenshotDynamicRange = 0
+	SCScreenshotDynamicRangeSDR SCScreenshotDynamicRange = 0
 )
 
 // SCShareableContentStyle - The style of content presented in a stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentStyle
-type ShareableContentStyle uint
+type SCShareableContentStyle uint
 
 const (
-	// ShareableContentStyleApplication - The stream is currently presenting one or more applications.
+	// SCShareableContentStyleApplication - The stream is currently presenting one or more applications.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentStyle/application
-	ShareableContentStyleApplication ShareableContentStyle = 0
-	// ShareableContentStyleWindow - The stream is currently presenting one or more windows.
+	SCShareableContentStyleApplication SCShareableContentStyle = 0
+	// SCShareableContentStyleDisplay - The stream is currently presenting a complete display.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentStyle/window
-	ShareableContentStyleWindow ShareableContentStyle = 0
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentStyle/display
+	SCShareableContentStyleDisplay SCShareableContentStyle = 0
 )
 
 // SCStreamErrorCode - Codes for user cancellation events and errors that can occur in ScreenCaptureKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamError/Code
-type StreamErrorCode uint
+type SCStreamErrorCode uint
 
 const (
-	// StreamErrorInternalError - An error message that indicates a stream can’t start due to a failure in ScreenCaptureKit’s internals.
+	// SCStreamErrorFailedToStart - An error message that indicates a stream failed to start.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamError/Code/internalError
-	StreamErrorInternalError StreamErrorCode = 0
-	// StreamErrorRemovingStream - An error message that indicates a stream wasn’t removed.
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamError/Code/failedToStart
+	SCStreamErrorFailedToStart SCStreamErrorCode = 0
+	// SCStreamErrorRemovingStream - An error message that indicates a stream wasn’t removed.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamError/Code/removingStream
-	StreamErrorRemovingStream StreamErrorCode = 0
+	SCStreamErrorRemovingStream SCStreamErrorCode = 0
+	// SCStreamErrorUserDeclined - An error message that indicates the user didn’t grant Screen Recording permission to your app.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamError/Code/userDeclined
+	SCStreamErrorUserDeclined SCStreamErrorCode = 0
 )
 
 // SCStreamOutputType - Constants that represent output types for a stream frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamOutputType
-type StreamOutputType uint
+type SCStreamOutputType uint
 
 const (
+	// SCStreamOutputTypeAudio - An output type that represents an audio capture sample buffer.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamOutputType/audio
+	SCStreamOutputTypeAudio SCStreamOutputType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamOutputType/microphone
-	StreamOutputTypeMicrophone StreamOutputType = 0
-	// StreamOutputTypeScreen - An output type that represents a screen capture sample buffer.
+	SCStreamOutputTypeMicrophone SCStreamOutputType = 0
+)
+
+// SCStreamType - The display type of the presented stream.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamType
+type SCStreamType uint
+
+const (
+	// SCStreamTypeDisplay - The stream is currently on a complete display.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamOutputType/screen
-	StreamOutputTypeScreen StreamOutputType = 0
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamType/display
+	SCStreamTypeDisplay SCStreamType = 0
+	// SCStreamTypeWindow - The stream is currently presented as a window.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStreamType/window
+	SCStreamTypeWindow SCStreamType = 0
 )
 
 

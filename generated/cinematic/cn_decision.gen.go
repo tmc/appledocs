@@ -31,8 +31,8 @@ type _CNDecisionClass struct {
 type ICNDecision interface {
 	objectivec.IObject
 	// properties:
-	GroupDecision() bool /* primitive/slice/pointer. */
-	StrongDecision() bool /* primitive/slice/pointer. */
+	GroupDecision() bool
+	StrongDecision() bool
 	// methods:
 }
 
@@ -91,7 +91,7 @@ func NewCNDecision() CNDecision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/groupDecision
-func (c_ CNDecision) GroupDecision() bool /* primitive/slice/pointer. */ {
+func (c_ CNDecision) GroupDecision() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("groupDecision"))
 	return rv
 }
@@ -101,7 +101,7 @@ func (c_ CNDecision) GroupDecision() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/strongDecision
-func (c_ CNDecision) StrongDecision() bool /* primitive/slice/pointer. */ {
+func (c_ CNDecision) StrongDecision() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("strongDecision"))
 	return rv
 }

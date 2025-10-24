@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,37 +35,37 @@ type IIMKCandidates interface {
 	appkit.IResponder
 	// properties:
 	// methods:
-	AttachChildToCandidateType(child IMKCandidates /* already interface */, candidateIdentifier int /* primitive/slice/pointer. */, theType IMKStyleType /* already interface */)
+	AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType)
 	Attributes() objc.IObject /* cross-framework: Dictionary */
-	CandidateFrame() foundation.objc.IObject /* cross-framework: Rect */
-	CandidateIdentifierAtLineNumber(lineNumber int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	CandidateStringIdentifier(candidateString objectivec.IObject) int /* primitive/slice/pointer. */
+	CandidateFrame() objc.IObject /* cross-framework: Rect */
+	CandidateIdentifierAtLineNumber(lineNumber int) int
+	CandidateStringIdentifier(candidateString objectivec.IObject) int
 	ClearSelection()
-	DetachChild(candidateIdentifier int /* primitive/slice/pointer. */)
-	DismissesAutomatically() bool /* primitive/slice/pointer. */
+	DetachChild(candidateIdentifier int)
+	DismissesAutomatically() bool
 	Hide()
 	HideChild()
-	IsVisible() bool /* primitive/slice/pointer. */
-	LineNumberForCandidateWithIdentifier(candidateIdentifier int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	PanelType() IMKCandidatePanelType /* already interface */
-	SelectCandidate(candidateIdentifier int /* primitive/slice/pointer. */)
-	SelectCandidateWithIdentifier(candidateIdentifier int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SelectedCandidate() int /* primitive/slice/pointer. */
+	IsVisible() bool
+	LineNumberForCandidateWithIdentifier(candidateIdentifier int) int
+	PanelType() IMKCandidatePanelType
+	SelectCandidate(candidateIdentifier int)
+	SelectCandidateWithIdentifier(candidateIdentifier int) bool
+	SelectedCandidate() int
 	SelectedCandidateString() objc.IObject /* cross-framework: AttributedString */
 	SelectionKeys() objc.IObject /* cross-framework: Array */
 	SelectionKeysKeylayout() unsafe.Pointer
-	SetAttributes(attributes objectivec.IObject)
-	SetCandidateData(candidatesArray objectivec.IObject)
-	SetCandidateFrameTopLeft(point foundation.objc.IObject /* cross-framework Point */)
-	SetDismissesAutomatically(flag bool /* primitive/slice/pointer. */)
-	SetPanelType(panelType IMKCandidatePanelType /* already interface */)
-	SetSelectionKeys(keyCodes objectivec.IObject)
+	SetAttributes(attributes objc.IObject /* cross-framework: NSDictionary */)
+	SetCandidateData(candidatesArray objc.IObject /* cross-framework: NSArray */)
+	SetCandidateFrameTopLeft(point objc.IObject /* cross-framework: Point */)
+	SetDismissesAutomatically(flag bool)
+	SetPanelType(panelType IMKCandidatePanelType)
+	SetSelectionKeys(keyCodes objc.IObject /* cross-framework: NSArray */)
 	SetSelectionKeysKeylayout(layout unsafe.Pointer)
 	ShowCandidates()
-	Show(locationHint IMKCandidatesLocationHint /* already interface */)
-	ShowAnnotation(annotationString objc.IObject /* cross-framework AttributedString */)
+	Show(locationHint IMKCandidatesLocationHint)
+	ShowAnnotation(annotationString objc.IObject /* cross-framework: AttributedString */)
 	ShowChild()
-	ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject)
+	ShowSublistSubListDelegate(candidates objc.IObject /* cross-framework: NSArray */, delegate objectivec.IObject)
 	UpdateCandidates()
 }
 
@@ -127,7 +128,7 @@ func NewIMKCandidates() IMKCandidates {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)
-func NewIMKCandidatesWithServerPanelType(server IMKServer /* already interface */, panelType IMKCandidatePanelType /* already interface */) IMKCandidates {
+func NewIMKCandidatesWithServerPanelType(server IMKServer, panelType IMKCandidatePanelType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
 	rv := objc.Send[IMKCandidates](instance.ID, objc.Sel("initWithServer:panelType:"), server, panelType)
 	rv.Autorelease()
@@ -137,7 +138,7 @@ func NewIMKCandidatesWithServerPanelType(server IMKServer /* already interface *
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)
-func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer /* already interface */, panelType IMKCandidatePanelType /* already interface */, style IMKStyleType /* already interface */) IMKCandidates {
+func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer, panelType IMKCandidatePanelType, style IMKStyleType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
 	rv := objc.Send[IMKCandidates](instance.ID, objc.Sel("initWithServer:panelType:styleType:"), server, panelType, style)
 	rv.Autorelease()
@@ -148,7 +149,7 @@ func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer /* already in
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)
-func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates /* already interface */, candidateIdentifier int /* primitive/slice/pointer. */, theType IMKStyleType /* already interface */) {
+func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("attachChild:toCandidate:type:"), child, candidateIdentifier, theType)
 }
 
@@ -158,22 +159,22 @@ func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates /* alread
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attributes()
 func (i_ IMKCandidates) Attributes() objc.IObject /* cross-framework: Dictionary */ {
-	rv := objc.Send[Dictionary](i_.ID, objc.Sel("attributes"))
+	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateFrame()
-func (i_ IMKCandidates) CandidateFrame() foundation.objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[foundation.Rect](i_.ID, objc.Sel("candidateFrame"))
+func (i_ IMKCandidates) CandidateFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](i_.ID, objc.Sel("candidateFrame"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateIdentifier(atLineNumber:)
-func (i_ IMKCandidates) CandidateIdentifierAtLineNumber(lineNumber int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) CandidateIdentifierAtLineNumber(lineNumber int) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("candidateIdentifierAtLineNumber:"), lineNumber)
 	return rv
 }
@@ -181,7 +182,7 @@ func (i_ IMKCandidates) CandidateIdentifierAtLineNumber(lineNumber int /* primit
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)
-func (i_ IMKCandidates) CandidateStringIdentifier(candidateString objectivec.IObject) int /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) CandidateStringIdentifier(candidateString objectivec.IObject) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("candidateStringIdentifier:"), candidateString)
 	return rv
 }
@@ -196,7 +197,7 @@ func (i_ IMKCandidates) ClearSelection() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/detachChild(_:)
-func (i_ IMKCandidates) DetachChild(candidateIdentifier int /* primitive/slice/pointer. */) {
+func (i_ IMKCandidates) DetachChild(candidateIdentifier int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("detachChild:"), candidateIdentifier)
 }
 
@@ -205,7 +206,7 @@ func (i_ IMKCandidates) DetachChild(candidateIdentifier int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/dismissesAutomatically()
-func (i_ IMKCandidates) DismissesAutomatically() bool /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) DismissesAutomatically() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("dismissesAutomatically"))
 	return rv
 }
@@ -231,7 +232,7 @@ func (i_ IMKCandidates) HideChild() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/isVisible()
-func (i_ IMKCandidates) IsVisible() bool /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) IsVisible() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -239,7 +240,7 @@ func (i_ IMKCandidates) IsVisible() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/lineNumberForCandidate(withIdentifier:)
-func (i_ IMKCandidates) LineNumberForCandidateWithIdentifier(candidateIdentifier int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) LineNumberForCandidateWithIdentifier(candidateIdentifier int) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("lineNumberForCandidateWithIdentifier:"), candidateIdentifier)
 	return rv
 }
@@ -249,7 +250,7 @@ func (i_ IMKCandidates) LineNumberForCandidateWithIdentifier(candidateIdentifier
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/panelType()
-func (i_ IMKCandidates) PanelType() IMKCandidatePanelType /* already interface */ {
+func (i_ IMKCandidates) PanelType() IMKCandidatePanelType {
 	rv := objc.Send[IMKCandidatePanelType](i_.ID, objc.Sel("panelType"))
 	return rv
 }
@@ -257,14 +258,14 @@ func (i_ IMKCandidates) PanelType() IMKCandidatePanelType /* already interface *
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectCandidate(_:)
-func (i_ IMKCandidates) SelectCandidate(candidateIdentifier int /* primitive/slice/pointer. */) {
+func (i_ IMKCandidates) SelectCandidate(candidateIdentifier int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("selectCandidate:"), candidateIdentifier)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectCandidate(withIdentifier:)
-func (i_ IMKCandidates) SelectCandidateWithIdentifier(candidateIdentifier int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) SelectCandidateWithIdentifier(candidateIdentifier int) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("selectCandidateWithIdentifier:"), candidateIdentifier)
 	return rv
 }
@@ -272,7 +273,7 @@ func (i_ IMKCandidates) SelectCandidateWithIdentifier(candidateIdentifier int /*
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidate()
-func (i_ IMKCandidates) SelectedCandidate() int /* primitive/slice/pointer. */ {
+func (i_ IMKCandidates) SelectedCandidate() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("selectedCandidate"))
 	return rv
 }
@@ -281,7 +282,7 @@ func (i_ IMKCandidates) SelectedCandidate() int /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()
 func (i_ IMKCandidates) SelectedCandidateString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
+	rv := objc.Send[foundation.AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
 	return rv
 }
 
@@ -291,7 +292,7 @@ func (i_ IMKCandidates) SelectedCandidateString() objc.IObject /* cross-framewor
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectionKeys()
 func (i_ IMKCandidates) SelectionKeys() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](i_.ID, objc.Sel("selectionKeys"))
+	rv := objc.Send[foundation.Array](i_.ID, objc.Sel("selectionKeys"))
 	return rv
 }
 
@@ -310,21 +311,21 @@ func (i_ IMKCandidates) SelectionKeysKeylayout() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)
-func (i_ IMKCandidates) SetAttributes(attributes objectivec.IObject) {
+func (i_ IMKCandidates) SetAttributes(attributes objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttributes:"), attributes)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)
-func (i_ IMKCandidates) SetCandidateData(candidatesArray objectivec.IObject) {
+func (i_ IMKCandidates) SetCandidateData(candidatesArray objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateData:"), candidatesArray)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)
-func (i_ IMKCandidates) SetCandidateFrameTopLeft(point foundation.objc.IObject /* cross-framework Point */) {
+func (i_ IMKCandidates) SetCandidateFrameTopLeft(point objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateFrameTopLeft:"), point)
 }
 
@@ -333,7 +334,7 @@ func (i_ IMKCandidates) SetCandidateFrameTopLeft(point foundation.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setDismissesAutomatically(_:)
-func (i_ IMKCandidates) SetDismissesAutomatically(flag bool /* primitive/slice/pointer. */) {
+func (i_ IMKCandidates) SetDismissesAutomatically(flag bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDismissesAutomatically:"), flag)
 }
 
@@ -342,7 +343,7 @@ func (i_ IMKCandidates) SetDismissesAutomatically(flag bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)
-func (i_ IMKCandidates) SetPanelType(panelType IMKCandidatePanelType /* already interface */) {
+func (i_ IMKCandidates) SetPanelType(panelType IMKCandidatePanelType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPanelType:"), panelType)
 }
 
@@ -351,7 +352,7 @@ func (i_ IMKCandidates) SetPanelType(panelType IMKCandidatePanelType /* already 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)
-func (i_ IMKCandidates) SetSelectionKeys(keyCodes objectivec.IObject) {
+func (i_ IMKCandidates) SetSelectionKeys(keyCodes objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectionKeys:"), keyCodes)
 }
 
@@ -376,7 +377,7 @@ func (i_ IMKCandidates) ShowCandidates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/show(_:)
-func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint /* already interface */) {
+func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("show:"), locationHint)
 }
 
@@ -385,7 +386,7 @@ func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)
-func (i_ IMKCandidates) ShowAnnotation(annotationString objc.IObject /* cross-framework AttributedString */) {
+func (i_ IMKCandidates) ShowAnnotation(annotationString objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showAnnotation:"), annotationString)
 }
 
@@ -399,7 +400,7 @@ func (i_ IMKCandidates) ShowChild() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)
-func (i_ IMKCandidates) ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject) {
+func (i_ IMKCandidates) ShowSublistSubListDelegate(candidates objc.IObject /* cross-framework: NSArray */, delegate objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showSublist:subListDelegate:"), candidates, delegate)
 }
 

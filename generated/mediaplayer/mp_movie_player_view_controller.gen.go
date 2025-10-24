@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [MoviePlayerViewController] class.
@@ -31,18 +31,24 @@ type _MoviePlayerViewControllerClass struct {
 // An interface definition for the [MoviePlayerViewController] class.
 type IMoviePlayerViewController interface {
 	appkit.IViewController
-	ImageCropRect() coregraphics.CGRect
-	SetImageCropRect(value coregraphics.CGRect)
-	MoviePlayer() MPMoviePlayerController
+	// properties:
+	ImageCropRect() objc.IObject /* cross-framework: Rect */
+	SetImageCropRect(value objc.IObject /* cross-framework: Rect */)
+	MoviePlayer() IMPMoviePlayerController
 	SetMoviePlayer(value IMPMoviePlayerController)
 	ShowsRouteButton() bool
 	SetShowsRouteButton(value bool)
+	// methods:
 }
 
 // A simple view controller for displaying full-screen movies.
 //
 // Unlike using an object on its own to present a movie immediately, you can incorporate a movie player view controller wherever you would normally use a view controller. For example, you can present it using a tab bar or navigation bar-based interface, taking advantage of the transitions offered by those interfaces. To present a movie player view controller modally, you typically use the method. This method is part of a category on the class and is implemented by the Media Player framework. The method presents a movie player view controller using the standard transition animations for presenting video content. To dismiss a modally presented movie player view controller, call the method.
+
+
+// A simple view controller for displaying full-screen movies.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerViewController
 type MoviePlayerViewController struct {
 	appkit.ViewController
@@ -89,44 +95,48 @@ func NewMoviePlayerViewController() MoviePlayerViewController {
 }
 
 
+
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MoviePlayerViewController) ImageCropRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+func (m_ MoviePlayerViewController) ImageCropRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("imageCropRect"))
 	return rv
 }
 
 
-// SetImageCropRect sets the value of the imageCropRect property.
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MoviePlayerViewController) SetImageCropRect(value coregraphics.CGRect) {
+func (m_ MoviePlayerViewController) SetImageCropRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
 }
 
+
 // The movie player controller object used to present the movie.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
-func (m_ MoviePlayerViewController) MoviePlayer() MPMoviePlayerController {
-	rv := objc.Send[MPMoviePlayerController](m_.ID, objc.Sel("moviePlayer"))
+func (m_ MoviePlayerViewController) MoviePlayer() IMPMoviePlayerController {
+	rv := objc.Send[MoviePlayerController](m_.ID, objc.Sel("moviePlayer"))
 	return rv
 }
 
 
-// SetMoviePlayer sets the value of the moviePlayer property.
 // The movie player controller object used to present the movie.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
 func (m_ MoviePlayerViewController) SetMoviePlayer(value IMPMoviePlayerController) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoviePlayer:"), value)
 }
 
+
 // A Boolean value that indicates whether the route button is visible in the volume view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (m_ MoviePlayerViewController) ShowsRouteButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
@@ -134,10 +144,9 @@ func (m_ MoviePlayerViewController) ShowsRouteButton() bool {
 }
 
 
-// SetShowsRouteButton sets the value of the showsRouteButton property.
 // A Boolean value that indicates whether the route button is visible in the volume view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (m_ MoviePlayerViewController) SetShowsRouteButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)

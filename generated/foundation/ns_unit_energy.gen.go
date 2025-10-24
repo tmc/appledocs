@@ -88,4 +88,23 @@ func NewUnitEnergy() UnitEnergy {
 
 
 
+// The joules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/joules
+func (uc _UnitEnergyClass) Joules() UnitEnergy {
+	rv := objc.Send[UnitEnergy](objc.ID(uc.class), objc.Sel("joules"))
+	return rv
+}
+
+// The joules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/joules
+func (u_ UnitEnergy) Joules() IUnitEnergy {
+	rv := objc.Send[UnitEnergy](u_.ID, objc.Sel("joules"))
+	return rv
+}
+
+
 

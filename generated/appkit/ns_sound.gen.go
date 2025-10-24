@@ -31,22 +31,22 @@ type _SoundClass struct {
 type ISound interface {
 	objectivec.IObject
 	// properties:
-	CurrentTime() unsafe.Pointer
-	SetCurrentTime(value unsafe.Pointer)
+	CurrentTime() float64
+	SetCurrentTime(value float64)
 	Delegate() SoundDelegate /* not a class type */
 	SetDelegate(value SoundDelegate /* not a class type */)
-	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
-	IsPlaying() bool /* primitive/slice/pointer. */
-	SetIsPlaying(value bool /* primitive/slice/pointer. */)
-	Loops() bool /* primitive/slice/pointer. */
-	SetLoops(value bool /* primitive/slice/pointer. */)
+	Duration() float64
+	SetDuration(value float64)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
+	Loops() bool
+	SetLoops(value bool)
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	PlaybackDeviceIdentifier() unsafe.Pointer
 	SetPlaybackDeviceIdentifier(value unsafe.Pointer)
-	Volume() float32 /* primitive/slice/pointer. */
-	SetVolume(value float32 /* primitive/slice/pointer. */)
+	Volume() float32
+	SetVolume(value float32)
 	// methods:
 }
 
@@ -107,8 +107,8 @@ func NewSound() Sound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/currenttime
-func (s_ Sound) CurrentTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentTime"))
+func (s_ Sound) CurrentTime() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (s_ Sound) CurrentTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/currenttime
-func (s_ Sound) SetCurrentTime(value unsafe.Pointer) {
+func (s_ Sound) SetCurrentTime(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentTime:"), value)
 }
 
@@ -145,8 +145,8 @@ func (s_ Sound) SetDelegate(value SoundDelegate /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/duration
-func (s_ Sound) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("duration"))
+func (s_ Sound) Duration() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (s_ Sound) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/duration
-func (s_ Sound) SetDuration(value unsafe.Pointer) {
+func (s_ Sound) SetDuration(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -164,7 +164,7 @@ func (s_ Sound) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
-func (s_ Sound) IsPlaying() bool /* primitive/slice/pointer. */ {
+func (s_ Sound) IsPlaying() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (s_ Sound) IsPlaying() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
-func (s_ Sound) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
+func (s_ Sound) SetIsPlaying(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
@@ -183,7 +183,7 @@ func (s_ Sound) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
-func (s_ Sound) Loops() bool /* primitive/slice/pointer. */ {
+func (s_ Sound) Loops() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("loops"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (s_ Sound) Loops() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
-func (s_ Sound) SetLoops(value bool /* primitive/slice/pointer. */) {
+func (s_ Sound) SetLoops(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLoops:"), value)
 }
 
@@ -240,7 +240,7 @@ func (s_ Sound) SetPlaybackDeviceIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
-func (s_ Sound) Volume() float32 /* primitive/slice/pointer. */ {
+func (s_ Sound) Volume() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (s_ Sound) Volume() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
-func (s_ Sound) SetVolume(value float32 /* primitive/slice/pointer. */) {
+func (s_ Sound) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 

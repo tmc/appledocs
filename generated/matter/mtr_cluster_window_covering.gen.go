@@ -29,9 +29,13 @@ type _MTRClusterWindowCoveringClass struct {
 // An interface definition for the [MTRClusterWindowCovering] class.
 type IMTRClusterWindowCovering interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWindowCovering
 type MTRClusterWindowCovering struct {
 	MTRGenericCluster

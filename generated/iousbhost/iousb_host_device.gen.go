@@ -33,7 +33,7 @@ type IUSBHostDevice interface {
 	ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */
 	SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */)
 	// methods:
-	ResetWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ResetWithError(error_ unsafe.Pointer) bool
 }
 
 // The class that claims and configures devices, retrieves descriptors, and sends device requests.
@@ -95,7 +95,7 @@ func NewUSBHostDevice() USBHostDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice/reset()
-func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("resetWithError:"), error_)
 	return rv
 }

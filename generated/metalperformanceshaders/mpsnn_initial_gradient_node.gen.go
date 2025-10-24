@@ -29,9 +29,13 @@ type _InitialGradientNodeClass struct {
 // An interface definition for the [InitialGradientNode] class.
 type IInitialGradientNode interface {
 	IFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode
 type InitialGradientNode struct {
 	FilterNode
@@ -76,7 +80,8 @@ func NewInitialGradientNode() InitialGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/init(source:)
 func NewInitialGradientNodeWithSource(source IMPSNNImageNode) InitialGradientNode {
 	instance := getInitialGradientNodeClass().Alloc()
@@ -86,7 +91,8 @@ func NewInitialGradientNodeWithSource(source IMPSNNImageNode) InitialGradientNod
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/nodeWithSource:
 func (ic _InitialGradientNodeClass) NodeWithSource(source IMPSNNImageNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("nodeWithSource:"), source)

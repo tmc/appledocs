@@ -29,9 +29,13 @@ type _ReductionFeatureChannelsArgumentMaxNodeClass struct {
 // An interface definition for the [ReductionFeatureChannelsArgumentMaxNode] class.
 type IReductionFeatureChannelsArgumentMaxNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsArgumentMaxNode
 type ReductionFeatureChannelsArgumentMaxNode struct {
 	UnaryReductionNode

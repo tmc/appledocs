@@ -30,9 +30,13 @@ type _MTRBridgedDeviceBasicInformationClusterShutDownEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterShutDownEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterShutDownEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterShutDownEvent
 type MTRBridgedDeviceBasicInformationClusterShutDownEvent struct {
 	objectivec.Object

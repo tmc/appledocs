@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,78 +33,78 @@ type _EventClass struct {
 type IEvent interface {
 	objectivec.IObject
 	// properties:
-	AbsoluteX() int /* primitive/slice/pointer. */
-	AbsoluteY() int /* primitive/slice/pointer. */
-	AbsoluteZ() int /* primitive/slice/pointer. */
+	AbsoluteX() int
+	AbsoluteY() int
+	AbsoluteZ() int
 	AssociatedEventsMask() EventMask
 	ButtonMask() EventButtonMask
-	ButtonNumber() int /* primitive/slice/pointer. */
-	CapabilityMask() uint /* primitive/slice/pointer. */
+	ButtonNumber() int
+	CapabilityMask() uint
 	CGEvent() EventRef /* not a class type */
 	Characters() objc.IObject /* cross-framework: NSString */
 	CharactersIgnoringModifiers() objc.IObject /* cross-framework: NSString */
-	ClickCount() int /* primitive/slice/pointer. */
+	ClickCount() int
 	Context() IGraphicsContext
-	Data1() int /* primitive/slice/pointer. */
-	Data2() int /* primitive/slice/pointer. */
-	DeltaX() float64 /* primitive/slice/pointer. */
-	DeltaY() float64 /* primitive/slice/pointer. */
-	DeltaZ() float64 /* primitive/slice/pointer. */
-	DeviceID() uint /* primitive/slice/pointer. */
-	EventNumber() int /* primitive/slice/pointer. */
+	Data1() int
+	Data2() int
+	DeltaX() float64
+	DeltaY() float64
+	DeltaZ() float64
+	DeviceID() uint
+	EventNumber() int
 	EventRef() unsafe.Pointer
-	HasPreciseScrollingDeltas() bool /* primitive/slice/pointer. */
-	ARepeat() bool /* primitive/slice/pointer. */
-	DirectionInvertedFromDevice() bool /* primitive/slice/pointer. */
-	EnteringProximity() bool /* primitive/slice/pointer. */
+	HasPreciseScrollingDeltas() bool
+	ARepeat() bool
+	DirectionInvertedFromDevice() bool
+	EnteringProximity() bool
 	KeyCode() unsafe.Pointer
 	LocationInWindow() objc.IObject /* cross-framework: Point */
-	Magnification() float64 /* primitive/slice/pointer. */
+	Magnification() float64
 	ModifierFlags() EventModifierFlags
 	MomentumPhase() EventPhase
 	Phase() EventPhase
-	PointingDeviceID() uint /* primitive/slice/pointer. */
-	PointingDeviceSerialNumber() uint /* primitive/slice/pointer. */
+	PointingDeviceID() uint
+	PointingDeviceSerialNumber() uint
 	PointingDeviceType() PointingDeviceType
-	Pressure() float32 /* primitive/slice/pointer. */
+	Pressure() float32
 	PressureBehavior() PressureBehavior
-	Rotation() float32 /* primitive/slice/pointer. */
-	ScrollingDeltaX() float64 /* primitive/slice/pointer. */
-	ScrollingDeltaY() float64 /* primitive/slice/pointer. */
-	Stage() int /* primitive/slice/pointer. */
-	StageTransition() float64 /* primitive/slice/pointer. */
+	Rotation() float32
+	ScrollingDeltaX() float64
+	ScrollingDeltaY() float64
+	Stage() int
+	StageTransition() float64
 	Subtype() EventSubtype
-	SystemTabletID() uint /* primitive/slice/pointer. */
-	TabletID() uint /* primitive/slice/pointer. */
-	TangentialPressure() float32 /* primitive/slice/pointer. */
+	SystemTabletID() uint
+	TabletID() uint
+	TangentialPressure() float32
 	Tilt() objc.IObject /* cross-framework: Point */
-	Timestamp() TimeInterval /* not a class type */
+	Timestamp() float64
 	TrackingArea() ITrackingArea
-	TrackingNumber() int /* primitive/slice/pointer. */
+	TrackingNumber() int
 	Type() EventType
-	UniqueID() uint64 /* primitive/slice/pointer. */
+	UniqueID() uint64
 	UserData() unsafe.Pointer
 	VendorDefined() objc.ID
-	VendorID() uint /* primitive/slice/pointer. */
-	VendorPointingDeviceType() uint /* primitive/slice/pointer. */
+	VendorID() uint
+	VendorPointingDeviceType() uint
 	Window() IWindow
-	WindowNumber() int /* primitive/slice/pointer. */
-	IsARepeat() bool /* primitive/slice/pointer. */
-	SetIsARepeat(value bool /* primitive/slice/pointer. */)
-	IsDirectionInvertedFromDevice() bool /* primitive/slice/pointer. */
-	SetIsDirectionInvertedFromDevice(value bool /* primitive/slice/pointer. */)
-	IsEnteringProximity() bool /* primitive/slice/pointer. */
-	SetIsEnteringProximity(value bool /* primitive/slice/pointer. */)
+	WindowNumber() int
+	IsARepeat() bool
+	SetIsARepeat(value bool)
+	IsDirectionInvertedFromDevice() bool
+	SetIsDirectionInvertedFromDevice(value bool)
+	IsEnteringProximity() bool
+	SetIsEnteringProximity(value bool)
 	SpecialKey() unsafe.Pointer
 	SetSpecialKey(value unsafe.Pointer)
 	// methods:
 	AllTouches() unsafe.Pointer
 	CharactersByApplyingModifiers(modifiers EventModifierFlags) objc.IObject /* cross-framework: String */
-	CoalescedTouchesForTouch(touch ITouch) []Touch /* primitive/slice/pointer. */
+	CoalescedTouchesForTouch(touch ITouch) []ITouch
 	LocationInNode(node Node /* not a class type */) objc.IObject /* cross-framework: Point */
 	TouchesForView(view IView) unsafe.Pointer
 	TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.Pointer
-	TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64 /* primitive/slice/pointer. */, maxDampenThreshold float64 /* primitive/slice/pointer. */, trackingHandler unsafe.Pointer)
+	TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64, maxDampenThreshold float64, trackingHandler unsafe.Pointer)
 }
 
 // An object that contains information about an input action, such as a mouse click or a key press.
@@ -204,7 +205,7 @@ func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/enterExitEvent(with:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)
-func (ec _EventClass) EnterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(type_ EventType, location objc.IObject /* cross-framework Point */, flags EventModifierFlags, time TimeInterval /* not a class type */, wNum int /* primitive/slice/pointer. */, unusedPassNil IGraphicsContext, eNum int /* primitive/slice/pointer. */, tNum int /* primitive/slice/pointer. */, data unsafe.Pointer) IEvent {
+func (ec _EventClass) EnterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, tNum int, data unsafe.Pointer) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:"), type_, location, flags, time, wNum, unusedPassNil, eNum, tNum, data)
 	return rv
 }
@@ -234,7 +235,7 @@ func (ec _EventClass) EventWithEventRef(eventRef unsafe.Pointer) IEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyEvent(with:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)
-func (ec _EventClass) KeyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(type_ EventType, location objc.IObject /* cross-framework Point */, flags EventModifierFlags, time TimeInterval /* not a class type */, wNum int /* primitive/slice/pointer. */, unusedPassNil IGraphicsContext, keys objc.IObject /* cross-framework NSString */, ukeys objc.IObject /* cross-framework NSString */, flag bool /* primitive/slice/pointer. */, code unsafe.Pointer) IEvent {
+func (ec _EventClass) KeyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, keys objc.IObject /* cross-framework: NSString */, ukeys objc.IObject /* cross-framework: NSString */, flag bool, code unsafe.Pointer) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:"), type_, location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code)
 	return rv
 }
@@ -244,7 +245,7 @@ func (ec _EventClass) KeyEventWithTypeLocationModifierFlagsTimestampWindowNumber
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseEvent(with:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)
-func (ec _EventClass) MouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(type_ EventType, location objc.IObject /* cross-framework Point */, flags EventModifierFlags, time TimeInterval /* not a class type */, wNum int /* primitive/slice/pointer. */, unusedPassNil IGraphicsContext, eNum int /* primitive/slice/pointer. */, cNum int /* primitive/slice/pointer. */, pressure float32 /* primitive/slice/pointer. */) IEvent {
+func (ec _EventClass) MouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, cNum int, pressure float32) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:"), type_, location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure)
 	return rv
 }
@@ -254,7 +255,7 @@ func (ec _EventClass) MouseEventWithTypeLocationModifierFlagsTimestampWindowNumb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/otherEvent(with:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)
-func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(type_ EventType, location objc.IObject /* cross-framework Point */, flags EventModifierFlags, time TimeInterval /* not a class type */, wNum int /* primitive/slice/pointer. */, unusedPassNil IGraphicsContext, subtype unsafe.Pointer, d1 int /* primitive/slice/pointer. */, d2 int /* primitive/slice/pointer. */) IEvent {
+func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, subtype unsafe.Pointer, d1 int, d2 int) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:"), type_, location, flags, time, wNum, unusedPassNil, subtype, d1, d2)
 	return rv
 }
@@ -273,7 +274,7 @@ func (ec _EventClass) RemoveMonitor(eventMonitor objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/startPeriodicEvents(afterDelay:withPeriod:)
-func (ec _EventClass) StartPeriodicEventsAfterDelayWithPeriod(delay TimeInterval /* not a class type */, period TimeInterval /* not a class type */) {
+func (ec _EventClass) StartPeriodicEventsAfterDelayWithPeriod(delay float64, period float64) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("startPeriodicEventsAfterDelay:withPeriod:"), delay, period)
 }
 
@@ -291,7 +292,7 @@ func (ec _EventClass) StopPeriodicEvents() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/doubleClickInterval
-func (ec _EventClass) DoubleClickInterval() TimeInterval /* not a class type */ {
+func (ec _EventClass) DoubleClickInterval() float64 {
 	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("doubleClickInterval"))
 	return rv
 }
@@ -300,7 +301,7 @@ func (ec _EventClass) DoubleClickInterval() TimeInterval /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isMouseCoalescingEnabled
-func (ec _EventClass) MouseCoalescingEnabled() bool /* primitive/slice/pointer. */ {
+func (ec _EventClass) MouseCoalescingEnabled() bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("mouseCoalescingEnabled"))
 	return rv
 }
@@ -309,7 +310,7 @@ func (ec _EventClass) MouseCoalescingEnabled() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isSwipeTrackingFromScrollEventsEnabled
-func (ec _EventClass) SwipeTrackingFromScrollEventsEnabled() bool /* primitive/slice/pointer. */ {
+func (ec _EventClass) SwipeTrackingFromScrollEventsEnabled() bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("swipeTrackingFromScrollEventsEnabled"))
 	return rv
 }
@@ -318,7 +319,7 @@ func (ec _EventClass) SwipeTrackingFromScrollEventsEnabled() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatDelay
-func (ec _EventClass) KeyRepeatDelay() TimeInterval /* not a class type */ {
+func (ec _EventClass) KeyRepeatDelay() float64 {
 	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("keyRepeatDelay"))
 	return rv
 }
@@ -327,7 +328,7 @@ func (ec _EventClass) KeyRepeatDelay() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatInterval
-func (ec _EventClass) KeyRepeatInterval() TimeInterval /* not a class type */ {
+func (ec _EventClass) KeyRepeatInterval() float64 {
 	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("keyRepeatInterval"))
 	return rv
 }
@@ -337,7 +338,7 @@ func (ec _EventClass) KeyRepeatInterval() TimeInterval /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
 func (ec _EventClass) MouseLocation() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](objc.ID(ec.class), objc.Sel("mouseLocation"))
+	rv := objc.Send[corefoundation.Point](objc.ID(ec.class), objc.Sel("mouseLocation"))
 	return rv
 }
 
@@ -345,7 +346,7 @@ func (ec _EventClass) MouseLocation() objc.IObject /* cross-framework: Point */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pressedMouseButtons
-func (ec _EventClass) PressedMouseButtons() uint /* primitive/slice/pointer. */ {
+func (ec _EventClass) PressedMouseButtons() uint {
 	rv := objc.Send[uint](objc.ID(ec.class), objc.Sel("pressedMouseButtons"))
 	return rv
 }
@@ -365,7 +366,7 @@ func (e_ Event) AllTouches() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/characters(byApplyingModifiers:)
 func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](e_.ID, objc.Sel("charactersByApplyingModifiers:"), modifiers)
+	rv := objc.Send[foundation.String](e_.ID, objc.Sel("charactersByApplyingModifiers:"), modifiers)
 	return rv
 }
 
@@ -374,7 +375,7 @@ func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/coalescedTouches(for:)
-func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []Touch /* primitive/slice/pointer. */ {
+func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []ITouch {
 	rv := objc.Send[[]Touch](e_.ID, objc.Sel("coalescedTouchesForTouch:"), touch)
 	return rv
 }
@@ -385,7 +386,7 @@ func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []Touch /* primitive/slic
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
 func (e_ Event) LocationInNode(node Node /* not a class type */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](e_.ID, objc.Sel("locationInNode:"), node)
+	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("locationInNode:"), node)
 	return rv
 }
 
@@ -414,7 +415,7 @@ func (e_ Event) TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/trackSwipeEvent(options:dampenAmountThresholdMin:max:usingHandler:)
-func (e_ Event) TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64 /* primitive/slice/pointer. */, maxDampenThreshold float64 /* primitive/slice/pointer. */, trackingHandler unsafe.Pointer) {
+func (e_ Event) TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64, maxDampenThreshold float64, trackingHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:"), options, minDampenThreshold, maxDampenThreshold, trackingHandler)
 }
 
@@ -423,7 +424,7 @@ func (e_ Event) TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/absoluteX
-func (e_ Event) AbsoluteX() int /* primitive/slice/pointer. */ {
+func (e_ Event) AbsoluteX() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteX"))
 	return rv
 }
@@ -433,7 +434,7 @@ func (e_ Event) AbsoluteX() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/absoluteY
-func (e_ Event) AbsoluteY() int /* primitive/slice/pointer. */ {
+func (e_ Event) AbsoluteY() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteY"))
 	return rv
 }
@@ -443,7 +444,7 @@ func (e_ Event) AbsoluteY() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/absoluteZ
-func (e_ Event) AbsoluteZ() int /* primitive/slice/pointer. */ {
+func (e_ Event) AbsoluteZ() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteZ"))
 	return rv
 }
@@ -473,7 +474,7 @@ func (e_ Event) ButtonMask() EventButtonMask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/buttonNumber
-func (e_ Event) ButtonNumber() int /* primitive/slice/pointer. */ {
+func (e_ Event) ButtonNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("buttonNumber"))
 	return rv
 }
@@ -483,7 +484,7 @@ func (e_ Event) ButtonNumber() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/capabilityMask
-func (e_ Event) CapabilityMask() uint /* primitive/slice/pointer. */ {
+func (e_ Event) CapabilityMask() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("capabilityMask"))
 	return rv
 }
@@ -523,7 +524,7 @@ func (e_ Event) CharactersIgnoringModifiers() objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/clickCount
-func (e_ Event) ClickCount() int /* primitive/slice/pointer. */ {
+func (e_ Event) ClickCount() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("clickCount"))
 	return rv
 }
@@ -543,7 +544,7 @@ func (e_ Event) Context() IGraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/data1
-func (e_ Event) Data1() int /* primitive/slice/pointer. */ {
+func (e_ Event) Data1() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data1"))
 	return rv
 }
@@ -553,7 +554,7 @@ func (e_ Event) Data1() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/data2
-func (e_ Event) Data2() int /* primitive/slice/pointer. */ {
+func (e_ Event) Data2() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data2"))
 	return rv
 }
@@ -563,7 +564,7 @@ func (e_ Event) Data2() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/deltaX
-func (e_ Event) DeltaX() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) DeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaX"))
 	return rv
 }
@@ -573,7 +574,7 @@ func (e_ Event) DeltaX() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/deltaY
-func (e_ Event) DeltaY() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) DeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaY"))
 	return rv
 }
@@ -583,7 +584,7 @@ func (e_ Event) DeltaY() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/deltaZ
-func (e_ Event) DeltaZ() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) DeltaZ() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaZ"))
 	return rv
 }
@@ -593,7 +594,7 @@ func (e_ Event) DeltaZ() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/deviceID
-func (e_ Event) DeviceID() uint /* primitive/slice/pointer. */ {
+func (e_ Event) DeviceID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("deviceID"))
 	return rv
 }
@@ -603,7 +604,7 @@ func (e_ Event) DeviceID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/doubleClickInterval
-func (e_ Event) DoubleClickInterval() TimeInterval /* not a class type */ {
+func (e_ Event) DoubleClickInterval() float64 {
 	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("doubleClickInterval"))
 	return rv
 }
@@ -613,7 +614,7 @@ func (e_ Event) DoubleClickInterval() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/eventNumber
-func (e_ Event) EventNumber() int /* primitive/slice/pointer. */ {
+func (e_ Event) EventNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("eventNumber"))
 	return rv
 }
@@ -633,7 +634,7 @@ func (e_ Event) EventRef() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/hasPreciseScrollingDeltas
-func (e_ Event) HasPreciseScrollingDeltas() bool /* primitive/slice/pointer. */ {
+func (e_ Event) HasPreciseScrollingDeltas() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasPreciseScrollingDeltas"))
 	return rv
 }
@@ -643,7 +644,7 @@ func (e_ Event) HasPreciseScrollingDeltas() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isARepeat
-func (e_ Event) ARepeat() bool /* primitive/slice/pointer. */ {
+func (e_ Event) ARepeat() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("ARepeat"))
 	return rv
 }
@@ -653,7 +654,7 @@ func (e_ Event) ARepeat() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isDirectionInvertedFromDevice
-func (e_ Event) DirectionInvertedFromDevice() bool /* primitive/slice/pointer. */ {
+func (e_ Event) DirectionInvertedFromDevice() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("directionInvertedFromDevice"))
 	return rv
 }
@@ -663,7 +664,7 @@ func (e_ Event) DirectionInvertedFromDevice() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isEnteringProximity
-func (e_ Event) EnteringProximity() bool /* primitive/slice/pointer. */ {
+func (e_ Event) EnteringProximity() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("enteringProximity"))
 	return rv
 }
@@ -673,7 +674,7 @@ func (e_ Event) EnteringProximity() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isMouseCoalescingEnabled
-func (e_ Event) MouseCoalescingEnabled() bool /* primitive/slice/pointer. */ {
+func (e_ Event) MouseCoalescingEnabled() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("mouseCoalescingEnabled"))
 	return rv
 }
@@ -683,7 +684,7 @@ func (e_ Event) MouseCoalescingEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isMouseCoalescingEnabled
-func (e_ Event) SetMouseCoalescingEnabled(value bool /* primitive/slice/pointer. */) {
+func (e_ Event) SetMouseCoalescingEnabled(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMouseCoalescingEnabled:"), value)
 }
 
@@ -692,7 +693,7 @@ func (e_ Event) SetMouseCoalescingEnabled(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isSwipeTrackingFromScrollEventsEnabled
-func (e_ Event) SwipeTrackingFromScrollEventsEnabled() bool /* primitive/slice/pointer. */ {
+func (e_ Event) SwipeTrackingFromScrollEventsEnabled() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("swipeTrackingFromScrollEventsEnabled"))
 	return rv
 }
@@ -712,7 +713,7 @@ func (e_ Event) KeyCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatDelay
-func (e_ Event) KeyRepeatDelay() TimeInterval /* not a class type */ {
+func (e_ Event) KeyRepeatDelay() float64 {
 	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("keyRepeatDelay"))
 	return rv
 }
@@ -722,7 +723,7 @@ func (e_ Event) KeyRepeatDelay() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatInterval
-func (e_ Event) KeyRepeatInterval() TimeInterval /* not a class type */ {
+func (e_ Event) KeyRepeatInterval() float64 {
 	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("keyRepeatInterval"))
 	return rv
 }
@@ -733,7 +734,7 @@ func (e_ Event) KeyRepeatInterval() TimeInterval /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/locationInWindow
 func (e_ Event) LocationInWindow() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](e_.ID, objc.Sel("locationInWindow"))
+	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("locationInWindow"))
 	return rv
 }
 
@@ -742,7 +743,7 @@ func (e_ Event) LocationInWindow() objc.IObject /* cross-framework: Point */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/magnification
-func (e_ Event) Magnification() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) Magnification() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("magnification"))
 	return rv
 }
@@ -773,7 +774,7 @@ func (e_ Event) MomentumPhase() EventPhase {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
 func (e_ Event) MouseLocation() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](e_.ID, objc.Sel("mouseLocation"))
+	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("mouseLocation"))
 	return rv
 }
 
@@ -792,7 +793,7 @@ func (e_ Event) Phase() EventPhase {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pointingDeviceID
-func (e_ Event) PointingDeviceID() uint /* primitive/slice/pointer. */ {
+func (e_ Event) PointingDeviceID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("pointingDeviceID"))
 	return rv
 }
@@ -802,7 +803,7 @@ func (e_ Event) PointingDeviceID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pointingDeviceSerialNumber
-func (e_ Event) PointingDeviceSerialNumber() uint /* primitive/slice/pointer. */ {
+func (e_ Event) PointingDeviceSerialNumber() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("pointingDeviceSerialNumber"))
 	return rv
 }
@@ -822,7 +823,7 @@ func (e_ Event) PointingDeviceType() PointingDeviceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pressedMouseButtons
-func (e_ Event) PressedMouseButtons() uint /* primitive/slice/pointer. */ {
+func (e_ Event) PressedMouseButtons() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("pressedMouseButtons"))
 	return rv
 }
@@ -832,7 +833,7 @@ func (e_ Event) PressedMouseButtons() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pressure
-func (e_ Event) Pressure() float32 /* primitive/slice/pointer. */ {
+func (e_ Event) Pressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("pressure"))
 	return rv
 }
@@ -852,7 +853,7 @@ func (e_ Event) PressureBehavior() PressureBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/rotation
-func (e_ Event) Rotation() float32 /* primitive/slice/pointer. */ {
+func (e_ Event) Rotation() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("rotation"))
 	return rv
 }
@@ -862,7 +863,7 @@ func (e_ Event) Rotation() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/scrollingDeltaX
-func (e_ Event) ScrollingDeltaX() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) ScrollingDeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaX"))
 	return rv
 }
@@ -872,7 +873,7 @@ func (e_ Event) ScrollingDeltaX() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/scrollingDeltaY
-func (e_ Event) ScrollingDeltaY() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) ScrollingDeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaY"))
 	return rv
 }
@@ -882,7 +883,7 @@ func (e_ Event) ScrollingDeltaY() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/stage
-func (e_ Event) Stage() int /* primitive/slice/pointer. */ {
+func (e_ Event) Stage() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("stage"))
 	return rv
 }
@@ -892,7 +893,7 @@ func (e_ Event) Stage() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/stageTransition
-func (e_ Event) StageTransition() float64 /* primitive/slice/pointer. */ {
+func (e_ Event) StageTransition() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("stageTransition"))
 	return rv
 }
@@ -912,7 +913,7 @@ func (e_ Event) Subtype() EventSubtype {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/systemTabletID
-func (e_ Event) SystemTabletID() uint /* primitive/slice/pointer. */ {
+func (e_ Event) SystemTabletID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("systemTabletID"))
 	return rv
 }
@@ -922,7 +923,7 @@ func (e_ Event) SystemTabletID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/tabletID
-func (e_ Event) TabletID() uint /* primitive/slice/pointer. */ {
+func (e_ Event) TabletID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("tabletID"))
 	return rv
 }
@@ -932,7 +933,7 @@ func (e_ Event) TabletID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/tangentialPressure
-func (e_ Event) TangentialPressure() float32 /* primitive/slice/pointer. */ {
+func (e_ Event) TangentialPressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("tangentialPressure"))
 	return rv
 }
@@ -943,7 +944,7 @@ func (e_ Event) TangentialPressure() float32 /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/tilt
 func (e_ Event) Tilt() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](e_.ID, objc.Sel("tilt"))
+	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("tilt"))
 	return rv
 }
 
@@ -952,7 +953,7 @@ func (e_ Event) Tilt() objc.IObject /* cross-framework: Point */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/timestamp
-func (e_ Event) Timestamp() TimeInterval /* not a class type */ {
+func (e_ Event) Timestamp() float64 {
 	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("timestamp"))
 	return rv
 }
@@ -972,7 +973,7 @@ func (e_ Event) TrackingArea() ITrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/trackingNumber
-func (e_ Event) TrackingNumber() int /* primitive/slice/pointer. */ {
+func (e_ Event) TrackingNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("trackingNumber"))
 	return rv
 }
@@ -992,7 +993,7 @@ func (e_ Event) Type() EventType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/uniqueID
-func (e_ Event) UniqueID() uint64 /* primitive/slice/pointer. */ {
+func (e_ Event) UniqueID() uint64 {
 	rv := objc.Send[uint64](e_.ID, objc.Sel("uniqueID"))
 	return rv
 }
@@ -1022,7 +1023,7 @@ func (e_ Event) VendorDefined() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/vendorID
-func (e_ Event) VendorID() uint /* primitive/slice/pointer. */ {
+func (e_ Event) VendorID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("vendorID"))
 	return rv
 }
@@ -1032,7 +1033,7 @@ func (e_ Event) VendorID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/vendorPointingDeviceType
-func (e_ Event) VendorPointingDeviceType() uint /* primitive/slice/pointer. */ {
+func (e_ Event) VendorPointingDeviceType() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("vendorPointingDeviceType"))
 	return rv
 }
@@ -1052,7 +1053,7 @@ func (e_ Event) Window() IWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/windowNumber
-func (e_ Event) WindowNumber() int /* primitive/slice/pointer. */ {
+func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
 }
@@ -1062,7 +1063,7 @@ func (e_ Event) WindowNumber() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isarepeat
-func (e_ Event) IsARepeat() bool /* primitive/slice/pointer. */ {
+func (e_ Event) IsARepeat() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isARepeat"))
 	return rv
 }
@@ -1072,7 +1073,7 @@ func (e_ Event) IsARepeat() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isarepeat
-func (e_ Event) SetIsARepeat(value bool /* primitive/slice/pointer. */) {
+func (e_ Event) SetIsARepeat(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsARepeat:"), value)
 }
 
@@ -1081,7 +1082,7 @@ func (e_ Event) SetIsARepeat(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isdirectioninvertedfromdevice
-func (e_ Event) IsDirectionInvertedFromDevice() bool /* primitive/slice/pointer. */ {
+func (e_ Event) IsDirectionInvertedFromDevice() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDirectionInvertedFromDevice"))
 	return rv
 }
@@ -1091,7 +1092,7 @@ func (e_ Event) IsDirectionInvertedFromDevice() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isdirectioninvertedfromdevice
-func (e_ Event) SetIsDirectionInvertedFromDevice(value bool /* primitive/slice/pointer. */) {
+func (e_ Event) SetIsDirectionInvertedFromDevice(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsDirectionInvertedFromDevice:"), value)
 }
 
@@ -1100,7 +1101,7 @@ func (e_ Event) SetIsDirectionInvertedFromDevice(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isenteringproximity
-func (e_ Event) IsEnteringProximity() bool /* primitive/slice/pointer. */ {
+func (e_ Event) IsEnteringProximity() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnteringProximity"))
 	return rv
 }
@@ -1110,7 +1111,7 @@ func (e_ Event) IsEnteringProximity() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isenteringproximity
-func (e_ Event) SetIsEnteringProximity(value bool /* primitive/slice/pointer. */) {
+func (e_ Event) SetIsEnteringProximity(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsEnteringProximity:"), value)
 }
 

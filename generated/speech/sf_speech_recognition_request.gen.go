@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,26 +31,32 @@ type _SFSpeechRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechRecognitionRequest] class.
 type ISFSpeechRecognitionRequest interface {
 	objectivec.IObject
-	CustomizedLanguageModel() SFSpeechLanguageModelConfiguration
+	// properties:
+	CustomizedLanguageModel() ISFSpeechLanguageModelConfiguration
 	SetCustomizedLanguageModel(value ISFSpeechLanguageModelConfiguration)
-	RequiresOnDeviceRecognition() bool
-	SetRequiresOnDeviceRecognition(value bool)
 	ShouldReportPartialResults() bool
 	SetShouldReportPartialResults(value bool)
 	AddsPunctuation() bool
 	SetAddsPunctuation(value bool)
-	ContextualStrings() string
-	SetContextualStrings(value string)
-	InteractionIdentifier() string
-	SetInteractionIdentifier(value string)
+	ContextualStrings() objc.IObject /* cross-framework: NSString */
+	SetContextualStrings(value objc.IObject /* cross-framework: NSString */)
+	InteractionIdentifier() objc.IObject /* cross-framework: NSString */
+	SetInteractionIdentifier(value objc.IObject /* cross-framework: NSString */)
+	RequiresOnDeviceRecognition() bool
+	SetRequiresOnDeviceRecognition(value bool)
 	TaskHint() SFSpeechRecognitionTaskHint
-	SetTaskHint(value ISFSpeechRecognitionTaskHint)
+	SetTaskHint(value SFSpeechRecognitionTaskHint)
+	// methods:
 }
 
 // An abstract class that represents a request to recognize speech from an audio source.
 //
 // Don’t create objects directly. Create an or object instead. Use the properties of this class to configure various aspects of your request object before you start the speech recognition process. For example, use the property to specify whether you want partial results or only the final result of speech recognition.
+
+
+// An abstract class that represents a request to recognize speech from an audio source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest
 type SFSpeechRecognitionRequest struct {
 	objectivec.Object
@@ -94,41 +101,25 @@ func NewSFSpeechRecognitionRequest() SFSpeechRecognitionRequest {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/customizedLanguageModel
-func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() SFSpeechLanguageModelConfiguration {
+func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() ISFSpeechLanguageModelConfiguration {
 	rv := objc.Send[SFSpeechLanguageModelConfiguration](s_.ID, objc.Sel("customizedLanguageModel"))
 	return rv
 }
 
 
-// SetCustomizedLanguageModel sets the value of the customizedLanguageModel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/customizedLanguageModel
 func (s_ SFSpeechRecognitionRequest) SetCustomizedLanguageModel(value ISFSpeechLanguageModelConfiguration) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
 }
 
-// A Boolean value that determines whether a request must keep its audio data on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/requiresOnDeviceRecognition
-func (s_ SFSpeechRecognitionRequest) RequiresOnDeviceRecognition() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("requiresOnDeviceRecognition"))
-	return rv
-}
-
-
-// SetRequiresOnDeviceRecognition sets the value of the requiresOnDeviceRecognition property.
-// A Boolean value that determines whether a request must keep its audio data on the device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/requiresOnDeviceRecognition
-func (s_ SFSpeechRecognitionRequest) SetRequiresOnDeviceRecognition(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresOnDeviceRecognition:"), value)
-}
 
 // A Boolean value that indicates whether you want intermediate results returned for each utterance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults
 func (s_ SFSpeechRecognitionRequest) ShouldReportPartialResults() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("shouldReportPartialResults"))
@@ -136,17 +127,18 @@ func (s_ SFSpeechRecognitionRequest) ShouldReportPartialResults() bool {
 }
 
 
-// SetShouldReportPartialResults sets the value of the shouldReportPartialResults property.
 // A Boolean value that indicates whether you want intermediate results returned for each utterance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/shouldReportPartialResults
 func (s_ SFSpeechRecognitionRequest) SetShouldReportPartialResults(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShouldReportPartialResults:"), value)
 }
 
+
 // A Boolean value that indicates whether to add punctuation to speech recognition results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
 func (s_ SFSpeechRecognitionRequest) AddsPunctuation() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("addsPunctuation"))
@@ -154,53 +146,75 @@ func (s_ SFSpeechRecognitionRequest) AddsPunctuation() bool {
 }
 
 
-// SetAddsPunctuation sets the value of the addsPunctuation property.
 // A Boolean value that indicates whether to add punctuation to speech recognition results.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/addspunctuation
 func (s_ SFSpeechRecognitionRequest) SetAddsPunctuation(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAddsPunctuation:"), value)
 }
 
+
 // An array of phrases that should be recognized, even if they are not in the system vocabulary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("contextualStrings"))
+func (s_ SFSpeechRecognitionRequest) ContextualStrings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("contextualStrings"))
 	return rv
 }
 
 
-// SetContextualStrings sets the value of the contextualStrings property.
 // An array of phrases that should be recognized, even if they are not in the system vocabulary.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), objc.String(value))
+func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), value)
 }
+
 
 // An identifier string that you use to describe the type of interaction associated with the speech recognition request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("interactionIdentifier"))
+func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("interactionIdentifier"))
 	return rv
 }
 
 
-// SetInteractionIdentifier sets the value of the interactionIdentifier property.
 // An identifier string that you use to describe the type of interaction associated with the speech recognition request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), objc.String(value))
+func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), value)
 }
+
+
+// A Boolean value that determines whether a request must keep its audio data on the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/requiresondevicerecognition
+func (s_ SFSpeechRecognitionRequest) RequiresOnDeviceRecognition() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("requiresOnDeviceRecognition"))
+	return rv
+}
+
+
+// A Boolean value that determines whether a request must keep its audio data on the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/requiresondevicerecognition
+func (s_ SFSpeechRecognitionRequest) SetRequiresOnDeviceRecognition(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresOnDeviceRecognition:"), value)
+}
+
 
 // A value that indicates the type of speech recognition being performed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
 func (s_ SFSpeechRecognitionRequest) TaskHint() SFSpeechRecognitionTaskHint {
 	rv := objc.Send[SFSpeechRecognitionTaskHint](s_.ID, objc.Sel("taskHint"))
@@ -208,12 +222,11 @@ func (s_ SFSpeechRecognitionRequest) TaskHint() SFSpeechRecognitionTaskHint {
 }
 
 
-// SetTaskHint sets the value of the taskHint property.
 // A value that indicates the type of speech recognition being performed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
-func (s_ SFSpeechRecognitionRequest) SetTaskHint(value ISFSpeechRecognitionTaskHint) {
+func (s_ SFSpeechRecognitionRequest) SetTaskHint(value SFSpeechRecognitionTaskHint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTaskHint:"), value)
 }
 

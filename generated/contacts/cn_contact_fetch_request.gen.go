@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactFetchRequest] class.
@@ -30,16 +31,16 @@ type _CNContactFetchRequestClass struct {
 type ICNContactFetchRequest interface {
 	ICNFetchRequest
 	// properties:
-	KeysToFetch() []objc.ID /* already interface */
-	SetKeysToFetch(value []objc.ID /* already interface */)
-	MutableObjects() bool /* primitive/slice/pointer. */
-	SetMutableObjects(value bool /* primitive/slice/pointer. */)
+	KeysToFetch() []objc.ID
+	SetKeysToFetch(value []objc.ID)
+	MutableObjects() bool
+	SetMutableObjects(value bool)
 	Predicate() objc.IObject /* cross-framework: Predicate */
 	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	SortOrder() CNContactSortOrder
 	SetSortOrder(value CNContactSortOrder)
-	UnifyResults() bool /* primitive/slice/pointer. */
-	SetUnifyResults(value bool /* primitive/slice/pointer. */)
+	UnifyResults() bool
+	SetUnifyResults(value bool)
 	// methods:
 }
 
@@ -102,7 +103,7 @@ func NewCNContactFetchRequest() CNContactFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/init(keysToFetch:)
-func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID /* already interface */) CNContactFetchRequest {
+func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFetchRequest {
 	instance := getCNContactFetchRequestClass().Alloc()
 	rv := objc.Send[CNContactFetchRequest](instance.ID, objc.Sel("initWithKeysToFetch:"), keysToFetch)
 	rv.Autorelease()
@@ -115,7 +116,7 @@ func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID /* already in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
-func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID /* already interface */ {
+func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("keysToFetch"))
 	return rv
 }
@@ -125,7 +126,7 @@ func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID /* already interface */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
-func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID /* already interface */) {
+func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -144,7 +145,7 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
-func (c_ CNContactFetchRequest) MutableObjects() bool /* primitive/slice/pointer. */ {
+func (c_ CNContactFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
 }
@@ -154,7 +155,7 @@ func (c_ CNContactFetchRequest) MutableObjects() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
-func (c_ CNContactFetchRequest) SetMutableObjects(value bool /* primitive/slice/pointer. */) {
+func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
 }
 
@@ -164,7 +165,7 @@ func (c_ CNContactFetchRequest) SetMutableObjects(value bool /* primitive/slice/
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
 func (c_ CNContactFetchRequest) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -201,7 +202,7 @@ func (c_ CNContactFetchRequest) SetSortOrder(value CNContactSortOrder) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
-func (c_ CNContactFetchRequest) UnifyResults() bool /* primitive/slice/pointer. */ {
+func (c_ CNContactFetchRequest) UnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("unifyResults"))
 	return rv
 }
@@ -211,7 +212,7 @@ func (c_ CNContactFetchRequest) UnifyResults() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
-func (c_ CNContactFetchRequest) SetUnifyResults(value bool /* primitive/slice/pointer. */) {
+func (c_ CNContactFetchRequest) SetUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifyResults:"), value)
 }
 

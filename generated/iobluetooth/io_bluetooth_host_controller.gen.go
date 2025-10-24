@@ -39,7 +39,7 @@ type IBluetoothHostController interface {
 	AddressAsString() objc.IObject /* cross-framework: String */
 	ClassOfDevice() BluetoothClassOfDevice /* typedef */
 	NameAsString() objc.IObject /* cross-framework: String */
-	SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds foundation.TimeInterval /* not a class type */) Return /* not a class type */
+	SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds float64) Return /* not a class type */
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
@@ -110,7 +110,7 @@ func (bc _BluetoothHostControllerClass) DefaultController() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/addressAsString()
 func (b_ BluetoothHostController) AddressAsString() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](b_.ID, objc.Sel("addressAsString"))
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("addressAsString"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (b_ BluetoothHostController) ClassOfDevice() BluetoothClassOfDevice /* type
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/nameAsString()
 func (b_ BluetoothHostController) NameAsString() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](b_.ID, objc.Sel("nameAsString"))
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("nameAsString"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (b_ BluetoothHostController) NameAsString() objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/setClassOfDevice(_:forTimeInterval:)
-func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds foundation.TimeInterval /* not a class type */) Return /* not a class type */ {
+func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds float64) Return /* not a class type */ {
 	rv := objc.Send[Return](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
 	return rv
 }

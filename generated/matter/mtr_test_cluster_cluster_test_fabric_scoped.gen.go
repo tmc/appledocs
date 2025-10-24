@@ -30,25 +30,29 @@ type _MTRTestClusterClusterTestFabricScopedClass struct {
 // An interface definition for the [MTRTestClusterClusterTestFabricScoped] class.
 type IMTRTestClusterClusterTestFabricScoped interface {
 	IMTRUnitTestingClusterTestFabricScoped
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	FabricSensitiveCharString() string
-	SetFabricSensitiveCharString(value string)
-	FabricSensitiveInt8u() foundation.Number
-	SetFabricSensitiveInt8u(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	FabricSensitiveCharString() objc.IObject /* cross-framework: NSString */
+	SetFabricSensitiveCharString(value objc.IObject /* cross-framework: NSString */)
+	FabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */
+	SetFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */)
 	FabricSensitiveInt8uList() unsafe.Pointer
 	SetFabricSensitiveInt8uList(value unsafe.Pointer)
-	FabricSensitiveStruct() MTRTestClusterClusterSimpleStruct
+	FabricSensitiveStruct() IMTRTestClusterClusterSimpleStruct
 	SetFabricSensitiveStruct(value IMTRTestClusterClusterSimpleStruct)
-	NullableFabricSensitiveInt8u() foundation.Number
-	SetNullableFabricSensitiveInt8u(value foundation.INumber)
-	NullableOptionalFabricSensitiveInt8u() foundation.Number
-	SetNullableOptionalFabricSensitiveInt8u(value foundation.INumber)
-	OptionalFabricSensitiveInt8u() foundation.Number
-	SetOptionalFabricSensitiveInt8u(value foundation.INumber)
+	NullableFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */
+	SetNullableFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */)
+	OptionalFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestFabricScoped
 type MTRTestClusterClusterTestFabricScoped struct {
 	MTRUnitTestingClusterTestFabricScoped
@@ -93,52 +97,53 @@ func NewMTRTestClusterClusterTestFabricScoped() MTRTestClusterClusterTestFabricS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricindex
-func (m_ MTRTestClusterClusterTestFabricScoped) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRTestClusterClusterTestFabricScoped) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricindex
-func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivecharstring
-func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveCharString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("fabricSensitiveCharString"))
+func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveCharString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("fabricSensitiveCharString"))
 	return rv
 }
 
 
-// SetFabricSensitiveCharString sets the value of the fabricSensitiveCharString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivecharstring
-func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveCharString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveCharString:"), objc.String(value))
+func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveCharString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveCharString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8u() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricSensitiveInt8u"))
+func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricSensitiveInt8u"))
 	return rv
 }
 
 
-// SetFabricSensitiveInt8u sets the value of the fabricSensitiveInt8u property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveInt8u(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveInt8u:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8ulist
 func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8uList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fabricSensitiveInt8uList"))
@@ -146,70 +151,69 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8uList() unsaf
 }
 
 
-// SetFabricSensitiveInt8uList sets the value of the fabricSensitiveInt8uList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8ulist
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveInt8uList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveInt8uList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivestruct
-func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveStruct() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveStruct() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("fabricSensitiveStruct"))
 	return rv
 }
 
 
-// SetFabricSensitiveStruct sets the value of the fabricSensitiveStruct property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivestruct
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveStruct(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveStruct:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullablefabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) NullableFabricSensitiveInt8u() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableFabricSensitiveInt8u"))
+func (m_ MTRTestClusterClusterTestFabricScoped) NullableFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableFabricSensitiveInt8u"))
 	return rv
 }
 
 
-// SetNullableFabricSensitiveInt8u sets the value of the nullableFabricSensitiveInt8u property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullablefabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableFabricSensitiveInt8u(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableFabricSensitiveInt8u:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullableoptionalfabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) NullableOptionalFabricSensitiveInt8u() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalFabricSensitiveInt8u"))
+func (m_ MTRTestClusterClusterTestFabricScoped) NullableOptionalFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalFabricSensitiveInt8u"))
 	return rv
 }
 
 
-// SetNullableOptionalFabricSensitiveInt8u sets the value of the nullableOptionalFabricSensitiveInt8u property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullableoptionalfabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableOptionalFabricSensitiveInt8u(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalFabricSensitiveInt8u:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/optionalfabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) OptionalFabricSensitiveInt8u() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalFabricSensitiveInt8u"))
+func (m_ MTRTestClusterClusterTestFabricScoped) OptionalFabricSensitiveInt8u() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalFabricSensitiveInt8u"))
 	return rv
 }
 
 
-// SetOptionalFabricSensitiveInt8u sets the value of the optionalFabricSensitiveInt8u property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/optionalfabricsensitiveint8u
-func (m_ MTRTestClusterClusterTestFabricScoped) SetOptionalFabricSensitiveInt8u(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScoped) SetOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalFabricSensitiveInt8u:"), value)
 }
 

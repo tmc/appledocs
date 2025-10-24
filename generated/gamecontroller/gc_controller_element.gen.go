@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,25 +32,25 @@ type _GCControllerElementClass struct {
 type IGCControllerElement interface {
 	objectivec.IObject
 	// properties:
-	Analog() bool /* primitive/slice/pointer. */
-	Aliases() string /* primitive/slice/pointer. */
-	SetAliases(value string /* primitive/slice/pointer. */)
+	Analog() bool
+	Aliases() objc.IObject /* cross-framework: NSString */
+	SetAliases(value objc.IObject /* cross-framework: NSString */)
 	Collection() IGCControllerElement
 	SetCollection(value IGCControllerElement)
-	IsAnalog() bool /* primitive/slice/pointer. */
-	SetIsAnalog(value bool /* primitive/slice/pointer. */)
-	IsBoundToSystemGesture() bool /* primitive/slice/pointer. */
-	SetIsBoundToSystemGesture(value bool /* primitive/slice/pointer. */)
-	LocalizedName() string /* primitive/slice/pointer. */
-	SetLocalizedName(value string /* primitive/slice/pointer. */)
+	IsAnalog() bool
+	SetIsAnalog(value bool)
+	IsBoundToSystemGesture() bool
+	SetIsBoundToSystemGesture(value bool)
+	LocalizedName() objc.IObject /* cross-framework: NSString */
+	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
 	PreferredSystemGestureState() unsafe.Pointer
 	SetPreferredSystemGestureState(value unsafe.Pointer)
-	SfSymbolsName() string /* primitive/slice/pointer. */
-	SetSfSymbolsName(value string /* primitive/slice/pointer. */)
-	UnmappedLocalizedName() string /* primitive/slice/pointer. */
-	SetUnmappedLocalizedName(value string /* primitive/slice/pointer. */)
-	UnmappedSfSymbolsName() string /* primitive/slice/pointer. */
-	SetUnmappedSfSymbolsName(value string /* primitive/slice/pointer. */)
+	SfSymbolsName() objc.IObject /* cross-framework: NSString */
+	SetSfSymbolsName(value objc.IObject /* cross-framework: NSString */)
+	UnmappedLocalizedName() objc.IObject /* cross-framework: NSString */
+	SetUnmappedLocalizedName(value objc.IObject /* cross-framework: NSString */)
+	UnmappedSfSymbolsName() objc.IObject /* cross-framework: NSString */
+	SetUnmappedSfSymbolsName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -110,7 +111,7 @@ func NewGCControllerElement() GCControllerElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/isAnalog
-func (g_ GCControllerElement) Analog() bool /* primitive/slice/pointer. */ {
+func (g_ GCControllerElement) Analog() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("analog"))
 	return rv
 }
@@ -120,8 +121,8 @@ func (g_ GCControllerElement) Analog() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/aliases
-func (g_ GCControllerElement) Aliases() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("aliases"))
+func (g_ GCControllerElement) Aliases() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("aliases"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (g_ GCControllerElement) Aliases() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/aliases
-func (g_ GCControllerElement) SetAliases(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAliases:"), objc.String(value))
+func (g_ GCControllerElement) SetAliases(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAliases:"), value)
 }
 
 
@@ -158,7 +159,7 @@ func (g_ GCControllerElement) SetCollection(value IGCControllerElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-func (g_ GCControllerElement) IsAnalog() bool /* primitive/slice/pointer. */ {
+func (g_ GCControllerElement) IsAnalog() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isAnalog"))
 	return rv
 }
@@ -168,7 +169,7 @@ func (g_ GCControllerElement) IsAnalog() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog
-func (g_ GCControllerElement) SetIsAnalog(value bool /* primitive/slice/pointer. */) {
+func (g_ GCControllerElement) SetIsAnalog(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAnalog:"), value)
 }
 
@@ -177,7 +178,7 @@ func (g_ GCControllerElement) SetIsAnalog(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
-func (g_ GCControllerElement) IsBoundToSystemGesture() bool /* primitive/slice/pointer. */ {
+func (g_ GCControllerElement) IsBoundToSystemGesture() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isBoundToSystemGesture"))
 	return rv
 }
@@ -187,7 +188,7 @@ func (g_ GCControllerElement) IsBoundToSystemGesture() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture
-func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool /* primitive/slice/pointer. */) {
+func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsBoundToSystemGesture:"), value)
 }
 
@@ -196,8 +197,8 @@ func (g_ GCControllerElement) SetIsBoundToSystemGesture(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
-func (g_ GCControllerElement) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("localizedName"))
+func (g_ GCControllerElement) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -206,8 +207,8 @@ func (g_ GCControllerElement) LocalizedName() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/localizedname
-func (g_ GCControllerElement) SetLocalizedName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (g_ GCControllerElement) SetLocalizedName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 
@@ -234,8 +235,8 @@ func (g_ GCControllerElement) SetPreferredSystemGestureState(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SfSymbolsName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("sfSymbolsName"))
+func (g_ GCControllerElement) SfSymbolsName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("sfSymbolsName"))
 	return rv
 }
 
@@ -244,8 +245,8 @@ func (g_ GCControllerElement) SfSymbolsName() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/sfsymbolsname
-func (g_ GCControllerElement) SetSfSymbolsName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), objc.String(value))
+func (g_ GCControllerElement) SetSfSymbolsName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSfSymbolsName:"), value)
 }
 
 
@@ -253,8 +254,8 @@ func (g_ GCControllerElement) SetSfSymbolsName(value string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
-func (g_ GCControllerElement) UnmappedLocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("unmappedLocalizedName"))
+func (g_ GCControllerElement) UnmappedLocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("unmappedLocalizedName"))
 	return rv
 }
 
@@ -263,8 +264,8 @@ func (g_ GCControllerElement) UnmappedLocalizedName() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedlocalizedname
-func (g_ GCControllerElement) SetUnmappedLocalizedName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), objc.String(value))
+func (g_ GCControllerElement) SetUnmappedLocalizedName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedLocalizedName:"), value)
 }
 
 
@@ -272,8 +273,8 @@ func (g_ GCControllerElement) SetUnmappedLocalizedName(value string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) UnmappedSfSymbolsName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("unmappedSfSymbolsName"))
+func (g_ GCControllerElement) UnmappedSfSymbolsName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("unmappedSfSymbolsName"))
 	return rv
 }
 
@@ -282,8 +283,8 @@ func (g_ GCControllerElement) UnmappedSfSymbolsName() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/unmappedsfsymbolsname
-func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), objc.String(value))
+func (g_ GCControllerElement) SetUnmappedSfSymbolsName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmappedSfSymbolsName:"), value)
 }
 
 

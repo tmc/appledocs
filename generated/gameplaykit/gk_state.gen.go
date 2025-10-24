@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +34,8 @@ type IState interface {
 	StateMachine() IGKStateMachine
 	// methods:
 	DidEnterWithPreviousState(previousState IGKState)
-	IsValidNextState(stateClass objc.Class) bool /* primitive/slice/pointer. */
-	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
+	IsValidNextState(stateClass objc.Class) bool
+	UpdateWithDeltaTime(seconds float64)
 	WillExitWithNextState(nextState IGKState)
 }
 
@@ -117,7 +116,7 @@ func (s_ State) DidEnterWithPreviousState(previousState IGKState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/isValidNextState(_:)
-func (s_ State) IsValidNextState(stateClass objc.Class) bool /* primitive/slice/pointer. */ {
+func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isValidNextState:"), stateClass)
 	return rv
 }
@@ -127,7 +126,7 @@ func (s_ State) IsValidNextState(stateClass objc.Class) bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
+func (s_ State) UpdateWithDeltaTime(seconds float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

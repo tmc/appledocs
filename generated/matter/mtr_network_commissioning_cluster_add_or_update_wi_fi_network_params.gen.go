@@ -31,19 +31,23 @@ type _MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams] class.
 type IMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	Credentials() foundation.Data
-	SetCredentials(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	Ssid() foundation.Data
-	SetSsid(value foundation.IData)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	Credentials() objc.IObject /* cross-framework: Data */
+	SetCredentials(value objc.IObject /* cross-framework: Data */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	Ssid() objc.IObject /* cross-framework: Data */
+	SetSsid(value objc.IObject /* cross-framework: Data */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams
 type MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams() MTRNetworkC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Credentials() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Credentials() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("credentials"))
 	return rv
 }
 
 
-// SetCredentials sets the value of the credentials property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetCredentials(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetCredentials(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Ssid() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Ssid() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("ssid"))
 	return rv
 }
 
 
-// SetSsid sets the value of the ssid property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetSsid(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetSsid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

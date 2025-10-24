@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +32,18 @@ type _DraggingSessionClass struct {
 type IDraggingSession interface {
 	objectivec.IObject
 	// properties:
-	DraggingFormation() DraggingFormation
-	SetDraggingFormation(value DraggingFormation)
-	AnimatesToStartingPositionsOnCancelOrFail() bool /* primitive/slice/pointer. */
-	SetAnimatesToStartingPositionsOnCancelOrFail(value bool /* primitive/slice/pointer. */)
-	DraggingLeaderIndex() int /* primitive/slice/pointer. */
-	SetDraggingLeaderIndex(value int /* primitive/slice/pointer. */)
+	AnimatesToStartingPositionsOnCancelOrFail() bool
+	SetAnimatesToStartingPositionsOnCancelOrFail(value bool)
+	DraggingFormation() DraggingFormation /* not a class type */
+	SetDraggingFormation(value DraggingFormation /* not a class type */)
+	DraggingLeaderIndex() int
+	SetDraggingLeaderIndex(value int)
 	DraggingLocation() objc.IObject /* cross-framework: Point */
 	SetDraggingLocation(value objc.IObject /* cross-framework: Point */)
 	DraggingPasteboard() IPasteboard
 	SetDraggingPasteboard(value IPasteboard)
-	DraggingSequenceNumber() int /* primitive/slice/pointer. */
-	SetDraggingSequenceNumber(value int /* primitive/slice/pointer. */)
+	DraggingSequenceNumber() int
+	SetDraggingSequenceNumber(value int)
 	// methods:
 }
 
@@ -99,30 +100,11 @@ func NewDraggingSession() DraggingSession {
 
 
 
-// Controls the dragging formation when the drag is not over the source or a valid destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
-func (d_ DraggingSession) DraggingFormation() DraggingFormation {
-	rv := objc.Send[DraggingFormation](d_.ID, objc.Sel("draggingFormation"))
-	return rv
-}
-
-
-// Controls the dragging formation when the drag is not over the source or a valid destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
-func (d_ DraggingSession) SetDraggingFormation(value DraggingFormation) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFormation:"), value)
-}
-
-
 // Controls whether the dragging image animates back to its starting point on a cancelled or failed drag.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/animatestostartingpositionsoncancelorfail
-func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool /* primitive/slice/pointer. */ {
+func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("animatesToStartingPositionsOnCancelOrFail"))
 	return rv
 }
@@ -132,8 +114,27 @@ func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/animatestostartingpositionsoncancelorfail
-func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value bool /* primitive/slice/pointer. */) {
+func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnimatesToStartingPositionsOnCancelOrFail:"), value)
+}
+
+
+// Controls the dragging formation when the drag is not over the source or a valid destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
+func (d_ DraggingSession) DraggingFormation() DraggingFormation /* not a class type */ {
+	rv := objc.Send[DraggingFormation](d_.ID, objc.Sel("draggingFormation"))
+	return rv
+}
+
+
+// Controls the dragging formation when the drag is not over the source or a valid destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
+func (d_ DraggingSession) SetDraggingFormation(value DraggingFormation /* not a class type */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFormation:"), value)
 }
 
 
@@ -141,7 +142,7 @@ func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingleaderindex
-func (d_ DraggingSession) DraggingLeaderIndex() int /* primitive/slice/pointer. */ {
+func (d_ DraggingSession) DraggingLeaderIndex() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("draggingLeaderIndex"))
 	return rv
 }
@@ -151,7 +152,7 @@ func (d_ DraggingSession) DraggingLeaderIndex() int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingleaderindex
-func (d_ DraggingSession) SetDraggingLeaderIndex(value int /* primitive/slice/pointer. */) {
+func (d_ DraggingSession) SetDraggingLeaderIndex(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingLeaderIndex:"), value)
 }
 
@@ -161,7 +162,7 @@ func (d_ DraggingSession) SetDraggingLeaderIndex(value int /* primitive/slice/po
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/dragginglocation
 func (d_ DraggingSession) DraggingLocation() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](d_.ID, objc.Sel("draggingLocation"))
+	rv := objc.Send[corefoundation.Point](d_.ID, objc.Sel("draggingLocation"))
 	return rv
 }
 
@@ -198,7 +199,7 @@ func (d_ DraggingSession) SetDraggingPasteboard(value IPasteboard) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingsequencenumber
-func (d_ DraggingSession) DraggingSequenceNumber() int /* primitive/slice/pointer. */ {
+func (d_ DraggingSession) DraggingSequenceNumber() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("draggingSequenceNumber"))
 	return rv
 }
@@ -208,7 +209,7 @@ func (d_ DraggingSession) DraggingSequenceNumber() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingsequencenumber
-func (d_ DraggingSession) SetDraggingSequenceNumber(value int /* primitive/slice/pointer. */) {
+func (d_ DraggingSession) SetDraggingSequenceNumber(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingSequenceNumber:"), value)
 }
 

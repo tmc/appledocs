@@ -30,9 +30,13 @@ type _preferredDestinationHostNameClass struct {
 // An interface definition for the [preferredDestinationHostName] class.
 type IpreferredDestinationHostName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-c.ivar
 type preferredDestinationHostName struct {
 	objectivec.Object

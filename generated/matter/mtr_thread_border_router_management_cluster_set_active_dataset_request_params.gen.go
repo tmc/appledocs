@@ -31,17 +31,21 @@ type _MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParamsClass s
 // An interface definition for the [MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams] class.
 type IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams interface {
 	objectivec.IObject
-	ActiveDataset() foundation.NSData
-	SetActiveDataset(value foundation.IData)
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ActiveDataset() objc.IObject /* cross-framework: NSData */
+	SetActiveDataset(value objc.IObject /* cross-framework: NSData */)
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams
 type MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams() MT
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/activeDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ActiveDataset() foundation.NSData {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ActiveDataset() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("activeDataset"))
 	return rv
 }
 
 
-// SetActiveDataset sets the value of the activeDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/activeDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetActiveDataset(value foundation.IData) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetActiveDataset(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDataset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

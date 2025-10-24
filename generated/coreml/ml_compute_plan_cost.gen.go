@@ -31,7 +31,7 @@ type _ComputePlanCostClass struct {
 type IComputePlanCost interface {
 	objectivec.IObject
 	// properties:
-	Weight() float64 /* primitive/slice/pointer. */
+	Weight() float64
 	// methods:
 }
 
@@ -90,7 +90,7 @@ func NewComputePlanCost() ComputePlanCost {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost/weight
-func (c_ ComputePlanCost) Weight() float64 /* primitive/slice/pointer. */ {
+func (c_ ComputePlanCost) Weight() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("weight"))
 	return rv
 }

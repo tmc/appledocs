@@ -31,27 +31,31 @@ type _MTRColorControlClusterColorLoopSetParamsClass struct {
 // An interface definition for the [MTRColorControlClusterColorLoopSetParams] class.
 type IMTRColorControlClusterColorLoopSetParams interface {
 	objectivec.IObject
-	Action() foundation.Number
-	SetAction(value foundation.INumber)
-	Direction() foundation.Number
-	SetDirection(value foundation.INumber)
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	StartHue() foundation.Number
-	SetStartHue(value foundation.INumber)
-	Time() foundation.Number
-	SetTime(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UpdateFlags() foundation.Number
-	SetUpdateFlags(value foundation.INumber)
+	// properties:
+	Action() objc.IObject /* cross-framework: NSNumber */
+	SetAction(value objc.IObject /* cross-framework: NSNumber */)
+	Direction() objc.IObject /* cross-framework: NSNumber */
+	SetDirection(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	StartHue() objc.IObject /* cross-framework: NSNumber */
+	SetStartHue(value objc.IObject /* cross-framework: NSNumber */)
+	Time() objc.IObject /* cross-framework: NSNumber */
+	SetTime(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UpdateFlags() objc.IObject /* cross-framework: NSNumber */
+	SetUpdateFlags(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterColorLoopSetParams
 type MTRColorControlClusterColorLoopSetParams struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTRColorControlClusterColorLoopSetParams() MTRColorControlClusterColorLo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/action
-func (m_ MTRColorControlClusterColorLoopSetParams) Action() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("action"))
+func (m_ MTRColorControlClusterColorLoopSetParams) Action() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/action
-func (m_ MTRColorControlClusterColorLoopSetParams) SetAction(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetAction(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/direction
-func (m_ MTRColorControlClusterColorLoopSetParams) Direction() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("direction"))
+func (m_ MTRColorControlClusterColorLoopSetParams) Direction() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("direction"))
 	return rv
 }
 
 
-// SetDirection sets the value of the direction property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/direction
-func (m_ MTRColorControlClusterColorLoopSetParams) SetDirection(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetDirection(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
-func (m_ MTRColorControlClusterColorLoopSetParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRColorControlClusterColorLoopSetParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsmask
-func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
-func (m_ MTRColorControlClusterColorLoopSetParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRColorControlClusterColorLoopSetParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/optionsoverride
-func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterColorLoopSetParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRColorControlClusterColorLoopSetParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterColorLoopSetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
-func (m_ MTRColorControlClusterColorLoopSetParams) StartHue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startHue"))
+func (m_ MTRColorControlClusterColorLoopSetParams) StartHue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startHue"))
 	return rv
 }
 
 
-// SetStartHue sets the value of the startHue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/starthue
-func (m_ MTRColorControlClusterColorLoopSetParams) SetStartHue(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetStartHue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartHue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
-func (m_ MTRColorControlClusterColorLoopSetParams) Time() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("time"))
+func (m_ MTRColorControlClusterColorLoopSetParams) Time() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("time"))
 	return rv
 }
 
 
-// SetTime sets the value of the time property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/time
-func (m_ MTRColorControlClusterColorLoopSetParams) SetTime(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterColorLoopSetParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRColorControlClusterColorLoopSetParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterColorLoopSetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/updateflags
-func (m_ MTRColorControlClusterColorLoopSetParams) UpdateFlags() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("updateFlags"))
+func (m_ MTRColorControlClusterColorLoopSetParams) UpdateFlags() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("updateFlags"))
 	return rv
 }
 
 
-// SetUpdateFlags sets the value of the updateFlags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustercolorloopsetparams/updateflags
-func (m_ MTRColorControlClusterColorLoopSetParams) SetUpdateFlags(value foundation.INumber) {
+func (m_ MTRColorControlClusterColorLoopSetParams) SetUpdateFlags(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateFlags:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,17 @@ type _PHLocalIdentifierMappingClass struct {
 // An interface definition for the [PHLocalIdentifierMapping] class.
 type IPHLocalIdentifierMapping interface {
 	objectivec.IObject
-	PHLocalIdentifierNotFound() string
+	// properties:
+	PHLocalIdentifierNotFound() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
+
+
+// An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLocalIdentifierMapping
 type PHLocalIdentifierMapping struct {
 	objectivec.Object
@@ -79,11 +86,13 @@ func NewPHLocalIdentifierMapping() PHLocalIdentifierMapping {
 }
 
 
+
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
 

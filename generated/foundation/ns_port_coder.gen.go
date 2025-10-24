@@ -88,4 +88,26 @@ func NewPortCoder() PortCoder {
 
 
 
+// Initializes and returns an object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/initWithReceivePort:sendPort:components:
+func NewPortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps IArray) PortCoder {
+	instance := getPortCoderClass().Alloc()
+	rv := objc.Send[PortCoder](instance.ID, objc.Sel("initWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a new object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/portCoderWithReceivePort:sendPort:components:
+func (pc _PortCoderClass) PortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps IArray) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("portCoderWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
+	return rv
+}
+
 

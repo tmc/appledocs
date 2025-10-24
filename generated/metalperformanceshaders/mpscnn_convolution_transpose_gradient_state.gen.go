@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNNConvolutionTransposeGradientState] class.
@@ -29,19 +28,25 @@ type _CNNConvolutionTransposeGradientStateClass struct {
 
 // An interface definition for the [CNNConvolutionTransposeGradientState] class.
 type ICNNConvolutionTransposeGradientState interface {
-	objectivec.IObject
-	ConvolutionTranspose() unsafe.Pointer
+	ICNNConvolutionGradientState
+	// properties:
+	ConvolutionTranspose() CNNConvolutionTranspose /* not a class type */
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientState
 type CNNConvolutionTransposeGradientState struct {
-	objectivec.Object
+	CNNConvolutionGradientState
 }
 
 // CNNConvolutionTransposeGradientStateFrom constructs a [CNNConvolutionTransposeGradientState] from an unsafe.Pointer.
 func CNNConvolutionTransposeGradientStateFrom(ptr unsafe.Pointer) CNNConvolutionTransposeGradientState {
-	return CNNConvolutionTransposeGradientState{objectivec.Object{objc.ID(ptr)}}
+	return CNNConvolutionTransposeGradientState{
+		CNNConvolutionGradientState: CNNConvolutionGradientStateFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -76,10 +81,11 @@ func NewCNNConvolutionTransposeGradientState() CNNConvolutionTransposeGradientSt
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientState/convolutionTranspose
-func (c_ CNNConvolutionTransposeGradientState) ConvolutionTranspose() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("convolutionTranspose"))
+func (c_ CNNConvolutionTransposeGradientState) ConvolutionTranspose() CNNConvolutionTranspose /* not a class type */ {
+	rv := objc.Send[CNNConvolutionTranspose](c_.ID, objc.Sel("convolutionTranspose"))
 	return rv
 }
 

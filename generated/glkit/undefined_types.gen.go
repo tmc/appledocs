@@ -9,19 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AllocatorRef = _undefined // referenced in GLKit
-	Bool = _undefined // referenced in GLKit
-	GLKTextureLoaderCallback = _undefined // referenced in GLKit
-	GLboolean = _undefined // referenced in GLKit
-	GLenum = _undefined // referenced in GLKit
-	GLfloat = _undefined // referenced in GLKit
-	GLint = _undefined // referenced in GLKit
-	GLsizei = _undefined // referenced in GLKit
-	GLuint = _undefined // referenced in GLKit
 	ImageRef = _undefined // referenced in GLKit
 	MDLMesh = _undefined // referenced in GLKit
-	MDLMeshBufferType = _undefined // referenced in GLKit
-	TypeID = _undefined // referenced in GLKit
 )
 
 

@@ -30,34 +30,18 @@ type _MusicPlayerControllerClass struct {
 // An interface definition for the [MusicPlayerController] class.
 type IMusicPlayerController interface {
 	objectivec.IObject
-	AppendQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
-	BeginGeneratingPlaybackNotifications()
-	EndGeneratingPlaybackNotifications()
-	PrepareToPlayWithCompletionHandler(completionHandler unsafe.Pointer)
-	PrependQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
-	SetQueueWithDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
-	SetQueueWithQuery(query IMPMediaQuery)
-	SetQueueWithStoreIDs(storeIDs []string)
-	SetQueueWithItemCollection(itemCollection IMPMediaItemCollection)
-	SkipToBeginning()
-	SkipToNextItem()
-	SkipToPreviousItem()
-	IndexOfNowPlayingItem() uint
-	NowPlayingItem() MPMediaItem
-	SetNowPlayingItem(value IMPMediaItem)
-	PlaybackState() MusicPlaybackState
-	RepeatMode() MusicRepeatMode
-	SetRepeatMode(value MusicRepeatMode)
-	ShuffleMode() MusicShuffleMode
-	SetShuffleMode(value MusicShuffleMode)
-	Volume() float32
-	SetVolume(value float32)
+	// properties:
+	// methods:
 }
 
 // An object that plays audio media items from the device’s Music app library.
 //
 // Create an instance of a music player to play media items in your app. There are two types of music players: An plays music locally within your app. It isn’t aware of the Music app’s Now Playing item, nor does it affect the Music app’s state. There are two application music players: and . The application queue player provides greater control over the contents of the queue and is the preferred player. The employs the built-in Music app on your behalf. On instantiation, it takes on the current Music app state, such as the identification of the Now Playing item. If a user switches away from your app while music is playing, that music continues to play. The Music app then has your music player’s most recently-set repeat mode, shuffle mode, playback state, and Now Playing item. Creating a new instance of and not specifying the player type returns a system music player.
+
+
+// An object that plays audio media items from the device’s Music app library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController
 type MusicPlayerController struct {
 	objectivec.Object
@@ -102,237 +86,40 @@ func NewMusicPlayerController() MusicPlayerController {
 }
 
 
+
 // Returns the application music player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
 func (mc _MusicPlayerControllerClass) ApplicationMusicPlayer() MusicPlayerController {
-	rv := objc.Send[MPMusicPlayerController](objc.ID(mc.class), objc.Sel("applicationMusicPlayer"))
+	rv := objc.Send[MusicPlayerController](objc.ID(mc.class), objc.Sel("applicationMusicPlayer"))
 	return rv
 }
+
 // Returns the application queue music player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
-func (mc _MusicPlayerControllerClass) ApplicationQueuePlayer() MPMusicPlayerApplicationController {
-	rv := objc.Send[MPMusicPlayerApplicationController](objc.ID(mc.class), objc.Sel("applicationQueuePlayer"))
+func (mc _MusicPlayerControllerClass) ApplicationQueuePlayer() IMPMusicPlayerApplicationController {
+	rv := objc.Send[MusicPlayerApplicationController](objc.ID(mc.class), objc.Sel("applicationQueuePlayer"))
 	return rv
 }
+
 // Returns the iPod music player, which controls the iPod app’s state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
 func (mc _MusicPlayerControllerClass) IPodMusicPlayer() MusicPlayerController {
-	rv := objc.Send[MPMusicPlayerController](objc.ID(mc.class), objc.Sel("iPodMusicPlayer"))
+	rv := objc.Send[MusicPlayerController](objc.ID(mc.class), objc.Sel("iPodMusicPlayer"))
 	return rv
 }
+
 // Returns the system music player, which controls the Music app’s state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/systemMusicPlayer
 func (mc _MusicPlayerControllerClass) SystemMusicPlayer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("systemMusicPlayer"))
 	return rv
 }
-// Inserts the media items defined by the queue descriptor after the last media item in the current queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/append(_:)
-func (m_ MusicPlayerController) AppendQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("appendQueueDescriptor:"), descriptor)
-}
-
-// Starts the generation of playback notifications.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/beginGeneratingPlaybackNotifications()
-func (m_ MusicPlayerController) BeginGeneratingPlaybackNotifications() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("beginGeneratingPlaybackNotifications"))
-}
-
-// Ends the generation of playback notifications.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/endGeneratingPlaybackNotifications()
-func (m_ MusicPlayerController) EndGeneratingPlaybackNotifications() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("endGeneratingPlaybackNotifications"))
-}
-
-// Prepares a music player for playback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/prepareToPlay(completionHandler:)
-func (m_ MusicPlayerController) PrepareToPlayWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("prepareToPlayWithCompletionHandler:"), completionHandler)
-}
-
-// Inserts the media items defined by the queue descriptor into the current queue immediately after the currently playing media item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/prepend(_:)
-func (m_ MusicPlayerController) PrependQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("prependQueueDescriptor:"), descriptor)
-}
-
-// Set the music player’s playback queue using media items that fit the queue descriptor properties.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-1izmj
-func (m_ MusicPlayerController) SetQueueWithDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithDescriptor:"), descriptor)
-}
-
-// Sets a music player’s playback queue based on a media query.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-5rii3
-func (m_ MusicPlayerController) SetQueueWithQuery(query IMPMediaQuery) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithQuery:"), query)
-}
-
-// Sets a music player’s playback queue using with media items identified by the store identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-8x6xb
-func (m_ MusicPlayerController) SetQueueWithStoreIDs(storeIDs []string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithStoreIDs:"), storeIDs)
-}
-
-// Sets a music player’s playback queue using a media item collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-xlwk
-func (m_ MusicPlayerController) SetQueueWithItemCollection(itemCollection IMPMediaItemCollection) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithItemCollection:"), itemCollection)
-}
-
-// Restarts playback at the beginning of the currently playing media item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/skipToBeginning()
-func (m_ MusicPlayerController) SkipToBeginning() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("skipToBeginning"))
-}
-
-// Starts playback of the next media item in the playback queue, or if the music player isn’t playing, designates the next media item as the next item to play.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/skipToNextItem()
-func (m_ MusicPlayerController) SkipToNextItem() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("skipToNextItem"))
-}
-
-// Starts playback of the previous media item in the playback queue, or if the music player isn’t playing, designates the previous media item as the next to play.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/skipToPreviousItem()
-func (m_ MusicPlayerController) SkipToPreviousItem() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("skipToPreviousItem"))
-}
-
-// Returns the application music player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
-func (m_ MusicPlayerController) ApplicationMusicPlayer() MPMusicPlayerController {
-	rv := objc.Send[MPMusicPlayerController](m_.ID, objc.Sel("applicationMusicPlayer"))
-	return rv
-}
-
-// Returns the application queue music player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
-func (m_ MusicPlayerController) ApplicationQueuePlayer() MPMusicPlayerApplicationController {
-	rv := objc.Send[MPMusicPlayerApplicationController](m_.ID, objc.Sel("applicationQueuePlayer"))
-	return rv
-}
-
-// Returns the iPod music player, which controls the iPod app’s state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
-func (m_ MusicPlayerController) IPodMusicPlayer() MPMusicPlayerController {
-	rv := objc.Send[MPMusicPlayerController](m_.ID, objc.Sel("iPodMusicPlayer"))
-	return rv
-}
-
-// The index of the now playing item in the current playback queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/indexOfNowPlayingItem
-func (m_ MusicPlayerController) IndexOfNowPlayingItem() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("indexOfNowPlayingItem"))
-	return rv
-}
-
-// The currently-playing media item, or the media item in a queue that you designated to begin playback with.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/nowPlayingItem
-func (m_ MusicPlayerController) NowPlayingItem() MPMediaItem {
-	rv := objc.Send[MPMediaItem](m_.ID, objc.Sel("nowPlayingItem"))
-	return rv
-}
-
-
-// SetNowPlayingItem sets the value of the nowPlayingItem property.
-// The currently-playing media item, or the media item in a queue that you designated to begin playback with.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/nowPlayingItem
-func (m_ MusicPlayerController) SetNowPlayingItem(value IMPMediaItem) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNowPlayingItem:"), value)
-}
-
-// The current playback state of the music player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/playbackState
-func (m_ MusicPlayerController) PlaybackState() MusicPlaybackState {
-	rv := objc.Send[MusicPlaybackState](m_.ID, objc.Sel("playbackState"))
-	return rv
-}
-
-// The current repeat mode of the music player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/repeatMode
-func (m_ MusicPlayerController) RepeatMode() MusicRepeatMode {
-	rv := objc.Send[MusicRepeatMode](m_.ID, objc.Sel("repeatMode"))
-	return rv
-}
-
-
-// SetRepeatMode sets the value of the repeatMode property.
-// The current repeat mode of the music player.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/repeatMode
-func (m_ MusicPlayerController) SetRepeatMode(value MusicRepeatMode) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRepeatMode:"), value)
-}
-
-// The current shuffle mode of the music player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/shuffleMode
-func (m_ MusicPlayerController) ShuffleMode() MusicShuffleMode {
-	rv := objc.Send[MusicShuffleMode](m_.ID, objc.Sel("shuffleMode"))
-	return rv
-}
-
-
-// SetShuffleMode sets the value of the shuffleMode property.
-// The current shuffle mode of the music player.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/shuffleMode
-func (m_ MusicPlayerController) SetShuffleMode(value MusicShuffleMode) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShuffleMode:"), value)
-}
-
-// Returns the system music player, which controls the Music app’s state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/systemMusicPlayer
-func (m_ MusicPlayerController) SystemMusicPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("systemMusicPlayer"))
-	return rv
-}
-
-// The audio playback volume for the music player, in the range from (silent) through (maximum volume).
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/volume
-func (m_ MusicPlayerController) Volume() float32 {
-	rv := objc.Send[float32](m_.ID, objc.Sel("volume"))
-	return rv
-}
-
-
-// SetVolume sets the value of the volume property.
-// The audio playback volume for the music player, in the range from (silent) through (maximum volume).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/volume
-func (m_ MusicPlayerController) SetVolume(value float32) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVolume:"), value)
-}
-
-
 

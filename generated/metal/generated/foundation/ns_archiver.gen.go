@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Archiver] class.
@@ -32,6 +31,7 @@ type IArchiver interface {
 	ICoder
 	// properties:
 	ArchiverData() IMutableData
+	SetArchiverData(value IMutableData)
 	// methods:
 }
 
@@ -90,35 +90,12 @@ func NewArchiver() Archiver {
 
 
 
-// Returns an archiver, initialized to encode stream and version information into a given mutable data object.
+// The receiver’s archive data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/init(forWritingWith:)
-func NewArchiverForWritingWithMutableData(mdata IMutableData) Archiver {
-	instance := getArchiverClass().Alloc()
-	rv := objc.Send[Archiver](instance.ID, objc.Sel("initForWritingWithMutableData:"), mdata)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a temporary instance of and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
-func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, path)
-	return rv
-}
-
-
-// Returns a data object containing the encoded form of the object graph whose root object is given.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archivedData(withRootObject:)
-func (ac _ArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObject) IData {
-	rv := objc.Send[Data](objc.ID(ac.class), objc.Sel("archivedDataWithRootObject:"), rootObject)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
+func (a_ Archiver) ArchiverData() IMutableData {
+	rv := objc.Send[MutableData](a_.ID, objc.Sel("archiverData"))
 	return rv
 }
 
@@ -126,10 +103,10 @@ func (ac _ArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.IObjec
 // The receiver’s archive data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiverData
-func (a_ Archiver) ArchiverData() IMutableData {
-	rv := objc.Send[MutableData](a_.ID, objc.Sel("archiverData"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
+func (a_ Archiver) SetArchiverData(value IMutableData) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setArchiverData:"), value)
 }
+
 
 

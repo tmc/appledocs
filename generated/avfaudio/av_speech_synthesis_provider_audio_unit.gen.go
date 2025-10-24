@@ -35,7 +35,7 @@ type ISpeechSynthesisProviderAudioUnit interface {
 	SpeechVoices() IAVSpeechSynthesisProviderVoice
 	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
 	// methods:
-	SynthesizeSpeechRequest(speechRequest objc.IObject /* cross-framework SpeechSynthesisProviderRequest */)
+	SynthesizeSpeechRequest(speechRequest objc.IObject /* cross-framework: SpeechSynthesisProviderRequest */)
 }
 
 // An object that generates speech from text.
@@ -97,7 +97,7 @@ func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/synthesizeSpeechRequest(_:)
-func (s_ SpeechSynthesisProviderAudioUnit) SynthesizeSpeechRequest(speechRequest objc.IObject /* cross-framework SpeechSynthesisProviderRequest */) {
+func (s_ SpeechSynthesisProviderAudioUnit) SynthesizeSpeechRequest(speechRequest objc.IObject /* cross-framework: SpeechSynthesisProviderRequest */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("synthesizeSpeechRequest:"), speechRequest)
 }
 

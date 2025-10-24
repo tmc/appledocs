@@ -31,12 +31,18 @@ type _RPBroadcastHandlerClass struct {
 // An interface definition for the [RPBroadcastHandler] class.
 type IRPBroadcastHandler interface {
 	objectivec.IObject
-	UpdateBroadcastURL(broadcastURL foundation.IURL)
-	UpdateServiceInfo(serviceInfo unsafe.Pointer)
+	// properties:
+	// methods:
+	UpdateBroadcastURL(broadcastURL objc.IObject /* cross-framework: NSURL */)
+	UpdateServiceInfo(serviceInfo foundation.IDictionary)
 }
 
 // An object that sends messages to the broadcasting app.
+
+
+// An object that sends messages to the broadcasting app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastHandler
 type RPBroadcastHandler struct {
 	objectivec.Object
@@ -81,17 +87,21 @@ func NewRPBroadcastHandler() RPBroadcastHandler {
 }
 
 
+
 // Sends the current broadcast URL to the broadcast controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastHandler/updateBroadcast(_:)
-func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL foundation.IURL) {
+func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateBroadcastURL:"), broadcastURL)
 }
 
+
 // Sends information about the current broadcast to the broadcasting app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastHandler/updateServiceInfo(_:)
-func (r_ RPBroadcastHandler) UpdateServiceInfo(serviceInfo unsafe.Pointer) {
+func (r_ RPBroadcastHandler) UpdateServiceInfo(serviceInfo foundation.IDictionary) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateServiceInfo:"), serviceInfo)
 }
 

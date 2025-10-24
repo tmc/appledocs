@@ -29,9 +29,13 @@ type _MTRBaseClusterLowPowerClass struct {
 // An interface definition for the [MTRBaseClusterLowPower] class.
 type IMTRBaseClusterLowPower interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLowPower
 type MTRBaseClusterLowPower struct {
 	MTRGenericBaseCluster

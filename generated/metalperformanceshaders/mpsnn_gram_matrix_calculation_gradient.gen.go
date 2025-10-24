@@ -30,20 +30,26 @@ type _GramMatrixCalculationGradientClass struct {
 
 // An interface definition for the [GramMatrixCalculationGradient] class.
 type IGramMatrixCalculationGradient interface {
-	objectivec.IObject
+	ICNNGradientKernel
+	// properties:
 	Alpha() float32
 	SetAlpha(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient
 type GramMatrixCalculationGradient struct {
-	objectivec.Object
+	CNNGradientKernel
 }
 
 // GramMatrixCalculationGradientFrom constructs a [GramMatrixCalculationGradient] from an unsafe.Pointer.
 func GramMatrixCalculationGradientFrom(ptr unsafe.Pointer) GramMatrixCalculationGradient {
-	return GramMatrixCalculationGradient{objectivec.Object{objc.ID(ptr)}}
+	return GramMatrixCalculationGradient{
+		CNNGradientKernel: CNNGradientKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -78,9 +84,10 @@ func NewGramMatrixCalculationGradient() GramMatrixCalculationGradient {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/init(coder:device:)
-func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) GramMatrixCalculationGradient {
+func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) GramMatrixCalculationGradient {
 	instance := getGramMatrixCalculationGradientClass().Alloc()
 	rv := objc.Send[GramMatrixCalculationGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -88,7 +95,8 @@ func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder foundation.ICoder,
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/alpha
 func (g_ GramMatrixCalculationGradient) Alpha() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
@@ -96,8 +104,7 @@ func (g_ GramMatrixCalculationGradient) Alpha() float32 {
 }
 
 
-// SetAlpha sets the value of the alpha property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/alpha
 func (g_ GramMatrixCalculationGradient) SetAlpha(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)

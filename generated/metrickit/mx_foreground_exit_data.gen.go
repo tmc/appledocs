@@ -30,20 +30,30 @@ type _MXForegroundExitDataClass struct {
 // An interface definition for the [MXForegroundExitData] class.
 type IMXForegroundExitData interface {
 	objectivec.IObject
-	CumulativeBadAccessExitCount() uint
-	CumulativeIllegalInstructionExitCount() uint
-	CumulativeMemoryResourceLimitExitCount() uint
-	CumulativeNormalAppExitCount() uint
-	ForegroundExitData() MXForegroundExitData
+	// properties:
+	ForegroundExitData() IMXForegroundExitData
 	SetForegroundExitData(value IMXForegroundExitData)
 	CumulativeAbnormalExitCount() int
 	SetCumulativeAbnormalExitCount(value int)
 	CumulativeAppWatchdogExitCount() int
 	SetCumulativeAppWatchdogExitCount(value int)
+	CumulativeBadAccessExitCount() int
+	SetCumulativeBadAccessExitCount(value int)
+	CumulativeIllegalInstructionExitCount() int
+	SetCumulativeIllegalInstructionExitCount(value int)
+	CumulativeMemoryResourceLimitExitCount() int
+	SetCumulativeMemoryResourceLimitExitCount(value int)
+	CumulativeNormalAppExitCount() int
+	SetCumulativeNormalAppExitCount(value int)
+	// methods:
 }
 
 // An object representing counts for the different types of foreground app exits.
+
+
+// An object representing counts for the different types of foreground app exits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData
 type MXForegroundExitData struct {
 	objectivec.Object
@@ -88,58 +98,29 @@ func NewMXForegroundExitData() MXForegroundExitData {
 }
 
 
-// The number of times the system terminated the app from the foreground for attempting an invalid memory access.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData/cumulativeBadAccessExitCount
-func (m_ MXForegroundExitData) CumulativeBadAccessExitCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeBadAccessExitCount"))
-	return rv
-}
-
-// The number of times the system terminated the app from the foreground for attempting to execute an illegal or undefined instruction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData/cumulativeIllegalInstructionExitCount
-func (m_ MXForegroundExitData) CumulativeIllegalInstructionExitCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeIllegalInstructionExitCount"))
-	return rv
-}
-
-// The number of times the system terminated the app from the foreground for using too much memory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData/cumulativeMemoryResourceLimitExitCount
-func (m_ MXForegroundExitData) CumulativeMemoryResourceLimitExitCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeMemoryResourceLimitExitCount"))
-	return rv
-}
-
-// The number of times the app exited normally from the foreground.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXForegroundExitData/cumulativeNormalAppExitCount
-func (m_ MXForegroundExitData) CumulativeNormalAppExitCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeNormalAppExitCount"))
-	return rv
-}
 
 // The metrics for the foreground app exits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
-func (m_ MXForegroundExitData) ForegroundExitData() MXForegroundExitData {
+func (m_ MXForegroundExitData) ForegroundExitData() IMXForegroundExitData {
 	rv := objc.Send[MXForegroundExitData](m_.ID, objc.Sel("foregroundExitData"))
 	return rv
 }
 
 
-// SetForegroundExitData sets the value of the foregroundExitData property.
 // The metrics for the foreground app exits.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
 func (m_ MXForegroundExitData) SetForegroundExitData(value IMXForegroundExitData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForegroundExitData:"), value)
 }
 
+
 // The number of times the app exited abnormally from the foreground.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeabnormalexitcount
 func (m_ MXForegroundExitData) CumulativeAbnormalExitCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAbnormalExitCount"))
@@ -147,17 +128,18 @@ func (m_ MXForegroundExitData) CumulativeAbnormalExitCount() int {
 }
 
 
-// SetCumulativeAbnormalExitCount sets the value of the cumulativeAbnormalExitCount property.
 // The number of times the app exited abnormally from the foreground.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeabnormalexitcount
 func (m_ MXForegroundExitData) SetCumulativeAbnormalExitCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAbnormalExitCount:"), value)
 }
 
+
 // The number of times the system watchdog terminated the app from the foreground.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeappwatchdogexitcount
 func (m_ MXForegroundExitData) CumulativeAppWatchdogExitCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAppWatchdogExitCount"))
@@ -165,13 +147,88 @@ func (m_ MXForegroundExitData) CumulativeAppWatchdogExitCount() int {
 }
 
 
-// SetCumulativeAppWatchdogExitCount sets the value of the cumulativeAppWatchdogExitCount property.
 // The number of times the system watchdog terminated the app from the foreground.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeappwatchdogexitcount
 func (m_ MXForegroundExitData) SetCumulativeAppWatchdogExitCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAppWatchdogExitCount:"), value)
+}
+
+
+// The number of times the system terminated the app from the foreground for attempting an invalid memory access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativebadaccessexitcount
+func (m_ MXForegroundExitData) CumulativeBadAccessExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeBadAccessExitCount"))
+	return rv
+}
+
+
+// The number of times the system terminated the app from the foreground for attempting an invalid memory access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativebadaccessexitcount
+func (m_ MXForegroundExitData) SetCumulativeBadAccessExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeBadAccessExitCount:"), value)
+}
+
+
+// The number of times the system terminated the app from the foreground for attempting to execute an illegal or undefined instruction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeillegalinstructionexitcount
+func (m_ MXForegroundExitData) CumulativeIllegalInstructionExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeIllegalInstructionExitCount"))
+	return rv
+}
+
+
+// The number of times the system terminated the app from the foreground for attempting to execute an illegal or undefined instruction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativeillegalinstructionexitcount
+func (m_ MXForegroundExitData) SetCumulativeIllegalInstructionExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeIllegalInstructionExitCount:"), value)
+}
+
+
+// The number of times the system terminated the app from the foreground for using too much memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativememoryresourcelimitexitcount
+func (m_ MXForegroundExitData) CumulativeMemoryResourceLimitExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeMemoryResourceLimitExitCount"))
+	return rv
+}
+
+
+// The number of times the system terminated the app from the foreground for using too much memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativememoryresourcelimitexitcount
+func (m_ MXForegroundExitData) SetCumulativeMemoryResourceLimitExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeMemoryResourceLimitExitCount:"), value)
+}
+
+
+// The number of times the app exited normally from the foreground.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativenormalappexitcount
+func (m_ MXForegroundExitData) CumulativeNormalAppExitCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeNormalAppExitCount"))
+	return rv
+}
+
+
+// The number of times the app exited normally from the foreground.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxforegroundexitdata/cumulativenormalappexitcount
+func (m_ MXForegroundExitData) SetCumulativeNormalAppExitCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeNormalAppExitCount:"), value)
 }
 
 

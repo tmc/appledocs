@@ -30,6 +30,8 @@ type _VZMemoryBalloonDeviceConfigurationClass struct {
 // An interface definition for the [VZMemoryBalloonDeviceConfiguration] class.
 type IVZMemoryBalloonDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The common configuration traits for memory balloon devices.

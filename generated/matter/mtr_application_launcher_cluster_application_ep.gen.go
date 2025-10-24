@@ -30,13 +30,17 @@ type _MTRApplicationLauncherClusterApplicationEPClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterApplicationEP] class.
 type IMTRApplicationLauncherClusterApplicationEP interface {
 	IMTRApplicationLauncherClusterApplicationEPStruct
-	Application() MTRApplicationLauncherClusterApplicationStruct
+	// properties:
+	Application() IMTRApplicationLauncherClusterApplicationStruct
 	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterApplicationEP
 type MTRApplicationLauncherClusterApplicationEP struct {
 	MTRApplicationLauncherClusterApplicationEPStruct
@@ -81,33 +85,33 @@ func NewMTRApplicationLauncherClusterApplicationEP() MTRApplicationLauncherClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/application
-func (m_ MTRApplicationLauncherClusterApplicationEP) Application() MTRApplicationLauncherClusterApplicationStruct {
+func (m_ MTRApplicationLauncherClusterApplicationEP) Application() IMTRApplicationLauncherClusterApplicationStruct {
 	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
 
-// SetApplication sets the value of the application property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/application
 func (m_ MTRApplicationLauncherClusterApplicationEP) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/endpoint
-func (m_ MTRApplicationLauncherClusterApplicationEP) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRApplicationLauncherClusterApplicationEP) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/endpoint
-func (m_ MTRApplicationLauncherClusterApplicationEP) SetEndpoint(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterApplicationEP) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

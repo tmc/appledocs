@@ -2,12 +2,12 @@
 
 // Package quicklookthumbnailing provides Go bindings for the QuickLookThumbnailing framework.
 //
-// Generate thumbnails for common file types and add a Thumbnail Extension to your app to enable others to create thumbnails of your custom files. [Full Topic]
+// Generate thumbnails for common file types and add a Thumbnail Extension to your app to enable others to create thumbnails of your custom files.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to QuickLookThumbnailing without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing
+// See: https://developer.apple.com/documentation/QuickLookThumbnailing
 package quicklookthumbnailing
 
 import (

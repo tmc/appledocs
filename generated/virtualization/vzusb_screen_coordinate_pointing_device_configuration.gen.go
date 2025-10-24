@@ -29,12 +29,18 @@ type _VZUSBScreenCoordinatePointingDeviceConfigurationClass struct {
 // An interface definition for the [VZUSBScreenCoordinatePointingDeviceConfiguration] class.
 type IVZUSBScreenCoordinatePointingDeviceConfiguration interface {
 	IVZPointingDeviceConfiguration
+	// properties:
+	// methods:
 }
 
 // An object that defines the configuration for a USB pointing device that reports absolute coordinates.
 //
 // A can use this device to send pointer events to the VM.
+
+
+// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBScreenCoordinatePointingDeviceConfiguration
 type VZUSBScreenCoordinatePointingDeviceConfiguration struct {
 	VZPointingDeviceConfiguration

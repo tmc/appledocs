@@ -30,12 +30,18 @@ type _VZSocketDeviceConfigurationClass struct {
 // An interface definition for the [VZSocketDeviceConfiguration] class.
 type IVZSocketDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The common configuration traits for socket device requests.
 //
 // Don’t create a object directly. Instead, create a object and add it to your virtual machine’s configuration.
+
+
+// The common configuration traits for socket device requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSocketDeviceConfiguration
 type VZSocketDeviceConfiguration struct {
 	objectivec.Object

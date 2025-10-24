@@ -30,9 +30,13 @@ type _nodeNameClass struct {
 // An interface definition for the [nodeName] class.
 type InodeName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-c.ivar
 type nodeName struct {
 	objectivec.Object

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXMathExpressionIdentifier] class.
@@ -30,8 +31,8 @@ type _AXMathExpressionIdentifierClass struct {
 type IAXMathExpressionIdentifier interface {
 	IAXMathExpression
 	// properties:
-	Content() string /* primitive/slice/pointer. */
-	SetContent(value string /* primitive/slice/pointer. */)
+	Content() objc.IObject /* cross-framework: NSString */
+	SetContent(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -85,9 +86,9 @@ func NewAXMathExpressionIdentifier() AXMathExpressionIdentifier {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionIdentifier/init(content:)
-func NewAXMathExpressionIdentifierWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionIdentifier {
+func NewAXMathExpressionIdentifierWithContent(content objc.IObject /* cross-framework: NSString */) AXMathExpressionIdentifier {
 	instance := getAXMathExpressionIdentifierClass().Alloc()
-	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -96,16 +97,16 @@ func NewAXMathExpressionIdentifierWithContent(content string /* primitive/slice/
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) Content() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionIdentifier) Content() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("content"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) SetContent(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), objc.String(value))
+func (a_ AXMathExpressionIdentifier) SetContent(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), value)
 }
 
 

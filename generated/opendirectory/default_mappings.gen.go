@@ -30,9 +30,13 @@ type _defaultMappingsClass struct {
 // An interface definition for the [defaultMappings] class.
 type IdefaultMappings interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultMappings-c.ivar
 type defaultMappings struct {
 	objectivec.Object

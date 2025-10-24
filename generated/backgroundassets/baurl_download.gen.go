@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BAURLDownload] class.
@@ -90,9 +91,9 @@ func NewBAURLDownload() BAURLDownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:)
-func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier string /* primitive/slice/pointer. */, request URLRequest /* not a class type */, applicationGroupIdentifier string /* primitive/slice/pointer. */) BAURLDownload {
+func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier objc.IObject /* cross-framework: NSString */, request objc.IObject /* cross-framework: URLRequest */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */) BAURLDownload {
 	instance := getBAURLDownloadClass().Alloc()
-	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:"), objc.String(identifier), request, objc.String(applicationGroupIdentifier))
+	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:"), identifier, request, applicationGroupIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -102,9 +103,9 @@ func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifier(identifier 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:applicationGroupIdentifier:priority:)
-func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifierPriority(identifier string /* primitive/slice/pointer. */, request URLRequest /* not a class type */, applicationGroupIdentifier string /* primitive/slice/pointer. */, priority BADownloaderPriority /* typedef */) BAURLDownload {
+func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifierPriority(identifier objc.IObject /* cross-framework: NSString */, request objc.IObject /* cross-framework: URLRequest */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, priority BADownloaderPriority /* typedef */) BAURLDownload {
 	instance := getBAURLDownloadClass().Alloc()
-	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:priority:"), objc.String(identifier), request, objc.String(applicationGroupIdentifier), priority)
+	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:applicationGroupIdentifier:priority:"), identifier, request, applicationGroupIdentifier, priority)
 	rv.Autorelease()
 	return rv
 }
@@ -112,9 +113,9 @@ func NewBAURLDownloadWithIdentifierRequestApplicationGroupIdentifierPriority(ide
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:essential:fileSize:applicationGroupIdentifier:priority:)
-func NewBAURLDownloadWithIdentifierRequestEssentialFileSizeApplicationGroupIdentifierPriority(identifier string /* primitive/slice/pointer. */, request URLRequest /* not a class type */, essential bool /* primitive/slice/pointer. */, fileSize uint /* primitive/slice/pointer. */, applicationGroupIdentifier string /* primitive/slice/pointer. */, priority BADownloaderPriority /* typedef */) BAURLDownload {
+func NewBAURLDownloadWithIdentifierRequestEssentialFileSizeApplicationGroupIdentifierPriority(identifier objc.IObject /* cross-framework: NSString */, request objc.IObject /* cross-framework: URLRequest */, essential bool, fileSize uint, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, priority BADownloaderPriority /* typedef */) BAURLDownload {
 	instance := getBAURLDownloadClass().Alloc()
-	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:"), objc.String(identifier), request, essential, fileSize, objc.String(applicationGroupIdentifier), priority)
+	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:"), identifier, request, essential, fileSize, applicationGroupIdentifier, priority)
 	rv.Autorelease()
 	return rv
 }
@@ -122,9 +123,9 @@ func NewBAURLDownloadWithIdentifierRequestEssentialFileSizeApplicationGroupIdent
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAURLDownload/init(identifier:request:fileSize:applicationGroupIdentifier:)
-func NewBAURLDownloadWithIdentifierRequestFileSizeApplicationGroupIdentifier(identifier string /* primitive/slice/pointer. */, request URLRequest /* not a class type */, fileSize uint /* primitive/slice/pointer. */, applicationGroupIdentifier string /* primitive/slice/pointer. */) BAURLDownload {
+func NewBAURLDownloadWithIdentifierRequestFileSizeApplicationGroupIdentifier(identifier objc.IObject /* cross-framework: NSString */, request objc.IObject /* cross-framework: URLRequest */, fileSize uint, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */) BAURLDownload {
 	instance := getBAURLDownloadClass().Alloc()
-	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:fileSize:applicationGroupIdentifier:"), objc.String(identifier), request, fileSize, objc.String(applicationGroupIdentifier))
+	rv := objc.Send[BAURLDownload](instance.ID, objc.Sel("initWithIdentifier:request:fileSize:applicationGroupIdentifier:"), identifier, request, fileSize, applicationGroupIdentifier)
 	rv.Autorelease()
 	return rv
 }

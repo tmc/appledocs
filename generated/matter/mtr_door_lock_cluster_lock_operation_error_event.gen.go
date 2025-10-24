@@ -31,23 +31,27 @@ type _MTRDoorLockClusterLockOperationErrorEventClass struct {
 // An interface definition for the [MTRDoorLockClusterLockOperationErrorEvent] class.
 type IMTRDoorLockClusterLockOperationErrorEvent interface {
 	objectivec.IObject
+	// properties:
 	Credentials() unsafe.Pointer
 	SetCredentials(value unsafe.Pointer)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	LockOperationType() foundation.Number
-	SetLockOperationType(value foundation.INumber)
-	OperationError() foundation.Number
-	SetOperationError(value foundation.INumber)
-	OperationSource() foundation.Number
-	SetOperationSource(value foundation.INumber)
-	SourceNode() foundation.Number
-	SetSourceNode(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	LockOperationType() objc.IObject /* cross-framework: NSNumber */
+	SetLockOperationType(value objc.IObject /* cross-framework: NSNumber */)
+	OperationError() objc.IObject /* cross-framework: NSNumber */
+	SetOperationError(value objc.IObject /* cross-framework: NSNumber */)
+	OperationSource() objc.IObject /* cross-framework: NSNumber */
+	SetOperationSource(value objc.IObject /* cross-framework: NSNumber */)
+	SourceNode() objc.IObject /* cross-framework: NSNumber */
+	SetSourceNode(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterLockOperationErrorEvent
 type MTRDoorLockClusterLockOperationErrorEvent struct {
 	objectivec.Object
@@ -90,7 +94,8 @@ func NewMTRDoorLockClusterLockOperationErrorEvent() MTRDoorLockClusterLockOperat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/credentials
 func (m_ MTRDoorLockClusterLockOperationErrorEvent) Credentials() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentials"))
@@ -98,100 +103,99 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) Credentials() unsafe.Pointer
 }
 
 
-// SetCredentials sets the value of the credentials property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/credentials
 func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetCredentials(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/fabricindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/fabricindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/lockoperationtype
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) LockOperationType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lockOperationType"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) LockOperationType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lockOperationType"))
 	return rv
 }
 
 
-// SetLockOperationType sets the value of the lockOperationType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/lockoperationtype
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetLockOperationType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetLockOperationType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLockOperationType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationerror
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationError() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationError"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationError() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operationError"))
 	return rv
 }
 
 
-// SetOperationError sets the value of the operationError property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationerror
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationError(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationError(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationError:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationsource
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationSource() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationSource"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationSource() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operationSource"))
 	return rv
 }
 
 
-// SetOperationSource sets the value of the operationSource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationsource
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationSource(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationSource(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/sourcenode
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SourceNode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sourceNode"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SourceNode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sourceNode"))
 	return rv
 }
 
 
-// SetSourceNode sets the value of the sourceNode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/sourcenode
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetSourceNode(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetSourceNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/userindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/userindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

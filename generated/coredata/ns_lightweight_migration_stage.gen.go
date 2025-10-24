@@ -30,7 +30,7 @@ type _LightweightMigrationStageClass struct {
 type ILightweightMigrationStage interface {
 	IMigrationStage
 	// properties:
-	VersionChecksums() []string /* primitive/slice/pointer. */
+	VersionChecksums() []string
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage/versionChecksums
-func (l_ LightweightMigrationStage) VersionChecksums() []string /* primitive/slice/pointer. */ {
+func (l_ LightweightMigrationStage) VersionChecksums() []string {
 	rv := objc.Send[[]string](l_.ID, objc.Sel("versionChecksums"))
 	return rv
 }

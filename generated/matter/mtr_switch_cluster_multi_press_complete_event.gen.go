@@ -31,15 +31,19 @@ type _MTRSwitchClusterMultiPressCompleteEventClass struct {
 // An interface definition for the [MTRSwitchClusterMultiPressCompleteEvent] class.
 type IMTRSwitchClusterMultiPressCompleteEvent interface {
 	objectivec.IObject
-	NewPosition() foundation.Number
-	SetNewPosition(value foundation.INumber)
-	PreviousPosition() foundation.Number
-	SetPreviousPosition(value foundation.INumber)
-	TotalNumberOfPressesCounted() foundation.Number
-	SetTotalNumberOfPressesCounted(value foundation.INumber)
+	// properties:
+	NewPosition() objc.IObject /* cross-framework: NSNumber */
+	SetNewPosition(value objc.IObject /* cross-framework: NSNumber */)
+	PreviousPosition() objc.IObject /* cross-framework: NSNumber */
+	SetPreviousPosition(value objc.IObject /* cross-framework: NSNumber */)
+	TotalNumberOfPressesCounted() objc.IObject /* cross-framework: NSNumber */
+	SetTotalNumberOfPressesCounted(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterMultiPressCompleteEvent
 type MTRSwitchClusterMultiPressCompleteEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRSwitchClusterMultiPressCompleteEvent() MTRSwitchClusterMultiPressComp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/newposition
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) NewPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) NewPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newPosition"))
 	return rv
 }
 
 
-// SetNewPosition sets the value of the newPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/newposition
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetNewPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetNewPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/previousposition
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) PreviousPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousPosition"))
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) PreviousPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("previousPosition"))
 	return rv
 }
 
 
-// SetPreviousPosition sets the value of the previousPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/previousposition
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetPreviousPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetPreviousPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousPosition:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/totalnumberofpressescounted
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) TotalNumberOfPressesCounted() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalNumberOfPressesCounted"))
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) TotalNumberOfPressesCounted() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("totalNumberOfPressesCounted"))
 	return rv
 }
 
 
-// SetTotalNumberOfPressesCounted sets the value of the totalNumberOfPressesCounted property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipresscompleteevent/totalnumberofpressescounted
-func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetTotalNumberOfPressesCounted(value foundation.INumber) {
+func (m_ MTRSwitchClusterMultiPressCompleteEvent) SetTotalNumberOfPressesCounted(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalNumberOfPressesCounted:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [BTMIDICentralViewController] class.
@@ -29,7 +28,7 @@ type _BTMIDICentralViewControllerClass struct {
 
 // An interface definition for the [BTMIDICentralViewController] class.
 type IBTMIDICentralViewController interface {
-	objectivec.IObject
+	ITableViewController
 	// properties:
 	// methods:
 }
@@ -44,14 +43,16 @@ type IBTMIDICentralViewController interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTMIDICentralViewController
 type BTMIDICentralViewController struct {
-	objectivec.Object
+	TableViewController
 }
 
 // BTMIDICentralViewControllerFrom constructs a [BTMIDICentralViewController] from an unsafe.Pointer.
 //
 // A view controller that displays nearby Bluetooth-based MIDI peripherals.
 func BTMIDICentralViewControllerFrom(ptr unsafe.Pointer) BTMIDICentralViewController {
-	return BTMIDICentralViewController{objectivec.Object{objc.ID(ptr)}}
+	return BTMIDICentralViewController{
+		TableViewController: TableViewControllerFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

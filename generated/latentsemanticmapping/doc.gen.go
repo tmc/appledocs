@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LatentSemanticMapping without requiring cgo.
-
-// Classify text and other token-based content into developer-defined categories.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping
+// See: https://developer.apple.com/documentation/LatentSemanticMapping
 package latentsemanticmapping
 
 import (

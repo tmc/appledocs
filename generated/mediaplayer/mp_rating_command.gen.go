@@ -29,14 +29,20 @@ type _RatingCommandClass struct {
 // An interface definition for the [RatingCommand] class.
 type IRatingCommand interface {
 	IRemoteCommand
+	// properties:
 	MaximumRating() float32
 	SetMaximumRating(value float32)
 	MinimumRating() float32
 	SetMinimumRating(value float32)
+	// methods:
 }
 
 // An object that provides a detailed rating for the playing item.
+
+
+// An object that provides a detailed rating for the playing item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand
 type RatingCommand struct {
 	RemoteCommand
@@ -83,38 +89,40 @@ func NewRatingCommand() RatingCommand {
 }
 
 
+
 // The maximum rating for a command.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/maximumRating
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommand/maximumrating
 func (r_ RatingCommand) MaximumRating() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("maximumRating"))
 	return rv
 }
 
 
-// SetMaximumRating sets the value of the maximumRating property.
 // The maximum rating for a command.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/maximumRating
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommand/maximumrating
 func (r_ RatingCommand) SetMaximumRating(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaximumRating:"), value)
 }
 
+
 // The minimum rating for a command.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/minimumRating
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommand/minimumrating
 func (r_ RatingCommand) MinimumRating() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("minimumRating"))
 	return rv
 }
 
 
-// SetMinimumRating sets the value of the minimumRating property.
 // The minimum rating for a command.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRatingCommand/minimumRating
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpratingcommand/minimumrating
 func (r_ RatingCommand) SetMinimumRating(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinimumRating:"), value)
 }

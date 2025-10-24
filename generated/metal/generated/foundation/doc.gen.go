@@ -2,15 +2,8 @@
 
 // Package foundation provides Go bindings for the Foundation framework.
 //
-// Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Foundation without requiring cgo.
-
-// Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation
 package foundation
 
 import (

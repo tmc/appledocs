@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNNGroupNormalizationGradient] class.
@@ -29,18 +28,24 @@ type _CNNGroupNormalizationGradientClass struct {
 
 // An interface definition for the [CNNGroupNormalizationGradient] class.
 type ICNNGroupNormalizationGradient interface {
-	objectivec.IObject
+	ICNNGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradient
 type CNNGroupNormalizationGradient struct {
-	objectivec.Object
+	CNNGradientKernel
 }
 
 // CNNGroupNormalizationGradientFrom constructs a [CNNGroupNormalizationGradient] from an unsafe.Pointer.
 func CNNGroupNormalizationGradientFrom(ptr unsafe.Pointer) CNNGroupNormalizationGradient {
-	return CNNGroupNormalizationGradient{objectivec.Object{objc.ID(ptr)}}
+	return CNNGroupNormalizationGradient{
+		CNNGradientKernel: CNNGradientKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

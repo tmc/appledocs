@@ -31,20 +31,10 @@ type _CXCallDirectoryExtensionContextClass struct {
 type ICXCallDirectoryExtensionContext interface {
 	foundation.IExtensionContext
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Incremental() bool /* primitive/slice/pointer. */
-	IsIncremental() bool /* primitive/slice/pointer. */
-	SetIsIncremental(value bool /* primitive/slice/pointer. */)
+	IsIncremental() bool
+	SetIsIncremental(value bool)
 	CXCallDirectoryPhoneNumberMax() CXCallDirectoryPhoneNumber /* typedef */
 	// methods:
-	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */)
-	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber CXCallDirectoryPhoneNumber /* typedef */, label string /* primitive/slice/pointer. */)
-	CompleteRequestWithCompletionHandler(completion unsafe.Pointer)
-	RemoveAllBlockingEntries()
-	RemoveAllIdentificationEntries()
-	RemoveBlockingEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */)
-	RemoveIdentificationEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */)
 }
 
 // A programmatic interface for adding identification and blocking entries to a Call Directory app extension.
@@ -102,103 +92,11 @@ func NewCXCallDirectoryExtensionContext() CXCallDirectoryExtensionContext {
 
 
 
-// Adds a blocking entry with the specified phone number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addBlockingEntryWithNextSequentialPhoneNumber:"), phoneNumber)
-}
-
-
-// Adds an identification entry with the specified phone number and label.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)
-func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber CXCallDirectoryPhoneNumber /* typedef */, label string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addIdentificationEntryWithNextSequentialPhoneNumber:label:"), phoneNumber, objc.String(label))
-}
-
-
-// Completes the request to the extension context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/completeRequest(completionHandler:)
-func (c_ CXCallDirectoryExtensionContext) CompleteRequestWithCompletionHandler(completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("completeRequestWithCompletionHandler:"), completion)
-}
-
-
-// Removes all stored blocking entries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeAllBlockingEntries()
-func (c_ CXCallDirectoryExtensionContext) RemoveAllBlockingEntries() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeAllBlockingEntries"))
-}
-
-
-// Removes all stored identification entries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeAllIdentificationEntries()
-func (c_ CXCallDirectoryExtensionContext) RemoveAllIdentificationEntries() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeAllIdentificationEntries"))
-}
-
-
-// Removes a blocking entry that contains the specified phone number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeBlockingEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeBlockingEntryWithPhoneNumber:"), phoneNumber)
-}
-
-
-// Removes an identification entry that contains the specified phone number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeIdentificationEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber /* typedef */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeIdentificationEntryWithPhoneNumber:"), phoneNumber)
-}
-
-
-// Sets a delegate that can handle request failures for the Call Directory extension context object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate
-func (c_ CXCallDirectoryExtensionContext) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Sets a delegate that can handle request failures for the Call Directory extension context object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate
-func (c_ CXCallDirectoryExtensionContext) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean value that indicates whether the request provides data incrementally.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/isIncremental
-func (c_ CXCallDirectoryExtensionContext) Incremental() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("incremental"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the request provides data incrementally.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
-func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool /* primitive/slice/pointer. */ {
+func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isIncremental"))
 	return rv
 }
@@ -208,7 +106,7 @@ func (c_ CXCallDirectoryExtensionContext) IsIncremental() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext/isincremental
-func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool /* primitive/slice/pointer. */) {
+func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIncremental:"), value)
 }
 
@@ -221,6 +119,5 @@ func (c_ CXCallDirectoryExtensionContext) CXCallDirectoryPhoneNumberMax() CXCall
 	rv := objc.Send[CXCallDirectoryPhoneNumber](c_.ID, objc.Sel("CXCallDirectoryPhoneNumberMax"))
 	return rv
 }
-
 
 

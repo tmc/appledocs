@@ -34,38 +34,38 @@ type IFontManager interface {
 	// properties:
 	Action() objc.SEL
 	SetAction(value objc.SEL)
-	AvailableFontFamilies() []string /* primitive/slice/pointer. */
+	AvailableFontFamilies() []string
 	CollectionNames() objc.IObject /* cross-framework: NSArray */
 	CurrentFontAction() FontAction /* not a class type */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Enabled() bool /* primitive/slice/pointer. */
-	SetEnabled(value bool /* primitive/slice/pointer. */)
+	Enabled() bool
+	SetEnabled(value bool)
 	SelectedFont() IFont
 	Target() objc.ID
 	SetTarget(value objc.ID)
 	AvailableFonts() objc.IObject /* cross-framework: NSString */
 	SetAvailableFonts(value objc.IObject /* cross-framework: NSString */)
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
-	IsMultiple() bool /* primitive/slice/pointer. */
-	SetIsMultiple(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsMultiple() bool
+	SetIsMultiple(value bool)
 	// methods:
-	AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: Array */
+	AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: Array */
 	ConvertFont(fontObj IFont) IFont
-	ConvertFontToSize(fontObj IFont, size float64 /* primitive/slice/pointer. */) IFont
-	ConvertAttributes(attributes foundation.IDictionary /* already interface */) foundation.IDictionary /* already interface */
+	ConvertFontToSize(fontObj IFont, size float64) IFont
+	ConvertAttributes(attributes foundation.IDictionary) foundation.IDictionary
 	ConvertFontTraits(traits FontTraitMask /* not a class type */) FontTraitMask /* not a class type */
-	ConvertWeightOfFont(upFlag bool /* primitive/slice/pointer. */, fontObj IFont) IFont
-	FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework NSString */, traits FontTraitMask /* not a class type */, weight int /* primitive/slice/pointer. */, size float64 /* primitive/slice/pointer. */) IFont
-	FontMenu(create bool /* primitive/slice/pointer. */) IMenu
-	LocalizedNameForFamilyFace(family objc.IObject /* cross-framework NSString */, faceKey objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
+	ConvertWeightOfFont(upFlag bool, fontObj IFont) IFont
+	FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask /* not a class type */, weight int, size float64) IFont
+	FontMenu(create bool) IMenu
+	LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
 	ModifyFontViaPanel(sender objectivec.IObject)
 	OrderFrontStylesPanel(sender objectivec.IObject)
 	RemoveFontTrait(sender objectivec.IObject)
 	SetFontMenu(newMenu IMenu)
-	SetSelectedAttributesIsMultiple(attributes foundation.IDictionary /* already interface */, flag bool /* primitive/slice/pointer. */)
-	WeightOfFont(fontObj IFont) int /* primitive/slice/pointer. */
+	SetSelectedAttributesIsMultiple(attributes foundation.IDictionary, flag bool)
+	WeightOfFont(fontObj IFont) int
 }
 
 // The center of activity for the font-conversion system.
@@ -143,7 +143,7 @@ func (fc _FontManagerClass) SetFontPanelFactory(factoryId objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)
-func (f_ FontManager) AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: Array */ {
+func (f_ FontManager) AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: Array */ {
 	rv := objc.Send[[]foundation.Array](f_.ID, objc.Sel("availableMembersOfFontFamily:"), fam)
 	return rv
 }
@@ -163,7 +163,7 @@ func (f_ FontManager) ConvertFont(fontObj IFont) IFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:toSize:)
-func (f_ FontManager) ConvertFontToSize(fontObj IFont, size float64 /* primitive/slice/pointer. */) IFont {
+func (f_ FontManager) ConvertFontToSize(fontObj IFont, size float64) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:toSize:"), fontObj, size)
 	return rv
 }
@@ -173,7 +173,7 @@ func (f_ FontManager) ConvertFontToSize(fontObj IFont, size float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convertAttributes(_:)
-func (f_ FontManager) ConvertAttributes(attributes foundation.IDictionary /* already interface */) foundation.IDictionary /* already interface */ {
+func (f_ FontManager) ConvertAttributes(attributes foundation.IDictionary) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](f_.ID, objc.Sel("convertAttributes:"), attributes)
 	return rv
 }
@@ -193,7 +193,7 @@ func (f_ FontManager) ConvertFontTraits(traits FontTraitMask /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convertWeight(_:of:)
-func (f_ FontManager) ConvertWeightOfFont(upFlag bool /* primitive/slice/pointer. */, fontObj IFont) IFont {
+func (f_ FontManager) ConvertWeightOfFont(upFlag bool, fontObj IFont) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("convertWeight:ofFont:"), upFlag, fontObj)
 	return rv
 }
@@ -203,7 +203,7 @@ func (f_ FontManager) ConvertWeightOfFont(upFlag bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)
-func (f_ FontManager) FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework NSString */, traits FontTraitMask /* not a class type */, weight int /* primitive/slice/pointer. */, size float64 /* primitive/slice/pointer. */) IFont {
+func (f_ FontManager) FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask /* not a class type */, weight int, size float64) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("fontWithFamily:traits:weight:size:"), family, traits, weight, size)
 	return rv
 }
@@ -213,7 +213,7 @@ func (f_ FontManager) FontWithFamilyTraitsWeightSize(family objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/fontMenu(_:)
-func (f_ FontManager) FontMenu(create bool /* primitive/slice/pointer. */) IMenu {
+func (f_ FontManager) FontMenu(create bool) IMenu {
 	rv := objc.Send[Menu](f_.ID, objc.Sel("fontMenu:"), create)
 	return rv
 }
@@ -223,8 +223,8 @@ func (f_ FontManager) FontMenu(create bool /* primitive/slice/pointer. */) IMenu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)
-func (f_ FontManager) LocalizedNameForFamilyFace(family objc.IObject /* cross-framework NSString */, faceKey objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](f_.ID, objc.Sel("localizedNameForFamily:face:"), family, faceKey)
+func (f_ FontManager) LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](f_.ID, objc.Sel("localizedNameForFamily:face:"), family, faceKey)
 	return rv
 }
 
@@ -269,7 +269,7 @@ func (f_ FontManager) SetFontMenu(newMenu IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)
-func (f_ FontManager) SetSelectedAttributesIsMultiple(attributes foundation.IDictionary /* already interface */, flag bool /* primitive/slice/pointer. */) {
+func (f_ FontManager) SetSelectedAttributesIsMultiple(attributes foundation.IDictionary, flag bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedAttributes:isMultiple:"), attributes, flag)
 }
 
@@ -278,7 +278,7 @@ func (f_ FontManager) SetSelectedAttributesIsMultiple(attributes foundation.IDic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/weight(of:)
-func (f_ FontManager) WeightOfFont(fontObj IFont) int /* primitive/slice/pointer. */ {
+func (f_ FontManager) WeightOfFont(fontObj IFont) int {
 	rv := objc.Send[int](f_.ID, objc.Sel("weightOfFont:"), fontObj)
 	return rv
 }
@@ -307,7 +307,7 @@ func (f_ FontManager) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/availableFontFamilies
-func (f_ FontManager) AvailableFontFamilies() []string /* primitive/slice/pointer. */ {
+func (f_ FontManager) AvailableFontFamilies() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("availableFontFamilies"))
 	return rv
 }
@@ -356,7 +356,7 @@ func (f_ FontManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/isEnabled
-func (f_ FontManager) Enabled() bool /* primitive/slice/pointer. */ {
+func (f_ FontManager) Enabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
 	return rv
 }
@@ -366,7 +366,7 @@ func (f_ FontManager) Enabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/isEnabled
-func (f_ FontManager) SetEnabled(value bool /* primitive/slice/pointer. */) {
+func (f_ FontManager) SetEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEnabled:"), value)
 }
 
@@ -423,7 +423,7 @@ func (f_ FontManager) SetAvailableFonts(value objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
-func (f_ FontManager) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (f_ FontManager) IsEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -433,7 +433,7 @@ func (f_ FontManager) IsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/isenabled
-func (f_ FontManager) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (f_ FontManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -442,7 +442,7 @@ func (f_ FontManager) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
-func (f_ FontManager) IsMultiple() bool /* primitive/slice/pointer. */ {
+func (f_ FontManager) IsMultiple() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isMultiple"))
 	return rv
 }
@@ -452,7 +452,7 @@ func (f_ FontManager) IsMultiple() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/ismultiple
-func (f_ FontManager) SetIsMultiple(value bool /* primitive/slice/pointer. */) {
+func (f_ FontManager) SetIsMultiple(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMultiple:"), value)
 }
 

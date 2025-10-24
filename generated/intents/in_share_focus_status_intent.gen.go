@@ -30,8 +30,8 @@ type _INShareFocusStatusIntentClass struct {
 type IINShareFocusStatusIntent interface {
 	IINIntent
 	// properties:
-	FocusStatus() INFocusStatus /* already interface */
-	SetFocusStatus(value INFocusStatus /* already interface */)
+	FocusStatus() INFocusStatus
+	SetFocusStatus(value INFocusStatus)
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insharefocusstatusintent/focusstatus
-func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus /* already interface */ {
+func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
 	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
@@ -102,7 +102,7 @@ func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insharefocusstatusintent/focusstatus
-func (i_ INShareFocusStatusIntent) SetFocusStatus(value INFocusStatus /* already interface */) {
+func (i_ INShareFocusStatusIntent) SetFocusStatus(value INFocusStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
 

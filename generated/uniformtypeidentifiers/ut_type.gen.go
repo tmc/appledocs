@@ -33,26 +33,26 @@ type IUTType interface {
 	objectivec.IObject
 	// properties:
 	Identifier() objc.IObject /* cross-framework: NSString */
-	Declared() bool /* primitive/slice/pointer. */
-	Dynamic() bool /* primitive/slice/pointer. */
-	PublicType() bool /* primitive/slice/pointer. */
+	Declared() bool
+	Dynamic() bool
+	PublicType() bool
 	LocalizedDescription() objc.IObject /* cross-framework: NSString */
 	PreferredFilenameExtension() objc.IObject /* cross-framework: NSString */
 	PreferredMIMEType() objc.IObject /* cross-framework: NSString */
 	ReferenceURL() objc.IObject /* cross-framework: NSURL */
 	Supertypes() unsafe.Pointer
-	Tags() foundation.IDictionary /* already interface */
+	Tags() foundation.IDictionary
 	Version() objc.IObject /* cross-framework: NSNumber */
-	IsDeclared() bool /* primitive/slice/pointer. */
-	SetIsDeclared(value bool /* primitive/slice/pointer. */)
-	IsDynamic() bool /* primitive/slice/pointer. */
-	SetIsDynamic(value bool /* primitive/slice/pointer. */)
-	IsPublic() bool /* primitive/slice/pointer. */
-	SetIsPublic(value bool /* primitive/slice/pointer. */)
+	IsDeclared() bool
+	SetIsDeclared(value bool)
+	IsDynamic() bool
+	SetIsDynamic(value bool)
+	IsPublic() bool
+	SetIsPublic(value bool)
 	// methods:
-	ConformsToType(type_ IUTType) bool /* primitive/slice/pointer. */
-	IsSubtypeOfType(type_ IUTType) bool /* primitive/slice/pointer. */
-	IsSupertypeOfType(type_ IUTType) bool /* primitive/slice/pointer. */
+	ConformsToType(type_ IUTType) bool
+	IsSubtypeOfType(type_ IUTType) bool
+	IsSupertypeOfType(type_ IUTType) bool
 }
 
 // An object that represents a type of data to load, send, or receive.
@@ -112,7 +112,7 @@ func NewUTType() UTType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(exportedAs:)
-func NewUTTypeExportedTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) UTType {
+func NewUTTypeExportedTypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("exportedTypeWithIdentifier:"), identifier)
 	return rv
 }
@@ -122,7 +122,7 @@ func NewUTTypeExportedTypeWithIdentifier(identifier objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(exportedAs:conformingTo:)
-func NewUTTypeExportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework NSString */, parentType IUTType) UTType {
+func NewUTTypeExportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework: NSString */, parentType IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("exportedTypeWithIdentifier:conformingToType:"), identifier, parentType)
 	return rv
 }
@@ -132,7 +132,7 @@ func NewUTTypeExportedTypeWithIdentifierConformingToType(identifier objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:)
-func NewUTTypeImportedTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) UTType {
+func NewUTTypeImportedTypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("importedTypeWithIdentifier:"), identifier)
 	return rv
 }
@@ -142,7 +142,7 @@ func NewUTTypeImportedTypeWithIdentifier(identifier objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:conformingTo:)
-func NewUTTypeImportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework NSString */, parentType IUTType) UTType {
+func NewUTTypeImportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework: NSString */, parentType IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("importedTypeWithIdentifier:conformingToType:"), identifier, parentType)
 	return rv
 }
@@ -152,7 +152,7 @@ func NewUTTypeImportedTypeWithIdentifierConformingToType(identifier objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:)
-func NewUTTypeWithFilenameExtension(filenameExtension objc.IObject /* cross-framework NSString */) UTType {
+func NewUTTypeWithFilenameExtension(filenameExtension objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:"), filenameExtension)
 	return rv
 }
@@ -162,7 +162,7 @@ func NewUTTypeWithFilenameExtension(filenameExtension objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:conformingTo:)
-func NewUTTypeWithFilenameExtensionConformingToType(filenameExtension objc.IObject /* cross-framework NSString */, supertype IUTType) UTType {
+func NewUTTypeWithFilenameExtensionConformingToType(filenameExtension objc.IObject /* cross-framework: NSString */, supertype IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithFilenameExtension:conformingToType:"), filenameExtension, supertype)
 	return rv
 }
@@ -172,7 +172,7 @@ func NewUTTypeWithFilenameExtensionConformingToType(filenameExtension objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(_:)
-func NewUTTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) UTType {
+func NewUTTypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithIdentifier:"), identifier)
 	return rv
 }
@@ -182,7 +182,7 @@ func NewUTTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:)
-func NewUTTypeWithMIMEType(mimeType objc.IObject /* cross-framework NSString */) UTType {
+func NewUTTypeWithMIMEType(mimeType objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:"), mimeType)
 	return rv
 }
@@ -192,7 +192,7 @@ func NewUTTypeWithMIMEType(mimeType objc.IObject /* cross-framework NSString */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:conformingTo:)
-func NewUTTypeWithMIMETypeConformingToType(mimeType objc.IObject /* cross-framework NSString */, supertype IUTType) UTType {
+func NewUTTypeWithMIMETypeConformingToType(mimeType objc.IObject /* cross-framework: NSString */, supertype IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithMIMEType:conformingToType:"), mimeType, supertype)
 	return rv
 }
@@ -202,7 +202,7 @@ func NewUTTypeWithMIMETypeConformingToType(mimeType objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(tag:tagClass:conformingToType:)
-func NewUTTypeWithTagTagClassConformingToType(tag objc.IObject /* cross-framework NSString */, tagClass objc.IObject /* cross-framework NSString */, supertype IUTType) UTType {
+func NewUTTypeWithTagTagClassConformingToType(tag objc.IObject /* cross-framework: NSString */, tagClass objc.IObject /* cross-framework: NSString */, supertype IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(getUTTypeClass().class), objc.Sel("typeWithTag:tagClass:conformingToType:"), tag, tagClass, supertype)
 	return rv
 }
@@ -213,7 +213,7 @@ func NewUTTypeWithTagTagClassConformingToType(tag objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(_:)
-func (uc _UTTypeClass) TypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithIdentifier:"), identifier)
 	return rv
 }
@@ -223,7 +223,7 @@ func (uc _UTTypeClass) TypeWithIdentifier(identifier objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(exportedAs:)
-func (uc _UTTypeClass) ExportedTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) UTType {
+func (uc _UTTypeClass) ExportedTypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("exportedTypeWithIdentifier:"), identifier)
 	return rv
 }
@@ -233,7 +233,7 @@ func (uc _UTTypeClass) ExportedTypeWithIdentifier(identifier objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(exportedAs:conformingTo:)
-func (uc _UTTypeClass) ExportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework NSString */, parentType IUTType) UTType {
+func (uc _UTTypeClass) ExportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework: NSString */, parentType IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("exportedTypeWithIdentifier:conformingToType:"), identifier, parentType)
 	return rv
 }
@@ -243,7 +243,7 @@ func (uc _UTTypeClass) ExportedTypeWithIdentifierConformingToType(identifier obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:)
-func (uc _UTTypeClass) TypeWithFilenameExtension(filenameExtension objc.IObject /* cross-framework NSString */) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithFilenameExtension(filenameExtension objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithFilenameExtension:"), filenameExtension)
 	return rv
 }
@@ -253,7 +253,7 @@ func (uc _UTTypeClass) TypeWithFilenameExtension(filenameExtension objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(filenameExtension:conformingTo:)
-func (uc _UTTypeClass) TypeWithFilenameExtensionConformingToType(filenameExtension objc.IObject /* cross-framework NSString */, supertype IUTType) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithFilenameExtensionConformingToType(filenameExtension objc.IObject /* cross-framework: NSString */, supertype IUTType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithFilenameExtension:conformingToType:"), filenameExtension, supertype)
 	return rv
 }
@@ -263,7 +263,7 @@ func (uc _UTTypeClass) TypeWithFilenameExtensionConformingToType(filenameExtensi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:)
-func (uc _UTTypeClass) ImportedTypeWithIdentifier(identifier objc.IObject /* cross-framework NSString */) UTType {
+func (uc _UTTypeClass) ImportedTypeWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("importedTypeWithIdentifier:"), identifier)
 	return rv
 }
@@ -273,7 +273,7 @@ func (uc _UTTypeClass) ImportedTypeWithIdentifier(identifier objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(importedAs:conformingTo:)
-func (uc _UTTypeClass) ImportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework NSString */, parentType IUTType) UTType {
+func (uc _UTTypeClass) ImportedTypeWithIdentifierConformingToType(identifier objc.IObject /* cross-framework: NSString */, parentType IUTType) UTType {
 	rv := objc.Send[UTType](objc.ID(uc.class), objc.Sel("importedTypeWithIdentifier:conformingToType:"), identifier, parentType)
 	return rv
 }
@@ -283,7 +283,7 @@ func (uc _UTTypeClass) ImportedTypeWithIdentifierConformingToType(identifier obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:)
-func (uc _UTTypeClass) TypeWithMIMEType(mimeType objc.IObject /* cross-framework NSString */) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithMIMEType(mimeType objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithMIMEType:"), mimeType)
 	return rv
 }
@@ -293,7 +293,7 @@ func (uc _UTTypeClass) TypeWithMIMEType(mimeType objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(mimeType:conformingTo:)
-func (uc _UTTypeClass) TypeWithMIMETypeConformingToType(mimeType objc.IObject /* cross-framework NSString */, supertype IUTType) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithMIMETypeConformingToType(mimeType objc.IObject /* cross-framework: NSString */, supertype IUTType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithMIMEType:conformingToType:"), mimeType, supertype)
 	return rv
 }
@@ -303,7 +303,7 @@ func (uc _UTTypeClass) TypeWithMIMETypeConformingToType(mimeType objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/init(tag:tagClass:conformingToType:)
-func (uc _UTTypeClass) TypeWithTagTagClassConformingToType(tag objc.IObject /* cross-framework NSString */, tagClass objc.IObject /* cross-framework NSString */, supertype IUTType) unsafe.Pointer {
+func (uc _UTTypeClass) TypeWithTagTagClassConformingToType(tag objc.IObject /* cross-framework: NSString */, tagClass objc.IObject /* cross-framework: NSString */, supertype IUTType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("typeWithTag:tagClass:conformingToType:"), tag, tagClass, supertype)
 	return rv
 }
@@ -313,7 +313,7 @@ func (uc _UTTypeClass) TypeWithTagTagClassConformingToType(tag objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/types(tag:tagClass:conformingTo:)
-func (uc _UTTypeClass) TypesWithTagTagClassConformingToType(tag objc.IObject /* cross-framework NSString */, tagClass objc.IObject /* cross-framework NSString */, supertype IUTType) []UTType /* primitive/slice/pointer. */ {
+func (uc _UTTypeClass) TypesWithTagTagClassConformingToType(tag objc.IObject /* cross-framework: NSString */, tagClass objc.IObject /* cross-framework: NSString */, supertype IUTType) []IUTType {
 	rv := objc.Send[[]UTType](objc.ID(uc.class), objc.Sel("typesWithTag:tagClass:conformingToType:"), tag, tagClass, supertype)
 	return rv
 }
@@ -341,7 +341,7 @@ func (uc _UTTypeClass) SHSignatureContentType() UTType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/conforms(to:)
-func (u_ UTType) ConformsToType(type_ IUTType) bool /* primitive/slice/pointer. */ {
+func (u_ UTType) ConformsToType(type_ IUTType) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("conformsToType:"), type_)
 	return rv
 }
@@ -351,7 +351,7 @@ func (u_ UTType) ConformsToType(type_ IUTType) bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/isSubtype(of:)
-func (u_ UTType) IsSubtypeOfType(type_ IUTType) bool /* primitive/slice/pointer. */ {
+func (u_ UTType) IsSubtypeOfType(type_ IUTType) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isSubtypeOfType:"), type_)
 	return rv
 }
@@ -361,7 +361,7 @@ func (u_ UTType) IsSubtypeOfType(type_ IUTType) bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/isSupertype(of:)
-func (u_ UTType) IsSupertypeOfType(type_ IUTType) bool /* primitive/slice/pointer. */ {
+func (u_ UTType) IsSupertypeOfType(type_ IUTType) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isSupertypeOfType:"), type_)
 	return rv
 }
@@ -401,7 +401,7 @@ func (u_ UTType) Identifier() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/isDeclared
-func (u_ UTType) Declared() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) Declared() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("declared"))
 	return rv
 }
@@ -411,7 +411,7 @@ func (u_ UTType) Declared() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/isDynamic
-func (u_ UTType) Dynamic() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) Dynamic() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("dynamic"))
 	return rv
 }
@@ -421,7 +421,7 @@ func (u_ UTType) Dynamic() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/isPublic
-func (u_ UTType) PublicType() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) PublicType() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("publicType"))
 	return rv
 }
@@ -481,7 +481,7 @@ func (u_ UTType) Supertypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers/UTTypeReference/tags
-func (u_ UTType) Tags() foundation.IDictionary /* already interface */ {
+func (u_ UTType) Tags() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](u_.ID, objc.Sel("tags"))
 	return rv
 }
@@ -501,7 +501,7 @@ func (u_ UTType) Version() objc.IObject /* cross-framework: NSNumber */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
-func (u_ UTType) IsDeclared() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) IsDeclared() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isDeclared"))
 	return rv
 }
@@ -511,7 +511,7 @@ func (u_ UTType) IsDeclared() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdeclared
-func (u_ UTType) SetIsDeclared(value bool /* primitive/slice/pointer. */) {
+func (u_ UTType) SetIsDeclared(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDeclared:"), value)
 }
 
@@ -520,7 +520,7 @@ func (u_ UTType) SetIsDeclared(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
-func (u_ UTType) IsDynamic() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) IsDynamic() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isDynamic"))
 	return rv
 }
@@ -530,7 +530,7 @@ func (u_ UTType) IsDynamic() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/isdynamic
-func (u_ UTType) SetIsDynamic(value bool /* primitive/slice/pointer. */) {
+func (u_ UTType) SetIsDynamic(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDynamic:"), value)
 }
 
@@ -539,7 +539,7 @@ func (u_ UTType) SetIsDynamic(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
-func (u_ UTType) IsPublic() bool /* primitive/slice/pointer. */ {
+func (u_ UTType) IsPublic() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isPublic"))
 	return rv
 }
@@ -549,7 +549,7 @@ func (u_ UTType) IsPublic() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference/ispublic
-func (u_ UTType) SetIsPublic(value bool /* primitive/slice/pointer. */) {
+func (u_ UTType) SetIsPublic(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPublic:"), value)
 }
 

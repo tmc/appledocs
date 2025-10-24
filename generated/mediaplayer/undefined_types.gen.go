@@ -9,14 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AnyHashable = _undefined // referenced in MediaPlayer
-	Bool = _undefined // referenced in MediaPlayer
-	ChangePlaybackRateCommand = _undefined // referenced in MediaPlayer
-	ChangeRepeatModeCommand = _undefined // referenced in MediaPlayer
-	ChangeShuffleModeCommand = _undefined // referenced in MediaPlayer
 	ControlState = _undefined // referenced in MediaPlayer
 	Image = _undefined // referenced in MediaPlayer
-	Int64 = _undefined // referenced in MediaPlayer
 	MovieControlStyle = _undefined // referenced in MediaPlayer
 	MoviePlaybackState = _undefined // referenced in MediaPlayer
 	MovieRepeatMode = _undefined // referenced in MediaPlayer
@@ -28,7 +22,6 @@ type (
 	SeekCommandEventType = _undefined // referenced in MediaPlayer
 	Size = _undefined // referenced in MediaPlayer
 	String = _undefined // referenced in MediaPlayer
-	UIImage = _undefined // referenced in MediaPlayer
 )
 
 

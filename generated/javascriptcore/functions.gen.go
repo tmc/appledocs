@@ -15,21 +15,21 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_JSBigIntCreateWithDouble func(unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_JSBigIntCreateWithInt64 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSBigIntCreateWithString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSBigIntCreateWithUInt64 func(unsafe.Pointer, uint64, unsafe.Pointer) unsafe.Pointer
-	_JSEvaluateScript func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
-	_JSValueCompare func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueCompareDouble func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_JSValueCompareInt64 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueCompareUInt64 func(unsafe.Pointer, unsafe.Pointer, uint64, unsafe.Pointer) unsafe.Pointer
-	_JSValueIsBigInt func(unsafe.Pointer, unsafe.Pointer) bool
-	_JSValueToInt32 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueToInt64 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_JSValueToUInt32 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) uint32
-	_JSValueToUInt64 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) uint64
-	_JSGarbageCollect func(unsafe.Pointer) unsafe.Pointer
+	_JSBigIntCreateWithDouble func(JSContextRef, float64, unsafe.Pointer) JSValueRef
+	_JSBigIntCreateWithInt64 func(JSContextRef, int64, unsafe.Pointer) JSValueRef
+	_JSBigIntCreateWithString func(JSContextRef, unsafe.Pointer, unsafe.Pointer) JSValueRef
+	_JSBigIntCreateWithUInt64 func(JSContextRef, uint64, unsafe.Pointer) JSValueRef
+	_JSEvaluateScript func(JSContextRef, unsafe.Pointer, JSObjectRef, unsafe.Pointer, int, unsafe.Pointer) JSValueRef
+	_JSValueCompare func(JSContextRef, JSValueRef, JSValueRef, unsafe.Pointer) unsafe.Pointer
+	_JSValueCompareDouble func(JSContextRef, JSValueRef, float64, unsafe.Pointer) unsafe.Pointer
+	_JSValueCompareInt64 func(JSContextRef, JSValueRef, int64, unsafe.Pointer) unsafe.Pointer
+	_JSValueCompareUInt64 func(JSContextRef, JSValueRef, uint64, unsafe.Pointer) unsafe.Pointer
+	_JSValueIsBigInt func(JSContextRef, JSValueRef) bool
+	_JSValueToInt32 func(JSContextRef, JSValueRef, unsafe.Pointer) int32
+	_JSValueToInt64 func(JSContextRef, JSValueRef, unsafe.Pointer) int64
+	_JSValueToUInt32 func(JSContextRef, JSValueRef, unsafe.Pointer) uint32
+	_JSValueToUInt64 func(JSContextRef, JSValueRef, unsafe.Pointer) uint64
+	_JSGarbageCollect func(JSContextRef) unsafe.Pointer
 )
 
 func init() {
@@ -73,7 +73,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSBigIntCreateWithDouble(_:_:_:)
-func JSBigIntCreateWithDouble(ctx unsafe.Pointer, value float64, exception unsafe.Pointer) unsafe.Pointer {
+func JSBigIntCreateWithDouble(ctx JSContextRef, value float64, exception unsafe.Pointer) JSValueRef {
 	return _JSBigIntCreateWithDouble(ctx, value, exception)
 }
 
@@ -82,7 +82,7 @@ func JSBigIntCreateWithDouble(ctx unsafe.Pointer, value float64, exception unsaf
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSBigIntCreateWithInt64(_:_:_:)
-func JSBigIntCreateWithInt64(ctx unsafe.Pointer, integer unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSBigIntCreateWithInt64(ctx JSContextRef, integer int64, exception unsafe.Pointer) JSValueRef {
 	return _JSBigIntCreateWithInt64(ctx, integer, exception)
 }
 
@@ -91,7 +91,7 @@ func JSBigIntCreateWithInt64(ctx unsafe.Pointer, integer unsafe.Pointer, excepti
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSBigIntCreateWithString(_:_:_:)
-func JSBigIntCreateWithString(ctx unsafe.Pointer, string_ unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSBigIntCreateWithString(ctx JSContextRef, string_ unsafe.Pointer, exception unsafe.Pointer) JSValueRef {
 	return _JSBigIntCreateWithString(ctx, string_, exception)
 }
 
@@ -100,7 +100,7 @@ func JSBigIntCreateWithString(ctx unsafe.Pointer, string_ unsafe.Pointer, except
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSBigIntCreateWithUInt64(_:_:_:)
-func JSBigIntCreateWithUInt64(ctx unsafe.Pointer, integer uint64, exception unsafe.Pointer) unsafe.Pointer {
+func JSBigIntCreateWithUInt64(ctx JSContextRef, integer uint64, exception unsafe.Pointer) JSValueRef {
 	return _JSBigIntCreateWithUInt64(ctx, integer, exception)
 }
 
@@ -111,7 +111,7 @@ func JSBigIntCreateWithUInt64(ctx unsafe.Pointer, integer uint64, exception unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSEvaluateScript(_:_:_:_:_:_:)
-func JSEvaluateScript(ctx unsafe.Pointer, script unsafe.Pointer, thisObject unsafe.Pointer, sourceURL unsafe.Pointer, startingLineNumber int, exception unsafe.Pointer) unsafe.Pointer {
+func JSEvaluateScript(ctx JSContextRef, script unsafe.Pointer, thisObject JSObjectRef, sourceURL unsafe.Pointer, startingLineNumber int, exception unsafe.Pointer) JSValueRef {
 	return _JSEvaluateScript(ctx, script, thisObject, sourceURL, startingLineNumber, exception)
 }
 
@@ -120,7 +120,7 @@ func JSEvaluateScript(ctx unsafe.Pointer, script unsafe.Pointer, thisObject unsa
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueCompare(_:_:_:_:)
-func JSValueCompare(ctx unsafe.Pointer, left unsafe.Pointer, right unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueCompare(ctx JSContextRef, left JSValueRef, right JSValueRef, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSValueCompare(ctx, left, right, exception)
 }
 
@@ -129,7 +129,7 @@ func JSValueCompare(ctx unsafe.Pointer, left unsafe.Pointer, right unsafe.Pointe
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueCompareDouble(_:_:_:_:)
-func JSValueCompareDouble(ctx unsafe.Pointer, left unsafe.Pointer, right float64, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueCompareDouble(ctx JSContextRef, left JSValueRef, right float64, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSValueCompareDouble(ctx, left, right, exception)
 }
 
@@ -138,7 +138,7 @@ func JSValueCompareDouble(ctx unsafe.Pointer, left unsafe.Pointer, right float64
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueCompareInt64(_:_:_:_:)
-func JSValueCompareInt64(ctx unsafe.Pointer, left unsafe.Pointer, right unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueCompareInt64(ctx JSContextRef, left JSValueRef, right int64, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSValueCompareInt64(ctx, left, right, exception)
 }
 
@@ -147,7 +147,7 @@ func JSValueCompareInt64(ctx unsafe.Pointer, left unsafe.Pointer, right unsafe.P
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueCompareUInt64(_:_:_:_:)
-func JSValueCompareUInt64(ctx unsafe.Pointer, left unsafe.Pointer, right uint64, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueCompareUInt64(ctx JSContextRef, left JSValueRef, right uint64, exception unsafe.Pointer) unsafe.Pointer {
 	return _JSValueCompareUInt64(ctx, left, right, exception)
 }
 
@@ -156,7 +156,7 @@ func JSValueCompareUInt64(ctx unsafe.Pointer, left unsafe.Pointer, right uint64,
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsBigInt(_:_:)
-func JSValueIsBigInt(ctx unsafe.Pointer, value unsafe.Pointer) bool {
+func JSValueIsBigInt(ctx JSContextRef, value JSValueRef) bool {
 	return _JSValueIsBigInt(ctx, value)
 }
 
@@ -165,7 +165,7 @@ func JSValueIsBigInt(ctx unsafe.Pointer, value unsafe.Pointer) bool {
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueToInt32(_:_:_:)
-func JSValueToInt32(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueToInt32(ctx JSContextRef, value JSValueRef, exception unsafe.Pointer) int32 {
 	return _JSValueToInt32(ctx, value, exception)
 }
 
@@ -174,7 +174,7 @@ func JSValueToInt32(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.P
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueToInt64(_:_:_:)
-func JSValueToInt64(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+func JSValueToInt64(ctx JSContextRef, value JSValueRef, exception unsafe.Pointer) int64 {
 	return _JSValueToInt64(ctx, value, exception)
 }
 
@@ -183,7 +183,7 @@ func JSValueToInt64(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.P
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueToUInt32(_:_:_:)
-func JSValueToUInt32(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.Pointer) uint32 {
+func JSValueToUInt32(ctx JSContextRef, value JSValueRef, exception unsafe.Pointer) uint32 {
 	return _JSValueToUInt32(ctx, value, exception)
 }
 
@@ -192,7 +192,7 @@ func JSValueToUInt32(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueToUInt64(_:_:_:)
-func JSValueToUInt64(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.Pointer) uint64 {
+func JSValueToUInt64(ctx JSContextRef, value JSValueRef, exception unsafe.Pointer) uint64 {
 	return _JSValueToUInt64(ctx, value, exception)
 }
 
@@ -202,7 +202,7 @@ func JSValueToUInt64(ctx unsafe.Pointer, value unsafe.Pointer, exception unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSGarbageCollect(_:)
-func JSGarbageCollect(p0 unsafe.Pointer) unsafe.Pointer {
+func JSGarbageCollect(p0 JSContextRef) unsafe.Pointer {
 	return _JSGarbageCollect(p0)
 }
 

@@ -30,15 +30,22 @@ type _PHASEDistanceModelFadeOutParametersClass struct {
 // An interface definition for the [PHASEDistanceModelFadeOutParameters] class.
 type IPHASEDistanceModelFadeOutParameters interface {
 	objectivec.IObject
+	// properties:
 	CullDistance() float64
-	FadeOutParameters() PHASEDistanceModelFadeOutParameters
+	SetCullDistance(value float64)
+	FadeOutParameters() IPHASEDistanceModelFadeOutParameters
 	SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters)
+	// methods:
 }
 
 // A distance over which the framework fades out sound.
 //
 // For spatial sound output, the framework stops playing a sound when its distance from the listener surpases . The framework gradually fades out the sound’s volume as the distance between the source and listener approaches . Likewise, the framework gradually fades in the sound as the distance between the source and listener approaches . A object provides an instance of this class to a spatial mixer; for more information, see .
+
+
+// A distance over which the framework fades out sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters
 type PHASEDistanceModelFadeOutParameters struct {
 	objectivec.Object
@@ -84,42 +91,42 @@ func NewPHASEDistanceModelFadeOutParameters() PHASEDistanceModelFadeOutParameter
 
 
 
-
-// Creates a distance beyond which sound sources stop playing.
+// The distance beyond which the framework doesn’t process the sound.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)
-func NewPHASEDistanceModelFadeOutParametersWithCullDistance(cullDistance float64) PHASEDistanceModelFadeOutParameters {
-	instance := getPHASEDistanceModelFadeOutParametersClass().Alloc()
-	rv := objc.Send[PHASEDistanceModelFadeOutParameters](instance.ID, objc.Sel("initWithCullDistance:"), cullDistance)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelfadeoutparameters/culldistance
+func (p_ PHASEDistanceModelFadeOutParameters) CullDistance() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("cullDistance"))
 	return rv
 }
 
 
 // The distance beyond which the framework doesn’t process the sound.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance
-func (p_ PHASEDistanceModelFadeOutParameters) CullDistance() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("cullDistance"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelfadeoutparameters/culldistance
+func (p_ PHASEDistanceModelFadeOutParameters) SetCullDistance(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCullDistance:"), value)
 }
+
 
 // A distance over which the framework fades out the mixer’s sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
-func (p_ PHASEDistanceModelFadeOutParameters) FadeOutParameters() PHASEDistanceModelFadeOutParameters {
+func (p_ PHASEDistanceModelFadeOutParameters) FadeOutParameters() IPHASEDistanceModelFadeOutParameters {
 	rv := objc.Send[PHASEDistanceModelFadeOutParameters](p_.ID, objc.Sel("fadeOutParameters"))
 	return rv
 }
 
 
-// SetFadeOutParameters sets the value of the fadeOutParameters property.
 // A distance over which the framework fades out the mixer’s sound.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
 func (p_ PHASEDistanceModelFadeOutParameters) SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFadeOutParameters:"), value)
 }
+
 
 

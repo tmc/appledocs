@@ -30,18 +30,20 @@ type _NEProviderClass struct {
 // An interface definition for the [NEProvider] class.
 type INEProvider interface {
 	objectivec.IObject
-	CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection
-	CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
-	DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer)
-	SleepWithCompletionHandler(completionHandler unsafe.Pointer)
-	Wake()
-	DefaultPath() NWPath
+	// properties:
+	DefaultPath() objc.IObject /* cross-framework: NWPath */
+	SetDefaultPath(value objc.IObject /* cross-framework: NWPath */)
+	// methods:
 }
 
 // An abstract base class for all NetworkExtension providers.
 //
 // See the documentation for the subclasses for details about how to create Network Extension Provider extensions. The class and its subclasses expose methods and properties that allow Network Extension Provider extensions to participate in and affect the network data path on iOS and macOS. For example, the method in allows Filter Data Provider extensions to make pass/block decisions on TCP connections as the connections are established on the system.
+
+
+// An abstract base class for all NetworkExtension providers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider
 type NEProvider struct {
 	objectivec.Object
@@ -86,56 +88,23 @@ func NewNEProvider() NEProvider {
 }
 
 
-// Starts the Network Extension machinery from inside a System Extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/startSystemExtensionMode()
-func (nc _NEProviderClass) StartSystemExtensionMode() {
-	objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("startSystemExtensionMode"))
-}
-
-// Create a TCP connection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)
-func (n_ NEProvider) CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection {
-	rv := objc.Send[NWTCPConnection](n_.ID, objc.Sel("createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
-	return rv
-}
-
-// Creates a UDP session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)
-func (n_ NEProvider) CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession {
-	rv := objc.Send[NWUDPSession](n_.ID, objc.Sel("createUDPSessionToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
-	return rv
-}
-
-// Call this method from your subclass if you want to display a message to the person using the app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)
-func (n_ NEProvider) DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("displayMessage:completionHandler:"), objc.String(message), completionHandler)
-}
-
-// Handle a sleep event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/sleep(completionHandler:)
-func (n_ NEProvider) SleepWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("sleepWithCompletionHandler:"), completionHandler)
-}
-
-// Handle a wake event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/wake()
-func (n_ NEProvider) Wake() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("wake"))
-}
 
 // The current default network path used for connections created by the provider.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/defaultPath
-func (n_ NEProvider) DefaultPath() NWPath {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neprovider/defaultpath
+func (n_ NEProvider) DefaultPath() objc.IObject /* cross-framework: NWPath */ {
 	rv := objc.Send[NWPath](n_.ID, objc.Sel("defaultPath"))
 	return rv
+}
+
+
+// The current default network path used for connections created by the provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neprovider/defaultpath
+func (n_ NEProvider) SetDefaultPath(value objc.IObject /* cross-framework: NWPath */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDefaultPath:"), value)
 }
 
 

@@ -92,10 +92,9 @@ func NewStepCounter() StepCounter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/isStepCountingAvailable()
-func (sc _StepCounterClass) IsStepCountingAvailable() bool /* primitive/slice/pointer. */ {
+func (sc _StepCounterClass) IsStepCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }
-
 
 

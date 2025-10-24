@@ -29,16 +29,22 @@ type _VZGenericPlatformConfigurationClass struct {
 // An interface definition for the [VZGenericPlatformConfiguration] class.
 type IVZGenericPlatformConfiguration interface {
 	IVZPlatformConfiguration
+	// properties:
 	NestedVirtualizationEnabled() bool
 	SetNestedVirtualizationEnabled(value bool)
-	MachineIdentifier() VZGenericMachineIdentifier
+	MachineIdentifier() IVZGenericMachineIdentifier
 	SetMachineIdentifier(value IVZGenericMachineIdentifier)
 	IsNestedVirtualizationEnabled() bool
 	SetIsNestedVirtualizationEnabled(value bool)
+	// methods:
 }
 
 // The platform configuration for a generic Intel or ARM virtual machine.
+
+
+// The platform configuration for a generic Intel or ARM virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration
 type VZGenericPlatformConfiguration struct {
 	VZPlatformConfiguration
@@ -86,15 +92,19 @@ func NewVZGenericPlatformConfiguration() VZGenericPlatformConfiguration {
 
 
 
+
 // A Boolean value that describes whether the platform configuration supports nested virtualization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/isNestedVirtualizationSupported
 func (vc _VZGenericPlatformConfigurationClass) NestedVirtualizationSupported() bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("nestedVirtualizationSupported"))
 	return rv
 }
+
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/isNestedVirtualizationEnabled
 func (v_ VZGenericPlatformConfiguration) NestedVirtualizationEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("nestedVirtualizationEnabled"))
@@ -102,43 +112,47 @@ func (v_ VZGenericPlatformConfiguration) NestedVirtualizationEnabled() bool {
 }
 
 
-// SetNestedVirtualizationEnabled sets the value of the nestedVirtualizationEnabled property.
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/isNestedVirtualizationEnabled
 func (v_ VZGenericPlatformConfiguration) SetNestedVirtualizationEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNestedVirtualizationEnabled:"), value)
 }
 
+
 // A Boolean value that describes whether the platform configuration supports nested virtualization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/isNestedVirtualizationSupported
 func (v_ VZGenericPlatformConfiguration) NestedVirtualizationSupported() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("nestedVirtualizationSupported"))
 	return rv
 }
 
+
 // A value that represents a unique identifier for the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/machineIdentifier
-func (v_ VZGenericPlatformConfiguration) MachineIdentifier() VZGenericMachineIdentifier {
+func (v_ VZGenericPlatformConfiguration) MachineIdentifier() IVZGenericMachineIdentifier {
 	rv := objc.Send[VZGenericMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
 	return rv
 }
 
 
-// SetMachineIdentifier sets the value of the machineIdentifier property.
 // A value that represents a unique identifier for the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/machineIdentifier
 func (v_ VZGenericPlatformConfiguration) SetMachineIdentifier(value IVZGenericMachineIdentifier) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
 
+
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
 func (v_ VZGenericPlatformConfiguration) IsNestedVirtualizationEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isNestedVirtualizationEnabled"))
@@ -146,10 +160,9 @@ func (v_ VZGenericPlatformConfiguration) IsNestedVirtualizationEnabled() bool {
 }
 
 
-// SetIsNestedVirtualizationEnabled sets the value of the isNestedVirtualizationEnabled property.
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
 func (v_ VZGenericPlatformConfiguration) SetIsNestedVirtualizationEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsNestedVirtualizationEnabled:"), value)

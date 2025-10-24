@@ -30,9 +30,13 @@ type _customTranslationFunctionClass struct {
 // An interface definition for the [customTranslationFunction] class.
 type IcustomTranslationFunction interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-c.ivar
 type customTranslationFunction struct {
 	objectivec.Object

@@ -30,6 +30,7 @@ type _MTRTestClusterClusterTestStructArrayArgumentRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestStructArrayArgumentRequestParams] class.
 type IMTRTestClusterClusterTestStructArrayArgumentRequestParams interface {
 	IMTRUnitTestingClusterTestStructArrayArgumentRequestParams
+	// properties:
 	Arg1() unsafe.Pointer
 	SetArg1(value unsafe.Pointer)
 	Arg2() unsafe.Pointer
@@ -38,17 +39,20 @@ type IMTRTestClusterClusterTestStructArrayArgumentRequestParams interface {
 	SetArg3(value unsafe.Pointer)
 	Arg4() unsafe.Pointer
 	SetArg4(value unsafe.Pointer)
-	Arg5() foundation.Number
-	SetArg5(value foundation.INumber)
-	Arg6() foundation.Number
-	SetArg6(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Arg5() objc.IObject /* cross-framework: NSNumber */
+	SetArg5(value objc.IObject /* cross-framework: NSNumber */)
+	Arg6() objc.IObject /* cross-framework: NSNumber */
+	SetArg6(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestStructArrayArgumentRequestParams
 type MTRTestClusterClusterTestStructArrayArgumentRequestParams struct {
 	MTRUnitTestingClusterTestStructArrayArgumentRequestParams
@@ -93,7 +97,8 @@ func NewMTRTestClusterClusterTestStructArrayArgumentRequestParams() MTRTestClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg1
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -101,14 +106,14 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg1() unsaf
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg1
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg2
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg2() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg2"))
@@ -116,14 +121,14 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg2() unsaf
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg2
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg2(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg3
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg3() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg3"))
@@ -131,14 +136,14 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg3() unsaf
 }
 
 
-// SetArg3 sets the value of the arg3 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg3
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg3(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg4
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg4() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg4"))
@@ -146,70 +151,69 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg4() unsaf
 }
 
 
-// SetArg4 sets the value of the arg4 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg4
 func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg4(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg5
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg5() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg5"))
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg5() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg5"))
 	return rv
 }
 
 
-// SetArg5 sets the value of the arg5 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg5
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg5(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg5(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg6
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg6() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg6"))
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) Arg6() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg6"))
 	return rv
 }
 
 
-// SetArg6 sets the value of the arg6 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/arg6
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg6(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetArg6(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

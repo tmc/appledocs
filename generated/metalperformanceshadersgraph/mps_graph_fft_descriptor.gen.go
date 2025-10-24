@@ -29,18 +29,24 @@ type _GraphFFTDescriptorClass struct {
 // An interface definition for the [GraphFFTDescriptor] class.
 type IGraphFFTDescriptor interface {
 	IGraphObject
-	ScalingMode() GraphFFTScalingMode
-	SetScalingMode(value GraphFFTScalingMode)
+	// properties:
 	Inverse() bool
 	SetInverse(value bool)
 	RoundToOddHermitean() bool
 	SetRoundToOddHermitean(value bool)
+	ScalingMode() GraphFFTScalingMode
+	SetScalingMode(value GraphFFTScalingMode)
+	// methods:
 }
 
 // The class that defines the parameters for a fast Fourier transform (FFT) operation.
 //
 // Use this descriptor with , , and methods.
+
+
+// The class that defines the parameters for a fast Fourier transform (FFT) operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor
 type GraphFFTDescriptor struct {
 	GraphObject
@@ -87,34 +93,20 @@ func NewGraphFFTDescriptor() GraphFFTDescriptor {
 }
 
 
+
 // Creates a fast Fourier transform descriptor with default parameter values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/descriptor
 func (gc _GraphFFTDescriptorClass) Descriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptor"))
 	return rv
 }
 
-// The scaling mode of the fast fourier transform (FFT) operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) ScalingMode() GraphFFTScalingMode {
-	rv := objc.Send[GraphFFTScalingMode](g_.ID, objc.Sel("scalingMode"))
-	return rv
-}
-
-
-// SetScalingMode sets the value of the scalingMode property.
-// The scaling mode of the fast fourier transform (FFT) operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) SetScalingMode(value GraphFFTScalingMode) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setScalingMode:"), value)
-}
 
 // A Boolean-valued parameter that defines the phase factor sign for Fourier transforms.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/inverse
 func (g_ GraphFFTDescriptor) Inverse() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("inverse"))
@@ -122,17 +114,18 @@ func (g_ GraphFFTDescriptor) Inverse() bool {
 }
 
 
-// SetInverse sets the value of the inverse property.
 // A Boolean-valued parameter that defines the phase factor sign for Fourier transforms.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/inverse
 func (g_ GraphFFTDescriptor) SetInverse(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInverse:"), value)
 }
 
+
 // A parameter which controls how graph rounds the output tensor size for a Hermitean-to-real Fourier transform.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/roundtooddhermitean
 func (g_ GraphFFTDescriptor) RoundToOddHermitean() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("roundToOddHermitean"))
@@ -140,13 +133,31 @@ func (g_ GraphFFTDescriptor) RoundToOddHermitean() bool {
 }
 
 
-// SetRoundToOddHermitean sets the value of the roundToOddHermitean property.
 // A parameter which controls how graph rounds the output tensor size for a Hermitean-to-real Fourier transform.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/roundtooddhermitean
 func (g_ GraphFFTDescriptor) SetRoundToOddHermitean(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRoundToOddHermitean:"), value)
+}
+
+
+// The scaling mode of the fast fourier transform (FFT) operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/scalingmode
+func (g_ GraphFFTDescriptor) ScalingMode() GraphFFTScalingMode {
+	rv := objc.Send[GraphFFTScalingMode](g_.ID, objc.Sel("scalingMode"))
+	return rv
+}
+
+
+// The scaling mode of the fast fourier transform (FFT) operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor/scalingmode
+func (g_ GraphFFTDescriptor) SetScalingMode(value GraphFFTScalingMode) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setScalingMode:"), value)
 }
 
 

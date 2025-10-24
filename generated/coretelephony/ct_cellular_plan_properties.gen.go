@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +33,8 @@ type _CellularPlanPropertiesClass struct {
 type ICellularPlanProperties interface {
 	objectivec.IObject
 	// properties:
-	AssociatedIccid() string /* primitive/slice/pointer. */
-	SetAssociatedIccid(value string /* primitive/slice/pointer. */)
-	SimCapability() CellularPlanCapability
-	SetSimCapability(value CellularPlanCapability)
-	SupportedRegionCodes() corelocation.objc.IObject /* cross-framework: Region */
-	SetSupportedRegionCodes(value corelocation.objc.IObject /* cross-framework: Region */)
+	SupportedRegionCodes() objc.IObject /* cross-framework: Region */
+	SetSupportedRegionCodes(value objc.IObject /* cross-framework: Region */)
 	// methods:
 }
 
@@ -92,49 +89,11 @@ func NewCellularPlanProperties() CellularPlanProperties {
 
 
 
-// The integrated circuit card identifier (ICCID) that identifies a SIM.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/associatedIccid
-func (c_ CellularPlanProperties) AssociatedIccid() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("associatedIccid"))
-	return rv
-}
-
-
-// The integrated circuit card identifier (ICCID) that identifies a SIM.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/associatedIccid
-func (c_ CellularPlanProperties) SetAssociatedIccid(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAssociatedIccid:"), objc.String(value))
-}
-
-
-// The available type of cellular plan that your eSIM supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
-func (c_ CellularPlanProperties) SimCapability() CellularPlanCapability {
-	rv := objc.Send[CellularPlanCapability](c_.ID, objc.Sel("simCapability"))
-	return rv
-}
-
-
-// The available type of cellular plan that your eSIM supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/simCapability
-func (c_ CellularPlanProperties) SetSimCapability(value CellularPlanCapability) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSimCapability:"), value)
-}
-
-
 // The available regions that your eSIM supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/supportedregioncodes-yhu5
-func (c_ CellularPlanProperties) SupportedRegionCodes() corelocation.objc.IObject /* cross-framework: Region */ {
+func (c_ CellularPlanProperties) SupportedRegionCodes() objc.IObject /* cross-framework: Region */ {
 	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("supportedRegionCodes"))
 	return rv
 }
@@ -144,9 +103,8 @@ func (c_ CellularPlanProperties) SupportedRegionCodes() corelocation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/supportedregioncodes-yhu5
-func (c_ CellularPlanProperties) SetSupportedRegionCodes(value corelocation.objc.IObject /* cross-framework: Region */) {
+func (c_ CellularPlanProperties) SetSupportedRegionCodes(value objc.IObject /* cross-framework: Region */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedRegionCodes:"), value)
 }
-
 
 

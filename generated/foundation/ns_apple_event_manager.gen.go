@@ -32,16 +32,10 @@ type IAppleEventManager interface {
 	objectivec.IObject
 	// properties:
 	CurrentAppleEvent() IAppleEventDescriptor
+	SetCurrentAppleEvent(value IAppleEventDescriptor)
 	CurrentReplyAppleEvent() IAppleEventDescriptor
+	SetCurrentReplyAppleEvent(value IAppleEventDescriptor)
 	// methods:
-	AppleEventForSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) IAppleEventDescriptor
-	DispatchRawAppleEventWithRawReplyHandlerRefCon(theAppleEvent unsafe.Pointer, theReply unsafe.Pointer, handlerRefCon unsafe.Pointer) unsafe.Pointer
-	RemoveEventHandlerForEventClassAndEventID(eventClass unsafe.Pointer, eventID unsafe.Pointer)
-	ReplyAppleEventForSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) IAppleEventDescriptor
-	ResumeWithSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */)
-	SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */)
-	SetEventHandlerAndSelectorForEventClassAndEventID(handler objectivec.IObject, handleEventSelector objc.SEL, eventClass unsafe.Pointer, eventID unsafe.Pointer)
-	SuspendCurrentAppleEvent() objc.IObject /* cross-framework: AppleEventManagerSuspensionID */
 }
 
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
@@ -107,88 +101,31 @@ func (ac _AppleEventManagerClass) SharedAppleEventManager() IAppleEventManager {
 }
 
 
-// Given a nonzero returned by an invocation of , returns the descriptor for the event whose handling was suspended.
+// Returns the descriptor for
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/appleEvent(forSuspensionID:)
-func (a_ AppleEventManager) AppleEventForSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) IAppleEventDescriptor {
-	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("appleEventForSuspensionID:"), suspensionID)
-	return rv
-}
-
-
-// Causes the Apple event specified by to be dispatched to the appropriate Apple event handler, if one has been registered by calling .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/dispatchRawAppleEvent(_:withRawReply:handlerRefCon:)
-func (a_ AppleEventManager) DispatchRawAppleEventWithRawReplyHandlerRefCon(theAppleEvent unsafe.Pointer, theReply unsafe.Pointer, handlerRefCon unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dispatchRawAppleEvent:withRawReply:handlerRefCon:"), theAppleEvent, theReply, handlerRefCon)
-	return rv
-}
-
-
-// If an Apple event handler has been registered for the event specified by and , removes it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/removeEventHandler(forEventClass:andEventID:)
-func (a_ AppleEventManager) RemoveEventHandlerForEventClassAndEventID(eventClass unsafe.Pointer, eventID unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeEventHandlerForEventClass:andEventID:"), eventClass, eventID)
-}
-
-
-// Given a nonzero returned by an invocation of , returns the corresponding reply event descriptor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/replyAppleEvent(forSuspensionID:)
-func (a_ AppleEventManager) ReplyAppleEventForSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) IAppleEventDescriptor {
-	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("replyAppleEventForSuspensionID:"), suspensionID)
-	return rv
-}
-
-
-// Given a nonzero returned by an invocation of , signal that handling of the suspended event may now continue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/resume(withSuspensionID:)
-func (a_ AppleEventManager) ResumeWithSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("resumeWithSuspensionID:"), suspensionID)
-}
-
-
-// Given a nonzero returned by an invocation of , sets the values that will be returned by subsequent invocations of and to be the event whose handling was suspended and its corresponding reply event, respectively.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/setCurrentAppleEventAndReplyEventWithSuspensionID(_:)
-func (a_ AppleEventManager) SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID objc.IObject /* cross-framework AppleEventManagerSuspensionID */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEventAndReplyEventWithSuspensionID:"), suspensionID)
-}
-
-
-// Registers the Apple event handler specified by for the event specified by and .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/setEventHandler(_:andSelector:forEventClass:andEventID:)
-func (a_ AppleEventManager) SetEventHandlerAndSelectorForEventClassAndEventID(handler objectivec.IObject, handleEventSelector objc.SEL, eventClass unsafe.Pointer, eventID unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setEventHandler:andSelector:forEventClass:andEventID:"), handler, handleEventSelector, eventClass, eventID)
-}
-
-
-// Suspends the handling of the current event and returns an ID that must be used to resume the handling of the event if an Apple event is being handled on the current thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/suspendCurrentAppleEvent()
-func (a_ AppleEventManager) SuspendCurrentAppleEvent() objc.IObject /* cross-framework: AppleEventManagerSuspensionID */ {
-	rv := objc.Send[AppleEventManagerSuspensionID](a_.ID, objc.Sel("suspendCurrentAppleEvent"))
-	return rv
-}
-
-
-// Returns the descriptor for if an Apple event is being handled on the current thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/currentAppleEvent
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
 func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentAppleEvent"))
+	return rv
+}
+
+
+// Returns the descriptor for
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
+func (a_ AppleEventManager) SetCurrentAppleEvent(value IAppleEventDescriptor) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEvent:"), value)
+}
+
+
+// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
+func (a_ AppleEventManager) CurrentReplyAppleEvent() IAppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
 	return rv
 }
 
@@ -196,10 +133,9 @@ func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
 // Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/currentReplyAppleEvent
-func (a_ AppleEventManager) CurrentReplyAppleEvent() IAppleEventDescriptor {
-	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
+func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value IAppleEventDescriptor) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentReplyAppleEvent:"), value)
 }
 
 

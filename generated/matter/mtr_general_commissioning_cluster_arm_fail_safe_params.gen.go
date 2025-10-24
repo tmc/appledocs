@@ -31,17 +31,21 @@ type _MTRGeneralCommissioningClusterArmFailSafeParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterArmFailSafeParams] class.
 type IMTRGeneralCommissioningClusterArmFailSafeParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	ExpiryLengthSeconds() foundation.Number
-	SetExpiryLengthSeconds(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	ExpiryLengthSeconds() objc.IObject /* cross-framework: NSNumber */
+	SetExpiryLengthSeconds(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterArmFailSafeParams
 type MTRGeneralCommissioningClusterArmFailSafeParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRGeneralCommissioningClusterArmFailSafeParams() MTRGeneralCommissionin
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/expirylengthseconds
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ExpiryLengthSeconds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("expiryLengthSeconds"))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ExpiryLengthSeconds() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("expiryLengthSeconds"))
 	return rv
 }
 
 
-// SetExpiryLengthSeconds sets the value of the expiryLengthSeconds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/expirylengthseconds
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetExpiryLengthSeconds(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetExpiryLengthSeconds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpiryLengthSeconds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

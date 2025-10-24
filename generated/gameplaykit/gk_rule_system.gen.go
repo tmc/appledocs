@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,26 +32,26 @@ type _RuleSystemClass struct {
 type IRuleSystem interface {
 	objectivec.IObject
 	// properties:
-	Agenda() []Rule /* primitive/slice/pointer. */
-	Executed() []Rule /* primitive/slice/pointer. */
-	Facts() objc.ID
-	Rules() []Rule /* primitive/slice/pointer. */
-	State() MutableDictionary /* not a class type */
-	Salience() int /* primitive/slice/pointer. */
-	SetSalience(value int /* primitive/slice/pointer. */)
+	Agenda() []IRule
+	Executed() []IRule
+	Facts() objc.IObject /* cross-framework: NSArray */
+	Rules() []IRule
+	State() objc.IObject /* cross-framework: MutableDictionary */
+	Salience() int
+	SetSalience(value int)
 	// methods:
 	AddRule(rule IGKRule)
-	AddRulesFromArray(rules []Rule /* primitive/slice/pointer. */)
+	AddRulesFromArray(rules []IRule)
 	AssertFact(fact objectivec.IObject)
-	AssertFactGrade(fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */)
+	AssertFactGrade(fact objectivec.IObject, grade float32)
 	Evaluate()
-	GradeForFact(fact objectivec.IObject) float32 /* primitive/slice/pointer. */
-	MaximumGradeForFacts(facts objectivec.IObject) float32 /* primitive/slice/pointer. */
-	MinimumGradeForFacts(facts objectivec.IObject) float32 /* primitive/slice/pointer. */
+	GradeForFact(fact objectivec.IObject) float32
+	MaximumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32
+	MinimumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32
 	RemoveAllRules()
 	Reset()
 	RetractFact(fact objectivec.IObject)
-	RetractFactGrade(fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */)
+	RetractFactGrade(fact objectivec.IObject, grade float32)
 }
 
 // A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
@@ -120,7 +121,7 @@ func (r_ RuleSystem) AddRule(rule IGKRule) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw
-func (r_ RuleSystem) AddRulesFromArray(rules []Rule /* primitive/slice/pointer. */) {
+func (r_ RuleSystem) AddRulesFromArray(rules []IRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRulesFromArray:"), rules)
 }
 
@@ -138,7 +139,7 @@ func (r_ RuleSystem) AssertFact(fact objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)
-func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) {
+func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:grade:"), fact, grade)
 }
 
@@ -156,7 +157,7 @@ func (r_ RuleSystem) Evaluate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/grade(forFact:)
-func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("gradeForFact:"), fact)
 	return rv
 }
@@ -166,7 +167,7 @@ func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)
-func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) float32 /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) MaximumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
 	return rv
 }
@@ -176,7 +177,7 @@ func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) float32 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)
-func (r_ RuleSystem) MinimumGradeForFacts(facts objectivec.IObject) float32 /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) MinimumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
 	return rv
 }
@@ -213,7 +214,7 @@ func (r_ RuleSystem) RetractFact(fact objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)
-func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) {
+func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
 }
 
@@ -222,7 +223,7 @@ func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32 /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/agenda
-func (r_ RuleSystem) Agenda() []Rule /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) Agenda() []IRule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("agenda"))
 	return rv
 }
@@ -232,7 +233,7 @@ func (r_ RuleSystem) Agenda() []Rule /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/executed
-func (r_ RuleSystem) Executed() []Rule /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) Executed() []IRule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("executed"))
 	return rv
 }
@@ -242,8 +243,8 @@ func (r_ RuleSystem) Executed() []Rule /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/facts
-func (r_ RuleSystem) Facts() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("facts"))
+func (r_ RuleSystem) Facts() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](r_.ID, objc.Sel("facts"))
 	return rv
 }
 
@@ -252,7 +253,7 @@ func (r_ RuleSystem) Facts() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/rules
-func (r_ RuleSystem) Rules() []Rule /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) Rules() []IRule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("rules"))
 	return rv
 }
@@ -262,8 +263,8 @@ func (r_ RuleSystem) Rules() []Rule /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/state
-func (r_ RuleSystem) State() MutableDictionary /* not a class type */ {
-	rv := objc.Send[MutableDictionary](r_.ID, objc.Sel("state"))
+func (r_ RuleSystem) State() objc.IObject /* cross-framework: MutableDictionary */ {
+	rv := objc.Send[foundation.MutableDictionary](r_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -272,7 +273,7 @@ func (r_ RuleSystem) State() MutableDictionary /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
-func (r_ RuleSystem) Salience() int /* primitive/slice/pointer. */ {
+func (r_ RuleSystem) Salience() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
 	return rv
 }
@@ -282,7 +283,7 @@ func (r_ RuleSystem) Salience() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
-func (r_ RuleSystem) SetSalience(value int /* primitive/slice/pointer. */) {
+func (r_ RuleSystem) SetSalience(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
 }
 

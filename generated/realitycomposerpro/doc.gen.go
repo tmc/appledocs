@@ -2,12 +2,12 @@
 
 // Package realitycomposerpro provides Go bindings for the RealityComposerPro framework.
 //
-// Build, create, and design 3D content for your RealityKit apps. [Full Topic]
+// Build, create, and design 3D content for your RealityKit apps.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to RealityComposerPro without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/RealityComposerPro
+// See: https://developer.apple.com/documentation/RealityComposerPro
 package realitycomposerpro
 
 import (

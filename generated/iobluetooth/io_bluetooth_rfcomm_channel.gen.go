@@ -39,9 +39,9 @@ type IBluetoothRFCOMMChannel interface {
 	GetMTU() BluetoothRFCOMMMTU /* typedef */
 	GetObjectID() objc.IObject /* cross-framework: BluetoothObjectID */
 	GetRFCOMMChannelRef() objc.IObject /* cross-framework: BluetoothRFCOMMChannelRef */
-	IsIncoming() bool /* primitive/slice/pointer. */
-	IsOpen() bool /* primitive/slice/pointer. */
-	IsTransmissionPaused() bool /* primitive/slice/pointer. */
+	IsIncoming() bool
+	IsOpen() bool
+	IsTransmissionPaused() bool
 	RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification
 	SendRemoteLineStatus(lineStatus BluetoothRFCOMMLineStatus) Return /* not a class type */
 	SetDelegate(delegate objectivec.IObject) Return /* not a class type */
@@ -129,7 +129,7 @@ func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/withObjectID(_:)
-func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID objc.IObject /* cross-framework BluetoothObjectID */) unsafe.Pointer {
+func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID objc.IObject /* cross-framework: BluetoothObjectID */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withObjectID:"), objectID)
 	return rv
 }
@@ -139,7 +139,7 @@ func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/withRFCOMMChannelRef(_:)
-func (bc _BluetoothRFCOMMChannelClass) WithRFCOMMChannelRef(rfcommChannelRef objc.IObject /* cross-framework BluetoothRFCOMMChannelRef */) unsafe.Pointer {
+func (bc _BluetoothRFCOMMChannelClass) WithRFCOMMChannelRef(rfcommChannelRef objc.IObject /* cross-framework: BluetoothRFCOMMChannelRef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withRFCOMMChannelRef:"), rfcommChannelRef)
 	return rv
 }
@@ -219,7 +219,7 @@ func (b_ BluetoothRFCOMMChannel) GetRFCOMMChannelRef() objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/isIncoming()
-func (b_ BluetoothRFCOMMChannel) IsIncoming() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothRFCOMMChannel) IsIncoming() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isIncoming"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (b_ BluetoothRFCOMMChannel) IsIncoming() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/isOpen()
-func (b_ BluetoothRFCOMMChannel) IsOpen() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothRFCOMMChannel) IsOpen() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isOpen"))
 	return rv
 }
@@ -239,7 +239,7 @@ func (b_ BluetoothRFCOMMChannel) IsOpen() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/isTransmissionPaused()
-func (b_ BluetoothRFCOMMChannel) IsTransmissionPaused() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothRFCOMMChannel) IsTransmissionPaused() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransmissionPaused"))
 	return rv
 }

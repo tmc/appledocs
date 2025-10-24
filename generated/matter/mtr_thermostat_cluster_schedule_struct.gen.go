@@ -31,21 +31,25 @@ type _MTRThermostatClusterScheduleStructClass struct {
 // An interface definition for the [MTRThermostatClusterScheduleStruct] class.
 type IMTRThermostatClusterScheduleStruct interface {
 	objectivec.IObject
-	BuiltIn() foundation.Number
-	SetBuiltIn(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	PresetHandle() foundation.NSData
-	SetPresetHandle(value foundation.IData)
-	ScheduleHandle() foundation.NSData
-	SetScheduleHandle(value foundation.IData)
-	SystemMode() foundation.Number
-	SetSystemMode(value foundation.INumber)
-	Transitions() objc.ID
-	SetTransitions(value objc.ID)
+	// properties:
+	BuiltIn() objc.IObject /* cross-framework: NSNumber */
+	SetBuiltIn(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	PresetHandle() objc.IObject /* cross-framework: NSData */
+	SetPresetHandle(value objc.IObject /* cross-framework: NSData */)
+	ScheduleHandle() objc.IObject /* cross-framework: NSData */
+	SetScheduleHandle(value objc.IObject /* cross-framework: NSData */)
+	SystemMode() objc.IObject /* cross-framework: NSNumber */
+	SetSystemMode(value objc.IObject /* cross-framework: NSNumber */)
+	Transitions() objc.IObject /* cross-framework: NSArray */
+	SetTransitions(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct
 type MTRThermostatClusterScheduleStruct struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRThermostatClusterScheduleStruct() MTRThermostatClusterScheduleStruct 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/builtIn
-func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("builtIn"))
+func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("builtIn"))
 	return rv
 }
 
 
-// SetBuiltIn sets the value of the builtIn property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/builtIn
-func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterScheduleStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRThermostatClusterScheduleStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() foundation.NSData {
+func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
 
-// SetPresetHandle sets the value of the presetHandle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleStruct) SetPresetHandle(value foundation.IData) {
+func (m_ MTRThermostatClusterScheduleStruct) SetPresetHandle(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/scheduleHandle
-func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() foundation.NSData {
+func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("scheduleHandle"))
 	return rv
 }
 
 
-// SetScheduleHandle sets the value of the scheduleHandle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/scheduleHandle
-func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value foundation.IData) {
+func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleHandle:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
-func (m_ MTRThermostatClusterScheduleStruct) SystemMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemMode"))
+func (m_ MTRThermostatClusterScheduleStruct) SystemMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("systemMode"))
 	return rv
 }
 
 
-// SetSystemMode sets the value of the systemMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
-func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/transitions
-func (m_ MTRThermostatClusterScheduleStruct) Transitions() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("transitions"))
+func (m_ MTRThermostatClusterScheduleStruct) Transitions() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("transitions"))
 	return rv
 }
 
 
-// SetTransitions sets the value of the transitions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/transitions
-func (m_ MTRThermostatClusterScheduleStruct) SetTransitions(value objc.ID) {
+func (m_ MTRThermostatClusterScheduleStruct) SetTransitions(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)
 }
 

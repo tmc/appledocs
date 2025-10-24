@@ -30,18 +30,22 @@ type _PHAssetResourceRequestOptionsClass struct {
 // An interface definition for the [PHAssetResourceRequestOptions] class.
 type IPHAssetResourceRequestOptions interface {
 	objectivec.IObject
-	NetworkAccessAllowed() bool
-	SetNetworkAccessAllowed(value bool)
-	ProgressHandler() unsafe.Pointer
-	SetProgressHandler(value unsafe.Pointer)
+	// properties:
 	IsNetworkAccessAllowed() bool
 	SetIsNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // A set of options affecting the delivery of underlying asset data that you request from the asset resource manager.
 //
 // You use this class when requesting the underlying data for photo, video, and Live Photo asset resources from a object.
+
+
+// A set of options affecting the delivery of underlying asset data that you request from the asset resource manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions
 type PHAssetResourceRequestOptions struct {
 	objectivec.Object
@@ -86,44 +90,10 @@ func NewPHAssetResourceRequestOptions() PHAssetResourceRequestOptions {
 }
 
 
-// A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/isNetworkAccessAllowed
-func (p_ PHAssetResourceRequestOptions) NetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("networkAccessAllowed"))
-	return rv
-}
-
-
-// SetNetworkAccessAllowed sets the value of the networkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/isNetworkAccessAllowed
-func (p_ PHAssetResourceRequestOptions) SetNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
-}
-
-// A block that Photos calls periodically while downloading the asset resource data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/progressHandler
-func (p_ PHAssetResourceRequestOptions) ProgressHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
-	return rv
-}
-
-
-// SetProgressHandler sets the value of the progressHandler property.
-// A block that Photos calls periodically while downloading the asset resource data.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceRequestOptions/progressHandler
-func (p_ PHAssetResourceRequestOptions) SetProgressHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
-}
 
 // A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed
 func (p_ PHAssetResourceRequestOptions) IsNetworkAccessAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
@@ -131,13 +101,31 @@ func (p_ PHAssetResourceRequestOptions) IsNetworkAccessAllowed() bool {
 }
 
 
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
 // A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed
 func (p_ PHAssetResourceRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+
+// A block that Photos calls periodically while downloading the asset resource data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/progresshandler
+func (p_ PHAssetResourceRequestOptions) ProgressHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
+	return rv
+}
+
+
+// A block that Photos calls periodically while downloading the asset resource data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/progresshandler
+func (p_ PHAssetResourceRequestOptions) SetProgressHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
 
 

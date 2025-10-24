@@ -30,15 +30,15 @@ type _GCDualSenseAdaptiveTriggerClass struct {
 type IGCDualSenseAdaptiveTrigger interface {
 	IGCControllerButtonInput
 	// properties:
-	ArmPosition() float32 /* primitive/slice/pointer. */
-	SetArmPosition(value float32 /* primitive/slice/pointer. */)
+	ArmPosition() float32
+	SetArmPosition(value float32)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
 	// methods:
-	SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32 /* primitive/slice/pointer. */, endPosition float32 /* primitive/slice/pointer. */, startStrength float32 /* primitive/slice/pointer. */, endStrength float32 /* primitive/slice/pointer. */)
-	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32 /* primitive/slice/pointer. */)
+	SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32, endPosition float32, startStrength float32, endStrength float32)
+	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32)
 }
 
 // A class that encapsulates the features of a DualSense adaptive trigger.
@@ -100,7 +100,7 @@ func NewGCDualSenseAdaptiveTrigger() GCDualSenseAdaptiveTrigger {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger/setModeSlopeFeedback(startPosition:endPosition:startStrength:endStrength:)
-func (g_ GCDualSenseAdaptiveTrigger) SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32 /* primitive/slice/pointer. */, endPosition float32 /* primitive/slice/pointer. */, startStrength float32 /* primitive/slice/pointer. */, endStrength float32 /* primitive/slice/pointer. */) {
+func (g_ GCDualSenseAdaptiveTrigger) SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32, endPosition float32, startStrength float32, endStrength float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:"), startPosition, endPosition, startStrength, endStrength)
 }
 
@@ -109,7 +109,7 @@ func (g_ GCDualSenseAdaptiveTrigger) SetModeSlopeFeedbackWithStartPositionEndPos
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger/setModeVibration(amplitudes:frequency:)
-func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32 /* primitive/slice/pointer. */) {
+func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModeVibrationWithAmplitudes:frequency:"), positionalAmplitudes, frequency)
 }
 
@@ -118,7 +118,7 @@ func (g_ GCDualSenseAdaptiveTrigger) SetModeVibrationWithAmplitudesFrequency(pos
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 /* primitive/slice/pointer. */ {
+func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("armPosition"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (g_ GCDualSenseAdaptiveTrigger) ArmPosition() float32 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/armposition
-func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value float32 /* primitive/slice/pointer. */) {
+func (g_ GCDualSenseAdaptiveTrigger) SetArmPosition(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setArmPosition:"), value)
 }
 

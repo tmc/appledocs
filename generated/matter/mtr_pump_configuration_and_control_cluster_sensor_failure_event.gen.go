@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterSensorFailureEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterSensorFailureEvent] class.
 type IMTRPumpConfigurationAndControlClusterSensorFailureEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSensorFailureEvent
 type MTRPumpConfigurationAndControlClusterSensorFailureEvent struct {
 	objectivec.Object

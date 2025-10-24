@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _BasePlayerClass struct {
 type IBasePlayer interface {
 	objectivec.IObject
 	// properties:
-	PlayerID() string /* primitive/slice/pointer. */
-	DisplayName() string /* primitive/slice/pointer. */
-	SetDisplayName(value string /* primitive/slice/pointer. */)
+	PlayerID() objc.IObject /* cross-framework: NSString */
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewBasePlayer() BasePlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
-func (b_ BasePlayer) PlayerID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
+func (b_ BasePlayer) PlayerID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("playerID"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (b_ BasePlayer) PlayerID() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
+func (b_ BasePlayer) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (b_ BasePlayer) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) SetDisplayName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (b_ BasePlayer) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 

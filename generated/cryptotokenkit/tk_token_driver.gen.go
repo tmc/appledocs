@@ -32,8 +32,8 @@ type _TKTokenDriverClass struct {
 type ITKTokenDriver interface {
 	objectivec.IObject
 	// properties:
-	ConfigurationData() foundation.objc.IObject /* cross-framework: Data */
-	SetConfigurationData(value foundation.objc.IObject /* cross-framework: Data */)
+	ConfigurationData() objc.IObject /* cross-framework: Data */
+	SetConfigurationData(value objc.IObject /* cross-framework: Data */)
 	KeychainItems() unsafe.Pointer
 	SetKeychainItems(value unsafe.Pointer)
 	Delegate() unsafe.Pointer
@@ -98,7 +98,7 @@ func NewTKTokenDriver() TKTokenDriver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) ConfigurationData() foundation.objc.IObject /* cross-framework: Data */ {
+func (t_ TKTokenDriver) ConfigurationData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("configurationData"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (t_ TKTokenDriver) ConfigurationData() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) SetConfigurationData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (t_ TKTokenDriver) SetConfigurationData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfigurationData:"), value)
 }
 

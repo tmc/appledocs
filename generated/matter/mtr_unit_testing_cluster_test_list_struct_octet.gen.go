@@ -31,13 +31,17 @@ type _MTRUnitTestingClusterTestListStructOctetClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestListStructOctet] class.
 type IMTRUnitTestingClusterTestListStructOctet interface {
 	objectivec.IObject
-	Member1() foundation.Number
-	SetMember1(value foundation.INumber)
-	Member2() foundation.Data
-	SetMember2(value foundation.IData)
+	// properties:
+	Member1() objc.IObject /* cross-framework: NSNumber */
+	SetMember1(value objc.IObject /* cross-framework: NSNumber */)
+	Member2() objc.IObject /* cross-framework: Data */
+	SetMember2(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestListStructOctet
 type MTRUnitTestingClusterTestListStructOctet struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRUnitTestingClusterTestListStructOctet() MTRUnitTestingClusterTestList
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member1
-func (m_ MTRUnitTestingClusterTestListStructOctet) Member1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("member1"))
+func (m_ MTRUnitTestingClusterTestListStructOctet) Member1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("member1"))
 	return rv
 }
 
 
-// SetMember1 sets the value of the member1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member1
-func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember1(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member2
-func (m_ MTRUnitTestingClusterTestListStructOctet) Member2() foundation.Data {
+func (m_ MTRUnitTestingClusterTestListStructOctet) Member2() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("member2"))
 	return rv
 }
 
 
-// SetMember2 sets the value of the member2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member2
-func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember2(value foundation.IData) {
+func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember2(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember2:"), value)
 }
 

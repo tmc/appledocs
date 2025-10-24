@@ -30,14 +30,20 @@ type _UNNotificationSoundClass struct {
 // An interface definition for the [UNNotificationSound] class.
 type IUNNotificationSound interface {
 	objectivec.IObject
-	Sound() UNNotificationSound
+	// properties:
+	Sound() IUNNotificationSound
 	SetSound(value IUNNotificationSound)
+	// methods:
 }
 
 // The sound played upon delivery of a notification.
 //
 // Create a object when you want the system to play a specific sound when it delivers with your notification. To play the default system sound, create your sound object using the method. If you want to play a custom sound, create a new sound object and specify the name of the audio file that you want to play. For local notifications, assign the sound object to the property of your object. For a remote notification, assign the name of your sound file to the key in the dictionary. You can also use a notification service app extension to add a sound file to a notification shortly before delivery. In your extension, create a object and add it to your notification content in the same way that you’d for a local notification. Audio files must already be on the user’s device before the system can play them. If you use a predefined set of sounds for your notifications, include the audio files in your app’s bundle. For all other sounds, the object looks only in the following locations: The directory of the app’s container directory. The directory of one of the app’s shared group container directories. The main bundle of the current executable.
+
+
+// The sound played upon delivery of a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound
 type UNNotificationSound struct {
 	objectivec.Object
@@ -83,111 +89,123 @@ func NewUNNotificationSound() UNNotificationSound {
 
 
 
-
 // Creates a sound object that represents a custom sound file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/init(named:)
-func NewUNNotificationSoundNamed(name IUNNotificationSoundName) UNNotificationSound {
+func NewUNNotificationSoundNamed(name UNNotificationSoundName /* typedef */) UNNotificationSound {
 	rv := objc.Send[UNNotificationSound](objc.ID(getUNNotificationSoundClass().class), objc.Sel("soundNamed:"), name)
 	return rv
 }
 
 
+
 // Creates a custom sound object for critical alerts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/criticalSoundNamed(_:)
-func (uc _UNNotificationSoundClass) CriticalSoundNamed(name IUNNotificationSoundName) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) CriticalSoundNamed(name UNNotificationSoundName /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("criticalSoundNamed:"), name)
 	return rv
 }
 
+
 // Creates a custom sound object for critical alerts with the volume you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/criticalSoundNamed(_:withAudioVolume:)
-func (uc _UNNotificationSoundClass) CriticalSoundNamedWithAudioVolume(name IUNNotificationSoundName, volume float32) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) CriticalSoundNamedWithAudioVolume(name UNNotificationSoundName /* typedef */, volume float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("criticalSoundNamed:withAudioVolume:"), name, volume)
 	return rv
 }
 
+
 // Creates a sound object that plays the default critical alert sound at the volume you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCriticalSound(withAudioVolume:)
 func (uc _UNNotificationSoundClass) DefaultCriticalSoundWithAudioVolume(volume float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultCriticalSoundWithAudioVolume:"), volume)
 	return rv
 }
 
+
 // Creates a sound object that represents a custom sound file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/init(named:)
-func (uc _UNNotificationSoundClass) SoundNamed(name IUNNotificationSoundName) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) SoundNamed(name UNNotificationSoundName /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("soundNamed:"), name)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/ringtoneSoundNamed(_:)
-func (uc _UNNotificationSoundClass) RingtoneSoundNamed(name IUNNotificationSoundName) unsafe.Pointer {
+func (uc _UNNotificationSoundClass) RingtoneSoundNamed(name UNNotificationSoundName /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ringtoneSoundNamed:"), name)
 	return rv
 }
 
+
 // Returns an object representing the default sound for notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/default
 func (uc _UNNotificationSoundClass) DefaultSound() UNNotificationSound {
 	rv := objc.Send[UNNotificationSound](objc.ID(uc.class), objc.Sel("defaultSound"))
 	return rv
 }
+
 // The default sound used for critical alerts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCritical
 func (uc _UNNotificationSoundClass) DefaultCriticalSound() UNNotificationSound {
 	rv := objc.Send[UNNotificationSound](objc.ID(uc.class), objc.Sel("defaultCriticalSound"))
 	return rv
 }
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultRingtone
 func (uc _UNNotificationSoundClass) DefaultRingtoneSound() UNNotificationSound {
 	rv := objc.Send[UNNotificationSound](objc.ID(uc.class), objc.Sel("defaultRingtoneSound"))
 	return rv
 }
+
 // Returns an object representing the default sound for notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/default
-func (u_ UNNotificationSound) DefaultSound() UNNotificationSound {
+func (u_ UNNotificationSound) DefaultSound() IUNNotificationSound {
 	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("defaultSound"))
 	return rv
 }
 
+
 // The default sound used for critical alerts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultCritical
-func (u_ UNNotificationSound) DefaultCriticalSound() UNNotificationSound {
+func (u_ UNNotificationSound) DefaultCriticalSound() IUNNotificationSound {
 	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("defaultCriticalSound"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSound/defaultRingtone
-func (u_ UNNotificationSound) DefaultRingtoneSound() UNNotificationSound {
-	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("defaultRingtoneSound"))
-	return rv
-}
 
 // The sound that plays when the system delivers the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
-func (u_ UNNotificationSound) Sound() UNNotificationSound {
+func (u_ UNNotificationSound) Sound() IUNNotificationSound {
 	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("sound"))
 	return rv
 }
 
 
-// SetSound sets the value of the sound property.
 // The sound that plays when the system delivers the notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound
 func (u_ UNNotificationSound) SetSound(value IUNNotificationSound) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSound:"), value)

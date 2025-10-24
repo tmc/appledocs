@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,32 +36,32 @@ type IProgressIndicator interface {
 	SetControlSize(value ControlSize)
 	ControlTint() ControlTint
 	SetControlTint(value ControlTint)
-	DoubleValue() float64 /* primitive/slice/pointer. */
-	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
-	Bezeled() bool /* primitive/slice/pointer. */
-	SetBezeled(value bool /* primitive/slice/pointer. */)
-	DisplayedWhenStopped() bool /* primitive/slice/pointer. */
-	SetDisplayedWhenStopped(value bool /* primitive/slice/pointer. */)
-	Indeterminate() bool /* primitive/slice/pointer. */
-	SetIndeterminate(value bool /* primitive/slice/pointer. */)
-	MaxValue() float64 /* primitive/slice/pointer. */
-	SetMaxValue(value float64 /* primitive/slice/pointer. */)
-	MinValue() float64 /* primitive/slice/pointer. */
-	SetMinValue(value float64 /* primitive/slice/pointer. */)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
+	Bezeled() bool
+	SetBezeled(value bool)
+	DisplayedWhenStopped() bool
+	SetDisplayedWhenStopped(value bool)
+	Indeterminate() bool
+	SetIndeterminate(value bool)
+	MaxValue() float64
+	SetMaxValue(value float64)
+	MinValue() float64
+	SetMinValue(value float64)
 	ObservedProgress() objc.IObject /* cross-framework: Progress */
 	SetObservedProgress(value objc.IObject /* cross-framework: Progress */)
 	Style() ProgressIndicatorStyle
 	SetStyle(value ProgressIndicatorStyle)
-	UsesThreadedAnimation() bool /* primitive/slice/pointer. */
-	SetUsesThreadedAnimation(value bool /* primitive/slice/pointer. */)
-	IsBezeled() bool /* primitive/slice/pointer. */
-	SetIsBezeled(value bool /* primitive/slice/pointer. */)
-	IsDisplayedWhenStopped() bool /* primitive/slice/pointer. */
-	SetIsDisplayedWhenStopped(value bool /* primitive/slice/pointer. */)
-	IsIndeterminate() bool /* primitive/slice/pointer. */
-	SetIsIndeterminate(value bool /* primitive/slice/pointer. */)
+	UsesThreadedAnimation() bool
+	SetUsesThreadedAnimation(value bool)
+	IsBezeled() bool
+	SetIsBezeled(value bool)
+	IsDisplayedWhenStopped() bool
+	SetIsDisplayedWhenStopped(value bool)
+	IsIndeterminate() bool
+	SetIsIndeterminate(value bool)
 	// methods:
-	IncrementBy(delta float64 /* primitive/slice/pointer. */)
+	IncrementBy(delta float64)
 	SizeToFit()
 	StartAnimation(sender objectivec.IObject)
 	StopAnimation(sender objectivec.IObject)
@@ -125,7 +126,7 @@ func NewProgressIndicator() ProgressIndicator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/increment(by:)
-func (p_ ProgressIndicator) IncrementBy(delta float64 /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) IncrementBy(delta float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("incrementBy:"), delta)
 }
 
@@ -199,7 +200,7 @@ func (p_ ProgressIndicator) SetControlTint(value ControlTint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) DoubleValue() float64 /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) DoubleValue() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -209,7 +210,7 @@ func (p_ ProgressIndicator) DoubleValue() float64 /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
@@ -218,7 +219,7 @@ func (p_ ProgressIndicator) SetDoubleValue(value float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isBezeled
-func (p_ ProgressIndicator) Bezeled() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) Bezeled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("bezeled"))
 	return rv
 }
@@ -228,7 +229,7 @@ func (p_ ProgressIndicator) Bezeled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isBezeled
-func (p_ ProgressIndicator) SetBezeled(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetBezeled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBezeled:"), value)
 }
 
@@ -237,7 +238,7 @@ func (p_ ProgressIndicator) SetBezeled(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isDisplayedWhenStopped
-func (p_ ProgressIndicator) DisplayedWhenStopped() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) DisplayedWhenStopped() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("displayedWhenStopped"))
 	return rv
 }
@@ -247,7 +248,7 @@ func (p_ ProgressIndicator) DisplayedWhenStopped() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isDisplayedWhenStopped
-func (p_ ProgressIndicator) SetDisplayedWhenStopped(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetDisplayedWhenStopped(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayedWhenStopped:"), value)
 }
 
@@ -256,7 +257,7 @@ func (p_ ProgressIndicator) SetDisplayedWhenStopped(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isIndeterminate
-func (p_ ProgressIndicator) Indeterminate() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) Indeterminate() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indeterminate"))
 	return rv
 }
@@ -266,7 +267,7 @@ func (p_ ProgressIndicator) Indeterminate() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/isIndeterminate
-func (p_ ProgressIndicator) SetIndeterminate(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetIndeterminate(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndeterminate:"), value)
 }
 
@@ -275,7 +276,7 @@ func (p_ ProgressIndicator) SetIndeterminate(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) MaxValue() float64 /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) MaxValue() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
@@ -285,7 +286,7 @@ func (p_ ProgressIndicator) MaxValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) SetMaxValue(value float64 /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetMaxValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaxValue:"), value)
 }
 
@@ -294,7 +295,7 @@ func (p_ ProgressIndicator) SetMaxValue(value float64 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) MinValue() float64 /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) MinValue() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("minValue"))
 	return rv
 }
@@ -304,7 +305,7 @@ func (p_ ProgressIndicator) MinValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) SetMinValue(value float64 /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetMinValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinValue:"), value)
 }
 
@@ -314,7 +315,7 @@ func (p_ ProgressIndicator) SetMinValue(value float64 /* primitive/slice/pointer
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
 func (p_ ProgressIndicator) ObservedProgress() objc.IObject /* cross-framework: Progress */ {
-	rv := objc.Send[Progress](p_.ID, objc.Sel("observedProgress"))
+	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("observedProgress"))
 	return rv
 }
 
@@ -351,7 +352,7 @@ func (p_ ProgressIndicator) SetStyle(value ProgressIndicatorStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/usesThreadedAnimation
-func (p_ ProgressIndicator) UsesThreadedAnimation() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) UsesThreadedAnimation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesThreadedAnimation"))
 	return rv
 }
@@ -361,7 +362,7 @@ func (p_ ProgressIndicator) UsesThreadedAnimation() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/usesThreadedAnimation
-func (p_ ProgressIndicator) SetUsesThreadedAnimation(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetUsesThreadedAnimation(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesThreadedAnimation:"), value)
 }
 
@@ -370,7 +371,7 @@ func (p_ ProgressIndicator) SetUsesThreadedAnimation(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isbezeled
-func (p_ ProgressIndicator) IsBezeled() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) IsBezeled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isBezeled"))
 	return rv
 }
@@ -380,7 +381,7 @@ func (p_ ProgressIndicator) IsBezeled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isbezeled
-func (p_ ProgressIndicator) SetIsBezeled(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetIsBezeled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsBezeled:"), value)
 }
 
@@ -389,7 +390,7 @@ func (p_ ProgressIndicator) SetIsBezeled(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isdisplayedwhenstopped
-func (p_ ProgressIndicator) IsDisplayedWhenStopped() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) IsDisplayedWhenStopped() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDisplayedWhenStopped"))
 	return rv
 }
@@ -399,7 +400,7 @@ func (p_ ProgressIndicator) IsDisplayedWhenStopped() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isdisplayedwhenstopped
-func (p_ ProgressIndicator) SetIsDisplayedWhenStopped(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetIsDisplayedWhenStopped(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDisplayedWhenStopped:"), value)
 }
 
@@ -408,7 +409,7 @@ func (p_ ProgressIndicator) SetIsDisplayedWhenStopped(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isindeterminate
-func (p_ ProgressIndicator) IsIndeterminate() bool /* primitive/slice/pointer. */ {
+func (p_ ProgressIndicator) IsIndeterminate() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndeterminate"))
 	return rv
 }
@@ -418,7 +419,7 @@ func (p_ ProgressIndicator) IsIndeterminate() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprogressindicator/isindeterminate
-func (p_ ProgressIndicator) SetIsIndeterminate(value bool /* primitive/slice/pointer. */) {
+func (p_ ProgressIndicator) SetIsIndeterminate(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndeterminate:"), value)
 }
 

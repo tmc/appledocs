@@ -30,20 +30,26 @@ type _PHASENumericPairClass struct {
 // An interface definition for the [PHASENumericPair] class.
 type IPHASENumericPair interface {
 	objectivec.IObject
+	// properties:
 	First() float64
 	SetFirst(value float64)
 	Second() float64
 	SetSecond(value float64)
-	Domain() PHASENumericPair
+	Domain() IPHASENumericPair
 	SetDomain(value IPHASENumericPair)
-	Range() PHASENumericPair
+	Range() IPHASENumericPair
 	SetRange(value IPHASENumericPair)
+	// methods:
 }
 
 // An ordered pair that defines a bounding box for an envelope.
 //
 // A object uses this class to bound the value of its and .
+
+
+// An ordered pair that defines a bounding box for an envelope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair
 type PHASENumericPair struct {
 	objectivec.Object
@@ -89,9 +95,9 @@ func NewPHASENumericPair() PHASENumericPair {
 
 
 
-
 // Creates a pair of numbers with the given values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/init(firstValue:secondValue:)
 func NewPHASENumericPairWithFirstValueSecondValue(first float64, second float64) PHASENumericPair {
 	instance := getPHASENumericPairClass().Alloc()
@@ -101,8 +107,10 @@ func NewPHASENumericPairWithFirstValueSecondValue(first float64, second float64)
 }
 
 
+
 // The first value in the pair.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/first
 func (p_ PHASENumericPair) First() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("first"))
@@ -110,17 +118,18 @@ func (p_ PHASENumericPair) First() float64 {
 }
 
 
-// SetFirst sets the value of the first property.
 // The first value in the pair.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/first
 func (p_ PHASENumericPair) SetFirst(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFirst:"), value)
 }
 
+
 // The second value in the pair.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
 func (p_ PHASENumericPair) Second() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("second"))
@@ -128,46 +137,47 @@ func (p_ PHASENumericPair) Second() float64 {
 }
 
 
-// SetSecond sets the value of the second property.
 // The second value in the pair.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumericPair/second
 func (p_ PHASENumericPair) SetSecond(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSecond:"), value)
 }
 
+
 // The range of the envelope’s possible input values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
-func (p_ PHASENumericPair) Domain() PHASENumericPair {
+func (p_ PHASENumericPair) Domain() IPHASENumericPair {
 	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("domain"))
 	return rv
 }
 
 
-// SetDomain sets the value of the domain property.
 // The range of the envelope’s possible input values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/domain
 func (p_ PHASENumericPair) SetDomain(value IPHASENumericPair) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDomain:"), value)
 }
 
+
 // The bounds of the output value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
-func (p_ PHASENumericPair) Range() PHASENumericPair {
+func (p_ PHASENumericPair) Range() IPHASENumericPair {
 	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("range"))
 	return rv
 }
 
 
-// SetRange sets the value of the range property.
 // The bounds of the output value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelope/range
 func (p_ PHASENumericPair) SetRange(value IPHASENumericPair) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRange:"), value)

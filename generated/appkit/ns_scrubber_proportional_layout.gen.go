@@ -29,8 +29,10 @@ type _ScrubberProportionalLayoutClass struct {
 // An interface definition for the [ScrubberProportionalLayout] class.
 type IScrubberProportionalLayout interface {
 	IScrubberLayout
+	// properties:
 	NumberOfVisibleItems() int
 	SetNumberOfVisibleItems(value int)
+	// methods:
 }
 
 // A concrete layout object that sizes each item to some fraction of the scrubber’s visible size.
@@ -89,7 +91,7 @@ func NewScrubberProportionalLayout() ScrubberProportionalLayout {
 // The number of items visible in the scrubber at once.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout/numberofvisibleitems
 func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
@@ -99,7 +101,7 @@ func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 // The number of items visible in the scrubber at once.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout/numberofvisibleitems
 func (s_ ScrubberProportionalLayout) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }

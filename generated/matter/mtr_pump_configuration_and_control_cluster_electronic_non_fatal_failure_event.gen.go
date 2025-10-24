@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEventClass s
 // An interface definition for the [MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent] class.
 type IMTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent
 type MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent struct {
 	objectivec.Object

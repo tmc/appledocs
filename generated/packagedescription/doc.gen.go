@@ -2,12 +2,12 @@
 
 // Package packagedescription provides Go bindings for the PackageDescription framework.
 //
-// Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers. [Full Topic]
+// Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PackageDescription without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PackageDescription
+// See: https://developer.apple.com/documentation/PackageDescription
 package packagedescription
 
 import (

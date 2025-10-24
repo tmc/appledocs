@@ -31,10 +31,13 @@ type _CachedURLResponseClass struct {
 type ICachedURLResponse interface {
 	objectivec.IObject
 	// properties:
+	StoragePolicy() URLCacheStoragePolicy /* not a class type */
 	Data() IData
+	SetData(value IData)
 	Response() IURLResponse
-	StoragePolicy() URLCacheStoragePolicy
-	UserInfo() IDictionary
+	SetResponse(value IURLResponse)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	// methods:
 }
 
@@ -91,37 +94,41 @@ func NewCachedURLResponse() CachedURLResponse {
 
 
 
-// Creates a cached URL response instance.
+// The cached response’s storage policy.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/init(response:data:)
-func NewCachedURLResponseWithResponseData(response IURLResponse, data IData) CachedURLResponse {
-	instance := getCachedURLResponseClass().Alloc()
-	rv := objc.Send[CachedURLResponse](instance.ID, objc.Sel("initWithResponse:data:"), response, data)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/storagePolicy
+func (c_ CachedURLResponse) StoragePolicy() URLCacheStoragePolicy /* not a class type */ {
+	rv := objc.Send[URLCacheStoragePolicy](c_.ID, objc.Sel("storagePolicy"))
 	return rv
 }
-
-
-// Creates a cached URL response with a given server response, data, user-info dictionary, and storage policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/init(response:data:userInfo:storagePolicy:)
-func NewCachedURLResponseWithResponseDataUserInfoStoragePolicy(response IURLResponse, data IData, userInfo IDictionary, storagePolicy URLCacheStoragePolicy) CachedURLResponse {
-	instance := getCachedURLResponseClass().Alloc()
-	rv := objc.Send[CachedURLResponse](instance.ID, objc.Sel("initWithResponse:data:userInfo:storagePolicy:"), response, data, userInfo, storagePolicy)
-	rv.Autorelease()
-	return rv
-}
-
 
 
 // The cached response’s data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/data
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
 func (c_ CachedURLResponse) Data() IData {
 	rv := objc.Send[Data](c_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// The cached response’s data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
+func (c_ CachedURLResponse) SetData(value IData) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
+}
+
+
+// The URL response object associated with the instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
+func (c_ CachedURLResponse) Response() IURLResponse {
+	rv := objc.Send[URLResponse](c_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -129,19 +136,18 @@ func (c_ CachedURLResponse) Data() IData {
 // The URL response object associated with the instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/response
-func (c_ CachedURLResponse) Response() IURLResponse {
-	rv := objc.Send[URLResponse](c_.ID, objc.Sel("response"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
+func (c_ CachedURLResponse) SetResponse(value IURLResponse) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResponse:"), value)
 }
 
 
-// The cached response’s storage policy.
+// The cached response’s user info dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/storagePolicy
-func (c_ CachedURLResponse) StoragePolicy() URLCacheStoragePolicy {
-	rv := objc.Send[URLCacheStoragePolicy](c_.ID, objc.Sel("storagePolicy"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
+func (c_ CachedURLResponse) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -149,10 +155,10 @@ func (c_ CachedURLResponse) StoragePolicy() URLCacheStoragePolicy {
 // The cached response’s user info dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/CachedURLResponse/userInfo
-func (c_ CachedURLResponse) UserInfo() IDictionary {
-	rv := objc.Send[Dictionary](c_.ID, objc.Sel("userInfo"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/userinfo
+func (c_ CachedURLResponse) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), value)
 }
+
 
 

@@ -31,7 +31,7 @@ type IAXMathExpressionSubSuperscript interface {
 	IAXMathExpression
 	// properties:
 	BaseExpression() IAXMathExpression
-	SuperscriptExpressions() []AXMathExpression /* primitive/slice/pointer. */
+	SuperscriptExpressions() []IAXMathExpression
 	SubscriptExpressions() IAXMathExpression
 	SetSubscriptExpressions(value IAXMathExpression)
 	// methods:
@@ -95,7 +95,7 @@ func (a_ AXMathExpressionSubSuperscript) BaseExpression() IAXMathExpression {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/superscriptExpressions
-func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []AXMathExpression /* primitive/slice/pointer. */ {
+func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []IAXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("superscriptExpressions"))
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +35,8 @@ type IFSProbeResult interface {
 	Result() FSMatchResult
 	ContainerID() IFSContainerIdentifier
 	SetContainerID(value IFSContainerIdentifier)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -125,8 +126,8 @@ func (f_ FSProbeResult) SetContainerID(value IFSContainerIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsproberesult/name
-func (f_ FSProbeResult) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("name"))
+func (f_ FSProbeResult) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (f_ FSProbeResult) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsproberesult/name
-func (f_ FSProbeResult) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
+func (f_ FSProbeResult) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
 
 

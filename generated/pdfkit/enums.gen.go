@@ -8,43 +8,6 @@ package pdfkit
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions
 type PDFAccessPermissions uint
 
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsCommenting
-	PDFAllowsCommenting PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsContentAccessibility
-	PDFAllowsContentAccessibility PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsContentCopying
-	PDFAllowsContentCopying PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsDocumentAssembly
-	PDFAllowsDocumentAssembly PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsDocumentChanges
-	PDFAllowsDocumentChanges PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsFormFieldEntry
-	PDFAllowsFormFieldEntry PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsHighQualityPrinting
-	PDFAllowsHighQualityPrinting PDFAccessPermissions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAccessPermissions/allowsLowQualityPrinting
-	PDFAllowsLowQualityPrinting PDFAccessPermissions = 0
-)
-
-// PDFActionNamedName enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionNamedName
-type PDFActionNamedName uint
-
-// PDFBorderStyle - PDF Kit annotation borders may have the following styles.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorderStyle
-type PDFBorderStyle uint
-
 // PDFDisplayBox - The following box types may be used with 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDisplayBox
@@ -69,18 +32,6 @@ type PDFMarkupType uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity
 type PDFSelectionGranularity uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/character
-	PDFSelectionGranularityCharacter PDFSelectionGranularity = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/line
-	PDFSelectionGranularityLine PDFSelectionGranularity = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelectionGranularity/word
-	PDFSelectionGranularityWord PDFSelectionGranularity = 0
-)
 
 // PDFTextAnnotationIconType - The types of icons that a text annotation can use.
 //

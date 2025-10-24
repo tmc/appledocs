@@ -2,15 +2,8 @@
 
 // Package corevideo provides Go bindings for the CoreVideo framework.
 //
-// Process digital video, including manipulation of individual frames, using a pipeline-based API and support for both Metal and OpenGL.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreVideo without requiring cgo.
-
-// Process digital video, including manipulation of individual frames, using a pipeline-based API and support for both Metal and OpenGL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreVideo
 package corevideo
 
 import (

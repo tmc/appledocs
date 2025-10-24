@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 )
 
 // The class instance for the [StatefulRequest] class.
@@ -29,14 +30,20 @@ type _StatefulRequestClass struct {
 // An interface definition for the [StatefulRequest] class.
 type IStatefulRequest interface {
 	IImageBasedRequest
-	FrameAnalysisSpacing() unsafe.Pointer
-	SetFrameAnalysisSpacing(value unsafe.Pointer)
+	// properties:
+	FrameAnalysisSpacing() objc.IObject /* cross-framework: Time */
+	SetFrameAnalysisSpacing(value objc.IObject /* cross-framework: Time */)
 	MinimumLatencyFrameCount() int
 	SetMinimumLatencyFrameCount(value int)
+	// methods:
 }
 
 // An abstract request type that builds evidence of a condition over time.
+
+
+// An abstract request type that builds evidence of a condition over time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNStatefulRequest
 type StatefulRequest struct {
 	ImageBasedRequest
@@ -84,38 +91,28 @@ func NewStatefulRequest() StatefulRequest {
 
 
 
-
-// Initializes a video-based request.
+// A time value that indicates the interval between analysis operations.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNStatefulRequest/init(frameAnalysisSpacing:completionHandler:)
-func NewStatefulRequestWithFrameAnalysisSpacingCompletionHandler(frameAnalysisSpacing unsafe.Pointer, completionHandler unsafe.Pointer) StatefulRequest {
-	instance := getStatefulRequestClass().Alloc()
-	rv := objc.Send[StatefulRequest](instance.ID, objc.Sel("initWithFrameAnalysisSpacing:completionHandler:"), frameAnalysisSpacing, completionHandler)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
+func (s_ StatefulRequest) FrameAnalysisSpacing() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](s_.ID, objc.Sel("frameAnalysisSpacing"))
 	return rv
 }
 
 
 // A time value that indicates the interval between analysis operations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
-func (s_ StatefulRequest) FrameAnalysisSpacing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("frameAnalysisSpacing"))
-	return rv
-}
-
-
-// SetFrameAnalysisSpacing sets the value of the frameAnalysisSpacing property.
-// A time value that indicates the interval between analysis operations.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
-func (s_ StatefulRequest) SetFrameAnalysisSpacing(value unsafe.Pointer) {
+func (s_ StatefulRequest) SetFrameAnalysisSpacing(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrameAnalysisSpacing:"), value)
 }
 
+
 // The minimum number of frames a request processes before reporting an observation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/minimumlatencyframecount
 func (s_ StatefulRequest) MinimumLatencyFrameCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("minimumLatencyFrameCount"))
@@ -123,13 +120,13 @@ func (s_ StatefulRequest) MinimumLatencyFrameCount() int {
 }
 
 
-// SetMinimumLatencyFrameCount sets the value of the minimumLatencyFrameCount property.
 // The minimum number of frames a request processes before reporting an observation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/minimumlatencyframecount
 func (s_ StatefulRequest) SetMinimumLatencyFrameCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumLatencyFrameCount:"), value)
 }
+
 
 

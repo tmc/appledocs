@@ -30,13 +30,17 @@ type _MTRGeneralDiagnosticsClusterHardwareFaultChangeEventClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent] class.
 type IMTRGeneralDiagnosticsClusterHardwareFaultChangeEvent interface {
 	objectivec.IObject
+	// properties:
 	Current() unsafe.Pointer
 	SetCurrent(value unsafe.Pointer)
 	Previous() unsafe.Pointer
 	SetPrevious(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent
 type MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRGeneralDiagnosticsClusterHardwareFaultChangeEvent() MTRGeneralDiagnos
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterhardwarefaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -87,14 +92,14 @@ func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) Current() unsafe.
 }
 
 
-// SetCurrent sets the value of the current property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterhardwarefaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterhardwarefaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) Previous() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
@@ -102,8 +107,7 @@ func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) Previous() unsafe
 }
 
 
-// SetPrevious sets the value of the previous property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterhardwarefaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)

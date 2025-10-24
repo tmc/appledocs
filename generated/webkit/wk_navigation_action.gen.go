@@ -31,27 +31,33 @@ type _NavigationActionClass struct {
 // An interface definition for the [NavigationAction] class.
 type INavigationAction interface {
 	objectivec.IObject
-	TargetFrame() WKFrameInfo
+	// properties:
+	TargetFrame() IWKFrameInfo
 	ButtonNumber() unsafe.Pointer
 	SetButtonNumber(value unsafe.Pointer)
 	IsContentRuleListRedirect() bool
 	SetIsContentRuleListRedirect(value bool)
-	ModifierFlags() unsafe.Pointer
-	SetModifierFlags(value unsafe.Pointer)
-	NavigationType() unsafe.Pointer
-	SetNavigationType(value unsafe.Pointer)
-	Request() foundation.URLRequest
-	SetRequest(value foundation.IURLRequest)
+	ModifierFlags() KeyModifierFlags /* not a class type */
+	SetModifierFlags(value KeyModifierFlags /* not a class type */)
+	NavigationType() NavigationType /* not a class type */
+	SetNavigationType(value NavigationType /* not a class type */)
+	Request() objc.IObject /* cross-framework: URLRequest */
+	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
 	ShouldPerformDownload() bool
 	SetShouldPerformDownload(value bool)
-	SourceFrame() WKFrameInfo
+	SourceFrame() IWKFrameInfo
 	SetSourceFrame(value IWKFrameInfo)
+	// methods:
 }
 
 // An object that contains information about an action that causes navigation to occur.
 //
 // Use a object to make policy decisions about whether to allow navigation within your app’s web view. You don’t create objects directly. Instead, the web view creates them and delivers them to the appropriate delegate objects. Use the methods of your delegate to analyze the action and determine whether to allow the resulting navigation to occur.
+
+
+// An object that contains information about an action that causes navigation to occur.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction
 type NavigationAction struct {
 	objectivec.Object
@@ -96,16 +102,20 @@ func NewNavigationAction() NavigationAction {
 }
 
 
+
 // The frame in which to display the new content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction/targetFrame
-func (n_ NavigationAction) TargetFrame() WKFrameInfo {
-	rv := objc.Send[WKFrameInfo](n_.ID, objc.Sel("targetFrame"))
+func (n_ NavigationAction) TargetFrame() IWKFrameInfo {
+	rv := objc.Send[FrameInfo](n_.ID, objc.Sel("targetFrame"))
 	return rv
 }
 
+
 // The number of the mouse button that caused the navigation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/buttonnumber
 func (n_ NavigationAction) ButtonNumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("buttonNumber"))
@@ -113,16 +123,16 @@ func (n_ NavigationAction) ButtonNumber() unsafe.Pointer {
 }
 
 
-// SetButtonNumber sets the value of the buttonNumber property.
 // The number of the mouse button that caused the navigation request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/buttonnumber
 func (n_ NavigationAction) SetButtonNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setButtonNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/iscontentrulelistredirect
 func (n_ NavigationAction) IsContentRuleListRedirect() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isContentRuleListRedirect"))
@@ -130,69 +140,73 @@ func (n_ NavigationAction) IsContentRuleListRedirect() bool {
 }
 
 
-// SetIsContentRuleListRedirect sets the value of the isContentRuleListRedirect property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/iscontentrulelistredirect
 func (n_ NavigationAction) SetIsContentRuleListRedirect(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsContentRuleListRedirect:"), value)
 }
 
+
 // The modifier keys that were pressed at the time of the navigation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/modifierflags
-func (n_ NavigationAction) ModifierFlags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("modifierFlags"))
+func (n_ NavigationAction) ModifierFlags() KeyModifierFlags /* not a class type */ {
+	rv := objc.Send[KeyModifierFlags](n_.ID, objc.Sel("modifierFlags"))
 	return rv
 }
 
 
-// SetModifierFlags sets the value of the modifierFlags property.
 // The modifier keys that were pressed at the time of the navigation request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/modifierflags
-func (n_ NavigationAction) SetModifierFlags(value unsafe.Pointer) {
+func (n_ NavigationAction) SetModifierFlags(value KeyModifierFlags /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setModifierFlags:"), value)
 }
 
+
 // The type of action that triggered the navigation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/navigationtype
-func (n_ NavigationAction) NavigationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("navigationType"))
+func (n_ NavigationAction) NavigationType() NavigationType /* not a class type */ {
+	rv := objc.Send[NavigationType](n_.ID, objc.Sel("navigationType"))
 	return rv
 }
 
 
-// SetNavigationType sets the value of the navigationType property.
 // The type of action that triggered the navigation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/navigationtype
-func (n_ NavigationAction) SetNavigationType(value unsafe.Pointer) {
+func (n_ NavigationAction) SetNavigationType(value NavigationType /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNavigationType:"), value)
 }
 
+
 // The URL request object associated with the navigation action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
-func (n_ NavigationAction) Request() foundation.URLRequest {
+func (n_ NavigationAction) Request() objc.IObject /* cross-framework: URLRequest */ {
 	rv := objc.Send[foundation.URLRequest](n_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// SetRequest sets the value of the request property.
 // The URL request object associated with the navigation action.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
-func (n_ NavigationAction) SetRequest(value foundation.IURLRequest) {
+func (n_ NavigationAction) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
 }
 
+
 // A Boolean value that indicates whether the web content provided an attribute that indicates a download.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/shouldperformdownload
 func (n_ NavigationAction) ShouldPerformDownload() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("shouldPerformDownload"))
@@ -200,28 +214,28 @@ func (n_ NavigationAction) ShouldPerformDownload() bool {
 }
 
 
-// SetShouldPerformDownload sets the value of the shouldPerformDownload property.
 // A Boolean value that indicates whether the web content provided an attribute that indicates a download.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/shouldperformdownload
 func (n_ NavigationAction) SetShouldPerformDownload(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setShouldPerformDownload:"), value)
 }
 
+
 // The frame that requested the navigation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
-func (n_ NavigationAction) SourceFrame() WKFrameInfo {
-	rv := objc.Send[WKFrameInfo](n_.ID, objc.Sel("sourceFrame"))
+func (n_ NavigationAction) SourceFrame() IWKFrameInfo {
+	rv := objc.Send[FrameInfo](n_.ID, objc.Sel("sourceFrame"))
 	return rv
 }
 
 
-// SetSourceFrame sets the value of the sourceFrame property.
 // The frame that requested the navigation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
 func (n_ NavigationAction) SetSourceFrame(value IWKFrameInfo) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceFrame:"), value)

@@ -30,15 +30,21 @@ type _PHASESoundAssetClass struct {
 // An interface definition for the [PHASESoundAsset] class.
 type IPHASESoundAsset interface {
 	IPHASEAsset
-	Data() foundation.NSData
+	// properties:
+	Data() objc.IObject /* cross-framework: NSData */
 	Type() PHASEAssetType
-	Url() foundation.URL
+	Url() objc.IObject /* cross-framework: NSURL */
+	// methods:
 }
 
 // A sound resource stored in the asset registry.
 //
 // This class wraps source audio data that an app intends to play. The framework requires a mixer to play a sound asset, and sound event nodes like combine the asset with a mixer. To provide a sound asset to a sound-event node, refer to the asset by the you pass into the function.
+
+
+// A sound resource stored in the asset registry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset
 type PHASESoundAsset struct {
 	PHASEAsset
@@ -85,27 +91,33 @@ func NewPHASESoundAsset() PHASESoundAsset {
 }
 
 
+
 // A storage buffer for the sound asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/data
-func (p_ PHASESoundAsset) Data() foundation.NSData {
+func (p_ PHASESoundAsset) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("data"))
 	return rv
 }
 
+
 // The type of sound asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/type
 func (p_ PHASESoundAsset) Type() PHASEAssetType {
 	rv := objc.Send[PHASEAssetType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The URL of the sound asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/url
-func (p_ PHASESoundAsset) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+func (p_ PHASESoundAsset) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("url"))
 	return rv
 }
 

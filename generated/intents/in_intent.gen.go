@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +32,18 @@ type _INIntentClass struct {
 type IINIntent interface {
 	objectivec.IObject
 	// properties:
-	SuggestedInvocationPhrase() string /* primitive/slice/pointer. */
-	SetSuggestedInvocationPhrase(value string /* primitive/slice/pointer. */)
-	DonationMetadata() INIntentDonationMetadata /* already interface */
-	SetDonationMetadata(value INIntentDonationMetadata /* already interface */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	IntentDescription() string /* primitive/slice/pointer. */
-	SetIntentDescription(value string /* primitive/slice/pointer. */)
+	SuggestedInvocationPhrase() objc.IObject /* cross-framework: NSString */
+	SetSuggestedInvocationPhrase(value objc.IObject /* cross-framework: NSString */)
+	DonationMetadata() INIntentDonationMetadata
+	SetDonationMetadata(value INIntentDonationMetadata)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	IntentDescription() objc.IObject /* cross-framework: NSString */
+	SetIntentDescription(value objc.IObject /* cross-framework: NSString */)
 	ShortcutAvailability() unsafe.Pointer
 	SetShortcutAvailability(value unsafe.Pointer)
 	// methods:
-	SetImageForParameterNamed(image INImage /* already interface */, parameterName string /* primitive/slice/pointer. */)
+	SetImageForParameterNamed(image INImage, parameterName string)
 }
 
 // A request to fulfill in your app or Intents extension.
@@ -102,7 +103,7 @@ func NewINIntent() INIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/2976224-setimage
-func (i_ INIntent) SetImageForParameterNamed(image INImage /* already interface */, parameterName string /* primitive/slice/pointer. */) {
+func (i_ INIntent) SetImageForParameterNamed(image INImage, parameterName string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:forParameterNamed:"), image, objc.String(parameterName))
 }
 
@@ -111,8 +112,8 @@ func (i_ INIntent) SetImageForParameterNamed(image INImage /* already interface 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/suggestedInvocationPhrase
-func (i_ INIntent) SuggestedInvocationPhrase() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("suggestedInvocationPhrase"))
+func (i_ INIntent) SuggestedInvocationPhrase() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
 }
 
@@ -121,14 +122,14 @@ func (i_ INIntent) SuggestedInvocationPhrase() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INIntent/suggestedInvocationPhrase
-func (i_ INIntent) SetSuggestedInvocationPhrase(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
+func (i_ INIntent) SetSuggestedInvocationPhrase(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/donationmetadata
-func (i_ INIntent) DonationMetadata() INIntentDonationMetadata /* already interface */ {
+func (i_ INIntent) DonationMetadata() INIntentDonationMetadata {
 	rv := objc.Send[INIntentDonationMetadata](i_.ID, objc.Sel("donationMetadata"))
 	return rv
 }
@@ -136,7 +137,7 @@ func (i_ INIntent) DonationMetadata() INIntentDonationMetadata /* already interf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/donationmetadata
-func (i_ INIntent) SetDonationMetadata(value INIntentDonationMetadata /* already interface */) {
+func (i_ INIntent) SetDonationMetadata(value INIntentDonationMetadata) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDonationMetadata:"), value)
 }
 
@@ -145,8 +146,8 @@ func (i_ INIntent) SetDonationMetadata(value INIntentDonationMetadata /* already
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/identifier
-func (i_ INIntent) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+func (i_ INIntent) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (i_ INIntent) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/identifier
-func (i_ INIntent) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (i_ INIntent) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -164,8 +165,8 @@ func (i_ INIntent) SetIdentifier(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/intentdescription
-func (i_ INIntent) IntentDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("intentDescription"))
+func (i_ INIntent) IntentDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("intentDescription"))
 	return rv
 }
 
@@ -174,8 +175,8 @@ func (i_ INIntent) IntentDescription() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/intentdescription
-func (i_ INIntent) SetIntentDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentDescription:"), objc.String(value))
+func (i_ INIntent) SetIntentDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentDescription:"), value)
 }
 
 

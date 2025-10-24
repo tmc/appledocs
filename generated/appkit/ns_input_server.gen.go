@@ -30,6 +30,8 @@ type _InputServerClass struct {
 // An interface definition for the [InputServer] class.
 type IInputServer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

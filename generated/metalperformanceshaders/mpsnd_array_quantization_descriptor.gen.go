@@ -30,11 +30,15 @@ type _NDArrayQuantizationDescriptorClass struct {
 // An interface definition for the [NDArrayQuantizationDescriptor] class.
 type INDArrayQuantizationDescriptor interface {
 	objectivec.IObject
-	QuantizationDataType() unsafe.Pointer
-	QuantizationScheme() unsafe.Pointer
+	// properties:
+	QuantizationDataType() DataType /* not a class type */
+	QuantizationScheme() NDArrayQuantizationScheme /* not a class type */
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizationDescriptor
 type NDArrayQuantizationDescriptor struct {
 	objectivec.Object
@@ -77,17 +81,19 @@ func NewNDArrayQuantizationDescriptor() NDArrayQuantizationDescriptor {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizationDescriptor/quantizationDataType
-func (n_ NDArrayQuantizationDescriptor) QuantizationDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("quantizationDataType"))
+func (n_ NDArrayQuantizationDescriptor) QuantizationDataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](n_.ID, objc.Sel("quantizationDataType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizationDescriptor/quantizationScheme
-func (n_ NDArrayQuantizationDescriptor) QuantizationScheme() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("quantizationScheme"))
+func (n_ NDArrayQuantizationDescriptor) QuantizationScheme() NDArrayQuantizationScheme /* not a class type */ {
+	rv := objc.Send[NDArrayQuantizationScheme](n_.ID, objc.Sel("quantizationScheme"))
 	return rv
 }
 

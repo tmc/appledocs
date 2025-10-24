@@ -35,14 +35,14 @@ type IOdometerData interface {
 	DeltaAltitude() LocationDistance /* not a class type */
 	DeltaDistance() LocationDistance /* not a class type */
 	DeltaDistanceAccuracy() LocationAccuracy /* not a class type */
-	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
-	GpsDate() foundation.objc.IObject /* cross-framework: NSDate */
-	MaxAbsSlope() foundation.objc.IObject /* cross-framework: Number */
+	EndDate() objc.IObject /* cross-framework: NSDate */
+	GpsDate() objc.IObject /* cross-framework: NSDate */
+	MaxAbsSlope() objc.IObject /* cross-framework: NSNumber */
 	OriginDevice() OdometerOriginDevice
-	Slope() foundation.objc.IObject /* cross-framework: Number */
+	Slope() objc.IObject /* cross-framework: NSNumber */
 	Speed() LocationSpeed /* not a class type */
 	SpeedAccuracy() LocationSpeedAccuracy /* not a class type */
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	StartDate() objc.IObject /* cross-framework: NSDate */
 	VerticalAccuracy() LocationAccuracy /* not a class type */
 	// methods:
 }
@@ -134,7 +134,7 @@ func (o_ OdometerData) DeltaDistanceAccuracy() LocationAccuracy /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/endDate
-func (o_ OdometerData) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (o_ OdometerData) EndDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (o_ OdometerData) EndDate() foundation.objc.IObject /* cross-framework: NSD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/gpsDate
-func (o_ OdometerData) GpsDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (o_ OdometerData) GpsDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("gpsDate"))
 	return rv
 }
@@ -154,8 +154,8 @@ func (o_ OdometerData) GpsDate() foundation.objc.IObject /* cross-framework: NSD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/maxAbsSlope-96ulr
-func (o_ OdometerData) MaxAbsSlope() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("maxAbsSlope"))
+func (o_ OdometerData) MaxAbsSlope() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](o_.ID, objc.Sel("maxAbsSlope"))
 	return rv
 }
 
@@ -174,8 +174,8 @@ func (o_ OdometerData) OriginDevice() OdometerOriginDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/slope-96hlt
-func (o_ OdometerData) Slope() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("slope"))
+func (o_ OdometerData) Slope() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](o_.ID, objc.Sel("slope"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (o_ OdometerData) SpeedAccuracy() LocationSpeedAccuracy /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/startDate
-func (o_ OdometerData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (o_ OdometerData) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("startDate"))
 	return rv
 }

@@ -30,18 +30,24 @@ type _MTRClusterRefrigeratorAndTemperatureControlledCabinetModeClass struct {
 // An interface definition for the [MTRClusterRefrigeratorAndTemperatureControlledCabinetMode] class.
 type IMTRClusterRefrigeratorAndTemperatureControlledCabinetMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer
+	// properties:
+	// methods:
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
 }
 
 // Cluster Refrigerator And Temperature Controlled Cabinet Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Refrigerator And Temperature Controlled Cabinet Mode Attributes and commands for selecting a mode from a list of supported options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode
 type MTRClusterRefrigeratorAndTemperatureControlledCabinetMode struct {
 	MTRGenericCluster
@@ -89,11 +95,11 @@ func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetMode() MTRClusterRe
 
 
 
-
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/init(device:endpointID:queue:)
-func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterRefrigeratorAndTemperatureControlledCabinetMode {
+func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterRefrigeratorAndTemperatureControlledCabinetMode {
 	instance := getMTRClusterRefrigeratorAndTemperatureControlledCabinetModeClass().Alloc()
 	rv := objc.Send[MTRClusterRefrigeratorAndTemperatureControlledCabinetMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -101,58 +107,66 @@ func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
 }
 

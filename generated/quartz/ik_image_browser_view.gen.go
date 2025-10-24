@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [IKImageBrowserView] class.
@@ -31,19 +30,23 @@ type _IKImageBrowserViewClass struct {
 // An interface definition for the [IKImageBrowserView] class.
 type IIKImageBrowserView interface {
 	appkit.IView
-	ContentResizingMask() uint
-	ItemFrameAtIndex(index int) foundation.Rect
-	SetDropIndexDropOperation(index int, operation unsafe.Pointer)
+	// properties:
 	DataSource() unsafe.Pointer
 	SetDataSource(value unsafe.Pointer)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	// methods:
+	SetDropIndexDropOperation(index int, operation unsafe.Pointer)
 }
 
 // A view for displaying and browsing a large collection of images and movies.
 //
 // The class is a view for displaying and browsing a large amount of images and movies efficiently. This class will be deprecated in a future release. Please switch to instead. You must set a datasource for the view and implement, at a minimum, the and described in . The items must conform to the IKImageBrowserItem Protocol protocol. The class’s delegate object must conform to IKImageBrowserDelegate Protocol protocol. It receives notification of changes in selection, as well as mouse events in the cells.
+
+
+// A view for displaying and browsing a large collection of images and movies.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserView
 type IKImageBrowserView struct {
 	appkit.View
@@ -90,31 +93,19 @@ func NewIKImageBrowserView() IKImageBrowserView {
 }
 
 
-// Returns the receiver’s content resizing mask, which determines how its content is resized while zooming.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserView/contentResizingMask()
-func (i_ IKImageBrowserView) ContentResizingMask() uint {
-	rv := objc.Send[uint](i_.ID, objc.Sel("contentResizingMask"))
-	return rv
-}
-
-// Returns the frame rectangle for the item located at the specified index.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserView/itemFrame(at:)
-func (i_ IKImageBrowserView) ItemFrameAtIndex(index int) foundation.Rect {
-	rv := objc.Send[foundation.Rect](i_.ID, objc.Sel("itemFrameAtIndex:"), index)
-	return rv
-}
 
 // Allows the class to retarget the drop action.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserView/setDrop(_:dropOperation:)
 func (i_ IKImageBrowserView) SetDropIndexDropOperation(index int, operation unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropIndex:dropOperation:"), index, operation)
 }
 
+
 // Returns the data source of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/datasource
 func (i_ IKImageBrowserView) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dataSource"))
@@ -122,17 +113,18 @@ func (i_ IKImageBrowserView) DataSource() unsafe.Pointer {
 }
 
 
-// SetDataSource sets the value of the dataSource property.
 // Returns the data source of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/datasource
 func (i_ IKImageBrowserView) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDataSource:"), value)
 }
 
+
 // Returns the delegate of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/delegate
 func (i_ IKImageBrowserView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
@@ -140,10 +132,9 @@ func (i_ IKImageBrowserView) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Returns the delegate of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimagebrowserview/delegate
 func (i_ IKImageBrowserView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)

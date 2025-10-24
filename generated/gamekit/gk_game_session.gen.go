@@ -34,20 +34,20 @@ type IGameSession interface {
 	// properties:
 	BadgedPlayers() objc.IObject /* cross-framework: CloudPlayer */
 	SetBadgedPlayers(value objc.IObject /* cross-framework: CloudPlayer */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	LastModifiedDate() foundation.objc.IObject /* cross-framework: Date */
-	SetLastModifiedDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	LastModifiedDate() objc.IObject /* cross-framework: Date */
+	SetLastModifiedDate(value objc.IObject /* cross-framework: Date */)
 	LastModifiedPlayer() objc.IObject /* cross-framework: CloudPlayer */
 	SetLastModifiedPlayer(value objc.IObject /* cross-framework: CloudPlayer */)
-	MaxNumberOfConnectedPlayers() int /* primitive/slice/pointer. */
-	SetMaxNumberOfConnectedPlayers(value int /* primitive/slice/pointer. */)
+	MaxNumberOfConnectedPlayers() int
+	SetMaxNumberOfConnectedPlayers(value int)
 	Owner() objc.IObject /* cross-framework: CloudPlayer */
 	SetOwner(value objc.IObject /* cross-framework: CloudPlayer */)
 	Players() objc.IObject /* cross-framework: CloudPlayer */
 	SetPlayers(value objc.IObject /* cross-framework: CloudPlayer */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Delegate() ObjectProtocol /* not a class type */
 	SetDelegate(value ObjectProtocol /* not a class type */)
 	// methods:
@@ -129,8 +129,8 @@ func (g_ GameSession) SetBadgedPlayers(value objc.IObject /* cross-framework: Cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/identifier
-func (g_ GameSession) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
+func (g_ GameSession) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (g_ GameSession) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/identifier
-func (g_ GameSession) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (g_ GameSession) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -148,7 +148,7 @@ func (g_ GameSession) SetIdentifier(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/lastmodifieddate
-func (g_ GameSession) LastModifiedDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (g_ GameSession) LastModifiedDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("lastModifiedDate"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (g_ GameSession) LastModifiedDate() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/lastmodifieddate
-func (g_ GameSession) SetLastModifiedDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (g_ GameSession) SetLastModifiedDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLastModifiedDate:"), value)
 }
 
@@ -186,7 +186,7 @@ func (g_ GameSession) SetLastModifiedPlayer(value objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/maxnumberofconnectedplayers
-func (g_ GameSession) MaxNumberOfConnectedPlayers() int /* primitive/slice/pointer. */ {
+func (g_ GameSession) MaxNumberOfConnectedPlayers() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("maxNumberOfConnectedPlayers"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (g_ GameSession) MaxNumberOfConnectedPlayers() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/maxnumberofconnectedplayers
-func (g_ GameSession) SetMaxNumberOfConnectedPlayers(value int /* primitive/slice/pointer. */) {
+func (g_ GameSession) SetMaxNumberOfConnectedPlayers(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMaxNumberOfConnectedPlayers:"), value)
 }
 
@@ -243,8 +243,8 @@ func (g_ GameSession) SetPlayers(value objc.IObject /* cross-framework: CloudPla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/title
-func (g_ GameSession) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("title"))
+func (g_ GameSession) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -253,8 +253,8 @@ func (g_ GameSession) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamesession/title
-func (g_ GameSession) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (g_ GameSession) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTitle:"), value)
 }
 
 

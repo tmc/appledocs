@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothPasskeyDisplay] class.
@@ -35,16 +36,16 @@ type IBluetoothPasskeyDisplay interface {
 	SetBackgroundImageConstraint(value objc.IObject /* cross-framework: LayoutConstraint */)
 	CenteredView() objc.IObject /* cross-framework: View */
 	SetCenteredView(value objc.IObject /* cross-framework: View */)
-	IsIncomingRequest() bool /* primitive/slice/pointer. */
-	SetIsIncomingRequest(value bool /* primitive/slice/pointer. */)
-	Passkey() string /* primitive/slice/pointer. */
-	SetPasskey(value string /* primitive/slice/pointer. */)
-	ReturnHighlightImage() appkit.objc.IObject /* cross-framework: Image */
-	SetReturnHighlightImage(value appkit.objc.IObject /* cross-framework: Image */)
-	ReturnImage() appkit.objc.IObject /* cross-framework: Image */
-	SetReturnImage(value appkit.objc.IObject /* cross-framework: Image */)
-	UsePasskeyNotificaitons() bool /* primitive/slice/pointer. */
-	SetUsePasskeyNotificaitons(value bool /* primitive/slice/pointer. */)
+	IsIncomingRequest() bool
+	SetIsIncomingRequest(value bool)
+	Passkey() objc.IObject /* cross-framework: NSString */
+	SetPasskey(value objc.IObject /* cross-framework: NSString */)
+	ReturnHighlightImage() objc.IObject /* cross-framework: Image */
+	SetReturnHighlightImage(value objc.IObject /* cross-framework: Image */)
+	ReturnImage() objc.IObject /* cross-framework: Image */
+	SetReturnImage(value objc.IObject /* cross-framework: Image */)
+	UsePasskeyNotificaitons() bool
+	SetUsePasskeyNotificaitons(value bool)
 	// methods:
 }
 
@@ -99,7 +100,7 @@ func NewBluetoothPasskeyDisplay() BluetoothPasskeyDisplay {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/backgroundimageconstraint
 func (b_ BluetoothPasskeyDisplay) BackgroundImageConstraint() objc.IObject /* cross-framework: LayoutConstraint */ {
-	rv := objc.Send[LayoutConstraint](b_.ID, objc.Sel("backgroundImageConstraint"))
+	rv := objc.Send[appkit.LayoutConstraint](b_.ID, objc.Sel("backgroundImageConstraint"))
 	return rv
 }
 
@@ -114,7 +115,7 @@ func (b_ BluetoothPasskeyDisplay) SetBackgroundImageConstraint(value objc.IObjec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/centeredview
 func (b_ BluetoothPasskeyDisplay) CenteredView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[View](b_.ID, objc.Sel("centeredView"))
+	rv := objc.Send[appkit.View](b_.ID, objc.Sel("centeredView"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (b_ BluetoothPasskeyDisplay) SetCenteredView(value objc.IObject /* cross-fr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/isincomingrequest-swift.property
-func (b_ BluetoothPasskeyDisplay) IsIncomingRequest() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothPasskeyDisplay) IsIncomingRequest() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isIncomingRequest"))
 	return rv
 }
@@ -136,29 +137,29 @@ func (b_ BluetoothPasskeyDisplay) IsIncomingRequest() bool /* primitive/slice/po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/isincomingrequest-swift.property
-func (b_ BluetoothPasskeyDisplay) SetIsIncomingRequest(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothPasskeyDisplay) SetIsIncomingRequest(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsIncomingRequest:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
-func (b_ BluetoothPasskeyDisplay) Passkey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("passkey"))
+func (b_ BluetoothPasskeyDisplay) Passkey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("passkey"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/passkey-swift.property
-func (b_ BluetoothPasskeyDisplay) SetPasskey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPasskey:"), objc.String(value))
+func (b_ BluetoothPasskeyDisplay) SetPasskey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPasskey:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnhighlightimage
-func (b_ BluetoothPasskeyDisplay) ReturnHighlightImage() appkit.objc.IObject /* cross-framework: Image */ {
+func (b_ BluetoothPasskeyDisplay) ReturnHighlightImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](b_.ID, objc.Sel("returnHighlightImage"))
 	return rv
 }
@@ -166,14 +167,14 @@ func (b_ BluetoothPasskeyDisplay) ReturnHighlightImage() appkit.objc.IObject /* 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnhighlightimage
-func (b_ BluetoothPasskeyDisplay) SetReturnHighlightImage(value appkit.objc.IObject /* cross-framework: Image */) {
+func (b_ BluetoothPasskeyDisplay) SetReturnHighlightImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnHighlightImage:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnimage
-func (b_ BluetoothPasskeyDisplay) ReturnImage() appkit.objc.IObject /* cross-framework: Image */ {
+func (b_ BluetoothPasskeyDisplay) ReturnImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](b_.ID, objc.Sel("returnImage"))
 	return rv
 }
@@ -181,14 +182,14 @@ func (b_ BluetoothPasskeyDisplay) ReturnImage() appkit.objc.IObject /* cross-fra
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnimage
-func (b_ BluetoothPasskeyDisplay) SetReturnImage(value appkit.objc.IObject /* cross-framework: Image */) {
+func (b_ BluetoothPasskeyDisplay) SetReturnImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnImage:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/usepasskeynotificaitons
-func (b_ BluetoothPasskeyDisplay) UsePasskeyNotificaitons() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothPasskeyDisplay) UsePasskeyNotificaitons() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("usePasskeyNotificaitons"))
 	return rv
 }
@@ -196,7 +197,7 @@ func (b_ BluetoothPasskeyDisplay) UsePasskeyNotificaitons() bool /* primitive/sl
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/usepasskeynotificaitons
-func (b_ BluetoothPasskeyDisplay) SetUsePasskeyNotificaitons(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothPasskeyDisplay) SetUsePasskeyNotificaitons(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUsePasskeyNotificaitons:"), value)
 }
 

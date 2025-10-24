@@ -31,27 +31,31 @@ type _MTROperationalCredentialsClusterFabricDescriptorStructClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterFabricDescriptorStruct] class.
 type IMTROperationalCredentialsClusterFabricDescriptorStruct interface {
 	objectivec.IObject
-	FabricID() foundation.Number
-	SetFabricID(value foundation.INumber)
-	FabricId() foundation.Number
-	SetFabricId(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	Label() string
-	SetLabel(value string)
-	NodeID() foundation.Number
-	SetNodeID(value foundation.INumber)
-	NodeId() foundation.Number
-	SetNodeId(value foundation.INumber)
-	RootPublicKey() foundation.Data
-	SetRootPublicKey(value foundation.IData)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
-	VendorId() foundation.Number
-	SetVendorId(value foundation.INumber)
+	// properties:
+	FabricID() objc.IObject /* cross-framework: NSNumber */
+	SetFabricID(value objc.IObject /* cross-framework: NSNumber */)
+	FabricId() objc.IObject /* cross-framework: NSNumber */
+	SetFabricId(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	NodeID() objc.IObject /* cross-framework: NSNumber */
+	SetNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	NodeId() objc.IObject /* cross-framework: NSNumber */
+	SetNodeId(value objc.IObject /* cross-framework: NSNumber */)
+	RootPublicKey() objc.IObject /* cross-framework: Data */
+	SetRootPublicKey(value objc.IObject /* cross-framework: Data */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	VendorId() objc.IObject /* cross-framework: NSNumber */
+	SetVendorId(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterFabricDescriptorStruct
 type MTROperationalCredentialsClusterFabricDescriptorStruct struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTROperationalCredentialsClusterFabricDescriptorStruct() MTROperationalC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5teul
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricID"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricID"))
 	return rv
 }
 
 
-// SetFabricID sets the value of the fabricID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5teul
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricID(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5tetp
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricId"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricId"))
 	return rv
 }
 
 
-// SetFabricId sets the value of the fabricId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5tetp
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricId(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsb0
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
 
-// SetNodeID sets the value of the nodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsb0
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeID(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsbw
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeId"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeId"))
 	return rv
 }
 
 
-// SetNodeId sets the value of the nodeId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsbw
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeId(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) RootPublicKey() foundation.Data {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) RootPublicKey() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
 }
 
 
-// SetRootPublicKey sets the value of the rootPublicKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetRootPublicKey(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetRootPublicKey(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iay9
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iay9
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorID(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iaxd
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorId"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorId"))
 	return rv
 }
 
 
-// SetVendorId sets the value of the vendorId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iaxd
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorId(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
 }
 

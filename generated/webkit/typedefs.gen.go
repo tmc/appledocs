@@ -3,9 +3,9 @@
 package webkit
 
 // Type aliases and typedefs
-// WKWebExtensionPermission - Constants for specifying permission in a  .
+// WebExtensionPermission - Constants for specifying permission in a  .
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/Permission
-// WKWebExtensionPermission has base type: NSString *
-type WKWebExtensionPermission uintptr
+// WKWebExtensionPermission is a string typedef
+type WebExtensionPermission = string
 

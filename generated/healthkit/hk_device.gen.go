@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +32,21 @@ type _HKDeviceClass struct {
 type IHKDevice interface {
 	objectivec.IObject
 	// properties:
-	LocalIdentifier() string /* primitive/slice/pointer. */
-	FirmwareVersion() string /* primitive/slice/pointer. */
-	SetFirmwareVersion(value string /* primitive/slice/pointer. */)
-	HardwareVersion() string /* primitive/slice/pointer. */
-	SetHardwareVersion(value string /* primitive/slice/pointer. */)
-	Manufacturer() string /* primitive/slice/pointer. */
-	SetManufacturer(value string /* primitive/slice/pointer. */)
-	Model() string /* primitive/slice/pointer. */
-	SetModel(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	SoftwareVersion() string /* primitive/slice/pointer. */
-	SetSoftwareVersion(value string /* primitive/slice/pointer. */)
-	UdiDeviceIdentifier() string /* primitive/slice/pointer. */
-	SetUdiDeviceIdentifier(value string /* primitive/slice/pointer. */)
+	LocalIdentifier() objc.IObject /* cross-framework: NSString */
+	FirmwareVersion() objc.IObject /* cross-framework: NSString */
+	SetFirmwareVersion(value objc.IObject /* cross-framework: NSString */)
+	HardwareVersion() objc.IObject /* cross-framework: NSString */
+	SetHardwareVersion(value objc.IObject /* cross-framework: NSString */)
+	Manufacturer() objc.IObject /* cross-framework: NSString */
+	SetManufacturer(value objc.IObject /* cross-framework: NSString */)
+	Model() objc.IObject /* cross-framework: NSString */
+	SetModel(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSString */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSString */)
+	UdiDeviceIdentifier() objc.IObject /* cross-framework: NSString */
+	SetUdiDeviceIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -106,8 +107,8 @@ func NewHKDevice() HKDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDevice/localIdentifier
-func (h_ HKDevice) LocalIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("localIdentifier"))
+func (h_ HKDevice) LocalIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (h_ HKDevice) LocalIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/firmwareversion
-func (h_ HKDevice) FirmwareVersion() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("firmwareVersion"))
+func (h_ HKDevice) FirmwareVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("firmwareVersion"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (h_ HKDevice) FirmwareVersion() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/firmwareversion
-func (h_ HKDevice) SetFirmwareVersion(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFirmwareVersion:"), objc.String(value))
+func (h_ HKDevice) SetFirmwareVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFirmwareVersion:"), value)
 }
 
 
@@ -135,8 +136,8 @@ func (h_ HKDevice) SetFirmwareVersion(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-func (h_ HKDevice) HardwareVersion() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("hardwareVersion"))
+func (h_ HKDevice) HardwareVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("hardwareVersion"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (h_ HKDevice) HardwareVersion() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/hardwareversion
-func (h_ HKDevice) SetHardwareVersion(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setHardwareVersion:"), objc.String(value))
+func (h_ HKDevice) SetHardwareVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setHardwareVersion:"), value)
 }
 
 
@@ -154,8 +155,8 @@ func (h_ HKDevice) SetHardwareVersion(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/manufacturer
-func (h_ HKDevice) Manufacturer() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("manufacturer"))
+func (h_ HKDevice) Manufacturer() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
@@ -164,8 +165,8 @@ func (h_ HKDevice) Manufacturer() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/manufacturer
-func (h_ HKDevice) SetManufacturer(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setManufacturer:"), objc.String(value))
+func (h_ HKDevice) SetManufacturer(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setManufacturer:"), value)
 }
 
 
@@ -173,8 +174,8 @@ func (h_ HKDevice) SetManufacturer(value string /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-func (h_ HKDevice) Model() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("model"))
+func (h_ HKDevice) Model() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -183,8 +184,8 @@ func (h_ HKDevice) Model() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/model
-func (h_ HKDevice) SetModel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setModel:"), objc.String(value))
+func (h_ HKDevice) SetModel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setModel:"), value)
 }
 
 
@@ -192,8 +193,8 @@ func (h_ HKDevice) SetModel(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-func (h_ HKDevice) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("name"))
+func (h_ HKDevice) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -202,8 +203,8 @@ func (h_ HKDevice) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/name
-func (h_ HKDevice) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
+func (h_ HKDevice) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -211,8 +212,8 @@ func (h_ HKDevice) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-func (h_ HKDevice) SoftwareVersion() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("softwareVersion"))
+func (h_ HKDevice) SoftwareVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
@@ -221,8 +222,8 @@ func (h_ HKDevice) SoftwareVersion() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/softwareversion
-func (h_ HKDevice) SetSoftwareVersion(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSoftwareVersion:"), objc.String(value))
+func (h_ HKDevice) SetSoftwareVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
 
@@ -230,8 +231,8 @@ func (h_ HKDevice) SetSoftwareVersion(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-func (h_ HKDevice) UdiDeviceIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("udiDeviceIdentifier"))
+func (h_ HKDevice) UdiDeviceIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("udiDeviceIdentifier"))
 	return rv
 }
 
@@ -240,8 +241,8 @@ func (h_ HKDevice) UdiDeviceIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdevice/udideviceidentifier
-func (h_ HKDevice) SetUdiDeviceIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setUdiDeviceIdentifier:"), objc.String(value))
+func (h_ HKDevice) SetUdiDeviceIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUdiDeviceIdentifier:"), value)
 }
 
 

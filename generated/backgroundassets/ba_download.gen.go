@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _BADownloadClass struct {
 type IBADownload interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	IsEssential() bool /* primitive/slice/pointer. */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	IsEssential() bool
 	Priority() BADownloaderPriority /* typedef */
 	State() BADownloadState
-	UniqueIdentifier() string /* primitive/slice/pointer. */
+	UniqueIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 	CopyAsNonEssential() unsafe.Pointer
 }
@@ -103,15 +104,15 @@ func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
-func (b_ BADownload) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+func (b_ BADownload) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/isEssential
-func (b_ BADownload) IsEssential() bool /* primitive/slice/pointer. */ {
+func (b_ BADownload) IsEssential() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isEssential"))
 	return rv
 }
@@ -141,8 +142,8 @@ func (b_ BADownload) State() BADownloadState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
-func (b_ BADownload) UniqueIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
+func (b_ BADownload) UniqueIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 

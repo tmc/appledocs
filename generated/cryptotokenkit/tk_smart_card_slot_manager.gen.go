@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,10 @@ type _TKSmartCardSlotManagerClass struct {
 type ITKSmartCardSlotManager interface {
 	objectivec.IObject
 	// properties:
-	SlotNames() []string /* primitive/slice/pointer. */
+	SlotNames() []string
 	// methods:
-	CreateNFCSlotWithMessageCompletion(message string /* primitive/slice/pointer. */, completion unsafe.Pointer)
-	GetSlotWithNameReply(name string /* primitive/slice/pointer. */, reply unsafe.Pointer)
-	SlotNamed(name string /* primitive/slice/pointer. */) ITKSmartCardSlot
+	GetSlotWithNameReply(name objc.IObject /* cross-framework: NSString */, reply unsafe.Pointer)
+	SlotNamed(name objc.IObject /* cross-framework: NSString */) ITKSmartCardSlot
 }
 
 // An interface to all available smart card reader slots.
@@ -100,21 +100,12 @@ func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
 	return rv
 }
 
-// Creates an NFC smart card slot using the device’s hardware and presents a system UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/createNFCSlot(message:completion:)
-func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), objc.String(message), completion)
-}
-
-
 // Asynchronously calls a block with a Smart Card reader slot for a specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/getSlot(withName:reply:)
-func (t_ TKSmartCardSlotManager) GetSlotWithNameReply(name string /* primitive/slice/pointer. */, reply unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("getSlotWithName:reply:"), objc.String(name), reply)
+func (t_ TKSmartCardSlotManager) GetSlotWithNameReply(name objc.IObject /* cross-framework: NSString */, reply unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("getSlotWithName:reply:"), name, reply)
 }
 
 
@@ -122,8 +113,8 @@ func (t_ TKSmartCardSlotManager) GetSlotWithNameReply(name string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-func (t_ TKSmartCardSlotManager) SlotNamed(name string /* primitive/slice/pointer. */) ITKSmartCardSlot {
-	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
+func (t_ TKSmartCardSlotManager) SlotNamed(name objc.IObject /* cross-framework: NSString */) ITKSmartCardSlot {
+	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), name)
 	return rv
 }
 
@@ -142,10 +133,9 @@ func (t_ TKSmartCardSlotManager) DefaultManager() ITKSmartCardSlotManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNames
-func (t_ TKSmartCardSlotManager) SlotNames() []string /* primitive/slice/pointer. */ {
+func (t_ TKSmartCardSlotManager) SlotNames() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("slotNames"))
 	return rv
 }
-
 
 

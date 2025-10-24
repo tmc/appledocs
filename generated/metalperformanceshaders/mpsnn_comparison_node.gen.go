@@ -29,11 +29,15 @@ type _ComparisonNodeClass struct {
 // An interface definition for the [ComparisonNode] class.
 type IComparisonNode interface {
 	IBinaryArithmeticNode
+	// properties:
 	ComparisonType() ComparisonType
 	SetComparisonType(value ComparisonType)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode
 type ComparisonNode struct {
 	BinaryArithmeticNode
@@ -78,7 +82,8 @@ func NewComparisonNode() ComparisonNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
 func (c_ ComparisonNode) ComparisonType() ComparisonType {
 	rv := objc.Send[ComparisonType](c_.ID, objc.Sel("comparisonType"))
@@ -86,8 +91,7 @@ func (c_ ComparisonNode) ComparisonType() ComparisonType {
 }
 
 
-// SetComparisonType sets the value of the comparisonType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
 func (c_ ComparisonNode) SetComparisonType(value ComparisonType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonType:"), value)

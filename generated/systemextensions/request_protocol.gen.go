@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // requestProtocol is the request: protocol.
 //
 // Availability:
-//   - macOS 12.0+
+//   - macOS 10.15+
 //
 // Use this protocol when registering custom classes that conform to request:.
 var requestProtocol *objc.Protocol

@@ -29,11 +29,18 @@ type _CArithmeticLayerClass struct {
 // An interface definition for the [CArithmeticLayer] class.
 type ICArithmeticLayer interface {
 	ICLayer
-	Operation() unsafe.Pointer
+	// properties:
+	Operation() CArithmeticOperation /* not a class type */
+	SetOperation(value CArithmeticOperation /* not a class type */)
+	// methods:
 }
 
 // A layer that performs an arithmetic operation.
+
+
+// A layer that performs an arithmetic operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCArithmeticLayer
 type CArithmeticLayer struct {
 	CLayer
@@ -81,30 +88,23 @@ func NewCArithmeticLayer() CArithmeticLayer {
 
 
 
-
-// Creates an arithmetic layer with the operation you specify.
+// The arithmetic layer’s operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCArithmeticLayer/init(operation:)
-func NewCArithmeticLayerWithOperation(operation unsafe.Pointer) CArithmeticLayer {
-	rv := objc.Send[CArithmeticLayer](objc.ID(getCArithmeticLayerClass().class), objc.Sel("layerWithOperation:"), operation)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcarithmeticlayer/operation
+func (c_ CArithmeticLayer) Operation() CArithmeticOperation /* not a class type */ {
+	rv := objc.Send[CArithmeticOperation](c_.ID, objc.Sel("operation"))
 	return rv
 }
 
-
-// Creates an arithmetic layer with the operation you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCArithmeticLayer/init(operation:)
-func (cc _CArithmeticLayerClass) LayerWithOperation(operation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithOperation:"), operation)
-	return rv
-}
 
 // The arithmetic layer’s operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCArithmeticLayer/operation
-func (c_ CArithmeticLayer) Operation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operation"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcarithmeticlayer/operation
+func (c_ CArithmeticLayer) SetOperation(value CArithmeticOperation /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOperation:"), value)
 }
+
 
 

@@ -88,4 +88,23 @@ func NewUnitPower() UnitPower {
 
 
 
+// The picowatts unit of power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/picowatts
+func (uc _UnitPowerClass) Picowatts() UnitPower {
+	rv := objc.Send[UnitPower](objc.ID(uc.class), objc.Sel("picowatts"))
+	return rv
+}
+
+// The picowatts unit of power.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/picowatts
+func (u_ UnitPower) Picowatts() IUnitPower {
+	rv := objc.Send[UnitPower](u_.ID, objc.Sel("picowatts"))
+	return rv
+}
+
+
 

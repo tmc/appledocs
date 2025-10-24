@@ -1,90 +1,32 @@
 // Code generated from Apple documentation for AVFAudio. DO NOT EDIT.
 
 package avfaudio
-import (
-	"unsafe"
-)
 
 
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Audio3DAngularOrientation = int
-
-type Audio3DPoint = int
-
-type Audio3DVectorOrientation = int
-
-type AudioBufferList = int
-
-type AudioChannelLayoutTag = int
-
-type AudioCommonFormat = int
-
-type AudioComponentDescription = int
-
-type AudioComponentInstantiationOptions = int
-
-type AudioConverterInputBlock = int
-
-type AudioConverterOutputStatus = int
-
-type AudioConverterPrimeInfo = int
-
-type AudioConverterPrimeMethod = int
-
-type AudioEngineManualRenderingBlock = int
-
-type AudioEngineManualRenderingMode = int
-
-type AudioEnvironmentDistanceAttenuationModel = int
-
-type AudioFormatDescription = int
-
-type AudioFramePosition = int
-
-type AudioNodeBus = int
-
-type AudioSessionChannelDescription = int
-
-type AudioStreamBasicDescription = int
-
-type AudioTimeStamp = int
-
-type AudioUnitEQFilterParameters = int
-
-type AudioVoiceProcessingOtherAudioDuckingConfiguration = int
-
-type Bool = int
-
-type Int64 = int
-
-type MIDIEventListBlock = int
-
-type MIDIPlayerCompletionHandler = int
-
-type MusicSequence = int
-
-type MusicTrack = int
-
-type Orientation = int
-
-type PolarPattern = int
-
-type Port = int
-
-type SpeechSynthesisProviderOutputBlock = int
-
-type SpeechSynthesisVoiceGender = int
-
-type SpeechSynthesisVoiceQuality = int
-
-type SpeechSynthesizerBufferCallback = int
-
-type SpeechSynthesizerMarkerCallback = int
-
-type Traits = int
+// C struct types
+// AVAudio3DAngularOrientation - A structure that represents the angular orientation of the listener in 3D space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DAngularOrientation
+type AVAudio3DAngularOrientation struct {
+}// AVAudio3DPoint - A structure that represents a point in 3D space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DPoint
+type AVAudio3DPoint struct {
+}// AVAudio3DVectorOrientation - A structure that represents two orthogonal vectors that describe the orientation of the listener in 3D space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudio3DVectorOrientation
+type AVAudio3DVectorOrientation struct {
+}// AVBeatRange
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVBeatRange-c.struct
+type AVBeatRange struct {
+	Length MusicTimeStamp
+	Start MusicTimeStamp
+}
 
 
 

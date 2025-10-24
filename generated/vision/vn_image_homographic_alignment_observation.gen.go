@@ -29,13 +29,20 @@ type _ImageHomographicAlignmentObservationClass struct {
 // An interface definition for the [ImageHomographicAlignmentObservation] class.
 type IImageHomographicAlignmentObservation interface {
 	IImageAlignmentObservation
+	// properties:
 	WarpTransform() unsafe.Pointer
+	SetWarpTransform(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents a perspective warp transformation.
 //
 // This type of observation results from a , informing the performed to align the input images.
+
+
+// An object that represents a perspective warp transformation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageHomographicAlignmentObservation
 type ImageHomographicAlignmentObservation struct {
 	ImageAlignmentObservation
@@ -82,12 +89,23 @@ func NewImageHomographicAlignmentObservation() ImageHomographicAlignmentObservat
 }
 
 
+
 // The warp transform matrix to morph the floating image into the reference image.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageHomographicAlignmentObservation/warpTransform
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation/warptransform
 func (i_ ImageHomographicAlignmentObservation) WarpTransform() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("warpTransform"))
 	return rv
+}
+
+
+// The warp transform matrix to morph the floating image into the reference image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation/warptransform
+func (i_ ImageHomographicAlignmentObservation) SetWarpTransform(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWarpTransform:"), value)
 }
 
 

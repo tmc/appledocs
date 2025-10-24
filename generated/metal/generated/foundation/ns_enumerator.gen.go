@@ -31,9 +31,9 @@ type _EnumeratorClass struct {
 type IEnumerator interface {
 	objectivec.IObject
 	// properties:
-	AllObjects() []objc.ID /* already interface */
+	AllObjects() unsafe.Pointer
+	SetAllObjects(value unsafe.Pointer)
 	// methods:
-	NextObject() unsafe.Pointer
 }
 
 // An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.
@@ -89,12 +89,12 @@ func NewEnumerator() Enumerator {
 
 
 
-// Returns the next object from the collection being enumerated.
+// The array of unenumerated objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator/nextObject()
-func (e_ Enumerator) NextObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("nextObject"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsenumerator/allobjects
+func (e_ Enumerator) AllObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("allObjects"))
 	return rv
 }
 
@@ -102,10 +102,9 @@ func (e_ Enumerator) NextObject() unsafe.Pointer {
 // The array of unenumerated objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator/allObjects
-func (e_ Enumerator) AllObjects() []objc.ID /* already interface */ {
-	rv := objc.Send[[]objc.ID](e_.ID, objc.Sel("allObjects"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsenumerator/allobjects
+func (e_ Enumerator) SetAllObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAllObjects:"), value)
 }
 
 

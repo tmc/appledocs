@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _CKUserIdentityLookupInfoClass struct {
 type ICKUserIdentityLookupInfo interface {
 	objectivec.IObject
 	// properties:
-	EmailAddress() string /* primitive/slice/pointer. */
-	PhoneNumber() string /* primitive/slice/pointer. */
+	EmailAddress() objc.IObject /* cross-framework: NSString */
+	PhoneNumber() objc.IObject /* cross-framework: NSString */
 	UserRecordID() objc.IObject /* cross-framework: CKRecordID */
 	// methods:
 }
@@ -94,9 +95,9 @@ func NewCKUserIdentityLookupInfo() CKUserIdentityLookupInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(emailAddress:)
-func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress string /* primitive/slice/pointer. */) CKUserIdentityLookupInfo {
+func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress objc.IObject /* cross-framework: NSString */) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
-	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithEmailAddress:"), objc.String(emailAddress))
+	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithEmailAddress:"), emailAddress)
 	rv.Autorelease()
 	return rv
 }
@@ -106,9 +107,9 @@ func NewCKUserIdentityLookupInfoWithEmailAddress(emailAddress string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(phoneNumber:)
-func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string /* primitive/slice/pointer. */) CKUserIdentityLookupInfo {
+func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber objc.IObject /* cross-framework: NSString */) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
-	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithPhoneNumber:"), objc.String(phoneNumber))
+	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithPhoneNumber:"), phoneNumber)
 	rv.Autorelease()
 	return rv
 }
@@ -118,7 +119,7 @@ func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(userRecordID:)
-func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID objc.IObject /* cross-framework CKRecordID */) CKUserIdentityLookupInfo {
+func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID objc.IObject /* cross-framework: CKRecordID */) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
 	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithUserRecordID:"), userRecordID)
 	rv.Autorelease()
@@ -131,7 +132,7 @@ func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(with:)
-func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithRecordIDs(recordIDs []CKRecordID /* primitive/slice/pointer. */) []CKUserIdentityLookupInfo /* primitive/slice/pointer. */ {
+func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithRecordIDs(recordIDs []objc.IObject /* cross-framework: CKRecordID */) []ICKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithRecordIDs:"), recordIDs)
 	return rv
 }
@@ -141,7 +142,7 @@ func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithRecordIDs(recordIDs []CK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(withEmails:)
-func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithEmails(emails []string /* primitive/slice/pointer. */) []CKUserIdentityLookupInfo /* primitive/slice/pointer. */ {
+func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithEmails(emails []string) []ICKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithEmails:"), emails)
 	return rv
 }
@@ -151,7 +152,7 @@ func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithEmails(emails []string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/lookupInfos(withPhoneNumbers:)
-func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithPhoneNumbers(phoneNumbers []string /* primitive/slice/pointer. */) []CKUserIdentityLookupInfo /* primitive/slice/pointer. */ {
+func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithPhoneNumbers(phoneNumbers []string) []ICKUserIdentityLookupInfo {
 	rv := objc.Send[[]CKUserIdentityLookupInfo](objc.ID(cc.class), objc.Sel("lookupInfosWithPhoneNumbers:"), phoneNumbers)
 	return rv
 }
@@ -161,8 +162,8 @@ func (cc _CKUserIdentityLookupInfoClass) LookupInfosWithPhoneNumbers(phoneNumber
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/emailAddress
-func (c_ CKUserIdentityLookupInfo) EmailAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
+func (c_ CKUserIdentityLookupInfo) EmailAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (c_ CKUserIdentityLookupInfo) EmailAddress() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/phoneNumber
-func (c_ CKUserIdentityLookupInfo) PhoneNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneNumber"))
+func (c_ CKUserIdentityLookupInfo) PhoneNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

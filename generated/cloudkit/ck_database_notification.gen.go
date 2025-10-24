@@ -32,12 +32,12 @@ type ICKDatabaseNotification interface {
 	// properties:
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
-	IsPruned() bool /* primitive/slice/pointer. */
-	SetIsPruned(value bool /* primitive/slice/pointer. */)
+	IsPruned() bool
+	SetIsPruned(value bool)
 	NotificationType() unsafe.Pointer
 	SetNotificationType(value unsafe.Pointer)
-	ShouldSendContentAvailable() bool /* primitive/slice/pointer. */
-	SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
 	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
 	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
 	// methods:
@@ -121,7 +121,7 @@ func (c_ CKDatabaseNotification) SetDatabaseScope(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKDatabaseNotification) IsPruned() bool /* primitive/slice/pointer. */ {
+func (c_ CKDatabaseNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (c_ CKDatabaseNotification) IsPruned() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKDatabaseNotification) SetIsPruned(value bool /* primitive/slice/pointer. */) {
+func (c_ CKDatabaseNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
 
@@ -159,7 +159,7 @@ func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool /* primitive/slice/pointer. */ {
+func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKDatabaseNotification) SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */) {
+func (c_ CKDatabaseNotification) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
 

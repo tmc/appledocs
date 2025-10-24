@@ -31,7 +31,7 @@ type ILayoutXAxisAnchor interface {
 	ILayoutAnchor
 	// properties:
 	// methods:
-	ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64 /* primitive/slice/pointer. */) ILayoutConstraint
+	ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint
 }
 
 // A factory class for creating horizontal layout constraint objects using a fluent API.
@@ -93,7 +93,7 @@ func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(equalToSystemSpacingAfter:multiplier:)
-func (l_ LayoutXAxisAnchor) ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64 /* primitive/slice/pointer. */) ILayoutConstraint {
+func (l_ LayoutXAxisAnchor) ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }

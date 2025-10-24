@@ -31,8 +31,6 @@ type _RoutingPlaybackArbiterClass struct {
 type IRoutingPlaybackArbiter interface {
 	objectivec.IObject
 	// properties:
-	PreferredParticipantForNonMixableAudioRoutes() objc.ID
-	SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID)
 	PreferredParticipantForExternalPlayback() RoutingPlaybackParticipant /* not a class type */
 	SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */)
 	// methods:
@@ -91,25 +89,6 @@ func NewRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 
 
 
-// The participant that has priority to play audio when it’s not possible to play multiple audio sources concurrently.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
-func (r_ RoutingPlaybackArbiter) PreferredParticipantForNonMixableAudioRoutes() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("preferredParticipantForNonMixableAudioRoutes"))
-	return rv
-}
-
-
-// The participant that has priority to play audio when it’s not possible to play multiple audio sources concurrently.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
-func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForNonMixableAudioRoutes:"), value)
-}
-
-
 // The participant that has priority to play on external playback interfaces.
 //
 // [Full Topic]
@@ -127,7 +106,5 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() Routi
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
 }
-
-
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [CaptureMetadataOutput] class.
@@ -181,7 +182,7 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value CaptureMetadata
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/rectofinterest
 func (c_ CaptureMetadataOutput) RectOfInterest() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("rectOfInterest"))
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("rectOfInterest"))
 	return rv
 }
 

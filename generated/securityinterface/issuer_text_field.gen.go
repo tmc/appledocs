@@ -30,9 +30,13 @@ type _issuerTextFieldClass struct {
 // An interface definition for the [issuerTextField] class.
 type IissuerTextField interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView/issuerTextField-c.ivar
 type issuerTextField struct {
 	objectivec.Object

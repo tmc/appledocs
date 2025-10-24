@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKFetchRecordChangesOperation] class.
@@ -30,12 +31,12 @@ type _CKFetchRecordChangesOperationClass struct {
 type ICKFetchRecordChangesOperation interface {
 	ICKDatabaseOperation
 	// properties:
-	DesiredKeys() string /* primitive/slice/pointer. */
-	SetDesiredKeys(value string /* primitive/slice/pointer. */)
+	DesiredKeys() objc.IObject /* cross-framework: NSString */
+	SetDesiredKeys(value objc.IObject /* cross-framework: NSString */)
 	FetchRecordChangesCompletionBlock() unsafe.Pointer
 	SetFetchRecordChangesCompletionBlock(value unsafe.Pointer)
-	MoreComing() bool /* primitive/slice/pointer. */
-	SetMoreComing(value bool /* primitive/slice/pointer. */)
+	MoreComing() bool
+	SetMoreComing(value bool)
 	PreviousServerChangeToken() ICKServerChangeToken
 	SetPreviousServerChangeToken(value ICKServerChangeToken)
 	RecordChangedBlock() unsafe.Pointer
@@ -44,8 +45,8 @@ type ICKFetchRecordChangesOperation interface {
 	SetRecordWithIDWasDeletedBlock(value unsafe.Pointer)
 	RecordZoneID() ICKRecordZoneID
 	SetRecordZoneID(value ICKRecordZoneID)
-	ResultsLimit() int /* primitive/slice/pointer. */
-	SetResultsLimit(value int /* primitive/slice/pointer. */)
+	ResultsLimit() int
+	SetResultsLimit(value int)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 	// methods:
@@ -110,8 +111,8 @@ func NewCKFetchRecordChangesOperation() CKFetchRecordChangesOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
-func (c_ CKFetchRecordChangesOperation) DesiredKeys() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("desiredKeys"))
+func (c_ CKFetchRecordChangesOperation) DesiredKeys() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (c_ CKFetchRecordChangesOperation) DesiredKeys() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
-func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), objc.String(value))
+func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
 }
 
 
@@ -148,7 +149,7 @@ func (c_ CKFetchRecordChangesOperation) SetFetchRecordChangesCompletionBlock(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
-func (c_ CKFetchRecordChangesOperation) MoreComing() bool /* primitive/slice/pointer. */ {
+func (c_ CKFetchRecordChangesOperation) MoreComing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("moreComing"))
 	return rv
 }
@@ -158,7 +159,7 @@ func (c_ CKFetchRecordChangesOperation) MoreComing() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
-func (c_ CKFetchRecordChangesOperation) SetMoreComing(value bool /* primitive/slice/pointer. */) {
+func (c_ CKFetchRecordChangesOperation) SetMoreComing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMoreComing:"), value)
 }
 
@@ -243,7 +244,7 @@ func (c_ CKFetchRecordChangesOperation) SetRecordZoneID(value ICKRecordZoneID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
-func (c_ CKFetchRecordChangesOperation) ResultsLimit() int /* primitive/slice/pointer. */ {
+func (c_ CKFetchRecordChangesOperation) ResultsLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
@@ -253,7 +254,7 @@ func (c_ CKFetchRecordChangesOperation) ResultsLimit() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
-func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value int /* primitive/slice/pointer. */) {
+func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
 

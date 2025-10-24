@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreImage without requiring cgo.
-
-// Use built-in or custom filters to process still and video images.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage
+// See: https://developer.apple.com/documentation/CoreImage
 package coreimage
 
 import (

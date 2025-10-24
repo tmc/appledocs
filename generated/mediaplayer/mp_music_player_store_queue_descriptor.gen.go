@@ -30,18 +30,18 @@ type _MusicPlayerStoreQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerStoreQueueDescriptor] class.
 type IMusicPlayerStoreQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID string)
-	SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID string)
-	StartItemID() string
-	SetStartItemID(value string)
-	StoreIDs() []string
-	SetStoreIDs(value []string)
+	// properties:
+	// methods:
 }
 
 // A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.
 //
 // Use this class to modify the player queue created by a query before the queue begins to play. You can modify when individual items start and stop playing, along with setting the first item to play.
+
+
+// A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor
 type MusicPlayerStoreQueueDescriptor struct {
 	MusicPlayerQueueDescriptor
@@ -89,9 +89,9 @@ func NewMusicPlayerStoreQueueDescriptor() MusicPlayerStoreQueueDescriptor {
 
 
 
-
 // Creates a new queue descriptor using the designated store identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/init(storeIDs:)
 func NewMusicPlayerStoreQueueDescriptorWithStoreIDs(storeIDs []string) MusicPlayerStoreQueueDescriptor {
 	instance := getMusicPlayerStoreQueueDescriptorClass().Alloc()
@@ -100,65 +100,5 @@ func NewMusicPlayerStoreQueueDescriptorWithStoreIDs(storeIDs []string) MusicPlay
 	return rv
 }
 
-
-// Sets the time the designated store item is to stop playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setEndTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetEndTimeForItemWithStoreID(endTime foundation.ITimeInterval, storeID string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithStoreID:"), endTime, objc.String(storeID))
-}
-
-// Sets the time the designated store item is to start playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/setStartTime(_:forItemWithStoreID:)
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartTimeForItemWithStoreID(startTime foundation.ITimeInterval, storeID string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithStoreID:"), startTime, objc.String(storeID))
-}
-
-// The item identified by the store identifier to play first.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) StartItemID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("startItemID"))
-	return rv
-}
-
-
-// SetStartItemID sets the value of the startItemID property.
-// The item identified by the store identifier to play first.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/startItemID
-func (m_ MusicPlayerStoreQueueDescriptor) SetStartItemID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemID:"), objc.String(value))
-}
-
-// An array containing the store identifiers found by the query used to create the queue descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/storeIDs
-func (m_ MusicPlayerStoreQueueDescriptor) StoreIDs() []string {
-	rv := objc.Send[[]string](m_.ID, objc.Sel("storeIDs"))
-	return rv
-}
-
-
-// SetStoreIDs sets the value of the storeIDs property.
-// An array containing the store identifiers found by the query used to create the queue descriptor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor/storeIDs
-func (m_ MusicPlayerStoreQueueDescriptor) SetStoreIDs(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStoreIDs:"), nsArray)
-}
 
 

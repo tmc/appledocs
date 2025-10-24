@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LightweightCodeRequirements without requiring cgo.
-
-// Test the identity of executable code on disk and in running processes.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LightweightCodeRequirements
+// See: https://developer.apple.com/documentation/LightweightCodeRequirements
 package lightweightcoderequirements
 
 import (

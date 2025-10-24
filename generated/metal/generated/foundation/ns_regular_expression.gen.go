@@ -31,21 +31,21 @@ type _RegularExpressionClass struct {
 type IRegularExpression interface {
 	objectivec.IObject
 	// properties:
-	NumberOfCaptureGroups() uint /* primitive/slice/pointer. */
+	NumberOfCaptureGroups() uint
 	Options() RegularExpressionOptions
 	Pattern() IString
-	NSNotFound() int /* primitive/slice/pointer. */
-	Range() NSRange /* not a class type */
-	SetRange(value NSRange /* not a class type */)
+	NSNotFound() int
+	Range() objc.IObject /* cross-framework: Range */
+	SetRange(value objc.IObject /* cross-framework: Range */)
 	// methods:
-	EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ Range /* not a class type */, block unsafe.Pointer)
-	FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) ITextCheckingResult
-	MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) []TextCheckingResult /* primitive/slice/pointer. */
-	NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) uint /* primitive/slice/pointer. */
-	RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) NSRange /* not a class type */
-	ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ Range /* not a class type */, templ IString) uint /* primitive/slice/pointer. */
-	ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int /* primitive/slice/pointer. */, templ IString) IString
-	StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ Range /* not a class type */, templ IString) IString
+	EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, block unsafe.Pointer)
+	FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult
+	MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []ITextCheckingResult
+	NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) uint
+	RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
+	ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) uint
+	ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int, templ IString) IString
+	StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) IString
 }
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
@@ -148,7 +148,7 @@ func (rc _RegularExpressionClass) RegularExpressionWithPatternOptionsError(patte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/enumerateMatches(in:options:range:using:)
-func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ Range /* not a class type */, block unsafe.Pointer) {
+func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, block unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("enumerateMatchesInString:options:range:usingBlock:"), string_, options, range_, block)
 }
 
@@ -157,7 +157,7 @@ func (r_ RegularExpression) EnumerateMatchesInStringOptionsRangeUsingBlock(strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/firstMatch(in:options:range:)
-func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) ITextCheckingResult {
+func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](r_.ID, objc.Sel("firstMatchInString:options:range:"), string_, options, range_)
 	return rv
 }
@@ -167,7 +167,7 @@ func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, opti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/matches(in:options:range:)
-func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) []TextCheckingResult /* primitive/slice/pointer. */ {
+func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []ITextCheckingResult {
 	rv := objc.Send[[]TextCheckingResult](r_.ID, objc.Sel("matchesInString:options:range:"), string_, options, range_)
 	return rv
 }
@@ -177,7 +177,7 @@ func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/numberOfMatches(in:options:range:)
-func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) uint /* primitive/slice/pointer. */ {
+func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfMatchesInString:options:range:"), string_, options, range_)
 	return rv
 }
@@ -187,7 +187,7 @@ func (r_ RegularExpression) NumberOfMatchesInStringOptionsRange(string_ IString,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/rangeOfFirstMatch(in:options:range:)
-func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ Range /* not a class type */) NSRange /* not a class type */ {
+func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](r_.ID, objc.Sel("rangeOfFirstMatchInString:options:range:"), string_, options, range_)
 	return rv
 }
@@ -197,7 +197,7 @@ func (r_ RegularExpression) RangeOfFirstMatchInStringOptionsRange(string_ IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/replaceMatches(in:options:range:withTemplate:)
-func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ Range /* not a class type */, templ IString) uint /* primitive/slice/pointer. */ {
+func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("replaceMatchesInString:options:range:withTemplate:"), string_, options, range_, templ)
 	return rv
 }
@@ -207,7 +207,7 @@ func (r_ RegularExpression) ReplaceMatchesInStringOptionsRangeWithTemplate(strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/replacementString(for:in:offset:template:)
-func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int /* primitive/slice/pointer. */, templ IString) IString {
+func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(result ITextCheckingResult, string_ IString, offset int, templ IString) IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("replacementStringForResult:inString:offset:template:"), result, string_, offset, templ)
 	return rv
 }
@@ -217,7 +217,7 @@ func (r_ RegularExpression) ReplacementStringForResultInStringOffsetTemplate(res
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/stringByReplacingMatches(in:options:range:withTemplate:)
-func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ Range /* not a class type */, templ IString) IString {
+func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemplate(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("stringByReplacingMatchesInString:options:range:withTemplate:"), string_, options, range_, templ)
 	return rv
 }
@@ -227,7 +227,7 @@ func (r_ RegularExpression) StringByReplacingMatchesInStringOptionsRangeWithTemp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/numberOfCaptureGroups
-func (r_ RegularExpression) NumberOfCaptureGroups() uint /* primitive/slice/pointer. */ {
+func (r_ RegularExpression) NumberOfCaptureGroups() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfCaptureGroups"))
 	return rv
 }
@@ -257,7 +257,7 @@ func (r_ RegularExpression) Pattern() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (r_ RegularExpression) NSNotFound() int /* primitive/slice/pointer. */ {
+func (r_ RegularExpression) NSNotFound() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -267,7 +267,7 @@ func (r_ RegularExpression) NSNotFound() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) Range() NSRange /* not a class type */ {
+func (r_ RegularExpression) Range() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
 	return rv
 }
@@ -277,7 +277,7 @@ func (r_ RegularExpression) Range() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) SetRange(value NSRange /* not a class type */) {
+func (r_ RegularExpression) SetRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
 

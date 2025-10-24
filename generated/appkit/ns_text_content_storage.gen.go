@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextContentStorage] class.
@@ -33,18 +33,13 @@ type ITextContentStorage interface {
 	// properties:
 	AttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	IncludesTextListMarkers() bool /* primitive/slice/pointer. */
-	SetIncludesTextListMarkers(value bool /* primitive/slice/pointer. */)
-	DocumentRange() ITextRange
-	SetDocumentRange(value ITextRange)
+	Delegate() TextContentStorageDelegate /* not a class type */
+	SetDelegate(value TextContentStorageDelegate /* not a class type */)
+	IncludesTextListMarkers() bool
+	SetIncludesTextListMarkers(value bool)
+	DocumentRange() objc.IObject /* cross-framework: TextRange */
+	SetDocumentRange(value objc.IObject /* cross-framework: TextRange */)
 	// methods:
-	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool /* primitive/slice/pointer. */) ITextRange
-	AttributedStringForTextElement(textElement objc.IObject /* cross-framework TextElement */) objc.IObject /* cross-framework: AttributedString */
-	LocationFromLocationWithOffset(location objectivec.IObject, offset int /* primitive/slice/pointer. */) objc.ID
-	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int /* primitive/slice/pointer. */
-	TextElementForAttributedString(attributedString objc.IObject /* cross-framework AttributedString */) objc.IObject /* cross-framework: TextElement */
 }
 
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
@@ -102,62 +97,12 @@ func NewTextContentStorage() TextContentStorage {
 
 
 
-// Returns the text range, if any, in the backing store that required manual adjustment after editing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)
-func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool /* primitive/slice/pointer. */) ITextRange {
-	rv := objc.Send[TextRange](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
-	return rv
-}
-
-
-// Returns a new attributed string for the text element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString(for:)
-func (t_ TextContentStorage) AttributedStringForTextElement(textElement objc.IObject /* cross-framework TextElement */) objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedStringForTextElement:"), textElement)
-	return rv
-}
-
-
-// Returns a new text location object based on an existing location and offset you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/location(_:offsetBy:)
-func (t_ TextContentStorage) LocationFromLocationWithOffset(location objectivec.IObject, offset int /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("locationFromLocation:withOffset:"), location, offset)
-	return rv
-}
-
-
-// Returns the number of characters between the specified locations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/offset(from:to:)
-func (t_ TextContentStorage) OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](t_.ID, objc.Sel("offsetFromLocation:toLocation:"), from, to)
-	return rv
-}
-
-
-// Returns the text element corresponding to object’s attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
-func (t_ TextContentStorage) TextElementForAttributedString(attributedString objc.IObject /* cross-framework AttributedString */) objc.IObject /* cross-framework: TextElement */ {
-	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
-	return rv
-}
-
-
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/attributedstring
 func (t_ TextContentStorage) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("attributedString"))
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
@@ -165,7 +110,7 @@ func (t_ TextContentStorage) AttributedString() objc.IObject /* cross-framework:
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/attributedstring
 func (t_ TextContentStorage) SetAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
@@ -174,9 +119,9 @@ func (t_ TextContentStorage) SetAttributedString(value objc.IObject /* cross-fra
 // The delegate for the content storage object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/delegate
-func (t_ TextContentStorage) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+func (t_ TextContentStorage) Delegate() TextContentStorageDelegate /* not a class type */ {
+	rv := objc.Send[TextContentStorageDelegate](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -184,23 +129,23 @@ func (t_ TextContentStorage) Delegate() objc.ID {
 // The delegate for the content storage object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/delegate
-func (t_ TextContentStorage) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/delegate
+func (t_ TextContentStorage) SetDelegate(value TextContentStorageDelegate /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
-func (t_ TextContentStorage) IncludesTextListMarkers() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/includestextlistmarkers
+func (t_ TextContentStorage) IncludesTextListMarkers() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
-func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/includestextlistmarkers
+func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
 
@@ -209,7 +154,7 @@ func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
-func (t_ TextContentStorage) DocumentRange() ITextRange {
+func (t_ TextContentStorage) DocumentRange() objc.IObject /* cross-framework: TextRange */ {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("documentRange"))
 	return rv
 }
@@ -219,7 +164,7 @@ func (t_ TextContentStorage) DocumentRange() ITextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
-func (t_ TextContentStorage) SetDocumentRange(value ITextRange) {
+func (t_ TextContentStorage) SetDocumentRange(value objc.IObject /* cross-framework: TextRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDocumentRange:"), value)
 }
 

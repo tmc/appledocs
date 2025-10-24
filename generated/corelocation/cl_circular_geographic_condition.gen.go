@@ -30,7 +30,7 @@ type _CircularGeographicConditionClass struct {
 type ICircularGeographicCondition interface {
 	ICondition
 	// properties:
-	Center() LocationCoordinate2D /* not a class type */
+	Center() CLLocationCoordinate2D /* not a class type */
 	Radius() LocationDistance /* not a class type */
 	// methods:
 }
@@ -107,7 +107,7 @@ func NewCircularGeographicConditionWithCenterRadius(center LocationCoordinate2D 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/center
-func (c_ CircularGeographicCondition) Center() LocationCoordinate2D /* not a class type */ {
+func (c_ CircularGeographicCondition) Center() CLLocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](c_.ID, objc.Sel("center"))
 	return rv
 }

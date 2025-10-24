@@ -31,17 +31,23 @@ type _NavigationResponseClass struct {
 // An interface definition for the [NavigationResponse] class.
 type INavigationResponse interface {
 	objectivec.IObject
+	// properties:
 	CanShowMIMEType() bool
 	IsForMainFrame() bool
 	SetIsForMainFrame(value bool)
-	Response() foundation.URLResponse
-	SetResponse(value foundation.IURLResponse)
+	Response() objc.IObject /* cross-framework: URLResponse */
+	SetResponse(value objc.IObject /* cross-framework: URLResponse */)
+	// methods:
 }
 
 // An object that contains the response to a navigation request, and which you use to make navigation-related policy decisions.
 //
 // Use a object to make policy decisions about whether to allow navigation within your app’s web view. You don’t create objects directly. Instead, the web view creates them and delivers them to the appropriate delegate objects. Use the methods of your delegate to analyze the response and determine whether to allow the resulting navigation to occur.
+
+
+// An object that contains the response to a navigation request, and which you use to make navigation-related policy decisions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationResponse
 type NavigationResponse struct {
 	objectivec.Object
@@ -86,16 +92,20 @@ func NewNavigationResponse() NavigationResponse {
 }
 
 
+
 // A Boolean value that indicates whether WebKit is capable of displaying the response’s MIME type natively.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationResponse/canShowMIMEType
 func (n_ NavigationResponse) CanShowMIMEType() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("canShowMIMEType"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the response targets the web view’s main frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/isformainframe
 func (n_ NavigationResponse) IsForMainFrame() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isForMainFrame"))
@@ -103,30 +113,30 @@ func (n_ NavigationResponse) IsForMainFrame() bool {
 }
 
 
-// SetIsForMainFrame sets the value of the isForMainFrame property.
 // A Boolean value that indicates whether the response targets the web view’s main frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/isformainframe
 func (n_ NavigationResponse) SetIsForMainFrame(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsForMainFrame:"), value)
 }
 
+
 // The frame’s response.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
-func (n_ NavigationResponse) Response() foundation.URLResponse {
+func (n_ NavigationResponse) Response() objc.IObject /* cross-framework: URLResponse */ {
 	rv := objc.Send[foundation.URLResponse](n_.ID, objc.Sel("response"))
 	return rv
 }
 
 
-// SetResponse sets the value of the response property.
 // The frame’s response.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
-func (n_ NavigationResponse) SetResponse(value foundation.IURLResponse) {
+func (n_ NavigationResponse) SetResponse(value objc.IObject /* cross-framework: URLResponse */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
 }
 

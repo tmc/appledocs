@@ -30,12 +30,18 @@ type _PHPersistentChangeFetchResultClass struct {
 // An interface definition for the [PHPersistentChangeFetchResult] class.
 type IPHPersistentChangeFetchResult interface {
 	objectivec.IObject
-	CurrentChangeToken() PHPersistentChangeToken
+	// properties:
+	CurrentChangeToken() IPHPersistentChangeToken
 	SetCurrentChangeToken(value IPHPersistentChangeToken)
+	// methods:
 }
 
 // An object that represents a fetch result and allows you to enumerate a very large set of change records.
+
+
+// An object that represents a fetch result and allows you to enumerate a very large set of change records.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPersistentChangeFetchResult
 type PHPersistentChangeFetchResult struct {
 	objectivec.Object
@@ -80,19 +86,20 @@ func NewPHPersistentChangeFetchResult() PHPersistentChangeFetchResult {
 }
 
 
+
 // The opaque token that represents the current state of the Photos library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phphotolibrary/currentchangetoken
-func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() PHPersistentChangeToken {
+func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() IPHPersistentChangeToken {
 	rv := objc.Send[PHPersistentChangeToken](p_.ID, objc.Sel("currentChangeToken"))
 	return rv
 }
 
 
-// SetCurrentChangeToken sets the value of the currentChangeToken property.
 // The opaque token that represents the current state of the Photos library.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phphotolibrary/currentchangetoken
 func (p_ PHPersistentChangeFetchResult) SetCurrentChangeToken(value IPHPersistentChangeToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentChangeToken:"), value)

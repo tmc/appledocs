@@ -31,19 +31,23 @@ type _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] class.
 type IMTRGeneralDiagnosticsClusterPayloadTestRequestParams interface {
 	objectivec.IObject
-	Count() foundation.Number
-	SetCount(value foundation.INumber)
-	EnableKey() foundation.NSData
-	SetEnableKey(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	Count() objc.IObject /* cross-framework: NSNumber */
+	SetCount(value objc.IObject /* cross-framework: NSNumber */)
+	EnableKey() objc.IObject /* cross-framework: NSData */
+	SetEnableKey(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams
 type MTRGeneralDiagnosticsClusterPayloadTestRequestParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestRequestParams() MTRGeneralDiagnos
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("count"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("count"))
 	return rv
 }
 
 
-// SetCount sets the value of the count property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() foundation.NSData {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("enableKey"))
 	return rv
 }
 
 
-// SetEnableKey sets the value of the enableKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value foundation.IData) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

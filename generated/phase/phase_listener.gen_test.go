@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = phase.NewPHASEListener
 
-// ExampleNewPHASEListenerWithEngine demonstrates how to create a PHASEListener instance using NewPHASEListenerWithEngine.
-// Creates a listener with the given engine.
-func ExampleNewPHASEListenerWithEngine() {
-	_ = phase.NewPHASEListenerWithEngine(
-		phase.PHASEEngine{}, // engine PHASEEngine
-	)
-	// Output:
-}

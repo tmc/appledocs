@@ -30,10 +30,16 @@ type _VZGraphicsDeviceConfigurationClass struct {
 // An interface definition for the [VZGraphicsDeviceConfiguration] class.
 type IVZGraphicsDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a graphics device configuration.
+
+
+// The base class for a graphics device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDeviceConfiguration
 type VZGraphicsDeviceConfiguration struct {
 	objectivec.Object

@@ -119,7 +119,7 @@ func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitia
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
 func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() objc.IObject /* cross-framework: Bundle */ {
-	rv := objc.Send[Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
+	rv := objc.Send[foundation.Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
 	return rv
 }
 

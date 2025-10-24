@@ -30,13 +30,17 @@ type _MTRNetworkCommissioningClusterNetworkInfoClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterNetworkInfo] class.
 type IMTRNetworkCommissioningClusterNetworkInfo interface {
 	IMTRNetworkCommissioningClusterNetworkInfoStruct
-	Connected() foundation.Number
-	SetConnected(value foundation.INumber)
-	NetworkID() foundation.Data
-	SetNetworkID(value foundation.IData)
+	// properties:
+	Connected() objc.IObject /* cross-framework: NSNumber */
+	SetConnected(value objc.IObject /* cross-framework: NSNumber */)
+	NetworkID() objc.IObject /* cross-framework: Data */
+	SetNetworkID(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterNetworkInfo
 type MTRNetworkCommissioningClusterNetworkInfo struct {
 	MTRNetworkCommissioningClusterNetworkInfoStruct
@@ -81,33 +85,33 @@ func NewMTRNetworkCommissioningClusterNetworkInfo() MTRNetworkCommissioningClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/connected
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) Connected() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("connected"))
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) Connected() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("connected"))
 	return rv
 }
 
 
-// SetConnected sets the value of the connected property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/connected
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetConnected(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetConnected(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnected:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("networkID"))
 	return rv
 }
 
 
-// SetNetworkID sets the value of the networkID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetNetworkID(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
 

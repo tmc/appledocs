@@ -30,19 +30,23 @@ type _MTRChannelClusterChannelInfoClass struct {
 // An interface definition for the [MTRChannelClusterChannelInfo] class.
 type IMTRChannelClusterChannelInfo interface {
 	IMTRChannelClusterChannelInfoStruct
-	AffiliateCallSign() string
-	SetAffiliateCallSign(value string)
-	CallSign() string
-	SetCallSign(value string)
-	MajorNumber() foundation.Number
-	SetMajorNumber(value foundation.INumber)
-	MinorNumber() foundation.Number
-	SetMinorNumber(value foundation.INumber)
-	Name() string
-	SetName(value string)
+	// properties:
+	AffiliateCallSign() objc.IObject /* cross-framework: NSString */
+	SetAffiliateCallSign(value objc.IObject /* cross-framework: NSString */)
+	CallSign() objc.IObject /* cross-framework: NSString */
+	SetCallSign(value objc.IObject /* cross-framework: NSString */)
+	MajorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	MinorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelInfo
 type MTRChannelClusterChannelInfo struct {
 	MTRChannelClusterChannelInfoStruct
@@ -87,79 +91,79 @@ func NewMTRChannelClusterChannelInfo() MTRChannelClusterChannelInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
+func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("affiliateCallSign"))
 	return rv
 }
 
 
-// SetAffiliateCallSign sets the value of the affiliateCallSign property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
-func (m_ MTRChannelClusterChannelInfo) CallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
+func (m_ MTRChannelClusterChannelInfo) CallSign() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("callSign"))
 	return rv
 }
 
 
-// SetCallSign sets the value of the callSign property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
-func (m_ MTRChannelClusterChannelInfo) SetCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetCallSign(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
-func (m_ MTRChannelClusterChannelInfo) MajorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
+func (m_ MTRChannelClusterChannelInfo) MajorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("majorNumber"))
 	return rv
 }
 
 
-// SetMajorNumber sets the value of the majorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
-func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
-func (m_ MTRChannelClusterChannelInfo) MinorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minorNumber"))
+func (m_ MTRChannelClusterChannelInfo) MinorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minorNumber"))
 	return rv
 }
 
 
-// SetMinorNumber sets the value of the minorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
-func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
-func (m_ MTRChannelClusterChannelInfo) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterChannelInfo) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
-func (m_ MTRChannelClusterChannelInfo) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

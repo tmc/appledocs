@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -40,8 +41,8 @@ type IDockTile interface {
 	SetContentView(value IView)
 	Owner() unsafe.Pointer
 	SetOwner(value unsafe.Pointer)
-	ShowsApplicationBadge() bool /* primitive/slice/pointer. */
-	SetShowsApplicationBadge(value bool /* primitive/slice/pointer. */)
+	ShowsApplicationBadge() bool
+	SetShowsApplicationBadge(value bool)
 	Size() objc.IObject /* cross-framework: Size */
 	SetSize(value objc.IObject /* cross-framework: Size */)
 	DockTile() IDockTile
@@ -182,7 +183,7 @@ func (d_ DockTile) SetOwner(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
-func (d_ DockTile) ShowsApplicationBadge() bool /* primitive/slice/pointer. */ {
+func (d_ DockTile) ShowsApplicationBadge() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("showsApplicationBadge"))
 	return rv
 }
@@ -192,7 +193,7 @@ func (d_ DockTile) ShowsApplicationBadge() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
-func (d_ DockTile) SetShowsApplicationBadge(value bool /* primitive/slice/pointer. */) {
+func (d_ DockTile) SetShowsApplicationBadge(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setShowsApplicationBadge:"), value)
 }
 
@@ -202,7 +203,7 @@ func (d_ DockTile) SetShowsApplicationBadge(value bool /* primitive/slice/pointe
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
 func (d_ DockTile) Size() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](d_.ID, objc.Sel("size"))
+	rv := objc.Send[corefoundation.Size](d_.ID, objc.Sel("size"))
 	return rv
 }
 

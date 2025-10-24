@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +32,10 @@ type _CarrierClass struct {
 type ICarrier interface {
 	objectivec.IObject
 	// properties:
-	CarrierName() string /* primitive/slice/pointer. */
-	MobileCountryCode() string /* primitive/slice/pointer. */
-	MobileNetworkCode() string /* primitive/slice/pointer. */
-	AllowsVOIP() bool /* primitive/slice/pointer. */
-	SetAllowsVOIP(value bool /* primitive/slice/pointer. */)
-	IsoCountryCode() string /* primitive/slice/pointer. */
-	SetIsoCountryCode(value string /* primitive/slice/pointer. */)
+	AllowsVOIP() bool
+	SetAllowsVOIP(value bool)
+	IsoCountryCode() objc.IObject /* cross-framework: NSString */
+	SetIsoCountryCode(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -92,41 +90,11 @@ func NewCarrier() Carrier {
 
 
 
-// The name of the user’s home cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/carrierName
-func (c_ Carrier) CarrierName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("carrierName"))
-	return rv
-}
-
-
-// The mobile country code (MCC) for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileCountryCode
-func (c_ Carrier) MobileCountryCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
-	return rv
-}
-
-
-// The mobile network code for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileNetworkCode
-func (c_ Carrier) MobileNetworkCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("mobileNetworkCode"))
-	return rv
-}
-
-
 // Indicates if the carrier allows making VoIP calls on its network.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
-func (c_ Carrier) AllowsVOIP() bool /* primitive/slice/pointer. */ {
+func (c_ Carrier) AllowsVOIP() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
 	return rv
 }
@@ -136,7 +104,7 @@ func (c_ Carrier) AllowsVOIP() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
-func (c_ Carrier) SetAllowsVOIP(value bool /* primitive/slice/pointer. */) {
+func (c_ Carrier) SetAllowsVOIP(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsVOIP:"), value)
 }
 
@@ -145,8 +113,8 @@ func (c_ Carrier) SetAllowsVOIP(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
-func (c_ Carrier) IsoCountryCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
+func (c_ Carrier) IsoCountryCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("isoCountryCode"))
 	return rv
 }
 
@@ -155,9 +123,8 @@ func (c_ Carrier) IsoCountryCode() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
-func (c_ Carrier) SetIsoCountryCode(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsoCountryCode:"), objc.String(value))
+func (c_ Carrier) SetIsoCountryCode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsoCountryCode:"), value)
 }
-
 
 

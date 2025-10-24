@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,16 +32,16 @@ type _AdTestPostbackResponseClass struct {
 // An interface definition for the [AdTestPostbackResponse] class.
 type IAdTestPostbackResponse interface {
 	objectivec.IObject
-	DidSucceed() bool
-	SetDidSucceed(value bool)
-	Error() foundation.Error
-	SetError(value foundation.IError)
-	HttpResponse() foundation.HTTPURLResponse
-	SetHttpResponse(value foundation.IHTTPURLResponse)
+	// properties:
+	// methods:
 }
 
 // The status and error information for a postback that the system sends in the testing environment.
+
+
+// The status and error information for a postback that the system sends in the testing environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse
 type AdTestPostbackResponse struct {
 	objectivec.Object
@@ -82,61 +83,6 @@ func (a_ AdTestPostbackResponse) Autorelease() AdTestPostbackResponse {
 // NewAdTestPostbackResponse creates a new AdTestPostbackResponse instance.
 func NewAdTestPostbackResponse() AdTestPostbackResponse {
 	return getAdTestPostbackResponseClass().New()
-}
-
-
-// A Boolean value that indicates whether the system successfully delivered the test postback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/didSucceed
-func (a_ AdTestPostbackResponse) DidSucceed() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("didSucceed"))
-	return rv
-}
-
-
-// SetDidSucceed sets the value of the didSucceed property.
-// A Boolean value that indicates whether the system successfully delivered the test postback.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/didSucceed
-func (a_ AdTestPostbackResponse) SetDidSucceed(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDidSucceed:"), value)
-}
-
-// An error the test session reports if sending a test postbacks fails.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/error
-func (a_ AdTestPostbackResponse) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](a_.ID, objc.Sel("error"))
-	return rv
-}
-
-
-// SetError sets the value of the error property.
-// An error the test session reports if sending a test postbacks fails.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/error
-func (a_ AdTestPostbackResponse) SetError(value foundation.IError) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
-}
-
-// The HTTP response from the server receiving the test postback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
-func (a_ AdTestPostbackResponse) HttpResponse() foundation.HTTPURLResponse {
-	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("httpResponse"))
-	return rv
-}
-
-
-// SetHttpResponse sets the value of the httpResponse property.
-// The HTTP response from the server receiving the test postback.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
-func (a_ AdTestPostbackResponse) SetHttpResponse(value foundation.IHTTPURLResponse) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpResponse:"), value)
 }
 
 

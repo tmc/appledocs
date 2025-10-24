@@ -31,11 +31,15 @@ type _MTRDoorLockClusterDoorLockAlarmEventClass struct {
 // An interface definition for the [MTRDoorLockClusterDoorLockAlarmEvent] class.
 type IMTRDoorLockClusterDoorLockAlarmEvent interface {
 	objectivec.IObject
-	AlarmCode() foundation.Number
-	SetAlarmCode(value foundation.INumber)
+	// properties:
+	AlarmCode() objc.IObject /* cross-framework: NSNumber */
+	SetAlarmCode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterDoorLockAlarmEvent
 type MTRDoorLockClusterDoorLockAlarmEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRDoorLockClusterDoorLockAlarmEvent() MTRDoorLockClusterDoorLockAlarmEv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorlockalarmevent/alarmcode
-func (m_ MTRDoorLockClusterDoorLockAlarmEvent) AlarmCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmCode"))
+func (m_ MTRDoorLockClusterDoorLockAlarmEvent) AlarmCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarmCode"))
 	return rv
 }
 
 
-// SetAlarmCode sets the value of the alarmCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorlockalarmevent/alarmcode
-func (m_ MTRDoorLockClusterDoorLockAlarmEvent) SetAlarmCode(value foundation.INumber) {
+func (m_ MTRDoorLockClusterDoorLockAlarmEvent) SetAlarmCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmCode:"), value)
 }
 

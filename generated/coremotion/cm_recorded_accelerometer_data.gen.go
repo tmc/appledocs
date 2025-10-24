@@ -31,8 +31,6 @@ type _RecordedAccelerometerDataClass struct {
 type IRecordedAccelerometerData interface {
 	IAccelerometerData
 	// properties:
-	Identifier() uint64 /* primitive/slice/pointer. */
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
 	// methods:
 }
 
@@ -87,27 +85,6 @@ func (r_ RecordedAccelerometerData) Autorelease() RecordedAccelerometerData {
 // NewRecordedAccelerometerData creates a new RecordedAccelerometerData instance.
 func NewRecordedAccelerometerData() RecordedAccelerometerData {
 	return getRecordedAccelerometerDataClass().New()
-}
-
-
-
-// The unique identifier for the accelerometer data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/identifier
-func (r_ RecordedAccelerometerData) Identifier() uint64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The wall clock time when the sensor sample was recorded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/startDate
-func (r_ RecordedAccelerometerData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
-	return rv
 }
 
 

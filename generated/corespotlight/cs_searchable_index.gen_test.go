@@ -9,20 +9,11 @@ import (
 // Suppress unused import errors
 var _ = corespotlight.NewCSSearchableIndex
 
-// ExampleNewCSSearchableIndexWithName demonstrates how to create a CSSearchableIndex instance using NewCSSearchableIndexWithName.
-// Returns an on-device index with the specified name.
-func ExampleNewCSSearchableIndexWithName() {
-	_ = corespotlight.NewCSSearchableIndexWithName(
-		"name", // name string
-	)
+// ExampleCSSearchableIndex_BeginIndexBatch demonstrates using BeginIndexBatch on a CSSearchableIndex instance.
+// Begins a batch of updates to an index.
+func ExampleCSSearchableIndex_BeginIndexBatch() {
+	obj := corespotlight.NewCSSearchableIndex()
+	obj.BeginIndexBatch()
 	// Output:
-}
-// ExampleNewCSSearchableIndexWithNameProtectionClass demonstrates how to create a CSSearchableIndex instance using NewCSSearchableIndexWithNameProtectionClass.
-// Returns an on-device index with the specified name and data protection class.
-func ExampleNewCSSearchableIndexWithNameProtectionClass() {
-	_ = corespotlight.NewCSSearchableIndexWithNameProtectionClass(
-		"name", // name string
-		corespotlight.FileProtectionType{}, // protectionClass FileProtectionType
-	)
-	// Output:
-}
+	}
+

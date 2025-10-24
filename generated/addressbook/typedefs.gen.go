@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for AddressBook. DO NOT EDIT.
 
 package addressbook
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // ABAddressBookRef - A reference to an ABAddressBook object.
@@ -11,8 +14,9 @@ type ABAddressBookRef uintptr
 // ABExternalChangeCallback - Prototype for a function callback invoked on an address book when the Address Book database is modified by another address book instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABExternalChangeCallback
-// ABExternalChangeCallback has base type: void (*)(const void *, const struct __CFDictionary *, void *)
-type ABExternalChangeCallback uintptr
+// ABExternalChangeCallback is a callback function
+// C type: void (*)(const void *, const struct __CFDictionary *, void *)
+type ABExternalChangeCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // ABGroupRef - A reference to an ABGroup object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroupRef
@@ -21,8 +25,9 @@ type ABGroupRef uintptr
 // ABImageClientCallback - Prototype of a callback function used to notify an application when an asynchronous image fetch is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABImageClientCallback
-// ABImageClientCallback has base type: void (*)(const struct __CFData *, long, void *)
-type ABImageClientCallback uintptr
+// ABImageClientCallback is a callback function
+// C type: void (*)(const struct __CFData *, long, void *)
+type ABImageClientCallback = func(unsafe.Pointer, int, unsafe.Pointer)
 // ABMultiValueIdentifier - Identifies multivalue properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueIdentifier

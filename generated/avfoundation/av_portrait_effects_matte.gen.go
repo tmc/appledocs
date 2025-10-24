@@ -33,8 +33,8 @@ type IPortraitEffectsMatte interface {
 	// properties:
 	MattingImage() PixelBuffer /* not a class type */
 	SetMattingImage(value PixelBuffer /* not a class type */)
-	PixelFormatType() unsafe.Pointer
-	SetPixelFormatType(value unsafe.Pointer)
+	PixelFormatType() uint32 /* not a class type */
+	SetPixelFormatType(value uint32 /* not a class type */)
 	// methods:
 }
 
@@ -114,8 +114,8 @@ func (p_ PortraitEffectsMatte) SetMattingImage(value PixelBuffer /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
-func (p_ PortraitEffectsMatte) PixelFormatType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pixelFormatType"))
+func (p_ PortraitEffectsMatte) PixelFormatType() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](p_.ID, objc.Sel("pixelFormatType"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (p_ PortraitEffectsMatte) PixelFormatType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/pixelformattype
-func (p_ PortraitEffectsMatte) SetPixelFormatType(value unsafe.Pointer) {
+func (p_ PortraitEffectsMatte) SetPixelFormatType(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelFormatType:"), value)
 }
 

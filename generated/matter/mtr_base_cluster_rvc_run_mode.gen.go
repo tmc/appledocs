@@ -29,9 +29,13 @@ type _MTRBaseClusterRVCRunModeClass struct {
 // An interface definition for the [MTRBaseClusterRVCRunMode] class.
 type IMTRBaseClusterRVCRunMode interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRVCRunMode
 type MTRBaseClusterRVCRunMode struct {
 	MTRGenericBaseCluster

@@ -32,7 +32,9 @@ type IPipe interface {
 	objectivec.IObject
 	// properties:
 	FileHandleForReading() IFileHandle
+	SetFileHandleForReading(value IFileHandle)
 	FileHandleForWriting() IFileHandle
+	SetFileHandleForWriting(value IFileHandle)
 	// methods:
 }
 
@@ -102,9 +104,28 @@ func (pc _PipeClass) Pipe() IPipe {
 // The receiver’s read file handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForReading
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforreading
 func (p_ Pipe) FileHandleForReading() IFileHandle {
 	rv := objc.Send[FileHandle](p_.ID, objc.Sel("fileHandleForReading"))
+	return rv
+}
+
+
+// The receiver’s read file handle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforreading
+func (p_ Pipe) SetFileHandleForReading(value IFileHandle) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileHandleForReading:"), value)
+}
+
+
+// The receiver’s write file handle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforwriting
+func (p_ Pipe) FileHandleForWriting() IFileHandle {
+	rv := objc.Send[FileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }
 
@@ -112,10 +133,9 @@ func (p_ Pipe) FileHandleForReading() IFileHandle {
 // The receiver’s write file handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForWriting
-func (p_ Pipe) FileHandleForWriting() IFileHandle {
-	rv := objc.Send[FileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforwriting
+func (p_ Pipe) SetFileHandleForWriting(value IFileHandle) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileHandleForWriting:"), value)
 }
 
 

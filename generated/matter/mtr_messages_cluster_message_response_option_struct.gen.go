@@ -31,13 +31,17 @@ type _MTRMessagesClusterMessageResponseOptionStructClass struct {
 // An interface definition for the [MTRMessagesClusterMessageResponseOptionStruct] class.
 type IMTRMessagesClusterMessageResponseOptionStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	MessageResponseID() foundation.Number
-	SetMessageResponseID(value foundation.INumber)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	MessageResponseID() objc.IObject /* cross-framework: NSNumber */
+	SetMessageResponseID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct
 type MTRMessagesClusterMessageResponseOptionStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRMessagesClusterMessageResponseOptionStruct() MTRMessagesClusterMessag
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/messageResponseID
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) MessageResponseID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("messageResponseID"))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) MessageResponseID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("messageResponseID"))
 	return rv
 }
 
 
-// SetMessageResponseID sets the value of the messageResponseID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/messageResponseID
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetMessageResponseID(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetMessageResponseID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageResponseID:"), value)
 }
 

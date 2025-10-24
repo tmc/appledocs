@@ -2,12 +2,12 @@
 
 // Package visionkit provides Go bindings for the VisionKit framework.
 //
-// Identify and extract information in the environment using the device’s camera, or in images that your app displays. [Full Topic]
+// Identify and extract information in the environment using the device’s camera, or in images that your app displays.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to VisionKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit
+// See: https://developer.apple.com/documentation/VisionKit
 package visionkit
 
 import (

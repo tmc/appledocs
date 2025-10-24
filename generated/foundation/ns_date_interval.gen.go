@@ -31,15 +31,15 @@ type _DateIntervalClass struct {
 type IDateInterval interface {
 	objectivec.IObject
 	// properties:
-	Duration() objc.IObject /* cross-framework: TimeInterval */
+	Duration() float64
 	EndDate() IDate
 	StartDate() IDate
 	// methods:
 	Compare(dateInterval IDateInterval) ComparisonResult
-	ContainsDate(date IDate) bool /* primitive/slice/pointer. */
+	ContainsDate(date IDate) bool
 	IntersectionWithDateInterval(dateInterval IDateInterval) IDateInterval
-	IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */
-	IsEqualToDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */
+	IntersectsDateInterval(dateInterval IDateInterval) bool
+	IsEqualToDateInterval(dateInterval IDateInterval) bool
 }
 
 // An object representing the span of time between a specific start date and end date.
@@ -111,7 +111,7 @@ func NewDateIntervalWithCoder(coder ICoder) DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
-func NewDateIntervalWithStartDateDuration(startDate IDate, duration objc.IObject /* cross-framework TimeInterval */) DateInterval {
+func NewDateIntervalWithStartDateDuration(startDate IDate, duration float64) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/contains(_:)
-func (d_ DateInterval) ContainsDate(date IDate) bool /* primitive/slice/pointer. */ {
+func (d_ DateInterval) ContainsDate(date IDate) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("containsDate:"), date)
 	return rv
 }
@@ -166,7 +166,7 @@ func (d_ DateInterval) IntersectionWithDateInterval(dateInterval IDateInterval) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/intersects(_:)
-func (d_ DateInterval) IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */ {
+func (d_ DateInterval) IntersectsDateInterval(dateInterval IDateInterval) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("intersectsDateInterval:"), dateInterval)
 	return rv
 }
@@ -176,7 +176,7 @@ func (d_ DateInterval) IntersectsDateInterval(dateInterval IDateInterval) bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/isEqual(to:)
-func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */ {
+func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToDateInterval:"), dateInterval)
 	return rv
 }
@@ -186,8 +186,8 @@ func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/duration
-func (d_ DateInterval) Duration() objc.IObject /* cross-framework: TimeInterval */ {
-	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
+func (d_ DateInterval) Duration() float64 {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("duration"))
 	return rv
 }
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterApplicationLauncherClass struct {
 // An interface definition for the [MTRBaseClusterApplicationLauncher] class.
 type IMTRBaseClusterApplicationLauncher interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterApplicationLauncher
 type MTRBaseClusterApplicationLauncher struct {
 	MTRGenericBaseCluster

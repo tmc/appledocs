@@ -30,8 +30,8 @@ type _IndexSpecifierClass struct {
 type IIndexSpecifier interface {
 	IScriptObjectSpecifier
 	// properties:
-	Index() int /* primitive/slice/pointer. */
-	SetIndex(value int /* primitive/slice/pointer. */)
+	Index() int
+	SetIndex(value int)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewIndexSpecifier() IndexSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
-func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, index int /* primitive/slice/pointer. */) IndexSpecifier {
+func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, index int) IndexSpecifier {
 	instance := getIndexSpecifierClass().Alloc()
 	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, property, index)
 	rv.Autorelease()
@@ -103,21 +103,21 @@ func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(cl
 
 
 
-// Sets the value of the receiver’s property.
+// Sets the value of the receiver’s
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-func (i_ IndexSpecifier) Index() int /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexspecifier/index
+func (i_ IndexSpecifier) Index() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("index"))
 	return rv
 }
 
 
-// Sets the value of the receiver’s property.
+// Sets the value of the receiver’s
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-func (i_ IndexSpecifier) SetIndex(value int /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexspecifier/index
+func (i_ IndexSpecifier) SetIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }
 

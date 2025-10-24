@@ -30,8 +30,8 @@ type _FragmentedAssetClass struct {
 type IFragmentedAsset interface {
 	IURLAsset
 	// properties:
-	CanContainFragments() bool /* primitive/slice/pointer. */
-	SetCanContainFragments(value bool /* primitive/slice/pointer. */)
+	CanContainFragments() bool
+	SetCanContainFragments(value bool)
 	Tracks() objc.IObject /* cross-framework: FragmentedAssetTrack */
 	SetTracks(value objc.IObject /* cross-framework: FragmentedAssetTrack */)
 	// methods:
@@ -96,7 +96,7 @@ func NewFragmentedAsset() FragmentedAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments
-func (f_ FragmentedAsset) CanContainFragments() bool /* primitive/slice/pointer. */ {
+func (f_ FragmentedAsset) CanContainFragments() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("canContainFragments"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (f_ FragmentedAsset) CanContainFragments() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments
-func (f_ FragmentedAsset) SetCanContainFragments(value bool /* primitive/slice/pointer. */) {
+func (f_ FragmentedAsset) SetCanContainFragments(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCanContainFragments:"), value)
 }
 

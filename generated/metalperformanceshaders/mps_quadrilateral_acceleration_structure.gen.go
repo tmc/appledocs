@@ -29,11 +29,15 @@ type _QuadrilateralAccelerationStructureClass struct {
 // An interface definition for the [QuadrilateralAccelerationStructure] class.
 type IQuadrilateralAccelerationStructure interface {
 	IPolygonAccelerationStructure
+	// properties:
 	QuadrilateralCount() uint
 	SetQuadrilateralCount(value uint)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure
 type QuadrilateralAccelerationStructure struct {
 	PolygonAccelerationStructure
@@ -78,7 +82,8 @@ func NewQuadrilateralAccelerationStructure() QuadrilateralAccelerationStructure 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
 func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() uint {
 	rv := objc.Send[uint](q_.ID, objc.Sel("quadrilateralCount"))
@@ -86,8 +91,7 @@ func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() uint {
 }
 
 
-// SetQuadrilateralCount sets the value of the quadrilateralCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
 func (q_ QuadrilateralAccelerationStructure) SetQuadrilateralCount(value uint) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setQuadrilateralCount:"), value)

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,22 +32,22 @@ type _CNInstantMessageAddressClass struct {
 type ICNInstantMessageAddress interface {
 	objectivec.IObject
 	// properties:
-	Service() string /* primitive/slice/pointer. */
-	SetService(value string /* primitive/slice/pointer. */)
-	Username() string /* primitive/slice/pointer. */
-	SetUsername(value string /* primitive/slice/pointer. */)
-	CNInstantMessageAddressServiceKey() string /* primitive/slice/pointer. */
-	CNInstantMessageAddressUsernameKey() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceAIM() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceFacebook() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceGaduGadu() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceGoogleTalk() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceICQ() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceJabber() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceMSN() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceQQ() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceSkype() string /* primitive/slice/pointer. */
-	CNInstantMessageServiceYahoo() string /* primitive/slice/pointer. */
+	Service() objc.IObject /* cross-framework: NSString */
+	SetService(value objc.IObject /* cross-framework: NSString */)
+	Username() objc.IObject /* cross-framework: NSString */
+	SetUsername(value objc.IObject /* cross-framework: NSString */)
+	CNInstantMessageAddressServiceKey() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageAddressUsernameKey() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceAIM() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceFacebook() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceGaduGadu() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceGoogleTalk() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceICQ() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceJabber() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceMSN() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceQQ() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceSkype() objc.IObject /* cross-framework: NSString */
+	CNInstantMessageServiceYahoo() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -107,8 +108,8 @@ func NewCNInstantMessageAddress() CNInstantMessageAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
-func (c_ CNInstantMessageAddress) Service() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("service"))
+func (c_ CNInstantMessageAddress) Service() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("service"))
 	return rv
 }
 
@@ -117,8 +118,8 @@ func (c_ CNInstantMessageAddress) Service() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/service
-func (c_ CNInstantMessageAddress) SetService(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), objc.String(value))
+func (c_ CNInstantMessageAddress) SetService(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), value)
 }
 
 
@@ -126,8 +127,8 @@ func (c_ CNInstantMessageAddress) SetService(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-func (c_ CNInstantMessageAddress) Username() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("username"))
+func (c_ CNInstantMessageAddress) Username() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (c_ CNInstantMessageAddress) Username() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddress/username
-func (c_ CNInstantMessageAddress) SetUsername(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (c_ CNInstantMessageAddress) SetUsername(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), value)
 }
 
 
@@ -145,8 +146,8 @@ func (c_ CNInstantMessageAddress) SetUsername(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey
-func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressServiceKey"))
+func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageAddressServiceKey"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageAddressServiceKey() string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey
-func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageAddressUsernameKey"))
+func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageAddressUsernameKey"))
 	return rv
 }
 
@@ -165,8 +166,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageAddressUsernameKey() string /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceAIM"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceAIM"))
 	return rv
 }
 
@@ -175,8 +176,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceAIM() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicefacebook
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceFacebook() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceFacebook"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceFacebook() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceFacebook"))
 	return rv
 }
 
@@ -185,8 +186,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceFacebook() string /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicegadugadu
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceGaduGadu() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceGaduGadu"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceGaduGadu() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceGaduGadu"))
 	return rv
 }
 
@@ -195,8 +196,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceGaduGadu() string /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicegoogletalk
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceGoogleTalk"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceGoogleTalk"))
 	return rv
 }
 
@@ -205,8 +206,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceGoogleTalk() string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceicq
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceICQ"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceICQ"))
 	return rv
 }
 
@@ -215,8 +216,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceICQ() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicejabber
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceJabber"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceJabber"))
 	return rv
 }
 
@@ -225,8 +226,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceJabber() string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceMSN"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceMSN"))
 	return rv
 }
 
@@ -235,8 +236,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceMSN() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceQQ"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceQQ"))
 	return rv
 }
 
@@ -245,8 +246,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceQQ() string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceskype
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceSkype"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceSkype"))
 	return rv
 }
 
@@ -255,8 +256,8 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceSkype() string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo
-func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
+func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
 	return rv
 }
 

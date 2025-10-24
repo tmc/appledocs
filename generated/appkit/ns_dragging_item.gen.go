@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,7 +101,7 @@ func NewDraggingItem() DraggingItem {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/draggingframe
 func (d_ DraggingItem) DraggingFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](d_.ID, objc.Sel("draggingFrame"))
+	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("draggingFrame"))
 	return rv
 }
 

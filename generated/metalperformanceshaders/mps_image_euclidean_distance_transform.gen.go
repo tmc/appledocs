@@ -32,8 +32,8 @@ type _ImageEuclideanDistanceTransformClass struct {
 type IImageEuclideanDistanceTransform interface {
 	IUnaryImageKernel
 	// properties:
-	SearchLimitRadius() float32 /* primitive/slice/pointer. */
-	SetSearchLimitRadius(value float32 /* primitive/slice/pointer. */)
+	SearchLimitRadius() float32
+	SetSearchLimitRadius(value float32)
 	// methods:
 }
 
@@ -119,7 +119,7 @@ func NewImageEuclideanDistanceTransformWithDevice(device objectivec.IObject) Ima
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEuclideanDistanceTransform/searchLimitRadius
-func (i_ ImageEuclideanDistanceTransform) SearchLimitRadius() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageEuclideanDistanceTransform) SearchLimitRadius() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("searchLimitRadius"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (i_ ImageEuclideanDistanceTransform) SearchLimitRadius() float32 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEuclideanDistanceTransform/searchLimitRadius
-func (i_ ImageEuclideanDistanceTransform) SetSearchLimitRadius(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageEuclideanDistanceTransform) SetSearchLimitRadius(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchLimitRadius:"), value)
 }
 

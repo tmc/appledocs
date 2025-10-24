@@ -30,13 +30,19 @@ type _SFSafariExtensionViewControllerClass struct {
 // An interface definition for the [SFSafariExtensionViewController] class.
 type ISFSafariExtensionViewController interface {
 	appkit.IViewController
+	// properties:
+	// methods:
 	DismissPopover()
 }
 
 // The view controller for a popover associated with your app extension.
 //
 // If your toolbar item has a popover, your popover view controller should be a subclass of this class. As with other macOS development, typically you want to add your own outlets and actions to the view controller, and provide an XIB file for its user interface. Your view controller’s contents must use Auto Layout.
+
+
+// The view controller for a popover associated with your app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionViewController
 type SFSafariExtensionViewController struct {
 	appkit.ViewController
@@ -83,7 +89,8 @@ func NewSFSafariExtensionViewController() SFSafariExtensionViewController {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionViewController/dismissPopover()
 func (s_ SFSafariExtensionViewController) DismissPopover() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("dismissPopover"))

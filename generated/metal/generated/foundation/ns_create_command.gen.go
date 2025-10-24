@@ -31,7 +31,9 @@ type ICreateCommand interface {
 	IScriptCommand
 	// properties:
 	CreateClassDescription() IScriptClassDescription
-	ResolvedKeyDictionary() IDictionary /* already interface */
+	SetCreateClassDescription(value IScriptClassDescription)
+	ResolvedKeyDictionary() IString
+	SetResolvedKeyDictionary(value IString)
 	// methods:
 }
 
@@ -93,20 +95,38 @@ func NewCreateCommand() CreateCommand {
 // Returns the class description for the class that is to be created.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscreatecommand/createclassdescription
 func (c_ CreateCommand) CreateClassDescription() IScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](c_.ID, objc.Sel("createClassDescription"))
 	return rv
 }
 
 
-// Returns a dictionary that contains the properties that were specified in the Apple event command that has been converted to this object.
+// Returns the class description for the class that is to be created.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
-func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](c_.ID, objc.Sel("resolvedKeyDictionary"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscreatecommand/createclassdescription
+func (c_ CreateCommand) SetCreateClassDescription(value IScriptClassDescription) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreateClassDescription:"), value)
+}
+
+
+// Returns a dictionary that contains the properties that were specified in the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscreatecommand/resolvedkeydictionary
+func (c_ CreateCommand) ResolvedKeyDictionary() IString {
+	rv := objc.Send[String](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
+}
+
+
+// Returns a dictionary that contains the properties that were specified in the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscreatecommand/resolvedkeydictionary
+func (c_ CreateCommand) SetResolvedKeyDictionary(value IString) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResolvedKeyDictionary:"), value)
 }
 
 

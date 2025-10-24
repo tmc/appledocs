@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEEthernetTunnelNetworkSettings] class.
@@ -29,13 +30,19 @@ type _NEEthernetTunnelNetworkSettingsClass struct {
 // An interface definition for the [NEEthernetTunnelNetworkSettings] class.
 type INEEthernetTunnelNetworkSettings interface {
 	INEPacketTunnelNetworkSettings
-	EthernetAddress() string
+	// properties:
+	EthernetAddress() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // The network settings for an ethernet-based VPN tunnel.
 //
 // You use this type with instances to communicate the desired network settings for the packet tunnel to the framework. The framework takes care of applying the contained settings to the system. Instances of this class are thread-safe.
+
+
+// The network settings for an ethernet-based VPN tunnel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings
 type NEEthernetTunnelNetworkSettings struct {
 	NEPacketTunnelNetworkSettings
@@ -83,23 +90,25 @@ func NewNEEthernetTunnelNetworkSettings() NEEthernetTunnelNetworkSettings {
 
 
 
-
 // Creates a settings object with a given tunnel remote address and MAC address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/init(tunnelRemoteAddress:ethernetAddress:mtu:)
-func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu(address string, ethernetAddress string, mtu int) NEEthernetTunnelNetworkSettings {
+func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu(address objc.IObject /* cross-framework: NSString */, ethernetAddress objc.IObject /* cross-framework: NSString */, mtu int) NEEthernetTunnelNetworkSettings {
 	instance := getNEEthernetTunnelNetworkSettingsClass().Alloc()
-	rv := objc.Send[NEEthernetTunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:ethernetAddress:mtu:"), objc.String(address), objc.String(ethernetAddress), mtu)
+	rv := objc.Send[NEEthernetTunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:ethernetAddress:mtu:"), address, ethernetAddress, mtu)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // The ethernet address of the tunnel interface, as a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/ethernetAddress
-func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ethernetAddress"))
+func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("ethernetAddress"))
 	return rv
 }
 

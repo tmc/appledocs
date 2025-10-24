@@ -1,33 +1,41 @@
 // Code generated from Apple documentation for ColorSync. DO NOT EDIT.
 
 package colorsync
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // MApplyTransformProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMApplyTransformProc
-// CMMApplyTransformProc has base type: _Bool (*)(struct ColorSyncTransform *, unsigned long, unsigned long, unsigned long, void **, enum ColorSyncDataDepth, unsigned int, unsigned long, unsigned long, const void **, enum ColorSyncDataDepth, unsigned int, unsigned long, const struct __CFDictionary *)
-type MApplyTransformProc uintptr
+// CMMApplyTransformProc is a callback function
+// C type: _Bool (*)(struct ColorSyncTransform *, unsigned long, unsigned long, unsigned long, void **, enum ColorSyncDataDepth, unsigned int, unsigned long, unsigned long, const void **, enum ColorSyncDataDepth, unsigned int, unsigned long, const struct __CFDictionary *)
+type MApplyTransformProc = func(unsafe.Pointer, uint, uint, uint, unsafe.Pointer, ColorSyncDataDepth, uint32, uint, uint, unsafe.Pointer, ColorSyncDataDepth, uint32, uint, unsafe.Pointer) bool
 // MCreateTransformPropertyProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMCreateTransformPropertyProc
-// CMMCreateTransformPropertyProc has base type: const void *(*)(struct ColorSyncTransform *, const void *, const struct __CFDictionary *)
-type MCreateTransformPropertyProc uintptr
+// CMMCreateTransformPropertyProc is a callback function
+// C type: const void *(*)(struct ColorSyncTransform *, const void *, const struct __CFDictionary *)
+type MCreateTransformPropertyProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 // MInitializeLinkProfileProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMInitializeLinkProfileProc
-// CMMInitializeLinkProfileProc has base type: _Bool (*)(struct ColorSyncProfile *, const struct __CFArray *, const struct __CFDictionary *)
-type MInitializeLinkProfileProc uintptr
+// CMMInitializeLinkProfileProc is a callback function
+// C type: _Bool (*)(struct ColorSyncProfile *, const struct __CFArray *, const struct __CFDictionary *)
+type MInitializeLinkProfileProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 // MInitializeTransformProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMInitializeTransformProc
-// CMMInitializeTransformProc has base type: _Bool (*)(struct ColorSyncTransform *, const struct __CFArray *, const struct __CFDictionary *)
-type MInitializeTransformProc uintptr
+// CMMInitializeTransformProc is a callback function
+// C type: _Bool (*)(struct ColorSyncTransform *, const struct __CFArray *, const struct __CFDictionary *)
+type MInitializeTransformProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 // ColorSyncCMMIterateCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMIterateCallback
-// ColorSyncCMMIterateCallback has base type: _Bool (*)(struct ColorSyncCMM *, void *)
-type ColorSyncCMMIterateCallback uintptr
+// ColorSyncCMMIterateCallback is a callback function
+// C type: _Bool (*)(struct ColorSyncCMM *, void *)
+type ColorSyncCMMIterateCallback = func(unsafe.Pointer, unsafe.Pointer) bool
 // ColorSyncDataLayout type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncDataLayout
@@ -36,8 +44,9 @@ type ColorSyncDataLayout uintptr
 // ColorSyncDeviceProfileIterateCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncDeviceProfileIterateCallback
-// ColorSyncDeviceProfileIterateCallback has base type: _Bool (*)(const struct __CFDictionary *, void *)
-type ColorSyncDeviceProfileIterateCallback uintptr
+// ColorSyncDeviceProfileIterateCallback is a callback function
+// C type: _Bool (*)(const struct __CFDictionary *, void *)
+type ColorSyncDeviceProfileIterateCallback = func(unsafe.Pointer, unsafe.Pointer) bool
 // ColorSyncProfileRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfile
@@ -46,8 +55,9 @@ type ColorSyncProfileRef uintptr
 // ColorSyncProfileIterateCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIterateCallback
-// ColorSyncProfileIterateCallback has base type: _Bool (*)(const struct __CFDictionary *, void *)
-type ColorSyncProfileIterateCallback uintptr
+// ColorSyncProfileIterateCallback is a callback function
+// C type: _Bool (*)(const struct __CFDictionary *, void *)
+type ColorSyncProfileIterateCallback = func(unsafe.Pointer, unsafe.Pointer) bool
 // ColorSyncCMMRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMM

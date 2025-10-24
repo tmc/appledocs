@@ -29,9 +29,13 @@ type _MTRClusterColorControlClass struct {
 // An interface definition for the [MTRClusterColorControl] class.
 type IMTRClusterColorControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterColorControl
 type MTRClusterColorControl struct {
 	MTRGenericCluster

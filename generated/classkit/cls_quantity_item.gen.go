@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SQuantityItem] class.
@@ -30,8 +31,8 @@ type _SQuantityItemClass struct {
 type ISQuantityItem interface {
 	ISActivityItem
 	// properties:
-	Quantity() float64 /* primitive/slice/pointer. */
-	SetQuantity(value float64 /* primitive/slice/pointer. */)
+	Quantity() float64
+	SetQuantity(value float64)
 	// methods:
 }
 
@@ -94,9 +95,9 @@ func NewSQuantityItem() SQuantityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
-func NewSQuantityItemWithIdentifierTitle(identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */) SQuantityItem {
+func NewSQuantityItemWithIdentifierTitle(identifier objc.IObject /* cross-framework: NSString */, title objc.IObject /* cross-framework: NSString */) SQuantityItem {
 	instance := getSQuantityItemClass().Alloc()
-	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), objc.String(identifier), objc.String(title))
+	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), identifier, title)
 	rv.Autorelease()
 	return rv
 }
@@ -107,7 +108,7 @@ func NewSQuantityItemWithIdentifierTitle(identifier string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) Quantity() float64 /* primitive/slice/pointer. */ {
+func (s_ SQuantityItem) Quantity() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("quantity"))
 	return rv
 }
@@ -117,7 +118,7 @@ func (s_ SQuantityItem) Quantity() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) SetQuantity(value float64 /* primitive/slice/pointer. */) {
+func (s_ SQuantityItem) SetQuantity(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuantity:"), value)
 }
 

@@ -31,28 +31,28 @@ type _FileVersionClass struct {
 type IFileVersion interface {
 	objectivec.IObject
 	// properties:
-	HasLocalContents() bool /* primitive/slice/pointer. */
-	HasThumbnail() bool /* primitive/slice/pointer. */
-	Conflict() bool /* primitive/slice/pointer. */
-	Discardable() bool /* primitive/slice/pointer. */
-	SetDiscardable(value bool /* primitive/slice/pointer. */)
-	Resolved() bool /* primitive/slice/pointer. */
-	SetResolved(value bool /* primitive/slice/pointer. */)
-	LocalizedName() IString
 	LocalizedNameOfSavingComputer() IString
+	HasLocalContents() bool
+	SetHasLocalContents(value bool)
+	HasThumbnail() bool
+	SetHasThumbnail(value bool)
+	IsConflict() bool
+	SetIsConflict(value bool)
+	IsDiscardable() bool
+	SetIsDiscardable(value bool)
+	IsResolved() bool
+	SetIsResolved(value bool)
+	LocalizedName() IString
+	SetLocalizedName(value IString)
 	ModificationDate() IDate
+	SetModificationDate(value IDate)
 	OriginatorNameComponents() IPersonNameComponents
-	PersistentIdentifier() objc.ID
-	URL() IURL
-	IsConflict() bool /* primitive/slice/pointer. */
-	SetIsConflict(value bool /* primitive/slice/pointer. */)
-	IsDiscardable() bool /* primitive/slice/pointer. */
-	SetIsDiscardable(value bool /* primitive/slice/pointer. */)
-	IsResolved() bool /* primitive/slice/pointer. */
-	SetIsResolved(value bool /* primitive/slice/pointer. */)
+	SetOriginatorNameComponents(value IPersonNameComponents)
+	PersistentIdentifier() Coding /* not a class type */
+	SetPersistentIdentifier(value Coding /* not a class type */)
+	Url() IURL
+	SetUrl(value IURL)
 	// methods:
-	RemoveAndReturnError(outError IError) bool /* primitive/slice/pointer. */
-	ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL
 }
 
 // A snapshot of a file at a specific point in time.
@@ -108,177 +108,6 @@ func NewFileVersion() FileVersion {
 
 
 
-// Creates a version of the file at the specified location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/addOfItem(at:withContentsOf:options:)
-func (fc _FileVersionClass) AddVersionOfItemAtURLWithContentsOfURLOptionsError(url IURL, contentsURL IURL, options FileVersionAddingOptions, outError IError) IFileVersion {
-	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("addVersionOfItemAtURL:withContentsOfURL:options:error:"), url, contentsURL, options, outError)
-	return rv
-}
-
-
-// Returns the most recent version object for the file at the specified URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/currentVersionOfItem(at:)
-func (fc _FileVersionClass) CurrentVersionOfItemAtURL(url IURL) IFileVersion {
-	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("currentVersionOfItemAtURL:"), url)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/getNonlocalVersionsOfItem(at:completionHandler:)
-func (fc _FileVersionClass) GetNonlocalVersionsOfItemAtURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("getNonlocalVersionsOfItemAtURL:completionHandler:"), url, completionHandler)
-}
-
-
-// Returns all versions of the specified file except the current version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/otherVersionsOfItem(at:)
-func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]FileVersion](objc.ID(fc.class), objc.Sel("otherVersionsOfItemAtURL:"), url)
-	return rv
-}
-
-
-// Removes all versions of a file, except the current one, from the version store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/removeOtherVersionsOfItem(at:)
-func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("removeOtherVersionsOfItemAtURL:error:"), url, outError)
-	return rv
-}
-
-
-// Creates and returns a temporary directory to use for saving the contents of the file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/temporaryDirectoryURLForNewVersionOfItem(at:)
-func (fc _FileVersionClass) TemporaryDirectoryURLForNewVersionOfItemAtURL(url IURL) IURL {
-	rv := objc.Send[URL](objc.ID(fc.class), objc.Sel("temporaryDirectoryURLForNewVersionOfItemAtURL:"), url)
-	return rv
-}
-
-
-// Returns an array of version objects that are currently in conflict for the specified URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/unresolvedConflictVersionsOfItem(at:)
-func (fc _FileVersionClass) UnresolvedConflictVersionsOfItemAtURL(url IURL) []FileVersion /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]FileVersion](objc.ID(fc.class), objc.Sel("unresolvedConflictVersionsOfItemAtURL:"), url)
-	return rv
-}
-
-
-// Returns the version of the file that has the specified persistent ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/version(itemAt:forPersistentIdentifier:)
-func (fc _FileVersionClass) VersionOfItemAtURLForPersistentIdentifier(url IURL, persistentIdentifier objectivec.IObject) IFileVersion {
-	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("versionOfItemAtURL:forPersistentIdentifier:"), url, persistentIdentifier)
-	return rv
-}
-
-
-// Remove this version object and its associated file from the version store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/remove()
-func (f_ FileVersion) RemoveAndReturnError(outError IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeAndReturnError:"), outError)
-	return rv
-}
-
-
-// Replace the contents of the specified file with the contents of the current version’s file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/replaceItem(at:options:)
-func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
-func (f_ FileVersion) HasLocalContents() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasThumbnail
-func (f_ FileVersion) HasThumbnail() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the contents of the version are in conflict with the contents of another version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isConflict
-func (f_ FileVersion) Conflict() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("conflict"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the system can delete the associated file at some future time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isDiscardable
-func (f_ FileVersion) Discardable() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("discardable"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the system can delete the associated file at some future time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isDiscardable
-func (f_ FileVersion) SetDiscardable(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDiscardable:"), value)
-}
-
-
-// A Boolean value that indicates if the version object is in conflict or not.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isResolved
-func (f_ FileVersion) Resolved() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("resolved"))
-	return rv
-}
-
-
-// A Boolean value that indicates if the version object is in conflict or not.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isResolved
-func (f_ FileVersion) SetResolved(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setResolved:"), value)
-}
-
-
-// The string containing the user-presentable name of the file version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/localizedName
-func (f_ FileVersion) LocalizedName() IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("localizedName"))
-	return rv
-}
-
-
 // The user-presentable name of the computer on which the revision was saved.
 //
 // [Full Topic]
@@ -289,41 +118,33 @@ func (f_ FileVersion) LocalizedNameOfSavingComputer() IString {
 }
 
 
-// The modification date of the version.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/modificationDate
-func (f_ FileVersion) ModificationDate() IDate {
-	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/haslocalcontents
+func (f_ FileVersion) HasLocalContents() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/originatorNameComponents
-func (f_ FileVersion) OriginatorNameComponents() IPersonNameComponents {
-	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/haslocalcontents
+func (f_ FileVersion) SetHasLocalContents(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setHasLocalContents:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
+func (f_ FileVersion) HasThumbnail() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
 	return rv
 }
 
 
-// The identifier for this version of the file.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/persistentIdentifier
-func (f_ FileVersion) PersistentIdentifier() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("persistentIdentifier"))
-	return rv
-}
-
-
-// The URL identifying the location of the file associated with the file version object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/url
-func (f_ FileVersion) URL() IURL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/hasthumbnail
+func (f_ FileVersion) SetHasThumbnail(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setHasThumbnail:"), value)
 }
 
 
@@ -331,7 +152,7 @@ func (f_ FileVersion) URL() IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-func (f_ FileVersion) IsConflict() bool /* primitive/slice/pointer. */ {
+func (f_ FileVersion) IsConflict() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isConflict"))
 	return rv
 }
@@ -341,7 +162,7 @@ func (f_ FileVersion) IsConflict() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-func (f_ FileVersion) SetIsConflict(value bool /* primitive/slice/pointer. */) {
+func (f_ FileVersion) SetIsConflict(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsConflict:"), value)
 }
 
@@ -350,7 +171,7 @@ func (f_ FileVersion) SetIsConflict(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) IsDiscardable() bool /* primitive/slice/pointer. */ {
+func (f_ FileVersion) IsDiscardable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
 	return rv
 }
@@ -360,7 +181,7 @@ func (f_ FileVersion) IsDiscardable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) SetIsDiscardable(value bool /* primitive/slice/pointer. */) {
+func (f_ FileVersion) SetIsDiscardable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
 }
 
@@ -369,7 +190,7 @@ func (f_ FileVersion) SetIsDiscardable(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-func (f_ FileVersion) IsResolved() bool /* primitive/slice/pointer. */ {
+func (f_ FileVersion) IsResolved() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isResolved"))
 	return rv
 }
@@ -379,8 +200,99 @@ func (f_ FileVersion) IsResolved() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-func (f_ FileVersion) SetIsResolved(value bool /* primitive/slice/pointer. */) {
+func (f_ FileVersion) SetIsResolved(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsResolved:"), value)
+}
+
+
+// The string containing the user-presentable name of the file version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
+func (f_ FileVersion) LocalizedName() IString {
+	rv := objc.Send[String](f_.ID, objc.Sel("localizedName"))
+	return rv
+}
+
+
+// The string containing the user-presentable name of the file version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
+func (f_ FileVersion) SetLocalizedName(value IString) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), value)
+}
+
+
+// The modification date of the version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
+func (f_ FileVersion) ModificationDate() IDate {
+	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
+	return rv
+}
+
+
+// The modification date of the version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
+func (f_ FileVersion) SetModificationDate(value IDate) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
+func (f_ FileVersion) OriginatorNameComponents() IPersonNameComponents {
+	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
+func (f_ FileVersion) SetOriginatorNameComponents(value IPersonNameComponents) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
+}
+
+
+// The identifier for this version of the file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/persistentidentifier
+func (f_ FileVersion) PersistentIdentifier() Coding /* not a class type */ {
+	rv := objc.Send[Coding](f_.ID, objc.Sel("persistentIdentifier"))
+	return rv
+}
+
+
+// The identifier for this version of the file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/persistentidentifier
+func (f_ FileVersion) SetPersistentIdentifier(value Coding /* not a class type */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPersistentIdentifier:"), value)
+}
+
+
+// The URL identifying the location of the file associated with the file version object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/url
+func (f_ FileVersion) Url() IURL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL identifying the location of the file associated with the file version object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/url
+func (f_ FileVersion) SetUrl(value IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 
 

@@ -31,18 +31,24 @@ type _SBElementArrayClass struct {
 // An interface definition for the [SBElementArray] class.
 type ISBElementArray interface {
 	foundation.IMutableArray
+	// properties:
+	// methods:
 	ArrayByApplyingSelector(selector objc.SEL) []objc.ID
 	ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID
 	Get() []objc.ID
 	ObjectAtLocation(location objectivec.IObject) unsafe.Pointer
 	ObjectWithID(identifier objectivec.IObject) unsafe.Pointer
-	ObjectWithName(name string) unsafe.Pointer
+	ObjectWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer
 }
 
 // is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
 //
 // defines methods beyond those of for obtaining individual objects. In addition to , also defines , , and .
+
+
+// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray
 type SBElementArray struct {
 	foundation.MutableArray
@@ -89,51 +95,63 @@ func NewSBElementArray() SBElementArray {
 }
 
 
+
 // Returns an array containing the results of sending the specified message to each object in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/array(byApplying:)
 func (s_ SBElementArray) ArrayByApplyingSelector(selector objc.SEL) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("arrayByApplyingSelector:"), selector)
 	return rv
 }
 
+
 // Returns an array containing the results of sending the specified message to each object in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/array(byApplying:with:)
 func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("arrayByApplyingSelector:withObject:"), aSelector, argument)
 	return rv
 }
 
+
 // Forces evaluation of the receiver, causing the real object to be returned immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/get()
 func (s_ SBElementArray) Get() []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("get"))
 	return rv
 }
 
+
 // Returns the object at the given location in the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(atLocation:)
 func (s_ SBElementArray) ObjectAtLocation(location objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectAtLocation:"), location)
 	return rv
 }
 
+
 // Returns the object in the array with the given identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withID:)
 func (s_ SBElementArray) ObjectWithID(identifier objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithID:"), identifier)
 	return rv
 }
 
+
 // Returns the object in the array with the given name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withName:)
-func (s_ SBElementArray) ObjectWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), objc.String(name))
+func (s_ SBElementArray) ObjectWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), name)
 	return rv
 }
 

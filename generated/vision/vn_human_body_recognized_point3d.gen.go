@@ -29,14 +29,20 @@ type _HumanBodyRecognizedPoint3DClass struct {
 // An interface definition for the [HumanBodyRecognizedPoint3D] class.
 type IHumanBodyRecognizedPoint3D interface {
 	IRecognizedPoint3D
+	// properties:
 	LocalPosition() unsafe.Pointer
 	SetLocalPosition(value unsafe.Pointer)
 	ParentJoint() unsafe.Pointer
 	SetParentJoint(value unsafe.Pointer)
+	// methods:
 }
 
 // A recognized 3D point that includes a parent joint.
+
+
+// A recognized 3D point that includes a parent joint.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyRecognizedPoint3D
 type HumanBodyRecognizedPoint3D struct {
 	RecognizedPoint3D
@@ -83,8 +89,10 @@ func NewHumanBodyRecognizedPoint3D() HumanBodyRecognizedPoint3D {
 }
 
 
+
 // The three-dimensional position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/localposition
 func (h_ HumanBodyRecognizedPoint3D) LocalPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("localPosition"))
@@ -92,17 +100,18 @@ func (h_ HumanBodyRecognizedPoint3D) LocalPosition() unsafe.Pointer {
 }
 
 
-// SetLocalPosition sets the value of the localPosition property.
 // The three-dimensional position.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/localposition
 func (h_ HumanBodyRecognizedPoint3D) SetLocalPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLocalPosition:"), value)
 }
 
+
 // The parent joint in the observation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/parentjoint
 func (h_ HumanBodyRecognizedPoint3D) ParentJoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("parentJoint"))
@@ -110,10 +119,9 @@ func (h_ HumanBodyRecognizedPoint3D) ParentJoint() unsafe.Pointer {
 }
 
 
-// SetParentJoint sets the value of the parentJoint property.
 // The parent joint in the observation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d/parentjoint
 func (h_ HumanBodyRecognizedPoint3D) SetParentJoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setParentJoint:"), value)

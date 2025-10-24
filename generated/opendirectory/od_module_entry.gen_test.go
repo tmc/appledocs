@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = opendirectory.NewODModuleEntry
 
-// ExampleNewODModuleEntryWithNameXpcServiceName demonstrates how to create a ODModuleEntry instance using NewODModuleEntryWithNameXpcServiceName.
-func ExampleNewODModuleEntryWithNameXpcServiceName() {
-	_ = opendirectory.NewODModuleEntryWithNameXpcServiceName(
-		"name", // name string
-		"xpcServiceName", // xpcServiceName string
-	)
-	// Output:
-}

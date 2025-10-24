@@ -2,12 +2,12 @@
 
 // Package observation provides Go bindings for the Observation framework.
 //
-// Make responsive apps that update the presentation when underlying data changes. [Full Topic]
+// Make responsive apps that update the presentation when underlying data changes.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Observation without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Observation
+// See: https://developer.apple.com/documentation/Observation
 package observation
 
 import (

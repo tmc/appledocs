@@ -29,9 +29,13 @@ type _ReshapeNodeClass struct {
 // An interface definition for the [ReshapeNode] class.
 type IReshapeNode interface {
 	IFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeNode
 type ReshapeNode struct {
 	FilterNode
@@ -76,7 +80,8 @@ func NewReshapeNode() ReshapeNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeNode/init(source:resultWidth:resultHeight:resultFeatureChannels:)
 func NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(source IMPSNNImageNode, resultWidth uint, resultHeight uint, resultFeatureChannels uint) ReshapeNode {
 	instance := getReshapeNodeClass().Alloc()

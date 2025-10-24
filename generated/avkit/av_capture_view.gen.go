@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 )
 
 // The class instance for the [CaptureView] class.
@@ -40,7 +41,7 @@ type ICaptureView interface {
 	VideoGravity() LayerVideoGravity /* not a class type */
 	SetVideoGravity(value LayerVideoGravity /* not a class type */)
 	// methods:
-	SetSessionShowVideoPreviewShowAudioPreview(session objc.IObject /* cross-framework CaptureSession */, showVideoPreview bool /* primitive/slice/pointer. */, showAudioPreview bool /* primitive/slice/pointer. */)
+	SetSessionShowVideoPreviewShowAudioPreview(session objc.IObject /* cross-framework: CaptureSession */, showVideoPreview bool, showAudioPreview bool)
 }
 
 // A view that displays standard user interface controls for capturing media data.
@@ -100,7 +101,7 @@ func NewCaptureView() CaptureView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/setSession(_:showVideoPreview:showAudioPreview:)
-func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session objc.IObject /* cross-framework CaptureSession */, showVideoPreview bool /* primitive/slice/pointer. */, showAudioPreview bool /* primitive/slice/pointer. */) {
+func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session objc.IObject /* cross-framework: CaptureSession */, showVideoPreview bool, showAudioPreview bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:showVideoPreview:showAudioPreview:"), session, showVideoPreview, showAudioPreview)
 }
 
@@ -148,7 +149,7 @@ func (c_ CaptureView) SetDelegate(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/fileOutput
 func (c_ CaptureView) FileOutput() objc.IObject /* cross-framework: CaptureFileOutput */ {
-	rv := objc.Send[CaptureFileOutput](c_.ID, objc.Sel("fileOutput"))
+	rv := objc.Send[avfoundation.CaptureFileOutput](c_.ID, objc.Sel("fileOutput"))
 	return rv
 }
 
@@ -158,7 +159,7 @@ func (c_ CaptureView) FileOutput() objc.IObject /* cross-framework: CaptureFileO
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/session
 func (c_ CaptureView) Session() objc.IObject /* cross-framework: CaptureSession */ {
-	rv := objc.Send[CaptureSession](c_.ID, objc.Sel("session"))
+	rv := objc.Send[avfoundation.CaptureSession](c_.ID, objc.Sel("session"))
 	return rv
 }
 

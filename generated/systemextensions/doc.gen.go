@@ -2,12 +2,12 @@
 
 // Package systemextensions provides Go bindings for the SystemExtensions framework.
 //
-// Install and manage user space code that extends the capabilities of macOS. [Full Topic]
+// Install and manage user space code that extends the capabilities of macOS.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SystemExtensions without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions
+// See: https://developer.apple.com/documentation/SystemExtensions
 package systemextensions
 
 import (

@@ -31,36 +31,36 @@ type _ProcessInfoClass struct {
 type IProcessInfo interface {
 	objectivec.IObject
 	// properties:
-	ActiveProcessorCount() uint /* primitive/slice/pointer. */
-	Arguments() []string /* primitive/slice/pointer. */
-	AutomaticTerminationSupportEnabled() bool /* primitive/slice/pointer. */
-	SetAutomaticTerminationSupportEnabled(value bool /* primitive/slice/pointer. */)
-	Environment() IDictionary /* already interface */
+	ActiveProcessorCount() uint
+	Arguments() []string
+	AutomaticTerminationSupportEnabled() bool
+	SetAutomaticTerminationSupportEnabled(value bool)
+	Environment() IDictionary
 	FullUserName() IString
 	GloballyUniqueString() IString
 	HostName() IString
-	LowPowerModeEnabled() bool /* primitive/slice/pointer. */
-	MacCatalystApp() bool /* primitive/slice/pointer. */
-	IOSAppOnMac() bool /* primitive/slice/pointer. */
-	IOSAppOnVision() bool /* primitive/slice/pointer. */
+	LowPowerModeEnabled() bool
+	MacCatalystApp() bool
+	IOSAppOnMac() bool
+	IOSAppOnVision() bool
 	OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */
 	OperatingSystemVersionString() IString
-	PhysicalMemory() uint64 /* primitive/slice/pointer. */
-	ProcessIdentifier() int /* primitive/slice/pointer. */
+	PhysicalMemory() uint64
+	ProcessIdentifier() int
 	ProcessName() IString
 	SetProcessName(value IString)
-	ProcessorCount() uint /* primitive/slice/pointer. */
-	SystemUptime() objc.IObject /* cross-framework: TimeInterval */
+	ProcessorCount() uint
+	SystemUptime() float64
 	ThermalState() ProcessInfoThermalState
 	UserName() IString
-	IsLowPowerModeEnabled() bool /* primitive/slice/pointer. */
-	SetIsLowPowerModeEnabled(value bool /* primitive/slice/pointer. */)
-	IsMacCatalystApp() bool /* primitive/slice/pointer. */
-	SetIsMacCatalystApp(value bool /* primitive/slice/pointer. */)
-	IsiOSAppOnMac() bool /* primitive/slice/pointer. */
-	SetIsiOSAppOnMac(value bool /* primitive/slice/pointer. */)
-	IsiOSAppOnVision() bool /* primitive/slice/pointer. */
-	SetIsiOSAppOnVision(value bool /* primitive/slice/pointer. */)
+	IsLowPowerModeEnabled() bool
+	SetIsLowPowerModeEnabled(value bool)
+	IsMacCatalystApp() bool
+	SetIsMacCatalystApp(value bool)
+	IsiOSAppOnMac() bool
+	SetIsiOSAppOnMac(value bool)
+	IsiOSAppOnVision() bool
+	SetIsiOSAppOnVision(value bool)
 	// methods:
 	BeginActivityWithOptionsReason(options ActivityOptions, reason IString) objc.ID
 	DisableAutomaticTermination(reason IString)
@@ -68,11 +68,10 @@ type IProcessInfo interface {
 	EnableAutomaticTermination(reason IString)
 	EnableSuddenTermination()
 	EndActivity(activity objectivec.IObject)
-	HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool /* primitive/slice/pointer. */
-	IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool /* primitive/slice/pointer. */
-	IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework OperatingSystemVersion */) bool /* primitive/slice/pointer. */
+	HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool
+	IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool
+	IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework: OperatingSystemVersion */) bool
 	PerformActivityWithOptionsReasonUsingBlock(options ActivityOptions, reason IString, block unsafe.Pointer)
-	PerformExpiringActivityWithReasonUsingBlock(reason IString, block unsafe.Pointer)
 }
 
 // A collection of information about the current process.
@@ -196,7 +195,7 @@ func (p_ ProcessInfo) EndActivity(activity objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/hasPerformanceProfile(_:)
-func (p_ ProcessInfo) HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasPerformanceProfile:"), performanceProfile)
 	return rv
 }
@@ -206,7 +205,7 @@ func (p_ ProcessInfo) HasPerformanceProfile(performanceProfile ProcessPerformanc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isDeviceCertified(for:)
-func (p_ ProcessInfo) IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDeviceCertifiedFor:"), performanceTier)
 	return rv
 }
@@ -216,7 +215,7 @@ func (p_ ProcessInfo) IsDeviceCertifiedFor(performanceTier DeviceCertification /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isOperatingSystemAtLeast(_:)
-func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework OperatingSystemVersion */) bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework: OperatingSystemVersion */) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOperatingSystemAtLeastVersion:"), version)
 	return rv
 }
@@ -231,20 +230,11 @@ func (p_ ProcessInfo) PerformActivityWithOptionsReasonUsingBlock(options Activit
 }
 
 
-// Performs the specified block asynchronously and notifies you if the process is about to be suspended.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/performExpiringActivity(withReason:using:)
-func (p_ ProcessInfo) PerformExpiringActivityWithReasonUsingBlock(reason IString, block unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("performExpiringActivityWithReason:usingBlock:"), reason, block)
-}
-
-
 // The number of active processing cores available on the computer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/activeProcessorCount
-func (p_ ProcessInfo) ActiveProcessorCount() uint /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) ActiveProcessorCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("activeProcessorCount"))
 	return rv
 }
@@ -254,7 +244,7 @@ func (p_ ProcessInfo) ActiveProcessorCount() uint /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/arguments
-func (p_ ProcessInfo) Arguments() []string /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) Arguments() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("arguments"))
 	return rv
 }
@@ -264,7 +254,7 @@ func (p_ ProcessInfo) Arguments() []string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/automaticTerminationSupportEnabled
-func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticTerminationSupportEnabled"))
 	return rv
 }
@@ -274,7 +264,7 @@ func (p_ ProcessInfo) AutomaticTerminationSupportEnabled() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/automaticTerminationSupportEnabled
-func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool /* primitive/slice/pointer. */) {
+func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticTerminationSupportEnabled:"), value)
 }
 
@@ -283,8 +273,8 @@ func (p_ ProcessInfo) SetAutomaticTerminationSupportEnabled(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/environment
-func (p_ ProcessInfo) Environment() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](p_.ID, objc.Sel("environment"))
+func (p_ ProcessInfo) Environment() IDictionary {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("environment"))
 	return rv
 }
 
@@ -323,7 +313,7 @@ func (p_ ProcessInfo) HostName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isLowPowerModeEnabled
-func (p_ ProcessInfo) LowPowerModeEnabled() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) LowPowerModeEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("lowPowerModeEnabled"))
 	return rv
 }
@@ -333,7 +323,7 @@ func (p_ ProcessInfo) LowPowerModeEnabled() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isMacCatalystApp
-func (p_ ProcessInfo) MacCatalystApp() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) MacCatalystApp() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("macCatalystApp"))
 	return rv
 }
@@ -343,7 +333,7 @@ func (p_ ProcessInfo) MacCatalystApp() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnMac
-func (p_ ProcessInfo) IOSAppOnMac() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IOSAppOnMac() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnMac"))
 	return rv
 }
@@ -353,7 +343,7 @@ func (p_ ProcessInfo) IOSAppOnMac() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/isiOSAppOnVision
-func (p_ ProcessInfo) IOSAppOnVision() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IOSAppOnVision() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("iOSAppOnVision"))
 	return rv
 }
@@ -364,7 +354,7 @@ func (p_ ProcessInfo) IOSAppOnVision() bool /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersion
 func (p_ ProcessInfo) OperatingSystemVersion() objc.IObject /* cross-framework: OperatingSystemVersion */ {
-	rv := objc.Send[OperatingSystemVersion](p_.ID, objc.Sel("operatingSystemVersion"))
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("operatingSystemVersion"))
 	return rv
 }
 
@@ -383,7 +373,7 @@ func (p_ ProcessInfo) OperatingSystemVersionString() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/physicalMemory
-func (p_ ProcessInfo) PhysicalMemory() uint64 /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) PhysicalMemory() uint64 {
 	rv := objc.Send[uint64](p_.ID, objc.Sel("physicalMemory"))
 	return rv
 }
@@ -393,7 +383,7 @@ func (p_ ProcessInfo) PhysicalMemory() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processIdentifier
-func (p_ ProcessInfo) ProcessIdentifier() int /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) ProcessIdentifier() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
@@ -432,7 +422,7 @@ func (p_ ProcessInfo) SetProcessName(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processorCount
-func (p_ ProcessInfo) ProcessorCount() uint /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) ProcessorCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("processorCount"))
 	return rv
 }
@@ -442,8 +432,8 @@ func (p_ ProcessInfo) ProcessorCount() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/systemUptime
-func (p_ ProcessInfo) SystemUptime() objc.IObject /* cross-framework: TimeInterval */ {
-	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("systemUptime"))
+func (p_ ProcessInfo) SystemUptime() float64 {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("systemUptime"))
 	return rv
 }
 
@@ -472,7 +462,7 @@ func (p_ ProcessInfo) UserName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/islowpowermodeenabled
-func (p_ ProcessInfo) IsLowPowerModeEnabled() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsLowPowerModeEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isLowPowerModeEnabled"))
 	return rv
 }
@@ -482,7 +472,7 @@ func (p_ ProcessInfo) IsLowPowerModeEnabled() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/islowpowermodeenabled
-func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool /* primitive/slice/pointer. */) {
+func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsLowPowerModeEnabled:"), value)
 }
 
@@ -491,7 +481,7 @@ func (p_ ProcessInfo) SetIsLowPowerModeEnabled(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
-func (p_ ProcessInfo) IsMacCatalystApp() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsMacCatalystApp() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMacCatalystApp"))
 	return rv
 }
@@ -501,7 +491,7 @@ func (p_ ProcessInfo) IsMacCatalystApp() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/ismaccatalystapp
-func (p_ ProcessInfo) SetIsMacCatalystApp(value bool /* primitive/slice/pointer. */) {
+func (p_ ProcessInfo) SetIsMacCatalystApp(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMacCatalystApp:"), value)
 }
 
@@ -510,7 +500,7 @@ func (p_ ProcessInfo) SetIsMacCatalystApp(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponmac
-func (p_ ProcessInfo) IsiOSAppOnMac() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsiOSAppOnMac() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnMac"))
 	return rv
 }
@@ -520,7 +510,7 @@ func (p_ ProcessInfo) IsiOSAppOnMac() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponmac
-func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool /* primitive/slice/pointer. */) {
+func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnMac:"), value)
 }
 
@@ -529,7 +519,7 @@ func (p_ ProcessInfo) SetIsiOSAppOnMac(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
-func (p_ ProcessInfo) IsiOSAppOnVision() bool /* primitive/slice/pointer. */ {
+func (p_ ProcessInfo) IsiOSAppOnVision() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isiOSAppOnVision"))
 	return rv
 }
@@ -539,9 +529,8 @@ func (p_ ProcessInfo) IsiOSAppOnVision() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/processinfo/isiosapponvision
-func (p_ ProcessInfo) SetIsiOSAppOnVision(value bool /* primitive/slice/pointer. */) {
+func (p_ ProcessInfo) SetIsiOSAppOnVision(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsiOSAppOnVision:"), value)
 }
-
 
 

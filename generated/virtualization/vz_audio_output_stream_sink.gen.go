@@ -30,12 +30,18 @@ type _VZAudioOutputStreamSinkClass struct {
 // An interface definition for the [VZAudioOutputStreamSink] class.
 type IVZAudioOutputStreamSink interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for an audio output stream sink.
 //
 // An audio output stream sink defines how the host system consumes audio data from a guest. Don’t instantiate directly, use one of its subclasses, such as instead.
+
+
+// The base class for an audio output stream sink.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZAudioOutputStreamSink
 type VZAudioOutputStreamSink struct {
 	objectivec.Object

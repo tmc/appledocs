@@ -70,10 +70,10 @@ var (
 	_CFAttributedStringGetAttributeAndLongestEffectiveRange func(AttributedStringRef, Index, StringRef, unsafe.Pointer, unsafe.Pointer) TypeRef
 	_CFAttributedStringGetAttributes func(AttributedStringRef, Index, unsafe.Pointer) DictionaryRef
 	_CFAttributedStringGetAttributesAndLongestEffectiveRange func(AttributedStringRef, Index, unsafe.Pointer, unsafe.Pointer) DictionaryRef
-	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(AttributedStringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CFAttributedStringGetBidiLevelsAndResolvedDirections func(AttributedStringRef, unsafe.Pointer, int8, unsafe.Pointer, unsafe.Pointer) bool
 	_CFAttributedStringGetLength func(AttributedStringRef) Index
 	_CFAttributedStringGetMutableString func(MutableAttributedStringRef) MutableStringRef
-	_CFAttributedStringGetStatisticalWritingDirections func(AttributedStringRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CFAttributedStringGetStatisticalWritingDirections func(AttributedStringRef, unsafe.Pointer, int8, unsafe.Pointer, unsafe.Pointer) bool
 	_CFAttributedStringGetString func(AttributedStringRef) StringRef
 	_CFAttributedStringGetTypeID func() TypeID
 	_CFAttributedStringRemoveAttribute func(MutableAttributedStringRef, unsafe.Pointer, StringRef)
@@ -2254,7 +2254,7 @@ func CFAttributedStringGetAttributesAndLongestEffectiveRange(aStr AttributedStri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetBidiLevelsAndResolvedDirections(_:_:_:_:_:)
-func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
+func CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection int8, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetBidiLevelsAndResolvedDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 }
 
@@ -2283,7 +2283,7 @@ func CFAttributedStringGetMutableString(aStr MutableAttributedStringRef) Mutable
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFAttributedStringGetStatisticalWritingDirections(_:_:_:_:_:)
-func CFAttributedStringGetStatisticalWritingDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection unsafe.Pointer, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
+func CFAttributedStringGetStatisticalWritingDirections(attributedString AttributedStringRef, range_ unsafe.Pointer, baseDirection int8, bidiLevels unsafe.Pointer, baseDirections unsafe.Pointer) bool {
 	return _CFAttributedStringGetStatisticalWritingDirections(attributedString, range_, baseDirection, bidiLevels, baseDirections)
 }
 

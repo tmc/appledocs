@@ -30,14 +30,20 @@ type _UNCalendarNotificationTriggerClass struct {
 // An interface definition for the [UNCalendarNotificationTrigger] class.
 type IUNCalendarNotificationTrigger interface {
 	IUNNotificationTrigger
-	NextTriggerDate() foundation.Date
-	DateComponents() foundation.DateComponents
+	// properties:
+	DateComponents() objc.IObject /* cross-framework: DateComponents */
+	// methods:
+	NextTriggerDate() objc.IObject /* cross-framework: Date */
 }
 
 // A trigger condition that causes a notification the system delivers at a specific date and time.
 //
 // Create a object when you want to schedule the delivery of a local notification at the date and time you specify. You use an object to specify only the time values that you want the system to use to determine the matching date and time. Listing 1 creates a trigger that delivers its notification every morning at 8:30. The repeating behavior is achieved by specifying for the parameter when creating the trigger. Listing 1. Creating a trigger that repeats at a specific time
+
+
+// A trigger condition that causes a notification the system delivers at a specific date and time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger
 type UNCalendarNotificationTrigger struct {
 	UNNotificationTrigger
@@ -85,36 +91,42 @@ func NewUNCalendarNotificationTrigger() UNCalendarNotificationTrigger {
 
 
 
-
 // Creates a calendar trigger using the date components parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/init(dateMatching:repeats:)
-func NewUNCalendarNotificationTriggerWithDateMatchingComponentsRepeats(dateComponents foundation.IDateComponents, repeats bool) UNCalendarNotificationTrigger {
+func NewUNCalendarNotificationTriggerWithDateMatchingComponentsRepeats(dateComponents objc.IObject /* cross-framework: DateComponents */, repeats bool) UNCalendarNotificationTrigger {
 	rv := objc.Send[UNCalendarNotificationTrigger](objc.ID(getUNCalendarNotificationTriggerClass().class), objc.Sel("triggerWithDateMatchingComponents:repeats:"), dateComponents, repeats)
 	return rv
 }
 
 
+
 // Creates a calendar trigger using the date components parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/init(dateMatching:repeats:)
-func (uc _UNCalendarNotificationTriggerClass) TriggerWithDateMatchingComponentsRepeats(dateComponents foundation.IDateComponents, repeats bool) unsafe.Pointer {
+func (uc _UNCalendarNotificationTriggerClass) TriggerWithDateMatchingComponentsRepeats(dateComponents objc.IObject /* cross-framework: DateComponents */, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithDateMatchingComponents:repeats:"), dateComponents, repeats)
 	return rv
 }
 
+
 // The next date at which the trigger conditions are met.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/nextTriggerDate()
-func (u_ UNCalendarNotificationTrigger) NextTriggerDate() foundation.Date {
+func (u_ UNCalendarNotificationTrigger) NextTriggerDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](u_.ID, objc.Sel("nextTriggerDate"))
 	return rv
 }
 
+
 // The date components to construct this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/dateComponents
-func (u_ UNCalendarNotificationTrigger) DateComponents() foundation.DateComponents {
+func (u_ UNCalendarNotificationTrigger) DateComponents() objc.IObject /* cross-framework: DateComponents */ {
 	rv := objc.Send[foundation.DateComponents](u_.ID, objc.Sel("dateComponents"))
 	return rv
 }

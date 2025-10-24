@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,19 @@ type _PushPayloadClass struct {
 // An interface definition for the [PushPayload] class.
 type IPushPayload interface {
 	objectivec.IObject
-	DictionaryPayload() objc.ID
-	Type() PushType
+	// properties:
+	DictionaryPayload() objc.IObject /* cross-framework: NSDictionary */
+	Type() objc.IObject /* cross-framework: PushType */
+	SetType(value objc.IObject /* cross-framework: PushType */)
+	// methods:
 }
 
 // An object that contains information about a received PushKit notification.
+
+
+// An object that contains information about a received PushKit notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushPayload
 type PushPayload struct {
 	objectivec.Object
@@ -80,20 +88,33 @@ func NewPushPayload() PushPayload {
 }
 
 
+
 // The contents of the received payload.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushPayload/dictionaryPayload
-func (p_ PushPayload) DictionaryPayload() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("dictionaryPayload"))
+func (p_ PushPayload) DictionaryPayload() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](p_.ID, objc.Sel("dictionaryPayload"))
 	return rv
 }
 
+
 // The type value indicating how to interpret the payload.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushPayload/type
-func (p_ PushPayload) Type() PushType {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushpayload/type
+func (p_ PushPayload) Type() objc.IObject /* cross-framework: PushType */ {
 	rv := objc.Send[PushType](p_.ID, objc.Sel("type"))
 	return rv
+}
+
+
+// The type value indicating how to interpret the payload.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushpayload/type
+func (p_ PushPayload) SetType(value objc.IObject /* cross-framework: PushType */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
 
 

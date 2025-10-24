@@ -31,15 +31,19 @@ type _MTREnergyEVSEModeClusterModeOptionStructClass struct {
 // An interface definition for the [MTREnergyEVSEModeClusterModeOptionStruct] class.
 type IMTREnergyEVSEModeClusterModeOptionStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	Mode() foundation.Number
-	SetMode(value foundation.INumber)
-	ModeTags() objc.ID
-	SetModeTags(value objc.ID)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Mode() objc.IObject /* cross-framework: NSNumber */
+	SetMode(value objc.IObject /* cross-framework: NSNumber */)
+	ModeTags() objc.IObject /* cross-framework: NSArray */
+	SetModeTags(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct
 type MTREnergyEVSEModeClusterModeOptionStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTREnergyEVSEModeClusterModeOptionStruct() MTREnergyEVSEModeClusterModeO
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/label
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/label
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/mode
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Mode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) Mode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
 
-// SetMode sets the value of the mode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/mode
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/modeTags
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) ModeTags() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("modeTags"))
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) ModeTags() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("modeTags"))
 	return rv
 }
 
 
-// SetModeTags sets the value of the modeTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeOptionStruct/modeTags
-func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetModeTags(value objc.ID) {
+func (m_ MTREnergyEVSEModeClusterModeOptionStruct) SetModeTags(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
 

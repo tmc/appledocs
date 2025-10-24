@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BatchInsertRequest] class.
@@ -30,16 +31,16 @@ type _BatchInsertRequestClass struct {
 type IBatchInsertRequest interface {
 	IPersistentStoreRequest
 	// properties:
-	DictionaryHandler() bool /* primitive/slice/pointer. */
-	SetDictionaryHandler(value bool /* primitive/slice/pointer. */)
+	DictionaryHandler() bool
+	SetDictionaryHandler(value bool)
 	Entity() IEntityDescription
 	SetEntity(value IEntityDescription)
-	EntityName() string /* primitive/slice/pointer. */
-	SetEntityName(value string /* primitive/slice/pointer. */)
-	ManagedObjectHandler() bool /* primitive/slice/pointer. */
-	SetManagedObjectHandler(value bool /* primitive/slice/pointer. */)
-	ObjectsToInsert() string /* primitive/slice/pointer. */
-	SetObjectsToInsert(value string /* primitive/slice/pointer. */)
+	EntityName() objc.IObject /* cross-framework: NSString */
+	SetEntityName(value objc.IObject /* cross-framework: NSString */)
+	ManagedObjectHandler() bool
+	SetManagedObjectHandler(value bool)
+	ObjectsToInsert() objc.IObject /* cross-framework: NSString */
+	SetObjectsToInsert(value objc.IObject /* cross-framework: NSString */)
 	ResultType() BatchInsertRequestResultType
 	SetResultType(value BatchInsertRequestResultType)
 	// methods:
@@ -114,9 +115,9 @@ func NewBatchInsertRequestWithEntityManagedObjectHandler(entity IEntityDescripti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:dictionaryHandler:)
-func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string /* primitive/slice/pointer. */, handler unsafe.Pointer) BatchInsertRequest {
+func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) BatchInsertRequest {
 	instance := getBatchInsertRequestClass().Alloc()
-	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:dictionaryHandler:"), objc.String(entityName), handler)
+	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:dictionaryHandler:"), entityName, handler)
 	rv.Autorelease()
 	return rv
 }
@@ -126,9 +127,9 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/init(entityName:managedObjectHandler:)
-func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string /* primitive/slice/pointer. */, handler unsafe.Pointer) BatchInsertRequest {
+func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) BatchInsertRequest {
 	instance := getBatchInsertRequestClass().Alloc()
-	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), objc.String(entityName), handler)
+	rv := objc.Send[BatchInsertRequest](instance.ID, objc.Sel("initWithEntityName:managedObjectHandler:"), entityName, handler)
 	rv.Autorelease()
 	return rv
 }
@@ -139,8 +140,8 @@ func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertRequest/batchInsertRequestWithEntityName:dictionaryHandler:
-func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHandler(entityName string /* primitive/slice/pointer. */, handler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchInsertRequestWithEntityName:dictionaryHandler:"), objc.String(entityName), handler)
+func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHandler(entityName objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchInsertRequestWithEntityName:dictionaryHandler:"), entityName, handler)
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/dictionaryhandler
-func (b_ BatchInsertRequest) DictionaryHandler() bool /* primitive/slice/pointer. */ {
+func (b_ BatchInsertRequest) DictionaryHandler() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("dictionaryHandler"))
 	return rv
 }
@@ -159,7 +160,7 @@ func (b_ BatchInsertRequest) DictionaryHandler() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/dictionaryhandler
-func (b_ BatchInsertRequest) SetDictionaryHandler(value bool /* primitive/slice/pointer. */) {
+func (b_ BatchInsertRequest) SetDictionaryHandler(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDictionaryHandler:"), value)
 }
 
@@ -187,8 +188,8 @@ func (b_ BatchInsertRequest) SetEntity(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
-func (b_ BatchInsertRequest) EntityName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
+func (b_ BatchInsertRequest) EntityName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("entityName"))
 	return rv
 }
 
@@ -197,8 +198,8 @@ func (b_ BatchInsertRequest) EntityName() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entityname
-func (b_ BatchInsertRequest) SetEntityName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), objc.String(value))
+func (b_ BatchInsertRequest) SetEntityName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), value)
 }
 
 
@@ -206,7 +207,7 @@ func (b_ BatchInsertRequest) SetEntityName(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/managedobjecthandler
-func (b_ BatchInsertRequest) ManagedObjectHandler() bool /* primitive/slice/pointer. */ {
+func (b_ BatchInsertRequest) ManagedObjectHandler() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("managedObjectHandler"))
 	return rv
 }
@@ -216,7 +217,7 @@ func (b_ BatchInsertRequest) ManagedObjectHandler() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/managedobjecthandler
-func (b_ BatchInsertRequest) SetManagedObjectHandler(value bool /* primitive/slice/pointer. */) {
+func (b_ BatchInsertRequest) SetManagedObjectHandler(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setManagedObjectHandler:"), value)
 }
 
@@ -225,8 +226,8 @@ func (b_ BatchInsertRequest) SetManagedObjectHandler(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
-func (b_ BatchInsertRequest) ObjectsToInsert() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("objectsToInsert"))
+func (b_ BatchInsertRequest) ObjectsToInsert() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("objectsToInsert"))
 	return rv
 }
 
@@ -235,8 +236,8 @@ func (b_ BatchInsertRequest) ObjectsToInsert() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/objectstoinsert
-func (b_ BatchInsertRequest) SetObjectsToInsert(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), objc.String(value))
+func (b_ BatchInsertRequest) SetObjectsToInsert(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), value)
 }
 
 

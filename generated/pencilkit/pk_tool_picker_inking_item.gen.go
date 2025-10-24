@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ToolPickerInkingItem] class.
@@ -30,15 +31,21 @@ type _ToolPickerInkingItemClass struct {
 // An interface definition for the [ToolPickerInkingItem] class.
 type IToolPickerInkingItem interface {
 	IToolPickerItem
+	// properties:
 	AllowsColorSelection() bool
 	SetAllowsColorSelection(value bool)
-	InkingTool() PKInkingTool
+	InkingTool() IPKInkingTool
+	// methods:
 }
 
 // An item that represents an inking tool in the tool picker.
 //
 // An inking item represents a — a tool for drawing marks in a canvas view — in a .
+
+
+// An item that represents an inking tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem
 type ToolPickerInkingItem struct {
 	ToolPickerItem
@@ -86,20 +93,21 @@ func NewToolPickerInkingItem() ToolPickerInkingItem {
 
 
 
-
 // Create a new tool picker item with a .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:
-func NewToolPickerInkingItemWithInkType(inkType unsafe.Pointer) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkType(inkType InkType /* not a class type */) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:"), inkType)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:
-func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color appkit.IColor) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColor(inkType InkType /* not a class type */, color objc.IObject /* cross-framework: Color */) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:"), inkType, color)
 	rv.Autorelease()
@@ -107,44 +115,45 @@ func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color appki
 }
 
 
-
 // Creates a new inking item with the specified ink type, color, and width.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:
-func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color appkit.IColor, width float64) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidth(inkType InkType /* not a class type */, color objc.IObject /* cross-framework: Color */, width float64) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:"), inkType, color, width)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:azimuth:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, azimuth float64, identifier string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType InkType /* not a class type */, color objc.IObject /* cross-framework: Color */, width float64, azimuth float64, identifier objc.IObject /* cross-framework: NSString */) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, objc.String(identifier))
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, identifier)
 	rv.Autorelease()
 	return rv
 }
-
 
 
 // Creates a new inking item with the specified ink type, color, width, and identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, identifier string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType InkType /* not a class type */, color objc.IObject /* cross-framework: Color */, width float64, identifier objc.IObject /* cross-framework: NSString */) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, objc.String(identifier))
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
-
 // Create a new tool picker item with a .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:width:
-func NewToolPickerInkingItemWithInkTypeWidth(inkType unsafe.Pointer, width float64) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeWidth(inkType InkType /* not a class type */, width float64) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:width:"), inkType, width)
 	rv.Autorelease()
@@ -152,8 +161,10 @@ func NewToolPickerInkingItemWithInkTypeWidth(inkType unsafe.Pointer, width float
 }
 
 
+
 // Present color selection UI to the user. Default value is YES.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/allowsColorSelection
 func (t_ ToolPickerInkingItem) AllowsColorSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsColorSelection"))
@@ -161,20 +172,21 @@ func (t_ ToolPickerInkingItem) AllowsColorSelection() bool {
 }
 
 
-// SetAllowsColorSelection sets the value of the allowsColorSelection property.
 // Present color selection UI to the user. Default value is YES.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/allowsColorSelection
 func (t_ ToolPickerInkingItem) SetAllowsColorSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColorSelection:"), value)
 }
 
+
 // A tool for drawing on a canvas view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/inkingTool-625y9
-func (t_ ToolPickerInkingItem) InkingTool() PKInkingTool {
-	rv := objc.Send[PKInkingTool](t_.ID, objc.Sel("inkingTool"))
+func (t_ ToolPickerInkingItem) InkingTool() IPKInkingTool {
+	rv := objc.Send[InkingTool](t_.ID, objc.Sel("inkingTool"))
 	return rv
 }
 

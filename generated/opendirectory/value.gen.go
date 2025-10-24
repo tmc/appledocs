@@ -30,9 +30,13 @@ type _valueClass struct {
 // An interface definition for the [value] class.
 type Ivalue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-c.ivar
 type value struct {
 	objectivec.Object

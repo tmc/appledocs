@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,7 +95,7 @@ func NewBluetoothSDPServiceAttribute() BluetoothSDPServiceAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/init(id:attributeElement:)
-func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElement BluetoothSDPDataElement /* already interface */) BluetoothSDPServiceAttribute {
+func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElement IOBluetoothSDPDataElement) BluetoothSDPServiceAttribute {
 	instance := getBluetoothSDPServiceAttributeClass().Alloc()
 	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElement:"), newAttributeID, attributeElement)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID Blueto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/init(id:attributeElementValue:)
-func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElementValue objectivec.IObject) BluetoothSDPServiceAttribute {
+func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElementValue objc.IObject /* cross-framework: NSObject */) BluetoothSDPServiceAttribute {
 	instance := getBluetoothSDPServiceAttributeClass().Alloc()
 	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElementValue:"), newAttributeID, attributeElementValue)
 	rv.Autorelease()
@@ -119,7 +120,7 @@ func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID B
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/withID(_:attributeElement:)
-func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElement(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElement BluetoothSDPDataElement /* already interface */) unsafe.Pointer {
+func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElement(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElement IOBluetoothSDPDataElement) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withID:attributeElement:"), newAttributeID, attributeElement)
 	return rv
 }
@@ -129,7 +130,7 @@ func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElement(newAttribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/withID(_:attributeElementValue:)
-func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElementValue(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElementValue objectivec.IObject) unsafe.Pointer {
+func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElementValue(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElementValue objc.IObject /* cross-framework: NSObject */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withID:attributeElementValue:"), newAttributeID, attributeElementValue)
 	return rv
 }

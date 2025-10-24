@@ -30,13 +30,17 @@ type _MTRTargetNavigatorClusterTargetInfoClass struct {
 // An interface definition for the [MTRTargetNavigatorClusterTargetInfo] class.
 type IMTRTargetNavigatorClusterTargetInfo interface {
 	IMTRTargetNavigatorClusterTargetInfoStruct
-	Identifier() foundation.Number
-	SetIdentifier(value foundation.INumber)
-	Name() string
-	SetName(value string)
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSNumber */
+	SetIdentifier(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetInfo
 type MTRTargetNavigatorClusterTargetInfo struct {
 	MTRTargetNavigatorClusterTargetInfoStruct
@@ -81,34 +85,34 @@ func NewMTRTargetNavigatorClusterTargetInfo() MTRTargetNavigatorClusterTargetInf
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfo/identifier
-func (m_ MTRTargetNavigatorClusterTargetInfo) Identifier() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("identifier"))
+func (m_ MTRTargetNavigatorClusterTargetInfo) Identifier() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfo/identifier
-func (m_ MTRTargetNavigatorClusterTargetInfo) SetIdentifier(value foundation.INumber) {
+func (m_ MTRTargetNavigatorClusterTargetInfo) SetIdentifier(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfo/name
-func (m_ MTRTargetNavigatorClusterTargetInfo) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTargetNavigatorClusterTargetInfo) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfo/name
-func (m_ MTRTargetNavigatorClusterTargetInfo) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTargetNavigatorClusterTargetInfo) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

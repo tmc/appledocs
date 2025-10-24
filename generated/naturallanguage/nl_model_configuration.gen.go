@@ -31,15 +31,21 @@ type _ModelConfigurationClass struct {
 // An interface definition for the [ModelConfiguration] class.
 type IModelConfiguration interface {
 	objectivec.IObject
-	Language() Language
+	// properties:
+	Language() objc.IObject /* cross-framework: Language */
 	Revision() uint
 	Type() ModelType
-	Configuration() NLModelConfiguration
+	Configuration() INLModelConfiguration
 	SetConfiguration(value INLModelConfiguration)
+	// methods:
 }
 
 // The configuration parameters of a natural language model.
+
+
+// The configuration parameters of a natural language model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration
 type ModelConfiguration struct {
 	objectivec.Object
@@ -84,59 +90,70 @@ func NewModelConfiguration() ModelConfiguration {
 }
 
 
+
 // Returns the current Natural Language framework version in the OS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/currentRevision(for:)
 func (mc _ModelConfigurationClass) CurrentRevisionForType(type_ ModelType) uint {
 	rv := objc.Send[uint](objc.ID(mc.class), objc.Sel("currentRevisionForType:"), type_)
 	return rv
 }
 
+
 // Returns the versions of the Natural Language framework the OS supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/supportedRevisions(for:)
-func (mc _ModelConfigurationClass) SupportedRevisionsForType(type_ ModelType) foundation.IndexSet {
+func (mc _ModelConfigurationClass) SupportedRevisionsForType(type_ ModelType) objc.IObject /* cross-framework: IndexSet */ {
 	rv := objc.Send[foundation.IndexSet](objc.ID(mc.class), objc.Sel("supportedRevisionsForType:"), type_)
 	return rv
 }
 
+
 // The language the model supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/language
-func (m_ ModelConfiguration) Language() Language {
+func (m_ ModelConfiguration) Language() objc.IObject /* cross-framework: Language */ {
 	rv := objc.Send[Language](m_.ID, objc.Sel("language"))
 	return rv
 }
 
+
 // The version of the Natural Language framework that trained the model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/revision
 func (m_ ModelConfiguration) Revision() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("revision"))
 	return rv
 }
 
+
 // The natural language model type of the model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/type
 func (m_ ModelConfiguration) Type() ModelType {
 	rv := objc.Send[ModelType](m_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // A configuration describing the natural language model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
-func (m_ ModelConfiguration) Configuration() NLModelConfiguration {
-	rv := objc.Send[NLModelConfiguration](m_.ID, objc.Sel("configuration"))
+func (m_ ModelConfiguration) Configuration() INLModelConfiguration {
+	rv := objc.Send[ModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
 // A configuration describing the natural language model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
 func (m_ ModelConfiguration) SetConfiguration(value INLModelConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)

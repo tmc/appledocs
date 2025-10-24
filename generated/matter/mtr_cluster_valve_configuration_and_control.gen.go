@@ -29,9 +29,13 @@ type _MTRClusterValveConfigurationAndControlClass struct {
 // An interface definition for the [MTRClusterValveConfigurationAndControl] class.
 type IMTRClusterValveConfigurationAndControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterValveConfigurationAndControl
 type MTRClusterValveConfigurationAndControl struct {
 	MTRGenericCluster

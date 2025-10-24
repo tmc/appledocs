@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _AuthorizationSecurityKeyPublicKeyCredentialProviderClass struct {
 type IAuthorizationSecurityKeyPublicKeyCredentialProvider interface {
 	objectivec.IObject
 	// properties:
-	RelyingPartyIdentifier() string /* primitive/slice/pointer. */
-	SetRelyingPartyIdentifier(value string /* primitive/slice/pointer. */)
+	RelyingPartyIdentifier() objc.IObject /* cross-framework: NSString */
+	SetRelyingPartyIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -93,8 +94,8 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialProvider() AuthorizationSecur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) RelyingPartyIdenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), value)
 }
 
 

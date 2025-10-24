@@ -31,47 +31,47 @@ type _DictionaryClass struct {
 type IDictionary interface {
 	objectivec.IObject
 	// properties:
-	AllKeys() []objc.ID /* already interface */
-	AllValues() []objc.ID /* already interface */
-	Count() uint /* primitive/slice/pointer. */
+	AllKeys() []objc.ID
+	AllValues() []objc.ID
+	Count() uint
 	Description() IString
 	DescriptionInStringsFileFormat() IString
 	// methods:
-	AllKeysForObject(anObject unsafe.Pointer) []objc.ID /* already interface */
-	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework FastEnumerationState */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
+	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
+	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework: FastEnumerationState */, buffer []unsafe.Pointer, len_ uint) uint
 	DescriptionWithLocale(locale objectivec.IObject) IString
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer. */) IString
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FileCreationDate() IDate
-	FileExtensionHidden() bool /* primitive/slice/pointer. */
+	FileExtensionHidden() bool
 	FileGroupOwnerAccountID() INumber
 	FileGroupOwnerAccountName() IString
-	FileHFSCreatorCode() unsafe.Pointer
-	FileHFSTypeCode() unsafe.Pointer
-	FileIsAppendOnly() bool /* primitive/slice/pointer. */
-	FileIsImmutable() bool /* primitive/slice/pointer. */
+	FileHFSCreatorCode() uint32 /* not a class type */
+	FileHFSTypeCode() uint32 /* not a class type */
+	FileIsAppendOnly() bool
+	FileIsImmutable() bool
 	FileModificationDate() IDate
 	FileOwnerAccountID() INumber
 	FileOwnerAccountName() IString
-	FilePosixPermissions() uint /* primitive/slice/pointer. */
-	FileSize() uint64 /* primitive/slice/pointer. */
-	FileSystemFileNumber() uint /* primitive/slice/pointer. */
-	FileSystemNumber() int /* primitive/slice/pointer. */
+	FilePosixPermissions() uint
+	FileSize() uint64
+	FileSystemFileNumber() uint
+	FileSystemNumber() int
 	FileType() IString
-	GetObjectsAndKeysCount(objects []unsafe.Pointer /* not a class type */, keys []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer. */)
-	IsEqualToDictionary(otherDictionary IDictionary /* already interface */) bool /* primitive/slice/pointer. */
+	GetObjectsAndKeysCount(objects []unsafe.Pointer, keys []unsafe.Pointer, count uint)
+	IsEqualToDictionary(otherDictionary IDictionary) bool
 	KeyEnumerator() unsafe.Pointer
 	KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.Pointer
-	KeysSortedByValueUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */
-	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */
-	KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID /* already interface */
+	KeysSortedByValueUsingComparator(cmptr Comparator /* not a class type */) []objc.ID
+	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID
+	KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID
 	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
-	ObjectsForKeysNotFoundMarker(keys []objc.ID /* already interface */, marker unsafe.Pointer) []objc.ID /* already interface */
+	ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
-	WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */
+	WriteToURLError(url IURL, error_ IError) bool
 }
 
 // A static collection of objects associated with unique keys.
@@ -179,7 +179,7 @@ func NewDictionaryWithContentsOfURLError(url IURL, error_ IError) Dictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
-func NewDictionaryWithDictionary(otherDictionary IDictionary /* already interface */) Dictionary {
+func NewDictionaryWithDictionary(otherDictionary IDictionary) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:"), otherDictionary)
 	rv.Autorelease()
@@ -191,7 +191,7 @@ func NewDictionaryWithDictionary(otherDictionary IDictionary /* already interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:copyItems:)
-func NewDictionaryWithDictionaryCopyItems(otherDictionary IDictionary /* already interface */, flag bool /* primitive/slice/pointer. */) Dictionary {
+func NewDictionaryWithDictionaryCopyItems(otherDictionary IDictionary, flag bool) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:copyItems:"), otherDictionary, flag)
 	rv.Autorelease()
@@ -225,7 +225,7 @@ func NewDictionaryWithObjectsAndKeys(firstObject objectivec.IObject) Dictionary 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
-func NewDictionaryWithObjectsForKeys(objects []objc.ID /* already interface */, keys []objc.ID /* already interface */) Dictionary {
+func NewDictionaryWithObjectsForKeys(objects []objc.ID, keys []objc.ID) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
 	rv.Autorelease()
@@ -237,7 +237,7 @@ func NewDictionaryWithObjectsForKeys(objects []objc.ID /* already interface */, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
-func NewDictionaryWithObjectsForKeysCount(objects []unsafe.Pointer /* not a class type */, keys []objc.ID /* already interface */, cnt uint /* primitive/slice/pointer. */) Dictionary {
+func NewDictionaryWithObjectsForKeysCount(objects []unsafe.Pointer, keys []objc.ID, cnt uint) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
 	rv.Autorelease()
@@ -260,8 +260,8 @@ func (dc _DictionaryClass) Dictionary() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfFile:
-func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
+func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionary {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
 	return rv
 }
 
@@ -270,8 +270,8 @@ func (dc _DictionaryClass) DictionaryWithContentsOfFile(path IString) IDictionar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfURL:error:
-func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IError) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
+func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IError) IDictionary {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
@@ -280,7 +280,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithDictionary:
-func (dc _DictionaryClass) DictionaryWithDictionary(dict IDictionary /* already interface */) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithDictionary(dict IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithDictionary:"), dict)
 	return rv
 }
@@ -290,7 +290,7 @@ func (dc _DictionaryClass) DictionaryWithDictionary(dict IDictionary /* already 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjects:forKeys:
-func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects []objc.ID /* already interface */, keys []objc.ID /* already interface */) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects []objc.ID, keys []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjects:forKeys:"), objects, keys)
 	return rv
 }
@@ -300,7 +300,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects []objc.ID /* alr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjects:forKeys:count:
-func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects []unsafe.Pointer /* not a class type */, keys []objc.ID /* already interface */, cnt uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects []unsafe.Pointer, keys []objc.ID, cnt uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjects:forKeys:count:"), objects, keys, cnt)
 	return rv
 }
@@ -320,8 +320,8 @@ func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-98pl3
-func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
+func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) IDictionary {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
 
@@ -340,7 +340,7 @@ func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/sharedKeySet(forKeys:)
-func (dc _DictionaryClass) SharedKeySetForKeys(keys []objc.ID /* already interface */) objc.ID {
+func (dc _DictionaryClass) SharedKeySetForKeys(keys []objc.ID) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("sharedKeySetForKeys:"), keys)
 	return rv
 }
@@ -350,7 +350,7 @@ func (dc _DictionaryClass) SharedKeySetForKeys(keys []objc.ID /* already interfa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/allKeys(for:)
-func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID /* already interface */ {
+func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("allKeysForObject:"), anObject)
 	return rv
 }
@@ -360,7 +360,7 @@ func (d_ Dictionary) AllKeysForObject(anObject unsafe.Pointer) []objc.ID /* alre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/countByEnumeratingWithState:objects:count:
-func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework FastEnumerationState */, buffer []unsafe.Pointer /* not a class type */, len_ uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework: FastEnumerationState */, buffer []unsafe.Pointer, len_ uint) uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("countByEnumeratingWithState:objects:count:"), state, buffer, len_)
 	return rv
 }
@@ -380,7 +380,7 @@ func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:indent:)
-func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer. */) IString {
+func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -418,7 +418,7 @@ func (d_ Dictionary) FileCreationDate() IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileExtensionHidden()
-func (d_ Dictionary) FileExtensionHidden() bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileExtensionHidden() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileExtensionHidden"))
 	return rv
 }
@@ -448,8 +448,8 @@ func (d_ Dictionary) FileGroupOwnerAccountName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileHFSCreatorCode()
-func (d_ Dictionary) FileHFSCreatorCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileHFSCreatorCode"))
+func (d_ Dictionary) FileHFSCreatorCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](d_.ID, objc.Sel("fileHFSCreatorCode"))
 	return rv
 }
 
@@ -458,8 +458,8 @@ func (d_ Dictionary) FileHFSCreatorCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileHFSTypeCode()
-func (d_ Dictionary) FileHFSTypeCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileHFSTypeCode"))
+func (d_ Dictionary) FileHFSTypeCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](d_.ID, objc.Sel("fileHFSTypeCode"))
 	return rv
 }
 
@@ -468,7 +468,7 @@ func (d_ Dictionary) FileHFSTypeCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileIsAppendOnly()
-func (d_ Dictionary) FileIsAppendOnly() bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileIsAppendOnly() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileIsAppendOnly"))
 	return rv
 }
@@ -478,7 +478,7 @@ func (d_ Dictionary) FileIsAppendOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileIsImmutable()
-func (d_ Dictionary) FileIsImmutable() bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileIsImmutable() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileIsImmutable"))
 	return rv
 }
@@ -518,7 +518,7 @@ func (d_ Dictionary) FileOwnerAccountName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/filePosixPermissions()
-func (d_ Dictionary) FilePosixPermissions() uint /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FilePosixPermissions() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("filePosixPermissions"))
 	return rv
 }
@@ -528,7 +528,7 @@ func (d_ Dictionary) FilePosixPermissions() uint /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileSize()
-func (d_ Dictionary) FileSize() uint64 /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileSize() uint64 {
 	rv := objc.Send[uint64](d_.ID, objc.Sel("fileSize"))
 	return rv
 }
@@ -538,7 +538,7 @@ func (d_ Dictionary) FileSize() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileSystemFileNumber()
-func (d_ Dictionary) FileSystemFileNumber() uint /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileSystemFileNumber() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("fileSystemFileNumber"))
 	return rv
 }
@@ -548,7 +548,7 @@ func (d_ Dictionary) FileSystemFileNumber() uint /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileSystemNumber()
-func (d_ Dictionary) FileSystemNumber() int /* primitive/slice/pointer. */ {
+func (d_ Dictionary) FileSystemNumber() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("fileSystemNumber"))
 	return rv
 }
@@ -568,7 +568,7 @@ func (d_ Dictionary) FileType() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/getObjects:andKeys:count:
-func (d_ Dictionary) GetObjectsAndKeysCount(objects []unsafe.Pointer /* not a class type */, keys []unsafe.Pointer /* not a class type */, count uint /* primitive/slice/pointer. */) {
+func (d_ Dictionary) GetObjectsAndKeysCount(objects []unsafe.Pointer, keys []unsafe.Pointer, count uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getObjects:andKeys:count:"), objects, keys, count)
 }
 
@@ -577,7 +577,7 @@ func (d_ Dictionary) GetObjectsAndKeysCount(objects []unsafe.Pointer /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/isEqual(to:)
-func (d_ Dictionary) IsEqualToDictionary(otherDictionary IDictionary /* already interface */) bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) IsEqualToDictionary(otherDictionary IDictionary) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToDictionary:"), otherDictionary)
 	return rv
 }
@@ -617,7 +617,7 @@ func (d_ Dictionary) KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(comparator:)
-func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
+func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueUsingComparator:"), cmptr)
 	return rv
 }
@@ -627,7 +627,7 @@ func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr Comparator /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(options:usingComparator:)
-func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
+func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }
@@ -637,7 +637,7 @@ func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(using:)
-func (d_ Dictionary) KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID /* already interface */ {
+func (d_ Dictionary) KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueUsingSelector:"), comparator)
 	return rv
 }
@@ -667,7 +667,7 @@ func (d_ Dictionary) ObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/objects(forKeys:notFoundMarker:)
-func (d_ Dictionary) ObjectsForKeysNotFoundMarker(keys []objc.ID /* already interface */, marker unsafe.Pointer) []objc.ID /* already interface */ {
+func (d_ Dictionary) ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("objectsForKeys:notFoundMarker:"), keys, marker)
 	return rv
 }
@@ -697,7 +697,7 @@ func (d_ Dictionary) ValueForKey(key IString) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:)
-func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */ {
+func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }
@@ -707,7 +707,7 @@ func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/allKeys
-func (d_ Dictionary) AllKeys() []objc.ID /* already interface */ {
+func (d_ Dictionary) AllKeys() []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("allKeys"))
 	return rv
 }
@@ -717,7 +717,7 @@ func (d_ Dictionary) AllKeys() []objc.ID /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/allValues
-func (d_ Dictionary) AllValues() []objc.ID /* already interface */ {
+func (d_ Dictionary) AllValues() []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("allValues"))
 	return rv
 }
@@ -727,7 +727,7 @@ func (d_ Dictionary) AllValues() []objc.ID /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/count
-func (d_ Dictionary) Count() uint /* primitive/slice/pointer. */ {
+func (d_ Dictionary) Count() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("count"))
 	return rv
 }

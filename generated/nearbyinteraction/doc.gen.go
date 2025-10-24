@@ -2,12 +2,12 @@
 
 // Package nearbyinteraction provides Go bindings for the NearbyInteraction framework.
 //
-// Locate and interact with nearby devices using identifiers, distance, and direction. [Full Topic]
+// Locate and interact with nearby devices using identifiers, distance, and direction.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to NearbyInteraction without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction
+// See: https://developer.apple.com/documentation/NearbyInteraction
 package nearbyinteraction
 
 import (

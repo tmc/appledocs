@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +33,12 @@ type _INRidePartySizeOptionClass struct {
 type IINRidePartySizeOption interface {
 	objectivec.IObject
 	// properties:
-	PartySizeRange() foundation.objc.IObject /* cross-framework: Range */
-	SetPartySizeRange(value foundation.objc.IObject /* cross-framework: Range */)
+	PartySizeRange() objc.IObject /* cross-framework: Range */
+	SetPartySizeRange(value objc.IObject /* cross-framework: Range */)
 	PriceRange() unsafe.Pointer
 	SetPriceRange(value unsafe.Pointer)
-	SizeDescription() string /* primitive/slice/pointer. */
-	SetSizeDescription(value string /* primitive/slice/pointer. */)
+	SizeDescription() objc.IObject /* cross-framework: NSString */
+	SetSizeDescription(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -98,8 +99,8 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) PartySizeRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("partySizeRange"))
+func (i_ INRidePartySizeOption) PartySizeRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[corefoundation.Range](i_.ID, objc.Sel("partySizeRange"))
 	return rv
 }
 
@@ -108,7 +109,7 @@ func (i_ INRidePartySizeOption) PartySizeRange() foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.objc.IObject /* cross-framework: Range */) {
+func (i_ INRidePartySizeOption) SetPartySizeRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
 }
 
@@ -136,8 +137,8 @@ func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SizeDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
+func (i_ INRidePartySizeOption) SizeDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("sizeDescription"))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (i_ INRidePartySizeOption) SizeDescription() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SetSizeDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))
+func (i_ INRidePartySizeOption) SetSizeDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), value)
 }
 
 

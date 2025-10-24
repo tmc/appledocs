@@ -30,8 +30,8 @@ type _CompositeAttributeDescriptionClass struct {
 type ICompositeAttributeDescription interface {
 	IAttributeDescription
 	// properties:
-	Elements() []AttributeDescription /* primitive/slice/pointer. */
-	SetElements(value []AttributeDescription /* primitive/slice/pointer. */)
+	Elements() []IAttributeDescription
+	SetElements(value []IAttributeDescription)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCompositeAttributeDescription() CompositeAttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) Elements() []AttributeDescription /* primitive/slice/pointer. */ {
+func (c_ CompositeAttributeDescription) Elements() []IAttributeDescription {
 	rv := objc.Send[[]AttributeDescription](c_.ID, objc.Sel("elements"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (c_ CompositeAttributeDescription) Elements() []AttributeDescription /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) SetElements(value []AttributeDescription /* primitive/slice/pointer. */) {
+func (c_ CompositeAttributeDescription) SetElements(value []IAttributeDescription) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

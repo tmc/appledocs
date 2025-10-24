@@ -30,11 +30,15 @@ type _MTRCommandPathClass struct {
 // An interface definition for the [MTRCommandPath] class.
 type IMTRCommandPath interface {
 	IMTRClusterPath
-	Command() foundation.Number
-	SetCommand(value foundation.INumber)
+	// properties:
+	Command() objc.IObject /* cross-framework: NSNumber */
+	SetCommand(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandPath
 type MTRCommandPath struct {
 	MTRClusterPath
@@ -79,18 +83,18 @@ func NewMTRCommandPath() MTRCommandPath {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommandpath/command
-func (m_ MTRCommandPath) Command() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("command"))
+func (m_ MTRCommandPath) Command() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("command"))
 	return rv
 }
 
 
-// SetCommand sets the value of the command property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommandpath/command
-func (m_ MTRCommandPath) SetCommand(value foundation.INumber) {
+func (m_ MTRCommandPath) SetCommand(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommand:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NSPredicateRule] class.
@@ -32,7 +33,7 @@ type INSPredicateRule interface {
 	// properties:
 	Predicate() objc.IObject /* cross-framework: Predicate */
 	// methods:
-	EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */
+	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 }
 
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.
@@ -94,7 +95,7 @@ func NewNSPredicateRule() NSPredicateRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
-func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework Predicate */) NSPredicateRule {
+func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework: Predicate */) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/evaluatePredicate(in:)
-func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */ {
+func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
 }
@@ -118,7 +119,7 @@ func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/predicate
 func (p_ NSPredicateRule) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](p_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
 	return rv
 }
 

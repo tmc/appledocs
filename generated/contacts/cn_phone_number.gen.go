@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _CNPhoneNumberClass struct {
 type ICNPhoneNumber interface {
 	objectivec.IObject
 	// properties:
-	CNContactPhoneNumbersKey() string /* primitive/slice/pointer. */
-	StringValue() string /* primitive/slice/pointer. */
-	SetStringValue(value string /* primitive/slice/pointer. */)
+	CNContactPhoneNumbersKey() objc.IObject /* cross-framework: NSString */
+	StringValue() objc.IObject /* cross-framework: NSString */
+	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewCNPhoneNumber() CNPhoneNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactphonenumberskey
-func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
+func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnphonenumber/stringvalue
-func (c_ CNPhoneNumber) StringValue() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
+func (c_ CNPhoneNumber) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (c_ CNPhoneNumber) StringValue() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnphonenumber/stringvalue
-func (c_ CNPhoneNumber) SetStringValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (c_ CNPhoneNumber) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), value)
 }
 
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to InputMethodKit without requiring cgo.
-
-// Develop input methods and manage communication with client applications, candidates windows, and input method modes.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/InputMethodKit
+// See: https://developer.apple.com/documentation/InputMethodKit
 package inputmethodkit
 
 import (

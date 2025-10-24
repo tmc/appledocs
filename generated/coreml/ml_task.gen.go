@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _TaskClass struct {
 type ITask interface {
 	objectivec.IObject
 	// properties:
-	Error() Error /* not a class type */
+	Error() objc.IObject /* cross-framework: Error */
 	State() TaskState
-	TaskIdentifier() string /* primitive/slice/pointer. */
+	TaskIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 	Cancel()
 }
@@ -104,8 +105,8 @@ func (t_ Task) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/error
-func (t_ Task) Error() Error /* not a class type */ {
-	rv := objc.Send[Error](t_.ID, objc.Sel("error"))
+func (t_ Task) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[foundation.Error](t_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (t_ Task) State() TaskState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
-func (t_ Task) TaskIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
+func (t_ Task) TaskIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
 

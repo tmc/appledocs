@@ -29,14 +29,20 @@ type _PHASEConeDirectivityModelParametersClass struct {
 // An interface definition for the [PHASEConeDirectivityModelParameters] class.
 type IPHASEConeDirectivityModelParameters interface {
 	IPHASEDirectivityModelParameters
-	SubbandParameters() PHASEConeDirectivityModelSubbandParameters
+	// properties:
+	SubbandParameters() IPHASEConeDirectivityModelSubbandParameters
 	SetSubbandParameters(value IPHASEConeDirectivityModelSubbandParameters)
+	// methods:
 }
 
 // An object that directs sound in a cone-shaped curve that extends from a sound source.
 //
 // This class determines that a particular frequency range in the audio spectrum emits sound in an area defined by a mathematical cone. PHASE refers to each frequency segment along the audio spectrum as a . This class contains an array of that each direct sound in a unique cone shape. The framework outputs a blend of a frequency’s adjacent subbands for all frequencies that lie outside of those specified in the array.
+
+
+// An object that directs sound in a cone-shaped curve that extends from a sound source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelParameters
 type PHASEConeDirectivityModelParameters struct {
 	PHASEDirectivityModelParameters
@@ -83,19 +89,20 @@ func NewPHASEConeDirectivityModelParameters() PHASEConeDirectivityModelParameter
 }
 
 
+
 // An array of frequencies that describe varying sound emission across the spectrum.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters/subbandparameters
-func (p_ PHASEConeDirectivityModelParameters) SubbandParameters() PHASEConeDirectivityModelSubbandParameters {
+func (p_ PHASEConeDirectivityModelParameters) SubbandParameters() IPHASEConeDirectivityModelSubbandParameters {
 	rv := objc.Send[PHASEConeDirectivityModelSubbandParameters](p_.ID, objc.Sel("subbandParameters"))
 	return rv
 }
 
 
-// SetSubbandParameters sets the value of the subbandParameters property.
 // An array of frequencies that describe varying sound emission across the spectrum.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters/subbandparameters
 func (p_ PHASEConeDirectivityModelParameters) SetSubbandParameters(value IPHASEConeDirectivityModelSubbandParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSubbandParameters:"), value)

@@ -31,10 +31,7 @@ type _ILClassificationUIExtensionViewControllerClass struct {
 type IILClassificationUIExtensionViewController interface {
 	appkit.IViewController
 	// properties:
-	ExtensionContext() ILClassificationUIExtensionContext /* already interface */
 	// methods:
-	ClassificationResponseForRequest(request unsafe.Pointer) unsafe.Pointer
-	PrepareForClassificationRequest(request unsafe.Pointer)
 }
 
 // The superclass for an Unwanted Communication Reporting extension’s principal view controller.
@@ -89,37 +86,6 @@ func (i_ ILClassificationUIExtensionViewController) Autorelease() ILClassificati
 func NewILClassificationUIExtensionViewController() ILClassificationUIExtensionViewController {
 	return getILClassificationUIExtensionViewControllerClass().New()
 }
-
-
-
-// Notifies the view controller when the user finishes entering data and presses the Done button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/classificationResponse(for:)
-func (i_ ILClassificationUIExtensionViewController) ClassificationResponseForRequest(request unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("classificationResponseForRequest:"), request)
-	return rv
-}
-
-
-// Notifies the view controller just before the system presents it to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/prepare(for:)
-func (i_ ILClassificationUIExtensionViewController) PrepareForClassificationRequest(request unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("prepareForClassificationRequest:"), request)
-}
-
-
-// The context for the current request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/extensionContext
-func (i_ ILClassificationUIExtensionViewController) ExtensionContext() ILClassificationUIExtensionContext /* already interface */ {
-	rv := objc.Send[ILClassificationUIExtensionContext](i_.ID, objc.Sel("extensionContext"))
-	return rv
-}
-
 
 
 

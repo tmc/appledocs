@@ -31,19 +31,23 @@ type _MTRGeneralCommissioningClusterSetRegulatoryConfigParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterSetRegulatoryConfigParams] class.
 type IMTRGeneralCommissioningClusterSetRegulatoryConfigParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	CountryCode() string
-	SetCountryCode(value string)
-	NewRegulatoryConfig() foundation.Number
-	SetNewRegulatoryConfig(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	CountryCode() objc.IObject /* cross-framework: NSString */
+	SetCountryCode(value objc.IObject /* cross-framework: NSString */)
+	NewRegulatoryConfig() objc.IObject /* cross-framework: NSNumber */
+	SetNewRegulatoryConfig(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterSetRegulatoryConfigParams
 type MTRGeneralCommissioningClusterSetRegulatoryConfigParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRGeneralCommissioningClusterSetRegulatoryConfigParams() MTRGeneralComm
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
 
-// SetCountryCode sets the value of the countryCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/newregulatoryconfig
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) NewRegulatoryConfig() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newRegulatoryConfig"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) NewRegulatoryConfig() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newRegulatoryConfig"))
 	return rv
 }
 
 
-// SetNewRegulatoryConfig sets the value of the newRegulatoryConfig property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/newregulatoryconfig
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulatoryConfig(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulatoryConfig(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewRegulatoryConfig:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

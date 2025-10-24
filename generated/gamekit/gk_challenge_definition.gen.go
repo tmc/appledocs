@@ -32,21 +32,21 @@ type _ChallengeDefinitionClass struct {
 type IChallengeDefinition interface {
 	objectivec.IObject
 	// properties:
-	DurationOptions() []foundation.objc.IObject /* cross-framework: DateComponents */
-	Details() string /* primitive/slice/pointer. */
-	SetDetails(value string /* primitive/slice/pointer. */)
-	GroupIdentifier() string /* primitive/slice/pointer. */
-	SetGroupIdentifier(value string /* primitive/slice/pointer. */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	IsRepeatable() bool /* primitive/slice/pointer. */
-	SetIsRepeatable(value bool /* primitive/slice/pointer. */)
+	DurationOptions() []objc.IObject /* cross-framework: DateComponents */
+	Details() objc.IObject /* cross-framework: NSString */
+	SetDetails(value objc.IObject /* cross-framework: NSString */)
+	GroupIdentifier() objc.IObject /* cross-framework: NSString */
+	SetGroupIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	IsRepeatable() bool
+	SetIsRepeatable(value bool)
 	Leaderboard() IGKLeaderboard
 	SetLeaderboard(value IGKLeaderboard)
 	ReleaseState() ReleaseState /* not a class type */
 	SetReleaseState(value ReleaseState /* not a class type */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 	HasActiveChallengesWithCompletionHandler(completionHandler unsafe.Pointer)
 }
@@ -115,7 +115,7 @@ func (c_ ChallengeDefinition) HasActiveChallengesWithCompletionHandler(completio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeDefinition/durationOptions
-func (c_ ChallengeDefinition) DurationOptions() []foundation.objc.IObject /* cross-framework: DateComponents */ {
+func (c_ ChallengeDefinition) DurationOptions() []objc.IObject /* cross-framework: DateComponents */ {
 	rv := objc.Send[[]foundation.DateComponents](c_.ID, objc.Sel("durationOptions"))
 	return rv
 }
@@ -125,8 +125,8 @@ func (c_ ChallengeDefinition) DurationOptions() []foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/details
-func (c_ ChallengeDefinition) Details() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("details"))
+func (c_ ChallengeDefinition) Details() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("details"))
 	return rv
 }
 
@@ -135,8 +135,8 @@ func (c_ ChallengeDefinition) Details() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/details
-func (c_ ChallengeDefinition) SetDetails(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDetails:"), objc.String(value))
+func (c_ ChallengeDefinition) SetDetails(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDetails:"), value)
 }
 
 
@@ -144,8 +144,8 @@ func (c_ ChallengeDefinition) SetDetails(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
-func (c_ ChallengeDefinition) GroupIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
+func (c_ ChallengeDefinition) GroupIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (c_ ChallengeDefinition) GroupIdentifier() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/groupidentifier
-func (c_ ChallengeDefinition) SetGroupIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+func (c_ ChallengeDefinition) SetGroupIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
 
 
@@ -163,8 +163,8 @@ func (c_ ChallengeDefinition) SetGroupIdentifier(value string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/identifier
-func (c_ ChallengeDefinition) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ ChallengeDefinition) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (c_ ChallengeDefinition) Identifier() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/identifier
-func (c_ ChallengeDefinition) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ ChallengeDefinition) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -182,7 +182,7 @@ func (c_ ChallengeDefinition) SetIdentifier(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
-func (c_ ChallengeDefinition) IsRepeatable() bool /* primitive/slice/pointer. */ {
+func (c_ ChallengeDefinition) IsRepeatable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRepeatable"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (c_ ChallengeDefinition) IsRepeatable() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/isrepeatable
-func (c_ ChallengeDefinition) SetIsRepeatable(value bool /* primitive/slice/pointer. */) {
+func (c_ ChallengeDefinition) SetIsRepeatable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRepeatable:"), value)
 }
 
@@ -239,8 +239,8 @@ func (c_ ChallengeDefinition) SetReleaseState(value ReleaseState /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/title
-func (c_ ChallengeDefinition) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ ChallengeDefinition) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -249,8 +249,8 @@ func (c_ ChallengeDefinition) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/title
-func (c_ ChallengeDefinition) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ ChallengeDefinition) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 

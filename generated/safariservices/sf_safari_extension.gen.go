@@ -30,10 +30,16 @@ type _SFSafariExtensionClass struct {
 // An interface definition for the [SFSafariExtension] class.
 type ISFSafariExtension interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A proxy for the Safari extension.
+
+
+// A proxy for the Safari extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtension
 type SFSafariExtension struct {
 	objectivec.Object
@@ -78,7 +84,8 @@ func NewSFSafariExtension() SFSafariExtension {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtension/getBaseURI(completionHandler:)
 func (sc _SFSafariExtensionClass) GetBaseURIWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getBaseURIWithCompletionHandler:"), completionHandler)

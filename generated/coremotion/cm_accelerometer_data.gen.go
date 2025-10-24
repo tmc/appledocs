@@ -30,9 +30,9 @@ type _AccelerometerDataClass struct {
 type IAccelerometerData interface {
 	ILogItem
 	// properties:
-	Acceleration() Acceleration /* not a class type */
-	Timestamp() unsafe.Pointer
-	SetTimestamp(value unsafe.Pointer)
+	Acceleration() CMAcceleration /* not a class type */
+	Timestamp() float64
+	SetTimestamp(value float64)
 	AccelerometerData() ICMAccelerometerData
 	SetAccelerometerData(value ICMAccelerometerData)
 	// methods:
@@ -97,7 +97,7 @@ func NewAccelerometerData() AccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration
-func (a_ AccelerometerData) Acceleration() Acceleration /* not a class type */ {
+func (a_ AccelerometerData) Acceleration() CMAcceleration /* not a class type */ {
 	rv := objc.Send[Acceleration](a_.ID, objc.Sel("acceleration"))
 	return rv
 }
@@ -107,8 +107,8 @@ func (a_ AccelerometerData) Acceleration() Acceleration /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
-func (a_ AccelerometerData) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timestamp"))
+func (a_ AccelerometerData) Timestamp() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (a_ AccelerometerData) Timestamp() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp
-func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
+func (a_ AccelerometerData) SetTimestamp(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimestamp:"), value)
 }
 

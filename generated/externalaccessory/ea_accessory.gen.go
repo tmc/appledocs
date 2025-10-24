@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,26 +32,26 @@ type _EAAccessoryClass struct {
 type IEAAccessory interface {
 	objectivec.IObject
 	// properties:
-	ConnectionID() uint /* primitive/slice/pointer. */
-	DockType() string /* primitive/slice/pointer. */
-	Connected() bool /* primitive/slice/pointer. */
-	ProtocolStrings() []string /* primitive/slice/pointer. */
+	ConnectionID() uint
+	DockType() objc.IObject /* cross-framework: NSString */
+	Connected() bool
+	ProtocolStrings() []string
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	FirmwareRevision() string /* primitive/slice/pointer. */
-	SetFirmwareRevision(value string /* primitive/slice/pointer. */)
-	HardwareRevision() string /* primitive/slice/pointer. */
-	SetHardwareRevision(value string /* primitive/slice/pointer. */)
-	IsConnected() bool /* primitive/slice/pointer. */
-	SetIsConnected(value bool /* primitive/slice/pointer. */)
-	Manufacturer() string /* primitive/slice/pointer. */
-	SetManufacturer(value string /* primitive/slice/pointer. */)
-	ModelNumber() string /* primitive/slice/pointer. */
-	SetModelNumber(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	SerialNumber() string /* primitive/slice/pointer. */
-	SetSerialNumber(value string /* primitive/slice/pointer. */)
+	FirmwareRevision() objc.IObject /* cross-framework: NSString */
+	SetFirmwareRevision(value objc.IObject /* cross-framework: NSString */)
+	HardwareRevision() objc.IObject /* cross-framework: NSString */
+	SetHardwareRevision(value objc.IObject /* cross-framework: NSString */)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	Manufacturer() objc.IObject /* cross-framework: NSString */
+	SetManufacturer(value objc.IObject /* cross-framework: NSString */)
+	ModelNumber() objc.IObject /* cross-framework: NSString */
+	SetModelNumber(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	SerialNumber() objc.IObject /* cross-framework: NSString */
+	SetSerialNumber(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -111,7 +112,7 @@ func NewEAAccessory() EAAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/connectionID
-func (e_ EAAccessory) ConnectionID() uint /* primitive/slice/pointer. */ {
+func (e_ EAAccessory) ConnectionID() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("connectionID"))
 	return rv
 }
@@ -119,8 +120,8 @@ func (e_ EAAccessory) ConnectionID() uint /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/dockType
-func (e_ EAAccessory) DockType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("dockType"))
+func (e_ EAAccessory) DockType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("dockType"))
 	return rv
 }
 
@@ -129,7 +130,7 @@ func (e_ EAAccessory) DockType() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/isConnected
-func (e_ EAAccessory) Connected() bool /* primitive/slice/pointer. */ {
+func (e_ EAAccessory) Connected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("connected"))
 	return rv
 }
@@ -139,7 +140,7 @@ func (e_ EAAccessory) Connected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/protocolStrings
-func (e_ EAAccessory) ProtocolStrings() []string /* primitive/slice/pointer. */ {
+func (e_ EAAccessory) ProtocolStrings() []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("protocolStrings"))
 	return rv
 }
@@ -168,8 +169,8 @@ func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/firmwarerevision
-func (e_ EAAccessory) FirmwareRevision() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("firmwareRevision"))
+func (e_ EAAccessory) FirmwareRevision() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("firmwareRevision"))
 	return rv
 }
 
@@ -178,8 +179,8 @@ func (e_ EAAccessory) FirmwareRevision() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/firmwarerevision
-func (e_ EAAccessory) SetFirmwareRevision(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFirmwareRevision:"), objc.String(value))
+func (e_ EAAccessory) SetFirmwareRevision(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFirmwareRevision:"), value)
 }
 
 
@@ -187,8 +188,8 @@ func (e_ EAAccessory) SetFirmwareRevision(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/hardwarerevision
-func (e_ EAAccessory) HardwareRevision() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("hardwareRevision"))
+func (e_ EAAccessory) HardwareRevision() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("hardwareRevision"))
 	return rv
 }
 
@@ -197,8 +198,8 @@ func (e_ EAAccessory) HardwareRevision() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/hardwarerevision
-func (e_ EAAccessory) SetHardwareRevision(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setHardwareRevision:"), objc.String(value))
+func (e_ EAAccessory) SetHardwareRevision(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setHardwareRevision:"), value)
 }
 
 
@@ -206,7 +207,7 @@ func (e_ EAAccessory) SetHardwareRevision(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-func (e_ EAAccessory) IsConnected() bool /* primitive/slice/pointer. */ {
+func (e_ EAAccessory) IsConnected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -216,7 +217,7 @@ func (e_ EAAccessory) IsConnected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
-func (e_ EAAccessory) SetIsConnected(value bool /* primitive/slice/pointer. */) {
+func (e_ EAAccessory) SetIsConnected(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
 }
 
@@ -225,8 +226,8 @@ func (e_ EAAccessory) SetIsConnected(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/manufacturer
-func (e_ EAAccessory) Manufacturer() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
+func (e_ EAAccessory) Manufacturer() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
@@ -235,8 +236,8 @@ func (e_ EAAccessory) Manufacturer() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/manufacturer
-func (e_ EAAccessory) SetManufacturer(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setManufacturer:"), objc.String(value))
+func (e_ EAAccessory) SetManufacturer(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setManufacturer:"), value)
 }
 
 
@@ -244,8 +245,8 @@ func (e_ EAAccessory) SetManufacturer(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/modelnumber
-func (e_ EAAccessory) ModelNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("modelNumber"))
+func (e_ EAAccessory) ModelNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 
@@ -254,8 +255,8 @@ func (e_ EAAccessory) ModelNumber() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/modelnumber
-func (e_ EAAccessory) SetModelNumber(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setModelNumber:"), objc.String(value))
+func (e_ EAAccessory) SetModelNumber(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setModelNumber:"), value)
 }
 
 
@@ -263,8 +264,8 @@ func (e_ EAAccessory) SetModelNumber(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/name
-func (e_ EAAccessory) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EAAccessory) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -273,8 +274,8 @@ func (e_ EAAccessory) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/name
-func (e_ EAAccessory) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+func (e_ EAAccessory) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -282,8 +283,8 @@ func (e_ EAAccessory) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/serialnumber
-func (e_ EAAccessory) SerialNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
+func (e_ EAAccessory) SerialNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("serialNumber"))
 	return rv
 }
 
@@ -292,8 +293,8 @@ func (e_ EAAccessory) SerialNumber() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/serialnumber
-func (e_ EAAccessory) SetSerialNumber(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSerialNumber:"), objc.String(value))
+func (e_ EAAccessory) SetSerialNumber(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSerialNumber:"), value)
 }
 
 

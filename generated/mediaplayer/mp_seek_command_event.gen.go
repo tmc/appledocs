@@ -29,12 +29,18 @@ type _SeekCommandEventClass struct {
 // An interface definition for the [SeekCommandEvent] class.
 type ISeekCommandEvent interface {
 	IRemoteCommandEvent
-	Type() unsafe.Pointer
-	SetType(value unsafe.Pointer)
+	// properties:
+	Type() SeekCommandEventType /* not a class type */
+	SetType(value SeekCommandEventType /* not a class type */)
+	// methods:
 }
 
 // An event requesting that the player seek to a new position.
+
+
+// An event requesting that the player seek to a new position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPSeekCommandEvent
 type SeekCommandEvent struct {
 	RemoteCommandEvent
@@ -81,21 +87,22 @@ func NewSeekCommandEvent() SeekCommandEvent {
 }
 
 
+
 // The type of seek command event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpseekcommandevent/type
-func (s_ SeekCommandEvent) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
+func (s_ SeekCommandEvent) Type() SeekCommandEventType /* not a class type */ {
+	rv := objc.Send[SeekCommandEventType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // The type of seek command event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpseekcommandevent/type
-func (s_ SeekCommandEvent) SetType(value unsafe.Pointer) {
+func (s_ SeekCommandEvent) SetType(value SeekCommandEventType /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }
 

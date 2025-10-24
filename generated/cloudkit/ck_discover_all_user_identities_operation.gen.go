@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKDiscoverAllUserIdentitiesOperation] class.
@@ -36,8 +37,8 @@ type ICKDiscoverAllUserIdentitiesOperation interface {
 	SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer)
 	UserIdentityDiscoveredBlock() unsafe.Pointer
 	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
-	ContactIdentifiers() string /* primitive/slice/pointer. */
-	SetContactIdentifiers(value string /* primitive/slice/pointer. */)
+	ContactIdentifiers() objc.IObject /* cross-framework: NSString */
+	SetContactIdentifiers(value objc.IObject /* cross-framework: NSString */)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 	QualityOfService() unsafe.Pointer
@@ -157,8 +158,8 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
+func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), value)
 }
 
 

@@ -29,12 +29,18 @@ type _MXAnimationMetricClass struct {
 // An interface definition for the [MXAnimationMetric] class.
 type IMXAnimationMetric interface {
 	IMXMetric
+	// properties:
 	HitchTimeRatio() unsafe.Pointer
 	ScrollHitchTimeRatio() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the responsiveness of animation in the app.
+
+
+// An object representing metrics about the responsiveness of animation in the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAnimationMetric
 type MXAnimationMetric struct {
 	MXMetric
@@ -81,16 +87,20 @@ func NewMXAnimationMetric() MXAnimationMetric {
 }
 
 
+
 // The ratio of time spent hitching during tracked animations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAnimationMetric/hitchTimeRatio
 func (m_ MXAnimationMetric) HitchTimeRatio() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hitchTimeRatio"))
 	return rv
 }
 
+
 // The ratio of the time spent hitching while scrolling.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAnimationMetric/scrollHitchTimeRatio
 func (m_ MXAnimationMetric) ScrollHitchTimeRatio() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("scrollHitchTimeRatio"))

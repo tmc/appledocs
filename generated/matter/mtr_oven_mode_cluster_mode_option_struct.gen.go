@@ -31,15 +31,19 @@ type _MTROvenModeClusterModeOptionStructClass struct {
 // An interface definition for the [MTROvenModeClusterModeOptionStruct] class.
 type IMTROvenModeClusterModeOptionStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	Mode() foundation.Number
-	SetMode(value foundation.INumber)
-	ModeTags() objc.ID
-	SetModeTags(value objc.ID)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Mode() objc.IObject /* cross-framework: NSNumber */
+	SetMode(value objc.IObject /* cross-framework: NSNumber */)
+	ModeTags() objc.IObject /* cross-framework: NSArray */
+	SetModeTags(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct
 type MTROvenModeClusterModeOptionStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTROvenModeClusterModeOptionStruct() MTROvenModeClusterModeOptionStruct 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/label
-func (m_ MTROvenModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROvenModeClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/label
-func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROvenModeClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode
-func (m_ MTROvenModeClusterModeOptionStruct) Mode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+func (m_ MTROvenModeClusterModeOptionStruct) Mode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
 
-// SetMode sets the value of the mode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/mode
-func (m_ MTROvenModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
+func (m_ MTROvenModeClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/modeTags
-func (m_ MTROvenModeClusterModeOptionStruct) ModeTags() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("modeTags"))
+func (m_ MTROvenModeClusterModeOptionStruct) ModeTags() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("modeTags"))
 	return rv
 }
 
 
-// SetModeTags sets the value of the modeTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterModeOptionStruct/modeTags
-func (m_ MTROvenModeClusterModeOptionStruct) SetModeTags(value objc.ID) {
+func (m_ MTROvenModeClusterModeOptionStruct) SetModeTags(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
 

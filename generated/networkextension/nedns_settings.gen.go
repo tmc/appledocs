@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,24 +31,30 @@ type _NEDNSSettingsClass struct {
 // An interface definition for the [NEDNSSettings] class.
 type INEDNSSettings interface {
 	objectivec.IObject
+	// properties:
+	DomainName() objc.IObject /* cross-framework: NSString */
+	SetDomainName(value objc.IObject /* cross-framework: NSString */)
 	AllowFailover() bool
 	SetAllowFailover(value bool)
 	DnsProtocol() unsafe.Pointer
 	SetDnsProtocol(value unsafe.Pointer)
-	DomainName() string
-	SetDomainName(value string)
-	MatchDomains() string
-	SetMatchDomains(value string)
+	MatchDomains() objc.IObject /* cross-framework: NSString */
+	SetMatchDomains(value objc.IObject /* cross-framework: NSString */)
 	MatchDomainsNoSearch() bool
 	SetMatchDomainsNoSearch(value bool)
-	SearchDomains() string
-	SetSearchDomains(value string)
-	Servers() string
-	SetServers(value string)
+	SearchDomains() objc.IObject /* cross-framework: NSString */
+	SetSearchDomains(value objc.IObject /* cross-framework: NSString */)
+	Servers() objc.IObject /* cross-framework: NSString */
+	SetServers(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // The DNS resolver settings of a network tunnel or a system-wide configuration.
+
+
+// The DNS resolver settings of a network tunnel or a system-wide configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettings
 type NEDNSSettings struct {
 	objectivec.Object
@@ -92,7 +99,27 @@ func NewNEDNSSettings() NEDNSSettings {
 }
 
 
+
+// The primary domain of the tunnel.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettings/domainName
+func (n_ NEDNSSettings) DomainName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("domainName"))
+	return rv
+}
+
+
+// The primary domain of the tunnel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettings/domainName
+func (n_ NEDNSSettings) SetDomainName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/allowfailover
 func (n_ NEDNSSettings) AllowFailover() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("allowFailover"))
@@ -100,15 +127,16 @@ func (n_ NEDNSSettings) AllowFailover() bool {
 }
 
 
-// SetAllowFailover sets the value of the allowFailover property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/allowfailover
 func (n_ NEDNSSettings) SetAllowFailover(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowFailover:"), value)
 }
 
+
 // The DNS protocol used by the server, such as HTTPS or TLS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/dnsprotocol
 func (n_ NEDNSSettings) DnsProtocol() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dnsProtocol"))
@@ -116,53 +144,37 @@ func (n_ NEDNSSettings) DnsProtocol() unsafe.Pointer {
 }
 
 
-// SetDnsProtocol sets the value of the dnsProtocol property.
 // The DNS protocol used by the server, such as HTTPS or TLS.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/dnsprotocol
 func (n_ NEDNSSettings) SetDnsProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsProtocol:"), value)
 }
 
-// The primary domain of the tunnel.
+
+// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/domainname
-func (n_ NEDNSSettings) DomainName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("domainName"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
+func (n_ NEDNSSettings) MatchDomains() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("matchDomains"))
 	return rv
 }
 
 
-// SetDomainName sets the value of the domainName property.
-// The primary domain of the tunnel.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/domainname
-func (n_ NEDNSSettings) SetDomainName(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), objc.String(value))
-}
-
 // A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSSettings) MatchDomains() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchDomains"))
-	return rv
+func (n_ NEDNSSettings) SetMatchDomains(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
 }
 
-
-// SetMatchDomains sets the value of the matchDomains property.
-// A list of domain strings used to determine which DNS queries will use the DNS resolver settings contained in this object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomains
-func (n_ NEDNSSettings) SetMatchDomains(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), objc.String(value))
-}
 
 // A Boolean that specifies if the domains in the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomainsnosearch
 func (n_ NEDNSSettings) MatchDomainsNoSearch() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("matchDomainsNoSearch"))
@@ -170,49 +182,50 @@ func (n_ NEDNSSettings) MatchDomainsNoSearch() bool {
 }
 
 
-// SetMatchDomainsNoSearch sets the value of the matchDomainsNoSearch property.
 // A Boolean that specifies if the domains in the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/matchdomainsnosearch
 func (n_ NEDNSSettings) SetMatchDomainsNoSearch(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomainsNoSearch:"), value)
 }
 
+
 // A list of domain strings used to fully qualify single-label host names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/searchdomains
-func (n_ NEDNSSettings) SearchDomains() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("searchDomains"))
+func (n_ NEDNSSettings) SearchDomains() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("searchDomains"))
 	return rv
 }
 
 
-// SetSearchDomains sets the value of the searchDomains property.
 // A list of domain strings used to fully qualify single-label host names.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/searchdomains
-func (n_ NEDNSSettings) SetSearchDomains(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDomains:"), objc.String(value))
+func (n_ NEDNSSettings) SetSearchDomains(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSearchDomains:"), value)
 }
+
 
 // The DNS server IP addresses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/servers
-func (n_ NEDNSSettings) Servers() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("servers"))
+func (n_ NEDNSSettings) Servers() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("servers"))
 	return rv
 }
 
 
-// SetServers sets the value of the servers property.
 // The DNS server IP addresses.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettings/servers
-func (n_ NEDNSSettings) SetServers(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServers:"), objc.String(value))
+func (n_ NEDNSSettings) SetServers(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServers:"), value)
 }
 
 

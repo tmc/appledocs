@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -44,8 +45,8 @@ type IMetadataItem interface {
 	SetDataValue(value objc.IObject /* cross-framework: Data */)
 	DateValue() objc.IObject /* cross-framework: Date */
 	SetDateValue(value objc.IObject /* cross-framework: Date */)
-	Duration() Time /* not a class type */
-	SetDuration(value Time /* not a class type */)
+	Duration() objc.IObject /* cross-framework: Time */
+	SetDuration(value objc.IObject /* cross-framework: Time */)
 	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
 	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
 	ExtraAttributes() MetadataExtraAttributeKey /* not a class type */
@@ -64,8 +65,8 @@ type IMetadataItem interface {
 	SetStartDate(value objc.IObject /* cross-framework: Date */)
 	StringValue() objc.IObject /* cross-framework: NSString */
 	SetStringValue(value objc.IObject /* cross-framework: NSString */)
-	Time() Time /* not a class type */
-	SetTime(value Time /* not a class type */)
+	Time() objc.IObject /* cross-framework: Time */
+	SetTime(value objc.IObject /* cross-framework: Time */)
 	Value() ObjectProtocol /* not a class type */
 	SetValue(value ObjectProtocol /* not a class type */)
 	// methods:
@@ -242,8 +243,8 @@ func (m_ MetadataItem) SetDateValue(value objc.IObject /* cross-framework: Date 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) Duration() Time /* not a class type */ {
-	rv := objc.Send[Time](m_.ID, objc.Sel("duration"))
+func (m_ MetadataItem) Duration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -252,7 +253,7 @@ func (m_ MetadataItem) Duration() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) SetDuration(value Time /* not a class type */) {
+func (m_ MetadataItem) SetDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -432,8 +433,8 @@ func (m_ MetadataItem) SetStringValue(value objc.IObject /* cross-framework: NSS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) Time() Time /* not a class type */ {
-	rv := objc.Send[Time](m_.ID, objc.Sel("time"))
+func (m_ MetadataItem) Time() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](m_.ID, objc.Sel("time"))
 	return rv
 }
 
@@ -442,7 +443,7 @@ func (m_ MetadataItem) Time() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) SetTime(value Time /* not a class type */) {
+func (m_ MetadataItem) SetTime(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
 }
 

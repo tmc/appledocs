@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASERandomNodeDefinition] class.
@@ -30,15 +29,20 @@ type _PHASERandomNodeDefinitionClass struct {
 // An interface definition for the [PHASERandomNodeDefinition] class.
 type IPHASERandomNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
-	AddSubtreeWeight(subtree IPHASESoundEventNodeDefinition, weight foundation.INumber)
+	// properties:
 	UniqueSelectionQueueLength() int
 	SetUniqueSelectionQueueLength(value int)
+	// methods:
 }
 
 // A sound event node that invokes one of its child nodes at random.
 //
 // When the framework invokes a random node, it passes the invocation on to one of its children at random. The weight you choose for a child node in the argument skews the node’s selection chances.
+
+
+// A sound event node that invokes one of its child nodes at random.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition
 type PHASERandomNodeDefinition struct {
 	PHASESoundEventNodeDefinition
@@ -86,41 +90,23 @@ func NewPHASERandomNodeDefinition() PHASERandomNodeDefinition {
 
 
 
-
-// Creates a random node with the name you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/init(identifier:)
-func NewPHASERandomNodeDefinitionWithIdentifier(identifier string) PHASERandomNodeDefinition {
-	instance := getPHASERandomNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASERandomNodeDefinition](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Adds a node tree that’s one of the random-selection options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/addSubtree(_:weight:)
-func (p_ PHASERandomNodeDefinition) AddSubtreeWeight(subtree IPHASESoundEventNodeDefinition, weight foundation.INumber) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addSubtree:weight:"), subtree, weight)
-}
-
 // The length of the unique selection queue.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/uniqueSelectionQueueLength
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaserandomnodedefinition/uniqueselectionqueuelength
 func (p_ PHASERandomNodeDefinition) UniqueSelectionQueueLength() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("uniqueSelectionQueueLength"))
 	return rv
 }
 
 
-// SetUniqueSelectionQueueLength sets the value of the uniqueSelectionQueueLength property.
 // The length of the unique selection queue.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/uniqueSelectionQueueLength
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaserandomnodedefinition/uniqueselectionqueuelength
 func (p_ PHASERandomNodeDefinition) SetUniqueSelectionQueueLength(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUniqueSelectionQueueLength:"), value)
 }
+
 
 

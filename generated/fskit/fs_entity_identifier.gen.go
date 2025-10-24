@@ -32,10 +32,10 @@ type _FSEntityIdentifierClass struct {
 type IFSEntityIdentifier interface {
 	objectivec.IObject
 	// properties:
-	Qualifier() foundation.objc.IObject /* cross-framework: Data */
-	SetQualifier(value foundation.objc.IObject /* cross-framework: Data */)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Qualifier() objc.IObject /* cross-framework: Data */
+	SetQualifier(value objc.IObject /* cross-framework: Data */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewFSEntityIdentifier() FSEntityIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:data:)
-func NewFSEntityIdentifierWithUUIDData(uuid objc.IObject /* cross-framework UUID */, qualifierData foundation.objc.IObject /* cross-framework NSData */) FSEntityIdentifier {
+func NewFSEntityIdentifierWithUUIDData(uuid objc.IObject /* cross-framework: UUID */, qualifierData objc.IObject /* cross-framework: NSData */) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:data:"), uuid, qualifierData)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewFSEntityIdentifierWithUUIDData(uuid objc.IObject /* cross-framework UUID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/qualifier
-func (f_ FSEntityIdentifier) Qualifier() foundation.objc.IObject /* cross-framework: Data */ {
+func (f_ FSEntityIdentifier) Qualifier() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("qualifier"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (f_ FSEntityIdentifier) Qualifier() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/qualifier
-func (f_ FSEntityIdentifier) SetQualifier(value foundation.objc.IObject /* cross-framework: Data */) {
+func (f_ FSEntityIdentifier) SetQualifier(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQualifier:"), value)
 }
 
@@ -128,7 +128,7 @@ func (f_ FSEntityIdentifier) SetQualifier(value foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/uuid
-func (f_ FSEntityIdentifier) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (f_ FSEntityIdentifier) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (f_ FSEntityIdentifier) Uuid() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/uuid
-func (f_ FSEntityIdentifier) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (f_ FSEntityIdentifier) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUuid:"), value)
 }
 

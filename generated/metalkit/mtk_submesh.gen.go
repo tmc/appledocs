@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _SubmeshClass struct {
 // An interface definition for the [Submesh] class.
 type ISubmesh interface {
 	objectivec.IObject
-	IndexBuffer() MTKMeshBuffer
+	// properties:
+	IndexBuffer() IMTKMeshBuffer
 	IndexCount() uint
-	IndexType() unsafe.Pointer
-	Mesh() MTKMesh
-	Name() string
-	SetName(value string)
-	PrimitiveType() unsafe.Pointer
+	IndexType() IndexType /* not a class type */
+	Mesh() IMTKMesh
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	PrimitiveType() PrimitiveType /* not a class type */
+	// methods:
 }
 
 // A container for the index data of a Model I/O submesh, suitable for use in a Metal app.
 //
 // The class provides a container for a segment of mesh data that can be rendered in a single draw call. A submesh can only be initialized as part of a object. Each submesh contains an index buffer with which the parent’s mesh data can be rendered. Actual submesh vertex data resides in the submesh’s parent mesh. For more information on Model I/O submeshes, see .
+
+
+// A container for the index data of a Model I/O submesh, suitable for use in a Metal app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh
 type Submesh struct {
 	objectivec.Object
@@ -87,61 +94,72 @@ func NewSubmesh() Submesh {
 }
 
 
+
 // The index buffer used to render the submesh object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/indexBuffer
-func (s_ Submesh) IndexBuffer() MTKMeshBuffer {
-	rv := objc.Send[MTKMeshBuffer](s_.ID, objc.Sel("indexBuffer"))
+func (s_ Submesh) IndexBuffer() IMTKMeshBuffer {
+	rv := objc.Send[MeshBuffer](s_.ID, objc.Sel("indexBuffer"))
 	return rv
 }
 
+
 // The number of indices in the index buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/indexCount
 func (s_ Submesh) IndexCount() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("indexCount"))
 	return rv
 }
 
+
 // The type of index data in the index buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/indexType
-func (s_ Submesh) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("indexType"))
+func (s_ Submesh) IndexType() IndexType /* not a class type */ {
+	rv := objc.Send[IndexType](s_.ID, objc.Sel("indexType"))
 	return rv
 }
+
 
 // The parent mesh containing the vertex data of this submesh.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/mesh
-func (s_ Submesh) Mesh() MTKMesh {
-	rv := objc.Send[MTKMesh](s_.ID, objc.Sel("mesh"))
-	return rv
-}
-
-// The name of the submesh.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) Name() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("name"))
+func (s_ Submesh) Mesh() IMTKMesh {
+	rv := objc.Send[Mesh](s_.ID, objc.Sel("mesh"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the submesh.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) SetName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
+func (s_ Submesh) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("name"))
+	return rv
 }
+
+
+// The name of the submesh.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
+func (s_ Submesh) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
+}
+
 
 // The primitive type with which to draw the submesh object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/primitiveType
-func (s_ Submesh) PrimitiveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("primitiveType"))
+func (s_ Submesh) PrimitiveType() PrimitiveType /* not a class type */ {
+	rv := objc.Send[PrimitiveType](s_.ID, objc.Sel("primitiveType"))
 	return rv
 }
 

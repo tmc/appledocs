@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,14 @@ type _OSSystemExtensionsWorkspaceClass struct {
 // An interface definition for the [OSSystemExtensionsWorkspace] class.
 type IOSSystemExtensionsWorkspace interface {
 	objectivec.IObject
-	AddObserverError(observer objectivec.IObject, error_ unsafe.Pointer) bool
+	// properties:
+	// methods:
 	RemoveObserver(observer objectivec.IObject)
-	SystemExtensionsForApplicationWithBundleIDError(bundleID string, out_error unsafe.Pointer) unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace
 type OSSystemExtensionsWorkspace struct {
 	objectivec.Object
@@ -78,39 +81,26 @@ func NewOSSystemExtensionsWorkspace() OSSystemExtensionsWorkspace {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/shared
 func (oc _OSSystemExtensionsWorkspaceClass) SharedWorkspace() OSSystemExtensionsWorkspace {
 	rv := objc.Send[OSSystemExtensionsWorkspace](objc.ID(oc.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/addObserver(_:)
-func (o_ OSSystemExtensionsWorkspace) AddObserverError(observer objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("addObserver:error:"), observer, error_)
-	return rv
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/removeObserver(_:)
 func (o_ OSSystemExtensionsWorkspace) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObserver:"), observer)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/systemExtensions(forApplicationWithBundleID:)
-func (o_ OSSystemExtensionsWorkspace) SystemExtensionsForApplicationWithBundleIDError(bundleID string, out_error unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("systemExtensionsForApplicationWithBundleID:error:"), objc.String(bundleID), out_error)
-	return rv
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/shared
-func (o_ OSSystemExtensionsWorkspace) SharedWorkspace() OSSystemExtensionsWorkspace {
+func (o_ OSSystemExtensionsWorkspace) SharedWorkspace() IOSSystemExtensionsWorkspace {
 	rv := objc.Send[OSSystemExtensionsWorkspace](o_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }
-
-
 
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImageCaptureCore without requiring cgo.
-
-// Browse for media devices and control them programmatically from your app.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore
+// See: https://developer.apple.com/documentation/ImageCaptureCore
 package imagecapturecore
 
 import (

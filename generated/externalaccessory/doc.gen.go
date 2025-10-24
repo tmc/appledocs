@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExternalAccessory without requiring cgo.
-
-// Communicate with accessories that connect to a device with the Apple Lightning connector, or with Bluetooth wireless technology.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory
+// See: https://developer.apple.com/documentation/ExternalAccessory
 package externalaccessory
 
 import (

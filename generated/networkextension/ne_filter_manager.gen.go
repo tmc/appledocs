@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,23 +31,30 @@ type _NEFilterManagerClass struct {
 // An interface definition for the [NEFilterManager] class.
 type INEFilterManager interface {
 	objectivec.IObject
-	NEFilterErrorDomain() string
+	// properties:
+	NEFilterErrorDomain() objc.IObject /* cross-framework: NSString */
 	DisableEncryptedDNSSettings() bool
 	SetDisableEncryptedDNSSettings(value bool)
 	Grade() unsafe.Pointer
 	SetGrade(value unsafe.Pointer)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
-	ProviderConfiguration() NEFilterProviderConfiguration
+	LocalizedDescription() objc.IObject /* cross-framework: NSString */
+	SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */)
+	ProviderConfiguration() INEFilterProviderConfiguration
 	SetProviderConfiguration(value INEFilterProviderConfiguration)
+	// methods:
+	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // An object to create and manage a content filter’s configuration.
 //
 // Each app is allowed to create a single filter configuration. The class has a class method ( ) that provides access to a single instance. This single instance corresponds to a single filter configuration. The filter configuration is stored in the Network Extension preferences which are managed by the Network Extension framework. The filter configuration must be explicitly loaded into memory from the Network Extension preferences before it can be used, and any changes must be explicitly saved to the Network Extension preferences before taking effect on the system.
+
+
+// An object to create and manage a content filter’s configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterManager
 type NEFilterManager struct {
 	objectivec.Object
@@ -91,15 +99,27 @@ func NewNEFilterManager() NEFilterManager {
 }
 
 
+
+// Remove the filter configuration from the Network Extension preferences.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterManager/removeFromPreferences(completionHandler:)
+func (n_ NEFilterManager) RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromPreferencesWithCompletionHandler:"), completionHandler)
+}
+
+
 // The domain for errors resulting from calls to the filter manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterManager) NEFilterErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+func (n_ NEFilterManager) NEFilterErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEFilterErrorDomain"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
 func (n_ NEFilterManager) DisableEncryptedDNSSettings() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("disableEncryptedDNSSettings"))
@@ -107,15 +127,16 @@ func (n_ NEFilterManager) DisableEncryptedDNSSettings() bool {
 }
 
 
-// SetDisableEncryptedDNSSettings sets the value of the disableEncryptedDNSSettings property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/disableencrypteddnssettings
 func (n_ NEFilterManager) SetDisableEncryptedDNSSettings(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDisableEncryptedDNSSettings:"), value)
 }
 
+
 // The grade of the filter, which determines when it acts relative to other filters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.property
 func (n_ NEFilterManager) Grade() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("grade"))
@@ -123,17 +144,18 @@ func (n_ NEFilterManager) Grade() unsafe.Pointer {
 }
 
 
-// SetGrade sets the value of the grade property.
 // The grade of the filter, which determines when it acts relative to other filters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.property
 func (n_ NEFilterManager) SetGrade(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGrade:"), value)
 }
 
+
 // A Boolean used to toggle the enabled state of the filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
 func (n_ NEFilterManager) IsEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
@@ -141,46 +163,47 @@ func (n_ NEFilterManager) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean used to toggle the enabled state of the filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/isenabled
 func (n_ NEFilterManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A string containing a description of the filter configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEFilterManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
 
-// SetLocalizedDescription sets the value of the localizedDescription property.
 // A string containing a description of the filter configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEFilterManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
+
 
 // A
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
-func (n_ NEFilterManager) ProviderConfiguration() NEFilterProviderConfiguration {
+func (n_ NEFilterManager) ProviderConfiguration() INEFilterProviderConfiguration {
 	rv := objc.Send[NEFilterProviderConfiguration](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
 
-// SetProviderConfiguration sets the value of the providerConfiguration property.
 // A
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
 func (n_ NEFilterManager) SetProviderConfiguration(value INEFilterProviderConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)

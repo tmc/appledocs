@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PickerTouchBarItem] class.
@@ -30,28 +30,30 @@ type _PickerTouchBarItemClass struct {
 // An interface definition for the [PickerTouchBarItem] class.
 type IPickerTouchBarItem interface {
 	ITouchBarItem
-	CollapsedRepresentationImage() Image
-	SetCollapsedRepresentationImage(value IImage)
-	CollapsedRepresentationLabel() string
-	SetCollapsedRepresentationLabel(value string)
+	// properties:
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
+	CollapsedRepresentationImage() IImage
+	SetCollapsedRepresentationImage(value IImage)
+	CollapsedRepresentationLabel() objc.IObject /* cross-framework: NSString */
+	SetCollapsedRepresentationLabel(value objc.IObject /* cross-framework: NSString */)
 	ControlRepresentation() unsafe.Pointer
 	SetControlRepresentation(value unsafe.Pointer)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	NumberOfOptions() int
 	SetNumberOfOptions(value int)
 	SelectedIndex() int
 	SetSelectedIndex(value int)
-	SelectionColor() Color
-	SetSelectionColor(value IColor)
+	SelectionColor() objc.IObject /* cross-framework: Color */
+	SetSelectionColor(value objc.IObject /* cross-framework: Color */)
 	SelectionMode() unsafe.Pointer
 	SetSelectionMode(value unsafe.Pointer)
 	Target() unsafe.Pointer
 	SetTarget(value unsafe.Pointer)
+	// methods:
 }
 
 // A bar item that provides a picker control with multiple options.
@@ -108,53 +110,6 @@ func NewPickerTouchBarItem() PickerTouchBarItem {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
-func NewPickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier ITouchBarItemIdentifier, labels []string, selectionMode PickerTouchBarItemSelectionMode, target objectivec.IObject, action objc.SEL) PickerTouchBarItem {
-	rv := objc.Send[PickerTouchBarItem](objc.ID(getPickerTouchBarItemClass().class), objc.Sel("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), identifier, labels, selectionMode, target, action)
-	return rv
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/init(identifier:labels:selectionMode:target:action:)
-func (pc _PickerTouchBarItemClass) PickerTouchBarItemWithIdentifierLabelsSelectionModeTargetAction(identifier ITouchBarItemIdentifier, labels []string, selectionMode PickerTouchBarItemSelectionMode, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), identifier, labels, selectionMode, target, action)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationImage
-func (p_ PickerTouchBarItem) CollapsedRepresentationImage() Image {
-	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationImage
-func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
-func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("collapsedRepresentationLabel"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
-func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/action
 func (p_ PickerTouchBarItem) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
@@ -166,6 +121,36 @@ func (p_ PickerTouchBarItem) Action() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/action
 func (p_ PickerTouchBarItem) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/collapsedrepresentationimage
+func (p_ PickerTouchBarItem) CollapsedRepresentationImage() IImage {
+	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/collapsedrepresentationimage
+func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/collapsedrepresentationlabel
+func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("collapsedRepresentationLabel"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/collapsedrepresentationlabel
+func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), value)
 }
 
 
@@ -186,16 +171,16 @@ func (p_ PickerTouchBarItem) SetControlRepresentation(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/customizationlabel
-func (p_ PickerTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("customizationLabel"))
+func (p_ PickerTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/customizationlabel
-func (p_ PickerTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (p_ PickerTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 
@@ -246,7 +231,7 @@ func (p_ PickerTouchBarItem) SetSelectedIndex(value int) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
-func (p_ PickerTouchBarItem) SelectionColor() Color {
+func (p_ PickerTouchBarItem) SelectionColor() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](p_.ID, objc.Sel("selectionColor"))
 	return rv
 }
@@ -254,7 +239,7 @@ func (p_ PickerTouchBarItem) SelectionColor() Color {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectioncolor
-func (p_ PickerTouchBarItem) SetSelectionColor(value IColor) {
+func (p_ PickerTouchBarItem) SetSelectionColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionColor:"), value)
 }
 
@@ -287,5 +272,6 @@ func (p_ PickerTouchBarItem) Target() unsafe.Pointer {
 func (p_ PickerTouchBarItem) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTarget:"), value)
 }
+
 
 

@@ -30,9 +30,13 @@ type _manInTheMiddleProtectionClass struct {
 // An interface definition for the [manInTheMiddleProtection] class.
 type ImanInTheMiddleProtection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/manInTheMiddleProtection-c.ivar
 type manInTheMiddleProtection struct {
 	objectivec.Object

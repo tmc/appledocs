@@ -31,17 +31,21 @@ type _MTREnergyEVSEClusterEnergyTransferStoppedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnergyTransferStoppedEvent] class.
 type IMTREnergyEVSEClusterEnergyTransferStoppedEvent interface {
 	objectivec.IObject
-	EnergyTransferred() foundation.Number
-	SetEnergyTransferred(value foundation.INumber)
-	Reason() foundation.Number
-	SetReason(value foundation.INumber)
-	SessionID() foundation.Number
-	SetSessionID(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	EnergyTransferred() objc.IObject /* cross-framework: NSNumber */
+	SetEnergyTransferred(value objc.IObject /* cross-framework: NSNumber */)
+	Reason() objc.IObject /* cross-framework: NSNumber */
+	SetReason(value objc.IObject /* cross-framework: NSNumber */)
+	SessionID() objc.IObject /* cross-framework: NSNumber */
+	SetSessionID(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent
 type MTREnergyEVSEClusterEnergyTransferStoppedEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTREnergyEVSEClusterEnergyTransferStoppedEvent() MTREnergyEVSEClusterEne
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/energyTransferred
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) EnergyTransferred() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("energyTransferred"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) EnergyTransferred() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("energyTransferred"))
 	return rv
 }
 
 
-// SetEnergyTransferred sets the value of the energyTransferred property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/energyTransferred
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetEnergyTransferred(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetEnergyTransferred(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyTransferred:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/reason
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) Reason() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reason"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) Reason() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reason"))
 	return rv
 }
 
 
-// SetReason sets the value of the reason property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/reason
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetReason(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetReason(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SessionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SessionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
 
-// SetSessionID sets the value of the sessionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetSessionID(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetSessionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterOperationalCredentialsClass struct {
 // An interface definition for the [MTRBaseClusterOperationalCredentials] class.
 type IMTRBaseClusterOperationalCredentials interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOperationalCredentials
 type MTRBaseClusterOperationalCredentials struct {
 	MTRGenericBaseCluster

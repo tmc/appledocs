@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _HKMedicationConceptClass struct {
 type IHKMedicationConcept interface {
 	objectivec.IObject
 	// properties:
-	DisplayText() string /* primitive/slice/pointer. */
-	SetDisplayText(value string /* primitive/slice/pointer. */)
+	DisplayText() objc.IObject /* cross-framework: NSString */
+	SetDisplayText(value objc.IObject /* cross-framework: NSString */)
 	GeneralForm() HKMedicationGeneralForm /* typedef */
 	SetGeneralForm(value HKMedicationGeneralForm /* typedef */)
 	Identifier() IHKHealthConceptIdentifier
@@ -99,8 +100,8 @@ func NewHKMedicationConcept() HKMedicationConcept {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
-func (h_ HKMedicationConcept) DisplayText() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
+func (h_ HKMedicationConcept) DisplayText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("displayText"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (h_ HKMedicationConcept) DisplayText() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
-func (h_ HKMedicationConcept) SetDisplayText(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayText:"), objc.String(value))
+func (h_ HKMedicationConcept) SetDisplayText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayText:"), value)
 }
 
 

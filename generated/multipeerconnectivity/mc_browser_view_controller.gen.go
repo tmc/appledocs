@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MCBrowserViewController] class.
@@ -30,18 +31,24 @@ type _MCBrowserViewControllerClass struct {
 // An interface definition for the [MCBrowserViewController] class.
 type IMCBrowserViewController interface {
 	appkit.IViewController
-	Browser() MCNearbyServiceBrowser
+	// properties:
+	Browser() IMCNearbyServiceBrowser
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	MaximumNumberOfPeers() uint
 	SetMaximumNumberOfPeers(value uint)
 	MinimumNumberOfPeers() uint
 	SetMinimumNumberOfPeers(value uint)
-	Session() MCSession
+	Session() IMCSession
+	// methods:
 }
 
 // The class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying class ( and for storyboards or and for nib-based views) to present and dismiss the view controller. In macOS, use the comparable methods and instead.
+
+
+// The class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying class ( and for storyboards or and for nib-based views) to present and dismiss the view controller. In macOS, use the comparable methods and instead.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController
 type MCBrowserViewController struct {
 	appkit.ViewController
@@ -89,9 +96,9 @@ func NewMCBrowserViewController() MCBrowserViewController {
 
 
 
-
 // Initializes a browser view controller with the provided browser and session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(browser:session:)
 func NewMCBrowserViewControllerWithBrowserSession(browser IMCNearbyServiceBrowser, session IMCSession) MCBrowserViewController {
 	instance := getMCBrowserViewControllerClass().Alloc()
@@ -101,28 +108,32 @@ func NewMCBrowserViewControllerWithBrowserSession(browser IMCNearbyServiceBrowse
 }
 
 
-
 // Initializes a browser view controller using the provided service type and session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(serviceType:session:)
-func NewMCBrowserViewControllerWithServiceTypeSession(serviceType string, session IMCSession) MCBrowserViewController {
+func NewMCBrowserViewControllerWithServiceTypeSession(serviceType objc.IObject /* cross-framework: NSString */, session IMCSession) MCBrowserViewController {
 	instance := getMCBrowserViewControllerClass().Alloc()
-	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), objc.String(serviceType), session)
+	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), serviceType, session)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // The browser object that is used for discovering peers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/browser
-func (m_ MCBrowserViewController) Browser() MCNearbyServiceBrowser {
+func (m_ MCBrowserViewController) Browser() IMCNearbyServiceBrowser {
 	rv := objc.Send[MCNearbyServiceBrowser](m_.ID, objc.Sel("browser"))
 	return rv
 }
 
+
 // The delegate object that handles browser-view-controller-related events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/delegate
 func (m_ MCBrowserViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
@@ -130,17 +141,18 @@ func (m_ MCBrowserViewController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object that handles browser-view-controller-related events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/delegate
 func (m_ MCBrowserViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The maximum number of peers allowed in a session, including the local peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/maximumNumberOfPeers
 func (m_ MCBrowserViewController) MaximumNumberOfPeers() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maximumNumberOfPeers"))
@@ -148,17 +160,18 @@ func (m_ MCBrowserViewController) MaximumNumberOfPeers() uint {
 }
 
 
-// SetMaximumNumberOfPeers sets the value of the maximumNumberOfPeers property.
 // The maximum number of peers allowed in a session, including the local peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/maximumNumberOfPeers
 func (m_ MCBrowserViewController) SetMaximumNumberOfPeers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumNumberOfPeers:"), value)
 }
 
+
 // The minimum number of peers that need to be in a session, including the local peer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/minimumNumberOfPeers
 func (m_ MCBrowserViewController) MinimumNumberOfPeers() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("minimumNumberOfPeers"))
@@ -166,19 +179,20 @@ func (m_ MCBrowserViewController) MinimumNumberOfPeers() uint {
 }
 
 
-// SetMinimumNumberOfPeers sets the value of the minimumNumberOfPeers property.
 // The minimum number of peers that need to be in a session, including the local peer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/minimumNumberOfPeers
 func (m_ MCBrowserViewController) SetMinimumNumberOfPeers(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumNumberOfPeers:"), value)
 }
 
+
 // The multipeer session to which the invited peers are connected.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/session
-func (m_ MCBrowserViewController) Session() MCSession {
+func (m_ MCBrowserViewController) Session() IMCSession {
 	rv := objc.Send[MCSession](m_.ID, objc.Sel("session"))
 	return rv
 }

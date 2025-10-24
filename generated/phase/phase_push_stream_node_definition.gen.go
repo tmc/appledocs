@@ -30,15 +30,22 @@ type _PHASEPushStreamNodeDefinitionClass struct {
 // An interface definition for the [PHASEPushStreamNodeDefinition] class.
 type IPHASEPushStreamNodeDefinition interface {
 	IPHASEGeneratorNodeDefinition
-	Format() avfaudio.AudioFormat
+	// properties:
+	Format() objc.IObject /* cross-framework: AudioFormat */
+	SetFormat(value objc.IObject /* cross-framework: AudioFormat */)
 	Normalize() bool
 	SetNormalize(value bool)
+	// methods:
 }
 
 // A node that plays a sequence of audio buffers.
 //
 // Use this node to create sound events for a piecemeal audio source, for example, an audio stream that your app accesses over the network or loads from a memory-mapped file on disk.
+
+
+// A node that plays a sequence of audio buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition
 type PHASEPushStreamNodeDefinition struct {
 	PHASEGeneratorNodeDefinition
@@ -86,54 +93,42 @@ func NewPHASEPushStreamNodeDefinition() PHASEPushStreamNodeDefinition {
 
 
 
-
-// Creates a node definition for audio streams.
+// The format of the audio stream data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:)
-func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat) PHASEPushStreamNodeDefinition {
-	instance := getPHASEPushStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:"), mixerDefinition, format)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a named node definition for audio streams.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:identifier:)
-func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier string) PHASEPushStreamNodeDefinition {
-	instance := getPHASEPushStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, objc.String(identifier))
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition/format
+func (p_ PHASEPushStreamNodeDefinition) Format() objc.IObject /* cross-framework: AudioFormat */ {
+	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 
 
 // The format of the audio stream data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/format
-func (p_ PHASEPushStreamNodeDefinition) Format() avfaudio.AudioFormat {
-	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition/format
+func (p_ PHASEPushStreamNodeDefinition) SetFormat(value objc.IObject /* cross-framework: AudioFormat */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFormat:"), value)
 }
+
 
 // An option that resizes loudness of the audio stream for consistency.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/normalize
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition/normalize
 func (p_ PHASEPushStreamNodeDefinition) Normalize() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("normalize"))
 	return rv
 }
 
 
-// SetNormalize sets the value of the normalize property.
 // An option that resizes loudness of the audio stream for consistency.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/normalize
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition/normalize
 func (p_ PHASEPushStreamNodeDefinition) SetNormalize(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalize:"), value)
 }
+
 
 

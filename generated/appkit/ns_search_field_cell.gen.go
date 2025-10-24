@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -35,20 +36,20 @@ type ISearchFieldCell interface {
 	SetRecentsAutosaveName(value objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */)
 	SearchMenuTemplate() IMenu
 	SetSearchMenuTemplate(value IMenu)
-	SendsWholeSearchString() bool /* primitive/slice/pointer. */
-	SetSendsWholeSearchString(value bool /* primitive/slice/pointer. */)
+	SendsWholeSearchString() bool
+	SetSendsWholeSearchString(value bool)
 	CancelButtonCell() IButtonCell
 	SetCancelButtonCell(value IButtonCell)
-	MaximumRecents() int /* primitive/slice/pointer. */
-	SetMaximumRecents(value int /* primitive/slice/pointer. */)
+	MaximumRecents() int
+	SetMaximumRecents(value int)
 	RecentSearches() objc.IObject /* cross-framework: NSString */
 	SetRecentSearches(value objc.IObject /* cross-framework: NSString */)
 	SearchButtonCell() IButtonCell
 	SetSearchButtonCell(value IButtonCell)
-	SendsSearchStringImmediately() bool /* primitive/slice/pointer. */
-	SetSendsSearchStringImmediately(value bool /* primitive/slice/pointer. */)
+	SendsSearchStringImmediately() bool
+	SetSendsSearchStringImmediately(value bool)
 	// methods:
-	SearchButtonRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	SearchButtonRectForBounds(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 }
 
 // The programmatic interface for text fields that are used for text-based searches.
@@ -108,7 +109,7 @@ func NewSearchFieldCell() SearchFieldCell {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
-func NewSearchFieldCellWithCoder(coder objc.IObject /* cross-framework Coder */) SearchFieldCell {
+func NewSearchFieldCellWithCoder(coder objc.IObject /* cross-framework: Coder */) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -121,8 +122,8 @@ func NewSearchFieldCellWithCoder(coder objc.IObject /* cross-framework Coder */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonRect(forBounds:)
-func (s_ SearchFieldCell) SearchButtonRectForBounds(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("searchButtonRectForBounds:"), rect)
+func (s_ SearchFieldCell) SearchButtonRectForBounds(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("searchButtonRectForBounds:"), rect)
 	return rv
 }
 
@@ -169,7 +170,7 @@ func (s_ SearchFieldCell) SetSearchMenuTemplate(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-func (s_ SearchFieldCell) SendsWholeSearchString() bool /* primitive/slice/pointer. */ {
+func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsWholeSearchString"))
 	return rv
 }
@@ -179,7 +180,7 @@ func (s_ SearchFieldCell) SendsWholeSearchString() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool /* primitive/slice/pointer. */) {
+func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
 }
 
@@ -207,7 +208,7 @@ func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/maximumrecents
-func (s_ SearchFieldCell) MaximumRecents() int /* primitive/slice/pointer. */ {
+func (s_ SearchFieldCell) MaximumRecents() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
 	return rv
 }
@@ -217,7 +218,7 @@ func (s_ SearchFieldCell) MaximumRecents() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/maximumrecents
-func (s_ SearchFieldCell) SetMaximumRecents(value int /* primitive/slice/pointer. */) {
+func (s_ SearchFieldCell) SetMaximumRecents(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
 }
 
@@ -264,7 +265,7 @@ func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/sendssearchstringimmediately
-func (s_ SearchFieldCell) SendsSearchStringImmediately() bool /* primitive/slice/pointer. */ {
+func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
 	return rv
 }
@@ -274,7 +275,7 @@ func (s_ SearchFieldCell) SendsSearchStringImmediately() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/sendssearchstringimmediately
-func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool /* primitive/slice/pointer. */) {
+func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
 }
 

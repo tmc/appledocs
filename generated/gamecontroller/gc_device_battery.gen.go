@@ -31,7 +31,7 @@ type _GCDeviceBatteryClass struct {
 type IGCDeviceBattery interface {
 	objectivec.IObject
 	// properties:
-	BatteryLevel() float32 /* primitive/slice/pointer. */
+	BatteryLevel() float32
 	BatteryState() GCDeviceBatteryState
 	// methods:
 }
@@ -93,7 +93,7 @@ func NewGCDeviceBattery() GCDeviceBattery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery/batteryLevel
-func (g_ GCDeviceBattery) BatteryLevel() float32 /* primitive/slice/pointer. */ {
+func (g_ GCDeviceBattery) BatteryLevel() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("batteryLevel"))
 	return rv
 }

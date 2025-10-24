@@ -31,19 +31,23 @@ type _MTRDiagnosticLogsClusterRetrieveLogsRequestParamsClass struct {
 // An interface definition for the [MTRDiagnosticLogsClusterRetrieveLogsRequestParams] class.
 type IMTRDiagnosticLogsClusterRetrieveLogsRequestParams interface {
 	objectivec.IObject
-	Intent() foundation.Number
-	SetIntent(value foundation.INumber)
-	RequestedProtocol() foundation.Number
-	SetRequestedProtocol(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TransferFileDesignator() string
-	SetTransferFileDesignator(value string)
+	// properties:
+	Intent() objc.IObject /* cross-framework: NSNumber */
+	SetIntent(value objc.IObject /* cross-framework: NSNumber */)
+	RequestedProtocol() objc.IObject /* cross-framework: NSNumber */
+	SetRequestedProtocol(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TransferFileDesignator() objc.IObject /* cross-framework: NSString */
+	SetTransferFileDesignator(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDiagnosticLogsClusterRetrieveLogsRequestParams
 type MTRDiagnosticLogsClusterRetrieveLogsRequestParams struct {
 	objectivec.Object
@@ -86,79 +90,79 @@ func NewMTRDiagnosticLogsClusterRetrieveLogsRequestParams() MTRDiagnosticLogsClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/intent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) Intent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("intent"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) Intent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("intent"))
 	return rv
 }
 
 
-// SetIntent sets the value of the intent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/intent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetIntent(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetIntent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/requestedprotocol
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) RequestedProtocol() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestedProtocol"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) RequestedProtocol() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("requestedProtocol"))
 	return rv
 }
 
 
-// SetRequestedProtocol sets the value of the requestedProtocol property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/requestedprotocol
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetRequestedProtocol(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetRequestedProtocol(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedProtocol:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/serversideprocessingtimeout
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/serversideprocessingtimeout
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("transferFileDesignator"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("transferFileDesignator"))
 	return rv
 }
 
 
-// SetTransferFileDesignator sets the value of the transferFileDesignator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), objc.String(value))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), value)
 }
 
 

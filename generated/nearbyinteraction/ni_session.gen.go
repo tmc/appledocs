@@ -30,22 +30,24 @@ type _NISessionClass struct {
 // An interface definition for the [NISession] class.
 type INISession interface {
 	objectivec.IObject
-	Invalidate()
-	Pause()
-	RunWithConfiguration(configuration INIConfiguration)
-	SetARSession(session unsafe.Pointer)
-	Configuration() NIConfiguration
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	Configuration() INIConfiguration
+	SetConfiguration(value INIConfiguration)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
-	DiscoveryToken() NIDiscoveryToken
+	// methods:
 }
 
 // An object that identifies a unique connection between two peer devices.
 //
 // This class represents the central mechanism to interact with nearby objects, for example, a peer Apple device or third-party accessory. After creating an for a nearby object, the app interacts with the object by receiving callbacks. One session represents an interaction between the user and a single nearby object. To interact with multiple nearby objects, create a separate session for each. For more information, see .
+
+
+// An object that identifies a unique connection between two peer devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession
 type NISession struct {
 	objectivec.Object
@@ -90,116 +92,79 @@ func NewNISession() NISession {
 }
 
 
+
 // An object that communicates the device’s supported framework features.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
 func (nc _NISessionClass) DeviceCapabilities() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("deviceCapabilities"))
 	return rv
 }
+
 // A Boolean value that indicates whether the device supports basic interaction-session functionality.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/isSupported
 func (nc _NISessionClass) Supported() bool {
 	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("supported"))
 	return rv
 }
-// Stops a running session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/invalidate()
-func (n_ NISession) Invalidate() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("invalidate"))
-}
-
-// Stops sending distance and direction updates to the peer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/pause()
-func (n_ NISession) Pause() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("pause"))
-}
-
-// Starts a session with a nearby peer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/run(_:)
-func (n_ NISession) RunWithConfiguration(configuration INIConfiguration) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("runWithConfiguration:"), configuration)
-}
-
-// Provides the framework with an existing AR session to use for Camera Assistance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/setARSession(_:)
-func (n_ NISession) SetARSession(session unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setARSession:"), session)
-}
 
 // The configuration run by the session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/configuration
-func (n_ NISession) Configuration() NIConfiguration {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
+func (n_ NISession) Configuration() INIConfiguration {
 	rv := objc.Send[NIConfiguration](n_.ID, objc.Sel("configuration"))
 	return rv
 }
 
+
+// The configuration run by the session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
+func (n_ NISession) SetConfiguration(value INIConfiguration) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConfiguration:"), value)
+}
+
+
 // An object that the framework notifies of session events.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/delegate
-func (n_ NISession) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NISession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object that the framework notifies of session events.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/delegate
-func (n_ NISession) SetDelegate(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
+func (n_ NISession) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The dispatch queue on which the session invokes delegate callbacks.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/delegateQueue
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
 func (n_ NISession) DelegateQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegateQueue"))
 	return rv
 }
 
 
-// SetDelegateQueue sets the value of the delegateQueue property.
 // The dispatch queue on which the session invokes delegate callbacks.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/delegateQueue
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
 func (n_ NISession) SetDelegateQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
 }
-
-// An object that communicates the device’s supported framework features.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
-func (n_ NISession) DeviceCapabilities() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("deviceCapabilities"))
-	return rv
-}
-
-// A temporary, random identifier for a device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/discoveryToken
-func (n_ NISession) DiscoveryToken() NIDiscoveryToken {
-	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
-	return rv
-}
-
-// A Boolean value that indicates whether the device supports basic interaction-session functionality.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/isSupported
-func (n_ NISession) Supported() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("supported"))
-	return rv
-}
-
-
 
 

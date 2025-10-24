@@ -32,16 +32,18 @@ type _SFCertificatePanelClass struct {
 // An interface definition for the [SFCertificatePanel] class.
 type ISFCertificatePanel interface {
 	appkit.IPanel
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoCertificatesShowGroup(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, certificates objectivec.IObject, showGroup bool)
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustShowGroup(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, showGroup bool)
-	CertificateView() SFCertificateView
-	HelpAnchor() foundation.String
-	Policies() foundation.Array
+	// properties:
+	// methods:
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoCertificatesShowGroup(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, certificates objc.IObject /* cross-framework: NSArray */, showGroup bool)
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustShowGroup(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, showGroup bool)
+	CertificateView() ISFCertificateView
+	HelpAnchor() objc.IObject /* cross-framework: String */
+	Policies() objc.IObject /* cross-framework: Array */
 	RunModalForTrustShowGroup(trust unsafe.Pointer, showGroup bool) int
-	RunModalForCertificatesShowGroup(certificates objectivec.IObject, showGroup bool) int
-	SetAlternateButtonTitle(title string)
-	SetDefaultButtonTitle(title string)
-	SetHelpAnchor(anchor string)
+	RunModalForCertificatesShowGroup(certificates objc.IObject /* cross-framework: NSArray */, showGroup bool) int
+	SetAlternateButtonTitle(title objc.IObject /* cross-framework: NSString */)
+	SetDefaultButtonTitle(title objc.IObject /* cross-framework: NSString */)
+	SetHelpAnchor(anchor objc.IObject /* cross-framework: NSString */)
 	SetPolicies(policies objectivec.IObject)
 	SetShowsHelp(showsHelp bool)
 	ShowsHelp() bool
@@ -50,7 +52,11 @@ type ISFCertificatePanel interface {
 // A panel or sheet that displays one or more certificates.
 //
 // The following figure shows an example of a certificate panel. An can optionally display all of the certificates in a certificate chain. This class displays certificate details, but not trust settings. To display a certificate with editable trust settings in a panel or sheet, use the class. To display certificates in a custom view, use the class. Note that for macOS 10.4 and later, this class displays the evaluation status for each certificate. You can modify how the certificates are evaluated by calling the method.
+
+
+// A panel or sheet that displays one or more certificates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel
 type SFCertificatePanel struct {
 	appkit.Panel
@@ -97,105 +103,133 @@ func NewSFCertificatePanel() SFCertificatePanel {
 }
 
 
+
 // Returns a fully initialized, singleton certificate panel object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/shared()
 func (sc _SFCertificatePanelClass) SharedCertificatePanel() SFCertificatePanel {
 	rv := objc.Send[SFCertificatePanel](objc.ID(sc.class), objc.Sel("sharedCertificatePanel"))
 	return rv
 }
 
+
 // Displays one or more certificates in a modal sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/beginSheet(for:modalDelegate:didEnd:contextInfo:certificates:showGroup:)
-func (s_ SFCertificatePanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoCertificatesShowGroup(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, certificates objectivec.IObject, showGroup bool) {
+func (s_ SFCertificatePanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoCertificatesShowGroup(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, certificates objc.IObject /* cross-framework: NSArray */, showGroup bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:certificates:showGroup:"), docWindow, delegate, didEndSelector, contextInfo, certificates, showGroup)
 }
 
+
 // Displays a certificate chain in a modal sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/beginSheet(for:modalDelegate:didEnd:contextInfo:trust:showGroup:)
-func (s_ SFCertificatePanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustShowGroup(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, showGroup bool) {
+func (s_ SFCertificatePanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoTrustShowGroup(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, trust unsafe.Pointer, showGroup bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:trust:showGroup:"), docWindow, delegate, didEndSelector, contextInfo, trust, showGroup)
 }
 
+
 // Returns the certificate view for the modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/certificateView()
-func (s_ SFCertificatePanel) CertificateView() SFCertificateView {
+func (s_ SFCertificatePanel) CertificateView() ISFCertificateView {
 	rv := objc.Send[SFCertificateView](s_.ID, objc.Sel("certificateView"))
 	return rv
 }
 
+
 // Returns the current help anchor string for the sheet or panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/helpAnchor()
-func (s_ SFCertificatePanel) HelpAnchor() foundation.String {
+func (s_ SFCertificatePanel) HelpAnchor() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
+
 // Returns an array of policies used to evaluate the status of the displayed certificates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/policies()
-func (s_ SFCertificatePanel) Policies() foundation.Array {
+func (s_ SFCertificatePanel) Policies() objc.IObject /* cross-framework: Array */ {
 	rv := objc.Send[foundation.Array](s_.ID, objc.Sel("policies"))
 	return rv
 }
 
+
 // Displays a certificate chain in a modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/runModal(for:showGroup:)
 func (s_ SFCertificatePanel) RunModalForTrustShowGroup(trust unsafe.Pointer, showGroup bool) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("runModalForTrust:showGroup:"), trust, showGroup)
 	return rv
 }
 
+
 // Displays one or more specified certificates in a modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/runModal(forCertificates:showGroup:)
-func (s_ SFCertificatePanel) RunModalForCertificatesShowGroup(certificates objectivec.IObject, showGroup bool) int {
+func (s_ SFCertificatePanel) RunModalForCertificatesShowGroup(certificates objc.IObject /* cross-framework: NSArray */, showGroup bool) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("runModalForCertificates:showGroup:"), certificates, showGroup)
 	return rv
 }
 
+
 // Customizes the title of the alternate button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setAlternateButtonTitle(_:)
-func (s_ SFCertificatePanel) SetAlternateButtonTitle(title string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), objc.String(title))
+func (s_ SFCertificatePanel) SetAlternateButtonTitle(title objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), title)
 }
+
 
 // Customizes the title of the default button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setDefaultButtonTitle(_:)
-func (s_ SFCertificatePanel) SetDefaultButtonTitle(title string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(title))
+func (s_ SFCertificatePanel) SetDefaultButtonTitle(title objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), title)
 }
+
 
 // Sets the help anchor string for the sheet or modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setHelpAnchor(_:)
-func (s_ SFCertificatePanel) SetHelpAnchor(anchor string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), objc.String(anchor))
+func (s_ SFCertificatePanel) SetHelpAnchor(anchor objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), anchor)
 }
+
 
 // Specifies one or more policies that apply to the displayed certificates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setPolicies(_:)
 func (s_ SFCertificatePanel) SetPolicies(policies objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPolicies:"), policies)
 }
 
+
 // Displays a Help button in the sheet or panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/setShowsHelp(_:)
 func (s_ SFCertificatePanel) SetShowsHelp(showsHelp bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsHelp:"), showsHelp)
 }
 
+
 // Indicates whether the help button is currently set to be displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificatePanel/showsHelp()
 func (s_ SFCertificatePanel) ShowsHelp() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsHelp"))

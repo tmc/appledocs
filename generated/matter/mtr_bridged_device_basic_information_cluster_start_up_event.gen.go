@@ -31,11 +31,15 @@ type _MTRBridgedDeviceBasicInformationClusterStartUpEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterStartUpEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterStartUpEvent interface {
 	objectivec.IObject
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
+	// properties:
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterStartUpEvent
 type MTRBridgedDeviceBasicInformationClusterStartUpEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBridgedDeviceBasicInformationClusterStartUpEvent() MTRBridgedDeviceBa
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterstartupevent/softwareversion
-func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterstartupevent/softwareversion
-func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

@@ -29,9 +29,13 @@ type _MTRClusterMediaInputClass struct {
 // An interface definition for the [MTRClusterMediaInput] class.
 type IMTRClusterMediaInput interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMediaInput
 type MTRClusterMediaInput struct {
 	MTRGenericCluster

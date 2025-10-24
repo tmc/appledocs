@@ -30,15 +30,19 @@ type _MTRTimeSynchronizationClusterDstOffsetTypeClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDstOffsetType] class.
 type IMTRTimeSynchronizationClusterDstOffsetType interface {
 	IMTRTimeSynchronizationClusterDSTOffsetStruct
-	Offset() foundation.Number
-	SetOffset(value foundation.INumber)
-	ValidStarting() foundation.Number
-	SetValidStarting(value foundation.INumber)
-	ValidUntil() foundation.Number
-	SetValidUntil(value foundation.INumber)
+	// properties:
+	Offset() objc.IObject /* cross-framework: NSNumber */
+	SetOffset(value objc.IObject /* cross-framework: NSNumber */)
+	ValidStarting() objc.IObject /* cross-framework: NSNumber */
+	SetValidStarting(value objc.IObject /* cross-framework: NSNumber */)
+	ValidUntil() objc.IObject /* cross-framework: NSNumber */
+	SetValidUntil(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDstOffsetType
 type MTRTimeSynchronizationClusterDstOffsetType struct {
 	MTRTimeSynchronizationClusterDSTOffsetStruct
@@ -83,48 +87,48 @@ func NewMTRTimeSynchronizationClusterDstOffsetType() MTRTimeSynchronizationClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/offset
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) Offset() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) Offset() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offset"))
 	return rv
 }
 
 
-// SetOffset sets the value of the offset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/offset
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetOffset(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetOffset(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidStarting() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validStarting"))
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidStarting() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("validStarting"))
 	return rv
 }
 
 
-// SetValidStarting sets the value of the validStarting property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validstarting
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidStarting(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidStarting(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidStarting:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidUntil() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validUntil"))
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) ValidUntil() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("validUntil"))
 	return rv
 }
 
 
-// SetValidUntil sets the value of the validUntil property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsettype/validuntil
-func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidUntil(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterDstOffsetType) SetValidUntil(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
 }
 

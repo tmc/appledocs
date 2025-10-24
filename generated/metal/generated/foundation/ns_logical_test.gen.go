@@ -88,40 +88,4 @@ func NewLogicalTest() LogicalTest {
 
 
 
-// Returns an object initialized to perform an operation with the objects in a given array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
-func NewLogicalTestAndTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer. */) LogicalTest {
-	instance := getLogicalTestClass().Alloc()
-	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to perform a operation on the given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(notTestWith:)
-func NewLogicalTestNotTestWithTest(subTest IScriptWhoseTest) LogicalTest {
-	instance := getLogicalTestClass().Alloc()
-	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initNotTestWithTest:"), subTest)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to perform an operation with the objects in a given array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
-func NewLogicalTestOrTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer. */) LogicalTest {
-	instance := getLogicalTestClass().Alloc()
-	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)
-	rv.Autorelease()
-	return rv
-}
-
-
 

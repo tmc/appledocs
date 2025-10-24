@@ -4,19 +4,18 @@ package metal
 
 import "github.com/ebitengine/purego/objc"
 
-// commandBufferProtocol is the commandBuffer protocol.
+// CommandBufferProtocol is the MTLCommandBuffer protocol.
 //
 // Availability:
-//   - Mac Catalyst 16.0+
-//   - iOS 16.0+
-//   - iPadOS 16.0+
-//   - macOS 13.0+
-//   - tvOS 16.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 8.0+
+//   - iPadOS 8.0+
+//   - macOS 10.11+
 //   - visionOS 1.0+
 //
-// Use this protocol when registering custom classes that conform to commandBuffer.
-var commandBufferProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to MTLCommandBuffer.
+var CommandBufferProtocol *objc.Protocol
 
 func init() {
-	commandBufferProtocol = objc.GetProtocol("commandBuffer")
+	CommandBufferProtocol = objc.GetProtocol("MTLCommandBuffer")
 }

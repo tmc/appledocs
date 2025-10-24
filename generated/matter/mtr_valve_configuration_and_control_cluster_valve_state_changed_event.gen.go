@@ -31,13 +31,17 @@ type _MTRValveConfigurationAndControlClusterValveStateChangedEventClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterValveStateChangedEvent] class.
 type IMTRValveConfigurationAndControlClusterValveStateChangedEvent interface {
 	objectivec.IObject
-	ValveLevel() foundation.Number
-	SetValveLevel(value foundation.INumber)
-	ValveState() foundation.Number
-	SetValveState(value foundation.INumber)
+	// properties:
+	ValveLevel() objc.IObject /* cross-framework: NSNumber */
+	SetValveLevel(value objc.IObject /* cross-framework: NSNumber */)
+	ValveState() objc.IObject /* cross-framework: NSNumber */
+	SetValveState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterValveStateChangedEvent
 type MTRValveConfigurationAndControlClusterValveStateChangedEvent struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRValveConfigurationAndControlClusterValveStateChangedEvent() MTRValveC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLevel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveLevel"))
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("valveLevel"))
 	return rv
 }
 
 
-// SetValveLevel sets the value of the valveLevel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveLevel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveState"))
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("valveState"))
 	return rv
 }
 
 
-// SetValveState sets the value of the valveState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveState:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +41,8 @@ type ILayoutGuide interface {
 	SetCenterYAnchor(value objc.IObject /* cross-framework: LayoutYAxisAnchor */)
 	Frame() objc.IObject /* cross-framework: Rect */
 	SetFrame(value objc.IObject /* cross-framework: Rect */)
-	HasAmbiguousLayout() bool /* primitive/slice/pointer. */
-	SetHasAmbiguousLayout(value bool /* primitive/slice/pointer. */)
+	HasAmbiguousLayout() bool
+	SetHasAmbiguousLayout(value bool)
 	HeightAnchor() objc.IObject /* cross-framework: LayoutDimension */
 	SetHeightAnchor(value objc.IObject /* cross-framework: LayoutDimension */)
 	LeadingAnchor() ILayoutXAxisAnchor
@@ -186,7 +187,7 @@ func (l_ LayoutGuide) SetCenterYAnchor(value objc.IObject /* cross-framework: La
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/frame
 func (l_ LayoutGuide) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](l_.ID, objc.Sel("frame"))
+	rv := objc.Send[corefoundation.Rect](l_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (l_ LayoutGuide) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/hasambiguouslayout
-func (l_ LayoutGuide) HasAmbiguousLayout() bool /* primitive/slice/pointer. */ {
+func (l_ LayoutGuide) HasAmbiguousLayout() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
 }
@@ -210,7 +211,7 @@ func (l_ LayoutGuide) HasAmbiguousLayout() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/hasambiguouslayout
-func (l_ LayoutGuide) SetHasAmbiguousLayout(value bool /* primitive/slice/pointer. */) {
+func (l_ LayoutGuide) SetHasAmbiguousLayout(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHasAmbiguousLayout:"), value)
 }
 

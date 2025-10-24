@@ -30,16 +30,22 @@ type _SACrashDetectionManagerClass struct {
 // An interface definition for the [SACrashDetectionManager] class.
 type ISACrashDetectionManager interface {
 	objectivec.IObject
-	RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer)
+	// properties:
 	AuthorizationStatus() SAAuthorizationStatus
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
+	RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer)
 }
 
 // Provides registration and management of Crash Detection events.
 //
 // Use this class to determine Crash Detection availabilty on iPhone, detect authorization status, and register for Crash Detection events. Not all iPhones support Crash Detection, so verify that returns . Check the value of to determine if the person designates this app on their iPhone to receive Crash Detection events. If the value is not , set and call to request authorization. After your app has authorization to receive Crash Detection events, adopt and implement . If a vehicular crash occurs, the system calls the method with the Crash Detection event.
+
+
+// Provides registration and management of Crash Detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager
 type SACrashDetectionManager struct {
 	objectivec.Object
@@ -84,30 +90,38 @@ func NewSACrashDetectionManager() SACrashDetectionManager {
 }
 
 
+
 // A Boolean value that indicates if Crash Detection is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/isAvailable
 func (sc _SACrashDetectionManagerClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("available"))
 	return rv
 }
+
 // Requests permission to access Crash Detection information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/requestAuthorization(completionHandler:)
 func (s_ SACrashDetectionManager) RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("requestAuthorizationWithCompletionHandler:"), handler)
 }
 
+
 // A value that indicates if the person authorized the app to receive Crash Detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/authorizationStatus
 func (s_ SACrashDetectionManager) AuthorizationStatus() SAAuthorizationStatus {
 	rv := objc.Send[SAAuthorizationStatus](s_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // The object that receives Crash Detection events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/delegate
 func (s_ SACrashDetectionManager) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
@@ -115,17 +129,18 @@ func (s_ SACrashDetectionManager) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The object that receives Crash Detection events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/delegate
 func (s_ SACrashDetectionManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates if Crash Detection is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/isAvailable
 func (s_ SACrashDetectionManager) Available() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("available"))

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +30,19 @@ type _SFSafariToolbarItemClass struct {
 // An interface definition for the [SFSafariToolbarItem] class.
 type ISFSafariToolbarItem interface {
 	objectivec.IObject
-	SetBadgeText(badgeText string)
-	SetEnabled(enabled bool)
-	SetImage(image appkit.IImage)
+	// properties:
+	// methods:
 	ShowPopover()
 }
 
 // A proxy for a Safari app extension toolbar item in a Safari window.
 //
 // Your app extension only uses this object when it wants to explicitly set the toolbar item state. Typically, other state changes occur automatically. Safari calls on your app extension handler when changes, such as navigation to a webpage, could affect the state of the toolbar item.
+
+
+// A proxy for a Safari app extension toolbar item in a Safari window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem
 type SFSafariToolbarItem struct {
 	objectivec.Object
@@ -85,28 +87,8 @@ func NewSFSafariToolbarItem() SFSafariToolbarItem {
 }
 
 
-// Sets the badge text for the toolbar item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)
-func (s_ SFSafariToolbarItem) SetBadgeText(badgeText string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBadgeText:"), objc.String(badgeText))
-}
 
-// Sets whether the toolbar item is enabled.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setEnabled(_:)
-func (s_ SFSafariToolbarItem) SetEnabled(enabled bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), enabled)
-}
-
-// Sets the image displayed in the toolbar button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setImage(_:)
-func (s_ SFSafariToolbarItem) SetImage(image appkit.IImage) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), image)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/showPopover()
 func (s_ SFSafariToolbarItem) ShowPopover() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("showPopover"))

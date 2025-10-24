@@ -29,6 +29,7 @@ type _HumanBodyPose3DObservationClass struct {
 // An interface definition for the [HumanBodyPose3DObservation] class.
 type IHumanBodyPose3DObservation interface {
 	IRecognizedPoints3DObservation
+	// properties:
 	AvailableJointNames() unsafe.Pointer
 	SetAvailableJointNames(value unsafe.Pointer)
 	AvailableJointsGroupNames() unsafe.Pointer
@@ -39,10 +40,15 @@ type IHumanBodyPose3DObservation interface {
 	SetCameraOriginMatrix(value unsafe.Pointer)
 	HeightEstimation() unsafe.Pointer
 	SetHeightEstimation(value unsafe.Pointer)
+	// methods:
 }
 
 // An observation that provides the 3D body points the request recognizes.
+
+
+// An observation that provides the 3D body points the request recognizes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation
 type HumanBodyPose3DObservation struct {
 	RecognizedPoints3DObservation
@@ -89,8 +95,10 @@ func NewHumanBodyPose3DObservation() HumanBodyPose3DObservation {
 }
 
 
+
 // The names of the available joints in the observation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointnames
 func (h_ HumanBodyPose3DObservation) AvailableJointNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("availableJointNames"))
@@ -98,17 +106,18 @@ func (h_ HumanBodyPose3DObservation) AvailableJointNames() unsafe.Pointer {
 }
 
 
-// SetAvailableJointNames sets the value of the availableJointNames property.
 // The names of the available joints in the observation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointnames
 func (h_ HumanBodyPose3DObservation) SetAvailableJointNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAvailableJointNames:"), value)
 }
 
+
 // The available joint group names in the observation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointsgroupnames
 func (h_ HumanBodyPose3DObservation) AvailableJointsGroupNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("availableJointsGroupNames"))
@@ -116,17 +125,18 @@ func (h_ HumanBodyPose3DObservation) AvailableJointsGroupNames() unsafe.Pointer 
 }
 
 
-// SetAvailableJointsGroupNames sets the value of the availableJointsGroupNames property.
 // The available joint group names in the observation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointsgroupnames
 func (h_ HumanBodyPose3DObservation) SetAvailableJointsGroupNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAvailableJointsGroupNames:"), value)
 }
 
+
 // The estimated human body height, in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
 func (h_ HumanBodyPose3DObservation) BodyHeight() float32 {
 	rv := objc.Send[float32](h_.ID, objc.Sel("bodyHeight"))
@@ -134,17 +144,18 @@ func (h_ HumanBodyPose3DObservation) BodyHeight() float32 {
 }
 
 
-// SetBodyHeight sets the value of the bodyHeight property.
 // The estimated human body height, in meters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
 func (h_ HumanBodyPose3DObservation) SetBodyHeight(value float32) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBodyHeight:"), value)
 }
 
+
 // A transform from the skeleton hip to the camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/cameraoriginmatrix
 func (h_ HumanBodyPose3DObservation) CameraOriginMatrix() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cameraOriginMatrix"))
@@ -152,17 +163,18 @@ func (h_ HumanBodyPose3DObservation) CameraOriginMatrix() unsafe.Pointer {
 }
 
 
-// SetCameraOriginMatrix sets the value of the cameraOriginMatrix property.
 // A transform from the skeleton hip to the camera.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/cameraoriginmatrix
 func (h_ HumanBodyPose3DObservation) SetCameraOriginMatrix(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCameraOriginMatrix:"), value)
 }
 
+
 // The technique the framework uses to estimate body height.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.property
 func (h_ HumanBodyPose3DObservation) HeightEstimation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("heightEstimation"))
@@ -170,10 +182,9 @@ func (h_ HumanBodyPose3DObservation) HeightEstimation() unsafe.Pointer {
 }
 
 
-// SetHeightEstimation sets the value of the heightEstimation property.
 // The technique the framework uses to estimate body height.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.property
 func (h_ HumanBodyPose3DObservation) SetHeightEstimation(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHeightEstimation:"), value)

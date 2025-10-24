@@ -30,12 +30,18 @@ type _PHASEMaterialClass struct {
 // An interface definition for the [PHASEMaterial] class.
 type IPHASEMaterial interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // Surface characteristics that determine the acoustic properties of an object.
 //
 // To specify the physical texture of a sound source or occluder, define the argument of the initializer, . The contains the surface types with which you define the argument of this class’s initializer.
+
+
+// Surface characteristics that determine the acoustic properties of an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMaterial
 type PHASEMaterial struct {
 	objectivec.Object
@@ -81,11 +87,11 @@ func NewPHASEMaterial() PHASEMaterial {
 
 
 
-
 // Creates a material with the given preset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMaterial/init(engine:preset:)
-func NewPHASEMaterialWithEnginePreset(engine IPHASEEngine, preset IPHASEMaterialPreset) PHASEMaterial {
+func NewPHASEMaterialWithEnginePreset(engine IPHASEEngine, preset PHASEMaterialPreset) PHASEMaterial {
 	instance := getPHASEMaterialClass().Alloc()
 	rv := objc.Send[PHASEMaterial](instance.ID, objc.Sel("initWithEngine:preset:"), engine, preset)
 	rv.Autorelease()

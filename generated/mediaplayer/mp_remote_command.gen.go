@@ -30,14 +30,20 @@ type _RemoteCommandClass struct {
 // An interface definition for the [RemoteCommand] class.
 type IRemoteCommand interface {
 	objectivec.IObject
+	// properties:
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	// methods:
 }
 
 // An object that responds to remote command events.
 //
 // The Media Player framework defines a standard set of remote command objects for handling media-related events. When an accessory or iOS user interface generates a remote control event, the system notifies the corresponding command object on the shared instance. That command object executes any attached handlers. To respond to a particular event, register a handler with the appropriate object. Listing 1. Registering a remote control event handler If you explicitly don’t want to enable a given command, fetch the command object and set its enabled property to . Disabling a remote command lets the system know that it shouldn’t display any related UI for that command when your app is the Now Playing app. The framework defines many subclasses to handle specific kinds of commands. Sometimes, these subclasses let you specify other information related to the command. For example, feedback commands let you specify a localized string that describes the meaning of the feedback. When supporting a particular command, be sure to look up the specific class used to handle those events.
+
+
+// An object that responds to remote command events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommand
 type RemoteCommand struct {
 	objectivec.Object
@@ -82,8 +88,10 @@ func NewRemoteCommand() RemoteCommand {
 }
 
 
+
 // A Boolean value that indicates whether a user can interact with the displayed element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommand/isenabled
 func (r_ RemoteCommand) IsEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isEnabled"))
@@ -91,10 +99,9 @@ func (r_ RemoteCommand) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether a user can interact with the displayed element.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommand/isenabled
 func (r_ RemoteCommand) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsEnabled:"), value)

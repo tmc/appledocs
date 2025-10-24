@@ -29,9 +29,13 @@ type _MTRClusterBooleanStateClass struct {
 // An interface definition for the [MTRClusterBooleanState] class.
 type IMTRClusterBooleanState interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBooleanState
 type MTRClusterBooleanState struct {
 	MTRGenericCluster

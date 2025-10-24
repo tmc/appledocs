@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in ReplayKit
 	SampleBufferRef = _undefined // referenced in ReplayKit
 )
 

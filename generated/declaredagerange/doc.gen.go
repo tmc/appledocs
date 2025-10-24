@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeclaredAgeRange without requiring cgo.
-
-// Create age-appropriate experiences in your app by asking people to share their age range.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DeclaredAgeRange
+// See: https://developer.apple.com/documentation/DeclaredAgeRange
 package declaredagerange
 
 import (

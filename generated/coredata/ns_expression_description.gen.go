@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ExpressionDescription] class.
@@ -40,12 +41,12 @@ type IExpressionDescription interface {
 	SetResultType(value AttributeType)
 	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
-	FetchBatchSize() int /* primitive/slice/pointer. */
-	SetFetchBatchSize(value int /* primitive/slice/pointer. */)
-	FetchLimit() int /* primitive/slice/pointer. */
-	SetFetchLimit(value int /* primitive/slice/pointer. */)
-	FetchOffset() int /* primitive/slice/pointer. */
-	SetFetchOffset(value int /* primitive/slice/pointer. */)
+	FetchBatchSize() int
+	SetFetchBatchSize(value int)
+	FetchLimit() int
+	SetFetchLimit(value int)
+	FetchOffset() int
+	SetFetchOffset(value int)
 	Predicate() objc.IObject /* cross-framework: Predicate */
 	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	PropertiesToFetch() unsafe.Pointer
@@ -207,7 +208,7 @@ func (e_ ExpressionDescription) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (e_ ExpressionDescription) FetchBatchSize() int /* primitive/slice/pointer. */ {
+func (e_ ExpressionDescription) FetchBatchSize() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -217,7 +218,7 @@ func (e_ ExpressionDescription) FetchBatchSize() int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (e_ ExpressionDescription) SetFetchBatchSize(value int /* primitive/slice/pointer. */) {
+func (e_ ExpressionDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -226,7 +227,7 @@ func (e_ ExpressionDescription) SetFetchBatchSize(value int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) FetchLimit() int /* primitive/slice/pointer. */ {
+func (e_ ExpressionDescription) FetchLimit() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -236,7 +237,7 @@ func (e_ ExpressionDescription) FetchLimit() int /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) SetFetchLimit(value int /* primitive/slice/pointer. */) {
+func (e_ ExpressionDescription) SetFetchLimit(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -245,7 +246,7 @@ func (e_ ExpressionDescription) SetFetchLimit(value int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) FetchOffset() int /* primitive/slice/pointer. */ {
+func (e_ ExpressionDescription) FetchOffset() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -255,7 +256,7 @@ func (e_ ExpressionDescription) FetchOffset() int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) SetFetchOffset(value int /* primitive/slice/pointer. */) {
+func (e_ ExpressionDescription) SetFetchOffset(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -265,7 +266,7 @@ func (e_ ExpressionDescription) SetFetchOffset(value int /* primitive/slice/poin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
 func (e_ ExpressionDescription) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](e_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("predicate"))
 	return rv
 }
 

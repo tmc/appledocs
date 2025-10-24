@@ -6,6 +6,6 @@ package mediaaccessibility
 // MAFlashingLightsProcessorOptionKey - Options for the flashing lights processor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessor/OptionKey
-// MAFlashingLightsProcessorOptionKey has base type: NSString *
-type MAFlashingLightsProcessorOptionKey uintptr
+// MAFlashingLightsProcessorOptionKey is a string typedef
+type MAFlashingLightsProcessorOptionKey = string
 

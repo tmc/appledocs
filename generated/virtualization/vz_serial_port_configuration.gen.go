@@ -30,8 +30,10 @@ type _VZSerialPortConfigurationClass struct {
 // An interface definition for the [VZSerialPortConfiguration] class.
 type IVZSerialPortConfiguration interface {
 	objectivec.IObject
+	// properties:
 	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
+	// methods:
 }
 
 // The common configuration traits for serial port requests.

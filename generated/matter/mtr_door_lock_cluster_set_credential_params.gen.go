@@ -31,25 +31,29 @@ type _MTRDoorLockClusterSetCredentialParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterSetCredentialParams] class.
 type IMTRDoorLockClusterSetCredentialParams interface {
 	objectivec.IObject
-	Credential() MTRDoorLockClusterCredentialStruct
+	// properties:
+	Credential() IMTRDoorLockClusterCredentialStruct
 	SetCredential(value IMTRDoorLockClusterCredentialStruct)
-	CredentialData() foundation.Data
-	SetCredentialData(value foundation.IData)
-	OperationType() foundation.Number
-	SetOperationType(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
-	UserStatus() foundation.Number
-	SetUserStatus(value foundation.INumber)
-	UserType() foundation.Number
-	SetUserType(value foundation.INumber)
+	CredentialData() objc.IObject /* cross-framework: Data */
+	SetCredentialData(value objc.IObject /* cross-framework: Data */)
+	OperationType() objc.IObject /* cross-framework: NSNumber */
+	SetOperationType(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	UserStatus() objc.IObject /* cross-framework: NSNumber */
+	SetUserStatus(value objc.IObject /* cross-framework: NSNumber */)
+	UserType() objc.IObject /* cross-framework: NSNumber */
+	SetUserType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetCredentialParams
 type MTRDoorLockClusterSetCredentialParams struct {
 	objectivec.Object
@@ -92,123 +96,123 @@ func NewMTRDoorLockClusterSetCredentialParams() MTRDoorLockClusterSetCredentialP
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/credential
-func (m_ MTRDoorLockClusterSetCredentialParams) Credential() MTRDoorLockClusterCredentialStruct {
+func (m_ MTRDoorLockClusterSetCredentialParams) Credential() IMTRDoorLockClusterCredentialStruct {
 	rv := objc.Send[MTRDoorLockClusterCredentialStruct](m_.ID, objc.Sel("credential"))
 	return rv
 }
 
 
-// SetCredential sets the value of the credential property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/credential
 func (m_ MTRDoorLockClusterSetCredentialParams) SetCredential(value IMTRDoorLockClusterCredentialStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredential:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/credentialdata
-func (m_ MTRDoorLockClusterSetCredentialParams) CredentialData() foundation.Data {
+func (m_ MTRDoorLockClusterSetCredentialParams) CredentialData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("credentialData"))
 	return rv
 }
 
 
-// SetCredentialData sets the value of the credentialData property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/credentialdata
-func (m_ MTRDoorLockClusterSetCredentialParams) SetCredentialData(value foundation.IData) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetCredentialData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/operationtype
-func (m_ MTRDoorLockClusterSetCredentialParams) OperationType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationType"))
+func (m_ MTRDoorLockClusterSetCredentialParams) OperationType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operationType"))
 	return rv
 }
 
 
-// SetOperationType sets the value of the operationType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/operationtype
-func (m_ MTRDoorLockClusterSetCredentialParams) SetOperationType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetOperationType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetCredentialParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterSetCredentialParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetCredentialParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetCredentialParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterSetCredentialParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetCredentialParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/userindex
-func (m_ MTRDoorLockClusterSetCredentialParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterSetCredentialParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/userindex
-func (m_ MTRDoorLockClusterSetCredentialParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/userstatus
-func (m_ MTRDoorLockClusterSetCredentialParams) UserStatus() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userStatus"))
+func (m_ MTRDoorLockClusterSetCredentialParams) UserStatus() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userStatus"))
 	return rv
 }
 
 
-// SetUserStatus sets the value of the userStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/userstatus
-func (m_ MTRDoorLockClusterSetCredentialParams) SetUserStatus(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetUserStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/usertype
-func (m_ MTRDoorLockClusterSetCredentialParams) UserType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userType"))
+func (m_ MTRDoorLockClusterSetCredentialParams) UserType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userType"))
 	return rv
 }
 
 
-// SetUserType sets the value of the userType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialparams/usertype
-func (m_ MTRDoorLockClusterSetCredentialParams) SetUserType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetCredentialParams) SetUserType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserType:"), value)
 }
 

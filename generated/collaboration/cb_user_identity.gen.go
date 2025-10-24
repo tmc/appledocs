@@ -31,8 +31,8 @@ type ICBUserIdentity interface {
 	ICBIdentity
 	// properties:
 	Certificate() unsafe.Pointer
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 	PosixUID() unsafe.Pointer
 	SetPosixUID(value unsafe.Pointer)
 	// methods:
@@ -105,7 +105,7 @@ func (c_ CBUserIdentity) Certificate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-func (c_ CBUserIdentity) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CBUserIdentity) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (c_ CBUserIdentity) IsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-func (c_ CBUserIdentity) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CBUserIdentity) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

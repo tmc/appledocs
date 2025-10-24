@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetMutedCallAction] class.
@@ -30,10 +31,8 @@ type _CXSetMutedCallActionClass struct {
 type ICXSetMutedCallAction interface {
 	ICXCallAction
 	// properties:
-	Muted() bool /* primitive/slice/pointer. */
-	SetMuted(value bool /* primitive/slice/pointer. */)
-	IsMuted() bool /* primitive/slice/pointer. */
-	SetIsMuted(value bool /* primitive/slice/pointer. */)
+	IsMuted() bool
+	SetIsMuted(value bool)
 	// methods:
 }
 
@@ -96,7 +95,7 @@ func NewCXSetMutedCallAction() CXSetMutedCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(call:muted:)
-func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID objc.IObject /* cross-framework UUID */, muted bool /* primitive/slice/pointer. */) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID objc.IObject /* cross-framework: UUID */, muted bool) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCallUUID:muted:"), callUUID, muted)
 	rv.Autorelease()
@@ -108,7 +107,7 @@ func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(coder:)
-func NewCXSetMutedCallActionWithCoder(aDecoder Coder /* not a class type */) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -120,27 +119,8 @@ func NewCXSetMutedCallActionWithCoder(aDecoder Coder /* not a class type */) CXS
 // A Boolean value that indicates whether the call is muted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
-func (c_ CXSetMutedCallAction) Muted() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("muted"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call is muted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/isMuted
-func (c_ CXSetMutedCallAction) SetMuted(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMuted:"), value)
-}
-
-
-// A Boolean value that indicates whether the call is muted.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
-func (c_ CXSetMutedCallAction) IsMuted() bool /* primitive/slice/pointer. */ {
+func (c_ CXSetMutedCallAction) IsMuted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMuted"))
 	return rv
 }
@@ -150,7 +130,7 @@ func (c_ CXSetMutedCallAction) IsMuted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetmutedcallaction/ismuted
-func (c_ CXSetMutedCallAction) SetIsMuted(value bool /* primitive/slice/pointer. */) {
+func (c_ CXSetMutedCallAction) SetIsMuted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMuted:"), value)
 }
 

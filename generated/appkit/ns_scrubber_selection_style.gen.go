@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,8 @@ type _ScrubberSelectionStyleClass struct {
 // An interface definition for the [ScrubberSelectionStyle] class.
 type IScrubberSelectionStyle interface {
 	objectivec.IObject
-	MakeSelectionView() ScrubberSelectionView
+	// properties:
+	// methods:
 }
 
 // An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control.
@@ -86,46 +86,5 @@ func NewScrubberSelectionStyle() ScrubberSelectionStyle {
 }
 
 
-
-// Initializes a scrubber selection style when included from a nib or Storyboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/init(coder:)
-func NewScrubberSelectionStyleWithCoder(coder foundation.ICoder) ScrubberSelectionStyle {
-	instance := getScrubberSelectionStyleClass().Alloc()
-	rv := objc.Send[ScrubberSelectionStyle](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// A built-in selection style that draws the outline of the scrubber item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() ScrubberSelectionStyle {
-	rv := objc.Send[NSScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
-	return rv
-}
-
-// Provides an opportunity to create a customized scrubber selection style.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
-func (s_ ScrubberSelectionStyle) MakeSelectionView() ScrubberSelectionView {
-	rv := objc.Send[ScrubberSelectionView](s_.ID, objc.Sel("makeSelectionView"))
-	return rv
-}
-
-
-// A built-in selection style that draws the outline of the scrubber item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
-func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() NSScrubberSelectionStyle {
-	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("outlineOverlayStyle"))
-	return rv
-}
 
 

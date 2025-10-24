@@ -31,33 +31,37 @@ type _MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponentsClass struct
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents] class.
 type IMTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents interface {
 	objectivec.IObject
-	ActiveTimestampPresent() foundation.Number
-	SetActiveTimestampPresent(value foundation.INumber)
-	ChannelMaskPresent() foundation.Number
-	SetChannelMaskPresent(value foundation.INumber)
-	ChannelPresent() foundation.Number
-	SetChannelPresent(value foundation.INumber)
-	DelayPresent() foundation.Number
-	SetDelayPresent(value foundation.INumber)
-	ExtendedPanIdPresent() foundation.Number
-	SetExtendedPanIdPresent(value foundation.INumber)
-	MasterKeyPresent() foundation.Number
-	SetMasterKeyPresent(value foundation.INumber)
-	MeshLocalPrefixPresent() foundation.Number
-	SetMeshLocalPrefixPresent(value foundation.INumber)
-	NetworkNamePresent() foundation.Number
-	SetNetworkNamePresent(value foundation.INumber)
-	PanIdPresent() foundation.Number
-	SetPanIdPresent(value foundation.INumber)
-	PendingTimestampPresent() foundation.Number
-	SetPendingTimestampPresent(value foundation.INumber)
-	PskcPresent() foundation.Number
-	SetPskcPresent(value foundation.INumber)
-	SecurityPolicyPresent() foundation.Number
-	SetSecurityPolicyPresent(value foundation.INumber)
+	// properties:
+	ActiveTimestampPresent() objc.IObject /* cross-framework: NSNumber */
+	SetActiveTimestampPresent(value objc.IObject /* cross-framework: NSNumber */)
+	ChannelMaskPresent() objc.IObject /* cross-framework: NSNumber */
+	SetChannelMaskPresent(value objc.IObject /* cross-framework: NSNumber */)
+	ChannelPresent() objc.IObject /* cross-framework: NSNumber */
+	SetChannelPresent(value objc.IObject /* cross-framework: NSNumber */)
+	DelayPresent() objc.IObject /* cross-framework: NSNumber */
+	SetDelayPresent(value objc.IObject /* cross-framework: NSNumber */)
+	ExtendedPanIdPresent() objc.IObject /* cross-framework: NSNumber */
+	SetExtendedPanIdPresent(value objc.IObject /* cross-framework: NSNumber */)
+	MasterKeyPresent() objc.IObject /* cross-framework: NSNumber */
+	SetMasterKeyPresent(value objc.IObject /* cross-framework: NSNumber */)
+	MeshLocalPrefixPresent() objc.IObject /* cross-framework: NSNumber */
+	SetMeshLocalPrefixPresent(value objc.IObject /* cross-framework: NSNumber */)
+	NetworkNamePresent() objc.IObject /* cross-framework: NSNumber */
+	SetNetworkNamePresent(value objc.IObject /* cross-framework: NSNumber */)
+	PanIdPresent() objc.IObject /* cross-framework: NSNumber */
+	SetPanIdPresent(value objc.IObject /* cross-framework: NSNumber */)
+	PendingTimestampPresent() objc.IObject /* cross-framework: NSNumber */
+	SetPendingTimestampPresent(value objc.IObject /* cross-framework: NSNumber */)
+	PskcPresent() objc.IObject /* cross-framework: NSNumber */
+	SetPskcPresent(value objc.IObject /* cross-framework: NSNumber */)
+	SecurityPolicyPresent() objc.IObject /* cross-framework: NSNumber */
+	SetSecurityPolicyPresent(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents
 type MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents struct {
 	objectivec.Object
@@ -100,183 +104,183 @@ func NewMTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents() MTRThre
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/activetimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ActiveTimestampPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("activeTimestampPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ActiveTimestampPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("activeTimestampPresent"))
 	return rv
 }
 
 
-// SetActiveTimestampPresent sets the value of the activeTimestampPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/activetimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetActiveTimestampPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetActiveTimestampPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestampPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelmaskpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ChannelMaskPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelMaskPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ChannelMaskPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("channelMaskPresent"))
 	return rv
 }
 
 
-// SetChannelMaskPresent sets the value of the channelMaskPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelmaskpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelMaskPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelMaskPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelMaskPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ChannelPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ChannelPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("channelPresent"))
 	return rv
 }
 
 
-// SetChannelPresent sets the value of the channelPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/delaypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) DelayPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) DelayPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("delayPresent"))
 	return rv
 }
 
 
-// SetDelayPresent sets the value of the delayPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/delaypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetDelayPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetDelayPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/extendedpanidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ExtendedPanIdPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("extendedPanIdPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ExtendedPanIdPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("extendedPanIdPresent"))
 	return rv
 }
 
 
-// SetExtendedPanIdPresent sets the value of the extendedPanIdPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/extendedpanidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetExtendedPanIdPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetExtendedPanIdPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanIdPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/masterkeypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MasterKeyPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("masterKeyPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MasterKeyPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("masterKeyPresent"))
 	return rv
 }
 
 
-// SetMasterKeyPresent sets the value of the masterKeyPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/masterkeypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMasterKeyPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMasterKeyPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKeyPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/meshlocalprefixpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MeshLocalPrefixPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("meshLocalPrefixPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MeshLocalPrefixPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("meshLocalPrefixPresent"))
 	return rv
 }
 
 
-// SetMeshLocalPrefixPresent sets the value of the meshLocalPrefixPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/meshlocalprefixpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMeshLocalPrefixPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMeshLocalPrefixPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshLocalPrefixPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/networknamepresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) NetworkNamePresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkNamePresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) NetworkNamePresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("networkNamePresent"))
 	return rv
 }
 
 
-// SetNetworkNamePresent sets the value of the networkNamePresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/networknamepresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetNetworkNamePresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetNetworkNamePresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkNamePresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/panidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PanIdPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("panIdPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PanIdPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("panIdPresent"))
 	return rv
 }
 
 
-// SetPanIdPresent sets the value of the panIdPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/panidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPanIdPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPanIdPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanIdPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pendingtimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PendingTimestampPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pendingTimestampPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PendingTimestampPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("pendingTimestampPresent"))
 	return rv
 }
 
 
-// SetPendingTimestampPresent sets the value of the pendingTimestampPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pendingtimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPendingTimestampPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPendingTimestampPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingTimestampPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pskcpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PskcPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pskcPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PskcPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("pskcPresent"))
 	return rv
 }
 
 
-// SetPskcPresent sets the value of the pskcPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pskcpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPskcPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPskcPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPskcPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/securitypolicypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SecurityPolicyPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("securityPolicyPresent"))
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SecurityPolicyPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("securityPolicyPresent"))
 	return rv
 }
 
 
-// SetSecurityPolicyPresent sets the value of the securityPolicyPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/securitypolicypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetSecurityPolicyPresent(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetSecurityPolicyPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurityPolicyPresent:"), value)
 }
 

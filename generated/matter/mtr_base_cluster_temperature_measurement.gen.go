@@ -29,9 +29,13 @@ type _MTRBaseClusterTemperatureMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterTemperatureMeasurement] class.
 type IMTRBaseClusterTemperatureMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterTemperatureMeasurement
 type MTRBaseClusterTemperatureMeasurement struct {
 	MTRGenericBaseCluster

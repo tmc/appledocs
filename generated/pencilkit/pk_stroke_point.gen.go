@@ -7,8 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,19 +31,25 @@ type _StrokePointClass struct {
 // An interface definition for the [StrokePoint] class.
 type IStrokePoint interface {
 	objectivec.IObject
+	// properties:
 	Altitude() float64
 	Azimuth() float64
 	Force() float64
-	Location() coregraphics.CGPoint
+	Location() objc.IObject /* cross-framework: Point */
 	Opacity() float64
 	SecondaryScale() float64
-	Size() coregraphics.CGSize
+	Size() objc.IObject /* cross-framework: Size */
 	Threshold() float64
-	TimeOffset() foundation.TimeInterval
+	TimeOffset() float64
+	// methods:
 }
 
 // A class that represents the properties of a specific point along a stroke’s path.
+
+
+// A class that represents the properties of a specific point along a stroke’s path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference
 type StrokePoint struct {
 	objectivec.Object
@@ -90,20 +95,21 @@ func NewStrokePoint() StrokePoint {
 
 
 
-
 // Creates a new point with the provided properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location coregraphics.CGPoint, timeOffset foundation.ITimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location objc.IObject /* cross-framework: Point */, timeOffset float64, size objc.IObject /* cross-framework: Size */, opacity float64, force float64, azimuth float64, altitude float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:"), location, timeOffset, size, opacity, force, azimuth, altitude)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location coregraphics.CGPoint, timeOffset foundation.ITimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location objc.IObject /* cross-framework: Point */, timeOffset float64, size objc.IObject /* cross-framework: Size */, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:"), location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale)
 	rv.Autorelease()
@@ -111,11 +117,11 @@ func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondar
 }
 
 
-
 // Create a new point with the provided properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/init(location:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:)
-func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location coregraphics.CGPoint, timeOffset foundation.ITimeInterval, size coregraphics.CGSize, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64, threshold float64) StrokePoint {
+func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location objc.IObject /* cross-framework: Point */, timeOffset float64, size objc.IObject /* cross-framework: Size */, opacity float64, force float64, azimuth float64, altitude float64, secondaryScale float64, threshold float64) StrokePoint {
 	instance := getStrokePointClass().Alloc()
 	rv := objc.Send[StrokePoint](instance.ID, objc.Sel("initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:"), location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold)
 	rv.Autorelease()
@@ -123,74 +129,91 @@ func NewStrokePointWithLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondar
 }
 
 
+
 // The altitude of this point in radians.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/altitude
 func (s_ StrokePoint) Altitude() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("altitude"))
 	return rv
 }
 
+
 // The azimuth of this point in radians.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/azimuth
 func (s_ StrokePoint) Azimuth() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("azimuth"))
 	return rv
 }
 
+
 // The amount of force applied by the touch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/force
 func (s_ StrokePoint) Force() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("force"))
 	return rv
 }
 
+
 // The location of this point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/location
-func (s_ StrokePoint) Location() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](s_.ID, objc.Sel("location"))
+func (s_ StrokePoint) Location() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](s_.ID, objc.Sel("location"))
 	return rv
 }
 
+
 // Opacity of the point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/opacity
 func (s_ StrokePoint) Opacity() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("opacity"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/secondaryScale
 func (s_ StrokePoint) SecondaryScale() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("secondaryScale"))
 	return rv
 }
 
+
 // The size of the point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/size
-func (s_ StrokePoint) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("size"))
+func (s_ StrokePoint) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("size"))
 	return rv
 }
 
+
 // The threshold for clipping the stroke rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/threshold
 func (s_ StrokePoint) Threshold() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("threshold"))
 	return rv
 }
 
+
 // The time offset since the start of the stroke path in seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePointReference/timeOffset
-func (s_ StrokePoint) TimeOffset() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("timeOffset"))
+func (s_ StrokePoint) TimeOffset() float64 {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("timeOffset"))
 	return rv
 }
 

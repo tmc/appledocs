@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,16 @@ type _KeyedUnarchiverClass struct {
 // An interface definition for the [KeyedUnarchiver] class.
 type IKeyedUnarchiver interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A keyed archiver that supports Metal Performance Shaders kernel decoding.
+
+
+// A keyed archiver that supports Metal Performance Shaders kernel decoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKeyedUnarchiver
 type KeyedUnarchiver struct {
 	objectivec.Object
@@ -79,21 +84,5 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKeyedUnarchiver/init(forReadingFrom:device:error:)
-func NewKeyedUnarchiverForReadingFromDataDeviceError(data foundation.IData, device objectivec.IObject, error_ unsafe.Pointer) KeyedUnarchiver {
-	instance := getKeyedUnarchiverClass().Alloc()
-	rv := objc.Send[KeyedUnarchiver](instance.ID, objc.Sel("initForReadingFromData:device:error:"), data, device, error_)
-	rv.Autorelease()
-	return rv
-}
-
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKeyedUnarchiver/unarchivedObject(ofClasses:from:device:)
-func (kc _KeyedUnarchiverClass) UnarchivedObjectOfClassesFromDataDeviceError(classes unsafe.Pointer, data foundation.IData, device objectivec.IObject, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(kc.class), objc.Sel("unarchivedObjectOfClasses:fromData:device:error:"), classes, data, device, error_)
-	return rv
-}
 
 

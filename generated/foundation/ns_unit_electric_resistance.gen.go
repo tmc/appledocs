@@ -88,4 +88,23 @@ func NewUnitElectricResistance() UnitElectricResistance {
 
 
 
+// The ohms unit of electric resistance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
+func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
+	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
+	return rv
+}
+
+// The ohms unit of electric resistance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
+func (u_ UnitElectricResistance) Ohms() IUnitElectricResistance {
+	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("ohms"))
+	return rv
+}
+
+
 

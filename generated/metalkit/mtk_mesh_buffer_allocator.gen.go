@@ -30,11 +30,17 @@ type _MeshBufferAllocatorClass struct {
 // An interface definition for the [MeshBufferAllocator] class.
 type IMeshBufferAllocator interface {
 	objectivec.IObject
+	// properties:
 	Device() objc.ID
+	// methods:
 }
 
 // An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
+
+
+// An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator
 type MeshBufferAllocator struct {
 	objectivec.Object
@@ -80,9 +86,9 @@ func NewMeshBufferAllocator() MeshBufferAllocator {
 
 
 
-
 // Initializes a new allocator object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator/init(device:)
 func NewMeshBufferAllocatorWithDevice(device objectivec.IObject) MeshBufferAllocator {
 	instance := getMeshBufferAllocatorClass().Alloc()
@@ -92,8 +98,10 @@ func NewMeshBufferAllocatorWithDevice(device objectivec.IObject) MeshBufferAlloc
 }
 
 
+
 // The device used to create Metal objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator/device
 func (m_ MeshBufferAllocator) Device() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("device"))

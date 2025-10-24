@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CoreMLFeatureValueObservation] class.
@@ -30,21 +31,28 @@ type _CoreMLFeatureValueObservationClass struct {
 // An interface definition for the [CoreMLFeatureValueObservation] class.
 type ICoreMLFeatureValueObservation interface {
 	IObservation
-	FeatureName() string
-	ModelDescription() coreml.ModelDescription
-	SetModelDescription(value coreml.IModelDescription)
-	OutputDescriptionsByName() coreml.FeatureDescription
-	SetOutputDescriptionsByName(value coreml.IFeatureDescription)
-	PredictedFeatureName() string
-	SetPredictedFeatureName(value string)
-	FeatureValue() coreml.FeatureValue
-	SetFeatureValue(value coreml.IFeatureValue)
+	// properties:
+	FeatureName() objc.IObject /* cross-framework: NSString */
+	SetFeatureName(value objc.IObject /* cross-framework: NSString */)
+	FeatureValue() objc.IObject /* cross-framework: FeatureValue */
+	SetFeatureValue(value objc.IObject /* cross-framework: FeatureValue */)
+	ModelDescription() objc.IObject /* cross-framework: ModelDescription */
+	SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */)
+	OutputDescriptionsByName() objc.IObject /* cross-framework: FeatureDescription */
+	SetOutputDescriptionsByName(value objc.IObject /* cross-framework: FeatureDescription */)
+	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
+	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that represents a collection of key-value information that a Core ML image-analysis request produces.
 //
 // This type of observation results from performing a image analysis with a Core ML model whose role is prediction rather than classification or image-to-image processing. Vision infers that an object is a predictor model if that model predicts multiple features. You can tell that a model predicts multiple features when its object has a value for its property, or when it inserts its output in an dictionary.
+
+
+// An object that represents a collection of key-value information that a Core ML image-analysis request produces.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLFeatureValueObservation
 type CoreMLFeatureValueObservation struct {
 	Observation
@@ -91,84 +99,99 @@ func NewCoreMLFeatureValueObservation() CoreMLFeatureValueObservation {
 }
 
 
+
 // The name used in the model description of the CoreML model that produced this observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLFeatureValueObservation/featureName
-func (c_ CoreMLFeatureValueObservation) FeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("featureName"))
-	return rv
-}
-
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLFeatureValueObservation) ModelDescription() coreml.ModelDescription {
-	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
+func (c_ CoreMLFeatureValueObservation) FeatureName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("featureName"))
 	return rv
 }
 
 
-// SetModelDescription sets the value of the modelDescription property.
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-
+// The name used in the model description of the CoreML model that produced this observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLFeatureValueObservation) SetModelDescription(value coreml.IModelDescription) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
+func (c_ CoreMLFeatureValueObservation) SetFeatureName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureName:"), value)
 }
 
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() coreml.FeatureDescription {
-	rv := objc.Send[coreml.FeatureDescription](c_.ID, objc.Sel("outputDescriptionsByName"))
-	return rv
-}
-
-
-// SetOutputDescriptionsByName sets the value of the outputDescriptionsByName property.
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value coreml.IFeatureDescription) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
-}
-
-// The name of the primary prediction feature output description.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
-	return rv
-}
-
-
-// SetPredictedFeatureName sets the value of the predictedFeatureName property.
-// The name of the primary prediction feature output description.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
-}
 
 // The feature result of a
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
-func (c_ CoreMLFeatureValueObservation) FeatureValue() coreml.FeatureValue {
+func (c_ CoreMLFeatureValueObservation) FeatureValue() objc.IObject /* cross-framework: FeatureValue */ {
 	rv := objc.Send[coreml.FeatureValue](c_.ID, objc.Sel("featureValue"))
 	return rv
 }
 
 
-// SetFeatureValue sets the value of the featureValue property.
 // The feature result of a
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
-func (c_ CoreMLFeatureValueObservation) SetFeatureValue(value coreml.IFeatureValue) {
+func (c_ CoreMLFeatureValueObservation) SetFeatureValue(value objc.IObject /* cross-framework: FeatureValue */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureValue:"), value)
+}
+
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLFeatureValueObservation) ModelDescription() objc.IObject /* cross-framework: ModelDescription */ {
+	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
+	return rv
+}
+
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (c_ CoreMLFeatureValueObservation) SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
+}
+
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() objc.IObject /* cross-framework: FeatureDescription */ {
+	rv := objc.Send[coreml.FeatureDescription](c_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}
+
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value objc.IObject /* cross-framework: FeatureDescription */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
+}
+
+
+// The name of the primary prediction feature output description.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
+	return rv
+}
+
+
+// The name of the primary prediction feature output description.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
+func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 
 

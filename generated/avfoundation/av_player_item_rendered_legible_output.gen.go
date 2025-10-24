@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [PlayerItemRenderedLegibleOutput] class.
@@ -30,8 +31,8 @@ type _PlayerItemRenderedLegibleOutputClass struct {
 type IPlayerItemRenderedLegibleOutput interface {
 	IPlayerItemOutput
 	// properties:
-	AdvanceIntervalForDelegateInvocation() unsafe.Pointer
-	SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer)
+	AdvanceIntervalForDelegateInvocation() float64
+	SetAdvanceIntervalForDelegateInvocation(value float64)
 	Delegate() PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */
 	SetDelegate(value PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */)
 	DelegateQueue() unsafe.Pointer
@@ -98,8 +99,8 @@ func NewPlayerItemRenderedLegibleOutput() PlayerItemRenderedLegibleOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
-func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("advanceIntervalForDelegateInvocation"))
+func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("advanceIntervalForDelegateInvocation"))
 	return rv
 }
 
@@ -108,7 +109,7 @@ func (p_ PlayerItemRenderedLegibleOutput) AdvanceIntervalForDelegateInvocation()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/advanceintervalfordelegateinvocation
-func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer) {
+func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocation(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdvanceIntervalForDelegateInvocation:"), value)
 }
 
@@ -156,7 +157,7 @@ func (p_ PlayerItemRenderedLegibleOutput) SetDelegateQueue(value unsafe.Pointer)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
 func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](p_.ID, objc.Sel("videoDisplaySize"))
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("videoDisplaySize"))
 	return rv
 }
 

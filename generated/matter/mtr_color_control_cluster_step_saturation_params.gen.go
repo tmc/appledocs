@@ -31,23 +31,27 @@ type _MTRColorControlClusterStepSaturationParamsClass struct {
 // An interface definition for the [MTRColorControlClusterStepSaturationParams] class.
 type IMTRColorControlClusterStepSaturationParams interface {
 	objectivec.IObject
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	StepMode() foundation.Number
-	SetStepMode(value foundation.INumber)
-	StepSize() foundation.Number
-	SetStepSize(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	StepMode() objc.IObject /* cross-framework: NSNumber */
+	SetStepMode(value objc.IObject /* cross-framework: NSNumber */)
+	StepSize() objc.IObject /* cross-framework: NSNumber */
+	SetStepSize(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterStepSaturationParams
 type MTRColorControlClusterStepSaturationParams struct {
 	objectivec.Object
@@ -90,108 +94,108 @@ func NewMTRColorControlClusterStepSaturationParams() MTRColorControlClusterStepS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/optionsmask
-func (m_ MTRColorControlClusterStepSaturationParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRColorControlClusterStepSaturationParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/optionsmask
-func (m_ MTRColorControlClusterStepSaturationParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterStepSaturationParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRColorControlClusterStepSaturationParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterStepSaturationParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterStepSaturationParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRColorControlClusterStepSaturationParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterStepSaturationParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/stepmode
-func (m_ MTRColorControlClusterStepSaturationParams) StepMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stepMode"))
+func (m_ MTRColorControlClusterStepSaturationParams) StepMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stepMode"))
 	return rv
 }
 
 
-// SetStepMode sets the value of the stepMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/stepmode
-func (m_ MTRColorControlClusterStepSaturationParams) SetStepMode(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetStepMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/stepsize
-func (m_ MTRColorControlClusterStepSaturationParams) StepSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stepSize"))
+func (m_ MTRColorControlClusterStepSaturationParams) StepSize() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stepSize"))
 	return rv
 }
 
 
-// SetStepSize sets the value of the stepSize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/stepsize
-func (m_ MTRColorControlClusterStepSaturationParams) SetStepSize(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetStepSize(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepSize:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterStepSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRColorControlClusterStepSaturationParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterStepSaturationParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/transitiontime
-func (m_ MTRColorControlClusterStepSaturationParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRColorControlClusterStepSaturationParams) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepsaturationparams/transitiontime
-func (m_ MTRColorControlClusterStepSaturationParams) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRColorControlClusterStepSaturationParams) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

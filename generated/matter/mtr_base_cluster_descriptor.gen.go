@@ -29,9 +29,13 @@ type _MTRBaseClusterDescriptorClass struct {
 // An interface definition for the [MTRBaseClusterDescriptor] class.
 type IMTRBaseClusterDescriptor interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDescriptor
 type MTRBaseClusterDescriptor struct {
 	MTRGenericBaseCluster

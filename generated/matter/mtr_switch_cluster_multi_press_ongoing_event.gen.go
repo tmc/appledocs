@@ -31,13 +31,17 @@ type _MTRSwitchClusterMultiPressOngoingEventClass struct {
 // An interface definition for the [MTRSwitchClusterMultiPressOngoingEvent] class.
 type IMTRSwitchClusterMultiPressOngoingEvent interface {
 	objectivec.IObject
-	CurrentNumberOfPressesCounted() foundation.Number
-	SetCurrentNumberOfPressesCounted(value foundation.INumber)
-	NewPosition() foundation.Number
-	SetNewPosition(value foundation.INumber)
+	// properties:
+	CurrentNumberOfPressesCounted() objc.IObject /* cross-framework: NSNumber */
+	SetCurrentNumberOfPressesCounted(value objc.IObject /* cross-framework: NSNumber */)
+	NewPosition() objc.IObject /* cross-framework: NSNumber */
+	SetNewPosition(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterMultiPressOngoingEvent
 type MTRSwitchClusterMultiPressOngoingEvent struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRSwitchClusterMultiPressOngoingEvent() MTRSwitchClusterMultiPressOngoi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/currentnumberofpressescounted
-func (m_ MTRSwitchClusterMultiPressOngoingEvent) CurrentNumberOfPressesCounted() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentNumberOfPressesCounted"))
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) CurrentNumberOfPressesCounted() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("currentNumberOfPressesCounted"))
 	return rv
 }
 
 
-// SetCurrentNumberOfPressesCounted sets the value of the currentNumberOfPressesCounted property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/currentnumberofpressescounted
-func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetCurrentNumberOfPressesCounted(value foundation.INumber) {
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetCurrentNumberOfPressesCounted(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentNumberOfPressesCounted:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/newposition
-func (m_ MTRSwitchClusterMultiPressOngoingEvent) NewPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) NewPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newPosition"))
 	return rv
 }
 
 
-// SetNewPosition sets the value of the newPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustermultipressongoingevent/newposition
-func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetNewPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterMultiPressOngoingEvent) SetNewPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 

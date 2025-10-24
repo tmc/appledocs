@@ -33,27 +33,21 @@ type ISpeechSynthesizer interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Paused() bool /* primitive/slice/pointer. */
-	Speaking() bool /* primitive/slice/pointer. */
-	MixToTelephonyUplink() bool /* primitive/slice/pointer. */
-	SetMixToTelephonyUplink(value bool /* primitive/slice/pointer. */)
-	OutputChannels() []AudioSessionChannelDescription /* primitive/slice/pointer. */
-	SetOutputChannels(value []AudioSessionChannelDescription /* primitive/slice/pointer. */)
-	UsesApplicationAudioSession() bool /* primitive/slice/pointer. */
-	SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer. */)
-	IsPaused() bool /* primitive/slice/pointer. */
-	SetIsPaused(value bool /* primitive/slice/pointer. */)
-	IsSpeaking() bool /* primitive/slice/pointer. */
-	SetIsSpeaking(value bool /* primitive/slice/pointer. */)
-	PreUtteranceDelay() unsafe.Pointer
-	SetPreUtteranceDelay(value unsafe.Pointer)
+	Paused() bool
+	Speaking() bool
+	IsPaused() bool
+	SetIsPaused(value bool)
+	IsSpeaking() bool
+	SetIsSpeaking(value bool)
+	PreUtteranceDelay() float64
+	SetPreUtteranceDelay(value float64)
 	Voice() IAVSpeechSynthesisVoice
 	SetVoice(value IAVSpeechSynthesisVoice)
 	// methods:
-	ContinueSpeaking() bool /* primitive/slice/pointer. */
-	PauseSpeakingAtBoundary(boundary SpeechBoundary) bool /* primitive/slice/pointer. */
+	ContinueSpeaking() bool
+	PauseSpeakingAtBoundary(boundary SpeechBoundary) bool
 	SpeakUtterance(utterance IAVSpeechUtterance)
-	StopSpeakingAtBoundary(boundary SpeechBoundary) bool /* primitive/slice/pointer. */
+	StopSpeakingAtBoundary(boundary SpeechBoundary) bool
 	WriteUtteranceToBufferCallback(utterance IAVSpeechUtterance, bufferCallback SpeechSynthesizerBufferCallback /* not a class type */)
 	WriteUtteranceToBufferCallbackToMarkerCallback(utterance IAVSpeechUtterance, bufferCallback SpeechSynthesizerBufferCallback /* not a class type */, markerCallback SpeechSynthesizerMarkerCallback /* not a class type */)
 }
@@ -133,7 +127,7 @@ func (sc _SpeechSynthesizerClass) PersonalVoiceAuthorizationStatus() SpeechSynth
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/continueSpeaking()
-func (s_ SpeechSynthesizer) ContinueSpeaking() bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) ContinueSpeaking() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("continueSpeaking"))
 	return rv
 }
@@ -143,7 +137,7 @@ func (s_ SpeechSynthesizer) ContinueSpeaking() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/pauseSpeaking(at:)
-func (s_ SpeechSynthesizer) PauseSpeakingAtBoundary(boundary SpeechBoundary) bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) PauseSpeakingAtBoundary(boundary SpeechBoundary) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("pauseSpeakingAtBoundary:"), boundary)
 	return rv
 }
@@ -162,7 +156,7 @@ func (s_ SpeechSynthesizer) SpeakUtterance(utterance IAVSpeechUtterance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/stopSpeaking(at:)
-func (s_ SpeechSynthesizer) StopSpeakingAtBoundary(boundary SpeechBoundary) bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) StopSpeakingAtBoundary(boundary SpeechBoundary) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("stopSpeakingAtBoundary:"), boundary)
 	return rv
 }
@@ -209,7 +203,7 @@ func (s_ SpeechSynthesizer) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/isPaused
-func (s_ SpeechSynthesizer) Paused() bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) Paused() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("paused"))
 	return rv
 }
@@ -219,57 +213,9 @@ func (s_ SpeechSynthesizer) Paused() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/isSpeaking
-func (s_ SpeechSynthesizer) Speaking() bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) Speaking() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("speaking"))
 	return rv
-}
-
-
-// A Boolean value that specifies whether to send synthesized speech to an active call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/mixToTelephonyUplink
-func (s_ SpeechSynthesizer) MixToTelephonyUplink() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("mixToTelephonyUplink"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether to send synthesized speech to an active call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/mixToTelephonyUplink
-func (s_ SpeechSynthesizer) SetMixToTelephonyUplink(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMixToTelephonyUplink:"), value)
-}
-
-
-// An array of audio session channels to route generated speech.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/outputChannels
-func (s_ SpeechSynthesizer) OutputChannels() []AudioSessionChannelDescription /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]AudioSessionChannelDescription](s_.ID, objc.Sel("outputChannels"))
-	return rv
-}
-
-
-// An array of audio session channels to route generated speech.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/outputChannels
-func (s_ SpeechSynthesizer) SetOutputChannels(value []AudioSessionChannelDescription /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](s_.ID, objc.Sel("setOutputChannels:"), nsArray)
 }
 
 
@@ -283,30 +229,11 @@ func (s_ SpeechSynthesizer) PersonalVoiceAuthorizationStatus() SpeechSynthesisPe
 }
 
 
-// A Boolean value that specifies whether the app manages the audio session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/usesApplicationAudioSession
-func (s_ SpeechSynthesizer) UsesApplicationAudioSession() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("usesApplicationAudioSession"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the app manages the audio session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/usesApplicationAudioSession
-func (s_ SpeechSynthesizer) SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
-}
-
-
 // A Boolean value that indicates whether a speech synthesizer is in a paused state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
-func (s_ SpeechSynthesizer) IsPaused() bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) IsPaused() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -316,7 +243,7 @@ func (s_ SpeechSynthesizer) IsPaused() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused
-func (s_ SpeechSynthesizer) SetIsPaused(value bool /* primitive/slice/pointer. */) {
+func (s_ SpeechSynthesizer) SetIsPaused(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPaused:"), value)
 }
 
@@ -325,7 +252,7 @@ func (s_ SpeechSynthesizer) SetIsPaused(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
-func (s_ SpeechSynthesizer) IsSpeaking() bool /* primitive/slice/pointer. */ {
+func (s_ SpeechSynthesizer) IsSpeaking() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSpeaking"))
 	return rv
 }
@@ -335,7 +262,7 @@ func (s_ SpeechSynthesizer) IsSpeaking() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking
-func (s_ SpeechSynthesizer) SetIsSpeaking(value bool /* primitive/slice/pointer. */) {
+func (s_ SpeechSynthesizer) SetIsSpeaking(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpeaking:"), value)
 }
 
@@ -344,8 +271,8 @@ func (s_ SpeechSynthesizer) SetIsSpeaking(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
-func (s_ SpeechSynthesizer) PreUtteranceDelay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preUtteranceDelay"))
+func (s_ SpeechSynthesizer) PreUtteranceDelay() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("preUtteranceDelay"))
 	return rv
 }
 
@@ -354,7 +281,7 @@ func (s_ SpeechSynthesizer) PreUtteranceDelay() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay
-func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value unsafe.Pointer) {
+func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
 
@@ -376,6 +303,5 @@ func (s_ SpeechSynthesizer) Voice() IAVSpeechSynthesisVoice {
 func (s_ SpeechSynthesizer) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }
-
 
 

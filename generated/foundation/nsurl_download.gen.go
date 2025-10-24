@@ -31,13 +31,13 @@ type _URLDownloadClass struct {
 type IURLDownload interface {
 	objectivec.IObject
 	// properties:
-	DeletesFileUponFailure() bool /* primitive/slice/pointer. */
-	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */)
-	Request() objc.IObject /* cross-framework: URLRequest */
-	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
+	DeletesFileUponFailure() bool
+	SetDeletesFileUponFailure(value bool)
+	Request() IURLRequest
 	ResumeData() IData
-	SetResumeData(value IData)
 	// methods:
+	Cancel()
+	SetDestinationAllowOverwrite(path IString, allowOverwrite bool)
 }
 
 // An object that downloads a resource asynchronously and saves the data to a file.
@@ -93,11 +93,64 @@ func NewURLDownload() URLDownload {
 
 
 
+// Returns an initialized URL download for a URL request and begins to download the data for the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
+func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
+	instance := getURLDownloadClass().Alloc()
+	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
+func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path IString) URLDownload {
+	instance := getURLDownloadClass().Alloc()
+	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, path)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
+func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType IString) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), MIMEType)
+	return rv
+}
+
+
+// Cancels the receiver’s download and deletes the downloaded file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/cancel()
+func (u_ URLDownload) Cancel() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
+}
+
+
+// Sets the destination path of the downloaded file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
+func (u_ URLDownload) SetDestinationAllowOverwrite(path IString, allowOverwrite bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), path, allowOverwrite)
+}
+
+
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/deletesfileuponfailure
-func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
+func (u_ URLDownload) DeletesFileUponFailure() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("deletesFileUponFailure"))
 	return rv
 }
@@ -106,8 +159,8 @@ func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer. 
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/deletesfileuponfailure
-func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
+func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
 
@@ -115,39 +168,20 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/po
 // Returns the request that initiated the receiver’s download.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) Request() objc.IObject /* cross-framework: URLRequest */ {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
+func (u_ URLDownload) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// Returns the request that initiated the receiver’s download.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
-}
-
-
 // Returns the resume data for a download that is not yet complete.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/resumedata
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/resumeData
 func (u_ URLDownload) ResumeData() IData {
 	rv := objc.Send[Data](u_.ID, objc.Sel("resumeData"))
 	return rv
 }
-
-
-// Returns the resume data for a download that is not yet complete.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/resumedata
-func (u_ URLDownload) SetResumeData(value IData) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setResumeData:"), value)
-}
-
 
 

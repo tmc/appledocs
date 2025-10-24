@@ -29,9 +29,13 @@ type _MTRBaseClusterElectricalPowerMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterElectricalPowerMeasurement] class.
 type IMTRBaseClusterElectricalPowerMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterElectricalPowerMeasurement
 type MTRBaseClusterElectricalPowerMeasurement struct {
 	MTRGenericBaseCluster

@@ -29,12 +29,18 @@ type _PDFAnnotationChoiceWidgetClass struct {
 // An interface definition for the [PDFAnnotationChoiceWidget] class.
 type IPDFAnnotationChoiceWidget interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object provides user interactivity on a page of a PDF document, in the form of pop-up menus and lists.
 //
 // inherits general annotation behavior from the class. If you use a object, your application must handle hit testing, unless you are simply using to display content. This is because automatically handles hit testing for you.
+
+
+// A object provides user interactivity on a page of a PDF document, in the form of pop-up menus and lists.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationChoiceWidget
 type PDFAnnotationChoiceWidget struct {
 	PDFAnnotation

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/cloudkit"
 )
 
 // The class instance for the [HKDocumentQuery] class.
@@ -30,13 +31,13 @@ type _HKDocumentQueryClass struct {
 type IHKDocumentQuery interface {
 	IHKQuery
 	// properties:
-	IncludeDocumentData() bool /* primitive/slice/pointer. */
-	SetIncludeDocumentData(value bool /* primitive/slice/pointer. */)
-	Limit() int /* primitive/slice/pointer. */
-	SetLimit(value int /* primitive/slice/pointer. */)
-	SortDescriptors() SortDescriptor /* not a class type */
-	SetSortDescriptors(value SortDescriptor /* not a class type */)
-	HKObjectQueryNoLimit() int /* primitive/slice/pointer. */
+	IncludeDocumentData() bool
+	SetIncludeDocumentData(value bool)
+	Limit() int
+	SetLimit(value int)
+	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
+	HKObjectQueryNoLimit() int
 	// methods:
 }
 
@@ -99,7 +100,7 @@ func NewHKDocumentQuery() HKDocumentQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-func (h_ HKDocumentQuery) IncludeDocumentData() bool /* primitive/slice/pointer. */ {
+func (h_ HKDocumentQuery) IncludeDocumentData() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("includeDocumentData"))
 	return rv
 }
@@ -109,7 +110,7 @@ func (h_ HKDocumentQuery) IncludeDocumentData() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool /* primitive/slice/pointer. */) {
+func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeDocumentData:"), value)
 }
 
@@ -118,7 +119,7 @@ func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) Limit() int /* primitive/slice/pointer. */ {
+func (h_ HKDocumentQuery) Limit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
 }
@@ -128,7 +129,7 @@ func (h_ HKDocumentQuery) Limit() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) SetLimit(value int /* primitive/slice/pointer. */) {
+func (h_ HKDocumentQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
 
@@ -137,8 +138,8 @@ func (h_ HKDocumentQuery) SetLimit(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SortDescriptors() SortDescriptor /* not a class type */ {
-	rv := objc.Send[SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
+func (h_ HKDocumentQuery) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
+	rv := objc.Send[cloudkit.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (h_ HKDocumentQuery) SortDescriptors() SortDescriptor /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SetSortDescriptors(value SortDescriptor /* not a class type */) {
+func (h_ HKDocumentQuery) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 
@@ -156,7 +157,7 @@ func (h_ HKDocumentQuery) SetSortDescriptors(value SortDescriptor /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-func (h_ HKDocumentQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. */ {
+func (h_ HKDocumentQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }

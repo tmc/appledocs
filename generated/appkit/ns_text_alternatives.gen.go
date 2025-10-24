@@ -32,10 +32,10 @@ type _TextAlternativesClass struct {
 type ITextAlternatives interface {
 	objectivec.IObject
 	// properties:
-	AlternativeStrings() []string /* primitive/slice/pointer. */
+	AlternativeStrings() []string
 	PrimaryString() objc.IObject /* cross-framework: NSString */
 	// methods:
-	NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework NSString */)
+	NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework: NSString */)
 }
 
 // A list of alternative strings for a piece of text.
@@ -95,7 +95,7 @@ func NewTextAlternatives() TextAlternatives {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/init(primaryString:alternativeStrings:)
-func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString objc.IObject /* cross-framework NSString */, alternativeStrings []string /* primitive/slice/pointer. */) TextAlternatives {
+func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString objc.IObject /* cross-framework: NSString */, alternativeStrings []string) TextAlternatives {
 	instance := getTextAlternativesClass().Alloc()
 	rv := objc.Send[TextAlternatives](instance.ID, objc.Sel("initWithPrimaryString:alternativeStrings:"), primaryString, alternativeStrings)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/noteSelectedAlternativeString(_:)
-func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework NSString */) {
+func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("noteSelectedAlternativeString:"), alternativeString)
 }
 
@@ -117,7 +117,7 @@ func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/alternativeStrings
-func (t_ TextAlternatives) AlternativeStrings() []string /* primitive/slice/pointer. */ {
+func (t_ TextAlternatives) AlternativeStrings() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
 }

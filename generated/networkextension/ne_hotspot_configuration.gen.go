@@ -31,20 +31,26 @@ type _NEHotspotConfigurationClass struct {
 // An interface definition for the [NEHotspotConfiguration] class.
 type INEHotspotConfiguration interface {
 	objectivec.IObject
+	// properties:
 	Hidden() bool
 	SetHidden(value bool)
-	JoinOnce() bool
-	SetJoinOnce(value bool)
-	LifeTimeInDays() foundation.Number
-	SetLifeTimeInDays(value foundation.INumber)
-	SSID() string
-	SSIDPrefix() string
+	LifeTimeInDays() objc.IObject /* cross-framework: NSNumber */
+	SetLifeTimeInDays(value objc.IObject /* cross-framework: NSNumber */)
+	Ssid() objc.IObject /* cross-framework: NSString */
+	SetSsid(value objc.IObject /* cross-framework: NSString */)
+	SsidPrefix() objc.IObject /* cross-framework: NSString */
+	SetSsidPrefix(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // Configuration settings for a Wi-Fi network.
 //
 // The class contains configuration properties and credentials required to connect to Wi-Fi networks.
+
+
+// Configuration settings for a Wi-Fi network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration
 type NEHotspotConfiguration struct {
 	objectivec.Object
@@ -90,146 +96,92 @@ func NewNEHotspotConfiguration() NEHotspotConfiguration {
 
 
 
-
-// Creates a new hotspot configuration, identified by a domain name, for a Hotspot 2.0 Wi-Fi network with HS 2.0 and EAP settings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(hs20Settings:eapSettings:)
-func NewNEHotspotConfigurationWithHS20SettingsEapSettings(hs20Settings INEHotspotHS20Settings, eapSettings INEHotspotEAPSettings) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithHS20Settings:eapSettings:"), hs20Settings, eapSettings)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Creates a new hotspot configuration, identified by an SSID, for an open Wi-Fi network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:)
-func NewNEHotspotConfigurationWithSSID(SSID string) NEHotspotConfiguration {
+func NewNEHotspotConfigurationWithSSID(SSID objc.IObject /* cross-framework: NSString */) NEHotspotConfiguration {
 	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:"), objc.String(SSID))
+	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:"), SSID)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// Creates a new hotspot configuration, identified by an SSID, for a WPA/WPA2 enterprise Wi-Fi network with EAP settings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:eapSettings:)
-func NewNEHotspotConfigurationWithSSIDEapSettings(SSID string, eapSettings INEHotspotEAPSettings) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:eapSettings:"), objc.String(SSID), eapSettings)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a new hotspot configuration, identified by an SSID, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssid:passphrase:isWEP:)
-func NewNEHotspotConfigurationWithSSIDPassphraseIsWEP(SSID string, passphrase string, isWEP bool) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSID:passphrase:isWEP:"), objc.String(SSID), objc.String(passphrase), isWEP)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a new hotspot configuration, identified by an SSID prefix string, for an open Wi-Fi network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssidPrefix:)
-func NewNEHotspotConfigurationWithSSIDPrefix(SSIDPrefix string) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:"), objc.String(SSIDPrefix))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a new hotspot configuration, identified by an SSID prefix string, for a protected WEP or WPA/WPA2 personal Wi-Fi network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/init(ssidPrefix:passphrase:isWEP:)
-func NewNEHotspotConfigurationWithSSIDPrefixPassphraseIsWEP(SSIDPrefix string, passphrase string, isWEP bool) NEHotspotConfiguration {
-	instance := getNEHotspotConfigurationClass().Alloc()
-	rv := objc.Send[NEHotspotConfiguration](instance.ID, objc.Sel("initWithSSIDPrefix:passphrase:isWEP:"), objc.String(SSIDPrefix), objc.String(passphrase), isWEP)
-	rv.Autorelease()
-	return rv
-}
 
 
 // A Boolean value that indicates the visibility of the SSID.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/hidden
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/hidden
 func (n_ NEHotspotConfiguration) Hidden() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hidden"))
 	return rv
 }
 
 
-// SetHidden sets the value of the hidden property.
 // A Boolean value that indicates the visibility of the SSID.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/hidden
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/hidden
 func (n_ NEHotspotConfiguration) SetHidden(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHidden:"), value)
 }
 
-// Restricts the lifetime of a configuration to the operating status of the app that created it.
+
+// The number of days the network retains the associated configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/joinOnce
-func (n_ NEHotspotConfiguration) JoinOnce() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("joinOnce"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/lifetimeindays
+func (n_ NEHotspotConfiguration) LifeTimeInDays() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("lifeTimeInDays"))
 	return rv
 }
 
 
-// SetJoinOnce sets the value of the joinOnce property.
-// Restricts the lifetime of a configuration to the operating status of the app that created it.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/joinOnce
-func (n_ NEHotspotConfiguration) SetJoinOnce(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setJoinOnce:"), value)
-}
-
 // The number of days the network retains the associated configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
-func (n_ NEHotspotConfiguration) LifeTimeInDays() foundation.Number {
-	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("lifeTimeInDays"))
-	return rv
-}
-
-
-// SetLifeTimeInDays sets the value of the lifeTimeInDays property.
-// The number of days the network retains the associated configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/lifeTimeInDays
-func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value foundation.INumber) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/lifetimeindays
+func (n_ NEHotspotConfiguration) SetLifeTimeInDays(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLifeTimeInDays:"), value)
 }
 
+
 // The SSID of an open, WEP, WPA/WPA2 personal, or WPA/WPA2 enterprise Wi-Fi network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssid
-func (n_ NEHotspotConfiguration) SSID() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("SSID"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/ssid
+func (n_ NEHotspotConfiguration) Ssid() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("ssid"))
 	return rv
 }
 
+
+// The SSID of an open, WEP, WPA/WPA2 personal, or WPA/WPA2 enterprise Wi-Fi network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/ssid
+func (n_ NEHotspotConfiguration) SetSsid(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), value)
+}
+
+
 // The string used to match networks against a known SSID prefix.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfiguration/ssidPrefix
-func (n_ NEHotspotConfiguration) SSIDPrefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("SSIDPrefix"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/ssidprefix
+func (n_ NEHotspotConfiguration) SsidPrefix() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("ssidPrefix"))
 	return rv
+}
+
+
+// The string used to match networks against a known SSID prefix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfiguration/ssidprefix
+func (n_ NEHotspotConfiguration) SetSsidPrefix(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsidPrefix:"), value)
 }
 
 

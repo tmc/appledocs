@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [GLKView] class.
@@ -32,23 +32,6 @@ type _GLKViewClass struct {
 type IGLKView interface {
 	appkit.IView
 	// properties:
-	Context() unsafe.Pointer
-	SetContext(value unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	DrawableColorFormat() GLKViewDrawableColorFormat
-	SetDrawableColorFormat(value GLKViewDrawableColorFormat)
-	DrawableDepthFormat() GLKViewDrawableDepthFormat
-	SetDrawableDepthFormat(value GLKViewDrawableDepthFormat)
-	DrawableHeight() int /* primitive/slice/pointer. */
-	DrawableMultisample() GLKViewDrawableMultisample
-	SetDrawableMultisample(value GLKViewDrawableMultisample)
-	DrawableStencilFormat() GLKViewDrawableStencilFormat
-	SetDrawableStencilFormat(value GLKViewDrawableStencilFormat)
-	DrawableWidth() int /* primitive/slice/pointer. */
-	EnableSetNeedsDisplay() bool /* primitive/slice/pointer. */
-	SetEnableSetNeedsDisplay(value bool /* primitive/slice/pointer. */)
-	Snapshot() objc.IObject /* cross-framework: Image */
 	// methods:
 }
 
@@ -111,175 +94,12 @@ func NewGLKView() GLKView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/init(frame:context:)
-func NewGLKViewWithFrameContext(frame coregraphics.CGRect, context unsafe.Pointer) GLKView {
+func NewGLKViewWithFrameContext(frame objc.IObject /* cross-framework: Rect */, context unsafe.Pointer) GLKView {
 	instance := getGLKViewClass().Alloc()
 	rv := objc.Send[GLKView](instance.ID, objc.Sel("initWithFrame:context:"), frame, context)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// The OpenGL ES context used when drawing the view’s contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/context
-func (g_ GLKView) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("context"))
-	return rv
-}
-
-
-// The OpenGL ES context used when drawing the view’s contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/context
-func (g_ GLKView) SetContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setContext:"), value)
-}
-
-
-// The view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
-func (g_ GLKView) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
-func (g_ GLKView) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The format of the color renderbuffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-func (g_ GLKView) DrawableColorFormat() GLKViewDrawableColorFormat {
-	rv := objc.Send[GLKViewDrawableColorFormat](g_.ID, objc.Sel("drawableColorFormat"))
-	return rv
-}
-
-
-// The format of the color renderbuffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-func (g_ GLKView) SetDrawableColorFormat(value GLKViewDrawableColorFormat) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableColorFormat:"), value)
-}
-
-
-// The format of the depth renderbuffer
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-func (g_ GLKView) DrawableDepthFormat() GLKViewDrawableDepthFormat {
-	rv := objc.Send[GLKViewDrawableDepthFormat](g_.ID, objc.Sel("drawableDepthFormat"))
-	return rv
-}
-
-
-// The format of the depth renderbuffer
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableDepthFormat:"), value)
-}
-
-
-// The height, in pixels, of the underlying framebuffer object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableHeight
-func (g_ GLKView) DrawableHeight() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](g_.ID, objc.Sel("drawableHeight"))
-	return rv
-}
-
-
-// The format of the multisampling buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-func (g_ GLKView) DrawableMultisample() GLKViewDrawableMultisample {
-	rv := objc.Send[GLKViewDrawableMultisample](g_.ID, objc.Sel("drawableMultisample"))
-	return rv
-}
-
-
-// The format of the multisampling buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-func (g_ GLKView) SetDrawableMultisample(value GLKViewDrawableMultisample) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableMultisample:"), value)
-}
-
-
-// The format of the stencil renderbuffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-func (g_ GLKView) DrawableStencilFormat() GLKViewDrawableStencilFormat {
-	rv := objc.Send[GLKViewDrawableStencilFormat](g_.ID, objc.Sel("drawableStencilFormat"))
-	return rv
-}
-
-
-// The format of the stencil renderbuffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableStencilFormat:"), value)
-}
-
-
-// The width, in pixels, of the underlying framebuffer object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableWidth
-func (g_ GLKView) DrawableWidth() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](g_.ID, objc.Sel("drawableWidth"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the view responds to messages that invalidate the view’s contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-func (g_ GLKView) EnableSetNeedsDisplay() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](g_.ID, objc.Sel("enableSetNeedsDisplay"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the view responds to messages that invalidate the view’s contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-func (g_ GLKView) SetEnableSetNeedsDisplay(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setEnableSetNeedsDisplay:"), value)
-}
-
-
-// Draws the contents of the view and returns them as a new image object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot
-func (g_ GLKView) Snapshot() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[Image](g_.ID, objc.Sel("snapshot"))
-	return rv
-}
 
 

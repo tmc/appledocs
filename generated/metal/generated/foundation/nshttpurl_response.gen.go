@@ -30,10 +30,11 @@ type _HTTPURLResponseClass struct {
 type IHTTPURLResponse interface {
 	IURLResponse
 	// properties:
-	AllHeaderFields() IDictionary
-	StatusCode() int /* primitive/slice/pointer. */
+	AllHeaderFields() unsafe.Pointer
+	SetAllHeaderFields(value unsafe.Pointer)
+	StatusCode() int
+	SetStatusCode(value int)
 	// methods:
-	ValueForHTTPHeaderField(field IString) IString
 }
 
 // The metadata associated with the response to an HTTP protocol URL load request.
@@ -91,35 +92,12 @@ func NewHTTPURLResponse() HTTPURLResponse {
 
 
 
-// Initializes an HTTP URL response object with a status code, protocol version, and response headers.
+// All HTTP header fields of the response.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/init(url:statusCode:httpVersion:headerFields:)
-func NewHTTPURLResponseWithURLStatusCodeHTTPVersionHeaderFields(url IURL, statusCode int /* primitive/slice/pointer. */, HTTPVersion IString, headerFields IDictionary /* already interface */) HTTPURLResponse {
-	instance := getHTTPURLResponseClass().Alloc()
-	rv := objc.Send[HTTPURLResponse](instance.ID, objc.Sel("initWithURL:statusCode:HTTPVersion:headerFields:"), url, statusCode, HTTPVersion, headerFields)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a localized string corresponding to a specified HTTP status code.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
-func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int /* primitive/slice/pointer. */) IString {
-	rv := objc.Send[String](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
-	return rv
-}
-
-
-// Returns the value that corresponds to the given header field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/value(forHTTPHeaderField:)
-func (h_ HTTPURLResponse) ValueForHTTPHeaderField(field IString) IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("valueForHTTPHeaderField:"), field)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpurlresponse/allheaderfields
+func (h_ HTTPURLResponse) AllHeaderFields() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allHeaderFields"))
 	return rv
 }
 
@@ -127,9 +105,18 @@ func (h_ HTTPURLResponse) ValueForHTTPHeaderField(field IString) IString {
 // All HTTP header fields of the response.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/allHeaderFields
-func (h_ HTTPURLResponse) AllHeaderFields() IDictionary {
-	rv := objc.Send[Dictionary](h_.ID, objc.Sel("allHeaderFields"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpurlresponse/allheaderfields
+func (h_ HTTPURLResponse) SetAllHeaderFields(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAllHeaderFields:"), value)
+}
+
+
+// The response’s HTTP status code.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpurlresponse/statuscode
+func (h_ HTTPURLResponse) StatusCode() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
@@ -137,10 +124,10 @@ func (h_ HTTPURLResponse) AllHeaderFields() IDictionary {
 // The response’s HTTP status code.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/statusCode
-func (h_ HTTPURLResponse) StatusCode() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpurlresponse/statuscode
+func (h_ HTTPURLResponse) SetStatusCode(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStatusCode:"), value)
 }
+
 
 

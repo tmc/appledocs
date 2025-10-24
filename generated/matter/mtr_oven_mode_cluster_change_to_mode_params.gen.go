@@ -31,15 +31,19 @@ type _MTROvenModeClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTROvenModeClusterChangeToModeParams] class.
 type IMTROvenModeClusterChangeToModeParams interface {
 	objectivec.IObject
-	NewMode() foundation.Number
-	SetNewMode(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	NewMode() objc.IObject /* cross-framework: NSNumber */
+	SetNewMode(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams
 type MTROvenModeClusterChangeToModeParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTROvenModeClusterChangeToModeParams() MTROvenModeClusterChangeToModePar
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/newMode
-func (m_ MTROvenModeClusterChangeToModeParams) NewMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
+func (m_ MTROvenModeClusterChangeToModeParams) NewMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newMode"))
 	return rv
 }
 
 
-// SetNewMode sets the value of the newMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/newMode
-func (m_ MTROvenModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
+func (m_ MTROvenModeClusterChangeToModeParams) SetNewMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTROvenModeClusterChangeToModeParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROvenModeClusterChangeToModeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTROvenModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROvenModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTROvenModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROvenModeClusterChangeToModeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTROvenModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROvenModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

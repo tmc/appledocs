@@ -31,19 +31,25 @@ type _SFSafariPagePropertiesClass struct {
 // An interface definition for the [SFSafariPageProperties] class.
 type ISFSafariPageProperties interface {
 	objectivec.IObject
+	// properties:
 	Active() bool
-	Title() string
-	Url() foundation.URL
+	Title() objc.IObject /* cross-framework: NSString */
+	Url() objc.IObject /* cross-framework: NSURL */
 	UsesPrivateBrowsing() bool
-	SFExtensionProfileKey() string
+	SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */
 	IsActive() bool
 	SetIsActive(value bool)
+	// methods:
 }
 
 // An object that captures information about a webpage.
 //
 // Use the properties object to retrieve page information, such as the current URL, page title, active status, and private browsing status.
+
+
+// An object that captures information about a webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties
 type SFSafariPageProperties struct {
 	objectivec.Object
@@ -88,48 +94,60 @@ func NewSFSafariPageProperties() SFSafariPageProperties {
 }
 
 
+
 // A Boolean value that indicates whether the page is currently active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/isActive
 func (s_ SFSafariPageProperties) Active() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("active"))
 	return rv
 }
 
+
 // The title of the page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/title
-func (s_ SFSafariPageProperties) Title() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SFSafariPageProperties) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
 }
+
 
 // Indicates the URL of the page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/url
-func (s_ SFSafariPageProperties) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("url"))
+func (s_ SFSafariPageProperties) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("url"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the page is using Safari Private Browsing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/usesPrivateBrowsing
 func (s_ SFSafariPageProperties) UsesPrivateBrowsing() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("usesPrivateBrowsing"))
 	return rv
 }
 
+
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariPageProperties) SFExtensionProfileKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariPageProperties) SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the page is currently active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
 func (s_ SFSafariPageProperties) IsActive() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isActive"))
@@ -137,10 +155,9 @@ func (s_ SFSafariPageProperties) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates whether the page is currently active.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafaripageproperties/isactive
 func (s_ SFSafariPageProperties) SetIsActive(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsActive:"), value)

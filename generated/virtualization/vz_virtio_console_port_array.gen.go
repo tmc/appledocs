@@ -30,12 +30,18 @@ type _VZVirtioConsolePortArrayClass struct {
 // An interface definition for the [VZVirtioConsolePortArray] class.
 type IVZVirtioConsolePortArray interface {
 	objectivec.IObject
-	ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePort
-	MaximumPortCount() uint32
+	// properties:
+	MaximumPortCount() uint32 /* not a class type */
+	// methods:
+	ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePort
 }
 
 // A class that represents a collection of Virtio console ports.
+
+
+// A class that represents a collection of Virtio console ports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortArray
 type VZVirtioConsolePortArray struct {
 	objectivec.Object
@@ -80,18 +86,22 @@ func NewVZVirtioConsolePortArray() VZVirtioConsolePortArray {
 }
 
 
+
 // Returns the Virtio console port at the specified index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortArray/subscript(_:)
-func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePort {
+func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePort {
 	rv := objc.Send[VZVirtioConsolePort](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
 	return rv
 }
 
+
 // An unsigned integer that represents the maximum number of ports allocated by this device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortArray/maximumPortCount
-func (v_ VZVirtioConsolePortArray) MaximumPortCount() uint32 {
+func (v_ VZVirtioConsolePortArray) MaximumPortCount() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](v_.ID, objc.Sel("maximumPortCount"))
 	return rv
 }

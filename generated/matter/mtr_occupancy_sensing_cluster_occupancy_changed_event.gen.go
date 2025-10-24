@@ -31,11 +31,15 @@ type _MTROccupancySensingClusterOccupancyChangedEventClass struct {
 // An interface definition for the [MTROccupancySensingClusterOccupancyChangedEvent] class.
 type IMTROccupancySensingClusterOccupancyChangedEvent interface {
 	objectivec.IObject
-	Occupancy() foundation.Number
-	SetOccupancy(value foundation.INumber)
+	// properties:
+	Occupancy() objc.IObject /* cross-framework: NSNumber */
+	SetOccupancy(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent
 type MTROccupancySensingClusterOccupancyChangedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTROccupancySensingClusterOccupancyChangedEvent() MTROccupancySensingClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
-func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("occupancy"))
+func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("occupancy"))
 	return rv
 }
 
 
-// SetOccupancy sets the value of the occupancy property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
-func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value foundation.INumber) {
+func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOccupancy:"), value)
 }
 

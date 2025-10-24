@@ -31,17 +31,27 @@ type _ErrorClass struct {
 type IError interface {
 	objectivec.IObject
 	// properties:
-	Code() int /* primitive/slice/pointer. */
-	Domain() objc.IObject /* cross-framework: ErrorDomain */
-	HelpAnchor() IString
-	LocalizedDescription() IString
-	LocalizedFailureReason() IString
-	LocalizedRecoveryOptions() []string /* primitive/slice/pointer. */
-	LocalizedRecoverySuggestion() IString
-	RecoveryAttempter() objc.ID
-	UnderlyingErrors() []Error /* primitive/slice/pointer. */
-	UserInfo() IDictionary /* already interface */
 	NSCocoaErrorDomain() IString
+	Code() int
+	SetCode(value int)
+	Domain() IString
+	SetDomain(value IString)
+	HelpAnchor() IString
+	SetHelpAnchor(value IString)
+	LocalizedDescription() IString
+	SetLocalizedDescription(value IString)
+	LocalizedFailureReason() IString
+	SetLocalizedFailureReason(value IString)
+	LocalizedRecoveryOptions() IString
+	SetLocalizedRecoveryOptions(value IString)
+	LocalizedRecoverySuggestion() IString
+	SetLocalizedRecoverySuggestion(value IString)
+	RecoveryAttempter() unsafe.Pointer
+	SetRecoveryAttempter(value unsafe.Pointer)
+	UnderlyingErrors() IError
+	SetUnderlyingErrors(value IError)
+	UserInfo() IString
+	SetUserInfo(value IString)
 	NSMachErrorDomain() IString
 	NSOSStatusErrorDomain() IString
 	NSPOSIXErrorDomain() IString
@@ -105,171 +115,6 @@ func NewError() Error {
 
 
 
-// Returns an object initialized for a given domain and code with a given dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
-func NewErrorWithDomainCodeUserInfo(domain objc.IObject /* cross-framework: ErrorDomain */, code int /* primitive/slice/pointer. */, dict IDictionary /* already interface */) Error {
-	instance := getErrorClass().Alloc()
-	rv := objc.Send[Error](instance.ID, objc.Sel("initWithDomain:code:userInfo:"), domain, code, dict)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and initializes an object for a given domain and code with a given dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
-func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain objc.IObject /* cross-framework: ErrorDomain */, code int /* primitive/slice/pointer. */, dict IDictionary /* already interface */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
-	return rv
-}
-
-
-// Returns a properly formatted error object with a error code.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
-func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem FileProviderItem /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForCollisionWithItem:"), existingItem)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
-func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIdentifier FileProviderItemIdentifier /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForNonExistentItemWithIdentifier:"), itemIdentifier)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
-func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion FileProviderItem /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForRejectedDeletionOfItem:"), updatedVersion)
-	return rv
-}
-
-
-// Specifies a block to call when the corresponding property is not present in the user info dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
-func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain objc.IObject /* cross-framework: ErrorDomain */, provider unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
-}
-
-
-// Returns any user info provider specified for a given error domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
-func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain objc.IObject /* cross-framework: ErrorDomain */) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
-}
-
-
-// The error code.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/code
-func (e_ Error) Code() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](e_.ID, objc.Sel("code"))
-	return rv
-}
-
-
-// A string containing the error domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
-func (e_ Error) Domain() objc.IObject /* cross-framework: ErrorDomain */ {
-	rv := objc.Send[ErrorDomain](e_.ID, objc.Sel("domain"))
-	return rv
-}
-
-
-// A string to display in response to an alert panel help anchor button being pressed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/helpAnchor
-func (e_ Error) HelpAnchor() IString {
-	rv := objc.Send[String](e_.ID, objc.Sel("helpAnchor"))
-	return rv
-}
-
-
-// A string containing the localized description of the error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
-func (e_ Error) LocalizedDescription() IString {
-	rv := objc.Send[String](e_.ID, objc.Sel("localizedDescription"))
-	return rv
-}
-
-
-// A string containing the localized explanation of the reason for the error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedFailureReason
-func (e_ Error) LocalizedFailureReason() IString {
-	rv := objc.Send[String](e_.ID, objc.Sel("localizedFailureReason"))
-	return rv
-}
-
-
-// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoveryOptions
-func (e_ Error) LocalizedRecoveryOptions() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("localizedRecoveryOptions"))
-	return rv
-}
-
-
-// A string containing the localized recovery suggestion for the error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoverySuggestion
-func (e_ Error) LocalizedRecoverySuggestion() IString {
-	rv := objc.Send[String](e_.ID, objc.Sel("localizedRecoverySuggestion"))
-	return rv
-}
-
-
-// The object in the user info dictionary corresponding to the key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/recoveryAttempter
-func (e_ Error) RecoveryAttempter() objc.ID {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("recoveryAttempter"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
-func (e_ Error) UnderlyingErrors() []Error /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]Error](e_.ID, objc.Sel("underlyingErrors"))
-	return rv
-}
-
-
-// The user info dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (e_ Error) UserInfo() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](e_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
 // Cocoa errors
 //
 // [Full Topic]
@@ -277,6 +122,192 @@ func (e_ Error) UserInfo() IDictionary /* already interface */ {
 func (e_ Error) NSCocoaErrorDomain() IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
+}
+
+
+// The error code.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/code
+func (e_ Error) Code() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("code"))
+	return rv
+}
+
+
+// The error code.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/code
+func (e_ Error) SetCode(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setCode:"), value)
+}
+
+
+// A string containing the error domain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/domain
+func (e_ Error) Domain() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("domain"))
+	return rv
+}
+
+
+// A string containing the error domain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/domain
+func (e_ Error) SetDomain(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDomain:"), value)
+}
+
+
+// A string to display in response to an alert panel help anchor button being pressed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/helpanchor
+func (e_ Error) HelpAnchor() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("helpAnchor"))
+	return rv
+}
+
+
+// A string to display in response to an alert panel help anchor button being pressed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/helpanchor
+func (e_ Error) SetHelpAnchor(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setHelpAnchor:"), value)
+}
+
+
+// A string containing the localized description of the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizeddescription
+func (e_ Error) LocalizedDescription() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// A string containing the localized description of the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizeddescription
+func (e_ Error) SetLocalizedDescription(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedDescription:"), value)
+}
+
+
+// A string containing the localized explanation of the reason for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedfailurereason
+func (e_ Error) LocalizedFailureReason() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("localizedFailureReason"))
+	return rv
+}
+
+
+// A string containing the localized explanation of the reason for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedfailurereason
+func (e_ Error) SetLocalizedFailureReason(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedFailureReason:"), value)
+}
+
+
+// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoveryoptions
+func (e_ Error) LocalizedRecoveryOptions() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("localizedRecoveryOptions"))
+	return rv
+}
+
+
+// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoveryoptions
+func (e_ Error) SetLocalizedRecoveryOptions(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedRecoveryOptions:"), value)
+}
+
+
+// A string containing the localized recovery suggestion for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoverysuggestion
+func (e_ Error) LocalizedRecoverySuggestion() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("localizedRecoverySuggestion"))
+	return rv
+}
+
+
+// A string containing the localized recovery suggestion for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoverysuggestion
+func (e_ Error) SetLocalizedRecoverySuggestion(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedRecoverySuggestion:"), value)
+}
+
+
+// The object in the user info dictionary corresponding to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
+func (e_ Error) RecoveryAttempter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("recoveryAttempter"))
+	return rv
+}
+
+
+// The object in the user info dictionary corresponding to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
+func (e_ Error) SetRecoveryAttempter(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRecoveryAttempter:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
+func (e_ Error) UnderlyingErrors() IError {
+	rv := objc.Send[Error](e_.ID, objc.Sel("underlyingErrors"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
+func (e_ Error) SetUnderlyingErrors(value IError) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUnderlyingErrors:"), value)
+}
+
+
+// The user info dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/userinfo
+func (e_ Error) UserInfo() IString {
+	rv := objc.Send[String](e_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// The user info dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/userinfo
+func (e_ Error) SetUserInfo(value IString) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 
@@ -348,5 +379,6 @@ func (e_ Error) NSURLErrorDomain() IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("NSURLErrorDomain"))
 	return rv
 }
+
 
 

@@ -31,8 +31,8 @@ type _GCMotionClass struct {
 type IGCMotion interface {
 	objectivec.IObject
 	// properties:
-	HasAttitudeAndRotationRate() bool /* primitive/slice/pointer. */
-	HasGravityAndUserAcceleration() bool /* primitive/slice/pointer. */
+	HasAttitudeAndRotationRate() bool
+	HasGravityAndUserAcceleration() bool
 	RotationRate() unsafe.Pointer
 	Motion() IGCMotion
 	SetMotion(value IGCMotion)
@@ -44,14 +44,14 @@ type IGCMotion interface {
 	SetController(value IGCController)
 	Gravity() unsafe.Pointer
 	SetGravity(value unsafe.Pointer)
-	HasAttitude() bool /* primitive/slice/pointer. */
-	SetHasAttitude(value bool /* primitive/slice/pointer. */)
-	HasRotationRate() bool /* primitive/slice/pointer. */
-	SetHasRotationRate(value bool /* primitive/slice/pointer. */)
-	SensorsActive() bool /* primitive/slice/pointer. */
-	SetSensorsActive(value bool /* primitive/slice/pointer. */)
-	SensorsRequireManualActivation() bool /* primitive/slice/pointer. */
-	SetSensorsRequireManualActivation(value bool /* primitive/slice/pointer. */)
+	HasAttitude() bool
+	SetHasAttitude(value bool)
+	HasRotationRate() bool
+	SetHasRotationRate(value bool)
+	SensorsActive() bool
+	SetSensorsActive(value bool)
+	SensorsRequireManualActivation() bool
+	SetSensorsRequireManualActivation(value bool)
 	UserAcceleration() unsafe.Pointer
 	SetUserAcceleration(value unsafe.Pointer)
 	ValueChangedHandler() unsafe.Pointer
@@ -116,7 +116,7 @@ func NewGCMotion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/hasAttitudeAndRotationRate
-func (g_ GCMotion) HasAttitudeAndRotationRate() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) HasAttitudeAndRotationRate() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitudeAndRotationRate"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (g_ GCMotion) HasAttitudeAndRotationRate() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/hasGravityAndUserAcceleration
-func (g_ GCMotion) HasGravityAndUserAcceleration() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) HasGravityAndUserAcceleration() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasGravityAndUserAcceleration"))
 	return rv
 }
@@ -241,7 +241,7 @@ func (g_ GCMotion) SetGravity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-func (g_ GCMotion) HasAttitude() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) HasAttitude() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitude"))
 	return rv
 }
@@ -251,7 +251,7 @@ func (g_ GCMotion) HasAttitude() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-func (g_ GCMotion) SetHasAttitude(value bool /* primitive/slice/pointer. */) {
+func (g_ GCMotion) SetHasAttitude(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasAttitude:"), value)
 }
 
@@ -260,7 +260,7 @@ func (g_ GCMotion) SetHasAttitude(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-func (g_ GCMotion) HasRotationRate() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) HasRotationRate() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasRotationRate"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (g_ GCMotion) HasRotationRate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-func (g_ GCMotion) SetHasRotationRate(value bool /* primitive/slice/pointer. */) {
+func (g_ GCMotion) SetHasRotationRate(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasRotationRate:"), value)
 }
 
@@ -279,7 +279,7 @@ func (g_ GCMotion) SetHasRotationRate(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-func (g_ GCMotion) SensorsActive() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) SensorsActive() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsActive"))
 	return rv
 }
@@ -289,7 +289,7 @@ func (g_ GCMotion) SensorsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-func (g_ GCMotion) SetSensorsActive(value bool /* primitive/slice/pointer. */) {
+func (g_ GCMotion) SetSensorsActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsActive:"), value)
 }
 
@@ -298,7 +298,7 @@ func (g_ GCMotion) SetSensorsActive(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
-func (g_ GCMotion) SensorsRequireManualActivation() bool /* primitive/slice/pointer. */ {
+func (g_ GCMotion) SensorsRequireManualActivation() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsRequireManualActivation"))
 	return rv
 }
@@ -308,7 +308,7 @@ func (g_ GCMotion) SensorsRequireManualActivation() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
-func (g_ GCMotion) SetSensorsRequireManualActivation(value bool /* primitive/slice/pointer. */) {
+func (g_ GCMotion) SetSensorsRequireManualActivation(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsRequireManualActivation:"), value)
 }
 

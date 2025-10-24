@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PHAssetChangeRequest] class.
@@ -32,24 +31,30 @@ type _PHAssetChangeRequestClass struct {
 // An interface definition for the [PHAssetChangeRequest] class.
 type IPHAssetChangeRequest interface {
 	IPHChangeRequest
-	RevertAssetContentToOriginal()
-	ContentEditingOutput() PHContentEditingOutput
+	// properties:
+	ContentEditingOutput() IPHContentEditingOutput
 	SetContentEditingOutput(value IPHContentEditingOutput)
-	PlaceholderForCreatedAsset() PHObjectPlaceholder
-	CreationDate() foundation.Date
-	SetCreationDate(value foundation.IDate)
+	CreationDate() objc.IObject /* cross-framework: Date */
+	SetCreationDate(value objc.IObject /* cross-framework: Date */)
 	IsFavorite() bool
 	SetIsFavorite(value bool)
 	IsHidden() bool
 	SetIsHidden(value bool)
-	Location() corelocation.Location
-	SetLocation(value corelocation.ILocation)
+	Location() objc.IObject /* cross-framework: Location */
+	SetLocation(value objc.IObject /* cross-framework: Location */)
+	PlaceholderForCreatedAsset() IPHObjectPlaceholder
+	SetPlaceholderForCreatedAsset(value IPHObjectPlaceholder)
+	// methods:
 }
 
 // A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.
 //
 // You use the class to request changes for objects. To make changes to assets in the Photos library, create a change request by using the appropriate class method for the change you want to perform. Call one of the methods listed in Adding New Assets to create a new asset from an image or video file. Call the method to delete existing assets. Call the method to modify an asset’s content or metadata. A change request for creating or modifying an asset works like a mutable version of the asset object. Use the change request’s properties to request changes to the corresponding properties of the asset itself. For example, the following code uses the property of a change request to mark an asset as a favorite: After Photos runs the change block and calls your completion handler, the asset’s state reflects the changes that you requested in the block. If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see .
+
+
+// A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest
 type PHAssetChangeRequest struct {
 	PHChangeRequest
@@ -97,84 +102,47 @@ func NewPHAssetChangeRequest() PHAssetChangeRequest {
 
 
 
-
-// Creates a request for modifying the specified asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/init(for:)
-func NewPHAssetChangeRequestForAsset(asset IPHAsset) PHAssetChangeRequest {
-	rv := objc.Send[PHAssetChangeRequest](objc.ID(getPHAssetChangeRequestClass().class), objc.Sel("changeRequestForAsset:"), asset)
-	return rv
-}
-
-
-// Requests that the specified assets be deleted.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/deleteAssets(_:)
-func (pc _PHAssetChangeRequestClass) DeleteAssets(assets objectivec.IObject) {
-	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("deleteAssets:"), assets)
-}
-
-// Creates a request for modifying the specified asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/init(for:)
-func (pc _PHAssetChangeRequestClass) ChangeRequestForAsset(asset IPHAsset) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("changeRequestForAsset:"), asset)
-	return rv
-}
-
-// Request to revert any edits made to the asset’s content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/revertAssetContentToOriginal()
-func (p_ PHAssetChangeRequest) RevertAssetContentToOriginal() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("revertAssetContentToOriginal"))
-}
-
 // The output of an asset content editing session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/contentEditingOutput
-func (p_ PHAssetChangeRequest) ContentEditingOutput() PHContentEditingOutput {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
+func (p_ PHAssetChangeRequest) ContentEditingOutput() IPHContentEditingOutput {
 	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
 
-// SetContentEditingOutput sets the value of the contentEditingOutput property.
 // The output of an asset content editing session.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/contentEditingOutput
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
 func (p_ PHAssetChangeRequest) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
-// A placeholder object for the asset that the change request creates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset
-func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() PHObjectPlaceholder {
-	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedAsset"))
-	return rv
-}
 
 // The date and time at which the asset claims to have been originally created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
-func (p_ PHAssetChangeRequest) CreationDate() foundation.Date {
+func (p_ PHAssetChangeRequest) CreationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
 
-// SetCreationDate sets the value of the creationDate property.
 // The date and time at which the asset claims to have been originally created.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
-func (p_ PHAssetChangeRequest) SetCreationDate(value foundation.IDate) {
+func (p_ PHAssetChangeRequest) SetCreationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
 }
 
+
 // A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite
 func (p_ PHAssetChangeRequest) IsFavorite() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFavorite"))
@@ -182,17 +150,18 @@ func (p_ PHAssetChangeRequest) IsFavorite() bool {
 }
 
 
-// SetIsFavorite sets the value of the isFavorite property.
 // A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite
 func (p_ PHAssetChangeRequest) SetIsFavorite(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
 }
 
+
 // A Boolean value that indicates whether the asset is hidden in collections.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/ishidden
 func (p_ PHAssetChangeRequest) IsHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isHidden"))
@@ -200,31 +169,51 @@ func (p_ PHAssetChangeRequest) IsHidden() bool {
 }
 
 
-// SetIsHidden sets the value of the isHidden property.
 // A Boolean value that indicates whether the asset is hidden in collections.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/ishidden
 func (p_ PHAssetChangeRequest) SetIsHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
 }
 
+
 // The location information saved with the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
-func (p_ PHAssetChangeRequest) Location() corelocation.Location {
+func (p_ PHAssetChangeRequest) Location() objc.IObject /* cross-framework: Location */ {
 	rv := objc.Send[corelocation.Location](p_.ID, objc.Sel("location"))
 	return rv
 }
 
 
-// SetLocation sets the value of the location property.
 // The location information saved with the asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
-func (p_ PHAssetChangeRequest) SetLocation(value corelocation.ILocation) {
+func (p_ PHAssetChangeRequest) SetLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocation:"), value)
 }
+
+
+// A placeholder object for the asset that the change request creates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/placeholderforcreatedasset
+func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() IPHObjectPlaceholder {
+	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedAsset"))
+	return rv
+}
+
+
+// A placeholder object for the asset that the change request creates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/placeholderforcreatedasset
+func (p_ PHAssetChangeRequest) SetPlaceholderForCreatedAsset(value IPHObjectPlaceholder) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAsset:"), value)
+}
+
 
 

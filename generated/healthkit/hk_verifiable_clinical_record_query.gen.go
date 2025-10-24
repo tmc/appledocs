@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKVerifiableClinicalRecordQuery] class.
@@ -30,8 +31,8 @@ type _HKVerifiableClinicalRecordQueryClass struct {
 type IHKVerifiableClinicalRecordQuery interface {
 	IHKQuery
 	// properties:
-	RecordTypes() string /* primitive/slice/pointer. */
-	SetRecordTypes(value string /* primitive/slice/pointer. */)
+	RecordTypes() objc.IObject /* cross-framework: NSString */
+	SetRecordTypes(value objc.IObject /* cross-framework: NSString */)
 	SourceTypes() HKVerifiableClinicalRecordSourceType /* typedef */
 	SetSourceTypes(value HKVerifiableClinicalRecordSourceType /* typedef */)
 	// methods:
@@ -96,8 +97,8 @@ func NewHKVerifiableClinicalRecordQuery() HKVerifiableClinicalRecordQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
+func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("recordTypes"))
 	return rv
 }
 
@@ -106,8 +107,8 @@ func (h_ HKVerifiableClinicalRecordQuery) RecordTypes() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery/recordtypes
-func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+func (h_ HKVerifiableClinicalRecordQuery) SetRecordTypes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), value)
 }
 
 

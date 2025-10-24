@@ -94,7 +94,7 @@ func NewImageSymbolConfiguration() ImageSymbolConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
-func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) ImageSymbolConfiguration {
+func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64, weight FontWeight /* not a class type */) ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
 	return rv
 }
@@ -105,7 +105,7 @@ func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
-func (ic _ImageSymbolConfigurationClass) ConfigurationWithPointSizeWeight(pointSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) unsafe.Pointer {
+func (ic _ImageSymbolConfigurationClass) ConfigurationWithPointSizeWeight(pointSize float64, weight FontWeight /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
 	return rv
 }

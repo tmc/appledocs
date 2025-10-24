@@ -32,8 +32,8 @@ type _ImageDilateClass struct {
 type IImageDilate interface {
 	IUnaryImageKernel
 	// properties:
-	KernelHeight() uint /* primitive/slice/pointer. */
-	KernelWidth() uint /* primitive/slice/pointer. */
+	KernelHeight() uint
+	KernelWidth() uint
 	EdgeMode() ImageEdgeMode
 	SetEdgeMode(value ImageEdgeMode)
 	// methods:
@@ -108,7 +108,7 @@ func NewImageDilateWithCoderDevice(aDecoder objc.IObject /* cross-framework: Cod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageDilate/init(device:kernelWidth:kernelHeight:values:)
-func NewImageDilateWithDeviceKernelWidthKernelHeightValues(device objectivec.IObject, kernelWidth uint /* primitive/slice/pointer. */, kernelHeight uint /* primitive/slice/pointer. */, values unsafe.Pointer) ImageDilate {
+func NewImageDilateWithDeviceKernelWidthKernelHeightValues(device objectivec.IObject, kernelWidth uint, kernelHeight uint, values unsafe.Pointer) ImageDilate {
 	instance := getImageDilateClass().Alloc()
 	rv := objc.Send[ImageDilate](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:values:"), device, kernelWidth, kernelHeight, values)
 	rv.Autorelease()
@@ -121,7 +121,7 @@ func NewImageDilateWithDeviceKernelWidthKernelHeightValues(device objectivec.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageDilate/kernelHeight
-func (i_ ImageDilate) KernelHeight() uint /* primitive/slice/pointer. */ {
+func (i_ ImageDilate) KernelHeight() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelHeight"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (i_ ImageDilate) KernelHeight() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageDilate/kernelWidth
-func (i_ ImageDilate) KernelWidth() uint /* primitive/slice/pointer. */ {
+func (i_ ImageDilate) KernelWidth() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelWidth"))
 	return rv
 }

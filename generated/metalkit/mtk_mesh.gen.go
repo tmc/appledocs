@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +31,22 @@ type _MeshClass struct {
 // An interface definition for the [Mesh] class.
 type IMesh interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	Submeshes() []Submesh
-	VertexBuffers() []MeshBuffer
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Submeshes() []ISubmesh
+	VertexBuffers() []IMeshBuffer
 	VertexCount() uint
 	VertexDescriptor() unsafe.Pointer
+	// methods:
 }
 
 // A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
+
+
+// A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh
 type Mesh struct {
 	objectivec.Object
@@ -85,9 +92,9 @@ func NewMesh() Mesh {
 
 
 
-
 // Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
 func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objectivec.IObject, error_ unsafe.Pointer) Mesh {
 	instance := getMeshClass().Alloc()
@@ -97,58 +104,69 @@ func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objectivec.IObject, 
 }
 
 
+
 // Creates and initializes MetalKit meshes from all Model I/O meshes in a Model I/O asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/newMeshesFromAsset:device:sourceMeshes:error:
-func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objectivec.IObject, sourceMeshes []MDLMesh, error_ unsafe.Pointer) []Mesh {
+func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objectivec.IObject, sourceMeshes []MDLMesh /* not a class type */, error_ unsafe.Pointer) []IMesh {
 	rv := objc.Send[[]Mesh](objc.ID(mc.class), objc.Sel("newMeshesFromAsset:device:sourceMeshes:error:"), asset, device, sourceMeshes, error_)
 	return rv
 }
 
+
 // The name of the mesh.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ Mesh) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the mesh.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ Mesh) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
+
 
 // An array of submeshes containing index buffers referencing the mesh vertices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/submeshes
-func (m_ Mesh) Submeshes() []Submesh {
+func (m_ Mesh) Submeshes() []ISubmesh {
 	rv := objc.Send[[]Submesh](m_.ID, objc.Sel("submeshes"))
 	return rv
 }
 
+
 // An array of buffers in which mesh vertex data resides.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/vertexBuffers
-func (m_ Mesh) VertexBuffers() []MeshBuffer {
+func (m_ Mesh) VertexBuffers() []IMeshBuffer {
 	rv := objc.Send[[]MeshBuffer](m_.ID, objc.Sel("vertexBuffers"))
 	return rv
 }
 
+
 // The number of vertices in the vertex buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/vertexCount
 func (m_ Mesh) VertexCount() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("vertexCount"))
 	return rv
 }
 
+
 // A Model I/O vertex descriptor specifying the data layout in the vertex buffers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/vertexDescriptor
 func (m_ Mesh) VertexDescriptor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("vertexDescriptor"))

@@ -30,14 +30,20 @@ type _IKImageEditPanelClass struct {
 // An interface definition for the [IKImageEditPanel] class.
 type IIKImageEditPanel interface {
 	appkit.IPanel
+	// properties:
 	DataSource() unsafe.Pointer
 	SetDataSource(value unsafe.Pointer)
 	FilterArray() unsafe.Pointer
 	SetFilterArray(value unsafe.Pointer)
+	// methods:
 }
 
 // The class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.
+
+
+// The class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageEditPanel
 type IKImageEditPanel struct {
 	appkit.Panel
@@ -84,8 +90,10 @@ func NewIKImageEditPanel() IKImageEditPanel {
 }
 
 
+
 // Specifies the edit panel’s dataSource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/datasource
 func (i_ IKImageEditPanel) DataSource() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dataSource"))
@@ -93,17 +101,18 @@ func (i_ IKImageEditPanel) DataSource() unsafe.Pointer {
 }
 
 
-// SetDataSource sets the value of the dataSource property.
 // Specifies the edit panel’s dataSource.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/datasource
 func (i_ IKImageEditPanel) SetDataSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDataSource:"), value)
 }
 
+
 // Returns the current array of user adjustments to effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/filterarray
 func (i_ IKImageEditPanel) FilterArray() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("filterArray"))
@@ -111,10 +120,9 @@ func (i_ IKImageEditPanel) FilterArray() unsafe.Pointer {
 }
 
 
-// SetFilterArray sets the value of the filterArray property.
 // Returns the current array of user adjustments to effects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageeditpanel/filterarray
 func (i_ IKImageEditPanel) SetFilterArray(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFilterArray:"), value)

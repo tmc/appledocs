@@ -30,11 +30,15 @@ type _MTRWaterHeaterManagementClusterBoostStartedEventClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterBoostStartedEvent] class.
 type IMTRWaterHeaterManagementClusterBoostStartedEvent interface {
 	objectivec.IObject
-	BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
+	// properties:
+	BoostInfo() IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
 	SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostStartedEvent
 type MTRWaterHeaterManagementClusterBoostStartedEvent struct {
 	objectivec.Object
@@ -77,16 +81,16 @@ func NewMTRWaterHeaterManagementClusterBoostStartedEvent() MTRWaterHeaterManagem
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostStartedEvent/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
+func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) BoostInfo() IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
 	rv := objc.Send[MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct](m_.ID, objc.Sel("boostInfo"))
 	return rv
 }
 
 
-// SetBoostInfo sets the value of the boostInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostStartedEvent/boostInfo
 func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoostInfo:"), value)

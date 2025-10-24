@@ -32,8 +32,8 @@ type IDimension interface {
 	// properties:
 	Converter() IUnitConverter
 	SetConverter(value IUnitConverter)
-	Coefficient() float64 /* primitive/slice/pointer. */
-	SetCoefficient(value float64 /* primitive/slice/pointer. */)
+	Coefficient() float64
+	SetCoefficient(value float64)
 	// methods:
 }
 
@@ -115,7 +115,7 @@ func (d_ Dimension) SetConverter(value IUnitConverter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) Coefficient() float64 /* primitive/slice/pointer. */ {
+func (d_ Dimension) Coefficient() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("coefficient"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (d_ Dimension) Coefficient() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) SetCoefficient(value float64 /* primitive/slice/pointer. */) {
+func (d_ Dimension) SetCoefficient(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }
 

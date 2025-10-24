@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageLanczosScale] class.
@@ -29,12 +31,18 @@ type _ImageLanczosScaleClass struct {
 // An interface definition for the [ImageLanczosScale] class.
 type IImageLanczosScale interface {
 	IImageScale
+	// properties:
+	// methods:
 }
 
 // A filter that resizes and changes the aspect ratio of an image using Lanczos resampling.
 //
 // You can use this filter to enlarge or reduce the size of an image, or to change the aspect ratio of an image. The filter uses a Lanczos resampling algorithm, that typically produces better quality for photographs, but is slower than linear sampling that uses GPU texture units. Lanczos downsampling does not require a low pass filter to be applied before it is used. Because the resampling function has negative lobes, Lanczos can result in ringing artifacts near sharp edges, making it less suitable for vector art.
+
+
+// A filter that resizes and changes the aspect ratio of an image using Lanczos resampling.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLanczosScale
 type ImageLanczosScale struct {
 	ImageScale
@@ -80,6 +88,26 @@ func NewImageLanczosScale() ImageLanczosScale {
 	return getImageLanczosScaleClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLanczosScale/init(coder:device:)
+func NewImageLanczosScaleWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageLanczosScale {
+	instance := getImageLanczosScaleClass().Alloc()
+	rv := objc.Send[ImageLanczosScale](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLanczosScale/init(device:)
+func NewImageLanczosScaleWithDevice(device objectivec.IObject) ImageLanczosScale {
+	instance := getImageLanczosScaleClass().Alloc()
+	rv := objc.Send[ImageLanczosScale](instance.ID, objc.Sel("initWithDevice:"), device)
+	rv.Autorelease()
+	return rv
+}
 
 
 

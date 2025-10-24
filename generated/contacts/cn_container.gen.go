@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +32,15 @@ type _CNContainerClass struct {
 type ICNContainer interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
-	CNContainerIdentifierKey() string /* primitive/slice/pointer. */
-	CNContainerNameKey() string /* primitive/slice/pointer. */
-	CNContainerTypeKey() string /* primitive/slice/pointer. */
+	CNContainerIdentifierKey() objc.IObject /* cross-framework: NSString */
+	CNContainerNameKey() objc.IObject /* cross-framework: NSString */
+	CNContainerTypeKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -100,8 +101,8 @@ func NewCNContainer() CNContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
-func (c_ CNContainer) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNContainer) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (c_ CNContainer) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
-func (c_ CNContainer) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ CNContainer) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -119,8 +120,8 @@ func (c_ CNContainer) SetIdentifier(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
-func (c_ CNContainer) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ CNContainer) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -129,8 +130,8 @@ func (c_ CNContainer) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
-func (c_ CNContainer) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ CNContainer) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -157,8 +158,8 @@ func (c_ CNContainer) SetType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontaineridentifierkey
-func (c_ CNContainer) CNContainerIdentifierKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerIdentifierKey"))
+func (c_ CNContainer) CNContainerIdentifierKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNContainerIdentifierKey"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (c_ CNContainer) CNContainerIdentifierKey() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainernamekey
-func (c_ CNContainer) CNContainerNameKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerNameKey"))
+func (c_ CNContainer) CNContainerNameKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNContainerNameKey"))
 	return rv
 }
 
@@ -177,8 +178,8 @@ func (c_ CNContainer) CNContainerNameKey() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainertypekey
-func (c_ CNContainer) CNContainerTypeKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerTypeKey"))
+func (c_ CNContainer) CNContainerTypeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNContainerTypeKey"))
 	return rv
 }
 

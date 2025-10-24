@@ -31,8 +31,8 @@ type IAsynchronousFetchRequest interface {
 	IPersistentStoreRequest
 	// properties:
 	CompletionBlock() PersistentStoreAsynchronousFetchResultCompletionBlock /* not a class type */
-	EstimatedResultCount() int /* primitive/slice/pointer. */
-	SetEstimatedResultCount(value int /* primitive/slice/pointer. */)
+	EstimatedResultCount() int
+	SetEstimatedResultCount(value int)
 	FetchRequest() unsafe.Pointer
 	// methods:
 }
@@ -117,7 +117,7 @@ func (a_ AsynchronousFetchRequest) CompletionBlock() PersistentStoreAsynchronous
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-func (a_ AsynchronousFetchRequest) EstimatedResultCount() int /* primitive/slice/pointer. */ {
+func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("estimatedResultCount"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int /* primitive/slice/pointer. */) {
+func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedResultCount:"), value)
 }
 

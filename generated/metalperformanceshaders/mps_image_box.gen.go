@@ -32,10 +32,10 @@ type _ImageBoxClass struct {
 type IImageBox interface {
 	IUnaryImageKernel
 	// properties:
-	KernelHeight() int /* primitive/slice/pointer. */
-	SetKernelHeight(value int /* primitive/slice/pointer. */)
-	KernelWidth() int /* primitive/slice/pointer. */
-	SetKernelWidth(value int /* primitive/slice/pointer. */)
+	KernelHeight() int
+	SetKernelHeight(value int)
+	KernelWidth() int
+	SetKernelWidth(value int)
 	// methods:
 }
 
@@ -109,7 +109,7 @@ func NewImageBoxWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelheight
-func (i_ ImageBox) KernelHeight() int /* primitive/slice/pointer. */ {
+func (i_ ImageBox) KernelHeight() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("kernelHeight"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (i_ ImageBox) KernelHeight() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelheight
-func (i_ ImageBox) SetKernelHeight(value int /* primitive/slice/pointer. */) {
+func (i_ ImageBox) SetKernelHeight(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelHeight:"), value)
 }
 
@@ -128,7 +128,7 @@ func (i_ ImageBox) SetKernelHeight(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelwidth
-func (i_ ImageBox) KernelWidth() int /* primitive/slice/pointer. */ {
+func (i_ ImageBox) KernelWidth() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("kernelWidth"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (i_ ImageBox) KernelWidth() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox/kernelwidth
-func (i_ ImageBox) SetKernelWidth(value int /* primitive/slice/pointer. */) {
+func (i_ ImageBox) SetKernelWidth(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelWidth:"), value)
 }
 

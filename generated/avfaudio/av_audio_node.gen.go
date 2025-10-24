@@ -37,14 +37,14 @@ type IAudioNode interface {
 	SetEngine(value IAVAudioEngine)
 	LastRenderTime() IAVAudioTime
 	SetLastRenderTime(value IAVAudioTime)
-	Latency() unsafe.Pointer
-	SetLatency(value unsafe.Pointer)
-	NumberOfInputs() int /* primitive/slice/pointer. */
-	SetNumberOfInputs(value int /* primitive/slice/pointer. */)
-	NumberOfOutputs() int /* primitive/slice/pointer. */
-	SetNumberOfOutputs(value int /* primitive/slice/pointer. */)
-	OutputPresentationLatency() unsafe.Pointer
-	SetOutputPresentationLatency(value unsafe.Pointer)
+	Latency() float64
+	SetLatency(value float64)
+	NumberOfInputs() int
+	SetNumberOfInputs(value int)
+	NumberOfOutputs() int
+	SetNumberOfOutputs(value int)
+	OutputPresentationLatency() float64
+	SetOutputPresentationLatency(value float64)
 	// methods:
 }
 
@@ -162,8 +162,8 @@ func (a_ AudioNode) SetLastRenderTime(value IAVAudioTime) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
-func (a_ AudioNode) Latency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("latency"))
+func (a_ AudioNode) Latency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("latency"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (a_ AudioNode) Latency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
-func (a_ AudioNode) SetLatency(value unsafe.Pointer) {
+func (a_ AudioNode) SetLatency(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLatency:"), value)
 }
 
@@ -181,7 +181,7 @@ func (a_ AudioNode) SetLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
-func (a_ AudioNode) NumberOfInputs() int /* primitive/slice/pointer. */ {
+func (a_ AudioNode) NumberOfInputs() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfInputs"))
 	return rv
 }
@@ -191,7 +191,7 @@ func (a_ AudioNode) NumberOfInputs() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
-func (a_ AudioNode) SetNumberOfInputs(value int /* primitive/slice/pointer. */) {
+func (a_ AudioNode) SetNumberOfInputs(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfInputs:"), value)
 }
 
@@ -200,7 +200,7 @@ func (a_ AudioNode) SetNumberOfInputs(value int /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
-func (a_ AudioNode) NumberOfOutputs() int /* primitive/slice/pointer. */ {
+func (a_ AudioNode) NumberOfOutputs() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfOutputs"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (a_ AudioNode) NumberOfOutputs() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
-func (a_ AudioNode) SetNumberOfOutputs(value int /* primitive/slice/pointer. */) {
+func (a_ AudioNode) SetNumberOfOutputs(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfOutputs:"), value)
 }
 
@@ -219,8 +219,8 @@ func (a_ AudioNode) SetNumberOfOutputs(value int /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioNode) OutputPresentationLatency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputPresentationLatency"))
+func (a_ AudioNode) OutputPresentationLatency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("outputPresentationLatency"))
 	return rv
 }
 
@@ -229,7 +229,7 @@ func (a_ AudioNode) OutputPresentationLatency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioNode) SetOutputPresentationLatency(value unsafe.Pointer) {
+func (a_ AudioNode) SetOutputPresentationLatency(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputPresentationLatency:"), value)
 }
 

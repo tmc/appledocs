@@ -31,13 +31,19 @@ type _NEHotspotHelperClass struct {
 // An interface definition for the [NEHotspotHelper] class.
 type INEHotspotHelper interface {
 	objectivec.IObject
-	KNEHotspotHelperOptionDisplayName() string
+	// properties:
+	KNEHotspotHelperOptionDisplayName() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A class to register a hotspot helper.
 //
 // The API gives your app the ability to perform custom authentication for Wi-Fi Hotspots. It gives users a way to seamlessly connect to a large aggregated network of Wi-Fi Hotspots. The API lets your app configure those hotspots.
+
+
+// A class to register a hotspot helper.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper
 type NEHotspotHelper struct {
 	objectivec.Object
@@ -82,21 +88,24 @@ func NewNEHotspotHelper() NEHotspotHelper {
 }
 
 
-// Return the list of network interfaces managed by the Hotspot Helper infrastructure.
+
+// Register the application as a Hotspot Helper.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper/supportedNetworkInterfaces()
-func (nc _NEHotspotHelperClass) SupportedNetworkInterfaces() foundation.Array {
-	rv := objc.Send[foundation.Array](objc.ID(nc.class), objc.Sel("supportedNetworkInterfaces"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper/register(options:queue:handler:)
+func (nc _NEHotspotHelperClass) RegisterWithOptionsQueueHandler(options foundation.IDictionary, queue unsafe.Pointer, handler unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("registerWithOptions:queue:handler:"), options, queue, handler)
 	return rv
 }
+
 
 // The string displayed in Wi-Fi Settings for a network handled by the application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname
-func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
+func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
 	return rv
 }
-
 
 

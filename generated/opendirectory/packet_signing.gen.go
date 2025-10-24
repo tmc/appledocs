@@ -30,9 +30,13 @@ type _packetSigningClass struct {
 // An interface definition for the [packetSigning] class.
 type IpacketSigning interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetSigning-c.ivar
 type packetSigning struct {
 	objectivec.Object

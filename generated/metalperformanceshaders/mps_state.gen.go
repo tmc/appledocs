@@ -30,30 +30,21 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
-	IsTemporary() bool
-	SetIsTemporary(value bool)
-	Label() string
-	SetLabel(value string)
-	ReadCount() int
-	SetReadCount(value int)
-	Resource() unsafe.Pointer
-	SetResource(value unsafe.Pointer)
-	ResourceCount() int
-	SetResourceCount(value int)
+	// properties:
+	// methods:
 }
 
-// An opaque data container for large storage in MPS CNN filters.
-//
-// Some MPS CNN kernels produce additional information beyond an . These may be pooling indices where the result came from, convolution weights, or other information not contained in the usual result from a . An object typically contains one or more expensive objects such as textures or buffers to store this information. It provides a base class with interfaces for managing this storage. Child classes may add additional functionality specific to their contents. Some objects are temporary. Temporary state objects, for example, and , are for very short lived storage, perhaps just a few lines of code within the scope of a single . They are very efficient for storage, as several temporary objects can share the same memory over the course of a command buffer. This can improve both memory usage and time spent in the kernel wiring down memory and such. You may find that some large CNN tasks can not be computed without them, as nontemporary storage would simply take up too much memory. In exchange, the lifetime of the underlying storage in temporary objects needs to be carefully managed. ARC often waits until the end of scope to release objects. Temporary storage often needs to be released sooner than that. Consequently the lifetime of the data in the underlying Metal resources is managed by a property. Each time a reads a temporary object the is automatically decremented. When it reaches 0, the underlying storage is recycled for use by other MPS temporary objects, and the data is becomes undefined. If you need to consume the data multiple times, you should set the to a larger number to prevent the data from becoming undefined. You may set the to 0 yourself to return the storage to MPS, if for any reason, you realize that the object will no longer be used. The contents of a temporary object are only valid from creation to the time the reaches 0. The data is only valid for the on which it was created. Nontemporary objects are valid on any on the same device until they are released.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSState
+// A parent class referenced by other MetalPerformanceShaders classes.
+
+
+// A parent class referenced by other MetalPerformanceShaders classes. [Full Topic]
 type State struct {
 	objectivec.Object
 }
 
 // StateFrom constructs a [State] from an unsafe.Pointer.
 //
-// An opaque data container for large storage in MPS CNN filters.
+// A parent class referenced by other MetalPerformanceShaders classes.
 func StateFrom(ptr unsafe.Pointer) State {
 	return State{objectivec.Object{objc.ID(ptr)}}
 }
@@ -89,81 +80,6 @@ func NewState() State {
 	return getStateClass().New()
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/istemporary
-func (s_ State) IsTemporary() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isTemporary"))
-	return rv
-}
-
-
-// SetIsTemporary sets the value of the isTemporary property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/istemporary
-func (s_ State) SetIsTemporary(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsTemporary:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) Label() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// SetLabel sets the value of the label property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/label
-func (s_ State) SetLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount
-func (s_ State) ReadCount() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("readCount"))
-	return rv
-}
-
-
-// SetReadCount sets the value of the readCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount
-func (s_ State) SetReadCount(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setReadCount:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resource
-func (s_ State) Resource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("resource"))
-	return rv
-}
-
-
-// SetResource sets the value of the resource property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resource
-func (s_ State) SetResource(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setResource:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resourcecount
-func (s_ State) ResourceCount() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("resourceCount"))
-	return rv
-}
-
-
-// SetResourceCount sets the value of the resourceCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/resourcecount
-func (s_ State) SetResourceCount(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setResourceCount:"), value)
-}
 
 
 

@@ -29,7 +29,7 @@ type _InvocationOperationClass struct {
 
 // An interface definition for the [InvocationOperation] class.
 type IInvocationOperation interface {
-	IOperation
+	objectivec.IIObject
 	// properties:
 	Invocation() IInvocation
 	Result() objc.ID
@@ -46,7 +46,7 @@ type IInvocationOperation interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
 type InvocationOperation struct {
-	Operation
+	objectivec.IObject
 }
 
 // InvocationOperationFrom constructs a [InvocationOperation] from an unsafe.Pointer.
@@ -54,7 +54,7 @@ type InvocationOperation struct {
 // An operation that manages the execution of a single encapsulated task specified as an invocation.
 func InvocationOperationFrom(ptr unsafe.Pointer) InvocationOperation {
 	return InvocationOperation{
-		Operation: OperationFrom(ptr),
+		Operation: objectivec.IObjectFrom(ptr),
 	}
 }
 

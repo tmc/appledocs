@@ -19,10 +19,10 @@ var (
 	_DAApprovalSessionScheduleWithRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_DAApprovalSessionUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_DADiskCopyWholeDisk func(unsafe.Pointer) unsafe.Pointer
-	_DADiskCreateFromIOMedia func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_DADiskCreateFromVolumePath func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_DADiskCreateFromIOMedia func(unsafe.Pointer, DASessionRef, unsafe.Pointer) unsafe.Pointer
+	_DADiskCreateFromVolumePath func(unsafe.Pointer, DASessionRef, unsafe.Pointer) unsafe.Pointer
 	_DADissenterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_DASessionScheduleWithRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_DASessionScheduleWithRunLoop func(DASessionRef, unsafe.Pointer, unsafe.Pointer)
 )
 
 func init() {
@@ -99,7 +99,7 @@ func DADiskCopyWholeDisk(disk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromIOMedia(_:_:_:)
-func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session unsafe.Pointer, media unsafe.Pointer) unsafe.Pointer {
+func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session DASessionRef, media unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromIOMedia(allocator, session, media)
 }
 
@@ -110,7 +110,7 @@ func DADiskCreateFromIOMedia(allocator unsafe.Pointer, session unsafe.Pointer, m
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DADiskCreateFromVolumePath(_:_:_:)
-func DADiskCreateFromVolumePath(allocator unsafe.Pointer, session unsafe.Pointer, path unsafe.Pointer) unsafe.Pointer {
+func DADiskCreateFromVolumePath(allocator unsafe.Pointer, session DASessionRef, path unsafe.Pointer) unsafe.Pointer {
 	return _DADiskCreateFromVolumePath(allocator, session, path)
 }
 
@@ -132,7 +132,7 @@ func DADissenterCreate(allocator unsafe.Pointer, status unsafe.Pointer, string_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DASessionScheduleWithRunLoop(_:_:_:)
-func DASessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+func DASessionScheduleWithRunLoop(session DASessionRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
 	_DASessionScheduleWithRunLoop(session, runLoop, runLoopMode)
 }
 

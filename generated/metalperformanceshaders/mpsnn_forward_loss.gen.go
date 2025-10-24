@@ -30,33 +30,39 @@ type _ForwardLossClass struct {
 
 // An interface definition for the [ForwardLoss] class.
 type IForwardLoss interface {
-	objectivec.IObject
-	EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer)
+	ICNNKernel
+	// properties:
 	Delta() float32
 	SetDelta(value float32)
 	Epsilon() float32
 	SetEpsilon(value float32)
 	ReduceAcrossBatch() bool
-	ReductionType() unsafe.Pointer
+	ReductionType() CNNReductionType /* not a class type */
 	LabelSmoothing() float32
 	SetLabelSmoothing(value float32)
-	LossType() unsafe.Pointer
-	SetLossType(value unsafe.Pointer)
+	LossType() CNNLossType /* not a class type */
+	SetLossType(value CNNLossType /* not a class type */)
 	NumberOfClasses() int
 	SetNumberOfClasses(value int)
 	Weight() float32
 	SetWeight(value float32)
+	// methods:
+	EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages ImageBatch /* not a class type */, labels ImageBatch /* not a class type */, weights ImageBatch /* not a class type */, destinationStates StateBatch /* not a class type */, destinationImages ImageBatch /* not a class type */)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss
 type ForwardLoss struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // ForwardLossFrom constructs a [ForwardLoss] from an unsafe.Pointer.
 func ForwardLossFrom(ptr unsafe.Pointer) ForwardLoss {
-	return ForwardLoss{objectivec.Object{objc.ID(ptr)}}
+	return ForwardLoss{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -91,18 +97,20 @@ func NewForwardLoss() ForwardLoss {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(coder:device:)
-func NewForwardLossWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ForwardLoss {
+func NewForwardLossWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
 	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
-func NewForwardLossWithDeviceLossDescriptor(device objectivec.IObject, lossDescriptor unsafe.Pointer) ForwardLoss {
+func NewForwardLossWithDeviceLossDescriptor(device objectivec.IObject, lossDescriptor CNNLossDescriptor /* not a class type */) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
 	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
 	rv.Autorelease()
@@ -110,13 +118,15 @@ func NewForwardLossWithDeviceLossDescriptor(device objectivec.IObject, lossDescr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/encodeBatch(commandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:)
-func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer) {
+func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages ImageBatch /* not a class type */, labels ImageBatch /* not a class type */, weights ImageBatch /* not a class type */, destinationStates StateBatch /* not a class type */, destinationImages ImageBatch /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:"), commandBuffer, sourceImages, labels, weights, destinationStates, destinationImages)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
 func (f_ ForwardLoss) Delta() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("delta"))
@@ -124,14 +134,14 @@ func (f_ ForwardLoss) Delta() float32 {
 }
 
 
-// SetDelta sets the value of the delta property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/delta
 func (f_ ForwardLoss) SetDelta(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
 func (f_ ForwardLoss) Epsilon() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("epsilon"))
@@ -139,28 +149,30 @@ func (f_ ForwardLoss) Epsilon() float32 {
 }
 
 
-// SetEpsilon sets the value of the epsilon property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/epsilon
 func (f_ ForwardLoss) SetEpsilon(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/reduceAcrossBatch
 func (f_ ForwardLoss) ReduceAcrossBatch() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("reduceAcrossBatch"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/reductionType
-func (f_ ForwardLoss) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reductionType"))
+func (f_ ForwardLoss) ReductionType() CNNReductionType /* not a class type */ {
+	rv := objc.Send[CNNReductionType](f_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
 func (f_ ForwardLoss) LabelSmoothing() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("labelSmoothing"))
@@ -168,29 +180,29 @@ func (f_ ForwardLoss) LabelSmoothing() float32 {
 }
 
 
-// SetLabelSmoothing sets the value of the labelSmoothing property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/labelsmoothing
 func (f_ ForwardLoss) SetLabelSmoothing(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLabelSmoothing:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/losstype
-func (f_ ForwardLoss) LossType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("lossType"))
+func (f_ ForwardLoss) LossType() CNNLossType /* not a class type */ {
+	rv := objc.Send[CNNLossType](f_.ID, objc.Sel("lossType"))
 	return rv
 }
 
 
-// SetLossType sets the value of the lossType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/losstype
-func (f_ ForwardLoss) SetLossType(value unsafe.Pointer) {
+func (f_ ForwardLoss) SetLossType(value CNNLossType /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/numberofclasses
 func (f_ ForwardLoss) NumberOfClasses() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("numberOfClasses"))
@@ -198,14 +210,14 @@ func (f_ ForwardLoss) NumberOfClasses() int {
 }
 
 
-// SetNumberOfClasses sets the value of the numberOfClasses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/numberofclasses
 func (f_ ForwardLoss) SetNumberOfClasses(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNumberOfClasses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
 func (f_ ForwardLoss) Weight() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("weight"))
@@ -213,8 +225,7 @@ func (f_ ForwardLoss) Weight() float32 {
 }
 
 
-// SetWeight sets the value of the weight property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss/weight
 func (f_ ForwardLoss) SetWeight(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)

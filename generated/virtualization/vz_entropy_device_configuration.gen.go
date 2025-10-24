@@ -30,6 +30,8 @@ type _VZEntropyDeviceConfigurationClass struct {
 // An interface definition for the [VZEntropyDeviceConfiguration] class.
 type IVZEntropyDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The common configuration traits for entropy devices.

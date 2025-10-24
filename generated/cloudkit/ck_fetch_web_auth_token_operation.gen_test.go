@@ -15,11 +15,3 @@ func ExampleNewCKFetchWebAuthTokenOperation() {
 	_ = cloudkit.NewCKFetchWebAuthTokenOperation()
 	// Output:
 }
-// ExampleNewCKFetchWebAuthTokenOperationWithAPIToken demonstrates how to create a CKFetchWebAuthTokenOperation instance using NewCKFetchWebAuthTokenOperationWithAPIToken.
-// Creates a fetch operation for the specified API token.
-func ExampleNewCKFetchWebAuthTokenOperationWithAPIToken() {
-	_ = cloudkit.NewCKFetchWebAuthTokenOperationWithAPIToken(
-		"APIToken", // APIToken string
-	)
-	// Output:
-}

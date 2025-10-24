@@ -31,19 +31,23 @@ type _MTRThermostatClusterAtomicRequestParamsClass struct {
 // An interface definition for the [MTRThermostatClusterAtomicRequestParams] class.
 type IMTRThermostatClusterAtomicRequestParams interface {
 	objectivec.IObject
-	AttributeRequests() objc.ID
-	SetAttributeRequests(value objc.ID)
-	RequestType() foundation.Number
-	SetRequestType(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Timeout() foundation.Number
-	SetTimeout(value foundation.INumber)
+	// properties:
+	AttributeRequests() objc.IObject /* cross-framework: NSArray */
+	SetAttributeRequests(value objc.IObject /* cross-framework: NSArray */)
+	RequestType() objc.IObject /* cross-framework: NSNumber */
+	SetRequestType(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Timeout() objc.IObject /* cross-framework: NSNumber */
+	SetTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams
 type MTRThermostatClusterAtomicRequestParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTRThermostatClusterAtomicRequestParams() MTRThermostatClusterAtomicRequ
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/attributeRequests
-func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("attributeRequests"))
+func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("attributeRequests"))
 	return rv
 }
 
 
-// SetAttributeRequests sets the value of the attributeRequests property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/attributeRequests
-func (m_ MTRThermostatClusterAtomicRequestParams) SetAttributeRequests(value objc.ID) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetAttributeRequests(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeRequests:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/requestType
-func (m_ MTRThermostatClusterAtomicRequestParams) RequestType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestType"))
+func (m_ MTRThermostatClusterAtomicRequestParams) RequestType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("requestType"))
 	return rv
 }
 
 
-// SetRequestType sets the value of the requestType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/requestType
-func (m_ MTRThermostatClusterAtomicRequestParams) SetRequestType(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetRequestType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestType:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterAtomicRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThermostatClusterAtomicRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterAtomicRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterAtomicRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThermostatClusterAtomicRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterAtomicRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timeout
-func (m_ MTRThermostatClusterAtomicRequestParams) Timeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeout"))
+func (m_ MTRThermostatClusterAtomicRequestParams) Timeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timeout"))
 	return rv
 }
 
 
-// SetTimeout sets the value of the timeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timeout
-func (m_ MTRThermostatClusterAtomicRequestParams) SetTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

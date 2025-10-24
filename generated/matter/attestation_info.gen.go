@@ -31,25 +31,29 @@ type _AttestationInfoClass struct {
 // An interface definition for the [AttestationInfo] class.
 type IAttestationInfo interface {
 	objectivec.IObject
-	CertificationDeclaration() foundation.Data
-	SetCertificationDeclaration(value foundation.IData)
-	Challenge() foundation.Data
-	SetChallenge(value foundation.IData)
-	Dac() foundation.Data
-	SetDac(value foundation.IData)
-	Elements() foundation.Data
-	SetElements(value foundation.IData)
-	ElementsSignature() foundation.Data
-	SetElementsSignature(value foundation.IData)
-	FirmwareInfo() foundation.Data
-	SetFirmwareInfo(value foundation.IData)
-	Nonce() foundation.Data
-	SetNonce(value foundation.IData)
-	Pai() foundation.Data
-	SetPai(value foundation.IData)
+	// properties:
+	CertificationDeclaration() objc.IObject /* cross-framework: Data */
+	SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */)
+	Challenge() objc.IObject /* cross-framework: Data */
+	SetChallenge(value objc.IObject /* cross-framework: Data */)
+	Dac() objc.IObject /* cross-framework: Data */
+	SetDac(value objc.IObject /* cross-framework: Data */)
+	Elements() objc.IObject /* cross-framework: Data */
+	SetElements(value objc.IObject /* cross-framework: Data */)
+	ElementsSignature() objc.IObject /* cross-framework: Data */
+	SetElementsSignature(value objc.IObject /* cross-framework: Data */)
+	FirmwareInfo() objc.IObject /* cross-framework: Data */
+	SetFirmwareInfo(value objc.IObject /* cross-framework: Data */)
+	Nonce() objc.IObject /* cross-framework: Data */
+	SetNonce(value objc.IObject /* cross-framework: Data */)
+	Pai() objc.IObject /* cross-framework: Data */
+	SetPai(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/AttestationInfo
 type AttestationInfo struct {
 	objectivec.Object
@@ -92,123 +96,123 @@ func NewAttestationInfo() AttestationInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
-func (a_ AttestationInfo) CertificationDeclaration() foundation.Data {
+func (a_ AttestationInfo) CertificationDeclaration() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("certificationDeclaration"))
 	return rv
 }
 
 
-// SetCertificationDeclaration sets the value of the certificationDeclaration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
-func (a_ AttestationInfo) SetCertificationDeclaration(value foundation.IData) {
+func (a_ AttestationInfo) SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCertificationDeclaration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
-func (a_ AttestationInfo) Challenge() foundation.Data {
+func (a_ AttestationInfo) Challenge() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("challenge"))
 	return rv
 }
 
 
-// SetChallenge sets the value of the challenge property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
-func (a_ AttestationInfo) SetChallenge(value foundation.IData) {
+func (a_ AttestationInfo) SetChallenge(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChallenge:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
-func (a_ AttestationInfo) Dac() foundation.Data {
+func (a_ AttestationInfo) Dac() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("dac"))
 	return rv
 }
 
 
-// SetDac sets the value of the dac property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
-func (a_ AttestationInfo) SetDac(value foundation.IData) {
+func (a_ AttestationInfo) SetDac(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDac:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
-func (a_ AttestationInfo) Elements() foundation.Data {
+func (a_ AttestationInfo) Elements() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("elements"))
 	return rv
 }
 
 
-// SetElements sets the value of the elements property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
-func (a_ AttestationInfo) SetElements(value foundation.IData) {
+func (a_ AttestationInfo) SetElements(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setElements:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
-func (a_ AttestationInfo) ElementsSignature() foundation.Data {
+func (a_ AttestationInfo) ElementsSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("elementsSignature"))
 	return rv
 }
 
 
-// SetElementsSignature sets the value of the elementsSignature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
-func (a_ AttestationInfo) SetElementsSignature(value foundation.IData) {
+func (a_ AttestationInfo) SetElementsSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setElementsSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
-func (a_ AttestationInfo) FirmwareInfo() foundation.Data {
+func (a_ AttestationInfo) FirmwareInfo() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("firmwareInfo"))
 	return rv
 }
 
 
-// SetFirmwareInfo sets the value of the firmwareInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
-func (a_ AttestationInfo) SetFirmwareInfo(value foundation.IData) {
+func (a_ AttestationInfo) SetFirmwareInfo(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFirmwareInfo:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
-func (a_ AttestationInfo) Nonce() foundation.Data {
+func (a_ AttestationInfo) Nonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("nonce"))
 	return rv
 }
 
 
-// SetNonce sets the value of the nonce property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
-func (a_ AttestationInfo) SetNonce(value foundation.IData) {
+func (a_ AttestationInfo) SetNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
-func (a_ AttestationInfo) Pai() foundation.Data {
+func (a_ AttestationInfo) Pai() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("pai"))
 	return rv
 }
 
 
-// SetPai sets the value of the pai property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
-func (a_ AttestationInfo) SetPai(value foundation.IData) {
+func (a_ AttestationInfo) SetPai(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPai:"), value)
 }
 

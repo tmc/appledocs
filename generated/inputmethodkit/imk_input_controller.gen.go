@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,21 +35,21 @@ type IIMKInputController interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework AttributedString */, candidateString objc.IObject /* cross-framework AttributedString */)
+	AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework: AttributedString */, candidateString objc.IObject /* cross-framework: AttributedString */)
 	CancelComposition()
-	CandidateSelected(candidateString objc.IObject /* cross-framework AttributedString */)
-	CandidateSelectionChanged(candidateString objc.IObject /* cross-framework AttributedString */)
+	CandidateSelected(candidateString objc.IObject /* cross-framework: AttributedString */)
+	CandidateSelectionChanged(candidateString objc.IObject /* cross-framework: AttributedString */)
 	Client() objc.ID
-	CompositionAttributesAtRange(range_ foundation.objc.IObject /* cross-framework Range */) MutableDictionary /* not a class type */
+	CompositionAttributesAtRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: MutableDictionary */
 	Delegate() objc.ID
-	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objectivec.IObject)
+	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.IObject /* cross-framework: NSDictionary */)
 	HidePalettes()
 	InputControllerWillClose()
-	MarkForStyleAtRange(style int /* primitive/slice/pointer. */, range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Dictionary */
+	MarkForStyleAtRange(style int, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Dictionary */
 	Menu() objc.IObject /* cross-framework: Menu */
-	ReplacementRange() foundation.objc.IObject /* cross-framework: Range */
-	SelectionRange() foundation.objc.IObject /* cross-framework: Range */
-	Server() IMKServer /* already interface */
+	ReplacementRange() objc.IObject /* cross-framework: Range */
+	SelectionRange() objc.IObject /* cross-framework: Range */
+	Server() IMKServer
 	SetDelegate(newDelegate objectivec.IObject)
 	UpdateComposition()
 }
@@ -109,7 +111,7 @@ func NewIMKInputController() IMKInputController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/init(server:delegate:client:)
-func NewIMKInputControllerWithServerDelegateClient(server IMKServer /* already interface */, delegate objectivec.IObject, inputClient objectivec.IObject) IMKInputController {
+func NewIMKInputControllerWithServerDelegateClient(server IMKServer, delegate objectivec.IObject, inputClient objectivec.IObject) IMKInputController {
 	instance := getIMKInputControllerClass().Alloc()
 	rv := objc.Send[IMKInputController](instance.ID, objc.Sel("initWithServer:delegate:client:"), server, delegate, inputClient)
 	rv.Autorelease()
@@ -122,7 +124,7 @@ func NewIMKInputControllerWithServerDelegateClient(server IMKServer /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/annotationSelected(_:forCandidate:)
-func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework AttributedString */, candidateString objc.IObject /* cross-framework AttributedString */) {
+func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework: AttributedString */, candidateString objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("annotationSelected:forCandidate:"), annotationString, candidateString)
 }
 
@@ -140,7 +142,7 @@ func (i_ IMKInputController) CancelComposition() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelected(_:)
-func (i_ IMKInputController) CandidateSelected(candidateString objc.IObject /* cross-framework AttributedString */) {
+func (i_ IMKInputController) CandidateSelected(candidateString objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelected:"), candidateString)
 }
 
@@ -149,7 +151,7 @@ func (i_ IMKInputController) CandidateSelected(candidateString objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelectionChanged(_:)
-func (i_ IMKInputController) CandidateSelectionChanged(candidateString objc.IObject /* cross-framework AttributedString */) {
+func (i_ IMKInputController) CandidateSelectionChanged(candidateString objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelectionChanged:"), candidateString)
 }
 
@@ -168,8 +170,8 @@ func (i_ IMKInputController) Client() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/compositionAttributes(at:)
-func (i_ IMKInputController) CompositionAttributesAtRange(range_ foundation.objc.IObject /* cross-framework Range */) MutableDictionary /* not a class type */ {
-	rv := objc.Send[MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
+func (i_ IMKInputController) CompositionAttributesAtRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: MutableDictionary */ {
+	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
 	return rv
 }
 
@@ -188,7 +190,7 @@ func (i_ IMKInputController) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/doCommand(by:command:)
-func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objectivec.IObject) {
+func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("doCommandBySelector:commandDictionary:"), aSelector, infoDictionary)
 }
 
@@ -213,8 +215,8 @@ func (i_ IMKInputController) InputControllerWillClose() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/mark(forStyle:at:)
-func (i_ IMKInputController) MarkForStyleAtRange(style int /* primitive/slice/pointer. */, range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Dictionary */ {
-	rv := objc.Send[Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
+func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Dictionary */ {
+	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
 	return rv
 }
 
@@ -224,7 +226,7 @@ func (i_ IMKInputController) MarkForStyleAtRange(style int /* primitive/slice/po
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/menu()
 func (i_ IMKInputController) Menu() objc.IObject /* cross-framework: Menu */ {
-	rv := objc.Send[Menu](i_.ID, objc.Sel("menu"))
+	rv := objc.Send[appkit.Menu](i_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -233,8 +235,8 @@ func (i_ IMKInputController) Menu() objc.IObject /* cross-framework: Menu */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/replacementRange()
-func (i_ IMKInputController) ReplacementRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("replacementRange"))
+func (i_ IMKInputController) ReplacementRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[corefoundation.Range](i_.ID, objc.Sel("replacementRange"))
 	return rv
 }
 
@@ -243,8 +245,8 @@ func (i_ IMKInputController) ReplacementRange() foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/selectionRange()
-func (i_ IMKInputController) SelectionRange() foundation.objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("selectionRange"))
+func (i_ IMKInputController) SelectionRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[corefoundation.Range](i_.ID, objc.Sel("selectionRange"))
 	return rv
 }
 
@@ -253,7 +255,7 @@ func (i_ IMKInputController) SelectionRange() foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/server()
-func (i_ IMKInputController) Server() IMKServer /* already interface */ {
+func (i_ IMKInputController) Server() IMKServer {
 	rv := objc.Send[IMKServer](i_.ID, objc.Sel("server"))
 	return rv
 }

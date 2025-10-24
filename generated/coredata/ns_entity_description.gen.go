@@ -32,7 +32,7 @@ type _EntityDescriptionClass struct {
 type IEntityDescription interface {
 	objectivec.IObject
 	// properties:
-	VersionHash() foundation.objc.IObject /* cross-framework: NSData */
+	VersionHash() objc.IObject /* cross-framework: NSData */
 	AttributesByName() IAttributeDescription
 	SetAttributesByName(value IAttributeDescription)
 	CompoundIndexes() unsafe.Pointer
@@ -41,22 +41,22 @@ type IEntityDescription interface {
 	SetCoreSpotlightDisplayNameExpression(value objc.IObject /* cross-framework: Expression */)
 	Indexes() FetchIndexDescription /* not a class type */
 	SetIndexes(value FetchIndexDescription /* not a class type */)
-	IsAbstract() bool /* primitive/slice/pointer. */
-	SetIsAbstract(value bool /* primitive/slice/pointer. */)
-	ManagedObjectClassName() string /* primitive/slice/pointer. */
-	SetManagedObjectClassName(value string /* primitive/slice/pointer. */)
+	IsAbstract() bool
+	SetIsAbstract(value bool)
+	ManagedObjectClassName() objc.IObject /* cross-framework: NSString */
+	SetManagedObjectClassName(value objc.IObject /* cross-framework: NSString */)
 	ManagedObjectModel() IManagedObjectModel
 	SetManagedObjectModel(value IManagedObjectModel)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	Properties() IPropertyDescription
 	SetProperties(value IPropertyDescription)
 	PropertiesByName() IPropertyDescription
 	SetPropertiesByName(value IPropertyDescription)
 	RelationshipsByName() IRelationshipDescription
 	SetRelationshipsByName(value IRelationshipDescription)
-	RenamingIdentifier() string /* primitive/slice/pointer. */
-	SetRenamingIdentifier(value string /* primitive/slice/pointer. */)
+	RenamingIdentifier() objc.IObject /* cross-framework: NSString */
+	SetRenamingIdentifier(value objc.IObject /* cross-framework: NSString */)
 	Subentities() IEntityDescription
 	SetSubentities(value IEntityDescription)
 	SubentitiesByName() IEntityDescription
@@ -67,8 +67,8 @@ type IEntityDescription interface {
 	SetUniquenessConstraints(value unsafe.Pointer)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
-	VersionHashModifier() string /* primitive/slice/pointer. */
-	SetVersionHashModifier(value string /* primitive/slice/pointer. */)
+	VersionHashModifier() objc.IObject /* cross-framework: NSString */
+	SetVersionHashModifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -129,7 +129,7 @@ func NewEntityDescription() EntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/versionHash
-func (e_ EntityDescription) VersionHash() foundation.objc.IObject /* cross-framework: NSData */ {
+func (e_ EntityDescription) VersionHash() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (e_ EntityDescription) SetIndexes(value FetchIndexDescription /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/isabstract
-func (e_ EntityDescription) IsAbstract() bool /* primitive/slice/pointer. */ {
+func (e_ EntityDescription) IsAbstract() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isAbstract"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (e_ EntityDescription) IsAbstract() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/isabstract
-func (e_ EntityDescription) SetIsAbstract(value bool /* primitive/slice/pointer. */) {
+func (e_ EntityDescription) SetIsAbstract(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsAbstract:"), value)
 }
 
@@ -234,8 +234,8 @@ func (e_ EntityDescription) SetIsAbstract(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) ManagedObjectClassName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("managedObjectClassName"))
+func (e_ EntityDescription) ManagedObjectClassName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("managedObjectClassName"))
 	return rv
 }
 
@@ -244,8 +244,8 @@ func (e_ EntityDescription) ManagedObjectClassName() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) SetManagedObjectClassName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), objc.String(value))
+func (e_ EntityDescription) SetManagedObjectClassName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), value)
 }
 
 
@@ -272,8 +272,8 @@ func (e_ EntityDescription) SetManagedObjectModel(value IManagedObjectModel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
-func (e_ EntityDescription) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EntityDescription) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -282,8 +282,8 @@ func (e_ EntityDescription) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
-func (e_ EntityDescription) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+func (e_ EntityDescription) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -348,8 +348,8 @@ func (e_ EntityDescription) SetRelationshipsByName(value IRelationshipDescriptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) RenamingIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("renamingIdentifier"))
+func (e_ EntityDescription) RenamingIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
 
@@ -358,8 +358,8 @@ func (e_ EntityDescription) RenamingIdentifier() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) SetRenamingIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
+func (e_ EntityDescription) SetRenamingIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), value)
 }
 
 
@@ -462,8 +462,8 @@ func (e_ EntityDescription) SetUserInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) VersionHashModifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("versionHashModifier"))
+func (e_ EntityDescription) VersionHashModifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
 
@@ -472,8 +472,8 @@ func (e_ EntityDescription) VersionHashModifier() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) SetVersionHashModifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
+func (e_ EntityDescription) SetVersionHashModifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), value)
 }
 
 

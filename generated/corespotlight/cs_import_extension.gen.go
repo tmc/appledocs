@@ -33,7 +33,7 @@ type ICSImportExtension interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool
 }
 
 // An object that provides searchable attributes for file types that the app supports.
@@ -93,7 +93,7 @@ func NewCSImportExtension() CSImportExtension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSImportExtension/update(_:forFileAt:)
-func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (c_ CSImportExtension) UpdateAttributesForFileAtURLError(attributes ICSSearchableItemAttributeSet, contentURL objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateAttributes:forFileAtURL:error:"), attributes, contentURL, error_)
 	return rv
 }

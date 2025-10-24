@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,8 @@ type _AXFeatureOverrideSessionManagerClass struct {
 type IAXFeatureOverrideSessionManager interface {
 	objectivec.IObject
 	// properties:
-	AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */
+	AXFeatureOverrideSessionErrorDomain() objc.IObject /* cross-framework: NSString */
 	// methods:
-	BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) IAXFeatureOverrideSession
-	EndOverrideSessionError(session IAXFeatureOverrideSession, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A manager class to begin and end accessibility feature override sessions. Multiple override sessions are reconciled by combining the requests, preferring feature enablement. Ending all sessions restores the prior state of Accessibility feature enablement. Your app must be entitled with com.apple.developer.accessibility.merchant-api-control.
@@ -96,35 +95,10 @@ func (ac _AXFeatureOverrideSessionManagerClass) SharedInstance() AXFeatureOverri
 }
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/beginOverrideSession(enabling:disabling:)
-func (a_ AXFeatureOverrideSessionManager) BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) IAXFeatureOverrideSession {
-	rv := objc.Send[AXFeatureOverrideSession](a_.ID, objc.Sel("beginOverrideSessionEnablingOptions:disablingOptions:error:"), enableOptions, disableOptions, error_)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/end(_:)
-func (a_ AXFeatureOverrideSessionManager) EndOverrideSessionError(session IAXFeatureOverrideSession, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("endOverrideSession:error:"), session, error_)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/sharedInstance
-func (a_ AXFeatureOverrideSessionManager) SharedInstance() IAXFeatureOverrideSessionManager {
-	rv := objc.Send[AXFeatureOverrideSessionManager](a_.ID, objc.Sel("sharedInstance"))
-	return rv
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
+func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
-
 
 

@@ -30,14 +30,16 @@ type _VZLinuxBootLoaderClass struct {
 // An interface definition for the [VZLinuxBootLoader] class.
 type IVZLinuxBootLoader interface {
 	IVZBootLoader
-	CommandLine() string
-	SetCommandLine(value string)
-	InitialRamdiskURL() foundation.URL
-	SetInitialRamdiskURL(value foundation.URL)
-	KernelURL() foundation.URL
-	SetKernelURL(value foundation.URL)
+	// properties:
+	CommandLine() objc.IObject /* cross-framework: NSString */
+	SetCommandLine(value objc.IObject /* cross-framework: NSString */)
+	InitialRamdiskURL() objc.IObject /* cross-framework: NSURL */
+	SetInitialRamdiskURL(value objc.IObject /* cross-framework: NSURL */)
+	KernelURL() objc.IObject /* cross-framework: NSURL */
+	SetKernelURL(value objc.IObject /* cross-framework: NSURL */)
 	BootLoader() IVZBootLoader
 	SetBootLoader(value IVZBootLoader)
+	// methods:
 }
 
 // An object that loads and configures a Linux kernel as the guest system of your VM.
@@ -99,7 +101,7 @@ func NewVZLinuxBootLoader() VZLinuxBootLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/init(kernelURL:)
-func NewVZLinuxBootLoaderWithKernelURL(kernelURL foundation.URL) VZLinuxBootLoader {
+func NewVZLinuxBootLoaderWithKernelURL(kernelURL objc.IObject /* cross-framework: NSURL */) VZLinuxBootLoader {
 	instance := getVZLinuxBootLoaderClass().Alloc()
 	rv := objc.Send[VZLinuxBootLoader](instance.ID, objc.Sel("initWithKernelURL:"), kernelURL)
 	rv.Autorelease()
@@ -112,8 +114,8 @@ func NewVZLinuxBootLoaderWithKernelURL(kernelURL foundation.URL) VZLinuxBootLoad
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
-func (v_ VZLinuxBootLoader) CommandLine() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("commandLine"))
+func (v_ VZLinuxBootLoader) CommandLine() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("commandLine"))
 	return rv
 }
 
@@ -122,8 +124,8 @@ func (v_ VZLinuxBootLoader) CommandLine() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/commandLine
-func (v_ VZLinuxBootLoader) SetCommandLine(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), objc.String(value))
+func (v_ VZLinuxBootLoader) SetCommandLine(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setCommandLine:"), value)
 }
 
 
@@ -131,8 +133,8 @@ func (v_ VZLinuxBootLoader) SetCommandLine(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
-func (v_ VZLinuxBootLoader) InitialRamdiskURL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("initialRamdiskURL"))
+func (v_ VZLinuxBootLoader) InitialRamdiskURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("initialRamdiskURL"))
 	return rv
 }
 
@@ -141,7 +143,7 @@ func (v_ VZLinuxBootLoader) InitialRamdiskURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/initialRamdiskURL
-func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value foundation.URL) {
+func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setInitialRamdiskURL:"), value)
 }
 
@@ -150,8 +152,8 @@ func (v_ VZLinuxBootLoader) SetInitialRamdiskURL(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
-func (v_ VZLinuxBootLoader) KernelURL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("kernelURL"))
+func (v_ VZLinuxBootLoader) KernelURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("kernelURL"))
 	return rv
 }
 
@@ -160,7 +162,7 @@ func (v_ VZLinuxBootLoader) KernelURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxBootLoader/kernelURL
-func (v_ VZLinuxBootLoader) SetKernelURL(value foundation.URL) {
+func (v_ VZLinuxBootLoader) SetKernelURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setKernelURL:"), value)
 }
 

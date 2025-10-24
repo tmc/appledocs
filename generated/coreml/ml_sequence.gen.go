@@ -32,10 +32,10 @@ type _SequenceClass struct {
 type ISequence interface {
 	objectivec.IObject
 	// properties:
-	Int64Values() foundation.objc.IObject /* cross-framework: Number */
-	SetInt64Values(value foundation.objc.IObject /* cross-framework: Number */)
-	StringValues() string /* primitive/slice/pointer. */
-	SetStringValues(value string /* primitive/slice/pointer. */)
+	Int64Values() objc.IObject /* cross-framework: NSNumber */
+	SetInt64Values(value objc.IObject /* cross-framework: NSNumber */)
+	StringValues() objc.IObject /* cross-framework: NSString */
+	SetStringValues(value objc.IObject /* cross-framework: NSString */)
 	Type() FeatureType
 	SetType(value FeatureType)
 	// methods:
@@ -98,8 +98,8 @@ func NewSequence() Sequence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) Int64Values() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("int64Values"))
+func (s_ Sequence) Int64Values() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](s_.ID, objc.Sel("int64Values"))
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (s_ Sequence) Int64Values() foundation.objc.IObject /* cross-framework: Num
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) SetInt64Values(value foundation.objc.IObject /* cross-framework: Number */) {
+func (s_ Sequence) SetInt64Values(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
 }
 
@@ -117,8 +117,8 @@ func (s_ Sequence) SetInt64Values(value foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) StringValues() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
+func (s_ Sequence) StringValues() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("stringValues"))
 	return rv
 }
 
@@ -127,8 +127,8 @@ func (s_ Sequence) StringValues() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) SetStringValues(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
+func (s_ Sequence) SetStringValues(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), value)
 }
 
 

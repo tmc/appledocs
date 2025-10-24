@@ -3,34 +3,34 @@
 package naturallanguage
 
 // Type aliases and typedefs
-// NLContextualEmbeddingKey - Contextual embedding keys.
+// ContextualEmbeddingKey - Contextual embedding keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingKey
-// NLContextualEmbeddingKey has base type: NSString *
-type NLContextualEmbeddingKey uintptr
-// NLDistance - The distance between two strings in a text embedding.
+// NLContextualEmbeddingKey is a string typedef
+type ContextualEmbeddingKey = string
+// Distance - The distance between two strings in a text embedding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLDistance
 // NLDistance has base type: double
-type NLDistance uintptr
-// NLLanguage - The languages that the Natural Language framework supports.
+type Distance uintptr
+// Language - The languages that the Natural Language framework supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguage
-// NLLanguage has base type: NSString *
-type NLLanguage uintptr
-// NLScript - The writing scripts that the Natural Language framework supports.
+// NLLanguage is a string typedef
+type Language = string
+// Script - The writing scripts that the Natural Language framework supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLScript
-// NLScript has base type: NSString *
-type NLScript uintptr
-// NLTag - A token type, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
+// NLScript is a string typedef
+type Script = string
+// Tag - A token type, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTag
-// NLTag has base type: NSString *
-type NLTag uintptr
-// NLTagScheme - Constants for the tag schemes specified when initializing a linguistic tagger.
+// NLTag is a string typedef
+type Tag = string
+// TagScheme - Constants for the tag schemes specified when initializing a linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagScheme
-// NLTagScheme has base type: NSString *
-type NLTagScheme uintptr
+// NLTagScheme is a string typedef
+type TagScheme = string
 

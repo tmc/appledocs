@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,18 @@ type _DocumentCameraScanClass struct {
 // An interface definition for the [DocumentCameraScan] class.
 type IDocumentCameraScan interface {
 	objectivec.IObject
-	Title() string
+	// properties:
 	PageCount() int
 	SetPageCount(value int)
+	// methods:
 }
 
 // A single document scanned in the document camera.
+
+
+// A single document scanned in the document camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan
 type DocumentCameraScan struct {
 	objectivec.Object
@@ -81,16 +87,10 @@ func NewDocumentCameraScan() DocumentCameraScan {
 }
 
 
-// The title of the scanned document.
-//
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title
-func (d_ DocumentCameraScan) Title() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("title"))
-	return rv
-}
 
 // The number of pages in the scanned document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
 func (d_ DocumentCameraScan) PageCount() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("pageCount"))
@@ -98,14 +98,12 @@ func (d_ DocumentCameraScan) PageCount() int {
 }
 
 
-// SetPageCount sets the value of the pageCount property.
 // The number of pages in the scanned document.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
 func (d_ DocumentCameraScan) SetPageCount(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPageCount:"), value)
 }
-
 
 

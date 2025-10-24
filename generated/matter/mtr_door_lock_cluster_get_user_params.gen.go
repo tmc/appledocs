@@ -31,15 +31,19 @@ type _MTRDoorLockClusterGetUserParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetUserParams] class.
 type IMTRDoorLockClusterGetUserParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterGetUserParams
 type MTRDoorLockClusterGetUserParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDoorLockClusterGetUserParams() MTRDoorLockClusterGetUserParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetUserParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterGetUserParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetUserParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetUserParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetUserParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterGetUserParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetUserParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetUserParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/userindex
-func (m_ MTRDoorLockClusterGetUserParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterGetUserParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetuserparams/userindex
-func (m_ MTRDoorLockClusterGetUserParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetUserParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

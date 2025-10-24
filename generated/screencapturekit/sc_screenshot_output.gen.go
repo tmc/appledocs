@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,21 +31,30 @@ type _ScreenshotOutputClass struct {
 // An interface definition for the [ScreenshotOutput] class.
 type IScreenshotOutput interface {
 	objectivec.IObject
-	FileURL() foundation.URL
-	SetFileURL(value foundation.IURL)
-	HdrImage() coregraphics.CGImageRef
-	SetHdrImage(value coregraphics.CGImageRef)
-	SdrImage() appkit.Image
-	SetSdrImage(value appkit.IImage)
+	// properties:
+	HdrImage() ImageRef /* not a class type */
+	SetHdrImage(value ImageRef /* not a class type */)
+	SdrImage() ImageRef /* not a class type */
+	SetSdrImage(value ImageRef /* not a class type */)
+	FileURL() objc.IObject /* cross-framework: NSURL */
+	SetFileURL(value objc.IObject /* cross-framework: NSURL */)
+	// methods:
 }
 
+// An object that contains all images requested by the client.
+
+
+// An object that contains all images requested by the client.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput
 type ScreenshotOutput struct {
 	objectivec.Object
 }
 
 // ScreenshotOutputFrom constructs a [ScreenshotOutput] from an unsafe.Pointer.
+//
+// An object that contains all images requested by the client.
 func ScreenshotOutputFrom(ptr unsafe.Pointer) ScreenshotOutput {
 	return ScreenshotOutput{objectivec.Object{objc.ID(ptr)}}
 }
@@ -84,49 +91,57 @@ func NewScreenshotOutput() ScreenshotOutput {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/fileURL
-func (s_ ScreenshotOutput) FileURL() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("fileURL"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
+func (s_ ScreenshotOutput) HdrImage() ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](s_.ID, objc.Sel("hdrImage"))
 	return rv
 }
 
 
-// SetFileURL sets the value of the fileURL property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/fileURL
-func (s_ ScreenshotOutput) SetFileURL(value foundation.IURL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFileURL:"), value)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
-func (s_ ScreenshotOutput) HdrImage() coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](s_.ID, objc.Sel("hdrImage"))
-	return rv
-}
-
-
-// SetHdrImage sets the value of the hdrImage property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/hdrImage
-func (s_ ScreenshotOutput) SetHdrImage(value coregraphics.CGImageRef) {
+func (s_ ScreenshotOutput) SetHdrImage(value ImageRef /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHdrImage:"), value)
 }
 
+
+// An output property that specifies the standard dynamic range version of the screenshot.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
-func (s_ ScreenshotOutput) SdrImage() appkit.Image {
-	rv := objc.Send[appkit.Image](s_.ID, objc.Sel("sdrImage"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/sdrImage
+func (s_ ScreenshotOutput) SdrImage() ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](s_.ID, objc.Sel("sdrImage"))
 	return rv
 }
 
 
-// SetSdrImage sets the value of the sdrImage property.
+// An output property that specifies the standard dynamic range version of the screenshot.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/sdrimage
-func (s_ ScreenshotOutput) SetSdrImage(value appkit.IImage) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotOutput/sdrImage
+func (s_ ScreenshotOutput) SetSdrImage(value ImageRef /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSdrImage:"), value)
+}
+
+
+// A URL property that specifies the location of the saved image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/fileurl
+func (s_ ScreenshotOutput) FileURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("fileURL"))
+	return rv
+}
+
+
+// A URL property that specifies the location of the saved image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput/fileurl
+func (s_ ScreenshotOutput) SetFileURL(value objc.IObject /* cross-framework: NSURL */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFileURL:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,14 +33,14 @@ type IABGroup interface {
 	IABRecord
 	// properties:
 	// methods:
-	AddMember(person IABPerson) bool /* primitive/slice/pointer. */
-	AddSubgroup(group IABGroup) bool /* primitive/slice/pointer. */
-	DistributionIdentifierForPropertyPerson(property string /* primitive/slice/pointer. */, person IABPerson) objc.IObject /* cross-framework: String */
+	AddMember(person IABPerson) bool
+	AddSubgroup(group IABGroup) bool
+	DistributionIdentifierForPropertyPerson(property objc.IObject /* cross-framework: NSString */, person IABPerson) objc.IObject /* cross-framework: String */
 	Members() objc.IObject /* cross-framework: Array */
 	ParentGroups() objc.IObject /* cross-framework: Array */
-	RemoveMember(person IABPerson) bool /* primitive/slice/pointer. */
-	RemoveSubgroup(group IABGroup) bool /* primitive/slice/pointer. */
-	SetDistributionIdentifierForPropertyPerson(identifier string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */, person IABPerson) bool /* primitive/slice/pointer. */
+	RemoveMember(person IABPerson) bool
+	RemoveSubgroup(group IABGroup) bool
+	SetDistributionIdentifierForPropertyPerson(identifier objc.IObject /* cross-framework: NSString */, property objc.IObject /* cross-framework: NSString */, person IABPerson) bool
 	Subgroups() objc.IObject /* cross-framework: Array */
 }
 
@@ -102,7 +103,7 @@ func NewABGroup() ABGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addPropertiesAndTypes(_:)
-func (ac _ABGroupClass) AddPropertiesAndTypes(properties objectivec.IObject) int /* primitive/slice/pointer. */ {
+func (ac _ABGroupClass) AddPropertiesAndTypes(properties objc.IObject /* cross-framework: NSDictionary */) int {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("addPropertiesAndTypes:"), properties)
 	return rv
 }
@@ -113,7 +114,7 @@ func (ac _ABGroupClass) AddPropertiesAndTypes(properties objectivec.IObject) int
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/properties()
 func (ac _ABGroupClass) Properties() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("properties"))
+	rv := objc.Send[foundation.Array](objc.ID(ac.class), objc.Sel("properties"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (ac _ABGroupClass) Properties() objc.IObject /* cross-framework: Array */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeProperties(_:)
-func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int /* primitive/slice/pointer. */ {
+func (ac _ABGroupClass) RemoveProperties(properties objc.IObject /* cross-framework: NSArray */) int {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("removeProperties:"), properties)
 	return rv
 }
@@ -132,8 +133,8 @@ func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property string /* primitive/slice/pointer. */, label string /* primitive/slice/pointer. */, key string /* primitive/slice/pointer. */, value objectivec.IObject, comparison ABSearchComparison /* typedef */) IABSearchElement {
-	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
+func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property objc.IObject /* cross-framework: NSString */, label objc.IObject /* cross-framework: NSString */, key objc.IObject /* cross-framework: NSString */, value objectivec.IObject, comparison ABSearchComparison /* typedef */) IABSearchElement {
+	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), property, label, key, value, comparison)
 	return rv
 }
 
@@ -142,8 +143,8 @@ func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/type(ofProperty:)
-func (ac _ABGroupClass) TypeOfProperty(property string /* primitive/slice/pointer. */) ABPropertyType /* typedef */ {
-	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), objc.String(property))
+func (ac _ABGroupClass) TypeOfProperty(property objc.IObject /* cross-framework: NSString */) ABPropertyType /* typedef */ {
+	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), property)
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (ac _ABGroupClass) TypeOfProperty(property string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addMember(_:)
-func (a_ ABGroup) AddMember(person IABPerson) bool /* primitive/slice/pointer. */ {
+func (a_ ABGroup) AddMember(person IABPerson) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addMember:"), person)
 	return rv
 }
@@ -162,7 +163,7 @@ func (a_ ABGroup) AddMember(person IABPerson) bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/addSubgroup(_:)
-func (a_ ABGroup) AddSubgroup(group IABGroup) bool /* primitive/slice/pointer. */ {
+func (a_ ABGroup) AddSubgroup(group IABGroup) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addSubgroup:"), group)
 	return rv
 }
@@ -172,8 +173,8 @@ func (a_ ABGroup) AddSubgroup(group IABGroup) bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/distributionIdentifier(forProperty:person:)
-func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string /* primitive/slice/pointer. */, person IABPerson) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), objc.String(property), person)
+func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property objc.IObject /* cross-framework: NSString */, person IABPerson) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("distributionIdentifierForProperty:person:"), property, person)
 	return rv
 }
 
@@ -183,7 +184,7 @@ func (a_ ABGroup) DistributionIdentifierForPropertyPerson(property string /* pri
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/members()
 func (a_ ABGroup) Members() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("members"))
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("members"))
 	return rv
 }
 
@@ -193,7 +194,7 @@ func (a_ ABGroup) Members() objc.IObject /* cross-framework: Array */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/parentGroups()
 func (a_ ABGroup) ParentGroups() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("parentGroups"))
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("parentGroups"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (a_ ABGroup) ParentGroups() objc.IObject /* cross-framework: Array */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeMember(_:)
-func (a_ ABGroup) RemoveMember(person IABPerson) bool /* primitive/slice/pointer. */ {
+func (a_ ABGroup) RemoveMember(person IABPerson) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeMember:"), person)
 	return rv
 }
@@ -212,7 +213,7 @@ func (a_ ABGroup) RemoveMember(person IABPerson) bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/removeSubgroup(_:)
-func (a_ ABGroup) RemoveSubgroup(group IABGroup) bool /* primitive/slice/pointer. */ {
+func (a_ ABGroup) RemoveSubgroup(group IABGroup) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeSubgroup:"), group)
 	return rv
 }
@@ -222,8 +223,8 @@ func (a_ ABGroup) RemoveSubgroup(group IABGroup) bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/setDistributionIdentifier(_:forProperty:person:)
-func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */, person IABPerson) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setDistributionIdentifier:forProperty:person:"), objc.String(identifier), objc.String(property), person)
+func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier objc.IObject /* cross-framework: NSString */, property objc.IObject /* cross-framework: NSString */, person IABPerson) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setDistributionIdentifier:forProperty:person:"), identifier, property, person)
 	return rv
 }
 
@@ -233,7 +234,7 @@ func (a_ ABGroup) SetDistributionIdentifierForPropertyPerson(identifier string /
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/subgroups()
 func (a_ ABGroup) Subgroups() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("subgroups"))
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("subgroups"))
 	return rv
 }
 

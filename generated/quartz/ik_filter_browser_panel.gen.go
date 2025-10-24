@@ -30,12 +30,18 @@ type _IKFilterBrowserPanelClass struct {
 // An interface definition for the [IKFilterBrowserPanel] class.
 type IIKFilterBrowserPanel interface {
 	appkit.IPanel
+	// properties:
+	// methods:
 }
 
 // Presents a user interface for browsing filters.
 //
 // The class provides a user interface that allows users to browse Core Image filters ( ), to preview a filter, and to get additional information about the filter, such as its description. An object can be displayed as: a separate panel, that is, a utility window that floats on top of document windows a modal dialog a sheet, that is, a dialog that is attached to its parent window and must be dismissed by the user a view that an application can insert into a custom user interface An object can be configured through a style mask to use either the default or brushed metal look for windows. The size and number of visible controls are specified through an options dictionary. An object communicates selection changes through notifications. The class allows the user to create filter collections that are stored with the key in the property list located in .
+
+
+// Presents a user interface for browsing filters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKFilterBrowserPanel
 type IKFilterBrowserPanel struct {
 	appkit.Panel

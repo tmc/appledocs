@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +32,15 @@ type _ACAccountClass struct {
 type IACAccount interface {
 	objectivec.IObject
 	// properties:
-	AccountDescription() string /* primitive/slice/pointer. */
-	SetAccountDescription(value string /* primitive/slice/pointer. */)
+	AccountDescription() objc.IObject /* cross-framework: NSString */
+	SetAccountDescription(value objc.IObject /* cross-framework: NSString */)
 	AccountType() IACAccountType
 	SetAccountType(value IACAccountType)
 	Credential() IACAccountCredential
 	SetCredential(value IACAccountCredential)
-	Identifier() string /* primitive/slice/pointer. */
-	UserFullName() string /* primitive/slice/pointer. */
-	Username() string /* primitive/slice/pointer. */
-	SetUsername(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	Username() objc.IObject /* cross-framework: NSString */
+	SetUsername(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -114,8 +114,8 @@ func NewACAccountWithAccountType(type_ IACAccountType) ACAccount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) AccountDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
+func (a_ ACAccount) AccountDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("accountDescription"))
 	return rv
 }
 
@@ -124,8 +124,8 @@ func (a_ ACAccount) AccountDescription() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) SetAccountDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
+func (a_ ACAccount) SetAccountDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), value)
 }
 
 
@@ -171,18 +171,8 @@ func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
-func (a_ ACAccount) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The full name associated with the user account.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
-func (a_ ACAccount) UserFullName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
+func (a_ ACAccount) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -191,8 +181,8 @@ func (a_ ACAccount) UserFullName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) Username() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("username"))
+func (a_ ACAccount) Username() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -201,8 +191,8 @@ func (a_ ACAccount) Username() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) SetUsername(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (a_ ACAccount) SetUsername(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), value)
 }
 
 

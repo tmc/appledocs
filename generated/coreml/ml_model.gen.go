@@ -106,7 +106,7 @@ func NewModel() Model {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func NewModelWithContentsOfURLConfigurationError(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLConfigurationError(url objc.IObject /* cross-framework: NSURL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -116,7 +116,7 @@ func NewModelWithContentsOfURLConfigurationError(url foundation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -134,7 +134,7 @@ func (mc _ModelClass) CompileModel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-3nea
-func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.objc.IObject /* cross-framework URL */, handler unsafe.Pointer) {
+func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL objc.IObject /* cross-framework: NSURL */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("compileModelAtURL:completionHandler:"), modelURL, handler)
 }
 
@@ -143,7 +143,7 @@ func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-6442s
-func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) foundation.objc.IObject /* cross-framework: URL */ {
+func (mc _ModelClass) CompileModelAtURLError(modelURL objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
 	return rv
 }
@@ -153,7 +153,7 @@ func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -163,7 +163,7 @@ func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url objc.IObject /* cross-framework: NSURL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -182,7 +182,7 @@ func (mc _ModelClass) LoadModelAssetConfigurationCompletionHandler(asset IMLMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:
-func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
+func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url objc.IObject /* cross-framework: NSURL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 
@@ -191,7 +191,7 @@ func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-func (mc _ModelClass) AvailableComputeDevices() []objc.ID /* already interface */ {
+func (mc _ModelClass) AvailableComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(mc.class), objc.Sel("availableComputeDevices"))
 	return rv
 }
@@ -294,7 +294,7 @@ func (m_ Model) PredictionsFromBatchError(inputBatch objectivec.IObject, error_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-func (m_ Model) AvailableComputeDevices() []objc.ID /* already interface */ {
+func (m_ Model) AvailableComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("availableComputeDevices"))
 	return rv
 }

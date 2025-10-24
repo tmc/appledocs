@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +32,8 @@ type _CNDetectionClass struct {
 type ICNDetection interface {
 	objectivec.IObject
 	// properties:
-	FocusDisparity() float32 /* primitive/slice/pointer. */
-	NormalizedRect() coregraphics.CGRect
+	FocusDisparity() float32
+	NormalizedRect() objc.IObject /* cross-framework: Rect */
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCNDetection() CNDetection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/focusDisparity
-func (c_ CNDetection) FocusDisparity() float32 /* primitive/slice/pointer. */ {
+func (c_ CNDetection) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
@@ -104,8 +104,8 @@ func (c_ CNDetection) FocusDisparity() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/normalizedRect
-func (c_ CNDetection) NormalizedRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("normalizedRect"))
+func (c_ CNDetection) NormalizedRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("normalizedRect"))
 	return rv
 }
 

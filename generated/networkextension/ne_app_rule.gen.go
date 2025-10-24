@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,26 @@ type _NEAppRuleClass struct {
 // An interface definition for the [NEAppRule] class.
 type INEAppRule interface {
 	objectivec.IObject
-	MatchDesignatedRequirement() string
-	MatchDomains() objc.ID
-	SetMatchDomains(value objc.ID)
-	MatchPath() string
-	SetMatchPath(value string)
-	MatchSigningIdentifier() string
-	MatchTools() []NEAppRule
-	SetMatchTools(value []NEAppRule)
+	// properties:
+	MatchDesignatedRequirement() objc.IObject /* cross-framework: NSString */
+	SetMatchDesignatedRequirement(value objc.IObject /* cross-framework: NSString */)
+	MatchDomains() unsafe.Pointer
+	SetMatchDomains(value unsafe.Pointer)
+	MatchPath() objc.IObject /* cross-framework: NSString */
+	SetMatchPath(value objc.IObject /* cross-framework: NSString */)
+	MatchSigningIdentifier() objc.IObject /* cross-framework: NSString */
+	SetMatchSigningIdentifier(value objc.IObject /* cross-framework: NSString */)
+	MatchTools() INEAppRule
+	SetMatchTools(value INEAppRule)
+	// methods:
 }
 
 // The identity of an app whose traffic is to be routed through the tunnel.
+
+
+// The identity of an app whose traffic is to be routed through the tunnel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule
 type NEAppRule struct {
 	objectivec.Object
@@ -87,108 +96,99 @@ func NewNEAppRule() NEAppRule {
 
 
 
-
-// Create an app rule that matches an app with a given signing identifier.
+// The designated requirement of the app that matches the rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:)
-func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
-	instance := getNEAppRuleClass().Alloc()
-	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:"), objc.String(signingIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Create an app rule that matches an app with a given signing identifier and a given designated requirement.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:designatedRequirement:)
-func NewNEAppRuleWithSigningIdentifierDesignatedRequirement(signingIdentifier string, designatedRequirement string) NEAppRule {
-	instance := getNEAppRuleClass().Alloc()
-	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:designatedRequirement:"), objc.String(signingIdentifier), objc.String(designatedRequirement))
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchdesignatedrequirement
+func (n_ NEAppRule) MatchDesignatedRequirement() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("matchDesignatedRequirement"))
 	return rv
 }
 
 
 // The designated requirement of the app that matches the rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDesignatedRequirement
-func (n_ NEAppRule) MatchDesignatedRequirement() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchDesignatedRequirement"))
-	return rv
-}
-
-// The hostname domains that match the rule.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDomains
-func (n_ NEAppRule) MatchDomains() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("matchDomains"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchdesignatedrequirement
+func (n_ NEAppRule) SetMatchDesignatedRequirement(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDesignatedRequirement:"), value)
 }
 
 
-// SetMatchDomains sets the value of the matchDomains property.
 // The hostname domains that match the rule.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDomains
-func (n_ NEAppRule) SetMatchDomains(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchdomains
+func (n_ NEAppRule) MatchDomains() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("matchDomains"))
+	return rv
+}
+
+
+// The hostname domains that match the rule.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchdomains
+func (n_ NEAppRule) SetMatchDomains(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
 }
 
+
 // The file system path of the app that matches the rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchPath
-func (n_ NEAppRule) MatchPath() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchPath"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchpath
+func (n_ NEAppRule) MatchPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("matchPath"))
 	return rv
 }
 
 
-// SetMatchPath sets the value of the matchPath property.
 // The file system path of the app that matches the rule.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchPath
-func (n_ NEAppRule) SetMatchPath(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPath:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchpath
+func (n_ NEAppRule) SetMatchPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPath:"), value)
 }
+
 
 // The signing identifier of the app that matches the rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchSigningIdentifier
-func (n_ NEAppRule) MatchSigningIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchSigningIdentifier"))
-	return rv
-}
-
-// An array of app rule objects that restrict the rule so it only matches network traffic generated from helper processes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchTools
-func (n_ NEAppRule) MatchTools() []NEAppRule {
-	rv := objc.Send[[]NEAppRule](n_.ID, objc.Sel("matchTools"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchsigningidentifier
+func (n_ NEAppRule) MatchSigningIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("matchSigningIdentifier"))
 	return rv
 }
 
 
-// SetMatchTools sets the value of the matchTools property.
-// An array of app rule objects that restrict the rule so it only matches network traffic generated from helper processes.
-
+// The signing identifier of the app that matches the rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchTools
-func (n_ NEAppRule) SetMatchTools(value []NEAppRule) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchTools:"), nsArray)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchsigningidentifier
+func (n_ NEAppRule) SetMatchSigningIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchSigningIdentifier:"), value)
 }
+
+
+// An array of app rule objects that restrict the rule so it only matches network traffic generated from helper processes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchtools
+func (n_ NEAppRule) MatchTools() INEAppRule {
+	rv := objc.Send[NEAppRule](n_.ID, objc.Sel("matchTools"))
+	return rv
+}
+
+
+// An array of app rule objects that restrict the rule so it only matches network traffic generated from helper processes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapprule/matchtools
+func (n_ NEAppRule) SetMatchTools(value INEAppRule) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchTools:"), value)
+}
+
 
 

@@ -30,14 +30,18 @@ type _QCCompositionPickerViewClass struct {
 // An interface definition for the [QCCompositionPickerView] class.
 type IQCCompositionPickerView interface {
 	appkit.IView
-	SetSelectedComposition(composition IQCComposition)
-	ShowsCompositionNames() bool
+	// properties:
+	// methods:
 }
 
 // The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
 //
 // Note that the composition picker view does not automatically refresh its content when the composition repository is updated. It’s your responsibility to perform any necessary updating.
+
+
+// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView
 type QCCompositionPickerView struct {
 	appkit.View
@@ -83,21 +87,6 @@ func NewQCCompositionPickerView() QCCompositionPickerView {
 	return getQCCompositionPickerViewClass().New()
 }
 
-
-// Sets a composition as selected in the composition picker view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView/setSelectedComposition(_:)
-func (q_ QCCompositionPickerView) SetSelectedComposition(composition IQCComposition) {
-	objc.Send[objc.ID](q_.ID, objc.Sel("setSelectedComposition:"), composition)
-}
-
-// Retrieves whether composition names can be shown in the composition picker view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView/showsCompositionNames()
-func (q_ QCCompositionPickerView) ShowsCompositionNames() bool {
-	rv := objc.Send[bool](q_.ID, objc.Sel("showsCompositionNames"))
-	return rv
-}
 
 
 

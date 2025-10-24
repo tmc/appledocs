@@ -29,9 +29,13 @@ type _MTRClusterRelativeHumidityMeasurementClass struct {
 // An interface definition for the [MTRClusterRelativeHumidityMeasurement] class.
 type IMTRClusterRelativeHumidityMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRelativeHumidityMeasurement
 type MTRClusterRelativeHumidityMeasurement struct {
 	MTRGenericCluster

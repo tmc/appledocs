@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterPowerMissingPhaseEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent] class.
 type IMTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent
 type MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent struct {
 	objectivec.Object

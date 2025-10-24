@@ -32,48 +32,48 @@ type IMutableParagraphStyle interface {
 	// properties:
 	Alignment() TextAlignment
 	SetAlignment(value TextAlignment)
-	AllowsDefaultTighteningForTruncation() bool /* primitive/slice/pointer. */
-	SetAllowsDefaultTighteningForTruncation(value bool /* primitive/slice/pointer. */)
+	AllowsDefaultTighteningForTruncation() bool
+	SetAllowsDefaultTighteningForTruncation(value bool)
 	BaseWritingDirection() WritingDirection
 	SetBaseWritingDirection(value WritingDirection)
-	DefaultTabInterval() float64 /* primitive/slice/pointer. */
-	SetDefaultTabInterval(value float64 /* primitive/slice/pointer. */)
-	FirstLineHeadIndent() float64 /* primitive/slice/pointer. */
-	SetFirstLineHeadIndent(value float64 /* primitive/slice/pointer. */)
-	HeadIndent() float64 /* primitive/slice/pointer. */
-	SetHeadIndent(value float64 /* primitive/slice/pointer. */)
-	HeaderLevel() int /* primitive/slice/pointer. */
-	SetHeaderLevel(value int /* primitive/slice/pointer. */)
-	HyphenationFactor() float32 /* primitive/slice/pointer. */
-	SetHyphenationFactor(value float32 /* primitive/slice/pointer. */)
+	DefaultTabInterval() float64
+	SetDefaultTabInterval(value float64)
+	FirstLineHeadIndent() float64
+	SetFirstLineHeadIndent(value float64)
+	HeadIndent() float64
+	SetHeadIndent(value float64)
+	HeaderLevel() int
+	SetHeaderLevel(value int)
+	HyphenationFactor() float32
+	SetHyphenationFactor(value float32)
 	LineBreakMode() LineBreakMode
 	SetLineBreakMode(value LineBreakMode)
 	LineBreakStrategy() LineBreakStrategy
 	SetLineBreakStrategy(value LineBreakStrategy)
-	LineHeightMultiple() float64 /* primitive/slice/pointer. */
-	SetLineHeightMultiple(value float64 /* primitive/slice/pointer. */)
-	LineSpacing() float64 /* primitive/slice/pointer. */
-	SetLineSpacing(value float64 /* primitive/slice/pointer. */)
-	MaximumLineHeight() float64 /* primitive/slice/pointer. */
-	SetMaximumLineHeight(value float64 /* primitive/slice/pointer. */)
-	MinimumLineHeight() float64 /* primitive/slice/pointer. */
-	SetMinimumLineHeight(value float64 /* primitive/slice/pointer. */)
-	ParagraphSpacing() float64 /* primitive/slice/pointer. */
-	SetParagraphSpacing(value float64 /* primitive/slice/pointer. */)
-	ParagraphSpacingBefore() float64 /* primitive/slice/pointer. */
-	SetParagraphSpacingBefore(value float64 /* primitive/slice/pointer. */)
-	TabStops() []TextTab /* primitive/slice/pointer. */
-	SetTabStops(value []TextTab /* primitive/slice/pointer. */)
-	TailIndent() float64 /* primitive/slice/pointer. */
-	SetTailIndent(value float64 /* primitive/slice/pointer. */)
-	TextBlocks() []TextBlock /* primitive/slice/pointer. */
-	SetTextBlocks(value []TextBlock /* primitive/slice/pointer. */)
-	TextLists() []TextList /* primitive/slice/pointer. */
-	SetTextLists(value []TextList /* primitive/slice/pointer. */)
-	TighteningFactorForTruncation() float32 /* primitive/slice/pointer. */
-	SetTighteningFactorForTruncation(value float32 /* primitive/slice/pointer. */)
-	UsesDefaultHyphenation() bool /* primitive/slice/pointer. */
-	SetUsesDefaultHyphenation(value bool /* primitive/slice/pointer. */)
+	LineHeightMultiple() float64
+	SetLineHeightMultiple(value float64)
+	LineSpacing() float64
+	SetLineSpacing(value float64)
+	MaximumLineHeight() float64
+	SetMaximumLineHeight(value float64)
+	MinimumLineHeight() float64
+	SetMinimumLineHeight(value float64)
+	ParagraphSpacing() float64
+	SetParagraphSpacing(value float64)
+	ParagraphSpacingBefore() float64
+	SetParagraphSpacingBefore(value float64)
+	TabStops() []ITextTab
+	SetTabStops(value []ITextTab)
+	TailIndent() float64
+	SetTailIndent(value float64)
+	TextBlocks() []ITextBlock
+	SetTextBlocks(value []ITextBlock)
+	TextLists() []ITextList
+	SetTextLists(value []ITextList)
+	TighteningFactorForTruncation() float32
+	SetTighteningFactorForTruncation(value float32)
+	UsesDefaultHyphenation() bool
+	SetUsesDefaultHyphenation(value bool)
 	// methods:
 	AddTabStop(anObject ITextTab)
 	RemoveTabStop(anObject ITextTab)
@@ -185,7 +185,7 @@ func (m_ MutableParagraphStyle) SetAlignment(value TextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/allowsDefaultTighteningForTruncation
-func (m_ MutableParagraphStyle) AllowsDefaultTighteningForTruncation() bool /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsDefaultTighteningForTruncation"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (m_ MutableParagraphStyle) AllowsDefaultTighteningForTruncation() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/allowsDefaultTighteningForTruncation
-func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bool /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsDefaultTighteningForTruncation:"), value)
 }
 
@@ -223,7 +223,7 @@ func (m_ MutableParagraphStyle) SetBaseWritingDirection(value WritingDirection) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/defaultTabInterval
-func (m_ MutableParagraphStyle) DefaultTabInterval() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) DefaultTabInterval() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("defaultTabInterval"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (m_ MutableParagraphStyle) DefaultTabInterval() float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/defaultTabInterval
-func (m_ MutableParagraphStyle) SetDefaultTabInterval(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetDefaultTabInterval(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultTabInterval:"), value)
 }
 
@@ -242,7 +242,7 @@ func (m_ MutableParagraphStyle) SetDefaultTabInterval(value float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/firstLineHeadIndent
-func (m_ MutableParagraphStyle) FirstLineHeadIndent() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) FirstLineHeadIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("firstLineHeadIndent"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (m_ MutableParagraphStyle) FirstLineHeadIndent() float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/firstLineHeadIndent
-func (m_ MutableParagraphStyle) SetFirstLineHeadIndent(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetFirstLineHeadIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFirstLineHeadIndent:"), value)
 }
 
@@ -261,7 +261,7 @@ func (m_ MutableParagraphStyle) SetFirstLineHeadIndent(value float64 /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headIndent
-func (m_ MutableParagraphStyle) HeadIndent() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) HeadIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("headIndent"))
 	return rv
 }
@@ -271,7 +271,7 @@ func (m_ MutableParagraphStyle) HeadIndent() float64 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headIndent
-func (m_ MutableParagraphStyle) SetHeadIndent(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetHeadIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeadIndent:"), value)
 }
 
@@ -280,7 +280,7 @@ func (m_ MutableParagraphStyle) SetHeadIndent(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headerLevel
-func (m_ MutableParagraphStyle) HeaderLevel() int /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) HeaderLevel() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("headerLevel"))
 	return rv
 }
@@ -290,7 +290,7 @@ func (m_ MutableParagraphStyle) HeaderLevel() int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/headerLevel
-func (m_ MutableParagraphStyle) SetHeaderLevel(value int /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaderLevel:"), value)
 }
 
@@ -299,7 +299,7 @@ func (m_ MutableParagraphStyle) SetHeaderLevel(value int /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/hyphenationFactor
-func (m_ MutableParagraphStyle) HyphenationFactor() float32 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) HyphenationFactor() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("hyphenationFactor"))
 	return rv
 }
@@ -309,7 +309,7 @@ func (m_ MutableParagraphStyle) HyphenationFactor() float32 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/hyphenationFactor
-func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
 
@@ -356,7 +356,7 @@ func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineHeightMultiple
-func (m_ MutableParagraphStyle) LineHeightMultiple() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) LineHeightMultiple() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("lineHeightMultiple"))
 	return rv
 }
@@ -366,7 +366,7 @@ func (m_ MutableParagraphStyle) LineHeightMultiple() float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineHeightMultiple
-func (m_ MutableParagraphStyle) SetLineHeightMultiple(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetLineHeightMultiple(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineHeightMultiple:"), value)
 }
 
@@ -375,7 +375,7 @@ func (m_ MutableParagraphStyle) SetLineHeightMultiple(value float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineSpacing
-func (m_ MutableParagraphStyle) LineSpacing() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) LineSpacing() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("lineSpacing"))
 	return rv
 }
@@ -385,7 +385,7 @@ func (m_ MutableParagraphStyle) LineSpacing() float64 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineSpacing
-func (m_ MutableParagraphStyle) SetLineSpacing(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetLineSpacing(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineSpacing:"), value)
 }
 
@@ -394,7 +394,7 @@ func (m_ MutableParagraphStyle) SetLineSpacing(value float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/maximumLineHeight
-func (m_ MutableParagraphStyle) MaximumLineHeight() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) MaximumLineHeight() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("maximumLineHeight"))
 	return rv
 }
@@ -404,7 +404,7 @@ func (m_ MutableParagraphStyle) MaximumLineHeight() float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/maximumLineHeight
-func (m_ MutableParagraphStyle) SetMaximumLineHeight(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetMaximumLineHeight(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumLineHeight:"), value)
 }
 
@@ -413,7 +413,7 @@ func (m_ MutableParagraphStyle) SetMaximumLineHeight(value float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/minimumLineHeight
-func (m_ MutableParagraphStyle) MinimumLineHeight() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) MinimumLineHeight() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("minimumLineHeight"))
 	return rv
 }
@@ -423,7 +423,7 @@ func (m_ MutableParagraphStyle) MinimumLineHeight() float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/minimumLineHeight
-func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumLineHeight:"), value)
 }
 
@@ -432,7 +432,7 @@ func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/paragraphSpacing
-func (m_ MutableParagraphStyle) ParagraphSpacing() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) ParagraphSpacing() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("paragraphSpacing"))
 	return rv
 }
@@ -442,7 +442,7 @@ func (m_ MutableParagraphStyle) ParagraphSpacing() float64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/paragraphSpacing
-func (m_ MutableParagraphStyle) SetParagraphSpacing(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetParagraphSpacing(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParagraphSpacing:"), value)
 }
 
@@ -451,7 +451,7 @@ func (m_ MutableParagraphStyle) SetParagraphSpacing(value float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/paragraphSpacingBefore
-func (m_ MutableParagraphStyle) ParagraphSpacingBefore() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) ParagraphSpacingBefore() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("paragraphSpacingBefore"))
 	return rv
 }
@@ -461,7 +461,7 @@ func (m_ MutableParagraphStyle) ParagraphSpacingBefore() float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/paragraphSpacingBefore
-func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParagraphSpacingBefore:"), value)
 }
 
@@ -470,7 +470,7 @@ func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tabStops
-func (m_ MutableParagraphStyle) TabStops() []TextTab /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) TabStops() []ITextTab {
 	rv := objc.Send[[]TextTab](m_.ID, objc.Sel("tabStops"))
 	return rv
 }
@@ -480,7 +480,7 @@ func (m_ MutableParagraphStyle) TabStops() []TextTab /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tabStops
-func (m_ MutableParagraphStyle) SetTabStops(value []TextTab /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetTabStops(value []ITextTab) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -499,7 +499,7 @@ func (m_ MutableParagraphStyle) SetTabStops(value []TextTab /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tailIndent
-func (m_ MutableParagraphStyle) TailIndent() float64 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) TailIndent() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("tailIndent"))
 	return rv
 }
@@ -509,7 +509,7 @@ func (m_ MutableParagraphStyle) TailIndent() float64 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tailIndent
-func (m_ MutableParagraphStyle) SetTailIndent(value float64 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTailIndent:"), value)
 }
 
@@ -518,7 +518,7 @@ func (m_ MutableParagraphStyle) SetTailIndent(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textBlocks
-func (m_ MutableParagraphStyle) TextBlocks() []TextBlock /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) TextBlocks() []ITextBlock {
 	rv := objc.Send[[]TextBlock](m_.ID, objc.Sel("textBlocks"))
 	return rv
 }
@@ -528,7 +528,7 @@ func (m_ MutableParagraphStyle) TextBlocks() []TextBlock /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textBlocks
-func (m_ MutableParagraphStyle) SetTextBlocks(value []TextBlock /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetTextBlocks(value []ITextBlock) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -547,7 +547,7 @@ func (m_ MutableParagraphStyle) SetTextBlocks(value []TextBlock /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textLists
-func (m_ MutableParagraphStyle) TextLists() []TextList /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) TextLists() []ITextList {
 	rv := objc.Send[[]TextList](m_.ID, objc.Sel("textLists"))
 	return rv
 }
@@ -557,7 +557,7 @@ func (m_ MutableParagraphStyle) TextLists() []TextList /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textLists
-func (m_ MutableParagraphStyle) SetTextLists(value []TextList /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetTextLists(value []ITextList) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -576,7 +576,7 @@ func (m_ MutableParagraphStyle) SetTextLists(value []TextList /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tighteningFactorForTruncation
-func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("tighteningFactorForTruncation"))
 	return rv
 }
@@ -586,14 +586,14 @@ func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tighteningFactorForTruncation
-func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value float32 /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTighteningFactorForTruncation:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/usesDefaultHyphenation
-func (m_ MutableParagraphStyle) UsesDefaultHyphenation() bool /* primitive/slice/pointer. */ {
+func (m_ MutableParagraphStyle) UsesDefaultHyphenation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("usesDefaultHyphenation"))
 	return rv
 }
@@ -601,7 +601,7 @@ func (m_ MutableParagraphStyle) UsesDefaultHyphenation() bool /* primitive/slice
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/usesDefaultHyphenation
-func (m_ MutableParagraphStyle) SetUsesDefaultHyphenation(value bool /* primitive/slice/pointer. */) {
+func (m_ MutableParagraphStyle) SetUsesDefaultHyphenation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesDefaultHyphenation:"), value)
 }
 

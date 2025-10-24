@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [AuthenticationView] class.
@@ -95,7 +96,7 @@ func NewAuthenticationView() AuthenticationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
-func NewAuthenticationViewWithContext(context objc.IObject /* cross-framework Context */) AuthenticationView {
+func NewAuthenticationViewWithContext(context objc.IObject /* cross-framework: Context */) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:"), context)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewAuthenticationViewWithContext(context objc.IObject /* cross-framework Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:controlSize:)
-func NewAuthenticationViewWithContextControlSize(context objc.IObject /* cross-framework Context */, controlSize ControlSize /* not a class type */) AuthenticationView {
+func NewAuthenticationViewWithContextControlSize(context objc.IObject /* cross-framework: Context */, controlSize ControlSize /* not a class type */) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:controlSize:"), context, controlSize)
 	rv.Autorelease()
@@ -121,7 +122,7 @@ func NewAuthenticationViewWithContextControlSize(context objc.IObject /* cross-f
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/context
 func (a_ AuthenticationView) Context() objc.IObject /* cross-framework: Context */ {
-	rv := objc.Send[Context](a_.ID, objc.Sel("context"))
+	rv := objc.Send[coreimage.Context](a_.ID, objc.Sel("context"))
 	return rv
 }
 

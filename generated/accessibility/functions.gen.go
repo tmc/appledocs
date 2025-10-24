@@ -6,7 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -19,7 +18,7 @@ var (
 	_AXAnimatedImagesEnabled func() bool
 	_AXMFiHearingDeviceStreamingEar func() unsafe.Pointer
 	_AXSupportsBidirectionalAXMFiHearingDeviceStreaming func() bool
-	_AXNameFromColor func(coregraphics.ColorRef) unsafe.Pointer
+	_AXNameFromColor func(ColorRef) unsafe.Pointer
 	_AXOpenSettingsFeature func(unsafe.Pointer)
 	_AXPrefersActionSliderAlternative func() bool
 	_AXPrefersHeadAnchorAlternative func() bool
@@ -97,7 +96,7 @@ func AXSupportsBidirectionalAXMFiHearingDeviceStreaming() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNameFromColor(_:)
-func AXNameFromColor(color coregraphics.ColorRef) unsafe.Pointer {
+func AXNameFromColor(color ColorRef) unsafe.Pointer {
 	return _AXNameFromColor(color)
 }
 

@@ -2,12 +2,12 @@
 
 // Package scriptingbridge provides Go bindings for the ScriptingBridge framework.
 //
-// Automate scriptable apps by sending and receiving Apple events. [Full Topic]
+// Automate scriptable apps by sending and receiving Apple events.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ScriptingBridge without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge
+// See: https://developer.apple.com/documentation/ScriptingBridge
 package scriptingbridge
 
 import (

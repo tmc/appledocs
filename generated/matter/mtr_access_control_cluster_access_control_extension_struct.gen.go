@@ -31,13 +31,17 @@ type _MTRAccessControlClusterAccessControlExtensionStructClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlExtensionStruct] class.
 type IMTRAccessControlClusterAccessControlExtensionStruct interface {
 	objectivec.IObject
-	Data() foundation.Data
-	SetData(value foundation.IData)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlExtensionStruct
 type MTRAccessControlClusterAccessControlExtensionStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRAccessControlClusterAccessControlExtensionStruct() MTRAccessControlCl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
-func (m_ MTRAccessControlClusterAccessControlExtensionStruct) Data() foundation.Data {
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
-func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetData(value foundation.IData) {
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
-func (m_ MTRAccessControlClusterAccessControlExtensionStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
-func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

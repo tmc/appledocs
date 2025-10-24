@@ -31,23 +31,20 @@ type _SFSafariViewControllerClass struct {
 // An interface definition for the [SFSafariViewController] class.
 type ISFSafariViewController interface {
 	appkit.IViewController
-	Configuration() SFSafariViewControllerConfiguration
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	DismissButtonStyle() SFSafariViewControllerDismissButtonStyle
-	SetDismissButtonStyle(value SFSafariViewControllerDismissButtonStyle)
-	PreferredBarTintColor() appkit.Color
-	SetPreferredBarTintColor(value appkit.IColor)
-	PreferredControlTintColor() appkit.Color
-	SetPreferredControlTintColor(value appkit.IColor)
-	EventAttribution() unsafe.Pointer
-	SetEventAttribution(value unsafe.Pointer)
+	// properties:
+	EventAttribution() EventAttribution /* not a class type */
+	SetEventAttribution(value EventAttribution /* not a class type */)
+	// methods:
 }
 
 // An object that provides a visible standard interface for browsing the web.
 //
 // An object presents a self-contained web interface inside your app. Present this view controller to let people view websites from anywhere on the internet without leaving your app. The web interface supports Safari features such as Reader, AutoFill, Fraudulent Website Warning, and content blocking. Interactions with the web interface aren’t visible to your app, and you can’t access AutoFill data, browsing history, or website data. You don’t need to secure data between your app and Safari. To share data between your app and Safari, use instead. Present an when you don’t need to customize or interact with the web content. After you present the content, interactions with the web content occur solely within the view controller. When the person dismisses the view controller, control returns to your app’s interface. If you need to customize the controls of the web interface, or you want to interact with content in that interface, display the content using a object instead. UI features include the following: A read-only address field with a security indicator and a Reader button An Action button that invokes an activity view controller offering custom services from your app and activities, such as messaging, from the system and other extensions A Done button, back and forward navigation buttons, and a button to open the page directly in Safari Peek and Pop for links and detected data using 3D Touch When a person peeks and pops a link in , the view controller loads and displays the link destination. When a person peeks and pops a link in a class, the web view opens the link in Safari by default.
+
+
+// An object that provides a visible standard interface for browsing the web.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController
 type SFSafariViewController struct {
 	appkit.ViewController
@@ -95,11 +92,11 @@ func NewSFSafariViewController() SFSafariViewController {
 
 
 
-
 // Initializes a Safari view controller that loads the specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:)
-func NewSFSafariViewControllerWithURL(URL foundation.IURL) SFSafariViewController {
+func NewSFSafariViewControllerWithURL(URL objc.IObject /* cross-framework: NSURL */) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -107,11 +104,11 @@ func NewSFSafariViewControllerWithURL(URL foundation.IURL) SFSafariViewControlle
 }
 
 
-
 // Initializes and configures a Safari view controller that loads the specified URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:configuration:)
-func NewSFSafariViewControllerWithURLConfiguration(URL foundation.IURL, configuration ISFSafariViewControllerConfiguration) SFSafariViewController {
+func NewSFSafariViewControllerWithURLConfiguration(URL objc.IObject /* cross-framework: NSURL */, configuration ISFSafariViewControllerConfiguration) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:configuration:"), URL, configuration)
 	rv.Autorelease()
@@ -119,11 +116,11 @@ func NewSFSafariViewControllerWithURLConfiguration(URL foundation.IURL, configur
 }
 
 
-
 // Initializes a Safari view controller that will load the specified URL, entering Reader mode if Reader mode is requested and available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:entersReaderIfAvailable:)
-func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.IURL, entersReaderIfAvailable bool) SFSafariViewController {
+func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL objc.IObject /* cross-framework: NSURL */, entersReaderIfAvailable bool) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:entersReaderIfAvailable:"), URL, entersReaderIfAvailable)
 	rv.Autorelease()
@@ -131,108 +128,30 @@ func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.IURL
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/prewarmConnections(to:)
-func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs []foundation.IURL) SFSafariViewControllerPrewarmingToken {
+func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs []objc.IObject /* cross-framework: URL */) ISFSafariViewControllerPrewarmingToken {
 	rv := objc.Send[SFSafariViewControllerPrewarmingToken](objc.ID(sc.class), objc.Sel("prewarmConnectionsToURLs:"), URLs)
 	return rv
 }
 
-// A copy of the Safari view controller’s initialized configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/configuration-swift.property
-func (s_ SFSafariViewController) Configuration() SFSafariViewControllerConfiguration {
-	rv := objc.Send[SFSafariViewControllerConfiguration](s_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-// An object that provides behavior for the Safari view controller’s Done and Action buttons.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/delegate
-func (s_ SFSafariViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// An object that provides behavior for the Safari view controller’s Done and Action buttons.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/delegate
-func (s_ SFSafariViewController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
-
-// The style of dismiss button to use in the navigation bar to close the Safari view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/dismissButtonStyle-swift.property
-func (s_ SFSafariViewController) DismissButtonStyle() SFSafariViewControllerDismissButtonStyle {
-	rv := objc.Send[SFSafariViewControllerDismissButtonStyle](s_.ID, objc.Sel("dismissButtonStyle"))
-	return rv
-}
-
-
-// SetDismissButtonStyle sets the value of the dismissButtonStyle property.
-// The style of dismiss button to use in the navigation bar to close the Safari view controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/dismissButtonStyle-swift.property
-func (s_ SFSafariViewController) SetDismissButtonStyle(value SFSafariViewControllerDismissButtonStyle) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDismissButtonStyle:"), value)
-}
-
-// The color to tint the background of the navigation bar and the toolbar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
-func (s_ SFSafariViewController) PreferredBarTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredBarTintColor"))
-	return rv
-}
-
-
-// SetPreferredBarTintColor sets the value of the preferredBarTintColor property.
-// The color to tint the background of the navigation bar and the toolbar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
-func (s_ SFSafariViewController) SetPreferredBarTintColor(value appkit.IColor) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredBarTintColor:"), value)
-}
-
-// The color to tint the control buttons on the navigation bar and the toolbar.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
-func (s_ SFSafariViewController) PreferredControlTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredControlTintColor"))
-	return rv
-}
-
-
-// SetPreferredControlTintColor sets the value of the preferredControlTintColor property.
-// The color to tint the control buttons on the navigation bar and the toolbar.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
-func (s_ SFSafariViewController) SetPreferredControlTintColor(value appkit.IColor) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredControlTintColor:"), value)
-}
 
 // An object you use to send tap event attribution data to the browser for Private Click Measurement.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
-func (s_ SFSafariViewController) EventAttribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("eventAttribution"))
+func (s_ SFSafariViewController) EventAttribution() EventAttribution /* not a class type */ {
+	rv := objc.Send[EventAttribution](s_.ID, objc.Sel("eventAttribution"))
 	return rv
 }
 
 
-// SetEventAttribution sets the value of the eventAttribution property.
 // An object you use to send tap event attribution data to the browser for Private Click Measurement.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution
-func (s_ SFSafariViewController) SetEventAttribution(value unsafe.Pointer) {
+func (s_ SFSafariViewController) SetEventAttribution(value EventAttribution /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEventAttribution:"), value)
 }
 

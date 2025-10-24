@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterAirDetectionEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterAirDetectionEvent] class.
 type IMTRPumpConfigurationAndControlClusterAirDetectionEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterAirDetectionEvent
 type MTRPumpConfigurationAndControlClusterAirDetectionEvent struct {
 	objectivec.Object

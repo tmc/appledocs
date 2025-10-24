@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -41,8 +42,8 @@ type ICaption interface {
 	SetText(value objc.IObject /* cross-framework: NSString */)
 	TextAlignment() unsafe.Pointer
 	SetTextAlignment(value unsafe.Pointer)
-	TimeRange() TimeRange /* not a class type */
-	SetTimeRange(value TimeRange /* not a class type */)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
 	// methods:
 }
 
@@ -179,8 +180,8 @@ func (c_ Caption) SetTextAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
-func (c_ Caption) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](c_.ID, objc.Sel("timeRange"))
+func (c_ Caption) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](c_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -189,7 +190,7 @@ func (c_ Caption) TimeRange() TimeRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
-func (c_ Caption) SetTimeRange(value TimeRange /* not a class type */) {
+func (c_ Caption) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeRange:"), value)
 }
 

@@ -8,8 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ScreenSaverView] class.
@@ -32,13 +31,10 @@ type _ScreenSaverViewClass struct {
 // An interface definition for the [ScreenSaverView] class.
 type IScreenSaverView interface {
 	appkit.IView
-	AnimateOneFrame()
-	DrawRect(rect coregraphics.CGRect)
-	StartAnimation()
-	StopAnimation()
-	AnimationTimeInterval() foundation.TimeInterval
-	SetAnimationTimeInterval(value foundation.ITimeInterval)
-	ConfigureSheet() appkit.Window
+	// properties:
+	AnimationTimeInterval() float64
+	SetAnimationTimeInterval(value float64)
+	ConfigureSheet() objc.IObject /* cross-framework: Window */
 	HasConfigureSheet() bool
 	Animating() bool
 	Preview() bool
@@ -46,12 +42,21 @@ type IScreenSaverView interface {
 	SetIsAnimating(value bool)
 	IsPreview() bool
 	SetIsPreview(value bool)
+	// methods:
+	AnimateOneFrame()
+	DrawRect(rect objc.IObject /* cross-framework: Rect */)
+	StartAnimation()
+	StopAnimation()
 }
 
 // An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.
 //
 // provides the interface for your screen saver, including the content you animate onscreen and an optional configuration sheet. Create your own custom subclass and add it to your screen saver bundle. Use your subclass to create the animations that you want to appear onscreen, and to specify additional animation details. You can draw from your view’s method, or you can draw directly from the method. If you prefer to use the method, use the method to call the method and specify the portions of your view that require updates.
+
+
+// An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView
 type ScreenSaverView struct {
 	appkit.View
@@ -99,11 +104,11 @@ func NewScreenSaverView() ScreenSaverView {
 
 
 
-
 // Creates a newly allocated screen saver view with the specified frame rectangle and preview information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)
-func NewScreenSaverViewWithFrameIsPreview(frame coregraphics.CGRect, isPreview bool) ScreenSaverView {
+func NewScreenSaverViewWithFrameIsPreview(frame objc.IObject /* cross-framework: Rect */, isPreview bool) ScreenSaverView {
 	instance := getScreenSaverViewClass().Alloc()
 	rv := objc.Send[ScreenSaverView](instance.ID, objc.Sel("initWithFrame:isPreview:"), frame, isPreview)
 	rv.Autorelease()
@@ -111,102 +116,115 @@ func NewScreenSaverViewWithFrameIsPreview(frame coregraphics.CGRect, isPreview b
 }
 
 
-// Returns the type of backing store you want for your screen saver’s window.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/backingStoreType()
-func (sc _ScreenSaverViewClass) BackingStoreType() appkit.BackingStoreType {
-	rv := objc.Send[appkit.BackingStoreType](objc.ID(sc.class), objc.Sel("backingStoreType"))
-	return rv
-}
 
 // Indicates whether to perform a gradual screen fade when the system starts and stops your screen saver’s animation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/performGammaFade()
 func (sc _ScreenSaverViewClass) PerformGammaFade() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("performGammaFade"))
 	return rv
 }
 
+
 // Advances the screen saver’s animation by a single frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()
 func (s_ ScreenSaverView) AnimateOneFrame() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("animateOneFrame"))
 }
 
+
 // Draws the screen saver view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/draw(_:)
-func (s_ ScreenSaverView) DrawRect(rect coregraphics.CGRect) {
+func (s_ ScreenSaverView) DrawRect(rect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawRect:"), rect)
 }
 
+
 // Activates the periodic timer that animates the screen saver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/startAnimation()
 func (s_ ScreenSaverView) StartAnimation() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startAnimation"))
 }
 
+
 // Deactivates the timer that advances the animation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/stopAnimation()
 func (s_ ScreenSaverView) StopAnimation() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("stopAnimation"))
 }
 
+
 // The time interval between animation frames.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval
-func (s_ ScreenSaverView) AnimationTimeInterval() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("animationTimeInterval"))
+func (s_ ScreenSaverView) AnimationTimeInterval() float64 {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("animationTimeInterval"))
 	return rv
 }
 
 
-// SetAnimationTimeInterval sets the value of the animationTimeInterval property.
 // The time interval between animation frames.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval
-func (s_ ScreenSaverView) SetAnimationTimeInterval(value foundation.ITimeInterval) {
+func (s_ ScreenSaverView) SetAnimationTimeInterval(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAnimationTimeInterval:"), value)
 }
 
+
 // The window that contains the controls to configure the screen saver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/configureSheet
-func (s_ ScreenSaverView) ConfigureSheet() appkit.Window {
+func (s_ ScreenSaverView) ConfigureSheet() objc.IObject /* cross-framework: Window */ {
 	rv := objc.Send[appkit.Window](s_.ID, objc.Sel("configureSheet"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the screen saver has an associated configuration sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/hasConfigureSheet
 func (s_ ScreenSaverView) HasConfigureSheet() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasConfigureSheet"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the screen saver is animating.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/isAnimating
 func (s_ ScreenSaverView) Animating() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("animating"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/isPreview
 func (s_ ScreenSaverView) Preview() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preview"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the screen saver is animating.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
 func (s_ ScreenSaverView) IsAnimating() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAnimating"))
@@ -214,17 +232,18 @@ func (s_ ScreenSaverView) IsAnimating() bool {
 }
 
 
-// SetIsAnimating sets the value of the isAnimating property.
 // A Boolean value that indicates whether the screen saver is animating.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/isanimating
 func (s_ ScreenSaverView) SetIsAnimating(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAnimating:"), value)
 }
 
+
 // A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
 func (s_ ScreenSaverView) IsPreview() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isPreview"))
@@ -232,10 +251,9 @@ func (s_ ScreenSaverView) IsPreview() bool {
 }
 
 
-// SetIsPreview sets the value of the isPreview property.
 // A Boolean value that indicates whether the screen saver view is set to a size suitable for previewing its content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screensaver/screensaverview/ispreview
 func (s_ ScreenSaverView) SetIsPreview(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPreview:"), value)

@@ -30,8 +30,8 @@ type _RotationRateDataClass struct {
 type IRotationRateData interface {
 	ILogItem
 	// properties:
-	RotationRate() RotationRate /* not a class type */
-	SetRotationRate(value RotationRate /* not a class type */)
+	RotationRate() CMRotationRate /* not a class type */
+	SetRotationRate(value CMRotationRate /* not a class type */)
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewRotationRateData() RotationRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RotationRateData) RotationRate() RotationRate /* not a class type */ {
+func (r_ RotationRateData) RotationRate() CMRotationRate /* not a class type */ {
 	rv := objc.Send[RotationRate](r_.ID, objc.Sel("rotationRate"))
 	return rv
 }
@@ -102,7 +102,7 @@ func (r_ RotationRateData) RotationRate() RotationRate /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RotationRateData) SetRotationRate(value RotationRate /* not a class type */) {
+func (r_ RotationRateData) SetRotationRate(value CMRotationRate /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }
 

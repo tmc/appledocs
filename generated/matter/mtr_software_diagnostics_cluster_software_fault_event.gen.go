@@ -31,15 +31,19 @@ type _MTRSoftwareDiagnosticsClusterSoftwareFaultEventClass struct {
 // An interface definition for the [MTRSoftwareDiagnosticsClusterSoftwareFaultEvent] class.
 type IMTRSoftwareDiagnosticsClusterSoftwareFaultEvent interface {
 	objectivec.IObject
-	FaultRecording() foundation.Data
-	SetFaultRecording(value foundation.IData)
-	Id() foundation.Number
-	SetId(value foundation.INumber)
-	Name() string
-	SetName(value string)
+	// properties:
+	FaultRecording() objc.IObject /* cross-framework: Data */
+	SetFaultRecording(value objc.IObject /* cross-framework: Data */)
+	Id() objc.IObject /* cross-framework: NSNumber */
+	SetId(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSoftwareDiagnosticsClusterSoftwareFaultEvent
 type MTRSoftwareDiagnosticsClusterSoftwareFaultEvent struct {
 	objectivec.Object
@@ -82,49 +86,49 @@ func NewMTRSoftwareDiagnosticsClusterSoftwareFaultEvent() MTRSoftwareDiagnostics
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() foundation.Data {
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("faultRecording"))
 	return rv
 }
 
 
-// SetFaultRecording sets the value of the faultRecording property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value foundation.IData) {
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultRecording:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/id
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Id() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Id() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("id"))
 	return rv
 }
 
 
-// SetId sets the value of the id property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/id
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation.INumber) {
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

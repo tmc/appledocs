@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in Metal
 	Buffer = _undefined // referenced in Metal
 	CPUCacheMode = _undefined // referenced in Metal
 	CommandBufferErrorOption = _undefined // referenced in Metal
@@ -17,29 +16,20 @@ type (
 	DynamicLibrary = _undefined // referenced in Metal
 	FunctionStitchingNode = _undefined // referenced in Metal
 	HazardTrackingMode = _undefined // referenced in Metal
-	Int32 = _undefined // referenced in Metal
 	LanguageVersion = _undefined // referenced in Metal
 	LibraryOptimizationLevel = _undefined // referenced in Metal
 	LibraryType = _undefined // referenced in Metal
 	LogState = _undefined // referenced in Metal
-	MTL4FunctionDescriptor = _undefined // referenced in Metal
 	MathMode = _undefined // referenced in Metal
 	PixelFormat = _undefined // referenced in Metal
 	RasterizationRateMap = _undefined // referenced in Metal
-	RenderPassColorAttachmentDescriptorArray = _undefined // referenced in Metal
-	RenderPassDepthAttachmentDescriptor = _undefined // referenced in Metal
-	RenderPassSampleBufferAttachmentDescriptorArray = _undefined // referenced in Metal
-	RenderPassStencilAttachmentDescriptor = _undefined // referenced in Metal
 	ResourceOptions = _undefined // referenced in Metal
 	SparsePageSize = _undefined // referenced in Metal
 	StorageMode = _undefined // referenced in Metal
 	TensorDataType = _undefined // referenced in Metal
-	TensorExtents = _undefined // referenced in Metal
 	TensorUsage = _undefined // referenced in Metal
 	TextureCompressionType = _undefined // referenced in Metal
 	TextureSwizzleChannels = _undefined // referenced in Metal
-	VertexAttributeDescriptorArray = _undefined // referenced in Metal
-	VertexBufferLayoutDescriptorArray = _undefined // referenced in Metal
 	VisibilityResultType = _undefined // referenced in Metal
 )
 

@@ -9,21 +9,19 @@ import (
 // Suppress unused import errors
 var _ = corespotlight.NewCSSearchQuery
 
-// ExampleNewCSSearchQueryWithQueryStringAttributes demonstrates how to create a CSSearchQuery instance using NewCSSearchQueryWithQueryStringAttributes.
-// Initializes and returns a query object with the specified query string and item attributes.
-func ExampleNewCSSearchQueryWithQueryStringAttributes() {
-	_ = corespotlight.NewCSSearchQueryWithQueryStringAttributes(
-		"kMDItemFSName == '*.txt'", // queryString string
-		[]corespotlight.string{}, // attributes []string
-	)
+// ExampleCSSearchQuery_Cancel demonstrates using Cancel on a CSSearchQuery instance.
+// Cancels the current query operation.
+func ExampleCSSearchQuery_Cancel() {
+	obj := corespotlight.NewCSSearchQuery()
+	obj.Cancel()
 	// Output:
-}
-// ExampleNewCSSearchQueryWithQueryStringQueryContext demonstrates how to create a CSSearchQuery instance using NewCSSearchQueryWithQueryStringQueryContext.
-// Initializes and returns a query object with the specified query string and query context.
-func ExampleNewCSSearchQueryWithQueryStringQueryContext() {
-	_ = corespotlight.NewCSSearchQueryWithQueryStringQueryContext(
-		"kMDItemFSName == '*.txt'", // queryString string
-		corespotlight.CSSearchQueryContext{}, // queryContext CSSearchQueryContext
-	)
+	}
+
+// ExampleCSSearchQuery_Start demonstrates using Start on a CSSearchQuery instance.
+// Starts searching the index for items that match the current query string and parameters.
+func ExampleCSSearchQuery_Start() {
+	obj := corespotlight.NewCSSearchQuery()
+	obj.Start()
 	// Output:
-}
+	}
+

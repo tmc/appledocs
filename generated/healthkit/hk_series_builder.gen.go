@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _HKSeriesBuilderClass struct {
 type IHKSeriesBuilder interface {
 	objectivec.IObject
 	// properties:
-	HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */
+	HKWorkoutRouteTypeIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -92,8 +93,8 @@ func NewHKSeriesBuilder() HKSeriesBuilder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKSeriesBuilder) HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+func (h_ HKSeriesBuilder) HKWorkoutRouteTypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }
 

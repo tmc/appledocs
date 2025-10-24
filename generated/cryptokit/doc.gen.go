@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CryptoKit without requiring cgo.
-
-// Perform cryptographic operations securely and efficiently.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoKit
+// See: https://developer.apple.com/documentation/CryptoKit
 package cryptokit
 
 import (

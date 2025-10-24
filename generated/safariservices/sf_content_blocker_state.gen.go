@@ -30,13 +30,19 @@ type _SFContentBlockerStateClass struct {
 // An interface definition for the [SFContentBlockerState] class.
 type ISFContentBlockerState interface {
 	objectivec.IObject
+	// properties:
 	Enabled() bool
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	// methods:
 }
 
 // The state of a content blocker extension.
+
+
+// The state of a content blocker extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerState
 type SFContentBlockerState struct {
 	objectivec.Object
@@ -81,16 +87,20 @@ func NewSFContentBlockerState() SFContentBlockerState {
 }
 
 
+
 // A Boolean value that indicates whether the content blocker is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerState/isEnabled
 func (s_ SFContentBlockerState) Enabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the content blocker is enabled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfcontentblockerstate/isenabled
 func (s_ SFContentBlockerState) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
@@ -98,10 +108,9 @@ func (s_ SFContentBlockerState) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether the content blocker is enabled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfcontentblockerstate/isenabled
 func (s_ SFContentBlockerState) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)

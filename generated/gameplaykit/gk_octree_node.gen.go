@@ -31,7 +31,7 @@ type _OctreeNodeClass struct {
 type IOctreeNode interface {
 	objectivec.IObject
 	// properties:
-	Box() unsafe.Pointer
+	Box() GKBox /* not a class type */
 	// methods:
 }
 
@@ -92,8 +92,8 @@ func NewOctreeNode() OctreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctreeNode/box
-func (o_ OctreeNode) Box() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("box"))
+func (o_ OctreeNode) Box() GKBox /* not a class type */ {
+	rv := objc.Send[Box](o_.ID, objc.Sel("box"))
 	return rv
 }
 

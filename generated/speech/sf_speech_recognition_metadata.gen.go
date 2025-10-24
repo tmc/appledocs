@@ -30,20 +30,26 @@ type _SFSpeechRecognitionMetadataClass struct {
 // An interface definition for the [SFSpeechRecognitionMetadata] class.
 type ISFSpeechRecognitionMetadata interface {
 	objectivec.IObject
-	AveragePauseDuration() unsafe.Pointer
-	SetAveragePauseDuration(value unsafe.Pointer)
+	// properties:
+	AveragePauseDuration() float64
+	SetAveragePauseDuration(value float64)
 	SpeakingRate() float64
 	SetSpeakingRate(value float64)
-	SpeechDuration() unsafe.Pointer
-	SetSpeechDuration(value unsafe.Pointer)
-	SpeechStartTimestamp() unsafe.Pointer
-	SetSpeechStartTimestamp(value unsafe.Pointer)
-	VoiceAnalytics() SFVoiceAnalytics
+	SpeechDuration() float64
+	SetSpeechDuration(value float64)
+	SpeechStartTimestamp() float64
+	SetSpeechStartTimestamp(value float64)
+	VoiceAnalytics() ISFVoiceAnalytics
 	SetVoiceAnalytics(value ISFVoiceAnalytics)
+	// methods:
 }
 
 // The metadata of speech in the audio of a speech recognition request.
+
+
+// The metadata of speech in the audio of a speech recognition request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata
 type SFSpeechRecognitionMetadata struct {
 	objectivec.Object
@@ -88,26 +94,29 @@ func NewSFSpeechRecognitionMetadata() SFSpeechRecognitionMetadata {
 }
 
 
+
 // The average pause duration between words, measured in seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
-func (s_ SFSpeechRecognitionMetadata) AveragePauseDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("averagePauseDuration"))
+func (s_ SFSpeechRecognitionMetadata) AveragePauseDuration() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("averagePauseDuration"))
 	return rv
 }
 
 
-// SetAveragePauseDuration sets the value of the averagePauseDuration property.
 // The average pause duration between words, measured in seconds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
-func (s_ SFSpeechRecognitionMetadata) SetAveragePauseDuration(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionMetadata) SetAveragePauseDuration(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
 }
 
+
 // The number of words spoken per minute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
 func (s_ SFSpeechRecognitionMetadata) SpeakingRate() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("speakingRate"))
@@ -115,64 +124,66 @@ func (s_ SFSpeechRecognitionMetadata) SpeakingRate() float64 {
 }
 
 
-// SetSpeakingRate sets the value of the speakingRate property.
 // The number of words spoken per minute.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
 func (s_ SFSpeechRecognitionMetadata) SetSpeakingRate(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
 }
 
+
 // The duration in seconds of speech in the audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechduration
-func (s_ SFSpeechRecognitionMetadata) SpeechDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechDuration"))
+func (s_ SFSpeechRecognitionMetadata) SpeechDuration() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("speechDuration"))
 	return rv
 }
 
 
-// SetSpeechDuration sets the value of the speechDuration property.
 // The duration in seconds of speech in the audio.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechduration
-func (s_ SFSpeechRecognitionMetadata) SetSpeechDuration(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionMetadata) SetSpeechDuration(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechDuration:"), value)
 }
 
+
 // The start timestamp of speech in the audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
-func (s_ SFSpeechRecognitionMetadata) SpeechStartTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechStartTimestamp"))
+func (s_ SFSpeechRecognitionMetadata) SpeechStartTimestamp() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("speechStartTimestamp"))
 	return rv
 }
 
 
-// SetSpeechStartTimestamp sets the value of the speechStartTimestamp property.
 // The start timestamp of speech in the audio.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
-func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechStartTimestamp:"), value)
 }
 
+
 // An analysis of the transcription segment’s vocal properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() SFVoiceAnalytics {
+func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() ISFVoiceAnalytics {
 	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("voiceAnalytics"))
 	return rv
 }
 
 
-// SetVoiceAnalytics sets the value of the voiceAnalytics property.
 // An analysis of the transcription segment’s vocal properties.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
 func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value ISFVoiceAnalytics) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)

@@ -620,7 +620,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- if $relaxedInfo}}
 // Note: {{.Name}} parameter relaxed to objectivec.IObject due to cross-framework reference.
 // Expected type: {{$relaxedInfo.ExpectedGoType}} (originally {{$relaxedInfo.OriginalType}})
-{{- end}}
+{{end}}
 {{- end -}}
 func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
 	{{- if $isInitMethod}}
@@ -1223,10 +1223,16 @@ type {{$typeName}} int64
 type {{$typeName}} int32
 {{else if eq $typedef.BaseType "unsigned int" -}}
 type {{$typeName}} uint32
+{{else if eq $typedef.BaseType "short" -}}
+type {{$typeName}} int16
+{{else if eq $typedef.BaseType "unsigned short" -}}
+type {{$typeName}} uint16
 {{else if eq $typedef.BaseType "NSInteger" -}}
 type {{$typeName}} int
 {{else if eq $typedef.BaseType "NSUInteger" -}}
 type {{$typeName}} uint
+{{else if eq $typedef.BaseType "double" -}}
+type {{$typeName}} = float64
 {{else if or (eq $typedef.BaseType "NSString *") (eq $typedef.BaseType "NSString*") -}}
 // {{$typedef.Name}} is a string typedef
 type {{$typeName}} = string

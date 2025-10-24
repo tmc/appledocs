@@ -31,15 +31,19 @@ type _MTRWindowCoveringClusterGoToLiftPercentageParamsClass struct {
 // An interface definition for the [MTRWindowCoveringClusterGoToLiftPercentageParams] class.
 type IMTRWindowCoveringClusterGoToLiftPercentageParams interface {
 	objectivec.IObject
-	LiftPercent100thsValue() foundation.Number
-	SetLiftPercent100thsValue(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	LiftPercent100thsValue() objc.IObject /* cross-framework: NSNumber */
+	SetLiftPercent100thsValue(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWindowCoveringClusterGoToLiftPercentageParams
 type MTRWindowCoveringClusterGoToLiftPercentageParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRWindowCoveringClusterGoToLiftPercentageParams() MTRWindowCoveringClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/liftpercent100thsvalue
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) LiftPercent100thsValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("liftPercent100thsValue"))
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) LiftPercent100thsValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("liftPercent100thsValue"))
 	return rv
 }
 
 
-// SetLiftPercent100thsValue sets the value of the liftPercent100thsValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/liftpercent100thsvalue
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetLiftPercent100thsValue(value foundation.INumber) {
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetLiftPercent100thsValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLiftPercent100thsValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftpercentageparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRWindowCoveringClusterGoToLiftPercentageParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -29,15 +29,19 @@ type _NDArrayAffineQuantizationDescriptorClass struct {
 // An interface definition for the [NDArrayAffineQuantizationDescriptor] class.
 type INDArrayAffineQuantizationDescriptor interface {
 	INDArrayQuantizationDescriptor
+	// properties:
 	HasMinValue() bool
 	SetHasMinValue(value bool)
 	HasZeroPoint() bool
 	SetHasZeroPoint(value bool)
 	ImplicitZeroPoint() bool
 	SetImplicitZeroPoint(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor
 type NDArrayAffineQuantizationDescriptor struct {
 	NDArrayQuantizationDescriptor
@@ -82,9 +86,10 @@ func NewNDArrayAffineQuantizationDescriptor() NDArrayAffineQuantizationDescripto
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/init(dataType:hasZeroPoint:hasMinValue:)
-func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(quantizationDataType unsafe.Pointer, hasZeroPoint bool, hasMinValue bool) NDArrayAffineQuantizationDescriptor {
+func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(quantizationDataType DataType /* not a class type */, hasZeroPoint bool, hasMinValue bool) NDArrayAffineQuantizationDescriptor {
 	instance := getNDArrayAffineQuantizationDescriptorClass().Alloc()
 	rv := objc.Send[NDArrayAffineQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:hasZeroPoint:hasMinValue:"), quantizationDataType, hasZeroPoint, hasMinValue)
 	rv.Autorelease()
@@ -92,7 +97,8 @@ func NewNDArrayAffineQuantizationDescriptorWithDataTypeHasZeroPointHasMinValue(q
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasMinValue
 func (n_ NDArrayAffineQuantizationDescriptor) HasMinValue() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasMinValue"))
@@ -100,14 +106,14 @@ func (n_ NDArrayAffineQuantizationDescriptor) HasMinValue() bool {
 }
 
 
-// SetHasMinValue sets the value of the hasMinValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasMinValue
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasMinValue(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasMinValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) HasZeroPoint() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasZeroPoint"))
@@ -115,14 +121,14 @@ func (n_ NDArrayAffineQuantizationDescriptor) HasZeroPoint() bool {
 }
 
 
-// SetHasZeroPoint sets the value of the hasZeroPoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/hasZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetHasZeroPoint(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasZeroPoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("implicitZeroPoint"))
@@ -130,8 +136,7 @@ func (n_ NDArrayAffineQuantizationDescriptor) ImplicitZeroPoint() bool {
 }
 
 
-// SetImplicitZeroPoint sets the value of the implicitZeroPoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineQuantizationDescriptor/implicitZeroPoint
 func (n_ NDArrayAffineQuantizationDescriptor) SetImplicitZeroPoint(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setImplicitZeroPoint:"), value)

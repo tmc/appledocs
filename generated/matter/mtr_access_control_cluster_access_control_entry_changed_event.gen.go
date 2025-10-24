@@ -31,19 +31,23 @@ type _MTRAccessControlClusterAccessControlEntryChangedEventClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessControlEntryChangedEvent] class.
 type IMTRAccessControlClusterAccessControlEntryChangedEvent interface {
 	objectivec.IObject
-	AdminNodeID() foundation.Number
-	SetAdminNodeID(value foundation.INumber)
-	AdminPasscodeID() foundation.Number
-	SetAdminPasscodeID(value foundation.INumber)
-	ChangeType() foundation.Number
-	SetChangeType(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	LatestValue() MTRAccessControlClusterAccessControlEntryStruct
+	// properties:
+	AdminNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetAdminNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	AdminPasscodeID() objc.IObject /* cross-framework: NSNumber */
+	SetAdminPasscodeID(value objc.IObject /* cross-framework: NSNumber */)
+	ChangeType() objc.IObject /* cross-framework: NSNumber */
+	SetChangeType(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	LatestValue() IMTRAccessControlClusterAccessControlEntryStruct
 	SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlEntryChangedEvent
 type MTRAccessControlClusterAccessControlEntryChangedEvent struct {
 	objectivec.Object
@@ -86,76 +90,76 @@ func NewMTRAccessControlClusterAccessControlEntryChangedEvent() MTRAccessControl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminnodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminNodeID"))
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("adminNodeID"))
 	return rv
 }
 
 
-// SetAdminNodeID sets the value of the adminNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminnodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminNodeID(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminpasscodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminPasscodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminPasscodeID"))
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminPasscodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("adminPasscodeID"))
 	return rv
 }
 
 
-// SetAdminPasscodeID sets the value of the adminPasscodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminpasscodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminPasscodeID(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminPasscodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/changetype
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) ChangeType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("changeType"))
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) ChangeType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("changeType"))
 	return rv
 }
 
 
-// SetChangeType sets the value of the changeType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/changetype
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetChangeType(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetChangeType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChangeType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/fabricindex
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/fabricindex
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() MTRAccessControlClusterAccessControlEntryStruct {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() IMTRAccessControlClusterAccessControlEntryStruct {
 	rv := objc.Send[MTRAccessControlClusterAccessControlEntryStruct](m_.ID, objc.Sel("latestValue"))
 	return rv
 }
 
 
-// SetLatestValue sets the value of the latestValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestValue:"), value)

@@ -88,4 +88,23 @@ func NewUnitElectricCurrent() UnitElectricCurrent {
 
 
 
+// The amperes unit of electric current.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
+func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
+	rv := objc.Send[UnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
+	return rv
+}
+
+// The amperes unit of electric current.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
+func (u_ UnitElectricCurrent) Amperes() IUnitElectricCurrent {
+	rv := objc.Send[UnitElectricCurrent](u_.ID, objc.Sel("amperes"))
+	return rv
+}
+
+
 

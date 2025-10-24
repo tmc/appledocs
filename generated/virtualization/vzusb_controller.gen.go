@@ -30,16 +30,23 @@ type _VZUSBControllerClass struct {
 // An interface definition for the [VZUSBController] class.
 type IVZUSBController interface {
 	objectivec.IObject
-	UsbDevices() unsafe.Pointer
-	SetUsbDevices(value unsafe.Pointer)
-	UsbControllers() VZUSBController
+	// properties:
+	UsbDevices() []objc.ID
+	UsbControllers() IVZUSBController
 	SetUsbControllers(value IVZUSBController)
+	// methods:
+	AttachDeviceCompletionHandler(device objectivec.IObject, completionHandler unsafe.Pointer)
+	DetachDeviceCompletionHandler(device objectivec.IObject, completionHandler unsafe.Pointer)
 }
 
 // A class that represents a USB controller in a VM.
 //
 // Don’t create a directly. You need to first configure USB controllers on a through a subclass of . When you create a from the configuration, the USB controllers are available through the property. The concrete type of a corresponds to the type the configuration uses. For example, a leads to a device of type .
+
+
+// A class that represents a USB controller in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBController
 type VZUSBController struct {
 	objectivec.Object
@@ -84,37 +91,48 @@ func NewVZUSBController() VZUSBController {
 }
 
 
+
+// Attaches a USB device to the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBController/attach(device:completionHandler:)
+func (v_ VZUSBController) AttachDeviceCompletionHandler(device objectivec.IObject, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("attachDevice:completionHandler:"), device, completionHandler)
+}
+
+
+// Detaches a USB device from the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBController/detach(device:completionHandler:)
+func (v_ VZUSBController) DetachDeviceCompletionHandler(device objectivec.IObject, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("detachDevice:completionHandler:"), device, completionHandler)
+}
+
+
 // The list of attached USB devices for the controller.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
-func (v_ VZUSBController) UsbDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbDevices"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBController/usbDevices
+func (v_ VZUSBController) UsbDevices() []objc.ID {
+	rv := objc.Send[[]objc.ID](v_.ID, objc.Sel("usbDevices"))
 	return rv
 }
 
 
-// SetUsbDevices sets the value of the usbDevices property.
-// The list of attached USB devices for the controller.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
-func (v_ VZUSBController) SetUsbDevices(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), value)
-}
-
 // The list of runtime USB controller objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/usbcontrollers
-func (v_ VZUSBController) UsbControllers() VZUSBController {
+func (v_ VZUSBController) UsbControllers() IVZUSBController {
 	rv := objc.Send[VZUSBController](v_.ID, objc.Sel("usbControllers"))
 	return rv
 }
 
 
-// SetUsbControllers sets the value of the usbControllers property.
 // The list of runtime USB controller objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/usbcontrollers
 func (v_ VZUSBController) SetUsbControllers(value IVZUSBController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)

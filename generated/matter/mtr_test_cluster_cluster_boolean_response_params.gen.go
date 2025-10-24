@@ -30,13 +30,17 @@ type _MTRTestClusterClusterBooleanResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterBooleanResponseParams] class.
 type IMTRTestClusterClusterBooleanResponseParams interface {
 	IMTRUnitTestingClusterBooleanResponseParams
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterBooleanResponseParams
 type MTRTestClusterClusterBooleanResponseParams struct {
 	MTRUnitTestingClusterBooleanResponseParams
@@ -81,33 +85,33 @@ func NewMTRTestClusterClusterBooleanResponseParams() MTRTestClusterClusterBoolea
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
-func (m_ MTRTestClusterClusterBooleanResponseParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRTestClusterClusterBooleanResponseParams) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
-func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

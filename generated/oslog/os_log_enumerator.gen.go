@@ -30,10 +30,16 @@ type _OSLogEnumeratorClass struct {
 // An interface definition for the [OSLogEnumerator] class.
 type IOSLogEnumerator interface {
 	foundation.IEnumerator
+	// properties:
+	// methods:
 }
 
 // An enumerator that can access and list log entries.
+
+
+// An enumerator that can access and list log entries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEnumerator
 type OSLogEnumerator struct {
 	foundation.Enumerator

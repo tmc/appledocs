@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +34,7 @@ type _GraphicsContextClass struct {
 type IGraphicsContext interface {
 	objectivec.IObject
 	// properties:
-	Attributes() foundation.IDictionary /* already interface */
+	Attributes() foundation.IDictionary
 	CGContext() ContextRef /* not a class type */
 	CIContext() objc.IObject /* cross-framework: Context */
 	ColorRenderingIntent() ColorRenderingIntent
@@ -42,16 +44,16 @@ type IGraphicsContext interface {
 	GraphicsPort() unsafe.Pointer
 	ImageInterpolation() ImageInterpolation
 	SetImageInterpolation(value ImageInterpolation)
-	DrawingToScreen() bool /* primitive/slice/pointer. */
-	Flipped() bool /* primitive/slice/pointer. */
+	DrawingToScreen() bool
+	Flipped() bool
 	PatternPhase() objc.IObject /* cross-framework: Point */
 	SetPatternPhase(value objc.IObject /* cross-framework: Point */)
-	ShouldAntialias() bool /* primitive/slice/pointer. */
-	SetShouldAntialias(value bool /* primitive/slice/pointer. */)
-	IsDrawingToScreen() bool /* primitive/slice/pointer. */
-	SetIsDrawingToScreen(value bool /* primitive/slice/pointer. */)
-	IsFlipped() bool /* primitive/slice/pointer. */
-	SetIsFlipped(value bool /* primitive/slice/pointer. */)
+	ShouldAntialias() bool
+	SetShouldAntialias(value bool)
+	IsDrawingToScreen() bool
+	SetIsDrawingToScreen(value bool)
+	IsFlipped() bool
+	SetIsFlipped(value bool)
 	// methods:
 	FlushGraphics()
 	RestoreGraphicsState()
@@ -115,7 +117,7 @@ func NewGraphicsContext() GraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(attributes:)
-func NewGraphicsContextWithAttributes(attributes foundation.IDictionary /* already interface */) GraphicsContext {
+func NewGraphicsContextWithAttributes(attributes foundation.IDictionary) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithAttributes:"), attributes)
 	return rv
 }
@@ -135,7 +137,7 @@ func NewGraphicsContextWithBitmapImageRep(bitmapRep IBitmapImageRep) GraphicsCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-func NewGraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool /* primitive/slice/pointer. */) GraphicsContext {
+func NewGraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -145,7 +147,7 @@ func NewGraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)
-func NewGraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool /* primitive/slice/pointer. */) GraphicsContext {
+func NewGraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool) GraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(getGraphicsContextClass().class), objc.Sel("graphicsContextWithGraphicsPort:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -166,7 +168,7 @@ func NewGraphicsContextWithWindow(window IWindow) GraphicsContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/currentContextDrawingToScreen()
-func (gc _GraphicsContextClass) CurrentContextDrawingToScreen() bool /* primitive/slice/pointer. */ {
+func (gc _GraphicsContextClass) CurrentContextDrawingToScreen() bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("currentContextDrawingToScreen"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (gc _GraphicsContextClass) CurrentContextDrawingToScreen() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(attributes:)
-func (gc _GraphicsContextClass) GraphicsContextWithAttributes(attributes foundation.IDictionary /* already interface */) IGraphicsContext {
+func (gc _GraphicsContextClass) GraphicsContextWithAttributes(attributes foundation.IDictionary) IGraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithAttributes:"), attributes)
 	return rv
 }
@@ -196,7 +198,7 @@ func (gc _GraphicsContextClass) GraphicsContextWithBitmapImageRep(bitmapRep IBit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(cgContext:flipped:)
-func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool /* primitive/slice/pointer. */) IGraphicsContext {
+func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort ContextRef /* not a class type */, initialFlippedState bool) IGraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithCGContext:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -206,7 +208,7 @@ func (gc _GraphicsContextClass) GraphicsContextWithCGContextFlipped(graphicsPort
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/init(graphicsPort:flipped:)
-func (gc _GraphicsContextClass) GraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool /* primitive/slice/pointer. */) IGraphicsContext {
+func (gc _GraphicsContextClass) GraphicsContextWithGraphicsPortFlipped(graphicsPort unsafe.Pointer, initialFlippedState bool) IGraphicsContext {
 	rv := objc.Send[GraphicsContext](objc.ID(gc.class), objc.Sel("graphicsContextWithGraphicsPort:flipped:"), graphicsPort, initialFlippedState)
 	return rv
 }
@@ -244,7 +246,7 @@ func (gc _GraphicsContextClass) SaveGraphicsState() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/setGraphicsState(_:)
-func (gc _GraphicsContextClass) SetGraphicsState(gState int /* primitive/slice/pointer. */) {
+func (gc _GraphicsContextClass) SetGraphicsState(gState int) {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("setGraphicsState:"), gState)
 }
 
@@ -289,7 +291,7 @@ func (g_ GraphicsContext) SaveGraphicsState() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/attributes
-func (g_ GraphicsContext) Attributes() foundation.IDictionary /* already interface */ {
+func (g_ GraphicsContext) Attributes() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](g_.ID, objc.Sel("attributes"))
 	return rv
 }
@@ -310,7 +312,7 @@ func (g_ GraphicsContext) CGContext() ContextRef /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/ciContext
 func (g_ GraphicsContext) CIContext() objc.IObject /* cross-framework: Context */ {
-	rv := objc.Send[Context](g_.ID, objc.Sel("CIContext"))
+	rv := objc.Send[coreimage.Context](g_.ID, objc.Sel("CIContext"))
 	return rv
 }
 
@@ -405,7 +407,7 @@ func (g_ GraphicsContext) SetImageInterpolation(value ImageInterpolation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/isDrawingToScreen
-func (g_ GraphicsContext) DrawingToScreen() bool /* primitive/slice/pointer. */ {
+func (g_ GraphicsContext) DrawingToScreen() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("drawingToScreen"))
 	return rv
 }
@@ -415,7 +417,7 @@ func (g_ GraphicsContext) DrawingToScreen() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/isFlipped
-func (g_ GraphicsContext) Flipped() bool /* primitive/slice/pointer. */ {
+func (g_ GraphicsContext) Flipped() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("flipped"))
 	return rv
 }
@@ -426,7 +428,7 @@ func (g_ GraphicsContext) Flipped() bool /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/patternPhase
 func (g_ GraphicsContext) PatternPhase() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](g_.ID, objc.Sel("patternPhase"))
+	rv := objc.Send[corefoundation.Point](g_.ID, objc.Sel("patternPhase"))
 	return rv
 }
 
@@ -444,7 +446,7 @@ func (g_ GraphicsContext) SetPatternPhase(value objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/shouldAntialias
-func (g_ GraphicsContext) ShouldAntialias() bool /* primitive/slice/pointer. */ {
+func (g_ GraphicsContext) ShouldAntialias() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("shouldAntialias"))
 	return rv
 }
@@ -454,7 +456,7 @@ func (g_ GraphicsContext) ShouldAntialias() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/shouldAntialias
-func (g_ GraphicsContext) SetShouldAntialias(value bool /* primitive/slice/pointer. */) {
+func (g_ GraphicsContext) SetShouldAntialias(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShouldAntialias:"), value)
 }
 
@@ -463,7 +465,7 @@ func (g_ GraphicsContext) SetShouldAntialias(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
-func (g_ GraphicsContext) IsDrawingToScreen() bool /* primitive/slice/pointer. */ {
+func (g_ GraphicsContext) IsDrawingToScreen() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isDrawingToScreen"))
 	return rv
 }
@@ -473,7 +475,7 @@ func (g_ GraphicsContext) IsDrawingToScreen() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isdrawingtoscreen
-func (g_ GraphicsContext) SetIsDrawingToScreen(value bool /* primitive/slice/pointer. */) {
+func (g_ GraphicsContext) SetIsDrawingToScreen(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsDrawingToScreen:"), value)
 }
 
@@ -482,7 +484,7 @@ func (g_ GraphicsContext) SetIsDrawingToScreen(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
-func (g_ GraphicsContext) IsFlipped() bool /* primitive/slice/pointer. */ {
+func (g_ GraphicsContext) IsFlipped() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isFlipped"))
 	return rv
 }
@@ -492,7 +494,7 @@ func (g_ GraphicsContext) IsFlipped() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgraphicscontext/isflipped
-func (g_ GraphicsContext) SetIsFlipped(value bool /* primitive/slice/pointer. */) {
+func (g_ GraphicsContext) SetIsFlipped(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsFlipped:"), value)
 }
 

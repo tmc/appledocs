@@ -38,12 +38,12 @@ type IURLSession interface {
 	SetSessionDescription(value IString)
 	// methods:
 	DataTaskWithURL(url IURL) IURLSessionDataTask
-	DataTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionDataTask
+	DataTaskWithRequest(request IURLRequest) IURLSessionDataTask
 	DataTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDataTask
-	DataTaskWithRequestCompletionHandler(request objc.IObject /* cross-framework URLRequest */, completionHandler unsafe.Pointer) IURLSessionDataTask
+	DataTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDataTask
 	DownloadTaskWithURL(url IURL) IURLSessionDownloadTask
-	DownloadTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionDownloadTask
-	DownloadTaskWithRequestCompletionHandler(request objc.IObject /* cross-framework URLRequest */, completionHandler unsafe.Pointer) IURLSessionDownloadTask
+	DownloadTaskWithRequest(request IURLRequest) IURLSessionDownloadTask
+	DownloadTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDownloadTask
 	DownloadTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDownloadTask
 	DownloadTaskWithResumeData(resumeData IData) IURLSessionDownloadTask
 	DownloadTaskWithResumeDataCompletionHandler(resumeData IData, completionHandler unsafe.Pointer) IURLSessionDownloadTask
@@ -53,17 +53,17 @@ type IURLSession interface {
 	GetTasksWithCompletionHandler(completionHandler unsafe.Pointer)
 	InvalidateAndCancel()
 	ResetWithCompletionHandler(completionHandler unsafe.Pointer)
-	StreamTaskWithHostNamePort(hostname IString, port int /* primitive/slice/pointer. */) IURLSessionStreamTask
-	UploadTaskWithRequestFromData(request objc.IObject /* cross-framework URLRequest */, bodyData IData) IURLSessionUploadTask
-	UploadTaskWithRequestFromDataCompletionHandler(request objc.IObject /* cross-framework URLRequest */, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask
-	UploadTaskWithRequestFromFile(request objc.IObject /* cross-framework URLRequest */, fileURL IURL) IURLSessionUploadTask
-	UploadTaskWithRequestFromFileCompletionHandler(request objc.IObject /* cross-framework URLRequest */, fileURL IURL, completionHandler unsafe.Pointer) IURLSessionUploadTask
+	StreamTaskWithHostNamePort(hostname IString, port int) IURLSessionStreamTask
+	UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) IURLSessionUploadTask
+	UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask
+	UploadTaskWithRequestFromFile(request IURLRequest, fileURL IURL) IURLSessionUploadTask
+	UploadTaskWithRequestFromFileCompletionHandler(request IURLRequest, fileURL IURL, completionHandler unsafe.Pointer) IURLSessionUploadTask
 	UploadTaskWithResumeData(resumeData IData) IURLSessionUploadTask
 	UploadTaskWithResumeDataCompletionHandler(resumeData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask
-	UploadTaskWithStreamedRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionUploadTask
+	UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask
 	WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask
-	WebSocketTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionWebSocketTask
-	WebSocketTaskWithURLProtocols(url IURL, protocols []string /* primitive/slice/pointer. */) IURLSessionWebSocketTask
+	WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask
+	WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask
 }
 
 // An object that coordinates a group of related, network data transfer tasks.
@@ -183,7 +183,7 @@ func (u_ URLSession) DataTaskWithURL(url IURL) IURLSessionDataTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:)-7jpys
-func (u_ URLSession) DataTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionDataTask {
+func (u_ URLSession) DataTaskWithRequest(request IURLRequest) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithRequest:"), request)
 	return rv
 }
@@ -203,7 +203,7 @@ func (u_ URLSession) DataTaskWithURLCompletionHandler(url IURL, completionHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:completionHandler:)-e6xv
-func (u_ URLSession) DataTaskWithRequestCompletionHandler(request objc.IObject /* cross-framework URLRequest */, completionHandler unsafe.Pointer) IURLSessionDataTask {
+func (u_ URLSession) DataTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithRequest:completionHandler:"), request, completionHandler)
 	return rv
 }
@@ -223,7 +223,7 @@ func (u_ URLSession) DownloadTaskWithURL(url IURL) IURLSessionDownloadTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/downloadTask(with:)-3fb7s
-func (u_ URLSession) DownloadTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionDownloadTask {
+func (u_ URLSession) DownloadTaskWithRequest(request IURLRequest) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithRequest:"), request)
 	return rv
 }
@@ -233,7 +233,7 @@ func (u_ URLSession) DownloadTaskWithRequest(request objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/downloadTask(with:completionHandler:)-4a84s
-func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request objc.IObject /* cross-framework URLRequest */, completionHandler unsafe.Pointer) IURLSessionDownloadTask {
+func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithRequest:completionHandler:"), request, completionHandler)
 	return rv
 }
@@ -327,7 +327,7 @@ func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/streamTask(withHostName:port:)
-func (u_ URLSession) StreamTaskWithHostNamePort(hostname IString, port int /* primitive/slice/pointer. */) IURLSessionStreamTask {
+func (u_ URLSession) StreamTaskWithHostNamePort(hostname IString, port int) IURLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), hostname, port)
 	return rv
 }
@@ -337,7 +337,7 @@ func (u_ URLSession) StreamTaskWithHostNamePort(hostname IString, port int /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:from:)
-func (u_ URLSession) UploadTaskWithRequestFromData(request objc.IObject /* cross-framework URLRequest */, bodyData IData) IURLSessionUploadTask {
+func (u_ URLSession) UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromData:"), request, bodyData)
 	return rv
 }
@@ -347,7 +347,7 @@ func (u_ URLSession) UploadTaskWithRequestFromData(request objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:from:completionHandler:)
-func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request objc.IObject /* cross-framework URLRequest */, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask {
+func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromData:completionHandler:"), request, bodyData, completionHandler)
 	return rv
 }
@@ -357,7 +357,7 @@ func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:fromFile:)
-func (u_ URLSession) UploadTaskWithRequestFromFile(request objc.IObject /* cross-framework URLRequest */, fileURL IURL) IURLSessionUploadTask {
+func (u_ URLSession) UploadTaskWithRequestFromFile(request IURLRequest, fileURL IURL) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:"), request, fileURL)
 	return rv
 }
@@ -367,7 +367,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFile(request objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(with:fromFile:completionHandler:)
-func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request objc.IObject /* cross-framework URLRequest */, fileURL IURL, completionHandler unsafe.Pointer) IURLSessionUploadTask {
+func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request IURLRequest, fileURL IURL, completionHandler unsafe.Pointer) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:completionHandler:"), request, fileURL, completionHandler)
 	return rv
 }
@@ -393,7 +393,7 @@ func (u_ URLSession) UploadTaskWithResumeDataCompletionHandler(resumeData IData,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withStreamedRequest:)
-func (u_ URLSession) UploadTaskWithStreamedRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionUploadTask {
+func (u_ URLSession) UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithStreamedRequest:"), request)
 	return rv
 }
@@ -413,7 +413,7 @@ func (u_ URLSession) WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/webSocketTask(with:)-mtks
-func (u_ URLSession) WebSocketTaskWithRequest(request objc.IObject /* cross-framework URLRequest */) IURLSessionWebSocketTask {
+func (u_ URLSession) WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithRequest:"), request)
 	return rv
 }
@@ -423,7 +423,7 @@ func (u_ URLSession) WebSocketTaskWithRequest(request objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/webSocketTask(with:protocols:)
-func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string /* primitive/slice/pointer. */) IURLSessionWebSocketTask {
+func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithURL:protocols:"), url, protocols)
 	return rv
 }

@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [VZMacGraphicsDisplayConfiguration] class.
@@ -31,18 +31,24 @@ type _VZMacGraphicsDisplayConfigurationClass struct {
 // An interface definition for the [VZMacGraphicsDisplayConfiguration] class.
 type IVZMacGraphicsDisplayConfiguration interface {
 	IVZGraphicsDisplayConfiguration
+	// properties:
 	HeightInPixels() int
 	SetHeightInPixels(value int)
 	PixelsPerInch() int
 	SetPixelsPerInch(value int)
 	WidthInPixels() int
 	SetWidthInPixels(value int)
+	// methods:
 }
 
 // The configuration for a Mac graphics device.
 //
 // Use this device to attach a display that’s shown in a .
+
+
+// The configuration for a Mac graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration
 type VZMacGraphicsDisplayConfiguration struct {
 	VZGraphicsDisplayConfiguration
@@ -90,11 +96,11 @@ func NewVZMacGraphicsDisplayConfiguration() VZMacGraphicsDisplayConfiguration {
 
 
 
-
 // Create a display configuration suitable for showing on the specified screen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(for:sizeInPoints:)
-func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen appkit.IScreen, sizeInPoints foundation.ISize) VZMacGraphicsDisplayConfiguration {
+func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen objc.IObject /* cross-framework: Screen */, sizeInPoints objc.IObject /* cross-framework: Size */) VZMacGraphicsDisplayConfiguration {
 	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
 	rv := objc.Send[VZMacGraphicsDisplayConfiguration](instance.ID, objc.Sel("initForScreen:sizeInPoints:"), screen, sizeInPoints)
 	rv.Autorelease()
@@ -102,9 +108,9 @@ func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen appkit.ISc
 }
 
 
-
 // Create a display configuration with the specified pixel dimensions and pixel density.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(widthInPixels:heightInPixels:pixelsPerInch:)
 func NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch(widthInPixels int, heightInPixels int, pixelsPerInch int) VZMacGraphicsDisplayConfiguration {
 	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
@@ -114,8 +120,10 @@ func NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPe
 }
 
 
+
 // The height of the display, in pixels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/heightInPixels
 func (v_ VZMacGraphicsDisplayConfiguration) HeightInPixels() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("heightInPixels"))
@@ -123,17 +131,18 @@ func (v_ VZMacGraphicsDisplayConfiguration) HeightInPixels() int {
 }
 
 
-// SetHeightInPixels sets the value of the heightInPixels property.
 // The height of the display, in pixels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/heightInPixels
 func (v_ VZMacGraphicsDisplayConfiguration) SetHeightInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHeightInPixels:"), value)
 }
 
+
 // The pixel density in pixels per inch.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/pixelsPerInch
 func (v_ VZMacGraphicsDisplayConfiguration) PixelsPerInch() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("pixelsPerInch"))
@@ -141,17 +150,18 @@ func (v_ VZMacGraphicsDisplayConfiguration) PixelsPerInch() int {
 }
 
 
-// SetPixelsPerInch sets the value of the pixelsPerInch property.
 // The pixel density in pixels per inch.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/pixelsPerInch
 func (v_ VZMacGraphicsDisplayConfiguration) SetPixelsPerInch(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPixelsPerInch:"), value)
 }
 
+
 // The width of the display, in pixels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/widthInPixels
 func (v_ VZMacGraphicsDisplayConfiguration) WidthInPixels() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("widthInPixels"))
@@ -159,10 +169,9 @@ func (v_ VZMacGraphicsDisplayConfiguration) WidthInPixels() int {
 }
 
 
-// SetWidthInPixels sets the value of the widthInPixels property.
 // The width of the display, in pixels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/widthInPixels
 func (v_ VZMacGraphicsDisplayConfiguration) SetWidthInPixels(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWidthInPixels:"), value)

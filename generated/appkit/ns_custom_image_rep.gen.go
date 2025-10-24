@@ -34,8 +34,8 @@ type ICustomImageRep interface {
 	SetDelegate(value unsafe.Pointer)
 	DrawSelector() unsafe.Pointer
 	SetDrawSelector(value unsafe.Pointer)
-	DrawingHandler() bool /* primitive/slice/pointer. */
-	SetDrawingHandler(value bool /* primitive/slice/pointer. */)
+	DrawingHandler() bool
+	SetDrawingHandler(value bool)
 	// methods:
 }
 
@@ -136,7 +136,7 @@ func (c_ CustomImageRep) SetDrawSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) DrawingHandler() bool /* primitive/slice/pointer. */ {
+func (c_ CustomImageRep) DrawingHandler() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("drawingHandler"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (c_ CustomImageRep) DrawingHandler() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) SetDrawingHandler(value bool /* primitive/slice/pointer. */) {
+func (c_ CustomImageRep) SetDrawingHandler(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingHandler:"), value)
 }
 

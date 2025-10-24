@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,24 @@ type _PHProjectSectionClass struct {
 // An interface definition for the [PHProjectSection] class.
 type IPHProjectSection interface {
 	objectivec.IObject
-	SectionContents() []PHProjectSectionContent
-	SectionType() PHProjectSectionType
-	Title() string
+	// properties:
+	SectionContents() objc.IObject /* cross-framework: PHProjectSectionContent */
+	SetSectionContents(value objc.IObject /* cross-framework: PHProjectSectionContent */)
+	SectionType() unsafe.Pointer
+	SetSectionType(value unsafe.Pointer)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A collection of content representing curated asset and text elements.
 //
 // Each project section contains at least one object, which represents a suggested curation of the content. The number of sections included in varies depending on the source used to initialize the project: There will be one cover section with a key asset element and title, as well as a section containing multiple levels of curation, mirroring the Show Summary and Show More options of the Memory in Photos. The number of sections depends on the Album size. A small Album yields a single section, but an Album with a large quantity of photos is broken down into sections based on Moments in the user’s Photo Library. The sections will match the pagination in that project; for example, a book will break down into one section per page.
+
+
+// A collection of content representing curated asset and text elements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection
 type PHProjectSection struct {
 	objectivec.Object
@@ -83,29 +93,63 @@ func NewPHProjectSection() PHProjectSection {
 }
 
 
+
 // An array containing PHProjectionSessionContent objects.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/sectionContents
-func (p_ PHProjectSection) SectionContents() []PHProjectSectionContent {
-	rv := objc.Send[[]PHProjectSectionContent](p_.ID, objc.Sel("sectionContents"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
+func (p_ PHProjectSection) SectionContents() objc.IObject /* cross-framework: PHProjectSectionContent */ {
+	rv := objc.Send[PHProjectSectionContent](p_.ID, objc.Sel("sectionContents"))
 	return rv
 }
+
+
+// An array containing PHProjectionSessionContent objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
+func (p_ PHProjectSection) SetSectionContents(value objc.IObject /* cross-framework: PHProjectSectionContent */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionContents:"), value)
+}
+
 
 // The intended usage of the section: cover, content, or auxiliary.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/sectionType-swift.property
-func (p_ PHProjectSection) SectionType() PHProjectSectionType {
-	rv := objc.Send[PHProjectSectionType](p_.ID, objc.Sel("sectionType"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.property
+func (p_ PHProjectSection) SectionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sectionType"))
 	return rv
 }
 
+
+// The intended usage of the section: cover, content, or auxiliary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.property
+func (p_ PHProjectSection) SetSectionType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionType:"), value)
+}
+
+
 // The optional section title.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/title
-func (p_ PHProjectSection) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
+func (p_ PHProjectSection) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("title"))
 	return rv
 }
+
+
+// The optional section title.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
+func (p_ PHProjectSection) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
+}
+
 
 
 

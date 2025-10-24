@@ -29,9 +29,13 @@ type _ReshapeGradientNodeClass struct {
 // An interface definition for the [ReshapeGradientNode] class.
 type IReshapeGradientNode interface {
 	IGradientFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradientNode
 type ReshapeGradientNode struct {
 	GradientFilterNode
@@ -76,9 +80,10 @@ func NewReshapeGradientNode() ReshapeGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradientNode/init(sourceGradient:sourceImage:gradientState:)
-func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) ReshapeGradientNode {
+func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState GradientStateNode /* not a class type */) ReshapeGradientNode {
 	instance := getReshapeGradientNodeClass().Alloc()
 	rv := objc.Send[ReshapeGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()

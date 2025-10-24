@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -33,14 +33,7 @@ type _ContentProposalViewControllerClass struct {
 type IContentProposalViewController interface {
 	appkit.IViewController
 	// properties:
-	ContentProposal() IAVContentProposal
-	DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: NSDate */
-	SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: NSDate */)
-	PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */
-	PlayerViewController() IAVPlayerViewController
-	PreferredPlayerViewFrame() coregraphics.CGRect
 	// methods:
-	DismissContentProposalForActionAnimatedCompletion(action ContentProposalAction, animated bool /* primitive/slice/pointer. */, block unsafe.Pointer)
 }
 
 // A view controller that proposes content to watch next.
@@ -94,75 +87,6 @@ func (c_ ContentProposalViewController) Autorelease() ContentProposalViewControl
 // NewContentProposalViewController creates a new ContentProposalViewController instance.
 func NewContentProposalViewController() ContentProposalViewController {
 	return getContentProposalViewControllerClass().New()
-}
-
-
-
-// Dismisses the current content proposal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dismissContentProposal(for:animated:completion:)
-func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedCompletion(action ContentProposalAction, animated bool /* primitive/slice/pointer. */, block unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("dismissContentProposalForAction:animated:completion:"), action, animated, block)
-}
-
-
-// A prosal of content to play.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/contentProposal
-func (c_ ContentProposalViewController) ContentProposal() IAVContentProposal {
-	rv := objc.Send[ContentProposal](c_.ID, objc.Sel("contentProposal"))
-	return rv
-}
-
-
-// The date that the system automatically accepts a proposal if the user doesn’t intervene.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
-	return rv
-}
-
-
-// The date that the system automatically accepts a proposal if the user doesn’t intervene.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
-}
-
-
-// A layout guide that tracks the size and location of the player view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide
-func (c_ ContentProposalViewController) PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */ {
-	rv := objc.Send[LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
-	return rv
-}
-
-
-// The player view controller that presents a content proposal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerViewController
-func (c_ ContentProposalViewController) PlayerViewController() IAVPlayerViewController {
-	rv := objc.Send[PlayerViewController](c_.ID, objc.Sel("playerViewController"))
-	return rv
-}
-
-
-// The preferred presentation frame of the player view while the content proposal is active.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/preferredPlayerViewFrame
-func (c_ ContentProposalViewController) PreferredPlayerViewFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
-	return rv
 }
 
 

@@ -29,14 +29,20 @@ type _TrackObjectRequestClass struct {
 // An interface definition for the [TrackObjectRequest] class.
 type ITrackObjectRequest interface {
 	ITrackingRequest
+	// properties:
 	VNTrackObjectRequestRevision1() int
 	VNTrackObjectRequestRevision2() int
+	// methods:
 }
 
 // An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.
 //
 // Use this type of request to track the bounding boxes around objects previously identified in an image. Vision attempts to locate the same object from the input observation throughout the sequence.
+
+
+// An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackObjectRequest
 type TrackObjectRequest struct {
 	TrackingRequest
@@ -83,16 +89,20 @@ func NewTrackObjectRequest() TrackObjectRequest {
 }
 
 
+
 // A constant for specifying revision 1 of the object tracking request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision1
 func (t_ TrackObjectRequest) VNTrackObjectRequestRevision1() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackObjectRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the object tracking request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision2
 func (t_ TrackObjectRequest) VNTrackObjectRequestRevision2() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackObjectRequestRevision2"))

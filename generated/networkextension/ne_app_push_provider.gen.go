@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEAppPushProvider] class.
@@ -30,20 +30,24 @@ type _NEAppPushProviderClass struct {
 // An interface definition for the [NEAppPushProvider] class.
 type INEAppPushProvider interface {
 	INEProvider
-	ReportIncomingCallWithUserInfo(userInfo objectivec.IObject)
-	StartWithCompletionHandler(completionHandler unsafe.Pointer)
+	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	ProviderBundleIdentifier() string
-	SetProviderBundleIdentifier(value string)
-	ProviderConfiguration() string
-	SetProviderConfiguration(value string)
+	ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ProviderConfiguration() objc.IObject /* cross-framework: NSString */
+	SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that creates and maintains a persistent network connection to a local push server.
 //
 // Subclass to provide the connection to your local push server. A creates instances of your provider class based on the in the manager’s configuration. The manager then calls methods on your provider to start and stop communication with the server, and periodically check the provider’s status. When your provider receives an incoming call from your server, call the provider’s method to alert the manager’s .
+
+
+// An object that creates and maintains a persistent network connection to a local push server.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider
 type NEAppPushProvider struct {
 	NEProvider
@@ -90,22 +94,10 @@ func NewNEAppPushProvider() NEAppPushProvider {
 }
 
 
-// Informs the manager about an incoming call.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)
-func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo objectivec.IObject) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("reportIncomingCallWithUserInfo:"), userInfo)
-}
-
-// Indicates that the framework has started the provider, and provides a completion handler for subclasses to signal their readiness.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)
-func (n_ NEAppPushProvider) StartWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("startWithCompletionHandler:"), completionHandler)
-}
 
 // A delegate that receives incoming call information from the provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/delegate
 func (n_ NEAppPushProvider) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
@@ -113,50 +105,50 @@ func (n_ NEAppPushProvider) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate that receives incoming call information from the provider.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/delegate
 func (n_ NEAppPushProvider) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A string that contains the bundle identifier of the push provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) ProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEAppPushProvider) ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
 
-// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
 // A string that contains the bundle identifier of the push provider.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
 }
+
 
 // A dictionary that contains current vendor-specific configuration parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) ProviderConfiguration() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEAppPushProvider) ProviderConfiguration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
 
-// SetProviderConfiguration sets the value of the providerConfiguration property.
 // A dictionary that contains current vendor-specific configuration parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) SetProviderConfiguration(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+func (n_ NEAppPushProvider) SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
-
 
 

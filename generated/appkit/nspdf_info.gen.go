@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,10 +35,10 @@ type IPDFInfo interface {
 	// properties:
 	Attributes() objc.IObject /* cross-framework: MutableDictionary */
 	SetAttributes(value objc.IObject /* cross-framework: MutableDictionary */)
-	IsFileExtensionHidden() bool /* primitive/slice/pointer. */
-	SetIsFileExtensionHidden(value bool /* primitive/slice/pointer. */)
-	Orientation() PaperOrientation
-	SetOrientation(value PaperOrientation)
+	IsFileExtensionHidden() bool
+	SetIsFileExtensionHidden(value bool)
+	Orientation() unsafe.Pointer
+	SetOrientation(value unsafe.Pointer)
 	PaperSize() objc.IObject /* cross-framework: Size */
 	SetPaperSize(value objc.IObject /* cross-framework: Size */)
 	TagNames() objc.IObject /* cross-framework: NSString */
@@ -105,7 +106,7 @@ func NewPDFInfo() PDFInfo {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
 func (p_ PDFInfo) Attributes() objc.IObject /* cross-framework: MutableDictionary */ {
-	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("attributes"))
+	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -123,7 +124,7 @@ func (p_ PDFInfo) SetAttributes(value objc.IObject /* cross-framework: MutableDi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-func (p_ PDFInfo) IsFileExtensionHidden() bool /* primitive/slice/pointer. */ {
+func (p_ PDFInfo) IsFileExtensionHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFileExtensionHidden"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (p_ PDFInfo) IsFileExtensionHidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-func (p_ PDFInfo) SetIsFileExtensionHidden(value bool /* primitive/slice/pointer. */) {
+func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFileExtensionHidden:"), value)
 }
 
@@ -142,8 +143,8 @@ func (p_ PDFInfo) SetIsFileExtensionHidden(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
-func (p_ PDFInfo) Orientation() PaperOrientation {
-	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
+func (p_ PDFInfo) Orientation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (p_ PDFInfo) Orientation() PaperOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
-func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
+func (p_ PDFInfo) SetOrientation(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -162,7 +163,7 @@ func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
 func (p_ PDFInfo) PaperSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](p_.ID, objc.Sel("paperSize"))
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("paperSize"))
 	return rv
 }
 

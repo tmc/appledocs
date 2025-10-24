@@ -31,21 +31,21 @@ type _MTRReadParamsClass struct {
 // An interface definition for the [MTRReadParams] class.
 type IMTRReadParams interface {
 	objectivec.IObject
-	FabricFiltered() foundation.Number
-	SetFabricFiltered(value foundation.INumber)
-	MinEventNumber() foundation.Number
-	SetMinEventNumber(value foundation.INumber)
-	AssumeUnknownAttributesReportable() bool
-	SetAssumeUnknownAttributesReportable(value bool)
-	FilterByFabric() bool
-	SetFilterByFabric(value bool)
+	// properties:
+	FabricFiltered() objc.IObject /* cross-framework: NSNumber */
+	SetFabricFiltered(value objc.IObject /* cross-framework: NSNumber */)
+	MinEventNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMinEventNumber(value objc.IObject /* cross-framework: NSNumber */)
 	ShouldAssumeUnknownAttributesReportable() bool
 	SetShouldAssumeUnknownAttributesReportable(value bool)
 	ShouldFilterByFabric() bool
 	SetShouldFilterByFabric(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams
 type MTRReadParams struct {
 	objectivec.Object
@@ -88,67 +88,38 @@ func NewMTRReadParams() MTRReadParams {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
-func (m_ MTRReadParams) FabricFiltered() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricFiltered"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/fabricfiltered
+func (m_ MTRReadParams) FabricFiltered() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricFiltered"))
 	return rv
 }
 
 
-// SetFabricFiltered sets the value of the fabricFiltered property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
-func (m_ MTRReadParams) SetFabricFiltered(value foundation.INumber) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/fabricfiltered
+func (m_ MTRReadParams) SetFabricFiltered(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricFiltered:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
-func (m_ MTRReadParams) MinEventNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minEventNumber"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/mineventnumber
+func (m_ MTRReadParams) MinEventNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minEventNumber"))
 	return rv
 }
 
 
-// SetMinEventNumber sets the value of the minEventNumber property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
-func (m_ MTRReadParams) SetMinEventNumber(value foundation.INumber) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/mineventnumber
+func (m_ MTRReadParams) SetMinEventNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinEventNumber:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldAssumeUnknownAttributesReportable
-func (m_ MTRReadParams) AssumeUnknownAttributesReportable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("assumeUnknownAttributesReportable"))
-	return rv
-}
 
-
-// SetAssumeUnknownAttributesReportable sets the value of the assumeUnknownAttributesReportable property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldAssumeUnknownAttributesReportable
-func (m_ MTRReadParams) SetAssumeUnknownAttributesReportable(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAssumeUnknownAttributesReportable:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldFilterByFabric
-func (m_ MTRReadParams) FilterByFabric() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("filterByFabric"))
-	return rv
-}
-
-
-// SetFilterByFabric sets the value of the filterByFabric property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/shouldFilterByFabric
-func (m_ MTRReadParams) SetFilterByFabric(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFilterByFabric:"), value)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
 func (m_ MTRReadParams) ShouldAssumeUnknownAttributesReportable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAssumeUnknownAttributesReportable"))
@@ -156,14 +127,14 @@ func (m_ MTRReadParams) ShouldAssumeUnknownAttributesReportable() bool {
 }
 
 
-// SetShouldAssumeUnknownAttributesReportable sets the value of the shouldAssumeUnknownAttributesReportable property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldassumeunknownattributesreportable
 func (m_ MTRReadParams) SetShouldAssumeUnknownAttributesReportable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAssumeUnknownAttributesReportable:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
 func (m_ MTRReadParams) ShouldFilterByFabric() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldFilterByFabric"))
@@ -171,8 +142,7 @@ func (m_ MTRReadParams) ShouldFilterByFabric() bool {
 }
 
 
-// SetShouldFilterByFabric sets the value of the shouldFilterByFabric property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrreadparams/shouldfilterbyfabric
 func (m_ MTRReadParams) SetShouldFilterByFabric(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldFilterByFabric:"), value)

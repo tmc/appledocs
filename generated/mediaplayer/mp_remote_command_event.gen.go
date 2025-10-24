@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,20 @@ type _RemoteCommandEventClass struct {
 // An interface definition for the [RemoteCommandEvent] class.
 type IRemoteCommandEvent interface {
 	objectivec.IObject
-	Command() MPRemoteCommand
-	Timestamp() foundation.TimeInterval
+	// properties:
+	Command() IMPRemoteCommand
+	SetCommand(value IMPRemoteCommand)
+	Timestamp() float64
+	SetTimestamp(value float64)
+	// methods:
 }
 
 // A description of a command sent by an external media player.
+
+
+// A description of a command sent by an external media player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandEvent
 type RemoteCommandEvent struct {
 	objectivec.Object
@@ -81,20 +88,42 @@ func NewRemoteCommandEvent() RemoteCommandEvent {
 }
 
 
+
 // The command that sent the event.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandEvent/command
-func (r_ RemoteCommandEvent) Command() MPRemoteCommand {
-	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("command"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommandevent/command
+func (r_ RemoteCommandEvent) Command() IMPRemoteCommand {
+	rv := objc.Send[RemoteCommand](r_.ID, objc.Sel("command"))
 	return rv
 }
 
+
+// The command that sent the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommandevent/command
+func (r_ RemoteCommandEvent) SetCommand(value IMPRemoteCommand) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setCommand:"), value)
+}
+
+
 // The time the event occurred.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandEvent/timestamp
-func (r_ RemoteCommandEvent) Timestamp() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("timestamp"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommandevent/timestamp
+func (r_ RemoteCommandEvent) Timestamp() float64 {
+	rv := objc.Send[float64](r_.ID, objc.Sel("timestamp"))
 	return rv
+}
+
+
+// The time the event occurred.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpremotecommandevent/timestamp
+func (r_ RemoteCommandEvent) SetTimestamp(value float64) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setTimestamp:"), value)
 }
 
 

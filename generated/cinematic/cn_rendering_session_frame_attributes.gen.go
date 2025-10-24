@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -103,7 +104,7 @@ func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup objc.IObject /* cross-framework TimedMetadataGroup */, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup objc.IObject /* cross-framework: TimedMetadataGroup */, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
 	rv.Autorelease()

@@ -30,6 +30,7 @@ type _CTensorDescriptorClass struct {
 // An interface definition for the [CTensorDescriptor] class.
 type ICTensorDescriptor interface {
 	objectivec.IObject
+	// properties:
 	BatchSizePerSequenceStep() int
 	SetBatchSizePerSequenceStep(value int)
 	DataType() CDataType
@@ -46,12 +47,17 @@ type ICTensorDescriptor interface {
 	SetStride(value int)
 	TensorAllocationSizeInBytes() int
 	SetTensorAllocationSizeInBytes(value int)
+	// methods:
 }
 
 // A configuration object you use to create a tensor.
 //
 // This class contains the mathematical properties of a tensor, such as data type and shape. It also includes initializers that help you create a tensor descriptor for common use cases, such as convolutional neural networks and recurrent neural networks.
+
+
+// A configuration object you use to create a tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensorDescriptor
 type CTensorDescriptor struct {
 	objectivec.Object
@@ -96,8 +102,10 @@ func NewCTensorDescriptor() CTensorDescriptor {
 }
 
 
+
 // The batch size for each sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/batchsizepersequencestep-6iz59
 func (c_ CTensorDescriptor) BatchSizePerSequenceStep() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("batchSizePerSequenceStep"))
@@ -105,17 +113,18 @@ func (c_ CTensorDescriptor) BatchSizePerSequenceStep() int {
 }
 
 
-// SetBatchSizePerSequenceStep sets the value of the batchSizePerSequenceStep property.
 // The batch size for each sequence.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/batchsizepersequencestep-6iz59
 func (c_ CTensorDescriptor) SetBatchSizePerSequenceStep(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBatchSizePerSequenceStep:"), value)
 }
 
+
 // The tensor data type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/datatype
 func (c_ CTensorDescriptor) DataType() CDataType {
 	rv := objc.Send[CDataType](c_.ID, objc.Sel("dataType"))
@@ -123,17 +132,18 @@ func (c_ CTensorDescriptor) DataType() CDataType {
 }
 
 
-// SetDataType sets the value of the dataType property.
 // The tensor data type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/datatype
 func (c_ CTensorDescriptor) SetDataType(value CDataType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataType:"), value)
 }
 
+
 // The number of dimensions in the tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/dimensioncount
 func (c_ CTensorDescriptor) DimensionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimensionCount"))
@@ -141,17 +151,18 @@ func (c_ CTensorDescriptor) DimensionCount() int {
 }
 
 
-// SetDimensionCount sets the value of the dimensionCount property.
 // The number of dimensions in the tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/dimensioncount
 func (c_ CTensorDescriptor) SetDimensionCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimensionCount:"), value)
 }
 
+
 // An array that contains the variable lengths of sequences stored in the tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/sequencelengths-3jdab
 func (c_ CTensorDescriptor) SequenceLengths() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sequenceLengths"))
@@ -159,17 +170,18 @@ func (c_ CTensorDescriptor) SequenceLengths() int {
 }
 
 
-// SetSequenceLengths sets the value of the sequenceLengths property.
 // An array that contains the variable lengths of sequences stored in the tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/sequencelengths-3jdab
 func (c_ CTensorDescriptor) SetSequenceLengths(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSequenceLengths:"), value)
 }
 
+
 // An array that contains the size in each dimension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/shape-7i1rw
 func (c_ CTensorDescriptor) Shape() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
@@ -177,17 +189,18 @@ func (c_ CTensorDescriptor) Shape() int {
 }
 
 
-// SetShape sets the value of the shape property.
 // An array that contains the size in each dimension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/shape-7i1rw
 func (c_ CTensorDescriptor) SetShape(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)
 }
 
+
 // A Boolean that indicates whether you provided the sequence lengths sorted in descending order.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/sortedsequences
 func (c_ CTensorDescriptor) SortedSequences() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sortedSequences"))
@@ -195,17 +208,18 @@ func (c_ CTensorDescriptor) SortedSequences() bool {
 }
 
 
-// SetSortedSequences sets the value of the sortedSequences property.
 // A Boolean that indicates whether you provided the sequence lengths sorted in descending order.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/sortedsequences
 func (c_ CTensorDescriptor) SetSortedSequences(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortedSequences:"), value)
 }
 
+
 // An array that contains the stride, in bytes, in each dimension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/stride-5mzlt
 func (c_ CTensorDescriptor) Stride() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("stride"))
@@ -213,17 +227,18 @@ func (c_ CTensorDescriptor) Stride() int {
 }
 
 
-// SetStride sets the value of the stride property.
 // An array that contains the stride, in bytes, in each dimension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/stride-5mzlt
 func (c_ CTensorDescriptor) SetStride(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStride:"), value)
 }
 
+
 // The allocation size, in bytes, for a tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/tensorallocationsizeinbytes
 func (c_ CTensorDescriptor) TensorAllocationSizeInBytes() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("tensorAllocationSizeInBytes"))
@@ -231,10 +246,9 @@ func (c_ CTensorDescriptor) TensorAllocationSizeInBytes() int {
 }
 
 
-// SetTensorAllocationSizeInBytes sets the value of the tensorAllocationSizeInBytes property.
 // The allocation size, in bytes, for a tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/tensorallocationsizeinbytes
 func (c_ CTensorDescriptor) SetTensorAllocationSizeInBytes(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTensorAllocationSizeInBytes:"), value)

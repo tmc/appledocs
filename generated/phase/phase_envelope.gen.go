@@ -30,17 +30,23 @@ type _PHASEEnvelopeClass struct {
 // An interface definition for the [PHASEEnvelope] class.
 type IPHASEEnvelope interface {
 	objectivec.IObject
-	EvaluateForValue(x float64) float64
-	Domain() PHASENumericPair
-	Range() PHASENumericPair
-	Segments() []PHASEEnvelopeSegment
+	// properties:
+	Domain() IPHASENumericPair
+	Range() IPHASENumericPair
+	Segments() []IPHASEEnvelopeSegment
 	StartPoint() unsafe.Pointer
+	// methods:
+	EvaluateForValue(x float64) float64
 }
 
 // A collection of segments that connect to graph a complex curve over a linear input.
 //
 // In traditional audio uses, an defines a complex graph that determines the volume of audio data over an input duration. PHASE uses envelopes in a similar way. Given a value on the envelope’s input axis, the function plots and returns the result on the output axis. The following are possible uses of this class: Sound event nodes, such as , can shape their volume using an envelope; see . Distance models shape sounds with a 3D position using an envelope; see . An envelope can do more than shape audio. To gradually change an envelope’s input value over time, use the class, which creates a function with a metaparameter value as input. An app can use the numeric result for any purpose. For example, the x-axis can be distance and the y-axis can be playback rate. At runtime, PHASE determines whether a particular member of the array slopes up or down along the domain depending on the envelope’s particular use case.
+
+
+// A collection of segments that connect to graph a complex curve over a linear input.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope
 type PHASEEnvelope struct {
 	objectivec.Object
@@ -86,11 +92,11 @@ func NewPHASEEnvelope() PHASEEnvelope {
 
 
 
-
 // Creates an envelope with a start point and segments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/init(startPoint:segments:)
-func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments []PHASEEnvelopeSegment) PHASEEnvelope {
+func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments []IPHASEEnvelopeSegment) PHASEEnvelope {
 	instance := getPHASEEnvelopeClass().Alloc()
 	rv := objc.Send[PHASEEnvelope](instance.ID, objc.Sel("initWithStartPoint:segments:"), startPoint, segments)
 	rv.Autorelease()
@@ -98,40 +104,50 @@ func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments 
 }
 
 
+
 // Provides the height of the envelope for an input value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/evaluate(x:)
 func (p_ PHASEEnvelope) EvaluateForValue(x float64) float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("evaluateForValue:"), x)
 	return rv
 }
 
+
 // The range of the envelope’s possible input values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/domain
-func (p_ PHASEEnvelope) Domain() PHASENumericPair {
+func (p_ PHASEEnvelope) Domain() IPHASENumericPair {
 	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("domain"))
 	return rv
 }
 
+
 // The bounds of the output value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/range
-func (p_ PHASEEnvelope) Range() PHASENumericPair {
+func (p_ PHASEEnvelope) Range() IPHASENumericPair {
 	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("range"))
 	return rv
 }
 
+
 // An array of the envelope’s segments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/segments
-func (p_ PHASEEnvelope) Segments() []PHASEEnvelopeSegment {
+func (p_ PHASEEnvelope) Segments() []IPHASEEnvelopeSegment {
 	rv := objc.Send[[]PHASEEnvelopeSegment](p_.ID, objc.Sel("segments"))
 	return rv
 }
 
+
 // The starting point along the envelope’s duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/startPoint
 func (p_ PHASEEnvelope) StartPoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startPoint"))

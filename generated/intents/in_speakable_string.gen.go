@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _INSpeakableStringClass struct {
 type IINSpeakableString interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -93,8 +94,8 @@ func NewINSpeakableString() INSpeakableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
-func (i_ INSpeakableString) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+func (i_ INSpeakableString) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (i_ INSpeakableString) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
-func (i_ INSpeakableString) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (i_ INSpeakableString) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

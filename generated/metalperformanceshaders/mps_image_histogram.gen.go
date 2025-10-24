@@ -36,8 +36,8 @@ type IImageHistogram interface {
 	SetHistogramInfo(value ImageHistogramInfo /* not a class type */)
 	MinPixelThresholdValue() unsafe.Pointer
 	SetMinPixelThresholdValue(value unsafe.Pointer)
-	ZeroHistogram() bool /* primitive/slice/pointer. */
-	SetZeroHistogram(value bool /* primitive/slice/pointer. */)
+	ZeroHistogram() bool
+	SetZeroHistogram(value bool)
 	// methods:
 }
 
@@ -153,7 +153,7 @@ func (i_ ImageHistogram) SetMinPixelThresholdValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram/zerohistogram
-func (i_ ImageHistogram) ZeroHistogram() bool /* primitive/slice/pointer. */ {
+func (i_ ImageHistogram) ZeroHistogram() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("zeroHistogram"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (i_ ImageHistogram) ZeroHistogram() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram/zerohistogram
-func (i_ ImageHistogram) SetZeroHistogram(value bool /* primitive/slice/pointer. */) {
+func (i_ ImageHistogram) SetZeroHistogram(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setZeroHistogram:"), value)
 }
 

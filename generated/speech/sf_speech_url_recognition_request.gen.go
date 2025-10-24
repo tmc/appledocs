@@ -30,13 +30,20 @@ type _SFSpeechURLRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechURLRecognitionRequest] class.
 type ISFSpeechURLRecognitionRequest interface {
 	ISFSpeechRecognitionRequest
-	URL() foundation.URL
+	// properties:
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // A request to recognize speech in a recorded audio file.
 //
 // Use this object to perform speech recognition on the contents of an audio file. The following example shows a method that performs recognition on an audio file based on the user’s default language and prints out the transcription. Listing 1. Getting a speech recognizer and making a recognition request
+
+
+// A request to recognize speech in a recorded audio file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest
 type SFSpeechURLRecognitionRequest struct {
 	SFSpeechRecognitionRequest
@@ -84,24 +91,23 @@ func NewSFSpeechURLRecognitionRequest() SFSpeechURLRecognitionRequest {
 
 
 
-
-// Creates a speech recognition request, initialized with the specified URL.
+// The URL of the audio file.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest/init(url:)
-func NewSFSpeechURLRecognitionRequestWithURL(URL foundation.IURL) SFSpeechURLRecognitionRequest {
-	instance := getSFSpeechURLRecognitionRequestClass().Alloc()
-	rv := objc.Send[SFSpeechURLRecognitionRequest](instance.ID, objc.Sel("initWithURL:"), URL)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest/url
+func (s_ SFSpeechURLRecognitionRequest) Url() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("url"))
 	return rv
 }
 
 
 // The URL of the audio file.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest/url
-func (s_ SFSpeechURLRecognitionRequest) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest/url
+func (s_ SFSpeechURLRecognitionRequest) SetUrl(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrl:"), value)
 }
+
 
 

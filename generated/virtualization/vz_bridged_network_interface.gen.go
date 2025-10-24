@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +31,20 @@ type _VZBridgedNetworkInterfaceClass struct {
 // An interface definition for the [VZBridgedNetworkInterface] class.
 type IVZBridgedNetworkInterface interface {
 	objectivec.IObject
-	Identifier() string
-	SetIdentifier(value string)
-	LocalizedDisplayName() string
-	SetLocalizedDisplayName(value string)
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
+	LocalizedDisplayName() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // An object that identifies the supported network interfaces of the host computer.
 //
 // Use a object to retrieve the physical interfaces on the host computer. Use a bridged network interface to create a object, which maps that interface to one of your virtual machine’s network devices. The host computer and your virtual machine share access to the physical network interface, but communicate over it using distinct network layers. You don’t create objects directly. Instead, the system creates one object for each physical interface of the host computer and stores those objects in the property. Iterate over the objects in that property to retrieve the network interfaces you need.
+
+
+// An object that identifies the supported network interfaces of the host computer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBridgedNetworkInterface
 type VZBridgedNetworkInterface struct {
 	objectivec.Object
@@ -84,40 +89,43 @@ func NewVZBridgedNetworkInterface() VZBridgedNetworkInterface {
 }
 
 
+
+// The bridged network interfaces that you may use in your virtual machine.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBridgedNetworkInterface/networkInterfaces
+func (vc _VZBridgedNetworkInterfaceClass) NetworkInterfaces() []IVZBridgedNetworkInterface {
+	rv := objc.Send[[]VZBridgedNetworkInterface](objc.ID(vc.class), objc.Sel("networkInterfaces"))
+	return rv
+}
+
 // The unique BSD name of this network interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
-func (v_ VZBridgedNetworkInterface) Identifier() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("identifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBridgedNetworkInterface/identifier
+func (v_ VZBridgedNetworkInterface) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
-// The unique BSD name of this network interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/identifier
-func (v_ VZBridgedNetworkInterface) SetIdentifier(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
 // A user-visible name for the network interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
-func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("localizedDisplayName"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBridgedNetworkInterface/localizedDisplayName
+func (v_ VZBridgedNetworkInterface) LocalizedDisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("localizedDisplayName"))
 	return rv
 }
 
 
-// SetLocalizedDisplayName sets the value of the localizedDisplayName property.
-// A user-visible name for the network interface.
-
+// The bridged network interfaces that you may use in your virtual machine.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/localizeddisplayname
-func (v_ VZBridgedNetworkInterface) SetLocalizedDisplayName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setLocalizedDisplayName:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBridgedNetworkInterface/networkInterfaces
+func (v_ VZBridgedNetworkInterface) NetworkInterfaces() []IVZBridgedNetworkInterface {
+	rv := objc.Send[[]VZBridgedNetworkInterface](v_.ID, objc.Sel("networkInterfaces"))
+	return rv
 }
 
 

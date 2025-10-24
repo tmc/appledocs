@@ -2,12 +2,12 @@
 
 // Package vision provides Go bindings for the Vision framework.
 //
-// Apply computer vision algorithms to perform a variety of tasks on input images and videos. [Full Topic]
+// Apply computer vision algorithms to perform a variety of tasks on input images and videos.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Vision without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision
+// See: https://developer.apple.com/documentation/Vision
 package vision
 
 import (

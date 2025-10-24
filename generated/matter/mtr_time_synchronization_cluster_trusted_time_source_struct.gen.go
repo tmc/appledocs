@@ -31,15 +31,19 @@ type _MTRTimeSynchronizationClusterTrustedTimeSourceStructClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTrustedTimeSourceStruct] class.
 type IMTRTimeSynchronizationClusterTrustedTimeSourceStruct interface {
 	objectivec.IObject
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	NodeID() foundation.Number
-	SetNodeID(value foundation.INumber)
+	// properties:
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	NodeID() objc.IObject /* cross-framework: NSNumber */
+	SetNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct
 type MTRTimeSynchronizationClusterTrustedTimeSourceStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRTimeSynchronizationClusterTrustedTimeSourceStruct() MTRTimeSynchroniz
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/endpoint
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/endpoint
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/fabricIndex
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/fabricIndex
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/nodeID
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
 
-// SetNodeID sets the value of the nodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/nodeID
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 

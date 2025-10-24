@@ -30,11 +30,15 @@ type _NDArrayVectorLUTDequantizeClass struct {
 // An interface definition for the [NDArrayVectorLUTDequantize] class.
 type INDArrayVectorLUTDequantize interface {
 	INDArrayMultiaryKernel
+	// properties:
 	VectorAxis() uint
 	SetVectorAxis(value uint)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize
 type NDArrayVectorLUTDequantize struct {
 	NDArrayMultiaryKernel
@@ -79,7 +83,8 @@ func NewNDArrayVectorLUTDequantize() NDArrayVectorLUTDequantize {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/init(device:axis:)
 func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objectivec.IObject, axis uint) NDArrayVectorLUTDequantize {
 	instance := getNDArrayVectorLUTDequantizeClass().Alloc()
@@ -89,7 +94,8 @@ func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objectivec.IObject, axis
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/vectorAxis
 func (n_ NDArrayVectorLUTDequantize) VectorAxis() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("vectorAxis"))
@@ -97,8 +103,7 @@ func (n_ NDArrayVectorLUTDequantize) VectorAxis() uint {
 }
 
 
-// SetVectorAxis sets the value of the vectorAxis property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/vectorAxis
 func (n_ NDArrayVectorLUTDequantize) SetVectorAxis(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setVectorAxis:"), value)

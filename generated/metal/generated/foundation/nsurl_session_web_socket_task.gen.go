@@ -38,8 +38,8 @@ type IURLSessionWebSocketTask interface {
 	SetCloseCode(value unsafe.Pointer)
 	CloseReason() IData
 	SetCloseReason(value IData)
-	MaximumMessageSize() int /* primitive/slice/pointer. */
-	SetMaximumMessageSize(value int /* primitive/slice/pointer. */)
+	MaximumMessageSize() int
+	SetMaximumMessageSize(value int)
 	// methods:
 }
 
@@ -178,7 +178,7 @@ func (u_ URLSessionWebSocketTask) SetCloseReason(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
-func (u_ URLSessionWebSocketTask) MaximumMessageSize() int /* primitive/slice/pointer. */ {
+func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (u_ URLSessionWebSocketTask) MaximumMessageSize() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
-func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int /* primitive/slice/pointer. */) {
+func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
 

@@ -31,13 +31,17 @@ type _MTRAccessControlClusterAccessRestrictionStructClass struct {
 // An interface definition for the [MTRAccessControlClusterAccessRestrictionStruct] class.
 type IMTRAccessControlClusterAccessRestrictionStruct interface {
 	objectivec.IObject
-	Id() foundation.Number
-	SetId(value foundation.INumber)
-	Type() foundation.Number
-	SetType(value foundation.INumber)
+	// properties:
+	Id() objc.IObject /* cross-framework: NSNumber */
+	SetId(value objc.IObject /* cross-framework: NSNumber */)
+	Type() objc.IObject /* cross-framework: NSNumber */
+	SetType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct
 type MTRAccessControlClusterAccessRestrictionStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRAccessControlClusterAccessRestrictionStruct() MTRAccessControlCluster
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/id
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("id"))
 	return rv
 }
 
 
-// SetId sets the value of the id property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/id
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value foundation.INumber) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

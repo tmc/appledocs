@@ -31,17 +31,21 @@ type _MTRChannelClusterChangeChannelByNumberParamsClass struct {
 // An interface definition for the [MTRChannelClusterChangeChannelByNumberParams] class.
 type IMTRChannelClusterChangeChannelByNumberParams interface {
 	objectivec.IObject
-	MajorNumber() foundation.Number
-	SetMajorNumber(value foundation.INumber)
-	MinorNumber() foundation.Number
-	SetMinorNumber(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	MajorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	MinorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChangeChannelByNumberParams
 type MTRChannelClusterChangeChannelByNumberParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRChannelClusterChangeChannelByNumberParams() MTRChannelClusterChangeCh
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
+func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("majorNumber"))
 	return rv
 }
 
 
-// SetMajorNumber sets the value of the majorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/minornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) MinorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minorNumber"))
+func (m_ MTRChannelClusterChangeChannelByNumberParams) MinorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minorNumber"))
 	return rv
 }
 
 
-// SetMinorNumber sets the value of the minorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/minornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMinorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/serversideprocessingtimeout
-func (m_ MTRChannelClusterChangeChannelByNumberParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRChannelClusterChangeChannelByNumberParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/serversideprocessingtimeout
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

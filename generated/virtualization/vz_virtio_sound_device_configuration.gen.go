@@ -29,16 +29,22 @@ type _VZVirtioSoundDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceConfiguration] class.
 type IVZVirtioSoundDeviceConfiguration interface {
 	IVZAudioDeviceConfiguration
-	Streams() []VZVirtioSoundDeviceStreamConfiguration
-	SetStreams(value []VZVirtioSoundDeviceStreamConfiguration)
-	AudioDevices() VZAudioDeviceConfiguration
+	// properties:
+	Streams() IVZVirtioSoundDeviceStreamConfiguration
+	SetStreams(value IVZVirtioSoundDeviceStreamConfiguration)
+	AudioDevices() IVZAudioDeviceConfiguration
 	SetAudioDevices(value IVZAudioDeviceConfiguration)
+	// methods:
 }
 
 // An object that defines a Virtio sound device configuration.
 //
 // Use a object to configure an audio device for your VM. After creating this object, assign appropriate values to the array property which defines the behaviors of the underlying audio streams for this audio device. After creating and configuring a object, assign it to the property of your VM’s configuration.
+
+
+// An object that defines a Virtio sound device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceConfiguration
 type VZVirtioSoundDeviceConfiguration struct {
 	VZAudioDeviceConfiguration
@@ -88,48 +94,40 @@ func NewVZVirtioSoundDeviceConfiguration() VZVirtioSoundDeviceConfiguration {
 
 // List of audio streams exposed by this device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceConfiguration/streams
-func (v_ VZVirtioSoundDeviceConfiguration) Streams() []VZVirtioSoundDeviceStreamConfiguration {
-	rv := objc.Send[[]VZVirtioSoundDeviceStreamConfiguration](v_.ID, objc.Sel("streams"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration/streams
+func (v_ VZVirtioSoundDeviceConfiguration) Streams() IVZVirtioSoundDeviceStreamConfiguration {
+	rv := objc.Send[VZVirtioSoundDeviceStreamConfiguration](v_.ID, objc.Sel("streams"))
 	return rv
 }
 
 
-// SetStreams sets the value of the streams property.
 // List of audio streams exposed by this device.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceConfiguration/streams
-func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value []VZVirtioSoundDeviceStreamConfiguration) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](v_.ID, objc.Sel("setStreams:"), nsArray)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration/streams
+func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value IVZVirtioSoundDeviceStreamConfiguration) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setStreams:"), value)
 }
+
 
 // The list of audio devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices
-func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() VZAudioDeviceConfiguration {
+func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() IVZAudioDeviceConfiguration {
 	rv := objc.Send[VZAudioDeviceConfiguration](v_.ID, objc.Sel("audioDevices"))
 	return rv
 }
 
 
-// SetAudioDevices sets the value of the audioDevices property.
 // The list of audio devices.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices
 func (v_ VZVirtioSoundDeviceConfiguration) SetAudioDevices(value IVZAudioDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), value)
 }
+
 
 

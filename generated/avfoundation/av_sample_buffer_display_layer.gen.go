@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [SampleBufferDisplayLayer] class.
@@ -30,20 +29,20 @@ type _SampleBufferDisplayLayerClass struct {
 
 // An interface definition for the [SampleBufferDisplayLayer] class.
 type ISampleBufferDisplayLayer interface {
-	quartzcore.ILayer
+	ILayer
 	// properties:
 	ControlTimebase() Timebase /* not a class type */
 	SetControlTimebase(value Timebase /* not a class type */)
-	IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */
-	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer. */)
-	IsReadyForDisplay() bool /* primitive/slice/pointer. */
-	SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */)
-	PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer. */
-	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer. */)
-	PreventsCapture() bool /* primitive/slice/pointer. */
-	SetPreventsCapture(value bool /* primitive/slice/pointer. */)
-	PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer. */
-	SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer. */)
+	IsOutputObscuredDueToInsufficientExternalProtection() bool
+	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
+	PreventsAutomaticBackgroundingDuringVideoPlayback() bool
+	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool)
+	PreventsCapture() bool
+	SetPreventsCapture(value bool)
+	PreventsDisplaySleepDuringVideoPlayback() bool
+	SetPreventsDisplaySleepDuringVideoPlayback(value bool)
 	SampleBufferRenderer() IAVSampleBufferVideoRenderer
 	SetSampleBufferRenderer(value IAVSampleBufferVideoRenderer)
 	VideoGravity() LayerVideoGravity /* not a class type */
@@ -60,7 +59,7 @@ type ISampleBufferDisplayLayer interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferDisplayLayer
 type SampleBufferDisplayLayer struct {
-	quartzcore.Layer
+	Layer
 }
 
 // SampleBufferDisplayLayerFrom constructs a [SampleBufferDisplayLayer] from an unsafe.Pointer.
@@ -68,7 +67,7 @@ type SampleBufferDisplayLayer struct {
 // An object that displays compressed or uncompressed video frames.
 func SampleBufferDisplayLayerFrom(ptr unsafe.Pointer) SampleBufferDisplayLayer {
 	return SampleBufferDisplayLayer{
-		Layer: quartzcore.LayerFrom(ptr),
+		Layer: LayerFrom(ptr),
 	}
 }
 
@@ -128,7 +127,7 @@ func (s_ SampleBufferDisplayLayer) SetControlTimebase(value Timebase /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isoutputobscuredduetoinsufficientexternalprotection
-func (s_ SampleBufferDisplayLayer) IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferDisplayLayer) IsOutputObscuredDueToInsufficientExternalProtection() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isOutputObscuredDueToInsufficientExternalProtection"))
 	return rv
 }
@@ -138,7 +137,7 @@ func (s_ SampleBufferDisplayLayer) IsOutputObscuredDueToInsufficientExternalProt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isoutputobscuredduetoinsufficientexternalprotection
-func (s_ SampleBufferDisplayLayer) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferDisplayLayer) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsOutputObscuredDueToInsufficientExternalProtection:"), value)
 }
 
@@ -147,7 +146,7 @@ func (s_ SampleBufferDisplayLayer) SetIsOutputObscuredDueToInsufficientExternalP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isreadyfordisplay
-func (s_ SampleBufferDisplayLayer) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferDisplayLayer) IsReadyForDisplay() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
@@ -157,7 +156,7 @@ func (s_ SampleBufferDisplayLayer) IsReadyForDisplay() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/isreadyfordisplay
-func (s_ SampleBufferDisplayLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferDisplayLayer) SetIsReadyForDisplay(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
@@ -166,7 +165,7 @@ func (s_ SampleBufferDisplayLayer) SetIsReadyForDisplay(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsautomaticbackgroundingduringvideoplayback
-func (s_ SampleBufferDisplayLayer) PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferDisplayLayer) PreventsAutomaticBackgroundingDuringVideoPlayback() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsAutomaticBackgroundingDuringVideoPlayback"))
 	return rv
 }
@@ -176,7 +175,7 @@ func (s_ SampleBufferDisplayLayer) PreventsAutomaticBackgroundingDuringVideoPlay
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsautomaticbackgroundingduringvideoplayback
-func (s_ SampleBufferDisplayLayer) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferDisplayLayer) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsAutomaticBackgroundingDuringVideoPlayback:"), value)
 }
 
@@ -185,7 +184,7 @@ func (s_ SampleBufferDisplayLayer) SetPreventsAutomaticBackgroundingDuringVideoP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventscapture
-func (s_ SampleBufferDisplayLayer) PreventsCapture() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferDisplayLayer) PreventsCapture() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsCapture"))
 	return rv
 }
@@ -195,7 +194,7 @@ func (s_ SampleBufferDisplayLayer) PreventsCapture() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventscapture
-func (s_ SampleBufferDisplayLayer) SetPreventsCapture(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferDisplayLayer) SetPreventsCapture(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsCapture:"), value)
 }
 
@@ -204,7 +203,7 @@ func (s_ SampleBufferDisplayLayer) SetPreventsCapture(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsdisplaysleepduringvideoplayback
-func (s_ SampleBufferDisplayLayer) PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferDisplayLayer) PreventsDisplaySleepDuringVideoPlayback() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("preventsDisplaySleepDuringVideoPlayback"))
 	return rv
 }
@@ -214,7 +213,7 @@ func (s_ SampleBufferDisplayLayer) PreventsDisplaySleepDuringVideoPlayback() boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/preventsdisplaysleepduringvideoplayback
-func (s_ SampleBufferDisplayLayer) SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferDisplayLayer) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreventsDisplaySleepDuringVideoPlayback:"), value)
 }
 

@@ -2,12 +2,12 @@
 
 // Package pcidriverkit provides Go bindings for the PCIDriverKit framework.
 //
-// Develop device drivers for Peripheral Component Interconnect (PCI) accessories. [Full Topic]
+// Develop device drivers for Peripheral Component Interconnect (PCI) accessories.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PCIDriverKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit
+// See: https://developer.apple.com/documentation/PCIDriverKit
 package pcidriverkit
 
 import (

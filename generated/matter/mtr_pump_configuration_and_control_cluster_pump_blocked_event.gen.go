@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterPumpBlockedEvent] class.
 type IMTRPumpConfigurationAndControlClusterPumpBlockedEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterPumpBlockedEvent
 type MTRPumpConfigurationAndControlClusterPumpBlockedEvent struct {
 	objectivec.Object

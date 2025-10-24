@@ -33,8 +33,8 @@ type ISliderAccessory interface {
 	// properties:
 	Behavior() ISliderAccessoryBehavior
 	SetBehavior(value ISliderAccessoryBehavior)
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func (s_ SliderAccessory) SetBehavior(value ISliderAccessoryBehavior) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
-func (s_ SliderAccessory) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (s_ SliderAccessory) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (s_ SliderAccessory) IsEnabled() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
-func (s_ SliderAccessory) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (s_ SliderAccessory) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

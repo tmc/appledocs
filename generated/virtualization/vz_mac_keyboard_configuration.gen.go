@@ -29,12 +29,18 @@ type _VZMacKeyboardConfigurationClass struct {
 // An interface definition for the [VZMacKeyboardConfiguration] class.
 type IVZMacKeyboardConfiguration interface {
 	IVZKeyboardConfiguration
+	// properties:
+	// methods:
 }
 
 // A device that defines the configuration for a Mac keyboard.
 //
 // Use this configuration to attach a Mac keyboard configuration to a VM. A can use this device to send key events to the VM, including the Mac-specific key events, such as the Globe key.
+
+
+// A device that defines the configuration for a Mac keyboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacKeyboardConfiguration
 type VZMacKeyboardConfiguration struct {
 	VZKeyboardConfiguration

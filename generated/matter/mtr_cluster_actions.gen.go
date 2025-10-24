@@ -29,9 +29,13 @@ type _MTRClusterActionsClass struct {
 // An interface definition for the [MTRClusterActions] class.
 type IMTRClusterActions interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterActions
 type MTRClusterActions struct {
 	MTRGenericCluster

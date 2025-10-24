@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +32,19 @@ type _CaptureOutputClass struct {
 type ICaptureOutput interface {
 	objectivec.IObject
 	// properties:
-	Connections() []CaptureConnection /* primitive/slice/pointer. */
-	DeferredStartEnabled() bool /* primitive/slice/pointer. */
-	SetDeferredStartEnabled(value bool /* primitive/slice/pointer. */)
-	DeferredStartSupported() bool /* primitive/slice/pointer. */
-	IsDeferredStartEnabled() bool /* primitive/slice/pointer. */
-	SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */)
-	IsDeferredStartSupported() bool /* primitive/slice/pointer. */
-	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */)
+	Connections() []ICaptureConnection
+	DeferredStartEnabled() bool
+	SetDeferredStartEnabled(value bool)
+	DeferredStartSupported() bool
+	IsDeferredStartEnabled() bool
+	SetIsDeferredStartEnabled(value bool)
+	IsDeferredStartSupported() bool
+	SetIsDeferredStartSupported(value bool)
 	// methods:
 	ConnectionWithMediaType(mediaType MediaType /* not a class type */) ICaptureConnection
-	MetadataOutputRectOfInterestForRect(rectInOutputCoordinates objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	TransformedMetadataObjectForMetadataObjectConnection(metadataObject objc.IObject /* cross-framework MetadataObject */, connection IAVCaptureConnection) objc.IObject /* cross-framework: MetadataObject */
+	MetadataOutputRectOfInterestForRect(rectInOutputCoordinates objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	TransformedMetadataObjectForMetadataObjectConnection(metadataObject objc.IObject /* cross-framework: MetadataObject */, connection IAVCaptureConnection) objc.IObject /* cross-framework: MetadataObject */
 }
 
 // An abstract superclass for objects that provide media output destinations for a capture session.
@@ -113,8 +114,8 @@ func (c_ CaptureOutput) ConnectionWithMediaType(mediaType MediaType /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/metadataOutputRectConverted(fromOutputRect:)
-func (c_ CaptureOutput) MetadataOutputRectOfInterestForRect(rectInOutputCoordinates objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("metadataOutputRectOfInterestForRect:"), rectInOutputCoordinates)
+func (c_ CaptureOutput) MetadataOutputRectOfInterestForRect(rectInOutputCoordinates objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("metadataOutputRectOfInterestForRect:"), rectInOutputCoordinates)
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (c_ CaptureOutput) MetadataOutputRectOfInterestForRect(rectInOutputCoordina
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/outputRectConverted(fromMetadataOutputRect:)
-func (c_ CaptureOutput) RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](c_.ID, objc.Sel("rectForMetadataOutputRectOfInterest:"), rectInMetadataOutputCoordinates)
+func (c_ CaptureOutput) RectForMetadataOutputRectOfInterest(rectInMetadataOutputCoordinates objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("rectForMetadataOutputRectOfInterest:"), rectInMetadataOutputCoordinates)
 	return rv
 }
 
@@ -133,7 +134,7 @@ func (c_ CaptureOutput) RectForMetadataOutputRectOfInterest(rectInMetadataOutput
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/transformedMetadataObject(for:connection:)
-func (c_ CaptureOutput) TransformedMetadataObjectForMetadataObjectConnection(metadataObject objc.IObject /* cross-framework MetadataObject */, connection IAVCaptureConnection) objc.IObject /* cross-framework: MetadataObject */ {
+func (c_ CaptureOutput) TransformedMetadataObjectForMetadataObjectConnection(metadataObject objc.IObject /* cross-framework: MetadataObject */, connection IAVCaptureConnection) objc.IObject /* cross-framework: MetadataObject */ {
 	rv := objc.Send[MetadataObject](c_.ID, objc.Sel("transformedMetadataObjectForMetadataObject:connection:"), metadataObject, connection)
 	return rv
 }
@@ -143,7 +144,7 @@ func (c_ CaptureOutput) TransformedMetadataObjectForMetadataObjectConnection(met
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/connections
-func (c_ CaptureOutput) Connections() []CaptureConnection /* primitive/slice/pointer. */ {
+func (c_ CaptureOutput) Connections() []ICaptureConnection {
 	rv := objc.Send[[]CaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
@@ -153,7 +154,7 @@ func (c_ CaptureOutput) Connections() []CaptureConnection /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/isDeferredStartEnabled
-func (c_ CaptureOutput) DeferredStartEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureOutput) DeferredStartEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("deferredStartEnabled"))
 	return rv
 }
@@ -163,7 +164,7 @@ func (c_ CaptureOutput) DeferredStartEnabled() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/isDeferredStartEnabled
-func (c_ CaptureOutput) SetDeferredStartEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureOutput) SetDeferredStartEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeferredStartEnabled:"), value)
 }
 
@@ -172,7 +173,7 @@ func (c_ CaptureOutput) SetDeferredStartEnabled(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/isDeferredStartSupported
-func (c_ CaptureOutput) DeferredStartSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureOutput) DeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("deferredStartSupported"))
 	return rv
 }
@@ -182,7 +183,7 @@ func (c_ CaptureOutput) DeferredStartSupported() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
-func (c_ CaptureOutput) IsDeferredStartEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureOutput) IsDeferredStartEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
 	return rv
 }
@@ -192,7 +193,7 @@ func (c_ CaptureOutput) IsDeferredStartEnabled() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartenabled
-func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
 }
 
@@ -201,7 +202,7 @@ func (c_ CaptureOutput) SetIsDeferredStartEnabled(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
-func (c_ CaptureOutput) IsDeferredStartSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureOutput) IsDeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
 	return rv
 }
@@ -211,7 +212,7 @@ func (c_ CaptureOutput) IsDeferredStartSupported() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/isdeferredstartsupported
-func (c_ CaptureOutput) SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureOutput) SetIsDeferredStartSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
 }
 

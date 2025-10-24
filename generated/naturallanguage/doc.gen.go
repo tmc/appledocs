@@ -2,12 +2,12 @@
 
 // Package naturallanguage provides Go bindings for the NaturalLanguage framework.
 //
-// Analyze natural language text and deduce its language-specific metadata. [Full Topic]
+// Analyze natural language text and deduce its language-specific metadata.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to NaturalLanguage without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage
+// See: https://developer.apple.com/documentation/NaturalLanguage
 package naturallanguage
 
 import (

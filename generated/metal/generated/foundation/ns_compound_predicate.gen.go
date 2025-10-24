@@ -30,8 +30,10 @@ type _CompoundPredicateClass struct {
 type ICompoundPredicate interface {
 	IPredicate
 	// properties:
-	CompoundPredicateType() CompoundPredicateType
-	Subpredicates() IArray
+	CompoundPredicateType() unsafe.Pointer
+	SetCompoundPredicateType(value unsafe.Pointer)
+	Subpredicates() unsafe.Pointer
+	SetSubpredicates(value unsafe.Pointer)
 	// methods:
 }
 
@@ -90,87 +92,12 @@ func NewCompoundPredicate() CompoundPredicate {
 
 
 
-// Returns a new predicate that you form using an AND operation on the predicates in a specified array.
+// The predicate type for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
-func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates []Predicate /* primitive/slice/pointer. */) CompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("andPredicateWithSubpredicates:"), subpredicates)
-	return rv
-}
-
-
-// Returns a new predicate that you form using a NOT operation on a specified predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
-func NewCompoundPredicateNotPredicateWithSubpredicate(predicate IPredicate) CompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
-	return rv
-}
-
-
-// Returns a new predicate that you form using an OR operation on the predicates in a specified array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(orPredicateWithSubpredicates:)
-func NewCompoundPredicateOrPredicateWithSubpredicates(subpredicates []Predicate /* primitive/slice/pointer. */) CompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("orPredicateWithSubpredicates:"), subpredicates)
-	return rv
-}
-
-
-// Creates a predicate by decoding from the coder you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(coder:)
-func NewCompoundPredicateWithCoder(coder ICoder) CompoundPredicate {
-	instance := getCompoundPredicateClass().Alloc()
-	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns the receiver that a specified type initializes using predicates from a specified array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(type:subpredicates:)
-func NewCompoundPredicateWithTypeSubpredicates(type_ CompoundPredicateType, subpredicates []Predicate /* primitive/slice/pointer. */) CompoundPredicate {
-	instance := getCompoundPredicateClass().Alloc()
-	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithType:subpredicates:"), type_, subpredicates)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a new predicate that you form using an AND operation on the predicates in a specified array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
-func (cc _CompoundPredicateClass) AndPredicateWithSubpredicates(subpredicates []Predicate /* primitive/slice/pointer. */) ICompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("andPredicateWithSubpredicates:"), subpredicates)
-	return rv
-}
-
-
-// Returns a new predicate that you form using a NOT operation on a specified predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
-func (cc _CompoundPredicateClass) NotPredicateWithSubpredicate(predicate IPredicate) ICompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
-	return rv
-}
-
-
-// Returns a new predicate that you form using an OR operation on the predicates in a specified array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(orPredicateWithSubpredicates:)
-func (cc _CompoundPredicateClass) OrPredicateWithSubpredicates(subpredicates []Predicate /* primitive/slice/pointer. */) ICompoundPredicate {
-	rv := objc.Send[CompoundPredicate](objc.ID(cc.class), objc.Sel("orPredicateWithSubpredicates:"), subpredicates)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/compoundpredicatetype
+func (c_ CompoundPredicate) CompoundPredicateType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compoundPredicateType"))
 	return rv
 }
 
@@ -178,9 +105,18 @@ func (cc _CompoundPredicateClass) OrPredicateWithSubpredicates(subpredicates []P
 // The predicate type for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/compoundPredicateType
-func (c_ CompoundPredicate) CompoundPredicateType() CompoundPredicateType {
-	rv := objc.Send[CompoundPredicateType](c_.ID, objc.Sel("compoundPredicateType"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/compoundpredicatetype
+func (c_ CompoundPredicate) SetCompoundPredicateType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCompoundPredicateType:"), value)
+}
+
+
+// The receiver’s subpredicates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
+func (c_ CompoundPredicate) Subpredicates() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subpredicates"))
 	return rv
 }
 
@@ -188,10 +124,10 @@ func (c_ CompoundPredicate) CompoundPredicateType() CompoundPredicateType {
 // The receiver’s subpredicates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/subpredicates
-func (c_ CompoundPredicate) Subpredicates() IArray {
-	rv := objc.Send[Array](c_.ID, objc.Sel("subpredicates"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscompoundpredicate/subpredicates
+func (c_ CompoundPredicate) SetSubpredicates(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubpredicates:"), value)
 }
+
 
 

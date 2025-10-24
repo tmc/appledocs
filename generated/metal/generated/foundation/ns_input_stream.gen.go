@@ -30,8 +30,8 @@ type _InputStreamClass struct {
 type IInputStream interface {
 	IStream
 	// properties:
-	HasBytesAvailable() bool /* primitive/slice/pointer. */
-	SetHasBytesAvailable(value bool /* primitive/slice/pointer. */)
+	HasBytesAvailable() bool
+	SetHasBytesAvailable(value bool)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewInputStream() InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
-func (i_ InputStream) HasBytesAvailable() bool /* primitive/slice/pointer. */ {
+func (i_ InputStream) HasBytesAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (i_ InputStream) HasBytesAvailable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
-func (i_ InputStream) SetHasBytesAvailable(value bool /* primitive/slice/pointer. */) {
+func (i_ InputStream) SetHasBytesAvailable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHasBytesAvailable:"), value)
 }
 

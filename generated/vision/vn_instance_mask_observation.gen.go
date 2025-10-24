@@ -30,16 +30,21 @@ type _InstanceMaskObservationClass struct {
 // An interface definition for the [InstanceMaskObservation] class.
 type IInstanceMaskObservation interface {
 	IObservation
-	GenerateMaskForInstancesError(instances foundation.IIndexSet, error_ unsafe.Pointer) unsafe.Pointer
-	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer
-	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, error_ unsafe.Pointer) unsafe.Pointer
-	AllInstances() foundation.IndexSet
-	InstanceMask() unsafe.Pointer
+	// properties:
 	VNGenerateForegroundInstanceMaskRequestRevision1() int
+	AllInstances() objc.IObject /* cross-framework: IndexSet */
+	SetAllInstances(value objc.IObject /* cross-framework: IndexSet */)
+	InstanceMask() PixelBuffer /* not a class type */
+	SetInstanceMask(value PixelBuffer /* not a class type */)
+	// methods:
 }
 
 // An observation that contains an instance mask that labels instances in the mask.
+
+
+// An observation that contains an instance mask that labels instances in the mask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation
 type InstanceMaskObservation struct {
 	Observation
@@ -86,52 +91,52 @@ func NewInstanceMaskObservation() InstanceMaskObservation {
 }
 
 
-// Creates a low-resolution mask from the instances you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMask(forInstances:)
-func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances foundation.IIndexSet, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateMaskForInstances:error:"), instances, error_)
-	return rv
-}
-
-// Creates a high-resolution image where everything becomes transparent black, except for the instances you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMaskedImage(ofInstances:from:croppedToInstancesExtent:)
-func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateMaskedImageOfInstances:fromRequestHandler:croppedToInstancesExtent:error:"), instances, requestHandler, cropResult, error_)
-	return rv
-}
-
-// Creates a high-resolution mask where everything becomes transparent black, except for the instances you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateScaledMaskForImage(forInstances:from:)
-func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateScaledMaskForImageForInstances:fromRequestHandler:error:"), instances, requestHandler, error_)
-	return rv
-}
-
-// The collection that contains all instances, excluding the background.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/allInstances
-func (i_ InstanceMaskObservation) AllInstances() foundation.IndexSet {
-	rv := objc.Send[foundation.IndexSet](i_.ID, objc.Sel("allInstances"))
-	return rv
-}
-
-// The resulting mask that represents all instances.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/instanceMask
-func (i_ InstanceMaskObservation) InstanceMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instanceMask"))
-	return rv
-}
 
 // A constant for specifying the first revision of the foreground instance mask request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1
 func (i_ InstanceMaskObservation) VNGenerateForegroundInstanceMaskRequestRevision1() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("VNGenerateForegroundInstanceMaskRequestRevision1"))
 	return rv
+}
+
+
+// The collection that contains all instances, excluding the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vninstancemaskobservation/allinstances
+func (i_ InstanceMaskObservation) AllInstances() objc.IObject /* cross-framework: IndexSet */ {
+	rv := objc.Send[foundation.IndexSet](i_.ID, objc.Sel("allInstances"))
+	return rv
+}
+
+
+// The collection that contains all instances, excluding the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vninstancemaskobservation/allinstances
+func (i_ InstanceMaskObservation) SetAllInstances(value objc.IObject /* cross-framework: IndexSet */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAllInstances:"), value)
+}
+
+
+// The resulting mask that represents all instances.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vninstancemaskobservation/instancemask
+func (i_ InstanceMaskObservation) InstanceMask() PixelBuffer /* not a class type */ {
+	rv := objc.Send[PixelBuffer](i_.ID, objc.Sel("instanceMask"))
+	return rv
+}
+
+
+// The resulting mask that represents all instances.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vninstancemaskobservation/instancemask
+func (i_ InstanceMaskObservation) SetInstanceMask(value PixelBuffer /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInstanceMask:"), value)
 }
 
 

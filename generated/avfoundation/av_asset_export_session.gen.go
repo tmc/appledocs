@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,9 +34,9 @@ type _AssetExportSessionClass struct {
 type IAssetExportSession interface {
 	objectivec.IObject
 	// properties:
-	Progress() float32 /* primitive/slice/pointer. */
-	AllowsParallelizedExport() bool /* primitive/slice/pointer. */
-	SetAllowsParallelizedExport(value bool /* primitive/slice/pointer. */)
+	Progress() float32
+	AllowsParallelizedExport() bool
+	SetAllowsParallelizedExport(value bool)
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
 	AudioMix() IAVAudioMix
@@ -43,20 +45,20 @@ type IAssetExportSession interface {
 	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
 	AudioTrackGroupHandling() AssetTrackGroupOutputHandling /* not a class type */
 	SetAudioTrackGroupHandling(value AssetTrackGroupOutputHandling /* not a class type */)
-	CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer. */
-	SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer. */)
+	CanPerformMultiplePassesOverSourceMediaData() bool
+	SetCanPerformMultiplePassesOverSourceMediaData(value bool)
 	CustomVideoCompositor() VideoCompositing /* not a class type */
 	SetCustomVideoCompositor(value VideoCompositing /* not a class type */)
 	DirectoryForTemporaryFiles() objc.IObject /* cross-framework: URL */
 	SetDirectoryForTemporaryFiles(value objc.IObject /* cross-framework: URL */)
-	Error() Error
-	SetError(value Error)
+	Error() coretelephony.Error
+	SetError(value coretelephony.Error)
 	EstimatedOutputFileLength() unsafe.Pointer
 	SetEstimatedOutputFileLength(value unsafe.Pointer)
 	FileLengthLimit() unsafe.Pointer
 	SetFileLengthLimit(value unsafe.Pointer)
-	MaxDuration() Time /* not a class type */
-	SetMaxDuration(value Time /* not a class type */)
+	MaxDuration() objc.IObject /* cross-framework: Time */
+	SetMaxDuration(value objc.IObject /* cross-framework: Time */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
 	MetadataItemFilter() MetadataItemFilter /* not a class type */
@@ -67,14 +69,14 @@ type IAssetExportSession interface {
 	SetOutputURL(value objc.IObject /* cross-framework: URL */)
 	PresetName() objc.IObject /* cross-framework: NSString */
 	SetPresetName(value objc.IObject /* cross-framework: NSString */)
-	ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */
-	SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */)
+	ShouldOptimizeForNetworkUse() bool
+	SetShouldOptimizeForNetworkUse(value bool)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
 	SupportedFileTypes() objc.IObject /* cross-framework: FileType */
 	SetSupportedFileTypes(value objc.IObject /* cross-framework: FileType */)
-	TimeRange() TimeRange /* not a class type */
-	SetTimeRange(value TimeRange /* not a class type */)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
 	VideoComposition() objc.IObject /* cross-framework: VideoComposition */
 	SetVideoComposition(value objc.IObject /* cross-framework: VideoComposition */)
 	// methods:
@@ -137,7 +139,7 @@ func NewAssetExportSession() AssetExportSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/allExportPresets()
-func (ac _AssetExportSessionClass) AllExportPresets() []string /* primitive/slice/pointer. */ {
+func (ac _AssetExportSessionClass) AllExportPresets() []string {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("allExportPresets"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (ac _AssetExportSessionClass) AllExportPresets() []string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportPresets(compatibleWith:)
-func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAsset) []string /* primitive/slice/pointer. */ {
+func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAsset) []string {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("exportPresetsCompatibleWithAsset:"), asset)
 	return rv
 }
@@ -157,7 +159,7 @@ func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAss
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/progress
-func (a_ AssetExportSession) Progress() float32 /* primitive/slice/pointer. */ {
+func (a_ AssetExportSession) Progress() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("progress"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (a_ AssetExportSession) Progress() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/allowsparallelizedexport
-func (a_ AssetExportSession) AllowsParallelizedExport() bool /* primitive/slice/pointer. */ {
+func (a_ AssetExportSession) AllowsParallelizedExport() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsParallelizedExport"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (a_ AssetExportSession) AllowsParallelizedExport() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/allowsparallelizedexport
-func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsParallelizedExport:"), value)
 }
 
@@ -262,7 +264,7 @@ func (a_ AssetExportSession) SetAudioTrackGroupHandling(value AssetTrackGroupOut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/canperformmultiplepassesoversourcemediadata
-func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer. */ {
+func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformMultiplePassesOverSourceMediaData"))
 	return rv
 }
@@ -272,7 +274,7 @@ func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/canperformmultiplepassesoversourcemediadata
-func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformMultiplePassesOverSourceMediaData:"), value)
 }
 
@@ -319,8 +321,8 @@ func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
-func (a_ AssetExportSession) Error() Error {
-	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
+func (a_ AssetExportSession) Error() coretelephony.Error {
+	rv := objc.Send[coretelephony.Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -329,7 +331,7 @@ func (a_ AssetExportSession) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
-func (a_ AssetExportSession) SetError(value Error) {
+func (a_ AssetExportSession) SetError(value coretelephony.Error) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -376,8 +378,8 @@ func (a_ AssetExportSession) SetFileLengthLimit(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/maxduration
-func (a_ AssetExportSession) MaxDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("maxDuration"))
+func (a_ AssetExportSession) MaxDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("maxDuration"))
 	return rv
 }
 
@@ -386,7 +388,7 @@ func (a_ AssetExportSession) MaxDuration() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/maxduration
-func (a_ AssetExportSession) SetMaxDuration(value Time /* not a class type */) {
+func (a_ AssetExportSession) SetMaxDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxDuration:"), value)
 }
 
@@ -490,7 +492,7 @@ func (a_ AssetExportSession) SetPresetName(value objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse
-func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */ {
+func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldOptimizeForNetworkUse"))
 	return rv
 }
@@ -500,7 +502,7 @@ func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse
-func (a_ AssetExportSession) SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetExportSession) SetShouldOptimizeForNetworkUse(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
 }
 
@@ -547,8 +549,8 @@ func (a_ AssetExportSession) SetSupportedFileTypes(value objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/timerange
-func (a_ AssetExportSession) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
+func (a_ AssetExportSession) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -557,7 +559,7 @@ func (a_ AssetExportSession) TimeRange() TimeRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/timerange
-func (a_ AssetExportSession) SetTimeRange(value TimeRange /* not a class type */) {
+func (a_ AssetExportSession) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RPSystemBroadcastPickerView] class.
@@ -30,16 +31,18 @@ type _RPSystemBroadcastPickerViewClass struct {
 // An interface definition for the [RPSystemBroadcastPickerView] class.
 type IRPSystemBroadcastPickerView interface {
 	appkit.IView
-	PreferredExtension() string
-	SetPreferredExtension(value string)
-	ShowsMicrophoneButton() bool
-	SetShowsMicrophoneButton(value bool)
+	// properties:
+	// methods:
 }
 
 // A view displaying a broadcast button that, when tapped, shows a broadcast picker.
 //
 // Add this view to your view hierarchy to let users broadcast directly from your app. When a user taps the broadcast button, it displays a broadcast picker, allowing the user to select a broadcast provider. You can limit the picker to a particular broadcast provider by setting to the bundle identifier of a broadcast extension. You can also show or hide the microphone button displayed in the picker by setting the property. Set these properties before presenting , as shown here:
+
+
+// A view displaying a broadcast button that, when tapped, shows a broadcast picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView
 type RPSystemBroadcastPickerView struct {
 	appkit.View
@@ -84,44 +87,6 @@ func (r_ RPSystemBroadcastPickerView) Autorelease() RPSystemBroadcastPickerView 
 func NewRPSystemBroadcastPickerView() RPSystemBroadcastPickerView {
 	return getRPSystemBroadcastPickerViewClass().New()
 }
-
-
-// A bundle identifier of a broadcast extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/preferredExtension
-func (r_ RPSystemBroadcastPickerView) PreferredExtension() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("preferredExtension"))
-	return rv
-}
-
-
-// SetPreferredExtension sets the value of the preferredExtension property.
-// A bundle identifier of a broadcast extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/preferredExtension
-func (r_ RPSystemBroadcastPickerView) SetPreferredExtension(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredExtension:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the microphone button is visible in the broadcast picker.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/showsMicrophoneButton
-func (r_ RPSystemBroadcastPickerView) ShowsMicrophoneButton() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("showsMicrophoneButton"))
-	return rv
-}
-
-
-// SetShowsMicrophoneButton sets the value of the showsMicrophoneButton property.
-// A Boolean value that indicates whether the microphone button is visible in the broadcast picker.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSystemBroadcastPickerView/showsMicrophoneButton
-func (r_ RPSystemBroadcastPickerView) SetShowsMicrophoneButton(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setShowsMicrophoneButton:"), value)
-}
-
 
 
 

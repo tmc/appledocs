@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNChangeHistoryDeleteContactEvent] class.
@@ -30,7 +31,7 @@ type _CNChangeHistoryDeleteContactEventClass struct {
 type ICNChangeHistoryDeleteContactEvent interface {
 	ICNChangeHistoryEvent
 	// properties:
-	ContactIdentifier() string /* primitive/slice/pointer. */
+	ContactIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -91,8 +92,8 @@ func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent/contactIdentifier
-func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 

@@ -6,7 +6,6 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -18,40 +17,40 @@ import (
 var (
 	_CGAnimateImageAtURLWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGAnimateImageDataWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageDestinationAddAuxiliaryDataInfo func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CGImageDestinationAddImage func(unsafe.Pointer, coregraphics.ImageRef, unsafe.Pointer)
-	_CGImageDestinationAddImageFromSource func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer)
-	_CGImageDestinationCopyImageSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGImageDestinationAddAuxiliaryDataInfo func(ImageDestinationRef, unsafe.Pointer, unsafe.Pointer)
+	_CGImageDestinationAddImage func(ImageDestinationRef, ImageRef, unsafe.Pointer)
+	_CGImageDestinationAddImageFromSource func(ImageDestinationRef, ImageSourceRef, uintptr, unsafe.Pointer)
+	_CGImageDestinationCopyImageSource func(ImageDestinationRef, ImageSourceRef, unsafe.Pointer, unsafe.Pointer) bool
 	_CGImageDestinationCopyTypeIdentifiers func() unsafe.Pointer
-	_CGImageDestinationCreateWithData func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CGImageDestinationCreateWithDataConsumer func(coregraphics.DataConsumerRef, unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CGImageDestinationCreateWithURL func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CGImageDestinationFinalize func(unsafe.Pointer) bool
+	_CGImageDestinationCreateWithData func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) ImageDestinationRef
+	_CGImageDestinationCreateWithDataConsumer func(DataConsumerRef, unsafe.Pointer, uintptr, unsafe.Pointer) ImageDestinationRef
+	_CGImageDestinationCreateWithURL func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) ImageDestinationRef
+	_CGImageDestinationFinalize func(ImageDestinationRef) bool
 	_CGImageDestinationGetTypeID func() unsafe.Pointer
-	_CGImageDestinationSetProperties func(unsafe.Pointer, unsafe.Pointer)
+	_CGImageDestinationSetProperties func(ImageDestinationRef, unsafe.Pointer)
 	_CGImageMetadataCopyTags func(ImageMetadataRef) unsafe.Pointer
 	_CGImageMetadataCreateMutableCopy func(ImageMetadataRef) MutableImageMetadataRef
 	_CGImageMetadataTagGetTypeID func() unsafe.Pointer
-	_CGImageSourceCopyAuxiliaryDataInfoAtIndex func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCopyProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCopyPropertiesAtIndex func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceCopyAuxiliaryDataInfoAtIndex func(ImageSourceRef, uintptr, unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceCopyProperties func(ImageSourceRef, unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceCopyPropertiesAtIndex func(ImageSourceRef, uintptr, unsafe.Pointer) unsafe.Pointer
 	_CGImageSourceCopyTypeIdentifiers func() unsafe.Pointer
-	_CGImageSourceCreateImageAtIndex func(unsafe.Pointer, uintptr, unsafe.Pointer) coregraphics.ImageRef
-	_CGImageSourceCreateIncremental func(unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCreateThumbnailAtIndex func(unsafe.Pointer, uintptr, unsafe.Pointer) coregraphics.ImageRef
-	_CGImageSourceCreateWithData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCreateWithDataProvider func(coregraphics.DataProviderRef, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceCreateWithURL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceGetCount func(unsafe.Pointer) uintptr
-	_CGImageSourceGetPrimaryImageIndex func(unsafe.Pointer) uintptr
-	_CGImageSourceGetStatus func(unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceGetStatusAtIndex func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_CGImageSourceGetType func(unsafe.Pointer) unsafe.Pointer
+	_CGImageSourceCreateImageAtIndex func(ImageSourceRef, uintptr, unsafe.Pointer) ImageRef
+	_CGImageSourceCreateIncremental func(unsafe.Pointer) ImageSourceRef
+	_CGImageSourceCreateThumbnailAtIndex func(ImageSourceRef, uintptr, unsafe.Pointer) ImageRef
+	_CGImageSourceCreateWithData func(unsafe.Pointer, unsafe.Pointer) ImageSourceRef
+	_CGImageSourceCreateWithDataProvider func(DataProviderRef, unsafe.Pointer) ImageSourceRef
+	_CGImageSourceCreateWithURL func(unsafe.Pointer, unsafe.Pointer) ImageSourceRef
+	_CGImageSourceGetCount func(ImageSourceRef) uintptr
+	_CGImageSourceGetPrimaryImageIndex func(ImageSourceRef) uintptr
+	_CGImageSourceGetStatus func(ImageSourceRef) unsafe.Pointer
+	_CGImageSourceGetStatusAtIndex func(ImageSourceRef, uintptr) unsafe.Pointer
+	_CGImageSourceGetType func(ImageSourceRef) unsafe.Pointer
 	_CGImageSourceGetTypeID func() unsafe.Pointer
-	_CGImageSourceRemoveCacheAtIndex func(unsafe.Pointer, uintptr)
+	_CGImageSourceRemoveCacheAtIndex func(ImageSourceRef, uintptr)
 	_CGImageSourceSetAllowableTypes func(unsafe.Pointer) unsafe.Pointer
-	_CGImageSourceUpdateData func(unsafe.Pointer, unsafe.Pointer, bool)
-	_CGImageSourceUpdateDataProvider func(unsafe.Pointer, coregraphics.DataProviderRef, bool)
+	_CGImageSourceUpdateData func(ImageSourceRef, unsafe.Pointer, bool)
+	_CGImageSourceUpdateDataProvider func(ImageSourceRef, DataProviderRef, bool)
 )
 
 func init() {
@@ -140,7 +139,7 @@ func CGAnimateImageDataWithBlock(data unsafe.Pointer, options unsafe.Pointer, bl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddAuxiliaryDataInfo(_:_:_:)
-func CGImageDestinationAddAuxiliaryDataInfo(idst unsafe.Pointer, auxiliaryImageDataType unsafe.Pointer, auxiliaryDataInfoDictionary unsafe.Pointer) {
+func CGImageDestinationAddAuxiliaryDataInfo(idst ImageDestinationRef, auxiliaryImageDataType unsafe.Pointer, auxiliaryDataInfoDictionary unsafe.Pointer) {
 	_CGImageDestinationAddAuxiliaryDataInfo(idst, auxiliaryImageDataType, auxiliaryDataInfoDictionary)
 }
 
@@ -151,7 +150,7 @@ func CGImageDestinationAddAuxiliaryDataInfo(idst unsafe.Pointer, auxiliaryImageD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImage(_:_:_:)
-func CGImageDestinationAddImage(idst unsafe.Pointer, image coregraphics.ImageRef, properties unsafe.Pointer) {
+func CGImageDestinationAddImage(idst ImageDestinationRef, image ImageRef, properties unsafe.Pointer) {
 	_CGImageDestinationAddImage(idst, image, properties)
 }
 
@@ -162,7 +161,7 @@ func CGImageDestinationAddImage(idst unsafe.Pointer, image coregraphics.ImageRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationAddImageFromSource(_:_:_:_:)
-func CGImageDestinationAddImageFromSource(idst unsafe.Pointer, isrc unsafe.Pointer, index uintptr, properties unsafe.Pointer) {
+func CGImageDestinationAddImageFromSource(idst ImageDestinationRef, isrc ImageSourceRef, index uintptr, properties unsafe.Pointer) {
 	_CGImageDestinationAddImageFromSource(idst, isrc, index, properties)
 }
 
@@ -171,7 +170,7 @@ func CGImageDestinationAddImageFromSource(idst unsafe.Pointer, isrc unsafe.Point
 // Added in macOS 10.8.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCopyImageSource(_:_:_:_:)
-func CGImageDestinationCopyImageSource(idst unsafe.Pointer, isrc unsafe.Pointer, options unsafe.Pointer, err unsafe.Pointer) bool {
+func CGImageDestinationCopyImageSource(idst ImageDestinationRef, isrc ImageSourceRef, options unsafe.Pointer, err unsafe.Pointer) bool {
 	return _CGImageDestinationCopyImageSource(idst, isrc, options, err)
 }
 
@@ -193,7 +192,7 @@ func CGImageDestinationCopyTypeIdentifiers() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithData(_:_:_:_:)
-func CGImageDestinationCreateWithData(data unsafe.Pointer, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) unsafe.Pointer {
+func CGImageDestinationCreateWithData(data unsafe.Pointer, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) ImageDestinationRef {
 	return _CGImageDestinationCreateWithData(data, type_, count, options)
 }
 
@@ -204,7 +203,7 @@ func CGImageDestinationCreateWithData(data unsafe.Pointer, type_ unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithDataConsumer(_:_:_:_:)
-func CGImageDestinationCreateWithDataConsumer(consumer coregraphics.DataConsumerRef, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) unsafe.Pointer {
+func CGImageDestinationCreateWithDataConsumer(consumer DataConsumerRef, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) ImageDestinationRef {
 	return _CGImageDestinationCreateWithDataConsumer(consumer, type_, count, options)
 }
 
@@ -215,7 +214,7 @@ func CGImageDestinationCreateWithDataConsumer(consumer coregraphics.DataConsumer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationCreateWithURL(_:_:_:_:)
-func CGImageDestinationCreateWithURL(url unsafe.Pointer, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) unsafe.Pointer {
+func CGImageDestinationCreateWithURL(url unsafe.Pointer, type_ unsafe.Pointer, count uintptr, options unsafe.Pointer) ImageDestinationRef {
 	return _CGImageDestinationCreateWithURL(url, type_, count, options)
 }
 
@@ -226,7 +225,7 @@ func CGImageDestinationCreateWithURL(url unsafe.Pointer, type_ unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationFinalize(_:)
-func CGImageDestinationFinalize(idst unsafe.Pointer) bool {
+func CGImageDestinationFinalize(idst ImageDestinationRef) bool {
 	return _CGImageDestinationFinalize(idst)
 }
 
@@ -248,7 +247,7 @@ func CGImageDestinationGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageDestinationSetProperties(_:_:)
-func CGImageDestinationSetProperties(idst unsafe.Pointer, properties unsafe.Pointer) {
+func CGImageDestinationSetProperties(idst ImageDestinationRef, properties unsafe.Pointer) {
 	_CGImageDestinationSetProperties(idst, properties)
 }
 
@@ -292,7 +291,7 @@ func CGImageMetadataTagGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)
-func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc unsafe.Pointer, index uintptr, auxiliaryImageDataType unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc ImageSourceRef, index uintptr, auxiliaryImageDataType unsafe.Pointer) unsafe.Pointer {
 	return _CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc, index, auxiliaryImageDataType)
 }
 
@@ -303,7 +302,7 @@ func CGImageSourceCopyAuxiliaryDataInfoAtIndex(isrc unsafe.Pointer, index uintpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyProperties(_:_:)
-func CGImageSourceCopyProperties(isrc unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCopyProperties(isrc ImageSourceRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CGImageSourceCopyProperties(isrc, options)
 }
 
@@ -314,7 +313,7 @@ func CGImageSourceCopyProperties(isrc unsafe.Pointer, options unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCopyPropertiesAtIndex(_:_:_:)
-func CGImageSourceCopyPropertiesAtIndex(isrc unsafe.Pointer, index uintptr, options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCopyPropertiesAtIndex(isrc ImageSourceRef, index uintptr, options unsafe.Pointer) unsafe.Pointer {
 	return _CGImageSourceCopyPropertiesAtIndex(isrc, index, options)
 }
 
@@ -336,7 +335,7 @@ func CGImageSourceCopyTypeIdentifiers() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateImageAtIndex(_:_:_:)
-func CGImageSourceCreateImageAtIndex(isrc unsafe.Pointer, index uintptr, options unsafe.Pointer) coregraphics.ImageRef {
+func CGImageSourceCreateImageAtIndex(isrc ImageSourceRef, index uintptr, options unsafe.Pointer) ImageRef {
 	return _CGImageSourceCreateImageAtIndex(isrc, index, options)
 }
 
@@ -347,7 +346,7 @@ func CGImageSourceCreateImageAtIndex(isrc unsafe.Pointer, index uintptr, options
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateIncremental(_:)
-func CGImageSourceCreateIncremental(options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCreateIncremental(options unsafe.Pointer) ImageSourceRef {
 	return _CGImageSourceCreateIncremental(options)
 }
 
@@ -358,7 +357,7 @@ func CGImageSourceCreateIncremental(options unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateThumbnailAtIndex(_:_:_:)
-func CGImageSourceCreateThumbnailAtIndex(isrc unsafe.Pointer, index uintptr, options unsafe.Pointer) coregraphics.ImageRef {
+func CGImageSourceCreateThumbnailAtIndex(isrc ImageSourceRef, index uintptr, options unsafe.Pointer) ImageRef {
 	return _CGImageSourceCreateThumbnailAtIndex(isrc, index, options)
 }
 
@@ -369,7 +368,7 @@ func CGImageSourceCreateThumbnailAtIndex(isrc unsafe.Pointer, index uintptr, opt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithData(_:_:)
-func CGImageSourceCreateWithData(data unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCreateWithData(data unsafe.Pointer, options unsafe.Pointer) ImageSourceRef {
 	return _CGImageSourceCreateWithData(data, options)
 }
 
@@ -380,7 +379,7 @@ func CGImageSourceCreateWithData(data unsafe.Pointer, options unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithDataProvider(_:_:)
-func CGImageSourceCreateWithDataProvider(provider coregraphics.DataProviderRef, options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCreateWithDataProvider(provider DataProviderRef, options unsafe.Pointer) ImageSourceRef {
 	return _CGImageSourceCreateWithDataProvider(provider, options)
 }
 
@@ -391,7 +390,7 @@ func CGImageSourceCreateWithDataProvider(provider coregraphics.DataProviderRef, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceCreateWithURL(_:_:)
-func CGImageSourceCreateWithURL(url unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceCreateWithURL(url unsafe.Pointer, options unsafe.Pointer) ImageSourceRef {
 	return _CGImageSourceCreateWithURL(url, options)
 }
 
@@ -402,7 +401,7 @@ func CGImageSourceCreateWithURL(url unsafe.Pointer, options unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetCount(_:)
-func CGImageSourceGetCount(isrc unsafe.Pointer) uintptr {
+func CGImageSourceGetCount(isrc ImageSourceRef) uintptr {
 	return _CGImageSourceGetCount(isrc)
 }
 
@@ -413,7 +412,7 @@ func CGImageSourceGetCount(isrc unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetPrimaryImageIndex(_:)
-func CGImageSourceGetPrimaryImageIndex(isrc unsafe.Pointer) uintptr {
+func CGImageSourceGetPrimaryImageIndex(isrc ImageSourceRef) uintptr {
 	return _CGImageSourceGetPrimaryImageIndex(isrc)
 }
 
@@ -424,7 +423,7 @@ func CGImageSourceGetPrimaryImageIndex(isrc unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetStatus(_:)
-func CGImageSourceGetStatus(isrc unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceGetStatus(isrc ImageSourceRef) unsafe.Pointer {
 	return _CGImageSourceGetStatus(isrc)
 }
 
@@ -435,7 +434,7 @@ func CGImageSourceGetStatus(isrc unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetStatusAtIndex(_:_:)
-func CGImageSourceGetStatusAtIndex(isrc unsafe.Pointer, index uintptr) unsafe.Pointer {
+func CGImageSourceGetStatusAtIndex(isrc ImageSourceRef, index uintptr) unsafe.Pointer {
 	return _CGImageSourceGetStatusAtIndex(isrc, index)
 }
 
@@ -446,7 +445,7 @@ func CGImageSourceGetStatusAtIndex(isrc unsafe.Pointer, index uintptr) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceGetType(_:)
-func CGImageSourceGetType(isrc unsafe.Pointer) unsafe.Pointer {
+func CGImageSourceGetType(isrc ImageSourceRef) unsafe.Pointer {
 	return _CGImageSourceGetType(isrc)
 }
 
@@ -466,7 +465,7 @@ func CGImageSourceGetTypeID() unsafe.Pointer {
 // Added in macOS 10.9.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceRemoveCacheAtIndex(_:_:)
-func CGImageSourceRemoveCacheAtIndex(isrc unsafe.Pointer, index uintptr) {
+func CGImageSourceRemoveCacheAtIndex(isrc ImageSourceRef, index uintptr) {
 	_CGImageSourceRemoveCacheAtIndex(isrc, index)
 }
 
@@ -486,7 +485,7 @@ func CGImageSourceSetAllowableTypes(allowableTypes unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceUpdateData(_:_:_:)
-func CGImageSourceUpdateData(isrc unsafe.Pointer, data unsafe.Pointer, final bool) {
+func CGImageSourceUpdateData(isrc ImageSourceRef, data unsafe.Pointer, final bool) {
 	_CGImageSourceUpdateData(isrc, data, final)
 }
 
@@ -497,7 +496,7 @@ func CGImageSourceUpdateData(isrc unsafe.Pointer, data unsafe.Pointer, final boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageIO/CGImageSourceUpdateDataProvider(_:_:_:)
-func CGImageSourceUpdateDataProvider(isrc unsafe.Pointer, provider coregraphics.DataProviderRef, final bool) {
+func CGImageSourceUpdateDataProvider(isrc ImageSourceRef, provider DataProviderRef, final bool) {
 	_CGImageSourceUpdateDataProvider(isrc, provider, final)
 }
 

@@ -31,15 +31,19 @@ type _MTRGroupsClusterGetGroupMembershipParamsClass struct {
 // An interface definition for the [MTRGroupsClusterGetGroupMembershipParams] class.
 type IMTRGroupsClusterGetGroupMembershipParams interface {
 	objectivec.IObject
+	// properties:
 	GroupList() unsafe.Pointer
 	SetGroupList(value unsafe.Pointer)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterGetGroupMembershipParams
 type MTRGroupsClusterGetGroupMembershipParams struct {
 	objectivec.Object
@@ -82,7 +86,8 @@ func NewMTRGroupsClusterGetGroupMembershipParams() MTRGroupsClusterGetGroupMembe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipParams) GroupList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupList"))
@@ -90,40 +95,39 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) GroupList() unsafe.Pointer {
 }
 
 
-// SetGroupList sets the value of the groupList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipParams) SetGroupList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterGetGroupMembershipParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGroupsClusterGetGroupMembershipParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterGetGroupMembershipParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGroupsClusterGetGroupMembershipParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupsClusterGetGroupMembershipParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupsClusterGetGroupMembershipParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -30,6 +30,8 @@ type _VZAudioDeviceConfigurationClass struct {
 // An interface definition for the [VZAudioDeviceConfiguration] class.
 type IVZAudioDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for an audio device configuration.

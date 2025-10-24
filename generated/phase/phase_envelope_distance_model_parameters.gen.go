@@ -29,15 +29,22 @@ type _PHASEEnvelopeDistanceModelParametersClass struct {
 // An interface definition for the [PHASEEnvelopeDistanceModelParameters] class.
 type IPHASEEnvelopeDistanceModelParameters interface {
 	IPHASEDistanceModelParameters
-	Envelope() PHASEEnvelope
+	// properties:
+	Envelope() IPHASEEnvelope
+	SetEnvelope(value IPHASEEnvelope)
 	RolloffFactor() float64
 	SetRolloffFactor(value float64)
+	// methods:
 }
 
 // A graph of points and curves that shapes the volume of a sound over distance.
 //
 // This class provides an envelope that the app configures to dissipate the volume of a source’s sound with distance. The envelope describes a graph that the app configures using points and curves, where the input value is the distance between a sound source and the listener, and the output value is the sound’s volume.
+
+
+// A graph of points and curves that shapes the volume of a sound over distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters
 type PHASEEnvelopeDistanceModelParameters struct {
 	PHASEDistanceModelParameters
@@ -85,28 +92,28 @@ func NewPHASEEnvelopeDistanceModelParameters() PHASEEnvelopeDistanceModelParamet
 
 
 
-
-// Creates the distance model parameters with an envelope.
+// An envelope that shapes sound dissipation over distance.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/init(envelope:)
-func NewPHASEEnvelopeDistanceModelParametersWithEnvelope(envelope IPHASEEnvelope) PHASEEnvelopeDistanceModelParameters {
-	instance := getPHASEEnvelopeDistanceModelParametersClass().Alloc()
-	rv := objc.Send[PHASEEnvelopeDistanceModelParameters](instance.ID, objc.Sel("initWithEnvelope:"), envelope)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters/envelope
+func (p_ PHASEEnvelopeDistanceModelParameters) Envelope() IPHASEEnvelope {
+	rv := objc.Send[PHASEEnvelope](p_.ID, objc.Sel("envelope"))
 	return rv
 }
 
 
 // An envelope that shapes sound dissipation over distance.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/envelope
-func (p_ PHASEEnvelopeDistanceModelParameters) Envelope() PHASEEnvelope {
-	rv := objc.Send[PHASEEnvelope](p_.ID, objc.Sel("envelope"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters/envelope
+func (p_ PHASEEnvelopeDistanceModelParameters) SetEnvelope(value IPHASEEnvelope) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEnvelope:"), value)
 }
+
 
 // A value that fades specific frequencies over a distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
 func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("rolloffFactor"))
@@ -114,13 +121,13 @@ func (p_ PHASEEnvelopeDistanceModelParameters) RolloffFactor() float64 {
 }
 
 
-// SetRolloffFactor sets the value of the rolloffFactor property.
 // A value that fades specific frequencies over a distance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor
 func (p_ PHASEEnvelopeDistanceModelParameters) SetRolloffFactor(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloffFactor:"), value)
 }
+
 
 

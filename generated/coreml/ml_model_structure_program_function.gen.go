@@ -32,7 +32,7 @@ type IModelStructureProgramFunction interface {
 	objectivec.IObject
 	// properties:
 	Block() IMLModelStructureProgramBlock
-	Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */
+	Inputs() []IModelStructureProgramNamedValueType
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func (m_ ModelStructureProgramFunction) Block() IMLModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction/inputs
-func (m_ ModelStructureProgramFunction) Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramFunction) Inputs() []IModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("inputs"))
 	return rv
 }

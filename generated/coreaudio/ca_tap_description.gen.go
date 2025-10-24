@@ -32,30 +32,30 @@ type _TapDescriptionClass struct {
 type ITapDescription interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	BundleIDs() string /* primitive/slice/pointer. */
-	SetBundleIDs(value string /* primitive/slice/pointer. */)
-	DeviceUID() string /* primitive/slice/pointer. */
-	SetDeviceUID(value string /* primitive/slice/pointer. */)
-	IsExclusive() bool /* primitive/slice/pointer. */
-	SetIsExclusive(value bool /* primitive/slice/pointer. */)
-	IsMixdown() bool /* primitive/slice/pointer. */
-	SetIsMixdown(value bool /* primitive/slice/pointer. */)
-	IsMono() bool /* primitive/slice/pointer. */
-	SetIsMono(value bool /* primitive/slice/pointer. */)
-	IsPrivate() bool /* primitive/slice/pointer. */
-	SetIsPrivate(value bool /* primitive/slice/pointer. */)
-	IsProcessRestoreEnabled() bool /* primitive/slice/pointer. */
-	SetIsProcessRestoreEnabled(value bool /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	BundleIDs() objc.IObject /* cross-framework: NSString */
+	SetBundleIDs(value objc.IObject /* cross-framework: NSString */)
+	DeviceUID() objc.IObject /* cross-framework: NSString */
+	SetDeviceUID(value objc.IObject /* cross-framework: NSString */)
+	IsExclusive() bool
+	SetIsExclusive(value bool)
+	IsMixdown() bool
+	SetIsMixdown(value bool)
+	IsMono() bool
+	SetIsMono(value bool)
+	IsPrivate() bool
+	SetIsPrivate(value bool)
+	IsProcessRestoreEnabled() bool
+	SetIsProcessRestoreEnabled(value bool)
 	MuteBehavior() TapMuteBehavior /* not a class type */
 	SetMuteBehavior(value TapMuteBehavior /* not a class type */)
 	Processes() unsafe.Pointer
 	SetProcesses(value unsafe.Pointer)
-	Stream() uint /* primitive/slice/pointer. */
-	SetStream(value uint /* primitive/slice/pointer. */)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Stream() uint
+	SetStream(value uint)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -107,52 +107,52 @@ func NewTapDescription() TapDescription {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
-func (t_ TapDescription) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+func (t_ TapDescription) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("name"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudio/CATapDescription/name
-func (t_ TapDescription) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
+func (t_ TapDescription) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/bundleids
-func (t_ TapDescription) BundleIDs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("bundleIDs"))
+func (t_ TapDescription) BundleIDs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("bundleIDs"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/bundleids
-func (t_ TapDescription) SetBundleIDs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBundleIDs:"), objc.String(value))
+func (t_ TapDescription) SetBundleIDs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBundleIDs:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/deviceuid
-func (t_ TapDescription) DeviceUID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("deviceUID"))
+func (t_ TapDescription) DeviceUID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("deviceUID"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/deviceuid
-func (t_ TapDescription) SetDeviceUID(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceUID:"), objc.String(value))
+func (t_ TapDescription) SetDeviceUID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceUID:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isexclusive
-func (t_ TapDescription) IsExclusive() bool /* primitive/slice/pointer. */ {
+func (t_ TapDescription) IsExclusive() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isExclusive"))
 	return rv
 }
@@ -160,14 +160,14 @@ func (t_ TapDescription) IsExclusive() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isexclusive
-func (t_ TapDescription) SetIsExclusive(value bool /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetIsExclusive(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExclusive:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismixdown
-func (t_ TapDescription) IsMixdown() bool /* primitive/slice/pointer. */ {
+func (t_ TapDescription) IsMixdown() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMixdown"))
 	return rv
 }
@@ -175,14 +175,14 @@ func (t_ TapDescription) IsMixdown() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismixdown
-func (t_ TapDescription) SetIsMixdown(value bool /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetIsMixdown(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsMixdown:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismono
-func (t_ TapDescription) IsMono() bool /* primitive/slice/pointer. */ {
+func (t_ TapDescription) IsMono() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMono"))
 	return rv
 }
@@ -190,14 +190,14 @@ func (t_ TapDescription) IsMono() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/ismono
-func (t_ TapDescription) SetIsMono(value bool /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetIsMono(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsMono:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprivate
-func (t_ TapDescription) IsPrivate() bool /* primitive/slice/pointer. */ {
+func (t_ TapDescription) IsPrivate() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isPrivate"))
 	return rv
 }
@@ -205,14 +205,14 @@ func (t_ TapDescription) IsPrivate() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprivate
-func (t_ TapDescription) SetIsPrivate(value bool /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetIsPrivate(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPrivate:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprocessrestoreenabled
-func (t_ TapDescription) IsProcessRestoreEnabled() bool /* primitive/slice/pointer. */ {
+func (t_ TapDescription) IsProcessRestoreEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isProcessRestoreEnabled"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (t_ TapDescription) IsProcessRestoreEnabled() bool /* primitive/slice/point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/isprocessrestoreenabled
-func (t_ TapDescription) SetIsProcessRestoreEnabled(value bool /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetIsProcessRestoreEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsProcessRestoreEnabled:"), value)
 }
 
@@ -257,7 +257,7 @@ func (t_ TapDescription) SetProcesses(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/stream-ajk3
-func (t_ TapDescription) Stream() uint /* primitive/slice/pointer. */ {
+func (t_ TapDescription) Stream() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("stream"))
 	return rv
 }
@@ -265,14 +265,14 @@ func (t_ TapDescription) Stream() uint /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/stream-ajk3
-func (t_ TapDescription) SetStream(value uint /* primitive/slice/pointer. */) {
+func (t_ TapDescription) SetStream(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStream:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/uuid
-func (t_ TapDescription) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (t_ TapDescription) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](t_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -280,7 +280,7 @@ func (t_ TapDescription) Uuid() foundation.objc.IObject /* cross-framework: UUID
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudio/catapdescription/uuid
-func (t_ TapDescription) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (t_ TapDescription) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUuid:"), value)
 }
 

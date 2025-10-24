@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ColorSync without requiring cgo.
-
-// Reproduce colors accurately across a range of input, output, and display devices.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ColorSync
+// See: https://developer.apple.com/documentation/ColorSync
 package colorsync
 
 import (

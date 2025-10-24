@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [UserAutomatorTask] class.
@@ -30,9 +31,10 @@ type _UserAutomatorTaskClass struct {
 type IUserAutomatorTask interface {
 	IUserScriptTask
 	// properties:
-	Variables() IString
-	SetVariables(value IString)
+	Variables() IDictionary
+	SetVariables(value IDictionary)
 	// methods:
+	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */)
 }
 
 // An object that executes Automator workflows.
@@ -90,12 +92,21 @@ func NewUserAutomatorTask() UserAutomatorTask {
 
 
 
+// Execute the Automator workflow by providing it as securely coded input.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
+func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
+}
+
+
 // The variables required by the Automator workflow.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
-func (u_ UserAutomatorTask) Variables() IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("variables"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
+func (u_ UserAutomatorTask) Variables() IDictionary {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("variables"))
 	return rv
 }
 
@@ -103,8 +114,8 @@ func (u_ UserAutomatorTask) Variables() IString {
 // The variables required by the Automator workflow.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserautomatortask/variables
-func (u_ UserAutomatorTask) SetVariables(value IString) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
+func (u_ UserAutomatorTask) SetVariables(value IDictionary) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), value)
 }
 

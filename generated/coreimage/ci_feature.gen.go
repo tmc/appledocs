@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +33,12 @@ type _FeatureClass struct {
 type IFeature interface {
 	objectivec.IObject
 	// properties:
-	Bounds() coregraphics.CGRect
-	Type() string /* primitive/slice/pointer. */
-	CIFeatureTypeFace() string /* primitive/slice/pointer. */
-	CIFeatureTypeQRCode() string /* primitive/slice/pointer. */
-	CIFeatureTypeRectangle() string /* primitive/slice/pointer. */
-	CIFeatureTypeText() string /* primitive/slice/pointer. */
+	Bounds() objc.IObject /* cross-framework: Rect */
+	Type() objc.IObject /* cross-framework: NSString */
+	CIFeatureTypeFace() objc.IObject /* cross-framework: NSString */
+	CIFeatureTypeQRCode() objc.IObject /* cross-framework: NSString */
+	CIFeatureTypeRectangle() objc.IObject /* cross-framework: NSString */
+	CIFeatureTypeText() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -98,8 +99,8 @@ func NewFeature() Feature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/bounds
-func (f_ Feature) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("bounds"))
+func (f_ Feature) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](f_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (f_ Feature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-func (f_ Feature) Type() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("type"))
+func (f_ Feature) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (f_ Feature) Type() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
-func (f_ Feature) CIFeatureTypeFace() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
+func (f_ Feature) CIFeatureTypeFace() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("CIFeatureTypeFace"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (f_ Feature) CIFeatureTypeFace() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
-func (f_ Feature) CIFeatureTypeQRCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
+func (f_ Feature) CIFeatureTypeQRCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
 	return rv
 }
 
@@ -138,8 +139,8 @@ func (f_ Feature) CIFeatureTypeQRCode() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
-func (f_ Feature) CIFeatureTypeRectangle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
+func (f_ Feature) CIFeatureTypeRectangle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
 }
 
@@ -148,8 +149,8 @@ func (f_ Feature) CIFeatureTypeRectangle() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
-func (f_ Feature) CIFeatureTypeText() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
+func (f_ Feature) CIFeatureTypeText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv
 }
 

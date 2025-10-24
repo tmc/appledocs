@@ -31,13 +31,17 @@ type _MTROperationalCredentialsClusterCertificateChainResponseParamsClass struct
 // An interface definition for the [MTROperationalCredentialsClusterCertificateChainResponseParams] class.
 type IMTROperationalCredentialsClusterCertificateChainResponseParams interface {
 	objectivec.IObject
-	Certificate() foundation.Data
-	SetCertificate(value foundation.IData)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Certificate() objc.IObject /* cross-framework: Data */
+	SetCertificate(value objc.IObject /* cross-framework: Data */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterCertificateChainResponseParams
 type MTROperationalCredentialsClusterCertificateChainResponseParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTROperationalCredentialsClusterCertificateChainResponseParams() MTROper
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certificate() foundation.Data {
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificate"))
 	return rv
 }
 
 
-// SetCertificate sets the value of the certificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetCertificate(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

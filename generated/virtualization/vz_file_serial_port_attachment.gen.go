@@ -30,8 +30,12 @@ type _VZFileSerialPortAttachmentClass struct {
 // An interface definition for the [VZFileSerialPortAttachment] class.
 type IVZFileSerialPortAttachment interface {
 	IVZSerialPortAttachment
+	// properties:
 	Append() bool
-	URL() foundation.URL
+	SetAppend(value bool)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // An attachment point that writes data from the guest system to a file.
@@ -89,25 +93,31 @@ func NewVZFileSerialPortAttachment() VZFileSerialPortAttachment {
 
 
 
-// Creates a file-based serial port attachment object.
+// A Boolean that indicates whether the virtual machine appends data to the file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/init(url:append:)
-func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.URL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
-	instance := getVZFileSerialPortAttachmentClass().Alloc()
-	rv := objc.Send[VZFileSerialPortAttachment](instance.ID, objc.Sel("initWithURL:append:error:"), url, shouldAppend, error_)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfileserialportattachment/append
+func (v_ VZFileSerialPortAttachment) Append() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("append"))
 	return rv
 }
-
 
 
 // A Boolean that indicates whether the virtual machine appends data to the file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/append
-func (v_ VZFileSerialPortAttachment) Append() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("append"))
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfileserialportattachment/append
+func (v_ VZFileSerialPortAttachment) SetAppend(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAppend:"), value)
+}
+
+
+// The URL of a file on the local file system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfileserialportattachment/url
+func (v_ VZFileSerialPortAttachment) Url() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -115,10 +125,10 @@ func (v_ VZFileSerialPortAttachment) Append() bool {
 // The URL of a file on the local file system.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/url
-func (v_ VZFileSerialPortAttachment) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfileserialportattachment/url
+func (v_ VZFileSerialPortAttachment) SetUrl(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
+
 
 

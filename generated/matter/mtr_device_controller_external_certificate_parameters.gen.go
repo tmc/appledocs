@@ -30,11 +30,15 @@ type _MTRDeviceControllerExternalCertificateParametersClass struct {
 // An interface definition for the [MTRDeviceControllerExternalCertificateParameters] class.
 type IMTRDeviceControllerExternalCertificateParameters interface {
 	IMTRDeviceControllerParameters
-	RootCertificate() foundation.Data
-	SetRootCertificate(value foundation.IData)
+	// properties:
+	RootCertificate() objc.IObject /* cross-framework: Data */
+	SetRootCertificate(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerExternalCertificateParameters
 type MTRDeviceControllerExternalCertificateParameters struct {
 	MTRDeviceControllerParameters
@@ -79,21 +83,22 @@ func NewMTRDeviceControllerExternalCertificateParameters() MTRDeviceControllerEx
 }
 
 
+
 // The root certificate we were initialized with.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerexternalcertificateparameters/rootcertificate
-func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() foundation.Data {
+func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
 
-// SetRootCertificate sets the value of the rootCertificate property.
 // The root certificate we were initialized with.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerexternalcertificateparameters/rootcertificate
-func (m_ MTRDeviceControllerExternalCertificateParameters) SetRootCertificate(value foundation.IData) {
+func (m_ MTRDeviceControllerExternalCertificateParameters) SetRootCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 

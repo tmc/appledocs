@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +34,7 @@ type IComponent interface {
 	Entity() IGKEntity
 	// methods:
 	DidAddToEntity()
-	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
+	UpdateWithDeltaTime(seconds float64)
 	WillRemoveFromEntity()
 }
 
@@ -105,7 +104,7 @@ func (c_ Component) DidAddToEntity() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/update(deltaTime:)
-func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
+func (c_ Component) UpdateWithDeltaTime(seconds float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

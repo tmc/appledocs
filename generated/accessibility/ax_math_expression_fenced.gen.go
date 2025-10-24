@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXMathExpressionFenced] class.
@@ -30,9 +31,9 @@ type _AXMathExpressionFencedClass struct {
 type IAXMathExpressionFenced interface {
 	IAXMathExpression
 	// properties:
-	CloseString() string /* primitive/slice/pointer. */
-	Expressions() []AXMathExpression /* primitive/slice/pointer. */
-	OpenString() string /* primitive/slice/pointer. */
+	CloseString() objc.IObject /* cross-framework: NSString */
+	Expressions() []IAXMathExpression
+	OpenString() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -86,9 +87,9 @@ func NewAXMathExpressionFenced() AXMathExpressionFenced {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/init(expressions:open:close:)
-func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression /* primitive/slice/pointer. */, openString string /* primitive/slice/pointer. */, closeString string /* primitive/slice/pointer. */) AXMathExpressionFenced {
+func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []IAXMathExpression, openString objc.IObject /* cross-framework: NSString */, closeString objc.IObject /* cross-framework: NSString */) AXMathExpressionFenced {
 	instance := getAXMathExpressionFencedClass().Alloc()
-	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, objc.String(openString), objc.String(closeString))
+	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, openString, closeString)
 	rv.Autorelease()
 	return rv
 }
@@ -97,15 +98,15 @@ func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions [
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/closeString
-func (a_ AXMathExpressionFenced) CloseString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("closeString"))
+func (a_ AXMathExpressionFenced) CloseString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("closeString"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/expressions
-func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression /* primitive/slice/pointer. */ {
+func (a_ AXMathExpressionFenced) Expressions() []IAXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv
 }
@@ -113,8 +114,8 @@ func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression /* primitive/s
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/openString
-func (a_ AXMathExpressionFenced) OpenString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("openString"))
+func (a_ AXMathExpressionFenced) OpenString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("openString"))
 	return rv
 }
 

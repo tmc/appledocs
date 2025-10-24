@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/avfaudio"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEPullStreamNodeDefinition] class.
@@ -30,12 +31,16 @@ type _PHASEPullStreamNodeDefinitionClass struct {
 // An interface definition for the [PHASEPullStreamNodeDefinition] class.
 type IPHASEPullStreamNodeDefinition interface {
 	IPHASEGeneratorNodeDefinition
-	Format() avfaudio.AudioFormat
+	// properties:
+	Format() objc.IObject /* cross-framework: AudioFormat */
 	Normalize() bool
 	SetNormalize(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition
 type PHASEPullStreamNodeDefinition struct {
 	PHASEGeneratorNodeDefinition
@@ -80,33 +85,37 @@ func NewPHASEPullStreamNodeDefinition() PHASEPullStreamNodeDefinition {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/init(mixerDefinition:format:)
-func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat) PHASEPullStreamNodeDefinition {
+func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition IPHASEMixerDefinition, format objc.IObject /* cross-framework: AudioFormat */) PHASEPullStreamNodeDefinition {
 	instance := getPHASEPullStreamNodeDefinitionClass().Alloc()
 	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:"), mixerDefinition, format)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/init(mixerDefinition:format:identifier:)
-func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier string) PHASEPullStreamNodeDefinition {
+func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format objc.IObject /* cross-framework: AudioFormat */, identifier objc.IObject /* cross-framework: NSString */) PHASEPullStreamNodeDefinition {
 	instance := getPHASEPullStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, objc.String(identifier))
+	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/format
-func (p_ PHASEPullStreamNodeDefinition) Format() avfaudio.AudioFormat {
+func (p_ PHASEPullStreamNodeDefinition) Format() objc.IObject /* cross-framework: AudioFormat */ {
 	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/normalize
 func (p_ PHASEPullStreamNodeDefinition) Normalize() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("normalize"))
@@ -114,8 +123,7 @@ func (p_ PHASEPullStreamNodeDefinition) Normalize() bool {
 }
 
 
-// SetNormalize sets the value of the normalize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/normalize
 func (p_ PHASEPullStreamNodeDefinition) SetNormalize(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalize:"), value)

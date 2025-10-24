@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,11 +35,11 @@ type ICNContactPicker interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DisplayedKeys() []string /* primitive/slice/pointer. */
-	SetDisplayedKeys(value []string /* primitive/slice/pointer. */)
+	DisplayedKeys() []string
+	SetDisplayedKeys(value []string)
 	// methods:
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect objc.IObject /* cross-framework: Rect */, positioningView objc.IObject /* cross-framework: View */, preferredEdge RectEdge /* not a class type */)
 }
 
 // A popover-based interface for selecting a contact.
@@ -107,7 +108,7 @@ func (c_ CNContactPicker) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/showRelative(to:of:preferredEdge:)
-func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */) {
+func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect objc.IObject /* cross-framework: Rect */, positioningView objc.IObject /* cross-framework: View */, preferredEdge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 
@@ -135,7 +136,7 @@ func (c_ CNContactPicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
-func (c_ CNContactPicker) DisplayedKeys() []string /* primitive/slice/pointer. */ {
+func (c_ CNContactPicker) DisplayedKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("displayedKeys"))
 	return rv
 }
@@ -145,7 +146,7 @@ func (c_ CNContactPicker) DisplayedKeys() []string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/displayedKeys
-func (c_ CNContactPicker) SetDisplayedKeys(value []string /* primitive/slice/pointer. */) {
+func (c_ CNContactPicker) SetDisplayedKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

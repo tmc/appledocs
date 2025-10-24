@@ -30,20 +30,25 @@ type _GraphExecutionDescriptorClass struct {
 // An interface definition for the [GraphExecutionDescriptor] class.
 type IGraphExecutionDescriptor interface {
 	IGraphObject
-	SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage IGraphExecutionStage, value uint64)
-	WaitForEventValue(event objectivec.IObject, value uint64)
-	CompilationDescriptor() MPSGraphCompilationDescriptor
+	// properties:
+	CompilationDescriptor() IMPSGraphCompilationDescriptor
 	SetCompilationDescriptor(value IMPSGraphCompilationDescriptor)
-	CompletionHandler() unsafe.Pointer
-	SetCompletionHandler(value unsafe.Pointer)
-	ScheduledHandler() unsafe.Pointer
-	SetScheduledHandler(value unsafe.Pointer)
+	CompletionHandler() GraphCompletionHandler /* not a class type */
+	SetCompletionHandler(value GraphCompletionHandler /* not a class type */)
+	ScheduledHandler() GraphScheduledHandler /* not a class type */
+	SetScheduledHandler(value GraphScheduledHandler /* not a class type */)
 	WaitUntilCompleted() bool
 	SetWaitUntilCompleted(value bool)
+	// methods:
+	SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage GraphExecutionStage, value uint64)
 }
 
 // A class that consists of all the levers to synchronize and schedule graph execution.
+
+
+// A class that consists of all the levers to synchronize and schedule graph execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor
 type GraphExecutionDescriptor struct {
 	GraphObject
@@ -90,76 +95,76 @@ func NewGraphExecutionDescriptor() GraphExecutionDescriptor {
 }
 
 
+
 // Executable signals these shared events at execution stage and immediately proceeds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/signal(_:atExecutionEvent:value:)
-func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage IGraphExecutionStage, value uint64) {
+func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage GraphExecutionStage, value uint64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("signalEvent:atExecutionEvent:value:"), event, executionStage, value)
 }
 
-// Executable waits on these shared events before scheduling execution on the HW, this does not include encoding which can still continue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/wait(for:value:)
-func (g_ GraphExecutionDescriptor) WaitForEventValue(event objectivec.IObject, value uint64) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("waitForEvent:value:"), event, value)
-}
 
 // The compilation descriptor for the graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/compilationdescriptor
-func (g_ GraphExecutionDescriptor) CompilationDescriptor() MPSGraphCompilationDescriptor {
-	rv := objc.Send[MPSGraphCompilationDescriptor](g_.ID, objc.Sel("compilationDescriptor"))
+func (g_ GraphExecutionDescriptor) CompilationDescriptor() IMPSGraphCompilationDescriptor {
+	rv := objc.Send[GraphCompilationDescriptor](g_.ID, objc.Sel("compilationDescriptor"))
 	return rv
 }
 
 
-// SetCompilationDescriptor sets the value of the compilationDescriptor property.
 // The compilation descriptor for the graph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/compilationdescriptor
 func (g_ GraphExecutionDescriptor) SetCompilationDescriptor(value IMPSGraphCompilationDescriptor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationDescriptor:"), value)
 }
 
+
 // The handler that graph calls at the completion of the execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
-func (g_ GraphExecutionDescriptor) CompletionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("completionHandler"))
+func (g_ GraphExecutionDescriptor) CompletionHandler() GraphCompletionHandler /* not a class type */ {
+	rv := objc.Send[GraphCompletionHandler](g_.ID, objc.Sel("completionHandler"))
 	return rv
 }
 
 
-// SetCompletionHandler sets the value of the completionHandler property.
 // The handler that graph calls at the completion of the execution.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/completionhandler
-func (g_ GraphExecutionDescriptor) SetCompletionHandler(value unsafe.Pointer) {
+func (g_ GraphExecutionDescriptor) SetCompletionHandler(value GraphCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompletionHandler:"), value)
 }
 
+
 // The handler that graph calls when it schedules the execution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/scheduledhandler
-func (g_ GraphExecutionDescriptor) ScheduledHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("scheduledHandler"))
+func (g_ GraphExecutionDescriptor) ScheduledHandler() GraphScheduledHandler /* not a class type */ {
+	rv := objc.Send[GraphScheduledHandler](g_.ID, objc.Sel("scheduledHandler"))
 	return rv
 }
 
 
-// SetScheduledHandler sets the value of the scheduledHandler property.
 // The handler that graph calls when it schedules the execution.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/scheduledhandler
-func (g_ GraphExecutionDescriptor) SetScheduledHandler(value unsafe.Pointer) {
+func (g_ GraphExecutionDescriptor) SetScheduledHandler(value GraphScheduledHandler /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScheduledHandler:"), value)
 }
 
+
 // The flag that blocks the execution call until the entire execution is complete.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
 func (g_ GraphExecutionDescriptor) WaitUntilCompleted() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("waitUntilCompleted"))
@@ -167,10 +172,9 @@ func (g_ GraphExecutionDescriptor) WaitUntilCompleted() bool {
 }
 
 
-// SetWaitUntilCompleted sets the value of the waitUntilCompleted property.
 // The flag that blocks the execution call until the entire execution is complete.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/waituntilcompleted
 func (g_ GraphExecutionDescriptor) SetWaitUntilCompleted(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitUntilCompleted:"), value)

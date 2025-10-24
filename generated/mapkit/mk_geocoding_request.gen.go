@@ -32,14 +32,14 @@ type _MKGeocodingRequestClass struct {
 type IMKGeocodingRequest interface {
 	objectivec.IObject
 	// properties:
-	AddressString() string /* primitive/slice/pointer. */
-	SetAddressString(value string /* primitive/slice/pointer. */)
-	IsCancelled() bool /* primitive/slice/pointer. */
-	SetIsCancelled(value bool /* primitive/slice/pointer. */)
-	IsLoading() bool /* primitive/slice/pointer. */
-	SetIsLoading(value bool /* primitive/slice/pointer. */)
-	PreferredLocale() foundation.objc.IObject /* cross-framework: Locale */
-	SetPreferredLocale(value foundation.objc.IObject /* cross-framework: Locale */)
+	AddressString() objc.IObject /* cross-framework: NSString */
+	SetAddressString(value objc.IObject /* cross-framework: NSString */)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
+	PreferredLocale() objc.IObject /* cross-framework: Locale */
+	SetPreferredLocale(value objc.IObject /* cross-framework: Locale */)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
 	// methods:
@@ -112,8 +112,8 @@ func (m_ MKGeocodingRequest) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) AddressString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
+func (m_ MKGeocodingRequest) AddressString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 
@@ -122,8 +122,8 @@ func (m_ MKGeocodingRequest) AddressString() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) SetAddressString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), objc.String(value))
+func (m_ MKGeocodingRequest) SetAddressString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), value)
 }
 
 
@@ -131,7 +131,7 @@ func (m_ MKGeocodingRequest) SetAddressString(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/iscancelled
-func (m_ MKGeocodingRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
+func (m_ MKGeocodingRequest) IsCancelled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (m_ MKGeocodingRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/iscancelled
-func (m_ MKGeocodingRequest) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
+func (m_ MKGeocodingRequest) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -150,7 +150,7 @@ func (m_ MKGeocodingRequest) SetIsCancelled(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/isloading
-func (m_ MKGeocodingRequest) IsLoading() bool /* primitive/slice/pointer. */ {
+func (m_ MKGeocodingRequest) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (m_ MKGeocodingRequest) IsLoading() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/isloading
-func (m_ MKGeocodingRequest) SetIsLoading(value bool /* primitive/slice/pointer. */) {
+func (m_ MKGeocodingRequest) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 
@@ -169,7 +169,7 @@ func (m_ MKGeocodingRequest) SetIsLoading(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
-func (m_ MKGeocodingRequest) PreferredLocale() foundation.objc.IObject /* cross-framework: Locale */ {
+func (m_ MKGeocodingRequest) PreferredLocale() objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (m_ MKGeocodingRequest) PreferredLocale() foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
-func (m_ MKGeocodingRequest) SetPreferredLocale(value foundation.objc.IObject /* cross-framework: Locale */) {
+func (m_ MKGeocodingRequest) SetPreferredLocale(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

@@ -30,13 +30,17 @@ type _MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEventClass st
 // An interface definition for the [MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent] class.
 type IMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent interface {
 	objectivec.IObject
-	EnergyExported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	// properties:
+	EnergyExported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
 	SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
-	EnergyImported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
+	EnergyImported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
 	SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent
 type MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent struct {
 	objectivec.Object
@@ -79,31 +83,31 @@ func NewMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent() MTR
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyexported
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) EnergyExported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) EnergyExported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
 	rv := objc.Send[MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct](m_.ID, objc.Sel("energyExported"))
 	return rv
 }
 
 
-// SetEnergyExported sets the value of the energyExported property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyexported
 func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyExported:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyimported
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) EnergyImported() MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) EnergyImported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
 	rv := objc.Send[MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct](m_.ID, objc.Sel("energyImported"))
 	return rv
 }
 
 
-// SetEnergyImported sets the value of the energyImported property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyimported
 func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyImported:"), value)

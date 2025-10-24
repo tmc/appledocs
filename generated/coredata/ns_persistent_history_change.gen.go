@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _PersistentHistoryChangeClass struct {
 type IPersistentHistoryChange interface {
 	objectivec.IObject
 	// properties:
-	ChangeID() unsafe.Pointer
-	Tombstone() objc.ID
+	ChangeID() int64
+	Tombstone() objc.IObject /* cross-framework: NSDictionary */
 	UpdatedProperties() unsafe.Pointer
 	ChangeType() PersistentHistoryChangeType /* not a class type */
 	SetChangeType(value PersistentHistoryChangeType /* not a class type */)
@@ -98,8 +99,8 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeID
-func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeID"))
+func (p_ PersistentHistoryChange) ChangeID() int64 {
+	rv := objc.Send[int64](p_.ID, objc.Sel("changeID"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/tombstone
-func (p_ PersistentHistoryChange) Tombstone() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("tombstone"))
+func (p_ PersistentHistoryChange) Tombstone() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](p_.ID, objc.Sel("tombstone"))
 	return rv
 }
 

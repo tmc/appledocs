@@ -7,8 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [Screen] class.
@@ -35,28 +37,28 @@ type IScreen interface {
 	CGDirectDisplayID() DirectDisplayID /* not a class type */
 	AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */
 	AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */
-	BackingScaleFactor() float64 /* primitive/slice/pointer. */
+	BackingScaleFactor() float64
 	ColorSpace() IColorSpace
 	Depth() WindowDepth
-	DeviceDescription() foundation.IDictionary /* already interface */
-	DisplayUpdateGranularity() TimeInterval /* not a class type */
+	DeviceDescription() foundation.IDictionary
+	DisplayUpdateGranularity() float64
 	Frame() objc.IObject /* cross-framework: Rect */
-	LastDisplayUpdateTimestamp() TimeInterval /* not a class type */
+	LastDisplayUpdateTimestamp() float64
 	LocalizedName() objc.IObject /* cross-framework: NSString */
-	MaximumExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */
-	MaximumFramesPerSecond() int /* primitive/slice/pointer. */
-	MaximumPotentialExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */
-	MaximumReferenceExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */
-	MaximumRefreshInterval() TimeInterval /* not a class type */
-	MinimumRefreshInterval() TimeInterval /* not a class type */
+	MaximumExtendedDynamicRangeColorComponentValue() float64
+	MaximumFramesPerSecond() int
+	MaximumPotentialExtendedDynamicRangeColorComponentValue() float64
+	MaximumReferenceExtendedDynamicRangeColorComponentValue() float64
+	MaximumRefreshInterval() float64
+	MinimumRefreshInterval() float64
 	SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */
 	SupportedWindowDepths() NSWindowDepth
 	VisibleFrame() objc.IObject /* cross-framework: Rect */
 	// methods:
-	BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
-	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* primitive/slice/pointer. */
-	ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
+	BackingAlignedRectOptions(rect objc.IObject /* cross-framework: Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
+	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
+	ConvertRectFromBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */
 }
 
@@ -135,7 +137,7 @@ func (sc _ScreenClass) MainScreen() Screen {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
-func (sc _ScreenClass) Screens() []Screen /* primitive/slice/pointer. */ {
+func (sc _ScreenClass) Screens() []IScreen {
 	rv := objc.Send[[]Screen](objc.ID(sc.class), objc.Sel("screens"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (sc _ScreenClass) Screens() []Screen /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screensHaveSeparateSpaces
-func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool /* primitive/slice/pointer. */ {
+func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("screensHaveSeparateSpaces"))
 	return rv
 }
@@ -153,8 +155,8 @@ func (sc _ScreenClass) ScreensHaveSeparateSpaces() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/backingAlignedRect(_:options:)
-func (s_ Screen) BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
+func (s_ Screen) BackingAlignedRectOptions(rect objc.IObject /* cross-framework: Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
 	return rv
 }
 
@@ -163,7 +165,7 @@ func (s_ Screen) BackingAlignedRectOptions(rect objc.IObject /* cross-framework 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/canRepresent(_:)
-func (s_ Screen) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* primitive/slice/pointer. */ {
+func (s_ Screen) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
 	return rv
 }
@@ -173,8 +175,8 @@ func (s_ Screen) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/convertRectFromBacking(_:)
-func (s_ Screen) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("convertRectFromBacking:"), rect)
+func (s_ Screen) ConvertRectFromBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("convertRectFromBacking:"), rect)
 	return rv
 }
 
@@ -183,8 +185,8 @@ func (s_ Screen) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/convertRectToBacking(_:)
-func (s_ Screen) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("convertRectToBacking:"), rect)
+func (s_ Screen) ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("convertRectToBacking:"), rect)
 	return rv
 }
 
@@ -192,7 +194,7 @@ func (s_ Screen) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayLink(target:selector:)
 func (s_ Screen) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */ {
-	rv := objc.Send[DisplayLink](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+	rv := objc.Send[quartzcore.DisplayLink](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 
@@ -210,7 +212,7 @@ func (s_ Screen) CGDirectDisplayID() DirectDisplayID /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-4ow3p
 func (s_ Screen) AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("auxiliaryTopLeftArea"))
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopLeftArea"))
 	return rv
 }
 
@@ -218,7 +220,7 @@ func (s_ Screen) AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/auxiliaryTopRightArea-6gb2v
 func (s_ Screen) AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("auxiliaryTopRightArea"))
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopRightArea"))
 	return rv
 }
 
@@ -227,7 +229,7 @@ func (s_ Screen) AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/backingScaleFactor
-func (s_ Screen) BackingScaleFactor() float64 /* primitive/slice/pointer. */ {
+func (s_ Screen) BackingScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("backingScaleFactor"))
 	return rv
 }
@@ -267,7 +269,7 @@ func (s_ Screen) Depth() WindowDepth {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deviceDescription
-func (s_ Screen) DeviceDescription() foundation.IDictionary /* already interface */ {
+func (s_ Screen) DeviceDescription() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](s_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
@@ -277,7 +279,7 @@ func (s_ Screen) DeviceDescription() foundation.IDictionary /* already interface
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayUpdateGranularity
-func (s_ Screen) DisplayUpdateGranularity() TimeInterval /* not a class type */ {
+func (s_ Screen) DisplayUpdateGranularity() float64 {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("displayUpdateGranularity"))
 	return rv
 }
@@ -288,7 +290,7 @@ func (s_ Screen) DisplayUpdateGranularity() TimeInterval /* not a class type */ 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/frame
 func (s_ Screen) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("frame"))
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -297,7 +299,7 @@ func (s_ Screen) Frame() objc.IObject /* cross-framework: Rect */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/lastDisplayUpdateTimestamp
-func (s_ Screen) LastDisplayUpdateTimestamp() TimeInterval /* not a class type */ {
+func (s_ Screen) LastDisplayUpdateTimestamp() float64 {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("lastDisplayUpdateTimestamp"))
 	return rv
 }
@@ -327,7 +329,7 @@ func (s_ Screen) MainScreen() IScreen {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */ {
+func (s_ Screen) MaximumExtendedDynamicRangeColorComponentValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumExtendedDynamicRangeColorComponentValue"))
 	return rv
 }
@@ -337,7 +339,7 @@ func (s_ Screen) MaximumExtendedDynamicRangeColorComponentValue() float64 /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumFramesPerSecond
-func (s_ Screen) MaximumFramesPerSecond() int /* primitive/slice/pointer. */ {
+func (s_ Screen) MaximumFramesPerSecond() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("maximumFramesPerSecond"))
 	return rv
 }
@@ -347,7 +349,7 @@ func (s_ Screen) MaximumFramesPerSecond() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */ {
+func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumPotentialExtendedDynamicRangeColorComponentValue"))
 	return rv
 }
@@ -357,7 +359,7 @@ func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumReferenceExtendedDynamicRangeColorComponentValue() float64 /* primitive/slice/pointer. */ {
+func (s_ Screen) MaximumReferenceExtendedDynamicRangeColorComponentValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumReferenceExtendedDynamicRangeColorComponentValue"))
 	return rv
 }
@@ -367,7 +369,7 @@ func (s_ Screen) MaximumReferenceExtendedDynamicRangeColorComponentValue() float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumRefreshInterval
-func (s_ Screen) MaximumRefreshInterval() TimeInterval /* not a class type */ {
+func (s_ Screen) MaximumRefreshInterval() float64 {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("maximumRefreshInterval"))
 	return rv
 }
@@ -377,7 +379,7 @@ func (s_ Screen) MaximumRefreshInterval() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/minimumRefreshInterval
-func (s_ Screen) MinimumRefreshInterval() TimeInterval /* not a class type */ {
+func (s_ Screen) MinimumRefreshInterval() float64 {
 	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("minimumRefreshInterval"))
 	return rv
 }
@@ -388,7 +390,7 @@ func (s_ Screen) MinimumRefreshInterval() TimeInterval /* not a class type */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/safeAreaInsets
 func (s_ Screen) SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */ {
-	rv := objc.Send[EdgeInsets](s_.ID, objc.Sel("safeAreaInsets"))
+	rv := objc.Send[foundation.EdgeInsets](s_.ID, objc.Sel("safeAreaInsets"))
 	return rv
 }
 
@@ -397,7 +399,7 @@ func (s_ Screen) SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
-func (s_ Screen) Screens() []Screen /* primitive/slice/pointer. */ {
+func (s_ Screen) Screens() []IScreen {
 	rv := objc.Send[[]Screen](s_.ID, objc.Sel("screens"))
 	return rv
 }
@@ -407,7 +409,7 @@ func (s_ Screen) Screens() []Screen /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screensHaveSeparateSpaces
-func (s_ Screen) ScreensHaveSeparateSpaces() bool /* primitive/slice/pointer. */ {
+func (s_ Screen) ScreensHaveSeparateSpaces() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("screensHaveSeparateSpaces"))
 	return rv
 }
@@ -428,7 +430,7 @@ func (s_ Screen) SupportedWindowDepths() NSWindowDepth {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/visibleFrame
 func (s_ Screen) VisibleFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("visibleFrame"))
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("visibleFrame"))
 	return rv
 }
 

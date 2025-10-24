@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +35,8 @@ type IPersistentContainer interface {
 	ManagedObjectModel() IManagedObjectModel
 	PersistentStoreCoordinator() IPersistentStoreCoordinator
 	ViewContext() IManagedObjectContext
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	PersistentStoreDescriptions() IPersistentStoreDescription
 	SetPersistentStoreDescriptions(value IPersistentStoreDescription)
 	// methods:
@@ -101,9 +102,9 @@ func NewPersistentContainer() PersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
-func NewPersistentContainerWithName(name string /* primitive/slice/pointer. */) PersistentContainer {
+func NewPersistentContainerWithName(name objc.IObject /* cross-framework: NSString */) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), name)
 	rv.Autorelease()
 	return rv
 }
@@ -172,8 +173,8 @@ func (p_ PersistentContainer) ViewContext() IManagedObjectContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
-func (p_ PersistentContainer) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PersistentContainer) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -182,8 +183,8 @@ func (p_ PersistentContainer) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
-func (p_ PersistentContainer) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+func (p_ PersistentContainer) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
 
 

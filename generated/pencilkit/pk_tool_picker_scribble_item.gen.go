@@ -29,10 +29,16 @@ type _ToolPickerScribbleItemClass struct {
 // An interface definition for the [ToolPickerScribbleItem] class.
 type IToolPickerScribbleItem interface {
 	IToolPickerItem
+	// properties:
+	// methods:
 }
 
 // An item that represents a Scribble tool in the tool picker.
+
+
+// An item that represents a Scribble tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerScribbleItem
 type ToolPickerScribbleItem struct {
 	ToolPickerItem

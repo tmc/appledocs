@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [OSLogEntrySignpost] class.
@@ -29,15 +30,22 @@ type _OSLogEntrySignpostClass struct {
 // An interface definition for the [OSLogEntrySignpost] class.
 type IOSLogEntrySignpost interface {
 	IOSLogEntry
+	// properties:
+	SignpostName() objc.IObject /* cross-framework: NSString */
+	SignpostType() unsafe.Pointer
 	SignpostIdentifier() unsafe.Pointer
-	SignpostName() string
-	SignpostType() OSLogEntrySignpostType
+	SetSignpostIdentifier(value unsafe.Pointer)
+	// methods:
 }
 
 // An entry containing a signpost.
 //
 // These entries are created by the os_signpost API. To learn more about signposts and how to create a signpost entry, see and .
+
+
+// An entry containing a signpost.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost
 type OSLogEntrySignpost struct {
 	OSLogEntry
@@ -84,28 +92,43 @@ func NewOSLogEntrySignpost() OSLogEntrySignpost {
 }
 
 
+
+// The signpost’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostName
+func (o_ OSLogEntrySignpost) SignpostName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("signpostName"))
+	return rv
+}
+
+
+// The signpost’s type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostType-swift.property
+func (o_ OSLogEntrySignpost) SignpostType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("signpostType"))
+	return rv
+}
+
+
 // The signpost’s identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostIdentifier
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentrysignpost/signpostidentifier
 func (o_ OSLogEntrySignpost) SignpostIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("signpostIdentifier"))
 	return rv
 }
 
-// The signpost’s name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostName
-func (o_ OSLogEntrySignpost) SignpostName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("signpostName"))
-	return rv
-}
 
-// The signpost’s type.
+// The signpost’s identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntrySignpost/signpostType-swift.property
-func (o_ OSLogEntrySignpost) SignpostType() OSLogEntrySignpostType {
-	rv := objc.Send[OSLogEntrySignpostType](o_.ID, objc.Sel("signpostType"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentrysignpost/signpostidentifier
+func (o_ OSLogEntrySignpost) SetSignpostIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setSignpostIdentifier:"), value)
 }
 
 

@@ -29,12 +29,18 @@ type _CPoolingLayerClass struct {
 // An interface definition for the [CPoolingLayer] class.
 type ICPoolingLayer interface {
 	ICLayer
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
+	// properties:
+	Descriptor() CPoolingDescriptor /* not a class type */
+	SetDescriptor(value CPoolingDescriptor /* not a class type */)
+	// methods:
 }
 
 // A layer that summarizes the average presence of a feature.
+
+
+// A layer that summarizes the average presence of a feature.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPoolingLayer
 type CPoolingLayer struct {
 	CLayer
@@ -81,21 +87,22 @@ func NewCPoolingLayer() CPoolingLayer {
 }
 
 
+
 // The configuration object you use to create the pooling layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer/descriptor
-func (c_ CPoolingLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CPoolingLayer) Descriptor() CPoolingDescriptor /* not a class type */ {
+	rv := objc.Send[CPoolingDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the pooling layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer/descriptor
-func (c_ CPoolingLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CPoolingLayer) SetDescriptor(value CPoolingDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 

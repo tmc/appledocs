@@ -29,12 +29,18 @@ type _PDFAnnotationTextWidgetClass struct {
 // An interface definition for the [PDFAnnotationTextWidget] class.
 type IPDFAnnotationTextWidget interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object allows you to manage the appearance and content of text fields.
 //
 // objects support interactive forms in a PDF document. This object is comparable to an editable in Cocoa or an edit text view in Carbon.
+
+
+// A object allows you to manage the appearance and content of text fields.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationTextWidget
 type PDFAnnotationTextWidget struct {
 	PDFAnnotation

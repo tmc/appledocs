@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,21 @@ type _UNNotificationRequestClass struct {
 // An interface definition for the [UNNotificationRequest] class.
 type IUNNotificationRequest interface {
 	objectivec.IObject
-	Content() UNNotificationContent
-	Identifier() string
-	Trigger() UNNotificationTrigger
+	// properties:
+	Content() IUNNotificationContent
+	Identifier() objc.IObject /* cross-framework: NSString */
+	Trigger() IUNNotificationTrigger
+	// methods:
 }
 
 // A request to schedule a local notification, which includes the content of the notification and the trigger conditions for delivery.
 //
 // Create a object when you want to schedule the delivery of a local notification. A notification request object contains a object with the payload and the object with the conditions that trigger the delivery of the notification. To schedule the delivery of your notification, pass your request object to the method of the shared user notification center object. After scheduling a request, you interact with objects in the following ways: View your app’s pending notifications by calling the method of your shared user notification center object. When the system delivers a notification to your app, the provided object contains a object that you can inspect to get the notification details. Use the request’s to remove delivered notifications from Notification Center. When receiving a local or remote notification, use the provided object to fetch details about the notification.
+
+
+// A request to schedule a local notification, which includes the content of the notification and the trigger conditions for delivery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest
 type UNNotificationRequest struct {
 	objectivec.Object
@@ -84,44 +91,52 @@ func NewUNNotificationRequest() UNNotificationRequest {
 
 
 
-
 // Creates a notification request object that you use to schedule a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/init(identifier:content:trigger:)
-func NewUNNotificationRequestWithIdentifierContentTrigger(identifier string, content IUNNotificationContent, trigger IUNNotificationTrigger) UNNotificationRequest {
-	rv := objc.Send[UNNotificationRequest](objc.ID(getUNNotificationRequestClass().class), objc.Sel("requestWithIdentifier:content:trigger:"), objc.String(identifier), content, trigger)
+func NewUNNotificationRequestWithIdentifierContentTrigger(identifier objc.IObject /* cross-framework: NSString */, content IUNNotificationContent, trigger IUNNotificationTrigger) UNNotificationRequest {
+	rv := objc.Send[UNNotificationRequest](objc.ID(getUNNotificationRequestClass().class), objc.Sel("requestWithIdentifier:content:trigger:"), identifier, content, trigger)
 	return rv
 }
 
 
+
 // Creates a notification request object that you use to schedule a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/init(identifier:content:trigger:)
-func (uc _UNNotificationRequestClass) RequestWithIdentifierContentTrigger(identifier string, content IUNNotificationContent, trigger IUNNotificationTrigger) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("requestWithIdentifier:content:trigger:"), objc.String(identifier), content, trigger)
+func (uc _UNNotificationRequestClass) RequestWithIdentifierContentTrigger(identifier objc.IObject /* cross-framework: NSString */, content IUNNotificationContent, trigger IUNNotificationTrigger) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("requestWithIdentifier:content:trigger:"), identifier, content, trigger)
 	return rv
 }
+
 
 // The content associated with the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/content
-func (u_ UNNotificationRequest) Content() UNNotificationContent {
+func (u_ UNNotificationRequest) Content() IUNNotificationContent {
 	rv := objc.Send[UNNotificationContent](u_.ID, objc.Sel("content"))
 	return rv
 }
 
+
 // The unique identifier for this notification request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/identifier
-func (u_ UNNotificationRequest) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationRequest) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The conditions that trigger the delivery of the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationRequest/trigger
-func (u_ UNNotificationRequest) Trigger() UNNotificationTrigger {
+func (u_ UNNotificationRequest) Trigger() IUNNotificationTrigger {
 	rv := objc.Send[UNNotificationTrigger](u_.ID, objc.Sel("trigger"))
 	return rv
 }

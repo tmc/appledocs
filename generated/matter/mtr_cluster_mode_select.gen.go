@@ -29,9 +29,13 @@ type _MTRClusterModeSelectClass struct {
 // An interface definition for the [MTRClusterModeSelect] class.
 type IMTRClusterModeSelect interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterModeSelect
 type MTRClusterModeSelect struct {
 	MTRGenericCluster

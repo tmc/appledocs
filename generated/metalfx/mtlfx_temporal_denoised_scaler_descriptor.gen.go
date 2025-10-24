@@ -30,16 +30,15 @@ type _FXTemporalDenoisedScalerDescriptorClass struct {
 // An interface definition for the [FXTemporalDenoisedScalerDescriptor] class.
 type IFXTemporalDenoisedScalerDescriptor interface {
 	objectivec.IObject
-	NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID
-	NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
-	ColorTextureFormat() unsafe.Pointer
-	SetColorTextureFormat(value unsafe.Pointer)
-	DenoiseStrengthMaskTextureFormat() unsafe.Pointer
-	SetDenoiseStrengthMaskTextureFormat(value unsafe.Pointer)
-	DepthTextureFormat() unsafe.Pointer
-	SetDepthTextureFormat(value unsafe.Pointer)
-	DiffuseAlbedoTextureFormat() unsafe.Pointer
-	SetDiffuseAlbedoTextureFormat(value unsafe.Pointer)
+	// properties:
+	ColorTextureFormat() PixelFormat /* not a class type */
+	SetColorTextureFormat(value PixelFormat /* not a class type */)
+	DenoiseStrengthMaskTextureFormat() PixelFormat /* not a class type */
+	SetDenoiseStrengthMaskTextureFormat(value PixelFormat /* not a class type */)
+	DepthTextureFormat() PixelFormat /* not a class type */
+	SetDepthTextureFormat(value PixelFormat /* not a class type */)
+	DiffuseAlbedoTextureFormat() PixelFormat /* not a class type */
+	SetDiffuseAlbedoTextureFormat(value PixelFormat /* not a class type */)
 	InputHeight() uint
 	SetInputHeight(value uint)
 	InputWidth() uint
@@ -54,28 +53,28 @@ type IFXTemporalDenoisedScalerDescriptor interface {
 	SetSpecularHitDistanceTextureEnabled(value bool)
 	TransparencyOverlayTextureEnabled() bool
 	SetTransparencyOverlayTextureEnabled(value bool)
-	MotionTextureFormat() unsafe.Pointer
-	SetMotionTextureFormat(value unsafe.Pointer)
-	NormalTextureFormat() unsafe.Pointer
-	SetNormalTextureFormat(value unsafe.Pointer)
+	MotionTextureFormat() PixelFormat /* not a class type */
+	SetMotionTextureFormat(value PixelFormat /* not a class type */)
+	NormalTextureFormat() PixelFormat /* not a class type */
+	SetNormalTextureFormat(value PixelFormat /* not a class type */)
 	OutputHeight() uint
 	SetOutputHeight(value uint)
-	OutputTextureFormat() unsafe.Pointer
-	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputTextureFormat() PixelFormat /* not a class type */
+	SetOutputTextureFormat(value PixelFormat /* not a class type */)
 	OutputWidth() uint
 	SetOutputWidth(value uint)
-	ReactiveMaskTextureFormat() unsafe.Pointer
-	SetReactiveMaskTextureFormat(value unsafe.Pointer)
+	ReactiveMaskTextureFormat() PixelFormat /* not a class type */
+	SetReactiveMaskTextureFormat(value PixelFormat /* not a class type */)
 	RequiresSynchronousInitialization() bool
 	SetRequiresSynchronousInitialization(value bool)
-	RoughnessTextureFormat() unsafe.Pointer
-	SetRoughnessTextureFormat(value unsafe.Pointer)
-	SpecularAlbedoTextureFormat() unsafe.Pointer
-	SetSpecularAlbedoTextureFormat(value unsafe.Pointer)
-	SpecularHitDistanceTextureFormat() unsafe.Pointer
-	SetSpecularHitDistanceTextureFormat(value unsafe.Pointer)
-	TransparencyOverlayTextureFormat() unsafe.Pointer
-	SetTransparencyOverlayTextureFormat(value unsafe.Pointer)
+	RoughnessTextureFormat() PixelFormat /* not a class type */
+	SetRoughnessTextureFormat(value PixelFormat /* not a class type */)
+	SpecularAlbedoTextureFormat() PixelFormat /* not a class type */
+	SetSpecularAlbedoTextureFormat(value PixelFormat /* not a class type */)
+	SpecularHitDistanceTextureFormat() PixelFormat /* not a class type */
+	SetSpecularHitDistanceTextureFormat(value PixelFormat /* not a class type */)
+	TransparencyOverlayTextureFormat() PixelFormat /* not a class type */
+	SetTransparencyOverlayTextureFormat(value PixelFormat /* not a class type */)
 	IsAutoExposureEnabled() bool
 	SetIsAutoExposureEnabled(value bool)
 	IsDenoiseStrengthMaskTextureEnabled() bool
@@ -86,9 +85,14 @@ type IFXTemporalDenoisedScalerDescriptor interface {
 	SetIsSpecularHitDistanceTextureEnabled(value bool)
 	IsTransparencyOverlayTextureEnabled() bool
 	SetIsTransparencyOverlayTextureEnabled(value bool)
+	// methods:
+	NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID
+	NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor
 type FXTemporalDenoisedScalerDescriptor struct {
 	objectivec.Object
@@ -131,128 +135,146 @@ func NewFXTemporalDenoisedScalerDescriptor() FXTemporalDenoisedScalerDescriptor 
 }
 
 
+
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMaxScale(device:)
 func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) float32 {
 	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
 
+
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMinScale(device:)
 func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) float32 {
 	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
 
+
 // Queries whether a Metal device supports denoising scaling.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportsDevice(_:)
 func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
 
+
 // Queries whether a Metal device supports denosing scaling compatible on Metal 4.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportsMetal4FX(_:)
 func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
 
+
 // Creates a denoiser scaler instance for a Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/makeTemporalDenoisedScaler(device:)
 func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalDenoisedScalerWithDevice:"), device)
 	return rv
 }
 
+
 // Creates a denoiser scaler instance for a Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/makeTemporalDenoisedScaler(device:compiler:)
 func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalDenoisedScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }
 
+
 // The pixel format of the input color texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/colorTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) ColorTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("colorTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) ColorTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("colorTextureFormat"))
 	return rv
 }
 
 
-// SetColorTextureFormat sets the value of the colorTextureFormat property.
 // The pixel format of the input color texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/colorTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetColorTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetColorTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorTextureFormat:"), value)
 }
 
+
 // The pixel format of the input denoise strength mask texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/denoiseStrengthMaskTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) DenoiseStrengthMaskTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("denoiseStrengthMaskTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) DenoiseStrengthMaskTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("denoiseStrengthMaskTextureFormat"))
 	return rv
 }
 
 
-// SetDenoiseStrengthMaskTextureFormat sets the value of the denoiseStrengthMaskTextureFormat property.
 // The pixel format of the input denoise strength mask texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/denoiseStrengthMaskTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetDenoiseStrengthMaskTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetDenoiseStrengthMaskTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDenoiseStrengthMaskTextureFormat:"), value)
 }
 
+
 // The pixel format of the input depth texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/depthTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) DepthTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("depthTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) DepthTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("depthTextureFormat"))
 	return rv
 }
 
 
-// SetDepthTextureFormat sets the value of the depthTextureFormat property.
 // The pixel format of the input depth texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/depthTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetDepthTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetDepthTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDepthTextureFormat:"), value)
 }
 
+
 // The pixel format of the input diffuse albedo texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/diffuseAlbedoTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) DiffuseAlbedoTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("diffuseAlbedoTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) DiffuseAlbedoTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("diffuseAlbedoTextureFormat"))
 	return rv
 }
 
 
-// SetDiffuseAlbedoTextureFormat sets the value of the diffuseAlbedoTextureFormat property.
 // The pixel format of the input diffuse albedo texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/diffuseAlbedoTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetDiffuseAlbedoTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetDiffuseAlbedoTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDiffuseAlbedoTextureFormat:"), value)
 }
 
+
 // The height, in pixels, of the input color texture for the denoiser scaler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/inputHeight
 func (f_ FXTemporalDenoisedScalerDescriptor) InputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputHeight"))
@@ -260,17 +282,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) InputHeight() uint {
 }
 
 
-// SetInputHeight sets the value of the inputHeight property.
 // The height, in pixels, of the input color texture for the denoiser scaler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/inputHeight
 func (f_ FXTemporalDenoisedScalerDescriptor) SetInputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputHeight:"), value)
 }
 
+
 // The width, in pixels, of the input color texture for the denoiser scaler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/inputWidth
 func (f_ FXTemporalDenoisedScalerDescriptor) InputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputWidth"))
@@ -278,17 +301,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) InputWidth() uint {
 }
 
 
-// SetInputWidth sets the value of the inputWidth property.
 // The width, in pixels, of the input color texture for the denoiser scaler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/inputWidth
 func (f_ FXTemporalDenoisedScalerDescriptor) SetInputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputWidth:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isAutoExposureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) AutoExposureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("autoExposureEnabled"))
@@ -296,17 +320,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) AutoExposureEnabled() bool {
 }
 
 
-// SetAutoExposureEnabled sets the value of the autoExposureEnabled property.
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isAutoExposureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetAutoExposureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAutoExposureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isDenoiseStrengthMaskTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) DenoiseStrengthMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("denoiseStrengthMaskTextureEnabled"))
@@ -314,17 +339,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) DenoiseStrengthMaskTextureEnabled()
 }
 
 
-// SetDenoiseStrengthMaskTextureEnabled sets the value of the denoiseStrengthMaskTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isDenoiseStrengthMaskTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetDenoiseStrengthMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDenoiseStrengthMaskTextureEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isReactiveMaskTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) ReactiveMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("reactiveMaskTextureEnabled"))
@@ -332,17 +358,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) ReactiveMaskTextureEnabled() bool {
 }
 
 
-// SetReactiveMaskTextureEnabled sets the value of the reactiveMaskTextureEnabled property.
 // A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isReactiveMaskTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetReactiveMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReactiveMaskTextureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isSpecularHitDistanceTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SpecularHitDistanceTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("specularHitDistanceTextureEnabled"))
@@ -350,17 +377,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) SpecularHitDistanceTextureEnabled()
 }
 
 
-// SetSpecularHitDistanceTextureEnabled sets the value of the specularHitDistanceTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isSpecularHitDistanceTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetSpecularHitDistanceTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSpecularHitDistanceTextureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isTransparencyOverlayTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) TransparencyOverlayTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("transparencyOverlayTextureEnabled"))
@@ -368,53 +396,56 @@ func (f_ FXTemporalDenoisedScalerDescriptor) TransparencyOverlayTextureEnabled()
 }
 
 
-// SetTransparencyOverlayTextureEnabled sets the value of the transparencyOverlayTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/isTransparencyOverlayTextureEnabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetTransparencyOverlayTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTransparencyOverlayTextureEnabled:"), value)
 }
 
+
 // The pixel format of the input motion texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/motionTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) MotionTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("motionTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) MotionTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("motionTextureFormat"))
 	return rv
 }
 
 
-// SetMotionTextureFormat sets the value of the motionTextureFormat property.
 // The pixel format of the input motion texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/motionTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetMotionTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetMotionTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMotionTextureFormat:"), value)
 }
 
+
 // The pixel format of the input normal texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/normalTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) NormalTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("normalTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) NormalTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("normalTextureFormat"))
 	return rv
 }
 
 
-// SetNormalTextureFormat sets the value of the normalTextureFormat property.
 // The pixel format of the input normal texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/normalTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetNormalTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetNormalTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNormalTextureFormat:"), value)
 }
 
+
 // The height, in pixels, of the input color texture for the denoiser scaler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputHeight
 func (f_ FXTemporalDenoisedScalerDescriptor) OutputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputHeight"))
@@ -422,35 +453,37 @@ func (f_ FXTemporalDenoisedScalerDescriptor) OutputHeight() uint {
 }
 
 
-// SetOutputHeight sets the value of the outputHeight property.
 // The height, in pixels, of the input color texture for the denoiser scaler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputHeight
 func (f_ FXTemporalDenoisedScalerDescriptor) SetOutputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputHeight:"), value)
 }
 
+
 // The pixel format of the output color texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) OutputTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("outputTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) OutputTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("outputTextureFormat"))
 	return rv
 }
 
 
-// SetOutputTextureFormat sets the value of the outputTextureFormat property.
 // The pixel format of the output color texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetOutputTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetOutputTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputTextureFormat:"), value)
 }
 
+
 // The width, in pixels, of the output color texture for the denoiser scaler.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputWidth
 func (f_ FXTemporalDenoisedScalerDescriptor) OutputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputWidth"))
@@ -458,35 +491,37 @@ func (f_ FXTemporalDenoisedScalerDescriptor) OutputWidth() uint {
 }
 
 
-// SetOutputWidth sets the value of the outputWidth property.
 // The width, in pixels, of the output color texture for the denoiser scaler.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/outputWidth
 func (f_ FXTemporalDenoisedScalerDescriptor) SetOutputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputWidth:"), value)
 }
 
+
 // The pixel format of the reactive mask input texture for a scaler you create from this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/reactiveMaskTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) ReactiveMaskTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reactiveMaskTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) ReactiveMaskTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("reactiveMaskTextureFormat"))
 	return rv
 }
 
 
-// SetReactiveMaskTextureFormat sets the value of the reactiveMaskTextureFormat property.
 // The pixel format of the reactive mask input texture for a scaler you create from this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/reactiveMaskTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetReactiveMaskTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetReactiveMaskTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReactiveMaskTextureFormat:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX compiles a temporal scaling effect’s underlying upscaler as it creates the instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/requiresSynchronousInitialization
 func (f_ FXTemporalDenoisedScalerDescriptor) RequiresSynchronousInitialization() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("requiresSynchronousInitialization"))
@@ -494,89 +529,94 @@ func (f_ FXTemporalDenoisedScalerDescriptor) RequiresSynchronousInitialization()
 }
 
 
-// SetRequiresSynchronousInitialization sets the value of the requiresSynchronousInitialization property.
 // A Boolean value that indicates whether MetalFX compiles a temporal scaling effect’s underlying upscaler as it creates the instance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/requiresSynchronousInitialization
 func (f_ FXTemporalDenoisedScalerDescriptor) SetRequiresSynchronousInitialization(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRequiresSynchronousInitialization:"), value)
 }
 
+
 // The pixel format of the input roughness texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/roughnessTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) RoughnessTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("roughnessTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) RoughnessTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("roughnessTextureFormat"))
 	return rv
 }
 
 
-// SetRoughnessTextureFormat sets the value of the roughnessTextureFormat property.
 // The pixel format of the input roughness texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/roughnessTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetRoughnessTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetRoughnessTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRoughnessTextureFormat:"), value)
 }
 
+
 // The pixel format of the input specular albedo texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/specularAlbedoTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SpecularAlbedoTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("specularAlbedoTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) SpecularAlbedoTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("specularAlbedoTextureFormat"))
 	return rv
 }
 
 
-// SetSpecularAlbedoTextureFormat sets the value of the specularAlbedoTextureFormat property.
 // The pixel format of the input specular albedo texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/specularAlbedoTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetSpecularAlbedoTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetSpecularAlbedoTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSpecularAlbedoTextureFormat:"), value)
 }
 
+
 // The pixel format of the input specular hit texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/specularHitDistanceTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SpecularHitDistanceTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("specularHitDistanceTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) SpecularHitDistanceTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("specularHitDistanceTextureFormat"))
 	return rv
 }
 
 
-// SetSpecularHitDistanceTextureFormat sets the value of the specularHitDistanceTextureFormat property.
 // The pixel format of the input specular hit texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/specularHitDistanceTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetSpecularHitDistanceTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetSpecularHitDistanceTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSpecularHitDistanceTextureFormat:"), value)
 }
 
+
 // The pixel format of the input transparency overlay texture for the scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/transparencyOverlayTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) TransparencyOverlayTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("transparencyOverlayTextureFormat"))
+func (f_ FXTemporalDenoisedScalerDescriptor) TransparencyOverlayTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("transparencyOverlayTextureFormat"))
 	return rv
 }
 
 
-// SetTransparencyOverlayTextureFormat sets the value of the transparencyOverlayTextureFormat property.
 // The pixel format of the input transparency overlay texture for the scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/transparencyOverlayTextureFormat
-func (f_ FXTemporalDenoisedScalerDescriptor) SetTransparencyOverlayTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalDenoisedScalerDescriptor) SetTransparencyOverlayTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTransparencyOverlayTextureFormat:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) IsAutoExposureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
@@ -584,17 +624,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) IsAutoExposureEnabled() bool {
 }
 
 
-// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isautoexposureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) IsDenoiseStrengthMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDenoiseStrengthMaskTextureEnabled"))
@@ -602,17 +643,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) IsDenoiseStrengthMaskTextureEnabled
 }
 
 
-// SetIsDenoiseStrengthMaskTextureEnabled sets the value of the isDenoiseStrengthMaskTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a denoise strength mask texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isdenoisestrengthmasktextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetIsDenoiseStrengthMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDenoiseStrengthMaskTextureEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
@@ -620,17 +662,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) IsReactiveMaskTextureEnabled() bool
 }
 
 
-// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
 // A Boolean value that indicates whether a scaler you create from this descriptor applies a reactive mask.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isreactivemasktextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) IsSpecularHitDistanceTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSpecularHitDistanceTextureEnabled"))
@@ -638,17 +681,18 @@ func (f_ FXTemporalDenoisedScalerDescriptor) IsSpecularHitDistanceTextureEnabled
 }
 
 
-// SetIsSpecularHitDistanceTextureEnabled sets the value of the isSpecularHitDistanceTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a specular hit distance texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/isspecularhitdistancetextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetIsSpecularHitDistanceTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSpecularHitDistanceTextureEnabled:"), value)
 }
 
+
 // A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) IsTransparencyOverlayTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isTransparencyOverlayTextureEnabled"))
@@ -656,10 +700,9 @@ func (f_ FXTemporalDenoisedScalerDescriptor) IsTransparencyOverlayTextureEnabled
 }
 
 
-// SetIsTransparencyOverlayTextureEnabled sets the value of the isTransparencyOverlayTextureEnabled property.
 // A Boolean value indicating whether the scaler evaluates a transparency overlay texture as part of its operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor/istransparencyoverlaytextureenabled
 func (f_ FXTemporalDenoisedScalerDescriptor) SetIsTransparencyOverlayTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsTransparencyOverlayTextureEnabled:"), value)

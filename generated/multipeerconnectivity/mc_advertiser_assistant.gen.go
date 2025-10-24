@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _MCAdvertiserAssistantClass struct {
 // An interface definition for the [MCAdvertiserAssistant] class.
 type IMCAdvertiserAssistant interface {
 	objectivec.IObject
-	Start()
-	Stop()
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DiscoveryInfo() unsafe.Pointer
-	ServiceType() string
-	Session() MCSession
+	DiscoveryInfo() foundation.IDictionary
+	ServiceType() objc.IObject /* cross-framework: NSString */
+	Session() IMCSession
+	// methods:
+	Start()
+	Stop()
 }
 
 // The is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.
 //
 // Before you can advertise a service, you must create an object that identifies your app and the user to nearby devices.
+
+
+// The is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant
 type MCAdvertiserAssistant struct {
 	objectivec.Object
@@ -88,34 +95,40 @@ func NewMCAdvertiserAssistant() MCAdvertiserAssistant {
 
 
 
-
 // Initializes an advertiser assistant object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)
-func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType string, info unsafe.Pointer, session IMCSession) MCAdvertiserAssistant {
+func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType objc.IObject /* cross-framework: NSString */, info foundation.IDictionary, session IMCSession) MCAdvertiserAssistant {
 	instance := getMCAdvertiserAssistantClass().Alloc()
-	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), objc.String(serviceType), info, session)
+	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), serviceType, info, session)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // Begins advertising the service provided by a local peer and starts the assistant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/start()
 func (m_ MCAdvertiserAssistant) Start() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("start"))
 }
 
+
 // Stops advertising the service provided by a local peer and stops the assistant.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/stop()
 func (m_ MCAdvertiserAssistant) Stop() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stop"))
 }
 
+
 // The delegate object that handles advertising-assistant-related events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/delegate
 func (m_ MCAdvertiserAssistant) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
@@ -123,35 +136,40 @@ func (m_ MCAdvertiserAssistant) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object that handles advertising-assistant-related events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/delegate
 func (m_ MCAdvertiserAssistant) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The dictionary that was passed when this object was initialized.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/discoveryInfo
-func (m_ MCAdvertiserAssistant) DiscoveryInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("discoveryInfo"))
+func (m_ MCAdvertiserAssistant) DiscoveryInfo() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("discoveryInfo"))
 	return rv
 }
+
 
 // The service type that your app is advertising.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/serviceType
-func (m_ MCAdvertiserAssistant) ServiceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCAdvertiserAssistant) ServiceType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 
+
 // The session into which new peers are added after accepting an invitation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/session
-func (m_ MCAdvertiserAssistant) Session() MCSession {
+func (m_ MCAdvertiserAssistant) Session() IMCSession {
 	rv := objc.Send[MCSession](m_.ID, objc.Sel("session"))
 	return rv
 }

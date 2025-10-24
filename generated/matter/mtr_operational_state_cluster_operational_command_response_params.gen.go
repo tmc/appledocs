@@ -30,11 +30,15 @@ type _MTROperationalStateClusterOperationalCommandResponseParamsClass struct {
 // An interface definition for the [MTROperationalStateClusterOperationalCommandResponseParams] class.
 type IMTROperationalStateClusterOperationalCommandResponseParams interface {
 	objectivec.IObject
-	CommandResponseState() MTROperationalStateClusterErrorStateStruct
+	// properties:
+	CommandResponseState() IMTROperationalStateClusterErrorStateStruct
 	SetCommandResponseState(value IMTROperationalStateClusterErrorStateStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterOperationalCommandResponseParams
 type MTROperationalStateClusterOperationalCommandResponseParams struct {
 	objectivec.Object
@@ -77,16 +81,16 @@ func NewMTROperationalStateClusterOperationalCommandResponseParams() MTROperatio
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalcommandresponseparams/commandresponsestate
-func (m_ MTROperationalStateClusterOperationalCommandResponseParams) CommandResponseState() MTROperationalStateClusterErrorStateStruct {
+func (m_ MTROperationalStateClusterOperationalCommandResponseParams) CommandResponseState() IMTROperationalStateClusterErrorStateStruct {
 	rv := objc.Send[MTROperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("commandResponseState"))
 	return rv
 }
 
 
-// SetCommandResponseState sets the value of the commandResponseState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalcommandresponseparams/commandresponsestate
 func (m_ MTROperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value IMTROperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)

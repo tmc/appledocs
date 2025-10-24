@@ -93,6 +93,48 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 
 
 
+// Returns an object initialized so it behaves as specified by the method’s arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/init(roundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)
+func NewDecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool, overflow bool, underflow bool, divideByZero bool) DecimalNumberHandler {
+	instance := getDecimalNumberHandlerClass().Alloc()
+	rv := objc.Send[DecimalNumberHandler](instance.ID, objc.Sel("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), roundingMode, scale, exact, overflow, underflow, divideByZero)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns an object with customized behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:
+func (dc _DecimalNumberHandlerClass) DecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool, overflow bool, underflow bool, divideByZero bool) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), roundingMode, scale, exact, overflow, underflow, divideByZero)
+	return rv
+}
+
+
+// Returns the default instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/default
+func (dc _DecimalNumberHandlerClass) DefaultDecimalNumberHandler() DecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](objc.ID(dc.class), objc.Sel("defaultDecimalNumberHandler"))
+	return rv
+}
+
+// Returns the default instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/default
+func (d_ DecimalNumberHandler) DefaultDecimalNumberHandler() IDecimalNumberHandler {
+	rv := objc.Send[DecimalNumberHandler](d_.ID, objc.Sel("defaultDecimalNumberHandler"))
+	return rv
+}
+
+
 // The rounding behavior used by the receiver.
 //
 // [Full Topic]
@@ -148,6 +190,5 @@ func (d_ DecimalNumberHandler) RoundingMode() RoundingMode {
 func (d_ DecimalNumberHandler) SetRoundingMode(value RoundingMode) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingMode:"), value)
 }
-
 
 

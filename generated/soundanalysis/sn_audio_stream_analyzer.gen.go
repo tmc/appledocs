@@ -31,12 +31,18 @@ type _SNAudioStreamAnalyzerClass struct {
 // An interface definition for the [SNAudioStreamAnalyzer] class.
 type ISNAudioStreamAnalyzer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object you create to analyze a stream of audio data and provide the results to your app.
 //
 // Run an on an audio stream by creating an . You can run the same sound analysis request on multiple stream analyzers, and each analyzer can process multiple requests. An audio file analyzer generates an each time any of its active requests recognizes a sound.
+
+
+// An object you create to analyze a stream of audio data and provide the results to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNAudioStreamAnalyzer
 type SNAudioStreamAnalyzer struct {
 	objectivec.Object
@@ -82,11 +88,11 @@ func NewSNAudioStreamAnalyzer() SNAudioStreamAnalyzer {
 
 
 
-
 // Creates a new audio stream analyzer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNAudioStreamAnalyzer/init(format:)
-func NewSNAudioStreamAnalyzerWithFormat(format avfaudio.AudioFormat) SNAudioStreamAnalyzer {
+func NewSNAudioStreamAnalyzerWithFormat(format objc.IObject /* cross-framework: AudioFormat */) SNAudioStreamAnalyzer {
 	instance := getSNAudioStreamAnalyzerClass().Alloc()
 	rv := objc.Send[SNAudioStreamAnalyzer](instance.ID, objc.Sel("initWithFormat:"), format)
 	rv.Autorelease()

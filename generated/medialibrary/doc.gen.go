@@ -2,12 +2,12 @@
 
 // Package medialibrary provides Go bindings for the MediaLibrary framework.
 //
-// Access read-only collections of the user’s multimedia content. [Full Topic]
+// Access read-only collections of the user’s multimedia content.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MediaLibrary without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary
+// See: https://developer.apple.com/documentation/MediaLibrary
 package medialibrary
 
 import (

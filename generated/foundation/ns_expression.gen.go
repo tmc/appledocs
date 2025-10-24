@@ -31,7 +31,7 @@ type _ExpressionClass struct {
 type IExpression interface {
 	objectivec.IObject
 	// properties:
-	Arguments() []Expression /* primitive/slice/pointer. */
+	Arguments() []IExpression
 	Collection() objc.ID
 	ConstantValue() objc.ID
 	ExpressionBlock() unsafe.Pointer
@@ -115,7 +115,7 @@ func NewExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func NewExpressionForAggregate(subexpressions []Expression /* primitive/slice/pointer. */) Expression {
+func NewExpressionForAggregate(subexpressions []IExpression) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -125,7 +125,7 @@ func NewExpressionForAggregate(subexpressions []Expression /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression /* primitive/slice/pointer. */) Expression {
+func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []IExpression) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -310,7 +310,7 @@ func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat IString) IExpre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression /* primitive/slice/pointer. */) IExpression {
+func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []IExpression) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -320,7 +320,7 @@ func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arg
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []Expression /* primitive/slice/pointer. */) IExpression {
+func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []IExpression) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -469,7 +469,7 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/arguments
-func (e_ Expression) Arguments() []Expression /* primitive/slice/pointer. */ {
+func (e_ Expression) Arguments() []IExpression {
 	rv := objc.Send[[]Expression](e_.ID, objc.Sel("arguments"))
 	return rv
 }

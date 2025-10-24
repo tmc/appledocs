@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ButtonTouchBarItem] class.
@@ -29,20 +30,22 @@ type _ButtonTouchBarItemClass struct {
 // An interface definition for the [ButtonTouchBarItem] class.
 type IButtonTouchBarItem interface {
 	ITouchBarItem
+	// properties:
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	BezelColor() Color
-	SetBezelColor(value IColor)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
-	Image() Image
+	BezelColor() objc.IObject /* cross-framework: Color */
+	SetBezelColor(value objc.IObject /* cross-framework: Color */)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
+	Image() IImage
 	SetImage(value IImage)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	Target() unsafe.Pointer
 	SetTarget(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A bar item that provides a button.
@@ -115,7 +118,7 @@ func (b_ ButtonTouchBarItem) SetAction(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
-func (b_ ButtonTouchBarItem) BezelColor() Color {
+func (b_ ButtonTouchBarItem) BezelColor() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[Color](b_.ID, objc.Sel("bezelColor"))
 	return rv
 }
@@ -123,29 +126,29 @@ func (b_ ButtonTouchBarItem) BezelColor() Color {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/bezelcolor
-func (b_ ButtonTouchBarItem) SetBezelColor(value IColor) {
+func (b_ ButtonTouchBarItem) SetBezelColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBezelColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/customizationlabel
-func (b_ ButtonTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("customizationLabel"))
+func (b_ ButtonTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/customizationlabel
-func (b_ ButtonTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (b_ ButtonTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/image
-func (b_ ButtonTouchBarItem) Image() Image {
+func (b_ ButtonTouchBarItem) Image() IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
 }
@@ -190,16 +193,16 @@ func (b_ ButtonTouchBarItem) SetTarget(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/title
-func (b_ ButtonTouchBarItem) Title() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+func (b_ ButtonTouchBarItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("title"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbuttontouchbaritem/title
-func (b_ ButtonTouchBarItem) SetTitle(value string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (b_ ButtonTouchBarItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), value)
 }
 
 

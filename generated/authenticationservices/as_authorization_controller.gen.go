@@ -31,8 +31,6 @@ type _AuthorizationControllerClass struct {
 type IAuthorizationController interface {
 	objectivec.IObject
 	// properties:
-	CustomAuthorizationMethods() []string /* primitive/slice/pointer. */
-	SetCustomAuthorizationMethods(value []string /* primitive/slice/pointer. */)
 	AuthorizationRequests() objc.IObject /* cross-framework: AuthorizationRequest */
 	SetAuthorizationRequests(value objc.IObject /* cross-framework: AuthorizationRequest */)
 	Delegate() AuthorizationControllerDelegate /* not a class type */
@@ -95,35 +93,6 @@ func NewAuthorizationController() AuthorizationController {
 
 
 
-// An array of custom authorization methods for the user to choose.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-func (a_ AuthorizationController) CustomAuthorizationMethods() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](a_.ID, objc.Sel("customAuthorizationMethods"))
-	return rv
-}
-
-
-// An array of custom authorization methods for the user to choose.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), nsArray)
-}
-
-
 // The authorization requests that the controller manages.
 //
 // [Full Topic]
@@ -179,6 +148,5 @@ func (a_ AuthorizationController) PresentationContextProvider() AuthorizationCon
 func (a_ AuthorizationController) SetPresentationContextProvider(value AuthorizationControllerPresentationContextProviding /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
-
 
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterBarrierControlClass struct {
 // An interface definition for the [MTRBaseClusterBarrierControl] class.
 type IMTRBaseClusterBarrierControl interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBarrierControl
 type MTRBaseClusterBarrierControl struct {
 	MTRGenericBaseCluster

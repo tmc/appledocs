@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [TableRowView] class.
@@ -34,46 +35,46 @@ type ITableRowView interface {
 	SetBackgroundColor(value IColor)
 	DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle /* not a class type */
 	SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle /* not a class type */)
-	IndentationForDropOperation() float64 /* primitive/slice/pointer. */
-	SetIndentationForDropOperation(value float64 /* primitive/slice/pointer. */)
+	IndentationForDropOperation() float64
+	SetIndentationForDropOperation(value float64)
 	InteriorBackgroundStyle() BackgroundStyle
-	Emphasized() bool /* primitive/slice/pointer. */
-	SetEmphasized(value bool /* primitive/slice/pointer. */)
-	Floating() bool /* primitive/slice/pointer. */
-	SetFloating(value bool /* primitive/slice/pointer. */)
-	GroupRowStyle() bool /* primitive/slice/pointer. */
-	SetGroupRowStyle(value bool /* primitive/slice/pointer. */)
-	NextRowSelected() bool /* primitive/slice/pointer. */
-	SetNextRowSelected(value bool /* primitive/slice/pointer. */)
-	PreviousRowSelected() bool /* primitive/slice/pointer. */
-	SetPreviousRowSelected(value bool /* primitive/slice/pointer. */)
-	Selected() bool /* primitive/slice/pointer. */
-	SetSelected(value bool /* primitive/slice/pointer. */)
-	TargetForDropOperation() bool /* primitive/slice/pointer. */
-	SetTargetForDropOperation(value bool /* primitive/slice/pointer. */)
-	NumberOfColumns() int /* primitive/slice/pointer. */
+	Emphasized() bool
+	SetEmphasized(value bool)
+	Floating() bool
+	SetFloating(value bool)
+	GroupRowStyle() bool
+	SetGroupRowStyle(value bool)
+	NextRowSelected() bool
+	SetNextRowSelected(value bool)
+	PreviousRowSelected() bool
+	SetPreviousRowSelected(value bool)
+	Selected() bool
+	SetSelected(value bool)
+	TargetForDropOperation() bool
+	SetTargetForDropOperation(value bool)
+	NumberOfColumns() int
 	SelectionHighlightStyle() TableViewSelectionHighlightStyle /* not a class type */
 	SetSelectionHighlightStyle(value TableViewSelectionHighlightStyle /* not a class type */)
-	IsEmphasized() bool /* primitive/slice/pointer. */
-	SetIsEmphasized(value bool /* primitive/slice/pointer. */)
-	IsFloating() bool /* primitive/slice/pointer. */
-	SetIsFloating(value bool /* primitive/slice/pointer. */)
-	IsGroupRowStyle() bool /* primitive/slice/pointer. */
-	SetIsGroupRowStyle(value bool /* primitive/slice/pointer. */)
-	IsNextRowSelected() bool /* primitive/slice/pointer. */
-	SetIsNextRowSelected(value bool /* primitive/slice/pointer. */)
-	IsPreviousRowSelected() bool /* primitive/slice/pointer. */
-	SetIsPreviousRowSelected(value bool /* primitive/slice/pointer. */)
-	IsSelected() bool /* primitive/slice/pointer. */
-	SetIsSelected(value bool /* primitive/slice/pointer. */)
-	IsTargetForDropOperation() bool /* primitive/slice/pointer. */
-	SetIsTargetForDropOperation(value bool /* primitive/slice/pointer. */)
+	IsEmphasized() bool
+	SetIsEmphasized(value bool)
+	IsFloating() bool
+	SetIsFloating(value bool)
+	IsGroupRowStyle() bool
+	SetIsGroupRowStyle(value bool)
+	IsNextRowSelected() bool
+	SetIsNextRowSelected(value bool)
+	IsPreviousRowSelected() bool
+	SetIsPreviousRowSelected(value bool)
+	IsSelected() bool
+	SetIsSelected(value bool)
+	IsTargetForDropOperation() bool
+	SetIsTargetForDropOperation(value bool)
 	// methods:
-	DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework Rect */)
-	DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework Rect */)
-	DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework Rect */)
-	DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework Rect */)
-	ViewAtColumn(column int /* primitive/slice/pointer. */) objc.ID
+	DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework: Rect */)
+	DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework: Rect */)
+	DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework: Rect */)
+	DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework: Rect */)
+	ViewAtColumn(column int) objc.ID
 }
 
 // The view shown for a row in a table view.
@@ -135,7 +136,7 @@ func NewTableRowView() TableRowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawBackground(in:)
-func (t_ TableRowView) DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
+func (t_ TableRowView) DrawBackgroundInRect(dirtyRect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawBackgroundInRect:"), dirtyRect)
 }
 
@@ -144,7 +145,7 @@ func (t_ TableRowView) DrawBackgroundInRect(dirtyRect objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawDraggingDestinationFeedback(in:)
-func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
+func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawDraggingDestinationFeedbackInRect:"), dirtyRect)
 }
 
@@ -153,7 +154,7 @@ func (t_ TableRowView) DrawDraggingDestinationFeedbackInRect(dirtyRect objc.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSelection(in:)
-func (t_ TableRowView) DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
+func (t_ TableRowView) DrawSelectionInRect(dirtyRect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSelectionInRect:"), dirtyRect)
 }
 
@@ -162,7 +163,7 @@ func (t_ TableRowView) DrawSelectionInRect(dirtyRect objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/drawSeparator(in:)
-func (t_ TableRowView) DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework Rect */) {
+func (t_ TableRowView) DrawSeparatorInRect(dirtyRect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawSeparatorInRect:"), dirtyRect)
 }
 
@@ -171,7 +172,7 @@ func (t_ TableRowView) DrawSeparatorInRect(dirtyRect objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/view(atColumn:)
-func (t_ TableRowView) ViewAtColumn(column int /* primitive/slice/pointer. */) objc.ID {
+func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("viewAtColumn:"), column)
 	return rv
 }
@@ -219,7 +220,7 @@ func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value TableViewDraggi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/indentationForDropOperation
-func (t_ TableRowView) IndentationForDropOperation() float64 /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IndentationForDropOperation() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("indentationForDropOperation"))
 	return rv
 }
@@ -229,7 +230,7 @@ func (t_ TableRowView) IndentationForDropOperation() float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/indentationForDropOperation
-func (t_ TableRowView) SetIndentationForDropOperation(value float64 /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIndentationForDropOperation(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIndentationForDropOperation:"), value)
 }
 
@@ -248,7 +249,7 @@ func (t_ TableRowView) InteriorBackgroundStyle() BackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isEmphasized
-func (t_ TableRowView) Emphasized() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) Emphasized() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("emphasized"))
 	return rv
 }
@@ -258,7 +259,7 @@ func (t_ TableRowView) Emphasized() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isEmphasized
-func (t_ TableRowView) SetEmphasized(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetEmphasized(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEmphasized:"), value)
 }
 
@@ -267,7 +268,7 @@ func (t_ TableRowView) SetEmphasized(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isFloating
-func (t_ TableRowView) Floating() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) Floating() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("floating"))
 	return rv
 }
@@ -277,7 +278,7 @@ func (t_ TableRowView) Floating() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isFloating
-func (t_ TableRowView) SetFloating(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetFloating(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFloating:"), value)
 }
 
@@ -286,7 +287,7 @@ func (t_ TableRowView) SetFloating(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isGroupRowStyle
-func (t_ TableRowView) GroupRowStyle() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) GroupRowStyle() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("groupRowStyle"))
 	return rv
 }
@@ -296,14 +297,14 @@ func (t_ TableRowView) GroupRowStyle() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isGroupRowStyle
-func (t_ TableRowView) SetGroupRowStyle(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetGroupRowStyle(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupRowStyle:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isNextRowSelected
-func (t_ TableRowView) NextRowSelected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) NextRowSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("nextRowSelected"))
 	return rv
 }
@@ -311,14 +312,14 @@ func (t_ TableRowView) NextRowSelected() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isNextRowSelected
-func (t_ TableRowView) SetNextRowSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetNextRowSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNextRowSelected:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isPreviousRowSelected
-func (t_ TableRowView) PreviousRowSelected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) PreviousRowSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("previousRowSelected"))
 	return rv
 }
@@ -326,7 +327,7 @@ func (t_ TableRowView) PreviousRowSelected() bool /* primitive/slice/pointer. */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isPreviousRowSelected
-func (t_ TableRowView) SetPreviousRowSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetPreviousRowSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreviousRowSelected:"), value)
 }
 
@@ -335,7 +336,7 @@ func (t_ TableRowView) SetPreviousRowSelected(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isSelected
-func (t_ TableRowView) Selected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) Selected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("selected"))
 	return rv
 }
@@ -345,7 +346,7 @@ func (t_ TableRowView) Selected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isSelected
-func (t_ TableRowView) SetSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelected:"), value)
 }
 
@@ -354,7 +355,7 @@ func (t_ TableRowView) SetSelected(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isTargetForDropOperation
-func (t_ TableRowView) TargetForDropOperation() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) TargetForDropOperation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("targetForDropOperation"))
 	return rv
 }
@@ -364,7 +365,7 @@ func (t_ TableRowView) TargetForDropOperation() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/isTargetForDropOperation
-func (t_ TableRowView) SetTargetForDropOperation(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetTargetForDropOperation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTargetForDropOperation:"), value)
 }
 
@@ -373,7 +374,7 @@ func (t_ TableRowView) SetTargetForDropOperation(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/numberOfColumns
-func (t_ TableRowView) NumberOfColumns() int /* primitive/slice/pointer. */ {
+func (t_ TableRowView) NumberOfColumns() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfColumns"))
 	return rv
 }
@@ -402,7 +403,7 @@ func (t_ TableRowView) SetSelectionHighlightStyle(value TableViewSelectionHighli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isemphasized
-func (t_ TableRowView) IsEmphasized() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsEmphasized() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEmphasized"))
 	return rv
 }
@@ -412,7 +413,7 @@ func (t_ TableRowView) IsEmphasized() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isemphasized
-func (t_ TableRowView) SetIsEmphasized(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsEmphasized(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEmphasized:"), value)
 }
 
@@ -421,7 +422,7 @@ func (t_ TableRowView) SetIsEmphasized(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isfloating
-func (t_ TableRowView) IsFloating() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsFloating() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFloating"))
 	return rv
 }
@@ -431,7 +432,7 @@ func (t_ TableRowView) IsFloating() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isfloating
-func (t_ TableRowView) SetIsFloating(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsFloating(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFloating:"), value)
 }
 
@@ -440,7 +441,7 @@ func (t_ TableRowView) SetIsFloating(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isgrouprowstyle
-func (t_ TableRowView) IsGroupRowStyle() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsGroupRowStyle() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isGroupRowStyle"))
 	return rv
 }
@@ -450,14 +451,14 @@ func (t_ TableRowView) IsGroupRowStyle() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isgrouprowstyle
-func (t_ TableRowView) SetIsGroupRowStyle(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsGroupRowStyle(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsGroupRowStyle:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isnextrowselected
-func (t_ TableRowView) IsNextRowSelected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsNextRowSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isNextRowSelected"))
 	return rv
 }
@@ -465,14 +466,14 @@ func (t_ TableRowView) IsNextRowSelected() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isnextrowselected
-func (t_ TableRowView) SetIsNextRowSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsNextRowSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsNextRowSelected:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/ispreviousrowselected
-func (t_ TableRowView) IsPreviousRowSelected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsPreviousRowSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isPreviousRowSelected"))
 	return rv
 }
@@ -480,7 +481,7 @@ func (t_ TableRowView) IsPreviousRowSelected() bool /* primitive/slice/pointer. 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/ispreviousrowselected
-func (t_ TableRowView) SetIsPreviousRowSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsPreviousRowSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPreviousRowSelected:"), value)
 }
 
@@ -489,7 +490,7 @@ func (t_ TableRowView) SetIsPreviousRowSelected(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isselected
-func (t_ TableRowView) IsSelected() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsSelected() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSelected"))
 	return rv
 }
@@ -499,7 +500,7 @@ func (t_ TableRowView) IsSelected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/isselected
-func (t_ TableRowView) SetIsSelected(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsSelected(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelected:"), value)
 }
 
@@ -508,7 +509,7 @@ func (t_ TableRowView) SetIsSelected(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/istargetfordropoperation
-func (t_ TableRowView) IsTargetForDropOperation() bool /* primitive/slice/pointer. */ {
+func (t_ TableRowView) IsTargetForDropOperation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isTargetForDropOperation"))
 	return rv
 }
@@ -518,7 +519,7 @@ func (t_ TableRowView) IsTargetForDropOperation() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablerowview/istargetfordropoperation
-func (t_ TableRowView) SetIsTargetForDropOperation(value bool /* primitive/slice/pointer. */) {
+func (t_ TableRowView) SetIsTargetForDropOperation(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsTargetForDropOperation:"), value)
 }
 

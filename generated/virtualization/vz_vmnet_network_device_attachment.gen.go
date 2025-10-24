@@ -29,14 +29,19 @@ type _VZVmnetNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZVmnetNetworkDeviceAttachment] class.
 type IVZVmnetNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
+	// properties:
 	Network() unsafe.Pointer
-	SetNetwork(value unsafe.Pointer)
+	// methods:
 }
 
 // A network device attachment that allows a custom network topology.
 //
 // The Virtualization framework backs this attachment by a logical network which the client creates and customizes through the framework APIs to allow custom network topology which allows multiple virtual machines to appear on the same network and connect with each other.
+
+
+// A network device attachment that allows a custom network topology.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVmnetNetworkDeviceAttachment
 type VZVmnetNetworkDeviceAttachment struct {
 	VZNetworkDeviceAttachment
@@ -83,23 +88,27 @@ func NewVZVmnetNetworkDeviceAttachment() VZVmnetNetworkDeviceAttachment {
 }
 
 
-// The network object that the you initialize the attachment with.
+
+// Creates the attachment and configures it with the specified data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvmnetnetworkdeviceattachment/network
-func (v_ VZVmnetNetworkDeviceAttachment) Network() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("network"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVmnetNetworkDeviceAttachment/init(network:)
+func NewVZVmnetNetworkDeviceAttachmentWithNetwork(network unsafe.Pointer) VZVmnetNetworkDeviceAttachment {
+	instance := getVZVmnetNetworkDeviceAttachmentClass().Alloc()
+	rv := objc.Send[VZVmnetNetworkDeviceAttachment](instance.ID, objc.Sel("initWithNetwork:"), network)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetNetwork sets the value of the network property.
+
 // The network object that the you initialize the attachment with.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvmnetnetworkdeviceattachment/network
-func (v_ VZVmnetNetworkDeviceAttachment) SetNetwork(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setNetwork:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVmnetNetworkDeviceAttachment/network
+func (v_ VZVmnetNetworkDeviceAttachment) Network() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("network"))
+	return rv
 }
-
 
 

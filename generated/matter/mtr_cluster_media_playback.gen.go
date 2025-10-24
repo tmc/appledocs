@@ -29,9 +29,13 @@ type _MTRClusterMediaPlaybackClass struct {
 // An interface definition for the [MTRClusterMediaPlayback] class.
 type IMTRClusterMediaPlayback interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMediaPlayback
 type MTRClusterMediaPlayback struct {
 	MTRGenericCluster

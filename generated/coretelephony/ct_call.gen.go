@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,6 @@ type _CallClass struct {
 type ICall interface {
 	objectivec.IObject
 	// properties:
-	CallID() string /* primitive/slice/pointer. */
-	CallState() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -83,27 +82,6 @@ func (c_ Call) Autorelease() Call {
 // NewCall creates a new Call instance.
 func NewCall() Call {
 	return getCallClass().New()
-}
-
-
-
-// A unique identifier for the cellular call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
-func (c_ Call) CallID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
-	return rv
-}
-
-
-// The state of the cellular call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
-func (c_ Call) CallState() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
-	return rv
 }
 
 

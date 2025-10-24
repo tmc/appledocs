@@ -9,14 +9,11 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AttributedString = _undefined // referenced in CoreSpotlight
-	Bool = _undefined // referenced in CoreSpotlight
 	ComparisonResult = _undefined // referenced in CoreSpotlight
 	FileProtectionType = _undefined // referenced in CoreSpotlight
 	Responses = _undefined // referenced in CoreSpotlight
 	Results = _undefined // referenced in CoreSpotlight
 	Suggestions = _undefined // referenced in CoreSpotlight
-	Void = _undefined // referenced in CoreSpotlight
 )
 
 

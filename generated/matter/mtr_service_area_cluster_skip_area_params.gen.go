@@ -31,15 +31,19 @@ type _MTRServiceAreaClusterSkipAreaParamsClass struct {
 // An interface definition for the [MTRServiceAreaClusterSkipAreaParams] class.
 type IMTRServiceAreaClusterSkipAreaParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	SkippedArea() foundation.Number
-	SetSkippedArea(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	SkippedArea() objc.IObject /* cross-framework: NSNumber */
+	SetSkippedArea(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams
 type MTRServiceAreaClusterSkipAreaParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRServiceAreaClusterSkipAreaParams() MTRServiceAreaClusterSkipAreaParam
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSkipAreaParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRServiceAreaClusterSkipAreaParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/skippedArea
-func (m_ MTRServiceAreaClusterSkipAreaParams) SkippedArea() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("skippedArea"))
+func (m_ MTRServiceAreaClusterSkipAreaParams) SkippedArea() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("skippedArea"))
 	return rv
 }
 
 
-// SetSkippedArea sets the value of the skippedArea property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/skippedArea
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetSkippedArea(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetSkippedArea(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSkippedArea:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSkipAreaParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRServiceAreaClusterSkipAreaParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

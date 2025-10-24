@@ -28,34 +28,34 @@ type Pixel_ARGB_16F uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/Pixel_ARGB_16U
 // Pixel_ARGB_16U has base type: uint16_t[4]
 type Pixel_ARGB_16U uintptr
-// sparse_dimension - The dimension type.
+// Sparse_dimension - The dimension type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_dimension
 // sparse_dimension has base type: uint64_t
-type sparse_dimension uintptr
-// sparse_index - The index type.
+type Sparse_dimension uintptr
+// Sparse_index - The index type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_index
 // sparse_index has base type: int64_t
-type sparse_index uintptr
-// sparse_matrix_double_complex type alias
+type Sparse_index uintptr
+// Sparse_matrix_double_complex type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_double_complex
 // sparse_matrix_double_complex has base type: struct sparse_m_double_complex *
-type sparse_matrix_double_complex uintptr
-// vDSP_biquad_SetupD - A data structure that contains precalculated data for use by the double-precision cascaded biquadratic IIR filter function.
+type Sparse_matrix_double_complex uintptr
+// VDSP_biquad_SetupD - A data structure that contains precalculated data for use by the double-precision cascaded biquadratic IIR filter function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_biquad_SetupD
 // vDSP_biquad_SetupD has base type: struct vDSP_biquad_SetupStructD *
-type vDSP_biquad_SetupD uintptr
-// vImageCVImageFormatRef - A mutable description of image encoding in a Core Video pixel buffer.
+type VDSP_biquad_SetupD uintptr
+// VImageCVImageFormatRef - A mutable description of image encoding in a Core Video pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageCVImageFormat
 // vImageCVImageFormatRef has base type: struct vImageCVImageFormat *
-type vImageCVImageFormatRef uintptr
-// vImageConverterRef - A description of a conversion from one image format to another.
+type VImageCVImageFormatRef uintptr
+// VImageConverterRef - A description of a conversion from one image format to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageConverter
 // vImageConverterRef has base type: struct vImageConverter *
-type vImageConverterRef uintptr
+type VImageConverterRef uintptr
 

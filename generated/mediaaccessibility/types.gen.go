@@ -5,20 +5,14 @@ import (
 	"unsafe"
 )
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
 
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFURLRef is a CoreGraphics opaque type.
-type CFURLRef unsafe.Pointer
-
-// CGColorRef is a CoreGraphics opaque type.
-type CGColorRef unsafe.Pointer
-
-// CTFontDescriptorRef is a CoreGraphics opaque type.
-type CTFontDescriptorRef unsafe.Pointer
+// C struct types
+// MAMusicHaptics - A namespace for Music Haptics symbols.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHaptics
+type MAMusicHaptics struct {
+}
 
 
 

@@ -2,12 +2,12 @@
 
 // Package photokit provides Go bindings for the PhotoKit framework.
 //
-// Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos. [Full Topic]
+// Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PhotoKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotoKit
+// See: https://developer.apple.com/documentation/PhotoKit
 package photokit
 
 import (

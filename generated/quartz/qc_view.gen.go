@@ -30,14 +30,18 @@ type _QCViewClass struct {
 // An interface definition for the [QCView] class.
 type IQCView interface {
 	appkit.IView
-	EventForwardingMask() uint
-	OpenGLPixelFormat() appkit.OpenGLPixelFormat
+	// properties:
+	// methods:
 }
 
 // The class is a custom class that loads, plays, and controls Quartz Composer compositions. It is an autonomous view that is driven by an internal timer running on the main thread.
 //
 // The view can be set to render a composition automatically when it is placed onscreen. The view stops rendering when it is placed offscreen. When not rendering, the view is filled with the current erase color. The rendered composition automatically synchronizes to the vertical retrace of the monitor. When you archive a object, it saves the composition that’s loaded at the time the view is archived. If you want to perform custom operations while a composition is rendering such as setting input parameters or drawing OpenGL content, you need to subclass and implement the method.
+
+
+// The class is a custom class that loads, plays, and controls Quartz Composer compositions. It is an autonomous view that is driven by an internal timer running on the main thread.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView
 type QCView struct {
 	appkit.View
@@ -83,22 +87,6 @@ func NewQCView() QCView {
 	return getQCViewClass().New()
 }
 
-
-// Retrieves the mask used to filter which types of events are forwarded from the view to the composition during rendering.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView/eventForwardingMask()
-func (q_ QCView) EventForwardingMask() uint {
-	rv := objc.Send[uint](q_.ID, objc.Sel("eventForwardingMask"))
-	return rv
-}
-
-// Returns the OpenGL pixel format used by the view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView/openGLPixelFormat()
-func (q_ QCView) OpenGLPixelFormat() appkit.OpenGLPixelFormat {
-	rv := objc.Send[appkit.OpenGLPixelFormat](q_.ID, objc.Sel("openGLPixelFormat"))
-	return rv
-}
 
 
 

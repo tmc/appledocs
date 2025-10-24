@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [UniqueIDSpecifier] class.
@@ -31,8 +30,8 @@ type _UniqueIDSpecifierClass struct {
 type IUniqueIDSpecifier interface {
 	IScriptObjectSpecifier
 	// properties:
-	UniqueID() objc.ID
-	SetUniqueID(value objc.ID)
+	UniqueID() unsafe.Pointer
+	SetUniqueID(value unsafe.Pointer)
 	// methods:
 }
 
@@ -91,35 +90,12 @@ func NewUniqueIDSpecifier() UniqueIDSpecifier {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(coder:)
-func NewUniqueIDSpecifierWithCoder(inCoder ICoder) UniqueIDSpecifier {
-	instance := getUniqueIDSpecifierClass().Alloc()
-	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithCoder:"), inCoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object, initialized with the given arguments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
-func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, uniqueID objectivec.IObject) UniqueIDSpecifier {
-	instance := getUniqueIDSpecifierClass().Alloc()
-	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, property, uniqueID)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Returns the ID encapsulated by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/uniqueID
-func (u_ UniqueIDSpecifier) UniqueID() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("uniqueID"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
+func (u_ UniqueIDSpecifier) UniqueID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uniqueID"))
 	return rv
 }
 
@@ -127,9 +103,10 @@ func (u_ UniqueIDSpecifier) UniqueID() objc.ID {
 // Returns the ID encapsulated by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/uniqueID
-func (u_ UniqueIDSpecifier) SetUniqueID(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuniqueidspecifier/uniqueid
+func (u_ UniqueIDSpecifier) SetUniqueID(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUniqueID:"), value)
 }
+
 
 

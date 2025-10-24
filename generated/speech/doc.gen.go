@@ -2,12 +2,12 @@
 
 // Package speech provides Go bindings for the Speech framework.
 //
-// Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results. [Full Topic]
+// Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Speech without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Speech
+// See: https://developer.apple.com/documentation/Speech
 package speech
 
 import (

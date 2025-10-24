@@ -30,13 +30,19 @@ type _UNNotificationTriggerClass struct {
 // An interface definition for the [UNNotificationTrigger] class.
 type IUNNotificationTrigger interface {
 	objectivec.IObject
+	// properties:
 	Repeats() bool
+	// methods:
 }
 
 // The common behavior for subclasses that trigger the delivery of a local or remote notification.
 //
 // The class is an abstract class for representing an event that triggers the delivery of a notification. You don’t create instances of this class directly. Instead, you instantiate the concrete subclass that defines the trigger condition you want for your notification. You then assign the resulting object to the object that you use to schedule your notification. Concrete trigger classes include the following:
+
+
+// The common behavior for subclasses that trigger the delivery of a local or remote notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationTrigger
 type UNNotificationTrigger struct {
 	objectivec.Object
@@ -81,8 +87,10 @@ func NewUNNotificationTrigger() UNNotificationTrigger {
 }
 
 
+
 // A Boolean value indicating whether the system reschedules the notification after it’s delivered.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationTrigger/repeats
 func (u_ UNNotificationTrigger) Repeats() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("repeats"))

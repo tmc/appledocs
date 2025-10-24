@@ -29,9 +29,13 @@ type _MTRClusterAccessControlClass struct {
 // An interface definition for the [MTRClusterAccessControl] class.
 type IMTRClusterAccessControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterAccessControl
 type MTRClusterAccessControl struct {
 	MTRGenericCluster

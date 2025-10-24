@@ -31,24 +31,24 @@ type _AttributeDescriptionClass struct {
 type IAttributeDescription interface {
 	IPropertyDescription
 	// properties:
-	AllowsCloudEncryption() bool /* primitive/slice/pointer. */
-	SetAllowsCloudEncryption(value bool /* primitive/slice/pointer. */)
+	AllowsCloudEncryption() bool
+	SetAllowsCloudEncryption(value bool)
 	AttributeType() AttributeType
 	SetAttributeType(value AttributeType)
 	DefaultValue() objc.ID
 	SetDefaultValue(value objc.ID)
-	PreservesValueInHistoryOnDeletion() bool /* primitive/slice/pointer. */
-	SetPreservesValueInHistoryOnDeletion(value bool /* primitive/slice/pointer. */)
-	AllowsExternalBinaryDataStorage() bool /* primitive/slice/pointer. */
-	SetAllowsExternalBinaryDataStorage(value bool /* primitive/slice/pointer. */)
-	AttributeValueClassName() string /* primitive/slice/pointer. */
-	SetAttributeValueClassName(value string /* primitive/slice/pointer. */)
+	PreservesValueInHistoryOnDeletion() bool
+	SetPreservesValueInHistoryOnDeletion(value bool)
+	AllowsExternalBinaryDataStorage() bool
+	SetAllowsExternalBinaryDataStorage(value bool)
+	AttributeValueClassName() objc.IObject /* cross-framework: NSString */
+	SetAttributeValueClassName(value objc.IObject /* cross-framework: NSString */)
 	Type() AttributeType
 	SetType(value AttributeType)
-	ValueTransformerName() string /* primitive/slice/pointer. */
-	SetValueTransformerName(value string /* primitive/slice/pointer. */)
-	VersionHash() foundation.objc.IObject /* cross-framework: Data */
-	SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	ValueTransformerName() objc.IObject /* cross-framework: NSString */
+	SetValueTransformerName(value objc.IObject /* cross-framework: NSString */)
+	VersionHash() objc.IObject /* cross-framework: Data */
+	SetVersionHash(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -111,7 +111,7 @@ func NewAttributeDescription() AttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) AllowsCloudEncryption() bool /* primitive/slice/pointer. */ {
+func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
 	return rv
 }
@@ -121,7 +121,7 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool /* primitive/slice/pointer. */) {
+func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
 
@@ -168,7 +168,7 @@ func (a_ AttributeDescription) SetDefaultValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/preservesValueInHistoryOnDeletion
-func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool /* primitive/slice/pointer. */ {
+func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preservesValueInHistoryOnDeletion"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/preservesValueInHistoryOnDeletion
-func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool /* primitive/slice/pointer. */) {
+func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
 
@@ -187,7 +187,7 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
-func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool /* primitive/slice/pointer. */ {
+func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
-func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool /* primitive/slice/pointer. */) {
+func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
 }
 
@@ -206,8 +206,8 @@ func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) AttributeValueClassName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
+func (a_ AttributeDescription) AttributeValueClassName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("attributeValueClassName"))
 	return rv
 }
 
@@ -216,8 +216,8 @@ func (a_ AttributeDescription) AttributeValueClassName() string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) SetAttributeValueClassName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
+func (a_ AttributeDescription) SetAttributeValueClassName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), value)
 }
 
 
@@ -244,8 +244,8 @@ func (a_ AttributeDescription) SetType(value AttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) ValueTransformerName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
+func (a_ AttributeDescription) ValueTransformerName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("valueTransformerName"))
 	return rv
 }
 
@@ -254,8 +254,8 @@ func (a_ AttributeDescription) ValueTransformerName() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) SetValueTransformerName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
+func (a_ AttributeDescription) SetValueTransformerName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), value)
 }
 
 
@@ -263,7 +263,7 @@ func (a_ AttributeDescription) SetValueTransformerName(value string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) VersionHash() foundation.objc.IObject /* cross-framework: Data */ {
+func (a_ AttributeDescription) VersionHash() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -273,7 +273,7 @@ func (a_ AttributeDescription) VersionHash() foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
+func (a_ AttributeDescription) SetVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }
 

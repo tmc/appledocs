@@ -31,23 +31,29 @@ type _THCredentialsClass struct {
 // An interface definition for the [THCredentials] class.
 type ITHCredentials interface {
 	objectivec.IObject
-	ActiveOperationalDataSet() foundation.NSData
-	BorderAgentID() foundation.NSData
-	Channel() unsafe.Pointer
-	SetChannel(value unsafe.Pointer)
-	CreationDate() foundation.NSDate
-	ExtendedPANID() foundation.NSData
-	LastModificationDate() foundation.NSDate
-	NetworkKey() foundation.NSData
-	NetworkName() string
-	PanID() foundation.NSData
-	PSKC() foundation.NSData
+	// properties:
+	ActiveOperationalDataSet() objc.IObject /* cross-framework: NSData */
+	BorderAgentID() objc.IObject /* cross-framework: NSData */
+	Channel() uint8 /* not a class type */
+	SetChannel(value uint8 /* not a class type */)
+	CreationDate() objc.IObject /* cross-framework: NSDate */
+	ExtendedPANID() objc.IObject /* cross-framework: NSData */
+	LastModificationDate() objc.IObject /* cross-framework: NSDate */
+	NetworkKey() objc.IObject /* cross-framework: NSData */
+	NetworkName() objc.IObject /* cross-framework: NSString */
+	PanID() objc.IObject /* cross-framework: NSData */
+	PSKC() objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // A class that contains credentials for a Thread network.
 //
 // A Thread network defines parameters that all connected devices use. provides these parameters.
+
+
+// A class that contains credentials for a Thread network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials
 type THCredentials struct {
 	objectivec.Object
@@ -92,92 +98,111 @@ func NewTHCredentials() THCredentials {
 }
 
 
+
 // The essential operational parameters for the Thread network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/activeOperationalDataSet
-func (t_ THCredentials) ActiveOperationalDataSet() foundation.NSData {
+func (t_ THCredentials) ActiveOperationalDataSet() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("activeOperationalDataSet"))
 	return rv
 }
 
+
 // The identifier of an active Thread network Border Agent.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/borderAgentID
-func (t_ THCredentials) BorderAgentID() foundation.NSData {
+func (t_ THCredentials) BorderAgentID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("borderAgentID"))
 	return rv
 }
 
+
 // The Thread network radio channel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/channel
-func (t_ THCredentials) Channel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("channel"))
+func (t_ THCredentials) Channel() uint8 /* not a class type */ {
+	rv := objc.Send[uint8](t_.ID, objc.Sel("channel"))
 	return rv
 }
 
 
-// SetChannel sets the value of the channel property.
 // The Thread network radio channel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/channel
-func (t_ THCredentials) SetChannel(value unsafe.Pointer) {
+func (t_ THCredentials) SetChannel(value uint8 /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChannel:"), value)
 }
 
+
 // The date and time that the framework stored the credential in the database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/creationDate
-func (t_ THCredentials) CreationDate() foundation.NSDate {
+func (t_ THCredentials) CreationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
+
 // The Thread network extended PAN identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/extendedPANID
-func (t_ THCredentials) ExtendedPANID() foundation.NSData {
+func (t_ THCredentials) ExtendedPANID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("extendedPANID"))
 	return rv
 }
 
+
 // The date and time that the framework updated the credential in the database.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/lastModificationDate
-func (t_ THCredentials) LastModificationDate() foundation.NSDate {
+func (t_ THCredentials) LastModificationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("lastModificationDate"))
 	return rv
 }
 
+
 // The Thread network key.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkKey
-func (t_ THCredentials) NetworkKey() foundation.NSData {
+func (t_ THCredentials) NetworkKey() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("networkKey"))
 	return rv
 }
 
+
 // The Thread network name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkName
-func (t_ THCredentials) NetworkName() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("networkName"))
+func (t_ THCredentials) NetworkName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("networkName"))
 	return rv
 }
 
+
 // The Thread network PAN identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/panID
-func (t_ THCredentials) PanID() foundation.NSData {
+func (t_ THCredentials) PanID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("panID"))
 	return rv
 }
 
+
 // The Thread network pre-shared key (PSKC) for the Commissioner.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/pskc
-func (t_ THCredentials) PSKC() foundation.NSData {
+func (t_ THCredentials) PSKC() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("PSKC"))
 	return rv
 }

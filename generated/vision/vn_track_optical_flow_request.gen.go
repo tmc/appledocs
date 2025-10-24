@@ -29,20 +29,26 @@ type _TrackOpticalFlowRequestClass struct {
 // An interface definition for the [TrackOpticalFlowRequest] class.
 type ITrackOpticalFlowRequest interface {
 	IStatefulRequest
+	// properties:
 	ComputationAccuracy() unsafe.Pointer
 	SetComputationAccuracy(value unsafe.Pointer)
 	KeepNetworkOutput() bool
 	SetKeepNetworkOutput(value bool)
-	OutputPixelFormat() unsafe.Pointer
-	SetOutputPixelFormat(value unsafe.Pointer)
-	Results() VNPixelBufferObservation
+	OutputPixelFormat() uint32 /* not a class type */
+	SetOutputPixelFormat(value uint32 /* not a class type */)
+	Results() IVNPixelBufferObservation
 	SetResults(value IVNPixelBufferObservation)
+	// methods:
 }
 
 // An object that determines the direction change of vectors for each pixel from a previous to current image.
 //
 // This request works at the pixel level, so both images must have the same dimensions to successfully perform the request. Setting a region of interest isolates where to perform the change determination.
+
+
+// An object that determines the direction change of vectors for each pixel from a previous to current image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackOpticalFlowRequest
 type TrackOpticalFlowRequest struct {
 	StatefulRequest
@@ -89,8 +95,10 @@ func NewTrackOpticalFlowRequest() TrackOpticalFlowRequest {
 }
 
 
+
 // The level of accuracy to compute the optical flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.property
 func (t_ TrackOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("computationAccuracy"))
@@ -98,17 +106,18 @@ func (t_ TrackOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
 }
 
 
-// SetComputationAccuracy sets the value of the computationAccuracy property.
 // The level of accuracy to compute the optical flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.property
 func (t_ TrackOpticalFlowRequest) SetComputationAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setComputationAccuracy:"), value)
 }
 
+
 // A Boolean value that indicates the raw pixel buffer continues to emit from the network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/keepnetworkoutput
 func (t_ TrackOpticalFlowRequest) KeepNetworkOutput() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("keepNetworkOutput"))
@@ -116,46 +125,47 @@ func (t_ TrackOpticalFlowRequest) KeepNetworkOutput() bool {
 }
 
 
-// SetKeepNetworkOutput sets the value of the keepNetworkOutput property.
 // A Boolean value that indicates the raw pixel buffer continues to emit from the network.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/keepnetworkoutput
 func (t_ TrackOpticalFlowRequest) SetKeepNetworkOutput(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeepNetworkOutput:"), value)
 }
 
+
 // The pixel format type of the output value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/outputpixelformat
-func (t_ TrackOpticalFlowRequest) OutputPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("outputPixelFormat"))
+func (t_ TrackOpticalFlowRequest) OutputPixelFormat() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](t_.ID, objc.Sel("outputPixelFormat"))
 	return rv
 }
 
 
-// SetOutputPixelFormat sets the value of the outputPixelFormat property.
 // The pixel format type of the output value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/outputpixelformat
-func (t_ TrackOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) {
+func (t_ TrackOpticalFlowRequest) SetOutputPixelFormat(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
+
 // The optical flow results the request observes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/results
-func (t_ TrackOpticalFlowRequest) Results() VNPixelBufferObservation {
-	rv := objc.Send[VNPixelBufferObservation](t_.ID, objc.Sel("results"))
+func (t_ TrackOpticalFlowRequest) Results() IVNPixelBufferObservation {
+	rv := objc.Send[PixelBufferObservation](t_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The optical flow results the request observes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/results
 func (t_ TrackOpticalFlowRequest) SetResults(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)

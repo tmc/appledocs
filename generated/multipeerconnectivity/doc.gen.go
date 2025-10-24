@@ -2,12 +2,12 @@
 
 // Package multipeerconnectivity provides Go bindings for the MultipeerConnectivity framework.
 //
-// Support peer-to-peer connectivity and the discovery of nearby devices. [Full Topic]
+// Support peer-to-peer connectivity and the discovery of nearby devices.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MultipeerConnectivity without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity
+// See: https://developer.apple.com/documentation/MultipeerConnectivity
 package multipeerconnectivity
 
 import (

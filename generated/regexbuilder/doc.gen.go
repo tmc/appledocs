@@ -2,12 +2,12 @@
 
 // Package regexbuilder provides Go bindings for the RegexBuilder framework.
 //
-// Use an expressive domain-specific language to build regular expressions, [Full Topic]
+// Use an expressive domain-specific language to build regular expressions,
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to RegexBuilder without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/RegexBuilder
+// See: https://developer.apple.com/documentation/RegexBuilder
 package regexbuilder
 
 import (

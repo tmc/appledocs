@@ -30,11 +30,15 @@ type _NDArrayMultiaryKernelClass struct {
 // An interface definition for the [NDArrayMultiaryKernel] class.
 type INDArrayMultiaryKernel interface {
 	INDArrayMultiaryBase
-	EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []NDArray, destination IMPSNDArray)
-	EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []NDArray, outGradientState MPSState, outputStateIsTemporary bool) NDArray
+	// properties:
+	// methods:
+	EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []INDArray, destination IMPSNDArray)
+	EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []INDArray, outGradientState unsafe.Pointer, outputStateIsTemporary bool) INDArray
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel
 type NDArrayMultiaryKernel struct {
 	NDArrayMultiaryBase
@@ -79,15 +83,17 @@ func NewNDArrayMultiaryKernel() NDArrayMultiaryKernel {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel/encode(to:sourceArrays:destinationArray:)
-func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []NDArray, destination IMPSNDArray) {
+func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []INDArray, destination IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:destinationArray:"), cmdBuf, sourceArrays, destination)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel/encode(to:sourceArrays:resultState:outputStateIsTemporary:)
-func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []NDArray, outGradientState MPSState, outputStateIsTemporary bool) NDArray {
+func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []INDArray, outGradientState unsafe.Pointer, outputStateIsTemporary bool) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:"), cmdBuf, sourceArrays, outGradientState, outputStateIsTemporary)
 	return rv
 }

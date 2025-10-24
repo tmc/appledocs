@@ -31,20 +31,26 @@ type _NEIPv6RouteClass struct {
 // An interface definition for the [NEIPv6Route] class.
 type INEIPv6Route interface {
 	objectivec.IObject
-	DestinationAddress() string
-	SetDestinationAddress(value string)
-	DestinationNetworkPrefixLength() foundation.Number
-	SetDestinationNetworkPrefixLength(value foundation.INumber)
-	GatewayAddress() string
-	SetGatewayAddress(value string)
-	ExcludedRoutes() NEIPv6Route
+	// properties:
+	DestinationAddress() objc.IObject /* cross-framework: NSString */
+	SetDestinationAddress(value objc.IObject /* cross-framework: NSString */)
+	DestinationNetworkPrefixLength() objc.IObject /* cross-framework: NSNumber */
+	SetDestinationNetworkPrefixLength(value objc.IObject /* cross-framework: NSNumber */)
+	GatewayAddress() objc.IObject /* cross-framework: NSString */
+	SetGatewayAddress(value objc.IObject /* cross-framework: NSString */)
+	ExcludedRoutes() INEIPv6Route
 	SetExcludedRoutes(value INEIPv6Route)
-	IncludedRoutes() NEIPv6Route
+	IncludedRoutes() INEIPv6Route
 	SetIncludedRoutes(value INEIPv6Route)
+	// methods:
 }
 
 // The settings for an IPv6 route.
+
+
+// The settings for an IPv6 route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv6Route
 type NEIPv6Route struct {
 	objectivec.Object
@@ -89,91 +95,96 @@ func NewNEIPv6Route() NEIPv6Route {
 }
 
 
+
 // The destination network address of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationaddress
-func (n_ NEIPv6Route) DestinationAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationAddress"))
+func (n_ NEIPv6Route) DestinationAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("destinationAddress"))
 	return rv
 }
 
 
-// SetDestinationAddress sets the value of the destinationAddress property.
 // The destination network address of the route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationaddress
-func (n_ NEIPv6Route) SetDestinationAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+func (n_ NEIPv6Route) SetDestinationAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), value)
 }
+
 
 // The destination network prefix length of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationnetworkprefixlength
-func (n_ NEIPv6Route) DestinationNetworkPrefixLength() foundation.Number {
-	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("destinationNetworkPrefixLength"))
+func (n_ NEIPv6Route) DestinationNetworkPrefixLength() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("destinationNetworkPrefixLength"))
 	return rv
 }
 
 
-// SetDestinationNetworkPrefixLength sets the value of the destinationNetworkPrefixLength property.
 // The destination network prefix length of the route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationnetworkprefixlength
-func (n_ NEIPv6Route) SetDestinationNetworkPrefixLength(value foundation.INumber) {
+func (n_ NEIPv6Route) SetDestinationNetworkPrefixLength(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationNetworkPrefixLength:"), value)
 }
 
+
 // The address of the next-hop gateway of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/gatewayaddress
-func (n_ NEIPv6Route) GatewayAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+func (n_ NEIPv6Route) GatewayAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("gatewayAddress"))
 	return rv
 }
 
 
-// SetGatewayAddress sets the value of the gatewayAddress property.
 // The address of the next-hop gateway of the route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/gatewayaddress
-func (n_ NEIPv6Route) SetGatewayAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
+func (n_ NEIPv6Route) SetGatewayAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), value)
 }
+
 
 // The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/excludedroutes
-func (n_ NEIPv6Route) ExcludedRoutes() NEIPv6Route {
+func (n_ NEIPv6Route) ExcludedRoutes() INEIPv6Route {
 	rv := objc.Send[NEIPv6Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
 }
 
 
-// SetExcludedRoutes sets the value of the excludedRoutes property.
 // The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/excludedroutes
 func (n_ NEIPv6Route) SetExcludedRoutes(value INEIPv6Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), value)
 }
 
+
 // The IPv6 network traffic that the system routes to the TUN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/includedroutes
-func (n_ NEIPv6Route) IncludedRoutes() NEIPv6Route {
+func (n_ NEIPv6Route) IncludedRoutes() INEIPv6Route {
 	rv := objc.Send[NEIPv6Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
 }
 
 
-// SetIncludedRoutes sets the value of the includedRoutes property.
 // The IPv6 network traffic that the system routes to the TUN interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/includedroutes
 func (n_ NEIPv6Route) SetIncludedRoutes(value INEIPv6Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)

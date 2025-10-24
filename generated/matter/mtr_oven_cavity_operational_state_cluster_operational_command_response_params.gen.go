@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,15 @@ type _MTROvenCavityOperationalStateClusterOperationalCommandResponseParamsClass 
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationalCommandResponseParams] class.
 type IMTROvenCavityOperationalStateClusterOperationalCommandResponseParams interface {
 	objectivec.IObject
-	CommandResponseState() MTROvenCavityOperationalStateClusterErrorStateStruct
+	// properties:
+	CommandResponseState() IMTROvenCavityOperationalStateClusterErrorStateStruct
 	SetCommandResponseState(value IMTROvenCavityOperationalStateClusterErrorStateStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams
 type MTROvenCavityOperationalStateClusterOperationalCommandResponseParams struct {
 	objectivec.Object
@@ -78,11 +83,11 @@ func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParams() M
 
 
 
-
 // Initialize an MTROvenCavityOperationalStateClusterOperationalCommandResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/init(responseValue:)
-func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTROvenCavityOperationalStateClusterOperationalCommandResponseParams {
+func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTROvenCavityOperationalStateClusterOperationalCommandResponseParams {
 	instance := getMTROvenCavityOperationalStateClusterOperationalCommandResponseParamsClass().Alloc()
 	rv := objc.Send[MTROvenCavityOperationalStateClusterOperationalCommandResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -90,16 +95,16 @@ func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParamsWith
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/commandResponseState
-func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() MTROvenCavityOperationalStateClusterErrorStateStruct {
+func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() IMTROvenCavityOperationalStateClusterErrorStateStruct {
 	rv := objc.Send[MTROvenCavityOperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("commandResponseState"))
 	return rv
 }
 
 
-// SetCommandResponseState sets the value of the commandResponseState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/commandResponseState
 func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value IMTROvenCavityOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)

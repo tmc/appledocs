@@ -9,13 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in FileProvider
-	Bool = _undefined // referenced in FileProvider
-	FileProviderEnumerator = _undefined // referenced in FileProvider
-	FileProviderServiceSource = _undefined // referenced in FileProvider
 	Progress = _undefined // referenced in FileProvider
 	URL = _undefined // referenced in FileProvider
-	UUID = _undefined // referenced in FileProvider
 )
 
 

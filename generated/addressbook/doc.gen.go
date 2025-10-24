@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AddressBook without requiring cgo.
-
-// Access the centralized database for storing users’ contacts.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook
+// See: https://developer.apple.com/documentation/AddressBook
 package addressbook
 
 import (

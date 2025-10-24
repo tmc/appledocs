@@ -30,15 +30,13 @@ type _DirectoryEnumeratorClass struct {
 type IDirectoryEnumerator interface {
 	IEnumerator
 	// properties:
-	DirectoryAttributes() objc.IObject /* cross-framework: FileAttributeKey */
-	SetDirectoryAttributes(value objc.IObject /* cross-framework: FileAttributeKey */)
-	FileAttributes() objc.IObject /* cross-framework: FileAttributeKey */
-	SetFileAttributes(value objc.IObject /* cross-framework: FileAttributeKey */)
-	IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */
-	SetIsEnumeratingDirectoryPostOrder(value bool /* primitive/slice/pointer. */)
-	Level() int /* primitive/slice/pointer. */
-	SetLevel(value int /* primitive/slice/pointer. */)
+	DirectoryAttributes() IDictionary
+	FileAttributes() IDictionary
+	IsEnumeratingDirectoryPostOrder() bool
+	Level() uint
 	// methods:
+	SkipDescendants()
+	SkipDescendents()
 }
 
 // An object that enumerates the contents of a directory.
@@ -96,31 +94,30 @@ func NewDirectoryEnumerator() DirectoryEnumerator {
 
 
 
-// A dictionary with the attributes of the directory at which enumeration started.
+// Causes the receiver to skip recursion into the most recently obtained subdirectory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
-func (d_ DirectoryEnumerator) DirectoryAttributes() objc.IObject /* cross-framework: FileAttributeKey */ {
-	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("directoryAttributes"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/skipDescendants()
+func (d_ DirectoryEnumerator) SkipDescendants() {
+	objc.Send[objc.ID](d_.ID, objc.Sel("skipDescendants"))
+}
+
+
+// Causes the receiver to skip recursion into the most recently obtained subdirectory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/skipDescendents()
+func (d_ DirectoryEnumerator) SkipDescendents() {
+	objc.Send[objc.ID](d_.ID, objc.Sel("skipDescendents"))
 }
 
 
 // A dictionary with the attributes of the directory at which enumeration started.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
-func (d_ DirectoryEnumerator) SetDirectoryAttributes(value objc.IObject /* cross-framework: FileAttributeKey */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDirectoryAttributes:"), value)
-}
-
-
-// A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) FileAttributes() objc.IObject /* cross-framework: FileAttributeKey */ {
-	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("fileAttributes"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/directoryAttributes
+func (d_ DirectoryEnumerator) DirectoryAttributes() IDictionary {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("directoryAttributes"))
 	return rv
 }
 
@@ -128,43 +125,28 @@ func (d_ DirectoryEnumerator) FileAttributes() objc.IObject /* cross-framework: 
 // A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) SetFileAttributes(value objc.IObject /* cross-framework: FileAttributeKey */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/fileAttributes
+func (d_ DirectoryEnumerator) FileAttributes() IDictionary {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("fileAttributes"))
+	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
-func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/isEnumeratingDirectoryPostOrder
+func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEnumeratingDirectoryPostOrder"))
 	return rv
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
-func (d_ DirectoryEnumerator) SetIsEnumeratingDirectoryPostOrder(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIsEnumeratingDirectoryPostOrder:"), value)
-}
-
-
 // The number of levels deep the current object is in the directory hierarchy being enumerated.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
-func (d_ DirectoryEnumerator) Level() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](d_.ID, objc.Sel("level"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/level
+func (d_ DirectoryEnumerator) Level() uint {
+	rv := objc.Send[uint](d_.ID, objc.Sel("level"))
 	return rv
-}
-
-
-// The number of levels deep the current object is in the directory hierarchy being enumerated.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
-func (d_ DirectoryEnumerator) SetLevel(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLevel:"), value)
 }
 
 

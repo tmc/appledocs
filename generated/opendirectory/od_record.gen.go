@@ -31,46 +31,44 @@ type _ODRecordClass struct {
 // An interface definition for the [ODRecord] class.
 type IODRecord interface {
 	objectivec.IObject
-	AccountPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
-	AddAccountPolicyToCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool
+	// properties:
+	RecordName() objc.IObject /* cross-framework: NSString */
+	RecordType() objc.IObject /* cross-framework: NSString */
+	SecondsUntilAuthenticationsExpire() int64
+	SecondsUntilPasswordExpires() int64
+	// methods:
+	AccountPoliciesAndReturnError(error_ unsafe.Pointer) objc.IObject /* cross-framework: Dictionary */
+	AddAccountPolicyToCategoryError(policy objc.IObject /* cross-framework: NSDictionary */, category ODPolicyCategoryType /* typedef */, error_ unsafe.Pointer) bool
 	AddMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool
-	AddValueToAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool
+	AddValueToAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool
 	AuthenticationAllowedAndReturnError(error_ unsafe.Pointer) bool
-	ChangePasswordToPasswordError(oldPassword string, newPassword string, outError unsafe.Pointer) bool
+	ChangePasswordToPasswordError(oldPassword objc.IObject /* cross-framework: NSString */, newPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool
 	DeleteRecordAndReturnError(outError unsafe.Pointer) bool
-	EffectivePoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
 	IsMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool
-	PasswordChangeAllowedError(newPassword string, error_ unsafe.Pointer) bool
-	PasswordPolicyAndReturnError(outError unsafe.Pointer) foundation.Dictionary
-	PoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
-	RecordDetailsForAttributesError(inAttributes objectivec.IObject, outError unsafe.Pointer) foundation.Dictionary
-	RemoveAccountPolicyFromCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool
+	PasswordChangeAllowedError(newPassword objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
+	RecordDetailsForAttributesError(inAttributes objc.IObject /* cross-framework: NSArray */, outError unsafe.Pointer) objc.IObject /* cross-framework: Dictionary */
+	RemoveAccountPolicyFromCategoryError(policy objc.IObject /* cross-framework: NSDictionary */, category ODPolicyCategoryType /* typedef */, error_ unsafe.Pointer) bool
 	RemoveMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool
-	RemovePolicyError(policy ODPolicyType, error_ unsafe.Pointer) bool
-	RemoveValueFromAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool
-	RemoveValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) bool
-	SetAccountPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
-	SetNodeCredentialsPasswordError(inUsername string, inPassword string, outError unsafe.Pointer) bool
-	SetNodeCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool
-	SetNodeCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool
-	SetPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool
-	SetPolicyValueError(policy ODPolicyType, value objectivec.IObject, error_ unsafe.Pointer) bool
-	SetValueForAttributeError(inValueOrValues objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool
-	SupportedPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary
+	RemoveValueFromAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool
+	RemoveValuesForAttributeError(inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool
+	SetAccountPoliciesError(policies objc.IObject /* cross-framework: NSDictionary */, error_ unsafe.Pointer) bool
+	SetNodeCredentialsPasswordError(inUsername objc.IObject /* cross-framework: NSString */, inPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool
+	SetNodeCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType /* typedef */, inItems objc.IObject /* cross-framework: NSArray */, outItems objc.IObject /* cross-framework: NSArray */, outContext unsafe.Pointer, outError unsafe.Pointer) bool
+	SetValueForAttributeError(inValueOrValues objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool
 	SynchronizeAndReturnError(outError unsafe.Pointer) bool
-	ValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) foundation.Array
-	VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool
-	VerifyPasswordError(inPassword string, outError unsafe.Pointer) bool
+	ValuesForAttributeError(inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) objc.IObject /* cross-framework: Array */
+	VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType ODAuthenticationType /* typedef */, inItems objc.IObject /* cross-framework: NSArray */, outItems objc.IObject /* cross-framework: NSArray */, outContext unsafe.Pointer, outError unsafe.Pointer) bool
+	VerifyPasswordError(inPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool
 	WillAuthenticationsExpire(willExpireIn uint64) bool
 	WillPasswordExpire(willExpireIn uint64) bool
-	RecordName() string
-	RecordType() string
-	SecondsUntilAuthenticationsExpire() unsafe.Pointer
-	SecondsUntilPasswordExpires() unsafe.Pointer
 }
 
 // An object serves as a Cocoa wrapper for an Open Directory record.
+
+
+// An object serves as a Cocoa wrapper for an Open Directory record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord
 type ODRecord struct {
 	objectivec.Object
@@ -115,275 +113,263 @@ func NewODRecord() ODRecord {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/accountPolicies()
-func (o_ ODRecord) AccountPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary {
+func (o_ ODRecord) AccountPoliciesAndReturnError(error_ unsafe.Pointer) objc.IObject /* cross-framework: Dictionary */ {
 	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("accountPoliciesAndReturnError:"), error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/addAccountPolicy(_:toCategory:)
-func (o_ ODRecord) AddAccountPolicyToCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool {
+func (o_ ODRecord) AddAccountPolicyToCategoryError(policy objc.IObject /* cross-framework: NSDictionary */, category ODPolicyCategoryType /* typedef */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("addAccountPolicy:toCategory:error:"), policy, category, error_)
 	return rv
 }
 
+
 // Adds a member record to this group record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/addMemberRecord(_:)
 func (o_ ODRecord) AddMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("addMemberRecord:error:"), inRecord, outError)
 	return rv
 }
 
+
 // Adds a value to an attribute of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/addValue(_:toAttribute:)
-func (o_ ODRecord) AddValueToAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool {
+func (o_ ODRecord) AddValueToAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("addValue:toAttribute:error:"), inValue, inAttribute, outError)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/authenticationAllowed()
 func (o_ ODRecord) AuthenticationAllowedAndReturnError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("authenticationAllowedAndReturnError:"), error_)
 	return rv
 }
 
+
 // Changes the record’s password.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/changePassword(_:toPassword:)
-func (o_ ODRecord) ChangePasswordToPasswordError(oldPassword string, newPassword string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("changePassword:toPassword:error:"), objc.String(oldPassword), objc.String(newPassword), outError)
+func (o_ ODRecord) ChangePasswordToPasswordError(oldPassword objc.IObject /* cross-framework: NSString */, newPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("changePassword:toPassword:error:"), oldPassword, newPassword, outError)
 	return rv
 }
 
+
 // Deletes the record from its node and invalidates it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/delete()
 func (o_ ODRecord) DeleteRecordAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("deleteRecordAndReturnError:"), outError)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/effectivePolicies()
-func (o_ ODRecord) EffectivePoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("effectivePoliciesAndReturnError:"), error_)
-	return rv
-}
 
 // Determines whether a given record is a member of this group record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/isMemberRecord(_:)
 func (o_ ODRecord) IsMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isMemberRecord:error:"), inRecord, outError)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/passwordChangeAllowed(_:)
-func (o_ ODRecord) PasswordChangeAllowedError(newPassword string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("passwordChangeAllowed:error:"), objc.String(newPassword), error_)
+func (o_ ODRecord) PasswordChangeAllowedError(newPassword objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("passwordChangeAllowed:error:"), newPassword, error_)
 	return rv
 }
 
-// Returns a dictionary containing the password policy for the record.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/passwordPolicyAndReturnError:
-func (o_ ODRecord) PasswordPolicyAndReturnError(outError unsafe.Pointer) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("passwordPolicyAndReturnError:"), outError)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/policies()
-func (o_ ODRecord) PoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("policiesAndReturnError:"), error_)
-	return rv
-}
 
 // Returns a dictionary of attributes with their respective values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordDetails(forAttributes:)
-func (o_ ODRecord) RecordDetailsForAttributesError(inAttributes objectivec.IObject, outError unsafe.Pointer) foundation.Dictionary {
+func (o_ ODRecord) RecordDetailsForAttributesError(inAttributes objc.IObject /* cross-framework: NSArray */, outError unsafe.Pointer) objc.IObject /* cross-framework: Dictionary */ {
 	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("recordDetailsForAttributes:error:"), inAttributes, outError)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/removeAccountPolicy(_:fromCategory:)
-func (o_ ODRecord) RemoveAccountPolicyFromCategoryError(policy objectivec.IObject, category ODPolicyCategoryType, error_ unsafe.Pointer) bool {
+func (o_ ODRecord) RemoveAccountPolicyFromCategoryError(policy objc.IObject /* cross-framework: NSDictionary */, category ODPolicyCategoryType /* typedef */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeAccountPolicy:fromCategory:error:"), policy, category, error_)
 	return rv
 }
 
+
 // Removes a record as a member of this group record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/removeMemberRecord(_:)
 func (o_ ODRecord) RemoveMemberRecordError(inRecord IODRecord, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeMemberRecord:error:"), inRecord, outError)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/removePolicy(_:)
-func (o_ ODRecord) RemovePolicyError(policy ODPolicyType, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("removePolicy:error:"), policy, error_)
-	return rv
-}
 
 // Removes a value from an attribute of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/removeValue(_:fromAttribute:)
-func (o_ ODRecord) RemoveValueFromAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool {
+func (o_ ODRecord) RemoveValueFromAttributeError(inValue objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeValue:fromAttribute:error:"), inValue, inAttribute, outError)
 	return rv
 }
 
+
 // Removes all values from an attribute of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/removeValues(forAttribute:)
-func (o_ ODRecord) RemoveValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) bool {
+func (o_ ODRecord) RemoveValuesForAttributeError(inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeValuesForAttribute:error:"), inAttribute, outError)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setAccountPolicies(_:)
-func (o_ ODRecord) SetAccountPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool {
+func (o_ ODRecord) SetAccountPoliciesError(policies objc.IObject /* cross-framework: NSDictionary */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setAccountPolicies:error:"), policies, error_)
 	return rv
 }
 
+
 // Sets credentials for the record’s node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setNodeCredentials(_:password:)
-func (o_ ODRecord) SetNodeCredentialsPasswordError(inUsername string, inPassword string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentials:password:error:"), objc.String(inUsername), objc.String(inPassword), outError)
+func (o_ ODRecord) SetNodeCredentialsPasswordError(inUsername objc.IObject /* cross-framework: NSString */, inPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentials:password:error:"), inUsername, inPassword, outError)
 	return rv
 }
 
-// Sets the credentials for interaction with the record’s node using a Kerberos cache.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setNodeCredentialsUsingKerberosCache:error:
-func (o_ ODRecord) SetNodeCredentialsUsingKerberosCacheError(inCacheName string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentialsUsingKerberosCache:error:"), objc.String(inCacheName), outError)
-	return rv
-}
 
 // Sets the credentials for interaction with the record’s node using other types of authentication available to Open Directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setNodeCredentialsWithRecordType(_:authenticationType:authenticationItems:continueItems:context:)
-func (o_ ODRecord) SetNodeCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool {
+func (o_ ODRecord) SetNodeCredentialsWithRecordTypeAuthenticationTypeAuthenticationItemsContinueItemsContextError(inRecordType unsafe.Pointer, inType ODAuthenticationType /* typedef */, inItems objc.IObject /* cross-framework: NSArray */, outItems objc.IObject /* cross-framework: NSArray */, outContext unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:"), inRecordType, inType, inItems, outItems, outContext, outError)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setPolicies(_:)
-func (o_ ODRecord) SetPoliciesError(policies objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setPolicies:error:"), policies, error_)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setPolicy(_:value:)
-func (o_ ODRecord) SetPolicyValueError(policy ODPolicyType, value objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("setPolicy:value:error:"), policy, value, error_)
-	return rv
-}
 
 // Sets the values of an attribute of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/setValue(_:forAttribute:)
-func (o_ ODRecord) SetValueForAttributeError(inValueOrValues objectivec.IObject, inAttribute ODAttributeType, outError unsafe.Pointer) bool {
+func (o_ ODRecord) SetValueForAttributeError(inValueOrValues objectivec.IObject, inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("setValue:forAttribute:error:"), inValueOrValues, inAttribute, outError)
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/supportedPolicies()
-func (o_ ODRecord) SupportedPoliciesAndReturnError(error_ unsafe.Pointer) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](o_.ID, objc.Sel("supportedPoliciesAndReturnError:"), error_)
-	return rv
-}
 
 // Synchronizes the record from the directory to get current data and commit changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/synchronize()
 func (o_ ODRecord) SynchronizeAndReturnError(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("synchronizeAndReturnError:"), outError)
 	return rv
 }
 
+
 // Returns the values of an attribute of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/values(forAttribute:)
-func (o_ ODRecord) ValuesForAttributeError(inAttribute ODAttributeType, outError unsafe.Pointer) foundation.Array {
+func (o_ ODRecord) ValuesForAttributeError(inAttribute ODAttributeType /* typedef */, outError unsafe.Pointer) objc.IObject /* cross-framework: Array */ {
 	rv := objc.Send[foundation.Array](o_.ID, objc.Sel("valuesForAttribute:error:"), inAttribute, outError)
 	return rv
 }
 
+
 // Verifies the credentials for interaction with the record’s node using other types of authentication available to Open Directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/verifyExtended(withAuthenticationType:authenticationItems:continueItems:context:)
-func (o_ ODRecord) VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType ODAuthenticationType, inItems objectivec.IObject, outItems objectivec.IObject, outContext objectivec.IObject, outError unsafe.Pointer) bool {
+func (o_ ODRecord) VerifyExtendedWithAuthenticationTypeAuthenticationItemsContinueItemsContextError(inType ODAuthenticationType /* typedef */, inItems objc.IObject /* cross-framework: NSArray */, outItems objc.IObject /* cross-framework: NSArray */, outContext unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:"), inType, inItems, outItems, outContext, outError)
 	return rv
 }
 
+
 // Verifies the password for interaction with the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/verifyPassword(_:)
-func (o_ ODRecord) VerifyPasswordError(inPassword string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("verifyPassword:error:"), objc.String(inPassword), outError)
+func (o_ ODRecord) VerifyPasswordError(inPassword objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("verifyPassword:error:"), inPassword, outError)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/willAuthenticationsExpire(_:)
 func (o_ ODRecord) WillAuthenticationsExpire(willExpireIn uint64) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("willAuthenticationsExpire:"), willExpireIn)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/willPasswordExpire(_:)
 func (o_ ODRecord) WillPasswordExpire(willExpireIn uint64) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("willPasswordExpire:"), willExpireIn)
 	return rv
 }
 
+
 // The official name of the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordName
-func (o_ ODRecord) RecordName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("recordName"))
+func (o_ ODRecord) RecordName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("recordName"))
 	return rv
 }
+
 
 // The record’s type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/recordType
-func (o_ ODRecord) RecordType() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("recordType"))
+func (o_ ODRecord) RecordType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("recordType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/secondsUntilAuthenticationsExpire
-func (o_ ODRecord) SecondsUntilAuthenticationsExpire() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("secondsUntilAuthenticationsExpire"))
+func (o_ ODRecord) SecondsUntilAuthenticationsExpire() int64 {
+	rv := objc.Send[int64](o_.ID, objc.Sel("secondsUntilAuthenticationsExpire"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecord/secondsUntilPasswordExpires
-func (o_ ODRecord) SecondsUntilPasswordExpires() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("secondsUntilPasswordExpires"))
+func (o_ ODRecord) SecondsUntilPasswordExpires() int64 {
+	rv := objc.Send[int64](o_.ID, objc.Sel("secondsUntilPasswordExpires"))
 	return rv
 }
 

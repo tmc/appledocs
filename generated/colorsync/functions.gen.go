@@ -17,59 +17,59 @@ import (
 var (
 	_ColorSyncAPIVersion func() uint32
 	_ColorSyncCreateCodeFragment func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncIterateInstalledProfilesWithOptions func(unsafe.Pointer, []uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncProfileCopyData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateWithURLAndOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileGetTagCount func(unsafe.Pointer) uintptr
-	_ColorSyncProfileIsHLGBased func(unsafe.Pointer) bool
-	_ColorSyncProfileIsMatrixBased func(unsafe.Pointer) bool
-	_ColorSyncProfileIsPQBased func(unsafe.Pointer) bool
-	_ColorSyncProfileIsWideGamut func(unsafe.Pointer) bool
-	_ColorSyncTransformGetProfileSequence func(unsafe.Pointer) unsafe.Pointer
+	_ColorSyncIterateInstalledProfilesWithOptions func(ColorSyncProfileIterateCallback, []uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_ColorSyncProfileCopyData func(ColorSyncProfileRef, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncProfileCreateWithURLAndOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileGetTagCount func(ColorSyncProfileRef) uintptr
+	_ColorSyncProfileIsHLGBased func(ColorSyncProfileRef) bool
+	_ColorSyncProfileIsMatrixBased func(ColorSyncProfileRef) bool
+	_ColorSyncProfileIsPQBased func(ColorSyncProfileRef) bool
+	_ColorSyncProfileIsWideGamut func(ColorSyncProfileRef) bool
+	_ColorSyncTransformGetProfileSequence func(ColorSyncTransformRef) unsafe.Pointer
 	_CGDisplayCreateUUIDFromDisplayID func(uint32) unsafe.Pointer
 	_CGDisplayGetDisplayIDFromUUID func(unsafe.Pointer) uint32
-	_ColorSyncCMMCopyCMMIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncCMMCopyLocalizedName func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncCMMCreate func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncCMMGetBundle func(unsafe.Pointer) unsafe.Pointer
+	_ColorSyncCMMCopyCMMIdentifier func(ColorSyncCMMRef) unsafe.Pointer
+	_ColorSyncCMMCopyLocalizedName func(ColorSyncCMMRef) unsafe.Pointer
+	_ColorSyncCMMCreate func(unsafe.Pointer) ColorSyncCMMRef
+	_ColorSyncCMMGetBundle func(ColorSyncCMMRef) unsafe.Pointer
 	_ColorSyncCMMGetTypeID func() unsafe.Pointer
 	_ColorSyncDeviceCopyDeviceInfo func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_ColorSyncDeviceSetCustomProfiles func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_ColorSyncIterateDeviceProfiles func(unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncIterateInstalledCMMs func(unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncIterateInstalledProfiles func(unsafe.Pointer, []uint32, unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncProfileContainsTag func(unsafe.Pointer, unsafe.Pointer) bool
-	_ColorSyncProfileCopyDescriptionString func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCopyHeader func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCopyTag func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCopyTagSignatures func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateDeviceProfile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateDisplayTransferTablesFromVCGT func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateLink func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateMutable func() unsafe.Pointer
-	_ColorSyncProfileCreateMutableCopy func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateWithDisplayID func(uint32) unsafe.Pointer
-	_ColorSyncProfileCreateWithName func(unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileCreateWithURL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileEstimateGamma func(unsafe.Pointer, unsafe.Pointer) float32
+	_ColorSyncIterateDeviceProfiles func(ColorSyncDeviceProfileIterateCallback, unsafe.Pointer)
+	_ColorSyncIterateInstalledCMMs func(ColorSyncCMMIterateCallback, unsafe.Pointer)
+	_ColorSyncIterateInstalledProfiles func(ColorSyncProfileIterateCallback, []uint32, unsafe.Pointer, unsafe.Pointer)
+	_ColorSyncProfileContainsTag func(ColorSyncProfileRef, unsafe.Pointer) bool
+	_ColorSyncProfileCopyDescriptionString func(ColorSyncProfileRef) unsafe.Pointer
+	_ColorSyncProfileCopyHeader func(ColorSyncProfileRef) unsafe.Pointer
+	_ColorSyncProfileCopyTag func(ColorSyncProfileRef, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncProfileCopyTagSignatures func(ColorSyncProfileRef) unsafe.Pointer
+	_ColorSyncProfileCreate func(unsafe.Pointer, unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileCreateDeviceProfile func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileCreateDisplayTransferTablesFromVCGT func(ColorSyncProfileRef, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncProfileCreateLink func(unsafe.Pointer, unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileCreateMutable func() ColorSyncMutableProfileRef
+	_ColorSyncProfileCreateMutableCopy func(ColorSyncProfileRef) ColorSyncMutableProfileRef
+	_ColorSyncProfileCreateWithDisplayID func(uint32) ColorSyncProfileRef
+	_ColorSyncProfileCreateWithName func(unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileCreateWithURL func(unsafe.Pointer, unsafe.Pointer) ColorSyncProfileRef
+	_ColorSyncProfileEstimateGamma func(ColorSyncProfileRef, unsafe.Pointer) float32
 	_ColorSyncProfileEstimateGammaWithDisplayID func(unsafe.Pointer, unsafe.Pointer) float32
-	_ColorSyncProfileGetDisplayTransferFormulaFromVCGT func(unsafe.Pointer, []float32, []float32, []float32, []float32, []float32, []float32, []float32, []float32, []float32) bool
-	_ColorSyncProfileGetMD5 func(unsafe.Pointer) unsafe.Pointer
+	_ColorSyncProfileGetDisplayTransferFormulaFromVCGT func(ColorSyncProfileRef, []float32, []float32, []float32, []float32, []float32, []float32, []float32, []float32, []float32) bool
+	_ColorSyncProfileGetMD5 func(ColorSyncProfileRef) unsafe.Pointer
 	_ColorSyncProfileGetTypeID func() unsafe.Pointer
-	_ColorSyncProfileGetURL func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncProfileInstall func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_ColorSyncProfileRemoveTag func(unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncProfileSetHeader func(unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncProfileSetTag func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_ColorSyncProfileUninstall func(unsafe.Pointer, unsafe.Pointer) bool
-	_ColorSyncProfileVerify func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ColorSyncProfileGetURL func(ColorSyncProfileRef, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncProfileInstall func(ColorSyncProfileRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_ColorSyncProfileRemoveTag func(ColorSyncMutableProfileRef, unsafe.Pointer)
+	_ColorSyncProfileSetHeader func(ColorSyncMutableProfileRef, unsafe.Pointer)
+	_ColorSyncProfileSetTag func(ColorSyncMutableProfileRef, unsafe.Pointer, unsafe.Pointer)
+	_ColorSyncProfileUninstall func(ColorSyncProfileRef, unsafe.Pointer) bool
+	_ColorSyncProfileVerify func(ColorSyncProfileRef, unsafe.Pointer, unsafe.Pointer) bool
 	_ColorSyncRegisterDevice func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_ColorSyncTransformConvert func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) bool
-	_ColorSyncTransformCopyProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_ColorSyncTransformCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncTransformConvert func(ColorSyncTransformRef, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, ColorSyncDataLayout, uintptr, unsafe.Pointer, unsafe.Pointer, ColorSyncDataLayout, uintptr, unsafe.Pointer) bool
+	_ColorSyncTransformCopyProperty func(ColorSyncTransformRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_ColorSyncTransformCreate func(unsafe.Pointer, unsafe.Pointer) ColorSyncTransformRef
 	_ColorSyncTransformGetTypeID func() unsafe.Pointer
-	_ColorSyncTransformSetProperty func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_ColorSyncTransformSetProperty func(ColorSyncTransformRef, unsafe.Pointer, unsafe.Pointer)
 	_ColorSyncUnregisterDevice func(unsafe.Pointer, unsafe.Pointer) bool
 )
 
@@ -173,7 +173,7 @@ func ColorSyncCreateCodeFragment(profileSequence unsafe.Pointer, options unsafe.
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledProfilesWithOptions(_:_:_:_:_:)
-func ColorSyncIterateInstalledProfilesWithOptions(callBack unsafe.Pointer, seed []uint32, userInfo unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) {
+func ColorSyncIterateInstalledProfilesWithOptions(callBack ColorSyncProfileIterateCallback, seed []uint32, userInfo unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) {
 	_ColorSyncIterateInstalledProfilesWithOptions(callBack, seed, userInfo, options, error_)
 }
 
@@ -182,7 +182,7 @@ func ColorSyncIterateInstalledProfilesWithOptions(callBack unsafe.Pointer, seed 
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyData(_:_:)
-func ColorSyncProfileCopyData(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCopyData(prof ColorSyncProfileRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyData(prof, error_)
 }
 
@@ -191,7 +191,7 @@ func ColorSyncProfileCopyData(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithURLAndOptions(_:_:_:)
-func ColorSyncProfileCreateWithURLAndOptions(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateWithURLAndOptions(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateWithURLAndOptions(url, options, error_)
 }
 
@@ -200,7 +200,7 @@ func ColorSyncProfileCreateWithURLAndOptions(url unsafe.Pointer, options unsafe.
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetTagCount(_:)
-func ColorSyncProfileGetTagCount(p0 unsafe.Pointer) uintptr {
+func ColorSyncProfileGetTagCount(p0 ColorSyncProfileRef) uintptr {
 	return _ColorSyncProfileGetTagCount(p0)
 }
 
@@ -209,7 +209,7 @@ func ColorSyncProfileGetTagCount(p0 unsafe.Pointer) uintptr {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsHLGBased(_:)
-func ColorSyncProfileIsHLGBased(p0 unsafe.Pointer) bool {
+func ColorSyncProfileIsHLGBased(p0 ColorSyncProfileRef) bool {
 	return _ColorSyncProfileIsHLGBased(p0)
 }
 
@@ -218,7 +218,7 @@ func ColorSyncProfileIsHLGBased(p0 unsafe.Pointer) bool {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsMatrixBased(_:)
-func ColorSyncProfileIsMatrixBased(p0 unsafe.Pointer) bool {
+func ColorSyncProfileIsMatrixBased(p0 ColorSyncProfileRef) bool {
 	return _ColorSyncProfileIsMatrixBased(p0)
 }
 
@@ -227,7 +227,7 @@ func ColorSyncProfileIsMatrixBased(p0 unsafe.Pointer) bool {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsPQBased(_:)
-func ColorSyncProfileIsPQBased(p0 unsafe.Pointer) bool {
+func ColorSyncProfileIsPQBased(p0 ColorSyncProfileRef) bool {
 	return _ColorSyncProfileIsPQBased(p0)
 }
 
@@ -236,7 +236,7 @@ func ColorSyncProfileIsPQBased(p0 unsafe.Pointer) bool {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileIsWideGamut(_:)
-func ColorSyncProfileIsWideGamut(p0 unsafe.Pointer) bool {
+func ColorSyncProfileIsWideGamut(p0 ColorSyncProfileRef) bool {
 	return _ColorSyncProfileIsWideGamut(p0)
 }
 
@@ -245,7 +245,7 @@ func ColorSyncProfileIsWideGamut(p0 unsafe.Pointer) bool {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformGetProfileSequence(_:)
-func ColorSyncTransformGetProfileSequence(transform unsafe.Pointer) unsafe.Pointer {
+func ColorSyncTransformGetProfileSequence(transform ColorSyncTransformRef) unsafe.Pointer {
 	return _ColorSyncTransformGetProfileSequence(transform)
 }
 
@@ -272,7 +272,7 @@ func CGDisplayGetDisplayIDFromUUID(uuid unsafe.Pointer) uint32 {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCopyCMMIdentifier(_:)
-func ColorSyncCMMCopyCMMIdentifier(p0 unsafe.Pointer) unsafe.Pointer {
+func ColorSyncCMMCopyCMMIdentifier(p0 ColorSyncCMMRef) unsafe.Pointer {
 	return _ColorSyncCMMCopyCMMIdentifier(p0)
 }
 
@@ -281,7 +281,7 @@ func ColorSyncCMMCopyCMMIdentifier(p0 unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCopyLocalizedName(_:)
-func ColorSyncCMMCopyLocalizedName(p0 unsafe.Pointer) unsafe.Pointer {
+func ColorSyncCMMCopyLocalizedName(p0 ColorSyncCMMRef) unsafe.Pointer {
 	return _ColorSyncCMMCopyLocalizedName(p0)
 }
 
@@ -290,7 +290,7 @@ func ColorSyncCMMCopyLocalizedName(p0 unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMCreate(_:)
-func ColorSyncCMMCreate(cmmBundle unsafe.Pointer) unsafe.Pointer {
+func ColorSyncCMMCreate(cmmBundle unsafe.Pointer) ColorSyncCMMRef {
 	return _ColorSyncCMMCreate(cmmBundle)
 }
 
@@ -299,7 +299,7 @@ func ColorSyncCMMCreate(cmmBundle unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMGetBundle(_:)
-func ColorSyncCMMGetBundle(p0 unsafe.Pointer) unsafe.Pointer {
+func ColorSyncCMMGetBundle(p0 ColorSyncCMMRef) unsafe.Pointer {
 	return _ColorSyncCMMGetBundle(p0)
 }
 
@@ -335,7 +335,7 @@ func ColorSyncDeviceSetCustomProfiles(deviceClass unsafe.Pointer, deviceID unsaf
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateDeviceProfiles(_:_:)
-func ColorSyncIterateDeviceProfiles(callBack unsafe.Pointer, userInfo unsafe.Pointer) {
+func ColorSyncIterateDeviceProfiles(callBack ColorSyncDeviceProfileIterateCallback, userInfo unsafe.Pointer) {
 	_ColorSyncIterateDeviceProfiles(callBack, userInfo)
 }
 
@@ -344,7 +344,7 @@ func ColorSyncIterateDeviceProfiles(callBack unsafe.Pointer, userInfo unsafe.Poi
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledCMMs(_:_:)
-func ColorSyncIterateInstalledCMMs(callBack unsafe.Pointer, userInfo unsafe.Pointer) {
+func ColorSyncIterateInstalledCMMs(callBack ColorSyncCMMIterateCallback, userInfo unsafe.Pointer) {
 	_ColorSyncIterateInstalledCMMs(callBack, userInfo)
 }
 
@@ -353,7 +353,7 @@ func ColorSyncIterateInstalledCMMs(callBack unsafe.Pointer, userInfo unsafe.Poin
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncIterateInstalledProfiles(_:_:_:_:)
-func ColorSyncIterateInstalledProfiles(callBack unsafe.Pointer, seed []uint32, userInfo unsafe.Pointer, error_ unsafe.Pointer) {
+func ColorSyncIterateInstalledProfiles(callBack ColorSyncProfileIterateCallback, seed []uint32, userInfo unsafe.Pointer, error_ unsafe.Pointer) {
 	_ColorSyncIterateInstalledProfiles(callBack, seed, userInfo, error_)
 }
 
@@ -362,7 +362,7 @@ func ColorSyncIterateInstalledProfiles(callBack unsafe.Pointer, seed []uint32, u
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileContainsTag(_:_:)
-func ColorSyncProfileContainsTag(prof unsafe.Pointer, signature unsafe.Pointer) bool {
+func ColorSyncProfileContainsTag(prof ColorSyncProfileRef, signature unsafe.Pointer) bool {
 	return _ColorSyncProfileContainsTag(prof, signature)
 }
 
@@ -371,7 +371,7 @@ func ColorSyncProfileContainsTag(prof unsafe.Pointer, signature unsafe.Pointer) 
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyDescriptionString(_:)
-func ColorSyncProfileCopyDescriptionString(prof unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCopyDescriptionString(prof ColorSyncProfileRef) unsafe.Pointer {
 	return _ColorSyncProfileCopyDescriptionString(prof)
 }
 
@@ -380,7 +380,7 @@ func ColorSyncProfileCopyDescriptionString(prof unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyHeader(_:)
-func ColorSyncProfileCopyHeader(prof unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCopyHeader(prof ColorSyncProfileRef) unsafe.Pointer {
 	return _ColorSyncProfileCopyHeader(prof)
 }
 
@@ -389,7 +389,7 @@ func ColorSyncProfileCopyHeader(prof unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyTag(_:_:)
-func ColorSyncProfileCopyTag(prof unsafe.Pointer, signature unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCopyTag(prof ColorSyncProfileRef, signature unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCopyTag(prof, signature)
 }
 
@@ -398,7 +398,7 @@ func ColorSyncProfileCopyTag(prof unsafe.Pointer, signature unsafe.Pointer) unsa
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCopyTagSignatures(_:)
-func ColorSyncProfileCopyTagSignatures(prof unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCopyTagSignatures(prof ColorSyncProfileRef) unsafe.Pointer {
 	return _ColorSyncProfileCopyTagSignatures(prof)
 }
 
@@ -407,7 +407,7 @@ func ColorSyncProfileCopyTagSignatures(prof unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreate(_:_:)
-func ColorSyncProfileCreate(data unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreate(data unsafe.Pointer, error_ unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreate(data, error_)
 }
 
@@ -416,7 +416,7 @@ func ColorSyncProfileCreate(data unsafe.Pointer, error_ unsafe.Pointer) unsafe.P
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateDeviceProfile(_:_:_:)
-func ColorSyncProfileCreateDeviceProfile(deviceClass unsafe.Pointer, deviceID unsafe.Pointer, profileID unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateDeviceProfile(deviceClass unsafe.Pointer, deviceID unsafe.Pointer, profileID unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateDeviceProfile(deviceClass, deviceID, profileID)
 }
 
@@ -425,7 +425,7 @@ func ColorSyncProfileCreateDeviceProfile(deviceClass unsafe.Pointer, deviceID un
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateDisplayTransferTablesFromVCGT(_:_:)
-func ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile unsafe.Pointer, nSamplesPerChannel unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile ColorSyncProfileRef, nSamplesPerChannel unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, nSamplesPerChannel)
 }
 
@@ -434,7 +434,7 @@ func ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile unsafe.Pointer,
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateLink(_:_:)
-func ColorSyncProfileCreateLink(profileInfo unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateLink(profileInfo unsafe.Pointer, options unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateLink(profileInfo, options)
 }
 
@@ -443,7 +443,7 @@ func ColorSyncProfileCreateLink(profileInfo unsafe.Pointer, options unsafe.Point
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateMutable()
-func ColorSyncProfileCreateMutable() unsafe.Pointer {
+func ColorSyncProfileCreateMutable() ColorSyncMutableProfileRef {
 	return _ColorSyncProfileCreateMutable()
 }
 
@@ -452,7 +452,7 @@ func ColorSyncProfileCreateMutable() unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateMutableCopy(_:)
-func ColorSyncProfileCreateMutableCopy(prof unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateMutableCopy(prof ColorSyncProfileRef) ColorSyncMutableProfileRef {
 	return _ColorSyncProfileCreateMutableCopy(prof)
 }
 
@@ -461,7 +461,7 @@ func ColorSyncProfileCreateMutableCopy(prof unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithDisplayID(_:)
-func ColorSyncProfileCreateWithDisplayID(displayID uint32) unsafe.Pointer {
+func ColorSyncProfileCreateWithDisplayID(displayID uint32) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateWithDisplayID(displayID)
 }
 
@@ -470,7 +470,7 @@ func ColorSyncProfileCreateWithDisplayID(displayID uint32) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithName(_:)
-func ColorSyncProfileCreateWithName(name unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateWithName(name unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateWithName(name)
 }
 
@@ -479,7 +479,7 @@ func ColorSyncProfileCreateWithName(name unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileCreateWithURL(_:_:)
-func ColorSyncProfileCreateWithURL(url unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileCreateWithURL(url unsafe.Pointer, error_ unsafe.Pointer) ColorSyncProfileRef {
 	return _ColorSyncProfileCreateWithURL(url, error_)
 }
 
@@ -488,7 +488,7 @@ func ColorSyncProfileCreateWithURL(url unsafe.Pointer, error_ unsafe.Pointer) un
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileEstimateGamma(_:_:)
-func ColorSyncProfileEstimateGamma(prof unsafe.Pointer, error_ unsafe.Pointer) float32 {
+func ColorSyncProfileEstimateGamma(prof ColorSyncProfileRef, error_ unsafe.Pointer) float32 {
 	return _ColorSyncProfileEstimateGamma(prof, error_)
 }
 
@@ -506,7 +506,7 @@ func ColorSyncProfileEstimateGammaWithDisplayID(displayID unsafe.Pointer, error_
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetDisplayTransferFormulaFromVCGT(_:_:_:_:_:_:_:_:_:_:)
-func ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile unsafe.Pointer, redMin []float32, redMax []float32, redGamma []float32, greenMin []float32, greenMax []float32, greenGamma []float32, blueMin []float32, blueMax []float32, blueGamma []float32) bool {
+func ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile ColorSyncProfileRef, redMin []float32, redMax []float32, redGamma []float32, greenMin []float32, greenMax []float32, greenGamma []float32, blueMin []float32, blueMax []float32, blueGamma []float32) bool {
 	return _ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
 }
 
@@ -515,7 +515,7 @@ func ColorSyncProfileGetDisplayTransferFormulaFromVCGT(profile unsafe.Pointer, r
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetMD5(_:)
-func ColorSyncProfileGetMD5(prof unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileGetMD5(prof ColorSyncProfileRef) unsafe.Pointer {
 	return _ColorSyncProfileGetMD5(prof)
 }
 
@@ -533,7 +533,7 @@ func ColorSyncProfileGetTypeID() unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileGetURL(_:_:)
-func ColorSyncProfileGetURL(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func ColorSyncProfileGetURL(prof ColorSyncProfileRef, error_ unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncProfileGetURL(prof, error_)
 }
 
@@ -542,7 +542,7 @@ func ColorSyncProfileGetURL(prof unsafe.Pointer, error_ unsafe.Pointer) unsafe.P
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileInstall(_:_:_:_:)
-func ColorSyncProfileInstall(profile unsafe.Pointer, domain unsafe.Pointer, subpath unsafe.Pointer, error_ unsafe.Pointer) bool {
+func ColorSyncProfileInstall(profile ColorSyncProfileRef, domain unsafe.Pointer, subpath unsafe.Pointer, error_ unsafe.Pointer) bool {
 	return _ColorSyncProfileInstall(profile, domain, subpath, error_)
 }
 
@@ -551,7 +551,7 @@ func ColorSyncProfileInstall(profile unsafe.Pointer, domain unsafe.Pointer, subp
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileRemoveTag(_:_:)
-func ColorSyncProfileRemoveTag(prof unsafe.Pointer, signature unsafe.Pointer) {
+func ColorSyncProfileRemoveTag(prof ColorSyncMutableProfileRef, signature unsafe.Pointer) {
 	_ColorSyncProfileRemoveTag(prof, signature)
 }
 
@@ -560,7 +560,7 @@ func ColorSyncProfileRemoveTag(prof unsafe.Pointer, signature unsafe.Pointer) {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileSetHeader(_:_:)
-func ColorSyncProfileSetHeader(prof unsafe.Pointer, header unsafe.Pointer) {
+func ColorSyncProfileSetHeader(prof ColorSyncMutableProfileRef, header unsafe.Pointer) {
 	_ColorSyncProfileSetHeader(prof, header)
 }
 
@@ -569,7 +569,7 @@ func ColorSyncProfileSetHeader(prof unsafe.Pointer, header unsafe.Pointer) {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileSetTag(_:_:_:)
-func ColorSyncProfileSetTag(prof unsafe.Pointer, signature unsafe.Pointer, data unsafe.Pointer) {
+func ColorSyncProfileSetTag(prof ColorSyncMutableProfileRef, signature unsafe.Pointer, data unsafe.Pointer) {
 	_ColorSyncProfileSetTag(prof, signature, data)
 }
 
@@ -578,7 +578,7 @@ func ColorSyncProfileSetTag(prof unsafe.Pointer, signature unsafe.Pointer, data 
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileUninstall(_:_:)
-func ColorSyncProfileUninstall(profile unsafe.Pointer, error_ unsafe.Pointer) bool {
+func ColorSyncProfileUninstall(profile ColorSyncProfileRef, error_ unsafe.Pointer) bool {
 	return _ColorSyncProfileUninstall(profile, error_)
 }
 
@@ -587,7 +587,7 @@ func ColorSyncProfileUninstall(profile unsafe.Pointer, error_ unsafe.Pointer) bo
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfileVerify(_:_:_:)
-func ColorSyncProfileVerify(prof unsafe.Pointer, errors unsafe.Pointer, warnings unsafe.Pointer) bool {
+func ColorSyncProfileVerify(prof ColorSyncProfileRef, errors unsafe.Pointer, warnings unsafe.Pointer) bool {
 	return _ColorSyncProfileVerify(prof, errors, warnings)
 }
 
@@ -605,7 +605,7 @@ func ColorSyncRegisterDevice(deviceClass unsafe.Pointer, deviceID unsafe.Pointer
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformConvert(_:_:_:_:_:_:_:_:_:_:_:_:)
-func ColorSyncTransformConvert(transform unsafe.Pointer, width uintptr, height uintptr, dst unsafe.Pointer, dstDepth unsafe.Pointer, dstLayout unsafe.Pointer, dstBytesPerRow uintptr, src unsafe.Pointer, srcDepth unsafe.Pointer, srcLayout unsafe.Pointer, srcBytesPerRow uintptr, options unsafe.Pointer) bool {
+func ColorSyncTransformConvert(transform ColorSyncTransformRef, width uintptr, height uintptr, dst unsafe.Pointer, dstDepth unsafe.Pointer, dstLayout ColorSyncDataLayout, dstBytesPerRow uintptr, src unsafe.Pointer, srcDepth unsafe.Pointer, srcLayout ColorSyncDataLayout, srcBytesPerRow uintptr, options unsafe.Pointer) bool {
 	return _ColorSyncTransformConvert(transform, width, height, dst, dstDepth, dstLayout, dstBytesPerRow, src, srcDepth, srcLayout, srcBytesPerRow, options)
 }
 
@@ -614,7 +614,7 @@ func ColorSyncTransformConvert(transform unsafe.Pointer, width uintptr, height u
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformCopyProperty(_:_:_:)
-func ColorSyncTransformCopyProperty(transform unsafe.Pointer, key unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func ColorSyncTransformCopyProperty(transform ColorSyncTransformRef, key unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _ColorSyncTransformCopyProperty(transform, key, options)
 }
 
@@ -623,7 +623,7 @@ func ColorSyncTransformCopyProperty(transform unsafe.Pointer, key unsafe.Pointer
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformCreate(_:_:)
-func ColorSyncTransformCreate(profileSequence unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func ColorSyncTransformCreate(profileSequence unsafe.Pointer, options unsafe.Pointer) ColorSyncTransformRef {
 	return _ColorSyncTransformCreate(profileSequence, options)
 }
 
@@ -641,7 +641,7 @@ func ColorSyncTransformGetTypeID() unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransformSetProperty(_:_:_:)
-func ColorSyncTransformSetProperty(transform unsafe.Pointer, key unsafe.Pointer, property unsafe.Pointer) {
+func ColorSyncTransformSetProperty(transform ColorSyncTransformRef, key unsafe.Pointer, property unsafe.Pointer) {
 	_ColorSyncTransformSetProperty(transform, key, property)
 }
 

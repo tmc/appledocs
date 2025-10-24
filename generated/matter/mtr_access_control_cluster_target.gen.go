@@ -30,15 +30,19 @@ type _MTRAccessControlClusterTargetClass struct {
 // An interface definition for the [MTRAccessControlClusterTarget] class.
 type IMTRAccessControlClusterTarget interface {
 	IMTRAccessControlClusterAccessControlTargetStruct
-	Cluster() foundation.Number
-	SetCluster(value foundation.INumber)
-	DeviceType() foundation.Number
-	SetDeviceType(value foundation.INumber)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
+	// properties:
+	Cluster() objc.IObject /* cross-framework: NSNumber */
+	SetCluster(value objc.IObject /* cross-framework: NSNumber */)
+	DeviceType() objc.IObject /* cross-framework: NSNumber */
+	SetDeviceType(value objc.IObject /* cross-framework: NSNumber */)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterTarget
 type MTRAccessControlClusterTarget struct {
 	MTRAccessControlClusterAccessControlTargetStruct
@@ -83,48 +87,48 @@ func NewMTRAccessControlClusterTarget() MTRAccessControlClusterTarget {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
-func (m_ MTRAccessControlClusterTarget) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+func (m_ MTRAccessControlClusterTarget) Cluster() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
-func (m_ MTRAccessControlClusterTarget) SetCluster(value foundation.INumber) {
+func (m_ MTRAccessControlClusterTarget) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
-func (m_ MTRAccessControlClusterTarget) DeviceType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceType"))
+func (m_ MTRAccessControlClusterTarget) DeviceType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
 
-// SetDeviceType sets the value of the deviceType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
-func (m_ MTRAccessControlClusterTarget) SetDeviceType(value foundation.INumber) {
+func (m_ MTRAccessControlClusterTarget) SetDeviceType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
-func (m_ MTRAccessControlClusterTarget) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRAccessControlClusterTarget) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
-func (m_ MTRAccessControlClusterTarget) SetEndpoint(value foundation.INumber) {
+func (m_ MTRAccessControlClusterTarget) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

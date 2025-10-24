@@ -33,7 +33,7 @@ type IBluetoothObjectPushUIController interface {
 	appkit.IWindowController
 	// properties:
 	// methods:
-	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow objc.IObject /* cross-framework Window */, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) Return /* not a class type */
+	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow objc.IObject /* cross-framework: Window */, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) Return /* not a class type */
 }
 
 // An NSWindowController subclass that supports the creation of an IOBluetoothObjectPushUIController object.
@@ -93,7 +93,7 @@ func NewBluetoothObjectPushUIController() BluetoothObjectPushUIController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothObjectPushUIController/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
-func (b_ BluetoothObjectPushUIController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow objc.IObject /* cross-framework Window */, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) Return /* not a class type */ {
+func (b_ BluetoothObjectPushUIController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow objc.IObject /* cross-framework: Window */, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) Return /* not a class type */ {
 	rv := objc.Send[Return](b_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), sheetWindow, modalDelegate, didEndSelector, contextInfo)
 	return rv
 }

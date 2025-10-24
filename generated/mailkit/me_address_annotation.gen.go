@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func NewMEAddressAnnotation() MEAddressAnnotation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEAddressAnnotation/error(withLocalizedDescription:)
-func (mc _MEAddressAnnotationClass) ErrorWithLocalizedDescription(localizedDescription string /* primitive/slice/pointer. */) MEAddressAnnotation {
-	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("errorWithLocalizedDescription:"), objc.String(localizedDescription))
+func (mc _MEAddressAnnotationClass) ErrorWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
+	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("errorWithLocalizedDescription:"), localizedDescription)
 	return rv
 }
 
@@ -101,8 +102,8 @@ func (mc _MEAddressAnnotationClass) ErrorWithLocalizedDescription(localizedDescr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEAddressAnnotation/success(withLocalizedDescription:)
-func (mc _MEAddressAnnotationClass) SuccessWithLocalizedDescription(localizedDescription string /* primitive/slice/pointer. */) MEAddressAnnotation {
-	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("successWithLocalizedDescription:"), objc.String(localizedDescription))
+func (mc _MEAddressAnnotationClass) SuccessWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
+	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("successWithLocalizedDescription:"), localizedDescription)
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (mc _MEAddressAnnotationClass) SuccessWithLocalizedDescription(localizedDes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEAddressAnnotation/warning(withLocalizedDescription:)
-func (mc _MEAddressAnnotationClass) WarningWithLocalizedDescription(localizedDescription string /* primitive/slice/pointer. */) MEAddressAnnotation {
-	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("warningWithLocalizedDescription:"), objc.String(localizedDescription))
+func (mc _MEAddressAnnotationClass) WarningWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
+	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("warningWithLocalizedDescription:"), localizedDescription)
 	return rv
 }
 

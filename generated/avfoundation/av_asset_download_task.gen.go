@@ -121,7 +121,7 @@ func (a_ AssetDownloadTask) SetDestinationURL(value objc.IObject /* cross-framew
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
 func (a_ AssetDownloadTask) LoadedTimeRanges() objc.IObject /* cross-framework: Value */ {
-	rv := objc.Send[Value](a_.ID, objc.Sel("loadedTimeRanges"))
+	rv := objc.Send[foundation.Value](a_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
 }
 

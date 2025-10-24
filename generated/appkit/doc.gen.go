@@ -2,15 +2,8 @@
 
 // Package appkit provides Go bindings for the AppKit framework.
 //
-// Construct and manage a graphical, event-driven user interface for your macOS app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppKit without requiring cgo.
-
-// Construct and manage a graphical, event-driven user interface for your macOS app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit
 package appkit
 
 import (

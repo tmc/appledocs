@@ -29,17 +29,24 @@ type _DetectFaceCaptureQualityRequestClass struct {
 // An interface definition for the [DetectFaceCaptureQualityRequest] class.
 type IDetectFaceCaptureQualityRequest interface {
 	IImageBasedRequest
-	Results() []FaceObservation
+	// properties:
+	Results() objc.IObject /* cross-framework: FaceObservation */
+	SetResults(value objc.IObject /* cross-framework: FaceObservation */)
 	VNDetectFaceCaptureQualityRequestRevision1() int
 	VNDetectFaceCaptureQualityRequestRevision2() int
 	FaceCaptureQuality() float32
 	SetFaceCaptureQuality(value float32)
+	// methods:
 }
 
 // A request that produces a floating-point number that represents the capture quality of a face in a photo.
 //
 // This request produces or updates a object’s property with a floating-point value. The value ranges from to . Faces with quality closer to are better lit, sharper, and more centrally positioned than faces with quality closer to . If you don’t execute the request, or the request fails, the property is .
+
+
+// A request that produces a floating-point number that represents the capture quality of a face in a photo.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceCaptureQualityRequest
 type DetectFaceCaptureQualityRequest struct {
 	ImageBasedRequest
@@ -86,32 +93,49 @@ func NewDetectFaceCaptureQualityRequest() DetectFaceCaptureQualityRequest {
 }
 
 
+
 // The results of the face-capture quality request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceCaptureQualityRequest/results
-func (d_ DetectFaceCaptureQualityRequest) Results() []FaceObservation {
-	rv := objc.Send[[]FaceObservation](d_.ID, objc.Sel("results"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
+func (d_ DetectFaceCaptureQualityRequest) Results() objc.IObject /* cross-framework: FaceObservation */ {
+	rv := objc.Send[FaceObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
+
+// The results of the face-capture quality request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
+func (d_ DetectFaceCaptureQualityRequest) SetResults(value objc.IObject /* cross-framework: FaceObservation */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+
 // A constant for specifying revision 1 of the face capture detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision1
 func (d_ DetectFaceCaptureQualityRequest) VNDetectFaceCaptureQualityRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceCaptureQualityRequestRevision1"))
 	return rv
 }
 
+
 // Revision 2 of the request algorithm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision2
 func (d_ DetectFaceCaptureQualityRequest) VNDetectFaceCaptureQualityRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceCaptureQualityRequestRevision2"))
 	return rv
 }
 
+
 // A value that indicates the quality of the face capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/facecapturequality-bjg5
 func (d_ DetectFaceCaptureQualityRequest) FaceCaptureQuality() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("faceCaptureQuality"))
@@ -119,10 +143,9 @@ func (d_ DetectFaceCaptureQualityRequest) FaceCaptureQuality() float32 {
 }
 
 
-// SetFaceCaptureQuality sets the value of the faceCaptureQuality property.
 // A value that indicates the quality of the face capture.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/facecapturequality-bjg5
 func (d_ DetectFaceCaptureQualityRequest) SetFaceCaptureQuality(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFaceCaptureQuality:"), value)

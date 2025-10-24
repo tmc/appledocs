@@ -32,14 +32,14 @@ type ICWMutableConfiguration interface {
 	// properties:
 	NetworkProfiles() unsafe.Pointer
 	SetNetworkProfiles(value unsafe.Pointer)
-	RememberJoinedNetworks() bool /* primitive/slice/pointer. */
-	SetRememberJoinedNetworks(value bool /* primitive/slice/pointer. */)
-	RequireAdministratorForAssociation() bool /* primitive/slice/pointer. */
-	SetRequireAdministratorForAssociation(value bool /* primitive/slice/pointer. */)
-	RequireAdministratorForIBSSMode() bool /* primitive/slice/pointer. */
-	SetRequireAdministratorForIBSSMode(value bool /* primitive/slice/pointer. */)
-	RequireAdministratorForPower() bool /* primitive/slice/pointer. */
-	SetRequireAdministratorForPower(value bool /* primitive/slice/pointer. */)
+	RememberJoinedNetworks() bool
+	SetRememberJoinedNetworks(value bool)
+	RequireAdministratorForAssociation() bool
+	SetRequireAdministratorForAssociation(value bool)
+	RequireAdministratorForIBSSMode() bool
+	SetRequireAdministratorForIBSSMode(value bool)
+	RequireAdministratorForPower() bool
+	SetRequireAdministratorForPower(value bool)
 	// methods:
 }
 
@@ -121,7 +121,7 @@ func (c_ CWMutableConfiguration) SetNetworkProfiles(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
-func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool /* primitive/slice/pointer. */ {
+func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (c_ CWMutableConfiguration) RememberJoinedNetworks() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/rememberJoinedNetworks
-func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool /* primitive/slice/pointer. */) {
+func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRememberJoinedNetworks:"), value)
 }
 
@@ -140,7 +140,7 @@ func (c_ CWMutableConfiguration) SetRememberJoinedNetworks(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
-func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool /* primitive/slice/pointer. */ {
+func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
 }
@@ -150,7 +150,7 @@ func (c_ CWMutableConfiguration) RequireAdministratorForAssociation() bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForAssociation
-func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value bool /* primitive/slice/pointer. */) {
+func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForAssociation:"), value)
 }
 
@@ -159,7 +159,7 @@ func (c_ CWMutableConfiguration) SetRequireAdministratorForAssociation(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
-func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool /* primitive/slice/pointer. */ {
+func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (c_ CWMutableConfiguration) RequireAdministratorForIBSSMode() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForIBSSMode
-func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool /* primitive/slice/pointer. */) {
+func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForIBSSMode:"), value)
 }
 
@@ -178,7 +178,7 @@ func (c_ CWMutableConfiguration) SetRequireAdministratorForIBSSMode(value bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
-func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool /* primitive/slice/pointer. */ {
+func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (c_ CWMutableConfiguration) RequireAdministratorForPower() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableConfiguration/requireAdministratorForPower
-func (c_ CWMutableConfiguration) SetRequireAdministratorForPower(value bool /* primitive/slice/pointer. */) {
+func (c_ CWMutableConfiguration) SetRequireAdministratorForPower(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequireAdministratorForPower:"), value)
 }
 

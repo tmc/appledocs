@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +33,7 @@ type _CNAssetSpatialAudioInfoClass struct {
 type ICNAssetSpatialAudioInfo interface {
 	objectivec.IObject
 	// properties:
-	SpatialAudioMixMetadata() foundation.objc.IObject /* cross-framework: NSData */
+	SpatialAudioMixMetadata() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -84,14 +85,14 @@ func NewCNAssetSpatialAudioInfo() CNAssetSpatialAudioInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/loadFromAsset:completionHandler:
-func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset objc.IObject /* cross-framework Asset */, completionHandler unsafe.Pointer) {
+func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset objc.IObject /* cross-framework: Asset */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/spatialAudioMixMetadata
-func (c_ CNAssetSpatialAudioInfo) SpatialAudioMixMetadata() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CNAssetSpatialAudioInfo) SpatialAudioMixMetadata() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("spatialAudioMixMetadata"))
 	return rv
 }

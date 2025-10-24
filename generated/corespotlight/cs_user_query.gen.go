@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSUserQuery] class.
@@ -30,7 +31,7 @@ type _CSUserQueryClass struct {
 type ICSUserQuery interface {
 	ICSSearchQuery
 	// properties:
-	FoundSuggestionCount() int /* primitive/slice/pointer. */
+	FoundSuggestionCount() int
 	FoundSuggestionsHandler() unsafe.Pointer
 	SetFoundSuggestionsHandler(value unsafe.Pointer)
 	FoundItemsHandler() unsafe.Pointer
@@ -42,13 +43,13 @@ type ICSUserQuery interface {
 	// methods:
 	Cancel()
 	Start()
-	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem /* primitive/slice/pointer. */, userInteractionType CSUserInteraction)
-	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion /* primitive/slice/pointer. */, userInteractionType CSUserInteraction)
+	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []ICSSearchableItem, userInteractionType CSUserInteraction)
+	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []ICSSuggestion, userInteractionType CSUserInteraction)
 }
 
 // A type you use to initiate searches from your interface and offer suggested text completions.
 //
-// A object provides the back-end support for your app’s search features. Combine this object with your app’s search interface to perform lexical and semantic searches of human-entered search terms. You can configure a query object to return ranked or unranked results. You can also use it to get a list of suggestions to display from your search interface. When the text in your search control changes, create a query object to begin searching for results based on the current text. You use a query object only once to perform a search. If the text changes again while you a previous query is in progress, cancel the old query and execute the new one. For this reason, it’s a good idea to delay the start of each query until there is a sufficient gap between changes. Configure the query parameters using a object, which you can reuse for multiple queries. The context lets you configure the behavior for ranking results, specify the maximum number of results and suggestions, and filter the results using a predicate string. When you’re ready to start the query, choose one of the following options: Get the value of the property and iterate over the results. Configure the property and call to execute the query manually. Each query runs until Spotlight returns the requested maximum number of results. If you don’t specify the maximum number of results, Spotlight runs until it returns all results. To end a search before you receive all the results, call the method. Cancelling a query is especially important if you’re about to start a new query with an updated search string. For more information about configuring a object, see .
+// A object provides the back-end support for your app’s search features. Combine this object with your app’s search interface to perform lexical and semantic searches of human-entered search terms. You can configure a query object to return ranked or unranked results. You can also use it to get a list of suggestions to display from your search interface. When the text in your search control changes, create a query object to begin searching for results based on the current text. You use a query object only once to perform a search. If the text changes again while a previous query is in progress, cancel the old query and execute the new one. For this reason, it’s a good idea to delay the start of each query until there is a sufficient gap between changes. Configure the query parameters using a object, which you can reuse for multiple queries. The context lets you configure the behavior for ranking results, specify the maximum number of results and suggestions, and filter the results using a predicate string. When you’re ready to start the query, choose one of the following options: Get the value of the property and iterate over the results. Configure the property and call to execute the query manually. Each query runs until Spotlight returns the requested maximum number of results. If you don’t specify the maximum number of results, Spotlight runs until it returns all results. To end a search before you receive all the results, call the method. Cancelling a query is especially important if you’re about to start a new query with an updated search string. For more information about configuring a object, see .
 
 
 // A type you use to initiate searches from your interface and offer suggested text completions.
@@ -105,9 +106,9 @@ func NewCSUserQuery() CSUserQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)
-func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string /* primitive/slice/pointer. */, userQueryContext ICSUserQueryContext) CSUserQuery {
+func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString objc.IObject /* cross-framework: NSString */, userQueryContext ICSUserQueryContext) CSUserQuery {
 	instance := getCSUserQueryClass().Alloc()
-	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), objc.String(userQueryString), userQueryContext)
+	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), userQueryString, userQueryContext)
 	rv.Autorelease()
 	return rv
 }
@@ -127,7 +128,7 @@ func (cc _CSUserQueryClass) Prepare() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/prepareProtectionClasses(_:)
-func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string /* primitive/slice/pointer. */) {
+func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("prepareProtectionClasses:"), protectionClasses)
 }
 
@@ -152,14 +153,14 @@ func (c_ CSUserQuery) Start() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithItem:visibleItems:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem /* primitive/slice/pointer. */, userInteractionType CSUserInteraction) {
+func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []ICSSearchableItem, userInteractionType CSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithItem:visibleItems:userInteractionType:"), item, visibleItems, userInteractionType)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithSuggestion:visibleSuggestions:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion /* primitive/slice/pointer. */, userInteractionType CSUserInteraction) {
+func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []ICSSuggestion, userInteractionType CSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithSuggestion:visibleSuggestions:userInteractionType:"), suggestion, visibleSuggestions, userInteractionType)
 }
 
@@ -168,7 +169,7 @@ func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteraction
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount
-func (c_ CSUserQuery) FoundSuggestionCount() int /* primitive/slice/pointer. */ {
+func (c_ CSUserQuery) FoundSuggestionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
 	return rv
 }

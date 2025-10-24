@@ -31,27 +31,33 @@ type _WindowFeaturesClass struct {
 // An interface definition for the [WindowFeatures] class.
 type IWindowFeatures interface {
 	objectivec.IObject
-	Height() foundation.Number
-	AllowsResizing() foundation.Number
-	SetAllowsResizing(value foundation.INumber)
-	MenuBarVisibility() foundation.Number
-	SetMenuBarVisibility(value foundation.INumber)
-	StatusBarVisibility() foundation.Number
-	SetStatusBarVisibility(value foundation.INumber)
-	ToolbarsVisibility() foundation.Number
-	SetToolbarsVisibility(value foundation.INumber)
-	Width() foundation.Number
-	SetWidth(value foundation.INumber)
-	X() foundation.Number
-	SetX(value foundation.INumber)
-	Y() foundation.Number
-	SetY(value foundation.INumber)
+	// properties:
+	Height() objc.IObject /* cross-framework: NSNumber */
+	AllowsResizing() objc.IObject /* cross-framework: NSNumber */
+	SetAllowsResizing(value objc.IObject /* cross-framework: NSNumber */)
+	MenuBarVisibility() objc.IObject /* cross-framework: NSNumber */
+	SetMenuBarVisibility(value objc.IObject /* cross-framework: NSNumber */)
+	StatusBarVisibility() objc.IObject /* cross-framework: NSNumber */
+	SetStatusBarVisibility(value objc.IObject /* cross-framework: NSNumber */)
+	ToolbarsVisibility() objc.IObject /* cross-framework: NSNumber */
+	SetToolbarsVisibility(value objc.IObject /* cross-framework: NSNumber */)
+	Width() objc.IObject /* cross-framework: NSNumber */
+	SetWidth(value objc.IObject /* cross-framework: NSNumber */)
+	X() objc.IObject /* cross-framework: NSNumber */
+	SetX(value objc.IObject /* cross-framework: NSNumber */)
+	Y() objc.IObject /* cross-framework: NSNumber */
+	SetY(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // Display-related attributes that a webpage requests for its window.
 //
 // A object contains the attributes that a webpage requests from its containing web view. You don’t create a object directly. When a navigation action results in the display of a new web view, creates this object and passes it to the method of its UI delegate object. The delegate uses the information in this object to configure and return the new web view.
+
+
+// Display-related attributes that a webpage requests for its window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWindowFeatures
 type WindowFeatures struct {
 	objectivec.Object
@@ -96,137 +102,146 @@ func NewWindowFeatures() WindowFeatures {
 }
 
 
+
 // The requested height of the containing window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWindowFeatures/height
-func (w_ WindowFeatures) Height() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("height"))
-	return rv
-}
-
-// A Boolean value that indicates whether to make the containing window window resizable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
-func (w_ WindowFeatures) AllowsResizing() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("allowsResizing"))
+func (w_ WindowFeatures) Height() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("height"))
 	return rv
 }
 
 
-// SetAllowsResizing sets the value of the allowsResizing property.
 // A Boolean value that indicates whether to make the containing window window resizable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
-func (w_ WindowFeatures) SetAllowsResizing(value foundation.INumber) {
+func (w_ WindowFeatures) AllowsResizing() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("allowsResizing"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to make the containing window window resizable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
+func (w_ WindowFeatures) SetAllowsResizing(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsResizing:"), value)
 }
 
+
 // A Boolean value that indicates whether the webpage requests a visible menu bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/menubarvisibility
-func (w_ WindowFeatures) MenuBarVisibility() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("menuBarVisibility"))
+func (w_ WindowFeatures) MenuBarVisibility() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("menuBarVisibility"))
 	return rv
 }
 
 
-// SetMenuBarVisibility sets the value of the menuBarVisibility property.
 // A Boolean value that indicates whether the webpage requests a visible menu bar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/menubarvisibility
-func (w_ WindowFeatures) SetMenuBarVisibility(value foundation.INumber) {
+func (w_ WindowFeatures) SetMenuBarVisibility(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMenuBarVisibility:"), value)
 }
 
+
 // A Boolean value that indicates whether the webpage requested a visible status bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/statusbarvisibility
-func (w_ WindowFeatures) StatusBarVisibility() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("statusBarVisibility"))
+func (w_ WindowFeatures) StatusBarVisibility() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("statusBarVisibility"))
 	return rv
 }
 
 
-// SetStatusBarVisibility sets the value of the statusBarVisibility property.
 // A Boolean value that indicates whether the webpage requested a visible status bar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/statusbarvisibility
-func (w_ WindowFeatures) SetStatusBarVisibility(value foundation.INumber) {
+func (w_ WindowFeatures) SetStatusBarVisibility(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStatusBarVisibility:"), value)
 }
 
+
 // A Boolean value that indicates whether the webpage requested a visible toolbar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/toolbarsvisibility
-func (w_ WindowFeatures) ToolbarsVisibility() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("toolbarsVisibility"))
+func (w_ WindowFeatures) ToolbarsVisibility() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("toolbarsVisibility"))
 	return rv
 }
 
 
-// SetToolbarsVisibility sets the value of the toolbarsVisibility property.
 // A Boolean value that indicates whether the webpage requested a visible toolbar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/toolbarsvisibility
-func (w_ WindowFeatures) SetToolbarsVisibility(value foundation.INumber) {
+func (w_ WindowFeatures) SetToolbarsVisibility(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarsVisibility:"), value)
 }
 
+
 // The requested width of the containing window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/width
-func (w_ WindowFeatures) Width() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("width"))
+func (w_ WindowFeatures) Width() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("width"))
 	return rv
 }
 
 
-// SetWidth sets the value of the width property.
 // The requested width of the containing window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/width
-func (w_ WindowFeatures) SetWidth(value foundation.INumber) {
+func (w_ WindowFeatures) SetWidth(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWidth:"), value)
 }
 
+
 // The requested x-coordinate of the containing window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/x
-func (w_ WindowFeatures) X() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("x"))
+func (w_ WindowFeatures) X() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("x"))
 	return rv
 }
 
 
-// SetX sets the value of the x property.
 // The requested x-coordinate of the containing window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/x
-func (w_ WindowFeatures) SetX(value foundation.INumber) {
+func (w_ WindowFeatures) SetX(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setX:"), value)
 }
 
+
 // The requested y-coordinate of the containing window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/y
-func (w_ WindowFeatures) Y() foundation.Number {
-	rv := objc.Send[foundation.Number](w_.ID, objc.Sel("y"))
+func (w_ WindowFeatures) Y() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](w_.ID, objc.Sel("y"))
 	return rv
 }
 
 
-// SetY sets the value of the y property.
 // The requested y-coordinate of the containing window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/y
-func (w_ WindowFeatures) SetY(value foundation.INumber) {
+func (w_ WindowFeatures) SetY(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setY:"), value)
 }
 

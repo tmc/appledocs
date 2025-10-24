@@ -30,12 +30,18 @@ type _AccelerationStructureGroupClass struct {
 // An interface definition for the [AccelerationStructureGroup] class.
 type IAccelerationStructureGroup interface {
 	objectivec.IObject
-	Device() unsafe.Pointer
-	SetDevice(value unsafe.Pointer)
+	// properties:
+	Device() Device /* not a class type */
+	SetDevice(value Device /* not a class type */)
+	// methods:
 }
 
 // A group of acceleration structures.
+
+
+// A group of acceleration structures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureGroup
 type AccelerationStructureGroup struct {
 	objectivec.Object
@@ -80,7 +86,8 @@ func NewAccelerationStructureGroup() AccelerationStructureGroup {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureGroup/init(device:)
 func NewAccelerationStructureGroupWithDevice(device objectivec.IObject) AccelerationStructureGroup {
 	instance := getAccelerationStructureGroupClass().Alloc()
@@ -90,18 +97,18 @@ func NewAccelerationStructureGroupWithDevice(device objectivec.IObject) Accelera
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructuregroup/device
-func (a_ AccelerationStructureGroup) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("device"))
+func (a_ AccelerationStructureGroup) Device() Device /* not a class type */ {
+	rv := objc.Send[Device](a_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructuregroup/device
-func (a_ AccelerationStructureGroup) SetDevice(value unsafe.Pointer) {
+func (a_ AccelerationStructureGroup) SetDevice(value Device /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDevice:"), value)
 }
 

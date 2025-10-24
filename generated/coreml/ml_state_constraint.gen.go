@@ -32,7 +32,7 @@ type _StateConstraintClass struct {
 type IStateConstraint interface {
 	objectivec.IObject
 	// properties:
-	BufferShape() []foundation.objc.IObject /* cross-framework: Number */
+	BufferShape() []objc.IObject /* cross-framework: Number */
 	DataType() MultiArrayDataType
 	// methods:
 }
@@ -92,7 +92,7 @@ func NewStateConstraint() StateConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/bufferShape-6o5vn
-func (s_ StateConstraint) BufferShape() []foundation.objc.IObject /* cross-framework: Number */ {
+func (s_ StateConstraint) BufferShape() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("bufferShape"))
 	return rv
 }

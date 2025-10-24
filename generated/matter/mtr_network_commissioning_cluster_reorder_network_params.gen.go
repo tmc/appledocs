@@ -31,19 +31,23 @@ type _MTRNetworkCommissioningClusterReorderNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterReorderNetworkParams] class.
 type IMTRNetworkCommissioningClusterReorderNetworkParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	NetworkID() foundation.Data
-	SetNetworkID(value foundation.IData)
-	NetworkIndex() foundation.Number
-	SetNetworkIndex(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	NetworkID() objc.IObject /* cross-framework: Data */
+	SetNetworkID(value objc.IObject /* cross-framework: Data */)
+	NetworkIndex() objc.IObject /* cross-framework: NSNumber */
+	SetNetworkIndex(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterReorderNetworkParams
 type MTRNetworkCommissioningClusterReorderNetworkParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRNetworkCommissioningClusterReorderNetworkParams() MTRNetworkCommissio
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkID() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("networkID"))
 	return rv
 }
 
 
-// SetNetworkID sets the value of the networkID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkID(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkIndex"))
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) NetworkIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("networkIndex"))
 	return rv
 }
 
 
-// SetNetworkIndex sets the value of the networkIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/networkindex
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkIndex(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetNetworkIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterreordernetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterReorderNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

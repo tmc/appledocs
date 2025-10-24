@@ -31,17 +31,21 @@ type _MTRActionsClusterActionFailedEventClass struct {
 // An interface definition for the [MTRActionsClusterActionFailedEvent] class.
 type IMTRActionsClusterActionFailedEvent interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	Error() foundation.Number
-	SetError(value foundation.INumber)
-	InvokeID() foundation.Number
-	SetInvokeID(value foundation.INumber)
-	NewState() foundation.Number
-	SetNewState(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	Error() objc.IObject /* cross-framework: NSNumber */
+	SetError(value objc.IObject /* cross-framework: NSNumber */)
+	InvokeID() objc.IObject /* cross-framework: NSNumber */
+	SetInvokeID(value objc.IObject /* cross-framework: NSNumber */)
+	NewState() objc.IObject /* cross-framework: NSNumber */
+	SetNewState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterActionFailedEvent
 type MTRActionsClusterActionFailedEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRActionsClusterActionFailedEvent() MTRActionsClusterActionFailedEvent 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
-func (m_ MTRActionsClusterActionFailedEvent) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterActionFailedEvent) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/actionid
-func (m_ MTRActionsClusterActionFailedEvent) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterActionFailedEvent) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/error
-func (m_ MTRActionsClusterActionFailedEvent) Error() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("error"))
+func (m_ MTRActionsClusterActionFailedEvent) Error() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/error
-func (m_ MTRActionsClusterActionFailedEvent) SetError(value foundation.INumber) {
+func (m_ MTRActionsClusterActionFailedEvent) SetError(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
-func (m_ MTRActionsClusterActionFailedEvent) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+func (m_ MTRActionsClusterActionFailedEvent) InvokeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("invokeID"))
 	return rv
 }
 
 
-// SetInvokeID sets the value of the invokeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/invokeid
-func (m_ MTRActionsClusterActionFailedEvent) SetInvokeID(value foundation.INumber) {
+func (m_ MTRActionsClusterActionFailedEvent) SetInvokeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
-func (m_ MTRActionsClusterActionFailedEvent) NewState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+func (m_ MTRActionsClusterActionFailedEvent) NewState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newState"))
 	return rv
 }
 
 
-// SetNewState sets the value of the newState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionfailedevent/newstate
-func (m_ MTRActionsClusterActionFailedEvent) SetNewState(value foundation.INumber) {
+func (m_ MTRActionsClusterActionFailedEvent) SetNewState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
 }
 

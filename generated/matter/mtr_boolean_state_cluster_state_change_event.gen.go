@@ -31,11 +31,15 @@ type _MTRBooleanStateClusterStateChangeEventClass struct {
 // An interface definition for the [MTRBooleanStateClusterStateChangeEvent] class.
 type IMTRBooleanStateClusterStateChangeEvent interface {
 	objectivec.IObject
-	StateValue() foundation.Number
-	SetStateValue(value foundation.INumber)
+	// properties:
+	StateValue() objc.IObject /* cross-framework: NSNumber */
+	SetStateValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBooleanStateClusterStateChangeEvent
 type MTRBooleanStateClusterStateChangeEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBooleanStateClusterStateChangeEvent() MTRBooleanStateClusterStateChan
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateclusterstatechangeevent/statevalue
-func (m_ MTRBooleanStateClusterStateChangeEvent) StateValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stateValue"))
+func (m_ MTRBooleanStateClusterStateChangeEvent) StateValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stateValue"))
 	return rv
 }
 
 
-// SetStateValue sets the value of the stateValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateclusterstatechangeevent/statevalue
-func (m_ MTRBooleanStateClusterStateChangeEvent) SetStateValue(value foundation.INumber) {
+func (m_ MTRBooleanStateClusterStateChangeEvent) SetStateValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStateValue:"), value)
 }
 

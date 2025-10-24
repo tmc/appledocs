@@ -416,7 +416,7 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 		return []string{pattern}, nil
 	}
 
-	// List all .json files in the input directory
+	// List all directories in the input directory (each is a framework)
 	entries, err := os.ReadDir(inputDir)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read input directory: %w", err)
@@ -424,16 +424,10 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 
 	var frameworks []string
 	for _, entry := range entries {
-		if entry.IsDir() {
+		if !entry.IsDir() {
 			continue
 		}
-		name := entry.Name()
-		// Framework JSON files are named like "Foundation.json" or "AppKit.json"
-		if !strings.HasSuffix(name, ".json") {
-			continue
-		}
-		// Extract framework name (remove .json extension)
-		frameworkName := strings.TrimSuffix(name, ".json")
+		frameworkName := entry.Name()
 
 		// Check if it matches the regexp
 		if re.MatchString(frameworkName) {

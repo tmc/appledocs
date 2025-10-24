@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,34 +32,50 @@ type _MovieAccessLogEventClass struct {
 // An interface definition for the [MovieAccessLogEvent] class.
 type IMovieAccessLogEvent interface {
 	objectivec.IObject
-	DurationWatched() foundation.TimeInterval
-	NumberOfBytesTransferred() unsafe.Pointer
-	NumberOfDroppedVideoFrames() int
-	NumberOfSegmentsDownloaded() uint
-	NumberOfServerAddressChanges() uint
-	NumberOfStalls() int
-	PlaybackStartDate() foundation.NSDate
-	PlaybackStartOffset() foundation.TimeInterval
-	SegmentsDownloadedDuration() foundation.TimeInterval
-	ServerAddress() string
-	ImageCropRect() coregraphics.CGRect
-	SetImageCropRect(value coregraphics.CGRect)
+	// properties:
+	ImageCropRect() objc.IObject /* cross-framework: Rect */
+	SetImageCropRect(value objc.IObject /* cross-framework: Rect */)
+	DurationWatched() float64
+	SetDurationWatched(value float64)
 	IndicatedBitrate() float64
 	SetIndicatedBitrate(value float64)
+	NumberOfBytesTransferred() unsafe.Pointer
+	SetNumberOfBytesTransferred(value unsafe.Pointer)
+	NumberOfDroppedVideoFrames() int
+	SetNumberOfDroppedVideoFrames(value int)
+	NumberOfSegmentsDownloaded() int
+	SetNumberOfSegmentsDownloaded(value int)
+	NumberOfServerAddressChanges() int
+	SetNumberOfServerAddressChanges(value int)
+	NumberOfStalls() int
+	SetNumberOfStalls(value int)
 	ObservedBitrate() float64
 	SetObservedBitrate(value float64)
-	PlaybackSessionID() string
-	SetPlaybackSessionID(value string)
-	Uri() string
-	SetUri(value string)
+	PlaybackSessionID() objc.IObject /* cross-framework: NSString */
+	SetPlaybackSessionID(value objc.IObject /* cross-framework: NSString */)
+	PlaybackStartDate() objc.IObject /* cross-framework: Date */
+	SetPlaybackStartDate(value objc.IObject /* cross-framework: Date */)
+	PlaybackStartOffset() float64
+	SetPlaybackStartOffset(value float64)
+	SegmentsDownloadedDuration() float64
+	SetSegmentsDownloadedDuration(value float64)
+	ServerAddress() objc.IObject /* cross-framework: NSString */
+	SetServerAddress(value objc.IObject /* cross-framework: NSString */)
+	Uri() objc.IObject /* cross-framework: NSString */
+	SetUri(value objc.IObject /* cross-framework: NSString */)
 	ShowsRouteButton() bool
 	SetShowsRouteButton(value bool)
+	// methods:
 }
 
 // A single piece of information for a movie access log.
 //
 // For a description of movie access logs, see .
+
+
+// A single piece of information for a movie access log.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent
 type MovieAccessLogEvent struct {
 	objectivec.Object
@@ -104,106 +120,48 @@ func NewMovieAccessLogEvent() MovieAccessLogEvent {
 }
 
 
-// The accumulated duration of the media played, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/durationWatched
-func (m_ MovieAccessLogEvent) DurationWatched() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("durationWatched"))
-	return rv
-}
-
-// The accumulated number of bytes transferred.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/numberOfBytesTransferred
-func (m_ MovieAccessLogEvent) NumberOfBytesTransferred() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberOfBytesTransferred"))
-	return rv
-}
-
-// The total number of dropped video frames.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/numberOfDroppedVideoFrames
-func (m_ MovieAccessLogEvent) NumberOfDroppedVideoFrames() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("numberOfDroppedVideoFrames"))
-	return rv
-}
-
-// A count of media segments downloaded from the web server to your app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/numberOfSegmentsDownloaded
-func (m_ MovieAccessLogEvent) NumberOfSegmentsDownloaded() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("numberOfSegmentsDownloaded"))
-	return rv
-}
-
-// A count of changes to the property over the last uninterrupted period of playback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/numberOfServerAddressChanges
-func (m_ MovieAccessLogEvent) NumberOfServerAddressChanges() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("numberOfServerAddressChanges"))
-	return rv
-}
-
-// The total number of playback stalls encountered.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/numberOfStalls
-func (m_ MovieAccessLogEvent) NumberOfStalls() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("numberOfStalls"))
-	return rv
-}
-
-// The timestamp for when playback began for the movie log access event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/playbackStartDate
-func (m_ MovieAccessLogEvent) PlaybackStartDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("playbackStartDate"))
-	return rv
-}
-
-// An offset into the playlist where the last uninterrupted period of playback began, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/playbackStartOffset
-func (m_ MovieAccessLogEvent) PlaybackStartOffset() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("playbackStartOffset"))
-	return rv
-}
-
-// The accumulated duration of the media downloaded, in seconds.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/segmentsDownloadedDuration
-func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("segmentsDownloadedDuration"))
-	return rv
-}
-
-// The IPv4 or IPv6 address of the web server that was the source of the last delivered media segment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLogEvent/serverAddress
-func (m_ MovieAccessLogEvent) ServerAddress() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serverAddress"))
-	return rv
-}
 
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieAccessLogEvent) ImageCropRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("imageCropRect"))
+func (m_ MovieAccessLogEvent) ImageCropRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("imageCropRect"))
 	return rv
 }
 
 
-// SetImageCropRect sets the value of the imageCropRect property.
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieAccessLogEvent) SetImageCropRect(value coregraphics.CGRect) {
+func (m_ MovieAccessLogEvent) SetImageCropRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
 }
 
+
+// The accumulated duration of the media played, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/durationwatched
+func (m_ MovieAccessLogEvent) DurationWatched() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("durationWatched"))
+	return rv
+}
+
+
+// The accumulated duration of the media played, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/durationwatched
+func (m_ MovieAccessLogEvent) SetDurationWatched(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDurationWatched:"), value)
+}
+
+
 // The throughput required to play the stream, as advertised by the web server, in bits per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
 func (m_ MovieAccessLogEvent) IndicatedBitrate() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("indicatedBitrate"))
@@ -211,17 +169,113 @@ func (m_ MovieAccessLogEvent) IndicatedBitrate() float64 {
 }
 
 
-// SetIndicatedBitrate sets the value of the indicatedBitrate property.
 // The throughput required to play the stream, as advertised by the web server, in bits per second.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/indicatedbitrate
 func (m_ MovieAccessLogEvent) SetIndicatedBitrate(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndicatedBitrate:"), value)
 }
 
+
+// The accumulated number of bytes transferred.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofbytestransferred
+func (m_ MovieAccessLogEvent) NumberOfBytesTransferred() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberOfBytesTransferred"))
+	return rv
+}
+
+
+// The accumulated number of bytes transferred.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofbytestransferred
+func (m_ MovieAccessLogEvent) SetNumberOfBytesTransferred(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfBytesTransferred:"), value)
+}
+
+
+// The total number of dropped video frames.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofdroppedvideoframes
+func (m_ MovieAccessLogEvent) NumberOfDroppedVideoFrames() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfDroppedVideoFrames"))
+	return rv
+}
+
+
+// The total number of dropped video frames.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofdroppedvideoframes
+func (m_ MovieAccessLogEvent) SetNumberOfDroppedVideoFrames(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfDroppedVideoFrames:"), value)
+}
+
+
+// A count of media segments downloaded from the web server to your app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofsegmentsdownloaded
+func (m_ MovieAccessLogEvent) NumberOfSegmentsDownloaded() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfSegmentsDownloaded"))
+	return rv
+}
+
+
+// A count of media segments downloaded from the web server to your app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofsegmentsdownloaded
+func (m_ MovieAccessLogEvent) SetNumberOfSegmentsDownloaded(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfSegmentsDownloaded:"), value)
+}
+
+
+// A count of changes to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofserveraddresschanges
+func (m_ MovieAccessLogEvent) NumberOfServerAddressChanges() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfServerAddressChanges"))
+	return rv
+}
+
+
+// A count of changes to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofserveraddresschanges
+func (m_ MovieAccessLogEvent) SetNumberOfServerAddressChanges(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfServerAddressChanges:"), value)
+}
+
+
+// The total number of playback stalls encountered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofstalls
+func (m_ MovieAccessLogEvent) NumberOfStalls() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfStalls"))
+	return rv
+}
+
+
+// The total number of playback stalls encountered.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/numberofstalls
+func (m_ MovieAccessLogEvent) SetNumberOfStalls(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfStalls:"), value)
+}
+
+
 // The empirical throughput across all media downloaded for the movie player, in bits per second.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
 func (m_ MovieAccessLogEvent) ObservedBitrate() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("observedBitrate"))
@@ -229,53 +283,132 @@ func (m_ MovieAccessLogEvent) ObservedBitrate() float64 {
 }
 
 
-// SetObservedBitrate sets the value of the observedBitrate property.
 // The empirical throughput across all media downloaded for the movie player, in bits per second.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/observedbitrate
 func (m_ MovieAccessLogEvent) SetObservedBitrate(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObservedBitrate:"), value)
 }
 
+
 // A GUID that identifies the playback session to use in HTTP requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
-func (m_ MovieAccessLogEvent) PlaybackSessionID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("playbackSessionID"))
+func (m_ MovieAccessLogEvent) PlaybackSessionID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("playbackSessionID"))
 	return rv
 }
 
 
-// SetPlaybackSessionID sets the value of the playbackSessionID property.
 // A GUID that identifies the playback session to use in HTTP requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbacksessionid
-func (m_ MovieAccessLogEvent) SetPlaybackSessionID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), objc.String(value))
+func (m_ MovieAccessLogEvent) SetPlaybackSessionID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSessionID:"), value)
 }
 
-// The URI of the playback item.
+
+// The timestamp for when playback began for the movie log access event.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
-func (m_ MovieAccessLogEvent) Uri() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("uri"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbackstartdate
+func (m_ MovieAccessLogEvent) PlaybackStartDate() objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("playbackStartDate"))
 	return rv
 }
 
 
-// SetUri sets the value of the uri property.
-// The URI of the playback item.
-
+// The timestamp for when playback began for the movie log access event.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
-func (m_ MovieAccessLogEvent) SetUri(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbackstartdate
+func (m_ MovieAccessLogEvent) SetPlaybackStartDate(value objc.IObject /* cross-framework: Date */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackStartDate:"), value)
 }
+
+
+// An offset into the playlist where the last uninterrupted period of playback began, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbackstartoffset
+func (m_ MovieAccessLogEvent) PlaybackStartOffset() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("playbackStartOffset"))
+	return rv
+}
+
+
+// An offset into the playlist where the last uninterrupted period of playback began, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/playbackstartoffset
+func (m_ MovieAccessLogEvent) SetPlaybackStartOffset(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackStartOffset:"), value)
+}
+
+
+// The accumulated duration of the media downloaded, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/segmentsdownloadedduration
+func (m_ MovieAccessLogEvent) SegmentsDownloadedDuration() float64 {
+	rv := objc.Send[float64](m_.ID, objc.Sel("segmentsDownloadedDuration"))
+	return rv
+}
+
+
+// The accumulated duration of the media downloaded, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/segmentsdownloadedduration
+func (m_ MovieAccessLogEvent) SetSegmentsDownloadedDuration(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSegmentsDownloadedDuration:"), value)
+}
+
+
+// The IPv4 or IPv6 address of the web server that was the source of the last delivered media segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/serveraddress
+func (m_ MovieAccessLogEvent) ServerAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("serverAddress"))
+	return rv
+}
+
+
+// The IPv4 or IPv6 address of the web server that was the source of the last delivered media segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/serveraddress
+func (m_ MovieAccessLogEvent) SetServerAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerAddress:"), value)
+}
+
+
+// The URI of the playback item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
+func (m_ MovieAccessLogEvent) Uri() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("uri"))
+	return rv
+}
+
+
+// The URI of the playback item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslogevent/uri
+func (m_ MovieAccessLogEvent) SetUri(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUri:"), value)
+}
+
 
 // A Boolean value that indicates whether the route button is visible in the volume view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (m_ MovieAccessLogEvent) ShowsRouteButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
@@ -283,10 +416,9 @@ func (m_ MovieAccessLogEvent) ShowsRouteButton() bool {
 }
 
 
-// SetShowsRouteButton sets the value of the showsRouteButton property.
 // A Boolean value that indicates whether the route button is visible in the volume view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (m_ MovieAccessLogEvent) SetShowsRouteButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)

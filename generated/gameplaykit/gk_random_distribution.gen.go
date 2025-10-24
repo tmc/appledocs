@@ -31,14 +31,14 @@ type _RandomDistributionClass struct {
 type IRandomDistribution interface {
 	objectivec.IObject
 	// properties:
-	HighestValue() int /* primitive/slice/pointer. */
-	LowestValue() int /* primitive/slice/pointer. */
-	NumberOfPossibleOutcomes() uint /* primitive/slice/pointer. */
+	HighestValue() int
+	LowestValue() int
+	NumberOfPossibleOutcomes() uint
 	// methods:
-	NextBool() bool /* primitive/slice/pointer. */
-	NextInt() int /* primitive/slice/pointer. */
-	NextIntWithUpperBound(upperBound uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
-	NextUniform() float32 /* primitive/slice/pointer. */
+	NextBool() bool
+	NextInt() int
+	NextIntWithUpperBound(upperBound uint) uint
+	NextUniform() float32
 }
 
 // A generator for random numbers that fall within a specific range and that exhibit a specific distribution over multiple samplings.
@@ -98,7 +98,7 @@ func NewRandomDistribution() RandomDistribution {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(forDieWithSideCount:)
-func NewRandomDistributionForDieWithSideCount(sideCount int /* primitive/slice/pointer. */) RandomDistribution {
+func NewRandomDistributionForDieWithSideCount(sideCount int) RandomDistribution {
 	rv := objc.Send[RandomDistribution](objc.ID(getRandomDistributionClass().class), objc.Sel("distributionForDieWithSideCount:"), sideCount)
 	return rv
 }
@@ -108,7 +108,7 @@ func NewRandomDistributionForDieWithSideCount(sideCount int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(lowestValue:highestValue:)
-func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int /* primitive/slice/pointer. */, highestInclusive int /* primitive/slice/pointer. */) RandomDistribution {
+func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int, highestInclusive int) RandomDistribution {
 	rv := objc.Send[RandomDistribution](objc.ID(getRandomDistributionClass().class), objc.Sel("distributionWithLowestValue:highestValue:"), lowestInclusive, highestInclusive)
 	return rv
 }
@@ -118,7 +118,7 @@ func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(randomSource:lowestValue:highestValue:)
-func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objectivec.IObject, lowestInclusive int /* primitive/slice/pointer. */, highestInclusive int /* primitive/slice/pointer. */) RandomDistribution {
+func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objectivec.IObject, lowestInclusive int, highestInclusive int) RandomDistribution {
 	instance := getRandomDistributionClass().Alloc()
 	rv := objc.Send[RandomDistribution](instance.ID, objc.Sel("initWithRandomSource:lowestValue:highestValue:"), source, lowestInclusive, highestInclusive)
 	rv.Autorelease()
@@ -151,7 +151,7 @@ func (rc _RandomDistributionClass) D6() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(forDieWithSideCount:)
-func (rc _RandomDistributionClass) DistributionForDieWithSideCount(sideCount int /* primitive/slice/pointer. */) unsafe.Pointer {
+func (rc _RandomDistributionClass) DistributionForDieWithSideCount(sideCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("distributionForDieWithSideCount:"), sideCount)
 	return rv
 }
@@ -161,7 +161,7 @@ func (rc _RandomDistributionClass) DistributionForDieWithSideCount(sideCount int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(lowestValue:highestValue:)
-func (rc _RandomDistributionClass) DistributionWithLowestValueHighestValue(lowestInclusive int /* primitive/slice/pointer. */, highestInclusive int /* primitive/slice/pointer. */) unsafe.Pointer {
+func (rc _RandomDistributionClass) DistributionWithLowestValueHighestValue(lowestInclusive int, highestInclusive int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("distributionWithLowestValue:highestValue:"), lowestInclusive, highestInclusive)
 	return rv
 }
@@ -171,7 +171,7 @@ func (rc _RandomDistributionClass) DistributionWithLowestValueHighestValue(lowes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextBool()
-func (r_ RandomDistribution) NextBool() bool /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) NextBool() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("nextBool"))
 	return rv
 }
@@ -181,7 +181,7 @@ func (r_ RandomDistribution) NextBool() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextInt()
-func (r_ RandomDistribution) NextInt() int /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) NextInt() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("nextInt"))
 	return rv
 }
@@ -191,7 +191,7 @@ func (r_ RandomDistribution) NextInt() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextInt(upperBound:)
-func (r_ RandomDistribution) NextIntWithUpperBound(upperBound uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) NextIntWithUpperBound(upperBound uint) uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("nextIntWithUpperBound:"), upperBound)
 	return rv
 }
@@ -201,7 +201,7 @@ func (r_ RandomDistribution) NextIntWithUpperBound(upperBound uint /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/nextUniform()
-func (r_ RandomDistribution) NextUniform() float32 /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) NextUniform() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("nextUniform"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (r_ RandomDistribution) NextUniform() float32 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/highestValue
-func (r_ RandomDistribution) HighestValue() int /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) HighestValue() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("highestValue"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (r_ RandomDistribution) HighestValue() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/lowestValue
-func (r_ RandomDistribution) LowestValue() int /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) LowestValue() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("lowestValue"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (r_ RandomDistribution) LowestValue() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/numberOfPossibleOutcomes
-func (r_ RandomDistribution) NumberOfPossibleOutcomes() uint /* primitive/slice/pointer. */ {
+func (r_ RandomDistribution) NumberOfPossibleOutcomes() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("numberOfPossibleOutcomes"))
 	return rv
 }

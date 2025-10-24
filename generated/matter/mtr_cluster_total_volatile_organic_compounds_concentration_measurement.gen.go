@@ -29,9 +29,13 @@ type _MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurementClass struc
 // An interface definition for the [MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement] class.
 type IMTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement
 type MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement struct {
 	MTRGenericCluster

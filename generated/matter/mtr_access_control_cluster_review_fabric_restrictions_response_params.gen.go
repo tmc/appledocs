@@ -31,11 +31,15 @@ type _MTRAccessControlClusterReviewFabricRestrictionsResponseParamsClass struct 
 // An interface definition for the [MTRAccessControlClusterReviewFabricRestrictionsResponseParams] class.
 type IMTRAccessControlClusterReviewFabricRestrictionsResponseParams interface {
 	objectivec.IObject
-	Token() foundation.Number
-	SetToken(value foundation.INumber)
+	// properties:
+	Token() objc.IObject /* cross-framework: NSNumber */
+	SetToken(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams
 type MTRAccessControlClusterReviewFabricRestrictionsResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParams() MTRAcces
 
 
 
-
 // Initialize an MTRAccessControlClusterReviewFabricRestrictionsResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/init(responseValue:)
-func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRAccessControlClusterReviewFabricRestrictionsResponseParams {
+func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRAccessControlClusterReviewFabricRestrictionsResponseParams {
 	instance := getMTRAccessControlClusterReviewFabricRestrictionsResponseParamsClass().Alloc()
 	rv := objc.Send[MTRAccessControlClusterReviewFabricRestrictionsResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsResponseParamsWithRespons
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/token
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("token"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("token"))
 	return rv
 }
 
 
-// SetToken sets the value of the token property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/token
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value foundation.INumber) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
 

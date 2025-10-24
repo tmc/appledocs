@@ -32,8 +32,8 @@ type IGlassEffectContainerView interface {
 	// properties:
 	ContentView() IView
 	SetContentView(value IView)
-	Spacing() float64 /* primitive/slice/pointer. */
-	SetSpacing(value float64 /* primitive/slice/pointer. */)
+	Spacing() float64
+	SetSpacing(value float64)
 	// methods:
 }
 
@@ -113,7 +113,7 @@ func (g_ GlassEffectContainerView) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-func (g_ GlassEffectContainerView) Spacing() float64 /* primitive/slice/pointer. */ {
+func (g_ GlassEffectContainerView) Spacing() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("spacing"))
 	return rv
 }
@@ -123,7 +123,7 @@ func (g_ GlassEffectContainerView) Spacing() float64 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-func (g_ GlassEffectContainerView) SetSpacing(value float64 /* primitive/slice/pointer. */) {
+func (g_ GlassEffectContainerView) SetSpacing(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpacing:"), value)
 }
 

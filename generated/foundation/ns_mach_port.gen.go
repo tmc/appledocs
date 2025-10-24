@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MachPort] class.
@@ -30,9 +31,12 @@ type _MachPortClass struct {
 type IMachPort interface {
 	IPort
 	// properties:
-	MachPort() unsafe.Pointer
-	SetMachPort(value unsafe.Pointer)
+	MachPort() uint32 /* not a class type */
 	// methods:
+	Delegate() objc.ID
+	RemoveFromRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */)
+	ScheduleInRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */)
+	SetDelegate(anObject objectivec.IObject)
 }
 
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).
@@ -90,23 +94,95 @@ func NewMachPort() MachPort {
 
 
 
-// The Mach port used by the receiver, represented as an integer.
+// Initializes a newly allocated object with a given Mach port.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmachport/machport
-func (m_ MachPort) MachPort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("machPort"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:)
+func NewMachPortWithMachPort(machPort uint32 /* not a class type */) MachPort {
+	instance := getMachPortClass().Alloc()
+	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:"), machPort)
+	rv.Autorelease()
 	return rv
 }
 
 
+// Initializes a newly allocated object with a given Mach port and the specified options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/init(machPort:options:)
+func NewMachPortWithMachPortOptions(machPort uint32 /* not a class type */, f MachPortOptions) MachPort {
+	instance := getMachPortClass().Alloc()
+	rv := objc.Send[MachPort](instance.ID, objc.Sel("initWithMachPort:options:"), machPort, f)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a port object configured with the given Mach port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:)
+func (mc _MachPortClass) PortWithMachPort(machPort uint32 /* not a class type */) IPort {
+	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:"), machPort)
+	return rv
+}
+
+
+// Creates and returns a port object configured with the specified options and the given Mach port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/port(withMachPort:options:)
+func (mc _MachPortClass) PortWithMachPortOptions(machPort uint32 /* not a class type */, f MachPortOptions) IPort {
+	rv := objc.Send[Port](objc.ID(mc.class), objc.Sel("portWithMachPort:options:"), machPort, f)
+	return rv
+}
+
+
+// Returns the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/delegate()
+func (m_ MachPort) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Removes the receiver from the run loop mode of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/remove(from:forMode:)
+func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeFromRunLoop:forMode:"), runLoop, mode)
+}
+
+
+// Schedules the receiver into the run loop mode of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/schedule(in:forMode:)
+func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("scheduleInRunLoop:forMode:"), runLoop, mode)
+}
+
+
+// Sets the receiver’s delegate to a given object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/setDelegate(_:)
+func (m_ MachPort) SetDelegate(anObject objectivec.IObject) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), anObject)
+}
+
+
 // The Mach port used by the receiver, represented as an integer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmachport/machport
-func (m_ MachPort) SetMachPort(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMachPort:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/machPort
+func (m_ MachPort) MachPort() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](m_.ID, objc.Sel("machPort"))
+	return rv
 }
-
 
 

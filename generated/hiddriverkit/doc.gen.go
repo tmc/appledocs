@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to HIDDriverKit without requiring cgo.
-
-// Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HIDDriverKit
+// See: https://developer.apple.com/documentation/HIDDriverKit
 package hiddriverkit
 
 import (

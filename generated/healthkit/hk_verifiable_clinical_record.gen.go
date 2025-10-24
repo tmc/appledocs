@@ -31,22 +31,22 @@ type _HKVerifiableClinicalRecordClass struct {
 type IHKVerifiableClinicalRecord interface {
 	IHKSample
 	// properties:
-	DataRepresentation() foundation.objc.IObject /* cross-framework: Data */
-	SetDataRepresentation(value foundation.objc.IObject /* cross-framework: Data */)
-	ExpirationDate() foundation.objc.IObject /* cross-framework: Date */
-	SetExpirationDate(value foundation.objc.IObject /* cross-framework: Date */)
-	IssuedDate() foundation.objc.IObject /* cross-framework: Date */
-	SetIssuedDate(value foundation.objc.IObject /* cross-framework: Date */)
-	IssuerIdentifier() string /* primitive/slice/pointer. */
-	SetIssuerIdentifier(value string /* primitive/slice/pointer. */)
-	ItemNames() string /* primitive/slice/pointer. */
-	SetItemNames(value string /* primitive/slice/pointer. */)
-	JwsRepresentation() foundation.objc.IObject /* cross-framework: Data */
-	SetJwsRepresentation(value foundation.objc.IObject /* cross-framework: Data */)
-	RecordTypes() string /* primitive/slice/pointer. */
-	SetRecordTypes(value string /* primitive/slice/pointer. */)
-	RelevantDate() foundation.objc.IObject /* cross-framework: Date */
-	SetRelevantDate(value foundation.objc.IObject /* cross-framework: Date */)
+	DataRepresentation() objc.IObject /* cross-framework: Data */
+	SetDataRepresentation(value objc.IObject /* cross-framework: Data */)
+	ExpirationDate() objc.IObject /* cross-framework: Date */
+	SetExpirationDate(value objc.IObject /* cross-framework: Date */)
+	IssuedDate() objc.IObject /* cross-framework: Date */
+	SetIssuedDate(value objc.IObject /* cross-framework: Date */)
+	IssuerIdentifier() objc.IObject /* cross-framework: NSString */
+	SetIssuerIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ItemNames() objc.IObject /* cross-framework: NSString */
+	SetItemNames(value objc.IObject /* cross-framework: NSString */)
+	JwsRepresentation() objc.IObject /* cross-framework: Data */
+	SetJwsRepresentation(value objc.IObject /* cross-framework: Data */)
+	RecordTypes() objc.IObject /* cross-framework: NSString */
+	SetRecordTypes(value objc.IObject /* cross-framework: NSString */)
+	RelevantDate() objc.IObject /* cross-framework: Date */
+	SetRelevantDate(value objc.IObject /* cross-framework: Date */)
 	SourceType() HKVerifiableClinicalRecordSourceType /* typedef */
 	SetSourceType(value HKVerifiableClinicalRecordSourceType /* typedef */)
 	Subject() IHKVerifiableClinicalRecordSubject
@@ -113,7 +113,7 @@ func NewHKVerifiableClinicalRecord() HKVerifiableClinicalRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/datarepresentation
-func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.objc.IObject /* cross-framework: Data */ {
+func (h_ HKVerifiableClinicalRecord) DataRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
@@ -123,7 +123,7 @@ func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/datarepresentation
-func (h_ HKVerifiableClinicalRecord) SetDataRepresentation(value foundation.objc.IObject /* cross-framework: Data */) {
+func (h_ HKVerifiableClinicalRecord) SetDataRepresentation(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDataRepresentation:"), value)
 }
 
@@ -132,7 +132,7 @@ func (h_ HKVerifiableClinicalRecord) SetDataRepresentation(value foundation.objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/expirationdate
-func (h_ HKVerifiableClinicalRecord) ExpirationDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKVerifiableClinicalRecord) ExpirationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
 }
@@ -142,7 +142,7 @@ func (h_ HKVerifiableClinicalRecord) ExpirationDate() foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/expirationdate
-func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
@@ -151,7 +151,7 @@ func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.objc.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-func (h_ HKVerifiableClinicalRecord) IssuedDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKVerifiableClinicalRecord) IssuedDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("issuedDate"))
 	return rv
 }
@@ -161,7 +161,7 @@ func (h_ HKVerifiableClinicalRecord) IssuedDate() foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuedDate:"), value)
 }
 
@@ -170,8 +170,8 @@ func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("issuerIdentifier"))
+func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("issuerIdentifier"))
 	return rv
 }
 
@@ -180,8 +180,8 @@ func (h_ HKVerifiableClinicalRecord) IssuerIdentifier() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueridentifier
-func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), objc.String(value))
+func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuerIdentifier:"), value)
 }
 
 
@@ -189,8 +189,8 @@ func (h_ HKVerifiableClinicalRecord) SetIssuerIdentifier(value string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) ItemNames() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("itemNames"))
+func (h_ HKVerifiableClinicalRecord) ItemNames() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("itemNames"))
 	return rv
 }
 
@@ -199,8 +199,8 @@ func (h_ HKVerifiableClinicalRecord) ItemNames() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/itemnames
-func (h_ HKVerifiableClinicalRecord) SetItemNames(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), objc.String(value))
+func (h_ HKVerifiableClinicalRecord) SetItemNames(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setItemNames:"), value)
 }
 
 
@@ -208,7 +208,7 @@ func (h_ HKVerifiableClinicalRecord) SetItemNames(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/jwsrepresentation
-func (h_ HKVerifiableClinicalRecord) JwsRepresentation() foundation.objc.IObject /* cross-framework: Data */ {
+func (h_ HKVerifiableClinicalRecord) JwsRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("jwsRepresentation"))
 	return rv
 }
@@ -218,7 +218,7 @@ func (h_ HKVerifiableClinicalRecord) JwsRepresentation() foundation.objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/jwsrepresentation
-func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.objc.IObject /* cross-framework: Data */) {
+func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setJwsRepresentation:"), value)
 }
 
@@ -227,8 +227,8 @@ func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) RecordTypes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("recordTypes"))
+func (h_ HKVerifiableClinicalRecord) RecordTypes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("recordTypes"))
 	return rv
 }
 
@@ -237,8 +237,8 @@ func (h_ HKVerifiableClinicalRecord) RecordTypes() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
-func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), value)
 }
 
 
@@ -246,7 +246,7 @@ func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
-func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKVerifiableClinicalRecord) RelevantDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("relevantDate"))
 	return rv
 }
@@ -256,7 +256,7 @@ func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
-func (h_ HKVerifiableClinicalRecord) SetRelevantDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKVerifiableClinicalRecord) SetRelevantDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRelevantDate:"), value)
 }
 

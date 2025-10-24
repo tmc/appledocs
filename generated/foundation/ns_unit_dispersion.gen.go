@@ -88,4 +88,23 @@ func NewUnitDispersion() UnitDispersion {
 
 
 
+// The parts per million unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
+func (uc _UnitDispersionClass) PartsPerMillion() UnitDispersion {
+	rv := objc.Send[UnitDispersion](objc.ID(uc.class), objc.Sel("partsPerMillion"))
+	return rv
+}
+
+// The parts per million unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
+func (u_ UnitDispersion) PartsPerMillion() IUnitDispersion {
+	rv := objc.Send[UnitDispersion](u_.ID, objc.Sel("partsPerMillion"))
+	return rv
+}
+
+
 

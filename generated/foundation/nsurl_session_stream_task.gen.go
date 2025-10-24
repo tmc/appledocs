@@ -30,9 +30,15 @@ type _URLSessionStreamTaskClass struct {
 type IURLSessionStreamTask interface {
 	IURLSessionTask
 	// properties:
-	HttpShouldUsePipelining() bool /* primitive/slice/pointer. */
-	SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */)
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
 	// methods:
+	CaptureStreams()
+	CloseRead()
+	CloseWrite()
+	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout float64, completionHandler unsafe.Pointer)
+	StartSecureConnection()
+	WriteDataTimeoutCompletionHandler(data IData, timeout float64, completionHandler unsafe.Pointer)
 }
 
 // A URL session task that is stream-based.
@@ -90,11 +96,66 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 
 
 
+
+// Completes any already enqueued reads and writes, and then invokes the delegate message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/captureStreams()
+func (u_ URLSessionStreamTask) CaptureStreams() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("captureStreams"))
+}
+
+
+// Completes any enqueued reads and writes, and then closes the read side of the underlying socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/closeRead()
+func (u_ URLSessionStreamTask) CloseRead() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("closeRead"))
+}
+
+
+// Completes any enqueued reads and writes, and then closes the write side of the underlying socket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/closeWrite()
+func (u_ URLSessionStreamTask) CloseWrite() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("closeWrite"))
+}
+
+
+// Asynchronously reads a number of bytes from the stream, and calls a handler upon completion.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/readData(ofMinLength:maxLength:timeout:completionHandler:)
+func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout float64, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("readDataOfMinLength:maxLength:timeout:completionHandler:"), minBytes, maxBytes, timeout, completionHandler)
+}
+
+
+// Completes any enqueued reads and writes, and establishes a secure connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/startSecureConnection()
+func (u_ URLSessionStreamTask) StartSecureConnection() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("startSecureConnection"))
+}
+
+
+// Asynchronously writes the specified data to the stream, and calls a handler upon completion.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
+func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data IData, timeout float64, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
+}
+
+
 // A Boolean value that determines whether the session should use HTTP pipelining.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
-func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool /* primitive/slice/pointer. */ {
+func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
 }
@@ -104,9 +165,8 @@ func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
-func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */) {
+func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
 }
-
 
 

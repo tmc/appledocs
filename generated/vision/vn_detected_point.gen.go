@@ -29,11 +29,18 @@ type _DetectedPointClass struct {
 // An interface definition for the [DetectedPoint] class.
 type IDetectedPoint interface {
 	IPoint
-	Confidence() Confidence
+	// properties:
+	Confidence() Confidence /* not a class type */
+	SetConfidence(value Confidence /* not a class type */)
+	// methods:
 }
 
 // An object that represents a normalized point in an image, along with a confidence value.
+
+
+// An object that represents a normalized point in an image, along with a confidence value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectedPoint
 type DetectedPoint struct {
 	Point
@@ -80,12 +87,23 @@ func NewDetectedPoint() DetectedPoint {
 }
 
 
+
 // A confidence score that indicates the detected point’s accuracy.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectedPoint/confidence
-func (d_ DetectedPoint) Confidence() Confidence {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedpoint/confidence
+func (d_ DetectedPoint) Confidence() Confidence /* not a class type */ {
 	rv := objc.Send[Confidence](d_.ID, objc.Sel("confidence"))
 	return rv
+}
+
+
+// A confidence score that indicates the detected point’s accuracy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedpoint/confidence
+func (d_ DetectedPoint) SetConfidence(value Confidence /* not a class type */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setConfidence:"), value)
 }
 
 

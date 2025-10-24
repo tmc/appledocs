@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,14 @@ type _ABRecordClass struct {
 type IABRecord interface {
 	objectivec.IObject
 	// properties:
-	DisplayName() string /* primitive/slice/pointer. */
-	UniqueId() string /* primitive/slice/pointer. */
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	UniqueId() objc.IObject /* cross-framework: NSString */
 	// methods:
-	IsReadOnly() bool /* primitive/slice/pointer. */
-	RemoveValueForProperty(property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetValueForProperty(value objectivec.IObject, property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetValueForPropertyError(value objectivec.IObject, property string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ValueForProperty(property string /* primitive/slice/pointer. */) objc.ID
+	IsReadOnly() bool
+	RemoveValueForProperty(property objc.IObject /* cross-framework: NSString */) bool
+	SetValueForProperty(value objectivec.IObject, property objc.IObject /* cross-framework: NSString */) bool
+	SetValueForPropertyError(value objectivec.IObject, property objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
+	ValueForProperty(property objc.IObject /* cross-framework: NSString */) objc.ID
 }
 
 // An abstract class that defines the common properties for all Address Book records.
@@ -111,7 +112,7 @@ func NewABRecordWithAddressBook(addressBook IABAddressBook) ABRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/isReadOnly()
-func (a_ ABRecord) IsReadOnly() bool /* primitive/slice/pointer. */ {
+func (a_ ABRecord) IsReadOnly() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isReadOnly"))
 	return rv
 }
@@ -121,8 +122,8 @@ func (a_ ABRecord) IsReadOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/removeValue(forProperty:)
-func (a_ ABRecord) RemoveValueForProperty(property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueForProperty:"), objc.String(property))
+func (a_ ABRecord) RemoveValueForProperty(property objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueForProperty:"), property)
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (a_ ABRecord) RemoveValueForProperty(property string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:)
-func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:"), value, objc.String(property))
+func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:"), value, property)
 	return rv
 }
 
@@ -141,8 +142,8 @@ func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:error:)
-func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:error:"), value, objc.String(property), error_)
+func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:error:"), value, property, error_)
 	return rv
 }
 
@@ -151,8 +152,8 @@ func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/value(forProperty:)
-func (a_ ABRecord) ValueForProperty(property string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForProperty:"), objc.String(property))
+func (a_ ABRecord) ValueForProperty(property objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForProperty:"), property)
 	return rv
 }
 
@@ -161,8 +162,8 @@ func (a_ ABRecord) ValueForProperty(property string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/displayName
-func (a_ ABRecord) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("displayName"))
+func (a_ ABRecord) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (a_ ABRecord) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/uniqueId
-func (a_ ABRecord) UniqueId() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("uniqueId"))
+func (a_ ABRecord) UniqueId() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("uniqueId"))
 	return rv
 }
 

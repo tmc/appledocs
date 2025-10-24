@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FSBlockDeviceResource] class.
@@ -30,17 +31,17 @@ type _FSBlockDeviceResourceClass struct {
 type IFSBlockDeviceResource interface {
 	IFSResource
 	// properties:
-	BSDName() string /* primitive/slice/pointer. */
-	BlockCount() uint64 /* primitive/slice/pointer. */
-	SetBlockCount(value uint64 /* primitive/slice/pointer. */)
-	BlockSize() uint64 /* primitive/slice/pointer. */
-	SetBlockSize(value uint64 /* primitive/slice/pointer. */)
-	IsWritable() bool /* primitive/slice/pointer. */
-	SetIsWritable(value bool /* primitive/slice/pointer. */)
-	PhysicalBlockSize() uint64 /* primitive/slice/pointer. */
-	SetPhysicalBlockSize(value uint64 /* primitive/slice/pointer. */)
+	BSDName() objc.IObject /* cross-framework: NSString */
+	BlockCount() uint64
+	SetBlockCount(value uint64)
+	BlockSize() uint64
+	SetBlockSize(value uint64)
+	IsWritable() bool
+	SetIsWritable(value bool)
+	PhysicalBlockSize() uint64
+	SetPhysicalBlockSize(value uint64)
 	// methods:
-	MetadataPurgeError(rangesToPurge []FSMetadataRange /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	MetadataPurgeError(rangesToPurge []IFSMetadataRange, error_ unsafe.Pointer) bool
 }
 
 // A resource that represents a block storage disk partition.
@@ -102,7 +103,7 @@ func NewFSBlockDeviceResource() FSBlockDeviceResource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)
-func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []FSMetadataRange /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []IFSMetadataRange, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataPurge:error:"), rangesToPurge, error_)
 	return rv
 }
@@ -112,8 +113,8 @@ func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []FSMetadataRan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/bsdName
-func (f_ FSBlockDeviceResource) BSDName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("BSDName"))
+func (f_ FSBlockDeviceResource) BSDName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("BSDName"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (f_ FSBlockDeviceResource) BSDName() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blockcount
-func (f_ FSBlockDeviceResource) BlockCount() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSBlockDeviceResource) BlockCount() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("blockCount"))
 	return rv
 }
@@ -132,7 +133,7 @@ func (f_ FSBlockDeviceResource) BlockCount() uint64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blockcount
-func (f_ FSBlockDeviceResource) SetBlockCount(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSBlockDeviceResource) SetBlockCount(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockCount:"), value)
 }
 
@@ -141,7 +142,7 @@ func (f_ FSBlockDeviceResource) SetBlockCount(value uint64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blocksize
-func (f_ FSBlockDeviceResource) BlockSize() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSBlockDeviceResource) BlockSize() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("blockSize"))
 	return rv
 }
@@ -151,7 +152,7 @@ func (f_ FSBlockDeviceResource) BlockSize() uint64 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blocksize
-func (f_ FSBlockDeviceResource) SetBlockSize(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSBlockDeviceResource) SetBlockSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockSize:"), value)
 }
 
@@ -160,7 +161,7 @@ func (f_ FSBlockDeviceResource) SetBlockSize(value uint64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/iswritable
-func (f_ FSBlockDeviceResource) IsWritable() bool /* primitive/slice/pointer. */ {
+func (f_ FSBlockDeviceResource) IsWritable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isWritable"))
 	return rv
 }
@@ -170,7 +171,7 @@ func (f_ FSBlockDeviceResource) IsWritable() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/iswritable
-func (f_ FSBlockDeviceResource) SetIsWritable(value bool /* primitive/slice/pointer. */) {
+func (f_ FSBlockDeviceResource) SetIsWritable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
 }
 
@@ -179,7 +180,7 @@ func (f_ FSBlockDeviceResource) SetIsWritable(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/physicalblocksize
-func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("physicalBlockSize"))
 	return rv
 }
@@ -189,7 +190,7 @@ func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/physicalblocksize
-func (f_ FSBlockDeviceResource) SetPhysicalBlockSize(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSBlockDeviceResource) SetPhysicalBlockSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPhysicalBlockSize:"), value)
 }
 

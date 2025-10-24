@@ -17,7 +17,7 @@ import (
 var (
 	_PGCopyOptionROMURL func() unsafe.Pointer
 	_PGCreateDeviceWithDescriptor func(unsafe.Pointer) unsafe.Pointer
-	_PGMaxDisplayPortCount func() unsafe.Pointer
+	_PGMaxDisplayPortCount func() uint32
 	_PGNewDeviceWithDescriptor func(unsafe.Pointer) unsafe.Pointer
 )
 
@@ -46,45 +46,45 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Copies the URL of the ROM image to use on the guest graphics device. [Full Topic]
+// Copies the URL of the ROM image to use on the guest graphics device.
 //
 // Added in macOS 11.0.
+// Copies the URL of the ROM image to use on the guest graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()
 func PGCopyOptionROMURL() unsafe.Pointer {
 	return _PGCopyOptionROMURL()
-	}
+}
 
-
-// PGCreateDeviceWithDescriptor is a ParavirtualizedGraphics function. [Full Topic]
+// PGCreateDeviceWithDescriptor is a ParavirtualizedGraphics function.
 //
 // Added in macOS 15.2.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)
 func PGCreateDeviceWithDescriptor(descriptor unsafe.Pointer) unsafe.Pointer {
 	return _PGCreateDeviceWithDescriptor(descriptor)
-	}
+}
 
-
-// PGMaxDisplayPortCount is a ParavirtualizedGraphics function. [Full Topic]
+// PGMaxDisplayPortCount is a ParavirtualizedGraphics function.
 //
 // Added in macOS 13.0.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGMaxDisplayPortCount()
-func PGMaxDisplayPortCount() unsafe.Pointer {
+func PGMaxDisplayPortCount() uint32 {
 	return _PGMaxDisplayPortCount()
-	}
+}
 
-
-// Creates a new paravirtualized graphics device. [Full Topic]
+// Creates a new paravirtualized graphics device.
 //
 // Added in macOS 11.0.
+// Creates a new paravirtualized graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)
 func PGNewDeviceWithDescriptor(descriptor unsafe.Pointer) unsafe.Pointer {
 	return _PGNewDeviceWithDescriptor(descriptor)
-	}
-
+}
 
 
 

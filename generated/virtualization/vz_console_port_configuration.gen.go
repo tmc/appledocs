@@ -30,14 +30,20 @@ type _VZConsolePortConfigurationClass struct {
 // An interface definition for the [VZConsolePortConfiguration] class.
 type IVZConsolePortConfiguration interface {
 	objectivec.IObject
-	Attachment() VZSerialPortAttachment
+	// properties:
+	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
+	// methods:
 }
 
 // The base class for a console port configuration.
 //
 // Don’t instantiate directly, instead use one of its subclasses like .
+
+
+// The base class for a console port configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration
 type VZConsolePortConfiguration struct {
 	objectivec.Object
@@ -82,19 +88,20 @@ func NewVZConsolePortConfiguration() VZConsolePortConfiguration {
 }
 
 
+
 // The serial port attachment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration/attachment
-func (v_ VZConsolePortConfiguration) Attachment() VZSerialPortAttachment {
+func (v_ VZConsolePortConfiguration) Attachment() IVZSerialPortAttachment {
 	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
 
-// SetAttachment sets the value of the attachment property.
 // The serial port attachment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration/attachment
 func (v_ VZConsolePortConfiguration) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)

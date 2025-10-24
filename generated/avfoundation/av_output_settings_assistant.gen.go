@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,12 +39,12 @@ type IOutputSettingsAssistant interface {
 	SetOutputFileType(value objc.IObject /* cross-framework: FileType */)
 	SourceAudioFormat() AudioFormatDescription /* not a class type */
 	SetSourceAudioFormat(value AudioFormatDescription /* not a class type */)
-	SourceVideoAverageFrameDuration() Time /* not a class type */
-	SetSourceVideoAverageFrameDuration(value Time /* not a class type */)
+	SourceVideoAverageFrameDuration() objc.IObject /* cross-framework: Time */
+	SetSourceVideoAverageFrameDuration(value objc.IObject /* cross-framework: Time */)
 	SourceVideoFormat() VideoFormatDescription /* not a class type */
 	SetSourceVideoFormat(value VideoFormatDescription /* not a class type */)
-	SourceVideoMinFrameDuration() Time /* not a class type */
-	SetSourceVideoMinFrameDuration(value Time /* not a class type */)
+	SourceVideoMinFrameDuration() objc.IObject /* cross-framework: Time */
+	SetSourceVideoMinFrameDuration(value objc.IObject /* cross-framework: Time */)
 	VideoSettings() objc.IObject /* cross-framework: NSString */
 	SetVideoSettings(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -163,8 +164,8 @@ func (o_ OutputSettingsAssistant) SetSourceAudioFormat(value AudioFormatDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
-func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](o_.ID, objc.Sel("sourceVideoAverageFrameDuration"))
+func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](o_.ID, objc.Sel("sourceVideoAverageFrameDuration"))
 	return rv
 }
 
@@ -173,7 +174,7 @@ func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() Time /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
-func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value Time /* not a class type */) {
+func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoAverageFrameDuration:"), value)
 }
 
@@ -201,8 +202,8 @@ func (o_ OutputSettingsAssistant) SetSourceVideoFormat(value VideoFormatDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
-func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](o_.ID, objc.Sel("sourceVideoMinFrameDuration"))
+func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](o_.ID, objc.Sel("sourceVideoMinFrameDuration"))
 	return rv
 }
 
@@ -211,7 +212,7 @@ func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() Time /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
-func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value Time /* not a class type */) {
+func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoMinFrameDuration:"), value)
 }
 

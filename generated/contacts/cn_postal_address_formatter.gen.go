@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNPostalAddressFormatter] class.
@@ -30,22 +29,22 @@ type _CNPostalAddressFormatterClass struct {
 
 // An interface definition for the [CNPostalAddressFormatter] class.
 type ICNPostalAddressFormatter interface {
-	foundation.IFormatter
+	IFormatter
 	// properties:
 	Style() CNPostalAddressFormatterStyle
 	SetStyle(value CNPostalAddressFormatterStyle)
-	CNPostalAddressCityKey() string /* primitive/slice/pointer. */
-	CNPostalAddressCountryKey() string /* primitive/slice/pointer. */
-	CNPostalAddressISOCountryCodeKey() string /* primitive/slice/pointer. */
-	CNPostalAddressLocalizedPropertyNameAttribute() string /* primitive/slice/pointer. */
-	CNPostalAddressPostalCodeKey() string /* primitive/slice/pointer. */
-	CNPostalAddressPropertyAttribute() string /* primitive/slice/pointer. */
-	CNPostalAddressStateKey() string /* primitive/slice/pointer. */
-	CNPostalAddressStreetKey() string /* primitive/slice/pointer. */
-	CNPostalAddressSubAdministrativeAreaKey() string /* primitive/slice/pointer. */
-	CNPostalAddressSubLocalityKey() string /* primitive/slice/pointer. */
+	CNPostalAddressCityKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressCountryKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressISOCountryCodeKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressLocalizedPropertyNameAttribute() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressPostalCodeKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressPropertyAttribute() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressStateKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressStreetKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressSubAdministrativeAreaKey() objc.IObject /* cross-framework: NSString */
+	CNPostalAddressSubLocalityKey() objc.IObject /* cross-framework: NSString */
 	// methods:
-	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
+	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */
 	StringFromPostalAddress(postalAddress ICNPostalAddress) objc.IObject /* cross-framework: String */
 }
 
@@ -59,7 +58,7 @@ type ICNPostalAddressFormatter interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter
 type CNPostalAddressFormatter struct {
-	foundation.Formatter
+	Formatter
 }
 
 // CNPostalAddressFormatterFrom constructs a [CNPostalAddressFormatter] from an unsafe.Pointer.
@@ -67,7 +66,7 @@ type CNPostalAddressFormatter struct {
 // An object that you use to format a contact’s postal addresses.
 func CNPostalAddressFormatterFrom(ptr unsafe.Pointer) CNPostalAddressFormatter {
 	return CNPostalAddressFormatter{
-		Formatter: foundation.FormatterFrom(ptr),
+		Formatter: FormatterFrom(ptr),
 	}
 }
 
@@ -108,8 +107,8 @@ func NewCNPostalAddressFormatter() CNPostalAddressFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/attributedString(from:style:withDefaultAttributes:)
-func (cc _CNPostalAddressFormatterClass) AttributedStringFromPostalAddressStyleWithDefaultAttributes(postalAddress ICNPostalAddress, style CNPostalAddressFormatterStyle, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromPostalAddress:style:withDefaultAttributes:"), postalAddress, style, attributes)
+func (cc _CNPostalAddressFormatterClass) AttributedStringFromPostalAddressStyleWithDefaultAttributes(postalAddress ICNPostalAddress, style CNPostalAddressFormatterStyle, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromPostalAddress:style:withDefaultAttributes:"), postalAddress, style, attributes)
 	return rv
 }
 
@@ -119,7 +118,7 @@ func (cc _CNPostalAddressFormatterClass) AttributedStringFromPostalAddressStyleW
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/string(from:style:)
 func (cc _CNPostalAddressFormatterClass) StringFromPostalAddressStyle(postalAddress ICNPostalAddress, style CNPostalAddressFormatterStyle) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(cc.class), objc.Sel("stringFromPostalAddress:style:"), postalAddress, style)
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("stringFromPostalAddress:style:"), postalAddress, style)
 	return rv
 }
 
@@ -128,8 +127,8 @@ func (cc _CNPostalAddressFormatterClass) StringFromPostalAddressStyle(postalAddr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/attributedString(from:withDefaultAttributes:)
-func (c_ CNPostalAddressFormatter) AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringFromPostalAddress:withDefaultAttributes:"), postalAddress, attributes)
+func (c_ CNPostalAddressFormatter) AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objc.IObject /* cross-framework: NSDictionary */) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringFromPostalAddress:withDefaultAttributes:"), postalAddress, attributes)
 	return rv
 }
 
@@ -139,7 +138,7 @@ func (c_ CNPostalAddressFormatter) AttributedStringFromPostalAddressWithDefaultA
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatter/string(from:)
 func (c_ CNPostalAddressFormatter) StringFromPostalAddress(postalAddress ICNPostalAddress) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](c_.ID, objc.Sel("stringFromPostalAddress:"), postalAddress)
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("stringFromPostalAddress:"), postalAddress)
 	return rv
 }
 
@@ -167,8 +166,8 @@ func (c_ CNPostalAddressFormatter) SetStyle(value CNPostalAddressFormatterStyle)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCityKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressCityKey"))
 	return rv
 }
 
@@ -177,8 +176,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressCityKey() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressCountryKey"))
 	return rv
 }
 
@@ -187,8 +186,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressCountryKey() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressISOCountryCodeKey"))
 	return rv
 }
 
@@ -197,8 +196,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressISOCountryCodeKey() string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressLocalizedPropertyNameAttribute"))
 	return rv
 }
 
@@ -207,8 +206,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressLocalizedPropertyNameAttribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressPostalCodeKey"))
 	return rv
 }
 
@@ -217,8 +216,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressPostalCodeKey() string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute
-func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressPropertyAttribute"))
 	return rv
 }
 
@@ -227,8 +226,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressPropertyAttribute() string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey
-func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStateKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressStateKey"))
 	return rv
 }
 
@@ -237,8 +236,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressStateKey() string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey
-func (c_ CNPostalAddressFormatter) CNPostalAddressStreetKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressStreetKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressStreetKey"))
 	return rv
 }
 
@@ -247,8 +246,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressStreetKey() string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssubadministrativeareakey
-func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubAdministrativeAreaKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressSubAdministrativeAreaKey"))
 	return rv
 }
 
@@ -257,8 +256,8 @@ func (c_ CNPostalAddressFormatter) CNPostalAddressSubAdministrativeAreaKey() str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey
-func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
+func (c_ CNPostalAddressFormatter) CNPostalAddressSubLocalityKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNPostalAddressSubLocalityKey"))
 	return rv
 }
 

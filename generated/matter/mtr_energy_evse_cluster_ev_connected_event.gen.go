@@ -31,11 +31,15 @@ type _MTREnergyEVSEClusterEVConnectedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEVConnectedEvent] class.
 type IMTREnergyEVSEClusterEVConnectedEvent interface {
 	objectivec.IObject
-	SessionID() foundation.Number
-	SetSessionID(value foundation.INumber)
+	// properties:
+	SessionID() objc.IObject /* cross-framework: NSNumber */
+	SetSessionID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent
 type MTREnergyEVSEClusterEVConnectedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTREnergyEVSEClusterEVConnectedEvent() MTREnergyEVSEClusterEVConnectedEv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
 
-// SetSessionID sets the value of the sessionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 

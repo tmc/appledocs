@@ -30,9 +30,13 @@ type _discoveryModuleEntriesClass struct {
 // An interface definition for the [discoveryModuleEntries] class.
 type IdiscoveryModuleEntries interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/discoveryModuleEntries-c.ivar
 type discoveryModuleEntries struct {
 	objectivec.Object

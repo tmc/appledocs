@@ -31,13 +31,17 @@ type _MTRThreadNetworkDiagnosticsClusterSecurityPolicyClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterSecurityPolicy] class.
 type IMTRThreadNetworkDiagnosticsClusterSecurityPolicy interface {
 	objectivec.IObject
-	Flags() foundation.Number
-	SetFlags(value foundation.INumber)
-	RotationTime() foundation.Number
-	SetRotationTime(value foundation.INumber)
+	// properties:
+	Flags() objc.IObject /* cross-framework: NSNumber */
+	SetFlags(value objc.IObject /* cross-framework: NSNumber */)
+	RotationTime() objc.IObject /* cross-framework: NSNumber */
+	SetRotationTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterSecurityPolicy
 type MTRThreadNetworkDiagnosticsClusterSecurityPolicy struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRThreadNetworkDiagnosticsClusterSecurityPolicy() MTRThreadNetworkDiagn
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/flags
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) Flags() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("flags"))
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) Flags() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("flags"))
 	return rv
 }
 
 
-// SetFlags sets the value of the flags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/flags
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetFlags(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetFlags(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFlags:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/rotationtime
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) RotationTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rotationTime"))
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) RotationTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rotationTime"))
 	return rv
 }
 
 
-// SetRotationTime sets the value of the rotationTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/rotationtime
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetRotationTime(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetRotationTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRotationTime:"), value)
 }
 

@@ -31,17 +31,21 @@ type _MTROperationalCSRInfoClass struct {
 // An interface definition for the [MTROperationalCSRInfo] class.
 type IMTROperationalCSRInfo interface {
 	objectivec.IObject
-	AttestationSignature() foundation.Data
-	SetAttestationSignature(value foundation.IData)
-	Csr() foundation.Data
-	SetCsr(value foundation.IData)
-	CsrElementsTLV() foundation.Data
-	SetCsrElementsTLV(value foundation.IData)
-	CsrNonce() foundation.Data
-	SetCsrNonce(value foundation.IData)
+	// properties:
+	AttestationSignature() objc.IObject /* cross-framework: Data */
+	SetAttestationSignature(value objc.IObject /* cross-framework: Data */)
+	Csr() objc.IObject /* cross-framework: Data */
+	SetCsr(value objc.IObject /* cross-framework: Data */)
+	CsrElementsTLV() objc.IObject /* cross-framework: Data */
+	SetCsrElementsTLV(value objc.IObject /* cross-framework: Data */)
+	CsrNonce() objc.IObject /* cross-framework: Data */
+	SetCsrNonce(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo
 type MTROperationalCSRInfo struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROperationalCSRInfo() MTROperationalCSRInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/attestationsignature
-func (m_ MTROperationalCSRInfo) AttestationSignature() foundation.Data {
+func (m_ MTROperationalCSRInfo) AttestationSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
 	return rv
 }
 
 
-// SetAttestationSignature sets the value of the attestationSignature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/attestationsignature
-func (m_ MTROperationalCSRInfo) SetAttestationSignature(value foundation.IData) {
+func (m_ MTROperationalCSRInfo) SetAttestationSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) Csr() foundation.Data {
+func (m_ MTROperationalCSRInfo) Csr() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csr"))
 	return rv
 }
 
 
-// SetCsr sets the value of the csr property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) SetCsr(value foundation.IData) {
+func (m_ MTROperationalCSRInfo) SetCsr(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsr:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrelementstlv
-func (m_ MTROperationalCSRInfo) CsrElementsTLV() foundation.Data {
+func (m_ MTROperationalCSRInfo) CsrElementsTLV() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrElementsTLV"))
 	return rv
 }
 
 
-// SetCsrElementsTLV sets the value of the csrElementsTLV property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrelementstlv
-func (m_ MTROperationalCSRInfo) SetCsrElementsTLV(value foundation.IData) {
+func (m_ MTROperationalCSRInfo) SetCsrElementsTLV(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrElementsTLV:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrnonce
-func (m_ MTROperationalCSRInfo) CsrNonce() foundation.Data {
+func (m_ MTROperationalCSRInfo) CsrNonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrNonce"))
 	return rv
 }
 
 
-// SetCsrNonce sets the value of the csrNonce property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrnonce
-func (m_ MTROperationalCSRInfo) SetCsrNonce(value foundation.IData) {
+func (m_ MTROperationalCSRInfo) SetCsrNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
 }
 

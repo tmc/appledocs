@@ -6,18 +6,18 @@ package quicklook
 // QLPreviewItemEditingMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode
-type PreviewItemEditingMode uint
+type QLPreviewItemEditingMode uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/createCopy
-	PreviewItemEditingModeCreateCopy PreviewItemEditingMode = 0
+	QLPreviewItemEditingModeCreateCopy QLPreviewItemEditingMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/disabled
-	PreviewItemEditingModeDisabled PreviewItemEditingMode = 0
+	QLPreviewItemEditingModeDisabled QLPreviewItemEditingMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode/updateContents
-	PreviewItemEditingModeUpdateContents PreviewItemEditingMode = 0
+	QLPreviewItemEditingModeUpdateContents QLPreviewItemEditingMode = 0
 )
 
 

@@ -42,7 +42,7 @@ type IBinaryImageKernel interface {
 	SecondaryOffset() MPSOffset /* not a class type */
 	SetSecondaryOffset(value MPSOffset /* not a class type */)
 	// methods:
-	EncodeToCommandBufferPrimaryTextureInPlaceSecondaryTextureFallbackCopyAllocator(commandBuffer objectivec.IObject, primaryTexture objectivec.IObject, inPlaceSecondaryTexture objectivec.IObject, copyAllocator CopyAllocator /* not a class type */) bool /* primitive/slice/pointer. */
+	EncodeToCommandBufferPrimaryTextureInPlaceSecondaryTextureFallbackCopyAllocator(commandBuffer objectivec.IObject, primaryTexture objectivec.IObject, inPlaceSecondaryTexture objectivec.IObject, copyAllocator CopyAllocator /* not a class type */) bool
 	SecondarySourceRegionForDestinationSize(destinationSize Size /* not a class type */) MPSRegion /* not a class type */
 }
 
@@ -105,7 +105,7 @@ func NewBinaryImageKernel() BinaryImageKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSBinaryImageKernel/encode(commandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:)
-func (b_ BinaryImageKernel) EncodeToCommandBufferPrimaryTextureInPlaceSecondaryTextureFallbackCopyAllocator(commandBuffer objectivec.IObject, primaryTexture objectivec.IObject, inPlaceSecondaryTexture objectivec.IObject, copyAllocator CopyAllocator /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (b_ BinaryImageKernel) EncodeToCommandBufferPrimaryTextureInPlaceSecondaryTextureFallbackCopyAllocator(commandBuffer objectivec.IObject, primaryTexture objectivec.IObject, inPlaceSecondaryTexture objectivec.IObject, copyAllocator CopyAllocator /* not a class type */) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:"), commandBuffer, primaryTexture, inPlaceSecondaryTexture, copyAllocator)
 	return rv
 }

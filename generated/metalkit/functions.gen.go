@@ -50,65 +50,71 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Returns a partially converted Metal vertex descriptor. [Full Topic]
+// Returns a partially converted Metal vertex descriptor.
 //
 // Added in macOS 10.11.
+// Returns a partially converted Metal vertex descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIO(_:)
 func MTKMetalVertexDescriptorFromModelIO(modelIODescriptor unsafe.Pointer) unsafe.Pointer {
 	return _MTKMetalVertexDescriptorFromModelIO(modelIODescriptor)
-	}
+}
 
-
-// Returns a partially converted Metal vertex descriptor, reporting any error that occurs. [Full Topic]
+// Returns a partially converted Metal vertex descriptor, reporting any error that occurs.
 //
 // Added in macOS 10.12.
+// Returns a partially converted Metal vertex descriptor, reporting any error that occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexDescriptorFromModelIOWithError
 func MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _MTKMetalVertexDescriptorFromModelIOWithError(modelIODescriptor, error_)
-	}
+}
 
-
-// Returns a converted Metal vertex format. [Full Topic]
+// Returns a converted Metal vertex format.
 //
 // Added in macOS 10.11.
+// Returns a converted Metal vertex format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMetalVertexFormatFromModelIO(_:)
 func MTKMetalVertexFormatFromModelIO(vertexFormat unsafe.Pointer) unsafe.Pointer {
 	return _MTKMetalVertexFormatFromModelIO(vertexFormat)
-	}
+}
 
-
-// Returns a partially converted Model I/O vertex descriptor. [Full Topic]
+// Returns a partially converted Model I/O vertex descriptor.
 //
 // Added in macOS 10.11.
+// Returns a partially converted Model I/O vertex descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetal(_:)
 func MTKModelIOVertexDescriptorFromMetal(metalDescriptor unsafe.Pointer) unsafe.Pointer {
 	return _MTKModelIOVertexDescriptorFromMetal(metalDescriptor)
-	}
+}
 
-
-// Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs. [Full Topic]
+// Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs.
 //
 // Added in macOS 10.12.
+// Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexDescriptorFromMetalWithError
 func MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _MTKModelIOVertexDescriptorFromMetalWithError(metalDescriptor, error_)
-	}
+}
 
-
-// Returns a converted Model I/O vertex format. [Full Topic]
+// Returns a converted Model I/O vertex format.
 //
 // Added in macOS 10.11.
+// Returns a converted Model I/O vertex format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelIOVertexFormatFromMetal(_:)
 func MTKModelIOVertexFormatFromMetal(vertexFormat unsafe.Pointer) unsafe.Pointer {
 	return _MTKModelIOVertexFormatFromMetal(vertexFormat)
-	}
-
+}
 
 
 

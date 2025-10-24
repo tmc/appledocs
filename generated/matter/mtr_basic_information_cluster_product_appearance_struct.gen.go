@@ -31,13 +31,17 @@ type _MTRBasicInformationClusterProductAppearanceStructClass struct {
 // An interface definition for the [MTRBasicInformationClusterProductAppearanceStruct] class.
 type IMTRBasicInformationClusterProductAppearanceStruct interface {
 	objectivec.IObject
-	Finish() foundation.Number
-	SetFinish(value foundation.INumber)
-	PrimaryColor() foundation.Number
-	SetPrimaryColor(value foundation.INumber)
+	// properties:
+	Finish() objc.IObject /* cross-framework: NSNumber */
+	SetFinish(value objc.IObject /* cross-framework: NSNumber */)
+	PrimaryColor() objc.IObject /* cross-framework: NSNumber */
+	SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterProductAppearanceStruct
 type MTRBasicInformationClusterProductAppearanceStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRBasicInformationClusterProductAppearanceStruct() MTRBasicInformationC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("finish"))
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("finish"))
 	return rv
 }
 
 
-// SetFinish sets the value of the finish property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.INumber) {
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("primaryColor"))
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("primaryColor"))
 	return rv
 }
 
 
-// SetPrimaryColor sets the value of the primaryColor property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.INumber) {
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
 

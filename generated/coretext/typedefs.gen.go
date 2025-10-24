@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for CoreText. DO NOT EDIT.
 
 package coretext
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // ATSFontRef type alias
@@ -41,8 +44,9 @@ type FontCollectionRef uintptr
 // FontCollectionSortDescriptorsCallback - The collection sorting callback type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSortDescriptorsCallback
-// CTFontCollectionSortDescriptorsCallback has base type: enum CFComparisonResult (*)(const struct __CTFontDescriptor *, const struct __CTFontDescriptor *, void *)
-type FontCollectionSortDescriptorsCallback uintptr
+// CTFontCollectionSortDescriptorsCallback is a callback function
+// C type: enum CFComparisonResult (*)(const struct __CTFontDescriptor *, const struct __CTFontDescriptor *, void *)
+type FontCollectionSortDescriptorsCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ComparisonResult
 // FontDescriptorRef - A font descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptor
@@ -106,23 +110,27 @@ type RunDelegateRef uintptr
 // RunDelegateDeallocateCallback - Defines a pointer to a function that is invoked when a CTRunDelegate object is deallocated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateDeallocateCallback
-// CTRunDelegateDeallocateCallback has base type: void (*)(void *)
-type RunDelegateDeallocateCallback uintptr
+// CTRunDelegateDeallocateCallback is a callback function
+// C type: void (*)(void *)
+type RunDelegateDeallocateCallback = func(unsafe.Pointer)
 // RunDelegateGetAscentCallback - Defines a pointer to a function that determines typographic ascent of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetAscentCallback
-// CTRunDelegateGetAscentCallback has base type: double (*)(void *)
-type RunDelegateGetAscentCallback uintptr
+// CTRunDelegateGetAscentCallback is a callback function
+// C type: double (*)(void *)
+type RunDelegateGetAscentCallback = func(unsafe.Pointer) float64
 // RunDelegateGetDescentCallback - Defines a pointer to a function that determines typographic descent of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetDescentCallback
-// CTRunDelegateGetDescentCallback has base type: double (*)(void *)
-type RunDelegateGetDescentCallback uintptr
+// CTRunDelegateGetDescentCallback is a callback function
+// C type: double (*)(void *)
+type RunDelegateGetDescentCallback = func(unsafe.Pointer) float64
 // RunDelegateGetWidthCallback - Defines a pointer to a function that determines the typographic width of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetWidthCallback
-// CTRunDelegateGetWidthCallback has base type: double (*)(void *)
-type RunDelegateGetWidthCallback uintptr
+// CTRunDelegateGetWidthCallback is a callback function
+// C type: double (*)(void *)
+type RunDelegateGetWidthCallback = func(unsafe.Pointer) float64
 // TextTabRef - A tab in a paragraph style, storing an alignment type and location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTab

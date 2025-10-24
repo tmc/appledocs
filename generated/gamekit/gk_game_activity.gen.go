@@ -33,34 +33,34 @@ type _GameActivityClass struct {
 type IGameActivity interface {
 	objectivec.IObject
 	// properties:
-	CreationDate() foundation.objc.IObject /* cross-framework: NSDate */
-	PartyURL() foundation.objc.IObject /* cross-framework: URL */
-	Properties() foundation.IDictionary /* already interface */
-	SetProperties(value foundation.IDictionary /* already interface */)
+	CreationDate() objc.IObject /* cross-framework: NSDate */
+	PartyURL() objc.IObject /* cross-framework: NSURL */
+	Properties() foundation.IDictionary
+	SetProperties(value foundation.IDictionary)
 	Achievements() IGKAchievement
 	SetAchievements(value IGKAchievement)
 	ActivityDefinition() IGKGameActivityDefinition
 	SetActivityDefinition(value IGKGameActivityDefinition)
-	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
-	EndDate() foundation.objc.IObject /* cross-framework: Date */
-	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	LastResumeDate() foundation.objc.IObject /* cross-framework: Date */
-	SetLastResumeDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Duration() float64
+	SetDuration(value float64)
+	EndDate() objc.IObject /* cross-framework: Date */
+	SetEndDate(value objc.IObject /* cross-framework: Date */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	LastResumeDate() objc.IObject /* cross-framework: Date */
+	SetLastResumeDate(value objc.IObject /* cross-framework: Date */)
 	LeaderboardScores() IGKLeaderboardScore
 	SetLeaderboardScores(value IGKLeaderboardScore)
-	PartyCode() string /* primitive/slice/pointer. */
-	SetPartyCode(value string /* primitive/slice/pointer. */)
-	StartDate() foundation.objc.IObject /* cross-framework: Date */
-	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
-	State() coreml.objc.IObject /* cross-framework: State */
-	SetState(value coreml.objc.IObject /* cross-framework: State */)
+	PartyCode() objc.IObject /* cross-framework: NSString */
+	SetPartyCode(value objc.IObject /* cross-framework: NSString */)
+	StartDate() objc.IObject /* cross-framework: Date */
+	SetStartDate(value objc.IObject /* cross-framework: Date */)
+	State() objc.IObject /* cross-framework: State */
+	SetState(value objc.IObject /* cross-framework: State */)
 	// methods:
 	SetAchievementCompleted(achievement IGKAchievement)
-	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64 /* primitive/slice/pointer. */)
-	SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int /* primitive/slice/pointer. */)
+	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64)
+	SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int)
 }
 
 // An object that represents a single instance of a game activity for the current game.
@@ -127,7 +127,7 @@ func (g_ GameActivity) SetAchievementCompleted(achievement IGKAchievement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/setProgress(on:to:)
-func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64 /* primitive/slice/pointer. */) {
+func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProgressOnAchievement:toPercentComplete:"), achievement, percentComplete)
 }
 
@@ -136,7 +136,7 @@ func (g_ GameActivity) SetProgressOnAchievementToPercentComplete(achievement IGK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/setScore(on:to:)
-func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int /* primitive/slice/pointer. */) {
+func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScoreOnLeaderboard:toScore:"), leaderboard, score)
 }
 
@@ -145,7 +145,7 @@ func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/creationDate
-func (g_ GameActivity) CreationDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (g_ GameActivity) CreationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](g_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -155,8 +155,8 @@ func (g_ GameActivity) CreationDate() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/partyURL
-func (g_ GameActivity) PartyURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](g_.ID, objc.Sel("partyURL"))
+func (g_ GameActivity) PartyURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](g_.ID, objc.Sel("partyURL"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (g_ GameActivity) PartyURL() foundation.objc.IObject /* cross-framework: UR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/properties
-func (g_ GameActivity) Properties() foundation.IDictionary /* already interface */ {
+func (g_ GameActivity) Properties() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](g_.ID, objc.Sel("properties"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (g_ GameActivity) Properties() foundation.IDictionary /* already interface 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/properties
-func (g_ GameActivity) SetProperties(value foundation.IDictionary /* already interface */) {
+func (g_ GameActivity) SetProperties(value foundation.IDictionary) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProperties:"), value)
 }
 
@@ -218,21 +218,21 @@ func (g_ GameActivity) SetActivityDefinition(value IGKGameActivityDefinition) {
 }
 
 
-// Total time elapsed while in active state.
+// The total time elapsed while in active state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/duration
-func (g_ GameActivity) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("duration"))
+func (g_ GameActivity) Duration() float64 {
+	rv := objc.Send[float64](g_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// Total time elapsed while in active state.
+// The total time elapsed while in active state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/duration
-func (g_ GameActivity) SetDuration(value unsafe.Pointer) {
+func (g_ GameActivity) SetDuration(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -241,7 +241,7 @@ func (g_ GameActivity) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
-func (g_ GameActivity) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (g_ GameActivity) EndDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -251,7 +251,7 @@ func (g_ GameActivity) EndDate() foundation.objc.IObject /* cross-framework: Dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
-func (g_ GameActivity) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (g_ GameActivity) SetEndDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -260,8 +260,8 @@ func (g_ GameActivity) SetEndDate(value foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-func (g_ GameActivity) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
+func (g_ GameActivity) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -270,8 +270,8 @@ func (g_ GameActivity) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/identifier
-func (g_ GameActivity) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (g_ GameActivity) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -279,7 +279,7 @@ func (g_ GameActivity) SetIdentifier(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
-func (g_ GameActivity) LastResumeDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (g_ GameActivity) LastResumeDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("lastResumeDate"))
 	return rv
 }
@@ -289,7 +289,7 @@ func (g_ GameActivity) LastResumeDate() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
-func (g_ GameActivity) SetLastResumeDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (g_ GameActivity) SetLastResumeDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLastResumeDate:"), value)
 }
 
@@ -317,8 +317,8 @@ func (g_ GameActivity) SetLeaderboardScores(value IGKLeaderboardScore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-func (g_ GameActivity) PartyCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("partyCode"))
+func (g_ GameActivity) PartyCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("partyCode"))
 	return rv
 }
 
@@ -327,8 +327,8 @@ func (g_ GameActivity) PartyCode() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partycode
-func (g_ GameActivity) SetPartyCode(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), objc.String(value))
+func (g_ GameActivity) SetPartyCode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyCode:"), value)
 }
 
 
@@ -336,7 +336,7 @@ func (g_ GameActivity) SetPartyCode(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
-func (g_ GameActivity) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (g_ GameActivity) StartDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](g_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -346,7 +346,7 @@ func (g_ GameActivity) StartDate() foundation.objc.IObject /* cross-framework: D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
-func (g_ GameActivity) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (g_ GameActivity) SetStartDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -355,7 +355,7 @@ func (g_ GameActivity) SetStartDate(value foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
-func (g_ GameActivity) State() coreml.objc.IObject /* cross-framework: State */ {
+func (g_ GameActivity) State() objc.IObject /* cross-framework: State */ {
 	rv := objc.Send[coreml.State](g_.ID, objc.Sel("state"))
 	return rv
 }
@@ -365,7 +365,7 @@ func (g_ GameActivity) State() coreml.objc.IObject /* cross-framework: State */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.property
-func (g_ GameActivity) SetState(value coreml.objc.IObject /* cross-framework: State */) {
+func (g_ GameActivity) SetState(value objc.IObject /* cross-framework: State */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setState:"), value)
 }
 

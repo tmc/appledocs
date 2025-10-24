@@ -30,17 +30,23 @@ type _MXCrashDiagnosticClass struct {
 // An interface definition for the [MXCrashDiagnostic] class.
 type IMXCrashDiagnostic interface {
 	IMXDiagnostic
-	CallStackTree() MXCallStackTree
-	ExceptionCode() foundation.Number
-	ExceptionReason() MXCrashDiagnosticObjectiveCExceptionReason
-	ExceptionType() foundation.Number
-	Signal() foundation.Number
-	TerminationReason() string
-	VirtualMemoryRegionInfo() string
+	// properties:
+	CallStackTree() IMXCallStackTree
+	ExceptionCode() objc.IObject /* cross-framework: NSNumber */
+	ExceptionReason() IMXCrashDiagnosticObjectiveCExceptionReason
+	ExceptionType() objc.IObject /* cross-framework: NSNumber */
+	Signal() objc.IObject /* cross-framework: NSNumber */
+	TerminationReason() objc.IObject /* cross-framework: NSString */
+	VirtualMemoryRegionInfo() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // An object representing a diagnostic report for an app crash.
+
+
+// An object representing a diagnostic report for an app crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic
 type MXCrashDiagnostic struct {
 	MXDiagnostic
@@ -87,58 +93,71 @@ func NewMXCrashDiagnostic() MXCrashDiagnostic {
 }
 
 
+
 // The call stack for the crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/callStackTree
-func (m_ MXCrashDiagnostic) CallStackTree() MXCallStackTree {
+func (m_ MXCrashDiagnostic) CallStackTree() IMXCallStackTree {
 	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 
+
 // The encoded processor-specific information for the crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionCode
-func (m_ MXCrashDiagnostic) ExceptionCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("exceptionCode"))
+func (m_ MXCrashDiagnostic) ExceptionCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("exceptionCode"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionReason
-func (m_ MXCrashDiagnostic) ExceptionReason() MXCrashDiagnosticObjectiveCExceptionReason {
+func (m_ MXCrashDiagnostic) ExceptionReason() IMXCrashDiagnosticObjectiveCExceptionReason {
 	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](m_.ID, objc.Sel("exceptionReason"))
 	return rv
 }
 
+
 // The Mach exception type of the crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionType
-func (m_ MXCrashDiagnostic) ExceptionType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("exceptionType"))
+func (m_ MXCrashDiagnostic) ExceptionType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("exceptionType"))
 	return rv
 }
+
 
 // The signal associated with the crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/signal
-func (m_ MXCrashDiagnostic) Signal() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("signal"))
+func (m_ MXCrashDiagnostic) Signal() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("signal"))
 	return rv
 }
+
 
 // The reason the app was terminated as a human-readable string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/terminationReason
-func (m_ MXCrashDiagnostic) TerminationReason() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("terminationReason"))
+func (m_ MXCrashDiagnostic) TerminationReason() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("terminationReason"))
 	return rv
 }
 
+
 // Information about the region of memory an app accessed incorrectly, resulting in a bad-access crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/virtualMemoryRegionInfo
-func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
+func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
 	return rv
 }
 

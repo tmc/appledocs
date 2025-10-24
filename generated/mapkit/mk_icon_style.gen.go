@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,7 +95,7 @@ func NewMKIconStyle() MKIconStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/backgroundcolor
 func (m_ MKIconStyle) BackgroundColor() objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[Color](m_.ID, objc.Sel("backgroundColor"))
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (m_ MKIconStyle) SetBackgroundColor(value objc.IObject /* cross-framework: 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/image
 func (m_ MKIconStyle) Image() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
 	return rv
 }
 

@@ -30,13 +30,17 @@ type _MTRChannelClusterChannelPagingStructClass struct {
 // An interface definition for the [MTRChannelClusterChannelPagingStruct] class.
 type IMTRChannelClusterChannelPagingStruct interface {
 	objectivec.IObject
-	NextToken() MTRChannelClusterPageTokenStruct
+	// properties:
+	NextToken() IMTRChannelClusterPageTokenStruct
 	SetNextToken(value IMTRChannelClusterPageTokenStruct)
-	PreviousToken() MTRChannelClusterPageTokenStruct
+	PreviousToken() IMTRChannelClusterPageTokenStruct
 	SetPreviousToken(value IMTRChannelClusterPageTokenStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct
 type MTRChannelClusterChannelPagingStruct struct {
 	objectivec.Object
@@ -79,31 +83,31 @@ func NewMTRChannelClusterChannelPagingStruct() MTRChannelClusterChannelPagingStr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
-func (m_ MTRChannelClusterChannelPagingStruct) NextToken() MTRChannelClusterPageTokenStruct {
+func (m_ MTRChannelClusterChannelPagingStruct) NextToken() IMTRChannelClusterPageTokenStruct {
 	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("nextToken"))
 	return rv
 }
 
 
-// SetNextToken sets the value of the nextToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
 func (m_ MTRChannelClusterChannelPagingStruct) SetNextToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextToken:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
-func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() MTRChannelClusterPageTokenStruct {
+func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() IMTRChannelClusterPageTokenStruct {
 	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("previousToken"))
 	return rv
 }
 
 
-// SetPreviousToken sets the value of the previousToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
 func (m_ MTRChannelClusterChannelPagingStruct) SetPreviousToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousToken:"), value)

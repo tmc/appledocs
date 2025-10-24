@@ -108,7 +108,7 @@ var (
 	_CGConfigureDisplayFadeEffect func(DisplayConfigRef, DisplayFadeInterval, DisplayFadeInterval, float32, float32, float32) unsafe.Pointer
 	_CGConfigureDisplayMirrorOfDisplay func(DisplayConfigRef, DirectDisplayID, DirectDisplayID) unsafe.Pointer
 	_CGConfigureDisplayMode func(DisplayConfigRef, DirectDisplayID, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayOrigin func(DisplayConfigRef, DirectDisplayID, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayOrigin func(DisplayConfigRef, DirectDisplayID, int32, int32) unsafe.Pointer
 	_CGConfigureDisplayStereoOperation func(DisplayConfigRef, DirectDisplayID, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGConfigureDisplayWithDisplayMode func(DisplayConfigRef, DirectDisplayID, DisplayModeRef, unsafe.Pointer) unsafe.Pointer
 	_CGPDFContextAddDestinationAtPoint func(ContextRef, unsafe.Pointer, Point)
@@ -313,7 +313,7 @@ var (
 	_CGDisplayIsStereo func(DirectDisplayID) unsafe.Pointer
 	_CGDisplayMirrorsDisplay func(DirectDisplayID) DirectDisplayID
 	_CGDisplayModeGetHeight func(DisplayModeRef) uintptr
-	_CGDisplayModeGetIODisplayModeID func(DisplayModeRef) unsafe.Pointer
+	_CGDisplayModeGetIODisplayModeID func(DisplayModeRef) int32
 	_CGDisplayModeGetIOFlags func(DisplayModeRef) uint32
 	_CGDisplayModeIsUsableForDesktopGUI func(DisplayModeRef) bool
 	_CGDisplayModeCopyPixelEncoding func(DisplayModeRef) unsafe.Pointer
@@ -339,8 +339,8 @@ var (
 	_CGDisplaySetDisplayMode func(DirectDisplayID, DisplayModeRef, unsafe.Pointer) unsafe.Pointer
 	_CGDisplaySetStereoOperation func(DirectDisplayID, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayShowCursor func(DirectDisplayID) unsafe.Pointer
-	_CGDisplayStreamCreateWithDispatchQueue func(DirectDisplayID, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
-	_CGDisplayStreamCreate func(DirectDisplayID, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
+	_CGDisplayStreamCreateWithDispatchQueue func(DirectDisplayID, uintptr, uintptr, int32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
+	_CGDisplayStreamCreate func(DirectDisplayID, uintptr, uintptr, int32, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
 	_CGDisplayStreamGetRunLoopSource func(DisplayStreamRef) unsafe.Pointer
 	_CGDisplayStreamStart func(DisplayStreamRef) unsafe.Pointer
 	_CGDisplayStreamStop func(DisplayStreamRef) unsafe.Pointer
@@ -360,10 +360,10 @@ var (
 	_CGEventCreateCopy func(EventRef) EventRef
 	_CGEventGetFlags func(EventRef) unsafe.Pointer
 	_CGEventGetDoubleValueField func(EventRef, unsafe.Pointer) float64
-	_CGEventGetIntegerValueField func(EventRef, unsafe.Pointer) unsafe.Pointer
+	_CGEventGetIntegerValueField func(EventRef, unsafe.Pointer) int64
 	_CGEventCreateKeyboardEvent func(EventSourceRef, KeyCode, bool) EventRef
 	_CGEventCreateMouseEvent func(EventSourceRef, unsafe.Pointer, Point, unsafe.Pointer) EventRef
-	_CGEventCreateScrollWheelEvent2 func(EventSourceRef, unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) EventRef
+	_CGEventCreateScrollWheelEvent2 func(EventSourceRef, unsafe.Pointer, uint32, int32, int32, int32) EventRef
 	_CGEventCreate func(EventSourceRef) EventRef
 	_CGEventCreateFromData func(unsafe.Pointer, unsafe.Pointer) EventRef
 	_CGEventKeyboardGetUnicodeString func(EventRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
@@ -373,7 +373,7 @@ var (
 	_CGEventPostToPSN func(unsafe.Pointer, EventRef)
 	_CGEventPostToPid func(unsafe.Pointer, EventRef)
 	_CGEventSetDoubleValueField func(EventRef, unsafe.Pointer, float64)
-	_CGEventSetIntegerValueField func(EventRef, unsafe.Pointer, unsafe.Pointer)
+	_CGEventSetIntegerValueField func(EventRef, unsafe.Pointer, int64)
 	_CGEventSetSource func(EventRef, EventSourceRef)
 	_CGEventTapCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, EventMask, EventTapCallBack, unsafe.Pointer) unsafe.Pointer
 	_CGEventTapCreateForPSN func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, EventMask, EventTapCallBack, unsafe.Pointer) unsafe.Pointer
@@ -386,7 +386,7 @@ var (
 	_CGEventGetTypeID func() unsafe.Pointer
 	_CGEventGetUnflippedLocation func(EventRef) Point
 	_CGEventCreateData func(unsafe.Pointer, EventRef) unsafe.Pointer
-	_CGEventCreateScrollWheelEvent func(EventSourceRef, unsafe.Pointer, uint32, unsafe.Pointer) EventRef
+	_CGEventCreateScrollWheelEvent func(EventSourceRef, unsafe.Pointer, uint32, int32) EventRef
 	_CGEventSetFlags func(EventRef, unsafe.Pointer)
 	_CGEventSetLocation func(EventRef, Point)
 	_CGEventSetTimestamp func(EventRef, EventTimestamp)
@@ -405,11 +405,11 @@ var (
 	_CGEventSourceSetLocalEventsFilterDuringSuppressionState func(EventSourceRef, unsafe.Pointer, unsafe.Pointer)
 	_CGEventSourceGetSourceStateID func(EventSourceRef) unsafe.Pointer
 	_CGEventSourceGetTypeID func() unsafe.Pointer
-	_CGEventSourceGetUserData func(EventSourceRef) unsafe.Pointer
+	_CGEventSourceGetUserData func(EventSourceRef) int64
 	_CGEventSourceSetKeyboardType func(EventSourceRef, EventSourceKeyboardType)
 	_CGEventSourceSetLocalEventsSuppressionInterval func(EventSourceRef, unsafe.Pointer)
 	_CGEventSourceSetPixelsPerLine func(EventSourceRef, float64)
-	_CGEventSourceSetUserData func(EventSourceRef, unsafe.Pointer)
+	_CGEventSourceSetUserData func(EventSourceRef, int64)
 	_CGFontGetAscent func(FontRef) int
 	_CGFontCanCreatePostScriptSubset func(FontRef, unsafe.Pointer) bool
 	_CGFontGetCapHeight func(FontRef) int
@@ -666,7 +666,7 @@ var (
 	_CGPointMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) bool
 	_CGPostKeyboardEvent func(CharCode, KeyCode, unsafe.Pointer) unsafe.Pointer
 	_CGPostMouseEvent func(Point, unsafe.Pointer, ButtonCount, unsafe.Pointer) unsafe.Pointer
-	_CGPostScrollWheelEvent func(WheelCount, unsafe.Pointer) unsafe.Pointer
+	_CGPostScrollWheelEvent func(WheelCount, int32) unsafe.Pointer
 	_CGPreflightListenEventAccess func() bool
 	_CGPreflightPostEventAccess func() bool
 	_CGPreflightScreenCaptureAccess func() bool
@@ -2484,7 +2484,7 @@ func CGConfigureDisplayMode(config DisplayConfigRef, display DirectDisplayID, mo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayOrigin(_:_:_:_:)
-func CGConfigureDisplayOrigin(config DisplayConfigRef, display DirectDisplayID, x unsafe.Pointer, y unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayOrigin(config DisplayConfigRef, display DirectDisplayID, x int32, y int32) unsafe.Pointer {
 	return _CGConfigureDisplayOrigin(config, display, x, y)
 }
 
@@ -4694,7 +4694,7 @@ func CGDisplayModeGetHeight(mode DisplayModeRef) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/ioDisplayModeID
-func CGDisplayModeGetIODisplayModeID(mode DisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetIODisplayModeID(mode DisplayModeRef) int32 {
 	return _CGDisplayModeGetIODisplayModeID(mode)
 }
 
@@ -4977,7 +4977,7 @@ func CGDisplayShowCursor(display DirectDisplayID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(dispatchQueueDisplay:outputWidth:outputHeight:pixelFormat:properties:queue:handler:)
-func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat unsafe.Pointer, properties unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
+func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
 	return _CGDisplayStreamCreateWithDispatchQueue(display, outputWidth, outputHeight, pixelFormat, properties, queue, handler)
 }
 
@@ -4987,7 +4987,7 @@ func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(display:outputWidth:outputHeight:pixelFormat:properties:handler:)
-func CGDisplayStreamCreate(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat unsafe.Pointer, properties unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
+func CGDisplayStreamCreate(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
 	return _CGDisplayStreamCreate(display, outputWidth, outputHeight, pixelFormat, properties, handler)
 }
 
@@ -5191,7 +5191,7 @@ func CGEventGetDoubleValueField(event EventRef, field unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/getIntegerValueField(_:)
-func CGEventGetIntegerValueField(event EventRef, field unsafe.Pointer) unsafe.Pointer {
+func CGEventGetIntegerValueField(event EventRef, field unsafe.Pointer) int64 {
 	return _CGEventGetIntegerValueField(event, field)
 }
 
@@ -5222,7 +5222,7 @@ func CGEventCreateMouseEvent(source EventSourceRef, mouseType unsafe.Pointer, mo
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(scrollWheelEvent2Source:units:wheelCount:wheel1:wheel2:wheel3:)
-func CGEventCreateScrollWheelEvent2(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 unsafe.Pointer, wheel2 unsafe.Pointer, wheel3 unsafe.Pointer) EventRef {
+func CGEventCreateScrollWheelEvent2(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 int32, wheel2 int32, wheel3 int32) EventRef {
 	return _CGEventCreateScrollWheelEvent2(source, units, wheelCount, wheel1, wheel2, wheel3)
 }
 
@@ -5330,7 +5330,7 @@ func CGEventSetDoubleValueField(event EventRef, field unsafe.Pointer, value floa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setIntegerValueField(_:value:)
-func CGEventSetIntegerValueField(event EventRef, field unsafe.Pointer, value unsafe.Pointer) {
+func CGEventSetIntegerValueField(event EventRef, field unsafe.Pointer, value int64) {
 	_CGEventSetIntegerValueField(event, field, value)
 }
 
@@ -5471,7 +5471,7 @@ func CGEventCreateData(allocator unsafe.Pointer, event EventRef) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventCreateScrollWheelEvent
-func CGEventCreateScrollWheelEvent(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 unsafe.Pointer) EventRef {
+func CGEventCreateScrollWheelEvent(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 int32) EventRef {
 	return _CGEventCreateScrollWheelEvent(source, units, wheelCount, wheel1)
 }
 
@@ -5680,7 +5680,7 @@ func CGEventSourceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/userData
-func CGEventSourceGetUserData(source EventSourceRef) unsafe.Pointer {
+func CGEventSourceGetUserData(source EventSourceRef) int64 {
 	return _CGEventSourceGetUserData(source)
 }
 
@@ -5724,7 +5724,7 @@ func CGEventSourceSetPixelsPerLine(source EventSourceRef, pixelsPerLine float64)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetUserData
-func CGEventSourceSetUserData(source EventSourceRef, userData unsafe.Pointer) {
+func CGEventSourceSetUserData(source EventSourceRef, userData int64) {
 	_CGEventSourceSetUserData(source, userData)
 }
 
@@ -8488,7 +8488,7 @@ func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostScrollWheelEvent
-func CGPostScrollWheelEvent(wheelCount WheelCount, wheel1 unsafe.Pointer) unsafe.Pointer {
+func CGPostScrollWheelEvent(wheelCount WheelCount, wheel1 int32) unsafe.Pointer {
 	return _CGPostScrollWheelEvent(wheelCount, wheel1)
 }
 

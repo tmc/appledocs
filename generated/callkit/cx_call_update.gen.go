@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,20 +32,6 @@ type _CXCallUpdateClass struct {
 type ICXCallUpdate interface {
 	objectivec.IObject
 	// properties:
-	HasVideo() bool /* primitive/slice/pointer. */
-	SetHasVideo(value bool /* primitive/slice/pointer. */)
-	LocalizedCallerName() string /* primitive/slice/pointer. */
-	SetLocalizedCallerName(value string /* primitive/slice/pointer. */)
-	RemoteHandle() ICXHandle
-	SetRemoteHandle(value ICXHandle)
-	SupportsDTMF() bool /* primitive/slice/pointer. */
-	SetSupportsDTMF(value bool /* primitive/slice/pointer. */)
-	SupportsGrouping() bool /* primitive/slice/pointer. */
-	SetSupportsGrouping(value bool /* primitive/slice/pointer. */)
-	SupportsHolding() bool /* primitive/slice/pointer. */
-	SetSupportsHolding(value bool /* primitive/slice/pointer. */)
-	SupportsUngrouping() bool /* primitive/slice/pointer. */
-	SetSupportsUngrouping(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -97,140 +84,6 @@ func (c_ CXCallUpdate) Autorelease() CXCallUpdate {
 // NewCXCallUpdate creates a new CXCallUpdate instance.
 func NewCXCallUpdate() CXCallUpdate {
 	return getCXCallUpdateClass().New()
-}
-
-
-
-// A Boolean value that indicates whether the call includes video in addition to audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/hasVideo
-func (c_ CXCallUpdate) HasVideo() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasVideo"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call includes video in addition to audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/hasVideo
-func (c_ CXCallUpdate) SetHasVideo(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHasVideo:"), value)
-}
-
-
-// The localized name of the caller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) LocalizedCallerName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedCallerName"))
-	return rv
-}
-
-
-// The localized name of the caller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) SetLocalizedCallerName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCallerName:"), objc.String(value))
-}
-
-
-// The handle for the remote party (for an incoming call, this is the caller; for an outgoing call, this is the callee).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
-func (c_ CXCallUpdate) RemoteHandle() ICXHandle {
-	rv := objc.Send[CXHandle](c_.ID, objc.Sel("remoteHandle"))
-	return rv
-}
-
-
-// The handle for the remote party (for an incoming call, this is the caller; for an outgoing call, this is the callee).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
-func (c_ CXCallUpdate) SetRemoteHandle(value ICXHandle) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRemoteHandle:"), value)
-}
-
-
-// A Boolean value that indicates whether the call can send DTMF (dual tone multifrequency) tones via hard pause digits or in-call keypad entries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsDTMF
-func (c_ CXCallUpdate) SupportsDTMF() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsDTMF"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call can send DTMF (dual tone multifrequency) tones via hard pause digits or in-call keypad entries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsDTMF
-func (c_ CXCallUpdate) SetSupportsDTMF(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsDTMF:"), value)
-}
-
-
-// A Boolean value that indicates whether the call can be grouped with other calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsGrouping
-func (c_ CXCallUpdate) SupportsGrouping() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsGrouping"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call can be grouped with other calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsGrouping
-func (c_ CXCallUpdate) SetSupportsGrouping(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsGrouping:"), value)
-}
-
-
-// A Boolean value that indicates whether the call can be placed on hold or removed from hold.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsHolding
-func (c_ CXCallUpdate) SupportsHolding() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsHolding"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call can be placed on hold or removed from hold.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsHolding
-func (c_ CXCallUpdate) SetSupportsHolding(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsHolding:"), value)
-}
-
-
-// A Boolean value that indicates whether the call can be ungrouped from other calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsUngrouping
-func (c_ CXCallUpdate) SupportsUngrouping() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsUngrouping"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call can be ungrouped from other calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsUngrouping
-func (c_ CXCallUpdate) SetSupportsUngrouping(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsUngrouping:"), value)
 }
 
 

@@ -34,14 +34,14 @@ type IUSBHostControllerInterface interface {
 	// properties:
 	Capabilities() USBHostCIMessage /* not a class type */
 	SetCapabilities(value USBHostCIMessage /* not a class type */)
-	ControllerStateMachine() IOUSBHostCIControllerStateMachine /* already interface */
-	SetControllerStateMachine(value IOUSBHostCIControllerStateMachine /* already interface */)
-	InterruptRateHz() int /* primitive/slice/pointer. */
-	SetInterruptRateHz(value int /* primitive/slice/pointer. */)
+	ControllerStateMachine() IOUSBHostCIControllerStateMachine
+	SetControllerStateMachine(value IOUSBHostCIControllerStateMachine)
+	InterruptRateHz() int
+	SetInterruptRateHz(value int)
 	Queue() unsafe.Pointer
 	SetQueue(value unsafe.Pointer)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 	DescriptionForMessage(message USBHostCIMessage /* not a class type */) objc.IObject /* cross-framework: String */
 }
@@ -95,7 +95,7 @@ func NewUSBHostControllerInterface() USBHostControllerInterface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostControllerInterface/description(for:)
 func (u_ USBHostControllerInterface) DescriptionForMessage(message USBHostCIMessage /* not a class type */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](u_.ID, objc.Sel("descriptionForMessage:"), message)
+	rv := objc.Send[foundation.String](u_.ID, objc.Sel("descriptionForMessage:"), message)
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (u_ USBHostControllerInterface) SetCapabilities(value USBHostCIMessage /* n
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
-func (u_ USBHostControllerInterface) ControllerStateMachine() IOUSBHostCIControllerStateMachine /* already interface */ {
+func (u_ USBHostControllerInterface) ControllerStateMachine() IOUSBHostCIControllerStateMachine {
 	rv := objc.Send[USBHostCIControllerStateMachine](u_.ID, objc.Sel("controllerStateMachine"))
 	return rv
 }
@@ -125,14 +125,14 @@ func (u_ USBHostControllerInterface) ControllerStateMachine() IOUSBHostCIControl
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
-func (u_ USBHostControllerInterface) SetControllerStateMachine(value IOUSBHostCIControllerStateMachine /* already interface */) {
+func (u_ USBHostControllerInterface) SetControllerStateMachine(value IOUSBHostCIControllerStateMachine) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerStateMachine:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/interruptratehz
-func (u_ USBHostControllerInterface) InterruptRateHz() int /* primitive/slice/pointer. */ {
+func (u_ USBHostControllerInterface) InterruptRateHz() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("interruptRateHz"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (u_ USBHostControllerInterface) InterruptRateHz() int /* primitive/slice/po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/interruptratehz
-func (u_ USBHostControllerInterface) SetInterruptRateHz(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostControllerInterface) SetInterruptRateHz(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInterruptRateHz:"), value)
 }
 
@@ -162,7 +162,7 @@ func (u_ USBHostControllerInterface) SetQueue(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
-func (u_ USBHostControllerInterface) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (u_ USBHostControllerInterface) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](u_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (u_ USBHostControllerInterface) Uuid() foundation.objc.IObject /* cross-fra
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
-func (u_ USBHostControllerInterface) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (u_ USBHostControllerInterface) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuid:"), value)
 }
 

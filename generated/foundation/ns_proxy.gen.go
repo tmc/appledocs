@@ -32,10 +32,14 @@ type IProxy interface {
 	objectivec.IObject
 	// properties:
 	DebugDescription() IString
-	SetDebugDescription(value IString)
 	Description() IString
-	SetDescription(value IString)
 	// methods:
+	AllowsWeakReference() bool
+	Dealloc()
+	Finalize()
+	ForwardInvocation(invocation IInvocation)
+	MethodSignatureForSelector(sel objc.SEL) objc.IObject /* cross-framework: MethodSignature */
+	RetainWeakReference() bool
 }
 
 // An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.
@@ -91,37 +95,94 @@ func NewProxy() Proxy {
 
 
 
+// Returns (the class object).
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/class()
+func (pc _ProxyClass) Class() objc.Class {
+	rv := objc.Send[objc.Class](objc.ID(pc.class), objc.Sel("class"))
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether the receiving class responds to a given selector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/responds(to:)
+func (pc _ProxyClass) RespondsToSelector(aSelector objc.SEL) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("respondsToSelector:"), aSelector)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/allowsWeakReference
+func (p_ Proxy) AllowsWeakReference() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("allowsWeakReference"))
+	return rv
+}
+
+
+// Deallocates the memory occupied by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/dealloc()
+func (p_ Proxy) Dealloc() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("dealloc"))
+}
+
+
+// The garbage collector invokes this method on the receiver before disposing of the memory it uses.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/finalize()
+func (p_ Proxy) Finalize() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("finalize"))
+}
+
+
+// Passes a given invocation to the real object the proxy represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/forwardInvocation(_:)
+func (p_ Proxy) ForwardInvocation(invocation IInvocation) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("forwardInvocation:"), invocation)
+}
+
+
+// Raises . Override this method in your concrete subclass to return a proper object for the given selector and the class your proxy objects stand in for.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/methodSignatureForSelector:
+func (p_ Proxy) MethodSignatureForSelector(sel objc.SEL) objc.IObject /* cross-framework: MethodSignature */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("methodSignatureForSelector:"), sel)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/retainWeakReference
+func (p_ Proxy) RetainWeakReference() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("retainWeakReference"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/debugDescription
 func (p_ Proxy) DebugDescription() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("debugDescription"))
 	return rv
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
-func (p_ Proxy) SetDebugDescription(value IString) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDebugDescription:"), value)
-}
-
-
 // A string containing the real class name and the id of the receiver as a hexadecimal number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/description
 func (p_ Proxy) Description() IString {
 	rv := objc.Send[String](p_.ID, objc.Sel("description"))
 	return rv
-}
-
-
-// A string containing the real class name and the id of the receiver as a hexadecimal number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
-func (p_ Proxy) SetDescription(value IString) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDescription:"), value)
 }
 
 

@@ -29,9 +29,13 @@ type _MTRClusterBridgedDeviceBasicInformationClass struct {
 // An interface definition for the [MTRClusterBridgedDeviceBasicInformation] class.
 type IMTRClusterBridgedDeviceBasicInformation interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBridgedDeviceBasicInformation
 type MTRClusterBridgedDeviceBasicInformation struct {
 	MTRGenericCluster

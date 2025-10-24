@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ClassKit without requiring cgo.
-
-// Enable teachers to assign activities from your app’s content and to view student progress.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ClassKit
+// See: https://developer.apple.com/documentation/ClassKit
 package classkit
 
 import (

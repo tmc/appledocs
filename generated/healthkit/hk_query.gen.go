@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _HKQueryClass struct {
 type IHKQuery interface {
 	objectivec.IObject
 	// properties:
-	HKPredicateKeyPathMetadata() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathUUID() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMetadata() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathUUID() objc.IObject /* cross-framework: NSString */
 	ObjectType() IHKObjectType
 	SetObjectType(value IHKObjectType)
 	Predicate() objc.IObject /* cross-framework: Predicate */
@@ -99,8 +100,8 @@ func NewHKQuery() HKQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKQuery) HKPredicateKeyPathMetadata() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
+func (h_ HKQuery) HKPredicateKeyPathMetadata() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (h_ HKQuery) HKPredicateKeyPathMetadata() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKQuery) HKPredicateKeyPathUUID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
+func (h_ HKQuery) HKPredicateKeyPathUUID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 
@@ -139,7 +140,7 @@ func (h_ HKQuery) SetObjectType(value IHKObjectType) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
 func (h_ HKQuery) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](h_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 

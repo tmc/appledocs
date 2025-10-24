@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,14 @@ type _SampleBufferVideoRendererClass struct {
 type ISampleBufferVideoRenderer interface {
 	objectivec.IObject
 	// properties:
-	Error() Error
-	SetError(value Error)
+	Error() coretelephony.Error
+	SetError(value coretelephony.Error)
 	PresentationTimeExpectation() unsafe.Pointer
 	SetPresentationTimeExpectation(value unsafe.Pointer)
 	RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */
 	SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */)
-	RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer. */
-	SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer. */)
+	RequiresFlushToResumeDecoding() bool
+	SetRequiresFlushToResumeDecoding(value bool)
 	Status() QueuedSampleBufferRenderingStatus /* not a class type */
 	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
 	// methods:
@@ -99,8 +100,8 @@ func NewSampleBufferVideoRenderer() SampleBufferVideoRenderer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) Error() Error {
-	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
+func (s_ SampleBufferVideoRenderer) Error() coretelephony.Error {
+	rv := objc.Send[coretelephony.Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (s_ SampleBufferVideoRenderer) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) SetError(value Error) {
+func (s_ SampleBufferVideoRenderer) SetError(value coretelephony.Error) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -152,7 +153,7 @@ func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value Pi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("requiresFlushToResumeDecoding"))
 	return rv
 }
@@ -162,7 +163,7 @@ func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresFlushToResumeDecoding:"), value)
 }
 

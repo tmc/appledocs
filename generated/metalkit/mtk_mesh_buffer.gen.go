@@ -30,16 +30,22 @@ type _MeshBufferClass struct {
 // An interface definition for the [MeshBuffer] class.
 type IMeshBuffer interface {
 	objectivec.IObject
-	Allocator() MTKMeshBufferAllocator
+	// properties:
+	Allocator() IMTKMeshBufferAllocator
 	Buffer() objc.ID
 	Length() uint
 	Offset() uint
 	Type() unsafe.Pointer
 	Zone() objc.ID
+	// methods:
 }
 
 // A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
+
+
+// A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer
 type MeshBuffer struct {
 	objectivec.Object
@@ -84,48 +90,60 @@ func NewMeshBuffer() MeshBuffer {
 }
 
 
+
 // The allocator object used to create this mesh buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/allocator
-func (m_ MeshBuffer) Allocator() MTKMeshBufferAllocator {
-	rv := objc.Send[MTKMeshBufferAllocator](m_.ID, objc.Sel("allocator"))
+func (m_ MeshBuffer) Allocator() IMTKMeshBufferAllocator {
+	rv := objc.Send[MeshBufferAllocator](m_.ID, objc.Sel("allocator"))
 	return rv
 }
 
+
 // The Metal buffer backing all vertex and index data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/buffer
 func (m_ MeshBuffer) Buffer() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("buffer"))
 	return rv
 }
 
+
 // The logical size of the Metal buffer, in bytes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/length
 func (m_ MeshBuffer) Length() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("length"))
 	return rv
 }
 
+
 // The byte offset of the data within the Metal buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/offset
 func (m_ MeshBuffer) Offset() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("offset"))
 	return rv
 }
 
+
 // The type of data contained in the originating Model I/O buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/type
 func (m_ MeshBuffer) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // The zone, if any, from which this mesh buffer was created.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/zone
 func (m_ MeshBuffer) Zone() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("zone"))

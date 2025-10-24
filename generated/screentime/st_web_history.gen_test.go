@@ -13,7 +13,7 @@ var _ = screentime.NewSTWebHistory
 // Creates a web history instance to delete web-usage data associated to the   profile identifier you specify.
 func ExampleNewSTWebHistoryWithProfileIdentifier() {
 	_ = screentime.NewSTWebHistoryWithProfileIdentifier(
-		screentime.STWebHistoryProfileIdentifier{}, // profileIdentifier STWebHistoryProfileIdentifier
+		screentime.STWebHistoryProfileIdentifier /* typedef */{}, // profileIdentifier STWebHistoryProfileIdentifier /* typedef */
 	)
 	// Output:
 }

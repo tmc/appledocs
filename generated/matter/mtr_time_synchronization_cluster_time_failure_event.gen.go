@@ -30,9 +30,13 @@ type _MTRTimeSynchronizationClusterTimeFailureEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTimeFailureEvent] class.
 type IMTRTimeSynchronizationClusterTimeFailureEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeFailureEvent
 type MTRTimeSynchronizationClusterTimeFailureEvent struct {
 	objectivec.Object

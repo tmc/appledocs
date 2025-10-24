@@ -30,13 +30,17 @@ type _MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEventClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent] class.
 type IMTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent interface {
 	objectivec.IObject
+	// properties:
 	Current() unsafe.Pointer
 	SetCurrent(value unsafe.Pointer)
 	Previous() unsafe.Pointer
 	SetPrevious(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent
 type MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent() MTRThreadNet
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusternetworkfaultchangeevent/current
 func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -87,14 +92,14 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) Current() un
 }
 
 
-// SetCurrent sets the value of the current property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusternetworkfaultchangeevent/current
 func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusternetworkfaultchangeevent/previous
 func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) Previous() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
@@ -102,8 +107,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) Previous() u
 }
 
 
-// SetPrevious sets the value of the previous property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusternetworkfaultchangeevent/previous
 func (m_ MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)

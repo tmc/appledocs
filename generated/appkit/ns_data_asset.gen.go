@@ -32,7 +32,8 @@ type _DataAssetClass struct {
 type IDataAsset interface {
 	objectivec.IObject
 	// properties:
-	Data() objc.IObject /* cross-framework: NSData */
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	TypeIdentifier() objc.IObject /* cross-framework: NSString */
@@ -93,26 +94,22 @@ func NewDataAsset() DataAsset {
 
 
 
-// Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
+// The raw data values in the data asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
-func NewDataAssetWithNameBundle(name DataAssetName /* not a class type */, bundle objc.IObject /* cross-framework Bundle */) DataAsset {
-	instance := getDataAssetClass().Alloc()
-	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
+func (d_ DataAsset) Data() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("data"))
 	return rv
 }
-
 
 
 // The raw data values in the data asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
-func (d_ DataAsset) Data() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
+func (d_ DataAsset) SetData(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setData:"), value)
 }
 
 
@@ -152,5 +149,6 @@ func (d_ DataAsset) TypeIdentifier() objc.IObject /* cross-framework: NSString *
 func (d_ DataAsset) SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), value)
 }
+
 
 

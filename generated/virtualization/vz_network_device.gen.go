@@ -30,16 +30,22 @@ type _VZNetworkDeviceClass struct {
 // An interface definition for the [VZNetworkDevice] class.
 type IVZNetworkDevice interface {
 	objectivec.IObject
-	Attachment() VZNetworkDeviceAttachment
+	// properties:
+	Attachment() IVZNetworkDeviceAttachment
 	SetAttachment(value IVZNetworkDeviceAttachment)
-	NetworkDevices() VZNetworkDevice
+	NetworkDevices() IVZNetworkDevice
 	SetNetworkDevices(value IVZNetworkDevice)
+	// methods:
 }
 
 // A base class that represents a network device in a virtual machine.
 //
 // Don’t instantiate a   directly. When you create a   instance with a   the system creates the number of network devices based on the number of   objects you specify in the VM configuration. Before initializing the virtual machine (VM), validate the configuration using   to ensure the user’s computer supports the number of network and other devices you’ve specified.   For many purposes, a single network that uses a Network Address Translation (NAT) attachment and connects the VM to the host computer’s network is sufficient. You can use additional network interfaces for purposes of your own design, such as: Bridging several physical interfaces to connect to multiple networks. Using the file descriptor attachment to create specialized connections for different purposes. You access the network devices through the  . property. The network devices map to their respective configurations in a one to one relationship, where index   of   corresponds to the network device configuration at index   set on  . .
+
+
+// A base class that represents a network device in a virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDevice
 type VZNetworkDevice struct {
 	objectivec.Object
@@ -84,37 +90,39 @@ func NewVZNetworkDevice() VZNetworkDevice {
 }
 
 
+
 // The network attachment that’s connected to this network device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdevice/attachment
-func (v_ VZNetworkDevice) Attachment() VZNetworkDeviceAttachment {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDevice/attachment
+func (v_ VZNetworkDevice) Attachment() IVZNetworkDeviceAttachment {
 	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
 
-// SetAttachment sets the value of the attachment property.
 // The network attachment that’s connected to this network device.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdevice/attachment
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDevice/attachment
 func (v_ VZNetworkDevice) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
+
 // The list of configured network devices on the VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/networkdevices
-func (v_ VZNetworkDevice) NetworkDevices() VZNetworkDevice {
+func (v_ VZNetworkDevice) NetworkDevices() IVZNetworkDevice {
 	rv := objc.Send[VZNetworkDevice](v_.ID, objc.Sel("networkDevices"))
 	return rv
 }
 
 
-// SetNetworkDevices sets the value of the networkDevices property.
 // The list of configured network devices on the VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/networkdevices
 func (v_ VZNetworkDevice) SetNetworkDevices(value IVZNetworkDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,21 @@ type _PHASEMixerClass struct {
 // An interface definition for the [PHASEMixer] class.
 type IPHASEMixer interface {
 	objectivec.IObject
+	// properties:
 	Gain() float64
-	GainMetaParameter() PHASEMetaParameter
-	Identifier() string
+	GainMetaParameter() IPHASEMetaParameter
+	Identifier() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // An object that combines multiple audio signals into a single signal.
 //
 // Mixers provide a single point of control over the multiple audio signals they combine. To create a mixer, you provide the framework with a mixer definition; see . Subclasses of this class define unique properties the app sets to control specific features. For example, the spatial mixer ( ) adds environmental effects into the output audio signal.
+
+
+// An object that combines multiple audio signals into a single signal.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer
 type PHASEMixer struct {
 	objectivec.Object
@@ -83,27 +90,33 @@ func NewPHASEMixer() PHASEMixer {
 }
 
 
+
 // The mixer’s volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/gain
 func (p_ PHASEMixer) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
+
 // A parameter that changes the mixer’s volume gradually over a period of time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/gainMetaParameter
-func (p_ PHASEMixer) GainMetaParameter() PHASEMetaParameter {
+func (p_ PHASEMixer) GainMetaParameter() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
 }
 
+
 // A unique name for the mixer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/identifier
-func (p_ PHASEMixer) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEMixer) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

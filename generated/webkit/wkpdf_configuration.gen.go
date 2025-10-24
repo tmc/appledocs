@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +31,22 @@ type _PDFConfigurationClass struct {
 // An interface definition for the [PDFConfiguration] class.
 type IPDFConfiguration interface {
 	objectivec.IObject
+	// properties:
 	AllowTransparentBackground() bool
 	SetAllowTransparentBackground(value bool)
-	Rect() coregraphics.CGRect
-	SetRect(value coregraphics.CGRect)
+	Rect() objc.IObject /* cross-framework: Rect */
+	SetRect(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // The configuration data to use when generating a PDF representation of a web view’s contents.
 //
 // Create a object when you want to generate a PDF version of your web view’s content. Use this object to specify the portion of the web view to capture. To generate the PDF content, pass the configuration object to the method of , which returns the PDF data for you to use.
+
+
+// The configuration data to use when generating a PDF representation of a web view’s contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPDFConfiguration
 type PDFConfiguration struct {
 	objectivec.Object
@@ -85,8 +91,10 @@ func NewPDFConfiguration() PDFConfiguration {
 }
 
 
+
 // A Boolean value that indicates whether the PDF may have a transparent background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPDFConfiguration/allowTransparentBackground
 func (p_ PDFConfiguration) AllowTransparentBackground() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowTransparentBackground"))
@@ -94,30 +102,30 @@ func (p_ PDFConfiguration) AllowTransparentBackground() bool {
 }
 
 
-// SetAllowTransparentBackground sets the value of the allowTransparentBackground property.
 // A Boolean value that indicates whether the PDF may have a transparent background.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPDFConfiguration/allowTransparentBackground
 func (p_ PDFConfiguration) SetAllowTransparentBackground(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowTransparentBackground:"), value)
 }
 
+
 // The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkpdfconfiguration/rect-2a0vp
-func (p_ PDFConfiguration) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
+func (p_ PDFConfiguration) Rect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("rect"))
 	return rv
 }
 
 
-// SetRect sets the value of the rect property.
 // The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkpdfconfiguration/rect-2a0vp
-func (p_ PDFConfiguration) SetRect(value coregraphics.CGRect) {
+func (p_ PDFConfiguration) SetRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
 }
 

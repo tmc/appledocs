@@ -30,15 +30,19 @@ type _MTRThermostatClusterThermostatScheduleTransitionClass struct {
 // An interface definition for the [MTRThermostatClusterThermostatScheduleTransition] class.
 type IMTRThermostatClusterThermostatScheduleTransition interface {
 	IMTRThermostatClusterWeeklyScheduleTransitionStruct
-	CoolSetpoint() foundation.Number
-	SetCoolSetpoint(value foundation.INumber)
-	HeatSetpoint() foundation.Number
-	SetHeatSetpoint(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	CoolSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	HeatSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterThermostatScheduleTransition
 type MTRThermostatClusterThermostatScheduleTransition struct {
 	MTRThermostatClusterWeeklyScheduleTransitionStruct
@@ -83,48 +87,48 @@ func NewMTRThermostatClusterThermostatScheduleTransition() MTRThermostatClusterT
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) CoolSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolSetpoint"))
+func (m_ MTRThermostatClusterThermostatScheduleTransition) CoolSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("coolSetpoint"))
 	return rv
 }
 
 
-// SetCoolSetpoint sets the value of the coolSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/coolsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) SetCoolSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterThermostatScheduleTransition) SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/heatsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) HeatSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatSetpoint"))
+func (m_ MTRThermostatClusterThermostatScheduleTransition) HeatSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("heatSetpoint"))
 	return rv
 }
 
 
-// SetHeatSetpoint sets the value of the heatSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/heatsetpoint
-func (m_ MTRThermostatClusterThermostatScheduleTransition) SetHeatSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterThermostatScheduleTransition) SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/transitiontime
-func (m_ MTRThermostatClusterThermostatScheduleTransition) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRThermostatClusterThermostatScheduleTransition) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterthermostatscheduletransition/transitiontime
-func (m_ MTRThermostatClusterThermostatScheduleTransition) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRThermostatClusterThermostatScheduleTransition) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

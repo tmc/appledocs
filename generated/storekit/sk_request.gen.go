@@ -30,24 +30,21 @@ type _RequestClass struct {
 // An interface definition for the [Request] class.
 type IRequest interface {
 	objectivec.IObject
-	Cancel()
-	Start()
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	// methods:
 }
 
-// An abstract class that represents a request to the App Store.
-//
-// To make a request, initialize a subclass of —such as or —set the property, and call the method.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKRequest
+// A parent class referenced by other StoreKit classes.
+
+
+// A parent class referenced by other StoreKit classes. [Full Topic]
 type Request struct {
 	objectivec.Object
 }
 
 // RequestFrom constructs a [Request] from an unsafe.Pointer.
 //
-// An abstract class that represents a request to the App Store.
+// A parent class referenced by other StoreKit classes.
 func RequestFrom(ptr unsafe.Pointer) Request {
 	return Request{objectivec.Object{objc.ID(ptr)}}
 }
@@ -83,38 +80,6 @@ func NewRequest() Request {
 	return getRequestClass().New()
 }
 
-
-// Cancels a previously started request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKRequest/cancel()
-func (r_ Request) Cancel() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("cancel"))
-}
-
-// Sends the request to the Apple App Store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKRequest/start()
-func (r_ Request) Start() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("start"))
-}
-
-// The delegate of the request object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKRequest/delegate
-func (r_ Request) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The delegate of the request object.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKRequest/delegate
-func (r_ Request) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
-}
 
 
 

@@ -31,21 +31,25 @@ type _MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStructClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct] class.
 type IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct interface {
 	objectivec.IObject
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	EmergencyBoost() foundation.Number
-	SetEmergencyBoost(value foundation.INumber)
-	OneShot() foundation.Number
-	SetOneShot(value foundation.INumber)
-	TargetPercentage() foundation.Number
-	SetTargetPercentage(value foundation.INumber)
-	TargetReheat() foundation.Number
-	SetTargetReheat(value foundation.INumber)
-	TemporarySetpoint() foundation.Number
-	SetTemporarySetpoint(value foundation.INumber)
+	// properties:
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	EmergencyBoost() objc.IObject /* cross-framework: NSNumber */
+	SetEmergencyBoost(value objc.IObject /* cross-framework: NSNumber */)
+	OneShot() objc.IObject /* cross-framework: NSNumber */
+	SetOneShot(value objc.IObject /* cross-framework: NSNumber */)
+	TargetPercentage() objc.IObject /* cross-framework: NSNumber */
+	SetTargetPercentage(value objc.IObject /* cross-framework: NSNumber */)
+	TargetReheat() objc.IObject /* cross-framework: NSNumber */
+	SetTargetReheat(value objc.IObject /* cross-framework: NSNumber */)
+	TemporarySetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetTemporarySetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
 type MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct() MTRWaterHeat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/duration
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/duration
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetDuration(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/emergencyBoost
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) EmergencyBoost() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("emergencyBoost"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) EmergencyBoost() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("emergencyBoost"))
 	return rv
 }
 
 
-// SetEmergencyBoost sets the value of the emergencyBoost property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/emergencyBoost
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetEmergencyBoost(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetEmergencyBoost(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEmergencyBoost:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/oneShot
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) OneShot() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("oneShot"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) OneShot() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("oneShot"))
 	return rv
 }
 
 
-// SetOneShot sets the value of the oneShot property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/oneShot
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetOneShot(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetOneShot(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOneShot:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetPercentage
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetPercentage() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetPercentage"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetPercentage() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetPercentage"))
 	return rv
 }
 
 
-// SetTargetPercentage sets the value of the targetPercentage property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetPercentage
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetPercentage(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetPercentage(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetPercentage:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetReheat
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetReheat() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetReheat"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetReheat() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetReheat"))
 	return rv
 }
 
 
-// SetTargetReheat sets the value of the targetReheat property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetReheat
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetReheat(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetReheat(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetReheat:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/temporarySetpoint
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TemporarySetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("temporarySetpoint"))
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TemporarySetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("temporarySetpoint"))
 	return rv
 }
 
 
-// SetTemporarySetpoint sets the value of the temporarySetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/temporarySetpoint
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTemporarySetpoint(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTemporarySetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporarySetpoint:"), value)
 }
 

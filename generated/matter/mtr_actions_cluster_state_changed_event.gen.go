@@ -31,15 +31,19 @@ type _MTRActionsClusterStateChangedEventClass struct {
 // An interface definition for the [MTRActionsClusterStateChangedEvent] class.
 type IMTRActionsClusterStateChangedEvent interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	InvokeID() foundation.Number
-	SetInvokeID(value foundation.INumber)
-	NewState() foundation.Number
-	SetNewState(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	InvokeID() objc.IObject /* cross-framework: NSNumber */
+	SetInvokeID(value objc.IObject /* cross-framework: NSNumber */)
+	NewState() objc.IObject /* cross-framework: NSNumber */
+	SetNewState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterStateChangedEvent
 type MTRActionsClusterStateChangedEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRActionsClusterStateChangedEvent() MTRActionsClusterStateChangedEvent 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/actionid
-func (m_ MTRActionsClusterStateChangedEvent) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterStateChangedEvent) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/actionid
-func (m_ MTRActionsClusterStateChangedEvent) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterStateChangedEvent) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
-func (m_ MTRActionsClusterStateChangedEvent) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+func (m_ MTRActionsClusterStateChangedEvent) InvokeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("invokeID"))
 	return rv
 }
 
 
-// SetInvokeID sets the value of the invokeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/invokeid
-func (m_ MTRActionsClusterStateChangedEvent) SetInvokeID(value foundation.INumber) {
+func (m_ MTRActionsClusterStateChangedEvent) SetInvokeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
-func (m_ MTRActionsClusterStateChangedEvent) NewState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+func (m_ MTRActionsClusterStateChangedEvent) NewState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newState"))
 	return rv
 }
 
 
-// SetNewState sets the value of the newState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstatechangedevent/newstate
-func (m_ MTRActionsClusterStateChangedEvent) SetNewState(value foundation.INumber) {
+func (m_ MTRActionsClusterStateChangedEvent) SetNewState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
 }
 

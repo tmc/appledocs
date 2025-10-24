@@ -31,15 +31,19 @@ type _MTRIdentifyClusterIdentifyParamsClass struct {
 // An interface definition for the [MTRIdentifyClusterIdentifyParams] class.
 type IMTRIdentifyClusterIdentifyParams interface {
 	objectivec.IObject
-	IdentifyTime() foundation.Number
-	SetIdentifyTime(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	IdentifyTime() objc.IObject /* cross-framework: NSNumber */
+	SetIdentifyTime(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRIdentifyClusterIdentifyParams
 type MTRIdentifyClusterIdentifyParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRIdentifyClusterIdentifyParams() MTRIdentifyClusterIdentifyParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/identifytime
-func (m_ MTRIdentifyClusterIdentifyParams) IdentifyTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("identifyTime"))
+func (m_ MTRIdentifyClusterIdentifyParams) IdentifyTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("identifyTime"))
 	return rv
 }
 
 
-// SetIdentifyTime sets the value of the identifyTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/identifytime
-func (m_ MTRIdentifyClusterIdentifyParams) SetIdentifyTime(value foundation.INumber) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetIdentifyTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifyTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterIdentifyParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRIdentifyClusterIdentifyParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterIdentifyParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterIdentifyParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRIdentifyClusterIdentifyParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterIdentifyParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

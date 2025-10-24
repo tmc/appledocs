@@ -31,11 +31,11 @@ type _MapTableClass struct {
 type IMapTable interface {
 	objectivec.IObject
 	// properties:
-	Count() uint /* primitive/slice/pointer. */
+	Count() uint
 	KeyPointerFunctions() IPointerFunctions
 	ValuePointerFunctions() IPointerFunctions
 	// methods:
-	DictionaryRepresentation() IDictionary /* already interface */
+	DictionaryRepresentation() IDictionary
 	KeyEnumerator() unsafe.Pointer
 	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
@@ -111,7 +111,7 @@ func NewMapTableWithKeyOptionsValueOptions(keyOptions PointerFunctionsOptions, v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyOptions:valueOptions:capacity:)
-func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
+func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions, initialCapacity uint) MapTable {
 	instance := getMapTableClass().Alloc()
 	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyOptions:valueOptions:capacity:"), keyOptions, valueOptions, initialCapacity)
 	rv.Autorelease()
@@ -123,7 +123,7 @@ func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyPointerFunctions:valuePointerFunctions:capacity:)
-func NewMapTableWithKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions IPointerFunctions, valueFunctions IPointerFunctions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
+func NewMapTableWithKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions IPointerFunctions, valueFunctions IPointerFunctions, initialCapacity uint) MapTable {
 	instance := getMapTableClass().Alloc()
 	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyPointerFunctions:valuePointerFunctions:capacity:"), keyFunctions, valueFunctions, initialCapacity)
 	rv.Autorelease()
@@ -226,8 +226,8 @@ func (mc _MapTableClass) WeakToWeakObjectsMapTable() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/dictionaryRepresentation()
-func (m_ MapTable) DictionaryRepresentation() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
+func (m_ MapTable) DictionaryRepresentation() IDictionary {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
@@ -293,7 +293,7 @@ func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/count
-func (m_ MapTable) Count() uint /* primitive/slice/pointer. */ {
+func (m_ MapTable) Count() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
 	return rv
 }

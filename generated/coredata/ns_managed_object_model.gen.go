@@ -32,25 +32,25 @@ type _ManagedObjectModelClass struct {
 type IManagedObjectModel interface {
 	objectivec.IObject
 	// properties:
-	Configurations() string /* primitive/slice/pointer. */
-	SetConfigurations(value string /* primitive/slice/pointer. */)
+	Configurations() objc.IObject /* cross-framework: NSString */
+	SetConfigurations(value objc.IObject /* cross-framework: NSString */)
 	Entities() IEntityDescription
 	SetEntities(value IEntityDescription)
 	EntitiesByName() IEntityDescription
 	SetEntitiesByName(value IEntityDescription)
-	EntityVersionHashesByName() foundation.objc.IObject /* cross-framework: Data */
-	SetEntityVersionHashesByName(value foundation.objc.IObject /* cross-framework: Data */)
+	EntityVersionHashesByName() objc.IObject /* cross-framework: Data */
+	SetEntityVersionHashesByName(value objc.IObject /* cross-framework: Data */)
 	FetchRequestTemplatesByName() FetchRequestResult /* not a class type */
 	SetFetchRequestTemplatesByName(value FetchRequestResult /* not a class type */)
-	LocalizationDictionary() string /* primitive/slice/pointer. */
-	SetLocalizationDictionary(value string /* primitive/slice/pointer. */)
-	VersionChecksum() string /* primitive/slice/pointer. */
-	SetVersionChecksum(value string /* primitive/slice/pointer. */)
+	LocalizationDictionary() objc.IObject /* cross-framework: NSString */
+	SetLocalizationDictionary(value objc.IObject /* cross-framework: NSString */)
+	VersionChecksum() objc.IObject /* cross-framework: NSString */
+	SetVersionChecksum(value objc.IObject /* cross-framework: NSString */)
 	VersionIdentifiers() unsafe.Pointer
 	SetVersionIdentifiers(value unsafe.Pointer)
 	// methods:
-	IsConfigurationCompatibleWithStoreMetadata(configuration string /* primitive/slice/pointer. */, metadata foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */
-	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string /* primitive/slice/pointer. */)
+	IsConfigurationCompatibleWithStoreMetadata(configuration objc.IObject /* cross-framework: NSString */, metadata foundation.IDictionary) bool
+	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name objc.IObject /* cross-framework: NSString */)
 }
 
 // A programmatic representation of the file describing your objects.
@@ -110,8 +110,8 @@ func NewManagedObjectModel() ManagedObjectModel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/isConfiguration(withName:compatibleWithStoreMetadata:)
-func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration string /* primitive/slice/pointer. */, metadata foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), objc.String(configuration), metadata)
+func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration objc.IObject /* cross-framework: NSString */, metadata foundation.IDictionary) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), configuration, metadata)
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/setFetchRequestTemplate(_:forName:)
-func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, objc.String(name))
+func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, name)
 }
 
 
@@ -129,8 +129,8 @@ func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) Configurations() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("configurations"))
+func (m_ ManagedObjectModel) Configurations() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("configurations"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (m_ ManagedObjectModel) Configurations() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/configurations
-func (m_ ManagedObjectModel) SetConfigurations(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), objc.String(value))
+func (m_ ManagedObjectModel) SetConfigurations(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), value)
 }
 
 
@@ -186,7 +186,7 @@ func (m_ ManagedObjectModel) SetEntitiesByName(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
-func (m_ ManagedObjectModel) EntityVersionHashesByName() foundation.objc.IObject /* cross-framework: Data */ {
+func (m_ ManagedObjectModel) EntityVersionHashesByName() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("entityVersionHashesByName"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (m_ ManagedObjectModel) EntityVersionHashesByName() foundation.objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
-func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value foundation.objc.IObject /* cross-framework: Data */) {
+func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityVersionHashesByName:"), value)
 }
 
@@ -224,8 +224,8 @@ func (m_ ManagedObjectModel) SetFetchRequestTemplatesByName(value FetchRequestRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) LocalizationDictionary() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("localizationDictionary"))
+func (m_ ManagedObjectModel) LocalizationDictionary() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("localizationDictionary"))
 	return rv
 }
 
@@ -234,8 +234,8 @@ func (m_ ManagedObjectModel) LocalizationDictionary() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/localizationdictionary
-func (m_ ManagedObjectModel) SetLocalizationDictionary(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), objc.String(value))
+func (m_ ManagedObjectModel) SetLocalizationDictionary(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), value)
 }
 
 
@@ -243,8 +243,8 @@ func (m_ ManagedObjectModel) SetLocalizationDictionary(value string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) VersionChecksum() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
+func (m_ ManagedObjectModel) VersionChecksum() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
 
@@ -253,8 +253,8 @@ func (m_ ManagedObjectModel) VersionChecksum() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionchecksum
-func (m_ ManagedObjectModel) SetVersionChecksum(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
+func (m_ ManagedObjectModel) SetVersionChecksum(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
 }
 
 

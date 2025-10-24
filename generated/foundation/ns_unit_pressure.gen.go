@@ -88,4 +88,23 @@ func NewUnitPressure() UnitPressure {
 
 
 
+// The millimeters of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
+func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
+	rv := objc.Send[UnitPressure](objc.ID(uc.class), objc.Sel("millimetersOfMercury"))
+	return rv
+}
+
+// The millimeters of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
+func (u_ UnitPressure) MillimetersOfMercury() IUnitPressure {
+	rv := objc.Send[UnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
+	return rv
+}
+
+
 

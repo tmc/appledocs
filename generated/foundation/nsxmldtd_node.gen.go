@@ -30,16 +30,17 @@ type _XMLDTDNodeClass struct {
 type IXMLDTDNode interface {
 	IXMLNode
 	// properties:
-	DtdKind() unsafe.Pointer
-	SetDtdKind(value unsafe.Pointer)
-	IsExternal() bool /* primitive/slice/pointer. */
-	SetIsExternal(value bool /* primitive/slice/pointer. */)
+	DTDKind() XMLDTDNodeKind
+	SetDTDKind(value XMLDTDNodeKind)
+	External() bool
 	NotationName() IString
 	SetNotationName(value IString)
 	PublicID() IString
 	SetPublicID(value IString)
 	SystemID() IString
 	SetSystemID(value IString)
+	IsExternal() bool
+	SetIsExternal(value bool)
 	// methods:
 }
 
@@ -98,12 +99,35 @@ func NewXMLDTDNode() XMLDTDNode {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(kind:options:)
+func NewXMLDTDNodeWithKindOptions(kind XMLNodeKind /* not a class type */, options XMLNodeOptions) XMLDTDNode {
+	instance := getXMLDTDNodeClass().Alloc()
+	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns an object initialized with the DTD declaration in a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)
+func NewXMLDTDNodeWithXMLString(string_ IString) XMLDTDNode {
+	instance := getXMLDTDNodeClass().Alloc()
+	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithXMLString:"), string_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Returns the receiver’s DTD kind.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.property
-func (x_ XMLDTDNode) DtdKind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtdKind"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
+func (x_ XMLDTDNode) DTDKind() XMLDTDNodeKind {
+	rv := objc.Send[XMLDTDNodeKind](x_.ID, objc.Sel("DTDKind"))
 	return rv
 }
 
@@ -111,31 +135,24 @@ func (x_ XMLDTDNode) DtdKind() unsafe.Pointer {
 // Returns the receiver’s DTD kind.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.property
-func (x_ XMLDTDNode) SetDtdKind(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setDtdKind:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
+func (x_ XMLDTDNode) SetDTDKind(value XMLDTDNodeKind) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setDTDKind:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) IsExternal() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](x_.ID, objc.Sel("isExternal"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/isExternal
+func (x_ XMLDTDNode) External() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("external"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) SetIsExternal(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setIsExternal:"), value)
 }
 
 
 // Returns the name of the notation associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/notationname
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/notationName
 func (x_ XMLDTDNode) NotationName() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("notationName"))
 	return rv
@@ -145,7 +162,7 @@ func (x_ XMLDTDNode) NotationName() IString {
 // Returns the name of the notation associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/notationname
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/notationName
 func (x_ XMLDTDNode) SetNotationName(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNotationName:"), value)
 }
@@ -154,7 +171,7 @@ func (x_ XMLDTDNode) SetNotationName(value IString) {
 // Returns the public identifier associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/publicid
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/publicID
 func (x_ XMLDTDNode) PublicID() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("publicID"))
 	return rv
@@ -164,7 +181,7 @@ func (x_ XMLDTDNode) PublicID() IString {
 // Returns the public identifier associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/publicid
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/publicID
 func (x_ XMLDTDNode) SetPublicID(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), value)
 }
@@ -173,7 +190,7 @@ func (x_ XMLDTDNode) SetPublicID(value IString) {
 // Returns the system identifier associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/systemid
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/systemID
 func (x_ XMLDTDNode) SystemID() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("systemID"))
 	return rv
@@ -183,10 +200,24 @@ func (x_ XMLDTDNode) SystemID() IString {
 // Returns the system identifier associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/systemid
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/systemID
 func (x_ XMLDTDNode) SetSystemID(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), value)
 }
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
+func (x_ XMLDTDNode) IsExternal() bool {
+	rv := objc.Send[bool](x_.ID, objc.Sel("isExternal"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
+func (x_ XMLDTDNode) SetIsExternal(value bool) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setIsExternal:"), value)
+}
 
 

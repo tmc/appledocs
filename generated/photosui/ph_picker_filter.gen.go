@@ -30,10 +30,16 @@ type _PHPickerFilterClass struct {
 // An interface definition for the [PHPickerFilter] class.
 type IPHPickerFilter interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A type that defines the filter to apply to the photo library.
+
+
+// A type that defines the filter to apply to the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class
 type PHPickerFilter struct {
 	objectivec.Object
@@ -77,216 +83,6 @@ func NewPHPickerFilter() PHPickerFilter {
 	return getPHPickerFilterClass().New()
 }
 
-
-// Creates a new filter that includes only the filters you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/allFilterMatchingSubfilters:
-func (pc _PHPickerFilterClass) AllFilterMatchingSubfilters(subfilters []PHPickerFilter) PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("allFilterMatchingSubfilters:"), subfilters)
-	return rv
-}
-
-// Creates a new filter by combining the filters in the array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/anyFilterMatchingSubfilters:
-func (pc _PHPickerFilterClass) AnyFilterMatchingSubfilters(subfilters []PHPickerFilter) PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("anyFilterMatchingSubfilters:"), subfilters)
-	return rv
-}
-
-// Creates a new filter that excludes the filter you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/notFilterOfSubfilter:
-func (pc _PHPickerFilterClass) NotFilterOfSubfilter(subfilter IPHPickerFilter) PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("notFilterOfSubfilter:"), subfilter)
-	return rv
-}
-
-// Creates a new filter by using the playback style you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/playbackStyleFilter:
-func (pc _PHPickerFilterClass) PlaybackStyleFilter(playbackStyle unsafe.Pointer) PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("playbackStyleFilter:"), playbackStyle)
-	return rv
-}
-
-// A filter that represents assets with multiple high-speed photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/burstsFilter
-func (pc _PHPickerFilterClass) BurstsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("burstsFilter"))
-	return rv
-}
-// A filter that represents videos with a shallow depth of field and focus transitions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/cinematicVideosFilter
-func (pc _PHPickerFilterClass) CinematicVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("cinematicVideosFilter"))
-	return rv
-}
-// A filter that represents photos with depth information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/depthEffectPhotosFilter
-func (pc _PHPickerFilterClass) DepthEffectPhotosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("depthEffectPhotosFilter"))
-	return rv
-}
-// A filter that represents images, and includes Live Photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/imagesFilter
-func (pc _PHPickerFilterClass) ImagesFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("imagesFilter"))
-	return rv
-}
-// A filter that represents Live Photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/livePhotosFilter
-func (pc _PHPickerFilterClass) LivePhotosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("livePhotosFilter"))
-	return rv
-}
-// A filter that represents panorama photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/panoramasFilter
-func (pc _PHPickerFilterClass) PanoramasFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("panoramasFilter"))
-	return rv
-}
-// A filter that represents screen recordings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/screenRecordingsFilter
-func (pc _PHPickerFilterClass) ScreenRecordingsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("screenRecordingsFilter"))
-	return rv
-}
-// A filter that represents screenshots.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/screenshotsFilter
-func (pc _PHPickerFilterClass) ScreenshotsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("screenshotsFilter"))
-	return rv
-}
-// A filter that represents slow-motion videos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/slomoVideosFilter
-func (pc _PHPickerFilterClass) SlomoVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("slomoVideosFilter"))
-	return rv
-}
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/spatialMediaFilter
-func (pc _PHPickerFilterClass) SpatialMediaFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("spatialMediaFilter"))
-	return rv
-}
-// A filter that represents time-lapse videos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/timelapseVideosFilter
-func (pc _PHPickerFilterClass) TimelapseVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("timelapseVideosFilter"))
-	return rv
-}
-// A filter that represents video assets.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/videosFilter
-func (pc _PHPickerFilterClass) VideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](objc.ID(pc.class), objc.Sel("videosFilter"))
-	return rv
-}
-// A filter that represents assets with multiple high-speed photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/burstsFilter
-func (p_ PHPickerFilter) BurstsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("burstsFilter"))
-	return rv
-}
-
-// A filter that represents videos with a shallow depth of field and focus transitions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/cinematicVideosFilter
-func (p_ PHPickerFilter) CinematicVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("cinematicVideosFilter"))
-	return rv
-}
-
-// A filter that represents photos with depth information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/depthEffectPhotosFilter
-func (p_ PHPickerFilter) DepthEffectPhotosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("depthEffectPhotosFilter"))
-	return rv
-}
-
-// A filter that represents images, and includes Live Photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/imagesFilter
-func (p_ PHPickerFilter) ImagesFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("imagesFilter"))
-	return rv
-}
-
-// A filter that represents Live Photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/livePhotosFilter
-func (p_ PHPickerFilter) LivePhotosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("livePhotosFilter"))
-	return rv
-}
-
-// A filter that represents panorama photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/panoramasFilter
-func (p_ PHPickerFilter) PanoramasFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("panoramasFilter"))
-	return rv
-}
-
-// A filter that represents screen recordings.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/screenRecordingsFilter
-func (p_ PHPickerFilter) ScreenRecordingsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("screenRecordingsFilter"))
-	return rv
-}
-
-// A filter that represents screenshots.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/screenshotsFilter
-func (p_ PHPickerFilter) ScreenshotsFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("screenshotsFilter"))
-	return rv
-}
-
-// A filter that represents slow-motion videos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/slomoVideosFilter
-func (p_ PHPickerFilter) SlomoVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("slomoVideosFilter"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/spatialMediaFilter
-func (p_ PHPickerFilter) SpatialMediaFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("spatialMediaFilter"))
-	return rv
-}
-
-// A filter that represents time-lapse videos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/timelapseVideosFilter
-func (p_ PHPickerFilter) TimelapseVideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("timelapseVideosFilter"))
-	return rv
-}
-
-// A filter that represents video assets.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerFilter-c.class/videosFilter
-func (p_ PHPickerFilter) VideosFilter() PHPickerFilter {
-	rv := objc.Send[PHPickerFilter](p_.ID, objc.Sel("videosFilter"))
-	return rv
-}
 
 
 

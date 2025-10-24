@@ -31,11 +31,15 @@ type _MTRBooleanStateConfigurationClusterSensorFaultEventClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterSensorFaultEvent] class.
 type IMTRBooleanStateConfigurationClusterSensorFaultEvent interface {
 	objectivec.IObject
-	SensorFault() foundation.Number
-	SetSensorFault(value foundation.INumber)
+	// properties:
+	SensorFault() objc.IObject /* cross-framework: NSNumber */
+	SetSensorFault(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBooleanStateConfigurationClusterSensorFaultEvent
 type MTRBooleanStateConfigurationClusterSensorFaultEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBooleanStateConfigurationClusterSensorFaultEvent() MTRBooleanStateCon
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
-func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sensorFault"))
+func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sensorFault"))
 	return rv
 }
 
 
-// SetSensorFault sets the value of the sensorFault property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
-func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value foundation.INumber) {
+func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSensorFault:"), value)
 }
 

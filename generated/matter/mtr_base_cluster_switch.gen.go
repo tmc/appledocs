@@ -29,9 +29,13 @@ type _MTRBaseClusterSwitchClass struct {
 // An interface definition for the [MTRBaseClusterSwitch] class.
 type IMTRBaseClusterSwitch interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterSwitch
 type MTRBaseClusterSwitch struct {
 	MTRGenericBaseCluster

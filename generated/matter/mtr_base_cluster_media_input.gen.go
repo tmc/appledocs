@@ -29,9 +29,13 @@ type _MTRBaseClusterMediaInputClass struct {
 // An interface definition for the [MTRBaseClusterMediaInput] class.
 type IMTRBaseClusterMediaInput interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMediaInput
 type MTRBaseClusterMediaInput struct {
 	MTRGenericBaseCluster

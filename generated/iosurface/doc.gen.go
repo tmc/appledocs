@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOSurface without requiring cgo.
-
-// Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOSurface
+// See: https://developer.apple.com/documentation/IOSurface
 package iosurface
 
 import (

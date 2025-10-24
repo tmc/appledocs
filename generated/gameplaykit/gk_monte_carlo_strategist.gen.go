@@ -31,10 +31,10 @@ type _MonteCarloStrategistClass struct {
 type IMonteCarloStrategist interface {
 	objectivec.IObject
 	// properties:
-	Budget() uint /* primitive/slice/pointer. */
-	SetBudget(value uint /* primitive/slice/pointer. */)
-	ExplorationParameter() uint /* primitive/slice/pointer. */
-	SetExplorationParameter(value uint /* primitive/slice/pointer. */)
+	Budget() uint
+	SetBudget(value uint)
+	ExplorationParameter() uint
+	SetExplorationParameter(value uint)
 	GameModel() GameModel /* not a class type */
 	SetGameModel(value GameModel /* not a class type */)
 	RandomSource() Random /* not a class type */
@@ -99,7 +99,7 @@ func NewMonteCarloStrategist() MonteCarloStrategist {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
-func (m_ MonteCarloStrategist) Budget() uint /* primitive/slice/pointer. */ {
+func (m_ MonteCarloStrategist) Budget() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("budget"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (m_ MonteCarloStrategist) Budget() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/budget
-func (m_ MonteCarloStrategist) SetBudget(value uint /* primitive/slice/pointer. */) {
+func (m_ MonteCarloStrategist) SetBudget(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBudget:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MonteCarloStrategist) SetBudget(value uint /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
-func (m_ MonteCarloStrategist) ExplorationParameter() uint /* primitive/slice/pointer. */ {
+func (m_ MonteCarloStrategist) ExplorationParameter() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("explorationParameter"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (m_ MonteCarloStrategist) ExplorationParameter() uint /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMonteCarloStrategist/explorationParameter
-func (m_ MonteCarloStrategist) SetExplorationParameter(value uint /* primitive/slice/pointer. */) {
+func (m_ MonteCarloStrategist) SetExplorationParameter(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExplorationParameter:"), value)
 }
 

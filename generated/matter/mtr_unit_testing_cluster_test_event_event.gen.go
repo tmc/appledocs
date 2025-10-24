@@ -31,21 +31,25 @@ type _MTRUnitTestingClusterTestEventEventClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEventEvent] class.
 type IMTRUnitTestingClusterTestEventEvent interface {
 	objectivec.IObject
-	Arg1() foundation.Number
-	SetArg1(value foundation.INumber)
-	Arg2() foundation.Number
-	SetArg2(value foundation.INumber)
-	Arg3() foundation.Number
-	SetArg3(value foundation.INumber)
-	Arg4() MTRUnitTestingClusterSimpleStruct
+	// properties:
+	Arg1() objc.IObject /* cross-framework: NSNumber */
+	SetArg1(value objc.IObject /* cross-framework: NSNumber */)
+	Arg2() objc.IObject /* cross-framework: NSNumber */
+	SetArg2(value objc.IObject /* cross-framework: NSNumber */)
+	Arg3() objc.IObject /* cross-framework: NSNumber */
+	SetArg3(value objc.IObject /* cross-framework: NSNumber */)
+	Arg4() IMTRUnitTestingClusterSimpleStruct
 	SetArg4(value IMTRUnitTestingClusterSimpleStruct)
 	Arg5() unsafe.Pointer
 	SetArg5(value unsafe.Pointer)
 	Arg6() unsafe.Pointer
 	SetArg6(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEventEvent
 type MTRUnitTestingClusterTestEventEvent struct {
 	objectivec.Object
@@ -88,67 +92,68 @@ func NewMTRUnitTestingClusterTestEventEvent() MTRUnitTestingClusterTestEventEven
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg1
-func (m_ MTRUnitTestingClusterTestEventEvent) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+func (m_ MTRUnitTestingClusterTestEventEvent) Arg1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg1
-func (m_ MTRUnitTestingClusterTestEventEvent) SetArg1(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEventEvent) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg2
-func (m_ MTRUnitTestingClusterTestEventEvent) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+func (m_ MTRUnitTestingClusterTestEventEvent) Arg2() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg2"))
 	return rv
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg2
-func (m_ MTRUnitTestingClusterTestEventEvent) SetArg2(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEventEvent) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg3
-func (m_ MTRUnitTestingClusterTestEventEvent) Arg3() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg3"))
+func (m_ MTRUnitTestingClusterTestEventEvent) Arg3() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg3"))
 	return rv
 }
 
 
-// SetArg3 sets the value of the arg3 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg3
-func (m_ MTRUnitTestingClusterTestEventEvent) SetArg3(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEventEvent) SetArg3(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg4
-func (m_ MTRUnitTestingClusterTestEventEvent) Arg4() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRUnitTestingClusterTestEventEvent) Arg4() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("arg4"))
 	return rv
 }
 
 
-// SetArg4 sets the value of the arg4 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg4
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg4(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg5
 func (m_ MTRUnitTestingClusterTestEventEvent) Arg5() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg5"))
@@ -156,14 +161,14 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg5() unsafe.Pointer {
 }
 
 
-// SetArg5 sets the value of the arg5 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg5
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg5(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg6
 func (m_ MTRUnitTestingClusterTestEventEvent) Arg6() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg6"))
@@ -171,8 +176,7 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg6() unsafe.Pointer {
 }
 
 
-// SetArg6 sets the value of the arg6 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg6
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg6(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)

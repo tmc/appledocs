@@ -31,15 +31,19 @@ type _MTRAccessGrantClass struct {
 // An interface definition for the [MTRAccessGrant] class.
 type IMTRAccessGrant interface {
 	objectivec.IObject
+	// properties:
 	AuthenticationMode() MTRAccessControlEntryAuthMode
 	SetAuthenticationMode(value MTRAccessControlEntryAuthMode)
 	GrantedPrivilege() MTRAccessControlEntryPrivilege
-	SetGrantedPrivilege(value IMTRAccessControlEntryPrivilege)
-	SubjectID() foundation.Number
-	SetSubjectID(value foundation.INumber)
+	SetGrantedPrivilege(value MTRAccessControlEntryPrivilege)
+	SubjectID() objc.IObject /* cross-framework: NSNumber */
+	SetSubjectID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessGrant
 type MTRAccessGrant struct {
 	objectivec.Object
@@ -82,7 +86,8 @@ func NewMTRAccessGrant() MTRAccessGrant {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
 func (m_ MTRAccessGrant) AuthenticationMode() MTRAccessControlEntryAuthMode {
 	rv := objc.Send[MTRAccessControlEntryAuthMode](m_.ID, objc.Sel("authenticationMode"))
@@ -90,14 +95,14 @@ func (m_ MTRAccessGrant) AuthenticationMode() MTRAccessControlEntryAuthMode {
 }
 
 
-// SetAuthenticationMode sets the value of the authenticationMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
 func (m_ MTRAccessGrant) SetAuthenticationMode(value MTRAccessControlEntryAuthMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthenticationMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
 func (m_ MTRAccessGrant) GrantedPrivilege() MTRAccessControlEntryPrivilege {
 	rv := objc.Send[MTRAccessControlEntryPrivilege](m_.ID, objc.Sel("grantedPrivilege"))
@@ -105,25 +110,24 @@ func (m_ MTRAccessGrant) GrantedPrivilege() MTRAccessControlEntryPrivilege {
 }
 
 
-// SetGrantedPrivilege sets the value of the grantedPrivilege property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
-func (m_ MTRAccessGrant) SetGrantedPrivilege(value IMTRAccessControlEntryPrivilege) {
+func (m_ MTRAccessGrant) SetGrantedPrivilege(value MTRAccessControlEntryPrivilege) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGrantedPrivilege:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
-func (m_ MTRAccessGrant) SubjectID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("subjectID"))
+func (m_ MTRAccessGrant) SubjectID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("subjectID"))
 	return rv
 }
 
 
-// SetSubjectID sets the value of the subjectID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
-func (m_ MTRAccessGrant) SetSubjectID(value foundation.INumber) {
+func (m_ MTRAccessGrant) SetSubjectID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubjectID:"), value)
 }
 

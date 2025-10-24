@@ -31,11 +31,15 @@ type _MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsClass struct
 // An interface definition for the [MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams] class.
 type IMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams interface {
 	objectivec.IObject
-	Passphrase() foundation.NSData
-	SetPassphrase(value foundation.IData)
+	// properties:
+	Passphrase() objc.IObject /* cross-framework: NSData */
+	SetPassphrase(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams
 type MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams() MTRWiFi
 
 
 
-
 // Initialize an MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams/init(responseValue:)
-func NewMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams {
+func NewMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams {
 	instance := getMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsClass().Alloc()
 	rv := objc.Send[MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRWiFiNetworkManagementClusterNetworkPassphraseResponseParamsWithRespon
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams/passphrase
-func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) Passphrase() foundation.NSData {
+func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) Passphrase() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("passphrase"))
 	return rv
 }
 
 
-// SetPassphrase sets the value of the passphrase property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams/passphrase
-func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) SetPassphrase(value foundation.IData) {
+func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams) SetPassphrase(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPassphrase:"), value)
 }
 

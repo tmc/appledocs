@@ -90,7 +90,7 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
-func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.objc.IObject /* cross-framework NSData */, error_ unsafe.Pointer) []CNContact /* primitive/slice/pointer. */ {
+func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data objc.IObject /* cross-framework: NSData */, error_ unsafe.Pointer) []ICNContact {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
 }
@@ -100,8 +100,8 @@ func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/data(with:)
-func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact /* primitive/slice/pointer. */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
+func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []ICNContact, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
 	return rv
 }
 

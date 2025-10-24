@@ -32,10 +32,10 @@ type IINAddMediaIntent interface {
 	// properties:
 	MediaDestination() unsafe.Pointer
 	SetMediaDestination(value unsafe.Pointer)
-	MediaItems() INMediaItem /* already interface */
-	SetMediaItems(value INMediaItem /* already interface */)
-	MediaSearch() INMediaSearch /* already interface */
-	SetMediaSearch(value INMediaSearch /* already interface */)
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 	// methods:
 }
 
@@ -117,7 +117,7 @@ func (i_ INAddMediaIntent) SetMediaDestination(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
-func (i_ INAddMediaIntent) MediaItems() INMediaItem /* already interface */ {
+func (i_ INAddMediaIntent) MediaItems() INMediaItem {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (i_ INAddMediaIntent) MediaItems() INMediaItem /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
-func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem /* already interface */) {
+func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
@@ -136,7 +136,7 @@ func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem /* already interface 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
-func (i_ INAddMediaIntent) MediaSearch() INMediaSearch /* already interface */ {
+func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ INAddMediaIntent) MediaSearch() INMediaSearch /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
-func (i_ INAddMediaIntent) SetMediaSearch(value INMediaSearch /* already interface */) {
+func (i_ INAddMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 

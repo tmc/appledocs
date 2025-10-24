@@ -32,8 +32,8 @@ type _FilePromiseProviderClass struct {
 type IFilePromiseProvider interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() FilePromiseProviderDelegate /* not a class type */
+	SetDelegate(value FilePromiseProviderDelegate /* not a class type */)
 	FileType() objc.IObject /* cross-framework: NSString */
 	SetFileType(value objc.IObject /* cross-framework: NSString */)
 	UserInfo() unsafe.Pointer
@@ -95,16 +95,16 @@ func NewFilePromiseProvider() FilePromiseProvider {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/delegate
-func (f_ FilePromiseProvider) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/delegate
+func (f_ FilePromiseProvider) Delegate() FilePromiseProviderDelegate /* not a class type */ {
+	rv := objc.Send[FilePromiseProviderDelegate](f_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseProvider/delegate
-func (f_ FilePromiseProvider) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/delegate
+func (f_ FilePromiseProvider) SetDelegate(value FilePromiseProviderDelegate /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 

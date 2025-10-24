@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreMediaIO without requiring cgo.
-
-// Securely support custom camera devices in macOS.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO
+// See: https://developer.apple.com/documentation/CoreMediaIO
 package coremediaio
 
 import (

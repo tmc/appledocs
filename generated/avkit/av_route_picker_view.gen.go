@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/avrouting"
 )
 
 // The class instance for the [RoutePickerView] class.
@@ -31,25 +33,17 @@ type _RoutePickerViewClass struct {
 type IRoutePickerView interface {
 	appkit.IView
 	// properties:
-	ActiveTintColor() objc.IObject /* cross-framework: Color */
-	SetActiveTintColor(value objc.IObject /* cross-framework: Color */)
-	CustomRoutingController() objc.IObject /* cross-framework: CustomRoutingController */
-	SetCustomRoutingController(value objc.IObject /* cross-framework: CustomRoutingController */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	RoutePickerButtonBordered() bool /* primitive/slice/pointer. */
-	SetRoutePickerButtonBordered(value bool /* primitive/slice/pointer. */)
+	RoutePickerButtonBordered() bool
+	SetRoutePickerButtonBordered(value bool)
 	Player() objc.IObject /* cross-framework: Player */
 	SetPlayer(value objc.IObject /* cross-framework: Player */)
-	PrioritizesVideoDevices() bool /* primitive/slice/pointer. */
-	SetPrioritizesVideoDevices(value bool /* primitive/slice/pointer. */)
-	RoutePickerButtonStyle() RoutePickerViewButtonStyle
-	SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle)
-	IsRoutePickerButtonBordered() bool /* primitive/slice/pointer. */
-	SetIsRoutePickerButtonBordered(value bool /* primitive/slice/pointer. */)
+	IsRoutePickerButtonBordered() bool
+	SetIsRoutePickerButtonBordered(value bool)
 	// methods:
 	RoutePickerButtonColorForState(state RoutePickerViewButtonState) objc.IObject /* cross-framework: Color */
-	SetRoutePickerButtonColorForState(color objc.IObject /* cross-framework Color */, state RoutePickerViewButtonState)
+	SetRoutePickerButtonColorForState(color objc.IObject /* cross-framework: Color */, state RoutePickerViewButtonState)
 }
 
 // A view that presents a list of nearby media receivers.
@@ -112,7 +106,7 @@ func NewRoutePickerView() RoutePickerView {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonColor(for:)
 func (r_ RoutePickerView) RoutePickerButtonColorForState(state RoutePickerViewButtonState) objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[Color](r_.ID, objc.Sel("routePickerButtonColorForState:"), state)
+	rv := objc.Send[appkit.Color](r_.ID, objc.Sel("routePickerButtonColorForState:"), state)
 	return rv
 }
 
@@ -121,46 +115,8 @@ func (r_ RoutePickerView) RoutePickerButtonColorForState(state RoutePickerViewBu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/setRoutePickerButtonColor(_:for:)
-func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color objc.IObject /* cross-framework Color */, state RoutePickerViewButtonState) {
+func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color objc.IObject /* cross-framework: Color */, state RoutePickerViewButtonState) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonColor:forState:"), color, state)
-}
-
-
-// The view’s tint color when AirPlay is active.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) ActiveTintColor() objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[Color](r_.ID, objc.Sel("activeTintColor"))
-	return rv
-}
-
-
-// The view’s tint color when AirPlay is active.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) SetActiveTintColor(value objc.IObject /* cross-framework: Color */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveTintColor:"), value)
-}
-
-
-// A routing controller that enables connections to non-AirPlay devices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) CustomRoutingController() objc.IObject /* cross-framework: CustomRoutingController */ {
-	rv := objc.Send[CustomRoutingController](r_.ID, objc.Sel("customRoutingController"))
-	return rv
-}
-
-
-// A routing controller that enables connections to non-AirPlay devices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) SetCustomRoutingController(value objc.IObject /* cross-framework: CustomRoutingController */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomRoutingController:"), value)
 }
 
 
@@ -187,7 +143,7 @@ func (r_ RoutePickerView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/isRoutePickerButtonBordered
-func (r_ RoutePickerView) RoutePickerButtonBordered() bool /* primitive/slice/pointer. */ {
+func (r_ RoutePickerView) RoutePickerButtonBordered() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("routePickerButtonBordered"))
 	return rv
 }
@@ -197,7 +153,7 @@ func (r_ RoutePickerView) RoutePickerButtonBordered() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/isRoutePickerButtonBordered
-func (r_ RoutePickerView) SetRoutePickerButtonBordered(value bool /* primitive/slice/pointer. */) {
+func (r_ RoutePickerView) SetRoutePickerButtonBordered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonBordered:"), value)
 }
 
@@ -207,7 +163,7 @@ func (r_ RoutePickerView) SetRoutePickerButtonBordered(value bool /* primitive/s
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/player
 func (r_ RoutePickerView) Player() objc.IObject /* cross-framework: Player */ {
-	rv := objc.Send[Player](r_.ID, objc.Sel("player"))
+	rv := objc.Send[avfoundation.Player](r_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -221,49 +177,11 @@ func (r_ RoutePickerView) SetPlayer(value objc.IObject /* cross-framework: Playe
 }
 
 
-// A Boolean value that indicates whether the route picker sorts video output devices to the top of the list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/prioritizesVideoDevices
-func (r_ RoutePickerView) PrioritizesVideoDevices() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](r_.ID, objc.Sel("prioritizesVideoDevices"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the route picker sorts video output devices to the top of the list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/prioritizesVideoDevices
-func (r_ RoutePickerView) SetPrioritizesVideoDevices(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPrioritizesVideoDevices:"), value)
-}
-
-
-// The button style for the route picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) RoutePickerButtonStyle() RoutePickerViewButtonStyle {
-	rv := objc.Send[RoutePickerViewButtonStyle](r_.ID, objc.Sel("routePickerButtonStyle"))
-	return rv
-}
-
-
-// The button style for the route picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonStyle:"), value)
-}
-
-
 // A Boolean value that indicates whether the route picker button has a border.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avroutepickerview/isroutepickerbuttonbordered
-func (r_ RoutePickerView) IsRoutePickerButtonBordered() bool /* primitive/slice/pointer. */ {
+func (r_ RoutePickerView) IsRoutePickerButtonBordered() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isRoutePickerButtonBordered"))
 	return rv
 }
@@ -273,10 +191,8 @@ func (r_ RoutePickerView) IsRoutePickerButtonBordered() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avroutepickerview/isroutepickerbuttonbordered
-func (r_ RoutePickerView) SetIsRoutePickerButtonBordered(value bool /* primitive/slice/pointer. */) {
+func (r_ RoutePickerView) SetIsRoutePickerButtonBordered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRoutePickerButtonBordered:"), value)
 }
-
-
 
 

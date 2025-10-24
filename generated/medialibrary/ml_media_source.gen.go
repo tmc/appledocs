@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,22 +31,25 @@ type _MediaSourceClass struct {
 // An interface definition for the [MediaSource] class.
 type IMediaSource interface {
 	objectivec.IObject
-	MediaGroupForIdentifier(mediaGroupIdentifier string) MediaGroup
-	MediaObjectForIdentifier(mediaObjectIdentifier string) MediaObject
-	MediaObjectsForIdentifiers(mediaObjectIdentifiers []string) unsafe.Pointer
-	Attributes() unsafe.Pointer
-	MediaLibrary() MLMediaLibrary
+	// properties:
+	Attributes() foundation.IDictionary
+	MediaLibrary() IMLMediaLibrary
 	SetMediaLibrary(value IMLMediaLibrary)
-	MediaSourceIdentifier() string
-	SetMediaSourceIdentifier(value string)
-	RootMediaGroup() MLMediaGroup
+	MediaSourceIdentifier() objc.IObject /* cross-framework: NSString */
+	SetMediaSourceIdentifier(value objc.IObject /* cross-framework: NSString */)
+	RootMediaGroup() IMLMediaGroup
 	SetRootMediaGroup(value IMLMediaGroup)
+	// methods:
 }
 
 // The class identifies a specific provider of media. Conceptually, a media source respresents a single app, such as iTunes or Aperture. Each media source contains multiple groups of media objects—individual files containing a piece of media such as a photo, song, or movie.
 //
 // The structure of the group hierarchy is specific to each media source, but all sources have certain commonalities. For example, every source has a single root media group, which contains all groups and objects within that source. It is the highest-level parent group in the hierarchy and each of its descendant groups contains its own subgroups and their objects. All groups have a reference to their parent within the hierarchy. A group with no descendants contains only its own objects. If a media group does not contain any objects, it is not visible in the hierarchy. Every media source has a unique media source identifier within a single media library instance. For a list of possible media source identifiers, see . All properties are read-only, so this information can be accessed but not altered.
+
+
+// The class identifies a specific provider of media. Conceptually, a media source respresents a single app, such as iTunes or Aperture. Each media source contains multiple groups of media objects—individual files containing a piece of media such as a photo, song, or movie.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource
 type MediaSource struct {
 	objectivec.Object
@@ -90,87 +94,68 @@ func NewMediaSource() MediaSource {
 }
 
 
-// Returns the media group with the specified identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource/mediaGroup(forIdentifier:)
-func (m_ MediaSource) MediaGroupForIdentifier(mediaGroupIdentifier string) MediaGroup {
-	rv := objc.Send[MediaGroup](m_.ID, objc.Sel("mediaGroupForIdentifier:"), objc.String(mediaGroupIdentifier))
-	return rv
-}
-
-// Returns the media object with the specified identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource/mediaObject(forIdentifier:)
-func (m_ MediaSource) MediaObjectForIdentifier(mediaObjectIdentifier string) MediaObject {
-	rv := objc.Send[MediaObject](m_.ID, objc.Sel("mediaObjectForIdentifier:"), objc.String(mediaObjectIdentifier))
-	return rv
-}
-
-// Returns the media objects with the specified identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource/mediaObjects(forIdentifiers:)
-func (m_ MediaSource) MediaObjectsForIdentifiers(mediaObjectIdentifiers []string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaObjectsForIdentifiers:"), mediaObjectIdentifiers)
-	return rv
-}
 
 // A list of attributes describing the media source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaSource/attributes
-func (m_ MediaSource) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attributes"))
+func (m_ MediaSource) Attributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("attributes"))
 	return rv
 }
 
+
 // A pointer to the media library instance that loaded this media source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/medialibrary
-func (m_ MediaSource) MediaLibrary() MLMediaLibrary {
-	rv := objc.Send[MLMediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
+func (m_ MediaSource) MediaLibrary() IMLMediaLibrary {
+	rv := objc.Send[MediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
 	return rv
 }
 
 
-// SetMediaLibrary sets the value of the mediaLibrary property.
 // A pointer to the media library instance that loaded this media source.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/medialibrary
 func (m_ MediaSource) SetMediaLibrary(value IMLMediaLibrary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibrary:"), value)
 }
 
+
 // A unique identifier for the media source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/mediasourceidentifier
-func (m_ MediaSource) MediaSourceIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
+func (m_ MediaSource) MediaSourceIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("mediaSourceIdentifier"))
 	return rv
 }
 
 
-// SetMediaSourceIdentifier sets the value of the mediaSourceIdentifier property.
 // A unique identifier for the media source.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/mediasourceidentifier
-func (m_ MediaSource) SetMediaSourceIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), objc.String(value))
+func (m_ MediaSource) SetMediaSourceIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), value)
 }
+
 
 // The base media group in the media source that contains all other groups within the source as descendant elements.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/rootmediagroup
-func (m_ MediaSource) RootMediaGroup() MLMediaGroup {
-	rv := objc.Send[MLMediaGroup](m_.ID, objc.Sel("rootMediaGroup"))
+func (m_ MediaSource) RootMediaGroup() IMLMediaGroup {
+	rv := objc.Send[MediaGroup](m_.ID, objc.Sel("rootMediaGroup"))
 	return rv
 }
 
 
-// SetRootMediaGroup sets the value of the rootMediaGroup property.
 // The base media group in the media source that contains all other groups within the source as descendant elements.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediasource/rootmediagroup
 func (m_ MediaSource) SetRootMediaGroup(value IMLMediaGroup) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootMediaGroup:"), value)

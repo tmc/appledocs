@@ -88,4 +88,42 @@ func NewUnitElectricCharge() UnitElectricCharge {
 
 
 
+// The ampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
+func (uc _UnitElectricChargeClass) AmpereHours() UnitElectricCharge {
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("ampereHours"))
+	return rv
+}
+
+// The kiloampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
+func (uc _UnitElectricChargeClass) KiloampereHours() UnitElectricCharge {
+	rv := objc.Send[UnitElectricCharge](objc.ID(uc.class), objc.Sel("kiloampereHours"))
+	return rv
+}
+
+// The ampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
+func (u_ UnitElectricCharge) AmpereHours() IUnitElectricCharge {
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("ampereHours"))
+	return rv
+}
+
+
+// The kiloampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
+func (u_ UnitElectricCharge) KiloampereHours() IUnitElectricCharge {
+	rv := objc.Send[UnitElectricCharge](u_.ID, objc.Sel("kiloampereHours"))
+	return rv
+}
+
+
 

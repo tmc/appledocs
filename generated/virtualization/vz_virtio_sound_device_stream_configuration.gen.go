@@ -30,12 +30,18 @@ type _VZVirtioSoundDeviceStreamConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceStreamConfiguration] class.
 type IVZVirtioSoundDeviceStreamConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that defines a Virtio sound device stream configuration.
 //
 // A object represents a PCM stream of audio data. Don’t instantiate this class directly. Instead, instantiate one of its subclasses such as or .
+
+
+// An object that defines a Virtio sound device stream configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceStreamConfiguration
 type VZVirtioSoundDeviceStreamConfiguration struct {
 	objectivec.Object

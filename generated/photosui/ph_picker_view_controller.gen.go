@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHPickerViewController] class.
@@ -30,23 +31,29 @@ type _PHPickerViewControllerClass struct {
 // An interface definition for the [PHPickerViewController] class.
 type IPHPickerViewController interface {
 	appkit.IViewController
-	DeselectAssetsWithIdentifiers(identifiers []string)
-	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string)
-	ScrollToInitialPosition()
-	UpdatePickerUsingConfiguration(configuration IPHPickerUpdateConfiguration)
-	ZoomIn()
-	ZoomOut()
-	Configuration() PHPickerConfiguration
+	// properties:
+	Configuration() IPHPickerConfiguration
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Opacity() float32
 	SetOpacity(value float32)
+	// methods:
+	DeselectAssetsWithIdentifiers(identifiers []string)
+	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier objc.IObject /* cross-framework: NSString */, afterIdentifier objc.IObject /* cross-framework: NSString */)
+	ScrollToInitialPosition()
+	UpdatePickerUsingConfiguration(configuration objc.IObject /* cross-framework: PHPickerUpdateConfiguration */)
+	ZoomIn()
+	ZoomOut()
 }
 
 // A view controller that provides the user interface for choosing assets from the photo library.
 //
 // The class is an alternative to . improves stability and reliability, and includes several benefits to developers and users, such as the following: Deferred image loading and recovery UI Reliable handling of large and complex assets, like RAW and panoramic images User-selectable assets that aren’t available for Configuration of the picker to display only Live Photos Availability of objects without library access Stricter validations against invalid inputs
+
+
+// A view controller that provides the user interface for choosing assets from the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController
 type PHPickerViewController struct {
 	appkit.ViewController
@@ -94,9 +101,9 @@ func NewPHPickerViewController() PHPickerViewController {
 
 
 
-
 // Creates a new picker view controller with the configuration you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:
 func NewPHPickerViewControllerWithConfiguration(configuration IPHPickerConfiguration) PHPickerViewController {
 	instance := getPHPickerViewControllerClass().Alloc()
@@ -106,58 +113,74 @@ func NewPHPickerViewControllerWithConfiguration(configuration IPHPickerConfigura
 }
 
 
+
 // Deselects assets that are in a selected state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)
 func (p_ PHPickerViewController) DeselectAssetsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deselectAssetsWithIdentifiers:"), identifiers)
 }
 
+
 // Reorders assets that are in a selected state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)
-func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), objc.String(identifier), objc.String(afterIdentifier))
+func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier objc.IObject /* cross-framework: NSString */, afterIdentifier objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), identifier, afterIdentifier)
 }
+
 
 // Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()
 func (p_ PHPickerViewController) ScrollToInitialPosition() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("scrollToInitialPosition"))
 }
 
+
 // Customizes your app’s photo picker according to the given configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:
-func (p_ PHPickerViewController) UpdatePickerUsingConfiguration(configuration IPHPickerUpdateConfiguration) {
+func (p_ PHPickerViewController) UpdatePickerUsingConfiguration(configuration objc.IObject /* cross-framework: PHPickerUpdateConfiguration */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("updatePickerUsingConfiguration:"), configuration)
 }
 
+
 // Changes the picker’s content scale by making the photo thumbnails larger in the view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/zoomIn()
 func (p_ PHPickerViewController) ZoomIn() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("zoomIn"))
 }
 
+
 // Changes the picker’s content scale by making the photo thumbnails smaller in the view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/zoomOut()
 func (p_ PHPickerViewController) ZoomOut() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("zoomOut"))
 }
 
+
 // The configuration you specify when creating the picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/configuration-3vf53
-func (p_ PHPickerViewController) Configuration() PHPickerConfiguration {
+func (p_ PHPickerViewController) Configuration() IPHPickerConfiguration {
 	rv := objc.Send[PHPickerConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 
+
 // The picker’s delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb
 func (p_ PHPickerViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
@@ -165,17 +188,18 @@ func (p_ PHPickerViewController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The picker’s delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb
 func (p_ PHPickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The opacity of the receiver. Animatable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
 func (p_ PHPickerViewController) Opacity() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("opacity"))
@@ -183,10 +207,9 @@ func (p_ PHPickerViewController) Opacity() float32 {
 }
 
 
-// SetOpacity sets the value of the opacity property.
 // The opacity of the receiver. Animatable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/opacity
 func (p_ PHPickerViewController) SetOpacity(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOpacity:"), value)

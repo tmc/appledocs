@@ -32,9 +32,6 @@ type _WaterTemperatureClass struct {
 type IWaterTemperature interface {
 	objectivec.IObject
 	// properties:
-	Date() foundation.objc.IObject /* cross-framework: NSDate */
-	Temperature() unsafe.Pointer
-	TemperatureUncertainty() unsafe.Pointer
 	// methods:
 }
 
@@ -86,38 +83,6 @@ func (w_ WaterTemperature) Autorelease() WaterTemperature {
 func NewWaterTemperature() WaterTemperature {
 	return getWaterTemperatureClass().New()
 }
-
-
-
-// The time and date when the system recorded the measurements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/date
-func (w_ WaterTemperature) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
-	return rv
-}
-
-
-// The water temperature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/temperature
-func (w_ WaterTemperature) Temperature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("temperature"))
-	return rv
-}
-
-
-// The amount of uncertainty in the measurement of the water temperature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/temperatureUncertainty
-func (w_ WaterTemperature) TemperatureUncertainty() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("temperatureUncertainty"))
-	return rv
-}
-
 
 
 

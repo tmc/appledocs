@@ -88,4 +88,23 @@ func NewUnitMass() UnitMass {
 
 
 
+// The kilograms unit of mass.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
+func (uc _UnitMassClass) Kilograms() UnitMass {
+	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("kilograms"))
+	return rv
+}
+
+// The kilograms unit of mass.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitMass/kilograms
+func (u_ UnitMass) Kilograms() IUnitMass {
+	rv := objc.Send[UnitMass](u_.ID, objc.Sel("kilograms"))
+	return rv
+}
+
+
 

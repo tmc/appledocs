@@ -7,9 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RAWFilter] class.
@@ -33,101 +32,101 @@ type _RAWFilterClass struct {
 type IRAWFilter interface {
 	IFilter
 	// properties:
-	BaselineExposure() float32 /* primitive/slice/pointer. */
-	SetBaselineExposure(value float32 /* primitive/slice/pointer. */)
-	BoostAmount() float32 /* primitive/slice/pointer. */
-	SetBoostAmount(value float32 /* primitive/slice/pointer. */)
-	BoostShadowAmount() float32 /* primitive/slice/pointer. */
-	SetBoostShadowAmount(value float32 /* primitive/slice/pointer. */)
-	ColorNoiseReductionAmount() float32 /* primitive/slice/pointer. */
-	SetColorNoiseReductionAmount(value float32 /* primitive/slice/pointer. */)
-	ContrastAmount() float32 /* primitive/slice/pointer. */
-	SetContrastAmount(value float32 /* primitive/slice/pointer. */)
+	BaselineExposure() float32
+	SetBaselineExposure(value float32)
+	BoostAmount() float32
+	SetBoostAmount(value float32)
+	BoostShadowAmount() float32
+	SetBoostShadowAmount(value float32)
+	ColorNoiseReductionAmount() float32
+	SetColorNoiseReductionAmount(value float32)
+	ContrastAmount() float32
+	SetContrastAmount(value float32)
 	DecoderVersion() objc.IObject /* cross-framework: RAWDecoderVersion */
 	SetDecoderVersion(value objc.IObject /* cross-framework: RAWDecoderVersion */)
-	DetailAmount() float32 /* primitive/slice/pointer. */
-	SetDetailAmount(value float32 /* primitive/slice/pointer. */)
-	Exposure() float32 /* primitive/slice/pointer. */
-	SetExposure(value float32 /* primitive/slice/pointer. */)
-	ExtendedDynamicRangeAmount() float32 /* primitive/slice/pointer. */
-	SetExtendedDynamicRangeAmount(value float32 /* primitive/slice/pointer. */)
-	ColorNoiseReductionSupported() bool /* primitive/slice/pointer. */
-	ContrastSupported() bool /* primitive/slice/pointer. */
-	DetailSupported() bool /* primitive/slice/pointer. */
-	DraftModeEnabled() bool /* primitive/slice/pointer. */
-	SetDraftModeEnabled(value bool /* primitive/slice/pointer. */)
-	GamutMappingEnabled() bool /* primitive/slice/pointer. */
-	SetGamutMappingEnabled(value bool /* primitive/slice/pointer. */)
-	HighlightRecoveryEnabled() bool /* primitive/slice/pointer. */
-	SetHighlightRecoveryEnabled(value bool /* primitive/slice/pointer. */)
-	HighlightRecoverySupported() bool /* primitive/slice/pointer. */
-	LensCorrectionEnabled() bool /* primitive/slice/pointer. */
-	SetLensCorrectionEnabled(value bool /* primitive/slice/pointer. */)
-	LensCorrectionSupported() bool /* primitive/slice/pointer. */
-	LocalToneMapSupported() bool /* primitive/slice/pointer. */
-	LuminanceNoiseReductionSupported() bool /* primitive/slice/pointer. */
-	MoireReductionSupported() bool /* primitive/slice/pointer. */
-	SharpnessSupported() bool /* primitive/slice/pointer. */
+	DetailAmount() float32
+	SetDetailAmount(value float32)
+	Exposure() float32
+	SetExposure(value float32)
+	ExtendedDynamicRangeAmount() float32
+	SetExtendedDynamicRangeAmount(value float32)
+	ColorNoiseReductionSupported() bool
+	ContrastSupported() bool
+	DetailSupported() bool
+	DraftModeEnabled() bool
+	SetDraftModeEnabled(value bool)
+	GamutMappingEnabled() bool
+	SetGamutMappingEnabled(value bool)
+	HighlightRecoveryEnabled() bool
+	SetHighlightRecoveryEnabled(value bool)
+	HighlightRecoverySupported() bool
+	LensCorrectionEnabled() bool
+	SetLensCorrectionEnabled(value bool)
+	LensCorrectionSupported() bool
+	LocalToneMapSupported() bool
+	LuminanceNoiseReductionSupported() bool
+	MoireReductionSupported() bool
+	SharpnessSupported() bool
 	LinearSpaceFilter() ICIFilter
 	SetLinearSpaceFilter(value ICIFilter)
-	LocalToneMapAmount() float32 /* primitive/slice/pointer. */
-	SetLocalToneMapAmount(value float32 /* primitive/slice/pointer. */)
-	LuminanceNoiseReductionAmount() float32 /* primitive/slice/pointer. */
-	SetLuminanceNoiseReductionAmount(value float32 /* primitive/slice/pointer. */)
-	MoireReductionAmount() float32 /* primitive/slice/pointer. */
-	SetMoireReductionAmount(value float32 /* primitive/slice/pointer. */)
-	NativeSize() coregraphics.CGSize
-	NeutralChromaticity() coregraphics.CGPoint
-	SetNeutralChromaticity(value coregraphics.CGPoint)
-	NeutralLocation() coregraphics.CGPoint
-	SetNeutralLocation(value coregraphics.CGPoint)
-	NeutralTemperature() float32 /* primitive/slice/pointer. */
-	SetNeutralTemperature(value float32 /* primitive/slice/pointer. */)
-	NeutralTint() float32 /* primitive/slice/pointer. */
-	SetNeutralTint(value float32 /* primitive/slice/pointer. */)
+	LocalToneMapAmount() float32
+	SetLocalToneMapAmount(value float32)
+	LuminanceNoiseReductionAmount() float32
+	SetLuminanceNoiseReductionAmount(value float32)
+	MoireReductionAmount() float32
+	SetMoireReductionAmount(value float32)
+	NativeSize() objc.IObject /* cross-framework: Size */
+	NeutralChromaticity() objc.IObject /* cross-framework: Point */
+	SetNeutralChromaticity(value objc.IObject /* cross-framework: Point */)
+	NeutralLocation() objc.IObject /* cross-framework: Point */
+	SetNeutralLocation(value objc.IObject /* cross-framework: Point */)
+	NeutralTemperature() float32
+	SetNeutralTemperature(value float32)
+	NeutralTint() float32
+	SetNeutralTint(value float32)
 	Orientation() ImagePropertyOrientation /* not a class type */
 	SetOrientation(value ImagePropertyOrientation /* not a class type */)
 	PortraitEffectsMatte() ICIImage
 	PreviewImage() ICIImage
-	Properties() objc.ID
-	ScaleFactor() float32 /* primitive/slice/pointer. */
-	SetScaleFactor(value float32 /* primitive/slice/pointer. */)
+	Properties() objc.IObject /* cross-framework: NSDictionary */
+	ScaleFactor() float32
+	SetScaleFactor(value float32)
 	SemanticSegmentationGlassesMatte() ICIImage
 	SemanticSegmentationHairMatte() ICIImage
 	SemanticSegmentationSkinMatte() ICIImage
 	SemanticSegmentationSkyMatte() ICIImage
 	SemanticSegmentationTeethMatte() ICIImage
-	ShadowBias() float32 /* primitive/slice/pointer. */
-	SetShadowBias(value float32 /* primitive/slice/pointer. */)
-	SharpnessAmount() float32 /* primitive/slice/pointer. */
-	SetSharpnessAmount(value float32 /* primitive/slice/pointer. */)
-	SupportedDecoderVersions() []string /* primitive/slice/pointer. */
-	IsColorNoiseReductionSupported() bool /* primitive/slice/pointer. */
-	SetIsColorNoiseReductionSupported(value bool /* primitive/slice/pointer. */)
-	IsContrastSupported() bool /* primitive/slice/pointer. */
-	SetIsContrastSupported(value bool /* primitive/slice/pointer. */)
-	IsDetailSupported() bool /* primitive/slice/pointer. */
-	SetIsDetailSupported(value bool /* primitive/slice/pointer. */)
-	IsDraftModeEnabled() bool /* primitive/slice/pointer. */
-	SetIsDraftModeEnabled(value bool /* primitive/slice/pointer. */)
-	IsGamutMappingEnabled() bool /* primitive/slice/pointer. */
-	SetIsGamutMappingEnabled(value bool /* primitive/slice/pointer. */)
-	IsHighlightRecoveryEnabled() bool /* primitive/slice/pointer. */
-	SetIsHighlightRecoveryEnabled(value bool /* primitive/slice/pointer. */)
-	IsHighlightRecoverySupported() bool /* primitive/slice/pointer. */
-	SetIsHighlightRecoverySupported(value bool /* primitive/slice/pointer. */)
-	IsLensCorrectionEnabled() bool /* primitive/slice/pointer. */
-	SetIsLensCorrectionEnabled(value bool /* primitive/slice/pointer. */)
-	IsLensCorrectionSupported() bool /* primitive/slice/pointer. */
-	SetIsLensCorrectionSupported(value bool /* primitive/slice/pointer. */)
-	IsLocalToneMapSupported() bool /* primitive/slice/pointer. */
-	SetIsLocalToneMapSupported(value bool /* primitive/slice/pointer. */)
-	IsLuminanceNoiseReductionSupported() bool /* primitive/slice/pointer. */
-	SetIsLuminanceNoiseReductionSupported(value bool /* primitive/slice/pointer. */)
-	IsMoireReductionSupported() bool /* primitive/slice/pointer. */
-	SetIsMoireReductionSupported(value bool /* primitive/slice/pointer. */)
-	IsSharpnessSupported() bool /* primitive/slice/pointer. */
-	SetIsSharpnessSupported(value bool /* primitive/slice/pointer. */)
+	ShadowBias() float32
+	SetShadowBias(value float32)
+	SharpnessAmount() float32
+	SetSharpnessAmount(value float32)
+	SupportedDecoderVersions() []string
+	IsColorNoiseReductionSupported() bool
+	SetIsColorNoiseReductionSupported(value bool)
+	IsContrastSupported() bool
+	SetIsContrastSupported(value bool)
+	IsDetailSupported() bool
+	SetIsDetailSupported(value bool)
+	IsDraftModeEnabled() bool
+	SetIsDraftModeEnabled(value bool)
+	IsGamutMappingEnabled() bool
+	SetIsGamutMappingEnabled(value bool)
+	IsHighlightRecoveryEnabled() bool
+	SetIsHighlightRecoveryEnabled(value bool)
+	IsHighlightRecoverySupported() bool
+	SetIsHighlightRecoverySupported(value bool)
+	IsLensCorrectionEnabled() bool
+	SetIsLensCorrectionEnabled(value bool)
+	IsLensCorrectionSupported() bool
+	SetIsLensCorrectionSupported(value bool)
+	IsLocalToneMapSupported() bool
+	SetIsLocalToneMapSupported(value bool)
+	IsLuminanceNoiseReductionSupported() bool
+	SetIsLuminanceNoiseReductionSupported(value bool)
+	IsMoireReductionSupported() bool
+	SetIsMoireReductionSupported(value bool)
+	IsSharpnessSupported() bool
+	SetIsSharpnessSupported(value bool)
 	// methods:
 }
 
@@ -190,7 +189,7 @@ func NewRAWFilter() RAWFilter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
-func NewRAWFilterWithCVPixelBufferProperties(buffer PixelBufferRef /* not a class type */, properties objectivec.IObject) RAWFilter {
+func NewRAWFilterWithCVPixelBufferProperties(buffer PixelBufferRef /* not a class type */, properties objc.IObject /* cross-framework: NSDictionary */) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
@@ -200,8 +199,8 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer PixelBufferRef /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func NewRAWFilterWithImageDataIdentifierHint(data foundation.objc.IObject /* cross-framework NSData */, identifierHint string /* primitive/slice/pointer. */) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
+func NewRAWFilterWithImageDataIdentifierHint(data objc.IObject /* cross-framework: NSData */, identifierHint objc.IObject /* cross-framework: NSString */) RAWFilter {
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
 	return rv
 }
 
@@ -210,7 +209,7 @@ func NewRAWFilterWithImageDataIdentifierHint(data foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewRAWFilterWithImageURL(url foundation.objc.IObject /* cross-framework URL */) RAWFilter {
+func NewRAWFilterWithImageURL(url objc.IObject /* cross-framework: NSURL */) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -221,7 +220,7 @@ func NewRAWFilterWithImageURL(url foundation.objc.IObject /* cross-framework URL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
-func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer PixelBufferRef /* not a class type */, properties objectivec.IObject) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer PixelBufferRef /* not a class type */, properties objc.IObject /* cross-framework: NSDictionary */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
@@ -231,8 +230,8 @@ func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer PixelBufferRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.objc.IObject /* cross-framework NSData */, identifierHint string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
+func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data objc.IObject /* cross-framework: NSData */, identifierHint objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
 	return rv
 }
 
@@ -241,7 +240,7 @@ func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func (rc _RAWFilterClass) FilterWithImageURL(url foundation.objc.IObject /* cross-framework URL */) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithImageURL(url objc.IObject /* cross-framework: NSURL */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -251,7 +250,7 @@ func (rc _RAWFilterClass) FilterWithImageURL(url foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedCameraModels
-func (rc _RAWFilterClass) SupportedCameraModels() []string /* primitive/slice/pointer. */ {
+func (rc _RAWFilterClass) SupportedCameraModels() []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("supportedCameraModels"))
 	return rv
 }
@@ -260,7 +259,7 @@ func (rc _RAWFilterClass) SupportedCameraModels() []string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
-func (r_ RAWFilter) BaselineExposure() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) BaselineExposure() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("baselineExposure"))
 	return rv
 }
@@ -270,7 +269,7 @@ func (r_ RAWFilter) BaselineExposure() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/baselineExposure
-func (r_ RAWFilter) SetBaselineExposure(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetBaselineExposure(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaselineExposure:"), value)
 }
 
@@ -279,7 +278,7 @@ func (r_ RAWFilter) SetBaselineExposure(value float32 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostAmount
-func (r_ RAWFilter) BoostAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) BoostAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("boostAmount"))
 	return rv
 }
@@ -289,7 +288,7 @@ func (r_ RAWFilter) BoostAmount() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostAmount
-func (r_ RAWFilter) SetBoostAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetBoostAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoostAmount:"), value)
 }
 
@@ -298,7 +297,7 @@ func (r_ RAWFilter) SetBoostAmount(value float32 /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostShadowAmount
-func (r_ RAWFilter) BoostShadowAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) BoostShadowAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("boostShadowAmount"))
 	return rv
 }
@@ -308,7 +307,7 @@ func (r_ RAWFilter) BoostShadowAmount() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/boostShadowAmount
-func (r_ RAWFilter) SetBoostShadowAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetBoostShadowAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoostShadowAmount:"), value)
 }
 
@@ -317,7 +316,7 @@ func (r_ RAWFilter) SetBoostShadowAmount(value float32 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/colorNoiseReductionAmount
-func (r_ RAWFilter) ColorNoiseReductionAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ColorNoiseReductionAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("colorNoiseReductionAmount"))
 	return rv
 }
@@ -327,7 +326,7 @@ func (r_ RAWFilter) ColorNoiseReductionAmount() float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/colorNoiseReductionAmount
-func (r_ RAWFilter) SetColorNoiseReductionAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetColorNoiseReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setColorNoiseReductionAmount:"), value)
 }
 
@@ -336,7 +335,7 @@ func (r_ RAWFilter) SetColorNoiseReductionAmount(value float32 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/contrastAmount
-func (r_ RAWFilter) ContrastAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ContrastAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("contrastAmount"))
 	return rv
 }
@@ -346,7 +345,7 @@ func (r_ RAWFilter) ContrastAmount() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/contrastAmount
-func (r_ RAWFilter) SetContrastAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetContrastAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setContrastAmount:"), value)
 }
 
@@ -374,7 +373,7 @@ func (r_ RAWFilter) SetDecoderVersion(value objc.IObject /* cross-framework: RAW
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/detailAmount
-func (r_ RAWFilter) DetailAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) DetailAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("detailAmount"))
 	return rv
 }
@@ -384,7 +383,7 @@ func (r_ RAWFilter) DetailAmount() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/detailAmount
-func (r_ RAWFilter) SetDetailAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetDetailAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDetailAmount:"), value)
 }
 
@@ -393,7 +392,7 @@ func (r_ RAWFilter) SetDetailAmount(value float32 /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/exposure
-func (r_ RAWFilter) Exposure() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) Exposure() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("exposure"))
 	return rv
 }
@@ -403,7 +402,7 @@ func (r_ RAWFilter) Exposure() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/exposure
-func (r_ RAWFilter) SetExposure(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetExposure(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExposure:"), value)
 }
 
@@ -412,7 +411,7 @@ func (r_ RAWFilter) SetExposure(value float32 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/extendedDynamicRangeAmount
-func (r_ RAWFilter) ExtendedDynamicRangeAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ExtendedDynamicRangeAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("extendedDynamicRangeAmount"))
 	return rv
 }
@@ -422,7 +421,7 @@ func (r_ RAWFilter) ExtendedDynamicRangeAmount() float32 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/extendedDynamicRangeAmount
-func (r_ RAWFilter) SetExtendedDynamicRangeAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetExtendedDynamicRangeAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setExtendedDynamicRangeAmount:"), value)
 }
 
@@ -431,7 +430,7 @@ func (r_ RAWFilter) SetExtendedDynamicRangeAmount(value float32 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isColorNoiseReductionSupported
-func (r_ RAWFilter) ColorNoiseReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ColorNoiseReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("colorNoiseReductionSupported"))
 	return rv
 }
@@ -441,7 +440,7 @@ func (r_ RAWFilter) ColorNoiseReductionSupported() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isContrastSupported
-func (r_ RAWFilter) ContrastSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ContrastSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("contrastSupported"))
 	return rv
 }
@@ -451,7 +450,7 @@ func (r_ RAWFilter) ContrastSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isDetailSupported
-func (r_ RAWFilter) DetailSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) DetailSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("detailSupported"))
 	return rv
 }
@@ -461,7 +460,7 @@ func (r_ RAWFilter) DetailSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isDraftModeEnabled
-func (r_ RAWFilter) DraftModeEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) DraftModeEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("draftModeEnabled"))
 	return rv
 }
@@ -471,7 +470,7 @@ func (r_ RAWFilter) DraftModeEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isDraftModeEnabled
-func (r_ RAWFilter) SetDraftModeEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetDraftModeEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDraftModeEnabled:"), value)
 }
 
@@ -480,7 +479,7 @@ func (r_ RAWFilter) SetDraftModeEnabled(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isGamutMappingEnabled
-func (r_ RAWFilter) GamutMappingEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) GamutMappingEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("gamutMappingEnabled"))
 	return rv
 }
@@ -490,14 +489,14 @@ func (r_ RAWFilter) GamutMappingEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isGamutMappingEnabled
-func (r_ RAWFilter) SetGamutMappingEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetGamutMappingEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setGamutMappingEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isHighlightRecoveryEnabled
-func (r_ RAWFilter) HighlightRecoveryEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) HighlightRecoveryEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("highlightRecoveryEnabled"))
 	return rv
 }
@@ -505,14 +504,14 @@ func (r_ RAWFilter) HighlightRecoveryEnabled() bool /* primitive/slice/pointer. 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isHighlightRecoveryEnabled
-func (r_ RAWFilter) SetHighlightRecoveryEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetHighlightRecoveryEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setHighlightRecoveryEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isHighlightRecoverySupported
-func (r_ RAWFilter) HighlightRecoverySupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) HighlightRecoverySupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("highlightRecoverySupported"))
 	return rv
 }
@@ -522,7 +521,7 @@ func (r_ RAWFilter) HighlightRecoverySupported() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isLensCorrectionEnabled
-func (r_ RAWFilter) LensCorrectionEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LensCorrectionEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("lensCorrectionEnabled"))
 	return rv
 }
@@ -532,7 +531,7 @@ func (r_ RAWFilter) LensCorrectionEnabled() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isLensCorrectionEnabled
-func (r_ RAWFilter) SetLensCorrectionEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetLensCorrectionEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLensCorrectionEnabled:"), value)
 }
 
@@ -541,7 +540,7 @@ func (r_ RAWFilter) SetLensCorrectionEnabled(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isLensCorrectionSupported
-func (r_ RAWFilter) LensCorrectionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LensCorrectionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("lensCorrectionSupported"))
 	return rv
 }
@@ -551,7 +550,7 @@ func (r_ RAWFilter) LensCorrectionSupported() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isLocalToneMapSupported
-func (r_ RAWFilter) LocalToneMapSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LocalToneMapSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("localToneMapSupported"))
 	return rv
 }
@@ -561,7 +560,7 @@ func (r_ RAWFilter) LocalToneMapSupported() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isLuminanceNoiseReductionSupported
-func (r_ RAWFilter) LuminanceNoiseReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LuminanceNoiseReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("luminanceNoiseReductionSupported"))
 	return rv
 }
@@ -571,7 +570,7 @@ func (r_ RAWFilter) LuminanceNoiseReductionSupported() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isMoireReductionSupported
-func (r_ RAWFilter) MoireReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) MoireReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("moireReductionSupported"))
 	return rv
 }
@@ -581,7 +580,7 @@ func (r_ RAWFilter) MoireReductionSupported() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/isSharpnessSupported
-func (r_ RAWFilter) SharpnessSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) SharpnessSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("sharpnessSupported"))
 	return rv
 }
@@ -610,7 +609,7 @@ func (r_ RAWFilter) SetLinearSpaceFilter(value ICIFilter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/localToneMapAmount
-func (r_ RAWFilter) LocalToneMapAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LocalToneMapAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("localToneMapAmount"))
 	return rv
 }
@@ -620,7 +619,7 @@ func (r_ RAWFilter) LocalToneMapAmount() float32 /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/localToneMapAmount
-func (r_ RAWFilter) SetLocalToneMapAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetLocalToneMapAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocalToneMapAmount:"), value)
 }
 
@@ -629,7 +628,7 @@ func (r_ RAWFilter) SetLocalToneMapAmount(value float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/luminanceNoiseReductionAmount
-func (r_ RAWFilter) LuminanceNoiseReductionAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) LuminanceNoiseReductionAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("luminanceNoiseReductionAmount"))
 	return rv
 }
@@ -639,7 +638,7 @@ func (r_ RAWFilter) LuminanceNoiseReductionAmount() float32 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/luminanceNoiseReductionAmount
-func (r_ RAWFilter) SetLuminanceNoiseReductionAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetLuminanceNoiseReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLuminanceNoiseReductionAmount:"), value)
 }
 
@@ -648,7 +647,7 @@ func (r_ RAWFilter) SetLuminanceNoiseReductionAmount(value float32 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/moireReductionAmount
-func (r_ RAWFilter) MoireReductionAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) MoireReductionAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("moireReductionAmount"))
 	return rv
 }
@@ -658,7 +657,7 @@ func (r_ RAWFilter) MoireReductionAmount() float32 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/moireReductionAmount
-func (r_ RAWFilter) SetMoireReductionAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetMoireReductionAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMoireReductionAmount:"), value)
 }
 
@@ -667,8 +666,8 @@ func (r_ RAWFilter) SetMoireReductionAmount(value float32 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/nativeSize
-func (r_ RAWFilter) NativeSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](r_.ID, objc.Sel("nativeSize"))
+func (r_ RAWFilter) NativeSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](r_.ID, objc.Sel("nativeSize"))
 	return rv
 }
 
@@ -677,8 +676,8 @@ func (r_ RAWFilter) NativeSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralChromaticity
-func (r_ RAWFilter) NeutralChromaticity() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("neutralChromaticity"))
+func (r_ RAWFilter) NeutralChromaticity() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("neutralChromaticity"))
 	return rv
 }
 
@@ -687,7 +686,7 @@ func (r_ RAWFilter) NeutralChromaticity() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralChromaticity
-func (r_ RAWFilter) SetNeutralChromaticity(value coregraphics.CGPoint) {
+func (r_ RAWFilter) SetNeutralChromaticity(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralChromaticity:"), value)
 }
 
@@ -696,8 +695,8 @@ func (r_ RAWFilter) SetNeutralChromaticity(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralLocation
-func (r_ RAWFilter) NeutralLocation() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("neutralLocation"))
+func (r_ RAWFilter) NeutralLocation() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("neutralLocation"))
 	return rv
 }
 
@@ -706,7 +705,7 @@ func (r_ RAWFilter) NeutralLocation() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralLocation
-func (r_ RAWFilter) SetNeutralLocation(value coregraphics.CGPoint) {
+func (r_ RAWFilter) SetNeutralLocation(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralLocation:"), value)
 }
 
@@ -715,7 +714,7 @@ func (r_ RAWFilter) SetNeutralLocation(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTemperature
-func (r_ RAWFilter) NeutralTemperature() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) NeutralTemperature() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("neutralTemperature"))
 	return rv
 }
@@ -725,7 +724,7 @@ func (r_ RAWFilter) NeutralTemperature() float32 /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTemperature
-func (r_ RAWFilter) SetNeutralTemperature(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetNeutralTemperature(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralTemperature:"), value)
 }
 
@@ -734,7 +733,7 @@ func (r_ RAWFilter) SetNeutralTemperature(value float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTint
-func (r_ RAWFilter) NeutralTint() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) NeutralTint() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("neutralTint"))
 	return rv
 }
@@ -744,7 +743,7 @@ func (r_ RAWFilter) NeutralTint() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/neutralTint
-func (r_ RAWFilter) SetNeutralTint(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetNeutralTint(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNeutralTint:"), value)
 }
 
@@ -792,8 +791,8 @@ func (r_ RAWFilter) PreviewImage() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/properties
-func (r_ RAWFilter) Properties() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("properties"))
+func (r_ RAWFilter) Properties() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](r_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -802,7 +801,7 @@ func (r_ RAWFilter) Properties() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/scaleFactor
-func (r_ RAWFilter) ScaleFactor() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ScaleFactor() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("scaleFactor"))
 	return rv
 }
@@ -812,7 +811,7 @@ func (r_ RAWFilter) ScaleFactor() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/scaleFactor
-func (r_ RAWFilter) SetScaleFactor(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetScaleFactor(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScaleFactor:"), value)
 }
 
@@ -871,7 +870,7 @@ func (r_ RAWFilter) SemanticSegmentationTeethMatte() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/shadowBias
-func (r_ RAWFilter) ShadowBias() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) ShadowBias() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("shadowBias"))
 	return rv
 }
@@ -881,7 +880,7 @@ func (r_ RAWFilter) ShadowBias() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/shadowBias
-func (r_ RAWFilter) SetShadowBias(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetShadowBias(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setShadowBias:"), value)
 }
 
@@ -890,7 +889,7 @@ func (r_ RAWFilter) SetShadowBias(value float32 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/sharpnessAmount
-func (r_ RAWFilter) SharpnessAmount() float32 /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) SharpnessAmount() float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("sharpnessAmount"))
 	return rv
 }
@@ -900,7 +899,7 @@ func (r_ RAWFilter) SharpnessAmount() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/sharpnessAmount
-func (r_ RAWFilter) SetSharpnessAmount(value float32 /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetSharpnessAmount(value float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSharpnessAmount:"), value)
 }
 
@@ -909,7 +908,7 @@ func (r_ RAWFilter) SetSharpnessAmount(value float32 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedCameraModels
-func (r_ RAWFilter) SupportedCameraModels() []string /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) SupportedCameraModels() []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedCameraModels"))
 	return rv
 }
@@ -919,7 +918,7 @@ func (r_ RAWFilter) SupportedCameraModels() []string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/supportedDecoderVersions
-func (r_ RAWFilter) SupportedDecoderVersions() []string /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) SupportedDecoderVersions() []string {
 	rv := objc.Send[[]string](r_.ID, objc.Sel("supportedDecoderVersions"))
 	return rv
 }
@@ -929,7 +928,7 @@ func (r_ RAWFilter) SupportedDecoderVersions() []string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
-func (r_ RAWFilter) IsColorNoiseReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsColorNoiseReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isColorNoiseReductionSupported"))
 	return rv
 }
@@ -939,7 +938,7 @@ func (r_ RAWFilter) IsColorNoiseReductionSupported() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscolornoisereductionsupported
-func (r_ RAWFilter) SetIsColorNoiseReductionSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsColorNoiseReductionSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsColorNoiseReductionSupported:"), value)
 }
 
@@ -948,7 +947,7 @@ func (r_ RAWFilter) SetIsColorNoiseReductionSupported(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
-func (r_ RAWFilter) IsContrastSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsContrastSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isContrastSupported"))
 	return rv
 }
@@ -958,7 +957,7 @@ func (r_ RAWFilter) IsContrastSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/iscontrastsupported
-func (r_ RAWFilter) SetIsContrastSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsContrastSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsContrastSupported:"), value)
 }
 
@@ -967,7 +966,7 @@ func (r_ RAWFilter) SetIsContrastSupported(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
-func (r_ RAWFilter) IsDetailSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsDetailSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isDetailSupported"))
 	return rv
 }
@@ -977,7 +976,7 @@ func (r_ RAWFilter) IsDetailSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdetailsupported
-func (r_ RAWFilter) SetIsDetailSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsDetailSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDetailSupported:"), value)
 }
 
@@ -986,7 +985,7 @@ func (r_ RAWFilter) SetIsDetailSupported(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
-func (r_ RAWFilter) IsDraftModeEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsDraftModeEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isDraftModeEnabled"))
 	return rv
 }
@@ -996,7 +995,7 @@ func (r_ RAWFilter) IsDraftModeEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isdraftmodeenabled
-func (r_ RAWFilter) SetIsDraftModeEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsDraftModeEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDraftModeEnabled:"), value)
 }
 
@@ -1005,7 +1004,7 @@ func (r_ RAWFilter) SetIsDraftModeEnabled(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
-func (r_ RAWFilter) IsGamutMappingEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsGamutMappingEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isGamutMappingEnabled"))
 	return rv
 }
@@ -1015,14 +1014,14 @@ func (r_ RAWFilter) IsGamutMappingEnabled() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isgamutmappingenabled
-func (r_ RAWFilter) SetIsGamutMappingEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsGamutMappingEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsGamutMappingEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
-func (r_ RAWFilter) IsHighlightRecoveryEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsHighlightRecoveryEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoveryEnabled"))
 	return rv
 }
@@ -1030,14 +1029,14 @@ func (r_ RAWFilter) IsHighlightRecoveryEnabled() bool /* primitive/slice/pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoveryenabled
-func (r_ RAWFilter) SetIsHighlightRecoveryEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsHighlightRecoveryEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoveryEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
-func (r_ RAWFilter) IsHighlightRecoverySupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsHighlightRecoverySupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isHighlightRecoverySupported"))
 	return rv
 }
@@ -1045,7 +1044,7 @@ func (r_ RAWFilter) IsHighlightRecoverySupported() bool /* primitive/slice/point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ishighlightrecoverysupported
-func (r_ RAWFilter) SetIsHighlightRecoverySupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsHighlightRecoverySupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHighlightRecoverySupported:"), value)
 }
 
@@ -1054,7 +1053,7 @@ func (r_ RAWFilter) SetIsHighlightRecoverySupported(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
-func (r_ RAWFilter) IsLensCorrectionEnabled() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsLensCorrectionEnabled() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionEnabled"))
 	return rv
 }
@@ -1064,7 +1063,7 @@ func (r_ RAWFilter) IsLensCorrectionEnabled() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionenabled
-func (r_ RAWFilter) SetIsLensCorrectionEnabled(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsLensCorrectionEnabled(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionEnabled:"), value)
 }
 
@@ -1073,7 +1072,7 @@ func (r_ RAWFilter) SetIsLensCorrectionEnabled(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
-func (r_ RAWFilter) IsLensCorrectionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsLensCorrectionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isLensCorrectionSupported"))
 	return rv
 }
@@ -1083,7 +1082,7 @@ func (r_ RAWFilter) IsLensCorrectionSupported() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islenscorrectionsupported
-func (r_ RAWFilter) SetIsLensCorrectionSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsLensCorrectionSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLensCorrectionSupported:"), value)
 }
 
@@ -1092,7 +1091,7 @@ func (r_ RAWFilter) SetIsLensCorrectionSupported(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
-func (r_ RAWFilter) IsLocalToneMapSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsLocalToneMapSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isLocalToneMapSupported"))
 	return rv
 }
@@ -1102,7 +1101,7 @@ func (r_ RAWFilter) IsLocalToneMapSupported() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/islocaltonemapsupported
-func (r_ RAWFilter) SetIsLocalToneMapSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsLocalToneMapSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLocalToneMapSupported:"), value)
 }
 
@@ -1111,7 +1110,7 @@ func (r_ RAWFilter) SetIsLocalToneMapSupported(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
-func (r_ RAWFilter) IsLuminanceNoiseReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsLuminanceNoiseReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isLuminanceNoiseReductionSupported"))
 	return rv
 }
@@ -1121,7 +1120,7 @@ func (r_ RAWFilter) IsLuminanceNoiseReductionSupported() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/isluminancenoisereductionsupported
-func (r_ RAWFilter) SetIsLuminanceNoiseReductionSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsLuminanceNoiseReductionSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsLuminanceNoiseReductionSupported:"), value)
 }
 
@@ -1130,7 +1129,7 @@ func (r_ RAWFilter) SetIsLuminanceNoiseReductionSupported(value bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
-func (r_ RAWFilter) IsMoireReductionSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsMoireReductionSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isMoireReductionSupported"))
 	return rv
 }
@@ -1140,7 +1139,7 @@ func (r_ RAWFilter) IsMoireReductionSupported() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/ismoirereductionsupported
-func (r_ RAWFilter) SetIsMoireReductionSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsMoireReductionSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMoireReductionSupported:"), value)
 }
 
@@ -1149,7 +1148,7 @@ func (r_ RAWFilter) SetIsMoireReductionSupported(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
-func (r_ RAWFilter) IsSharpnessSupported() bool /* primitive/slice/pointer. */ {
+func (r_ RAWFilter) IsSharpnessSupported() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isSharpnessSupported"))
 	return rv
 }
@@ -1159,7 +1158,7 @@ func (r_ RAWFilter) IsSharpnessSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirawfilter/issharpnesssupported
-func (r_ RAWFilter) SetIsSharpnessSupported(value bool /* primitive/slice/pointer. */) {
+func (r_ RAWFilter) SetIsSharpnessSupported(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsSharpnessSupported:"), value)
 }
 

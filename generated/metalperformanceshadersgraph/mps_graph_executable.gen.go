@@ -29,18 +29,24 @@ type _GraphExecutableClass struct {
 // An interface definition for the [GraphExecutable] class.
 type IGraphExecutable interface {
 	IGraphObject
-	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType
-	TargetTensors() []GraphTensor
-	FeedTensors() MPSGraphTensor
+	// properties:
+	TargetTensors() []IGraphTensor
+	FeedTensors() IMPSGraphTensor
 	SetFeedTensors(value IMPSGraphTensor)
 	Options() GraphOptions
 	SetOptions(value GraphOptions)
+	// methods:
+	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []IGraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []IGraphShapedType
 }
 
 // The compiled representation of a compute graph executable.
 //
 // An is a compiled graph for specific feeds for specific target tensors and target operations.
+
+
+// The compiled representation of a compute graph executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable
 type GraphExecutable struct {
 	GraphObject
@@ -87,42 +93,49 @@ func NewGraphExecutable() GraphExecutable {
 }
 
 
+
 // Get output shapes for a specialized executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/getOutputTypes(with:inputTypes:compilationDescriptor:)
-func (g_ GraphExecutable) GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType {
+func (g_ GraphExecutable) GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []IGraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []IGraphShapedType {
 	rv := objc.Send[[]GraphShapedType](g_.ID, objc.Sel("getOutputTypesWithDevice:inputTypes:compilationDescriptor:"), device, inputTypes, compilationDescriptor)
 	return rv
 }
 
+
 // Tensors targeted by the graph, can be used to order the outputs when executable was created with a graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/targetTensors
-func (g_ GraphExecutable) TargetTensors() []GraphTensor {
+func (g_ GraphExecutable) TargetTensors() []IGraphTensor {
 	rv := objc.Send[[]GraphTensor](g_.ID, objc.Sel("targetTensors"))
 	return rv
 }
 
+
 // Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/feedtensors
-func (g_ GraphExecutable) FeedTensors() MPSGraphTensor {
-	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("feedTensors"))
+func (g_ GraphExecutable) FeedTensors() IMPSGraphTensor {
+	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("feedTensors"))
 	return rv
 }
 
 
-// SetFeedTensors sets the value of the feedTensors property.
 // Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/feedtensors
 func (g_ GraphExecutable) SetFeedTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFeedTensors:"), value)
 }
 
+
 // Options for the graph executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/options
 func (g_ GraphExecutable) Options() GraphOptions {
 	rv := objc.Send[GraphOptions](g_.ID, objc.Sel("options"))
@@ -130,10 +143,9 @@ func (g_ GraphExecutable) Options() GraphOptions {
 }
 
 
-// SetOptions sets the value of the options property.
 // Options for the graph executable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/options
 func (g_ GraphExecutable) SetOptions(value GraphOptions) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptions:"), value)

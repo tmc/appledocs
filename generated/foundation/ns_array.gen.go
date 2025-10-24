@@ -31,61 +31,61 @@ type _ArrayClass struct {
 type IArray interface {
 	objectivec.IObject
 	// properties:
-	Count() uint /* primitive/slice/pointer. */
+	Count() uint
 	Description() IString
 	FirstObject() unsafe.Pointer
 	LastObject() unsafe.Pointer
 	SortedArrayHint() IData
 	// methods:
-	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer)
-	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID /* already interface */
-	ArrayByAddingObjectsFromArray(otherArray []objc.ID /* already interface */) []objc.ID /* already interface */
-	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID /* already interface */
+	AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer)
+	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
+	ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID
+	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
 	ComponentsJoinedByString(separator IString) IString
-	ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ContainsObject(anObject unsafe.Pointer) bool
 	DescriptionWithLocale(locale objectivec.IObject) IString
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer. */) IString
-	DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer
-	DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
-	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer. */) unsafe.Pointer
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
+	DifferenceFromArray(other []objc.ID) unsafe.Pointer
+	DifferenceFromArrayWithOptions(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
+	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
-	FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID /* already interface */
-	FirstObjectCommonWithArray(otherArray []objc.ID /* already interface */) unsafe.Pointer
-	GetObjectsRange(objects []unsafe.Pointer /* not a class type */, range_ objc.IObject /* cross-framework Range */)
-	IndexOfObject(anObject unsafe.Pointer) uint /* primitive/slice/pointer. */
-	IndexOfObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */
-	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer. */
-	IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer. */
-	IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer. */
-	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer. */
-	IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint /* primitive/slice/pointer. */
-	IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */
+	FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID
+	FirstObjectCommonWithArray(otherArray []objc.ID) unsafe.Pointer
+	GetObjectsRange(objects []unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */)
+	IndexOfObject(anObject unsafe.Pointer) uint
+	IndexOfObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) uint
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework: Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint
+	IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint
+	IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint
+	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
+	IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint
+	IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) uint
 	IndexesOfObjectsAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
 	IndexesOfObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet
 	IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet
-	IsEqualToArray(otherArray []objc.ID /* already interface */) bool /* primitive/slice/pointer. */
+	IsEqualToArray(otherArray []objc.ID) bool
 	MakeObjectsPerformSelector(aSelector objc.SEL)
 	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
-	ObjectAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer
+	ObjectAtIndex(index uint) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
-	ObjectsAtIndexes(indexes IIndexSet) []objc.ID /* already interface */
-	PathsMatchingExtensions(filterTypes []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
-	RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString)
-	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString, context unsafe.Pointer)
+	ObjectsAtIndexes(indexes IIndexSet) []objc.ID
+	PathsMatchingExtensions(filterTypes []string) []string
+	RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString)
+	RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, context unsafe.Pointer)
 	ReverseObjectEnumerator() unsafe.Pointer
-	ShuffledArray() []objc.ID /* already interface */
-	ShuffledArrayWithRandomSource(randomSource objc.IObject /* cross-framework RandomSource */) []objc.ID /* already interface */
-	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID /* already interface */
-	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID /* already interface */
-	SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */
-	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */
-	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer. */) []objc.ID /* already interface */
-	SortedArrayUsingSelector(comparator objc.SEL) []objc.ID /* already interface */
-	SubarrayWithRange(range_ objc.IObject /* cross-framework Range */) []objc.ID /* already interface */
-	ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) unsafe.Pointer
-	WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */
+	ShuffledArray() []objc.ID
+	ShuffledArrayWithRandomSource(randomSource objectivec.IObject) []objc.ID
+	SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID
+	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID
+	SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID
+	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID
+	SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID
+	SortedArrayUsingSelector(comparator objc.SEL) []objc.ID
+	SubarrayWithRange(range_ objc.IObject /* cross-framework: Range */) []objc.ID
+	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
+	WriteToURLError(url IURL, error_ IError) bool
 }
 
 // A static ordered collection of objects.
@@ -145,7 +145,7 @@ func NewArray() Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
-func NewArrayWithArray(array []objc.ID /* already interface */) Array {
+func NewArrayWithArray(array []objc.ID) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()
@@ -157,7 +157,7 @@ func NewArrayWithArray(array []objc.ID /* already interface */) Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
-func NewArrayWithArrayCopyItems(array []objc.ID /* already interface */, flag bool /* primitive/slice/pointer. */) Array {
+func NewArrayWithArrayCopyItems(array []objc.ID, flag bool) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
 	rv.Autorelease()
@@ -235,7 +235,7 @@ func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
-func NewArrayWithObjectsCount(objects []unsafe.Pointer /* not a class type */, cnt uint /* primitive/slice/pointer. */) Array {
+func NewArrayWithObjectsCount(objects []unsafe.Pointer, cnt uint) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
@@ -258,7 +258,7 @@ func (ac _ArrayClass) Array() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithArray:
-func (ac _ArrayClass) ArrayWithArray(array []objc.ID /* already interface */) unsafe.Pointer {
+func (ac _ArrayClass) ArrayWithArray(array []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithArray:"), array)
 	return rv
 }
@@ -268,7 +268,7 @@ func (ac _ArrayClass) ArrayWithArray(array []objc.ID /* already interface */) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfFile:
-func (ac _ArrayClass) ArrayWithContentsOfFile(path IString) []objc.ID /* already interface */ {
+func (ac _ArrayClass) ArrayWithContentsOfFile(path IString) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfFile:"), path)
 	return rv
 }
@@ -276,7 +276,7 @@ func (ac _ArrayClass) ArrayWithContentsOfFile(path IString) []objc.ID /* already
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayWithContentsOfURL:error:
-func (ac _ArrayClass) ArrayWithContentsOfURLError(url IURL, error_ IError) []objc.ID /* already interface */ {
+func (ac _ArrayClass) ArrayWithContentsOfURLError(url IURL, error_ IError) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -296,7 +296,7 @@ func (ac _ArrayClass) ArrayWithObjects(firstObj unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(contentsOfURL:)-fk8x
-func (ac _ArrayClass) ArrayWithContentsOfURL(url IURL) []objc.ID /* already interface */ {
+func (ac _ArrayClass) ArrayWithContentsOfURL(url IURL) []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(ac.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
 }
@@ -316,7 +316,7 @@ func (ac _ArrayClass) ArrayWithObject(anObject unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-7dct1
-func (ac _ArrayClass) ArrayWithObjectsCount(objects []unsafe.Pointer /* not a class type */, cnt uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (ac _ArrayClass) ArrayWithObjectsCount(objects []unsafe.Pointer, cnt uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("arrayWithObjects:count:"), objects, cnt)
 	return rv
 }
@@ -326,7 +326,7 @@ func (ac _ArrayClass) ArrayWithObjectsCount(objects []unsafe.Pointer /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:forKeyPath:options:context:)
-func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework NSObject */, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, keyPath, options, context)
 }
 
@@ -335,7 +335,7 @@ func (a_ Array) AddObserverForKeyPathOptionsContext(observer objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addObserver(_:toObjectsAt:forKeyPath:options:context:)
-func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
+func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserver:toObjectsAtIndexes:forKeyPath:options:context:"), observer, indexes, keyPath, options, context)
 }
 
@@ -344,7 +344,7 @@ func (a_ Array) AddObserverToObjectsAtIndexesForKeyPathOptionsContext(observer o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/adding(_:)
-func (a_ Array) ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID /* already interface */ {
+func (a_ Array) ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByAddingObject:"), anObject)
 	return rv
 }
@@ -354,7 +354,7 @@ func (a_ Array) ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID /* alread
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/addingObjects(from:)
-func (a_ Array) ArrayByAddingObjectsFromArray(otherArray []objc.ID /* already interface */) []objc.ID /* already interface */ {
+func (a_ Array) ArrayByAddingObjectsFromArray(otherArray []objc.ID) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByAddingObjectsFromArray:"), otherArray)
 	return rv
 }
@@ -364,7 +364,7 @@ func (a_ Array) ArrayByAddingObjectsFromArray(otherArray []objc.ID /* already in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/arrayByApplyingDifference:
-func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID /* already interface */ {
+func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("arrayByApplyingDifference:"), difference)
 	return rv
 }
@@ -384,7 +384,7 @@ func (a_ Array) ComponentsJoinedByString(separator IString) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/contains(_:)
-func (a_ Array) ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (a_ Array) ContainsObject(anObject unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("containsObject:"), anObject)
 	return rv
 }
@@ -404,7 +404,7 @@ func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:indent:)
-func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint /* primitive/slice/pointer. */) IString {
+func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -414,7 +414,7 @@ func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:
-func (a_ Array) DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer {
+func (a_ Array) DifferenceFromArray(other []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:"), other)
 	return rv
 }
@@ -424,7 +424,7 @@ func (a_ Array) DifferenceFromArray(other []objc.ID /* already interface */) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:
-func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
+func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:"), other, options)
 	return rv
 }
@@ -434,7 +434,7 @@ func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:usingEquivalenceTest:
-func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:usingEquivalenceTest:"), other, options, block)
 	return rv
 }
@@ -471,7 +471,7 @@ func (a_ Array) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/filtered(using:)
-func (a_ Array) FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID /* already interface */ {
+func (a_ Array) FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("filteredArrayUsingPredicate:"), predicate)
 	return rv
 }
@@ -481,7 +481,7 @@ func (a_ Array) FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID /* a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/firstObjectCommon(with:)
-func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID /* already interface */) unsafe.Pointer {
+func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("firstObjectCommonWithArray:"), otherArray)
 	return rv
 }
@@ -491,7 +491,7 @@ func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID /* already inter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/getObjects:range:
-func (a_ Array) GetObjectsRange(objects []unsafe.Pointer /* not a class type */, range_ objc.IObject /* cross-framework Range */) {
+func (a_ Array) GetObjectsRange(objects []unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("getObjects:range:"), objects, range_)
 }
 
@@ -500,7 +500,7 @@ func (a_ Array) GetObjectsRange(objects []unsafe.Pointer /* not a class type */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:)
-func (a_ Array) IndexOfObject(anObject unsafe.Pointer) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObject(anObject unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:"), anObject)
 	return rv
 }
@@ -510,7 +510,7 @@ func (a_ Array) IndexOfObject(anObject unsafe.Pointer) uint /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:in:)
-func (a_ Array) IndexOfObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inRange:"), anObject, range_)
 	return rv
 }
@@ -520,7 +520,7 @@ func (a_ Array) IndexOfObjectInRange(anObject unsafe.Pointer, range_ objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:inSortedRange:options:usingComparator:)
-func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework: Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
 	return rv
 }
@@ -530,7 +530,7 @@ func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexOfObject(at:options:passingTest:)
-func (a_ Array) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectAtIndexes:options:passingTest:"), s, opts, predicate)
 	return rv
 }
@@ -540,7 +540,7 @@ func (a_ Array) IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts Enume
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexOfObject(options:passingTest:)
-func (a_ Array) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -550,7 +550,7 @@ func (a_ Array) IndexOfObjectWithOptionsPassingTest(opts EnumerationOptions, pre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexOfObject(passingTest:)
-func (a_ Array) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectPassingTest:"), predicate)
 	return rv
 }
@@ -560,7 +560,7 @@ func (a_ Array) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexOfObjectIdentical(to:)
-func (a_ Array) IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectIdenticalTo:"), anObject)
 	return rv
 }
@@ -570,7 +570,7 @@ func (a_ Array) IndexOfObjectIdenticalTo(anObject unsafe.Pointer) uint /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/indexOfObjectIdentical(to:in:)
-func (a_ Array) IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */ {
+func (a_ Array) IndexOfObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObjectIdenticalTo:inRange:"), anObject, range_)
 	return rv
 }
@@ -610,7 +610,7 @@ func (a_ Array) IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/isEqual(to:)
-func (a_ Array) IsEqualToArray(otherArray []objc.ID /* already interface */) bool /* primitive/slice/pointer. */ {
+func (a_ Array) IsEqualToArray(otherArray []objc.ID) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEqualToArray:"), otherArray)
 	return rv
 }
@@ -638,7 +638,7 @@ func (a_ Array) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argumen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/object(at:)
-func (a_ Array) ObjectAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (a_ Array) ObjectAtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("objectAtIndex:"), index)
 	return rv
 }
@@ -658,7 +658,7 @@ func (a_ Array) ObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/objects(at:)
-func (a_ Array) ObjectsAtIndexes(indexes IIndexSet) []objc.ID /* already interface */ {
+func (a_ Array) ObjectsAtIndexes(indexes IIndexSet) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("objectsAtIndexes:"), indexes)
 	return rv
 }
@@ -668,7 +668,7 @@ func (a_ Array) ObjectsAtIndexes(indexes IIndexSet) []objc.ID /* already interfa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/pathsMatchingExtensions(_:)
-func (a_ Array) PathsMatchingExtensions(filterTypes []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
+func (a_ Array) PathsMatchingExtensions(filterTypes []string) []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("pathsMatchingExtensions:"), filterTypes)
 	return rv
 }
@@ -678,7 +678,7 @@ func (a_ Array) PathsMatchingExtensions(filterTypes []string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:)
-func (a_ Array) RemoveObserverForKeyPath(observer objc.IObject /* cross-framework NSObject */, keyPath IString) {
+func (a_ Array) RemoveObserverForKeyPath(observer objc.IObject /* cross-framework: NSObject */, keyPath IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, keyPath)
 }
 
@@ -687,7 +687,7 @@ func (a_ Array) RemoveObserverForKeyPath(observer objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:forKeyPath:context:)
-func (a_ Array) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-framework NSObject */, keyPath IString, context unsafe.Pointer) {
+func (a_ Array) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, keyPath IString, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, keyPath, context)
 }
 
@@ -696,7 +696,7 @@ func (a_ Array) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString) {
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:"), observer, indexes, keyPath)
 }
 
@@ -705,7 +705,7 @@ func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPath(observer objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/removeObserver(_:fromObjectsAt:forKeyPath:context:)
-func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objc.IObject /* cross-framework NSObject */, indexes IIndexSet, keyPath IString, context unsafe.Pointer) {
+func (a_ Array) RemoveObserverFromObjectsAtIndexesForKeyPathContext(observer objc.IObject /* cross-framework: NSObject */, indexes IIndexSet, keyPath IString, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserver:fromObjectsAtIndexes:forKeyPath:context:"), observer, indexes, keyPath, context)
 }
 
@@ -733,7 +733,7 @@ func (a_ Array) SetValueForKey(value objectivec.IObject, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/shuffled()
-func (a_ Array) ShuffledArray() []objc.ID /* already interface */ {
+func (a_ Array) ShuffledArray() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArray"))
 	return rv
 }
@@ -743,7 +743,7 @@ func (a_ Array) ShuffledArray() []objc.ID /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/shuffled(using:)
-func (a_ Array) ShuffledArrayWithRandomSource(randomSource objc.IObject /* cross-framework RandomSource */) []objc.ID /* already interface */ {
+func (a_ Array) ShuffledArrayWithRandomSource(randomSource objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("shuffledArrayWithRandomSource:"), randomSource)
 	return rv
 }
@@ -753,7 +753,7 @@ func (a_ Array) ShuffledArrayWithRandomSource(randomSource objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(_:context:)
-func (a_ Array) SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayUsingFunctionContext(comparator unsafe.Pointer, context unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingFunction:context:"), comparator, context)
 	return rv
 }
@@ -763,7 +763,7 @@ func (a_ Array) SortedArrayUsingFunctionContext(comparator unsafe.Pointer, conte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(_:context:hint:)
-func (a_ Array) SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingFunction:context:hint:"), comparator, context, hint)
 	return rv
 }
@@ -773,7 +773,7 @@ func (a_ Array) SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(comparator:)
-func (a_ Array) SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingComparator:"), cmptr)
 	return rv
 }
@@ -783,7 +783,7 @@ func (a_ Array) SortedArrayUsingComparator(cmptr Comparator /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(options:usingComparator:)
-func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }
@@ -793,7 +793,7 @@ func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(using:)-82wi1
-func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer. */) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }
@@ -803,7 +803,7 @@ func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(using:)-9nhh9
-func (a_ Array) SortedArrayUsingSelector(comparator objc.SEL) []objc.ID /* already interface */ {
+func (a_ Array) SortedArrayUsingSelector(comparator objc.SEL) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingSelector:"), comparator)
 	return rv
 }
@@ -813,7 +813,7 @@ func (a_ Array) SortedArrayUsingSelector(comparator objc.SEL) []objc.ID /* alrea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/subarray(with:)
-func (a_ Array) SubarrayWithRange(range_ objc.IObject /* cross-framework Range */) []objc.ID /* already interface */ {
+func (a_ Array) SubarrayWithRange(range_ objc.IObject /* cross-framework: Range */) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("subarrayWithRange:"), range_)
 	return rv
 }
@@ -823,7 +823,7 @@ func (a_ Array) SubarrayWithRange(range_ objc.IObject /* cross-framework Range *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/subscript(_:)
-func (a_ Array) ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (a_ Array) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
@@ -841,7 +841,7 @@ func (a_ Array) ValueForKey(key IString) objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:)
-func (a_ Array) WriteToURLError(url IURL, error_ IError) bool /* primitive/slice/pointer. */ {
+func (a_ Array) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }
@@ -851,7 +851,7 @@ func (a_ Array) WriteToURLError(url IURL, error_ IError) bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/count
-func (a_ Array) Count() uint /* primitive/slice/pointer. */ {
+func (a_ Array) Count() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
 	return rv
 }

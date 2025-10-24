@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,25 +31,28 @@ type _NEDNSSettingsManagerClass struct {
 // An interface definition for the [NEDNSSettingsManager] class.
 type INEDNSSettingsManager interface {
 	objectivec.IObject
-	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	DnsSettings() NEDNSSettings
+	// properties:
+	NEDNSSettingsErrorDomain() objc.IObject /* cross-framework: NSString */
+	DnsSettings() INEDNSSettings
 	SetDnsSettings(value INEDNSSettings)
-	Enabled() bool
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
-	OnDemandRules() []NEOnDemandRule
-	SetOnDemandRules(value []NEOnDemandRule)
-	NEDNSSettingsErrorDomain() string
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	LocalizedDescription() objc.IObject /* cross-framework: NSString */
+	SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */)
+	OnDemandRules() objc.IObject /* cross-framework: NEOnDemandRule */
+	SetOnDemandRules(value objc.IObject /* cross-framework: NEOnDemandRule */)
+	// methods:
+	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // An object you use to create and manage a DNS settings configuration.
 //
 // When your app starts up, access the shared instance of the DNS settings manager, and load existing settings from the preferences using . You can define your DNS server configuration, and persist it by calling . In order to use your DNS settings, the user needs to enable it in the Settings app on iOS or in System Preferences on macOS.
+
+
+// An object you use to create and manage a DNS settings configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager
 type NEDNSSettingsManager struct {
 	objectivec.Object
@@ -93,117 +97,48 @@ func NewNEDNSSettingsManager() NEDNSSettingsManager {
 }
 
 
-// Access the single instance of a DNS settings manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/shared()
-func (nc _NEDNSSettingsManagerClass) SharedManager() NEDNSSettingsManager {
-	rv := objc.Send[NEDNSSettingsManager](objc.ID(nc.class), objc.Sel("sharedManager"))
-	return rv
-}
 
 // Load your DNS settings configuration from the system networking preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/loadFromPreferences(completionHandler:)
 func (n_ NEDNSSettingsManager) LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("loadFromPreferencesWithCompletionHandler:"), completionHandler)
 }
 
-// Remove your DNS settings configuration from the system networking preferences.
+
+// The domain for errors resulting from calls to the DNS settings manager.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/removeFromPreferences(completionHandler:)
-func (n_ NEDNSSettingsManager) RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromPreferencesWithCompletionHandler:"), completionHandler)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingserrordomain
+func (n_ NEDNSSettingsManager) NEDNSSettingsErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEDNSSettingsErrorDomain"))
+	return rv
 }
 
-// Save your DNS settings configuration to the system networking preferences.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/saveToPreferences(completionHandler:)
-func (n_ NEDNSSettingsManager) SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("saveToPreferencesWithCompletionHandler:"), completionHandler)
-}
 
 // An object that contains the configuration settings for a DNS server.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/dnsSettings
-func (n_ NEDNSSettingsManager) DnsSettings() NEDNSSettings {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/dnssettings
+func (n_ NEDNSSettingsManager) DnsSettings() INEDNSSettings {
 	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("dnsSettings"))
 	return rv
 }
 
 
-// SetDnsSettings sets the value of the dnsSettings property.
 // An object that contains the configuration settings for a DNS server.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/dnsSettings
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/dnssettings
 func (n_ NEDNSSettingsManager) SetDnsSettings(value INEDNSSettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSettings:"), value)
 }
 
-// A Boolean you use to query the enabled state of the DNS settings configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/isEnabled
-func (n_ NEDNSSettingsManager) Enabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-// A string that contains the display name of the DNS settings configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
-	return rv
-}
-
-
-// SetLocalizedDescription sets the value of the localizedDescription property.
-// A string that contains the display name of the DNS settings configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
-}
-
-// A list of ordered rules that defines the networks on which the DNS settings will apply.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/onDemandRules
-func (n_ NEDNSSettingsManager) OnDemandRules() []NEOnDemandRule {
-	rv := objc.Send[[]NEOnDemandRule](n_.ID, objc.Sel("onDemandRules"))
-	return rv
-}
-
-
-// SetOnDemandRules sets the value of the onDemandRules property.
-// A list of ordered rules that defines the networks on which the DNS settings will apply.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/onDemandRules
-func (n_ NEDNSSettingsManager) SetOnDemandRules(value []NEOnDemandRule) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), nsArray)
-}
-
-// The domain for errors resulting from calls to the DNS settings manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingserrordomain
-func (n_ NEDNSSettingsManager) NEDNSSettingsErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSSettingsErrorDomain"))
-	return rv
-}
 
 // A Boolean you use to query the enabled state of the DNS settings configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/isenabled
 func (n_ NEDNSSettingsManager) IsEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
@@ -211,13 +146,50 @@ func (n_ NEDNSSettingsManager) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean you use to query the enabled state of the DNS settings configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/isenabled
 func (n_ NEDNSSettingsManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+
+// A string that contains the display name of the DNS settings configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/localizeddescription
+func (n_ NEDNSSettingsManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// A string that contains the display name of the DNS settings configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/localizeddescription
+func (n_ NEDNSSettingsManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+}
+
+
+// A list of ordered rules that defines the networks on which the DNS settings will apply.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/ondemandrules
+func (n_ NEDNSSettingsManager) OnDemandRules() objc.IObject /* cross-framework: NEOnDemandRule */ {
+	rv := objc.Send[NEOnDemandRule](n_.ID, objc.Sel("onDemandRules"))
+	return rv
+}
+
+
+// A list of ordered rules that defines the networks on which the DNS settings will apply.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingsmanager/ondemandrules
+func (n_ NEDNSSettingsManager) SetOnDemandRules(value objc.IObject /* cross-framework: NEOnDemandRule */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), value)
 }
 
 

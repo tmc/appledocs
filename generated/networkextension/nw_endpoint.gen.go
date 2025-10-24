@@ -30,12 +30,18 @@ type _NWEndpointClass struct {
 // An interface definition for the [NWEndpoint] class.
 type INWEndpoint interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract base class, shared by or , that represents the source or destination of a network connection.
 //
 // All endpoint objects are static collections of parameters that describe a network resource. They do not directly provide any resolution services, but instead must be used with other classes to be resolved and create connections.
+
+
+// An abstract base class, shared by or , that represents the source or destination of a network connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWEndpoint
 type NWEndpoint struct {
 	objectivec.Object
@@ -78,6 +84,7 @@ func (n_ NWEndpoint) Autorelease() NWEndpoint {
 func NewNWEndpoint() NWEndpoint {
 	return getNWEndpointClass().New()
 }
+
 
 
 

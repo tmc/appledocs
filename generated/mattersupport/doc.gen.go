@@ -2,12 +2,12 @@
 
 // Package mattersupport provides Go bindings for the MatterSupport framework.
 //
-// Coordinate and control compatible smart home accessories. [Full Topic]
+// Coordinate and control compatible smart home accessories.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MatterSupport without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MatterSupport
+// See: https://developer.apple.com/documentation/MatterSupport
 package mattersupport
 
 import (

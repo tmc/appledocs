@@ -30,12 +30,18 @@ type _VZStorageDeviceClass struct {
 // An interface definition for the [VZStorageDevice] class.
 type IVZStorageDevice interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class that represents a storage device in a VM.
 //
 // Don’t create a directly. Use one of its subclasses, such as , instead.
+
+
+// A class that represents a storage device in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZStorageDevice
 type VZStorageDevice struct {
 	objectivec.Object

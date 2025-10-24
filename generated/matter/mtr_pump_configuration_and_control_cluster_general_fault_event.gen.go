@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterGeneralFaultEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterGeneralFaultEvent] class.
 type IMTRPumpConfigurationAndControlClusterGeneralFaultEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterGeneralFaultEvent
 type MTRPumpConfigurationAndControlClusterGeneralFaultEvent struct {
 	objectivec.Object

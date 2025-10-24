@@ -31,15 +31,19 @@ type _MTRGroupKeyManagementClusterKeySetReadAllIndicesParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetReadAllIndicesParams] class.
 type IMTRGroupKeyManagementClusterKeySetReadAllIndicesParams interface {
 	objectivec.IObject
+	// properties:
 	GroupKeySetIDs() unsafe.Pointer
 	SetGroupKeySetIDs(value unsafe.Pointer)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterKeySetReadAllIndicesParams
 type MTRGroupKeyManagementClusterKeySetReadAllIndicesParams struct {
 	objectivec.Object
@@ -82,7 +86,8 @@ func NewMTRGroupKeyManagementClusterKeySetReadAllIndicesParams() MTRGroupKeyMana
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/groupkeysetids
 func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) GroupKeySetIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupKeySetIDs"))
@@ -90,40 +95,39 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) GroupKeySetIDs(
 }
 
 
-// SetGroupKeySetIDs sets the value of the groupKeySetIDs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/groupkeysetids
 func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetGroupKeySetIDs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetIDs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

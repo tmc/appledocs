@@ -30,9 +30,13 @@ type _mappingsClass struct {
 // An interface definition for the [mappings] class.
 type Imappings interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/mappings-c.ivar
 type mappings struct {
 	objectivec.Object

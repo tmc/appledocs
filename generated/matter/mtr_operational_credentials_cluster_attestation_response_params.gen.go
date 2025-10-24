@@ -31,17 +31,21 @@ type _MTROperationalCredentialsClusterAttestationResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterAttestationResponseParams] class.
 type IMTROperationalCredentialsClusterAttestationResponseParams interface {
 	objectivec.IObject
-	AttestationElements() foundation.Data
-	SetAttestationElements(value foundation.IData)
-	AttestationSignature() foundation.Data
-	SetAttestationSignature(value foundation.IData)
-	Signature() foundation.Data
-	SetSignature(value foundation.IData)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	AttestationElements() objc.IObject /* cross-framework: Data */
+	SetAttestationElements(value objc.IObject /* cross-framework: Data */)
+	AttestationSignature() objc.IObject /* cross-framework: Data */
+	SetAttestationSignature(value objc.IObject /* cross-framework: Data */)
+	Signature() objc.IObject /* cross-framework: Data */
+	SetSignature(value objc.IObject /* cross-framework: Data */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterAttestationResponseParams
 type MTROperationalCredentialsClusterAttestationResponseParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROperationalCredentialsClusterAttestationResponseParams() MTROperation
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() foundation.Data {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationElements"))
 	return rv
 }
 
 
-// SetAttestationElements sets the value of the attestationElements property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationElements(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationElements(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationElements:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationSignature() foundation.Data {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
 	return rv
 }
 
 
-// SetAttestationSignature sets the value of the attestationSignature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() foundation.Data {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("signature"))
 	return rv
 }
 
 
-// SetSignature sets the value of the signature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

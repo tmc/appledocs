@@ -30,15 +30,19 @@ type _MTRTestClusterClusterNestedStructClass struct {
 // An interface definition for the [MTRTestClusterClusterNestedStruct] class.
 type IMTRTestClusterClusterNestedStruct interface {
 	IMTRUnitTestingClusterNestedStruct
-	A() foundation.Number
-	SetA(value foundation.INumber)
-	B() foundation.Number
-	SetB(value foundation.INumber)
-	C() MTRTestClusterClusterSimpleStruct
+	// properties:
+	A() objc.IObject /* cross-framework: NSNumber */
+	SetA(value objc.IObject /* cross-framework: NSNumber */)
+	B() objc.IObject /* cross-framework: NSNumber */
+	SetB(value objc.IObject /* cross-framework: NSNumber */)
+	C() IMTRTestClusterClusterSimpleStruct
 	SetC(value IMTRTestClusterClusterSimpleStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterNestedStruct
 type MTRTestClusterClusterNestedStruct struct {
 	MTRUnitTestingClusterNestedStruct
@@ -83,46 +87,46 @@ func NewMTRTestClusterClusterNestedStruct() MTRTestClusterClusterNestedStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/a
-func (m_ MTRTestClusterClusterNestedStruct) A() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("a"))
+func (m_ MTRTestClusterClusterNestedStruct) A() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("a"))
 	return rv
 }
 
 
-// SetA sets the value of the a property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/a
-func (m_ MTRTestClusterClusterNestedStruct) SetA(value foundation.INumber) {
+func (m_ MTRTestClusterClusterNestedStruct) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/b
-func (m_ MTRTestClusterClusterNestedStruct) B() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("b"))
+func (m_ MTRTestClusterClusterNestedStruct) B() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("b"))
 	return rv
 }
 
 
-// SetB sets the value of the b property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/b
-func (m_ MTRTestClusterClusterNestedStruct) SetB(value foundation.INumber) {
+func (m_ MTRTestClusterClusterNestedStruct) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
-func (m_ MTRTestClusterClusterNestedStruct) C() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterNestedStruct) C() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("c"))
 	return rv
 }
 
 
-// SetC sets the value of the c property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
 func (m_ MTRTestClusterClusterNestedStruct) SetC(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)

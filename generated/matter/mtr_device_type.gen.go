@@ -31,13 +31,19 @@ type _MTRDeviceTypeClass struct {
 // An interface definition for the [MTRDeviceType] class.
 type IMTRDeviceType interface {
 	objectivec.IObject
-	Id() foundation.Number
+	// properties:
+	Id() objc.IObject /* cross-framework: NSNumber */
 	IsUtility() bool
-	Name() string
+	Name() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // Meta-data about a device type defined in the Matter specification.
+
+
+// Meta-data about a device type defined in the Matter specification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType
 type MTRDeviceType struct {
 	objectivec.Object
@@ -83,45 +89,53 @@ func NewMTRDeviceType() MTRDeviceType {
 
 
 
-
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func NewMTRDeviceTypeForID(deviceTypeID foundation.INumber) MTRDeviceType {
+func NewMTRDeviceTypeForID(deviceTypeID objc.IObject /* cross-framework: NSNumber */) MTRDeviceType {
 	rv := objc.Send[MTRDeviceType](objc.ID(getMTRDeviceTypeClass().class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
 
 
+
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID foundation.INumber) MTRDeviceType {
+func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID objc.IObject /* cross-framework: NSNumber */) MTRDeviceType {
 	rv := objc.Send[MTRDeviceType](objc.ID(mc.class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
 
+
 // The identifier of the device type (32-bit unsigned integer).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/id
-func (m_ MTRDeviceType) Id() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+func (m_ MTRDeviceType) Id() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("id"))
 	return rv
 }
 
+
 // Returns whether this is a utility device type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/isUtility
 func (m_ MTRDeviceType) IsUtility() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUtility"))
 	return rv
 }
 
+
 // Returns the name of the device type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/name
-func (m_ MTRDeviceType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRDeviceType) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

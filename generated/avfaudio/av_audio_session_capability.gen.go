@@ -31,12 +31,12 @@ type _AudioSessionCapabilityClass struct {
 type IAudioSessionCapability interface {
 	objectivec.IObject
 	// properties:
-	Enabled() bool /* primitive/slice/pointer. */
-	Supported() bool /* primitive/slice/pointer. */
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
-	IsSupported() bool /* primitive/slice/pointer. */
-	SetIsSupported(value bool /* primitive/slice/pointer. */)
+	Enabled() bool
+	Supported() bool
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsSupported() bool
+	SetIsSupported(value bool)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewAudioSessionCapability() AudioSessionCapability {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isEnabled
-func (a_ AudioSessionCapability) Enabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionCapability) Enabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enabled"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (a_ AudioSessionCapability) Enabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionCapability/isSupported
-func (a_ AudioSessionCapability) Supported() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionCapability) Supported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("supported"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (a_ AudioSessionCapability) Supported() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
-func (a_ AudioSessionCapability) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionCapability) IsEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (a_ AudioSessionCapability) IsEnabled() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/isenabled
-func (a_ AudioSessionCapability) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioSessionCapability) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -134,7 +134,7 @@ func (a_ AudioSessionCapability) SetIsEnabled(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
-func (a_ AudioSessionCapability) IsSupported() bool /* primitive/slice/pointer. */ {
+func (a_ AudioSessionCapability) IsSupported() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (a_ AudioSessionCapability) IsSupported() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability/issupported
-func (a_ AudioSessionCapability) SetIsSupported(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioSessionCapability) SetIsSupported(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSupported:"), value)
 }
 

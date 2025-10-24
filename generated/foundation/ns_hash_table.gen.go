@@ -31,18 +31,18 @@ type _HashTableClass struct {
 type IHashTable interface {
 	objectivec.IObject
 	// properties:
-	AllObjects() []objc.ID /* already interface */
+	AllObjects() []objc.ID
 	AnyObject() unsafe.Pointer
-	Count() uint /* primitive/slice/pointer. */
+	Count() uint
 	PointerFunctions() IPointerFunctions
 	SetRepresentation() unsafe.Pointer
 	// methods:
 	AddObject(object unsafe.Pointer)
-	ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ContainsObject(anObject unsafe.Pointer) bool
 	IntersectHashTable(other unsafe.Pointer)
-	IntersectsHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */
-	IsEqualToHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */
-	IsSubsetOfHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */
+	IntersectsHashTable(other unsafe.Pointer) bool
+	IsEqualToHashTable(other unsafe.Pointer) bool
+	IsSubsetOfHashTable(other unsafe.Pointer) bool
 	Member(object unsafe.Pointer) unsafe.Pointer
 	MinusHashTable(other unsafe.Pointer)
 	ObjectEnumerator() unsafe.Pointer
@@ -118,7 +118,7 @@ func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:capacity:)
-func NewHashTableWithOptionsCapacity(options PointerFunctionsOptions, initialCapacity uint /* primitive/slice/pointer. */) HashTable {
+func NewHashTableWithOptionsCapacity(options PointerFunctionsOptions, initialCapacity uint) HashTable {
 	instance := getHashTableClass().Alloc()
 	rv := objc.Send[HashTable](instance.ID, objc.Sel("initWithOptions:capacity:"), options, initialCapacity)
 	rv.Autorelease()
@@ -130,7 +130,7 @@ func NewHashTableWithOptionsCapacity(options PointerFunctionsOptions, initialCap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(pointerFunctions:capacity:)
-func NewHashTableWithPointerFunctionsCapacity(functions IPointerFunctions, initialCapacity uint /* primitive/slice/pointer. */) HashTable {
+func NewHashTableWithPointerFunctionsCapacity(functions IPointerFunctions, initialCapacity uint) HashTable {
 	instance := getHashTableClass().Alloc()
 	rv := objc.Send[HashTable](instance.ID, objc.Sel("initWithPointerFunctions:capacity:"), functions, initialCapacity)
 	rv.Autorelease()
@@ -182,7 +182,7 @@ func (h_ HashTable) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/contains(_:)
-func (h_ HashTable) ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (h_ HashTable) ContainsObject(anObject unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("containsObject:"), anObject)
 	return rv
 }
@@ -201,7 +201,7 @@ func (h_ HashTable) IntersectHashTable(other unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/intersects(_:)
-func (h_ HashTable) IntersectsHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (h_ HashTable) IntersectsHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("intersectsHashTable:"), other)
 	return rv
 }
@@ -211,7 +211,7 @@ func (h_ HashTable) IntersectsHashTable(other unsafe.Pointer) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/isEqual(to:)
-func (h_ HashTable) IsEqualToHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (h_ HashTable) IsEqualToHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isEqualToHashTable:"), other)
 	return rv
 }
@@ -221,7 +221,7 @@ func (h_ HashTable) IsEqualToHashTable(other unsafe.Pointer) bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/isSubset(of:)
-func (h_ HashTable) IsSubsetOfHashTable(other unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (h_ HashTable) IsSubsetOfHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSubsetOfHashTable:"), other)
 	return rv
 }
@@ -287,7 +287,7 @@ func (h_ HashTable) UnionHashTable(other unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/allObjects
-func (h_ HashTable) AllObjects() []objc.ID /* already interface */ {
+func (h_ HashTable) AllObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](h_.ID, objc.Sel("allObjects"))
 	return rv
 }
@@ -307,7 +307,7 @@ func (h_ HashTable) AnyObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
-func (h_ HashTable) Count() uint /* primitive/slice/pointer. */ {
+func (h_ HashTable) Count() uint {
 	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
 	return rv
 }

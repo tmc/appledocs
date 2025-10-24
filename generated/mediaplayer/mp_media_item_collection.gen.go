@@ -29,18 +29,20 @@ type _MediaItemCollectionClass struct {
 // An interface definition for the [MediaItemCollection] class.
 type IMediaItemCollection interface {
 	IMediaEntity
-	Count() uint
-	Items() []MediaItem
-	MediaTypes() MediaType
-	RepresentativeItem() MPMediaItem
-	Collections() MPMediaItemCollection
+	// properties:
+	Collections() IMPMediaItemCollection
 	SetCollections(value IMPMediaItemCollection)
+	// methods:
 }
 
 // A sorted set of media items from the media library.
 //
 // Typically, you use this class by requesting an array of from a media query by way of its collections property. describes media queries. The grouping type for the media query determines the arrangement of the media items you obtain. You also use the media query property to obtain synced playlists, as described in . A media item collection can have a wide range of metadata associated with it. You access this metadata using the method along with the property keys described in this document. You can also access metadata in a batch fashion using the method. In some cases, this is more efficient. defines and describes both of these methods.
+
+
+// A sorted set of media items from the media library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection
 type MediaItemCollection struct {
 	MediaEntity
@@ -88,11 +90,11 @@ func NewMediaItemCollection() MediaItemCollection {
 
 
 
-
 // Initializes a media item collection with an array of media items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/init(items:)
-func NewMediaItemCollectionWithItems(items []MediaItem) MediaItemCollection {
+func NewMediaItemCollectionWithItems(items []IMediaItem) MediaItemCollection {
 	instance := getMediaItemCollectionClass().Alloc()
 	rv := objc.Send[MediaItemCollection](instance.ID, objc.Sel("initWithItems:"), items)
 	rv.Autorelease()
@@ -100,59 +102,30 @@ func NewMediaItemCollectionWithItems(items []MediaItem) MediaItemCollection {
 }
 
 
+
 // Creates a media item collection by copying an array of media items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/collectionWithItems:
-func (mc _MediaItemCollectionClass) CollectionWithItems(items []MediaItem) MediaItemCollection {
+func (mc _MediaItemCollectionClass) CollectionWithItems(items []IMediaItem) IMediaItemCollection {
 	rv := objc.Send[MediaItemCollection](objc.ID(mc.class), objc.Sel("collectionWithItems:"), items)
 	return rv
 }
 
-// The number of media items in a collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/count
-func (m_ MediaItemCollection) Count() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
-	return rv
-}
-
-// The media items in a media item collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/items
-func (m_ MediaItemCollection) Items() []MediaItem {
-	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
-	return rv
-}
-
-// The types of the media items in a collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/mediaTypes
-func (m_ MediaItemCollection) MediaTypes() MediaType {
-	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaTypes"))
-	return rv
-}
-
-// A media item whose properties are representative of the other media items in a collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/representativeItem
-func (m_ MediaItemCollection) RepresentativeItem() MPMediaItem {
-	rv := objc.Send[MPMediaItem](m_.ID, objc.Sel("representativeItem"))
-	return rv
-}
 
 // An array of media item collections whose contained items match the query’s media property predicate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
-func (m_ MediaItemCollection) Collections() MPMediaItemCollection {
-	rv := objc.Send[MPMediaItemCollection](m_.ID, objc.Sel("collections"))
+func (m_ MediaItemCollection) Collections() IMPMediaItemCollection {
+	rv := objc.Send[MediaItemCollection](m_.ID, objc.Sel("collections"))
 	return rv
 }
 
 
-// SetCollections sets the value of the collections property.
 // An array of media item collections whose contained items match the query’s media property predicate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
 func (m_ MediaItemCollection) SetCollections(value IMPMediaItemCollection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCollections:"), value)

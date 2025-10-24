@@ -30,9 +30,13 @@ type _trustUsesMutualAuthenticationClass struct {
 // An interface definition for the [trustUsesMutualAuthentication] class.
 type ItrustUsesMutualAuthentication interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesMutualAuthentication-c.ivar
 type trustUsesMutualAuthentication struct {
 	objectivec.Object

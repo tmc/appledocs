@@ -31,17 +31,21 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustStruct] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustStruct interface {
 	objectivec.IObject
-	MaxDuration() foundation.Number
-	SetMaxDuration(value foundation.INumber)
-	MaxPower() foundation.Number
-	SetMaxPower(value foundation.INumber)
-	MinDuration() foundation.Number
-	SetMinDuration(value foundation.INumber)
-	MinPower() foundation.Number
-	SetMinPower(value foundation.INumber)
+	// properties:
+	MaxDuration() objc.IObject /* cross-framework: NSNumber */
+	SetMaxDuration(value objc.IObject /* cross-framework: NSNumber */)
+	MaxPower() objc.IObject /* cross-framework: NSNumber */
+	SetMaxPower(value objc.IObject /* cross-framework: NSNumber */)
+	MinDuration() objc.IObject /* cross-framework: NSNumber */
+	SetMinDuration(value objc.IObject /* cross-framework: NSNumber */)
+	MinPower() objc.IObject /* cross-framework: NSNumber */
+	SetMinPower(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct
 type MTRDeviceEnergyManagementClusterPowerAdjustStruct struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustStruct() MTRDeviceEnergyManag
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxDuration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxDuration"))
 	return rv
 }
 
 
-// SetMaxDuration sets the value of the maxDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPower"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxPower"))
 	return rv
 }
 
 
-// SetMaxPower sets the value of the maxPower property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPower:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minDuration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minDuration"))
 	return rv
 }
 
 
-// SetMinDuration sets the value of the minDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minPower"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minPower"))
 	return rv
 }
 
 
-// SetMinPower sets the value of the minPower property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPower:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,31 +31,33 @@ type _NEAppPushManagerClass struct {
 // An interface definition for the [NEAppPushManager] class.
 type INEAppPushManager interface {
 	objectivec.IObject
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	MatchSSIDs() []string
-	SetMatchSSIDs(value []string)
-	ProviderBundleIdentifier() string
-	SetProviderBundleIdentifier(value string)
-	ProviderConfiguration() unsafe.Pointer
-	SetProviderConfiguration(value unsafe.Pointer)
-	NEAppPushErrorDomain() string
+	// properties:
+	NEAppPushErrorDomain() objc.IObject /* cross-framework: NSString */
 	IsActive() bool
 	SetIsActive(value bool)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
+	LocalizedDescription() objc.IObject /* cross-framework: NSString */
+	SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */)
 	MatchEthernet() bool
 	SetMatchEthernet(value bool)
-	MatchPrivateLTENetworks() NEPrivateLTENetwork
-	SetMatchPrivateLTENetworks(value INEPrivateLTENetwork)
+	MatchPrivateLTENetworks() objc.IObject /* cross-framework: NEPrivateLTENetwork */
+	SetMatchPrivateLTENetworks(value objc.IObject /* cross-framework: NEPrivateLTENetwork */)
+	ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ProviderConfiguration() objc.IObject /* cross-framework: NSString */
+	SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that configures a push provider and manages its life cycle.
 //
 // Your app can create as many instances as you need. Load your managers from the persistent store and set up their delegates immediately after the app launches, so they’re ready to handle incoming calls.
+
+
+// An object that configures a push provider and manages its life cycle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager
 type NEAppPushManager struct {
 	objectivec.Object
@@ -99,98 +102,20 @@ func NewNEAppPushManager() NEAppPushManager {
 }
 
 
-// A delegate that receives incoming call information from the provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/delegate
-func (n_ NEAppPushManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// A delegate that receives incoming call information from the provider.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/delegate
-func (n_ NEAppPushManager) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
-}
-
-// An array of Wi-Fi SSID strings that the system matches for local push activation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/matchSSIDs
-func (n_ NEAppPushManager) MatchSSIDs() []string {
-	rv := objc.Send[[]string](n_.ID, objc.Sel("matchSSIDs"))
-	return rv
-}
-
-
-// SetMatchSSIDs sets the value of the matchSSIDs property.
-// An array of Wi-Fi SSID strings that the system matches for local push activation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/matchSSIDs
-func (n_ NEAppPushManager) SetMatchSSIDs(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchSSIDs:"), nsArray)
-}
-
-// A string that contains the bundle identifier of the push provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) ProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
-	return rv
-}
-
-
-// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
-// A string that contains the bundle identifier of the push provider.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerBundleIdentifier
-func (n_ NEAppPushManager) SetProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
-}
-
-// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerConfiguration
-func (n_ NEAppPushManager) ProviderConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerConfiguration"))
-	return rv
-}
-
-
-// SetProviderConfiguration sets the value of the providerConfiguration property.
-// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushManager/providerConfiguration
-func (n_ NEAppPushManager) SetProviderConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
-}
 
 // The error domain string for local push errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppusherrordomain
-func (n_ NEAppPushManager) NEAppPushErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEAppPushErrorDomain"))
+func (n_ NEAppPushManager) NEAppPushErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEAppPushErrorDomain"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether a configuration is in use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isactive
 func (n_ NEAppPushManager) IsActive() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isActive"))
@@ -198,17 +123,18 @@ func (n_ NEAppPushManager) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates whether a configuration is in use.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isactive
 func (n_ NEAppPushManager) SetIsActive(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // A property you use to toggle enabling the configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isenabled
 func (n_ NEAppPushManager) IsEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
@@ -216,35 +142,37 @@ func (n_ NEAppPushManager) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A property you use to toggle enabling the configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/isenabled
 func (n_ NEAppPushManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A string that contains the localized description of the app push manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
-func (n_ NEAppPushManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEAppPushManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
 
-// SetLocalizedDescription sets the value of the localizedDescription property.
 // A string that contains the localized description of the app push manager.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/localizeddescription
-func (n_ NEAppPushManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEAppPushManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
+
 
 // A property that indicates Ethernet support for Local Push Connectivity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchethernet
 func (n_ NEAppPushManager) MatchEthernet() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("matchEthernet"))
@@ -252,32 +180,69 @@ func (n_ NEAppPushManager) MatchEthernet() bool {
 }
 
 
-// SetMatchEthernet sets the value of the matchEthernet property.
 // A property that indicates Ethernet support for Local Push Connectivity.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchethernet
 func (n_ NEAppPushManager) SetMatchEthernet(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchEthernet:"), value)
 }
 
+
 // An array of private LTE networks that the system matches for local push activation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchprivateltenetworks
-func (n_ NEAppPushManager) MatchPrivateLTENetworks() NEPrivateLTENetwork {
+func (n_ NEAppPushManager) MatchPrivateLTENetworks() objc.IObject /* cross-framework: NEPrivateLTENetwork */ {
 	rv := objc.Send[NEPrivateLTENetwork](n_.ID, objc.Sel("matchPrivateLTENetworks"))
 	return rv
 }
 
 
-// SetMatchPrivateLTENetworks sets the value of the matchPrivateLTENetworks property.
 // An array of private LTE networks that the system matches for local push activation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/matchprivateltenetworks
-func (n_ NEAppPushManager) SetMatchPrivateLTENetworks(value INEPrivateLTENetwork) {
+func (n_ NEAppPushManager) SetMatchPrivateLTENetworks(value objc.IObject /* cross-framework: NEPrivateLTENetwork */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPrivateLTENetworks:"), value)
 }
 
+
+// A string that contains the bundle identifier of the push provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
+func (n_ NEAppPushManager) ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerBundleIdentifier"))
+	return rv
+}
+
+
+// A string that contains the bundle identifier of the push provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
+func (n_ NEAppPushManager) SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
+}
+
+
+// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerconfiguration
+func (n_ NEAppPushManager) ProviderConfiguration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerConfiguration"))
+	return rv
+}
+
+
+// A dictionary that contains vendor-specific key-value pairs, that you use to configure a provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerconfiguration
+func (n_ NEAppPushManager) SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
+}
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,17 @@ type _MTRUserLabelClusterLabelStructClass struct {
 // An interface definition for the [MTRUserLabelClusterLabelStruct] class.
 type IMTRUserLabelClusterLabelStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	Value() string
-	SetValue(value string)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Value() objc.IObject /* cross-framework: NSString */
+	SetValue(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUserLabelClusterLabelStruct
 type MTRUserLabelClusterLabelStruct struct {
 	objectivec.Object
@@ -79,34 +84,34 @@ func NewMTRUserLabelClusterLabelStruct() MTRUserLabelClusterLabelStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
-func (m_ MTRUserLabelClusterLabelStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRUserLabelClusterLabelStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/label
-func (m_ MTRUserLabelClusterLabelStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRUserLabelClusterLabelStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
-func (m_ MTRUserLabelClusterLabelStruct) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRUserLabelClusterLabelStruct) Value() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtruserlabelclusterlabelstruct/value
-func (m_ MTRUserLabelClusterLabelStruct) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRUserLabelClusterLabelStruct) SetValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

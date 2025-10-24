@@ -2,12 +2,12 @@
 
 // Package webkit provides Go bindings for the WebKit framework.
 //
-// Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs. [Full Topic]
+// Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to WebKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit
+// See: https://developer.apple.com/documentation/WebKit
 package webkit
 
 import (

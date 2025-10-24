@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,14 +33,14 @@ type _ColorClass struct {
 type IColor interface {
 	objectivec.IObject
 	// properties:
-	Alpha() float64 /* primitive/slice/pointer. */
-	Blue() float64 /* primitive/slice/pointer. */
-	ColorSpace() coregraphics.CGColorSpaceRef
-	Components() coregraphics.float64 /* primitive/slice/pointer. */
-	Green() float64 /* primitive/slice/pointer. */
+	Alpha() float64
+	Blue() float64
+	ColorSpace() ColorSpaceRef /* not a class type */
+	Components() corefoundation.CGFloat
+	Green() float64
 	NumberOfComponents() uintptr /* not a class type */
-	Red() float64 /* primitive/slice/pointer. */
-	StringRepresentation() string /* primitive/slice/pointer. */
+	Red() float64
+	StringRepresentation() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -100,7 +101,7 @@ func NewColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(cgColor:)
-func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
+func NewColorWithCGColor(color ColorRef /* not a class type */) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCGColor:"), color)
 	rv.Autorelease()
@@ -122,7 +123,7 @@ func NewColorWithColor(color IColor) Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/initWithRed:green:blue:
-func NewColorWithRedGreenBlue(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */) Color {
+func NewColorWithRedGreenBlue(red float64, green float64, blue float64) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:"), red, green, blue)
 	rv.Autorelease()
@@ -134,7 +135,7 @@ func NewColorWithRedGreenBlue(red float64 /* primitive/slice/pointer. */, green 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:)
-func NewColorWithRedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+func NewColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:"), red, green, blue, alpha)
 	rv.Autorelease()
@@ -146,7 +147,7 @@ func NewColorWithRedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, g
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:alpha:colorSpace:)
-func NewColorWithRedGreenBlueAlphaColorSpace(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) Color {
+func NewColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace ColorSpaceRef /* not a class type */) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	rv.Autorelease()
@@ -158,7 +159,7 @@ func NewColorWithRedGreenBlueAlphaColorSpace(red float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:colorSpace:)
-func NewColorWithRedGreenBlueColorSpace(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) Color {
+func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace ColorSpaceRef /* not a class type */) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	rv.Autorelease()
@@ -170,8 +171,8 @@ func NewColorWithRedGreenBlueColorSpace(red float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func NewColorWithString(representation string /* primitive/slice/pointer. */) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
+func NewColorWithString(representation objc.IObject /* cross-framework: NSString */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), representation)
 	return rv
 }
 
@@ -181,7 +182,7 @@ func NewColorWithString(representation string /* primitive/slice/pointer. */) Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithCGColor:
-func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithCGColor(color ColorRef /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), color)
 	return rv
 }
@@ -191,7 +192,7 @@ func (cc _ColorClass) ColorWithCGColor(color coregraphics.CGColorRef) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:
-func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64, green float64, blue float64, alpha float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:"), red, green, blue, alpha)
 	return rv
 }
@@ -201,7 +202,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlpha(red float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:alpha:colorSpace:
-func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64, green float64, blue float64, alpha float64, colorSpace ColorSpaceRef /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:colorSpace:"), red, green, blue, alpha, colorSpace)
 	return rv
 }
@@ -211,7 +212,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueAlphaColorSpace(red float64 /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorWithRed:green:blue:colorSpace:
-func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64, colorSpace ColorSpaceRef /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:colorSpace:"), red, green, blue, colorSpace)
 	return rv
 }
@@ -221,7 +222,7 @@ func (cc _ColorClass) ColorWithRedGreenBlueColorSpace(red float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(red:green:blue:)
-func (cc _ColorClass) ColorWithRedGreenBlue(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:"), red, green, blue)
 	return rv
 }
@@ -231,8 +232,8 @@ func (cc _ColorClass) ColorWithRedGreenBlue(red float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func (cc _ColorClass) ColorWithString(representation string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), objc.String(representation))
+func (cc _ColorClass) ColorWithString(representation objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), representation)
 	return rv
 }
 
@@ -331,7 +332,7 @@ func (cc _ColorClass) YellowColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/alpha
-func (c_ Color) Alpha() float64 /* primitive/slice/pointer. */ {
+func (c_ Color) Alpha() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("alpha"))
 	return rv
 }
@@ -351,7 +352,7 @@ func (c_ Color) BlackColor() ICIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.property
-func (c_ Color) Blue() float64 /* primitive/slice/pointer. */ {
+func (c_ Color) Blue() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("blue"))
 	return rv
 }
@@ -381,8 +382,8 @@ func (c_ Color) ClearColor() ICIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/colorSpace
-func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
-	rv := objc.Send[coregraphics.CGColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
+func (c_ Color) ColorSpace() ColorSpaceRef /* not a class type */ {
+	rv := objc.Send[ColorSpaceRef](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -391,8 +392,8 @@ func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/components
-func (c_ Color) Components() coregraphics.float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[coregraphics.float64](c_.ID, objc.Sel("components"))
+func (c_ Color) Components() corefoundation.CGFloat {
+	rv := objc.Send[corefoundation.CGFloat](c_.ID, objc.Sel("components"))
 	return rv
 }
 
@@ -421,7 +422,7 @@ func (c_ Color) GrayColor() ICIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.property
-func (c_ Color) Green() float64 /* primitive/slice/pointer. */ {
+func (c_ Color) Green() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("green"))
 	return rv
 }
@@ -461,7 +462,7 @@ func (c_ Color) NumberOfComponents() uintptr /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.property
-func (c_ Color) Red() float64 /* primitive/slice/pointer. */ {
+func (c_ Color) Red() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("red"))
 	return rv
 }
@@ -481,8 +482,8 @@ func (c_ Color) RedColor() ICIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/stringRepresentation
-func (c_ Color) StringRepresentation() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringRepresentation"))
+func (c_ Color) StringRepresentation() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 

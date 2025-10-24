@@ -31,15 +31,19 @@ type _MTROperationalCredentialsClusterNOCStructClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterNOCStruct] class.
 type IMTROperationalCredentialsClusterNOCStruct interface {
 	objectivec.IObject
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	Icac() foundation.Data
-	SetIcac(value foundation.IData)
-	Noc() foundation.Data
-	SetNoc(value foundation.IData)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Icac() objc.IObject /* cross-framework: Data */
+	SetIcac(value objc.IObject /* cross-framework: Data */)
+	Noc() objc.IObject /* cross-framework: Data */
+	SetNoc(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterNOCStruct
 type MTROperationalCredentialsClusterNOCStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTROperationalCredentialsClusterNOCStruct() MTROperationalCredentialsClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROperationalCredentialsClusterNOCStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterNOCStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/icac
-func (m_ MTROperationalCredentialsClusterNOCStruct) Icac() foundation.Data {
+func (m_ MTROperationalCredentialsClusterNOCStruct) Icac() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("icac"))
 	return rv
 }
 
 
-// SetIcac sets the value of the icac property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/icac
-func (m_ MTROperationalCredentialsClusterNOCStruct) SetIcac(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterNOCStruct) SetIcac(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIcac:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
-func (m_ MTROperationalCredentialsClusterNOCStruct) Noc() foundation.Data {
+func (m_ MTROperationalCredentialsClusterNOCStruct) Noc() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("noc"))
 	return rv
 }
 
 
-// SetNoc sets the value of the noc property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocstruct/noc
-func (m_ MTROperationalCredentialsClusterNOCStruct) SetNoc(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterNOCStruct) SetNoc(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNoc:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothDeviceSelectorController] class.
@@ -32,7 +33,7 @@ type IBluetoothDeviceSelectorController interface {
 	appkit.IWindowController
 	// properties:
 	// methods:
-	SetTitle(windowTitle string /* primitive/slice/pointer. */)
+	SetTitle(windowTitle objc.IObject /* cross-framework: NSString */)
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -94,8 +95,8 @@ func NewBluetoothDeviceSelectorController() BluetoothDeviceSelectorController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setTitle(_:)
-func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))
+func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), windowTitle)
 }
 
 

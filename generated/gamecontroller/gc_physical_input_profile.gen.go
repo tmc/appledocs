@@ -33,9 +33,9 @@ type IGCPhysicalInputProfile interface {
 	objectivec.IObject
 	// properties:
 	AllElements() unsafe.Pointer
-	Dpads() foundation.IDictionary /* already interface */
-	HasRemappedElements() bool /* primitive/slice/pointer. */
-	LastEventTimestamp() foundation.TimeInterval /* not a class type */
+	Dpads() foundation.IDictionary
+	HasRemappedElements() bool
+	LastEventTimestamp() float64
 	ValueDidChangeHandler() unsafe.Pointer
 	SetValueDidChangeHandler(value unsafe.Pointer)
 	ExtendedGamepad() IGCExtendedGamepad
@@ -67,8 +67,8 @@ type IGCPhysicalInputProfile interface {
 	Touchpads() IGCControllerTouchpad
 	SetTouchpads(value IGCControllerTouchpad)
 	// methods:
-	MappedElementAliasForPhysicalInputName(inputName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	MappedPhysicalInputNamesForElementAlias(elementAlias string /* primitive/slice/pointer. */) unsafe.Pointer
+	MappedElementAliasForPhysicalInputName(inputName objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
+	MappedPhysicalInputNamesForElementAlias(elementAlias objc.IObject /* cross-framework: NSString */) unsafe.Pointer
 }
 
 // The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.
@@ -128,8 +128,8 @@ func NewGCPhysicalInputProfile() GCPhysicalInputProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)
-func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
+func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), inputName)
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputNam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)
-func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), objc.String(elementAlias))
+func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), elementAlias)
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (g_ GCPhysicalInputProfile) AllElements() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/dpads
-func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary /* already interface */ {
+func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](g_.ID, objc.Sel("dpads"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary /* already inter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/hasRemappedElements
-func (g_ GCPhysicalInputProfile) HasRemappedElements() bool /* primitive/slice/pointer. */ {
+func (g_ GCPhysicalInputProfile) HasRemappedElements() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasRemappedElements"))
 	return rv
 }
@@ -178,8 +178,8 @@ func (g_ GCPhysicalInputProfile) HasRemappedElements() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/lastEventTimestamp
-func (g_ GCPhysicalInputProfile) LastEventTimestamp() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("lastEventTimestamp"))
+func (g_ GCPhysicalInputProfile) LastEventTimestamp() float64 {
+	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("lastEventTimestamp"))
 	return rv
 }
 

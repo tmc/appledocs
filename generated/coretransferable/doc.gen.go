@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreTransferable without requiring cgo.
-
-// Declare a transfer representation for your model types
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTransferable
+// See: https://developer.apple.com/documentation/CoreTransferable
 package coretransferable
 
 import (

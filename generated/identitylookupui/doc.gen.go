@@ -4,9 +4,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IdentityLookupUI without requiring cgo.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI
+//
+// See: https://developer.apple.com/documentation/IdentityLookupUI
 package identitylookupui
 
 import (

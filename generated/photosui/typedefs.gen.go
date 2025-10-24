@@ -6,6 +6,6 @@ package photosui
 // PHProjectCategory - A representation of Photos project extension categories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectCategory
-// PHProjectCategory has base type: NSString *
-type PHProjectCategory uintptr
+// PHProjectCategory is a string typedef
+type PHProjectCategory = string
 

@@ -34,6 +34,10 @@ type ICondition interface {
 	Name() IString
 	SetName(value IString)
 	// methods:
+	Broadcast()
+	Signal()
+	Wait()
+	WaitUntilDate(limit IDate) bool
 }
 
 // A condition variable whose semantics follow those used for POSIX-style conditions.
@@ -89,10 +93,47 @@ func NewCondition() Condition {
 
 
 
+// Signals the condition, waking up all threads waiting on it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/broadcast()
+func (c_ Condition) Broadcast() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("broadcast"))
+}
+
+
+// Signals the condition, waking up one thread waiting on it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/signal()
+func (c_ Condition) Signal() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("signal"))
+}
+
+
+// Blocks the current thread until the condition is signaled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait()
+func (c_ Condition) Wait() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("wait"))
+}
+
+
+// Blocks the current thread until the condition is signaled or the specified time limit is reached.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait(until:)
+func (c_ Condition) WaitUntilDate(limit IDate) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("waitUntilDate:"), limit)
+	return rv
+}
+
+
 // The name of the condition.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
 func (c_ Condition) Name() IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("name"))
 	return rv
@@ -102,7 +143,7 @@ func (c_ Condition) Name() IString {
 // The name of the condition.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
 func (c_ Condition) SetName(value IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }

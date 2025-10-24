@@ -41,8 +41,8 @@ type IPathControl interface {
 	SetDelegate(value PathControlDelegate /* not a class type */)
 	DoubleAction() unsafe.Pointer
 	SetDoubleAction(value unsafe.Pointer)
-	IsEditable() bool /* primitive/slice/pointer. */
-	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	Menu() IMenu
 	SetMenu(value IMenu)
 	PathItems() IPathControlItem
@@ -202,7 +202,7 @@ func (p_ PathControl) SetDoubleAction(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
-func (p_ PathControl) IsEditable() bool /* primitive/slice/pointer. */ {
+func (p_ PathControl) IsEditable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (p_ PathControl) IsEditable() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/iseditable
-func (p_ PathControl) SetIsEditable(value bool /* primitive/slice/pointer. */) {
+func (p_ PathControl) SetIsEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -271,7 +271,7 @@ func (p_ PathControl) SetPathStyle(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrol/placeholderattributedstring
 func (p_ PathControl) PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 

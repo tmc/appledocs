@@ -29,18 +29,24 @@ type _PHASEMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEMetaParameterDefinition] class.
 type IPHASEMetaParameterDefinition interface {
 	IPHASEDefinition
-	GlobalMetaParameters() PHASEMetaParameter
+	// properties:
+	GlobalMetaParameters() IPHASEMetaParameter
 	SetGlobalMetaParameters(value IPHASEMetaParameter)
 	Value() unsafe.Pointer
 	SetValue(value unsafe.Pointer)
-	MetaParameters() PHASEMetaParameter
+	MetaParameters() IPHASEMetaParameter
 	SetMetaParameters(value IPHASEMetaParameter)
+	// methods:
 }
 
 // A specification for a named parameter with a constant value.
 //
 // Instances of this class provide an app with dynamic control of various properies of live audio playback. This is a base class for the and subclasses. You create a single instance of one of the subclasses for a specific property you want to adjust. By passing the definition subclass to the framework, you spawn one or more objects for discrete use across your app. For example, when you initialize a with a number metaparameter definition, PHASE registers a in the corresponding sound event’s dictionary. Put metaparameter definitions that you wish to share across different sounds in the asset registery’s dictionary. To add global metaparameter definitions to the dictionary, call . Then pass the definition into several sound event node defintions, such as .
+
+
+// A specification for a named parameter with a constant value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMetaParameterDefinition
 type PHASEMetaParameterDefinition struct {
 	PHASEDefinition
@@ -87,26 +93,29 @@ func NewPHASEMetaParameterDefinition() PHASEMetaParameterDefinition {
 }
 
 
+
 // A dictionary of metaparameters that all sound event assets share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() PHASEMetaParameter {
+func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
 
-// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
 // A dictionary of metaparameters that all sound event assets share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
 func (p_ PHASEMetaParameterDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
+
 // A constant value for the parameter definition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameterdefinition/value
 func (p_ PHASEMetaParameterDefinition) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("value"))
@@ -114,28 +123,28 @@ func (p_ PHASEMetaParameterDefinition) Value() unsafe.Pointer {
 }
 
 
-// SetValue sets the value of the value property.
 // A constant value for the parameter definition.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemetaparameterdefinition/value
 func (p_ PHASEMetaParameterDefinition) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
 
+
 // The object’s meta parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEMetaParameterDefinition) MetaParameters() PHASEMetaParameter {
+func (p_ PHASEMetaParameterDefinition) MetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
 
-// SetMetaParameters sets the value of the metaParameters property.
 // The object’s meta parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
 func (p_ PHASEMetaParameterDefinition) SetMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)

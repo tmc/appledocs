@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [USBHostInterface] class.
@@ -34,8 +33,8 @@ type IUSBHostInterface interface {
 	// properties:
 	ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */
 	SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */)
-	IdleTimeout() unsafe.Pointer
-	SetIdleTimeout(value unsafe.Pointer)
+	IdleTimeout() float64
+	SetIdleTimeout(value float64)
 	InterfaceDescriptor() USBInterfaceDescriptor /* not a class type */
 	SetInterfaceDescriptor(value USBInterfaceDescriptor /* not a class type */)
 	// methods:
@@ -100,7 +99,7 @@ func NewUSBHostInterface() USBHostInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
-func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.objc.IObject /* cross-framework Number */, productID foundation.objc.IObject /* cross-framework Number */, bcdDevice foundation.objc.IObject /* cross-framework Number */, interfaceNumber foundation.objc.IObject /* cross-framework Number */, configurationValue foundation.objc.IObject /* cross-framework Number */, interfaceClass foundation.objc.IObject /* cross-framework Number */, interfaceSubclass foundation.objc.IObject /* cross-framework Number */, interfaceProtocol foundation.objc.IObject /* cross-framework Number */, speed foundation.objc.IObject /* cross-framework Number */, productIDArray objectivec.IObject) MutableDictionaryRef /* not a class type */ {
+func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID objc.IObject /* cross-framework: NSNumber */, productID objc.IObject /* cross-framework: NSNumber */, bcdDevice objc.IObject /* cross-framework: NSNumber */, interfaceNumber objc.IObject /* cross-framework: NSNumber */, configurationValue objc.IObject /* cross-framework: NSNumber */, interfaceClass objc.IObject /* cross-framework: NSNumber */, interfaceSubclass objc.IObject /* cross-framework: NSNumber */, interfaceProtocol objc.IObject /* cross-framework: NSNumber */, speed objc.IObject /* cross-framework: NSNumber */, productIDArray objc.IObject /* cross-framework: NSArray */) MutableDictionaryRef /* not a class type */ {
 	rv := objc.Send[MutableDictionaryRef](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
 	return rv
 }
@@ -129,8 +128,8 @@ func (u_ USBHostInterface) SetConfigurationDescriptor(value USBConfigurationDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
-func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+func (u_ USBHostInterface) IdleTimeout() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("idleTimeout"))
 	return rv
 }
 
@@ -139,7 +138,7 @@ func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
-func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
+func (u_ USBHostInterface) SetIdleTimeout(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
 }
 

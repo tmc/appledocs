@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,16 +36,16 @@ type IAuthorizationProviderExtensionLoginManager interface {
 	SetAuthenticationMethod(value AuthorizationProviderExtensionAuthenticationMethod /* not a class type */)
 	ExtensionData() unsafe.Pointer
 	SetExtensionData(value unsafe.Pointer)
-	IsDeviceRegistered() bool /* primitive/slice/pointer. */
-	SetIsDeviceRegistered(value bool /* primitive/slice/pointer. */)
-	IsUserRegistered() bool /* primitive/slice/pointer. */
-	SetIsUserRegistered(value bool /* primitive/slice/pointer. */)
+	IsDeviceRegistered() bool
+	SetIsDeviceRegistered(value bool)
+	IsUserRegistered() bool
+	SetIsUserRegistered(value bool)
 	LoginConfiguration() AuthorizationProviderExtensionLoginConfiguration /* not a class type */
 	SetLoginConfiguration(value AuthorizationProviderExtensionLoginConfiguration /* not a class type */)
-	LoginUserName() string /* primitive/slice/pointer. */
-	SetLoginUserName(value string /* primitive/slice/pointer. */)
-	RegistrationToken() string /* primitive/slice/pointer. */
-	SetRegistrationToken(value string /* primitive/slice/pointer. */)
+	LoginUserName() objc.IObject /* cross-framework: NSString */
+	SetLoginUserName(value objc.IObject /* cross-framework: NSString */)
+	RegistrationToken() objc.IObject /* cross-framework: NSString */
+	SetRegistrationToken(value objc.IObject /* cross-framework: NSString */)
 	SsoTokens() unsafe.Pointer
 	SetSsoTokens(value unsafe.Pointer)
 	UserLoginConfiguration() IASAuthorizationProviderExtensionUserLoginConfiguration
@@ -156,7 +157,7 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetExtensionData(value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isdeviceregistered
-func (a_ AuthorizationProviderExtensionLoginManager) IsDeviceRegistered() bool /* primitive/slice/pointer. */ {
+func (a_ AuthorizationProviderExtensionLoginManager) IsDeviceRegistered() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isDeviceRegistered"))
 	return rv
 }
@@ -166,7 +167,7 @@ func (a_ AuthorizationProviderExtensionLoginManager) IsDeviceRegistered() bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isdeviceregistered
-func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value bool /* primitive/slice/pointer. */) {
+func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDeviceRegistered:"), value)
 }
 
@@ -175,7 +176,7 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetIsDeviceRegistered(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool /* primitive/slice/pointer. */ {
+func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isUserRegistered"))
 	return rv
 }
@@ -185,7 +186,7 @@ func (a_ AuthorizationProviderExtensionLoginManager) IsUserRegistered() bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/isuserregistered
-func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value bool /* primitive/slice/pointer. */) {
+func (a_ AuthorizationProviderExtensionLoginManager) SetIsUserRegistered(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsUserRegistered:"), value)
 }
 
@@ -213,8 +214,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginConfiguration(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
+func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("loginUserName"))
 	return rv
 }
 
@@ -223,8 +224,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) LoginUserName() string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/loginusername
-func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
+func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), value)
 }
 
 
@@ -232,8 +233,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetLoginUserName(value stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("registrationToken"))
+func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("registrationToken"))
 	return rv
 }
 
@@ -242,8 +243,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) RegistrationToken() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/registrationtoken
-func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), objc.String(value))
+func (a_ AuthorizationProviderExtensionLoginManager) SetRegistrationToken(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setRegistrationToken:"), value)
 }
 
 

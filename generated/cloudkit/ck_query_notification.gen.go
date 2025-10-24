@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKQueryNotification] class.
@@ -32,20 +33,20 @@ type ICKQueryNotification interface {
 	// properties:
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
-	IsPruned() bool /* primitive/slice/pointer. */
-	SetIsPruned(value bool /* primitive/slice/pointer. */)
+	IsPruned() bool
+	SetIsPruned(value bool)
 	NotificationType() unsafe.Pointer
 	SetNotificationType(value unsafe.Pointer)
 	QueryNotificationReason() unsafe.Pointer
 	SetQueryNotificationReason(value unsafe.Pointer)
-	RecordFields() string /* primitive/slice/pointer. */
-	SetRecordFields(value string /* primitive/slice/pointer. */)
+	RecordFields() objc.IObject /* cross-framework: NSString */
+	SetRecordFields(value objc.IObject /* cross-framework: NSString */)
 	RecordID() objc.IObject /* cross-framework: CKRecordID */
 	SetRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	DesiredKeys() unsafe.Pointer
 	SetDesiredKeys(value unsafe.Pointer)
-	ShouldSendContentAvailable() bool /* primitive/slice/pointer. */
-	SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */)
+	ShouldSendContentAvailable() bool
+	SetShouldSendContentAvailable(value bool)
 	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
 	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
 	// methods:
@@ -129,7 +130,7 @@ func (c_ CKQueryNotification) SetDatabaseScope(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKQueryNotification) IsPruned() bool /* primitive/slice/pointer. */ {
+func (c_ CKQueryNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
 }
@@ -139,7 +140,7 @@ func (c_ CKQueryNotification) IsPruned() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKQueryNotification) SetIsPruned(value bool /* primitive/slice/pointer. */) {
+func (c_ CKQueryNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
 
@@ -186,8 +187,8 @@ func (c_ CKQueryNotification) SetQueryNotificationReason(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
-func (c_ CKQueryNotification) RecordFields() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordFields"))
+func (c_ CKQueryNotification) RecordFields() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("recordFields"))
 	return rv
 }
 
@@ -196,8 +197,8 @@ func (c_ CKQueryNotification) RecordFields() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerynotification/recordfields
-func (c_ CKQueryNotification) SetRecordFields(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFields:"), objc.String(value))
+func (c_ CKQueryNotification) SetRecordFields(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFields:"), value)
 }
 
 
@@ -243,7 +244,7 @@ func (c_ CKQueryNotification) SetDesiredKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKQueryNotification) ShouldSendContentAvailable() bool /* primitive/slice/pointer. */ {
+func (c_ CKQueryNotification) ShouldSendContentAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
 }
@@ -253,7 +254,7 @@ func (c_ CKQueryNotification) ShouldSendContentAvailable() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */) {
+func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
 

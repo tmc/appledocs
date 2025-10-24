@@ -29,6 +29,8 @@ type _ScrubberSelectionViewClass struct {
 // An interface definition for the [ScrubberSelectionView] class.
 type IScrubberSelectionView interface {
 	IScrubberArrangedView
+	// properties:
+	// methods:
 }
 
 // An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.

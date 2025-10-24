@@ -32,18 +32,20 @@ type _SFChooseIdentityPanelClass struct {
 // An interface definition for the [SFChooseIdentityPanel] class.
 type ISFChooseIdentityPanel interface {
 	appkit.IPanel
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message string)
-	Domain() foundation.String
-	HelpAnchor() foundation.String
+	// properties:
+	// methods:
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objc.IObject /* cross-framework: NSArray */, message objc.IObject /* cross-framework: NSString */)
+	Domain() objc.IObject /* cross-framework: String */
+	HelpAnchor() objc.IObject /* cross-framework: String */
 	Identity() unsafe.Pointer
-	InformativeText() foundation.String
-	Policies() foundation.Array
-	RunModalForIdentitiesMessage(identities objectivec.IObject, message string) int
-	SetAlternateButtonTitle(title string)
-	SetDefaultButtonTitle(title string)
-	SetDomain(domainString string)
-	SetHelpAnchor(anchor string)
-	SetInformativeText(informativeText string)
+	InformativeText() objc.IObject /* cross-framework: String */
+	Policies() objc.IObject /* cross-framework: Array */
+	RunModalForIdentitiesMessage(identities objc.IObject /* cross-framework: NSArray */, message objc.IObject /* cross-framework: NSString */) int
+	SetAlternateButtonTitle(title objc.IObject /* cross-framework: NSString */)
+	SetDefaultButtonTitle(title objc.IObject /* cross-framework: NSString */)
+	SetDomain(domainString objc.IObject /* cross-framework: NSString */)
+	SetHelpAnchor(anchor objc.IObject /* cross-framework: NSString */)
+	SetInformativeText(informativeText objc.IObject /* cross-framework: NSString */)
 	SetPolicies(policies objectivec.IObject)
 	SetShowsHelp(showsHelp bool)
 	ShowsHelp() bool
@@ -52,7 +54,11 @@ type ISFChooseIdentityPanel interface {
 // A panel or sheet containing a list of identities that a user can choose from.
 //
 // An identity is a digital certificate together with its associated private key. This class also allows the user to display the contents of any certificate in the list. The following figure shows an example of a choose identity panel.
+
+
+// A panel or sheet containing a list of identities that a user can choose from.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel
 type SFChooseIdentityPanel struct {
 	appkit.Panel
@@ -99,120 +105,152 @@ func NewSFChooseIdentityPanel() SFChooseIdentityPanel {
 }
 
 
+
 // Returns a fully initialized, singleton choose identity panel object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/shared()
 func (sc _SFChooseIdentityPanelClass) SharedChooseIdentityPanel() SFChooseIdentityPanel {
 	rv := objc.Send[SFChooseIdentityPanel](objc.ID(sc.class), objc.Sel("sharedChooseIdentityPanel"))
 	return rv
 }
 
+
 // Displays a list of identities in a modal sheet from which the user can select an identity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/beginSheet(for:modalDelegate:didEnd:contextInfo:identities:message:)
-func (s_ SFChooseIdentityPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objectivec.IObject, message string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:identities:message:"), docWindow, delegate, didEndSelector, contextInfo, identities, objc.String(message))
+func (s_ SFChooseIdentityPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoIdentitiesMessage(docWindow objc.IObject /* cross-framework: Window */, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, identities objc.IObject /* cross-framework: NSArray */, message objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:identities:message:"), docWindow, delegate, didEndSelector, contextInfo, identities, message)
 }
+
 
 // Returns the domain that will be associated with the chosen identity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/domain()
-func (s_ SFChooseIdentityPanel) Domain() foundation.String {
+func (s_ SFChooseIdentityPanel) Domain() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("domain"))
 	return rv
 }
 
+
 // Returns the current help anchor string for the sheet or panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/helpAnchor()
-func (s_ SFChooseIdentityPanel) HelpAnchor() foundation.String {
+func (s_ SFChooseIdentityPanel) HelpAnchor() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
+
 // Returns the identity that the user chose in the panel or sheet.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/identity()
 func (s_ SFChooseIdentityPanel) Identity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identity"))
 	return rv
 }
 
+
 // Returns the informative text currently displayed in the panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()
-func (s_ SFChooseIdentityPanel) InformativeText() foundation.String {
+func (s_ SFChooseIdentityPanel) InformativeText() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("informativeText"))
 	return rv
 }
 
+
 // Returns an array of policies used to evaluate the status of the displayed certificates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/policies()
-func (s_ SFChooseIdentityPanel) Policies() foundation.Array {
+func (s_ SFChooseIdentityPanel) Policies() objc.IObject /* cross-framework: Array */ {
 	rv := objc.Send[foundation.Array](s_.ID, objc.Sel("policies"))
 	return rv
 }
 
+
 // Displays a list of identities in a modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/runModal(forIdentities:message:)
-func (s_ SFChooseIdentityPanel) RunModalForIdentitiesMessage(identities objectivec.IObject, message string) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("runModalForIdentities:message:"), identities, objc.String(message))
+func (s_ SFChooseIdentityPanel) RunModalForIdentitiesMessage(identities objc.IObject /* cross-framework: NSArray */, message objc.IObject /* cross-framework: NSString */) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("runModalForIdentities:message:"), identities, message)
 	return rv
 }
 
+
 // Customizes the title of the alternate button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)
-func (s_ SFChooseIdentityPanel) SetAlternateButtonTitle(title string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), objc.String(title))
+func (s_ SFChooseIdentityPanel) SetAlternateButtonTitle(title objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateButtonTitle:"), title)
 }
+
 
 // Customizes the title of the default button.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)
-func (s_ SFChooseIdentityPanel) SetDefaultButtonTitle(title string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(title))
+func (s_ SFChooseIdentityPanel) SetDefaultButtonTitle(title objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultButtonTitle:"), title)
 }
+
 
 // Sets an optional domain in which the identity is to be used.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setDomain(_:)
-func (s_ SFChooseIdentityPanel) SetDomain(domainString string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDomain:"), objc.String(domainString))
+func (s_ SFChooseIdentityPanel) SetDomain(domainString objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDomain:"), domainString)
 }
+
 
 // Sets the help anchor string for the sheet or modal panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setHelpAnchor(_:)
-func (s_ SFChooseIdentityPanel) SetHelpAnchor(anchor string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), objc.String(anchor))
+func (s_ SFChooseIdentityPanel) SetHelpAnchor(anchor objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHelpAnchor:"), anchor)
 }
+
 
 // Sets the optional informative text displayed in the panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)
-func (s_ SFChooseIdentityPanel) SetInformativeText(informativeText string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), objc.String(informativeText))
+func (s_ SFChooseIdentityPanel) SetInformativeText(informativeText objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInformativeText:"), informativeText)
 }
+
 
 // Specifies one or more policies that apply to the displayed certificates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setPolicies(_:)
 func (s_ SFChooseIdentityPanel) SetPolicies(policies objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPolicies:"), policies)
 }
 
+
 // Displays a Help button in the sheet or panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/setShowsHelp(_:)
 func (s_ SFChooseIdentityPanel) SetShowsHelp(showsHelp bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsHelp:"), showsHelp)
 }
 
+
 // Indicates whether the help button is currently set to be displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityPanel/showsHelp()
 func (s_ SFChooseIdentityPanel) ShowsHelp() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("showsHelp"))

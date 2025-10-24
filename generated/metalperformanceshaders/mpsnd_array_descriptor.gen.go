@@ -30,17 +30,21 @@ type _NDArrayDescriptorClass struct {
 // An interface definition for the [NDArrayDescriptor] class.
 type INDArrayDescriptor interface {
 	objectivec.IObject
-	DimensionOrder() unsafe.Pointer
-	SliceRangeForDimension(dimensionIndex uint) unsafe.Pointer
-	DataType() unsafe.Pointer
-	SetDataType(value unsafe.Pointer)
+	// properties:
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
 	NumberOfDimensions() int
 	SetNumberOfDimensions(value int)
 	PreferPackedRows() bool
 	SetPreferPackedRows(value bool)
+	// methods:
+	DimensionOrder() unsafe.Pointer
+	SliceRangeForDimension(dimensionIndex uint) DimensionSlice /* not a class type */
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayDescriptor
 type NDArrayDescriptor struct {
 	objectivec.Object
@@ -83,36 +87,39 @@ func NewNDArrayDescriptor() NDArrayDescriptor {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayDescriptor/dimensionOrder()
 func (n_ NDArrayDescriptor) DimensionOrder() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dimensionOrder"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayDescriptor/sliceRange(forDimension:)
-func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sliceRangeForDimension:"), dimensionIndex)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
-func (n_ NDArrayDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dataType"))
+func (n_ NDArrayDescriptor) SliceRangeForDimension(dimensionIndex uint) DimensionSlice /* not a class type */ {
+	rv := objc.Send[DimensionSlice](n_.ID, objc.Sel("sliceRangeForDimension:"), dimensionIndex)
 	return rv
 }
 
 
-// SetDataType sets the value of the dataType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
-func (n_ NDArrayDescriptor) SetDataType(value unsafe.Pointer) {
+func (n_ NDArrayDescriptor) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](n_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/datatype
+func (n_ NDArrayDescriptor) SetDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDataType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
 func (n_ NDArrayDescriptor) NumberOfDimensions() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("numberOfDimensions"))
@@ -120,14 +127,14 @@ func (n_ NDArrayDescriptor) NumberOfDimensions() int {
 }
 
 
-// SetNumberOfDimensions sets the value of the numberOfDimensions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/numberofdimensions
 func (n_ NDArrayDescriptor) SetNumberOfDimensions(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/preferpackedrows
 func (n_ NDArrayDescriptor) PreferPackedRows() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("preferPackedRows"))
@@ -135,8 +142,7 @@ func (n_ NDArrayDescriptor) PreferPackedRows() bool {
 }
 
 
-// SetPreferPackedRows sets the value of the preferPackedRows property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor/preferpackedrows
 func (n_ NDArrayDescriptor) SetPreferPackedRows(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPreferPackedRows:"), value)

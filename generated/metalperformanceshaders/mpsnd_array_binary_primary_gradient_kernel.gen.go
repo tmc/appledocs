@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,15 @@ type _NDArrayBinaryPrimaryGradientKernelClass struct {
 // An interface definition for the [NDArrayBinaryPrimaryGradientKernel] class.
 type INDArrayBinaryPrimaryGradientKernel interface {
 	INDArrayMultiaryGradientKernel
-	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState) NDArray
-	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState, destination IMPSNDArray)
+	// properties:
+	// methods:
+	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state objc.IObject /* cross-framework: State */) INDArray
+	EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state objc.IObject /* cross-framework: State */, destination IMPSNDArray)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryPrimaryGradientKernel
 type NDArrayBinaryPrimaryGradientKernel struct {
 	NDArrayMultiaryGradientKernel
@@ -79,16 +84,18 @@ func NewNDArrayBinaryPrimaryGradientKernel() NDArrayBinaryPrimaryGradientKernel 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryPrimaryGradientKernel/encode(to:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)
-func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState) NDArray {
+func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientState(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state objc.IObject /* cross-framework: State */) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:"), cmdBuf, primarySourceArray, secondarySourceArray, gradient, state)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryPrimaryGradientKernel/encode(to:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:)
-func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState, destination IMPSNDArray) {
+func (n_ NDArrayBinaryPrimaryGradientKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray, gradient IMPSNDArray, state objc.IObject /* cross-framework: State */, destination IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:"), cmdBuf, primarySourceArray, secondarySourceArray, gradient, state, destination)
 }
 

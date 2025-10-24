@@ -31,9 +31,13 @@ type _NDArrayMultiaryGradientKernelClass struct {
 // An interface definition for the [NDArrayMultiaryGradientKernel] class.
 type INDArrayMultiaryGradientKernel interface {
 	INDArrayMultiaryBase
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryGradientKernel
 type NDArrayMultiaryGradientKernel struct {
 	NDArrayMultiaryBase
@@ -78,9 +82,10 @@ func NewNDArrayMultiaryGradientKernel() NDArrayMultiaryGradientKernel {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryGradientKernel/init(coder:device:)
-func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder foundation.ICoder, device objectivec.IObject) NDArrayMultiaryGradientKernel {
+func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) NDArrayMultiaryGradientKernel {
 	instance := getNDArrayMultiaryGradientKernelClass().Alloc()
 	rv := objc.Send[NDArrayMultiaryGradientKernel](instance.ID, objc.Sel("initWithCoder:device:"), coder, device)
 	rv.Autorelease()

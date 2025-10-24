@@ -30,13 +30,19 @@ type _NavigationClass struct {
 // An interface definition for the [Navigation] class.
 type INavigation interface {
 	objectivec.IObject
+	// properties:
 	EffectiveContentMode() ContentMode
+	// methods:
 }
 
 // An object that tracks the loading progress of a webpage.
 //
 // A object uniquely identifies a load request for a webpage. When you ask a web view to load content or navigate to a page, the web view returns a object that identifies your request. As the load operation progresses, the web view reports progress of that operation to various methods of its navigation delegate, passing them the matching object.
+
+
+// An object that tracks the loading progress of a webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigation
 type Navigation struct {
 	objectivec.Object
@@ -81,8 +87,10 @@ func NewNavigation() Navigation {
 }
 
 
+
 // The content mode WebKit uses to load the webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigation/effectiveContentMode
 func (n_ Navigation) EffectiveContentMode() ContentMode {
 	rv := objc.Send[ContentMode](n_.ID, objc.Sel("effectiveContentMode"))

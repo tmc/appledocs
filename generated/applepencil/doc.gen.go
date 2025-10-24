@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ApplePencil without requiring cgo.
-
-// Enhance your iPad app’s user experience by supporting drawing, handwriting, and other features of Apple Pencil.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ApplePencil
+// See: https://developer.apple.com/documentation/ApplePencil
 package applepencil
 
 import (

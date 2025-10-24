@@ -30,11 +30,18 @@ type _STScreenTimeConfigurationClass struct {
 // An interface definition for the [STScreenTimeConfiguration] class.
 type ISTScreenTimeConfiguration interface {
 	objectivec.IObject
+	// properties:
 	EnforcesChildRestrictions() bool
+	SetEnforcesChildRestrictions(value bool)
+	// methods:
 }
 
 // The configuration for this device.
+
+
+// The configuration for this device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfiguration
 type STScreenTimeConfiguration struct {
 	objectivec.Object
@@ -79,12 +86,23 @@ func NewSTScreenTimeConfiguration() STScreenTimeConfiguration {
 }
 
 
-// A Boolean that indicates whether the device is currently enforcing child restrictions.
+
+// A Boolean that indicates whether the device is currently enforcing child
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfiguration/enforcesChildRestrictions
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
 func (s_ STScreenTimeConfiguration) EnforcesChildRestrictions() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enforcesChildRestrictions"))
 	return rv
+}
+
+
+// A Boolean that indicates whether the device is currently enforcing child
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
+func (s_ STScreenTimeConfiguration) SetEnforcesChildRestrictions(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEnforcesChildRestrictions:"), value)
 }
 
 

@@ -29,9 +29,13 @@ type _ReductionFeatureChannelsMinNodeClass struct {
 // An interface definition for the [ReductionFeatureChannelsMinNode] class.
 type IReductionFeatureChannelsMinNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsMinNode
 type ReductionFeatureChannelsMinNode struct {
 	UnaryReductionNode

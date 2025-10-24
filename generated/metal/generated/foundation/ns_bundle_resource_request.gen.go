@@ -31,25 +31,25 @@ type _BundleResourceRequestClass struct {
 type IBundleResourceRequest interface {
 	objectivec.IObject
 	// properties:
-	NSBundleErrorMaximum() int /* primitive/slice/pointer. */
-	SetNSBundleErrorMaximum(value int /* primitive/slice/pointer. */)
-	NSBundleErrorMinimum() int /* primitive/slice/pointer. */
-	SetNSBundleErrorMinimum(value int /* primitive/slice/pointer. */)
-	NSBundleOnDemandResourceExceededMaximumSizeError() int /* primitive/slice/pointer. */
-	SetNSBundleOnDemandResourceExceededMaximumSizeError(value int /* primitive/slice/pointer. */)
-	NSBundleOnDemandResourceInvalidTagError() int /* primitive/slice/pointer. */
-	SetNSBundleOnDemandResourceInvalidTagError(value int /* primitive/slice/pointer. */)
-	NSBundleOnDemandResourceOutOfSpaceError() int /* primitive/slice/pointer. */
-	SetNSBundleOnDemandResourceOutOfSpaceError(value int /* primitive/slice/pointer. */)
+	NSBundleErrorMaximum() int
+	SetNSBundleErrorMaximum(value int)
+	NSBundleErrorMinimum() int
+	SetNSBundleErrorMinimum(value int)
+	NSBundleOnDemandResourceExceededMaximumSizeError() int
+	SetNSBundleOnDemandResourceExceededMaximumSizeError(value int)
+	NSBundleOnDemandResourceInvalidTagError() int
+	SetNSBundleOnDemandResourceInvalidTagError(value int)
+	NSBundleOnDemandResourceOutOfSpaceError() int
+	SetNSBundleOnDemandResourceOutOfSpaceError(value int)
 	Bundle() IBundle
 	SetBundle(value IBundle)
-	LoadingPriority() float64 /* primitive/slice/pointer. */
-	SetLoadingPriority(value float64 /* primitive/slice/pointer. */)
+	LoadingPriority() float64
+	SetLoadingPriority(value float64)
 	Progress() IProgress
 	SetProgress(value IProgress)
 	Tags() IString
 	SetTags(value IString)
-	NSBundleResourceRequestLoadingPriorityUrgent() float64 /* primitive/slice/pointer. */
+	NSBundleResourceRequestLoadingPriorityUrgent() float64
 	// methods:
 }
 
@@ -110,7 +110,7 @@ func NewBundleResourceRequest() BundleResourceRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
-func (b_ BundleResourceRequest) NSBundleErrorMaximum() int /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleErrorMaximum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMaximum"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (b_ BundleResourceRequest) NSBundleErrorMaximum() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-swift.var
-func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMaximum:"), value)
 }
 
@@ -129,7 +129,7 @@ func (b_ BundleResourceRequest) SetNSBundleErrorMaximum(value int /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
-func (b_ BundleResourceRequest) NSBundleErrorMinimum() int /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleErrorMinimum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleErrorMinimum"))
 	return rv
 }
@@ -139,7 +139,7 @@ func (b_ BundleResourceRequest) NSBundleErrorMinimum() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-swift.var
-func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleErrorMinimum:"), value)
 }
 
@@ -148,7 +148,7 @@ func (b_ BundleResourceRequest) SetNSBundleErrorMinimum(value int /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror-swift.var
-func (b_ BundleResourceRequest) NSBundleOnDemandResourceExceededMaximumSizeError() int /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleOnDemandResourceExceededMaximumSizeError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceExceededMaximumSizeError"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (b_ BundleResourceRequest) NSBundleOnDemandResourceExceededMaximumSizeError
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror-swift.var
-func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceExceededMaximumSizeError(value int /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceExceededMaximumSizeError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceExceededMaximumSizeError:"), value)
 }
 
@@ -167,7 +167,7 @@ func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceExceededMaximumSizeEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror-swift.var
-func (b_ BundleResourceRequest) NSBundleOnDemandResourceInvalidTagError() int /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleOnDemandResourceInvalidTagError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceInvalidTagError"))
 	return rv
 }
@@ -177,7 +177,7 @@ func (b_ BundleResourceRequest) NSBundleOnDemandResourceInvalidTagError() int /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror-swift.var
-func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceInvalidTagError(value int /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceInvalidTagError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceInvalidTagError:"), value)
 }
 
@@ -186,7 +186,7 @@ func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceInvalidTagError(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-swift.var
-func (b_ BundleResourceRequest) NSBundleOnDemandResourceOutOfSpaceError() int /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleOnDemandResourceOutOfSpaceError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSBundleOnDemandResourceOutOfSpaceError"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (b_ BundleResourceRequest) NSBundleOnDemandResourceOutOfSpaceError() int /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-swift.var
-func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceOutOfSpaceError(value int /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceOutOfSpaceError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSBundleOnDemandResourceOutOfSpaceError:"), value)
 }
 
@@ -224,7 +224,7 @@ func (b_ BundleResourceRequest) SetBundle(value IBundle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) LoadingPriority() float64 /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) LoadingPriority() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("loadingPriority"))
 	return rv
 }
@@ -234,7 +234,7 @@ func (b_ BundleResourceRequest) LoadingPriority() float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/loadingpriority
-func (b_ BundleResourceRequest) SetLoadingPriority(value float64 /* primitive/slice/pointer. */) {
+func (b_ BundleResourceRequest) SetLoadingPriority(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLoadingPriority:"), value)
 }
 
@@ -279,7 +279,7 @@ func (b_ BundleResourceRequest) SetTags(value IString) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent
-func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() float64 /* primitive/slice/pointer. */ {
+func (b_ BundleResourceRequest) NSBundleResourceRequestLoadingPriorityUrgent() float64 {
 	rv := objc.Send[float64](b_.ID, objc.Sel("NSBundleResourceRequestLoadingPriorityUrgent"))
 	return rv
 }

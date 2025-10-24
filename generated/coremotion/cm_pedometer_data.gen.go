@@ -32,15 +32,15 @@ type _PedometerDataClass struct {
 type IPedometerData interface {
 	objectivec.IObject
 	// properties:
-	AverageActivePace() foundation.objc.IObject /* cross-framework: Number */
-	CurrentCadence() foundation.objc.IObject /* cross-framework: Number */
-	CurrentPace() foundation.objc.IObject /* cross-framework: Number */
-	Distance() foundation.objc.IObject /* cross-framework: Number */
-	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
-	FloorsAscended() foundation.objc.IObject /* cross-framework: Number */
-	FloorsDescended() foundation.objc.IObject /* cross-framework: Number */
-	NumberOfSteps() foundation.objc.IObject /* cross-framework: Number */
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	AverageActivePace() objc.IObject /* cross-framework: NSNumber */
+	CurrentCadence() objc.IObject /* cross-framework: NSNumber */
+	CurrentPace() objc.IObject /* cross-framework: NSNumber */
+	Distance() objc.IObject /* cross-framework: NSNumber */
+	EndDate() objc.IObject /* cross-framework: NSDate */
+	FloorsAscended() objc.IObject /* cross-framework: NSNumber */
+	FloorsDescended() objc.IObject /* cross-framework: NSNumber */
+	NumberOfSteps() objc.IObject /* cross-framework: NSNumber */
+	StartDate() objc.IObject /* cross-framework: NSDate */
 	// methods:
 }
 
@@ -101,8 +101,8 @@ func NewPedometerData() PedometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/averageActivePace
-func (p_ PedometerData) AverageActivePace() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("averageActivePace"))
+func (p_ PedometerData) AverageActivePace() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("averageActivePace"))
 	return rv
 }
 
@@ -111,8 +111,8 @@ func (p_ PedometerData) AverageActivePace() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentCadence
-func (p_ PedometerData) CurrentCadence() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentCadence"))
+func (p_ PedometerData) CurrentCadence() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("currentCadence"))
 	return rv
 }
 
@@ -121,8 +121,8 @@ func (p_ PedometerData) CurrentCadence() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/currentPace
-func (p_ PedometerData) CurrentPace() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("currentPace"))
+func (p_ PedometerData) CurrentPace() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("currentPace"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (p_ PedometerData) CurrentPace() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/distance
-func (p_ PedometerData) Distance() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("distance"))
+func (p_ PedometerData) Distance() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("distance"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (p_ PedometerData) Distance() foundation.objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/endDate
-func (p_ PedometerData) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (p_ PedometerData) EndDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -151,8 +151,8 @@ func (p_ PedometerData) EndDate() foundation.objc.IObject /* cross-framework: NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsAscended
-func (p_ PedometerData) FloorsAscended() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsAscended"))
+func (p_ PedometerData) FloorsAscended() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("floorsAscended"))
 	return rv
 }
 
@@ -161,8 +161,8 @@ func (p_ PedometerData) FloorsAscended() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/floorsDescended
-func (p_ PedometerData) FloorsDescended() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("floorsDescended"))
+func (p_ PedometerData) FloorsDescended() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("floorsDescended"))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (p_ PedometerData) FloorsDescended() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/numberOfSteps
-func (p_ PedometerData) NumberOfSteps() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](p_.ID, objc.Sel("numberOfSteps"))
+func (p_ PedometerData) NumberOfSteps() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("numberOfSteps"))
 	return rv
 }
 
@@ -181,7 +181,7 @@ func (p_ PedometerData) NumberOfSteps() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/startDate
-func (p_ PedometerData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (p_ PedometerData) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +32,18 @@ type _TextInputContextClass struct {
 type ITextInputContext interface {
 	objectivec.IObject
 	// properties:
-	AllowedInputSourceLocales() []string /* primitive/slice/pointer. */
-	SetAllowedInputSourceLocales(value []string /* primitive/slice/pointer. */)
+	AllowedInputSourceLocales() []string
+	SetAllowedInputSourceLocales(value []string)
 	Client() objc.ID
-	KeyboardInputSources() []string /* primitive/slice/pointer. */
+	KeyboardInputSources() []string
 	SelectedKeyboardInputSource() TextInputSourceIdentifier /* not a class type */
 	SetSelectedKeyboardInputSource(value TextInputSourceIdentifier /* not a class type */)
-	AcceptsGlyphInfo() bool /* primitive/slice/pointer. */
-	SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */)
+	AcceptsGlyphInfo() bool
+	SetAcceptsGlyphInfo(value bool)
 	// methods:
 	Deactivate()
 	DiscardMarkedText()
-	HandleEvent(event IEvent) bool /* primitive/slice/pointer. */
+	HandleEvent(event IEvent) bool
 	InvalidateCharacterCoordinates()
 	TextInputClientDidScroll()
 	TextInputClientDidUpdateSelection()
@@ -120,7 +121,7 @@ func NewTextInputContextWithClient(client objectivec.IObject) TextInputContext {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/localizedName(forInputSource:)
 func (tc _TextInputContextClass) LocalizedNameForInputSource(inputSourceIdentifier TextInputSourceIdentifier /* not a class type */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(tc.class), objc.Sel("localizedNameForInputSource:"), inputSourceIdentifier)
+	rv := objc.Send[foundation.String](objc.ID(tc.class), objc.Sel("localizedNameForInputSource:"), inputSourceIdentifier)
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (t_ TextInputContext) DiscardMarkedText() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/handleEvent(_:)
-func (t_ TextInputContext) HandleEvent(event IEvent) bool /* primitive/slice/pointer. */ {
+func (t_ TextInputContext) HandleEvent(event IEvent) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("handleEvent:"), event)
 	return rv
 }
@@ -196,7 +197,7 @@ func (t_ TextInputContext) TextInputClientWillStartScrollingOrZooming() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/allowedInputSourceLocales
-func (t_ TextInputContext) AllowedInputSourceLocales() []string /* primitive/slice/pointer. */ {
+func (t_ TextInputContext) AllowedInputSourceLocales() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
 }
@@ -206,7 +207,7 @@ func (t_ TextInputContext) AllowedInputSourceLocales() []string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/allowedInputSourceLocales
-func (t_ TextInputContext) SetAllowedInputSourceLocales(value []string /* primitive/slice/pointer. */) {
+func (t_ TextInputContext) SetAllowedInputSourceLocales(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -245,7 +246,7 @@ func (t_ TextInputContext) CurrentInputContext() ITextInputContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputContext/keyboardInputSources
-func (t_ TextInputContext) KeyboardInputSources() []string /* primitive/slice/pointer. */ {
+func (t_ TextInputContext) KeyboardInputSources() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("keyboardInputSources"))
 	return rv
 }
@@ -274,7 +275,7 @@ func (t_ TextInputContext) SetSelectedKeyboardInputSource(value TextInputSourceI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
-func (t_ TextInputContext) AcceptsGlyphInfo() bool /* primitive/slice/pointer. */ {
+func (t_ TextInputContext) AcceptsGlyphInfo() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsGlyphInfo"))
 	return rv
 }
@@ -284,7 +285,7 @@ func (t_ TextInputContext) AcceptsGlyphInfo() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinputcontext/acceptsglyphinfo
-func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */) {
+func (t_ TextInputContext) SetAcceptsGlyphInfo(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsGlyphInfo:"), value)
 }
 

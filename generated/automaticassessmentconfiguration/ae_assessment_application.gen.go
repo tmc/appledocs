@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _AEAssessmentApplicationClass struct {
 type IAEAssessmentApplication interface {
 	objectivec.IObject
 	// properties:
-	BundleIdentifier() string /* primitive/slice/pointer. */
-	SetBundleIdentifier(value string /* primitive/slice/pointer. */)
-	RequiresSignatureValidation() bool /* primitive/slice/pointer. */
-	SetRequiresSignatureValidation(value bool /* primitive/slice/pointer. */)
-	TeamIdentifier() string /* primitive/slice/pointer. */
-	SetTeamIdentifier(value string /* primitive/slice/pointer. */)
+	BundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	RequiresSignatureValidation() bool
+	SetRequiresSignatureValidation(value bool)
+	TeamIdentifier() objc.IObject /* cross-framework: NSString */
+	SetTeamIdentifier(value objc.IObject /* cross-framework: NSString */)
 	ConfigurationsByApplication() IAEAssessmentParticipantConfiguration
 	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
 	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
@@ -101,8 +102,8 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
-func (a_ AEAssessmentApplication) BundleIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
+func (a_ AEAssessmentApplication) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (a_ AEAssessmentApplication) BundleIdentifier() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
-func (a_ AEAssessmentApplication) SetBundleIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+func (a_ AEAssessmentApplication) SetBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBundleIdentifier:"), value)
 }
 
 
@@ -120,7 +121,7 @@ func (a_ AEAssessmentApplication) SetBundleIdentifier(value string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
-func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("requiresSignatureValidation"))
 	return rv
 }
@@ -130,7 +131,7 @@ func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
-func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresSignatureValidation:"), value)
 }
 
@@ -139,8 +140,8 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
-func (a_ AEAssessmentApplication) TeamIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
+func (a_ AEAssessmentApplication) TeamIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (a_ AEAssessmentApplication) TeamIdentifier() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
-func (a_ AEAssessmentApplication) SetTeamIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTeamIdentifier:"), objc.String(value))
+func (a_ AEAssessmentApplication) SetTeamIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTeamIdentifier:"), value)
 }
 
 

@@ -29,11 +29,15 @@ type _PadNodeClass struct {
 // An interface definition for the [PadNode] class.
 type IPadNode interface {
 	IFilterNode
+	// properties:
 	FillValue() float32
 	SetFillValue(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadNode
 type PadNode struct {
 	FilterNode
@@ -78,14 +82,16 @@ func NewPadNode() PadNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadNode/nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:
-func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IMPSNNImageNode, paddingSizeBefore unsafe.Pointer, paddingSizeAfter unsafe.Pointer, edgeMode unsafe.Pointer) unsafe.Pointer {
+func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IMPSNNImageNode, paddingSizeBefore ImageCoordinate /* not a class type */, paddingSizeAfter ImageCoordinate /* not a class type */, edgeMode ImageEdgeMode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:"), source, paddingSizeBefore, paddingSizeAfter, edgeMode)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/fillvalue
 func (p_ PadNode) FillValue() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("fillValue"))
@@ -93,8 +99,7 @@ func (p_ PadNode) FillValue() float32 {
 }
 
 
-// SetFillValue sets the value of the fillValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode/fillvalue
 func (p_ PadNode) SetFillValue(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFillValue:"), value)

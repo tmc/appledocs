@@ -24,10 +24,29 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 
 	// Create a set of typedef names to exclude from undefined types
 	typedefNames := make(map[string]bool)
+	if Debug != nil {
+		Debug.Log(DebugUndefined, "CollectUndefinedTypes: checking typedefs", nil, "count", len(g.Typedefs))
+	}
 	for _, typedef := range g.Typedefs {
 		if typedef.Name != "" {
-			typedefNames[typedef.Name] = true
+			// Strip ObjC prefix from typedef name to match template behavior
+			// Templates use: {{$typeName = title (stripObjCPrefix $typedef.Name)}}
+			// So CGPDFContentStreamRef → PDFContentStreamRef
+			strippedName := stripObjCPrefix(typedef.Name)
+			typedefNames[strippedName] = true
+			if Debug != nil && (strippedName == "PDFContentStreamRef" || strippedName == "PDFOperatorTableRef") {
+				Debug.Log(DebugUndefined, "  Found typedef in g.Typedefs", nil, "originalName", typedef.Name, "strippedName", strippedName)
+			}
+		} else {
+			if Debug != nil {
+				Debug.Log(DebugUndefined, "  Typedef with empty name", nil, "baseType", typedef.BaseType)
+			}
 		}
+	}
+	if Debug != nil {
+		Debug.Log(DebugUndefined, "CollectUndefinedTypes: typedef names", nil, "count", len(typedefNames),
+			"hasPDFContentStreamRef", typedefNames["PDFContentStreamRef"],
+			"hasPDFOperatorTableRef", typedefNames["PDFOperatorTableRef"])
 	}
 
 	// Collect from class methods (only those that will be generated)
@@ -177,7 +196,13 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 
 	// Skip types that are defined as typedefs
 	if typedefNames != nil && typedefNames[typeStr] {
+		if Debug != nil && (typeStr == "PDFContentStreamRef" || typeStr == "PDFOperatorTableRef") {
+			Debug.Log(DebugUndefined, "  Skipping typedef type", nil, "typeStr", typeStr)
+		}
 		return
+	}
+	if Debug != nil && (typeStr == "PDFContentStreamRef" || typeStr == "PDFOperatorTableRef") {
+		Debug.Log(DebugUndefined, "  NOT skipping type (not in typedefNames)", nil, "typeStr", typeStr, "inMap", typedefNames[typeStr])
 	}
 
 	// Skip types that are package-qualified (e.g., "coregraphics.CGColorRef")

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,10 +33,13 @@ type IPDFImageRep interface {
 	IImageRep
 	// properties:
 	Bounds() objc.IObject /* cross-framework: Rect */
-	CurrentPage() int /* primitive/slice/pointer. */
-	SetCurrentPage(value int /* primitive/slice/pointer. */)
-	PageCount() int /* primitive/slice/pointer. */
-	PDFRepresentation() objc.IObject /* cross-framework: NSData */
+	SetBounds(value objc.IObject /* cross-framework: Rect */)
+	CurrentPage() int
+	SetCurrentPage(value int)
+	PageCount() int
+	SetPageCount(value int)
+	PdfRepresentation() objc.IObject /* cross-framework: Data */
+	SetPdfRepresentation(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -92,25 +96,12 @@ func NewPDFImageRep() PDFImageRep {
 
 
 
-// Returns a representation of an image initialized with the specified PDF data.
+// The image representation’s bounding rectangle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/init(data:)
-func NewPDFImageRepWithData(pdfData objc.IObject /* cross-framework NSData */) PDFImageRep {
-	instance := getPDFImageRepClass().Alloc()
-	rv := objc.Send[PDFImageRep](instance.ID, objc.Sel("initWithData:"), pdfData)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns a representation of an image initialized with the specified PDF data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/imageRepWithData:
-func (pc _PDFImageRepClass) ImageRepWithData(pdfData objc.IObject /* cross-framework NSData */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("imageRepWithData:"), pdfData)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/bounds
+func (p_ PDFImageRep) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -118,18 +109,17 @@ func (pc _PDFImageRepClass) ImageRepWithData(pdfData objc.IObject /* cross-frame
 // The image representation’s bounding rectangle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/bounds
-func (p_ PDFImageRep) Bounds() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](p_.ID, objc.Sel("bounds"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/bounds
+func (p_ PDFImageRep) SetBounds(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBounds:"), value)
 }
 
 
 // The page currently displayed by the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/currentPage
-func (p_ PDFImageRep) CurrentPage() int /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/currentpage
+func (p_ PDFImageRep) CurrentPage() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("currentPage"))
 	return rv
 }
@@ -138,8 +128,8 @@ func (p_ PDFImageRep) CurrentPage() int /* primitive/slice/pointer. */ {
 // The page currently displayed by the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/currentPage
-func (p_ PDFImageRep) SetCurrentPage(value int /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/currentpage
+func (p_ PDFImageRep) SetCurrentPage(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPage:"), value)
 }
 
@@ -147,9 +137,28 @@ func (p_ PDFImageRep) SetCurrentPage(value int /* primitive/slice/pointer. */) {
 // The number of pages in the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/pageCount
-func (p_ PDFImageRep) PageCount() int /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pagecount
+func (p_ PDFImageRep) PageCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("pageCount"))
+	return rv
+}
+
+
+// The number of pages in the image representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pagecount
+func (p_ PDFImageRep) SetPageCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPageCount:"), value)
+}
+
+
+// The PDF representation of the representation’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pdfrepresentation
+func (p_ PDFImageRep) PdfRepresentation() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("pdfRepresentation"))
 	return rv
 }
 
@@ -157,10 +166,10 @@ func (p_ PDFImageRep) PageCount() int /* primitive/slice/pointer. */ {
 // The PDF representation of the representation’s image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFImageRep/pdfRepresentation
-func (p_ PDFImageRep) PDFRepresentation() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PDFRepresentation"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfimagerep/pdfrepresentation
+func (p_ PDFImageRep) SetPdfRepresentation(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPdfRepresentation:"), value)
 }
+
 
 

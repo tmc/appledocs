@@ -29,16 +29,22 @@ type _CEmbeddingLayerClass struct {
 // An interface definition for the [CEmbeddingLayer] class.
 type ICEmbeddingLayer interface {
 	ICLayer
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
-	Weights() MLCTensor
+	// properties:
+	Descriptor() CEmbeddingDescriptor /* not a class type */
+	SetDescriptor(value CEmbeddingDescriptor /* not a class type */)
+	Weights() IMLCTensor
 	SetWeights(value IMLCTensor)
-	WeightsParameter() MLCTensorParameter
-	SetWeightsParameter(value IMLCTensorParameter)
+	WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	// methods:
 }
 
 // A layer that stores a word embedding.
+
+
+// A layer that stores a word embedding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCEmbeddingLayer
 type CEmbeddingLayer struct {
 	CLayer
@@ -85,57 +91,60 @@ func NewCEmbeddingLayer() CEmbeddingLayer {
 }
 
 
+
 // The configuration object you use to create the embedding layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/descriptor
-func (c_ CEmbeddingLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CEmbeddingLayer) Descriptor() CEmbeddingDescriptor /* not a class type */ {
+	rv := objc.Send[CEmbeddingDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the embedding layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/descriptor
-func (c_ CEmbeddingLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CEmbeddingLayer) SetDescriptor(value CEmbeddingDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 
+
 // The weights tensor that contains the word embedding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weights
-func (c_ CEmbeddingLayer) Weights() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
+func (c_ CEmbeddingLayer) Weights() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
 
-// SetWeights sets the value of the weights property.
 // The weights tensor that contains the word embedding.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weights
 func (c_ CEmbeddingLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 
+
 // The tensor parameter that describes the weights for the optimizer update.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weightsparameter
-func (c_ CEmbeddingLayer) WeightsParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("weightsParameter"))
+func (c_ CEmbeddingLayer) WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
 }
 
 
-// SetWeightsParameter sets the value of the weightsParameter property.
 // The tensor parameter that describes the weights for the optimizer update.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weightsparameter
-func (c_ CEmbeddingLayer) SetWeightsParameter(value IMLCTensorParameter) {
+func (c_ CEmbeddingLayer) SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
 }
 

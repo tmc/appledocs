@@ -30,6 +30,8 @@ type _VZPointingDeviceConfigurationClass struct {
 // An interface definition for the [VZPointingDeviceConfiguration] class.
 type IVZPointingDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a pointing device configuration.

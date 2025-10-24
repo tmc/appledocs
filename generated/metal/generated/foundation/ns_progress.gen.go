@@ -31,34 +31,38 @@ type _ProgressClass struct {
 type IProgress interface {
 	objectivec.IObject
 	// properties:
-	EstimatedTimeRemaining() INumber
-	SetEstimatedTimeRemaining(value INumber)
-	FileCompletedCount() INumber
-	SetFileCompletedCount(value INumber)
-	FileTotalCount() INumber
-	SetFileTotalCount(value INumber)
-	Throughput() INumber
-	SetThroughput(value INumber)
 	CancellationHandler() unsafe.Pointer
 	SetCancellationHandler(value unsafe.Pointer)
 	CompletedUnitCount() unsafe.Pointer
 	SetCompletedUnitCount(value unsafe.Pointer)
-	FileOperationKind() objc.IObject /* cross-framework: ProgressFileOperationKind */
-	SetFileOperationKind(value objc.IObject /* cross-framework: ProgressFileOperationKind */)
+	EstimatedTimeRemaining() float64
+	SetEstimatedTimeRemaining(value float64)
+	FileCompletedCount() int
+	SetFileCompletedCount(value int)
+	FileOperationKind() unsafe.Pointer
+	SetFileOperationKind(value unsafe.Pointer)
+	FileTotalCount() int
+	SetFileTotalCount(value int)
 	FileURL() IURL
 	SetFileURL(value IURL)
-	FractionCompleted() float64 /* primitive/slice/pointer. */
-	Cancellable() bool /* primitive/slice/pointer. */
-	SetCancellable(value bool /* primitive/slice/pointer. */)
-	Cancelled() bool /* primitive/slice/pointer. */
-	Finished() bool /* primitive/slice/pointer. */
-	Indeterminate() bool /* primitive/slice/pointer. */
-	Old() bool /* primitive/slice/pointer. */
-	Pausable() bool /* primitive/slice/pointer. */
-	SetPausable(value bool /* primitive/slice/pointer. */)
-	Paused() bool /* primitive/slice/pointer. */
-	Kind() objc.IObject /* cross-framework: ProgressKind */
-	SetKind(value objc.IObject /* cross-framework: ProgressKind */)
+	FractionCompleted() float64
+	SetFractionCompleted(value float64)
+	IsCancellable() bool
+	SetIsCancellable(value bool)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsFinished() bool
+	SetIsFinished(value bool)
+	IsIndeterminate() bool
+	SetIsIndeterminate(value bool)
+	IsOld() bool
+	SetIsOld(value bool)
+	IsPausable() bool
+	SetIsPausable(value bool)
+	IsPaused() bool
+	SetIsPaused(value bool)
+	Kind() unsafe.Pointer
+	SetKind(value unsafe.Pointer)
 	LocalizedAdditionalDescription() IString
 	SetLocalizedAdditionalDescription(value IString)
 	LocalizedDescription() IString
@@ -67,34 +71,13 @@ type IProgress interface {
 	SetPausingHandler(value unsafe.Pointer)
 	ResumingHandler() unsafe.Pointer
 	SetResumingHandler(value unsafe.Pointer)
+	Throughput() int
+	SetThroughput(value int)
 	TotalUnitCount() unsafe.Pointer
 	SetTotalUnitCount(value unsafe.Pointer)
-	UserInfo() IDictionary /* already interface */
-	IsCancellable() bool /* primitive/slice/pointer. */
-	SetIsCancellable(value bool /* primitive/slice/pointer. */)
-	IsCancelled() bool /* primitive/slice/pointer. */
-	SetIsCancelled(value bool /* primitive/slice/pointer. */)
-	IsFinished() bool /* primitive/slice/pointer. */
-	SetIsFinished(value bool /* primitive/slice/pointer. */)
-	IsIndeterminate() bool /* primitive/slice/pointer. */
-	SetIsIndeterminate(value bool /* primitive/slice/pointer. */)
-	IsOld() bool /* primitive/slice/pointer. */
-	SetIsOld(value bool /* primitive/slice/pointer. */)
-	IsPausable() bool /* primitive/slice/pointer. */
-	SetIsPausable(value bool /* primitive/slice/pointer. */)
-	IsPaused() bool /* primitive/slice/pointer. */
-	SetIsPaused(value bool /* primitive/slice/pointer. */)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	// methods:
-	PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsafe.Pointer, work unsafe.Pointer)
-	AddChildWithPendingUnitCount(child IProgress, inUnitCount unsafe.Pointer)
-	BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer)
-	Cancel()
-	Pause()
-	Publish()
-	ResignCurrent()
-	Resume()
-	SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key objc.IObject /* cross-framework: ProgressUserInfoKey */)
-	Unpublish()
 }
 
 // An object that conveys ongoing progress to the user for a specified task.
@@ -150,268 +133,10 @@ func NewProgress() Progress {
 
 
 
-// Creates a new progress instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
-func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil IDictionary /* already interface */) Progress {
-	instance := getProgressClass().Alloc()
-	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a progress instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
-func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
-	return rv
-}
-
-
-// Creates a progress instance for the specified progress object with a unit count that’s a portion of the containing object’s total unit count.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:parent:pendingUnitCount:)
-func NewProgressWithTotalUnitCountParentPendingUnitCount(unitCount unsafe.Pointer, parent IProgress, portionOfParentTotalUnitCount unsafe.Pointer) Progress {
-	rv := objc.Send[Progress](objc.ID(getProgressClass().class), objc.Sel("progressWithTotalUnitCount:parent:pendingUnitCount:"), unitCount, parent, portionOfParentTotalUnitCount)
-	return rv
-}
-
-
-
-// Registers a file URL to hear about the progress of a file operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/addSubscriber(forFileURL:withPublishingHandler:)
-func (pc _ProgressClass) AddSubscriberForFileURLWithPublishingHandler(url IURL, publishingHandler ProgressPublishingHandler /* not a class type */) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("addSubscriberForFileURL:withPublishingHandler:"), url, publishingHandler)
-	return rv
-}
-
-
-// Returns the progress instance, if any.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/current()
-func (pc _ProgressClass) CurrentProgress() IProgress {
-	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("currentProgress"))
-	return rv
-}
-
-
-// Creates and returns a progress instance with the specified unit count that isn’t part of any existing progress tree.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/discreteProgress(totalUnitCount:)
-func (pc _ProgressClass) DiscreteProgressWithTotalUnitCount(unitCount unsafe.Pointer) IProgress {
-	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("discreteProgressWithTotalUnitCount:"), unitCount)
-	return rv
-}
-
-
-// Creates and returns a progress instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
-func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) IProgress {
-	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
-	return rv
-}
-
-
-// Creates a progress instance for the specified progress object with a unit count that’s a portion of the containing object’s total unit count.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:parent:pendingUnitCount:)
-func (pc _ProgressClass) ProgressWithTotalUnitCountParentPendingUnitCount(unitCount unsafe.Pointer, parent IProgress, portionOfParentTotalUnitCount unsafe.Pointer) IProgress {
-	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:parent:pendingUnitCount:"), unitCount, parent, portionOfParentTotalUnitCount)
-	return rv
-}
-
-
-// Removes a proxy progress object that the add subscriber method returns.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/removeSubscriber(_:)
-func (pc _ProgressClass) RemoveSubscriber(subscriber objectivec.IObject) {
-	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("removeSubscriber:"), subscriber)
-}
-
-
-// Retrieves the current thread’s progress object, executes the specified block, and increments the progress object by the specified units of work.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/performAsCurrentWithPendingUnitCount:usingBlock:
-func (p_ Progress) PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsafe.Pointer, work unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("performAsCurrentWithPendingUnitCount:usingBlock:"), unitCount, work)
-}
-
-
-// Adds a process object as a suboperation of a progress tree.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/addChild(_:withPendingUnitCount:)
-func (p_ Progress) AddChildWithPendingUnitCount(child IProgress, inUnitCount unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addChild:withPendingUnitCount:"), child, inUnitCount)
-}
-
-
-// Sets the progress object as the current object of the current thread, and assigns the amount of work for the next suboperation progress object to perform.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/becomeCurrent(withPendingUnitCount:)
-func (p_ Progress) BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("becomeCurrentWithPendingUnitCount:"), unitCount)
-}
-
-
-// Cancels progress tracking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancel()
-func (p_ Progress) Cancel() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("cancel"))
-}
-
-
-// Pauses progress tracking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/pause()
-func (p_ Progress) Pause() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("pause"))
-}
-
-
-// Publishes the progress object for other processes to observe it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/publish()
-func (p_ Progress) Publish() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("publish"))
-}
-
-
-// Restores the previous progress object to become the current progress object on the thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resignCurrent()
-func (p_ Progress) ResignCurrent() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("resignCurrent"))
-}
-
-
-// Resumes progress tracking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resume()
-func (p_ Progress) Resume() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("resume"))
-}
-
-
-// Sets a value in the user info dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/setUserInfoObject(_:forKey:)
-func (p_ Progress) SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key objc.IObject /* cross-framework: ProgressUserInfoKey */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfoObject:forKey:"), objectOrNil, key)
-}
-
-
-// Removes a progress object from publication, making it unobservable by other processes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/unpublish()
-func (p_ Progress) Unpublish() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("unpublish"))
-}
-
-
-// A value that indicates the estimated amount of time remaining to complete the progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/estimatedTimeRemaining
-func (p_ Progress) EstimatedTimeRemaining() INumber {
-	rv := objc.Send[Number](p_.ID, objc.Sel("estimatedTimeRemaining"))
-	return rv
-}
-
-
-// A value that indicates the estimated amount of time remaining to complete the progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/estimatedTimeRemaining
-func (p_ Progress) SetEstimatedTimeRemaining(value INumber) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedTimeRemaining:"), value)
-}
-
-
-// The number of completed files for a file progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileCompletedCount
-func (p_ Progress) FileCompletedCount() INumber {
-	rv := objc.Send[Number](p_.ID, objc.Sel("fileCompletedCount"))
-	return rv
-}
-
-
-// The number of completed files for a file progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileCompletedCount
-func (p_ Progress) SetFileCompletedCount(value INumber) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFileCompletedCount:"), value)
-}
-
-
-// The total number of files for a file progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileTotalCount
-func (p_ Progress) FileTotalCount() INumber {
-	rv := objc.Send[Number](p_.ID, objc.Sel("fileTotalCount"))
-	return rv
-}
-
-
-// The total number of files for a file progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileTotalCount
-func (p_ Progress) SetFileTotalCount(value INumber) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFileTotalCount:"), value)
-}
-
-
-// A value that represents the speed of data processing, in bytes per second.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/throughput
-func (p_ Progress) Throughput() INumber {
-	rv := objc.Send[Number](p_.ID, objc.Sel("throughput"))
-	return rv
-}
-
-
-// A value that represents the speed of data processing, in bytes per second.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/throughput
-func (p_ Progress) SetThroughput(value INumber) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setThroughput:"), value)
-}
-
-
 // The block to invoke when canceling progress.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancellationHandler
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/cancellationhandler
 func (p_ Progress) CancellationHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cancellationHandler"))
 	return rv
@@ -421,7 +146,7 @@ func (p_ Progress) CancellationHandler() unsafe.Pointer {
 // The block to invoke when canceling progress.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancellationHandler
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/cancellationhandler
 func (p_ Progress) SetCancellationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCancellationHandler:"), value)
 }
@@ -430,7 +155,7 @@ func (p_ Progress) SetCancellationHandler(value unsafe.Pointer) {
 // The number of completed units of work for the current job.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/completedUnitCount
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/completedunitcount
 func (p_ Progress) CompletedUnitCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("completedUnitCount"))
 	return rv
@@ -440,18 +165,56 @@ func (p_ Progress) CompletedUnitCount() unsafe.Pointer {
 // The number of completed units of work for the current job.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/completedUnitCount
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/completedunitcount
 func (p_ Progress) SetCompletedUnitCount(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCompletedUnitCount:"), value)
+}
+
+
+// A value that indicates the estimated amount of time remaining to complete the progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/estimatedtimeremaining
+func (p_ Progress) EstimatedTimeRemaining() float64 {
+	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("estimatedTimeRemaining"))
+	return rv
+}
+
+
+// A value that indicates the estimated amount of time remaining to complete the progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/estimatedtimeremaining
+func (p_ Progress) SetEstimatedTimeRemaining(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedTimeRemaining:"), value)
+}
+
+
+// The number of completed files for a file progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/filecompletedcount
+func (p_ Progress) FileCompletedCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("fileCompletedCount"))
+	return rv
+}
+
+
+// The number of completed files for a file progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/filecompletedcount
+func (p_ Progress) SetFileCompletedCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileCompletedCount:"), value)
 }
 
 
 // The kind of file operation for the progress object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) FileOperationKind() objc.IObject /* cross-framework: ProgressFileOperationKind */ {
-	rv := objc.Send[ProgressFileOperationKind](p_.ID, objc.Sel("fileOperationKind"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fileoperationkind-swift.property
+func (p_ Progress) FileOperationKind() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fileOperationKind"))
 	return rv
 }
 
@@ -459,16 +222,35 @@ func (p_ Progress) FileOperationKind() objc.IObject /* cross-framework: Progress
 // The kind of file operation for the progress object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) SetFileOperationKind(value objc.IObject /* cross-framework: ProgressFileOperationKind */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fileoperationkind-swift.property
+func (p_ Progress) SetFileOperationKind(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileOperationKind:"), value)
+}
+
+
+// The total number of files for a file progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/filetotalcount
+func (p_ Progress) FileTotalCount() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("fileTotalCount"))
+	return rv
+}
+
+
+// The total number of files for a file progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/filetotalcount
+func (p_ Progress) SetFileTotalCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileTotalCount:"), value)
 }
 
 
 // A URL that represents the file for the current progress object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileURL
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fileurl
 func (p_ Progress) FileURL() IURL {
 	rv := objc.Send[URL](p_.ID, objc.Sel("fileURL"))
 	return rv
@@ -478,7 +260,7 @@ func (p_ Progress) FileURL() IURL {
 // A URL that represents the file for the current progress object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileURL
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fileurl
 func (p_ Progress) SetFileURL(value IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileURL:"), value)
 }
@@ -487,222 +269,19 @@ func (p_ Progress) SetFileURL(value IURL) {
 // The fraction of the overall work that the progress object completes, including work from its suboperations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fractionCompleted
-func (p_ Progress) FractionCompleted() float64 /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fractioncompleted
+func (p_ Progress) FractionCompleted() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("fractionCompleted"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
+// The fraction of the overall work that the progress object completes, including work from its suboperations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancellable
-func (p_ Progress) Cancellable() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("cancellable"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver is tracking work that you can cancel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancellable
-func (p_ Progress) SetCancellable(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCancellable:"), value)
-}
-
-
-// A Boolean value that Indicates whether the receiver is tracking canceled work.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancelled
-func (p_ Progress) Cancelled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("cancelled"))
-	return rv
-}
-
-
-// A Boolean value that indicates the progress object is complete.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isFinished
-func (p_ Progress) Finished() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("finished"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the tracked progress is indeterminate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isIndeterminate
-func (p_ Progress) Indeterminate() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("indeterminate"))
-	return rv
-}
-
-
-// A Boolean value that indicates when the observed progress object invokes the publish method before you subscribe to it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isOld
-func (p_ Progress) Old() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("old"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver is tracking work that you can pause.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPausable
-func (p_ Progress) Pausable() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("pausable"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver is tracking work that you can pause.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPausable
-func (p_ Progress) SetPausable(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPausable:"), value)
-}
-
-
-// A Boolean value that indicates whether the receiver is tracking paused work.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPaused
-func (p_ Progress) Paused() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("paused"))
-	return rv
-}
-
-
-// An object that represents the kind of progress for the progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/kind
-func (p_ Progress) Kind() objc.IObject /* cross-framework: ProgressKind */ {
-	rv := objc.Send[ProgressKind](p_.ID, objc.Sel("kind"))
-	return rv
-}
-
-
-// An object that represents the kind of progress for the progress object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/kind
-func (p_ Progress) SetKind(value objc.IObject /* cross-framework: ProgressKind */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setKind:"), value)
-}
-
-
-// A more specific localized description of tracked progress for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) LocalizedAdditionalDescription() IString {
-	rv := objc.Send[String](p_.ID, objc.Sel("localizedAdditionalDescription"))
-	return rv
-}
-
-
-// A more specific localized description of tracked progress for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) SetLocalizedAdditionalDescription(value IString) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), value)
-}
-
-
-// A localized description of tracked progress for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) LocalizedDescription() IString {
-	rv := objc.Send[String](p_.ID, objc.Sel("localizedDescription"))
-	return rv
-}
-
-
-// A localized description of tracked progress for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) SetLocalizedDescription(value IString) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), value)
-}
-
-
-// The block to invoke when pausing progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/pausingHandler
-func (p_ Progress) PausingHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pausingHandler"))
-	return rv
-}
-
-
-// The block to invoke when pausing progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/pausingHandler
-func (p_ Progress) SetPausingHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPausingHandler:"), value)
-}
-
-
-// The block to invoke when progress resumes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resumingHandler
-func (p_ Progress) ResumingHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resumingHandler"))
-	return rv
-}
-
-
-// The block to invoke when progress resumes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resumingHandler
-func (p_ Progress) SetResumingHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setResumingHandler:"), value)
-}
-
-
-// The total number of tracked units of work for the current progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/totalUnitCount
-func (p_ Progress) TotalUnitCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("totalUnitCount"))
-	return rv
-}
-
-
-// The total number of tracked units of work for the current progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/totalUnitCount
-func (p_ Progress) SetTotalUnitCount(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTotalUnitCount:"), value)
-}
-
-
-// A dictionary of arbitrary values for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/userInfo
-func (p_ Progress) UserInfo() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](p_.ID, objc.Sel("userInfo"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/fractioncompleted
+func (p_ Progress) SetFractionCompleted(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFractionCompleted:"), value)
 }
 
 
@@ -710,7 +289,7 @@ func (p_ Progress) UserInfo() IDictionary /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) IsCancellable() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsCancellable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCancellable"))
 	return rv
 }
@@ -720,7 +299,7 @@ func (p_ Progress) IsCancellable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) SetIsCancellable(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsCancellable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancellable:"), value)
 }
 
@@ -729,7 +308,7 @@ func (p_ Progress) SetIsCancellable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancelled
-func (p_ Progress) IsCancelled() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsCancelled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -739,7 +318,7 @@ func (p_ Progress) IsCancelled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancelled
-func (p_ Progress) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -748,7 +327,7 @@ func (p_ Progress) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) IsFinished() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsFinished() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFinished"))
 	return rv
 }
@@ -758,7 +337,7 @@ func (p_ Progress) IsFinished() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) SetIsFinished(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsFinished(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFinished:"), value)
 }
 
@@ -767,7 +346,7 @@ func (p_ Progress) SetIsFinished(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isindeterminate
-func (p_ Progress) IsIndeterminate() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsIndeterminate() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndeterminate"))
 	return rv
 }
@@ -777,7 +356,7 @@ func (p_ Progress) IsIndeterminate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isindeterminate
-func (p_ Progress) SetIsIndeterminate(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsIndeterminate(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndeterminate:"), value)
 }
 
@@ -786,7 +365,7 @@ func (p_ Progress) SetIsIndeterminate(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) IsOld() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsOld() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOld"))
 	return rv
 }
@@ -796,7 +375,7 @@ func (p_ Progress) IsOld() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) SetIsOld(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsOld(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOld:"), value)
 }
 
@@ -805,7 +384,7 @@ func (p_ Progress) SetIsOld(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
-func (p_ Progress) IsPausable() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsPausable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPausable"))
 	return rv
 }
@@ -815,7 +394,7 @@ func (p_ Progress) IsPausable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
-func (p_ Progress) SetIsPausable(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsPausable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPausable:"), value)
 }
 
@@ -824,7 +403,7 @@ func (p_ Progress) SetIsPausable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) IsPaused() bool /* primitive/slice/pointer. */ {
+func (p_ Progress) IsPaused() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -834,8 +413,161 @@ func (p_ Progress) IsPaused() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) SetIsPaused(value bool /* primitive/slice/pointer. */) {
+func (p_ Progress) SetIsPaused(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPaused:"), value)
 }
+
+
+// An object that represents the kind of progress for the progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/kind
+func (p_ Progress) Kind() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("kind"))
+	return rv
+}
+
+
+// An object that represents the kind of progress for the progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/kind
+func (p_ Progress) SetKind(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setKind:"), value)
+}
+
+
+// A more specific localized description of tracked progress for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/localizedadditionaldescription
+func (p_ Progress) LocalizedAdditionalDescription() IString {
+	rv := objc.Send[String](p_.ID, objc.Sel("localizedAdditionalDescription"))
+	return rv
+}
+
+
+// A more specific localized description of tracked progress for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/localizedadditionaldescription
+func (p_ Progress) SetLocalizedAdditionalDescription(value IString) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), value)
+}
+
+
+// A localized description of tracked progress for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/localizeddescription
+func (p_ Progress) LocalizedDescription() IString {
+	rv := objc.Send[String](p_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// A localized description of tracked progress for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/localizeddescription
+func (p_ Progress) SetLocalizedDescription(value IString) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), value)
+}
+
+
+// The block to invoke when pausing progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/pausinghandler
+func (p_ Progress) PausingHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pausingHandler"))
+	return rv
+}
+
+
+// The block to invoke when pausing progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/pausinghandler
+func (p_ Progress) SetPausingHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPausingHandler:"), value)
+}
+
+
+// The block to invoke when progress resumes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/resuminghandler
+func (p_ Progress) ResumingHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resumingHandler"))
+	return rv
+}
+
+
+// The block to invoke when progress resumes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/resuminghandler
+func (p_ Progress) SetResumingHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setResumingHandler:"), value)
+}
+
+
+// A value that represents the speed of data processing, in bytes per second.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
+func (p_ Progress) Throughput() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("throughput"))
+	return rv
+}
+
+
+// A value that represents the speed of data processing, in bytes per second.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/throughput
+func (p_ Progress) SetThroughput(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setThroughput:"), value)
+}
+
+
+// The total number of tracked units of work for the current progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/totalunitcount
+func (p_ Progress) TotalUnitCount() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("totalUnitCount"))
+	return rv
+}
+
+
+// The total number of tracked units of work for the current progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/totalunitcount
+func (p_ Progress) SetTotalUnitCount(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTotalUnitCount:"), value)
+}
+
+
+// A dictionary of arbitrary values for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
+func (p_ Progress) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// A dictionary of arbitrary values for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/progress/userinfo
+func (p_ Progress) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
+}
+
 
 

@@ -31,23 +31,29 @@ type _ProductDiscountClass struct {
 // An interface definition for the [ProductDiscount] class.
 type IProductDiscount interface {
 	objectivec.IObject
-	Identifier() string
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
 	NumberOfPeriods() uint
 	PaymentMode() ProductDiscountPaymentMode
-	Price() foundation.DecimalNumber
-	PriceLocale() foundation.Locale
-	SubscriptionPeriod() unsafe.Pointer
+	Price() objc.IObject /* cross-framework: DecimalNumber */
+	PriceLocale() objc.IObject /* cross-framework: Locale */
+	SubscriptionPeriod() ISKProductSubscriptionPeriod
 	Type() ProductDiscountType
-	Discounts() SKProductDiscount
+	Discounts() ISKProductDiscount
 	SetDiscounts(value ISKProductDiscount)
-	IntroductoryPrice() SKProductDiscount
+	IntroductoryPrice() ISKProductDiscount
 	SetIntroductoryPrice(value ISKProductDiscount)
+	// methods:
 }
 
 // The details of an introductory offer or a promotional offer for an auto-renewable subscription.
 //
 // You set up introductory and promotional offers in App Store Connect. contains the offer information as retrieved from the App Store. For more information about setting up offers, see and .
+
+
+// The details of an introductory offer or a promotional offer for an auto-renewable subscription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount
 type ProductDiscount struct {
 	objectivec.Object
@@ -92,93 +98,109 @@ func NewProductDiscount() ProductDiscount {
 }
 
 
+
 // A string used to uniquely identify a discount offer for a product.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/identifier
-func (p_ ProductDiscount) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ ProductDiscount) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // An integer that indicates the number of periods the product discount is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/numberOfPeriods
 func (p_ ProductDiscount) NumberOfPeriods() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("numberOfPeriods"))
 	return rv
 }
 
+
 // The payment mode for this product discount.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/paymentMode-swift.property
 func (p_ ProductDiscount) PaymentMode() ProductDiscountPaymentMode {
 	rv := objc.Send[ProductDiscountPaymentMode](p_.ID, objc.Sel("paymentMode"))
 	return rv
 }
 
+
 // The discount price of the product in the local currency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/price
-func (p_ ProductDiscount) Price() foundation.DecimalNumber {
+func (p_ ProductDiscount) Price() objc.IObject /* cross-framework: DecimalNumber */ {
 	rv := objc.Send[foundation.DecimalNumber](p_.ID, objc.Sel("price"))
 	return rv
 }
 
+
 // The locale used to format the discount price of the product.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/priceLocale
-func (p_ ProductDiscount) PriceLocale() foundation.Locale {
+func (p_ ProductDiscount) PriceLocale() objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](p_.ID, objc.Sel("priceLocale"))
 	return rv
 }
 
+
 // An object that defines the period for the product discount.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/subscriptionPeriod
-func (p_ ProductDiscount) SubscriptionPeriod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("subscriptionPeriod"))
+func (p_ ProductDiscount) SubscriptionPeriod() ISKProductSubscriptionPeriod {
+	rv := objc.Send[ProductSubscriptionPeriod](p_.ID, objc.Sel("subscriptionPeriod"))
 	return rv
 }
 
+
 // The type of discount offer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/type-swift.property
 func (p_ ProductDiscount) Type() ProductDiscountType {
 	rv := objc.Send[ProductDiscountType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
+
 // An array of subscription offers available for the auto-renewable subscription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
-func (p_ ProductDiscount) Discounts() SKProductDiscount {
-	rv := objc.Send[SKProductDiscount](p_.ID, objc.Sel("discounts"))
+func (p_ ProductDiscount) Discounts() ISKProductDiscount {
+	rv := objc.Send[ProductDiscount](p_.ID, objc.Sel("discounts"))
 	return rv
 }
 
 
-// SetDiscounts sets the value of the discounts property.
 // An array of subscription offers available for the auto-renewable subscription.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
 func (p_ ProductDiscount) SetDiscounts(value ISKProductDiscount) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDiscounts:"), value)
 }
 
+
 // The object containing introductory price information for the product.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
-func (p_ ProductDiscount) IntroductoryPrice() SKProductDiscount {
-	rv := objc.Send[SKProductDiscount](p_.ID, objc.Sel("introductoryPrice"))
+func (p_ ProductDiscount) IntroductoryPrice() ISKProductDiscount {
+	rv := objc.Send[ProductDiscount](p_.ID, objc.Sel("introductoryPrice"))
 	return rv
 }
 
 
-// SetIntroductoryPrice sets the value of the introductoryPrice property.
 // The object containing introductory price information for the product.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
 func (p_ ProductDiscount) SetIntroductoryPrice(value ISKProductDiscount) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntroductoryPrice:"), value)

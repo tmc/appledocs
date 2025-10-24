@@ -30,16 +30,22 @@ type _CircleClass struct {
 // An interface definition for the [Circle] class.
 type ICircle interface {
 	objectivec.IObject
-	Center() VNPoint
+	// properties:
+	Center() IVNPoint
 	SetCenter(value IVNPoint)
 	Diameter() float64
 	SetDiameter(value float64)
 	Radius() float64
 	SetRadius(value float64)
+	// methods:
 }
 
 // An immutable 2D circle represented by its center point and radius.
+
+
+// An immutable 2D circle represented by its center point and radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCircle
 type Circle struct {
 	objectivec.Object
@@ -84,26 +90,29 @@ func NewCircle() Circle {
 }
 
 
+
 // The circle’s center point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
-func (c_ Circle) Center() VNPoint {
-	rv := objc.Send[VNPoint](c_.ID, objc.Sel("center"))
+func (c_ Circle) Center() IVNPoint {
+	rv := objc.Send[Point](c_.ID, objc.Sel("center"))
 	return rv
 }
 
 
-// SetCenter sets the value of the center property.
 // The circle’s center point.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
 func (c_ Circle) SetCenter(value IVNPoint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
 }
 
+
 // The circle’s diameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/diameter
 func (c_ Circle) Diameter() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("diameter"))
@@ -111,17 +120,18 @@ func (c_ Circle) Diameter() float64 {
 }
 
 
-// SetDiameter sets the value of the diameter property.
 // The circle’s diameter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/diameter
 func (c_ Circle) SetDiameter(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiameter:"), value)
 }
 
+
 // The circle’s radius.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
 func (c_ Circle) Radius() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("radius"))
@@ -129,10 +139,9 @@ func (c_ Circle) Radius() float64 {
 }
 
 
-// SetRadius sets the value of the radius property.
 // The circle’s radius.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/radius
 func (c_ Circle) SetRadius(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)

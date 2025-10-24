@@ -31,10 +31,7 @@ type _CaptureEventClass struct {
 type ICaptureEvent interface {
 	objectivec.IObject
 	// properties:
-	Phase() CaptureEventPhase
-	ShouldPlaySound() bool /* primitive/slice/pointer. */
 	// methods:
-	PlaySound(sound IAVCaptureEventSound) bool /* primitive/slice/pointer. */
 }
 
 // An object that describes a user interaction with a system hardware button.
@@ -86,37 +83,6 @@ func (c_ CaptureEvent) Autorelease() CaptureEvent {
 // NewCaptureEvent creates a new CaptureEvent instance.
 func NewCaptureEvent() CaptureEvent {
 	return getCaptureEventClass().New()
-}
-
-
-
-// Plays the specified capture sound through AirPods.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/play(_:)
-func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("playSound:"), sound)
-	return rv
-}
-
-
-// The current phase of a capture event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
-func (c_ CaptureEvent) Phase() CaptureEventPhase {
-	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether you must play a sound manually.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/shouldPlaySound
-func (c_ CaptureEvent) ShouldPlaySound() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("shouldPlaySound"))
-	return rv
 }
 
 

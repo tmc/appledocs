@@ -31,15 +31,19 @@ type _MTRLevelControlClusterMoveToClosestFrequencyParamsClass struct {
 // An interface definition for the [MTRLevelControlClusterMoveToClosestFrequencyParams] class.
 type IMTRLevelControlClusterMoveToClosestFrequencyParams interface {
 	objectivec.IObject
-	Frequency() foundation.Number
-	SetFrequency(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Frequency() objc.IObject /* cross-framework: NSNumber */
+	SetFrequency(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlClusterMoveToClosestFrequencyParams
 type MTRLevelControlClusterMoveToClosestFrequencyParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRLevelControlClusterMoveToClosestFrequencyParams() MTRLevelControlClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/frequency
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) Frequency() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("frequency"))
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) Frequency() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("frequency"))
 	return rv
 }
 
 
-// SetFrequency sets the value of the frequency property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/frequency
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetFrequency(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetFrequency(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFrequency:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

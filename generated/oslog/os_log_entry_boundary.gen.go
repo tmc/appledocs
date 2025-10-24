@@ -29,10 +29,16 @@ type _OSLogEntryBoundaryClass struct {
 // An interface definition for the [OSLogEntryBoundary] class.
 type IOSLogEntryBoundary interface {
 	IOSLogEntry
+	// properties:
+	// methods:
 }
 
 // The metadata that partitions sequences of other entries.
+
+
+// The metadata that partitions sequences of other entries.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryBoundary
 type OSLogEntryBoundary struct {
 	OSLogEntry

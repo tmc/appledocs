@@ -30,7 +30,7 @@ type _QuitCommandClass struct {
 type IQuitCommand interface {
 	IScriptCommand
 	// properties:
-	SaveOptions() SaveOptions
+	SaveOptions() SaveOptions /* not a class type */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewQuitCommand() QuitCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand/saveOptions
-func (q_ QuitCommand) SaveOptions() SaveOptions {
+func (q_ QuitCommand) SaveOptions() SaveOptions /* not a class type */ {
 	rv := objc.Send[SaveOptions](q_.ID, objc.Sel("saveOptions"))
 	return rv
 }

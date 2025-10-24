@@ -6,17 +6,13 @@ package preferencepanes
 // NSPreferencePaneUnselectReply - Constants that indicate the preference pane’s availability to be deselected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePaneUnselectReply
-type PreferencePaneUnselectReply uint
+type NSPreferencePaneUnselectReply uint
 
 const (
-	// UnselectLater - Delay the deselection until the preference pane invokes  .
+	// NSUnselectLater - Delay the deselection until the preference pane invokes  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePaneUnselectReply/unselectLater
-	UnselectLater PreferencePaneUnselectReply = 0
-	// UnselectNow - Continue the deselection.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePaneUnselectReply/unselectNow
-	UnselectNow PreferencePaneUnselectReply = 0
+	NSUnselectLater NSPreferencePaneUnselectReply = 2
 )
 
 

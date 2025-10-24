@@ -30,12 +30,20 @@ type _GraphDeviceClass struct {
 // An interface definition for the [GraphDevice] class.
 type IGraphDevice interface {
 	IGraphObject
-	MetalDevice() objc.ID
+	// properties:
+	MetalDevice() Device /* not a class type */
+	SetMetalDevice(value Device /* not a class type */)
 	Type() GraphDeviceType
+	SetType(value GraphDeviceType)
+	// methods:
 }
 
 // A class that describes the compute device.
+
+
+// A class that describes the compute device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice
 type GraphDevice struct {
 	GraphObject
@@ -83,9 +91,9 @@ func NewGraphDevice() GraphDevice {
 
 
 
-
 // Creates a device from a given Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/init(mtlDevice:)
 func NewGraphDeviceWithMTLDevice(metalDevice objectivec.IObject) GraphDevice {
 	rv := objc.Send[GraphDevice](objc.ID(getGraphDeviceClass().class), objc.Sel("deviceWithMTLDevice:"), metalDevice)
@@ -93,28 +101,52 @@ func NewGraphDeviceWithMTLDevice(metalDevice objectivec.IObject) GraphDevice {
 }
 
 
+
 // Creates a device from a given Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/init(mtlDevice:)
 func (gc _GraphDeviceClass) DeviceWithMTLDevice(metalDevice objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("deviceWithMTLDevice:"), metalDevice)
 	return rv
 }
 
+
 // If device type is Metal then returns the corresponding MTLDevice else nil.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/metalDevice
-func (g_ GraphDevice) MetalDevice() objc.ID {
-	rv := objc.Send[objc.ID](g_.ID, objc.Sel("metalDevice"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice/metaldevice
+func (g_ GraphDevice) MetalDevice() Device /* not a class type */ {
+	rv := objc.Send[Device](g_.ID, objc.Sel("metalDevice"))
 	return rv
 }
 
+
+// If device type is Metal then returns the corresponding MTLDevice else nil.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice/metaldevice
+func (g_ GraphDevice) SetMetalDevice(value Device /* not a class type */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMetalDevice:"), value)
+}
+
+
 // Device of the MPSGraphDevice.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/type
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice/type
 func (g_ GraphDevice) Type() GraphDeviceType {
 	rv := objc.Send[GraphDeviceType](g_.ID, objc.Sel("type"))
 	return rv
+}
+
+
+// Device of the MPSGraphDevice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice/type
+func (g_ GraphDevice) SetType(value GraphDeviceType) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setType:"), value)
 }
 
 

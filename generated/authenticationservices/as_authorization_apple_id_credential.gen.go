@@ -32,20 +32,20 @@ type _AuthorizationAppleIDCredentialClass struct {
 type IAuthorizationAppleIDCredential interface {
 	objectivec.IObject
 	// properties:
-	Email() string /* primitive/slice/pointer. */
+	Email() objc.IObject /* cross-framework: NSString */
 	RealUserStatus() UserDetectionStatus /* not a class type */
-	AuthorizationCode() foundation.objc.IObject /* cross-framework: Data */
-	SetAuthorizationCode(value foundation.objc.IObject /* cross-framework: Data */)
+	AuthorizationCode() objc.IObject /* cross-framework: Data */
+	SetAuthorizationCode(value objc.IObject /* cross-framework: Data */)
 	AuthorizedScopes() unsafe.Pointer
 	SetAuthorizedScopes(value unsafe.Pointer)
-	FullName() foundation.objc.IObject /* cross-framework: PersonNameComponents */
-	SetFullName(value foundation.objc.IObject /* cross-framework: PersonNameComponents */)
-	IdentityToken() foundation.objc.IObject /* cross-framework: Data */
-	SetIdentityToken(value foundation.objc.IObject /* cross-framework: Data */)
-	State() string /* primitive/slice/pointer. */
-	SetState(value string /* primitive/slice/pointer. */)
-	User() string /* primitive/slice/pointer. */
-	SetUser(value string /* primitive/slice/pointer. */)
+	FullName() objc.IObject /* cross-framework: PersonNameComponents */
+	SetFullName(value objc.IObject /* cross-framework: PersonNameComponents */)
+	IdentityToken() objc.IObject /* cross-framework: Data */
+	SetIdentityToken(value objc.IObject /* cross-framework: Data */)
+	State() objc.IObject /* cross-framework: NSString */
+	SetState(value objc.IObject /* cross-framework: NSString */)
+	User() objc.IObject /* cross-framework: NSString */
+	SetUser(value objc.IObject /* cross-framework: NSString */)
 	UserAgeRange() UserAgeRange /* not a class type */
 	SetUserAgeRange(value UserAgeRange /* not a class type */)
 	// methods:
@@ -106,8 +106,8 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
-func (a_ AuthorizationAppleIDCredential) Email() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("email"))
+func (a_ AuthorizationAppleIDCredential) Email() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("email"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) AuthorizationCode() foundation.objc.IObject /* cross-framework: Data */ {
+func (a_ AuthorizationAppleIDCredential) AuthorizationCode() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("authorizationCode"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (a_ AuthorizationAppleIDCredential) AuthorizationCode() foundation.objc.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value foundation.objc.IObject /* cross-framework: Data */) {
+func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
 }
 
@@ -164,7 +164,7 @@ func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/fullname
-func (a_ AuthorizationAppleIDCredential) FullName() foundation.objc.IObject /* cross-framework: PersonNameComponents */ {
+func (a_ AuthorizationAppleIDCredential) FullName() objc.IObject /* cross-framework: PersonNameComponents */ {
 	rv := objc.Send[foundation.PersonNameComponents](a_.ID, objc.Sel("fullName"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (a_ AuthorizationAppleIDCredential) FullName() foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/fullname
-func (a_ AuthorizationAppleIDCredential) SetFullName(value foundation.objc.IObject /* cross-framework: PersonNameComponents */) {
+func (a_ AuthorizationAppleIDCredential) SetFullName(value objc.IObject /* cross-framework: PersonNameComponents */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullName:"), value)
 }
 
@@ -183,7 +183,7 @@ func (a_ AuthorizationAppleIDCredential) SetFullName(value foundation.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) IdentityToken() foundation.objc.IObject /* cross-framework: Data */ {
+func (a_ AuthorizationAppleIDCredential) IdentityToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (a_ AuthorizationAppleIDCredential) IdentityToken() foundation.objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value foundation.objc.IObject /* cross-framework: Data */) {
+func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
 
@@ -202,8 +202,8 @@ func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value foundation.objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/state
-func (a_ AuthorizationAppleIDCredential) State() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationAppleIDCredential) State() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -212,8 +212,8 @@ func (a_ AuthorizationAppleIDCredential) State() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/state
-func (a_ AuthorizationAppleIDCredential) SetState(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
+func (a_ AuthorizationAppleIDCredential) SetState(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), value)
 }
 
 
@@ -221,8 +221,8 @@ func (a_ AuthorizationAppleIDCredential) SetState(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDCredential) User() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDCredential) User() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -231,8 +231,8 @@ func (a_ AuthorizationAppleIDCredential) User() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDCredential) SetUser(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+func (a_ AuthorizationAppleIDCredential) SetUser(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
 }
 
 

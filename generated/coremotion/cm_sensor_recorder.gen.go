@@ -33,8 +33,6 @@ type ISensorRecorder interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AccelerometerDataFromDateToDate(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */) ISensorDataList
-	RecordAccelerometerForDuration(duration foundation.TimeInterval /* not a class type */)
 }
 
 // An object that gathers and retrieves accelerometer data from a device.
@@ -104,7 +102,7 @@ func (sc _SensorRecorderClass) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAccelerometerRecordingAvailable()
-func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool /* primitive/slice/pointer. */ {
+func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAccelerometerRecordingAvailable"))
 	return rv
 }
@@ -114,29 +112,9 @@ func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAuthorizedForRecording()
-func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool /* primitive/slice/pointer. */ {
+func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAuthorizedForRecording"))
 	return rv
 }
-
-
-// Retrieves the accelerometer data collected between the specified dates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/accelerometerData(from:to:)
-func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */) ISensorDataList {
-	rv := objc.Send[SensorDataList](s_.ID, objc.Sel("accelerometerDataFromDate:toDate:"), fromDate, toDate)
-	return rv
-}
-
-
-// Begins recording accelerometer data for the specified period of time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/recordAccelerometer(forDuration:)
-func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("recordAccelerometerForDuration:"), duration)
-}
-
 
 

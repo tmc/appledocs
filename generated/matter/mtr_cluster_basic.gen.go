@@ -29,9 +29,13 @@ type _MTRClusterBasicClass struct {
 // An interface definition for the [MTRClusterBasic] class.
 type IMTRClusterBasic interface {
 	IMTRClusterBasicInformation
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBasic
 type MTRClusterBasic struct {
 	MTRClusterBasicInformation

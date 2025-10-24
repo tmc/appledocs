@@ -30,12 +30,18 @@ type _PHChangeClass struct {
 // An interface definition for the [PHChange] class.
 type IPHChange interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A description of a change that occurred in the photo library.
 //
 // Photos provides objects to notify your app of changes to the assets and collections managed by the Photos app. To receive change information, adopt the protocol and register your observer with the shared object. After Photos provides a change object, you use its methods to get a change details object. Call the or method, passing an asset or collection object you’ve previously fetched or a fetch result containing several such objects. The resulting or object describes any changes that have happened to the object or fetch result since you last fetched it.
+
+
+// A description of a change that occurred in the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHChange
 type PHChange struct {
 	objectivec.Object

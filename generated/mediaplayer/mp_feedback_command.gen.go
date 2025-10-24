@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FeedbackCommand] class.
@@ -29,18 +30,24 @@ type _FeedbackCommandClass struct {
 // An interface definition for the [FeedbackCommand] class.
 type IFeedbackCommand interface {
 	IRemoteCommand
+	// properties:
 	IsActive() bool
 	SetIsActive(value bool)
-	LocalizedShortTitle() string
-	SetLocalizedShortTitle(value string)
-	LocalizedTitle() string
-	SetLocalizedTitle(value string)
+	LocalizedShortTitle() objc.IObject /* cross-framework: NSString */
+	SetLocalizedShortTitle(value objc.IObject /* cross-framework: NSString */)
+	LocalizedTitle() objc.IObject /* cross-framework: NSString */
+	SetLocalizedTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that reflects the feedback state for the playing item.
 //
 // The shared object vends feedback objects for liking, disliking, and bookmarking media items. Use these objects to register handlers for the types of feedback your app supports and to perform the appropriate tasks when that feedback changes. When the currently playing item changes, you can also use this object to set the feedback state for the new item. When the state of a feedback item changes, the system delivers an appropriate event to registered handlers of this object. Your handler code must determine which media item receives the feedback and then apply the update the feedback state for that item. You might also perform other tasks related to receiving feedback. For example, if the user likes the currently playing song, you might update the appropriate UI in your app or use the information to recommend similar songs.
+
+
+// An object that reflects the feedback state for the playing item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommand
 type FeedbackCommand struct {
 	RemoteCommand
@@ -87,8 +94,10 @@ func NewFeedbackCommand() FeedbackCommand {
 }
 
 
+
 // A Boolean value that indicates whether the feedback’s action is on or off.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/isactive
 func (f_ FeedbackCommand) IsActive() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isActive"))
@@ -96,49 +105,50 @@ func (f_ FeedbackCommand) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates whether the feedback’s action is on or off.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/isactive
 func (f_ FeedbackCommand) SetIsActive(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // A shortened version of the string used to describe the context of a command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
-func (f_ FeedbackCommand) LocalizedShortTitle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedShortTitle"))
+func (f_ FeedbackCommand) LocalizedShortTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("localizedShortTitle"))
 	return rv
 }
 
 
-// SetLocalizedShortTitle sets the value of the localizedShortTitle property.
 // A shortened version of the string used to describe the context of a command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
-func (f_ FeedbackCommand) SetLocalizedShortTitle(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedShortTitle:"), objc.String(value))
+func (f_ FeedbackCommand) SetLocalizedShortTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedShortTitle:"), value)
 }
+
 
 // A localized string used to describe the context of a command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
-func (f_ FeedbackCommand) LocalizedTitle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedTitle"))
+func (f_ FeedbackCommand) LocalizedTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 
 
-// SetLocalizedTitle sets the value of the localizedTitle property.
 // A localized string used to describe the context of a command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
-func (f_ FeedbackCommand) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+func (f_ FeedbackCommand) SetLocalizedTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedTitle:"), value)
 }
 
 

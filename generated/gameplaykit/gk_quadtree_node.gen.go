@@ -31,7 +31,7 @@ type _QuadtreeNodeClass struct {
 type IQuadtreeNode interface {
 	objectivec.IObject
 	// properties:
-	Quad() Quad /* not a class type */
+	Quad() GKQuad /* not a class type */
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewQuadtreeNode() QuadtreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode/quad
-func (q_ QuadtreeNode) Quad() Quad /* not a class type */ {
+func (q_ QuadtreeNode) Quad() GKQuad /* not a class type */ {
 	rv := objc.Send[Quad](q_.ID, objc.Sel("quad"))
 	return rv
 }

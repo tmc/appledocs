@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +31,22 @@ type _PHProjectElementClass struct {
 // An interface definition for the [PHProjectElement] class.
 type IPHProjectElement interface {
 	objectivec.IObject
-	Placement() coregraphics.CGRect
+	// properties:
+	Placement() objc.IObject /* cross-framework: Rect */
+	SetPlacement(value objc.IObject /* cross-framework: Rect */)
 	Weight() float64
+	SetWeight(value float64)
+	// methods:
 }
 
 // The superclass for all element objects.
 //
 // You should never use this class directly; opt instead for one of its subclasses. It defines the shared properties of any element in an instance of .
+
+
+// The superclass for all element objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectElement
 type PHProjectElement struct {
 	objectivec.Object
@@ -83,20 +91,42 @@ func NewPHProjectElement() PHProjectElement {
 }
 
 
+
 // A rectangle defining where an element is placed in grid space coordinates.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectElement/placement
-func (p_ PHProjectElement) Placement() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("placement"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectelement/placement
+func (p_ PHProjectElement) Placement() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("placement"))
 	return rv
 }
 
+
+// A rectangle defining where an element is placed in grid space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectelement/placement
+func (p_ PHProjectElement) SetPlacement(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPlacement:"), value)
+}
+
+
 // A value between 0 and 1 representing relative significance of the element in its section.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectElement/weight
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectelement/weight
 func (p_ PHProjectElement) Weight() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("weight"))
 	return rv
+}
+
+
+// A value between 0 and 1 representing relative significance of the element in its section.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectelement/weight
+func (p_ PHProjectElement) SetWeight(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setWeight:"), value)
 }
 
 

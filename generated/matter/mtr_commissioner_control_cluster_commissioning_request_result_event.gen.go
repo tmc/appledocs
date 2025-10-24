@@ -31,17 +31,21 @@ type _MTRCommissionerControlClusterCommissioningRequestResultEventClass struct {
 // An interface definition for the [MTRCommissionerControlClusterCommissioningRequestResultEvent] class.
 type IMTRCommissionerControlClusterCommissioningRequestResultEvent interface {
 	objectivec.IObject
-	ClientNodeID() foundation.Number
-	SetClientNodeID(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	RequestID() foundation.Number
-	SetRequestID(value foundation.INumber)
-	StatusCode() foundation.Number
-	SetStatusCode(value foundation.INumber)
+	// properties:
+	ClientNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetClientNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	RequestID() objc.IObject /* cross-framework: NSNumber */
+	SetRequestID(value objc.IObject /* cross-framework: NSNumber */)
+	StatusCode() objc.IObject /* cross-framework: NSNumber */
+	SetStatusCode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent
 type MTRCommissionerControlClusterCommissioningRequestResultEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRCommissionerControlClusterCommissioningRequestResultEvent() MTRCommis
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/clientNodeID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) ClientNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("clientNodeID"))
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) ClientNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("clientNodeID"))
 	return rv
 }
 
 
-// SetClientNodeID sets the value of the clientNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/clientNodeID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetClientNodeID(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetClientNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/fabricIndex
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/fabricIndex
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/requestID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) RequestID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestID"))
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) RequestID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("requestID"))
 	return rv
 }
 
 
-// SetRequestID sets the value of the requestID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/requestID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetRequestID(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetRequestID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/statusCode
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) StatusCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) StatusCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
 
-// SetStatusCode sets the value of the statusCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/statusCode
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetStatusCode(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetStatusCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 

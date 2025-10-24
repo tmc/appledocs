@@ -31,17 +31,21 @@ type _MTRNetworkCommissioningClusterScanNetworksParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterScanNetworksParams] class.
 type IMTRNetworkCommissioningClusterScanNetworksParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	Ssid() foundation.Data
-	SetSsid(value foundation.IData)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	Ssid() objc.IObject /* cross-framework: Data */
+	SetSsid(value objc.IObject /* cross-framework: Data */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterScanNetworksParams
 type MTRNetworkCommissioningClusterScanNetworksParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRNetworkCommissioningClusterScanNetworksParams() MTRNetworkCommissioni
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Ssid() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Ssid() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("ssid"))
 	return rv
 }
 
 
-// SetSsid sets the value of the ssid property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetSsid(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetSsid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

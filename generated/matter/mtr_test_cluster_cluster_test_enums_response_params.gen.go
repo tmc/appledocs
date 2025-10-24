@@ -30,15 +30,19 @@ type _MTRTestClusterClusterTestEnumsResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestEnumsResponseParams] class.
 type IMTRTestClusterClusterTestEnumsResponseParams interface {
 	IMTRUnitTestingClusterTestEnumsResponseParams
-	Arg1() foundation.Number
-	SetArg1(value foundation.INumber)
-	Arg2() foundation.Number
-	SetArg2(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Arg1() objc.IObject /* cross-framework: NSNumber */
+	SetArg1(value objc.IObject /* cross-framework: NSNumber */)
+	Arg2() objc.IObject /* cross-framework: NSNumber */
+	SetArg2(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestEnumsResponseParams
 type MTRTestClusterClusterTestEnumsResponseParams struct {
 	MTRUnitTestingClusterTestEnumsResponseParams
@@ -83,48 +87,48 @@ func NewMTRTestClusterClusterTestEnumsResponseParams() MTRTestClusterClusterTest
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg1
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg1
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg1(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) Arg2() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg2"))
 	return rv
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/arg2
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg2(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestenumsresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEnumsResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -30,16 +30,16 @@ type _CSUserQueryContextClass struct {
 type ICSUserQueryContext interface {
 	ICSSearchQueryContext
 	// properties:
-	DisableSemanticSearch() bool /* primitive/slice/pointer. */
-	SetDisableSemanticSearch(value bool /* primitive/slice/pointer. */)
-	EnableRankedResults() bool /* primitive/slice/pointer. */
-	SetEnableRankedResults(value bool /* primitive/slice/pointer. */)
-	MaxRankedResultCount() int /* primitive/slice/pointer. */
-	SetMaxRankedResultCount(value int /* primitive/slice/pointer. */)
-	MaxResultCount() int /* primitive/slice/pointer. */
-	SetMaxResultCount(value int /* primitive/slice/pointer. */)
-	MaxSuggestionCount() int /* primitive/slice/pointer. */
-	SetMaxSuggestionCount(value int /* primitive/slice/pointer. */)
+	DisableSemanticSearch() bool
+	SetDisableSemanticSearch(value bool)
+	EnableRankedResults() bool
+	SetEnableRankedResults(value bool)
+	MaxRankedResultCount() int
+	SetMaxRankedResultCount(value int)
+	MaxResultCount() int
+	SetMaxResultCount(value int)
+	MaxSuggestionCount() int
+	SetMaxSuggestionCount(value int)
 	// methods:
 }
 
@@ -133,7 +133,7 @@ func (cc _CSUserQueryContextClass) UserQueryContext() CSUserQueryContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/disableSemanticSearch
-func (c_ CSUserQueryContext) DisableSemanticSearch() bool /* primitive/slice/pointer. */ {
+func (c_ CSUserQueryContext) DisableSemanticSearch() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("disableSemanticSearch"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (c_ CSUserQueryContext) DisableSemanticSearch() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/disableSemanticSearch
-func (c_ CSUserQueryContext) SetDisableSemanticSearch(value bool /* primitive/slice/pointer. */) {
+func (c_ CSUserQueryContext) SetDisableSemanticSearch(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisableSemanticSearch:"), value)
 }
 
@@ -152,7 +152,7 @@ func (c_ CSUserQueryContext) SetDisableSemanticSearch(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/enableRankedResults
-func (c_ CSUserQueryContext) EnableRankedResults() bool /* primitive/slice/pointer. */ {
+func (c_ CSUserQueryContext) EnableRankedResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enableRankedResults"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (c_ CSUserQueryContext) EnableRankedResults() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/enableRankedResults
-func (c_ CSUserQueryContext) SetEnableRankedResults(value bool /* primitive/slice/pointer. */) {
+func (c_ CSUserQueryContext) SetEnableRankedResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnableRankedResults:"), value)
 }
 
@@ -171,7 +171,7 @@ func (c_ CSUserQueryContext) SetEnableRankedResults(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxRankedResultCount
-func (c_ CSUserQueryContext) MaxRankedResultCount() int /* primitive/slice/pointer. */ {
+func (c_ CSUserQueryContext) MaxRankedResultCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxRankedResultCount"))
 	return rv
 }
@@ -181,7 +181,7 @@ func (c_ CSUserQueryContext) MaxRankedResultCount() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxRankedResultCount
-func (c_ CSUserQueryContext) SetMaxRankedResultCount(value int /* primitive/slice/pointer. */) {
+func (c_ CSUserQueryContext) SetMaxRankedResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRankedResultCount:"), value)
 }
 
@@ -190,7 +190,7 @@ func (c_ CSUserQueryContext) SetMaxRankedResultCount(value int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxResultCount
-func (c_ CSUserQueryContext) MaxResultCount() int /* primitive/slice/pointer. */ {
+func (c_ CSUserQueryContext) MaxResultCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxResultCount"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (c_ CSUserQueryContext) MaxResultCount() int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxResultCount
-func (c_ CSUserQueryContext) SetMaxResultCount(value int /* primitive/slice/pointer. */) {
+func (c_ CSUserQueryContext) SetMaxResultCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxResultCount:"), value)
 }
 
@@ -209,7 +209,7 @@ func (c_ CSUserQueryContext) SetMaxResultCount(value int /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount
-func (c_ CSUserQueryContext) MaxSuggestionCount() int /* primitive/slice/pointer. */ {
+func (c_ CSUserQueryContext) MaxSuggestionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxSuggestionCount"))
 	return rv
 }
@@ -219,7 +219,7 @@ func (c_ CSUserQueryContext) MaxSuggestionCount() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/maxSuggestionCount
-func (c_ CSUserQueryContext) SetMaxSuggestionCount(value int /* primitive/slice/pointer. */) {
+func (c_ CSUserQueryContext) SetMaxSuggestionCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxSuggestionCount:"), value)
 }
 

@@ -92,7 +92,7 @@ func NewPlugIn() PlugIn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/load(_:allowExecutableCode:)
-func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url foundation.objc.IObject /* cross-framework URL */, allowExecutableCode bool /* primitive/slice/pointer. */) {
+func (pc _PlugInClass) LoadPlugInAllowExecutableCode(url objc.IObject /* cross-framework: NSURL */, allowExecutableCode bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowExecutableCode:"), url, allowExecutableCode)
 }
 
@@ -110,7 +110,7 @@ func (pc _PlugInClass) LoadAllPlugIns() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadNonExecutablePlugIn(_:)
-func (pc _PlugInClass) LoadNonExecutablePlugIn(url foundation.objc.IObject /* cross-framework URL */) {
+func (pc _PlugInClass) LoadNonExecutablePlugIn(url objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadNonExecutablePlugIn:"), url)
 }
 
@@ -128,7 +128,7 @@ func (pc _PlugInClass) LoadNonExecutablePlugIns() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPlugIn/loadPlugIn:allowNonExecutable:
-func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url foundation.objc.IObject /* cross-framework URL */, allowNonExecutable bool /* primitive/slice/pointer. */) {
+func (pc _PlugInClass) LoadPlugInAllowNonExecutable(url objc.IObject /* cross-framework: NSURL */, allowNonExecutable bool) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("loadPlugIn:allowNonExecutable:"), url, allowNonExecutable)
 }
 

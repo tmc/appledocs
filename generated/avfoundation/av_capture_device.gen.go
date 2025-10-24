@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,22 +38,16 @@ type ICaptureDevice interface {
 	SetActiveFormat(value IAVCaptureDeviceFormat)
 	ActivePrimaryConstituentDevice() IAVCaptureDevice
 	ActivePrimaryConstituentDeviceSwitchingBehavior() CapturePrimaryConstituentDeviceSwitchingBehavior /* not a class type */
-	CameraLensSmudgeDetectionInterval() Time /* not a class type */
+	CameraLensSmudgeDetectionInterval() objc.IObject /* cross-framework: Time */
 	CinematicVideoCaptureSceneMonitoringStatuses() unsafe.Pointer
-	ConstituentDevices() []CaptureDevice /* primitive/slice/pointer. */
-	DynamicAspectRatio() CaptureAspectRatio /* not a class type */
-	AutoVideoFrameRateEnabled() bool /* primitive/slice/pointer. */
-	SetAutoVideoFrameRateEnabled(value bool /* primitive/slice/pointer. */)
-	CameraLensSmudgeDetectionEnabled() bool /* primitive/slice/pointer. */
-	SubjectAreaChangeMonitoringEnabled() bool /* primitive/slice/pointer. */
-	SetSubjectAreaChangeMonitoringEnabled(value bool /* primitive/slice/pointer. */)
-	Suspended() bool /* primitive/slice/pointer. */
-	VideoFrameDurationLocked() bool /* primitive/slice/pointer. */
-	MinSupportedLockedVideoFrameDuration() Time /* not a class type */
-	NominalFocalLengthIn35mmFilm() float32 /* primitive/slice/pointer. */
+	AutoVideoFrameRateEnabled() bool
+	SetAutoVideoFrameRateEnabled(value bool)
+	CameraLensSmudgeDetectionEnabled() bool
+	Suspended() bool
+	VideoFrameDurationLocked() bool
+	MinSupportedLockedVideoFrameDuration() objc.IObject /* cross-framework: Time */
 	Position() CaptureDevicePosition
-	SystemPressureState() objc.IObject /* cross-framework: CaptureSystemPressureState */
-	TransportType() unsafe.Pointer
+	TransportType() int32 /* not a class type */
 	ActivePrimaryConstituent() IAVCaptureDevice
 	SetActivePrimaryConstituent(value IAVCaptureDevice)
 	ActivePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() unsafe.Pointer
@@ -66,32 +62,32 @@ type ICaptureDevice interface {
 	SetDynamicDimensions(value VideoDimensions /* not a class type */)
 	FallbackPrimaryConstituentDevices() IAVCaptureDevice
 	SetFallbackPrimaryConstituentDevices(value IAVCaptureDevice)
-	IsAutoVideoFrameRateEnabled() bool /* primitive/slice/pointer. */
-	SetIsAutoVideoFrameRateEnabled(value bool /* primitive/slice/pointer. */)
-	IsCameraLensSmudgeDetectionEnabled() bool /* primitive/slice/pointer. */
-	SetIsCameraLensSmudgeDetectionEnabled(value bool /* primitive/slice/pointer. */)
-	IsConnected() bool /* primitive/slice/pointer. */
-	SetIsConnected(value bool /* primitive/slice/pointer. */)
-	IsContinuityCamera() bool /* primitive/slice/pointer. */
-	SetIsContinuityCamera(value bool /* primitive/slice/pointer. */)
-	IsFollowingExternalSyncDevice() bool /* primitive/slice/pointer. */
-	SetIsFollowingExternalSyncDevice(value bool /* primitive/slice/pointer. */)
-	IsInUseByAnotherApplication() bool /* primitive/slice/pointer. */
-	SetIsInUseByAnotherApplication(value bool /* primitive/slice/pointer. */)
-	IsSubjectAreaChangeMonitoringEnabled() bool /* primitive/slice/pointer. */
-	SetIsSubjectAreaChangeMonitoringEnabled(value bool /* primitive/slice/pointer. */)
-	IsSuspended() bool /* primitive/slice/pointer. */
-	SetIsSuspended(value bool /* primitive/slice/pointer. */)
-	IsVideoFrameDurationLocked() bool /* primitive/slice/pointer. */
-	SetIsVideoFrameDurationLocked(value bool /* primitive/slice/pointer. */)
-	IsVirtualDevice() bool /* primitive/slice/pointer. */
-	SetIsVirtualDevice(value bool /* primitive/slice/pointer. */)
+	IsAutoVideoFrameRateEnabled() bool
+	SetIsAutoVideoFrameRateEnabled(value bool)
+	IsCameraLensSmudgeDetectionEnabled() bool
+	SetIsCameraLensSmudgeDetectionEnabled(value bool)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsContinuityCamera() bool
+	SetIsContinuityCamera(value bool)
+	IsFollowingExternalSyncDevice() bool
+	SetIsFollowingExternalSyncDevice(value bool)
+	IsInUseByAnotherApplication() bool
+	SetIsInUseByAnotherApplication(value bool)
+	IsSubjectAreaChangeMonitoringEnabled() bool
+	SetIsSubjectAreaChangeMonitoringEnabled(value bool)
+	IsSuspended() bool
+	SetIsSuspended(value bool)
+	IsVideoFrameDurationLocked() bool
+	SetIsVideoFrameDurationLocked(value bool)
+	IsVirtualDevice() bool
+	SetIsVirtualDevice(value bool)
 	LocalizedName() objc.IObject /* cross-framework: NSString */
 	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
 	Manufacturer() objc.IObject /* cross-framework: NSString */
 	SetManufacturer(value objc.IObject /* cross-framework: NSString */)
-	MinSupportedExternalSyncFrameDuration() Time /* not a class type */
-	SetMinSupportedExternalSyncFrameDuration(value Time /* not a class type */)
+	MinSupportedExternalSyncFrameDuration() objc.IObject /* cross-framework: Time */
+	SetMinSupportedExternalSyncFrameDuration(value objc.IObject /* cross-framework: Time */)
 	ModelID() objc.IObject /* cross-framework: NSString */
 	SetModelID(value objc.IObject /* cross-framework: NSString */)
 	PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() unsafe.Pointer
@@ -108,11 +104,11 @@ type ICaptureDevice interface {
 	SetUniqueID(value objc.IObject /* cross-framework: NSString */)
 	AVCaptureSessionInterruptionSystemPressureStateKey() objc.IObject /* cross-framework: NSString */
 	// methods:
-	HasMediaType(mediaType MediaType /* not a class type */) bool /* primitive/slice/pointer. */
-	LockForConfiguration(outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetCinematicVideoFixedFocusAtPointFocusMode(point objc.IObject /* cross-framework Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
-	SetCinematicVideoTrackingFocusAtPointFocusMode(point objc.IObject /* cross-framework Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
-	SetCinematicVideoTrackingFocusWithDetectedObjectIDFocusMode(detectedObjectID int /* primitive/slice/pointer. */, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
+	HasMediaType(mediaType MediaType /* not a class type */) bool
+	LockForConfiguration(outError unsafe.Pointer) bool
+	SetCinematicVideoFixedFocusAtPointFocusMode(point objc.IObject /* cross-framework: Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
+	SetCinematicVideoTrackingFocusAtPointFocusMode(point objc.IObject /* cross-framework: Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
+	SetCinematicVideoTrackingFocusWithDetectedObjectIDFocusMode(detectedObjectID int, focusMode CaptureCinematicVideoFocusMode /* not a class type */)
 	UnlockForConfiguration()
 }
 
@@ -173,7 +169,7 @@ func NewCaptureDevice() CaptureDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func NewCaptureDeviceWithUniqueID(deviceUniqueID objc.IObject /* cross-framework NSString */) CaptureDevice {
+func NewCaptureDeviceWithUniqueID(deviceUniqueID objc.IObject /* cross-framework: NSString */) CaptureDevice {
 	rv := objc.Send[CaptureDevice](objc.ID(getCaptureDeviceClass().class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
 	return rv
 }
@@ -194,7 +190,7 @@ func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType MediaTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)
-func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType objc.IObject /* cross-framework CaptureDeviceType */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) ICaptureDevice {
+func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType objc.IObject /* cross-framework: CaptureDeviceType */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) ICaptureDevice {
 	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("defaultDeviceWithDeviceType:mediaType:position:"), deviceType, mediaType, position)
 	return rv
 }
@@ -214,7 +210,7 @@ func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType MediaType /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/devices()
-func (cc _CaptureDeviceClass) Devices() []CaptureDevice /* primitive/slice/pointer. */ {
+func (cc _CaptureDeviceClass) Devices() []ICaptureDevice {
 	rv := objc.Send[[]CaptureDevice](objc.ID(cc.class), objc.Sel("devices"))
 	return rv
 }
@@ -224,7 +220,7 @@ func (cc _CaptureDeviceClass) Devices() []CaptureDevice /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/devices(for:)
-func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType /* not a class type */) []CaptureDevice /* primitive/slice/pointer. */ {
+func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType /* not a class type */) []ICaptureDevice {
 	rv := objc.Send[[]CaptureDevice](objc.ID(cc.class), objc.Sel("devicesWithMediaType:"), mediaType)
 	return rv
 }
@@ -235,7 +231,7 @@ func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType /* not a 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/extrinsicMatrix(from:to:)
 func (cc _CaptureDeviceClass) ExtrinsicMatrixFromDeviceToDevice(fromDevice IAVCaptureDevice, toDevice IAVCaptureDevice) objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[Data](objc.ID(cc.class), objc.Sel("extrinsicMatrixFromDevice:toDevice:"), fromDevice, toDevice)
+	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("extrinsicMatrixFromDevice:toDevice:"), fromDevice, toDevice)
 	return rv
 }
 
@@ -244,7 +240,7 @@ func (cc _CaptureDeviceClass) ExtrinsicMatrixFromDeviceToDevice(fromDevice IAVCa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID objc.IObject /* cross-framework NSString */) ICaptureDevice {
+func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID objc.IObject /* cross-framework: NSString */) ICaptureDevice {
 	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
 	return rv
 }
@@ -254,7 +250,7 @@ func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled
-func (cc _CaptureDeviceClass) BackgroundReplacementEnabled() bool /* primitive/slice/pointer. */ {
+func (cc _CaptureDeviceClass) BackgroundReplacementEnabled() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("backgroundReplacementEnabled"))
 	return rv
 }
@@ -263,7 +259,7 @@ func (cc _CaptureDeviceClass) BackgroundReplacementEnabled() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/hasMediaType(_:)
-func (c_ CaptureDevice) HasMediaType(mediaType MediaType /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) HasMediaType(mediaType MediaType /* not a class type */) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMediaType:"), mediaType)
 	return rv
 }
@@ -273,7 +269,7 @@ func (c_ CaptureDevice) HasMediaType(mediaType MediaType /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()
-func (c_ CaptureDevice) LockForConfiguration(outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) LockForConfiguration(outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("lockForConfiguration:"), outError)
 	return rv
 }
@@ -283,7 +279,7 @@ func (c_ CaptureDevice) LockForConfiguration(outError unsafe.Pointer) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoFixedFocus(at:focusMode:)
-func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point objc.IObject /* cross-framework Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
+func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point objc.IObject /* cross-framework: Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoFixedFocusAtPoint:focusMode:"), point, focusMode)
 }
 
@@ -292,7 +288,7 @@ func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoTrackingFocus(at:focusMode:)
-func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point objc.IObject /* cross-framework Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
+func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point objc.IObject /* cross-framework: Point */, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoTrackingFocusAtPoint:focusMode:"), point, focusMode)
 }
 
@@ -301,7 +297,7 @@ func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoTrackingFocus(detectedObjectID:focusMode:)
-func (c_ CaptureDevice) SetCinematicVideoTrackingFocusWithDetectedObjectIDFocusMode(detectedObjectID int /* primitive/slice/pointer. */, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
+func (c_ CaptureDevice) SetCinematicVideoTrackingFocusWithDetectedObjectIDFocusMode(detectedObjectID int, focusMode CaptureCinematicVideoFocusMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:"), detectedObjectID, focusMode)
 }
 
@@ -358,8 +354,8 @@ func (c_ CaptureDevice) ActivePrimaryConstituentDeviceSwitchingBehavior() Captur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/cameraLensSmudgeDetectionInterval
-func (c_ CaptureDevice) CameraLensSmudgeDetectionInterval() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("cameraLensSmudgeDetectionInterval"))
+func (c_ CaptureDevice) CameraLensSmudgeDetectionInterval() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("cameraLensSmudgeDetectionInterval"))
 	return rv
 }
 
@@ -374,31 +370,11 @@ func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() unsafe.Po
 }
 
 
-// An array of physical devices that make up a virtual device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/constituentDevices
-func (c_ CaptureDevice) ConstituentDevices() []CaptureDevice /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("constituentDevices"))
-	return rv
-}
-
-
-// A key-value observable property indicating the current aspect ratio for a device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/dynamicAspectRatio
-func (c_ CaptureDevice) DynamicAspectRatio() CaptureAspectRatio /* not a class type */ {
-	rv := objc.Send[CaptureAspectRatio](c_.ID, objc.Sel("dynamicAspectRatio"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the capture device performs automatic video frame rate adjustments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled
-func (c_ CaptureDevice) AutoVideoFrameRateEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) AutoVideoFrameRateEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("autoVideoFrameRateEnabled"))
 	return rv
 }
@@ -408,7 +384,7 @@ func (c_ CaptureDevice) AutoVideoFrameRateEnabled() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled
-func (c_ CaptureDevice) SetAutoVideoFrameRateEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetAutoVideoFrameRateEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutoVideoFrameRateEnabled:"), value)
 }
 
@@ -417,7 +393,7 @@ func (c_ CaptureDevice) SetAutoVideoFrameRateEnabled(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled
-func (c_ CaptureDevice) BackgroundReplacementEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) BackgroundReplacementEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("backgroundReplacementEnabled"))
 	return rv
 }
@@ -427,28 +403,9 @@ func (c_ CaptureDevice) BackgroundReplacementEnabled() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isCameraLensSmudgeDetectionEnabled
-func (c_ CaptureDevice) CameraLensSmudgeDetectionEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) CameraLensSmudgeDetectionEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("cameraLensSmudgeDetectionEnabled"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether the device monitors the subject area for changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled
-func (c_ CaptureDevice) SubjectAreaChangeMonitoringEnabled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("subjectAreaChangeMonitoringEnabled"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the device monitors the subject area for changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled
-func (c_ CaptureDevice) SetSubjectAreaChangeMonitoringEnabled(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubjectAreaChangeMonitoringEnabled:"), value)
 }
 
 
@@ -456,7 +413,7 @@ func (c_ CaptureDevice) SetSubjectAreaChangeMonitoringEnabled(value bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isSuspended
-func (c_ CaptureDevice) Suspended() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) Suspended() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("suspended"))
 	return rv
 }
@@ -466,7 +423,7 @@ func (c_ CaptureDevice) Suspended() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/isVideoFrameDurationLocked
-func (c_ CaptureDevice) VideoFrameDurationLocked() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) VideoFrameDurationLocked() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("videoFrameDurationLocked"))
 	return rv
 }
@@ -476,18 +433,8 @@ func (c_ CaptureDevice) VideoFrameDurationLocked() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/minSupportedLockedVideoFrameDuration
-func (c_ CaptureDevice) MinSupportedLockedVideoFrameDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("minSupportedLockedVideoFrameDuration"))
-	return rv
-}
-
-
-// The nominal 35mm equivalent focal length of the capture device’s lens.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/nominalFocalLengthIn35mmFilm
-func (c_ CaptureDevice) NominalFocalLengthIn35mmFilm() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](c_.ID, objc.Sel("nominalFocalLengthIn35mmFilm"))
+func (c_ CaptureDevice) MinSupportedLockedVideoFrameDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("minSupportedLockedVideoFrameDuration"))
 	return rv
 }
 
@@ -502,22 +449,12 @@ func (c_ CaptureDevice) Position() CaptureDevicePosition {
 }
 
 
-// A value that indicates the capture device’s current system pressure state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property
-func (c_ CaptureDevice) SystemPressureState() objc.IObject /* cross-framework: CaptureSystemPressureState */ {
-	rv := objc.Send[CaptureSystemPressureState](c_.ID, objc.Sel("systemPressureState"))
-	return rv
-}
-
-
 // The transport type of the device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/transportType
-func (c_ CaptureDevice) TransportType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("transportType"))
+func (c_ CaptureDevice) TransportType() int32 /* not a class type */ {
+	rv := objc.Send[int32](c_.ID, objc.Sel("transportType"))
 	return rv
 }
 
@@ -659,7 +596,7 @@ func (c_ CaptureDevice) SetFallbackPrimaryConstituentDevices(value IAVCaptureDev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isautovideoframerateenabled
-func (c_ CaptureDevice) IsAutoVideoFrameRateEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsAutoVideoFrameRateEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoVideoFrameRateEnabled"))
 	return rv
 }
@@ -669,7 +606,7 @@ func (c_ CaptureDevice) IsAutoVideoFrameRateEnabled() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isautovideoframerateenabled
-func (c_ CaptureDevice) SetIsAutoVideoFrameRateEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsAutoVideoFrameRateEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoVideoFrameRateEnabled:"), value)
 }
 
@@ -678,7 +615,7 @@ func (c_ CaptureDevice) SetIsAutoVideoFrameRateEnabled(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscameralenssmudgedetectionenabled
-func (c_ CaptureDevice) IsCameraLensSmudgeDetectionEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsCameraLensSmudgeDetectionEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraLensSmudgeDetectionEnabled"))
 	return rv
 }
@@ -688,7 +625,7 @@ func (c_ CaptureDevice) IsCameraLensSmudgeDetectionEnabled() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscameralenssmudgedetectionenabled
-func (c_ CaptureDevice) SetIsCameraLensSmudgeDetectionEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsCameraLensSmudgeDetectionEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraLensSmudgeDetectionEnabled:"), value)
 }
 
@@ -697,7 +634,7 @@ func (c_ CaptureDevice) SetIsCameraLensSmudgeDetectionEnabled(value bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isconnected
-func (c_ CaptureDevice) IsConnected() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsConnected() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -707,7 +644,7 @@ func (c_ CaptureDevice) IsConnected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isconnected
-func (c_ CaptureDevice) SetIsConnected(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsConnected(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConnected:"), value)
 }
 
@@ -716,7 +653,7 @@ func (c_ CaptureDevice) SetIsConnected(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscontinuitycamera
-func (c_ CaptureDevice) IsContinuityCamera() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsContinuityCamera() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuityCamera"))
 	return rv
 }
@@ -726,7 +663,7 @@ func (c_ CaptureDevice) IsContinuityCamera() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/iscontinuitycamera
-func (c_ CaptureDevice) SetIsContinuityCamera(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsContinuityCamera(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuityCamera:"), value)
 }
 
@@ -735,7 +672,7 @@ func (c_ CaptureDevice) SetIsContinuityCamera(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isfollowingexternalsyncdevice
-func (c_ CaptureDevice) IsFollowingExternalSyncDevice() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsFollowingExternalSyncDevice() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFollowingExternalSyncDevice"))
 	return rv
 }
@@ -745,7 +682,7 @@ func (c_ CaptureDevice) IsFollowingExternalSyncDevice() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isfollowingexternalsyncdevice
-func (c_ CaptureDevice) SetIsFollowingExternalSyncDevice(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsFollowingExternalSyncDevice(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFollowingExternalSyncDevice:"), value)
 }
 
@@ -754,7 +691,7 @@ func (c_ CaptureDevice) SetIsFollowingExternalSyncDevice(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isinusebyanotherapplication
-func (c_ CaptureDevice) IsInUseByAnotherApplication() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsInUseByAnotherApplication() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isInUseByAnotherApplication"))
 	return rv
 }
@@ -764,7 +701,7 @@ func (c_ CaptureDevice) IsInUseByAnotherApplication() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isinusebyanotherapplication
-func (c_ CaptureDevice) SetIsInUseByAnotherApplication(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsInUseByAnotherApplication(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsInUseByAnotherApplication:"), value)
 }
 
@@ -773,7 +710,7 @@ func (c_ CaptureDevice) SetIsInUseByAnotherApplication(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled
-func (c_ CaptureDevice) IsSubjectAreaChangeMonitoringEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsSubjectAreaChangeMonitoringEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSubjectAreaChangeMonitoringEnabled"))
 	return rv
 }
@@ -783,7 +720,7 @@ func (c_ CaptureDevice) IsSubjectAreaChangeMonitoringEnabled() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled
-func (c_ CaptureDevice) SetIsSubjectAreaChangeMonitoringEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsSubjectAreaChangeMonitoringEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSubjectAreaChangeMonitoringEnabled:"), value)
 }
 
@@ -792,7 +729,7 @@ func (c_ CaptureDevice) SetIsSubjectAreaChangeMonitoringEnabled(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issuspended
-func (c_ CaptureDevice) IsSuspended() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsSuspended() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSuspended"))
 	return rv
 }
@@ -802,7 +739,7 @@ func (c_ CaptureDevice) IsSuspended() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/issuspended
-func (c_ CaptureDevice) SetIsSuspended(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsSuspended(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSuspended:"), value)
 }
 
@@ -811,7 +748,7 @@ func (c_ CaptureDevice) SetIsSuspended(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvideoframedurationlocked
-func (c_ CaptureDevice) IsVideoFrameDurationLocked() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsVideoFrameDurationLocked() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoFrameDurationLocked"))
 	return rv
 }
@@ -821,7 +758,7 @@ func (c_ CaptureDevice) IsVideoFrameDurationLocked() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvideoframedurationlocked
-func (c_ CaptureDevice) SetIsVideoFrameDurationLocked(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsVideoFrameDurationLocked(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoFrameDurationLocked:"), value)
 }
 
@@ -830,7 +767,7 @@ func (c_ CaptureDevice) SetIsVideoFrameDurationLocked(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvirtualdevice
-func (c_ CaptureDevice) IsVirtualDevice() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDevice) IsVirtualDevice() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDevice"))
 	return rv
 }
@@ -840,7 +777,7 @@ func (c_ CaptureDevice) IsVirtualDevice() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/isvirtualdevice
-func (c_ CaptureDevice) SetIsVirtualDevice(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDevice) SetIsVirtualDevice(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDevice:"), value)
 }
 
@@ -887,8 +824,8 @@ func (c_ CaptureDevice) SetManufacturer(value objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/minsupportedexternalsyncframeduration
-func (c_ CaptureDevice) MinSupportedExternalSyncFrameDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("minSupportedExternalSyncFrameDuration"))
+func (c_ CaptureDevice) MinSupportedExternalSyncFrameDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("minSupportedExternalSyncFrameDuration"))
 	return rv
 }
 
@@ -897,7 +834,7 @@ func (c_ CaptureDevice) MinSupportedExternalSyncFrameDuration() Time /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/minsupportedexternalsyncframeduration
-func (c_ CaptureDevice) SetMinSupportedExternalSyncFrameDuration(value Time /* not a class type */) {
+func (c_ CaptureDevice) SetMinSupportedExternalSyncFrameDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinSupportedExternalSyncFrameDuration:"), value)
 }
 

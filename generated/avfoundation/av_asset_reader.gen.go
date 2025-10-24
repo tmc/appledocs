@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,14 +35,14 @@ type IAssetReader interface {
 	// properties:
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	Error() Error
-	SetError(value Error)
+	Error() coretelephony.Error
+	SetError(value coretelephony.Error)
 	Outputs() objc.IObject /* cross-framework: AssetReaderOutput */
 	SetOutputs(value objc.IObject /* cross-framework: AssetReaderOutput */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
-	TimeRange() TimeRange /* not a class type */
-	SetTimeRange(value TimeRange /* not a class type */)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
 	// methods:
 }
 
@@ -120,8 +122,8 @@ func (a_ AssetReader) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) Error() Error {
-	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
+func (a_ AssetReader) Error() coretelephony.Error {
+	rv := objc.Send[coretelephony.Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -130,7 +132,7 @@ func (a_ AssetReader) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) SetError(value Error) {
+func (a_ AssetReader) SetError(value coretelephony.Error) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -177,8 +179,8 @@ func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
+func (a_ AssetReader) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -187,7 +189,7 @@ func (a_ AssetReader) TimeRange() TimeRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) SetTimeRange(value TimeRange /* not a class type */) {
+func (a_ AssetReader) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
 

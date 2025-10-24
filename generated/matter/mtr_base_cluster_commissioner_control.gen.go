@@ -30,6 +30,8 @@ type _MTRBaseClusterCommissionerControlClass struct {
 // An interface definition for the [MTRBaseClusterCommissionerControl] class.
 type IMTRBaseClusterCommissionerControl interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 	CommissionNodeWithParamsCompletion(params IMTRCommissionerControlClusterCommissionNodeParams, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
@@ -49,7 +51,11 @@ type IMTRBaseClusterCommissionerControl interface {
 // Cluster Commissioner Control
 //
 // Supports the ability for clients to request the commissioning of themselves or other nodes onto a fabric which the cluster server can commission onto.
+
+
+// Cluster Commissioner Control
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl
 type MTRBaseClusterCommissionerControl struct {
 	MTRGenericBaseCluster
@@ -97,11 +103,11 @@ func NewMTRBaseClusterCommissionerControl() MTRBaseClusterCommissionerControl {
 
 
 
-
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/init(device:endpointID:queue:)
-func NewMTRBaseClusterCommissionerControlWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRBaseClusterCommissionerControl {
+func NewMTRBaseClusterCommissionerControlWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterCommissionerControl {
 	instance := getMTRBaseClusterCommissionerControlClass().Alloc()
 	rv := objc.Send[MTRBaseClusterCommissionerControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -109,123 +115,145 @@ func NewMTRBaseClusterCommissionerControlWithDeviceEndpointIDQueue(device IMTRBa
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeSupportedDeviceCategories(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeSupportedDeviceCategoriesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterCommissionerControlClass) ReadAttributeSupportedDeviceCategoriesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedDeviceCategoriesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
+
 // Command CommissionNode
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/commissionNode(with:completion:)
 func (m_ MTRBaseClusterCommissionerControl) CommissionNodeWithParamsCompletion(params IMTRCommissionerControlClusterCommissionNodeParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("commissionNodeWithParams:completion:"), params, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeAcceptedCommandList(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeAttributeList(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeClusterRevision(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeFeatureMap(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeGeneratedCommandList(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/readAttributeSupportedDeviceCategories(completion:)
 func (m_ MTRBaseClusterCommissionerControl) ReadAttributeSupportedDeviceCategoriesWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeSupportedDeviceCategoriesWithCompletion:"), completion)
 }
 
+
 // Command RequestCommissioningApproval
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/requestCommissioningApproval(with:completion:)
 func (m_ MTRBaseClusterCommissionerControl) RequestCommissioningApprovalWithParamsCompletion(params IMTRCommissionerControlClusterRequestCommissioningApprovalParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("requestCommissioningApprovalWithParams:completion:"), params, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterCommissionerControl/subscribeAttributeSupportedDeviceCategories(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterCommissionerControl) SubscribeAttributeSupportedDeviceCategoriesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeSupportedDeviceCategoriesWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)

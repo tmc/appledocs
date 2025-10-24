@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEventClass struc
 // An interface definition for the [MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent] class.
 type IMTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent
 type MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent struct {
 	objectivec.Object

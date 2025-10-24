@@ -30,15 +30,19 @@ type _MTROtaSoftwareUpdateRequestorClusterProviderLocationClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateRequestorClusterProviderLocation] class.
 type IMTROtaSoftwareUpdateRequestorClusterProviderLocation interface {
 	IMTROTASoftwareUpdateRequestorClusterProviderLocation
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	ProviderNodeID() foundation.Number
-	SetProviderNodeID(value foundation.INumber)
+	// properties:
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	ProviderNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetProviderNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROtaSoftwareUpdateRequestorClusterProviderLocation-yhnm
 type MTROtaSoftwareUpdateRequestorClusterProviderLocation struct {
 	MTROTASoftwareUpdateRequestorClusterProviderLocation
@@ -83,48 +87,48 @@ func NewMTROtaSoftwareUpdateRequestorClusterProviderLocation() MTROtaSoftwareUpd
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/endpoint
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/endpoint
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetEndpoint(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/providernodeid
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) ProviderNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("providerNodeID"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) ProviderNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("providerNodeID"))
 	return rv
 }
 
 
-// SetProviderNodeID sets the value of the providerNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/providernodeid
-func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetProviderNodeID(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterProviderLocation) SetProviderNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderNodeID:"), value)
 }
 

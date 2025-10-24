@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,48 +33,44 @@ type _AudioPlayerClass struct {
 type IAudioPlayer interface {
 	objectivec.IObject
 	// properties:
-	ChannelAssignments() []AudioSessionChannelDescription /* primitive/slice/pointer. */
-	SetChannelAssignments(value []AudioSessionChannelDescription /* primitive/slice/pointer. */)
-	CurrentDevice() string /* primitive/slice/pointer. */
-	SetCurrentDevice(value string /* primitive/slice/pointer. */)
-	CurrentTime() foundation.TimeInterval /* not a class type */
-	SetCurrentTime(value foundation.TimeInterval /* not a class type */)
-	Data() foundation.objc.IObject /* cross-framework: NSData */
+	CurrentDevice() objc.IObject /* cross-framework: NSString */
+	SetCurrentDevice(value objc.IObject /* cross-framework: NSString */)
+	CurrentTime() float64
+	SetCurrentTime(value float64)
+	Data() objc.IObject /* cross-framework: NSData */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DeviceCurrentTime() foundation.TimeInterval /* not a class type */
-	Duration() foundation.TimeInterval /* not a class type */
-	EnableRate() bool /* primitive/slice/pointer. */
-	SetEnableRate(value bool /* primitive/slice/pointer. */)
+	DeviceCurrentTime() float64
+	Duration() float64
+	EnableRate() bool
+	SetEnableRate(value bool)
 	Format() IAVAudioFormat
-	IntendedSpatialExperience() objc.IObject /* cross-framework: SpatialAudioExperience */
-	SetIntendedSpatialExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */)
-	MeteringEnabled() bool /* primitive/slice/pointer. */
-	SetMeteringEnabled(value bool /* primitive/slice/pointer. */)
-	Playing() bool /* primitive/slice/pointer. */
-	NumberOfChannels() uint /* primitive/slice/pointer. */
-	NumberOfLoops() int /* primitive/slice/pointer. */
-	SetNumberOfLoops(value int /* primitive/slice/pointer. */)
-	Pan() float32 /* primitive/slice/pointer. */
-	SetPan(value float32 /* primitive/slice/pointer. */)
-	Rate() float32 /* primitive/slice/pointer. */
-	SetRate(value float32 /* primitive/slice/pointer. */)
-	Settings() foundation.IDictionary /* already interface */
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	Volume() float32 /* primitive/slice/pointer. */
-	SetVolume(value float32 /* primitive/slice/pointer. */)
-	IsMeteringEnabled() bool /* primitive/slice/pointer. */
-	SetIsMeteringEnabled(value bool /* primitive/slice/pointer. */)
-	IsPlaying() bool /* primitive/slice/pointer. */
-	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	MeteringEnabled() bool
+	SetMeteringEnabled(value bool)
+	Playing() bool
+	NumberOfChannels() uint
+	NumberOfLoops() int
+	SetNumberOfLoops(value int)
+	Pan() float32
+	SetPan(value float32)
+	Rate() float32
+	SetRate(value float32)
+	Settings() foundation.IDictionary
+	Url() objc.IObject /* cross-framework: NSURL */
+	Volume() float32
+	SetVolume(value float32)
+	IsMeteringEnabled() bool
+	SetIsMeteringEnabled(value bool)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 	// methods:
-	AveragePowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */
+	AveragePowerForChannel(channelNumber uint) float32
 	Pause()
-	PeakPowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */
-	Play() bool /* primitive/slice/pointer. */
-	PlayAtTime(time foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */
-	PrepareToPlay() bool /* primitive/slice/pointer. */
-	SetVolumeFadeDuration(volume float32 /* primitive/slice/pointer. */, duration foundation.TimeInterval /* not a class type */)
+	PeakPowerForChannel(channelNumber uint) float32
+	Play() bool
+	PlayAtTime(time float64) bool
+	PrepareToPlay() bool
+	SetVolumeFadeDuration(volume float32, duration float64)
 	Stop()
 	UpdateMeters()
 }
@@ -135,7 +132,7 @@ func NewAudioPlayer() AudioPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
-func NewAudioPlayerWithContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, outError)
 	rv.Autorelease()
@@ -147,9 +144,9 @@ func NewAudioPlayerWithContentsOfURLError(url foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:fileTypeHint:)
-func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.objc.IObject /* cross-framework URL */, utiString string /* primitive/slice/pointer. */, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLFileTypeHintError(url objc.IObject /* cross-framework: NSURL */, utiString objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, objc.String(utiString), outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, utiString, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -159,7 +156,7 @@ func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:)
-func NewAudioPlayerWithDataError(data foundation.objc.IObject /* cross-framework NSData */, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithDataError(data objc.IObject /* cross-framework: NSData */, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:error:"), data, outError)
 	rv.Autorelease()
@@ -171,9 +168,9 @@ func NewAudioPlayerWithDataError(data foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:fileTypeHint:)
-func NewAudioPlayerWithDataFileTypeHintError(data foundation.objc.IObject /* cross-framework NSData */, utiString string /* primitive/slice/pointer. */, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithDataFileTypeHintError(data objc.IObject /* cross-framework: NSData */, utiString objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, objc.String(utiString), outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, utiString, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -184,7 +181,7 @@ func NewAudioPlayerWithDataFileTypeHintError(data foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/averagePower(forChannel:)
-func (a_ AudioPlayer) AveragePowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) AveragePowerForChannel(channelNumber uint) float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
 	return rv
 }
@@ -203,7 +200,7 @@ func (a_ AudioPlayer) Pause() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/peakPower(forChannel:)
-func (a_ AudioPlayer) PeakPowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) PeakPowerForChannel(channelNumber uint) float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
 	return rv
 }
@@ -213,7 +210,7 @@ func (a_ AudioPlayer) PeakPowerForChannel(channelNumber uint /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/play()
-func (a_ AudioPlayer) Play() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) Play() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("play"))
 	return rv
 }
@@ -223,7 +220,7 @@ func (a_ AudioPlayer) Play() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/play(atTime:)
-func (a_ AudioPlayer) PlayAtTime(time foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) PlayAtTime(time float64) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("playAtTime:"), time)
 	return rv
 }
@@ -233,7 +230,7 @@ func (a_ AudioPlayer) PlayAtTime(time foundation.TimeInterval /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/prepareToPlay()
-func (a_ AudioPlayer) PrepareToPlay() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) PrepareToPlay() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prepareToPlay"))
 	return rv
 }
@@ -243,7 +240,7 @@ func (a_ AudioPlayer) PrepareToPlay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/setVolume(_:fadeDuration:)
-func (a_ AudioPlayer) SetVolumeFadeDuration(volume float32 /* primitive/slice/pointer. */, duration foundation.TimeInterval /* not a class type */) {
+func (a_ AudioPlayer) SetVolumeFadeDuration(volume float32, duration float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:fadeDuration:"), volume, duration)
 }
 
@@ -266,41 +263,12 @@ func (a_ AudioPlayer) UpdateMeters() {
 }
 
 
-// An array of channel descriptions for the audio player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) ChannelAssignments() []AudioSessionChannelDescription /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]AudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
-	return rv
-}
-
-
-// An array of channel descriptions for the audio player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) SetChannelAssignments(value []AudioSessionChannelDescription /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
-}
-
-
 // The unique identifier of the current audio player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) CurrentDevice() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("currentDevice"))
+func (a_ AudioPlayer) CurrentDevice() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("currentDevice"))
 	return rv
 }
 
@@ -309,8 +277,8 @@ func (a_ AudioPlayer) CurrentDevice() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) SetCurrentDevice(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), objc.String(value))
+func (a_ AudioPlayer) SetCurrentDevice(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), value)
 }
 
 
@@ -318,8 +286,8 @@ func (a_ AudioPlayer) SetCurrentDevice(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
-func (a_ AudioPlayer) CurrentTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("currentTime"))
+func (a_ AudioPlayer) CurrentTime() float64 {
+	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -328,7 +296,7 @@ func (a_ AudioPlayer) CurrentTime() foundation.TimeInterval /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
-func (a_ AudioPlayer) SetCurrentTime(value foundation.TimeInterval /* not a class type */) {
+func (a_ AudioPlayer) SetCurrentTime(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentTime:"), value)
 }
 
@@ -337,7 +305,7 @@ func (a_ AudioPlayer) SetCurrentTime(value foundation.TimeInterval /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/data
-func (a_ AudioPlayer) Data() foundation.objc.IObject /* cross-framework: NSData */ {
+func (a_ AudioPlayer) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("data"))
 	return rv
 }
@@ -366,8 +334,8 @@ func (a_ AudioPlayer) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/deviceCurrentTime
-func (a_ AudioPlayer) DeviceCurrentTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
+func (a_ AudioPlayer) DeviceCurrentTime() float64 {
+	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
 	return rv
 }
 
@@ -376,8 +344,8 @@ func (a_ AudioPlayer) DeviceCurrentTime() foundation.TimeInterval /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/duration
-func (a_ AudioPlayer) Duration() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("duration"))
+func (a_ AudioPlayer) Duration() float64 {
+	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -386,7 +354,7 @@ func (a_ AudioPlayer) Duration() foundation.TimeInterval /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/enableRate
-func (a_ AudioPlayer) EnableRate() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) EnableRate() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enableRate"))
 	return rv
 }
@@ -396,7 +364,7 @@ func (a_ AudioPlayer) EnableRate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/enableRate
-func (a_ AudioPlayer) SetEnableRate(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetEnableRate(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnableRate:"), value)
 }
 
@@ -411,26 +379,11 @@ func (a_ AudioPlayer) Format() IAVAudioFormat {
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/intendedSpatialExperience-6py9z
-func (a_ AudioPlayer) IntendedSpatialExperience() objc.IObject /* cross-framework: SpatialAudioExperience */ {
-	rv := objc.Send[SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/intendedSpatialExperience-6py9z
-func (a_ AudioPlayer) SetIntendedSpatialExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
-}
-
-
 // A Boolean value that indicates whether the player is able to generate audio-level metering data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/isMeteringEnabled
-func (a_ AudioPlayer) MeteringEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) MeteringEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("meteringEnabled"))
 	return rv
 }
@@ -440,7 +393,7 @@ func (a_ AudioPlayer) MeteringEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/isMeteringEnabled
-func (a_ AudioPlayer) SetMeteringEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMeteringEnabled:"), value)
 }
 
@@ -449,7 +402,7 @@ func (a_ AudioPlayer) SetMeteringEnabled(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/isPlaying
-func (a_ AudioPlayer) Playing() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) Playing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("playing"))
 	return rv
 }
@@ -459,7 +412,7 @@ func (a_ AudioPlayer) Playing() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/numberOfChannels
-func (a_ AudioPlayer) NumberOfChannels() uint /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) NumberOfChannels() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("numberOfChannels"))
 	return rv
 }
@@ -469,7 +422,7 @@ func (a_ AudioPlayer) NumberOfChannels() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/numberOfLoops
-func (a_ AudioPlayer) NumberOfLoops() int /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) NumberOfLoops() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfLoops"))
 	return rv
 }
@@ -479,7 +432,7 @@ func (a_ AudioPlayer) NumberOfLoops() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/numberOfLoops
-func (a_ AudioPlayer) SetNumberOfLoops(value int /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetNumberOfLoops(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfLoops:"), value)
 }
 
@@ -488,7 +441,7 @@ func (a_ AudioPlayer) SetNumberOfLoops(value int /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/pan
-func (a_ AudioPlayer) Pan() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) Pan() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("pan"))
 	return rv
 }
@@ -498,7 +451,7 @@ func (a_ AudioPlayer) Pan() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/pan
-func (a_ AudioPlayer) SetPan(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetPan(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPan:"), value)
 }
 
@@ -507,7 +460,7 @@ func (a_ AudioPlayer) SetPan(value float32 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/rate
-func (a_ AudioPlayer) Rate() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) Rate() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rate"))
 	return rv
 }
@@ -517,7 +470,7 @@ func (a_ AudioPlayer) Rate() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/rate
-func (a_ AudioPlayer) SetRate(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -526,7 +479,7 @@ func (a_ AudioPlayer) SetRate(value float32 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/settings
-func (a_ AudioPlayer) Settings() foundation.IDictionary /* already interface */ {
+func (a_ AudioPlayer) Settings() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("settings"))
 	return rv
 }
@@ -536,8 +489,8 @@ func (a_ AudioPlayer) Settings() foundation.IDictionary /* already interface */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/url
-func (a_ AudioPlayer) Url() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
+func (a_ AudioPlayer) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -546,7 +499,7 @@ func (a_ AudioPlayer) Url() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/volume
-func (a_ AudioPlayer) Volume() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) Volume() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -556,7 +509,7 @@ func (a_ AudioPlayer) Volume() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/volume
-func (a_ AudioPlayer) SetVolume(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:"), value)
 }
 
@@ -565,7 +518,7 @@ func (a_ AudioPlayer) SetVolume(value float32 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
-func (a_ AudioPlayer) IsMeteringEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) IsMeteringEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
 	return rv
 }
@@ -575,7 +528,7 @@ func (a_ AudioPlayer) IsMeteringEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/ismeteringenabled
-func (a_ AudioPlayer) SetIsMeteringEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetIsMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
 }
 
@@ -584,7 +537,7 @@ func (a_ AudioPlayer) SetIsMeteringEnabled(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
-func (a_ AudioPlayer) IsPlaying() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayer) IsPlaying() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -594,7 +547,7 @@ func (a_ AudioPlayer) IsPlaying() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayer/isplaying
-func (a_ AudioPlayer) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioPlayer) SetIsPlaying(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 

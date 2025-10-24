@@ -29,18 +29,24 @@ type _PadGradientClass struct {
 
 // An interface definition for the [PadGradient] class.
 type IPadGradient interface {
-	objectivec.IObject
+	ICNNGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient
 type PadGradient struct {
-	objectivec.Object
+	CNNGradientKernel
 }
 
 // PadGradientFrom constructs a [PadGradient] from an unsafe.Pointer.
 func PadGradientFrom(ptr unsafe.Pointer) PadGradient {
-	return PadGradient{objectivec.Object{objc.ID(ptr)}}
+	return PadGradient{
+		CNNGradientKernel: CNNGradientKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -75,7 +81,8 @@ func NewPadGradient() PadGradient {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient/init(device:)
 func NewPadGradientWithDevice(device objectivec.IObject) PadGradient {
 	instance := getPadGradientClass().Alloc()

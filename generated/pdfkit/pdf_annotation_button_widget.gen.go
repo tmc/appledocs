@@ -29,12 +29,18 @@ type _PDFAnnotationButtonWidgetClass struct {
 // An interface definition for the [PDFAnnotationButtonWidget] class.
 type IPDFAnnotationButtonWidget interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object provides user interactivity on a page of a PDF document. There are three types of buttons available: push button, radio button, and checkbox.
 //
 // inherits general annotation behavior from the class. If you use a object, your application must handle hit testing, unless you are simply using to display content. This is because automatically handles hit testing for you.
+
+
+// A object provides user interactivity on a page of a PDF document. There are three types of buttons available: push button, radio button, and checkbox.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationButtonWidget
 type PDFAnnotationButtonWidget struct {
 	PDFAnnotation

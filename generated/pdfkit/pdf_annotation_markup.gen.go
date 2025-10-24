@@ -30,18 +30,24 @@ type _PDFAnnotationMarkupClass struct {
 // An interface definition for the [PDFAnnotationMarkup] class.
 type IPDFAnnotationMarkup interface {
 	IPDFAnnotation
-	Color() appkit.Color
-	SetColor(value appkit.IColor)
+	// properties:
+	Color() objc.IObject /* cross-framework: Color */
+	SetColor(value objc.IObject /* cross-framework: Color */)
 	LineWidth() float64
 	SetLineWidth(value float64)
-	Style() PDFBorderStyle
-	SetStyle(value PDFBorderStyle)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
+	// methods:
 }
 
 // A object appears as highlighting, underlining, or a strikethrough style applied to the text of a document.
 //
 // The and properties of the annotation’s associated object determines the stroke thickness and style. The property of the class determines the stroke color.
+
+
+// A object appears as highlighting, underlining, or a strikethrough style applied to the text of a document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationMarkup
 type PDFAnnotationMarkup struct {
 	PDFAnnotation
@@ -88,26 +94,29 @@ func NewPDFAnnotationMarkup() PDFAnnotationMarkup {
 }
 
 
+
 // Sets the stroke color for the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationMarkup) Color() appkit.Color {
+func (p_ PDFAnnotationMarkup) Color() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // Sets the stroke color for the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationMarkup) SetColor(value appkit.IColor) {
+func (p_ PDFAnnotationMarkup) SetColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
+
 // Sets the line width (in points) for the border.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth
 func (p_ PDFAnnotationMarkup) LineWidth() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("lineWidth"))
@@ -115,30 +124,30 @@ func (p_ PDFAnnotationMarkup) LineWidth() float64 {
 }
 
 
-// SetLineWidth sets the value of the lineWidth property.
 // Sets the line width (in points) for the border.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth
 func (p_ PDFAnnotationMarkup) SetLineWidth(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLineWidth:"), value)
 }
 
+
 // Sets the border style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationMarkup) Style() PDFBorderStyle {
-	rv := objc.Send[PDFBorderStyle](p_.ID, objc.Sel("style"))
+func (p_ PDFAnnotationMarkup) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
 	return rv
 }
 
 
-// SetStyle sets the value of the style property.
 // Sets the border style.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationMarkup) SetStyle(value PDFBorderStyle) {
+func (p_ PDFAnnotationMarkup) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

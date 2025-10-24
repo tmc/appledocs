@@ -30,12 +30,18 @@ type _Point3DClass struct {
 // An interface definition for the [Point3D] class.
 type IPoint3D interface {
 	objectivec.IObject
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents a 3D point in an image.
+
+
+// An object that represents a 3D point in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint3D
 type Point3D struct {
 	objectivec.Object
@@ -80,8 +86,10 @@ func NewPoint3D() Point3D {
 }
 
 
+
 // The three-dimensional position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint3d/position
 func (p_ Point3D) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
@@ -89,10 +97,9 @@ func (p_ Point3D) Position() unsafe.Pointer {
 }
 
 
-// SetPosition sets the value of the position property.
 // The three-dimensional position.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint3d/position
 func (p_ Point3D) SetPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPosition:"), value)

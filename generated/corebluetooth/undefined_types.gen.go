@@ -9,9 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	InputStream = _undefined // referenced in CoreBluetooth
-	OutputStream = _undefined // referenced in CoreBluetooth
-	UUID = _undefined // referenced in CoreBluetooth
 	UUIDRef = _undefined // referenced in CoreBluetooth
 )
 

@@ -30,14 +30,20 @@ type _VZMemoryBalloonDeviceClass struct {
 // An interface definition for the [VZMemoryBalloonDevice] class.
 type IVZMemoryBalloonDevice interface {
 	objectivec.IObject
-	MemoryBalloonDevices() VZMemoryBalloonDeviceConfiguration
+	// properties:
+	MemoryBalloonDevices() IVZMemoryBalloonDeviceConfiguration
 	SetMemoryBalloonDevices(value IVZMemoryBalloonDeviceConfiguration)
+	// methods:
 }
 
 // The common behavior for memory devices.
 //
 // Don’t instantiate this class directly. To request a memory ballon device, add an appropriate configuration object to the property of the object that you use to configure the virtual machine. In response, the system instantiates the subclass of that matches your request. For example, if you supply a object in your configuration, the system creates a object.
+
+
+// The common behavior for memory devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMemoryBalloonDevice
 type VZMemoryBalloonDevice struct {
 	objectivec.Object
@@ -82,19 +88,20 @@ func NewVZMemoryBalloonDevice() VZMemoryBalloonDevice {
 }
 
 
+
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices
-func (v_ VZMemoryBalloonDevice) MemoryBalloonDevices() VZMemoryBalloonDeviceConfiguration {
+func (v_ VZMemoryBalloonDevice) MemoryBalloonDevices() IVZMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[VZMemoryBalloonDeviceConfiguration](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
 }
 
 
-// SetMemoryBalloonDevices sets the value of the memoryBalloonDevices property.
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices
 func (v_ VZMemoryBalloonDevice) SetMemoryBalloonDevices(value IVZMemoryBalloonDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)

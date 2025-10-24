@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SActivityItem] class.
@@ -30,9 +31,9 @@ type _SActivityItemClass struct {
 type ISActivityItem interface {
 	ISObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewSActivityItem() SActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
-func (s_ SActivityItem) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SActivityItem) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (s_ SActivityItem) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SActivityItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (s_ SActivityItem) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (s_ SActivityItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }
 
 

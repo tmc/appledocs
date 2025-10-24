@@ -32,7 +32,6 @@ type IUnit interface {
 	objectivec.IObject
 	// properties:
 	Symbol() IString
-	SetSymbol(value IString)
 	// methods:
 }
 
@@ -92,19 +91,10 @@ func NewUnit() Unit {
 // The symbolic representation of the unit.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unit/symbol
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
 func (u_ Unit) Symbol() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("symbol"))
 	return rv
-}
-
-
-// The symbolic representation of the unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unit/symbol
-func (u_ Unit) SetSymbol(value IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSymbol:"), value)
 }
 
 

@@ -88,4 +88,23 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 
 
 
+// The grams per liter unit of concentration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
+func (uc _UnitConcentrationMassClass) GramsPerLiter() UnitConcentrationMass {
+	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("gramsPerLiter"))
+	return rv
+}
+
+// The grams per liter unit of concentration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
+func (u_ UnitConcentrationMass) GramsPerLiter() IUnitConcentrationMass {
+	rv := objc.Send[UnitConcentrationMass](u_.ID, objc.Sel("gramsPerLiter"))
+	return rv
+}
+
+
 

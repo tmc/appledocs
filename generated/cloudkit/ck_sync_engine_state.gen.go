@@ -34,8 +34,8 @@ type ICKSyncEngineState interface {
 	UserRecordID() objc.IObject /* cross-framework: CKRecordID */
 	SetUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	// methods:
-	AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange /* primitive/slice/pointer. */)
-	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange /* primitive/slice/pointer. */)
+	AddPendingDatabaseChanges(changes []objc.IObject /* cross-framework: CKSyncEnginePendingDatabaseChange */)
+	AddPendingRecordZoneChanges(changes []objc.IObject /* cross-framework: CKSyncEnginePendingRecordZoneChange */)
 }
 
 // An object that manages the sync engine’s state.
@@ -95,7 +95,7 @@ func NewCKSyncEngineState() CKSyncEngineState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:
-func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange /* primitive/slice/pointer. */) {
+func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []objc.IObject /* cross-framework: CKSyncEnginePendingDatabaseChange */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingDatabaseChanges:"), changes)
 }
 
@@ -104,7 +104,7 @@ func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePend
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:
-func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange /* primitive/slice/pointer. */) {
+func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []objc.IObject /* cross-framework: CKSyncEnginePendingRecordZoneChange */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingRecordZoneChanges:"), changes)
 }
 

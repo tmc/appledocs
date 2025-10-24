@@ -5,26 +5,7 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFRunLoopRef is a CoreGraphics opaque type.
-type CFRunLoopRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFTypeRef is a CoreGraphics opaque type.
-type CFTypeRef unsafe.Pointer
 
 
 

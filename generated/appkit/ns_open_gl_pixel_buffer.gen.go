@@ -30,6 +30,8 @@ type _OpenGLPixelBufferClass struct {
 // An interface definition for the [OpenGLPixelBuffer] class.
 type IOpenGLPixelBuffer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that provides access to accelerated offscreen rendering.

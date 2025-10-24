@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [HorizonObservation] class.
@@ -30,15 +30,22 @@ type _HorizonObservationClass struct {
 // An interface definition for the [HorizonObservation] class.
 type IHorizonObservation interface {
 	IObservation
-	TransformForImageWidthHeight(width Iuintptr, height Iuintptr) coregraphics.CGAffineTransform
+	// properties:
 	Angle() float64
-	Transform() coregraphics.CGAffineTransform
+	SetAngle(value float64)
+	Transform() objc.IObject /* cross-framework: AffineTransform */
+	SetTransform(value objc.IObject /* cross-framework: AffineTransform */)
+	// methods:
 }
 
 // The horizon angle information that an image-analysis request detects.
 //
 // Instances of this class result from invoking a , and report the and of the horizon in an image.
+
+
+// The horizon angle information that an image-analysis request detects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHorizonObservation
 type HorizonObservation struct {
 	Observation
@@ -85,28 +92,42 @@ func NewHorizonObservation() HorizonObservation {
 }
 
 
-// Creates an affine transform for the specified image width and height.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHorizonObservation/transform(forImageWidth:height:)
-func (h_ HorizonObservation) TransformForImageWidthHeight(width Iuintptr, height Iuintptr) coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](h_.ID, objc.Sel("transformForImageWidth:height:"), width, height)
-	return rv
-}
 
 // The angle of the observed horizon.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHorizonObservation/angle
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhorizonobservation/angle
 func (h_ HorizonObservation) Angle() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("angle"))
 	return rv
 }
 
+
+// The angle of the observed horizon.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhorizonobservation/angle
+func (h_ HorizonObservation) SetAngle(value float64) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAngle:"), value)
+}
+
+
 // The transform to apply to the detected horizon.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHorizonObservation/transform
-func (h_ HorizonObservation) Transform() coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](h_.ID, objc.Sel("transform"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhorizonobservation/transform
+func (h_ HorizonObservation) Transform() objc.IObject /* cross-framework: AffineTransform */ {
+	rv := objc.Send[corefoundation.AffineTransform](h_.ID, objc.Sel("transform"))
 	return rv
+}
+
+
+// The transform to apply to the detected horizon.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnhorizonobservation/transform
+func (h_ HorizonObservation) SetTransform(value objc.IObject /* cross-framework: AffineTransform */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setTransform:"), value)
 }
 
 

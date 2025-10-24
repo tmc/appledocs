@@ -31,13 +31,17 @@ type _MTRGroupKeyManagementClusterKeySetReadResponseParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetReadResponseParams] class.
 type IMTRGroupKeyManagementClusterKeySetReadResponseParams interface {
 	objectivec.IObject
-	GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct
+	// properties:
+	GroupKeySet() IMTRGroupKeyManagementClusterGroupKeySetStruct
 	SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterKeySetReadResponseParams
 type MTRGroupKeyManagementClusterKeySetReadResponseParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRGroupKeyManagementClusterKeySetReadResponseParams() MTRGroupKeyManage
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadresponseparams/groupkeyset
-func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct {
+func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) GroupKeySet() IMTRGroupKeyManagementClusterGroupKeySetStruct {
 	rv := objc.Send[MTRGroupKeyManagementClusterGroupKeySetStruct](m_.ID, objc.Sel("groupKeySet"))
 	return rv
 }
 
 
-// SetGroupKeySet sets the value of the groupKeySet property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadresponseparams/groupkeyset
 func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySet:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

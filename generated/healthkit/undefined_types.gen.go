@@ -11,22 +11,9 @@ type _undefined = int
 type (
 	Answer = _undefined // referenced in HealthKit
 	Association = _undefined // referenced in HealthKit
-	Bool = _undefined // referenced in HealthKit
 	Classification = _undefined // referenced in HealthKit
 	Date = _undefined // referenced in HealthKit
 	DateComponents = _undefined // referenced in HealthKit
-	HKActivityMoveMode = _undefined // referenced in HealthKit
-	HKFHIRResourceType = _undefined // referenced in HealthKit
-	HKFHIRVersion = _undefined // referenced in HealthKit
-	HKLiveWorkoutBuilderDelegate = _undefined // referenced in HealthKit
-	HKPrismBase = _undefined // referenced in HealthKit
-	HKQuantityAggregationStyle = _undefined // referenced in HealthKit
-	HKVisionEye = _undefined // referenced in HealthKit
-	HKVisionPrescriptionType = _undefined // referenced in HealthKit
-	HKWorkoutEventType = _undefined // referenced in HealthKit
-	HKWorkoutSessionDelegate = _undefined // referenced in HealthKit
-	HKWorkoutSessionLocationType = _undefined // referenced in HealthKit
-	HKWorkoutSwimmingLocationType = _undefined // referenced in HealthKit
 	Kind = _undefined // referenced in HealthKit
 	Label = _undefined // referenced in HealthKit
 	LogStatus = _undefined // referenced in HealthKit
@@ -34,7 +21,6 @@ type (
 	ScheduleType = _undefined // referenced in HealthKit
 	SymptomsStatus = _undefined // referenced in HealthKit
 	ValenceClassification = _undefined // referenced in HealthKit
-	Void = _undefined // referenced in HealthKit
 	WorkoutPlan = _undefined // referenced in HealthKit
 )
 

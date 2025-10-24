@@ -31,13 +31,17 @@ type _MTRRVCCleanModeClusterModeTagStructClass struct {
 // An interface definition for the [MTRRVCCleanModeClusterModeTagStruct] class.
 type IMTRRVCCleanModeClusterModeTagStruct interface {
 	objectivec.IObject
-	MfgCode() foundation.Number
-	SetMfgCode(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	MfgCode() objc.IObject /* cross-framework: NSNumber */
+	SetMfgCode(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCCleanModeClusterModeTagStruct
 type MTRRVCCleanModeClusterModeTagStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRRVCCleanModeClusterModeTagStruct() MTRRVCCleanModeClusterModeTagStruc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodetagstruct/mfgcode
-func (m_ MTRRVCCleanModeClusterModeTagStruct) MfgCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRRVCCleanModeClusterModeTagStruct) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
 
-// SetMfgCode sets the value of the mfgCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodetagstruct/mfgcode
-func (m_ MTRRVCCleanModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
+func (m_ MTRRVCCleanModeClusterModeTagStruct) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodetagstruct/value
-func (m_ MTRRVCCleanModeClusterModeTagStruct) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRRVCCleanModeClusterModeTagStruct) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodetagstruct/value
-func (m_ MTRRVCCleanModeClusterModeTagStruct) SetValue(value foundation.INumber) {
+func (m_ MTRRVCCleanModeClusterModeTagStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

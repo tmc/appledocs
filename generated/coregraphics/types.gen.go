@@ -6,7 +6,6 @@ import (
 )
 
 
-
 // C struct types
 // CGBitmapParameters
 //
@@ -139,8 +138,8 @@ type CGPatternCallbacks struct {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScreenUpdateMoveDelta
 type CGScreenUpdateMoveDelta struct {
-	DX unsafe.Pointer
-	DY unsafe.Pointer
+	DX int32
+	DY int32
 }
 
 

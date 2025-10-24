@@ -31,10 +31,10 @@ type _ImageAreaMaxClass struct {
 type IImageAreaMax interface {
 	IUnaryImageKernel
 	// properties:
-	KernelHeight() int /* primitive/slice/pointer. */
-	SetKernelHeight(value int /* primitive/slice/pointer. */)
-	KernelWidth() int /* primitive/slice/pointer. */
-	SetKernelWidth(value int /* primitive/slice/pointer. */)
+	KernelHeight() int
+	SetKernelHeight(value int)
+	KernelWidth() int
+	SetKernelWidth(value int)
 	EdgeMode() ImageEdgeMode
 	SetEdgeMode(value ImageEdgeMode)
 	// methods:
@@ -99,7 +99,7 @@ func NewImageAreaMax() ImageAreaMax {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageAreaMax/init(device:kernelWidth:kernelHeight:)
-func NewImageAreaMaxWithDeviceKernelWidthKernelHeight(device objectivec.IObject, kernelWidth uint /* primitive/slice/pointer. */, kernelHeight uint /* primitive/slice/pointer. */) ImageAreaMax {
+func NewImageAreaMaxWithDeviceKernelWidthKernelHeight(device objectivec.IObject, kernelWidth uint, kernelHeight uint) ImageAreaMax {
 	instance := getImageAreaMaxClass().Alloc()
 	rv := objc.Send[ImageAreaMax](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:"), device, kernelWidth, kernelHeight)
 	rv.Autorelease()
@@ -112,7 +112,7 @@ func NewImageAreaMaxWithDeviceKernelWidthKernelHeight(device objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax/kernelheight
-func (i_ ImageAreaMax) KernelHeight() int /* primitive/slice/pointer. */ {
+func (i_ ImageAreaMax) KernelHeight() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("kernelHeight"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (i_ ImageAreaMax) KernelHeight() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax/kernelheight
-func (i_ ImageAreaMax) SetKernelHeight(value int /* primitive/slice/pointer. */) {
+func (i_ ImageAreaMax) SetKernelHeight(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelHeight:"), value)
 }
 
@@ -131,7 +131,7 @@ func (i_ ImageAreaMax) SetKernelHeight(value int /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax/kernelwidth
-func (i_ ImageAreaMax) KernelWidth() int /* primitive/slice/pointer. */ {
+func (i_ ImageAreaMax) KernelWidth() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("kernelWidth"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (i_ ImageAreaMax) KernelWidth() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax/kernelwidth
-func (i_ ImageAreaMax) SetKernelWidth(value int /* primitive/slice/pointer. */) {
+func (i_ ImageAreaMax) SetKernelWidth(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setKernelWidth:"), value)
 }
 

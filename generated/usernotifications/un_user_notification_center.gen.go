@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,6 +31,12 @@ type _UNUserNotificationCenterClass struct {
 // An interface definition for the [UNUserNotificationCenter] class.
 type IUNUserNotificationCenter interface {
 	objectivec.IObject
+	// properties:
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	SupportsContentExtensions() bool
+	UNErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
 	AddNotificationRequestWithCompletionHandler(request IUNNotificationRequest, completionHandler unsafe.Pointer)
 	GetDeliveredNotificationsWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetNotificationCategoriesWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -42,16 +49,16 @@ type IUNUserNotificationCenter interface {
 	RequestAuthorizationWithOptionsCompletionHandler(options UNAuthorizationOptions, completionHandler unsafe.Pointer)
 	SetBadgeCountWithCompletionHandler(newBadgeCount int, completionHandler unsafe.Pointer)
 	SetNotificationCategories(categories unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	SupportsContentExtensions() bool
-	UNErrorDomain() string
 }
 
 // The central object for managing notification-related activities for your app or app extension.
 //
 // Use the shared object to manage all notification-related behaviors in your app or app extension. Specifically, use this object to do the following: Request authorization to interact with the user through alerts, sounds, and icon badges. See . Declare the notification types that your app supports and the custom actions the user may perform when the system delivers those notifications. See . Schedule the delivery of notifications from your app. See . Process the payloads from remote notifications the system delivers by Apple Push Notification service (APNs). See . Manage the already delivered notifications the system displays in Notification Center. See Managing Delivered Notifications. Handle user-selected actions associated with your custom notification types. See . Get the notification-related settings for your app. See Managing Settings and Authorization. To handle incoming notifications and notification-related actions, create an object that adopts the protocol and assign it to the property. Always assign an object to the property before performing any tasks that might interact with that delegate. You may use the shared user notification center object simultaneously from any of your app’s threads. The object processes requests serially in the order that the system initiates them.
+
+
+// The central object for managing notification-related activities for your app or app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter
 type UNUserNotificationCenter struct {
 	objectivec.Object
@@ -96,100 +103,128 @@ func NewUNUserNotificationCenter() UNUserNotificationCenter {
 }
 
 
+
 // Returns your app’s notification center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/current()
 func (uc _UNUserNotificationCenterClass) CurrentNotificationCenter() UNUserNotificationCenter {
 	rv := objc.Send[UNUserNotificationCenter](objc.ID(uc.class), objc.Sel("currentNotificationCenter"))
 	return rv
 }
 
+
 // Schedules the delivery of a local notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)
 func (u_ UNUserNotificationCenter) AddNotificationRequestWithCompletionHandler(request IUNNotificationRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addNotificationRequest:withCompletionHandler:"), request, completionHandler)
 }
 
+
 // Fetches all of your app’s delivered notifications that are still present in Notification Center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/getDeliveredNotifications(completionHandler:)
 func (u_ UNUserNotificationCenter) GetDeliveredNotificationsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getDeliveredNotificationsWithCompletionHandler:"), completionHandler)
 }
 
+
 // Fetches your app’s registered notification categories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/getNotificationCategories(completionHandler:)
 func (u_ UNUserNotificationCenter) GetNotificationCategoriesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getNotificationCategoriesWithCompletionHandler:"), completionHandler)
 }
 
+
 // Retrieves the authorization and feature-related settings for your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)
 func (u_ UNUserNotificationCenter) GetNotificationSettingsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getNotificationSettingsWithCompletionHandler:"), completionHandler)
 }
 
+
 // Fetches all of your app’s local notifications that are pending delivery.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/getPendingNotificationRequests(completionHandler:)
 func (u_ UNUserNotificationCenter) GetPendingNotificationRequestsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getPendingNotificationRequestsWithCompletionHandler:"), completionHandler)
 }
 
+
 // Removes all of your app’s delivered notifications from Notification Center.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removeAllDeliveredNotifications()
 func (u_ UNUserNotificationCenter) RemoveAllDeliveredNotifications() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllDeliveredNotifications"))
 }
 
+
 // Removes all of your app’s pending local notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removeAllPendingNotificationRequests()
 func (u_ UNUserNotificationCenter) RemoveAllPendingNotificationRequests() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllPendingNotificationRequests"))
 }
 
+
 // Removes your app’s notifications from Notification Center that match the specified identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)
 func (u_ UNUserNotificationCenter) RemoveDeliveredNotificationsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotificationsWithIdentifiers:"), identifiers)
 }
 
+
 // Removes your app’s local notifications that are pending and match the specified identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)
 func (u_ UNUserNotificationCenter) RemovePendingNotificationRequestsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removePendingNotificationRequestsWithIdentifiers:"), identifiers)
 }
 
+
 // Requests a person’s authorization to allow local and remote notifications for your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)
 func (u_ UNUserNotificationCenter) RequestAuthorizationWithOptionsCompletionHandler(options UNAuthorizationOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("requestAuthorizationWithOptions:completionHandler:"), options, completionHandler)
 }
 
+
 // Updates the badge count for your app’s icon.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/setBadgeCount(_:withCompletionHandler:)
 func (u_ UNUserNotificationCenter) SetBadgeCountWithCompletionHandler(newBadgeCount int, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setBadgeCount:withCompletionHandler:"), newBadgeCount, completionHandler)
 }
 
+
 // Registers the notification categories that your app supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/setNotificationCategories(_:)
 func (u_ UNUserNotificationCenter) SetNotificationCategories(categories unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNotificationCategories:"), categories)
 }
 
+
 // The notification center’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/delegate
 func (u_ UNUserNotificationCenter) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
@@ -197,28 +232,31 @@ func (u_ UNUserNotificationCenter) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The notification center’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/delegate
 func (u_ UNUserNotificationCenter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the device supports notification content extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions
 func (u_ UNUserNotificationCenter) SupportsContentExtensions() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContentExtensions"))
 	return rv
 }
 
+
 // The error domain for notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unerrordomain
-func (u_ UNUserNotificationCenter) UNErrorDomain() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNErrorDomain"))
+func (u_ UNUserNotificationCenter) UNErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("UNErrorDomain"))
 	return rv
 }
 

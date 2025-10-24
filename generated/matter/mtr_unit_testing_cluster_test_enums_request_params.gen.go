@@ -31,17 +31,21 @@ type _MTRUnitTestingClusterTestEnumsRequestParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEnumsRequestParams] class.
 type IMTRUnitTestingClusterTestEnumsRequestParams interface {
 	objectivec.IObject
-	Arg1() foundation.Number
-	SetArg1(value foundation.INumber)
-	Arg2() foundation.Number
-	SetArg2(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Arg1() objc.IObject /* cross-framework: NSNumber */
+	SetArg1(value objc.IObject /* cross-framework: NSNumber */)
+	Arg2() objc.IObject /* cross-framework: NSNumber */
+	SetArg2(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEnumsRequestParams
 type MTRUnitTestingClusterTestEnumsRequestParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRUnitTestingClusterTestEnumsRequestParams() MTRUnitTestingClusterTestE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg1(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg2
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) Arg2() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg2"))
 	return rv
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/arg2
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg2(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEnumsRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -34,10 +34,10 @@ type IXMLDocument interface {
 	SetCharacterEncoding(value IString)
 	DocumentContentKind() unsafe.Pointer
 	SetDocumentContentKind(value unsafe.Pointer)
-	Dtd() IXMLDTD
-	SetDtd(value IXMLDTD)
-	IsStandalone() bool /* primitive/slice/pointer. */
-	SetIsStandalone(value bool /* primitive/slice/pointer. */)
+	Dtd() objc.IObject /* cross-framework: XMLDTD */
+	SetDtd(value objc.IObject /* cross-framework: XMLDTD */)
+	IsStandalone() bool
+	SetIsStandalone(value bool)
 	MimeType() IString
 	SetMimeType(value IString)
 	Version() IString
@@ -144,7 +144,7 @@ func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) Dtd() IXMLDTD {
+func (x_ XMLDocument) Dtd() objc.IObject /* cross-framework: XMLDTD */ {
 	rv := objc.Send[XMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (x_ XMLDocument) Dtd() IXMLDTD {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) SetDtd(value IXMLDTD) {
+func (x_ XMLDocument) SetDtd(value objc.IObject /* cross-framework: XMLDTD */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
@@ -163,7 +163,7 @@ func (x_ XMLDocument) SetDtd(value IXMLDTD) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer. */ {
+func (x_ XMLDocument) IsStandalone() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLDocument) SetIsStandalone(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
 }
 

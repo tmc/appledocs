@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEDNSProxyProviderProtocol] class.
@@ -29,14 +30,20 @@ type _NEDNSProxyProviderProtocolClass struct {
 // An interface definition for the [NEDNSProxyProviderProtocol] class.
 type INEDNSProxyProviderProtocol interface {
 	INEVPNProtocol
-	ProviderBundleIdentifier() string
-	SetProviderBundleIdentifier(value string)
-	ProviderConfiguration() string
-	SetProviderConfiguration(value string)
+	// properties:
+	ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ProviderConfiguration() objc.IObject /* cross-framework: NSString */
+	SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // Configuration parameters for a DNS proxy.
+
+
+// Configuration parameters for a DNS proxy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyProviderProtocol
 type NEDNSProxyProviderProtocol struct {
 	NEVPNProtocol
@@ -83,40 +90,42 @@ func NewNEDNSProxyProviderProtocol() NEDNSProxyProviderProtocol {
 }
 
 
+
 // A string containing the bundle identifier of the proxy provider to be used by this configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
-func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEDNSProxyProviderProtocol) ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
 
-// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
 // A string containing the bundle identifier of the proxy provider to be used by this configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerbundleidentifier
-func (n_ NEDNSProxyProviderProtocol) SetProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEDNSProxyProviderProtocol) SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
 }
+
 
 // A dictionary containing vendor-specific configuration parameters for a proxy provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
-func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEDNSProxyProviderProtocol) ProviderConfiguration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
 
-// SetProviderConfiguration sets the value of the providerConfiguration property.
 // A dictionary containing vendor-specific configuration parameters for a proxy provider.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol/providerconfiguration
-func (n_ NEDNSProxyProviderProtocol) SetProviderConfiguration(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+func (n_ NEDNSProxyProviderProtocol) SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
 
 

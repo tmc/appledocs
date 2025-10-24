@@ -29,13 +29,17 @@ type _GramMatrixCalculationNodeClass struct {
 // An interface definition for the [GramMatrixCalculationNode] class.
 type IGramMatrixCalculationNode interface {
 	IFilterNode
+	// properties:
 	PropertyCallBack() objc.ID
 	SetPropertyCallBack(value objc.ID)
 	Alpha() float32
 	SetAlpha(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode
 type GramMatrixCalculationNode struct {
 	FilterNode
@@ -80,7 +84,8 @@ func NewGramMatrixCalculationNode() GramMatrixCalculationNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/init(source:)
 func NewGramMatrixCalculationNodeWithSource(sourceNode IMPSNNImageNode) GramMatrixCalculationNode {
 	instance := getGramMatrixCalculationNodeClass().Alloc()
@@ -90,14 +95,16 @@ func NewGramMatrixCalculationNodeWithSource(sourceNode IMPSNNImageNode) GramMatr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/nodeWithSource:alpha:
 func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IMPSNNImageNode, alpha float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithSource:alpha:"), sourceNode, alpha)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
 func (g_ GramMatrixCalculationNode) PropertyCallBack() objc.ID {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("propertyCallBack"))
@@ -105,14 +112,14 @@ func (g_ GramMatrixCalculationNode) PropertyCallBack() objc.ID {
 }
 
 
-// SetPropertyCallBack sets the value of the propertyCallBack property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
 func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPropertyCallBack:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
 func (g_ GramMatrixCalculationNode) Alpha() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
@@ -120,8 +127,7 @@ func (g_ GramMatrixCalculationNode) Alpha() float32 {
 }
 
 
-// SetAlpha sets the value of the alpha property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
 func (g_ GramMatrixCalculationNode) SetAlpha(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)

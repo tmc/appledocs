@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,46 +35,46 @@ type IAudioConverter interface {
 	// properties:
 	DynamicRangeControlConfiguration() AudioDynamicRangeControlConfiguration
 	SetDynamicRangeControlConfiguration(value AudioDynamicRangeControlConfiguration)
-	ApplicableEncodeBitRates() foundation.objc.IObject /* cross-framework: Number */
-	SetApplicableEncodeBitRates(value foundation.objc.IObject /* cross-framework: Number */)
-	ApplicableEncodeSampleRates() foundation.objc.IObject /* cross-framework: Number */
-	SetApplicableEncodeSampleRates(value foundation.objc.IObject /* cross-framework: Number */)
-	AudioSyncPacketFrequency() int /* primitive/slice/pointer. */
-	SetAudioSyncPacketFrequency(value int /* primitive/slice/pointer. */)
-	AvailableEncodeBitRates() foundation.objc.IObject /* cross-framework: Number */
-	SetAvailableEncodeBitRates(value foundation.objc.IObject /* cross-framework: Number */)
-	AvailableEncodeChannelLayoutTags() foundation.objc.IObject /* cross-framework: Number */
-	SetAvailableEncodeChannelLayoutTags(value foundation.objc.IObject /* cross-framework: Number */)
-	AvailableEncodeSampleRates() foundation.objc.IObject /* cross-framework: Number */
-	SetAvailableEncodeSampleRates(value foundation.objc.IObject /* cross-framework: Number */)
-	BitRate() int /* primitive/slice/pointer. */
-	SetBitRate(value int /* primitive/slice/pointer. */)
-	BitRateStrategy() string /* primitive/slice/pointer. */
-	SetBitRateStrategy(value string /* primitive/slice/pointer. */)
-	ChannelMap() foundation.objc.IObject /* cross-framework: Number */
-	SetChannelMap(value foundation.objc.IObject /* cross-framework: Number */)
+	ApplicableEncodeBitRates() objc.IObject /* cross-framework: NSNumber */
+	SetApplicableEncodeBitRates(value objc.IObject /* cross-framework: NSNumber */)
+	ApplicableEncodeSampleRates() objc.IObject /* cross-framework: NSNumber */
+	SetApplicableEncodeSampleRates(value objc.IObject /* cross-framework: NSNumber */)
+	AudioSyncPacketFrequency() int
+	SetAudioSyncPacketFrequency(value int)
+	AvailableEncodeBitRates() objc.IObject /* cross-framework: NSNumber */
+	SetAvailableEncodeBitRates(value objc.IObject /* cross-framework: NSNumber */)
+	AvailableEncodeChannelLayoutTags() objc.IObject /* cross-framework: NSNumber */
+	SetAvailableEncodeChannelLayoutTags(value objc.IObject /* cross-framework: NSNumber */)
+	AvailableEncodeSampleRates() objc.IObject /* cross-framework: NSNumber */
+	SetAvailableEncodeSampleRates(value objc.IObject /* cross-framework: NSNumber */)
+	BitRate() int
+	SetBitRate(value int)
+	BitRateStrategy() objc.IObject /* cross-framework: NSString */
+	SetBitRateStrategy(value objc.IObject /* cross-framework: NSString */)
+	ChannelMap() objc.IObject /* cross-framework: NSNumber */
+	SetChannelMap(value objc.IObject /* cross-framework: NSNumber */)
 	ContentSource() AudioContentSource
 	SetContentSource(value AudioContentSource)
-	Dither() bool /* primitive/slice/pointer. */
-	SetDither(value bool /* primitive/slice/pointer. */)
-	Downmix() bool /* primitive/slice/pointer. */
-	SetDownmix(value bool /* primitive/slice/pointer. */)
+	Dither() bool
+	SetDither(value bool)
+	Downmix() bool
+	SetDownmix(value bool)
 	InputFormat() IAVAudioFormat
 	SetInputFormat(value IAVAudioFormat)
-	MagicCookie() foundation.objc.IObject /* cross-framework: Data */
-	SetMagicCookie(value foundation.objc.IObject /* cross-framework: Data */)
-	MaximumOutputPacketSize() int /* primitive/slice/pointer. */
-	SetMaximumOutputPacketSize(value int /* primitive/slice/pointer. */)
+	MagicCookie() objc.IObject /* cross-framework: Data */
+	SetMagicCookie(value objc.IObject /* cross-framework: Data */)
+	MaximumOutputPacketSize() int
+	SetMaximumOutputPacketSize(value int)
 	OutputFormat() IAVAudioFormat
 	SetOutputFormat(value IAVAudioFormat)
-	PrimeInfo() AudioConverterPrimeInfo /* not a class type */
-	SetPrimeInfo(value AudioConverterPrimeInfo /* not a class type */)
+	PrimeInfo() objc.IObject /* cross-framework: AudioConverterPrimeInfo */
+	SetPrimeInfo(value objc.IObject /* cross-framework: AudioConverterPrimeInfo */)
 	PrimeMethod() AudioConverterPrimeMethod /* not a class type */
 	SetPrimeMethod(value AudioConverterPrimeMethod /* not a class type */)
-	SampleRateConverterAlgorithm() string /* primitive/slice/pointer. */
-	SetSampleRateConverterAlgorithm(value string /* primitive/slice/pointer. */)
-	SampleRateConverterQuality() int /* primitive/slice/pointer. */
-	SetSampleRateConverterQuality(value int /* primitive/slice/pointer. */)
+	SampleRateConverterAlgorithm() objc.IObject /* cross-framework: NSString */
+	SetSampleRateConverterAlgorithm(value objc.IObject /* cross-framework: NSString */)
+	SampleRateConverterQuality() int
+	SetSampleRateConverterQuality(value int)
 	// methods:
 	ConvertToBufferErrorWithInputFromBlock(outputBuffer IAVAudioBuffer, outError unsafe.Pointer, inputBlock AudioConverterInputBlock /* not a class type */) AudioConverterOutputStatus /* not a class type */
 }
@@ -160,8 +161,8 @@ func (a_ AudioConverter) SetDynamicRangeControlConfiguration(value AudioDynamicR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodebitrates
-func (a_ AudioConverter) ApplicableEncodeBitRates() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("applicableEncodeBitRates"))
+func (a_ AudioConverter) ApplicableEncodeBitRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("applicableEncodeBitRates"))
 	return rv
 }
 
@@ -170,7 +171,7 @@ func (a_ AudioConverter) ApplicableEncodeBitRates() foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodebitrates
-func (a_ AudioConverter) SetApplicableEncodeBitRates(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetApplicableEncodeBitRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicableEncodeBitRates:"), value)
 }
 
@@ -179,8 +180,8 @@ func (a_ AudioConverter) SetApplicableEncodeBitRates(value foundation.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodesamplerates
-func (a_ AudioConverter) ApplicableEncodeSampleRates() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("applicableEncodeSampleRates"))
+func (a_ AudioConverter) ApplicableEncodeSampleRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("applicableEncodeSampleRates"))
 	return rv
 }
 
@@ -189,14 +190,14 @@ func (a_ AudioConverter) ApplicableEncodeSampleRates() foundation.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/applicableencodesamplerates
-func (a_ AudioConverter) SetApplicableEncodeSampleRates(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetApplicableEncodeSampleRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicableEncodeSampleRates:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/audiosyncpacketfrequency
-func (a_ AudioConverter) AudioSyncPacketFrequency() int /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) AudioSyncPacketFrequency() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("audioSyncPacketFrequency"))
 	return rv
 }
@@ -204,7 +205,7 @@ func (a_ AudioConverter) AudioSyncPacketFrequency() int /* primitive/slice/point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/audiosyncpacketfrequency
-func (a_ AudioConverter) SetAudioSyncPacketFrequency(value int /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetAudioSyncPacketFrequency(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioSyncPacketFrequency:"), value)
 }
 
@@ -213,8 +214,8 @@ func (a_ AudioConverter) SetAudioSyncPacketFrequency(value int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodebitrates
-func (a_ AudioConverter) AvailableEncodeBitRates() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeBitRates"))
+func (a_ AudioConverter) AvailableEncodeBitRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("availableEncodeBitRates"))
 	return rv
 }
 
@@ -223,7 +224,7 @@ func (a_ AudioConverter) AvailableEncodeBitRates() foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodebitrates
-func (a_ AudioConverter) SetAvailableEncodeBitRates(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetAvailableEncodeBitRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeBitRates:"), value)
 }
 
@@ -232,8 +233,8 @@ func (a_ AudioConverter) SetAvailableEncodeBitRates(value foundation.objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodechannellayouttags
-func (a_ AudioConverter) AvailableEncodeChannelLayoutTags() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeChannelLayoutTags"))
+func (a_ AudioConverter) AvailableEncodeChannelLayoutTags() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("availableEncodeChannelLayoutTags"))
 	return rv
 }
 
@@ -242,7 +243,7 @@ func (a_ AudioConverter) AvailableEncodeChannelLayoutTags() foundation.objc.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodechannellayouttags
-func (a_ AudioConverter) SetAvailableEncodeChannelLayoutTags(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetAvailableEncodeChannelLayoutTags(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeChannelLayoutTags:"), value)
 }
 
@@ -251,8 +252,8 @@ func (a_ AudioConverter) SetAvailableEncodeChannelLayoutTags(value foundation.ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodesamplerates
-func (a_ AudioConverter) AvailableEncodeSampleRates() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("availableEncodeSampleRates"))
+func (a_ AudioConverter) AvailableEncodeSampleRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("availableEncodeSampleRates"))
 	return rv
 }
 
@@ -261,7 +262,7 @@ func (a_ AudioConverter) AvailableEncodeSampleRates() foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/availableencodesamplerates
-func (a_ AudioConverter) SetAvailableEncodeSampleRates(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetAvailableEncodeSampleRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableEncodeSampleRates:"), value)
 }
 
@@ -270,7 +271,7 @@ func (a_ AudioConverter) SetAvailableEncodeSampleRates(value foundation.objc.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitrate
-func (a_ AudioConverter) BitRate() int /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) BitRate() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("bitRate"))
 	return rv
 }
@@ -280,7 +281,7 @@ func (a_ AudioConverter) BitRate() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitrate
-func (a_ AudioConverter) SetBitRate(value int /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetBitRate(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRate:"), value)
 }
 
@@ -289,8 +290,8 @@ func (a_ AudioConverter) SetBitRate(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-func (a_ AudioConverter) BitRateStrategy() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("bitRateStrategy"))
+func (a_ AudioConverter) BitRateStrategy() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("bitRateStrategy"))
 	return rv
 }
 
@@ -299,8 +300,8 @@ func (a_ AudioConverter) BitRateStrategy() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/bitratestrategy
-func (a_ AudioConverter) SetBitRateStrategy(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRateStrategy:"), objc.String(value))
+func (a_ AudioConverter) SetBitRateStrategy(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBitRateStrategy:"), value)
 }
 
 
@@ -308,8 +309,8 @@ func (a_ AudioConverter) SetBitRateStrategy(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/channelmap
-func (a_ AudioConverter) ChannelMap() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("channelMap"))
+func (a_ AudioConverter) ChannelMap() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](a_.ID, objc.Sel("channelMap"))
 	return rv
 }
 
@@ -318,7 +319,7 @@ func (a_ AudioConverter) ChannelMap() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/channelmap
-func (a_ AudioConverter) SetChannelMap(value foundation.objc.IObject /* cross-framework: Number */) {
+func (a_ AudioConverter) SetChannelMap(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelMap:"), value)
 }
 
@@ -342,7 +343,7 @@ func (a_ AudioConverter) SetContentSource(value AudioContentSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dither
-func (a_ AudioConverter) Dither() bool /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) Dither() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("dither"))
 	return rv
 }
@@ -352,7 +353,7 @@ func (a_ AudioConverter) Dither() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/dither
-func (a_ AudioConverter) SetDither(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetDither(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDither:"), value)
 }
 
@@ -361,7 +362,7 @@ func (a_ AudioConverter) SetDither(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/downmix
-func (a_ AudioConverter) Downmix() bool /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) Downmix() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("downmix"))
 	return rv
 }
@@ -371,7 +372,7 @@ func (a_ AudioConverter) Downmix() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/downmix
-func (a_ AudioConverter) SetDownmix(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetDownmix(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDownmix:"), value)
 }
 
@@ -399,7 +400,7 @@ func (a_ AudioConverter) SetInputFormat(value IAVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/magiccookie
-func (a_ AudioConverter) MagicCookie() foundation.objc.IObject /* cross-framework: Data */ {
+func (a_ AudioConverter) MagicCookie() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("magicCookie"))
 	return rv
 }
@@ -409,7 +410,7 @@ func (a_ AudioConverter) MagicCookie() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/magiccookie
-func (a_ AudioConverter) SetMagicCookie(value foundation.objc.IObject /* cross-framework: Data */) {
+func (a_ AudioConverter) SetMagicCookie(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMagicCookie:"), value)
 }
 
@@ -418,7 +419,7 @@ func (a_ AudioConverter) SetMagicCookie(value foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/maximumoutputpacketsize
-func (a_ AudioConverter) MaximumOutputPacketSize() int /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) MaximumOutputPacketSize() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("maximumOutputPacketSize"))
 	return rv
 }
@@ -428,7 +429,7 @@ func (a_ AudioConverter) MaximumOutputPacketSize() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/maximumoutputpacketsize
-func (a_ AudioConverter) SetMaximumOutputPacketSize(value int /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetMaximumOutputPacketSize(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumOutputPacketSize:"), value)
 }
 
@@ -456,8 +457,8 @@ func (a_ AudioConverter) SetOutputFormat(value IAVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primeinfo
-func (a_ AudioConverter) PrimeInfo() AudioConverterPrimeInfo /* not a class type */ {
-	rv := objc.Send[AudioConverterPrimeInfo](a_.ID, objc.Sel("primeInfo"))
+func (a_ AudioConverter) PrimeInfo() objc.IObject /* cross-framework: AudioConverterPrimeInfo */ {
+	rv := objc.Send[audiotoolbox.AudioConverterPrimeInfo](a_.ID, objc.Sel("primeInfo"))
 	return rv
 }
 
@@ -466,7 +467,7 @@ func (a_ AudioConverter) PrimeInfo() AudioConverterPrimeInfo /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/primeinfo
-func (a_ AudioConverter) SetPrimeInfo(value AudioConverterPrimeInfo /* not a class type */) {
+func (a_ AudioConverter) SetPrimeInfo(value objc.IObject /* cross-framework: AudioConverterPrimeInfo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimeInfo:"), value)
 }
 
@@ -494,8 +495,8 @@ func (a_ AudioConverter) SetPrimeMethod(value AudioConverterPrimeMethod /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-func (a_ AudioConverter) SampleRateConverterAlgorithm() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("sampleRateConverterAlgorithm"))
+func (a_ AudioConverter) SampleRateConverterAlgorithm() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("sampleRateConverterAlgorithm"))
 	return rv
 }
 
@@ -504,8 +505,8 @@ func (a_ AudioConverter) SampleRateConverterAlgorithm() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm
-func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterAlgorithm:"), objc.String(value))
+func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterAlgorithm:"), value)
 }
 
 
@@ -513,7 +514,7 @@ func (a_ AudioConverter) SetSampleRateConverterAlgorithm(value string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverterquality
-func (a_ AudioConverter) SampleRateConverterQuality() int /* primitive/slice/pointer. */ {
+func (a_ AudioConverter) SampleRateConverterQuality() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("sampleRateConverterQuality"))
 	return rv
 }
@@ -523,7 +524,7 @@ func (a_ AudioConverter) SampleRateConverterQuality() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioconverter/samplerateconverterquality
-func (a_ AudioConverter) SetSampleRateConverterQuality(value int /* primitive/slice/pointer. */) {
+func (a_ AudioConverter) SetSampleRateConverterQuality(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRateConverterQuality:"), value)
 }
 

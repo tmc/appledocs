@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to BackgroundAssets without requiring cgo.
-
-// Improve or eliminate the time people wait while your app downloads assets.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets
+// See: https://developer.apple.com/documentation/BackgroundAssets
 package backgroundassets
 
 import (

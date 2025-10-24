@@ -31,15 +31,19 @@ type _MTRAccessControlClusterCommissioningAccessRestrictionEntryStructClass stru
 // An interface definition for the [MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct] class.
 type IMTRAccessControlClusterCommissioningAccessRestrictionEntryStruct interface {
 	objectivec.IObject
-	Cluster() foundation.Number
-	SetCluster(value foundation.INumber)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
-	Restrictions() objc.ID
-	SetRestrictions(value objc.ID)
+	// properties:
+	Cluster() objc.IObject /* cross-framework: NSNumber */
+	SetCluster(value objc.IObject /* cross-framework: NSNumber */)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	Restrictions() objc.IObject /* cross-framework: NSArray */
+	SetRestrictions(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct
 type MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRAccessControlClusterCommissioningAccessRestrictionEntryStruct() MTRAc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Cluster() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value foundation.INumber) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value foundation.INumber) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restrictions() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("restrictions"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restrictions() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("restrictions"))
 	return rv
 }
 
 
-// SetRestrictions sets the value of the restrictions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetRestrictions(value objc.ID) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetRestrictions(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictions:"), value)
 }
 

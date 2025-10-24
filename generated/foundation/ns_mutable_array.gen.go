@@ -32,32 +32,32 @@ type IMutableArray interface {
 	// properties:
 	// methods:
 	AddObject(anObject unsafe.Pointer)
-	AddObjectsFromArray(otherArray []objc.ID /* already interface */)
+	AddObjectsFromArray(otherArray []objc.ID)
 	ApplyDifference(difference unsafe.Pointer)
-	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer. */, idx2 uint /* primitive/slice/pointer. */)
+	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint)
 	FilterUsingPredicate(predicate IPredicate)
-	InsertObjectAtIndex(anObject unsafe.Pointer, index uint /* primitive/slice/pointer. */)
-	InsertObjectsAtIndexes(objects []objc.ID /* already interface */, indexes IIndexSet)
+	InsertObjectAtIndex(anObject unsafe.Pointer, index uint)
+	InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet)
 	RemoveObject(anObject unsafe.Pointer)
-	RemoveObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */)
+	RemoveObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */)
 	RemoveAllObjects()
 	RemoveLastObject()
-	RemoveObjectAtIndex(index uint /* primitive/slice/pointer. */)
+	RemoveObjectAtIndex(index uint)
 	RemoveObjectIdenticalTo(anObject unsafe.Pointer)
-	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */)
+	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */)
 	RemoveObjectsAtIndexes(indexes IIndexSet)
-	RemoveObjectsInRange(range_ objc.IObject /* cross-framework Range */)
-	RemoveObjectsInArray(otherArray []objc.ID /* already interface */)
-	ReplaceObjectAtIndexWithObject(index uint /* primitive/slice/pointer. */, anObject unsafe.Pointer)
-	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */)
-	ReplaceObjectsInRangeWithObjectsFromArray(range_ objc.IObject /* cross-framework Range */, otherArray []objc.ID /* already interface */)
-	ReplaceObjectsInRangeWithObjectsFromArrayRange(range_ objc.IObject /* cross-framework Range */, otherArray []objc.ID /* already interface */, otherRange objc.IObject /* cross-framework Range */)
-	SetArray(otherArray []objc.ID /* already interface */)
-	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer. */)
+	RemoveObjectsInRange(range_ objc.IObject /* cross-framework: Range */)
+	RemoveObjectsInArray(otherArray []objc.ID)
+	ReplaceObjectAtIndexWithObject(index uint, anObject unsafe.Pointer)
+	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
+	ReplaceObjectsInRangeWithObjectsFromArray(range_ objc.IObject /* cross-framework: Range */, otherArray []objc.ID)
+	ReplaceObjectsInRangeWithObjectsFromArrayRange(range_ objc.IObject /* cross-framework: Range */, otherArray []objc.ID, otherRange objc.IObject /* cross-framework: Range */)
+	SetArray(otherArray []objc.ID)
+	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	SortUsingComparator(cmptr Comparator /* not a class type */)
 	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */)
-	SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer. */)
+	SortUsingDescriptors(sortDescriptors []ISortDescriptor)
 	SortUsingSelector(comparator objc.SEL)
 }
 
@@ -120,7 +120,7 @@ func NewMutableArray() MutableArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/init(capacity:)
-func NewMutableArrayWithCapacity(numItems uint /* primitive/slice/pointer. */) MutableArray {
+func NewMutableArrayWithCapacity(numItems uint) MutableArray {
 	instance := getMutableArrayClass().Alloc()
 	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
@@ -167,7 +167,7 @@ func NewMutableArrayWithContentsOfURL(url IURL) MutableArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/arrayWithCapacity:
-func (mc _MutableArrayClass) ArrayWithCapacity(numItems uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (mc _MutableArrayClass) ArrayWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("arrayWithCapacity:"), numItems)
 	return rv
 }
@@ -206,7 +206,7 @@ func (m_ MutableArray) AddObject(anObject unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/addObjects(from:)
-func (m_ MutableArray) AddObjectsFromArray(otherArray []objc.ID /* already interface */) {
+func (m_ MutableArray) AddObjectsFromArray(otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), otherArray)
 }
 
@@ -222,7 +222,7 @@ func (m_ MutableArray) ApplyDifference(difference unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/exchangeObject(at:withObjectAt:)
-func (m_ MutableArray) ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer. */, idx2 uint /* primitive/slice/pointer. */) {
+func (m_ MutableArray) ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("exchangeObjectAtIndex:withObjectAtIndex:"), idx1, idx2)
 }
 
@@ -240,7 +240,7 @@ func (m_ MutableArray) FilterUsingPredicate(predicate IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/insert(_:at:)-5dbx5
-func (m_ MutableArray) InsertObjectAtIndex(anObject unsafe.Pointer, index uint /* primitive/slice/pointer. */) {
+func (m_ MutableArray) InsertObjectAtIndex(anObject unsafe.Pointer, index uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:atIndex:"), anObject, index)
 }
 
@@ -249,7 +249,7 @@ func (m_ MutableArray) InsertObjectAtIndex(anObject unsafe.Pointer, index uint /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/insert(_:at:)-73pln
-func (m_ MutableArray) InsertObjectsAtIndexes(objects []objc.ID /* already interface */, indexes IIndexSet) {
+func (m_ MutableArray) InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObjects:atIndexes:"), objects, indexes)
 }
 
@@ -267,7 +267,7 @@ func (m_ MutableArray) RemoveObject(anObject unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/remove(_:in:)
-func (m_ MutableArray) RemoveObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableArray) RemoveObjectInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObject:inRange:"), anObject, range_)
 }
 
@@ -294,7 +294,7 @@ func (m_ MutableArray) RemoveLastObject() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObject(at:)
-func (m_ MutableArray) RemoveObjectAtIndex(index uint /* primitive/slice/pointer. */) {
+func (m_ MutableArray) RemoveObjectAtIndex(index uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectAtIndex:"), index)
 }
 
@@ -312,7 +312,7 @@ func (m_ MutableArray) RemoveObjectIdenticalTo(anObject unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObject(identicalTo:in:)
-func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectIdenticalTo:inRange:"), anObject, range_)
 }
 
@@ -330,7 +330,7 @@ func (m_ MutableArray) RemoveObjectsAtIndexes(indexes IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObjects(in:)-1udmn
-func (m_ MutableArray) RemoveObjectsInRange(range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableArray) RemoveObjectsInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
 }
 
@@ -339,7 +339,7 @@ func (m_ MutableArray) RemoveObjectsInRange(range_ objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObjects(in:)-4yb26
-func (m_ MutableArray) RemoveObjectsInArray(otherArray []objc.ID /* already interface */) {
+func (m_ MutableArray) RemoveObjectsInArray(otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInArray:"), otherArray)
 }
 
@@ -348,7 +348,7 @@ func (m_ MutableArray) RemoveObjectsInArray(otherArray []objc.ID /* already inte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObject(at:with:)
-func (m_ MutableArray) ReplaceObjectAtIndexWithObject(index uint /* primitive/slice/pointer. */, anObject unsafe.Pointer) {
+func (m_ MutableArray) ReplaceObjectAtIndexWithObject(index uint, anObject unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectAtIndex:withObject:"), index, anObject)
 }
 
@@ -357,7 +357,7 @@ func (m_ MutableArray) ReplaceObjectAtIndexWithObject(index uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(at:with:)
-func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */) {
+func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
 }
 
@@ -366,7 +366,7 @@ func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(in:withObjectsFrom:)
-func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ objc.IObject /* cross-framework Range */, otherArray []objc.ID /* already interface */) {
+func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ objc.IObject /* cross-framework: Range */, otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjectsFromArray:"), range_, otherArray)
 }
 
@@ -375,7 +375,7 @@ func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ objc.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(in:withObjectsFrom:range:)
-func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArrayRange(range_ objc.IObject /* cross-framework Range */, otherArray []objc.ID /* already interface */, otherRange objc.IObject /* cross-framework Range */) {
+func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArrayRange(range_ objc.IObject /* cross-framework: Range */, otherArray []objc.ID, otherRange objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjectsFromArray:range:"), range_, otherArray, otherRange)
 }
 
@@ -384,7 +384,7 @@ func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArrayRange(range_ obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/setArray(_:)
-func (m_ MutableArray) SetArray(otherArray []objc.ID /* already interface */) {
+func (m_ MutableArray) SetArray(otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArray:"), otherArray)
 }
 
@@ -393,7 +393,7 @@ func (m_ MutableArray) SetArray(otherArray []objc.ID /* already interface */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/setObject:atIndexedSubscript:
-func (m_ MutableArray) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer. */) {
+func (m_ MutableArray) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
 }
 
@@ -429,7 +429,7 @@ func (m_ MutableArray) SortWithOptionsUsingComparator(opts SortOptions, cmptr Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/sort(using:)-4eh07
-func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer. */) {
+func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []ISortDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 

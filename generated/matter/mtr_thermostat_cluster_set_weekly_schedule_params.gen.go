@@ -31,21 +31,25 @@ type _MTRThermostatClusterSetWeeklyScheduleParamsClass struct {
 // An interface definition for the [MTRThermostatClusterSetWeeklyScheduleParams] class.
 type IMTRThermostatClusterSetWeeklyScheduleParams interface {
 	objectivec.IObject
-	DayOfWeekForSequence() foundation.Number
-	SetDayOfWeekForSequence(value foundation.INumber)
-	ModeForSequence() foundation.Number
-	SetModeForSequence(value foundation.INumber)
-	NumberOfTransitionsForSequence() foundation.Number
-	SetNumberOfTransitionsForSequence(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DayOfWeekForSequence() objc.IObject /* cross-framework: NSNumber */
+	SetDayOfWeekForSequence(value objc.IObject /* cross-framework: NSNumber */)
+	ModeForSequence() objc.IObject /* cross-framework: NSNumber */
+	SetModeForSequence(value objc.IObject /* cross-framework: NSNumber */)
+	NumberOfTransitionsForSequence() objc.IObject /* cross-framework: NSNumber */
+	SetNumberOfTransitionsForSequence(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	Transitions() unsafe.Pointer
 	SetTransitions(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetWeeklyScheduleParams
 type MTRThermostatClusterSetWeeklyScheduleParams struct {
 	objectivec.Object
@@ -88,82 +92,83 @@ func NewMTRThermostatClusterSetWeeklyScheduleParams() MTRThermostatClusterSetWee
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/dayofweekforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) DayOfWeekForSequence() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dayOfWeekForSequence"))
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) DayOfWeekForSequence() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("dayOfWeekForSequence"))
 	return rv
 }
 
 
-// SetDayOfWeekForSequence sets the value of the dayOfWeekForSequence property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/dayofweekforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetDayOfWeekForSequence(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetDayOfWeekForSequence(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeekForSequence:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/modeforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ModeForSequence() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("modeForSequence"))
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ModeForSequence() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("modeForSequence"))
 	return rv
 }
 
 
-// SetModeForSequence sets the value of the modeForSequence property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/modeforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetModeForSequence(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetModeForSequence(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeForSequence:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) NumberOfTransitionsForSequence() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfTransitionsForSequence"))
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) NumberOfTransitionsForSequence() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("numberOfTransitionsForSequence"))
 	return rv
 }
 
 
-// SetNumberOfTransitionsForSequence sets the value of the numberOfTransitionsForSequence property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfTransitionsForSequence:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
 func (m_ MTRThermostatClusterSetWeeklyScheduleParams) Transitions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transitions"))
@@ -171,8 +176,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) Transitions() unsafe.Point
 }
 
 
-// SetTransitions sets the value of the transitions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/transitions
 func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTransitions(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)

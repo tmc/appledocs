@@ -29,22 +29,28 @@ type _CFullyConnectedLayerClass struct {
 // An interface definition for the [CFullyConnectedLayer] class.
 type ICFullyConnectedLayer interface {
 	ICLayer
-	Biases() MLCTensor
+	// properties:
+	Biases() IMLCTensor
 	SetBiases(value IMLCTensor)
-	BiasesParameter() MLCTensorParameter
-	SetBiasesParameter(value IMLCTensorParameter)
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
-	Weights() MLCTensor
+	BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	Descriptor() CConvolutionDescriptor /* not a class type */
+	SetDescriptor(value CConvolutionDescriptor /* not a class type */)
+	Weights() IMLCTensor
 	SetWeights(value IMLCTensor)
-	WeightsParameter() MLCTensorParameter
-	SetWeightsParameter(value IMLCTensorParameter)
+	WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	// methods:
 }
 
 // A layer that connects each input to each output within its layer.
 //
 // This is also known as a dense layer.
+
+
+// A layer that connects each input to each output within its layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer
 type CFullyConnectedLayer struct {
 	CLayer
@@ -91,93 +97,98 @@ func NewCFullyConnectedLayer() CFullyConnectedLayer {
 }
 
 
+
 // The biases tensor you use for the fully connected layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
-func (c_ CFullyConnectedLayer) Biases() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("biases"))
+func (c_ CFullyConnectedLayer) Biases() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("biases"))
 	return rv
 }
 
 
-// SetBiases sets the value of the biases property.
 // The biases tensor you use for the fully connected layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
 func (c_ CFullyConnectedLayer) SetBiases(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
 }
 
+
 // The biases tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) BiasesParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("biasesParameter"))
+func (c_ CFullyConnectedLayer) BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("biasesParameter"))
 	return rv
 }
 
 
-// SetBiasesParameter sets the value of the biasesParameter property.
 // The biases tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) SetBiasesParameter(value IMLCTensorParameter) {
+func (c_ CFullyConnectedLayer) SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameter:"), value)
 }
 
+
 // The configuration object you use to create the fully connected layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/descriptor
-func (c_ CFullyConnectedLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CFullyConnectedLayer) Descriptor() CConvolutionDescriptor /* not a class type */ {
+	rv := objc.Send[CConvolutionDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the fully connected layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/descriptor
-func (c_ CFullyConnectedLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CFullyConnectedLayer) SetDescriptor(value CConvolutionDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 
+
 // The weights tensor you use for the fully connected layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
-func (c_ CFullyConnectedLayer) Weights() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
+func (c_ CFullyConnectedLayer) Weights() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
 
-// SetWeights sets the value of the weights property.
 // The weights tensor you use for the fully connected layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
 func (c_ CFullyConnectedLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 
+
 // The weights tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) WeightsParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("weightsParameter"))
+func (c_ CFullyConnectedLayer) WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
 }
 
 
-// SetWeightsParameter sets the value of the weightsParameter property.
 // The weights tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) SetWeightsParameter(value IMLCTensorParameter) {
+func (c_ CFullyConnectedLayer) SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
 }
 

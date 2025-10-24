@@ -30,15 +30,18 @@ type _OverlayClass struct {
 // An interface definition for the [Overlay] class.
 type IOverlay interface {
 	objectivec.IObject
-	Configuration() SKOverlayConfiguration
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	// methods:
 }
 
 // A class that displays an overlay you can use to recommend another app or an App Clip’s corresponding full app.
 //
 // By displaying an overlay, you can recommend another app to users and enable them to download it immediately. To recommend media that’s not an app, or to display a product page within your app, use . If you’re using SwiftUI, make use of the modifier. For example usage, see . To display an App Store overlay in an app that uses : Create an with the iTunes identifier of the app you want to recommend. Initialize with the configuration object. Present the overlay. The following code displays an overlay at the bottom of the visible scene: To respond to the overlay’s appearance, dismissal, or failure to load, set the and implement the methods defined in .
+
+
+// A class that displays an overlay you can use to recommend another app or an App Clip’s corresponding full app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay
 type Overlay struct {
 	objectivec.Object
@@ -84,42 +87,16 @@ func NewOverlay() Overlay {
 
 
 
-
 // Creates an overlay you use to recommend another app on the App Store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/init(configuration:)
-func NewOverlayWithConfiguration(configuration ISKOverlayConfiguration) Overlay {
+func NewOverlayWithConfiguration(configuration objc.IObject /* cross-framework: OverlayConfiguration */) Overlay {
 	instance := getOverlayClass().Alloc()
 	rv := objc.Send[Overlay](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
 }
 
-
-// An overlay’s attributes; for example, its position on the screen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/configuration-swift.property
-func (o_ Overlay) Configuration() SKOverlayConfiguration {
-	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-// The overlay’s delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/delegate
-func (o_ Overlay) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The overlay’s delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/delegate
-func (o_ Overlay) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
-}
 
 

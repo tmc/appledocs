@@ -31,15 +31,19 @@ type _MTRThermostatClusterScheduleTypeStructClass struct {
 // An interface definition for the [MTRThermostatClusterScheduleTypeStruct] class.
 type IMTRThermostatClusterScheduleTypeStruct interface {
 	objectivec.IObject
-	NumberOfSchedules() foundation.Number
-	SetNumberOfSchedules(value foundation.INumber)
-	ScheduleTypeFeatures() foundation.Number
-	SetScheduleTypeFeatures(value foundation.INumber)
-	SystemMode() foundation.Number
-	SetSystemMode(value foundation.INumber)
+	// properties:
+	NumberOfSchedules() objc.IObject /* cross-framework: NSNumber */
+	SetNumberOfSchedules(value objc.IObject /* cross-framework: NSNumber */)
+	ScheduleTypeFeatures() objc.IObject /* cross-framework: NSNumber */
+	SetScheduleTypeFeatures(value objc.IObject /* cross-framework: NSNumber */)
+	SystemMode() objc.IObject /* cross-framework: NSNumber */
+	SetSystemMode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct
 type MTRThermostatClusterScheduleTypeStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRThermostatClusterScheduleTypeStruct() MTRThermostatClusterScheduleTyp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/numberOfSchedules
-func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfSchedules"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("numberOfSchedules"))
 	return rv
 }
 
 
-// SetNumberOfSchedules sets the value of the numberOfSchedules property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/numberOfSchedules
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfSchedules:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
-func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("scheduleTypeFeatures"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("scheduleTypeFeatures"))
 	return rv
 }
 
 
-// SetScheduleTypeFeatures sets the value of the scheduleTypeFeatures property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleTypeFeatures:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemMode"))
+func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("systemMode"))
 	return rv
 }
 
 
-// SetSystemMode sets the value of the systemMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 

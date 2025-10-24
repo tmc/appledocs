@@ -31,10 +31,10 @@ type _ARC4RandomSourceClass struct {
 type IARC4RandomSource interface {
 	IRandomSource
 	// properties:
-	Seed() foundation.objc.IObject /* cross-framework: NSData */
-	SetSeed(value foundation.objc.IObject /* cross-framework: NSData */)
+	Seed() objc.IObject /* cross-framework: NSData */
+	SetSeed(value objc.IObject /* cross-framework: NSData */)
 	// methods:
-	DropValuesWithCount(count uint /* primitive/slice/pointer. */)
+	DropValuesWithCount(count uint)
 }
 
 // A basic random number generator implementing the ARC4 algorithm, which is suitable for most gameplay mechanics.
@@ -96,7 +96,7 @@ func NewARC4RandomSource() ARC4RandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/init(seed:)
-func NewARC4RandomSourceWithSeed(seed foundation.objc.IObject /* cross-framework NSData */) ARC4RandomSource {
+func NewARC4RandomSourceWithSeed(seed objc.IObject /* cross-framework: NSData */) ARC4RandomSource {
 	instance := getARC4RandomSourceClass().Alloc()
 	rv := objc.Send[ARC4RandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewARC4RandomSourceWithSeed(seed foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/dropValues(_:)
-func (c_ ARC4RandomSource) DropValuesWithCount(count uint /* primitive/slice/pointer. */) {
+func (c_ ARC4RandomSource) DropValuesWithCount(count uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dropValuesWithCount:"), count)
 }
 
@@ -118,7 +118,7 @@ func (c_ ARC4RandomSource) DropValuesWithCount(count uint /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-func (c_ ARC4RandomSource) Seed() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ ARC4RandomSource) Seed() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("seed"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (c_ ARC4RandomSource) Seed() foundation.objc.IObject /* cross-framework: NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-func (c_ ARC4RandomSource) SetSeed(value foundation.objc.IObject /* cross-framework: NSData */) {
+func (c_ ARC4RandomSource) SetSeed(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
 

@@ -30,11 +30,15 @@ type _MTRRVCOperationalStateClusterOperationalCommandResponseParamsClass struct 
 // An interface definition for the [MTRRVCOperationalStateClusterOperationalCommandResponseParams] class.
 type IMTRRVCOperationalStateClusterOperationalCommandResponseParams interface {
 	objectivec.IObject
-	CommandResponseState() MTRRVCOperationalStateClusterErrorStateStruct
+	// properties:
+	CommandResponseState() IMTRRVCOperationalStateClusterErrorStateStruct
 	SetCommandResponseState(value IMTRRVCOperationalStateClusterErrorStateStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterOperationalCommandResponseParams
 type MTRRVCOperationalStateClusterOperationalCommandResponseParams struct {
 	objectivec.Object
@@ -77,16 +81,16 @@ func NewMTRRVCOperationalStateClusterOperationalCommandResponseParams() MTRRVCOp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalcommandresponseparams/commandresponsestate
-func (m_ MTRRVCOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() MTRRVCOperationalStateClusterErrorStateStruct {
+func (m_ MTRRVCOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() IMTRRVCOperationalStateClusterErrorStateStruct {
 	rv := objc.Send[MTRRVCOperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("commandResponseState"))
 	return rv
 }
 
 
-// SetCommandResponseState sets the value of the commandResponseState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalcommandresponseparams/commandresponsestate
 func (m_ MTRRVCOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value IMTRRVCOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)

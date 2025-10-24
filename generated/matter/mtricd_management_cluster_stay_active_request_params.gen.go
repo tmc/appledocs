@@ -31,15 +31,19 @@ type _MTRICDManagementClusterStayActiveRequestParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterStayActiveRequestParams] class.
 type IMTRICDManagementClusterStayActiveRequestParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	StayActiveDuration() foundation.Number
-	SetStayActiveDuration(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	StayActiveDuration() objc.IObject /* cross-framework: NSNumber */
+	SetStayActiveDuration(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams
 type MTRICDManagementClusterStayActiveRequestParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRICDManagementClusterStayActiveRequestParams() MTRICDManagementCluster
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
-func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stayActiveDuration"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stayActiveDuration"))
 	return rv
 }
 
 
-// SetStayActiveDuration sets the value of the stayActiveDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value foundation.INumber) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStayActiveDuration:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

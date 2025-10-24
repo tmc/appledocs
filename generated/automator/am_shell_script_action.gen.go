@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AMShellScriptAction] class.
@@ -30,12 +31,12 @@ type _AMShellScriptActionClass struct {
 type IAMShellScriptAction interface {
 	IAMBundleAction
 	// properties:
-	InputFieldSeparator() string /* primitive/slice/pointer. */
-	SetInputFieldSeparator(value string /* primitive/slice/pointer. */)
-	OutputFieldSeparator() string /* primitive/slice/pointer. */
-	SetOutputFieldSeparator(value string /* primitive/slice/pointer. */)
-	RemapLineEndings() bool /* primitive/slice/pointer. */
-	SetRemapLineEndings(value bool /* primitive/slice/pointer. */)
+	InputFieldSeparator() objc.IObject /* cross-framework: NSString */
+	SetInputFieldSeparator(value objc.IObject /* cross-framework: NSString */)
+	OutputFieldSeparator() objc.IObject /* cross-framework: NSString */
+	SetOutputFieldSeparator(value objc.IObject /* cross-framework: NSString */)
+	RemapLineEndings() bool
+	SetRemapLineEndings(value bool)
 	// methods:
 }
 
@@ -98,8 +99,8 @@ func NewAMShellScriptAction() AMShellScriptAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/inputfieldseparator
-func (a_ AMShellScriptAction) InputFieldSeparator() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
+func (a_ AMShellScriptAction) InputFieldSeparator() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (a_ AMShellScriptAction) InputFieldSeparator() string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/inputfieldseparator
-func (a_ AMShellScriptAction) SetInputFieldSeparator(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setInputFieldSeparator:"), objc.String(value))
+func (a_ AMShellScriptAction) SetInputFieldSeparator(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInputFieldSeparator:"), value)
 }
 
 
@@ -117,8 +118,8 @@ func (a_ AMShellScriptAction) SetInputFieldSeparator(value string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/outputfieldseparator
-func (a_ AMShellScriptAction) OutputFieldSeparator() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
+func (a_ AMShellScriptAction) OutputFieldSeparator() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (a_ AMShellScriptAction) OutputFieldSeparator() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/outputfieldseparator
-func (a_ AMShellScriptAction) SetOutputFieldSeparator(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFieldSeparator:"), objc.String(value))
+func (a_ AMShellScriptAction) SetOutputFieldSeparator(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFieldSeparator:"), value)
 }
 
 
@@ -136,7 +137,7 @@ func (a_ AMShellScriptAction) SetOutputFieldSeparator(value string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/remaplineendings
-func (a_ AMShellScriptAction) RemapLineEndings() bool /* primitive/slice/pointer. */ {
+func (a_ AMShellScriptAction) RemapLineEndings() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("remapLineEndings"))
 	return rv
 }
@@ -146,7 +147,7 @@ func (a_ AMShellScriptAction) RemapLineEndings() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/remaplineendings
-func (a_ AMShellScriptAction) SetRemapLineEndings(value bool /* primitive/slice/pointer. */) {
+func (a_ AMShellScriptAction) SetRemapLineEndings(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRemapLineEndings:"), value)
 }
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AdServices without requiring cgo.
-
-// Attribute app-download campaigns that originate from the App Store, Apple News, or
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AdServices
+// See: https://developer.apple.com/documentation/AdServices
 package adservices
 
 import (

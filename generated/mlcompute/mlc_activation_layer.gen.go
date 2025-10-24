@@ -29,14 +29,20 @@ type _CActivationLayerClass struct {
 // An interface definition for the [CActivationLayer] class.
 type ICActivationLayer interface {
 	ICLayer
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
+	// properties:
+	Descriptor() CActivationDescriptor /* not a class type */
+	SetDescriptor(value CActivationDescriptor /* not a class type */)
+	// methods:
 }
 
 // A layer that applies an activation function to the source tensor and produces an output.
 //
 // To construct an activation layer, create an activation descriptor and then pass it to the initializer.
+
+
+// A layer that applies an activation function to the source tensor and produces an output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCActivationLayer
 type CActivationLayer struct {
 	CLayer
@@ -83,21 +89,22 @@ func NewCActivationLayer() CActivationLayer {
 }
 
 
+
 // The configuration object you use to create an activation layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcactivationlayer/descriptor
-func (c_ CActivationLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CActivationLayer) Descriptor() CActivationDescriptor /* not a class type */ {
+	rv := objc.Send[CActivationDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create an activation layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcactivationlayer/descriptor
-func (c_ CActivationLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CActivationLayer) SetDescriptor(value CActivationDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 

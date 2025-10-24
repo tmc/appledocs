@@ -31,15 +31,19 @@ type _MTRUnitTestingClusterTestNestedStructListArgumentRequestParamsClass struct
 // An interface definition for the [MTRUnitTestingClusterTestNestedStructListArgumentRequestParams] class.
 type IMTRUnitTestingClusterTestNestedStructListArgumentRequestParams interface {
 	objectivec.IObject
-	Arg1() MTRUnitTestingClusterNestedStructList
+	// properties:
+	Arg1() IMTRUnitTestingClusterNestedStructList
 	SetArg1(value IMTRUnitTestingClusterNestedStructList)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestNestedStructListArgumentRequestParams
 type MTRUnitTestingClusterTestNestedStructListArgumentRequestParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRUnitTestingClusterTestNestedStructListArgumentRequestParams() MTRUnit
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) Arg1() MTRUnitTestingClusterNestedStructList {
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) Arg1() IMTRUnitTestingClusterNestedStructList {
 	rv := objc.Send[MTRUnitTestingClusterNestedStructList](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/arg1
 func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetArg1(value IMTRUnitTestingClusterNestedStructList) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnestedstructlistargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNestedStructListArgumentRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in FinderSync
 	Data = _undefined // referenced in FinderSync
 	Date = _undefined // referenced in FinderSync
 	URL = _undefined // referenced in FinderSync

@@ -31,16 +31,9 @@ type _CXStartCallActionClass struct {
 type ICXStartCallAction interface {
 	ICXCallAction
 	// properties:
-	ContactIdentifier() string /* primitive/slice/pointer. */
-	SetContactIdentifier(value string /* primitive/slice/pointer. */)
-	Handle() ICXHandle
-	SetHandle(value ICXHandle)
-	Video() bool /* primitive/slice/pointer. */
-	SetVideo(value bool /* primitive/slice/pointer. */)
-	IsVideo() bool /* primitive/slice/pointer. */
-	SetIsVideo(value bool /* primitive/slice/pointer. */)
+	IsVideo() bool
+	SetIsVideo(value bool)
 	// methods:
-	FulfillWithDateStarted(dateStarted foundation.objc.IObject /* cross-framework NSDate */)
 }
 
 // An encapsulation of the act of initiating an outgoing call.
@@ -102,7 +95,7 @@ func NewCXStartCallAction() CXStartCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
-func NewCXStartCallActionWithCallUUIDHandle(callUUID objc.IObject /* cross-framework UUID */, handle ICXHandle) CXStartCallAction {
+func NewCXStartCallActionWithCallUUIDHandle(callUUID objc.IObject /* cross-framework: UUID */, handle ICXHandle) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
 	rv.Autorelease()
@@ -114,7 +107,7 @@ func NewCXStartCallActionWithCallUUIDHandle(callUUID objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
-func NewCXStartCallActionWithCoder(aDecoder Coder /* not a class type */) CXStartCallAction {
+func NewCXStartCallActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -123,77 +116,11 @@ func NewCXStartCallActionWithCoder(aDecoder Coder /* not a class type */) CXStar
 
 
 
-// Reports the successful execution of the action at the specified time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/fulfill(withDateStarted:)
-func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted foundation.objc.IObject /* cross-framework NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateStarted:"), dateStarted)
-}
-
-
-// The identifier for the call recipient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
-func (c_ CXStartCallAction) ContactIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
-	return rv
-}
-
-
-// The identifier for the call recipient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
-func (c_ CXStartCallAction) SetContactIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
-}
-
-
-// The handle of the call recipient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
-func (c_ CXStartCallAction) Handle() ICXHandle {
-	rv := objc.Send[CXHandle](c_.ID, objc.Sel("handle"))
-	return rv
-}
-
-
-// The handle of the call recipient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
-func (c_ CXStartCallAction) SetHandle(value ICXHandle) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHandle:"), value)
-}
-
-
-// A Boolean value that indicates whether the call is a video call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
-func (c_ CXStartCallAction) Video() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("video"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call is a video call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
-func (c_ CXStartCallAction) SetVideo(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVideo:"), value)
-}
-
-
 // A Boolean value that indicates whether the call is a video call.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
-func (c_ CXStartCallAction) IsVideo() bool /* primitive/slice/pointer. */ {
+func (c_ CXStartCallAction) IsVideo() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideo"))
 	return rv
 }
@@ -203,7 +130,7 @@ func (c_ CXStartCallAction) IsVideo() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxstartcallaction/isvideo
-func (c_ CXStartCallAction) SetIsVideo(value bool /* primitive/slice/pointer. */) {
+func (c_ CXStartCallAction) SetIsVideo(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideo:"), value)
 }
 

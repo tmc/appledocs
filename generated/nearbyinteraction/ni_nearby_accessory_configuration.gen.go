@@ -30,21 +30,24 @@ type _NINearbyAccessoryConfigurationClass struct {
 // An interface definition for the [NINearbyAccessoryConfiguration] class.
 type ININearbyAccessoryConfiguration interface {
 	INIConfiguration
-	AccessoryDiscoveryToken() NIDiscoveryToken
-	CameraAssistanceEnabled() bool
-	SetCameraAssistanceEnabled(value bool)
+	// properties:
 	IsCameraAssistanceEnabled() bool
 	SetIsCameraAssistanceEnabled(value bool)
 	Distance() float32
 	SetDistance(value float32)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	// methods:
 }
 
 // A configuration that enables interaction between iPhone and third-party accessories.
 //
 // Use this class to interact with a third-party accessory that you partner with or develop. For an example app that demonstrates this configuration, see .
+
+
+// A configuration that enables interaction between iPhone and third-party accessories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration
 type NINearbyAccessoryConfiguration struct {
 	NIConfiguration
@@ -92,11 +95,11 @@ func NewNINearbyAccessoryConfiguration() NINearbyAccessoryConfiguration {
 
 
 
-
 // Creates a configuration for an accessory with the given Bluetooth peer identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/init(accessoryData:bluetoothPeerIdentifier:)
-func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierError(accessoryData foundation.IData, identifier foundation.IUUID, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
+func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierError(accessoryData objc.IObject /* cross-framework: NSData */, identifier objc.IObject /* cross-framework: UUID */, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
 	instance := getNINearbyAccessoryConfigurationClass().Alloc()
 	rv := objc.Send[NINearbyAccessoryConfiguration](instance.ID, objc.Sel("initWithAccessoryData:bluetoothPeerIdentifier:error:"), accessoryData, identifier, error_)
 	rv.Autorelease()
@@ -104,11 +107,11 @@ func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierEr
 }
 
 
-
 // Creates a configuration for interaction between iPhone and third-party accessories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/init(data:)
-func NewNINearbyAccessoryConfigurationWithDataError(data foundation.IData, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
+func NewNINearbyAccessoryConfigurationWithDataError(data objc.IObject /* cross-framework: NSData */, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
 	instance := getNINearbyAccessoryConfigurationClass().Alloc()
 	rv := objc.Send[NINearbyAccessoryConfiguration](instance.ID, objc.Sel("initWithData:error:"), data, error_)
 	rv.Autorelease()
@@ -116,34 +119,10 @@ func NewNINearbyAccessoryConfigurationWithDataError(data foundation.IData, error
 }
 
 
-// An identifier for the accessory in a session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/accessoryDiscoveryToken
-func (n_ NINearbyAccessoryConfiguration) AccessoryDiscoveryToken() NIDiscoveryToken {
-	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("accessoryDiscoveryToken"))
-	return rv
-}
 
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyAccessoryConfiguration) CameraAssistanceEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("cameraAssistanceEnabled"))
-	return rv
-}
-
-
-// SetCameraAssistanceEnabled sets the value of the cameraAssistanceEnabled property.
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyAccessoryConfiguration) SetCameraAssistanceEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
-}
-
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/iscameraassistanceenabled
 func (n_ NINearbyAccessoryConfiguration) IsCameraAssistanceEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isCameraAssistanceEnabled"))
@@ -151,17 +130,18 @@ func (n_ NINearbyAccessoryConfiguration) IsCameraAssistanceEnabled() bool {
 }
 
 
-// SetIsCameraAssistanceEnabled sets the value of the isCameraAssistanceEnabled property.
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/iscameraassistanceenabled
 func (n_ NINearbyAccessoryConfiguration) SetIsCameraAssistanceEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsCameraAssistanceEnabled:"), value)
 }
 
+
 // The distance from the user’s device to the peer device in meters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
 func (n_ NINearbyAccessoryConfiguration) Distance() float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("distance"))
@@ -169,17 +149,18 @@ func (n_ NINearbyAccessoryConfiguration) Distance() float32 {
 }
 
 
-// SetDistance sets the value of the distance property.
 // The distance from the user’s device to the peer device in meters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
 func (n_ NINearbyAccessoryConfiguration) SetDistance(value float32) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
 }
 
+
 // An object that the framework notifies of session events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
 func (n_ NINearbyAccessoryConfiguration) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
@@ -187,10 +168,9 @@ func (n_ NINearbyAccessoryConfiguration) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // An object that the framework notifies of session events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
 func (n_ NINearbyAccessoryConfiguration) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)

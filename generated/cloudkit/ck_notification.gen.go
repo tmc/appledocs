@@ -33,44 +33,44 @@ type ICKNotification interface {
 	objectivec.IObject
 	// properties:
 	SubscriptionOwnerUserRecordID() objc.IObject /* cross-framework: CKRecordID */
-	AlertActionLocalizationKey() string /* primitive/slice/pointer. */
-	SetAlertActionLocalizationKey(value string /* primitive/slice/pointer. */)
-	AlertBody() string /* primitive/slice/pointer. */
-	SetAlertBody(value string /* primitive/slice/pointer. */)
-	AlertLaunchImage() string /* primitive/slice/pointer. */
-	SetAlertLaunchImage(value string /* primitive/slice/pointer. */)
-	AlertLocalizationArgs() string /* primitive/slice/pointer. */
-	SetAlertLocalizationArgs(value string /* primitive/slice/pointer. */)
-	AlertLocalizationKey() string /* primitive/slice/pointer. */
-	SetAlertLocalizationKey(value string /* primitive/slice/pointer. */)
-	Badge() foundation.objc.IObject /* cross-framework: Number */
-	SetBadge(value foundation.objc.IObject /* cross-framework: Number */)
-	Category() string /* primitive/slice/pointer. */
-	SetCategory(value string /* primitive/slice/pointer. */)
-	ContainerIdentifier() string /* primitive/slice/pointer. */
-	SetContainerIdentifier(value string /* primitive/slice/pointer. */)
-	IsPruned() bool /* primitive/slice/pointer. */
-	SetIsPruned(value bool /* primitive/slice/pointer. */)
+	AlertActionLocalizationKey() objc.IObject /* cross-framework: NSString */
+	SetAlertActionLocalizationKey(value objc.IObject /* cross-framework: NSString */)
+	AlertBody() objc.IObject /* cross-framework: NSString */
+	SetAlertBody(value objc.IObject /* cross-framework: NSString */)
+	AlertLaunchImage() objc.IObject /* cross-framework: NSString */
+	SetAlertLaunchImage(value objc.IObject /* cross-framework: NSString */)
+	AlertLocalizationArgs() objc.IObject /* cross-framework: NSString */
+	SetAlertLocalizationArgs(value objc.IObject /* cross-framework: NSString */)
+	AlertLocalizationKey() objc.IObject /* cross-framework: NSString */
+	SetAlertLocalizationKey(value objc.IObject /* cross-framework: NSString */)
+	Badge() objc.IObject /* cross-framework: NSNumber */
+	SetBadge(value objc.IObject /* cross-framework: NSNumber */)
+	Category() objc.IObject /* cross-framework: NSString */
+	SetCategory(value objc.IObject /* cross-framework: NSString */)
+	ContainerIdentifier() objc.IObject /* cross-framework: NSString */
+	SetContainerIdentifier(value objc.IObject /* cross-framework: NSString */)
+	IsPruned() bool
+	SetIsPruned(value bool)
 	NotificationID() unsafe.Pointer
 	SetNotificationID(value unsafe.Pointer)
 	NotificationType() unsafe.Pointer
 	SetNotificationType(value unsafe.Pointer)
-	SoundName() string /* primitive/slice/pointer. */
-	SetSoundName(value string /* primitive/slice/pointer. */)
+	SoundName() objc.IObject /* cross-framework: NSString */
+	SetSoundName(value objc.IObject /* cross-framework: NSString */)
 	SubscriptionID() unsafe.Pointer
 	SetSubscriptionID(value unsafe.Pointer)
-	Subtitle() string /* primitive/slice/pointer. */
-	SetSubtitle(value string /* primitive/slice/pointer. */)
-	SubtitleLocalizationArgs() string /* primitive/slice/pointer. */
-	SetSubtitleLocalizationArgs(value string /* primitive/slice/pointer. */)
-	SubtitleLocalizationKey() string /* primitive/slice/pointer. */
-	SetSubtitleLocalizationKey(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
-	TitleLocalizationArgs() string /* primitive/slice/pointer. */
-	SetTitleLocalizationArgs(value string /* primitive/slice/pointer. */)
-	TitleLocalizationKey() string /* primitive/slice/pointer. */
-	SetTitleLocalizationKey(value string /* primitive/slice/pointer. */)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
+	SubtitleLocalizationArgs() objc.IObject /* cross-framework: NSString */
+	SetSubtitleLocalizationArgs(value objc.IObject /* cross-framework: NSString */)
+	SubtitleLocalizationKey() objc.IObject /* cross-framework: NSString */
+	SetSubtitleLocalizationKey(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	TitleLocalizationArgs() objc.IObject /* cross-framework: NSString */
+	SetTitleLocalizationArgs(value objc.IObject /* cross-framework: NSString */)
+	TitleLocalizationKey() objc.IObject /* cross-framework: NSString */
+	SetTitleLocalizationKey(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -141,8 +141,8 @@ func (c_ CKNotification) SubscriptionOwnerUserRecordID() objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertactionlocalizationkey
-func (c_ CKNotification) AlertActionLocalizationKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("alertActionLocalizationKey"))
+func (c_ CKNotification) AlertActionLocalizationKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("alertActionLocalizationKey"))
 	return rv
 }
 
@@ -151,8 +151,8 @@ func (c_ CKNotification) AlertActionLocalizationKey() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertactionlocalizationkey
-func (c_ CKNotification) SetAlertActionLocalizationKey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), objc.String(value))
+func (c_ CKNotification) SetAlertActionLocalizationKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertActionLocalizationKey:"), value)
 }
 
 
@@ -160,8 +160,8 @@ func (c_ CKNotification) SetAlertActionLocalizationKey(value string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertbody
-func (c_ CKNotification) AlertBody() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("alertBody"))
+func (c_ CKNotification) AlertBody() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("alertBody"))
 	return rv
 }
 
@@ -170,8 +170,8 @@ func (c_ CKNotification) AlertBody() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertbody
-func (c_ CKNotification) SetAlertBody(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), objc.String(value))
+func (c_ CKNotification) SetAlertBody(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertBody:"), value)
 }
 
 
@@ -179,8 +179,8 @@ func (c_ CKNotification) SetAlertBody(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlaunchimage
-func (c_ CKNotification) AlertLaunchImage() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("alertLaunchImage"))
+func (c_ CKNotification) AlertLaunchImage() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("alertLaunchImage"))
 	return rv
 }
 
@@ -189,8 +189,8 @@ func (c_ CKNotification) AlertLaunchImage() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlaunchimage
-func (c_ CKNotification) SetAlertLaunchImage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), objc.String(value))
+func (c_ CKNotification) SetAlertLaunchImage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLaunchImage:"), value)
 }
 
 
@@ -198,8 +198,8 @@ func (c_ CKNotification) SetAlertLaunchImage(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationargs
-func (c_ CKNotification) AlertLocalizationArgs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("alertLocalizationArgs"))
+func (c_ CKNotification) AlertLocalizationArgs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("alertLocalizationArgs"))
 	return rv
 }
 
@@ -208,8 +208,8 @@ func (c_ CKNotification) AlertLocalizationArgs() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationargs
-func (c_ CKNotification) SetAlertLocalizationArgs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), objc.String(value))
+func (c_ CKNotification) SetAlertLocalizationArgs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationArgs:"), value)
 }
 
 
@@ -217,8 +217,8 @@ func (c_ CKNotification) SetAlertLocalizationArgs(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationkey
-func (c_ CKNotification) AlertLocalizationKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("alertLocalizationKey"))
+func (c_ CKNotification) AlertLocalizationKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("alertLocalizationKey"))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (c_ CKNotification) AlertLocalizationKey() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/alertlocalizationkey
-func (c_ CKNotification) SetAlertLocalizationKey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), objc.String(value))
+func (c_ CKNotification) SetAlertLocalizationKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlertLocalizationKey:"), value)
 }
 
 
@@ -236,8 +236,8 @@ func (c_ CKNotification) SetAlertLocalizationKey(value string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-func (c_ CKNotification) Badge() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("badge"))
+func (c_ CKNotification) Badge() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](c_.ID, objc.Sel("badge"))
 	return rv
 }
 
@@ -246,7 +246,7 @@ func (c_ CKNotification) Badge() foundation.objc.IObject /* cross-framework: Num
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-func (c_ CKNotification) SetBadge(value foundation.objc.IObject /* cross-framework: Number */) {
+func (c_ CKNotification) SetBadge(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBadge:"), value)
 }
 
@@ -255,8 +255,8 @@ func (c_ CKNotification) SetBadge(value foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/category
-func (c_ CKNotification) Category() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("category"))
+func (c_ CKNotification) Category() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -265,8 +265,8 @@ func (c_ CKNotification) Category() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/category
-func (c_ CKNotification) SetCategory(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), objc.String(value))
+func (c_ CKNotification) SetCategory(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCategory:"), value)
 }
 
 
@@ -274,8 +274,8 @@ func (c_ CKNotification) SetCategory(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/containeridentifier
-func (c_ CKNotification) ContainerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CKNotification) ContainerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
@@ -284,8 +284,8 @@ func (c_ CKNotification) ContainerIdentifier() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/containeridentifier
-func (c_ CKNotification) SetContainerIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
+func (c_ CKNotification) SetContainerIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), value)
 }
 
 
@@ -293,7 +293,7 @@ func (c_ CKNotification) SetContainerIdentifier(value string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKNotification) IsPruned() bool /* primitive/slice/pointer. */ {
+func (c_ CKNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (c_ CKNotification) IsPruned() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKNotification) SetIsPruned(value bool /* primitive/slice/pointer. */) {
+func (c_ CKNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
 
@@ -350,8 +350,8 @@ func (c_ CKNotification) SetNotificationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/soundname
-func (c_ CKNotification) SoundName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("soundName"))
+func (c_ CKNotification) SoundName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("soundName"))
 	return rv
 }
 
@@ -360,8 +360,8 @@ func (c_ CKNotification) SoundName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/soundname
-func (c_ CKNotification) SetSoundName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), objc.String(value))
+func (c_ CKNotification) SetSoundName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSoundName:"), value)
 }
 
 
@@ -388,8 +388,8 @@ func (c_ CKNotification) SetSubscriptionID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitle
-func (c_ CKNotification) Subtitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
+func (c_ CKNotification) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -398,8 +398,8 @@ func (c_ CKNotification) Subtitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitle
-func (c_ CKNotification) SetSubtitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (c_ CKNotification) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 
@@ -407,8 +407,8 @@ func (c_ CKNotification) SetSubtitle(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationargs
-func (c_ CKNotification) SubtitleLocalizationArgs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("subtitleLocalizationArgs"))
+func (c_ CKNotification) SubtitleLocalizationArgs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("subtitleLocalizationArgs"))
 	return rv
 }
 
@@ -417,8 +417,8 @@ func (c_ CKNotification) SubtitleLocalizationArgs() string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationargs
-func (c_ CKNotification) SetSubtitleLocalizationArgs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), objc.String(value))
+func (c_ CKNotification) SetSubtitleLocalizationArgs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationArgs:"), value)
 }
 
 
@@ -426,8 +426,8 @@ func (c_ CKNotification) SetSubtitleLocalizationArgs(value string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationkey
-func (c_ CKNotification) SubtitleLocalizationKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("subtitleLocalizationKey"))
+func (c_ CKNotification) SubtitleLocalizationKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("subtitleLocalizationKey"))
 	return rv
 }
 
@@ -436,8 +436,8 @@ func (c_ CKNotification) SubtitleLocalizationKey() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/subtitlelocalizationkey
-func (c_ CKNotification) SetSubtitleLocalizationKey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), objc.String(value))
+func (c_ CKNotification) SetSubtitleLocalizationKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitleLocalizationKey:"), value)
 }
 
 
@@ -445,8 +445,8 @@ func (c_ CKNotification) SetSubtitleLocalizationKey(value string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/title
-func (c_ CKNotification) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ CKNotification) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -455,8 +455,8 @@ func (c_ CKNotification) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/title
-func (c_ CKNotification) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ CKNotification) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -464,8 +464,8 @@ func (c_ CKNotification) SetTitle(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationargs
-func (c_ CKNotification) TitleLocalizationArgs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("titleLocalizationArgs"))
+func (c_ CKNotification) TitleLocalizationArgs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("titleLocalizationArgs"))
 	return rv
 }
 
@@ -474,8 +474,8 @@ func (c_ CKNotification) TitleLocalizationArgs() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationargs
-func (c_ CKNotification) SetTitleLocalizationArgs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), objc.String(value))
+func (c_ CKNotification) SetTitleLocalizationArgs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationArgs:"), value)
 }
 
 
@@ -483,8 +483,8 @@ func (c_ CKNotification) SetTitleLocalizationArgs(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationkey
-func (c_ CKNotification) TitleLocalizationKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("titleLocalizationKey"))
+func (c_ CKNotification) TitleLocalizationKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("titleLocalizationKey"))
 	return rv
 }
 
@@ -493,8 +493,8 @@ func (c_ CKNotification) TitleLocalizationKey() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/titlelocalizationkey
-func (c_ CKNotification) SetTitleLocalizationKey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), objc.String(value))
+func (c_ CKNotification) SetTitleLocalizationKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), value)
 }
 
 

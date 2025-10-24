@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,27 +32,27 @@ type _CNSocialProfileClass struct {
 type ICNSocialProfile interface {
 	objectivec.IObject
 	// properties:
-	Service() string /* primitive/slice/pointer. */
-	SetService(value string /* primitive/slice/pointer. */)
-	UrlString() string /* primitive/slice/pointer. */
-	SetUrlString(value string /* primitive/slice/pointer. */)
-	UserIdentifier() string /* primitive/slice/pointer. */
-	SetUserIdentifier(value string /* primitive/slice/pointer. */)
-	Username() string /* primitive/slice/pointer. */
-	SetUsername(value string /* primitive/slice/pointer. */)
-	CNSocialProfileServiceFacebook() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceFlickr() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceGameCenter() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceKey() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceLinkedIn() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceMySpace() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceSinaWeibo() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceTencentWeibo() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceTwitter() string /* primitive/slice/pointer. */
-	CNSocialProfileServiceYelp() string /* primitive/slice/pointer. */
-	CNSocialProfileURLStringKey() string /* primitive/slice/pointer. */
-	CNSocialProfileUserIdentifierKey() string /* primitive/slice/pointer. */
-	CNSocialProfileUsernameKey() string /* primitive/slice/pointer. */
+	Service() objc.IObject /* cross-framework: NSString */
+	SetService(value objc.IObject /* cross-framework: NSString */)
+	UrlString() objc.IObject /* cross-framework: NSString */
+	SetUrlString(value objc.IObject /* cross-framework: NSString */)
+	UserIdentifier() objc.IObject /* cross-framework: NSString */
+	SetUserIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Username() objc.IObject /* cross-framework: NSString */
+	SetUsername(value objc.IObject /* cross-framework: NSString */)
+	CNSocialProfileServiceFacebook() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceFlickr() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceGameCenter() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceKey() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceLinkedIn() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceMySpace() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceSinaWeibo() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceTencentWeibo() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceTwitter() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileServiceYelp() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileURLStringKey() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileUserIdentifierKey() objc.IObject /* cross-framework: NSString */
+	CNSocialProfileUsernameKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -112,8 +113,8 @@ func NewCNSocialProfile() CNSocialProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSocialProfile/localizedString(forKey:)
-func (cc _CNSocialProfileClass) LocalizedStringForKey(key string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNSocialProfileClass) LocalizedStringForKey(key objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), key)
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (cc _CNSocialProfileClass) LocalizedStringForKey(key string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/service
-func (c_ CNSocialProfile) Service() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("service"))
+func (c_ CNSocialProfile) Service() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("service"))
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (c_ CNSocialProfile) Service() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/service
-func (c_ CNSocialProfile) SetService(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), objc.String(value))
+func (c_ CNSocialProfile) SetService(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setService:"), value)
 }
 
 
@@ -141,8 +142,8 @@ func (c_ CNSocialProfile) SetService(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/urlstring
-func (c_ CNSocialProfile) UrlString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("urlString"))
+func (c_ CNSocialProfile) UrlString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("urlString"))
 	return rv
 }
 
@@ -151,8 +152,8 @@ func (c_ CNSocialProfile) UrlString() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/urlstring
-func (c_ CNSocialProfile) SetUrlString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlString:"), objc.String(value))
+func (c_ CNSocialProfile) SetUrlString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlString:"), value)
 }
 
 
@@ -160,8 +161,8 @@ func (c_ CNSocialProfile) SetUrlString(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/useridentifier
-func (c_ CNSocialProfile) UserIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("userIdentifier"))
+func (c_ CNSocialProfile) UserIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("userIdentifier"))
 	return rv
 }
 
@@ -170,8 +171,8 @@ func (c_ CNSocialProfile) UserIdentifier() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/useridentifier
-func (c_ CNSocialProfile) SetUserIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentifier:"), objc.String(value))
+func (c_ CNSocialProfile) SetUserIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentifier:"), value)
 }
 
 
@@ -179,8 +180,8 @@ func (c_ CNSocialProfile) SetUserIdentifier(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/username
-func (c_ CNSocialProfile) Username() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("username"))
+func (c_ CNSocialProfile) Username() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -189,8 +190,8 @@ func (c_ CNSocialProfile) Username() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofile/username
-func (c_ CNSocialProfile) SetUsername(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (c_ CNSocialProfile) SetUsername(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsername:"), value)
 }
 
 
@@ -198,8 +199,8 @@ func (c_ CNSocialProfile) SetUsername(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicefacebook
-func (c_ CNSocialProfile) CNSocialProfileServiceFacebook() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceFacebook"))
+func (c_ CNSocialProfile) CNSocialProfileServiceFacebook() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceFacebook"))
 	return rv
 }
 
@@ -208,8 +209,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceFacebook() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileserviceflickr
-func (c_ CNSocialProfile) CNSocialProfileServiceFlickr() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceFlickr"))
+func (c_ CNSocialProfile) CNSocialProfileServiceFlickr() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceFlickr"))
 	return rv
 }
 
@@ -218,8 +219,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceFlickr() string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicegamecenter
-func (c_ CNSocialProfile) CNSocialProfileServiceGameCenter() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceGameCenter"))
+func (c_ CNSocialProfile) CNSocialProfileServiceGameCenter() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceGameCenter"))
 	return rv
 }
 
@@ -228,8 +229,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceGameCenter() string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicekey
-func (c_ CNSocialProfile) CNSocialProfileServiceKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceKey"))
+func (c_ CNSocialProfile) CNSocialProfileServiceKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceKey"))
 	return rv
 }
 
@@ -238,8 +239,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceKey() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicelinkedin
-func (c_ CNSocialProfile) CNSocialProfileServiceLinkedIn() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceLinkedIn"))
+func (c_ CNSocialProfile) CNSocialProfileServiceLinkedIn() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceLinkedIn"))
 	return rv
 }
 
@@ -248,8 +249,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceLinkedIn() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicemyspace
-func (c_ CNSocialProfile) CNSocialProfileServiceMySpace() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceMySpace"))
+func (c_ CNSocialProfile) CNSocialProfileServiceMySpace() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceMySpace"))
 	return rv
 }
 
@@ -258,8 +259,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceMySpace() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicesinaweibo
-func (c_ CNSocialProfile) CNSocialProfileServiceSinaWeibo() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceSinaWeibo"))
+func (c_ CNSocialProfile) CNSocialProfileServiceSinaWeibo() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceSinaWeibo"))
 	return rv
 }
 
@@ -268,8 +269,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceSinaWeibo() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicetencentweibo
-func (c_ CNSocialProfile) CNSocialProfileServiceTencentWeibo() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceTencentWeibo"))
+func (c_ CNSocialProfile) CNSocialProfileServiceTencentWeibo() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceTencentWeibo"))
 	return rv
 }
 
@@ -278,8 +279,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceTencentWeibo() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileservicetwitter
-func (c_ CNSocialProfile) CNSocialProfileServiceTwitter() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceTwitter"))
+func (c_ CNSocialProfile) CNSocialProfileServiceTwitter() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceTwitter"))
 	return rv
 }
 
@@ -288,8 +289,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceTwitter() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileserviceyelp
-func (c_ CNSocialProfile) CNSocialProfileServiceYelp() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileServiceYelp"))
+func (c_ CNSocialProfile) CNSocialProfileServiceYelp() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileServiceYelp"))
 	return rv
 }
 
@@ -298,8 +299,8 @@ func (c_ CNSocialProfile) CNSocialProfileServiceYelp() string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileurlstringkey
-func (c_ CNSocialProfile) CNSocialProfileURLStringKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileURLStringKey"))
+func (c_ CNSocialProfile) CNSocialProfileURLStringKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileURLStringKey"))
 	return rv
 }
 
@@ -308,8 +309,8 @@ func (c_ CNSocialProfile) CNSocialProfileURLStringKey() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileuseridentifierkey
-func (c_ CNSocialProfile) CNSocialProfileUserIdentifierKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileUserIdentifierKey"))
+func (c_ CNSocialProfile) CNSocialProfileUserIdentifierKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileUserIdentifierKey"))
 	return rv
 }
 
@@ -318,8 +319,8 @@ func (c_ CNSocialProfile) CNSocialProfileUserIdentifierKey() string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsocialprofileusernamekey
-func (c_ CNSocialProfile) CNSocialProfileUsernameKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNSocialProfileUsernameKey"))
+func (c_ CNSocialProfile) CNSocialProfileUsernameKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNSocialProfileUsernameKey"))
 	return rv
 }
 

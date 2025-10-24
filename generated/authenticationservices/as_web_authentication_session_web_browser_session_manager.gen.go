@@ -33,8 +33,8 @@ type IWebAuthenticationSessionWebBrowserSessionManager interface {
 	// properties:
 	SessionHandler() WebAuthenticationSessionWebBrowserSessionHandling /* not a class type */
 	SetSessionHandler(value WebAuthenticationSessionWebBrowserSessionHandling /* not a class type */)
-	WasLaunchedByAuthenticationServices() bool /* primitive/slice/pointer. */
-	SetWasLaunchedByAuthenticationServices(value bool /* primitive/slice/pointer. */)
+	WasLaunchedByAuthenticationServices() bool
+	SetWasLaunchedByAuthenticationServices(value bool)
 	// methods:
 }
 
@@ -133,7 +133,7 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetSessionHandler(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
-func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenticationServices() bool /* primitive/slice/pointer. */ {
+func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenticationServices() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("wasLaunchedByAuthenticationServices"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (w_ WebAuthenticationSessionWebBrowserSessionManager) WasLaunchedByAuthenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices
-func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetWasLaunchedByAuthenticationServices(value bool /* primitive/slice/pointer. */) {
+func (w_ WebAuthenticationSessionWebBrowserSessionManager) SetWasLaunchedByAuthenticationServices(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWasLaunchedByAuthenticationServices:"), value)
 }
 

@@ -32,8 +32,8 @@ type _AXBrailleTranslationResultClass struct {
 type IAXBrailleTranslationResult interface {
 	objectivec.IObject
 	// properties:
-	LocationMap() []foundation.objc.IObject /* cross-framework: Number */
-	ResultString() string /* primitive/slice/pointer. */
+	LocationMap() []objc.IObject /* cross-framework: Number */
+	ResultString() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
-func (a_ AXBrailleTranslationResult) LocationMap() []foundation.objc.IObject /* cross-framework: Number */ {
+func (a_ AXBrailleTranslationResult) LocationMap() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("locationMap"))
 	return rv
 }
@@ -102,8 +102,8 @@ func (a_ AXBrailleTranslationResult) LocationMap() []foundation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-func (a_ AXBrailleTranslationResult) ResultString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
+func (a_ AXBrailleTranslationResult) ResultString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("resultString"))
 	return rv
 }
 

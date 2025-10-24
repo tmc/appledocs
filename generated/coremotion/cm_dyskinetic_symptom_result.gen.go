@@ -32,10 +32,6 @@ type _DyskineticSymptomResultClass struct {
 type IDyskineticSymptomResult interface {
 	objectivec.IObject
 	// properties:
-	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
-	PercentLikely() float32 /* primitive/slice/pointer. */
-	PercentUnlikely() float32 /* primitive/slice/pointer. */
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
 	// methods:
 }
 
@@ -88,47 +84,6 @@ func (d_ DyskineticSymptomResult) Autorelease() DyskineticSymptomResult {
 // NewDyskineticSymptomResult creates a new DyskineticSymptomResult instance.
 func NewDyskineticSymptomResult() DyskineticSymptomResult {
 	return getDyskineticSymptomResultClass().New()
-}
-
-
-
-// The result’s end time and date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/endDate
-func (d_ DyskineticSymptomResult) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
-	return rv
-}
-
-
-// The percentage of time when dyskinetic symptoms were likely.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentLikely
-func (d_ DyskineticSymptomResult) PercentLikely() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("percentLikely"))
-	return rv
-}
-
-
-// The percentage of time when dyskinetic symptoms were unlikely.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentUnlikely
-func (d_ DyskineticSymptomResult) PercentUnlikely() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](d_.ID, objc.Sel("percentUnlikely"))
-	return rv
-}
-
-
-// The result’s start time and date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/startDate
-func (d_ DyskineticSymptomResult) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
-	return rv
 }
 
 

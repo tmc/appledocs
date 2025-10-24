@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,9 @@ type _EAWiFiUnconfiguredAccessoryBrowserClass struct {
 type IEAWiFiUnconfiguredAccessoryBrowser interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	UnconfiguredAccessories() IEAWiFiUnconfiguredAccessory
 	SetUnconfiguredAccessories(value IEAWiFiUnconfiguredAccessory)
 	// methods:
-	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate objc.IObject /* cross-framework Predicate */)
 }
 
 // An object you use to scan for wireless accessories and configure them for use with the user’s app.
@@ -92,34 +90,6 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 
 
 
-// Starts the search for unconfigured accessories that match the specified predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/startSearchingForUnconfiguredAccessories(matching:)
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate objc.IObject /* cross-framework Predicate */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("startSearchingForUnconfiguredAccessoriesMatchingPredicate:"), predicate)
-}
-
-
-// The object that acts as the delegate of the browser and receives browser events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The object that acts as the delegate of the browser and receives browser events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/delegate
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
 // The set of unconfigured accessories that have been discovered.
 //
 // [Full Topic]
@@ -137,7 +107,5 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) UnconfiguredAccessories() IEAWiFiUn
 func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetUnconfiguredAccessories(value IEAWiFiUnconfiguredAccessory) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUnconfiguredAccessories:"), value)
 }
-
-
 
 

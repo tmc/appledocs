@@ -30,18 +30,24 @@ type _NEPacketTunnelNetworkSettingsClass struct {
 // An interface definition for the [NEPacketTunnelNetworkSettings] class.
 type INEPacketTunnelNetworkSettings interface {
 	INETunnelNetworkSettings
-	IPv4Settings() NEIPv4Settings
-	SetIPv4Settings(value INEIPv4Settings)
-	IPv6Settings() NEIPv6Settings
-	SetIPv6Settings(value INEIPv6Settings)
-	MTU() foundation.Number
-	SetMTU(value foundation.INumber)
-	TunnelOverheadBytes() foundation.Number
-	SetTunnelOverheadBytes(value foundation.INumber)
+	// properties:
+	IPv4Settings() objc.IObject /* cross-framework: NEIPv4Settings */
+	SetIPv4Settings(value objc.IObject /* cross-framework: NEIPv4Settings */)
+	Ipv6Settings() objc.IObject /* cross-framework: NEIPv6Settings */
+	SetIpv6Settings(value objc.IObject /* cross-framework: NEIPv6Settings */)
+	Mtu() objc.IObject /* cross-framework: NSNumber */
+	SetMtu(value objc.IObject /* cross-framework: NSNumber */)
+	TunnelOverheadBytes() objc.IObject /* cross-framework: NSNumber */
+	SetTunnelOverheadBytes(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The configuration for a packet tunnel provider’s virtual interface.
+
+
+// The configuration for a packet tunnel provider’s virtual interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings
 type NEPacketTunnelNetworkSettings struct {
 	NETunnelNetworkSettings
@@ -88,75 +94,79 @@ func NewNEPacketTunnelNetworkSettings() NEPacketTunnelNetworkSettings {
 }
 
 
+
 // The tunnel IP version 4 settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings
-func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() NEIPv4Settings {
+func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() objc.IObject /* cross-framework: NEIPv4Settings */ {
 	rv := objc.Send[NEIPv4Settings](n_.ID, objc.Sel("IPv4Settings"))
 	return rv
 }
 
 
-// SetIPv4Settings sets the value of the IPv4Settings property.
 // The tunnel IP version 4 settings.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings
-func (n_ NEPacketTunnelNetworkSettings) SetIPv4Settings(value INEIPv4Settings) {
+func (n_ NEPacketTunnelNetworkSettings) SetIPv4Settings(value objc.IObject /* cross-framework: NEIPv4Settings */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv4Settings:"), value)
 }
 
+
 // The tunnel IP version 6 settings.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings
-func (n_ NEPacketTunnelNetworkSettings) IPv6Settings() NEIPv6Settings {
-	rv := objc.Send[NEIPv6Settings](n_.ID, objc.Sel("IPv6Settings"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEPacketTunnelNetworkSettings) Ipv6Settings() objc.IObject /* cross-framework: NEIPv6Settings */ {
+	rv := objc.Send[NEIPv6Settings](n_.ID, objc.Sel("ipv6Settings"))
 	return rv
 }
 
 
-// SetIPv6Settings sets the value of the IPv6Settings property.
 // The tunnel IP version 6 settings.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings
-func (n_ NEPacketTunnelNetworkSettings) SetIPv6Settings(value INEIPv6Settings) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv6Settings:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings
+func (n_ NEPacketTunnelNetworkSettings) SetIpv6Settings(value objc.IObject /* cross-framework: NEIPv6Settings */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIpv6Settings:"), value)
 }
+
 
 // The size of the maximum trasnmission unit, in bytes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
-func (n_ NEPacketTunnelNetworkSettings) MTU() foundation.Number {
-	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("MTU"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEPacketTunnelNetworkSettings) Mtu() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("mtu"))
 	return rv
 }
 
 
-// SetMTU sets the value of the MTU property.
 // The size of the maximum trasnmission unit, in bytes.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
-func (n_ NEPacketTunnelNetworkSettings) SetMTU(value foundation.INumber) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMTU:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/mtu
+func (n_ NEPacketTunnelNetworkSettings) SetMtu(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMtu:"), value)
 }
+
 
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
-func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() foundation.Number {
-	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("tunnelOverheadBytes"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
+func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("tunnelOverheadBytes"))
 	return rv
 }
 
 
-// SetTunnelOverheadBytes sets the value of the tunnelOverheadBytes property.
 // The number of bytes added to each tunneled packet for storing tunneling protocol headers.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
-func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value foundation.INumber) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/tunneloverheadbytes
+func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
 }
 

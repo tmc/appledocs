@@ -30,17 +30,23 @@ type _StreamClass struct {
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
-	AddStreamOutputTypeSampleHandlerQueueError(output objectivec.IObject, type_ StreamOutputType, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool
+	// properties:
+	SynchronizationClock() Clock /* not a class type */
+	SetSynchronizationClock(value Clock /* not a class type */)
+	// methods:
+	RemoveRecordingOutputError(recordingOutput RecordingOutput /* not a class type */, error_ unsafe.Pointer) bool
 	StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer)
 	UpdateContentFilterCompletionHandler(contentFilter ISCContentFilter, completionHandler unsafe.Pointer)
-	SynchronizationClock() unsafe.Pointer
-	SetSynchronizationClock(value unsafe.Pointer)
 }
 
 // An instance that represents a stream of shareable content.
 //
 // Use a stream to capture video of screen content like apps and windows. Create a content stream by passing it an instance of and an object. The stream uses the filter to determine which screen content to capture, and uses the configuration data to configure the output.
+
+
+// An instance that represents a stream of shareable content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream
 type Stream struct {
 	objectivec.Object
@@ -85,43 +91,48 @@ func NewStream() Stream {
 }
 
 
-// Adds a destination that receives the stream output.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/addStreamOutput(_:type:sampleHandlerQueue:)
-func (s_ Stream) AddStreamOutputTypeSampleHandlerQueueError(output objectivec.IObject, type_ StreamOutputType, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("addStreamOutput:type:sampleHandlerQueue:error:"), output, type_, sampleHandlerQueue, error_)
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/removeRecordingOutput(_:)
+func (s_ Stream) RemoveRecordingOutputError(recordingOutput RecordingOutput /* not a class type */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("removeRecordingOutput:error:"), recordingOutput, error_)
 	return rv
 }
 
+
 // Starts the stream with a callback to indicate whether it successfully starts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/startCapture(completionHandler:)
 func (s_ Stream) StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startCaptureWithCompletionHandler:"), completionHandler)
 }
 
+
 // Updates the stream by applying a new content filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/updateContentFilter(_:completionHandler:)
 func (s_ Stream) UpdateContentFilterCompletionHandler(contentFilter ISCContentFilter, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateContentFilter:completionHandler:"), contentFilter, completionHandler)
 }
 
+
 // A clock to use for output synchronization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstream/synchronizationclock
-func (s_ Stream) SynchronizationClock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("synchronizationClock"))
+func (s_ Stream) SynchronizationClock() Clock /* not a class type */ {
+	rv := objc.Send[Clock](s_.ID, objc.Sel("synchronizationClock"))
 	return rv
 }
 
 
-// SetSynchronizationClock sets the value of the synchronizationClock property.
 // A clock to use for output synchronization.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstream/synchronizationclock
-func (s_ Stream) SetSynchronizationClock(value unsafe.Pointer) {
+func (s_ Stream) SetSynchronizationClock(value Clock /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSynchronizationClock:"), value)
 }
 

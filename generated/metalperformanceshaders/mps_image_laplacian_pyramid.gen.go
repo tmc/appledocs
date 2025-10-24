@@ -30,10 +30,10 @@ type _ImageLaplacianPyramidClass struct {
 type IImageLaplacianPyramid interface {
 	IImagePyramid
 	// properties:
-	LaplacianBias() float32 /* primitive/slice/pointer. */
-	SetLaplacianBias(value float32 /* primitive/slice/pointer. */)
-	LaplacianScale() float32 /* primitive/slice/pointer. */
-	SetLaplacianScale(value float32 /* primitive/slice/pointer. */)
+	LaplacianBias() float32
+	SetLaplacianBias(value float32)
+	LaplacianScale() float32
+	SetLaplacianScale(value float32)
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewImageLaplacianPyramid() ImageLaplacianPyramid {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramid/laplacianbias
-func (i_ ImageLaplacianPyramid) LaplacianBias() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageLaplacianPyramid) LaplacianBias() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("laplacianBias"))
 	return rv
 }
@@ -100,14 +100,14 @@ func (i_ ImageLaplacianPyramid) LaplacianBias() float32 /* primitive/slice/point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramid/laplacianbias
-func (i_ ImageLaplacianPyramid) SetLaplacianBias(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageLaplacianPyramid) SetLaplacianBias(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLaplacianBias:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramid/laplacianscale
-func (i_ ImageLaplacianPyramid) LaplacianScale() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageLaplacianPyramid) LaplacianScale() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("laplacianScale"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (i_ ImageLaplacianPyramid) LaplacianScale() float32 /* primitive/slice/poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramid/laplacianscale
-func (i_ ImageLaplacianPyramid) SetLaplacianScale(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageLaplacianPyramid) SetLaplacianScale(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLaplacianScale:"), value)
 }
 

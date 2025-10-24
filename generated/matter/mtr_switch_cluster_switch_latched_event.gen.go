@@ -31,11 +31,15 @@ type _MTRSwitchClusterSwitchLatchedEventClass struct {
 // An interface definition for the [MTRSwitchClusterSwitchLatchedEvent] class.
 type IMTRSwitchClusterSwitchLatchedEvent interface {
 	objectivec.IObject
-	NewPosition() foundation.Number
-	SetNewPosition(value foundation.INumber)
+	// properties:
+	NewPosition() objc.IObject /* cross-framework: NSNumber */
+	SetNewPosition(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterSwitchLatchedEvent
 type MTRSwitchClusterSwitchLatchedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSwitchClusterSwitchLatchedEvent() MTRSwitchClusterSwitchLatchedEvent 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterswitchlatchedevent/newposition
-func (m_ MTRSwitchClusterSwitchLatchedEvent) NewPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+func (m_ MTRSwitchClusterSwitchLatchedEvent) NewPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newPosition"))
 	return rv
 }
 
 
-// SetNewPosition sets the value of the newPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterswitchlatchedevent/newposition
-func (m_ MTRSwitchClusterSwitchLatchedEvent) SetNewPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterSwitchLatchedEvent) SetNewPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 

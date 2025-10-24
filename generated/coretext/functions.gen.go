@@ -6,7 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
+	corefoundation "github.com/tmc/appledocs/generated/corefoundation"
 )
 
 
@@ -16,103 +16,103 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CTFontCollectionCopyExclusionDescriptors func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCopyFontAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCopyFontAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCopyQueryDescriptors func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateCopyWithFontDescriptors func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateFromAvailableFonts func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptors func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsForFamily func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsWithOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMutableCopy func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateWithFontDescriptors func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCopyExclusionDescriptors func(FontCollectionRef) unsafe.Pointer
+	_CTFontCollectionCopyFontAttribute func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCopyFontAttributes func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCopyQueryDescriptors func(FontCollectionRef) unsafe.Pointer
+	_CTFontCollectionCreateCopyWithFontDescriptors func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) FontCollectionRef
+	_CTFontCollectionCreateFromAvailableFonts func(unsafe.Pointer) FontCollectionRef
+	_CTFontCollectionCreateMatchingFontDescriptors func(FontCollectionRef) unsafe.Pointer
+	_CTFontCollectionCreateMatchingFontDescriptorsForFamily func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback func(FontCollectionRef, FontCollectionSortDescriptorsCallback, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCreateMatchingFontDescriptorsWithOptions func(FontCollectionRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCreateMutableCopy func(FontCollectionRef) MutableFontCollectionRef
+	_CTFontCollectionCreateWithFontDescriptors func(unsafe.Pointer, unsafe.Pointer) FontCollectionRef
 	_CTFontCollectionGetTypeID func() unsafe.Pointer
-	_CTFontCollectionSetExclusionDescriptors func(unsafe.Pointer, unsafe.Pointer)
-	_CTFontCollectionSetQueryDescriptors func(unsafe.Pointer, unsafe.Pointer)
-	_CTFontCopyAttribute func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyAvailableTables func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyCharacterSet func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyDefaultCascadeListForLanguages func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyDisplayName func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyFamilyName func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyFeatureSettings func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyFeatures func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyFontDescriptor func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyFullName func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyGraphicsFont func(unsafe.Pointer, unsafe.Pointer) coregraphics.FontRef
-	_CTFontCopyLocalizedName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyNameForGlyph func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyPostScriptName func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopySupportedLanguages func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyTraits func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyVariation func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyVariationAxes func(unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateCopyWithAttributes func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateCopyWithFamily func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateCopyWithSymbolicTraits func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateForString func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateForStringWithLanguage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreatePathForGlyph func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.PathRef
-	_CTFontCreateUIFontForLanguage func(unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithFontDescriptor func(unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithFontDescriptorAndOptions func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithGraphicsFont func(coregraphics.FontRef, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithName func(unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithNameAndOptions func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithPlatformFont func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCreateWithQuickdrawInstance func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64) unsafe.Pointer
-	_CTFontDescriptorCopyAttribute func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCopyAttributes func(unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCopyLocalizedAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithAttributes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithFamily func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithFeature func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithSymbolicTraits func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithVariation func(unsafe.Pointer, unsafe.Pointer, float64) unsafe.Pointer
-	_CTFontDescriptorCreateMatchingFontDescriptor func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateMatchingFontDescriptors func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateWithAttributes func(unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateWithNameAndSize func(unsafe.Pointer, float64) unsafe.Pointer
+	_CTFontCollectionSetExclusionDescriptors func(MutableFontCollectionRef, unsafe.Pointer)
+	_CTFontCollectionSetQueryDescriptors func(MutableFontCollectionRef, unsafe.Pointer)
+	_CTFontCopyAttribute func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyAvailableTables func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyCharacterSet func(FontRef) unsafe.Pointer
+	_CTFontCopyDefaultCascadeListForLanguages func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyDisplayName func(FontRef) unsafe.Pointer
+	_CTFontCopyFamilyName func(FontRef) unsafe.Pointer
+	_CTFontCopyFeatureSettings func(FontRef) unsafe.Pointer
+	_CTFontCopyFeatures func(FontRef) unsafe.Pointer
+	_CTFontCopyFontDescriptor func(FontRef) FontDescriptorRef
+	_CTFontCopyFullName func(FontRef) unsafe.Pointer
+	_CTFontCopyGraphicsFont func(FontRef, unsafe.Pointer) FontRef
+	_CTFontCopyLocalizedName func(FontRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyName func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyNameForGlyph func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyPostScriptName func(FontRef) unsafe.Pointer
+	_CTFontCopySupportedLanguages func(FontRef) unsafe.Pointer
+	_CTFontCopyTable func(FontRef, FontTableTag, unsafe.Pointer) unsafe.Pointer
+	_CTFontCopyTraits func(FontRef) unsafe.Pointer
+	_CTFontCopyVariation func(FontRef) unsafe.Pointer
+	_CTFontCopyVariationAxes func(FontRef) unsafe.Pointer
+	_CTFontCreateCopyWithAttributes func(FontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
+	_CTFontCreateCopyWithFamily func(FontRef, float64, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateCopyWithSymbolicTraits func(FontRef, float64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateForString func(FontRef, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateForStringWithLanguage func(FontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreatePathForGlyph func(FontRef, unsafe.Pointer, unsafe.Pointer) PathRef
+	_CTFontCreateUIFontForLanguage func(unsafe.Pointer, float64, unsafe.Pointer) FontRef
+	_CTFontCreateWithFontDescriptor func(FontDescriptorRef, float64, unsafe.Pointer) FontRef
+	_CTFontCreateWithFontDescriptorAndOptions func(FontDescriptorRef, float64, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateWithGraphicsFont func(FontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
+	_CTFontCreateWithName func(unsafe.Pointer, float64, unsafe.Pointer) FontRef
+	_CTFontCreateWithNameAndOptions func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateWithPlatformFont func(ATSFontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
+	_CTFontCreateWithQuickdrawInstance func(unsafe.Pointer, int16, uint8, float64) FontRef
+	_CTFontDescriptorCopyAttribute func(FontDescriptorRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontDescriptorCopyAttributes func(FontDescriptorRef) unsafe.Pointer
+	_CTFontDescriptorCopyLocalizedAttribute func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTFontDescriptorCreateCopyWithAttributes func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithFamily func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithFeature func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithSymbolicTraits func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithVariation func(FontDescriptorRef, unsafe.Pointer, float64) FontDescriptorRef
+	_CTFontDescriptorCreateMatchingFontDescriptor func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateMatchingFontDescriptors func(FontDescriptorRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontDescriptorCreateWithAttributes func(unsafe.Pointer) FontDescriptorRef
+	_CTFontDescriptorCreateWithNameAndSize func(unsafe.Pointer, float64) FontDescriptorRef
 	_CTFontDescriptorGetTypeID func() unsafe.Pointer
 	_CTFontDescriptorMatchFontDescriptorsWithProgressHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontDrawGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, coregraphics.ContextRef)
-	_CTFontDrawImageFromAdaptiveImageProviderAtPoint func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGPoint, coregraphics.ContextRef)
-	_CTFontGetAdvancesForGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, unsafe.Pointer) float64
-	_CTFontGetAscent func(unsafe.Pointer) float64
-	_CTFontGetBoundingBox func(unsafe.Pointer) coregraphics.CGRect
-	_CTFontGetBoundingRectsForGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect, unsafe.Pointer) coregraphics.CGRect
-	_CTFontGetCapHeight func(unsafe.Pointer) float64
-	_CTFontGetDescent func(unsafe.Pointer) float64
-	_CTFontGetGlyphCount func(unsafe.Pointer) unsafe.Pointer
-	_CTFontGetGlyphWithName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetGlyphsForCharacters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontGetLeading func(unsafe.Pointer) float64
-	_CTFontGetLigatureCaretPositions func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetMatrix func(unsafe.Pointer) coregraphics.CGAffineTransform
-	_CTFontGetOpticalBoundsForGlyphs func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_CTFontGetPlatformFont func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetSize func(unsafe.Pointer) float64
-	_CTFontGetSlantAngle func(unsafe.Pointer) float64
-	_CTFontGetStringEncoding func(unsafe.Pointer) unsafe.Pointer
-	_CTFontGetSymbolicTraits func(unsafe.Pointer) unsafe.Pointer
+	_CTFontDrawGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, uintptr, ContextRef)
+	_CTFontDrawImageFromAdaptiveImageProviderAtPoint func(FontRef, unsafe.Pointer, corefoundation.Point, ContextRef)
+	_CTFontGetAdvancesForGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Size, unsafe.Pointer) float64
+	_CTFontGetAscent func(FontRef) float64
+	_CTFontGetBoundingBox func(FontRef) corefoundation.Rect
+	_CTFontGetBoundingRectsForGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Rect, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetCapHeight func(FontRef) float64
+	_CTFontGetDescent func(FontRef) float64
+	_CTFontGetGlyphCount func(FontRef) unsafe.Pointer
+	_CTFontGetGlyphWithName func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontGetGlyphsForCharacters func(FontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontGetLeading func(FontRef) float64
+	_CTFontGetLigatureCaretPositions func(FontRef, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
+	_CTFontGetMatrix func(FontRef) corefoundation.AffineTransform
+	_CTFontGetOpticalBoundsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.Rect, unsafe.Pointer, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetPlatformFont func(FontRef, unsafe.Pointer) ATSFontRef
+	_CTFontGetSize func(FontRef) float64
+	_CTFontGetSlantAngle func(FontRef) float64
+	_CTFontGetStringEncoding func(FontRef) unsafe.Pointer
+	_CTFontGetSymbolicTraits func(FontRef) unsafe.Pointer
 	_CTFontGetTypeID func() unsafe.Pointer
-	_CTFontGetTypographicBoundsForAdaptiveImageProvider func(unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_CTFontGetUnderlinePosition func(unsafe.Pointer) float64
-	_CTFontGetUnderlineThickness func(unsafe.Pointer) float64
-	_CTFontGetUnitsPerEm func(unsafe.Pointer) unsafe.Pointer
-	_CTFontGetVerticalTranslationsForGlyphs func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, unsafe.Pointer)
-	_CTFontGetXHeight func(unsafe.Pointer) float64
-	_CTFontHasTable func(unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontGetTypographicBoundsForAdaptiveImageProvider func(FontRef, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetUnderlinePosition func(FontRef) float64
+	_CTFontGetUnderlineThickness func(FontRef) float64
+	_CTFontGetUnitsPerEm func(FontRef) unsafe.Pointer
+	_CTFontGetVerticalTranslationsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.Size, unsafe.Pointer)
+	_CTFontGetXHeight func(FontRef) float64
+	_CTFontHasTable func(FontRef, FontTableTag) bool
 	_CTFontManagerCompareFontFamilyNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCopyAvailableFontFamilyNames func() unsafe.Pointer
 	_CTFontManagerCopyAvailableFontURLs func() unsafe.Pointer
 	_CTFontManagerCopyAvailablePostScriptNames func() unsafe.Pointer
 	_CTFontManagerCopyRegisteredFontDescriptors func(unsafe.Pointer, bool) unsafe.Pointer
-	_CTFontManagerCreateFontDescriptorFromData func(unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerCreateFontDescriptorFromData func(unsafe.Pointer) FontDescriptorRef
 	_CTFontManagerCreateFontDescriptorsFromData func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCreateFontDescriptorsFromURL func(unsafe.Pointer) unsafe.Pointer
 	_CTFontManagerCreateFontRequestRunLoopSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -125,100 +125,100 @@ var (
 	_CTFontManagerRegisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontManagerRegisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontManagerRegisterFontsWithAssetNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, bool)
-	_CTFontManagerRegisterGraphicsFont func(coregraphics.FontRef, unsafe.Pointer) bool
+	_CTFontManagerRegisterGraphicsFont func(FontRef, unsafe.Pointer) bool
 	_CTFontManagerRequestFonts func(unsafe.Pointer)
 	_CTFontManagerSetAutoActivationSetting func(unsafe.Pointer, unsafe.Pointer)
 	_CTFontManagerUnregisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, bool)
 	_CTFontManagerUnregisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool)
 	_CTFontManagerUnregisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CTFontManagerUnregisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontManagerUnregisterGraphicsFont func(coregraphics.FontRef, unsafe.Pointer) bool
-	_CTFrameDraw func(unsafe.Pointer, coregraphics.ContextRef)
-	_CTFrameGetFrameAttributes func(unsafe.Pointer) unsafe.Pointer
-	_CTFrameGetLineOrigins func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGPoint)
-	_CTFrameGetLines func(unsafe.Pointer) unsafe.Pointer
-	_CTFrameGetPath func(unsafe.Pointer) coregraphics.PathRef
-	_CTFrameGetStringRange func(unsafe.Pointer) unsafe.Pointer
+	_CTFontManagerUnregisterGraphicsFont func(FontRef, unsafe.Pointer) bool
+	_CTFrameDraw func(FrameRef, ContextRef)
+	_CTFrameGetFrameAttributes func(FrameRef) unsafe.Pointer
+	_CTFrameGetLineOrigins func(FrameRef, unsafe.Pointer, corefoundation.Point)
+	_CTFrameGetLines func(FrameRef) unsafe.Pointer
+	_CTFrameGetPath func(FrameRef) PathRef
+	_CTFrameGetStringRange func(FrameRef) unsafe.Pointer
 	_CTFrameGetTypeID func() unsafe.Pointer
-	_CTFrameGetVisibleStringRange func(unsafe.Pointer) unsafe.Pointer
-	_CTFramesetterCreateFrame func(unsafe.Pointer, unsafe.Pointer, coregraphics.PathRef, unsafe.Pointer) unsafe.Pointer
-	_CTFramesetterCreateWithAttributedString func(unsafe.Pointer) unsafe.Pointer
-	_CTFramesetterCreateWithTypesetter func(unsafe.Pointer) unsafe.Pointer
+	_CTFrameGetVisibleStringRange func(FrameRef) unsafe.Pointer
+	_CTFramesetterCreateFrame func(FramesetterRef, unsafe.Pointer, PathRef, unsafe.Pointer) FrameRef
+	_CTFramesetterCreateWithAttributedString func(unsafe.Pointer) FramesetterRef
+	_CTFramesetterCreateWithTypesetter func(TypesetterRef) FramesetterRef
 	_CTFramesetterGetTypeID func() unsafe.Pointer
-	_CTFramesetterGetTypesetter func(unsafe.Pointer) unsafe.Pointer
-	_CTFramesetterSuggestFrameSizeWithConstraints func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, unsafe.Pointer) coregraphics.CGSize
+	_CTFramesetterGetTypesetter func(FramesetterRef) TypesetterRef
+	_CTFramesetterSuggestFrameSizeWithConstraints func(FramesetterRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Size, unsafe.Pointer) corefoundation.Size
 	_CTGetCoreTextVersion func() uint32
-	_CTGlyphInfoCreateWithCharacterIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoCreateWithGlyph func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoCreateWithGlyphName func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoGetCharacterCollection func(unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoGetCharacterIdentifier func(unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoGetGlyph func(unsafe.Pointer) unsafe.Pointer
-	_CTGlyphInfoGetGlyphName func(unsafe.Pointer) unsafe.Pointer
+	_CTGlyphInfoCreateWithCharacterIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) GlyphInfoRef
+	_CTGlyphInfoCreateWithGlyph func(unsafe.Pointer, FontRef, unsafe.Pointer) GlyphInfoRef
+	_CTGlyphInfoCreateWithGlyphName func(unsafe.Pointer, FontRef, unsafe.Pointer) GlyphInfoRef
+	_CTGlyphInfoGetCharacterCollection func(GlyphInfoRef) unsafe.Pointer
+	_CTGlyphInfoGetCharacterIdentifier func(GlyphInfoRef) unsafe.Pointer
+	_CTGlyphInfoGetGlyph func(GlyphInfoRef) unsafe.Pointer
+	_CTGlyphInfoGetGlyphName func(GlyphInfoRef) unsafe.Pointer
 	_CTGlyphInfoGetTypeID func() unsafe.Pointer
-	_CTLineCreateJustifiedLine func(unsafe.Pointer, float64, float64) unsafe.Pointer
-	_CTLineCreateTruncatedLine func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTLineCreateWithAttributedString func(unsafe.Pointer) unsafe.Pointer
-	_CTLineDraw func(unsafe.Pointer, coregraphics.ContextRef)
-	_CTLineEnumerateCaretOffsets func(unsafe.Pointer)
-	_CTLineGetBoundsWithOptions func(unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_CTLineGetGlyphCount func(unsafe.Pointer) unsafe.Pointer
-	_CTLineGetGlyphRuns func(unsafe.Pointer) unsafe.Pointer
-	_CTLineGetImageBounds func(unsafe.Pointer, coregraphics.ContextRef) coregraphics.CGRect
-	_CTLineGetOffsetForStringIndex func(unsafe.Pointer, unsafe.Pointer, []float64) float64
-	_CTLineGetPenOffsetForFlush func(unsafe.Pointer, float64, float64) float64
-	_CTLineGetStringIndexForPosition func(unsafe.Pointer, coregraphics.CGPoint) unsafe.Pointer
-	_CTLineGetStringRange func(unsafe.Pointer) unsafe.Pointer
-	_CTLineGetTrailingWhitespaceWidth func(unsafe.Pointer) float64
+	_CTLineCreateJustifiedLine func(LineRef, float64, float64) LineRef
+	_CTLineCreateTruncatedLine func(LineRef, float64, unsafe.Pointer, LineRef) LineRef
+	_CTLineCreateWithAttributedString func(unsafe.Pointer) LineRef
+	_CTLineDraw func(LineRef, ContextRef)
+	_CTLineEnumerateCaretOffsets func(LineRef)
+	_CTLineGetBoundsWithOptions func(LineRef, unsafe.Pointer) corefoundation.Rect
+	_CTLineGetGlyphCount func(LineRef) unsafe.Pointer
+	_CTLineGetGlyphRuns func(LineRef) unsafe.Pointer
+	_CTLineGetImageBounds func(LineRef, ContextRef) corefoundation.Rect
+	_CTLineGetOffsetForStringIndex func(LineRef, unsafe.Pointer, []float64) float64
+	_CTLineGetPenOffsetForFlush func(LineRef, float64, float64) float64
+	_CTLineGetStringIndexForPosition func(LineRef, corefoundation.Point) unsafe.Pointer
+	_CTLineGetStringRange func(LineRef) unsafe.Pointer
+	_CTLineGetTrailingWhitespaceWidth func(LineRef) float64
 	_CTLineGetTypeID func() unsafe.Pointer
-	_CTLineGetTypographicBounds func(unsafe.Pointer, []float64, []float64, []float64) float64
-	_CTParagraphStyleCreate func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_CTParagraphStyleCreateCopy func(unsafe.Pointer) unsafe.Pointer
+	_CTLineGetTypographicBounds func(LineRef, []float64, []float64, []float64) float64
+	_CTParagraphStyleCreate func(unsafe.Pointer, uintptr) ParagraphStyleRef
+	_CTParagraphStyleCreateCopy func(ParagraphStyleRef) ParagraphStyleRef
 	_CTParagraphStyleGetTypeID func() unsafe.Pointer
-	_CTParagraphStyleGetValueForSpecifier func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) bool
-	_CTRubyAnnotationCreate func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationCreateCopy func(unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationCreateWithAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationGetAlignment func(unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationGetOverhang func(unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationGetSizeFactor func(unsafe.Pointer) float64
-	_CTRubyAnnotationGetTextForPosition func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTParagraphStyleGetValueForSpecifier func(ParagraphStyleRef, unsafe.Pointer, uintptr, unsafe.Pointer) bool
+	_CTRubyAnnotationCreate func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) RubyAnnotationRef
+	_CTRubyAnnotationCreateCopy func(RubyAnnotationRef) RubyAnnotationRef
+	_CTRubyAnnotationCreateWithAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) RubyAnnotationRef
+	_CTRubyAnnotationGetAlignment func(RubyAnnotationRef) unsafe.Pointer
+	_CTRubyAnnotationGetOverhang func(RubyAnnotationRef) unsafe.Pointer
+	_CTRubyAnnotationGetSizeFactor func(RubyAnnotationRef) float64
+	_CTRubyAnnotationGetTextForPosition func(RubyAnnotationRef, unsafe.Pointer) unsafe.Pointer
 	_CTRubyAnnotationGetTypeID func() unsafe.Pointer
-	_CTRunDelegateCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTRunDelegateGetRefCon func(unsafe.Pointer) unsafe.Pointer
+	_CTRunDelegateCreate func(unsafe.Pointer, unsafe.Pointer) RunDelegateRef
+	_CTRunDelegateGetRefCon func(RunDelegateRef) unsafe.Pointer
 	_CTRunDelegateGetTypeID func() unsafe.Pointer
-	_CTRunDraw func(unsafe.Pointer, coregraphics.ContextRef, unsafe.Pointer)
-	_CTRunGetAdvances func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize)
-	_CTRunGetAdvancesPtr func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetAttributes func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetBaseAdvancesAndOrigins func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGSize, coregraphics.CGPoint)
-	_CTRunGetGlyphCount func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CTRunGetGlyphsPtr func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetImageBounds func(unsafe.Pointer, coregraphics.ContextRef, unsafe.Pointer) coregraphics.CGRect
-	_CTRunGetPositions func(unsafe.Pointer, unsafe.Pointer, coregraphics.CGPoint)
-	_CTRunGetPositionsPtr func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetStatus func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetStringIndices func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_CTRunGetStringIndicesPtr func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetStringRange func(unsafe.Pointer) unsafe.Pointer
-	_CTRunGetTextMatrix func(unsafe.Pointer) coregraphics.CGAffineTransform
+	_CTRunDraw func(RunRef, ContextRef, unsafe.Pointer)
+	_CTRunGetAdvances func(RunRef, unsafe.Pointer, corefoundation.Size)
+	_CTRunGetAdvancesPtr func(RunRef) unsafe.Pointer
+	_CTRunGetAttributes func(RunRef) unsafe.Pointer
+	_CTRunGetBaseAdvancesAndOrigins func(RunRef, unsafe.Pointer, corefoundation.Size, corefoundation.Point)
+	_CTRunGetGlyphCount func(RunRef) unsafe.Pointer
+	_CTRunGetGlyphs func(RunRef, unsafe.Pointer, unsafe.Pointer)
+	_CTRunGetGlyphsPtr func(RunRef) unsafe.Pointer
+	_CTRunGetImageBounds func(RunRef, ContextRef, unsafe.Pointer) corefoundation.Rect
+	_CTRunGetPositions func(RunRef, unsafe.Pointer, corefoundation.Point)
+	_CTRunGetPositionsPtr func(RunRef) unsafe.Pointer
+	_CTRunGetStatus func(RunRef) unsafe.Pointer
+	_CTRunGetStringIndices func(RunRef, unsafe.Pointer, unsafe.Pointer)
+	_CTRunGetStringIndicesPtr func(RunRef) unsafe.Pointer
+	_CTRunGetStringRange func(RunRef) unsafe.Pointer
+	_CTRunGetTextMatrix func(RunRef) corefoundation.AffineTransform
 	_CTRunGetTypeID func() unsafe.Pointer
-	_CTRunGetTypographicBounds func(unsafe.Pointer, unsafe.Pointer, []float64, []float64, []float64) float64
-	_CTTextTabCreate func(unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTTextTabGetAlignment func(unsafe.Pointer) unsafe.Pointer
-	_CTTextTabGetLocation func(unsafe.Pointer) float64
-	_CTTextTabGetOptions func(unsafe.Pointer) unsafe.Pointer
+	_CTRunGetTypographicBounds func(RunRef, unsafe.Pointer, []float64, []float64, []float64) float64
+	_CTTextTabCreate func(unsafe.Pointer, float64, unsafe.Pointer) TextTabRef
+	_CTTextTabGetAlignment func(TextTabRef) unsafe.Pointer
+	_CTTextTabGetLocation func(TextTabRef) float64
+	_CTTextTabGetOptions func(TextTabRef) unsafe.Pointer
 	_CTTextTabGetTypeID func() unsafe.Pointer
-	_CTTypesetterCreateLine func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTTypesetterCreateLineWithOffset func(unsafe.Pointer, unsafe.Pointer, float64) unsafe.Pointer
-	_CTTypesetterCreateWithAttributedString func(unsafe.Pointer) unsafe.Pointer
-	_CTTypesetterCreateWithAttributedStringAndOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CTTypesetterCreateLine func(TypesetterRef, unsafe.Pointer) LineRef
+	_CTTypesetterCreateLineWithOffset func(TypesetterRef, unsafe.Pointer, float64) LineRef
+	_CTTypesetterCreateWithAttributedString func(unsafe.Pointer) TypesetterRef
+	_CTTypesetterCreateWithAttributedStringAndOptions func(unsafe.Pointer, unsafe.Pointer) TypesetterRef
 	_CTTypesetterGetTypeID func() unsafe.Pointer
-	_CTTypesetterSuggestClusterBreak func(unsafe.Pointer, unsafe.Pointer, float64) unsafe.Pointer
-	_CTTypesetterSuggestClusterBreakWithOffset func(unsafe.Pointer, unsafe.Pointer, float64, float64) unsafe.Pointer
-	_CTTypesetterSuggestLineBreak func(unsafe.Pointer, unsafe.Pointer, float64) unsafe.Pointer
-	_CTTypesetterSuggestLineBreakWithOffset func(unsafe.Pointer, unsafe.Pointer, float64, float64) unsafe.Pointer
+	_CTTypesetterSuggestClusterBreak func(TypesetterRef, unsafe.Pointer, float64) unsafe.Pointer
+	_CTTypesetterSuggestClusterBreakWithOffset func(TypesetterRef, unsafe.Pointer, float64, float64) unsafe.Pointer
+	_CTTypesetterSuggestLineBreak func(TypesetterRef, unsafe.Pointer, float64) unsafe.Pointer
+	_CTTypesetterSuggestLineBreakWithOffset func(TypesetterRef, unsafe.Pointer, float64, float64) unsafe.Pointer
 )
 
 func init() {
@@ -452,7 +452,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyExclusionDescriptors(_:)
-func CTFontCollectionCopyExclusionDescriptors(collection unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyExclusionDescriptors(collection FontCollectionRef) unsafe.Pointer {
 	return _CTFontCollectionCopyExclusionDescriptors(collection)
 }
 
@@ -463,7 +463,7 @@ func CTFontCollectionCopyExclusionDescriptors(collection unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyFontAttribute(_:_:_:)
-func CTFontCollectionCopyFontAttribute(collection unsafe.Pointer, attributeName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyFontAttribute(collection FontCollectionRef, attributeName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCollectionCopyFontAttribute(collection, attributeName, options)
 }
 
@@ -474,7 +474,7 @@ func CTFontCollectionCopyFontAttribute(collection unsafe.Pointer, attributeName 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyFontAttributes(_:_:_:)
-func CTFontCollectionCopyFontAttributes(collection unsafe.Pointer, attributeNames unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyFontAttributes(collection FontCollectionRef, attributeNames unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCollectionCopyFontAttributes(collection, attributeNames, options)
 }
 
@@ -485,7 +485,7 @@ func CTFontCollectionCopyFontAttributes(collection unsafe.Pointer, attributeName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyQueryDescriptors(_:)
-func CTFontCollectionCopyQueryDescriptors(collection unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyQueryDescriptors(collection FontCollectionRef) unsafe.Pointer {
 	return _CTFontCollectionCopyQueryDescriptors(collection)
 }
 
@@ -496,7 +496,7 @@ func CTFontCollectionCopyQueryDescriptors(collection unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateCopyWithFontDescriptors(_:_:_:)
-func CTFontCollectionCreateCopyWithFontDescriptors(original unsafe.Pointer, queryDescriptors unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateCopyWithFontDescriptors(original FontCollectionRef, queryDescriptors unsafe.Pointer, options unsafe.Pointer) FontCollectionRef {
 	return _CTFontCollectionCreateCopyWithFontDescriptors(original, queryDescriptors, options)
 }
 
@@ -507,7 +507,7 @@ func CTFontCollectionCreateCopyWithFontDescriptors(original unsafe.Pointer, quer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateFromAvailableFonts(_:)
-func CTFontCollectionCreateFromAvailableFonts(options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateFromAvailableFonts(options unsafe.Pointer) FontCollectionRef {
 	return _CTFontCollectionCreateFromAvailableFonts(options)
 }
 
@@ -518,7 +518,7 @@ func CTFontCollectionCreateFromAvailableFonts(options unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptors(_:)
-func CTFontCollectionCreateMatchingFontDescriptors(collection unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptors(collection FontCollectionRef) unsafe.Pointer {
 	return _CTFontCollectionCreateMatchingFontDescriptors(collection)
 }
 
@@ -529,7 +529,7 @@ func CTFontCollectionCreateMatchingFontDescriptors(collection unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsForFamily(_:_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection unsafe.Pointer, familyName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection FontCollectionRef, familyName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection, familyName, options)
 }
 
@@ -540,7 +540,7 @@ func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(_:_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection unsafe.Pointer, sortCallback unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection FontCollectionRef, sortCallback FontCollectionSortDescriptorsCallback, refCon unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection, sortCallback, refCon)
 }
 
@@ -551,7 +551,7 @@ func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsWithOptions(_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection FontCollectionRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection, options)
 }
 
@@ -562,7 +562,7 @@ func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMutableCopy(_:)
-func CTFontCollectionCreateMutableCopy(original unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMutableCopy(original FontCollectionRef) MutableFontCollectionRef {
 	return _CTFontCollectionCreateMutableCopy(original)
 }
 
@@ -573,7 +573,7 @@ func CTFontCollectionCreateMutableCopy(original unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateWithFontDescriptors(_:_:)
-func CTFontCollectionCreateWithFontDescriptors(queryDescriptors unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateWithFontDescriptors(queryDescriptors unsafe.Pointer, options unsafe.Pointer) FontCollectionRef {
 	return _CTFontCollectionCreateWithFontDescriptors(queryDescriptors, options)
 }
 
@@ -595,7 +595,7 @@ func CTFontCollectionGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSetExclusionDescriptors(_:_:)
-func CTFontCollectionSetExclusionDescriptors(collection unsafe.Pointer, descriptors unsafe.Pointer) {
+func CTFontCollectionSetExclusionDescriptors(collection MutableFontCollectionRef, descriptors unsafe.Pointer) {
 	_CTFontCollectionSetExclusionDescriptors(collection, descriptors)
 }
 
@@ -606,7 +606,7 @@ func CTFontCollectionSetExclusionDescriptors(collection unsafe.Pointer, descript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSetQueryDescriptors(_:_:)
-func CTFontCollectionSetQueryDescriptors(collection unsafe.Pointer, descriptors unsafe.Pointer) {
+func CTFontCollectionSetQueryDescriptors(collection MutableFontCollectionRef, descriptors unsafe.Pointer) {
 	_CTFontCollectionSetQueryDescriptors(collection, descriptors)
 }
 
@@ -617,7 +617,7 @@ func CTFontCollectionSetQueryDescriptors(collection unsafe.Pointer, descriptors 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyAttribute(_:_:)
-func CTFontCopyAttribute(font unsafe.Pointer, attribute unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyAttribute(font FontRef, attribute unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyAttribute(font, attribute)
 }
 
@@ -628,7 +628,7 @@ func CTFontCopyAttribute(font unsafe.Pointer, attribute unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyAvailableTables(_:_:)
-func CTFontCopyAvailableTables(font unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyAvailableTables(font FontRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyAvailableTables(font, options)
 }
 
@@ -639,7 +639,7 @@ func CTFontCopyAvailableTables(font unsafe.Pointer, options unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyCharacterSet(_:)
-func CTFontCopyCharacterSet(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyCharacterSet(font FontRef) unsafe.Pointer {
 	return _CTFontCopyCharacterSet(font)
 }
 
@@ -650,7 +650,7 @@ func CTFontCopyCharacterSet(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyDefaultCascadeListForLanguages(_:_:)
-func CTFontCopyDefaultCascadeListForLanguages(font unsafe.Pointer, languagePrefList unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyDefaultCascadeListForLanguages(font FontRef, languagePrefList unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyDefaultCascadeListForLanguages(font, languagePrefList)
 }
 
@@ -661,7 +661,7 @@ func CTFontCopyDefaultCascadeListForLanguages(font unsafe.Pointer, languagePrefL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyDisplayName(_:)
-func CTFontCopyDisplayName(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyDisplayName(font FontRef) unsafe.Pointer {
 	return _CTFontCopyDisplayName(font)
 }
 
@@ -672,7 +672,7 @@ func CTFontCopyDisplayName(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFamilyName(_:)
-func CTFontCopyFamilyName(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyFamilyName(font FontRef) unsafe.Pointer {
 	return _CTFontCopyFamilyName(font)
 }
 
@@ -683,7 +683,7 @@ func CTFontCopyFamilyName(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFeatureSettings(_:)
-func CTFontCopyFeatureSettings(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyFeatureSettings(font FontRef) unsafe.Pointer {
 	return _CTFontCopyFeatureSettings(font)
 }
 
@@ -694,7 +694,7 @@ func CTFontCopyFeatureSettings(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFeatures(_:)
-func CTFontCopyFeatures(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyFeatures(font FontRef) unsafe.Pointer {
 	return _CTFontCopyFeatures(font)
 }
 
@@ -705,7 +705,7 @@ func CTFontCopyFeatures(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFontDescriptor(_:)
-func CTFontCopyFontDescriptor(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyFontDescriptor(font FontRef) FontDescriptorRef {
 	return _CTFontCopyFontDescriptor(font)
 }
 
@@ -716,7 +716,7 @@ func CTFontCopyFontDescriptor(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFullName(_:)
-func CTFontCopyFullName(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyFullName(font FontRef) unsafe.Pointer {
 	return _CTFontCopyFullName(font)
 }
 
@@ -727,7 +727,7 @@ func CTFontCopyFullName(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyGraphicsFont(_:_:)
-func CTFontCopyGraphicsFont(font unsafe.Pointer, attributes unsafe.Pointer) coregraphics.FontRef {
+func CTFontCopyGraphicsFont(font FontRef, attributes unsafe.Pointer) FontRef {
 	return _CTFontCopyGraphicsFont(font, attributes)
 }
 
@@ -738,7 +738,7 @@ func CTFontCopyGraphicsFont(font unsafe.Pointer, attributes unsafe.Pointer) core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyLocalizedName(_:_:_:)
-func CTFontCopyLocalizedName(font unsafe.Pointer, nameKey unsafe.Pointer, actualLanguage unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyLocalizedName(font FontRef, nameKey unsafe.Pointer, actualLanguage unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyLocalizedName(font, nameKey, actualLanguage)
 }
 
@@ -749,7 +749,7 @@ func CTFontCopyLocalizedName(font unsafe.Pointer, nameKey unsafe.Pointer, actual
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyName(_:_:)
-func CTFontCopyName(font unsafe.Pointer, nameKey unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyName(font FontRef, nameKey unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyName(font, nameKey)
 }
 
@@ -760,7 +760,7 @@ func CTFontCopyName(font unsafe.Pointer, nameKey unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyNameForGlyph(_:_:)
-func CTFontCopyNameForGlyph(font unsafe.Pointer, glyph unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyNameForGlyph(font FontRef, glyph unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyNameForGlyph(font, glyph)
 }
 
@@ -771,7 +771,7 @@ func CTFontCopyNameForGlyph(font unsafe.Pointer, glyph unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyPostScriptName(_:)
-func CTFontCopyPostScriptName(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyPostScriptName(font FontRef) unsafe.Pointer {
 	return _CTFontCopyPostScriptName(font)
 }
 
@@ -782,7 +782,7 @@ func CTFontCopyPostScriptName(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopySupportedLanguages(_:)
-func CTFontCopySupportedLanguages(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopySupportedLanguages(font FontRef) unsafe.Pointer {
 	return _CTFontCopySupportedLanguages(font)
 }
 
@@ -793,7 +793,7 @@ func CTFontCopySupportedLanguages(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyTable(_:_:_:)
-func CTFontCopyTable(font unsafe.Pointer, table unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyTable(font FontRef, table FontTableTag, options unsafe.Pointer) unsafe.Pointer {
 	return _CTFontCopyTable(font, table, options)
 }
 
@@ -804,7 +804,7 @@ func CTFontCopyTable(font unsafe.Pointer, table unsafe.Pointer, options unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyTraits(_:)
-func CTFontCopyTraits(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyTraits(font FontRef) unsafe.Pointer {
 	return _CTFontCopyTraits(font)
 }
 
@@ -815,7 +815,7 @@ func CTFontCopyTraits(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyVariation(_:)
-func CTFontCopyVariation(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyVariation(font FontRef) unsafe.Pointer {
 	return _CTFontCopyVariation(font)
 }
 
@@ -826,7 +826,7 @@ func CTFontCopyVariation(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyVariationAxes(_:)
-func CTFontCopyVariationAxes(font unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyVariationAxes(font FontRef) unsafe.Pointer {
 	return _CTFontCopyVariationAxes(font)
 }
 
@@ -837,7 +837,7 @@ func CTFontCopyVariationAxes(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithAttributes(_:_:_:_:)
-func CTFontCreateCopyWithAttributes(font unsafe.Pointer, size float64, matrix unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateCopyWithAttributes(font FontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateCopyWithAttributes(font, size, matrix, attributes)
 }
 
@@ -848,7 +848,7 @@ func CTFontCreateCopyWithAttributes(font unsafe.Pointer, size float64, matrix un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithFamily(_:_:_:_:)
-func CTFontCreateCopyWithFamily(font unsafe.Pointer, size float64, matrix unsafe.Pointer, family unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateCopyWithFamily(font FontRef, size float64, matrix unsafe.Pointer, family unsafe.Pointer) FontRef {
 	return _CTFontCreateCopyWithFamily(font, size, matrix, family)
 }
 
@@ -859,7 +859,7 @@ func CTFontCreateCopyWithFamily(font unsafe.Pointer, size float64, matrix unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithSymbolicTraits(_:_:_:_:_:)
-func CTFontCreateCopyWithSymbolicTraits(font unsafe.Pointer, size float64, matrix unsafe.Pointer, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateCopyWithSymbolicTraits(font FontRef, size float64, matrix unsafe.Pointer, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) FontRef {
 	return _CTFontCreateCopyWithSymbolicTraits(font, size, matrix, symTraitValue, symTraitMask)
 }
 
@@ -870,7 +870,7 @@ func CTFontCreateCopyWithSymbolicTraits(font unsafe.Pointer, size float64, matri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateForString(_:_:_:)
-func CTFontCreateForString(currentFont unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateForString(currentFont FontRef, string_ unsafe.Pointer, range_ unsafe.Pointer) FontRef {
 	return _CTFontCreateForString(currentFont, string_, range_)
 }
 
@@ -881,7 +881,7 @@ func CTFontCreateForString(currentFont unsafe.Pointer, string_ unsafe.Pointer, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateForStringWithLanguage(_:_:_:_:)
-func CTFontCreateForStringWithLanguage(currentFont unsafe.Pointer, string_ unsafe.Pointer, range_ unsafe.Pointer, language unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateForStringWithLanguage(currentFont FontRef, string_ unsafe.Pointer, range_ unsafe.Pointer, language unsafe.Pointer) FontRef {
 	return _CTFontCreateForStringWithLanguage(currentFont, string_, range_, language)
 }
 
@@ -892,7 +892,7 @@ func CTFontCreateForStringWithLanguage(currentFont unsafe.Pointer, string_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreatePathForGlyph(_:_:_:)
-func CTFontCreatePathForGlyph(font unsafe.Pointer, glyph unsafe.Pointer, matrix unsafe.Pointer) coregraphics.PathRef {
+func CTFontCreatePathForGlyph(font FontRef, glyph unsafe.Pointer, matrix unsafe.Pointer) PathRef {
 	return _CTFontCreatePathForGlyph(font, glyph, matrix)
 }
 
@@ -903,7 +903,7 @@ func CTFontCreatePathForGlyph(font unsafe.Pointer, glyph unsafe.Pointer, matrix 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateUIFontForLanguage(_:_:_:)
-func CTFontCreateUIFontForLanguage(uiType unsafe.Pointer, size float64, language unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateUIFontForLanguage(uiType unsafe.Pointer, size float64, language unsafe.Pointer) FontRef {
 	return _CTFontCreateUIFontForLanguage(uiType, size, language)
 }
 
@@ -914,7 +914,7 @@ func CTFontCreateUIFontForLanguage(uiType unsafe.Pointer, size float64, language
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithFontDescriptor(_:_:_:)
-func CTFontCreateWithFontDescriptor(descriptor unsafe.Pointer, size float64, matrix unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithFontDescriptor(descriptor FontDescriptorRef, size float64, matrix unsafe.Pointer) FontRef {
 	return _CTFontCreateWithFontDescriptor(descriptor, size, matrix)
 }
 
@@ -925,7 +925,7 @@ func CTFontCreateWithFontDescriptor(descriptor unsafe.Pointer, size float64, mat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithFontDescriptorAndOptions(_:_:_:_:)
-func CTFontCreateWithFontDescriptorAndOptions(descriptor unsafe.Pointer, size float64, matrix unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithFontDescriptorAndOptions(descriptor FontDescriptorRef, size float64, matrix unsafe.Pointer, options unsafe.Pointer) FontRef {
 	return _CTFontCreateWithFontDescriptorAndOptions(descriptor, size, matrix, options)
 }
 
@@ -936,7 +936,7 @@ func CTFontCreateWithFontDescriptorAndOptions(descriptor unsafe.Pointer, size fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithGraphicsFont(_:_:_:_:)
-func CTFontCreateWithGraphicsFont(graphicsFont coregraphics.FontRef, size float64, matrix unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithGraphicsFont(graphicsFont FontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateWithGraphicsFont(graphicsFont, size, matrix, attributes)
 }
 
@@ -947,7 +947,7 @@ func CTFontCreateWithGraphicsFont(graphicsFont coregraphics.FontRef, size float6
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithName(_:_:_:)
-func CTFontCreateWithName(name unsafe.Pointer, size float64, matrix unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithName(name unsafe.Pointer, size float64, matrix unsafe.Pointer) FontRef {
 	return _CTFontCreateWithName(name, size, matrix)
 }
 
@@ -958,7 +958,7 @@ func CTFontCreateWithName(name unsafe.Pointer, size float64, matrix unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithNameAndOptions(_:_:_:_:)
-func CTFontCreateWithNameAndOptions(name unsafe.Pointer, size float64, matrix unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithNameAndOptions(name unsafe.Pointer, size float64, matrix unsafe.Pointer, options unsafe.Pointer) FontRef {
 	return _CTFontCreateWithNameAndOptions(name, size, matrix, options)
 }
 
@@ -971,7 +971,7 @@ func CTFontCreateWithNameAndOptions(name unsafe.Pointer, size float64, matrix un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithPlatformFont(_:_:_:_:)
-func CTFontCreateWithPlatformFont(platformFont unsafe.Pointer, size float64, matrix unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontCreateWithPlatformFont(platformFont ATSFontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateWithPlatformFont(platformFont, size, matrix, attributes)
 }
 
@@ -984,7 +984,7 @@ func CTFontCreateWithPlatformFont(platformFont unsafe.Pointer, size float64, mat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithQuickdrawInstance(_:_:_:_:)
-func CTFontCreateWithQuickdrawInstance(name unsafe.Pointer, identifier unsafe.Pointer, style unsafe.Pointer, size float64) unsafe.Pointer {
+func CTFontCreateWithQuickdrawInstance(name unsafe.Pointer, identifier int16, style uint8, size float64) FontRef {
 	return _CTFontCreateWithQuickdrawInstance(name, identifier, style, size)
 }
 
@@ -995,7 +995,7 @@ func CTFontCreateWithQuickdrawInstance(name unsafe.Pointer, identifier unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyAttribute(_:_:)
-func CTFontDescriptorCopyAttribute(descriptor unsafe.Pointer, attribute unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCopyAttribute(descriptor FontDescriptorRef, attribute unsafe.Pointer) unsafe.Pointer {
 	return _CTFontDescriptorCopyAttribute(descriptor, attribute)
 }
 
@@ -1006,7 +1006,7 @@ func CTFontDescriptorCopyAttribute(descriptor unsafe.Pointer, attribute unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyAttributes(_:)
-func CTFontDescriptorCopyAttributes(descriptor unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCopyAttributes(descriptor FontDescriptorRef) unsafe.Pointer {
 	return _CTFontDescriptorCopyAttributes(descriptor)
 }
 
@@ -1017,7 +1017,7 @@ func CTFontDescriptorCopyAttributes(descriptor unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyLocalizedAttribute(_:_:_:)
-func CTFontDescriptorCopyLocalizedAttribute(descriptor unsafe.Pointer, attribute unsafe.Pointer, language unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCopyLocalizedAttribute(descriptor FontDescriptorRef, attribute unsafe.Pointer, language unsafe.Pointer) unsafe.Pointer {
 	return _CTFontDescriptorCopyLocalizedAttribute(descriptor, attribute, language)
 }
 
@@ -1028,7 +1028,7 @@ func CTFontDescriptorCopyLocalizedAttribute(descriptor unsafe.Pointer, attribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithAttributes(_:_:)
-func CTFontDescriptorCreateCopyWithAttributes(original unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateCopyWithAttributes(original FontDescriptorRef, attributes unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithAttributes(original, attributes)
 }
 
@@ -1039,7 +1039,7 @@ func CTFontDescriptorCreateCopyWithAttributes(original unsafe.Pointer, attribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithFamily(_:_:)
-func CTFontDescriptorCreateCopyWithFamily(original unsafe.Pointer, family unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateCopyWithFamily(original FontDescriptorRef, family unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithFamily(original, family)
 }
 
@@ -1050,7 +1050,7 @@ func CTFontDescriptorCreateCopyWithFamily(original unsafe.Pointer, family unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithFeature(_:_:_:)
-func CTFontDescriptorCreateCopyWithFeature(original unsafe.Pointer, featureTypeIdentifier unsafe.Pointer, featureSelectorIdentifier unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateCopyWithFeature(original FontDescriptorRef, featureTypeIdentifier unsafe.Pointer, featureSelectorIdentifier unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithFeature(original, featureTypeIdentifier, featureSelectorIdentifier)
 }
 
@@ -1061,7 +1061,7 @@ func CTFontDescriptorCreateCopyWithFeature(original unsafe.Pointer, featureTypeI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithSymbolicTraits(_:_:_:)
-func CTFontDescriptorCreateCopyWithSymbolicTraits(original unsafe.Pointer, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateCopyWithSymbolicTraits(original FontDescriptorRef, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithSymbolicTraits(original, symTraitValue, symTraitMask)
 }
 
@@ -1072,7 +1072,7 @@ func CTFontDescriptorCreateCopyWithSymbolicTraits(original unsafe.Pointer, symTr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithVariation(_:_:_:)
-func CTFontDescriptorCreateCopyWithVariation(original unsafe.Pointer, variationIdentifier unsafe.Pointer, variationValue float64) unsafe.Pointer {
+func CTFontDescriptorCreateCopyWithVariation(original FontDescriptorRef, variationIdentifier unsafe.Pointer, variationValue float64) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithVariation(original, variationIdentifier, variationValue)
 }
 
@@ -1083,7 +1083,7 @@ func CTFontDescriptorCreateCopyWithVariation(original unsafe.Pointer, variationI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateMatchingFontDescriptor(_:_:)
-func CTFontDescriptorCreateMatchingFontDescriptor(descriptor unsafe.Pointer, mandatoryAttributes unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateMatchingFontDescriptor(descriptor FontDescriptorRef, mandatoryAttributes unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateMatchingFontDescriptor(descriptor, mandatoryAttributes)
 }
 
@@ -1094,7 +1094,7 @@ func CTFontDescriptorCreateMatchingFontDescriptor(descriptor unsafe.Pointer, man
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateMatchingFontDescriptors(_:_:)
-func CTFontDescriptorCreateMatchingFontDescriptors(descriptor unsafe.Pointer, mandatoryAttributes unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateMatchingFontDescriptors(descriptor FontDescriptorRef, mandatoryAttributes unsafe.Pointer) unsafe.Pointer {
 	return _CTFontDescriptorCreateMatchingFontDescriptors(descriptor, mandatoryAttributes)
 }
 
@@ -1105,7 +1105,7 @@ func CTFontDescriptorCreateMatchingFontDescriptors(descriptor unsafe.Pointer, ma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateWithAttributes(_:)
-func CTFontDescriptorCreateWithAttributes(attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateWithAttributes(attributes unsafe.Pointer) FontDescriptorRef {
 	return _CTFontDescriptorCreateWithAttributes(attributes)
 }
 
@@ -1116,7 +1116,7 @@ func CTFontDescriptorCreateWithAttributes(attributes unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateWithNameAndSize(_:_:)
-func CTFontDescriptorCreateWithNameAndSize(name unsafe.Pointer, size float64) unsafe.Pointer {
+func CTFontDescriptorCreateWithNameAndSize(name unsafe.Pointer, size float64) FontDescriptorRef {
 	return _CTFontDescriptorCreateWithNameAndSize(name, size)
 }
 
@@ -1149,7 +1149,7 @@ func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDrawGlyphs(_:_:_:_:_:)
-func CTFontDrawGlyphs(font unsafe.Pointer, glyphs unsafe.Pointer, positions unsafe.Pointer, count uintptr, context coregraphics.ContextRef) {
+func CTFontDrawGlyphs(font FontRef, glyphs unsafe.Pointer, positions unsafe.Pointer, count uintptr, context ContextRef) {
 	_CTFontDrawGlyphs(font, glyphs, positions, count, context)
 }
 
@@ -1158,7 +1158,7 @@ func CTFontDrawGlyphs(font unsafe.Pointer, glyphs unsafe.Pointer, positions unsa
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDrawImageFromAdaptiveImageProviderAtPoint(_:_:_:_:)
-func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font unsafe.Pointer, provider unsafe.Pointer, point coregraphics.CGPoint, context coregraphics.ContextRef) {
+func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font FontRef, provider unsafe.Pointer, point corefoundation.Point, context ContextRef) {
 	_CTFontDrawImageFromAdaptiveImageProviderAtPoint(font, provider, point, context)
 }
 
@@ -1169,7 +1169,7 @@ func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font unsafe.Pointer, provid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetAdvancesForGlyphs(_:_:_:_:_:)
-func CTFontGetAdvancesForGlyphs(font unsafe.Pointer, orientation unsafe.Pointer, glyphs unsafe.Pointer, advances coregraphics.CGSize, count unsafe.Pointer) float64 {
+func CTFontGetAdvancesForGlyphs(font FontRef, orientation unsafe.Pointer, glyphs unsafe.Pointer, advances corefoundation.Size, count unsafe.Pointer) float64 {
 	return _CTFontGetAdvancesForGlyphs(font, orientation, glyphs, advances, count)
 }
 
@@ -1180,7 +1180,7 @@ func CTFontGetAdvancesForGlyphs(font unsafe.Pointer, orientation unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetAscent(_:)
-func CTFontGetAscent(font unsafe.Pointer) float64 {
+func CTFontGetAscent(font FontRef) float64 {
 	return _CTFontGetAscent(font)
 }
 
@@ -1191,7 +1191,7 @@ func CTFontGetAscent(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetBoundingBox(_:)
-func CTFontGetBoundingBox(font unsafe.Pointer) coregraphics.CGRect {
+func CTFontGetBoundingBox(font FontRef) corefoundation.Rect {
 	return _CTFontGetBoundingBox(font)
 }
 
@@ -1202,7 +1202,7 @@ func CTFontGetBoundingBox(font unsafe.Pointer) coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetBoundingRectsForGlyphs(_:_:_:_:_:)
-func CTFontGetBoundingRectsForGlyphs(font unsafe.Pointer, orientation unsafe.Pointer, glyphs unsafe.Pointer, boundingRects coregraphics.CGRect, count unsafe.Pointer) coregraphics.CGRect {
+func CTFontGetBoundingRectsForGlyphs(font FontRef, orientation unsafe.Pointer, glyphs unsafe.Pointer, boundingRects corefoundation.Rect, count unsafe.Pointer) corefoundation.Rect {
 	return _CTFontGetBoundingRectsForGlyphs(font, orientation, glyphs, boundingRects, count)
 }
 
@@ -1213,7 +1213,7 @@ func CTFontGetBoundingRectsForGlyphs(font unsafe.Pointer, orientation unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetCapHeight(_:)
-func CTFontGetCapHeight(font unsafe.Pointer) float64 {
+func CTFontGetCapHeight(font FontRef) float64 {
 	return _CTFontGetCapHeight(font)
 }
 
@@ -1224,7 +1224,7 @@ func CTFontGetCapHeight(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetDescent(_:)
-func CTFontGetDescent(font unsafe.Pointer) float64 {
+func CTFontGetDescent(font FontRef) float64 {
 	return _CTFontGetDescent(font)
 }
 
@@ -1235,7 +1235,7 @@ func CTFontGetDescent(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphCount(_:)
-func CTFontGetGlyphCount(font unsafe.Pointer) unsafe.Pointer {
+func CTFontGetGlyphCount(font FontRef) unsafe.Pointer {
 	return _CTFontGetGlyphCount(font)
 }
 
@@ -1246,7 +1246,7 @@ func CTFontGetGlyphCount(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphWithName(_:_:)
-func CTFontGetGlyphWithName(font unsafe.Pointer, glyphName unsafe.Pointer) unsafe.Pointer {
+func CTFontGetGlyphWithName(font FontRef, glyphName unsafe.Pointer) unsafe.Pointer {
 	return _CTFontGetGlyphWithName(font, glyphName)
 }
 
@@ -1257,7 +1257,7 @@ func CTFontGetGlyphWithName(font unsafe.Pointer, glyphName unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphsForCharacters(_:_:_:_:)
-func CTFontGetGlyphsForCharacters(font unsafe.Pointer, characters unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer) bool {
+func CTFontGetGlyphsForCharacters(font FontRef, characters unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer) bool {
 	return _CTFontGetGlyphsForCharacters(font, characters, glyphs, count)
 }
 
@@ -1268,7 +1268,7 @@ func CTFontGetGlyphsForCharacters(font unsafe.Pointer, characters unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetLeading(_:)
-func CTFontGetLeading(font unsafe.Pointer) float64 {
+func CTFontGetLeading(font FontRef) float64 {
 	return _CTFontGetLeading(font)
 }
 
@@ -1279,7 +1279,7 @@ func CTFontGetLeading(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetLigatureCaretPositions(_:_:_:_:)
-func CTFontGetLigatureCaretPositions(font unsafe.Pointer, glyph unsafe.Pointer, positions float64, maxPositions unsafe.Pointer) unsafe.Pointer {
+func CTFontGetLigatureCaretPositions(font FontRef, glyph unsafe.Pointer, positions float64, maxPositions unsafe.Pointer) unsafe.Pointer {
 	return _CTFontGetLigatureCaretPositions(font, glyph, positions, maxPositions)
 }
 
@@ -1290,7 +1290,7 @@ func CTFontGetLigatureCaretPositions(font unsafe.Pointer, glyph unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetMatrix(_:)
-func CTFontGetMatrix(font unsafe.Pointer) coregraphics.CGAffineTransform {
+func CTFontGetMatrix(font FontRef) corefoundation.AffineTransform {
 	return _CTFontGetMatrix(font)
 }
 
@@ -1301,7 +1301,7 @@ func CTFontGetMatrix(font unsafe.Pointer) coregraphics.CGAffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetOpticalBoundsForGlyphs(_:_:_:_:_:)
-func CTFontGetOpticalBoundsForGlyphs(font unsafe.Pointer, glyphs unsafe.Pointer, boundingRects coregraphics.CGRect, count unsafe.Pointer, options unsafe.Pointer) coregraphics.CGRect {
+func CTFontGetOpticalBoundsForGlyphs(font FontRef, glyphs unsafe.Pointer, boundingRects corefoundation.Rect, count unsafe.Pointer, options unsafe.Pointer) corefoundation.Rect {
 	return _CTFontGetOpticalBoundsForGlyphs(font, glyphs, boundingRects, count, options)
 }
 
@@ -1314,7 +1314,7 @@ func CTFontGetOpticalBoundsForGlyphs(font unsafe.Pointer, glyphs unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetPlatformFont(_:_:)
-func CTFontGetPlatformFont(font unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTFontGetPlatformFont(font FontRef, attributes unsafe.Pointer) ATSFontRef {
 	return _CTFontGetPlatformFont(font, attributes)
 }
 
@@ -1325,7 +1325,7 @@ func CTFontGetPlatformFont(font unsafe.Pointer, attributes unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSize(_:)
-func CTFontGetSize(font unsafe.Pointer) float64 {
+func CTFontGetSize(font FontRef) float64 {
 	return _CTFontGetSize(font)
 }
 
@@ -1336,7 +1336,7 @@ func CTFontGetSize(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSlantAngle(_:)
-func CTFontGetSlantAngle(font unsafe.Pointer) float64 {
+func CTFontGetSlantAngle(font FontRef) float64 {
 	return _CTFontGetSlantAngle(font)
 }
 
@@ -1347,7 +1347,7 @@ func CTFontGetSlantAngle(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetStringEncoding(_:)
-func CTFontGetStringEncoding(font unsafe.Pointer) unsafe.Pointer {
+func CTFontGetStringEncoding(font FontRef) unsafe.Pointer {
 	return _CTFontGetStringEncoding(font)
 }
 
@@ -1358,7 +1358,7 @@ func CTFontGetStringEncoding(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSymbolicTraits(_:)
-func CTFontGetSymbolicTraits(font unsafe.Pointer) unsafe.Pointer {
+func CTFontGetSymbolicTraits(font FontRef) unsafe.Pointer {
 	return _CTFontGetSymbolicTraits(font)
 }
 
@@ -1378,7 +1378,7 @@ func CTFontGetTypeID() unsafe.Pointer {
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetTypographicBoundsForAdaptiveImageProvider(_:_:)
-func CTFontGetTypographicBoundsForAdaptiveImageProvider(font unsafe.Pointer, provider unsafe.Pointer) coregraphics.CGRect {
+func CTFontGetTypographicBoundsForAdaptiveImageProvider(font FontRef, provider unsafe.Pointer) corefoundation.Rect {
 	return _CTFontGetTypographicBoundsForAdaptiveImageProvider(font, provider)
 }
 
@@ -1389,7 +1389,7 @@ func CTFontGetTypographicBoundsForAdaptiveImageProvider(font unsafe.Pointer, pro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnderlinePosition(_:)
-func CTFontGetUnderlinePosition(font unsafe.Pointer) float64 {
+func CTFontGetUnderlinePosition(font FontRef) float64 {
 	return _CTFontGetUnderlinePosition(font)
 }
 
@@ -1400,7 +1400,7 @@ func CTFontGetUnderlinePosition(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnderlineThickness(_:)
-func CTFontGetUnderlineThickness(font unsafe.Pointer) float64 {
+func CTFontGetUnderlineThickness(font FontRef) float64 {
 	return _CTFontGetUnderlineThickness(font)
 }
 
@@ -1411,7 +1411,7 @@ func CTFontGetUnderlineThickness(font unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnitsPerEm(_:)
-func CTFontGetUnitsPerEm(font unsafe.Pointer) unsafe.Pointer {
+func CTFontGetUnitsPerEm(font FontRef) unsafe.Pointer {
 	return _CTFontGetUnitsPerEm(font)
 }
 
@@ -1422,7 +1422,7 @@ func CTFontGetUnitsPerEm(font unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetVerticalTranslationsForGlyphs(_:_:_:_:)
-func CTFontGetVerticalTranslationsForGlyphs(font unsafe.Pointer, glyphs unsafe.Pointer, translations coregraphics.CGSize, count unsafe.Pointer) {
+func CTFontGetVerticalTranslationsForGlyphs(font FontRef, glyphs unsafe.Pointer, translations corefoundation.Size, count unsafe.Pointer) {
 	_CTFontGetVerticalTranslationsForGlyphs(font, glyphs, translations, count)
 }
 
@@ -1433,7 +1433,7 @@ func CTFontGetVerticalTranslationsForGlyphs(font unsafe.Pointer, glyphs unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetXHeight(_:)
-func CTFontGetXHeight(font unsafe.Pointer) float64 {
+func CTFontGetXHeight(font FontRef) float64 {
 	return _CTFontGetXHeight(font)
 }
 
@@ -1442,7 +1442,7 @@ func CTFontGetXHeight(font unsafe.Pointer) float64 {
 // Added in macOS 10.15.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontHasTable(_:_:)
-func CTFontHasTable(font unsafe.Pointer, tag unsafe.Pointer) bool {
+func CTFontHasTable(font FontRef, tag FontTableTag) bool {
 	return _CTFontHasTable(font, tag)
 }
 
@@ -1507,7 +1507,7 @@ func CTFontManagerCopyRegisteredFontDescriptors(scope unsafe.Pointer, enabled bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCreateFontDescriptorFromData(_:)
-func CTFontManagerCreateFontDescriptorFromData(data unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCreateFontDescriptorFromData(data unsafe.Pointer) FontDescriptorRef {
 	return _CTFontManagerCreateFontDescriptorFromData(data)
 }
 
@@ -1655,7 +1655,7 @@ func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterGraphicsFont(_:_:)
-func CTFontManagerRegisterGraphicsFont(font coregraphics.FontRef, error_ unsafe.Pointer) bool {
+func CTFontManagerRegisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerRegisterGraphicsFont(font, error_)
 }
 
@@ -1735,7 +1735,7 @@ func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterGraphicsFont(_:_:)
-func CTFontManagerUnregisterGraphicsFont(font coregraphics.FontRef, error_ unsafe.Pointer) bool {
+func CTFontManagerUnregisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterGraphicsFont(font, error_)
 }
 
@@ -1746,7 +1746,7 @@ func CTFontManagerUnregisterGraphicsFont(font coregraphics.FontRef, error_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameDraw(_:_:)
-func CTFrameDraw(frame unsafe.Pointer, context coregraphics.ContextRef) {
+func CTFrameDraw(frame FrameRef, context ContextRef) {
 	_CTFrameDraw(frame, context)
 }
 
@@ -1757,7 +1757,7 @@ func CTFrameDraw(frame unsafe.Pointer, context coregraphics.ContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetFrameAttributes(_:)
-func CTFrameGetFrameAttributes(frame unsafe.Pointer) unsafe.Pointer {
+func CTFrameGetFrameAttributes(frame FrameRef) unsafe.Pointer {
 	return _CTFrameGetFrameAttributes(frame)
 }
 
@@ -1768,7 +1768,7 @@ func CTFrameGetFrameAttributes(frame unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetLineOrigins(_:_:_:)
-func CTFrameGetLineOrigins(frame unsafe.Pointer, range_ unsafe.Pointer, origins coregraphics.CGPoint) {
+func CTFrameGetLineOrigins(frame FrameRef, range_ unsafe.Pointer, origins corefoundation.Point) {
 	_CTFrameGetLineOrigins(frame, range_, origins)
 }
 
@@ -1779,7 +1779,7 @@ func CTFrameGetLineOrigins(frame unsafe.Pointer, range_ unsafe.Pointer, origins 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetLines(_:)
-func CTFrameGetLines(frame unsafe.Pointer) unsafe.Pointer {
+func CTFrameGetLines(frame FrameRef) unsafe.Pointer {
 	return _CTFrameGetLines(frame)
 }
 
@@ -1790,7 +1790,7 @@ func CTFrameGetLines(frame unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetPath(_:)
-func CTFrameGetPath(frame unsafe.Pointer) coregraphics.PathRef {
+func CTFrameGetPath(frame FrameRef) PathRef {
 	return _CTFrameGetPath(frame)
 }
 
@@ -1801,7 +1801,7 @@ func CTFrameGetPath(frame unsafe.Pointer) coregraphics.PathRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetStringRange(_:)
-func CTFrameGetStringRange(frame unsafe.Pointer) unsafe.Pointer {
+func CTFrameGetStringRange(frame FrameRef) unsafe.Pointer {
 	return _CTFrameGetStringRange(frame)
 }
 
@@ -1823,7 +1823,7 @@ func CTFrameGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetVisibleStringRange(_:)
-func CTFrameGetVisibleStringRange(frame unsafe.Pointer) unsafe.Pointer {
+func CTFrameGetVisibleStringRange(frame FrameRef) unsafe.Pointer {
 	return _CTFrameGetVisibleStringRange(frame)
 }
 
@@ -1834,7 +1834,7 @@ func CTFrameGetVisibleStringRange(frame unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateFrame(_:_:_:_:)
-func CTFramesetterCreateFrame(framesetter unsafe.Pointer, stringRange unsafe.Pointer, path coregraphics.PathRef, frameAttributes unsafe.Pointer) unsafe.Pointer {
+func CTFramesetterCreateFrame(framesetter FramesetterRef, stringRange unsafe.Pointer, path PathRef, frameAttributes unsafe.Pointer) FrameRef {
 	return _CTFramesetterCreateFrame(framesetter, stringRange, path, frameAttributes)
 }
 
@@ -1845,7 +1845,7 @@ func CTFramesetterCreateFrame(framesetter unsafe.Pointer, stringRange unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateWithAttributedString(_:)
-func CTFramesetterCreateWithAttributedString(attrString unsafe.Pointer) unsafe.Pointer {
+func CTFramesetterCreateWithAttributedString(attrString unsafe.Pointer) FramesetterRef {
 	return _CTFramesetterCreateWithAttributedString(attrString)
 }
 
@@ -1856,7 +1856,7 @@ func CTFramesetterCreateWithAttributedString(attrString unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateWithTypesetter(_:)
-func CTFramesetterCreateWithTypesetter(typesetter unsafe.Pointer) unsafe.Pointer {
+func CTFramesetterCreateWithTypesetter(typesetter TypesetterRef) FramesetterRef {
 	return _CTFramesetterCreateWithTypesetter(typesetter)
 }
 
@@ -1878,7 +1878,7 @@ func CTFramesetterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterGetTypesetter(_:)
-func CTFramesetterGetTypesetter(framesetter unsafe.Pointer) unsafe.Pointer {
+func CTFramesetterGetTypesetter(framesetter FramesetterRef) TypesetterRef {
 	return _CTFramesetterGetTypesetter(framesetter)
 }
 
@@ -1889,7 +1889,7 @@ func CTFramesetterGetTypesetter(framesetter unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterSuggestFrameSizeWithConstraints(_:_:_:_:_:)
-func CTFramesetterSuggestFrameSizeWithConstraints(framesetter unsafe.Pointer, stringRange unsafe.Pointer, frameAttributes unsafe.Pointer, constraints coregraphics.CGSize, fitRange unsafe.Pointer) coregraphics.CGSize {
+func CTFramesetterSuggestFrameSizeWithConstraints(framesetter FramesetterRef, stringRange unsafe.Pointer, frameAttributes unsafe.Pointer, constraints corefoundation.Size, fitRange unsafe.Pointer) corefoundation.Size {
 	return _CTFramesetterSuggestFrameSizeWithConstraints(framesetter, stringRange, frameAttributes, constraints, fitRange)
 }
 
@@ -1913,7 +1913,7 @@ func CTGetCoreTextVersion() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithCharacterIdentifier(_:_:_:)
-func CTGlyphInfoCreateWithCharacterIdentifier(cid unsafe.Pointer, collection unsafe.Pointer, baseString unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoCreateWithCharacterIdentifier(cid unsafe.Pointer, collection unsafe.Pointer, baseString unsafe.Pointer) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithCharacterIdentifier(cid, collection, baseString)
 }
 
@@ -1924,7 +1924,7 @@ func CTGlyphInfoCreateWithCharacterIdentifier(cid unsafe.Pointer, collection uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithGlyph(_:_:_:)
-func CTGlyphInfoCreateWithGlyph(glyph unsafe.Pointer, font unsafe.Pointer, baseString unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoCreateWithGlyph(glyph unsafe.Pointer, font FontRef, baseString unsafe.Pointer) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithGlyph(glyph, font, baseString)
 }
 
@@ -1935,7 +1935,7 @@ func CTGlyphInfoCreateWithGlyph(glyph unsafe.Pointer, font unsafe.Pointer, baseS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithGlyphName(_:_:_:)
-func CTGlyphInfoCreateWithGlyphName(glyphName unsafe.Pointer, font unsafe.Pointer, baseString unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoCreateWithGlyphName(glyphName unsafe.Pointer, font FontRef, baseString unsafe.Pointer) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithGlyphName(glyphName, font, baseString)
 }
 
@@ -1946,7 +1946,7 @@ func CTGlyphInfoCreateWithGlyphName(glyphName unsafe.Pointer, font unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetCharacterCollection(_:)
-func CTGlyphInfoGetCharacterCollection(glyphInfo unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoGetCharacterCollection(glyphInfo GlyphInfoRef) unsafe.Pointer {
 	return _CTGlyphInfoGetCharacterCollection(glyphInfo)
 }
 
@@ -1957,7 +1957,7 @@ func CTGlyphInfoGetCharacterCollection(glyphInfo unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetCharacterIdentifier(_:)
-func CTGlyphInfoGetCharacterIdentifier(glyphInfo unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoGetCharacterIdentifier(glyphInfo GlyphInfoRef) unsafe.Pointer {
 	return _CTGlyphInfoGetCharacterIdentifier(glyphInfo)
 }
 
@@ -1968,7 +1968,7 @@ func CTGlyphInfoGetCharacterIdentifier(glyphInfo unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetGlyph(_:)
-func CTGlyphInfoGetGlyph(glyphInfo unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoGetGlyph(glyphInfo GlyphInfoRef) unsafe.Pointer {
 	return _CTGlyphInfoGetGlyph(glyphInfo)
 }
 
@@ -1979,7 +1979,7 @@ func CTGlyphInfoGetGlyph(glyphInfo unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetGlyphName(_:)
-func CTGlyphInfoGetGlyphName(glyphInfo unsafe.Pointer) unsafe.Pointer {
+func CTGlyphInfoGetGlyphName(glyphInfo GlyphInfoRef) unsafe.Pointer {
 	return _CTGlyphInfoGetGlyphName(glyphInfo)
 }
 
@@ -2001,7 +2001,7 @@ func CTGlyphInfoGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateJustifiedLine(_:_:_:)
-func CTLineCreateJustifiedLine(line unsafe.Pointer, justificationFactor float64, justificationWidth float64) unsafe.Pointer {
+func CTLineCreateJustifiedLine(line LineRef, justificationFactor float64, justificationWidth float64) LineRef {
 	return _CTLineCreateJustifiedLine(line, justificationFactor, justificationWidth)
 }
 
@@ -2012,7 +2012,7 @@ func CTLineCreateJustifiedLine(line unsafe.Pointer, justificationFactor float64,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateTruncatedLine(_:_:_:_:)
-func CTLineCreateTruncatedLine(line unsafe.Pointer, width float64, truncationType unsafe.Pointer, truncationToken unsafe.Pointer) unsafe.Pointer {
+func CTLineCreateTruncatedLine(line LineRef, width float64, truncationType unsafe.Pointer, truncationToken LineRef) LineRef {
 	return _CTLineCreateTruncatedLine(line, width, truncationType, truncationToken)
 }
 
@@ -2023,7 +2023,7 @@ func CTLineCreateTruncatedLine(line unsafe.Pointer, width float64, truncationTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateWithAttributedString(_:)
-func CTLineCreateWithAttributedString(attrString unsafe.Pointer) unsafe.Pointer {
+func CTLineCreateWithAttributedString(attrString unsafe.Pointer) LineRef {
 	return _CTLineCreateWithAttributedString(attrString)
 }
 
@@ -2034,7 +2034,7 @@ func CTLineCreateWithAttributedString(attrString unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineDraw(_:_:)
-func CTLineDraw(line unsafe.Pointer, context coregraphics.ContextRef) {
+func CTLineDraw(line LineRef, context ContextRef) {
 	_CTLineDraw(line, context)
 }
 
@@ -2045,7 +2045,7 @@ func CTLineDraw(line unsafe.Pointer, context coregraphics.ContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineEnumerateCaretOffsets(_:_:)
-func CTLineEnumerateCaretOffsets(line unsafe.Pointer) {
+func CTLineEnumerateCaretOffsets(line LineRef) {
 	_CTLineEnumerateCaretOffsets(line)
 }
 
@@ -2056,7 +2056,7 @@ func CTLineEnumerateCaretOffsets(line unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetBoundsWithOptions(_:_:)
-func CTLineGetBoundsWithOptions(line unsafe.Pointer, options unsafe.Pointer) coregraphics.CGRect {
+func CTLineGetBoundsWithOptions(line LineRef, options unsafe.Pointer) corefoundation.Rect {
 	return _CTLineGetBoundsWithOptions(line, options)
 }
 
@@ -2067,7 +2067,7 @@ func CTLineGetBoundsWithOptions(line unsafe.Pointer, options unsafe.Pointer) cor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetGlyphCount(_:)
-func CTLineGetGlyphCount(line unsafe.Pointer) unsafe.Pointer {
+func CTLineGetGlyphCount(line LineRef) unsafe.Pointer {
 	return _CTLineGetGlyphCount(line)
 }
 
@@ -2078,7 +2078,7 @@ func CTLineGetGlyphCount(line unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetGlyphRuns(_:)
-func CTLineGetGlyphRuns(line unsafe.Pointer) unsafe.Pointer {
+func CTLineGetGlyphRuns(line LineRef) unsafe.Pointer {
 	return _CTLineGetGlyphRuns(line)
 }
 
@@ -2089,7 +2089,7 @@ func CTLineGetGlyphRuns(line unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetImageBounds(_:_:)
-func CTLineGetImageBounds(line unsafe.Pointer, context coregraphics.ContextRef) coregraphics.CGRect {
+func CTLineGetImageBounds(line LineRef, context ContextRef) corefoundation.Rect {
 	return _CTLineGetImageBounds(line, context)
 }
 
@@ -2100,7 +2100,7 @@ func CTLineGetImageBounds(line unsafe.Pointer, context coregraphics.ContextRef) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetOffsetForStringIndex(_:_:_:)
-func CTLineGetOffsetForStringIndex(line unsafe.Pointer, charIndex unsafe.Pointer, secondaryOffset []float64) float64 {
+func CTLineGetOffsetForStringIndex(line LineRef, charIndex unsafe.Pointer, secondaryOffset []float64) float64 {
 	return _CTLineGetOffsetForStringIndex(line, charIndex, secondaryOffset)
 }
 
@@ -2111,7 +2111,7 @@ func CTLineGetOffsetForStringIndex(line unsafe.Pointer, charIndex unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetPenOffsetForFlush(_:_:_:)
-func CTLineGetPenOffsetForFlush(line unsafe.Pointer, flushFactor float64, flushWidth float64) float64 {
+func CTLineGetPenOffsetForFlush(line LineRef, flushFactor float64, flushWidth float64) float64 {
 	return _CTLineGetPenOffsetForFlush(line, flushFactor, flushWidth)
 }
 
@@ -2122,7 +2122,7 @@ func CTLineGetPenOffsetForFlush(line unsafe.Pointer, flushFactor float64, flushW
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetStringIndexForPosition(_:_:)
-func CTLineGetStringIndexForPosition(line unsafe.Pointer, position coregraphics.CGPoint) unsafe.Pointer {
+func CTLineGetStringIndexForPosition(line LineRef, position corefoundation.Point) unsafe.Pointer {
 	return _CTLineGetStringIndexForPosition(line, position)
 }
 
@@ -2133,7 +2133,7 @@ func CTLineGetStringIndexForPosition(line unsafe.Pointer, position coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetStringRange(_:)
-func CTLineGetStringRange(line unsafe.Pointer) unsafe.Pointer {
+func CTLineGetStringRange(line LineRef) unsafe.Pointer {
 	return _CTLineGetStringRange(line)
 }
 
@@ -2144,7 +2144,7 @@ func CTLineGetStringRange(line unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetTrailingWhitespaceWidth(_:)
-func CTLineGetTrailingWhitespaceWidth(line unsafe.Pointer) float64 {
+func CTLineGetTrailingWhitespaceWidth(line LineRef) float64 {
 	return _CTLineGetTrailingWhitespaceWidth(line)
 }
 
@@ -2166,7 +2166,7 @@ func CTLineGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetTypographicBounds(_:_:_:_:)
-func CTLineGetTypographicBounds(line unsafe.Pointer, ascent []float64, descent []float64, leading []float64) float64 {
+func CTLineGetTypographicBounds(line LineRef, ascent []float64, descent []float64, leading []float64) float64 {
 	return _CTLineGetTypographicBounds(line, ascent, descent, leading)
 }
 
@@ -2177,7 +2177,7 @@ func CTLineGetTypographicBounds(line unsafe.Pointer, ascent []float64, descent [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleCreate(_:_:)
-func CTParagraphStyleCreate(settings unsafe.Pointer, settingCount uintptr) unsafe.Pointer {
+func CTParagraphStyleCreate(settings unsafe.Pointer, settingCount uintptr) ParagraphStyleRef {
 	return _CTParagraphStyleCreate(settings, settingCount)
 }
 
@@ -2188,7 +2188,7 @@ func CTParagraphStyleCreate(settings unsafe.Pointer, settingCount uintptr) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleCreateCopy(_:)
-func CTParagraphStyleCreateCopy(paragraphStyle unsafe.Pointer) unsafe.Pointer {
+func CTParagraphStyleCreateCopy(paragraphStyle ParagraphStyleRef) ParagraphStyleRef {
 	return _CTParagraphStyleCreateCopy(paragraphStyle)
 }
 
@@ -2210,7 +2210,7 @@ func CTParagraphStyleGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleGetValueForSpecifier(_:_:_:_:)
-func CTParagraphStyleGetValueForSpecifier(paragraphStyle unsafe.Pointer, spec unsafe.Pointer, valueBufferSize uintptr, valueBuffer unsafe.Pointer) bool {
+func CTParagraphStyleGetValueForSpecifier(paragraphStyle ParagraphStyleRef, spec unsafe.Pointer, valueBufferSize uintptr, valueBuffer unsafe.Pointer) bool {
 	return _CTParagraphStyleGetValueForSpecifier(paragraphStyle, spec, valueBufferSize, valueBuffer)
 }
 
@@ -2221,7 +2221,7 @@ func CTParagraphStyleGetValueForSpecifier(paragraphStyle unsafe.Pointer, spec un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreate(_:_:_:_:)
-func CTRubyAnnotationCreate(alignment unsafe.Pointer, overhang unsafe.Pointer, sizeFactor float64, text unsafe.Pointer, p4 unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationCreate(alignment unsafe.Pointer, overhang unsafe.Pointer, sizeFactor float64, text unsafe.Pointer, p4 unsafe.Pointer) RubyAnnotationRef {
 	return _CTRubyAnnotationCreate(alignment, overhang, sizeFactor, text, p4)
 }
 
@@ -2232,7 +2232,7 @@ func CTRubyAnnotationCreate(alignment unsafe.Pointer, overhang unsafe.Pointer, s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreateCopy(_:)
-func CTRubyAnnotationCreateCopy(rubyAnnotation unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationCreateCopy(rubyAnnotation RubyAnnotationRef) RubyAnnotationRef {
 	return _CTRubyAnnotationCreateCopy(rubyAnnotation)
 }
 
@@ -2243,7 +2243,7 @@ func CTRubyAnnotationCreateCopy(rubyAnnotation unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreateWithAttributes(_:_:_:_:_:)
-func CTRubyAnnotationCreateWithAttributes(alignment unsafe.Pointer, overhang unsafe.Pointer, position unsafe.Pointer, string_ unsafe.Pointer, attributes unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationCreateWithAttributes(alignment unsafe.Pointer, overhang unsafe.Pointer, position unsafe.Pointer, string_ unsafe.Pointer, attributes unsafe.Pointer) RubyAnnotationRef {
 	return _CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string_, attributes)
 }
 
@@ -2254,7 +2254,7 @@ func CTRubyAnnotationCreateWithAttributes(alignment unsafe.Pointer, overhang uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetAlignment(_:)
-func CTRubyAnnotationGetAlignment(rubyAnnotation unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationGetAlignment(rubyAnnotation RubyAnnotationRef) unsafe.Pointer {
 	return _CTRubyAnnotationGetAlignment(rubyAnnotation)
 }
 
@@ -2265,7 +2265,7 @@ func CTRubyAnnotationGetAlignment(rubyAnnotation unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetOverhang(_:)
-func CTRubyAnnotationGetOverhang(rubyAnnotation unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationGetOverhang(rubyAnnotation RubyAnnotationRef) unsafe.Pointer {
 	return _CTRubyAnnotationGetOverhang(rubyAnnotation)
 }
 
@@ -2276,7 +2276,7 @@ func CTRubyAnnotationGetOverhang(rubyAnnotation unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetSizeFactor(_:)
-func CTRubyAnnotationGetSizeFactor(rubyAnnotation unsafe.Pointer) float64 {
+func CTRubyAnnotationGetSizeFactor(rubyAnnotation RubyAnnotationRef) float64 {
 	return _CTRubyAnnotationGetSizeFactor(rubyAnnotation)
 }
 
@@ -2287,7 +2287,7 @@ func CTRubyAnnotationGetSizeFactor(rubyAnnotation unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetTextForPosition(_:_:)
-func CTRubyAnnotationGetTextForPosition(rubyAnnotation unsafe.Pointer, position unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationGetTextForPosition(rubyAnnotation RubyAnnotationRef, position unsafe.Pointer) unsafe.Pointer {
 	return _CTRubyAnnotationGetTextForPosition(rubyAnnotation, position)
 }
 
@@ -2309,7 +2309,7 @@ func CTRubyAnnotationGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateCreate(_:_:)
-func CTRunDelegateCreate(callbacks unsafe.Pointer, refCon unsafe.Pointer) unsafe.Pointer {
+func CTRunDelegateCreate(callbacks unsafe.Pointer, refCon unsafe.Pointer) RunDelegateRef {
 	return _CTRunDelegateCreate(callbacks, refCon)
 }
 
@@ -2320,7 +2320,7 @@ func CTRunDelegateCreate(callbacks unsafe.Pointer, refCon unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetRefCon(_:)
-func CTRunDelegateGetRefCon(runDelegate unsafe.Pointer) unsafe.Pointer {
+func CTRunDelegateGetRefCon(runDelegate RunDelegateRef) unsafe.Pointer {
 	return _CTRunDelegateGetRefCon(runDelegate)
 }
 
@@ -2342,7 +2342,7 @@ func CTRunDelegateGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDraw(_:_:_:)
-func CTRunDraw(run unsafe.Pointer, context coregraphics.ContextRef, range_ unsafe.Pointer) {
+func CTRunDraw(run RunRef, context ContextRef, range_ unsafe.Pointer) {
 	_CTRunDraw(run, context, range_)
 }
 
@@ -2353,7 +2353,7 @@ func CTRunDraw(run unsafe.Pointer, context coregraphics.ContextRef, range_ unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAdvances(_:_:_:)
-func CTRunGetAdvances(run unsafe.Pointer, range_ unsafe.Pointer, buffer coregraphics.CGSize) {
+func CTRunGetAdvances(run RunRef, range_ unsafe.Pointer, buffer corefoundation.Size) {
 	_CTRunGetAdvances(run, range_, buffer)
 }
 
@@ -2364,7 +2364,7 @@ func CTRunGetAdvances(run unsafe.Pointer, range_ unsafe.Pointer, buffer coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAdvancesPtr(_:)
-func CTRunGetAdvancesPtr(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetAdvancesPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetAdvancesPtr(run)
 }
 
@@ -2375,7 +2375,7 @@ func CTRunGetAdvancesPtr(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAttributes(_:)
-func CTRunGetAttributes(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetAttributes(run RunRef) unsafe.Pointer {
 	return _CTRunGetAttributes(run)
 }
 
@@ -2386,7 +2386,7 @@ func CTRunGetAttributes(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetBaseAdvancesAndOrigins(_:_:_:_:)
-func CTRunGetBaseAdvancesAndOrigins(runRef unsafe.Pointer, range_ unsafe.Pointer, advancesBuffer coregraphics.CGSize, originsBuffer coregraphics.CGPoint) {
+func CTRunGetBaseAdvancesAndOrigins(runRef RunRef, range_ unsafe.Pointer, advancesBuffer corefoundation.Size, originsBuffer corefoundation.Point) {
 	_CTRunGetBaseAdvancesAndOrigins(runRef, range_, advancesBuffer, originsBuffer)
 }
 
@@ -2397,7 +2397,7 @@ func CTRunGetBaseAdvancesAndOrigins(runRef unsafe.Pointer, range_ unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphCount(_:)
-func CTRunGetGlyphCount(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetGlyphCount(run RunRef) unsafe.Pointer {
 	return _CTRunGetGlyphCount(run)
 }
 
@@ -2408,7 +2408,7 @@ func CTRunGetGlyphCount(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphs(_:_:_:)
-func CTRunGetGlyphs(run unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CTRunGetGlyphs(run RunRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
 	_CTRunGetGlyphs(run, range_, buffer)
 }
 
@@ -2419,7 +2419,7 @@ func CTRunGetGlyphs(run unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphsPtr(_:)
-func CTRunGetGlyphsPtr(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetGlyphsPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetGlyphsPtr(run)
 }
 
@@ -2430,7 +2430,7 @@ func CTRunGetGlyphsPtr(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetImageBounds(_:_:_:)
-func CTRunGetImageBounds(run unsafe.Pointer, context coregraphics.ContextRef, range_ unsafe.Pointer) coregraphics.CGRect {
+func CTRunGetImageBounds(run RunRef, context ContextRef, range_ unsafe.Pointer) corefoundation.Rect {
 	return _CTRunGetImageBounds(run, context, range_)
 }
 
@@ -2441,7 +2441,7 @@ func CTRunGetImageBounds(run unsafe.Pointer, context coregraphics.ContextRef, ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetPositions(_:_:_:)
-func CTRunGetPositions(run unsafe.Pointer, range_ unsafe.Pointer, buffer coregraphics.CGPoint) {
+func CTRunGetPositions(run RunRef, range_ unsafe.Pointer, buffer corefoundation.Point) {
 	_CTRunGetPositions(run, range_, buffer)
 }
 
@@ -2452,7 +2452,7 @@ func CTRunGetPositions(run unsafe.Pointer, range_ unsafe.Pointer, buffer coregra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetPositionsPtr(_:)
-func CTRunGetPositionsPtr(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetPositionsPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetPositionsPtr(run)
 }
 
@@ -2463,7 +2463,7 @@ func CTRunGetPositionsPtr(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStatus(_:)
-func CTRunGetStatus(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetStatus(run RunRef) unsafe.Pointer {
 	return _CTRunGetStatus(run)
 }
 
@@ -2474,7 +2474,7 @@ func CTRunGetStatus(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringIndices(_:_:_:)
-func CTRunGetStringIndices(run unsafe.Pointer, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CTRunGetStringIndices(run RunRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
 	_CTRunGetStringIndices(run, range_, buffer)
 }
 
@@ -2485,7 +2485,7 @@ func CTRunGetStringIndices(run unsafe.Pointer, range_ unsafe.Pointer, buffer uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringIndicesPtr(_:)
-func CTRunGetStringIndicesPtr(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetStringIndicesPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetStringIndicesPtr(run)
 }
 
@@ -2496,7 +2496,7 @@ func CTRunGetStringIndicesPtr(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringRange(_:)
-func CTRunGetStringRange(run unsafe.Pointer) unsafe.Pointer {
+func CTRunGetStringRange(run RunRef) unsafe.Pointer {
 	return _CTRunGetStringRange(run)
 }
 
@@ -2507,7 +2507,7 @@ func CTRunGetStringRange(run unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetTextMatrix(_:)
-func CTRunGetTextMatrix(run unsafe.Pointer) coregraphics.CGAffineTransform {
+func CTRunGetTextMatrix(run RunRef) corefoundation.AffineTransform {
 	return _CTRunGetTextMatrix(run)
 }
 
@@ -2529,7 +2529,7 @@ func CTRunGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetTypographicBounds(_:_:_:_:_:)
-func CTRunGetTypographicBounds(run unsafe.Pointer, range_ unsafe.Pointer, ascent []float64, descent []float64, leading []float64) float64 {
+func CTRunGetTypographicBounds(run RunRef, range_ unsafe.Pointer, ascent []float64, descent []float64, leading []float64) float64 {
 	return _CTRunGetTypographicBounds(run, range_, ascent, descent, leading)
 }
 
@@ -2540,7 +2540,7 @@ func CTRunGetTypographicBounds(run unsafe.Pointer, range_ unsafe.Pointer, ascent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabCreate(_:_:_:)
-func CTTextTabCreate(alignment unsafe.Pointer, location float64, options unsafe.Pointer) unsafe.Pointer {
+func CTTextTabCreate(alignment unsafe.Pointer, location float64, options unsafe.Pointer) TextTabRef {
 	return _CTTextTabCreate(alignment, location, options)
 }
 
@@ -2551,7 +2551,7 @@ func CTTextTabCreate(alignment unsafe.Pointer, location float64, options unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetAlignment(_:)
-func CTTextTabGetAlignment(tab unsafe.Pointer) unsafe.Pointer {
+func CTTextTabGetAlignment(tab TextTabRef) unsafe.Pointer {
 	return _CTTextTabGetAlignment(tab)
 }
 
@@ -2562,7 +2562,7 @@ func CTTextTabGetAlignment(tab unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetLocation(_:)
-func CTTextTabGetLocation(tab unsafe.Pointer) float64 {
+func CTTextTabGetLocation(tab TextTabRef) float64 {
 	return _CTTextTabGetLocation(tab)
 }
 
@@ -2573,7 +2573,7 @@ func CTTextTabGetLocation(tab unsafe.Pointer) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetOptions(_:)
-func CTTextTabGetOptions(tab unsafe.Pointer) unsafe.Pointer {
+func CTTextTabGetOptions(tab TextTabRef) unsafe.Pointer {
 	return _CTTextTabGetOptions(tab)
 }
 
@@ -2595,7 +2595,7 @@ func CTTextTabGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateLine(_:_:)
-func CTTypesetterCreateLine(typesetter unsafe.Pointer, stringRange unsafe.Pointer) unsafe.Pointer {
+func CTTypesetterCreateLine(typesetter TypesetterRef, stringRange unsafe.Pointer) LineRef {
 	return _CTTypesetterCreateLine(typesetter, stringRange)
 }
 
@@ -2606,7 +2606,7 @@ func CTTypesetterCreateLine(typesetter unsafe.Pointer, stringRange unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)
-func CTTypesetterCreateLineWithOffset(typesetter unsafe.Pointer, stringRange unsafe.Pointer, offset float64) unsafe.Pointer {
+func CTTypesetterCreateLineWithOffset(typesetter TypesetterRef, stringRange unsafe.Pointer, offset float64) LineRef {
 	return _CTTypesetterCreateLineWithOffset(typesetter, stringRange, offset)
 }
 
@@ -2617,7 +2617,7 @@ func CTTypesetterCreateLineWithOffset(typesetter unsafe.Pointer, stringRange uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)
-func CTTypesetterCreateWithAttributedString(string_ unsafe.Pointer) unsafe.Pointer {
+func CTTypesetterCreateWithAttributedString(string_ unsafe.Pointer) TypesetterRef {
 	return _CTTypesetterCreateWithAttributedString(string_)
 }
 
@@ -2628,7 +2628,7 @@ func CTTypesetterCreateWithAttributedString(string_ unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)
-func CTTypesetterCreateWithAttributedStringAndOptions(string_ unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTTypesetterCreateWithAttributedStringAndOptions(string_ unsafe.Pointer, options unsafe.Pointer) TypesetterRef {
 	return _CTTypesetterCreateWithAttributedStringAndOptions(string_, options)
 }
 
@@ -2650,7 +2650,7 @@ func CTTypesetterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)
-func CTTypesetterSuggestClusterBreak(typesetter unsafe.Pointer, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
+func CTTypesetterSuggestClusterBreak(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
 	return _CTTypesetterSuggestClusterBreak(typesetter, startIndex, width)
 }
 
@@ -2661,7 +2661,7 @@ func CTTypesetterSuggestClusterBreak(typesetter unsafe.Pointer, startIndex unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)
-func CTTypesetterSuggestClusterBreakWithOffset(typesetter unsafe.Pointer, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
+func CTTypesetterSuggestClusterBreakWithOffset(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
 	return _CTTypesetterSuggestClusterBreakWithOffset(typesetter, startIndex, width, offset)
 }
 
@@ -2672,7 +2672,7 @@ func CTTypesetterSuggestClusterBreakWithOffset(typesetter unsafe.Pointer, startI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)
-func CTTypesetterSuggestLineBreak(typesetter unsafe.Pointer, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
+func CTTypesetterSuggestLineBreak(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
 	return _CTTypesetterSuggestLineBreak(typesetter, startIndex, width)
 }
 
@@ -2683,7 +2683,7 @@ func CTTypesetterSuggestLineBreak(typesetter unsafe.Pointer, startIndex unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)
-func CTTypesetterSuggestLineBreakWithOffset(typesetter unsafe.Pointer, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
+func CTTypesetterSuggestLineBreakWithOffset(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
 	return _CTTypesetterSuggestLineBreakWithOffset(typesetter, startIndex, width, offset)
 }
 

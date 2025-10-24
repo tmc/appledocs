@@ -30,7 +30,7 @@ type _CNFixedDetectionTrackClass struct {
 type ICNFixedDetectionTrack interface {
 	ICNDetectionTrack
 	// properties:
-	FocusDisparity() float32 /* primitive/slice/pointer. */
+	FocusDisparity() float32
 	OriginalDetection() ICNDetection
 	// methods:
 }
@@ -92,7 +92,7 @@ func NewCNFixedDetectionTrack() CNFixedDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithFocusDisparity:
-func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32 /* primitive/slice/pointer. */) CNFixedDetectionTrack {
+func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32) CNFixedDetectionTrack {
 	instance := getCNFixedDetectionTrackClass().Alloc()
 	rv := objc.Send[CNFixedDetectionTrack](instance.ID, objc.Sel("initWithFocusDisparity:"), focusDisparity)
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32 /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/focusDisparity
-func (c_ CNFixedDetectionTrack) FocusDisparity() float32 /* primitive/slice/pointer. */ {
+func (c_ CNFixedDetectionTrack) FocusDisparity() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }

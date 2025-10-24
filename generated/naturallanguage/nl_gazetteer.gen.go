@@ -31,15 +31,21 @@ type _GazetteerClass struct {
 // An interface definition for the [Gazetteer] class.
 type IGazetteer interface {
 	objectivec.IObject
-	LabelForString(string_ string) foundation.String
-	Data() foundation.NSData
-	Language() Language
+	// properties:
+	Data() objc.IObject /* cross-framework: NSData */
+	Language() objc.IObject /* cross-framework: Language */
+	// methods:
+	LabelForString(string_ objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
 }
 
 // A collection of terms and their labels, which take precedence over a word tagger.
 //
 // Use an to augment an when you need to tag a specific set of terms (single words or short phrases) with a label. Typically, you add one gazetteer per language, or one language-independent gazetteer, to an with its method. The tagger uses its gazetteers to look up each term it processes. If a gazetteer has a label for a term, the tagger uses that label to tag the term, instead of inferring a tag itself. Typically, you create a gazetteer at development time, such as in a macOS playground, with Create ML’s . Alternatively, you can create an at runtime by using .
+
+
+// A collection of terms and their labels, which take precedence over a word tagger.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer
 type Gazetteer struct {
 	objectivec.Object
@@ -85,11 +91,11 @@ func NewGazetteer() Gazetteer {
 
 
 
-
 // Creates a Natural Language gazetteer from a model created with the Create ML framework.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(contentsOf:)
-func NewGazetteerWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) Gazetteer {
+func NewGazetteerWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -97,11 +103,11 @@ func NewGazetteerWithContentsOfURLError(url foundation.IURL, error_ unsafe.Point
 }
 
 
-
 // Creates a gazetteer from a data instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(data:)
-func NewGazetteerWithDataError(data foundation.IData, error_ unsafe.Pointer) Gazetteer {
+func NewGazetteerWithDataError(data objc.IObject /* cross-framework: NSData */, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithData:error:"), data, error_)
 	rv.Autorelease()
@@ -109,11 +115,11 @@ func NewGazetteerWithDataError(data foundation.IData, error_ unsafe.Pointer) Gaz
 }
 
 
-
 // Creates a gazetteer from a set of labels for terms represented by a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/init(dictionary:language:)
-func NewGazetteerWithDictionaryLanguageError(dictionary unsafe.Pointer, language ILanguage, error_ unsafe.Pointer) Gazetteer {
+func NewGazetteerWithDictionaryLanguageError(dictionary foundation.IDictionary, language objc.IObject /* cross-framework: Language */, error_ unsafe.Pointer) Gazetteer {
 	instance := getGazetteerClass().Alloc()
 	rv := objc.Send[Gazetteer](instance.ID, objc.Sel("initWithDictionary:language:error:"), dictionary, language, error_)
 	rv.Autorelease()
@@ -121,42 +127,52 @@ func NewGazetteerWithDictionaryLanguageError(dictionary unsafe.Pointer, language
 }
 
 
+
 // Creates a Natural Language gazetteer from a model created with the Create ML framework.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/gazetteerWithContentsOfURL:error:
-func (gc _GazetteerClass) GazetteerWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
+func (gc _GazetteerClass) GazetteerWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gazetteerWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
+
 // Creates a gazetteer from a set of labels for terms represented by a dictionary and saves the gazetteer to a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/write(_:language:to:)
-func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictionary unsafe.Pointer, language ILanguage, url foundation.IURL, error_ unsafe.Pointer) bool {
+func (gc _GazetteerClass) WriteGazetteerForDictionaryLanguageToURLError(dictionary foundation.IDictionary, language objc.IObject /* cross-framework: Language */, url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("writeGazetteerForDictionary:language:toURL:error:"), dictionary, language, url, error_)
 	return rv
 }
 
+
 // Retrieves the label for the given term.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/label(for:)
-func (g_ Gazetteer) LabelForString(string_ string) foundation.String {
-	rv := objc.Send[foundation.String](g_.ID, objc.Sel("labelForString:"), objc.String(string_))
+func (g_ Gazetteer) LabelForString(string_ objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](g_.ID, objc.Sel("labelForString:"), string_)
 	return rv
 }
 
+
 // The gazetteer represented as a data instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/data
-func (g_ Gazetteer) Data() foundation.NSData {
+func (g_ Gazetteer) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](g_.ID, objc.Sel("data"))
 	return rv
 }
 
+
 // The language of the gazetteer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLGazetteer/language
-func (g_ Gazetteer) Language() Language {
+func (g_ Gazetteer) Language() objc.IObject /* cross-framework: Language */ {
 	rv := objc.Send[Language](g_.ID, objc.Sel("language"))
 	return rv
 }

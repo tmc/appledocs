@@ -32,32 +32,30 @@ type _AudioRecorderClass struct {
 type IAudioRecorder interface {
 	objectivec.IObject
 	// properties:
-	ChannelAssignments() []AudioSessionChannelDescription /* primitive/slice/pointer. */
-	SetChannelAssignments(value []AudioSessionChannelDescription /* primitive/slice/pointer. */)
-	CurrentTime() foundation.TimeInterval /* not a class type */
+	CurrentTime() float64
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DeviceCurrentTime() foundation.TimeInterval /* not a class type */
+	DeviceCurrentTime() float64
 	Format() IAVAudioFormat
-	MeteringEnabled() bool /* primitive/slice/pointer. */
-	SetMeteringEnabled(value bool /* primitive/slice/pointer. */)
-	Recording() bool /* primitive/slice/pointer. */
-	Settings() foundation.IDictionary /* already interface */
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	IsMeteringEnabled() bool /* primitive/slice/pointer. */
-	SetIsMeteringEnabled(value bool /* primitive/slice/pointer. */)
-	IsRecording() bool /* primitive/slice/pointer. */
-	SetIsRecording(value bool /* primitive/slice/pointer. */)
+	MeteringEnabled() bool
+	SetMeteringEnabled(value bool)
+	Recording() bool
+	Settings() foundation.IDictionary
+	Url() objc.IObject /* cross-framework: NSURL */
+	IsMeteringEnabled() bool
+	SetIsMeteringEnabled(value bool)
+	IsRecording() bool
+	SetIsRecording(value bool)
 	// methods:
-	AveragePowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */
-	DeleteRecording() bool /* primitive/slice/pointer. */
+	AveragePowerForChannel(channelNumber uint) float32
+	DeleteRecording() bool
 	Pause()
-	PeakPowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */
-	PrepareToRecord() bool /* primitive/slice/pointer. */
-	Record() bool /* primitive/slice/pointer. */
-	RecordAtTime(time foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */
-	RecordAtTimeForDuration(time foundation.TimeInterval /* not a class type */, duration foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */
-	RecordForDuration(duration foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */
+	PeakPowerForChannel(channelNumber uint) float32
+	PrepareToRecord() bool
+	Record() bool
+	RecordAtTime(time float64) bool
+	RecordAtTimeForDuration(time float64, duration float64) bool
+	RecordForDuration(duration float64) bool
 	Stop()
 	UpdateMeters()
 }
@@ -119,7 +117,7 @@ func NewAudioRecorder() AudioRecorder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:format:)
-func NewAudioRecorderWithURLFormatError(url foundation.objc.IObject /* cross-framework URL */, format IAVAudioFormat, outError unsafe.Pointer) AudioRecorder {
+func NewAudioRecorderWithURLFormatError(url objc.IObject /* cross-framework: NSURL */, format IAVAudioFormat, outError unsafe.Pointer) AudioRecorder {
 	instance := getAudioRecorderClass().Alloc()
 	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:format:error:"), url, format, outError)
 	rv.Autorelease()
@@ -131,7 +129,7 @@ func NewAudioRecorderWithURLFormatError(url foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:settings:)
-func NewAudioRecorderWithURLSettingsError(url foundation.objc.IObject /* cross-framework URL */, settings foundation.IDictionary /* already interface */, outError unsafe.Pointer) AudioRecorder {
+func NewAudioRecorderWithURLSettingsError(url objc.IObject /* cross-framework: NSURL */, settings foundation.IDictionary, outError unsafe.Pointer) AudioRecorder {
 	instance := getAudioRecorderClass().Alloc()
 	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:settings:error:"), url, settings, outError)
 	rv.Autorelease()
@@ -144,7 +142,7 @@ func NewAudioRecorderWithURLSettingsError(url foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/averagePower(forChannel:)
-func (a_ AudioRecorder) AveragePowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) AveragePowerForChannel(channelNumber uint) float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("averagePowerForChannel:"), channelNumber)
 	return rv
 }
@@ -154,7 +152,7 @@ func (a_ AudioRecorder) AveragePowerForChannel(channelNumber uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/deleteRecording()
-func (a_ AudioRecorder) DeleteRecording() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) DeleteRecording() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("deleteRecording"))
 	return rv
 }
@@ -173,7 +171,7 @@ func (a_ AudioRecorder) Pause() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/peakPower(forChannel:)
-func (a_ AudioRecorder) PeakPowerForChannel(channelNumber uint /* primitive/slice/pointer. */) float32 /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) PeakPowerForChannel(channelNumber uint) float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("peakPowerForChannel:"), channelNumber)
 	return rv
 }
@@ -183,7 +181,7 @@ func (a_ AudioRecorder) PeakPowerForChannel(channelNumber uint /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/prepareToRecord()
-func (a_ AudioRecorder) PrepareToRecord() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) PrepareToRecord() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prepareToRecord"))
 	return rv
 }
@@ -193,7 +191,7 @@ func (a_ AudioRecorder) PrepareToRecord() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record()
-func (a_ AudioRecorder) Record() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) Record() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("record"))
 	return rv
 }
@@ -203,7 +201,7 @@ func (a_ AudioRecorder) Record() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(atTime:)
-func (a_ AudioRecorder) RecordAtTime(time foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) RecordAtTime(time float64) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordAtTime:"), time)
 	return rv
 }
@@ -213,7 +211,7 @@ func (a_ AudioRecorder) RecordAtTime(time foundation.TimeInterval /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(atTime:forDuration:)
-func (a_ AudioRecorder) RecordAtTimeForDuration(time foundation.TimeInterval /* not a class type */, duration foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) RecordAtTimeForDuration(time float64, duration float64) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordAtTime:forDuration:"), time, duration)
 	return rv
 }
@@ -223,7 +221,7 @@ func (a_ AudioRecorder) RecordAtTimeForDuration(time foundation.TimeInterval /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(forDuration:)
-func (a_ AudioRecorder) RecordForDuration(duration foundation.TimeInterval /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) RecordForDuration(duration float64) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordForDuration:"), duration)
 	return rv
 }
@@ -247,41 +245,12 @@ func (a_ AudioRecorder) UpdateMeters() {
 }
 
 
-// An array of channel descriptions associated with the audio recorder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) ChannelAssignments() []AudioSessionChannelDescription /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]AudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
-	return rv
-}
-
-
-// An array of channel descriptions associated with the audio recorder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) SetChannelAssignments(value []AudioSessionChannelDescription /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelAssignments:"), nsArray)
-}
-
-
 // The time, in seconds, since the beginning of the recording.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/currentTime
-func (a_ AudioRecorder) CurrentTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("currentTime"))
+func (a_ AudioRecorder) CurrentTime() float64 {
+	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -309,8 +278,8 @@ func (a_ AudioRecorder) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/deviceCurrentTime
-func (a_ AudioRecorder) DeviceCurrentTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
+func (a_ AudioRecorder) DeviceCurrentTime() float64 {
+	rv := objc.Send[TimeInterval](a_.ID, objc.Sel("deviceCurrentTime"))
 	return rv
 }
 
@@ -329,7 +298,7 @@ func (a_ AudioRecorder) Format() IAVAudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/isMeteringEnabled
-func (a_ AudioRecorder) MeteringEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) MeteringEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("meteringEnabled"))
 	return rv
 }
@@ -339,7 +308,7 @@ func (a_ AudioRecorder) MeteringEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/isMeteringEnabled
-func (a_ AudioRecorder) SetMeteringEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioRecorder) SetMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMeteringEnabled:"), value)
 }
 
@@ -348,7 +317,7 @@ func (a_ AudioRecorder) SetMeteringEnabled(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/isRecording
-func (a_ AudioRecorder) Recording() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) Recording() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recording"))
 	return rv
 }
@@ -358,7 +327,7 @@ func (a_ AudioRecorder) Recording() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/settings
-func (a_ AudioRecorder) Settings() foundation.IDictionary /* already interface */ {
+func (a_ AudioRecorder) Settings() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("settings"))
 	return rv
 }
@@ -368,8 +337,8 @@ func (a_ AudioRecorder) Settings() foundation.IDictionary /* already interface *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/url
-func (a_ AudioRecorder) Url() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
+func (a_ AudioRecorder) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](a_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -378,7 +347,7 @@ func (a_ AudioRecorder) Url() foundation.objc.IObject /* cross-framework: URL */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
-func (a_ AudioRecorder) IsMeteringEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) IsMeteringEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isMeteringEnabled"))
 	return rv
 }
@@ -388,7 +357,7 @@ func (a_ AudioRecorder) IsMeteringEnabled() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/ismeteringenabled
-func (a_ AudioRecorder) SetIsMeteringEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioRecorder) SetIsMeteringEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsMeteringEnabled:"), value)
 }
 
@@ -397,7 +366,7 @@ func (a_ AudioRecorder) SetIsMeteringEnabled(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
-func (a_ AudioRecorder) IsRecording() bool /* primitive/slice/pointer. */ {
+func (a_ AudioRecorder) IsRecording() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRecording"))
 	return rv
 }
@@ -407,7 +376,7 @@ func (a_ AudioRecorder) IsRecording() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiorecorder/isrecording
-func (a_ AudioRecorder) SetIsRecording(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioRecorder) SetIsRecording(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRecording:"), value)
 }
 

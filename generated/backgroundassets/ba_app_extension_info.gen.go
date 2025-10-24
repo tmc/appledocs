@@ -32,8 +32,8 @@ type _BAAppExtensionInfoClass struct {
 type IBAAppExtensionInfo interface {
 	objectivec.IObject
 	// properties:
-	RestrictedDownloadSizeRemaining() foundation.objc.IObject /* cross-framework: Number */
-	RestrictedEssentialDownloadSizeRemaining() foundation.objc.IObject /* cross-framework: Number */
+	RestrictedDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */
+	RestrictedEssentialDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */
 	// methods:
 }
 
@@ -85,16 +85,16 @@ func NewBAAppExtensionInfo() BAAppExtensionInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedDownloadSizeRemaining-9itic
-func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
+func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedEssentialDownloadSizeRemaining-76av8
-func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
+func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
 	return rv
 }
 

@@ -32,10 +32,10 @@ type IEnvironmentMechanismBiometry interface {
 	IEnvironmentMechanism
 	// properties:
 	BiometryType() BiometryType
-	BuiltInSensorInaccessible() bool /* primitive/slice/pointer. */
-	IsEnrolled() bool /* primitive/slice/pointer. */
-	IsLockedOut() bool /* primitive/slice/pointer. */
-	StateHash() foundation.objc.IObject /* cross-framework: NSData */
+	BuiltInSensorInaccessible() bool
+	IsEnrolled() bool
+	IsLockedOut() bool
+	StateHash() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func (e_ EnvironmentMechanismBiometry) BiometryType() BiometryType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/builtInSensorInaccessible
-func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool /* primitive/slice/pointer. */ {
+func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("builtInSensorInaccessible"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool /* primi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isEnrolled
-func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool /* primitive/slice/pointer. */ {
+func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnrolled"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool /* primitive/slice/poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isLockedOut
-func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool /* primitive/slice/pointer. */ {
+func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isLockedOut"))
 	return rv
 }
@@ -121,7 +121,7 @@ func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool /* primitive/slice/poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/stateHash
-func (e_ EnvironmentMechanismBiometry) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
+func (e_ EnvironmentMechanismBiometry) StateHash() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))
 	return rv
 }

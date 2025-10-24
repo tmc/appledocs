@@ -15,3 +15,11 @@ func ExampleNewCBCentralManager() {
 	_ = corebluetooth.NewCBCentralManager()
 	// Output:
 }
+// ExampleCBCentralManager_StopScan demonstrates using StopScan on a CBCentralManager instance.
+// Asks the central manager to stop scanning for peripherals.
+func ExampleCBCentralManager_StopScan() {
+	obj := corebluetooth.NewCBCentralManager()
+	obj.StopScan()
+	// Output:
+	}
+

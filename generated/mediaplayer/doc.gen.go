@@ -2,12 +2,12 @@
 
 // Package mediaplayer provides Go bindings for the MediaPlayer framework.
 //
-// Find and play songs, audio podcasts, audio books, and more from within your app. [Full Topic]
+// Find and play songs, audio podcasts, audio books, and more from within your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MediaPlayer without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer
+// See: https://developer.apple.com/documentation/MediaPlayer
 package mediaplayer
 
 import (

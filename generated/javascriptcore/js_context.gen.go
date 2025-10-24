@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,12 +38,12 @@ type IJSContext interface {
 	SetExceptionHandler(value unsafe.Pointer)
 	GlobalObject() IJSValue
 	SetGlobalObject(value IJSValue)
-	IsInspectable() bool /* primitive/slice/pointer. */
-	SetIsInspectable(value bool /* primitive/slice/pointer. */)
+	IsInspectable() bool
+	SetIsInspectable(value bool)
 	JsGlobalContextRef() unsafe.Pointer
 	SetJsGlobalContextRef(value unsafe.Pointer)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	VirtualMachine() IJSVirtualMachine
 	SetVirtualMachine(value IJSVirtualMachine)
 	// methods:
@@ -173,7 +174,7 @@ func (j_ JSContext) SetGlobalObject(value IJSValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
-func (j_ JSContext) IsInspectable() bool /* primitive/slice/pointer. */ {
+func (j_ JSContext) IsInspectable() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isInspectable"))
 	return rv
 }
@@ -183,7 +184,7 @@ func (j_ JSContext) IsInspectable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
-func (j_ JSContext) SetIsInspectable(value bool /* primitive/slice/pointer. */) {
+func (j_ JSContext) SetIsInspectable(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsInspectable:"), value)
 }
 
@@ -211,8 +212,8 @@ func (j_ JSContext) SetJsGlobalContextRef(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](j_.ID, objc.Sel("name"))
+func (j_ JSContext) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](j_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -221,8 +222,8 @@ func (j_ JSContext) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
+func (j_ JSContext) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), value)
 }
 
 

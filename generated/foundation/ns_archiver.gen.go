@@ -107,7 +107,7 @@ func NewArchiverForWritingWithMutableData(mdata IMutableData) Archiver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
-func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path IString) bool /* primitive/slice/pointer. */ {
+func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path IString) bool {
 	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, path)
 	return rv
 }

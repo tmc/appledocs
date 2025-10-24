@@ -30,13 +30,17 @@ type _MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParamsClass stru
 // An interface definition for the [MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams] class.
 type IMTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams interface {
 	IMTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams
 type MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams struct {
 	MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams
@@ -81,33 +85,33 @@ func NewMTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams() MTRTe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/value
-func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventresponseparams/value
-func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

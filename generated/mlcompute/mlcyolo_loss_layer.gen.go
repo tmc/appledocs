@@ -29,12 +29,18 @@ type _CYOLOLossLayerClass struct {
 // An interface definition for the [CYOLOLossLayer] class.
 type ICYOLOLossLayer interface {
 	ICLossLayer
-	YoloLossDescriptor() unsafe.Pointer
-	SetYoloLossDescriptor(value unsafe.Pointer)
+	// properties:
+	YoloLossDescriptor() CYOLOLossDescriptor /* not a class type */
+	SetYoloLossDescriptor(value CYOLOLossDescriptor /* not a class type */)
+	// methods:
 }
 
 // A layer that estimates loss for the YOLO algorithm.
+
+
+// A layer that estimates loss for the YOLO algorithm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer
 type CYOLOLossLayer struct {
 	CLossLayer
@@ -81,21 +87,22 @@ func NewCYOLOLossLayer() CYOLOLossLayer {
 }
 
 
+
 // The configuration object you use to create the YOLO loss layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
-func (c_ CYOLOLossLayer) YoloLossDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("yoloLossDescriptor"))
+func (c_ CYOLOLossLayer) YoloLossDescriptor() CYOLOLossDescriptor /* not a class type */ {
+	rv := objc.Send[CYOLOLossDescriptor](c_.ID, objc.Sel("yoloLossDescriptor"))
 	return rv
 }
 
 
-// SetYoloLossDescriptor sets the value of the yoloLossDescriptor property.
 // The configuration object you use to create the YOLO loss layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
-func (c_ CYOLOLossLayer) SetYoloLossDescriptor(value unsafe.Pointer) {
+func (c_ CYOLOLossLayer) SetYoloLossDescriptor(value CYOLOLossDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setYoloLossDescriptor:"), value)
 }
 

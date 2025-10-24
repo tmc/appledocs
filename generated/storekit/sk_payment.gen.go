@@ -31,18 +31,24 @@ type _PaymentClass struct {
 // An interface definition for the [Payment] class.
 type IPayment interface {
 	objectivec.IObject
-	ApplicationUsername() string
-	PaymentDiscount() SKPaymentDiscount
-	ProductIdentifier() string
+	// properties:
+	ApplicationUsername() objc.IObject /* cross-framework: NSString */
+	PaymentDiscount() ISKPaymentDiscount
+	ProductIdentifier() objc.IObject /* cross-framework: NSString */
 	Quantity() int
-	RequestData() foundation.NSData
+	RequestData() objc.IObject /* cross-framework: NSData */
 	SimulatesAskToBuyInSandbox() bool
+	// methods:
 }
 
 // A request to the App Store to process payment for additional functionality that your app offers.
 //
 // A payment object identifies a product and the quantity of those items the user would like to purchase.
+
+
+// A request to the App Store to process payment for additional functionality that your app offers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment
 type Payment struct {
 	objectivec.Object
@@ -88,9 +94,9 @@ func NewPayment() Payment {
 
 
 
-
 // Returns a new payment for the specified product.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/init(product:)
 func NewPaymentWithProduct(product ISKProduct) Payment {
 	rv := objc.Send[Payment](objc.ID(getPaymentClass().class), objc.Sel("paymentWithProduct:"), product)
@@ -98,64 +104,80 @@ func NewPaymentWithProduct(product ISKProduct) Payment {
 }
 
 
+
 // Returns a new payment for the specified product.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/init(product:)
 func (pc _PaymentClass) PaymentWithProduct(product ISKProduct) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("paymentWithProduct:"), product)
 	return rv
 }
 
+
 // Returns a new payment with the specified product identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/paymentWithProductIdentifier:
-func (pc _PaymentClass) PaymentWithProductIdentifier(identifier string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("paymentWithProductIdentifier:"), objc.String(identifier))
+func (pc _PaymentClass) PaymentWithProductIdentifier(identifier objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("paymentWithProductIdentifier:"), identifier)
 	return rv
 }
+
 
 // A string that associates the transaction with a user account on your service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/applicationUsername
-func (p_ Payment) ApplicationUsername() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("applicationUsername"))
+func (p_ Payment) ApplicationUsername() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
+
 
 // The details of the discount offer to apply to the payment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/paymentDiscount
-func (p_ Payment) PaymentDiscount() SKPaymentDiscount {
-	rv := objc.Send[SKPaymentDiscount](p_.ID, objc.Sel("paymentDiscount"))
+func (p_ Payment) PaymentDiscount() ISKPaymentDiscount {
+	rv := objc.Send[PaymentDiscount](p_.ID, objc.Sel("paymentDiscount"))
 	return rv
 }
+
 
 // A string used to identify a product that can be purchased from within your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/productIdentifier
-func (p_ Payment) ProductIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
+func (p_ Payment) ProductIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
+
 // The number of items the user wants to purchase.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/quantity
 func (p_ Payment) Quantity() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("quantity"))
 	return rv
 }
 
+
 // Reserved for future use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/requestData
-func (p_ Payment) RequestData() foundation.NSData {
+func (p_ Payment) RequestData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("requestData"))
 	return rv
 }
 
+
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/simulatesAskToBuyInSandbox
 func (p_ Payment) SimulatesAskToBuyInSandbox() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("simulatesAskToBuyInSandbox"))

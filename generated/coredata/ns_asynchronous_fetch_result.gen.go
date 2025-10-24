@@ -31,7 +31,7 @@ type IAsynchronousFetchResult interface {
 	IPersistentStoreAsynchronousResult
 	// properties:
 	FetchRequest() unsafe.Pointer
-	FinalResult() []objc.ID /* already interface */
+	FinalResult() []objc.ID
 	// methods:
 }
 
@@ -102,7 +102,7 @@ func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/finalResult
-func (a_ AsynchronousFetchResult) FinalResult() []objc.ID /* already interface */ {
+func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv
 }

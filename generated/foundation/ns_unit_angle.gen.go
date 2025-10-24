@@ -88,4 +88,23 @@ func NewUnitAngle() UnitAngle {
 
 
 
+// The degrees unit of angle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
+func (uc _UnitAngleClass) Degrees() UnitAngle {
+	rv := objc.Send[UnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
+	return rv
+}
+
+// The degrees unit of angle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
+func (u_ UnitAngle) Degrees() IUnitAngle {
+	rv := objc.Send[UnitAngle](u_.ID, objc.Sel("degrees"))
+	return rv
+}
+
+
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZVirtioFileSystemDevice] class.
@@ -29,17 +30,23 @@ type _VZVirtioFileSystemDeviceClass struct {
 // An interface definition for the [VZVirtioFileSystemDevice] class.
 type IVZVirtioFileSystemDevice interface {
 	IVZDirectorySharingDevice
-	Share() VZDirectoryShare
+	// properties:
+	Share() IVZDirectoryShare
 	SetShare(value IVZDirectoryShare)
-	Tag() string
-	DirectorySharingDevices() VZDirectorySharingDevice
+	Tag() objc.IObject /* cross-framework: NSString */
+	DirectorySharingDevices() IVZDirectorySharingDevice
 	SetDirectorySharingDevices(value IVZDirectorySharingDevice)
+	// methods:
 }
 
 // An object the defines a VIRTIO file system device.
 //
 // This device exposes host resources to the guest as a file system mount. The directory share defines which resources the host exposes to the guest. Create this device by instantiating a in a . The file system device is available in the . property. The guest can use the label to mount and access the host resources. With , the framework enforces several permissions policies for shared directories: The framework reads and writes files using the user ID (UID) of the effective user, which is the UID of the current user, rather than the UID of the system process. The framework doesn’t allow reading or overwriting of files with permissions where the file is inaccessible to the current user. The framework ignores requests from guest operating systems to change the UID or group ID (GID) of files on the host.
+
+
+// An object the defines a VIRTIO file system device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice
 type VZVirtioFileSystemDevice struct {
 	VZDirectorySharingDevice
@@ -86,45 +93,49 @@ func NewVZVirtioFileSystemDevice() VZVirtioFileSystemDevice {
 }
 
 
+
 // A value that defines the directory share the host exposes to the guest VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/share
-func (v_ VZVirtioFileSystemDevice) Share() VZDirectoryShare {
+func (v_ VZVirtioFileSystemDevice) Share() IVZDirectoryShare {
 	rv := objc.Send[VZDirectoryShare](v_.ID, objc.Sel("share"))
 	return rv
 }
 
 
-// SetShare sets the value of the share property.
 // A value that defines the directory share the host exposes to the guest VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/share
 func (v_ VZVirtioFileSystemDevice) SetShare(value IVZDirectoryShare) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShare:"), value)
 }
 
+
 // A string that identifies the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/tag
-func (v_ VZVirtioFileSystemDevice) Tag() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDevice) Tag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("tag"))
 	return rv
 }
 
+
 // The list of configured directory-sharing devices on the VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
-func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() VZDirectorySharingDevice {
+func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() IVZDirectorySharingDevice {
 	rv := objc.Send[VZDirectorySharingDevice](v_.ID, objc.Sel("directorySharingDevices"))
 	return rv
 }
 
 
-// SetDirectorySharingDevices sets the value of the directorySharingDevices property.
 // The list of configured directory-sharing devices on the VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
 func (v_ VZVirtioFileSystemDevice) SetDirectorySharingDevices(value IVZDirectorySharingDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), value)

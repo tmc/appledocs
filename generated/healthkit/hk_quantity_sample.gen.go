@@ -31,10 +31,10 @@ type _HKQuantitySampleClass struct {
 type IHKQuantitySample interface {
 	IHKSample
 	// properties:
-	HKPredicateKeyPathCount() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathQuantity() string /* primitive/slice/pointer. */
-	Count() int /* primitive/slice/pointer. */
-	SetCount(value int /* primitive/slice/pointer. */)
+	HKPredicateKeyPathCount() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathQuantity() objc.IObject /* cross-framework: NSString */
+	Count() int
+	SetCount(value int)
 	Quantity() IHKQuantity
 	SetQuantity(value IHKQuantity)
 	QuantityType() IHKQuantityType
@@ -101,7 +101,7 @@ func NewHKQuantitySample() HKQuantitySample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
-func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */) HKQuantitySample {
+func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate objc.IObject /* cross-framework: NSDate */, endDate objc.IObject /* cross-framework: NSDate */, metadata foundation.IDictionary) HKQuantitySample {
 	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
 	return rv
 }
@@ -112,7 +112,7 @@ func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IH
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
-func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */) unsafe.Pointer {
+func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate objc.IObject /* cross-framework: NSDate */, endDate objc.IObject /* cross-framework: NSDate */, metadata foundation.IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
 	return rv
 }
@@ -122,8 +122,8 @@ func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
-func (h_ HKQuantitySample) HKPredicateKeyPathCount() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
+func (h_ HKQuantitySample) HKPredicateKeyPathCount() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (h_ HKQuantitySample) HKPredicateKeyPathCount() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
-func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
+func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitysample/count
-func (h_ HKQuantitySample) Count() int /* primitive/slice/pointer. */ {
+func (h_ HKQuantitySample) Count() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (h_ HKQuantitySample) Count() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitysample/count
-func (h_ HKQuantitySample) SetCount(value int /* primitive/slice/pointer. */) {
+func (h_ HKQuantitySample) SetCount(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
 }
 

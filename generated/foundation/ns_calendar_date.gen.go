@@ -119,7 +119,7 @@ func NewCalendarDateWithStringCalendarFormatLocale(description IString, format I
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/initWithYear:month:day:hour:minute:second:timeZone:
-func NewCalendarDateWithYearMonthDayHourMinuteSecondTimeZone(year int /* primitive/slice/pointer. */, month uint /* primitive/slice/pointer. */, day uint /* primitive/slice/pointer. */, hour uint /* primitive/slice/pointer. */, minute uint /* primitive/slice/pointer. */, second uint /* primitive/slice/pointer. */, aTimeZone ITimeZone) CalendarDate {
+func NewCalendarDateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone ITimeZone) CalendarDate {
 	instance := getCalendarDateClass().Alloc()
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithYear:month:day:hour:minute:second:timeZone:"), year, month, day, hour, minute, second, aTimeZone)
 	rv.Autorelease()
@@ -154,7 +154,7 @@ func (cc _CalendarDateClass) DateWithStringCalendarFormatLocale(description IStr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dateWithYear:month:day:hour:minute:second:timeZone:
-func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int /* primitive/slice/pointer. */, month uint /* primitive/slice/pointer. */, day uint /* primitive/slice/pointer. */, hour uint /* primitive/slice/pointer. */, minute uint /* primitive/slice/pointer. */, second uint /* primitive/slice/pointer. */, aTimeZone ITimeZone) objc.ID {
+func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone ITimeZone) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithYear:month:day:hour:minute:second:timeZone:"), year, month, day, hour, minute, second, aTimeZone)
 	return rv
 }

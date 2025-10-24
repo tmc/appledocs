@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,7 @@ type _TKSmartCardSlotNFCSessionClass struct {
 type ITKSmartCardSlotNFCSession interface {
 	objectivec.IObject
 	// properties:
-	SlotName() string /* primitive/slice/pointer. */
 	// methods:
-	EndSession()
 }
 
 // NFC session that’s related to NFC smart card slot which was created.
@@ -85,26 +84,6 @@ func (t_ TKSmartCardSlotNFCSession) Autorelease() TKSmartCardSlotNFCSession {
 // NewTKSmartCardSlotNFCSession creates a new TKSmartCardSlotNFCSession instance.
 func NewTKSmartCardSlotNFCSession() TKSmartCardSlotNFCSession {
 	return getTKSmartCardSlotNFCSessionClass().New()
-}
-
-
-
-// Ends the NFC slot session and dismisses the system-presented NFC UI (if present).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/end()
-func (t_ TKSmartCardSlotNFCSession) EndSession() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
-}
-
-
-// Smart card slot name of the NFC slot that was created together with this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
-func (t_ TKSmartCardSlotNFCSession) SlotName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
-	return rv
 }
 
 

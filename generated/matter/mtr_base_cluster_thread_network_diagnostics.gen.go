@@ -29,9 +29,13 @@ type _MTRBaseClusterThreadNetworkDiagnosticsClass struct {
 // An interface definition for the [MTRBaseClusterThreadNetworkDiagnostics] class.
 type IMTRBaseClusterThreadNetworkDiagnostics interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadNetworkDiagnostics
 type MTRBaseClusterThreadNetworkDiagnostics struct {
 	MTRGenericBaseCluster

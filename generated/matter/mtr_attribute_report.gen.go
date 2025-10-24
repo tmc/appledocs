@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +31,19 @@ type _MTRAttributeReportClass struct {
 // An interface definition for the [MTRAttributeReport] class.
 type IMTRAttributeReport interface {
 	objectivec.IObject
-	Error() foundation.Error
-	SetError(value foundation.IError)
-	Path() MTRAttributePath
+	// properties:
+	Error() objc.IObject /* cross-framework: Error */
+	SetError(value objc.IObject /* cross-framework: Error */)
+	Path() IMTRAttributePath
 	SetPath(value IMTRAttributePath)
 	Value() unsafe.Pointer
 	SetValue(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeReport
 type MTRAttributeReport struct {
 	objectivec.Object
@@ -82,37 +86,38 @@ func NewMTRAttributeReport() MTRAttributeReport {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](m_.ID, objc.Sel("error"))
+func (m_ MTRAttributeReport) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](m_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) SetError(value foundation.IError) {
+func (m_ MTRAttributeReport) SetError(value objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/path
-func (m_ MTRAttributeReport) Path() MTRAttributePath {
+func (m_ MTRAttributeReport) Path() IMTRAttributePath {
 	rv := objc.Send[MTRAttributePath](m_.ID, objc.Sel("path"))
 	return rv
 }
 
 
-// SetPath sets the value of the path property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/path
 func (m_ MTRAttributeReport) SetPath(value IMTRAttributePath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/value
 func (m_ MTRAttributeReport) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
@@ -120,8 +125,7 @@ func (m_ MTRAttributeReport) Value() unsafe.Pointer {
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/value
 func (m_ MTRAttributeReport) SetValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)

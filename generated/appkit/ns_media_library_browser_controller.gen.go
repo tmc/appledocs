@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IMediaLibraryBrowserController interface {
 	// properties:
 	Frame() objc.IObject /* cross-framework: Rect */
 	SetFrame(value objc.IObject /* cross-framework: Rect */)
-	IsVisible() bool /* primitive/slice/pointer. */
-	SetIsVisible(value bool /* primitive/slice/pointer. */)
+	IsVisible() bool
+	SetIsVisible(value bool)
 	MediaLibraries() unsafe.Pointer
 	SetMediaLibraries(value unsafe.Pointer)
 	// methods:
@@ -108,7 +109,7 @@ func (m_ MediaLibraryBrowserController) TogglePanel(sender objectivec.IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/frame
 func (m_ MediaLibraryBrowserController) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](m_.ID, objc.Sel("frame"))
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (m_ MediaLibraryBrowserController) SetFrame(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-func (m_ MediaLibraryBrowserController) IsVisible() bool /* primitive/slice/pointer. */ {
+func (m_ MediaLibraryBrowserController) IsVisible() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -136,7 +137,7 @@ func (m_ MediaLibraryBrowserController) IsVisible() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-func (m_ MediaLibraryBrowserController) SetIsVisible(value bool /* primitive/slice/pointer. */) {
+func (m_ MediaLibraryBrowserController) SetIsVisible(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsVisible:"), value)
 }
 

@@ -29,16 +29,21 @@ type _CNNGroupNormalizationGradientStateClass struct {
 // An interface definition for the [CNNGroupNormalizationGradientState] class.
 type ICNNGroupNormalizationGradientState interface {
 	IGradientState
+	// properties:
 	Beta() objc.ID
 	GradientForBeta() objc.ID
-	GradientForGamma() objc.ID
-	Gamma() unsafe.Pointer
-	SetGamma(value unsafe.Pointer)
-	GroupNormalization() MPSCNNGroupNormalization
+	Gamma() Buffer /* not a class type */
+	SetGamma(value Buffer /* not a class type */)
+	GradientForGamma() Buffer /* not a class type */
+	SetGradientForGamma(value Buffer /* not a class type */)
+	GroupNormalization() IMPSCNNGroupNormalization
 	SetGroupNormalization(value IMPSCNNGroupNormalization)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState
 type CNNGroupNormalizationGradientState struct {
 	GradientState
@@ -83,52 +88,62 @@ func NewCNNGroupNormalizationGradientState() CNNGroupNormalizationGradientState 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState/beta
 func (c_ CNNGroupNormalizationGradientState) Beta() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState/gradientForBeta
 func (c_ CNNGroupNormalizationGradientState) GradientForBeta() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForBeta"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientState/gradientForGamma
-func (c_ CNNGroupNormalizationGradientState) GradientForGamma() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForGamma"))
-	return rv
-}
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gamma
-func (c_ CNNGroupNormalizationGradientState) Gamma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+func (c_ CNNGroupNormalizationGradientState) Gamma() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](c_.ID, objc.Sel("gamma"))
 	return rv
 }
 
 
-// SetGamma sets the value of the gamma property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gamma
-func (c_ CNNGroupNormalizationGradientState) SetGamma(value unsafe.Pointer) {
+func (c_ CNNGroupNormalizationGradientState) SetGamma(value Buffer /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
-func (c_ CNNGroupNormalizationGradientState) GroupNormalization() MPSCNNGroupNormalization {
-	rv := objc.Send[MPSCNNGroupNormalization](c_.ID, objc.Sel("groupNormalization"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gradientforgamma
+func (c_ CNNGroupNormalizationGradientState) GradientForGamma() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](c_.ID, objc.Sel("gradientForGamma"))
 	return rv
 }
 
 
-// SetGroupNormalization sets the value of the groupNormalization property.
-//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/gradientforgamma
+func (c_ CNNGroupNormalizationGradientState) SetGradientForGamma(value Buffer /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientForGamma:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
+func (c_ CNNGroupNormalizationGradientState) GroupNormalization() IMPSCNNGroupNormalization {
+	rv := objc.Send[CNNGroupNormalization](c_.ID, objc.Sel("groupNormalization"))
+	return rv
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
 func (c_ CNNGroupNormalizationGradientState) SetGroupNormalization(value IMPSCNNGroupNormalization) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupNormalization:"), value)

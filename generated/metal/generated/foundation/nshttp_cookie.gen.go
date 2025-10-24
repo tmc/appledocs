@@ -32,25 +32,33 @@ type IHTTPCookie interface {
 	objectivec.IObject
 	// properties:
 	Comment() IString
+	SetComment(value IString)
 	CommentURL() IURL
+	SetCommentURL(value IURL)
 	Domain() IString
+	SetDomain(value IString)
 	ExpiresDate() IDate
-	HTTPOnly() bool /* primitive/slice/pointer. */
-	Secure() bool /* primitive/slice/pointer. */
-	SessionOnly() bool /* primitive/slice/pointer. */
+	SetExpiresDate(value IDate)
+	IsHTTPOnly() bool
+	SetIsHTTPOnly(value bool)
+	IsSecure() bool
+	SetIsSecure(value bool)
+	IsSessionOnly() bool
+	SetIsSessionOnly(value bool)
 	Name() IString
+	SetName(value IString)
 	Path() IString
-	PortList() []Number /* primitive/slice/pointer. */
-	Properties() IDictionary /* already interface */
-	SameSitePolicy() objc.IObject /* cross-framework: HTTPCookieStringPolicy */
+	SetPath(value IString)
+	PortList() INumber
+	SetPortList(value INumber)
+	Properties() unsafe.Pointer
+	SetProperties(value unsafe.Pointer)
+	SameSitePolicy() unsafe.Pointer
+	SetSameSitePolicy(value unsafe.Pointer)
 	Value() IString
-	Version() uint /* primitive/slice/pointer. */
-	IsHTTPOnly() bool /* primitive/slice/pointer. */
-	SetIsHTTPOnly(value bool /* primitive/slice/pointer. */)
-	IsSecure() bool /* primitive/slice/pointer. */
-	SetIsSecure(value bool /* primitive/slice/pointer. */)
-	IsSessionOnly() bool /* primitive/slice/pointer. */
-	SetIsSessionOnly(value bool /* primitive/slice/pointer. */)
+	SetValue(value IString)
+	Version() int
+	SetVersion(value int)
 	// methods:
 }
 
@@ -107,45 +115,12 @@ func NewHTTPCookie() HTTPCookie {
 
 
 
-// Initializes an HTTP cookie object with the given cookie properties.
+// The cookie’s comment string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/init(properties:)
-func NewHTTPCookieWithProperties(properties IDictionary /* already interface */) HTTPCookie {
-	instance := getHTTPCookieClass().Alloc()
-	rv := objc.Send[HTTPCookie](instance.ID, objc.Sel("initWithProperties:"), properties)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates an array of HTTP cookies that corresponds to the provided response header fields for the provided URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/cookies(withResponseHeaderFields:for:)
-func (hc _HTTPCookieClass) CookiesWithResponseHeaderFieldsForURL(headerFields IDictionary /* already interface */, URL IURL) []HTTPCookie /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]HTTPCookie](objc.ID(hc.class), objc.Sel("cookiesWithResponseHeaderFields:forURL:"), headerFields, URL)
-	return rv
-}
-
-
-// Converts an array of cookies to a dictionary of header fields.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/requestHeaderFields(with:)
-func (hc _HTTPCookieClass) RequestHeaderFieldsWithCookies(cookies []HTTPCookie /* primitive/slice/pointer. */) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(hc.class), objc.Sel("requestHeaderFieldsWithCookies:"), cookies)
-	return rv
-}
-
-
-// Creates and initializes an HTTP cookie object using the provided properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHTTPCookie/cookieWithProperties:
-func (hc _HTTPCookieClass) CookieWithProperties(properties IDictionary /* already interface */) IHTTPCookie {
-	rv := objc.Send[HTTPCookie](objc.ID(hc.class), objc.Sel("cookieWithProperties:"), properties)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
+func (h_ HTTPCookie) Comment() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("comment"))
 	return rv
 }
 
@@ -153,9 +128,18 @@ func (hc _HTTPCookieClass) CookieWithProperties(properties IDictionary /* alread
 // The cookie’s comment string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/comment
-func (h_ HTTPCookie) Comment() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("comment"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
+func (h_ HTTPCookie) SetComment(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setComment:"), value)
+}
+
+
+// The cookie’s comment URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
+func (h_ HTTPCookie) CommentURL() IURL {
+	rv := objc.Send[URL](h_.ID, objc.Sel("commentURL"))
 	return rv
 }
 
@@ -163,9 +147,18 @@ func (h_ HTTPCookie) Comment() IString {
 // The cookie’s comment URL.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/commentURL
-func (h_ HTTPCookie) CommentURL() IURL {
-	rv := objc.Send[URL](h_.ID, objc.Sel("commentURL"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
+func (h_ HTTPCookie) SetCommentURL(value IURL) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCommentURL:"), value)
+}
+
+
+// The domain of the cookie.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
+func (h_ HTTPCookie) Domain() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("domain"))
 	return rv
 }
 
@@ -173,9 +166,18 @@ func (h_ HTTPCookie) CommentURL() IURL {
 // The domain of the cookie.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/domain
-func (h_ HTTPCookie) Domain() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("domain"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
+func (h_ HTTPCookie) SetDomain(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
+}
+
+
+// The cookie’s expiration date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/expiresdate
+func (h_ HTTPCookie) ExpiresDate() IDate {
+	rv := objc.Send[Date](h_.ID, objc.Sel("expiresDate"))
 	return rv
 }
 
@@ -183,110 +185,9 @@ func (h_ HTTPCookie) Domain() IString {
 // The cookie’s expiration date.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/expiresDate
-func (h_ HTTPCookie) ExpiresDate() IDate {
-	rv := objc.Send[Date](h_.ID, objc.Sel("expiresDate"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the cookie should only be sent to HTTP servers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/isHTTPOnly
-func (h_ HTTPCookie) HTTPOnly() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](h_.ID, objc.Sel("HTTPOnly"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the cookie may only be sent over secure channels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/isSecure
-func (h_ HTTPCookie) Secure() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](h_.ID, objc.Sel("secure"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/isSessionOnly
-func (h_ HTTPCookie) SessionOnly() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](h_.ID, objc.Sel("sessionOnly"))
-	return rv
-}
-
-
-// The cookie’s name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/name
-func (h_ HTTPCookie) Name() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The cookie’s path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/path
-func (h_ HTTPCookie) Path() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("path"))
-	return rv
-}
-
-
-// The cookie’s port list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/portList
-func (h_ HTTPCookie) PortList() []Number /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]Number](h_.ID, objc.Sel("portList"))
-	return rv
-}
-
-
-// The cookie’s properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
-func (h_ HTTPCookie) Properties() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](h_.ID, objc.Sel("properties"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/sameSitePolicy
-func (h_ HTTPCookie) SameSitePolicy() objc.IObject /* cross-framework: HTTPCookieStringPolicy */ {
-	rv := objc.Send[HTTPCookieStringPolicy](h_.ID, objc.Sel("sameSitePolicy"))
-	return rv
-}
-
-
-// The cookie’s string value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/value
-func (h_ HTTPCookie) Value() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// The cookie’s version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/version
-func (h_ HTTPCookie) Version() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](h_.ID, objc.Sel("version"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/expiresdate
+func (h_ HTTPCookie) SetExpiresDate(value IDate) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setExpiresDate:"), value)
 }
 
 
@@ -294,7 +195,7 @@ func (h_ HTTPCookie) Version() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/ishttponly
-func (h_ HTTPCookie) IsHTTPOnly() bool /* primitive/slice/pointer. */ {
+func (h_ HTTPCookie) IsHTTPOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isHTTPOnly"))
 	return rv
 }
@@ -304,7 +205,7 @@ func (h_ HTTPCookie) IsHTTPOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/ishttponly
-func (h_ HTTPCookie) SetIsHTTPOnly(value bool /* primitive/slice/pointer. */) {
+func (h_ HTTPCookie) SetIsHTTPOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsHTTPOnly:"), value)
 }
 
@@ -313,7 +214,7 @@ func (h_ HTTPCookie) SetIsHTTPOnly(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issecure
-func (h_ HTTPCookie) IsSecure() bool /* primitive/slice/pointer. */ {
+func (h_ HTTPCookie) IsSecure() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSecure"))
 	return rv
 }
@@ -323,7 +224,7 @@ func (h_ HTTPCookie) IsSecure() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issecure
-func (h_ HTTPCookie) SetIsSecure(value bool /* primitive/slice/pointer. */) {
+func (h_ HTTPCookie) SetIsSecure(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSecure:"), value)
 }
 
@@ -332,7 +233,7 @@ func (h_ HTTPCookie) SetIsSecure(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookie) IsSessionOnly() bool /* primitive/slice/pointer. */ {
+func (h_ HTTPCookie) IsSessionOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
 	return rv
 }
@@ -342,8 +243,142 @@ func (h_ HTTPCookie) IsSessionOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookie) SetIsSessionOnly(value bool /* primitive/slice/pointer. */) {
+func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
 }
+
+
+// The cookie’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
+func (h_ HTTPCookie) Name() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The cookie’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
+func (h_ HTTPCookie) SetName(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
+}
+
+
+// The cookie’s path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
+func (h_ HTTPCookie) Path() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("path"))
+	return rv
+}
+
+
+// The cookie’s path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
+func (h_ HTTPCookie) SetPath(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPath:"), value)
+}
+
+
+// The cookie’s port list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
+func (h_ HTTPCookie) PortList() INumber {
+	rv := objc.Send[Number](h_.ID, objc.Sel("portList"))
+	return rv
+}
+
+
+// The cookie’s port list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
+func (h_ HTTPCookie) SetPortList(value INumber) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPortList:"), value)
+}
+
+
+// The cookie’s properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
+func (h_ HTTPCookie) Properties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
+	return rv
+}
+
+
+// The cookie’s properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
+func (h_ HTTPCookie) SetProperties(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setProperties:"), value)
+}
+
+
+// A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
+func (h_ HTTPCookie) SameSitePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sameSitePolicy"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
+func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSameSitePolicy:"), value)
+}
+
+
+// The cookie’s string value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
+func (h_ HTTPCookie) Value() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// The cookie’s string value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
+func (h_ HTTPCookie) SetValue(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
+}
+
+
+// The cookie’s version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
+func (h_ HTTPCookie) Version() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// The cookie’s version.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
+func (h_ HTTPCookie) SetVersion(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), value)
+}
+
 
 

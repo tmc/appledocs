@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,11 +36,11 @@ type IABPersonPicker interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Properties() objc.ID
-	SetProperties(value objc.ID)
+	Properties() objc.IObject /* cross-framework: NSArray */
+	SetProperties(value objc.IObject /* cross-framework: NSArray */)
 	// methods:
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect objc.IObject /* cross-framework: Rect */, positioningView objc.IObject /* cross-framework: View */, preferredEdge RectEdge /* not a class type */)
 }
 
 // A picker object that you display when you want the user to select contacts.
@@ -105,7 +107,7 @@ func (a_ ABPersonPicker) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */) {
+func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect objc.IObject /* cross-framework: Rect */, positioningView objc.IObject /* cross-framework: View */, preferredEdge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 
@@ -133,8 +135,8 @@ func (a_ ABPersonPicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
-func (a_ ABPersonPicker) Properties() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("properties"))
+func (a_ ABPersonPicker) Properties() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -143,7 +145,7 @@ func (a_ ABPersonPicker) Properties() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/properties
-func (a_ ABPersonPicker) SetProperties(value objc.ID) {
+func (a_ ABPersonPicker) SetProperties(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProperties:"), value)
 }
 

@@ -30,33 +30,37 @@ type _MTRTestClusterClusterNullablesAndOptionalsStructClass struct {
 // An interface definition for the [MTRTestClusterClusterNullablesAndOptionalsStruct] class.
 type IMTRTestClusterClusterNullablesAndOptionalsStruct interface {
 	IMTRUnitTestingClusterNullablesAndOptionalsStruct
-	NullableInt() foundation.Number
-	SetNullableInt(value foundation.INumber)
+	// properties:
+	NullableInt() objc.IObject /* cross-framework: NSNumber */
+	SetNullableInt(value objc.IObject /* cross-framework: NSNumber */)
 	NullableList() unsafe.Pointer
 	SetNullableList(value unsafe.Pointer)
-	NullableOptionalInt() foundation.Number
-	SetNullableOptionalInt(value foundation.INumber)
+	NullableOptionalInt() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalInt(value objc.IObject /* cross-framework: NSNumber */)
 	NullableOptionalList() unsafe.Pointer
 	SetNullableOptionalList(value unsafe.Pointer)
-	NullableOptionalString() string
-	SetNullableOptionalString(value string)
-	NullableOptionalStruct() MTRTestClusterClusterSimpleStruct
+	NullableOptionalString() objc.IObject /* cross-framework: NSString */
+	SetNullableOptionalString(value objc.IObject /* cross-framework: NSString */)
+	NullableOptionalStruct() IMTRTestClusterClusterSimpleStruct
 	SetNullableOptionalStruct(value IMTRTestClusterClusterSimpleStruct)
-	NullableString() string
-	SetNullableString(value string)
-	NullableStruct() MTRTestClusterClusterSimpleStruct
+	NullableString() objc.IObject /* cross-framework: NSString */
+	SetNullableString(value objc.IObject /* cross-framework: NSString */)
+	NullableStruct() IMTRTestClusterClusterSimpleStruct
 	SetNullableStruct(value IMTRTestClusterClusterSimpleStruct)
-	OptionalInt() foundation.Number
-	SetOptionalInt(value foundation.INumber)
+	OptionalInt() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalInt(value objc.IObject /* cross-framework: NSNumber */)
 	OptionalList() unsafe.Pointer
 	SetOptionalList(value unsafe.Pointer)
-	OptionalString() string
-	SetOptionalString(value string)
-	OptionalStruct() MTRTestClusterClusterSimpleStruct
+	OptionalString() objc.IObject /* cross-framework: NSString */
+	SetOptionalString(value objc.IObject /* cross-framework: NSString */)
+	OptionalStruct() IMTRTestClusterClusterSimpleStruct
 	SetOptionalStruct(value IMTRTestClusterClusterSimpleStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterNullablesAndOptionalsStruct
 type MTRTestClusterClusterNullablesAndOptionalsStruct struct {
 	MTRUnitTestingClusterNullablesAndOptionalsStruct
@@ -101,22 +105,23 @@ func NewMTRTestClusterClusterNullablesAndOptionalsStruct() MTRTestClusterCluster
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableInt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableInt"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableInt() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableInt"))
 	return rv
 }
 
 
-// SetNullableInt sets the value of the nullableInt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableInt(value foundation.INumber) {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableInt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableInt:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablelist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableList"))
@@ -124,29 +129,29 @@ func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableList() unsafe
 }
 
 
-// SetNullableList sets the value of the nullableList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablelist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalInt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalInt"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalInt() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalInt"))
 	return rv
 }
 
 
-// SetNullableOptionalInt sets the value of the nullableOptionalInt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalInt(value foundation.INumber) {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalInt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalInt:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionallist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableOptionalList"))
@@ -154,89 +159,89 @@ func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalList(
 }
 
 
-// SetNullableOptionalList sets the value of the nullableOptionalList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionallist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalstring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableOptionalString"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("nullableOptionalString"))
 	return rv
 }
 
 
-// SetNullableOptionalString sets the value of the nullableOptionalString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalstring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalString:"), objc.String(value))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalstruct
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalStruct() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableOptionalStruct() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("nullableOptionalStruct"))
 	return rv
 }
 
 
-// SetNullableOptionalStruct sets the value of the nullableOptionalStruct property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullableoptionalstruct
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableOptionalStruct(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStruct:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablestring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableString"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("nullableString"))
 	return rv
 }
 
 
-// SetNullableString sets the value of the nullableString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablestring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableString:"), objc.String(value))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablestruct
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableStruct() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) NullableStruct() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("nullableStruct"))
 	return rv
 }
 
 
-// SetNullableStruct sets the value of the nullableStruct property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/nullablestruct
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetNullableStruct(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStruct:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalInt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalInt"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalInt() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalInt"))
 	return rv
 }
 
 
-// SetOptionalInt sets the value of the optionalInt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalint
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalInt(value foundation.INumber) {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalInt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalInt:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionallist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("optionalList"))
@@ -244,38 +249,37 @@ func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalList() unsafe
 }
 
 
-// SetOptionalList sets the value of the optionalList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionallist
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalstring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("optionalString"))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("optionalString"))
 	return rv
 }
 
 
-// SetOptionalString sets the value of the optionalString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalstring
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalString:"), objc.String(value))
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalstruct
-func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalStruct() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) OptionalStruct() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("optionalStruct"))
 	return rv
 }
 
 
-// SetOptionalStruct sets the value of the optionalStruct property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternullablesandoptionalsstruct/optionalstruct
 func (m_ MTRTestClusterClusterNullablesAndOptionalsStruct) SetOptionalStruct(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStruct:"), value)

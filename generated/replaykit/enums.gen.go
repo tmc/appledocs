@@ -177,11 +177,4 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType
 type RPSampleBufferType uint
 
-const (
-	// RPSampleBufferTypeVideo - The sample that contains a video clip.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType/video
-	RPSampleBufferTypeVideo RPSampleBufferType = 0
-)
-
 

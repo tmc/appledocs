@@ -31,15 +31,19 @@ type _MTRApplicationLauncherClusterLauncherResponseParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterLauncherResponseParams] class.
 type IMTRApplicationLauncherClusterLauncherResponseParams interface {
 	objectivec.IObject
-	Data() foundation.Data
-	SetData(value foundation.IData)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterLauncherResponseParams
 type MTRApplicationLauncherClusterLauncherResponseParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRApplicationLauncherClusterLauncherResponseParams() MTRApplicationLaun
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/data
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Data() foundation.Data {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/data
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetData(value foundation.IData) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/status
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/status
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

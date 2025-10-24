@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _CommandBufferDescriptorClass struct {
 // An interface definition for the [CommandBufferDescriptor] class.
 type ICommandBufferDescriptor interface {
 	objectivec.IObject
-	ErrorOptions() CommandBufferErrorOption
-	SetErrorOptions(value ICommandBufferErrorOption)
-	LogState() objc.ID
-	SetLogState(value objc.ID)
+	// properties:
+	ErrorOptions() CommandBufferErrorOption /* not a class type */
+	SetErrorOptions(value CommandBufferErrorOption /* not a class type */)
+	LogState() LogState /* not a class type */
+	SetLogState(value LogState /* not a class type */)
 	RetainedReferences() bool
 	SetRetainedReferences(value bool)
-	MTLCommandBufferErrorDomain() string
+	MTLCommandBufferErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A configuration that customizes the behavior for a new command buffer.
 //
 // Create a command buffer with a custom configuration by creating an instance and passing it to an instance’s method. You can configure whether the command buffer retains references to resources that its commands refer to with the property. The command buffer can save extra error information, which is useful during development, by setting its property to .
+
+
+// A configuration that customizes the behavior for a new command buffer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor
 type CommandBufferDescriptor struct {
 	objectivec.Object
@@ -87,65 +94,70 @@ func NewCommandBufferDescriptor() CommandBufferDescriptor {
 }
 
 
+
 // The reporting configuration that indicates which information the GPU driver stores in a command buffer’s error property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/errorOptions
-func (c_ CommandBufferDescriptor) ErrorOptions() CommandBufferErrorOption {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/erroroptions
+func (c_ CommandBufferDescriptor) ErrorOptions() CommandBufferErrorOption /* not a class type */ {
 	rv := objc.Send[CommandBufferErrorOption](c_.ID, objc.Sel("errorOptions"))
 	return rv
 }
 
 
-// SetErrorOptions sets the value of the errorOptions property.
 // The reporting configuration that indicates which information the GPU driver stores in a command buffer’s error property.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/errorOptions
-func (c_ CommandBufferDescriptor) SetErrorOptions(value ICommandBufferErrorOption) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/erroroptions
+func (c_ CommandBufferDescriptor) SetErrorOptions(value CommandBufferErrorOption /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setErrorOptions:"), value)
 }
 
+
 // The shader logging configuration that the command buffer uses.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/logState
-func (c_ CommandBufferDescriptor) LogState() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("logState"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/logstate
+func (c_ CommandBufferDescriptor) LogState() LogState /* not a class type */ {
+	rv := objc.Send[LogState](c_.ID, objc.Sel("logState"))
 	return rv
 }
 
 
-// SetLogState sets the value of the logState property.
 // The shader logging configuration that the command buffer uses.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/logState
-func (c_ CommandBufferDescriptor) SetLogState(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/logstate
+func (c_ CommandBufferDescriptor) SetLogState(value LogState /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLogState:"), value)
 }
 
+
 // A Boolean value that indicates whether the command buffer the descriptor creates maintains strong references to the resources it uses.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/retainedReferences
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/retainedreferences
 func (c_ CommandBufferDescriptor) RetainedReferences() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("retainedReferences"))
 	return rv
 }
 
 
-// SetRetainedReferences sets the value of the retainedReferences property.
 // A Boolean value that indicates whether the command buffer the descriptor creates maintains strong references to the resources it uses.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/retainedReferences
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/retainedreferences
 func (c_ CommandBufferDescriptor) SetRetainedReferences(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRetainedReferences:"), value)
 }
 
+
 // The domain for Metal command buffer errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain
-func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
+func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
 	return rv
 }
 

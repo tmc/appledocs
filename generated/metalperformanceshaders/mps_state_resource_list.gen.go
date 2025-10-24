@@ -31,11 +31,17 @@ type _StateResourceListClass struct {
 // An interface definition for the [StateResourceList] class.
 type IStateResourceList interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	AppendBuffer(size uint)
 }
 
 // An interface for objects that define resources for Metal Performance Shaders state containers.
+
+
+// An interface for objects that define resources for Metal Performance Shaders state containers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceList
 type StateResourceList struct {
 	objectivec.Object
@@ -80,14 +86,16 @@ func NewStateResourceList() StateResourceList {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceList/resourceListWithTextureDescriptors:
-func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d metal.ITextureDescriptor) unsafe.Pointer {
+func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d objc.IObject /* cross-framework: TextureDescriptor */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("resourceListWithTextureDescriptors:"), d)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceList/appendBuffer(_:)
 func (s_ StateResourceList) AppendBuffer(size uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("appendBuffer:"), size)

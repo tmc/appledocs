@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,19 @@ type _PHASEAssetClass struct {
 // An interface definition for the [PHASEAsset] class.
 type IPHASEAsset interface {
 	objectivec.IObject
-	Identifier() string
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A base class that adds a name to framework assets.
 //
 // Through inheritance, this class adds a string to subclasses, for example, and . PHASE generates objects of this type based on template subclasses. For example, PHASE gives you a when you register a with the asset registry via .
+
+
+// A base class that adds a name to framework assets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset
 type PHASEAsset struct {
 	objectivec.Object
@@ -81,11 +88,13 @@ func NewPHASEAsset() PHASEAsset {
 }
 
 
+
 // A unique name for the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset/identifier
-func (p_ PHASEAsset) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEAsset) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

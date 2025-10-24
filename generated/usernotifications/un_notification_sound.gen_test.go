@@ -13,7 +13,7 @@ var _ = usernotifications.NewUNNotificationSound
 // Creates a sound object that represents a custom sound file.
 func ExampleNewUNNotificationSoundNamed() {
 	_ = usernotifications.NewUNNotificationSoundNamed(
-		usernotifications.UNNotificationSoundName{}, // name UNNotificationSoundName
+		usernotifications.UNNotificationSoundName /* typedef */{}, // name UNNotificationSoundName /* typedef */
 	)
 	// Output:
 }

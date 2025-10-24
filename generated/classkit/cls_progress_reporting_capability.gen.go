@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SProgressReportingCapability] class.
@@ -32,8 +33,8 @@ type ISProgressReportingCapability interface {
 	// properties:
 	ProgressReportingCapabilities() ICLSProgressReportingCapability
 	SetProgressReportingCapabilities(value ICLSProgressReportingCapability)
-	Details() string /* primitive/slice/pointer. */
-	SetDetails(value string /* primitive/slice/pointer. */)
+	Details() objc.IObject /* cross-framework: NSString */
+	SetDetails(value objc.IObject /* cross-framework: NSString */)
 	Kind() unsafe.Pointer
 	SetKind(value unsafe.Pointer)
 	// methods:
@@ -117,8 +118,8 @@ func (s_ SProgressReportingCapability) SetProgressReportingCapabilities(value IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details
-func (s_ SProgressReportingCapability) Details() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("details"))
+func (s_ SProgressReportingCapability) Details() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("details"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (s_ SProgressReportingCapability) Details() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details
-func (s_ SProgressReportingCapability) SetDetails(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDetails:"), objc.String(value))
+func (s_ SProgressReportingCapability) SetDetails(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDetails:"), value)
 }
 
 

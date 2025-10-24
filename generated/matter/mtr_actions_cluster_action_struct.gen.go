@@ -31,21 +31,25 @@ type _MTRActionsClusterActionStructClass struct {
 // An interface definition for the [MTRActionsClusterActionStruct] class.
 type IMTRActionsClusterActionStruct interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	EndpointListID() foundation.Number
-	SetEndpointListID(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	State() foundation.Number
-	SetState(value foundation.INumber)
-	SupportedCommands() foundation.Number
-	SetSupportedCommands(value foundation.INumber)
-	Type() foundation.Number
-	SetType(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	EndpointListID() objc.IObject /* cross-framework: NSNumber */
+	SetEndpointListID(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	SupportedCommands() objc.IObject /* cross-framework: NSNumber */
+	SetSupportedCommands(value objc.IObject /* cross-framework: NSNumber */)
+	Type() objc.IObject /* cross-framework: NSNumber */
+	SetType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterActionStruct
 type MTRActionsClusterActionStruct struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRActionsClusterActionStruct() MTRActionsClusterActionStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/actionid
-func (m_ MTRActionsClusterActionStruct) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterActionStruct) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/actionid
-func (m_ MTRActionsClusterActionStruct) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterActionStruct) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
-func (m_ MTRActionsClusterActionStruct) EndpointListID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointListID"))
+func (m_ MTRActionsClusterActionStruct) EndpointListID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpointListID"))
 	return rv
 }
 
 
-// SetEndpointListID sets the value of the endpointListID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
-func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value foundation.INumber) {
+func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/name
-func (m_ MTRActionsClusterActionStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRActionsClusterActionStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/name
-func (m_ MTRActionsClusterActionStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRActionsClusterActionStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/state
-func (m_ MTRActionsClusterActionStruct) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTRActionsClusterActionStruct) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/state
-func (m_ MTRActionsClusterActionStruct) SetState(value foundation.INumber) {
+func (m_ MTRActionsClusterActionStruct) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/supportedcommands
-func (m_ MTRActionsClusterActionStruct) SupportedCommands() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("supportedCommands"))
+func (m_ MTRActionsClusterActionStruct) SupportedCommands() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("supportedCommands"))
 	return rv
 }
 
 
-// SetSupportedCommands sets the value of the supportedCommands property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/supportedcommands
-func (m_ MTRActionsClusterActionStruct) SetSupportedCommands(value foundation.INumber) {
+func (m_ MTRActionsClusterActionStruct) SetSupportedCommands(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportedCommands:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
-func (m_ MTRActionsClusterActionStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+func (m_ MTRActionsClusterActionStruct) Type() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
-func (m_ MTRActionsClusterActionStruct) SetType(value foundation.INumber) {
+func (m_ MTRActionsClusterActionStruct) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

@@ -8,8 +8,8 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 13.0+
-//   - iPadOS 13.0+
+//   - iOS 4.0+
+//   - iPadOS 4.0+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to previewController:.

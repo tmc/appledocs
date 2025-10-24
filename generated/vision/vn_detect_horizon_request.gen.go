@@ -29,13 +29,19 @@ type _DetectHorizonRequestClass struct {
 // An interface definition for the [DetectHorizonRequest] class.
 type IDetectHorizonRequest interface {
 	IImageBasedRequest
-	Results() VNHorizonObservation
+	// properties:
+	Results() IVNHorizonObservation
 	SetResults(value IVNHorizonObservation)
 	VNDetectHorizonRequestRevision1() int
+	// methods:
 }
 
 // An image-analysis request that determines the horizon angle in an image.
+
+
+// An image-analysis request that determines the horizon angle in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHorizonRequest
 type DetectHorizonRequest struct {
 	ImageBasedRequest
@@ -82,26 +88,29 @@ func NewDetectHorizonRequest() DetectHorizonRequest {
 }
 
 
+
 // The results of the horizon detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
-func (d_ DetectHorizonRequest) Results() VNHorizonObservation {
-	rv := objc.Send[VNHorizonObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectHorizonRequest) Results() IVNHorizonObservation {
+	rv := objc.Send[HorizonObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the horizon detection request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
 func (d_ DetectHorizonRequest) SetResults(value IVNHorizonObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the horizon detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequestrevision1
 func (d_ DetectHorizonRequest) VNDetectHorizonRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHorizonRequestRevision1"))

@@ -15,11 +15,3 @@ func ExampleNewCXProviderConfiguration() {
 	_ = callkit.NewCXProviderConfiguration()
 	// Output:
 }
-// ExampleNewCXProviderConfigurationWithLocalizedName demonstrates how to create a CXProviderConfiguration instance using NewCXProviderConfigurationWithLocalizedName.
-// Initializes a configuration with the specified localized name.
-func ExampleNewCXProviderConfigurationWithLocalizedName() {
-	_ = callkit.NewCXProviderConfigurationWithLocalizedName(
-		"localizedName", // localizedName string
-	)
-	// Output:
-}

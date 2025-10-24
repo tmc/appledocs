@@ -30,10 +30,16 @@ type _GeometryUtilsClass struct {
 // An interface definition for the [GeometryUtils] class.
 type IGeometryUtils interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // Utility methods to determine the geometries of various Vision types.
+
+
+// Utility methods to determine the geometries of various Vision types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils
 type GeometryUtils struct {
 	objectivec.Object

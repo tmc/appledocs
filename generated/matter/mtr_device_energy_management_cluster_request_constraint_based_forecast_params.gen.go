@@ -31,17 +31,21 @@ type _MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParamsClass 
 // An interface definition for the [MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams] class.
 type IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	Constraints() objc.ID
-	SetConstraints(value objc.ID)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	Constraints() objc.IObject /* cross-framework: NSArray */
+	SetConstraints(value objc.IObject /* cross-framework: NSArray */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams
 type MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams() M
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/cause
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/cause
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/constraints
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) Constraints() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("constraints"))
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) Constraints() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("constraints"))
 	return rv
 }
 
 
-// SetConstraints sets the value of the constraints property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/constraints
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetConstraints(value objc.ID) {
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetConstraints(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConstraints:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

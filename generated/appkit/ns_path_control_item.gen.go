@@ -92,7 +92,7 @@ func NewPathControlItem() PathControlItem {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/attributedtitle
 func (p_ PathControlItem) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](p_.ID, objc.Sel("attributedTitle"))
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 

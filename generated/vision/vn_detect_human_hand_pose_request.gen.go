@@ -29,22 +29,27 @@ type _DetectHumanHandPoseRequestClass struct {
 // An interface definition for the [DetectHumanHandPoseRequest] class.
 type IDetectHumanHandPoseRequest interface {
 	IImageBasedRequest
-	SupportedJointNamesAndReturnError(error_ unsafe.Pointer) []string
-	SupportedJointsGroupNamesAndReturnError(error_ unsafe.Pointer) []string
-	MaximumHandCount() uint
-	SetMaximumHandCount(value uint)
-	Results() []HumanHandPoseObservation
+	// properties:
+	MaximumHandCount() int
+	SetMaximumHandCount(value int)
+	Results() IVNHumanHandPoseObservation
+	SetResults(value IVNHumanHandPoseObservation)
 	SupportedJointNames() unsafe.Pointer
 	SetSupportedJointNames(value unsafe.Pointer)
 	SupportedJointsGroupNames() unsafe.Pointer
 	SetSupportedJointsGroupNames(value unsafe.Pointer)
 	VNDetectHumanHandPoseRequestRevision1() int
+	// methods:
 }
 
 // A request that detects a human hand pose.
 //
 // The framework provides the detected hand pose as a .
+
+
+// A request that detects a human hand pose.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest
 type DetectHumanHandPoseRequest struct {
 	ImageBasedRequest
@@ -91,66 +96,48 @@ func NewDetectHumanHandPoseRequest() DetectHumanHandPoseRequest {
 }
 
 
-// Retrieves the supported joint names for a revision.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/supportedJointNames(forRevision:)
-func (dc _DetectHumanHandPoseRequestClass) SupportedJointNamesForRevisionError(revision uint, error_ unsafe.Pointer) []string {
-	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("supportedJointNamesForRevision:error:"), revision, error_)
-	return rv
-}
-
-// Retrieves the supported joint group names for a revision.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/supportedJointsGroupNames(forRevision:)
-func (dc _DetectHumanHandPoseRequestClass) SupportedJointsGroupNamesForRevisionError(revision uint, error_ unsafe.Pointer) []string {
-	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("supportedJointsGroupNamesForRevision:error:"), revision, error_)
-	return rv
-}
-
-// Retrieves the supported joint names.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/supportedJointNamesAndReturnError:
-func (d_ DetectHumanHandPoseRequest) SupportedJointNamesAndReturnError(error_ unsafe.Pointer) []string {
-	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointNamesAndReturnError:"), error_)
-	return rv
-}
-
-// Retrieves the supported joint group names.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/supportedJointsGroupNamesAndReturnError:
-func (d_ DetectHumanHandPoseRequest) SupportedJointsGroupNamesAndReturnError(error_ unsafe.Pointer) []string {
-	rv := objc.Send[[]string](d_.ID, objc.Sel("supportedJointsGroupNamesAndReturnError:"), error_)
-	return rv
-}
 
 // The maximum number of hands to detect in an image.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/maximumHandCount
-func (d_ DetectHumanHandPoseRequest) MaximumHandCount() uint {
-	rv := objc.Send[uint](d_.ID, objc.Sel("maximumHandCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/maximumhandcount
+func (d_ DetectHumanHandPoseRequest) MaximumHandCount() int {
+	rv := objc.Send[int](d_.ID, objc.Sel("maximumHandCount"))
 	return rv
 }
 
 
-// SetMaximumHandCount sets the value of the maximumHandCount property.
 // The maximum number of hands to detect in an image.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/maximumHandCount
-func (d_ DetectHumanHandPoseRequest) SetMaximumHandCount(value uint) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/maximumhandcount
+func (d_ DetectHumanHandPoseRequest) SetMaximumHandCount(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumHandCount:"), value)
 }
 
+
 // The observed hand poses.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanHandPoseRequest/results
-func (d_ DetectHumanHandPoseRequest) Results() []HumanHandPoseObservation {
-	rv := objc.Send[[]HumanHandPoseObservation](d_.ID, objc.Sel("results"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/results
+func (d_ DetectHumanHandPoseRequest) Results() IVNHumanHandPoseObservation {
+	rv := objc.Send[HumanHandPoseObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
+
+// The observed hand poses.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/results
+func (d_ DetectHumanHandPoseRequest) SetResults(value IVNHumanHandPoseObservation) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+
 // Retrieves the supported joint names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointnames
 func (d_ DetectHumanHandPoseRequest) SupportedJointNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
@@ -158,17 +145,18 @@ func (d_ DetectHumanHandPoseRequest) SupportedJointNames() unsafe.Pointer {
 }
 
 
-// SetSupportedJointNames sets the value of the supportedJointNames property.
 // Retrieves the supported joint names.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointnames
 func (d_ DetectHumanHandPoseRequest) SetSupportedJointNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
 }
 
+
 // Retrieves the supported joint group names.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointsgroupnames
 func (d_ DetectHumanHandPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
@@ -176,17 +164,18 @@ func (d_ DetectHumanHandPoseRequest) SupportedJointsGroupNames() unsafe.Pointer 
 }
 
 
-// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
 // Retrieves the supported joint group names.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest/supportedjointsgroupnames
 func (d_ DetectHumanHandPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)
 }
 
+
 // A constant for specifying revision 1 of the hand pose detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanhandposerequestrevision1
 func (d_ DetectHumanHandPoseRequest) VNDetectHumanHandPoseRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanHandPoseRequestRevision1"))

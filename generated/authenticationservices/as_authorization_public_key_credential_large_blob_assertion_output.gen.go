@@ -31,7 +31,7 @@ type _AuthorizationPublicKeyCredentialLargeBlobAssertionOutputClass struct {
 type IAuthorizationPublicKeyCredentialLargeBlobAssertionOutput interface {
 	objectivec.IObject
 	// properties:
-	DidWrite() bool /* primitive/slice/pointer. */
+	DidWrite() bool
 	// methods:
 }
 
@@ -83,7 +83,7 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionOutput() Authorization
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput-c.class/didWrite
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionOutput) DidWrite() bool /* primitive/slice/pointer. */ {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionOutput) DidWrite() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("didWrite"))
 	return rv
 }

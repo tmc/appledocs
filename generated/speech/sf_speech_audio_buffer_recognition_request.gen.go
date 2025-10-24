@@ -30,14 +30,20 @@ type _SFSpeechAudioBufferRecognitionRequestClass struct {
 // An interface definition for the [SFSpeechAudioBufferRecognitionRequest] class.
 type ISFSpeechAudioBufferRecognitionRequest interface {
 	ISFSpeechRecognitionRequest
-	NativeAudioFormat() avfaudio.AudioFormat
-	SetNativeAudioFormat(value avfaudio.AudioFormat)
+	// properties:
+	NativeAudioFormat() objc.IObject /* cross-framework: AudioFormat */
+	SetNativeAudioFormat(value objc.IObject /* cross-framework: AudioFormat */)
+	// methods:
 }
 
 // A request to recognize speech from captured audio content, such as audio from the device’s microphone.
 //
 // Use an object to perform speech recognition on live audio, or on a set of existing audio buffers. For example, use this request object to route audio from a device’s microphone to the speech recognizer. The request object contains no audio initially. As you capture audio, call or to add audio samples to the request object. The speech recognizer continuously analyzes the audio you appended, stopping only when you call the method. You must call explicitly to stop the speech recognition process. For a complete example of how to use audio buffers with speech recognition, see .
+
+
+// A request to recognize speech from captured audio content, such as audio from the device’s microphone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechAudioBufferRecognitionRequest
 type SFSpeechAudioBufferRecognitionRequest struct {
 	SFSpeechRecognitionRequest
@@ -84,21 +90,22 @@ func NewSFSpeechAudioBufferRecognitionRequest() SFSpeechAudioBufferRecognitionRe
 }
 
 
+
 // The preferred audio format for optimal speech recognition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
-func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() avfaudio.AudioFormat {
+func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() objc.IObject /* cross-framework: AudioFormat */ {
 	rv := objc.Send[avfaudio.AudioFormat](s_.ID, objc.Sel("nativeAudioFormat"))
 	return rv
 }
 
 
-// SetNativeAudioFormat sets the value of the nativeAudioFormat property.
 // The preferred audio format for optimal speech recognition.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
-func (s_ SFSpeechAudioBufferRecognitionRequest) SetNativeAudioFormat(value avfaudio.AudioFormat) {
+func (s_ SFSpeechAudioBufferRecognitionRequest) SetNativeAudioFormat(value objc.IObject /* cross-framework: AudioFormat */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNativeAudioFormat:"), value)
 }
 

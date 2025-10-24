@@ -31,15 +31,21 @@ type _PushCredentialsClass struct {
 // An interface definition for the [PushCredentials] class.
 type IPushCredentials interface {
 	objectivec.IObject
-	Token() foundation.NSData
-	Type() PushType
-	SetType(value PushType)
+	// properties:
+	Token() objc.IObject /* cross-framework: NSData */
+	Type() objc.IObject /* cross-framework: PushType */
+	SetType(value objc.IObject /* cross-framework: PushType */)
+	// methods:
 }
 
 // An object that encapsulates the device token you use to deliver push notifications to your app.
 //
 // When registering your app’s push types, PushKit creates a object for each type your app supports and delivers it to your delegate’s method. Don’t create objects yourself.
+
+
+// An object that encapsulates the device token you use to deliver push notifications to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushCredentials
 type PushCredentials struct {
 	objectivec.Object
@@ -84,29 +90,32 @@ func NewPushCredentials() PushCredentials {
 }
 
 
+
 // A unique device token to use when sending push notifications to the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushCredentials/token
-func (p_ PushCredentials) Token() foundation.NSData {
+func (p_ PushCredentials) Token() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("token"))
 	return rv
 }
 
+
 // The push type constant associated with the token.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
-func (p_ PushCredentials) Type() PushType {
+func (p_ PushCredentials) Type() objc.IObject /* cross-framework: PushType */ {
 	rv := objc.Send[PushType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
 // The push type constant associated with the token.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
-func (p_ PushCredentials) SetType(value PushType) {
+func (p_ PushCredentials) SetType(value objc.IObject /* cross-framework: PushType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
 

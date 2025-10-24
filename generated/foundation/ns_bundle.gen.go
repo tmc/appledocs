@@ -31,6 +31,7 @@ type _BundleClass struct {
 type IBundle interface {
 	objectivec.IObject
 	// properties:
+	Localizations() []string
 	AppStoreReceiptURL() IURL
 	SetAppStoreReceiptURL(value IURL)
 	BuiltInPlugInsPath() IString
@@ -53,16 +54,14 @@ type IBundle interface {
 	SetExecutableURL(value IURL)
 	InfoDictionary() IString
 	SetInfoDictionary(value IString)
-	IsLoaded() bool /* primitive/slice/pointer. */
-	SetIsLoaded(value bool /* primitive/slice/pointer. */)
-	Localizations() IString
-	SetLocalizations(value IString)
+	IsLoaded() bool
+	SetIsLoaded(value bool)
 	LocalizedInfoDictionary() IString
 	SetLocalizedInfoDictionary(value IString)
 	PreferredLocalizations() IString
 	SetPreferredLocalizations(value IString)
-	PrincipalClass() unsafe.Pointer
-	SetPrincipalClass(value unsafe.Pointer)
+	PrincipalClass() objc.Class
+	SetPrincipalClass(value objc.Class)
 	PrivateFrameworksPath() IString
 	SetPrivateFrameworksPath(value IString)
 	PrivateFrameworksURL() IURL
@@ -79,20 +78,20 @@ type IBundle interface {
 	SetSharedSupportPath(value IString)
 	SharedSupportURL() IURL
 	SetSharedSupportURL(value IURL)
-	NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer. */
-	SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer. */)
-	NSExecutableErrorMaximum() int /* primitive/slice/pointer. */
-	SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer. */)
-	NSExecutableErrorMinimum() int /* primitive/slice/pointer. */
-	SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer. */)
-	NSExecutableLinkError() int /* primitive/slice/pointer. */
-	SetNSExecutableLinkError(value int /* primitive/slice/pointer. */)
-	NSExecutableLoadError() int /* primitive/slice/pointer. */
-	SetNSExecutableLoadError(value int /* primitive/slice/pointer. */)
-	NSExecutableNotLoadableError() int /* primitive/slice/pointer. */
-	SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer. */)
-	NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer. */
-	SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer. */)
+	NSExecutableArchitectureMismatchError() int
+	SetNSExecutableArchitectureMismatchError(value int)
+	NSExecutableErrorMaximum() int
+	SetNSExecutableErrorMaximum(value int)
+	NSExecutableErrorMinimum() int
+	SetNSExecutableErrorMinimum(value int)
+	NSExecutableLinkError() int
+	SetNSExecutableLinkError(value int)
+	NSExecutableLoadError() int
+	SetNSExecutableLoadError(value int)
+	NSExecutableNotLoadableError() int
+	SetNSExecutableNotLoadableError(value int)
+	NSExecutableRuntimeMismatchError() int
+	SetNSExecutableRuntimeMismatchError(value int)
 	NSLoadedClasses() IString
 	// methods:
 	LocalizedStringForKeyValueTable(key IString, value IString, tableName IString) IString
@@ -157,6 +156,16 @@ func NewBundle() Bundle {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
 func (b_ Bundle) LocalizedStringForKeyValueTable(key IString, value IString, tableName IString) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), key, value, tableName)
+	return rv
+}
+
+
+// A list of all the localizations contained in the bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizations
+func (b_ Bundle) Localizations() []string {
+	rv := objc.Send[[]string](b_.ID, objc.Sel("localizations"))
 	return rv
 }
 
@@ -374,7 +383,7 @@ func (b_ Bundle) SetInfoDictionary(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) IsLoaded() bool /* primitive/slice/pointer. */ {
+func (b_ Bundle) IsLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
 	return rv
 }
@@ -384,27 +393,8 @@ func (b_ Bundle) IsLoaded() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) SetIsLoaded(value bool /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetIsLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
-}
-
-
-// A list of all the localizations contained in the bundle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizations
-func (b_ Bundle) Localizations() IString {
-	rv := objc.Send[String](b_.ID, objc.Sel("localizations"))
-	return rv
-}
-
-
-// A list of all the localizations contained in the bundle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizations
-func (b_ Bundle) SetLocalizations(value IString) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setLocalizations:"), value)
 }
 
 
@@ -450,8 +440,8 @@ func (b_ Bundle) SetPreferredLocalizations(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/principalclass
-func (b_ Bundle) PrincipalClass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("principalClass"))
+func (b_ Bundle) PrincipalClass() objc.Class {
+	rv := objc.Send[objc.Class](b_.ID, objc.Sel("principalClass"))
 	return rv
 }
 
@@ -460,7 +450,7 @@ func (b_ Bundle) PrincipalClass() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/principalclass
-func (b_ Bundle) SetPrincipalClass(value unsafe.Pointer) {
+func (b_ Bundle) SetPrincipalClass(value objc.Class) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPrincipalClass:"), value)
 }
 
@@ -621,7 +611,7 @@ func (b_ Bundle) SetSharedSupportURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableArchitectureMismatchError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableArchitectureMismatchError"))
 	return rv
 }
@@ -631,7 +621,7 @@ func (b_ Bundle) NSExecutableArchitectureMismatchError() int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableArchitectureMismatchError:"), value)
 }
 
@@ -640,7 +630,7 @@ func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) NSExecutableErrorMaximum() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableErrorMaximum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMaximum"))
 	return rv
 }
@@ -650,7 +640,7 @@ func (b_ Bundle) NSExecutableErrorMaximum() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableErrorMaximum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMaximum:"), value)
 }
 
@@ -659,7 +649,7 @@ func (b_ Bundle) SetNSExecutableErrorMaximum(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) NSExecutableErrorMinimum() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableErrorMinimum() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMinimum"))
 	return rv
 }
@@ -669,7 +659,7 @@ func (b_ Bundle) NSExecutableErrorMinimum() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableErrorMinimum(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMinimum:"), value)
 }
 
@@ -678,7 +668,7 @@ func (b_ Bundle) SetNSExecutableErrorMinimum(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) NSExecutableLinkError() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableLinkError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLinkError"))
 	return rv
 }
@@ -688,7 +678,7 @@ func (b_ Bundle) NSExecutableLinkError() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) SetNSExecutableLinkError(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableLinkError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLinkError:"), value)
 }
 
@@ -697,7 +687,7 @@ func (b_ Bundle) SetNSExecutableLinkError(value int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) NSExecutableLoadError() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableLoadError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLoadError"))
 	return rv
 }
@@ -707,7 +697,7 @@ func (b_ Bundle) NSExecutableLoadError() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) SetNSExecutableLoadError(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableLoadError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLoadError:"), value)
 }
 
@@ -716,7 +706,7 @@ func (b_ Bundle) SetNSExecutableLoadError(value int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) NSExecutableNotLoadableError() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableNotLoadableError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableNotLoadableError"))
 	return rv
 }
@@ -726,7 +716,7 @@ func (b_ Bundle) NSExecutableNotLoadableError() int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableNotLoadableError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableNotLoadableError:"), value)
 }
 
@@ -735,7 +725,7 @@ func (b_ Bundle) SetNSExecutableNotLoadableError(value int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer. */ {
+func (b_ Bundle) NSExecutableRuntimeMismatchError() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableRuntimeMismatchError"))
 	return rv
 }
@@ -745,7 +735,7 @@ func (b_ Bundle) NSExecutableRuntimeMismatchError() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer. */) {
+func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableRuntimeMismatchError:"), value)
 }
 

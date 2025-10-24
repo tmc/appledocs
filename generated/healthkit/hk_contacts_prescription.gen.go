@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKContactsPrescription] class.
@@ -30,8 +31,8 @@ type _HKContactsPrescriptionClass struct {
 type IHKContactsPrescription interface {
 	IHKVisionPrescription
 	// properties:
-	Brand() string /* primitive/slice/pointer. */
-	SetBrand(value string /* primitive/slice/pointer. */)
+	Brand() objc.IObject /* cross-framework: NSString */
+	SetBrand(value objc.IObject /* cross-framework: NSString */)
 	LeftEye() IHKContactsLensSpecification
 	SetLeftEye(value IHKContactsLensSpecification)
 	RightEye() IHKContactsLensSpecification
@@ -98,8 +99,8 @@ func NewHKContactsPrescription() HKContactsPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) Brand() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
+func (h_ HKContactsPrescription) Brand() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("brand"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (h_ HKContactsPrescription) Brand() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) SetBrand(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
+func (h_ HKContactsPrescription) SetBrand(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), value)
 }
 
 

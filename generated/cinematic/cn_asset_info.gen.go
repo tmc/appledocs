@@ -33,7 +33,7 @@ type ICNAssetInfo interface {
 	objectivec.IObject
 	// properties:
 	FrameTimingTrack() objc.IObject /* cross-framework: AssetTrack */
-	VideoCompositionTracks() []avfoundation.objc.IObject /* cross-framework: AssetTrack */
+	VideoCompositionTracks() []objc.IObject /* cross-framework: AssetTrack */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewCNAssetInfo() CNAssetInfo {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/frameTimingTrack
 func (c_ CNAssetInfo) FrameTimingTrack() objc.IObject /* cross-framework: AssetTrack */ {
-	rv := objc.Send[AssetTrack](c_.ID, objc.Sel("frameTimingTrack"))
+	rv := objc.Send[avfoundation.AssetTrack](c_.ID, objc.Sel("frameTimingTrack"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (c_ CNAssetInfo) FrameTimingTrack() objc.IObject /* cross-framework: AssetT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/videoCompositionTracks
-func (c_ CNAssetInfo) VideoCompositionTracks() []avfoundation.objc.IObject /* cross-framework: AssetTrack */ {
+func (c_ CNAssetInfo) VideoCompositionTracks() []objc.IObject /* cross-framework: AssetTrack */ {
 	rv := objc.Send[[]avfoundation.AssetTrack](c_.ID, objc.Sel("videoCompositionTracks"))
 	return rv
 }

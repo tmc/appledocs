@@ -30,8 +30,7 @@ type _SBApplicationClass struct {
 // An interface definition for the [SBApplication] class.
 type ISBApplication interface {
 	ISBObject
-	Activate()
-	ClassForScriptingClass(className string) objc.Class
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Running() bool
@@ -43,12 +42,19 @@ type ISBApplication interface {
 	SetTimeout(value unsafe.Pointer)
 	IsRunning() bool
 	SetIsRunning(value bool)
+	// methods:
+	Activate()
+	ClassForScriptingClass(className objc.IObject /* cross-framework: NSString */) objc.Class
 }
 
 // The class provides a mechanism enabling an Objective-C program to send Apple events to a scriptable application and receive Apple events in response. It thereby makes it possible for that program to control the application and exchange data with it. Scripting Bridge works by bridging data types between Apple event descriptors and Cocoa objects.
 //
 // Although includes methods that manually send and process Apple events, you should never have to call these methods directly. Instead, subclasses of implement application-specific methods that handle the sending of Apple events automatically. For example, if you wanted to get the current iTunes track, you can simply use the method of the dynamically defined subclass for the iTunes application—which handles the details of sending the Apple event for you—rather than figuring out the more complicated, low-level alternative: If you do need to send Apple events manually, consider using the class.
+
+
+// The class provides a mechanism enabling an Objective-C program to send Apple events to a scriptable application and receive Apple events in response. It thereby makes it possible for that program to control the application and exchange data with it. Scripting Bridge works by bridging data types between Apple event descriptors and Cocoa objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication
 type SBApplication struct {
 	SBObject
@@ -96,21 +102,21 @@ func NewSBApplication() SBApplication {
 
 
 
-
 // Returns an instance of an subclass that represents the target application identified by the given bundle identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)
-func NewSBApplicationWithBundleIdentifier(ident string) SBApplication {
+func NewSBApplicationWithBundleIdentifier(ident objc.IObject /* cross-framework: NSString */) SBApplication {
 	instance := getSBApplicationClass().Alloc()
-	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(ident))
+	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), ident)
 	rv.Autorelease()
 	return rv
 }
 
 
-
 // Returns an instance of an subclass that represents the target application identified by the given process identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(processIdentifier:)
 func NewSBApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
 	instance := getSBApplicationClass().Alloc()
@@ -120,11 +126,11 @@ func NewSBApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
 }
 
 
-
 // Returns an instance of an subclass that represents the target application identified by the given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(url:)
-func NewSBApplicationWithURL(url foundation.IURL) SBApplication {
+func NewSBApplicationWithURL(url objc.IObject /* cross-framework: NSURL */) SBApplication {
 	instance := getSBApplicationClass().Alloc()
 	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -132,47 +138,59 @@ func NewSBApplicationWithURL(url foundation.IURL) SBApplication {
 }
 
 
+
 // Returns the shared instance representing the target application specified by its bundle identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithBundleIdentifier:
-func (sc _SBApplicationClass) ApplicationWithBundleIdentifier(ident string) SBApplication {
-	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithBundleIdentifier:"), objc.String(ident))
+func (sc _SBApplicationClass) ApplicationWithBundleIdentifier(ident objc.IObject /* cross-framework: NSString */) SBApplication {
+	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithBundleIdentifier:"), ident)
 	return rv
 }
 
+
 // Returns the shared instance representing a target application specified by its process identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithProcessIdentifier:
 func (sc _SBApplicationClass) ApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
 	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithProcessIdentifier:"), pid)
 	return rv
 }
 
+
 // Returns the shared instance representing a target application specified by the given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithURL:
-func (sc _SBApplicationClass) ApplicationWithURL(url foundation.IURL) SBApplication {
+func (sc _SBApplicationClass) ApplicationWithURL(url objc.IObject /* cross-framework: NSURL */) SBApplication {
 	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithURL:"), url)
 	return rv
 }
 
+
 // Moves the target application to the foreground immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/activate()
 func (s_ SBApplication) Activate() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("activate"))
 }
 
+
 // Returns a class object that represents a particular class in the target application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)
-func (s_ SBApplication) ClassForScriptingClass(className string) objc.Class {
-	rv := objc.Send[objc.Class](s_.ID, objc.Sel("classForScriptingClass:"), objc.String(className))
+func (s_ SBApplication) ClassForScriptingClass(className objc.IObject /* cross-framework: NSString */) objc.Class {
+	rv := objc.Send[objc.Class](s_.ID, objc.Sel("classForScriptingClass:"), className)
 	return rv
 }
 
+
 // The error-handling delegate of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/delegate
 func (s_ SBApplication) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
@@ -180,25 +198,28 @@ func (s_ SBApplication) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The error-handling delegate of the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/delegate
 func (s_ SBApplication) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean that indicates whether the target application represented by the receiver is running.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/isRunning
 func (s_ SBApplication) Running() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("running"))
 	return rv
 }
 
+
 // The launch flags for the application represented by the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/launchFlags
 func (s_ SBApplication) LaunchFlags() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("launchFlags"))
@@ -206,17 +227,18 @@ func (s_ SBApplication) LaunchFlags() unsafe.Pointer {
 }
 
 
-// SetLaunchFlags sets the value of the launchFlags property.
 // The launch flags for the application represented by the receiver.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/launchFlags
 func (s_ SBApplication) SetLaunchFlags(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLaunchFlags:"), value)
 }
 
+
 // The mode for sending Apple events to the target application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/sendMode
 func (s_ SBApplication) SendMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sendMode"))
@@ -224,17 +246,18 @@ func (s_ SBApplication) SendMode() unsafe.Pointer {
 }
 
 
-// SetSendMode sets the value of the sendMode property.
 // The mode for sending Apple events to the target application.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/sendMode
 func (s_ SBApplication) SetSendMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendMode:"), value)
 }
 
+
 // The period the application will wait to receive reply Apple events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/timeout
 func (s_ SBApplication) Timeout() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timeout"))
@@ -242,17 +265,18 @@ func (s_ SBApplication) Timeout() unsafe.Pointer {
 }
 
 
-// SetTimeout sets the value of the timeout property.
 // The period the application will wait to receive reply Apple events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/timeout
 func (s_ SBApplication) SetTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeout:"), value)
 }
 
+
 // A Boolean that indicates whether the target application represented by the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
 func (s_ SBApplication) IsRunning() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isRunning"))
@@ -260,10 +284,9 @@ func (s_ SBApplication) IsRunning() bool {
 }
 
 
-// SetIsRunning sets the value of the isRunning property.
 // A Boolean that indicates whether the target application represented by the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/scriptingbridge/sbapplication/isrunning
 func (s_ SBApplication) SetIsRunning(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsRunning:"), value)

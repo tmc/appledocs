@@ -31,11 +31,15 @@ type _MTRSwitchClusterInitialPressEventClass struct {
 // An interface definition for the [MTRSwitchClusterInitialPressEvent] class.
 type IMTRSwitchClusterInitialPressEvent interface {
 	objectivec.IObject
-	NewPosition() foundation.Number
-	SetNewPosition(value foundation.INumber)
+	// properties:
+	NewPosition() objc.IObject /* cross-framework: NSNumber */
+	SetNewPosition(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterInitialPressEvent
 type MTRSwitchClusterInitialPressEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSwitchClusterInitialPressEvent() MTRSwitchClusterInitialPressEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterinitialpressevent/newposition
-func (m_ MTRSwitchClusterInitialPressEvent) NewPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+func (m_ MTRSwitchClusterInitialPressEvent) NewPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newPosition"))
 	return rv
 }
 
 
-// SetNewPosition sets the value of the newPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterinitialpressevent/newposition
-func (m_ MTRSwitchClusterInitialPressEvent) SetNewPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterInitialPressEvent) SetNewPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 

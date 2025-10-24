@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +32,13 @@ type _CXCallClass struct {
 type ICXCall interface {
 	objectivec.IObject
 	// properties:
-	HasConnected() bool /* primitive/slice/pointer. */
-	HasEnded() bool /* primitive/slice/pointer. */
-	OnHold() bool /* primitive/slice/pointer. */
-	Outgoing() bool /* primitive/slice/pointer. */
-	UUID() objc.IObject /* cross-framework: UUID */
-	IsOnHold() bool /* primitive/slice/pointer. */
-	SetIsOnHold(value bool /* primitive/slice/pointer. */)
-	IsOutgoing() bool /* primitive/slice/pointer. */
-	SetIsOutgoing(value bool /* primitive/slice/pointer. */)
+	IsOnHold() bool
+	SetIsOnHold(value bool)
+	IsOutgoing() bool
+	SetIsOutgoing(value bool)
 	Calls() ICXCall
 	SetCalls(value ICXCall)
 	// methods:
-	IsEqualToCall(call ICXCall) bool /* primitive/slice/pointer. */
 }
 
 // A telephony call.
@@ -99,71 +94,11 @@ func NewCXCall() CXCall {
 
 
 
-// Returns a Boolean value that indicates whether a given call is equal to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/isEqualToCall:
-func (c_ CXCall) IsEqualToCall(call ICXCall) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToCall:"), call)
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call has connected.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/hasConnected
-func (c_ CXCall) HasConnected() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasConnected"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call has ended.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/hasEnded
-func (c_ CXCall) HasEnded() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasEnded"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call is on hold.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/isOnHold
-func (c_ CXCall) OnHold() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("onHold"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the call is outgoing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/isOutgoing
-func (c_ CXCall) Outgoing() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("outgoing"))
-	return rv
-}
-
-
-// The unique identifier for the call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/uuid
-func (c_ CXCall) UUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](c_.ID, objc.Sel("UUID"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the call is on hold.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
-func (c_ CXCall) IsOnHold() bool /* primitive/slice/pointer. */ {
+func (c_ CXCall) IsOnHold() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
 	return rv
 }
@@ -173,7 +108,7 @@ func (c_ CXCall) IsOnHold() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isonhold
-func (c_ CXCall) SetIsOnHold(value bool /* primitive/slice/pointer. */) {
+func (c_ CXCall) SetIsOnHold(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
 }
 
@@ -182,7 +117,7 @@ func (c_ CXCall) SetIsOnHold(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
-func (c_ CXCall) IsOutgoing() bool /* primitive/slice/pointer. */ {
+func (c_ CXCall) IsOutgoing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isOutgoing"))
 	return rv
 }
@@ -192,7 +127,7 @@ func (c_ CXCall) IsOutgoing() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcall/isoutgoing
-func (c_ CXCall) SetIsOutgoing(value bool /* primitive/slice/pointer. */) {
+func (c_ CXCall) SetIsOutgoing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOutgoing:"), value)
 }
 
@@ -214,6 +149,5 @@ func (c_ CXCall) Calls() ICXCall {
 func (c_ CXCall) SetCalls(value ICXCall) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCalls:"), value)
 }
-
 
 

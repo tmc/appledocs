@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _CoreDataCoreSpotlightDelegateClass struct {
 type ICoreDataCoreSpotlightDelegate interface {
 	objectivec.IObject
 	// properties:
-	IsIndexingEnabled() bool /* primitive/slice/pointer. */
-	SetIsIndexingEnabled(value bool /* primitive/slice/pointer. */)
-	NSCoreDataCoreSpotlightExporter() string /* primitive/slice/pointer. */
+	IsIndexingEnabled() bool
+	SetIsIndexingEnabled(value bool)
+	NSCoreDataCoreSpotlightExporter() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -92,7 +93,7 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
-func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isIndexingEnabled"))
 	return rv
 }
@@ -102,7 +103,7 @@ func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
-func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIndexingEnabled:"), value)
 }
 
@@ -111,8 +112,8 @@ func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
-func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
+func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }
 

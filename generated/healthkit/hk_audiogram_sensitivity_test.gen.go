@@ -33,8 +33,8 @@ type IHKAudiogramSensitivityTest interface {
 	// properties:
 	ClampingRange() IHKAudiogramSensitivityPointClampingRange
 	SetClampingRange(value IHKAudiogramSensitivityPointClampingRange)
-	Masked() bool /* primitive/slice/pointer. */
-	SetMasked(value bool /* primitive/slice/pointer. */)
+	Masked() bool
+	SetMasked(value bool)
 	Sensitivity() IHKQuantity
 	SetSensitivity(value IHKQuantity)
 	Side() HKAudiogramSensitivityTestSide
@@ -107,7 +107,7 @@ func (h_ HKAudiogramSensitivityTest) SetClampingRange(value IHKAudiogramSensitiv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
-func (h_ HKAudiogramSensitivityTest) Masked() bool /* primitive/slice/pointer. */ {
+func (h_ HKAudiogramSensitivityTest) Masked() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("masked"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (h_ HKAudiogramSensitivityTest) Masked() bool /* primitive/slice/pointer. *
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/masked
-func (h_ HKAudiogramSensitivityTest) SetMasked(value bool /* primitive/slice/pointer. */) {
+func (h_ HKAudiogramSensitivityTest) SetMasked(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMasked:"), value)
 }
 

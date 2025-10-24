@@ -29,9 +29,13 @@ type _MTRClusterFlowMeasurementClass struct {
 // An interface definition for the [MTRClusterFlowMeasurement] class.
 type IMTRClusterFlowMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterFlowMeasurement
 type MTRClusterFlowMeasurement struct {
 	MTRGenericCluster

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXPlayDTMFCallAction] class.
@@ -30,10 +31,6 @@ type _CXPlayDTMFCallActionClass struct {
 type ICXPlayDTMFCallAction interface {
 	ICXCallAction
 	// properties:
-	Digits() string /* primitive/slice/pointer. */
-	SetDigits(value string /* primitive/slice/pointer. */)
-	Type() CXPlayDTMFCallActionType
-	SetType(value CXPlayDTMFCallActionType)
 	// methods:
 }
 
@@ -96,9 +93,9 @@ func NewCXPlayDTMFCallAction() CXPlayDTMFCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(call:digits:type:)
-func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID objc.IObject /* cross-framework UUID */, digits string /* primitive/slice/pointer. */, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID objc.IObject /* cross-framework: UUID */, digits objc.IObject /* cross-framework: NSString */, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
-	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCallUUID:digits:type:"), callUUID, objc.String(digits), type_)
+	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCallUUID:digits:type:"), callUUID, digits, type_)
 	rv.Autorelease()
 	return rv
 }
@@ -108,50 +105,12 @@ func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(coder:)
-func NewCXPlayDTMFCallActionWithCoder(aDecoder Coder /* not a class type */) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
 	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// The digits tapped by the user into the in-call keypad or included in the dial string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) Digits() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("digits"))
-	return rv
-}
-
-
-// The digits tapped by the user into the in-call keypad or included in the dial string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) SetDigits(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDigits:"), objc.String(value))
-}
-
-
-// The type of the call action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/type
-func (c_ CXPlayDTMFCallAction) Type() CXPlayDTMFCallActionType {
-	rv := objc.Send[CXPlayDTMFCallActionType](c_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// The type of the call action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/type
-func (c_ CXPlayDTMFCallAction) SetType(value CXPlayDTMFCallActionType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
-}
 
 

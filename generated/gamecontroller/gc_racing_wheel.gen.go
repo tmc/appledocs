@@ -31,16 +31,16 @@ type _GCRacingWheelClass struct {
 type IGCRacingWheel interface {
 	objectivec.IObject
 	// properties:
-	Acquired() bool /* primitive/slice/pointer. */
-	Snapshot() bool /* primitive/slice/pointer. */
-	IsAcquired() bool /* primitive/slice/pointer. */
-	SetIsAcquired(value bool /* primitive/slice/pointer. */)
-	IsSnapshot() bool /* primitive/slice/pointer. */
-	SetIsSnapshot(value bool /* primitive/slice/pointer. */)
+	Acquired() bool
+	Snapshot() bool
+	IsAcquired() bool
+	SetIsAcquired(value bool)
+	IsSnapshot() bool
+	SetIsSnapshot(value bool)
 	WheelInput() unsafe.Pointer
 	SetWheelInput(value unsafe.Pointer)
 	// methods:
-	AcquireDeviceWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	AcquireDeviceWithError(error_ unsafe.Pointer) bool
 	Capture() IGCRacingWheel
 	RelinquishDevice()
 }
@@ -109,7 +109,7 @@ func (gc _GCRacingWheelClass) ConnectedRacingWheels() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/acquireDevice()
-func (g_ GCRacingWheel) AcquireDeviceWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (g_ GCRacingWheel) AcquireDeviceWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("acquireDeviceWithError:"), error_)
 	return rv
 }
@@ -148,7 +148,7 @@ func (g_ GCRacingWheel) ConnectedRacingWheels() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isAcquired
-func (g_ GCRacingWheel) Acquired() bool /* primitive/slice/pointer. */ {
+func (g_ GCRacingWheel) Acquired() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("acquired"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (g_ GCRacingWheel) Acquired() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/isSnapshot
-func (g_ GCRacingWheel) Snapshot() bool /* primitive/slice/pointer. */ {
+func (g_ GCRacingWheel) Snapshot() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("snapshot"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (g_ GCRacingWheel) Snapshot() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/isacquired
-func (g_ GCRacingWheel) IsAcquired() bool /* primitive/slice/pointer. */ {
+func (g_ GCRacingWheel) IsAcquired() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isAcquired"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (g_ GCRacingWheel) IsAcquired() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/isacquired
-func (g_ GCRacingWheel) SetIsAcquired(value bool /* primitive/slice/pointer. */) {
+func (g_ GCRacingWheel) SetIsAcquired(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAcquired:"), value)
 }
 
@@ -187,7 +187,7 @@ func (g_ GCRacingWheel) SetIsAcquired(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/issnapshot
-func (g_ GCRacingWheel) IsSnapshot() bool /* primitive/slice/pointer. */ {
+func (g_ GCRacingWheel) IsSnapshot() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isSnapshot"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (g_ GCRacingWheel) IsSnapshot() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcracingwheel/issnapshot
-func (g_ GCRacingWheel) SetIsSnapshot(value bool /* primitive/slice/pointer. */) {
+func (g_ GCRacingWheel) SetIsSnapshot(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsSnapshot:"), value)
 }
 

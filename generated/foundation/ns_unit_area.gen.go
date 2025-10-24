@@ -88,4 +88,23 @@ func NewUnitArea() UnitArea {
 
 
 
+// The square yards unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareYards
+func (uc _UnitAreaClass) SquareYards() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareYards"))
+	return rv
+}
+
+// The square yards unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareYards
+func (u_ UnitArea) SquareYards() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareYards"))
+	return rv
+}
+
+
 

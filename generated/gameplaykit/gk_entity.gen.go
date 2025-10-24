@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +31,12 @@ type _EntityClass struct {
 type IEntity interface {
 	objectivec.IObject
 	// properties:
-	Components() []Component /* primitive/slice/pointer. */
+	Components() []IComponent
 	// methods:
 	AddComponent(component IGKComponent)
 	ComponentForClass(componentClass objc.Class) IComponent
 	RemoveComponentForClass(componentClass objc.Class)
-	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
+	UpdateWithDeltaTime(seconds float64)
 }
 
 // An object relevant to gameplay, with functionality entirely provided by a collection of component objects.
@@ -136,7 +135,7 @@ func (e_ Entity) RemoveComponentForClass(componentClass objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/update(deltaTime:)
-func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
+func (e_ Entity) UpdateWithDeltaTime(seconds float64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -145,7 +144,7 @@ func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/components
-func (e_ Entity) Components() []Component /* primitive/slice/pointer. */ {
+func (e_ Entity) Components() []IComponent {
 	rv := objc.Send[[]Component](e_.ID, objc.Sel("components"))
 	return rv
 }

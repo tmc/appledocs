@@ -31,11 +31,13 @@ type _ClassDescriptionClass struct {
 type IClassDescription interface {
 	objectivec.IObject
 	// properties:
-	AttributeKeys() []string /* primitive/slice/pointer. */
-	ToManyRelationshipKeys() []string /* primitive/slice/pointer. */
-	ToOneRelationshipKeys() []string /* primitive/slice/pointer. */
+	AttributeKeys() IString
+	SetAttributeKeys(value IString)
+	ToManyRelationshipKeys() IString
+	SetToManyRelationshipKeys(value IString)
+	ToOneRelationshipKeys() IString
+	SetToOneRelationshipKeys(value IString)
 	// methods:
-	InverseForRelationshipKey(relationshipKey IString) IString
 }
 
 // An abstract class that provides the interface for querying the relationships and properties of a class.
@@ -91,51 +93,12 @@ func NewClassDescription() ClassDescription {
 
 
 
-// Returns the class description for a given class.
+// Overridden by subclasses to return the names of attributes of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
-func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
-	rv := objc.Send[ClassDescription](objc.ID(getClassDescriptionClass().class), objc.Sel("classDescriptionForClass:"), aClass)
-	return rv
-}
-
-
-
-// Returns the class description for a given class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/init(for:)
-func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IClassDescription {
-	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("classDescriptionForClass:"), aClass)
-	return rv
-}
-
-
-// Removes all objects from the cache.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/invalidateClassDescriptionCache()
-func (cc _ClassDescriptionClass) InvalidateClassDescriptionCache() {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("invalidateClassDescriptionCache"))
-}
-
-
-// Registers an object for a given class in the cache.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/register(_:for:)
-func (cc _ClassDescriptionClass) RegisterClassDescriptionForClass(description IClassDescription, aClass objc.Class) {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("registerClassDescription:forClass:"), description, aClass)
-}
-
-
-// Overridden by subclasses to return the name of the inverse relationship from a relationship specified by a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/inverse(forRelationshipKey:)
-func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey IString) IString {
-	rv := objc.Send[String](c_.ID, objc.Sel("inverseForRelationshipKey:"), relationshipKey)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+func (c_ ClassDescription) AttributeKeys() IString {
+	rv := objc.Send[String](c_.ID, objc.Sel("attributeKeys"))
 	return rv
 }
 
@@ -143,9 +106,18 @@ func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey IString) IS
 // Overridden by subclasses to return the names of attributes of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/attributeKeys
-func (c_ ClassDescription) AttributeKeys() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("attributeKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
+func (c_ ClassDescription) SetAttributeKeys(value IString) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeKeys:"), value)
+}
+
+
+// Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+func (c_ ClassDescription) ToManyRelationshipKeys() IString {
+	rv := objc.Send[String](c_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
 }
 
@@ -153,9 +125,18 @@ func (c_ ClassDescription) AttributeKeys() []string /* primitive/slice/pointer. 
 // Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toManyRelationshipKeys
-func (c_ ClassDescription) ToManyRelationshipKeys() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("toManyRelationshipKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
+func (c_ ClassDescription) SetToManyRelationshipKeys(value IString) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setToManyRelationshipKeys:"), value)
+}
+
+
+// Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+func (c_ ClassDescription) ToOneRelationshipKeys() IString {
+	rv := objc.Send[String](c_.ID, objc.Sel("toOneRelationshipKeys"))
 	return rv
 }
 
@@ -163,10 +144,10 @@ func (c_ ClassDescription) ToManyRelationshipKeys() []string /* primitive/slice/
 // Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toOneRelationshipKeys
-func (c_ ClassDescription) ToOneRelationshipKeys() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("toOneRelationshipKeys"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
+func (c_ ClassDescription) SetToOneRelationshipKeys(value IString) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setToOneRelationshipKeys:"), value)
 }
+
 
 

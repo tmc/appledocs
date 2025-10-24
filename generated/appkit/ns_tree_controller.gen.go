@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TreeController] class.
@@ -31,18 +32,18 @@ type _TreeControllerClass struct {
 type ITreeController interface {
 	IObjectController
 	// properties:
-	AlwaysUsesMultipleValuesMarker() bool /* primitive/slice/pointer. */
-	SetAlwaysUsesMultipleValuesMarker(value bool /* primitive/slice/pointer. */)
+	AlwaysUsesMultipleValuesMarker() bool
+	SetAlwaysUsesMultipleValuesMarker(value bool)
 	ArrangedObjects() objc.IObject /* cross-framework: TreeNode */
 	SetArrangedObjects(value objc.IObject /* cross-framework: TreeNode */)
-	AvoidsEmptySelection() bool /* primitive/slice/pointer. */
-	SetAvoidsEmptySelection(value bool /* primitive/slice/pointer. */)
-	CanAddChild() bool /* primitive/slice/pointer. */
-	SetCanAddChild(value bool /* primitive/slice/pointer. */)
-	CanInsert() bool /* primitive/slice/pointer. */
-	SetCanInsert(value bool /* primitive/slice/pointer. */)
-	CanInsertChild() bool /* primitive/slice/pointer. */
-	SetCanInsertChild(value bool /* primitive/slice/pointer. */)
+	AvoidsEmptySelection() bool
+	SetAvoidsEmptySelection(value bool)
+	CanAddChild() bool
+	SetCanAddChild(value bool)
+	CanInsert() bool
+	SetCanInsert(value bool)
+	CanInsertChild() bool
+	SetCanInsertChild(value bool)
 	ChildrenKeyPath() objc.IObject /* cross-framework: NSString */
 	SetChildrenKeyPath(value objc.IObject /* cross-framework: NSString */)
 	Content() unsafe.Pointer
@@ -51,8 +52,8 @@ type ITreeController interface {
 	SetCountKeyPath(value objc.IObject /* cross-framework: NSString */)
 	LeafKeyPath() objc.IObject /* cross-framework: NSString */
 	SetLeafKeyPath(value objc.IObject /* cross-framework: NSString */)
-	PreservesSelection() bool /* primitive/slice/pointer. */
-	SetPreservesSelection(value bool /* primitive/slice/pointer. */)
+	PreservesSelection() bool
+	SetPreservesSelection(value bool)
 	SelectedNodes() objc.IObject /* cross-framework: TreeNode */
 	SetSelectedNodes(value objc.IObject /* cross-framework: TreeNode */)
 	SelectedObjects() unsafe.Pointer
@@ -61,10 +62,10 @@ type ITreeController interface {
 	SetSelectionIndexPath(value objc.IObject /* cross-framework: IndexPath */)
 	SelectionIndexPaths() objc.IObject /* cross-framework: IndexPath */
 	SetSelectionIndexPaths(value objc.IObject /* cross-framework: IndexPath */)
-	SelectsInsertedObjects() bool /* primitive/slice/pointer. */
-	SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */)
-	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
-	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
+	SelectsInsertedObjects() bool
+	SetSelectsInsertedObjects(value bool)
+	SortDescriptors() objectivec.IObject
+	SetSortDescriptors(value objectivec.IObject)
 	// methods:
 }
 
@@ -127,7 +128,7 @@ func NewTreeController() TreeController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
-func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
 }
@@ -137,7 +138,7 @@ func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
-func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
 }
 
@@ -165,7 +166,7 @@ func (t_ TreeController) SetArrangedObjects(value objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
-func (t_ TreeController) AvoidsEmptySelection() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
 }
@@ -175,7 +176,7 @@ func (t_ TreeController) AvoidsEmptySelection() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
-func (t_ TreeController) SetAvoidsEmptySelection(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
 }
 
@@ -184,7 +185,7 @@ func (t_ TreeController) SetAvoidsEmptySelection(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
-func (t_ TreeController) CanAddChild() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) CanAddChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canAddChild"))
 	return rv
 }
@@ -194,7 +195,7 @@ func (t_ TreeController) CanAddChild() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
-func (t_ TreeController) SetCanAddChild(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetCanAddChild(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanAddChild:"), value)
 }
 
@@ -203,7 +204,7 @@ func (t_ TreeController) SetCanAddChild(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
-func (t_ TreeController) CanInsert() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) CanInsert() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsert"))
 	return rv
 }
@@ -213,7 +214,7 @@ func (t_ TreeController) CanInsert() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
-func (t_ TreeController) SetCanInsert(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetCanInsert(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsert:"), value)
 }
 
@@ -222,7 +223,7 @@ func (t_ TreeController) SetCanInsert(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
-func (t_ TreeController) CanInsertChild() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) CanInsertChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsertChild"))
 	return rv
 }
@@ -232,7 +233,7 @@ func (t_ TreeController) CanInsertChild() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
-func (t_ TreeController) SetCanInsertChild(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetCanInsertChild(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsertChild:"), value)
 }
 
@@ -317,7 +318,7 @@ func (t_ TreeController) SetLeafKeyPath(value objc.IObject /* cross-framework: N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
-func (t_ TreeController) PreservesSelection() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) PreservesSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("preservesSelection"))
 	return rv
 }
@@ -327,7 +328,7 @@ func (t_ TreeController) PreservesSelection() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
-func (t_ TreeController) SetPreservesSelection(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreservesSelection:"), value)
 }
 
@@ -412,7 +413,7 @@ func (t_ TreeController) SetSelectionIndexPaths(value objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
-func (t_ TreeController) SelectsInsertedObjects() bool /* primitive/slice/pointer. */ {
+func (t_ TreeController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
 }
@@ -422,7 +423,7 @@ func (t_ TreeController) SelectsInsertedObjects() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
-func (t_ TreeController) SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */) {
+func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
 }
 
@@ -431,8 +432,8 @@ func (t_ TreeController) SetSelectsInsertedObjects(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
-	rv := objc.Send[SortDescriptor](t_.ID, objc.Sel("sortDescriptors"))
+func (t_ TreeController) SortDescriptors() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -441,7 +442,7 @@ func (t_ TreeController) SortDescriptors() objc.IObject /* cross-framework: Sort
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
+func (t_ TreeController) SetSortDescriptors(value objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageBilinearScale] class.
@@ -29,10 +31,16 @@ type _ImageBilinearScaleClass struct {
 // An interface definition for the [ImageBilinearScale] class.
 type IImageBilinearScale interface {
 	IImageScale
+	// properties:
+	// methods:
 }
 
 // A filter that resizes and changes the aspect ratio of an image using Bilinear resampling.
+
+
+// A filter that resizes and changes the aspect ratio of an image using Bilinear resampling.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageBilinearScale
 type ImageBilinearScale struct {
 	ImageScale
@@ -78,6 +86,26 @@ func NewImageBilinearScale() ImageBilinearScale {
 	return getImageBilinearScaleClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageBilinearScale/init(coder:device:)
+func NewImageBilinearScaleWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageBilinearScale {
+	instance := getImageBilinearScaleClass().Alloc()
+	rv := objc.Send[ImageBilinearScale](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageBilinearScale/init(device:)
+func NewImageBilinearScaleWithDevice(device objectivec.IObject) ImageBilinearScale {
+	instance := getImageBilinearScaleClass().Alloc()
+	rv := objc.Send[ImageBilinearScale](instance.ID, objc.Sel("initWithDevice:"), device)
+	rv.Autorelease()
+	return rv
+}
 
 
 

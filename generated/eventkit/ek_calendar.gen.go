@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKCalendar] class.
@@ -32,24 +33,24 @@ type IEKCalendar interface {
 	IEKObject
 	// properties:
 	AllowedEntityTypes() unsafe.Pointer
-	AllowsContentModifications() bool /* primitive/slice/pointer. */
-	CalendarIdentifier() string /* primitive/slice/pointer. */
-	CGColor() coregraphics.ColorRef /* not a class type */
-	SetCGColor(value coregraphics.ColorRef /* not a class type */)
+	AllowsContentModifications() bool
+	CalendarIdentifier() objc.IObject /* cross-framework: NSString */
+	CGColor() ColorRef /* not a class type */
+	SetCGColor(value ColorRef /* not a class type */)
 	Color() objc.IObject /* cross-framework: Color */
 	SetColor(value objc.IObject /* cross-framework: Color */)
-	Immutable() bool /* primitive/slice/pointer. */
-	Subscribed() bool /* primitive/slice/pointer. */
+	Immutable() bool
+	Subscribed() bool
 	Source() IEKSource
 	SetSource(value IEKSource)
 	SupportedEventAvailabilities() EKCalendarEventAvailabilityMask
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Type() EKCalendarType
-	IsImmutable() bool /* primitive/slice/pointer. */
-	SetIsImmutable(value bool /* primitive/slice/pointer. */)
-	IsSubscribed() bool /* primitive/slice/pointer. */
-	SetIsSubscribed(value bool /* primitive/slice/pointer. */)
+	IsImmutable() bool
+	SetIsImmutable(value bool)
+	IsSubscribed() bool
+	SetIsSubscribed(value bool)
 	// methods:
 }
 
@@ -163,7 +164,7 @@ func (e_ EKCalendar) AllowedEntityTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowsContentModifications
-func (e_ EKCalendar) AllowsContentModifications() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendar) AllowsContentModifications() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("allowsContentModifications"))
 	return rv
 }
@@ -173,8 +174,8 @@ func (e_ EKCalendar) AllowsContentModifications() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/calendarIdentifier
-func (e_ EKCalendar) CalendarIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKCalendar) CalendarIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -183,8 +184,8 @@ func (e_ EKCalendar) CalendarIdentifier() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) CGColor() coregraphics.ColorRef /* not a class type */ {
-	rv := objc.Send[coregraphics.ColorRef](e_.ID, objc.Sel("CGColor"))
+func (e_ EKCalendar) CGColor() ColorRef /* not a class type */ {
+	rv := objc.Send[ColorRef](e_.ID, objc.Sel("CGColor"))
 	return rv
 }
 
@@ -193,7 +194,7 @@ func (e_ EKCalendar) CGColor() coregraphics.ColorRef /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) SetCGColor(value coregraphics.ColorRef /* not a class type */) {
+func (e_ EKCalendar) SetCGColor(value ColorRef /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
 
@@ -203,7 +204,7 @@ func (e_ EKCalendar) SetCGColor(value coregraphics.ColorRef /* not a class type 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
 func (e_ EKCalendar) Color() objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[Color](e_.ID, objc.Sel("color"))
+	rv := objc.Send[appkit.Color](e_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -221,7 +222,7 @@ func (e_ EKCalendar) SetColor(value objc.IObject /* cross-framework: Color */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isImmutable
-func (e_ EKCalendar) Immutable() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendar) Immutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("immutable"))
 	return rv
 }
@@ -231,7 +232,7 @@ func (e_ EKCalendar) Immutable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/isSubscribed
-func (e_ EKCalendar) Subscribed() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendar) Subscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("subscribed"))
 	return rv
 }
@@ -270,8 +271,8 @@ func (e_ EKCalendar) SupportedEventAvailabilities() EKCalendarEventAvailabilityM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKCalendar) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -280,8 +281,8 @@ func (e_ EKCalendar) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/title
-func (e_ EKCalendar) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (e_ EKCalendar) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -299,7 +300,7 @@ func (e_ EKCalendar) Type() EKCalendarType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
-func (e_ EKCalendar) IsImmutable() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendar) IsImmutable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isImmutable"))
 	return rv
 }
@@ -309,7 +310,7 @@ func (e_ EKCalendar) IsImmutable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/isimmutable
-func (e_ EKCalendar) SetIsImmutable(value bool /* primitive/slice/pointer. */) {
+func (e_ EKCalendar) SetIsImmutable(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsImmutable:"), value)
 }
 
@@ -318,7 +319,7 @@ func (e_ EKCalendar) SetIsImmutable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
-func (e_ EKCalendar) IsSubscribed() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendar) IsSubscribed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isSubscribed"))
 	return rv
 }
@@ -328,7 +329,7 @@ func (e_ EKCalendar) IsSubscribed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekcalendar/issubscribed
-func (e_ EKCalendar) SetIsSubscribed(value bool /* primitive/slice/pointer. */) {
+func (e_ EKCalendar) SetIsSubscribed(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsSubscribed:"), value)
 }
 

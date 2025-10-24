@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _CNContactsUserDefaultsClass struct {
 type ICNContactsUserDefaults interface {
 	objectivec.IObject
 	// properties:
-	CountryCode() string /* primitive/slice/pointer. */
+	CountryCode() objc.IObject /* cross-framework: NSString */
 	SortOrder() CNContactSortOrder
 	// methods:
 }
@@ -101,8 +102,8 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
-func (c_ CNContactsUserDefaults) CountryCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
+func (c_ CNContactsUserDefaults) CountryCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("countryCode"))
 	return rv
 }
 

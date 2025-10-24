@@ -29,16 +29,22 @@ type _VZVirtioTraditionalMemoryBalloonDeviceClass struct {
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDevice] class.
 type IVZVirtioTraditionalMemoryBalloonDevice interface {
 	IVZMemoryBalloonDevice
+	// properties:
 	TargetVirtualMachineMemorySize() uint64
 	SetTargetVirtualMachineMemorySize(value uint64)
-	MemoryBalloonDevices() VZMemoryBalloonDevice
+	MemoryBalloonDevices() IVZMemoryBalloonDevice
 	SetMemoryBalloonDevices(value IVZMemoryBalloonDevice)
+	// methods:
 }
 
 // The object you use to change the amount of memory allocated to the guest system.
 //
 // A object implements a Virtio-compliant balloon memory device, which lets you change the amount of physical memory assigned to the guest operating system. The virtual machine has no insight into the amount of memory its guest operating system uses. A memory balloon device lets you ask the guest operating system to relinquish memory voluntarily, which you might do if memory resources become scarce. You don’t create a object directly. Instead, create a object and assign it to the property of your virtual machine configuration. In response, the virtual machine creates this object and assigns it to its property. To use a memory balloon device, change the value in the property when your virtual machine is running. If the new value is smaller than the amount of currently assigned memory, the guest system may return a list of unused memory pages using the memory balloon device. If it does, the virtual machine releases those pages back to the host computer. If it doesn’t return any memory pages, the virtual machine leaves the guest’s memory size unchanged. If the new value is larger than the amount of currently assigned memory, the virtual machine reserves more pages for the guest operating system. For optimal performance, the guest operating system should compact its memory before returning any pages back to the memory balloon device. Compacting the memory reduces fragmentation, and allows it to return contiguous blocks of free pages in the memory balloon device.
+
+
+// The object you use to change the amount of memory allocated to the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice
 type VZVirtioTraditionalMemoryBalloonDevice struct {
 	VZMemoryBalloonDevice
@@ -85,8 +91,10 @@ func NewVZVirtioTraditionalMemoryBalloonDevice() VZVirtioTraditionalMemoryBalloo
 }
 
 
+
 // The target amount of memory, in bytes, to make available to the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice/targetVirtualMachineMemorySize
 func (v_ VZVirtioTraditionalMemoryBalloonDevice) TargetVirtualMachineMemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("targetVirtualMachineMemorySize"))
@@ -94,28 +102,28 @@ func (v_ VZVirtioTraditionalMemoryBalloonDevice) TargetVirtualMachineMemorySize(
 }
 
 
-// SetTargetVirtualMachineMemorySize sets the value of the targetVirtualMachineMemorySize property.
 // The target amount of memory, in bytes, to make available to the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice/targetVirtualMachineMemorySize
 func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetTargetVirtualMachineMemorySize(value uint64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTargetVirtualMachineMemorySize:"), value)
 }
 
+
 // The array of devices that you use to adjust the amount of memory available to the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
-func (v_ VZVirtioTraditionalMemoryBalloonDevice) MemoryBalloonDevices() VZMemoryBalloonDevice {
+func (v_ VZVirtioTraditionalMemoryBalloonDevice) MemoryBalloonDevices() IVZMemoryBalloonDevice {
 	rv := objc.Send[VZMemoryBalloonDevice](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
 }
 
 
-// SetMemoryBalloonDevices sets the value of the memoryBalloonDevices property.
 // The array of devices that you use to adjust the amount of memory available to the guest system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
 func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetMemoryBalloonDevices(value IVZMemoryBalloonDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IOBluetoothUI without requiring cgo.
-
-// Present an interface through which users can pair their devices with other Bluetooth devices.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI
+// See: https://developer.apple.com/documentation/IOBluetoothUI
 package iobluetoothui
 
 import (

@@ -29,14 +29,16 @@ type _VZMacPlatformConfigurationClass struct {
 // An interface definition for the [VZMacPlatformConfiguration] class.
 type IVZMacPlatformConfiguration interface {
 	IVZPlatformConfiguration
-	AuxiliaryStorage() VZMacAuxiliaryStorage
-	SetAuxiliaryStorage(value VZMacAuxiliaryStorage)
+	// properties:
+	AuxiliaryStorage() IVZMacAuxiliaryStorage
+	SetAuxiliaryStorage(value IVZMacAuxiliaryStorage)
 	HardwareModel() IVZMacHardwareModel
 	SetHardwareModel(value IVZMacHardwareModel)
+	MachineIdentifier() IVZMacMachineIdentifier
+	SetMachineIdentifier(value IVZMacMachineIdentifier)
 	MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements
 	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
-	MachineIdentifier() VZMacMachineIdentifier
-	SetMachineIdentifier(value VZMacMachineIdentifier)
+	// methods:
 }
 
 // The platform configuration for booting macOS on Apple silicon.
@@ -94,11 +96,12 @@ func NewVZMacPlatformConfiguration() VZMacPlatformConfiguration {
 
 
 
+
 // The Mac auxiliary storage.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
-func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() VZMacAuxiliaryStorage {
+func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() IVZMacAuxiliaryStorage {
 	rv := objc.Send[VZMacAuxiliaryStorage](v_.ID, objc.Sel("auxiliaryStorage"))
 	return rv
 }
@@ -108,7 +111,7 @@ func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() VZMacAuxiliaryStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
-func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value VZMacAuxiliaryStorage) {
+func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value IVZMacAuxiliaryStorage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
 }
 
@@ -132,6 +135,25 @@ func (v_ VZMacPlatformConfiguration) SetHardwareModel(value IVZMacHardwareModel)
 }
 
 
+// The Mac machine identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier
+func (v_ VZMacPlatformConfiguration) MachineIdentifier() IVZMacMachineIdentifier {
+	rv := objc.Send[VZMacMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
+	return rv
+}
+
+
+// The Mac machine identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier
+func (v_ VZMacPlatformConfiguration) SetMachineIdentifier(value IVZMacMachineIdentifier) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
+}
+
+
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
 // [Full Topic]
@@ -149,25 +171,5 @@ func (v_ VZMacPlatformConfiguration) MostFeaturefulSupportedConfiguration() IVZM
 func (v_ VZMacPlatformConfiguration) SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
-
-
-// The Mac machine identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/machineidentifier
-func (v_ VZMacPlatformConfiguration) MachineIdentifier() VZMacMachineIdentifier {
-	rv := objc.Send[VZMacMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
-	return rv
-}
-
-
-// The Mac machine identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/machineidentifier
-func (v_ VZMacPlatformConfiguration) SetMachineIdentifier(value VZMacMachineIdentifier) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
-}
-
 
 

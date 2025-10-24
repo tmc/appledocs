@@ -30,12 +30,18 @@ type _DocumentCameraViewControllerClass struct {
 // An interface definition for the [DocumentCameraViewController] class.
 type IDocumentCameraViewController interface {
 	appkit.IViewController
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	Delegate() DocumentCameraViewControllerDelegate /* not a class type */
+	SetDelegate(value DocumentCameraViewControllerDelegate /* not a class type */)
+	// methods:
 }
 
 // An object that presents UI for a camera pass-through that helps people scan physical documents.
+
+
+// An object that presents UI for a camera pass-through that helps people scan physical documents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController
 type DocumentCameraViewController struct {
 	appkit.ViewController
@@ -82,39 +88,32 @@ func NewDocumentCameraViewController() DocumentCameraViewController {
 }
 
 
+
 // A Boolean variable that indicates whether or not the current device supports document scanning.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController/isSupported
 func (dc _DocumentCameraViewControllerClass) Supported() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("supported"))
 	return rv
 }
+
 // The delegate to be notified when the user saves or cancels the document scanner.
 //
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController/delegate
-func (d_ DocumentCameraViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("delegate"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcameraviewcontroller/delegate
+func (d_ DocumentCameraViewController) Delegate() DocumentCameraViewControllerDelegate /* not a class type */ {
+	rv := objc.Send[DocumentCameraViewControllerDelegate](d_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate to be notified when the user saves or cancels the document scanner.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController/delegate
-func (d_ DocumentCameraViewController) SetDelegate(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcameraviewcontroller/delegate
+func (d_ DocumentCameraViewController) SetDelegate(value DocumentCameraViewControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
-
-// A Boolean variable that indicates whether or not the current device supports document scanning.
-//
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController/isSupported
-func (d_ DocumentCameraViewController) Supported() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
-	return rv
-}
-
-
 
 

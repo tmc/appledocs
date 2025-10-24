@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -34,7 +35,7 @@ type IFPUIActionExtensionContext interface {
 	DomainIdentifier() FileProviderDomainIdentifier /* not a class type */
 	SetDomainIdentifier(value FileProviderDomainIdentifier /* not a class type */)
 	// methods:
-	CancelRequestWithError(error_ Error /* not a class type */)
+	CancelRequestWithError(error_ objc.IObject /* cross-framework: Error */)
 	CompleteRequest()
 }
 
@@ -95,7 +96,7 @@ func NewFPUIActionExtensionContext() FPUIActionExtensionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)
-func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ Error /* not a class type */) {
+func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 

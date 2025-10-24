@@ -30,30 +30,34 @@ type _NDArrayBinaryKernelClass struct {
 // An interface definition for the [NDArrayBinaryKernel] class.
 type INDArrayBinaryKernel interface {
 	INDArrayMultiaryKernel
-	EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) NDArray
-	PrimaryDilationRates() unsafe.Pointer
-	SetPrimaryDilationRates(value unsafe.Pointer)
-	PrimaryEdgeMode() unsafe.Pointer
-	SetPrimaryEdgeMode(value unsafe.Pointer)
-	PrimaryKernelSizes() unsafe.Pointer
-	SetPrimaryKernelSizes(value unsafe.Pointer)
-	PrimaryOffsets() unsafe.Pointer
-	SetPrimaryOffsets(value unsafe.Pointer)
-	PrimaryStrides() unsafe.Pointer
-	SetPrimaryStrides(value unsafe.Pointer)
-	SecondaryDilationRates() unsafe.Pointer
-	SetSecondaryDilationRates(value unsafe.Pointer)
-	SecondaryEdgeMode() unsafe.Pointer
-	SetSecondaryEdgeMode(value unsafe.Pointer)
-	SecondaryKernelSizes() unsafe.Pointer
-	SetSecondaryKernelSizes(value unsafe.Pointer)
-	SecondaryOffsets() unsafe.Pointer
-	SetSecondaryOffsets(value unsafe.Pointer)
-	SecondaryStrides() unsafe.Pointer
-	SetSecondaryStrides(value unsafe.Pointer)
+	// properties:
+	PrimaryDilationRates() NDArraySizes /* not a class type */
+	SetPrimaryDilationRates(value NDArraySizes /* not a class type */)
+	PrimaryEdgeMode() ImageEdgeMode
+	SetPrimaryEdgeMode(value ImageEdgeMode)
+	PrimaryKernelSizes() NDArraySizes /* not a class type */
+	SetPrimaryKernelSizes(value NDArraySizes /* not a class type */)
+	PrimaryOffsets() NDArrayOffsets /* not a class type */
+	SetPrimaryOffsets(value NDArrayOffsets /* not a class type */)
+	PrimaryStrides() NDArrayOffsets /* not a class type */
+	SetPrimaryStrides(value NDArrayOffsets /* not a class type */)
+	SecondaryDilationRates() NDArraySizes /* not a class type */
+	SetSecondaryDilationRates(value NDArraySizes /* not a class type */)
+	SecondaryEdgeMode() ImageEdgeMode
+	SetSecondaryEdgeMode(value ImageEdgeMode)
+	SecondaryKernelSizes() NDArraySizes /* not a class type */
+	SetSecondaryKernelSizes(value NDArraySizes /* not a class type */)
+	SecondaryOffsets() NDArrayOffsets /* not a class type */
+	SetSecondaryOffsets(value NDArrayOffsets /* not a class type */)
+	SecondaryStrides() NDArrayOffsets /* not a class type */
+	SetSecondaryStrides(value NDArrayOffsets /* not a class type */)
+	// methods:
+	EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) INDArray
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel
 type NDArrayBinaryKernel struct {
 	NDArrayMultiaryKernel
@@ -98,7 +102,8 @@ func NewNDArrayBinaryKernel() NDArrayBinaryKernel {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/init(device:)
 func NewNDArrayBinaryKernelWithDevice(device objectivec.IObject) NDArrayBinaryKernel {
 	instance := getNDArrayBinaryKernelClass().Alloc()
@@ -108,160 +113,161 @@ func NewNDArrayBinaryKernelWithDevice(device objectivec.IObject) NDArrayBinaryKe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/encode(to:primarySourceArray:secondarySourceArray:)
-func (n_ NDArrayBinaryKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) NDArray {
+func (n_ NDArrayBinaryKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:"), cmdBuf, primarySourceArray, secondarySourceArray)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarydilationrates
-func (n_ NDArrayBinaryKernel) PrimaryDilationRates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("primaryDilationRates"))
+func (n_ NDArrayBinaryKernel) PrimaryDilationRates() NDArraySizes /* not a class type */ {
+	rv := objc.Send[NDArraySizes](n_.ID, objc.Sel("primaryDilationRates"))
 	return rv
 }
 
 
-// SetPrimaryDilationRates sets the value of the primaryDilationRates property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarydilationrates
-func (n_ NDArrayBinaryKernel) SetPrimaryDilationRates(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetPrimaryDilationRates(value NDArraySizes /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPrimaryDilationRates:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primaryedgemode
-func (n_ NDArrayBinaryKernel) PrimaryEdgeMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("primaryEdgeMode"))
+func (n_ NDArrayBinaryKernel) PrimaryEdgeMode() ImageEdgeMode {
+	rv := objc.Send[ImageEdgeMode](n_.ID, objc.Sel("primaryEdgeMode"))
 	return rv
 }
 
 
-// SetPrimaryEdgeMode sets the value of the primaryEdgeMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primaryedgemode
-func (n_ NDArrayBinaryKernel) SetPrimaryEdgeMode(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetPrimaryEdgeMode(value ImageEdgeMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPrimaryEdgeMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarykernelsizes
-func (n_ NDArrayBinaryKernel) PrimaryKernelSizes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("primaryKernelSizes"))
+func (n_ NDArrayBinaryKernel) PrimaryKernelSizes() NDArraySizes /* not a class type */ {
+	rv := objc.Send[NDArraySizes](n_.ID, objc.Sel("primaryKernelSizes"))
 	return rv
 }
 
 
-// SetPrimaryKernelSizes sets the value of the primaryKernelSizes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarykernelsizes
-func (n_ NDArrayBinaryKernel) SetPrimaryKernelSizes(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetPrimaryKernelSizes(value NDArraySizes /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPrimaryKernelSizes:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primaryoffsets
-func (n_ NDArrayBinaryKernel) PrimaryOffsets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("primaryOffsets"))
+func (n_ NDArrayBinaryKernel) PrimaryOffsets() NDArrayOffsets /* not a class type */ {
+	rv := objc.Send[NDArrayOffsets](n_.ID, objc.Sel("primaryOffsets"))
 	return rv
 }
 
 
-// SetPrimaryOffsets sets the value of the primaryOffsets property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primaryoffsets
-func (n_ NDArrayBinaryKernel) SetPrimaryOffsets(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetPrimaryOffsets(value NDArrayOffsets /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPrimaryOffsets:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarystrides
-func (n_ NDArrayBinaryKernel) PrimaryStrides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("primaryStrides"))
+func (n_ NDArrayBinaryKernel) PrimaryStrides() NDArrayOffsets /* not a class type */ {
+	rv := objc.Send[NDArrayOffsets](n_.ID, objc.Sel("primaryStrides"))
 	return rv
 }
 
 
-// SetPrimaryStrides sets the value of the primaryStrides property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/primarystrides
-func (n_ NDArrayBinaryKernel) SetPrimaryStrides(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetPrimaryStrides(value NDArrayOffsets /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPrimaryStrides:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarydilationrates
-func (n_ NDArrayBinaryKernel) SecondaryDilationRates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("secondaryDilationRates"))
+func (n_ NDArrayBinaryKernel) SecondaryDilationRates() NDArraySizes /* not a class type */ {
+	rv := objc.Send[NDArraySizes](n_.ID, objc.Sel("secondaryDilationRates"))
 	return rv
 }
 
 
-// SetSecondaryDilationRates sets the value of the secondaryDilationRates property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarydilationrates
-func (n_ NDArrayBinaryKernel) SetSecondaryDilationRates(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetSecondaryDilationRates(value NDArraySizes /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryDilationRates:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondaryedgemode
-func (n_ NDArrayBinaryKernel) SecondaryEdgeMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("secondaryEdgeMode"))
+func (n_ NDArrayBinaryKernel) SecondaryEdgeMode() ImageEdgeMode {
+	rv := objc.Send[ImageEdgeMode](n_.ID, objc.Sel("secondaryEdgeMode"))
 	return rv
 }
 
 
-// SetSecondaryEdgeMode sets the value of the secondaryEdgeMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondaryedgemode
-func (n_ NDArrayBinaryKernel) SetSecondaryEdgeMode(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetSecondaryEdgeMode(value ImageEdgeMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryEdgeMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarykernelsizes
-func (n_ NDArrayBinaryKernel) SecondaryKernelSizes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("secondaryKernelSizes"))
+func (n_ NDArrayBinaryKernel) SecondaryKernelSizes() NDArraySizes /* not a class type */ {
+	rv := objc.Send[NDArraySizes](n_.ID, objc.Sel("secondaryKernelSizes"))
 	return rv
 }
 
 
-// SetSecondaryKernelSizes sets the value of the secondaryKernelSizes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarykernelsizes
-func (n_ NDArrayBinaryKernel) SetSecondaryKernelSizes(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetSecondaryKernelSizes(value NDArraySizes /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryKernelSizes:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondaryoffsets
-func (n_ NDArrayBinaryKernel) SecondaryOffsets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("secondaryOffsets"))
+func (n_ NDArrayBinaryKernel) SecondaryOffsets() NDArrayOffsets /* not a class type */ {
+	rv := objc.Send[NDArrayOffsets](n_.ID, objc.Sel("secondaryOffsets"))
 	return rv
 }
 
 
-// SetSecondaryOffsets sets the value of the secondaryOffsets property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondaryoffsets
-func (n_ NDArrayBinaryKernel) SetSecondaryOffsets(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetSecondaryOffsets(value NDArrayOffsets /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryOffsets:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarystrides
-func (n_ NDArrayBinaryKernel) SecondaryStrides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("secondaryStrides"))
+func (n_ NDArrayBinaryKernel) SecondaryStrides() NDArrayOffsets /* not a class type */ {
+	rv := objc.Send[NDArrayOffsets](n_.ID, objc.Sel("secondaryStrides"))
 	return rv
 }
 
 
-// SetSecondaryStrides sets the value of the secondaryStrides property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel/secondarystrides
-func (n_ NDArrayBinaryKernel) SetSecondaryStrides(value unsafe.Pointer) {
+func (n_ NDArrayBinaryKernel) SetSecondaryStrides(value NDArrayOffsets /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryStrides:"), value)
 }
 

@@ -30,8 +30,8 @@ type _CKQueryOperationClass struct {
 type ICKQueryOperation interface {
 	ICKDatabaseOperation
 	// properties:
-	DesiredKeys() []string /* primitive/slice/pointer. */
-	SetDesiredKeys(value []string /* primitive/slice/pointer. */)
+	DesiredKeys() []string
+	SetDesiredKeys(value []string)
 	Cursor() objc.IObject /* cross-framework: CKQueryCursor */
 	SetCursor(value objc.IObject /* cross-framework: CKQueryCursor */)
 	Query() ICKQuery
@@ -44,8 +44,8 @@ type ICKQueryOperation interface {
 	SetRecordFetchedBlock(value unsafe.Pointer)
 	RecordMatchedBlock() unsafe.Pointer
 	SetRecordMatchedBlock(value unsafe.Pointer)
-	ResultsLimit() int /* primitive/slice/pointer. */
-	SetResultsLimit(value int /* primitive/slice/pointer. */)
+	ResultsLimit() int
+	SetResultsLimit(value int)
 	ZoneID() ICKRecordZoneID
 	SetZoneID(value ICKRecordZoneID)
 	CompletionBlock() unsafe.Pointer
@@ -112,7 +112,7 @@ func NewCKQueryOperation() CKQueryOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/desiredKeys-4a6vy
-func (c_ CKQueryOperation) DesiredKeys() []string /* primitive/slice/pointer. */ {
+func (c_ CKQueryOperation) DesiredKeys() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (c_ CKQueryOperation) DesiredKeys() []string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/desiredKeys-4a6vy
-func (c_ CKQueryOperation) SetDesiredKeys(value []string /* primitive/slice/pointer. */) {
+func (c_ CKQueryOperation) SetDesiredKeys(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -247,7 +247,7 @@ func (c_ CKQueryOperation) SetRecordMatchedBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
-func (c_ CKQueryOperation) ResultsLimit() int /* primitive/slice/pointer. */ {
+func (c_ CKQueryOperation) ResultsLimit() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
@@ -257,7 +257,7 @@ func (c_ CKQueryOperation) ResultsLimit() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
-func (c_ CKQueryOperation) SetResultsLimit(value int /* primitive/slice/pointer. */) {
+func (c_ CKQueryOperation) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
 

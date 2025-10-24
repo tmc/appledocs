@@ -30,9 +30,13 @@ type _attributesClass struct {
 // An interface definition for the [attributes] class.
 type Iattributes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributes-c.ivar
 type attributes struct {
 	objectivec.Object

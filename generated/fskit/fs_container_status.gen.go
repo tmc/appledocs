@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +33,8 @@ type IFSContainerStatus interface {
 	objectivec.IObject
 	// properties:
 	State() unsafe.Pointer
-	Status() unsafe.Pointer
-	SetStatus(value unsafe.Pointer)
+	Status() objc.IObject /* cross-framework: Error */
+	SetStatus(value objc.IObject /* cross-framework: Error */)
 	// methods:
 }
 
@@ -104,8 +105,8 @@ func (f_ FSContainerStatus) State() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
-func (f_ FSContainerStatus) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("status"))
+func (f_ FSContainerStatus) Status() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](f_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -114,7 +115,7 @@ func (f_ FSContainerStatus) Status() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
-func (f_ FSContainerStatus) SetStatus(value unsafe.Pointer) {
+func (f_ FSContainerStatus) SetStatus(value objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setStatus:"), value)
 }
 

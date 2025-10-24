@@ -2,12 +2,12 @@
 
 // Package usernotifications provides Go bindings for the UserNotifications framework.
 //
-// Push user-facing notifications to the user’s device from a server, or generate them locally from your app. [Full Topic]
+// Push user-facing notifications to the user’s device from a server, or generate them locally from your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to UserNotifications without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications
+// See: https://developer.apple.com/documentation/UserNotifications
 package usernotifications
 
 import (

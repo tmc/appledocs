@@ -29,9 +29,13 @@ type _NDArrayStridedSliceGradientClass struct {
 // An interface definition for the [NDArrayStridedSliceGradient] class.
 type INDArrayStridedSliceGradient interface {
 	INDArrayUnaryGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSliceGradient
 type NDArrayStridedSliceGradient struct {
 	NDArrayUnaryGradientKernel

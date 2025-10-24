@@ -31,13 +31,17 @@ type _MTRGeneralCommissioningClusterCommissioningCompleteParamsClass struct {
 // An interface definition for the [MTRGeneralCommissioningClusterCommissioningCompleteParams] class.
 type IMTRGeneralCommissioningClusterCommissioningCompleteParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterCommissioningCompleteParams
 type MTRGeneralCommissioningClusterCommissioningCompleteParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteParams() MTRGeneralCo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

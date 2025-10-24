@@ -30,9 +30,13 @@ type _identifierClass struct {
 // An interface definition for the [identifier] class.
 type Iidentifier interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-c.ivar
 type identifier struct {
 	objectivec.Object

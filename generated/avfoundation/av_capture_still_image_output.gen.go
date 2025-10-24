@@ -31,30 +31,30 @@ type _CaptureStillImageOutputClass struct {
 type ICaptureStillImageOutput interface {
 	ICaptureOutput
 	// properties:
-	AutomaticallyEnablesStillImageStabilizationWhenAvailable() bool /* primitive/slice/pointer. */
-	SetAutomaticallyEnablesStillImageStabilizationWhenAvailable(value bool /* primitive/slice/pointer. */)
+	AutomaticallyEnablesStillImageStabilizationWhenAvailable() bool
+	SetAutomaticallyEnablesStillImageStabilizationWhenAvailable(value bool)
 	AvailableImageDataCVPixelFormatTypes() objc.IObject /* cross-framework: NSNumber */
 	SetAvailableImageDataCVPixelFormatTypes(value objc.IObject /* cross-framework: NSNumber */)
 	AvailableImageDataCodecTypes() VideoCodecType /* not a class type */
 	SetAvailableImageDataCodecTypes(value VideoCodecType /* not a class type */)
-	IsCameraSensorOrientationCompensationEnabled() bool /* primitive/slice/pointer. */
-	SetIsCameraSensorOrientationCompensationEnabled(value bool /* primitive/slice/pointer. */)
-	IsCameraSensorOrientationCompensationSupported() bool /* primitive/slice/pointer. */
-	SetIsCameraSensorOrientationCompensationSupported(value bool /* primitive/slice/pointer. */)
-	IsCapturingStillImage() bool /* primitive/slice/pointer. */
-	SetIsCapturingStillImage(value bool /* primitive/slice/pointer. */)
-	IsHighResolutionStillImageOutputEnabled() bool /* primitive/slice/pointer. */
-	SetIsHighResolutionStillImageOutputEnabled(value bool /* primitive/slice/pointer. */)
-	IsLensStabilizationDuringBracketedCaptureEnabled() bool /* primitive/slice/pointer. */
-	SetIsLensStabilizationDuringBracketedCaptureEnabled(value bool /* primitive/slice/pointer. */)
-	IsLensStabilizationDuringBracketedCaptureSupported() bool /* primitive/slice/pointer. */
-	SetIsLensStabilizationDuringBracketedCaptureSupported(value bool /* primitive/slice/pointer. */)
-	IsStillImageStabilizationActive() bool /* primitive/slice/pointer. */
-	SetIsStillImageStabilizationActive(value bool /* primitive/slice/pointer. */)
-	IsStillImageStabilizationSupported() bool /* primitive/slice/pointer. */
-	SetIsStillImageStabilizationSupported(value bool /* primitive/slice/pointer. */)
-	MaxBracketedCaptureStillImageCount() int /* primitive/slice/pointer. */
-	SetMaxBracketedCaptureStillImageCount(value int /* primitive/slice/pointer. */)
+	IsCameraSensorOrientationCompensationEnabled() bool
+	SetIsCameraSensorOrientationCompensationEnabled(value bool)
+	IsCameraSensorOrientationCompensationSupported() bool
+	SetIsCameraSensorOrientationCompensationSupported(value bool)
+	IsCapturingStillImage() bool
+	SetIsCapturingStillImage(value bool)
+	IsHighResolutionStillImageOutputEnabled() bool
+	SetIsHighResolutionStillImageOutputEnabled(value bool)
+	IsLensStabilizationDuringBracketedCaptureEnabled() bool
+	SetIsLensStabilizationDuringBracketedCaptureEnabled(value bool)
+	IsLensStabilizationDuringBracketedCaptureSupported() bool
+	SetIsLensStabilizationDuringBracketedCaptureSupported(value bool)
+	IsStillImageStabilizationActive() bool
+	SetIsStillImageStabilizationActive(value bool)
+	IsStillImageStabilizationSupported() bool
+	SetIsStillImageStabilizationSupported(value bool)
+	MaxBracketedCaptureStillImageCount() int
+	SetMaxBracketedCaptureStillImageCount(value int)
 	OutputSettings() objc.IObject /* cross-framework: NSString */
 	SetOutputSettings(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -117,7 +117,7 @@ func NewCaptureStillImageOutput() CaptureStillImageOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/automaticallyenablesstillimagestabilizationwhenavailable
-func (c_ CaptureStillImageOutput) AutomaticallyEnablesStillImageStabilizationWhenAvailable() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) AutomaticallyEnablesStillImageStabilizationWhenAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyEnablesStillImageStabilizationWhenAvailable"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (c_ CaptureStillImageOutput) AutomaticallyEnablesStillImageStabilizationWhe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/automaticallyenablesstillimagestabilizationwhenavailable
-func (c_ CaptureStillImageOutput) SetAutomaticallyEnablesStillImageStabilizationWhenAvailable(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetAutomaticallyEnablesStillImageStabilizationWhenAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyEnablesStillImageStabilizationWhenAvailable:"), value)
 }
 
@@ -172,7 +172,7 @@ func (c_ CaptureStillImageOutput) SetAvailableImageDataCodecTypes(value VideoCod
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscamerasensororientationcompensationenabled
-func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationEnabled"))
 	return rv
 }
@@ -180,14 +180,14 @@ func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationEnabled()
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscamerasensororientationcompensationenabled
-func (c_ CaptureStillImageOutput) SetIsCameraSensorOrientationCompensationEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsCameraSensorOrientationCompensationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscamerasensororientationcompensationsupported
-func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationSupported"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (c_ CaptureStillImageOutput) IsCameraSensorOrientationCompensationSupported
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscamerasensororientationcompensationsupported
-func (c_ CaptureStillImageOutput) SetIsCameraSensorOrientationCompensationSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsCameraSensorOrientationCompensationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationSupported:"), value)
 }
 
@@ -204,7 +204,7 @@ func (c_ CaptureStillImageOutput) SetIsCameraSensorOrientationCompensationSuppor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscapturingstillimage
-func (c_ CaptureStillImageOutput) IsCapturingStillImage() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsCapturingStillImage() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCapturingStillImage"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (c_ CaptureStillImageOutput) IsCapturingStillImage() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/iscapturingstillimage
-func (c_ CaptureStillImageOutput) SetIsCapturingStillImage(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsCapturingStillImage(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCapturingStillImage:"), value)
 }
 
@@ -223,7 +223,7 @@ func (c_ CaptureStillImageOutput) SetIsCapturingStillImage(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/ishighresolutionstillimageoutputenabled
-func (c_ CaptureStillImageOutput) IsHighResolutionStillImageOutputEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsHighResolutionStillImageOutputEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighResolutionStillImageOutputEnabled"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (c_ CaptureStillImageOutput) IsHighResolutionStillImageOutputEnabled() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/ishighresolutionstillimageoutputenabled
-func (c_ CaptureStillImageOutput) SetIsHighResolutionStillImageOutputEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsHighResolutionStillImageOutputEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighResolutionStillImageOutputEnabled:"), value)
 }
 
@@ -242,7 +242,7 @@ func (c_ CaptureStillImageOutput) SetIsHighResolutionStillImageOutputEnabled(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/islensstabilizationduringbracketedcaptureenabled
-func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationDuringBracketedCaptureEnabled"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureEnabl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/islensstabilizationduringbracketedcaptureenabled
-func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationDuringBracketedCaptureEnabled:"), value)
 }
 
@@ -261,7 +261,7 @@ func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureEn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/islensstabilizationduringbracketedcapturesupported
-func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationDuringBracketedCaptureSupported"))
 	return rv
 }
@@ -271,7 +271,7 @@ func (c_ CaptureStillImageOutput) IsLensStabilizationDuringBracketedCaptureSuppo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/islensstabilizationduringbracketedcapturesupported
-func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationDuringBracketedCaptureSupported:"), value)
 }
 
@@ -280,7 +280,7 @@ func (c_ CaptureStillImageOutput) SetIsLensStabilizationDuringBracketedCaptureSu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/isstillimagestabilizationactive
-func (c_ CaptureStillImageOutput) IsStillImageStabilizationActive() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsStillImageStabilizationActive() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isStillImageStabilizationActive"))
 	return rv
 }
@@ -290,7 +290,7 @@ func (c_ CaptureStillImageOutput) IsStillImageStabilizationActive() bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/isstillimagestabilizationactive
-func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationActive(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationActive(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStillImageStabilizationActive:"), value)
 }
 
@@ -299,7 +299,7 @@ func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationActive(value bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/isstillimagestabilizationsupported
-func (c_ CaptureStillImageOutput) IsStillImageStabilizationSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) IsStillImageStabilizationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isStillImageStabilizationSupported"))
 	return rv
 }
@@ -309,7 +309,7 @@ func (c_ CaptureStillImageOutput) IsStillImageStabilizationSupported() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/isstillimagestabilizationsupported
-func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStillImageStabilizationSupported:"), value)
 }
 
@@ -318,7 +318,7 @@ func (c_ CaptureStillImageOutput) SetIsStillImageStabilizationSupported(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/maxbracketedcapturestillimagecount
-func (c_ CaptureStillImageOutput) MaxBracketedCaptureStillImageCount() int /* primitive/slice/pointer. */ {
+func (c_ CaptureStillImageOutput) MaxBracketedCaptureStillImageCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxBracketedCaptureStillImageCount"))
 	return rv
 }
@@ -328,7 +328,7 @@ func (c_ CaptureStillImageOutput) MaxBracketedCaptureStillImageCount() int /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput/maxbracketedcapturestillimagecount
-func (c_ CaptureStillImageOutput) SetMaxBracketedCaptureStillImageCount(value int /* primitive/slice/pointer. */) {
+func (c_ CaptureStillImageOutput) SetMaxBracketedCaptureStillImageCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBracketedCaptureStillImageCount:"), value)
 }
 

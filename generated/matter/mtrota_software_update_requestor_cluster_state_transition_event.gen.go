@@ -31,17 +31,21 @@ type _MTROTASoftwareUpdateRequestorClusterStateTransitionEventClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterStateTransitionEvent] class.
 type IMTROTASoftwareUpdateRequestorClusterStateTransitionEvent interface {
 	objectivec.IObject
-	NewState() foundation.Number
-	SetNewState(value foundation.INumber)
-	PreviousState() foundation.Number
-	SetPreviousState(value foundation.INumber)
-	Reason() foundation.Number
-	SetReason(value foundation.INumber)
-	TargetSoftwareVersion() foundation.Number
-	SetTargetSoftwareVersion(value foundation.INumber)
+	// properties:
+	NewState() objc.IObject /* cross-framework: NSNumber */
+	SetNewState(value objc.IObject /* cross-framework: NSNumber */)
+	PreviousState() objc.IObject /* cross-framework: NSNumber */
+	SetPreviousState(value objc.IObject /* cross-framework: NSNumber */)
+	Reason() objc.IObject /* cross-framework: NSNumber */
+	SetReason(value objc.IObject /* cross-framework: NSNumber */)
+	TargetSoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetTargetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTASoftwareUpdateRequestorClusterStateTransitionEvent-3xhxb
 type MTROTASoftwareUpdateRequestorClusterStateTransitionEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROTASoftwareUpdateRequestorClusterStateTransitionEvent() MTROTASoftwar
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/newstate
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) NewState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newState"))
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) NewState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newState"))
 	return rv
 }
 
 
-// SetNewState sets the value of the newState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/newstate
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetNewState(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetNewState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/previousstate
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) PreviousState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousState"))
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) PreviousState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("previousState"))
 	return rv
 }
 
 
-// SetPreviousState sets the value of the previousState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/previousstate
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetPreviousState(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetPreviousState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/reason
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) Reason() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reason"))
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) Reason() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reason"))
 	return rv
 }
 
 
-// SetReason sets the value of the reason property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/reason
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetReason(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetReason(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/targetsoftwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) TargetSoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoftwareVersion"))
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) TargetSoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetSoftwareVersion"))
 	return rv
 }
 
 
-// SetTargetSoftwareVersion sets the value of the targetSoftwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterstatetransitionevent-3xhxb/targetsoftwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetTargetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterStateTransitionEvent) SetTargetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoftwareVersion:"), value)
 }
 

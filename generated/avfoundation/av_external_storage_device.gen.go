@@ -34,14 +34,14 @@ type IExternalStorageDevice interface {
 	// properties:
 	DisplayName() objc.IObject /* cross-framework: NSString */
 	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
-	FreeSize() int /* primitive/slice/pointer. */
-	SetFreeSize(value int /* primitive/slice/pointer. */)
-	IsConnected() bool /* primitive/slice/pointer. */
-	SetIsConnected(value bool /* primitive/slice/pointer. */)
-	IsNotRecommendedForCaptureUse() bool /* primitive/slice/pointer. */
-	SetIsNotRecommendedForCaptureUse(value bool /* primitive/slice/pointer. */)
-	TotalSize() int /* primitive/slice/pointer. */
-	SetTotalSize(value int /* primitive/slice/pointer. */)
+	FreeSize() int
+	SetFreeSize(value int)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsNotRecommendedForCaptureUse() bool
+	SetIsNotRecommendedForCaptureUse(value bool)
+	TotalSize() int
+	SetTotalSize(value int)
 	Uuid() objc.IObject /* cross-framework: UUID */
 	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	ExternalStorageDevices() IAVExternalStorageDevice
@@ -125,7 +125,7 @@ func (e_ ExternalStorageDevice) SetDisplayName(value objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/freesize
-func (e_ ExternalStorageDevice) FreeSize() int /* primitive/slice/pointer. */ {
+func (e_ ExternalStorageDevice) FreeSize() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("freeSize"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (e_ ExternalStorageDevice) FreeSize() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/freesize
-func (e_ ExternalStorageDevice) SetFreeSize(value int /* primitive/slice/pointer. */) {
+func (e_ ExternalStorageDevice) SetFreeSize(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFreeSize:"), value)
 }
 
@@ -144,7 +144,7 @@ func (e_ ExternalStorageDevice) SetFreeSize(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/isconnected
-func (e_ ExternalStorageDevice) IsConnected() bool /* primitive/slice/pointer. */ {
+func (e_ ExternalStorageDevice) IsConnected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (e_ ExternalStorageDevice) IsConnected() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/isconnected
-func (e_ ExternalStorageDevice) SetIsConnected(value bool /* primitive/slice/pointer. */) {
+func (e_ ExternalStorageDevice) SetIsConnected(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
 }
 
@@ -163,7 +163,7 @@ func (e_ ExternalStorageDevice) SetIsConnected(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/isnotrecommendedforcaptureuse
-func (e_ ExternalStorageDevice) IsNotRecommendedForCaptureUse() bool /* primitive/slice/pointer. */ {
+func (e_ ExternalStorageDevice) IsNotRecommendedForCaptureUse() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isNotRecommendedForCaptureUse"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (e_ ExternalStorageDevice) IsNotRecommendedForCaptureUse() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/isnotrecommendedforcaptureuse
-func (e_ ExternalStorageDevice) SetIsNotRecommendedForCaptureUse(value bool /* primitive/slice/pointer. */) {
+func (e_ ExternalStorageDevice) SetIsNotRecommendedForCaptureUse(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsNotRecommendedForCaptureUse:"), value)
 }
 
@@ -182,7 +182,7 @@ func (e_ ExternalStorageDevice) SetIsNotRecommendedForCaptureUse(value bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/totalsize
-func (e_ ExternalStorageDevice) TotalSize() int /* primitive/slice/pointer. */ {
+func (e_ ExternalStorageDevice) TotalSize() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("totalSize"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (e_ ExternalStorageDevice) TotalSize() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice/totalsize
-func (e_ ExternalStorageDevice) SetTotalSize(value int /* primitive/slice/pointer. */) {
+func (e_ ExternalStorageDevice) SetTotalSize(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTotalSize:"), value)
 }
 

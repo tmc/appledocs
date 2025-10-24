@@ -31,11 +31,15 @@ type _MTRSwitchClusterLongReleaseEventClass struct {
 // An interface definition for the [MTRSwitchClusterLongReleaseEvent] class.
 type IMTRSwitchClusterLongReleaseEvent interface {
 	objectivec.IObject
-	PreviousPosition() foundation.Number
-	SetPreviousPosition(value foundation.INumber)
+	// properties:
+	PreviousPosition() objc.IObject /* cross-framework: NSNumber */
+	SetPreviousPosition(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterLongReleaseEvent
 type MTRSwitchClusterLongReleaseEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSwitchClusterLongReleaseEvent() MTRSwitchClusterLongReleaseEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongreleaseevent/previousposition
-func (m_ MTRSwitchClusterLongReleaseEvent) PreviousPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("previousPosition"))
+func (m_ MTRSwitchClusterLongReleaseEvent) PreviousPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("previousPosition"))
 	return rv
 }
 
 
-// SetPreviousPosition sets the value of the previousPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongreleaseevent/previousposition
-func (m_ MTRSwitchClusterLongReleaseEvent) SetPreviousPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterLongReleaseEvent) SetPreviousPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousPosition:"), value)
 }
 

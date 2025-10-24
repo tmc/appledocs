@@ -20,10 +20,10 @@ var (
 	_HKAppleWalkingSteadinessMaximumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
 	_HKAppleWalkingSteadinessMinimumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
 	_HKCategoryValueSleepAnalysisAsleepValues func() unsafe.Pointer
-	_HKMaximumScoreForGAD7AssessmentRisk func(unsafe.Pointer) unsafe.Pointer
-	_HKMaximumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) unsafe.Pointer
-	_HKMinimumScoreForGAD7AssessmentRisk func(unsafe.Pointer) unsafe.Pointer
-	_HKMinimumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) unsafe.Pointer
+	_HKMaximumScoreForGAD7AssessmentRisk func(unsafe.Pointer) int64
+	_HKMaximumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) int64
+	_HKMinimumScoreForGAD7AssessmentRisk func(unsafe.Pointer) int64
+	_HKMinimumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) int64
 	_HKStateOfMindValenceClassificationForValence func(float64) unsafe.Pointer
 )
 
@@ -115,7 +115,7 @@ func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForGAD7AssessmentRisk
-func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
+func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
 	return _HKMaximumScoreForGAD7AssessmentRisk(risk)
 }
 
@@ -125,7 +125,7 @@ func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForPHQ9AssessmentRisk
-func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
+func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) int64 {
 	return _HKMaximumScoreForPHQ9AssessmentRisk(risk)
 }
 
@@ -135,7 +135,7 @@ func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForGAD7AssessmentRisk
-func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
+func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
 	return _HKMinimumScoreForGAD7AssessmentRisk(risk)
 }
 
@@ -145,7 +145,7 @@ func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForPHQ9AssessmentRisk
-func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) unsafe.Pointer {
+func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) int64 {
 	return _HKMinimumScoreForPHQ9AssessmentRisk(risk)
 }
 

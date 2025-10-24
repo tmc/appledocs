@@ -31,11 +31,15 @@ type _MTRWiFiNetworkDiagnosticsClusterDisconnectionEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterDisconnectionEvent interface {
 	objectivec.IObject
-	ReasonCode() foundation.Number
-	SetReasonCode(value foundation.INumber)
+	// properties:
+	ReasonCode() objc.IObject /* cross-framework: NSNumber */
+	SetReasonCode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent
 type MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRWiFiNetworkDiagnosticsClusterDisconnectionEvent() MTRWiFiNetworkDiagn
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterdisconnectionevent/reasoncode
-func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) ReasonCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reasonCode"))
+func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) ReasonCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reasonCode"))
 	return rv
 }
 
 
-// SetReasonCode sets the value of the reasonCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterdisconnectionevent/reasoncode
-func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) SetReasonCode(value foundation.INumber) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) SetReasonCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReasonCode:"), value)
 }
 

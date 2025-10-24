@@ -29,12 +29,18 @@ type _ImageRegistrationRequestClass struct {
 // An interface definition for the [ImageRegistrationRequest] class.
 type IImageRegistrationRequest interface {
 	ITargetedImageRequest
+	// properties:
+	// methods:
 }
 
 // The abstract superclass for image-analysis requests that align images according to their content.
 //
 // This abstract superclass forms the basis of image alignment or registration requests. Make specific requests through one of its subclasses, or . Don’t create an instance of this superclass yourself.
+
+
+// The abstract superclass for image-analysis requests that align images according to their content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRegistrationRequest
 type ImageRegistrationRequest struct {
 	TargetedImageRequest

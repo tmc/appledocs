@@ -31,13 +31,17 @@ type _MTRActivatedCarbonFilterMonitoringClusterReplacementProductStructClass str
 // An interface definition for the [MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct] class.
 type IMTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct interface {
 	objectivec.IObject
-	ProductIdentifierType() foundation.Number
-	SetProductIdentifierType(value foundation.INumber)
-	ProductIdentifierValue() string
-	SetProductIdentifierValue(value string)
+	// properties:
+	ProductIdentifierType() objc.IObject /* cross-framework: NSNumber */
+	SetProductIdentifierType(value objc.IObject /* cross-framework: NSNumber */)
+	ProductIdentifierValue() objc.IObject /* cross-framework: NSString */
+	SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct
 type MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct struct {
 	objectivec.Object
@@ -80,34 +84,34 @@ func NewMTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct() MTRA
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiertype
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productIdentifierType"))
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productIdentifierType"))
 	return rv
 }
 
 
-// SetProductIdentifierType sets the value of the productIdentifierType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiertype
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierType(value foundation.INumber) {
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifierValue"))
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("productIdentifierValue"))
 	return rv
 }
 
 
-// SetProductIdentifierValue sets the value of the productIdentifierValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
-func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), objc.String(value))
+func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), value)
 }
 
 

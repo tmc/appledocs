@@ -31,13 +31,17 @@ type _MTRProductIdentityClass struct {
 // An interface definition for the [MTRProductIdentity] class.
 type IMTRProductIdentity interface {
 	objectivec.IObject
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	// properties:
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRProductIdentity
 type MTRProductIdentity struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRProductIdentity() MTRProductIdentity {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/productid
-func (m_ MTRProductIdentity) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRProductIdentity) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/productid
-func (m_ MTRProductIdentity) SetProductID(value foundation.INumber) {
+func (m_ MTRProductIdentity) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/vendorid
-func (m_ MTRProductIdentity) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRProductIdentity) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/vendorid
-func (m_ MTRProductIdentity) SetVendorID(value foundation.INumber) {
+func (m_ MTRProductIdentity) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

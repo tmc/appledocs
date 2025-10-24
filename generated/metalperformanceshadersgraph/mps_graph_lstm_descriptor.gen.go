@@ -29,32 +29,38 @@ type _GraphLSTMDescriptorClass struct {
 // An interface definition for the [GraphLSTMDescriptor] class.
 type IGraphLSTMDescriptor interface {
 	IGraphObject
-	CellGateActivation() GraphRNNActivation
-	SetCellGateActivation(value IGraphRNNActivation)
+	// properties:
 	Activation() GraphRNNActivation
-	SetActivation(value IGraphRNNActivation)
+	SetActivation(value GraphRNNActivation)
 	Bidirectional() bool
 	SetBidirectional(value bool)
+	CellGateActivation() GraphRNNActivation
+	SetCellGateActivation(value GraphRNNActivation)
 	ForgetGateActivation() GraphRNNActivation
-	SetForgetGateActivation(value IGraphRNNActivation)
+	SetForgetGateActivation(value GraphRNNActivation)
 	ForgetGateLast() bool
 	SetForgetGateLast(value bool)
 	InputGateActivation() GraphRNNActivation
-	SetInputGateActivation(value IGraphRNNActivation)
+	SetInputGateActivation(value GraphRNNActivation)
 	OutputGateActivation() GraphRNNActivation
-	SetOutputGateActivation(value IGraphRNNActivation)
+	SetOutputGateActivation(value GraphRNNActivation)
 	ProduceCell() bool
 	SetProduceCell(value bool)
 	Reverse() bool
 	SetReverse(value bool)
 	Training() bool
 	SetTraining(value bool)
+	// methods:
 }
 
 // The class that defines the parameters for a long short-term memory (LSTM) operation.
 //
 // Use this descriptor with the following methods:
+
+
+// The class that defines the parameters for a long short-term memory (LSTM) operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLSTMDescriptor
 type GraphLSTMDescriptor struct {
 	GraphObject
@@ -101,26 +107,10 @@ func NewGraphLSTMDescriptor() GraphLSTMDescriptor {
 }
 
 
-// A parameter that defines the activation function used with the cell gate of the LSTM operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLSTMDescriptor/cellGateActivation
-func (g_ GraphLSTMDescriptor) CellGateActivation() GraphRNNActivation {
-	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("cellGateActivation"))
-	return rv
-}
-
-
-// SetCellGateActivation sets the value of the cellGateActivation property.
-// A parameter that defines the activation function used with the cell gate of the LSTM operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLSTMDescriptor/cellGateActivation
-func (g_ GraphLSTMDescriptor) SetCellGateActivation(value IGraphRNNActivation) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCellGateActivation:"), value)
-}
 
 // A parameter that defines the activation function used with the current cell value of the LSTM operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/activation
 func (g_ GraphLSTMDescriptor) Activation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("activation"))
@@ -128,17 +118,18 @@ func (g_ GraphLSTMDescriptor) Activation() GraphRNNActivation {
 }
 
 
-// SetActivation sets the value of the activation property.
 // A parameter that defines the activation function used with the current cell value of the LSTM operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/activation
-func (g_ GraphLSTMDescriptor) SetActivation(value IGraphRNNActivation) {
+func (g_ GraphLSTMDescriptor) SetActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
 }
 
+
 // A parameter that defines a bidirectional LSTM layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/bidirectional
 func (g_ GraphLSTMDescriptor) Bidirectional() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("bidirectional"))
@@ -146,17 +137,37 @@ func (g_ GraphLSTMDescriptor) Bidirectional() bool {
 }
 
 
-// SetBidirectional sets the value of the bidirectional property.
 // A parameter that defines a bidirectional LSTM layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/bidirectional
 func (g_ GraphLSTMDescriptor) SetBidirectional(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
 }
 
+
+// A parameter that defines the activation function used with the cell gate of the LSTM operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/cellgateactivation
+func (g_ GraphLSTMDescriptor) CellGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("cellGateActivation"))
+	return rv
+}
+
+
+// A parameter that defines the activation function used with the cell gate of the LSTM operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/cellgateactivation
+func (g_ GraphLSTMDescriptor) SetCellGateActivation(value GraphRNNActivation) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCellGateActivation:"), value)
+}
+
+
 // A parameter that defines the activation function used with the forget gate of the LSTM operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgateactivation
 func (g_ GraphLSTMDescriptor) ForgetGateActivation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("forgetGateActivation"))
@@ -164,17 +175,18 @@ func (g_ GraphLSTMDescriptor) ForgetGateActivation() GraphRNNActivation {
 }
 
 
-// SetForgetGateActivation sets the value of the forgetGateActivation property.
 // A parameter that defines the activation function used with the forget gate of the LSTM operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgateactivation
-func (g_ GraphLSTMDescriptor) SetForgetGateActivation(value IGraphRNNActivation) {
+func (g_ GraphLSTMDescriptor) SetForgetGateActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setForgetGateActivation:"), value)
 }
 
+
 // A parameter that controls the internal order of the LSTM gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgatelast
 func (g_ GraphLSTMDescriptor) ForgetGateLast() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("forgetGateLast"))
@@ -182,17 +194,18 @@ func (g_ GraphLSTMDescriptor) ForgetGateLast() bool {
 }
 
 
-// SetForgetGateLast sets the value of the forgetGateLast property.
 // A parameter that controls the internal order of the LSTM gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgatelast
 func (g_ GraphLSTMDescriptor) SetForgetGateLast(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setForgetGateLast:"), value)
 }
 
+
 // A parameter that defines the activation function used with the input gate of the LSTM operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/inputgateactivation
 func (g_ GraphLSTMDescriptor) InputGateActivation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("inputGateActivation"))
@@ -200,17 +213,18 @@ func (g_ GraphLSTMDescriptor) InputGateActivation() GraphRNNActivation {
 }
 
 
-// SetInputGateActivation sets the value of the inputGateActivation property.
 // A parameter that defines the activation function used with the input gate of the LSTM operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/inputgateactivation
-func (g_ GraphLSTMDescriptor) SetInputGateActivation(value IGraphRNNActivation) {
+func (g_ GraphLSTMDescriptor) SetInputGateActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputGateActivation:"), value)
 }
 
+
 // A parameter that defines the activation function used with the output gate of the LSTM operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/outputgateactivation
 func (g_ GraphLSTMDescriptor) OutputGateActivation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("outputGateActivation"))
@@ -218,17 +232,18 @@ func (g_ GraphLSTMDescriptor) OutputGateActivation() GraphRNNActivation {
 }
 
 
-// SetOutputGateActivation sets the value of the outputGateActivation property.
 // A parameter that defines the activation function used with the output gate of the LSTM operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/outputgateactivation
-func (g_ GraphLSTMDescriptor) SetOutputGateActivation(value IGraphRNNActivation) {
+func (g_ GraphLSTMDescriptor) SetOutputGateActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputGateActivation:"), value)
 }
 
+
 // A parameter that controls whether or not to return the output cell from the LSTM layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/producecell
 func (g_ GraphLSTMDescriptor) ProduceCell() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("produceCell"))
@@ -236,17 +251,18 @@ func (g_ GraphLSTMDescriptor) ProduceCell() bool {
 }
 
 
-// SetProduceCell sets the value of the produceCell property.
 // A parameter that controls whether or not to return the output cell from the LSTM layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/producecell
 func (g_ GraphLSTMDescriptor) SetProduceCell(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProduceCell:"), value)
 }
 
+
 // A parameter that defines time direction of the input sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/reverse
 func (g_ GraphLSTMDescriptor) Reverse() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
@@ -254,17 +270,18 @@ func (g_ GraphLSTMDescriptor) Reverse() bool {
 }
 
 
-// SetReverse sets the value of the reverse property.
 // A parameter that defines time direction of the input sequence.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/reverse
 func (g_ GraphLSTMDescriptor) SetReverse(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
 }
 
+
 // A parameter that enables the LSTM layer to support training.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/training
 func (g_ GraphLSTMDescriptor) Training() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
@@ -272,10 +289,9 @@ func (g_ GraphLSTMDescriptor) Training() bool {
 }
 
 
-// SetTraining sets the value of the training property.
 // A parameter that enables the LSTM layer to support training.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/training
 func (g_ GraphLSTMDescriptor) SetTraining(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)

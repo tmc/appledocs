@@ -31,13 +31,17 @@ type _MTRDoorLockClusterCredentialStructClass struct {
 // An interface definition for the [MTRDoorLockClusterCredentialStruct] class.
 type IMTRDoorLockClusterCredentialStruct interface {
 	objectivec.IObject
-	CredentialIndex() foundation.Number
-	SetCredentialIndex(value foundation.INumber)
-	CredentialType() foundation.Number
-	SetCredentialType(value foundation.INumber)
+	// properties:
+	CredentialIndex() objc.IObject /* cross-framework: NSNumber */
+	SetCredentialIndex(value objc.IObject /* cross-framework: NSNumber */)
+	CredentialType() objc.IObject /* cross-framework: NSNumber */
+	SetCredentialType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterCredentialStruct
 type MTRDoorLockClusterCredentialStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRDoorLockClusterCredentialStruct() MTRDoorLockClusterCredentialStruct 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
-func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialIndex"))
+func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("credentialIndex"))
 	return rv
 }
 
 
-// SetCredentialIndex sets the value of the credentialIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
-func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
-func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialType"))
+func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("credentialType"))
 	return rv
 }
 
 
-// SetCredentialType sets the value of the credentialType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
-func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
 }
 

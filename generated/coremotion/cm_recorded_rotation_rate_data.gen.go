@@ -31,9 +31,9 @@ type _RecordedRotationRateDataClass struct {
 type IRecordedRotationRateData interface {
 	IRotationRateData
 	// properties:
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
-	RotationRate() RotationRate /* not a class type */
-	SetRotationRate(value RotationRate /* not a class type */)
+	StartDate() objc.IObject /* cross-framework: NSDate */
+	RotationRate() CMRotationRate /* not a class type */
+	SetRotationRate(value CMRotationRate /* not a class type */)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
-func (r_ RecordedRotationRateData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (r_ RecordedRotationRateData) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (r_ RecordedRotationRateData) StartDate() foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RecordedRotationRateData) RotationRate() RotationRate /* not a class type */ {
+func (r_ RecordedRotationRateData) RotationRate() CMRotationRate /* not a class type */ {
 	rv := objc.Send[RotationRate](r_.ID, objc.Sel("rotationRate"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (r_ RecordedRotationRateData) RotationRate() RotationRate /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RecordedRotationRateData) SetRotationRate(value RotationRate /* not a class type */) {
+func (r_ RecordedRotationRateData) SetRotationRate(value CMRotationRate /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }
 

@@ -30,15 +30,15 @@ type _HKSampleTypeClass struct {
 type IHKSampleType interface {
 	IHKObjectType
 	// properties:
-	AllowsRecalibrationForEstimates() bool /* primitive/slice/pointer. */
-	IsMaximumDurationRestricted() bool /* primitive/slice/pointer. */
-	SetIsMaximumDurationRestricted(value bool /* primitive/slice/pointer. */)
-	IsMinimumDurationRestricted() bool /* primitive/slice/pointer. */
-	SetIsMinimumDurationRestricted(value bool /* primitive/slice/pointer. */)
-	MaximumAllowedDuration() unsafe.Pointer
-	SetMaximumAllowedDuration(value unsafe.Pointer)
-	MinimumAllowedDuration() unsafe.Pointer
-	SetMinimumAllowedDuration(value unsafe.Pointer)
+	AllowsRecalibrationForEstimates() bool
+	IsMaximumDurationRestricted() bool
+	SetIsMaximumDurationRestricted(value bool)
+	IsMinimumDurationRestricted() bool
+	SetIsMinimumDurationRestricted(value bool)
+	MaximumAllowedDuration() float64
+	SetMaximumAllowedDuration(value float64)
+	MinimumAllowedDuration() float64
+	SetMinimumAllowedDuration(value float64)
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func NewHKSampleType() HKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/allowsRecalibrationForEstimates
-func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool /* primitive/slice/pointer. */ {
+func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("allowsRecalibrationForEstimates"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
-func (h_ HKSampleType) IsMaximumDurationRestricted() bool /* primitive/slice/pointer. */ {
+func (h_ HKSampleType) IsMaximumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMaximumDurationRestricted"))
 	return rv
 }
@@ -121,7 +121,7 @@ func (h_ HKSampleType) IsMaximumDurationRestricted() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
-func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool /* primitive/slice/pointer. */) {
+func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMaximumDurationRestricted:"), value)
 }
 
@@ -130,7 +130,7 @@ func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
-func (h_ HKSampleType) IsMinimumDurationRestricted() bool /* primitive/slice/pointer. */ {
+func (h_ HKSampleType) IsMinimumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMinimumDurationRestricted"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (h_ HKSampleType) IsMinimumDurationRestricted() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
-func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool /* primitive/slice/pointer. */) {
+func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMinimumDurationRestricted:"), value)
 }
 
@@ -149,8 +149,8 @@ func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
-func (h_ HKSampleType) MaximumAllowedDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("maximumAllowedDuration"))
+func (h_ HKSampleType) MaximumAllowedDuration() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("maximumAllowedDuration"))
 	return rv
 }
 
@@ -159,7 +159,7 @@ func (h_ HKSampleType) MaximumAllowedDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
-func (h_ HKSampleType) SetMaximumAllowedDuration(value unsafe.Pointer) {
+func (h_ HKSampleType) SetMaximumAllowedDuration(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMaximumAllowedDuration:"), value)
 }
 
@@ -168,8 +168,8 @@ func (h_ HKSampleType) SetMaximumAllowedDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
-func (h_ HKSampleType) MinimumAllowedDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("minimumAllowedDuration"))
+func (h_ HKSampleType) MinimumAllowedDuration() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("minimumAllowedDuration"))
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (h_ HKSampleType) MinimumAllowedDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
-func (h_ HKSampleType) SetMinimumAllowedDuration(value unsafe.Pointer) {
+func (h_ HKSampleType) SetMinimumAllowedDuration(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMinimumAllowedDuration:"), value)
 }
 

@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [CSSearchableIndex] class.
@@ -34,18 +35,18 @@ type ICSSearchableIndex interface {
 	// properties:
 	IndexDelegate() objc.ID
 	SetIndexDelegate(value objc.ID)
-	IsEligibleForSearch() bool /* primitive/slice/pointer. */
-	SetIsEligibleForSearch(value bool /* primitive/slice/pointer. */)
+	IsEligibleForSearch() bool
+	SetIsEligibleForSearch(value bool)
 	// methods:
 	BeginIndexBatch()
 	DeleteAllSearchableItemsWithCompletionHandler(completionHandler unsafe.Pointer)
-	DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
-	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
-	EndIndexBatchWithClientStateCompletionHandler(clientState foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
-	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.objc.IObject /* cross-framework NSData */, newClientState foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
-	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string /* primitive/slice/pointer. */, itemIdentifier string /* primitive/slice/pointer. */, contentType objectivec.IObject, completionHandler unsafe.Pointer)
+	DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string, completionHandler unsafe.Pointer)
+	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer)
+	EndIndexBatchWithClientStateCompletionHandler(clientState objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer)
+	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState objc.IObject /* cross-framework: NSData */, newClientState objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer)
+	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier objc.IObject /* cross-framework: NSString */, itemIdentifier objc.IObject /* cross-framework: NSString */, contentType objc.IObject /* cross-framework: UTType */, completionHandler unsafe.Pointer)
 	FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer)
-	IndexSearchableItemsCompletionHandler(items []CSSearchableItem /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	IndexSearchableItemsCompletionHandler(items []ICSSearchableItem, completionHandler unsafe.Pointer)
 }
 
 // An on-device index for your app’s searchable content.
@@ -105,9 +106,9 @@ func NewCSSearchableIndex() CSSearchableIndex {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:)
-func NewCSSearchableIndexWithName(name string /* primitive/slice/pointer. */) CSSearchableIndex {
+func NewCSSearchableIndexWithName(name objc.IObject /* cross-framework: NSString */) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:"), name)
 	rv.Autorelease()
 	return rv
 }
@@ -117,9 +118,9 @@ func NewCSSearchableIndexWithName(name string /* primitive/slice/pointer. */) CS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)
-func NewCSSearchableIndexWithNameProtectionClass(name string /* primitive/slice/pointer. */, protectionClass FileProtectionType /* not a class type */) CSSearchableIndex {
+func NewCSSearchableIndexWithNameProtectionClass(name objc.IObject /* cross-framework: NSString */, protectionClass FileProtectionType /* not a class type */) CSSearchableIndex {
 	instance := getCSSearchableIndexClass().Alloc()
-	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), objc.String(name), protectionClass)
+	rv := objc.Send[CSSearchableIndex](instance.ID, objc.Sel("initWithName:protectionClass:"), name, protectionClass)
 	rv.Autorelease()
 	return rv
 }
@@ -140,7 +141,7 @@ func (cc _CSSearchableIndexClass) DefaultSearchableIndex() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()
-func (cc _CSSearchableIndexClass) IsIndexingAvailable() bool /* primitive/slice/pointer. */ {
+func (cc _CSSearchableIndexClass) IsIndexingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isIndexingAvailable"))
 	return rv
 }
@@ -168,7 +169,7 @@ func (c_ CSSearchableIndex) DeleteAllSearchableItemsWithCompletionHandler(comple
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)
-func (c_ CSSearchableIndex) DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSearchableItemsWithDomainIdentifiers:completionHandler:"), domainIdentifiers, completionHandler)
 }
 
@@ -177,7 +178,7 @@ func (c_ CSSearchableIndex) DeleteSearchableItemsWithDomainIdentifiersCompletion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)
-func (c_ CSSearchableIndex) DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSearchableItemsWithIdentifiers:completionHandler:"), identifiers, completionHandler)
 }
 
@@ -186,7 +187,7 @@ func (c_ CSSearchableIndex) DeleteSearchableItemsWithIdentifiersCompletionHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)
-func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(clientState foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(clientState objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithClientState:completionHandler:"), clientState, completionHandler)
 }
 
@@ -195,7 +196,7 @@ func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(client
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)
-func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.objc.IObject /* cross-framework NSData */, newClientState foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState objc.IObject /* cross-framework: NSData */, newClientState objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithExpectedClientState:newClientState:completionHandler:"), expectedClientState, newClientState, completionHandler)
 }
 
@@ -204,8 +205,8 @@ func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)
-func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string /* primitive/slice/pointer. */, itemIdentifier string /* primitive/slice/pointer. */, contentType objectivec.IObject, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), objc.String(bundleIdentifier), objc.String(itemIdentifier), contentType, completionHandler)
+func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier objc.IObject /* cross-framework: NSString */, itemIdentifier objc.IObject /* cross-framework: NSString */, contentType objc.IObject /* cross-framework: UTType */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), bundleIdentifier, itemIdentifier, contentType, completionHandler)
 }
 
 
@@ -222,7 +223,7 @@ func (c_ CSSearchableIndex) FetchLastClientStateWithCompletionHandler(completion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)
-func (c_ CSSearchableIndex) IndexSearchableItemsCompletionHandler(items []CSSearchableItem /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) IndexSearchableItemsCompletionHandler(items []ICSSearchableItem, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("indexSearchableItems:completionHandler:"), items, completionHandler)
 }
 
@@ -250,7 +251,7 @@ func (c_ CSSearchableIndex) SetIndexDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (c_ CSSearchableIndex) IsEligibleForSearch() bool /* primitive/slice/pointer. */ {
+func (c_ CSSearchableIndex) IsEligibleForSearch() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEligibleForSearch"))
 	return rv
 }
@@ -260,7 +261,7 @@ func (c_ CSSearchableIndex) IsEligibleForSearch() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (c_ CSSearchableIndex) SetIsEligibleForSearch(value bool /* primitive/slice/pointer. */) {
+func (c_ CSSearchableIndex) SetIsEligibleForSearch(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEligibleForSearch:"), value)
 }
 

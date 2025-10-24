@@ -30,6 +30,8 @@ type _MTRBaseClusterRefrigeratorAlarmClass struct {
 // An interface definition for the [MTRBaseClusterRefrigeratorAlarm] class.
 type IMTRBaseClusterRefrigeratorAlarm interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
@@ -51,7 +53,11 @@ type IMTRBaseClusterRefrigeratorAlarm interface {
 // Cluster Refrigerator Alarm
 //
 // Attributes and commands for configuring the Refrigerator alarm.
+
+
+// Cluster Refrigerator Alarm
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm
 type MTRBaseClusterRefrigeratorAlarm struct {
 	MTRGenericBaseCluster
@@ -99,11 +105,11 @@ func NewMTRBaseClusterRefrigeratorAlarm() MTRBaseClusterRefrigeratorAlarm {
 
 
 
-
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/init(device:endpointID:queue:)
-func NewMTRBaseClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRBaseClusterRefrigeratorAlarm {
+func NewMTRBaseClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterRefrigeratorAlarm {
 	instance := getMTRBaseClusterRefrigeratorAlarmClass().Alloc()
 	rv := objc.Send[MTRBaseClusterRefrigeratorAlarm](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -111,145 +117,169 @@ func NewMTRBaseClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRBase
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeMask(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeMaskWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeMaskWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMaskWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeSupported(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeSupportedWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterRefrigeratorAlarmClass) ReadAttributeSupportedWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeAcceptedCommandList(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeAttributeList(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeClusterRevision(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeFeatureMap(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeGeneratedCommandList(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeMask(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeMaskWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeMaskWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeState(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeStateWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeStateWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/readAttributeSupported(completion:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) ReadAttributeSupportedWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeSupportedWithCompletion:"), completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeMask(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeMaskWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeMaskWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeState(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeStateWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAlarm/subscribeAttributeSupported(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterRefrigeratorAlarm) SubscribeAttributeSupportedWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeSupportedWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)

@@ -29,12 +29,18 @@ type _CInferenceGraphClass struct {
 // An interface definition for the [CInferenceGraph] class.
 type ICInferenceGraph interface {
 	ICGraph
+	// properties:
 	DeviceMemorySize() int
 	SetDeviceMemorySize(value int)
+	// methods:
 }
 
 // An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.
+
+
+// An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInferenceGraph
 type CInferenceGraph struct {
 	CGraph
@@ -81,8 +87,10 @@ func NewCInferenceGraph() CInferenceGraph {
 }
 
 
+
 // The device memory size in bytes for all intermediate tensors in the inference graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinferencegraph/devicememorysize
 func (c_ CInferenceGraph) DeviceMemorySize() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("deviceMemorySize"))
@@ -90,10 +98,9 @@ func (c_ CInferenceGraph) DeviceMemorySize() int {
 }
 
 
-// SetDeviceMemorySize sets the value of the deviceMemorySize property.
 // The device memory size in bytes for all intermediate tensors in the inference graph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinferencegraph/devicememorysize
 func (c_ CInferenceGraph) SetDeviceMemorySize(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceMemorySize:"), value)

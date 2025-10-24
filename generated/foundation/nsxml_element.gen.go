@@ -35,6 +35,7 @@ type IXMLElement interface {
 	Namespaces() IXMLNode
 	SetNamespaces(value IXMLNode)
 	// methods:
+	ResolvePrefixForNamespaceURI(namespaceURI IString) IString
 }
 
 // The element nodes in an XML tree structure.
@@ -90,6 +91,16 @@ func NewXMLElement() XMLElement {
 	return getXMLElementClass().New()
 }
 
+
+
+// Returns the prefix associated with the specified URI.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolvePrefix(forNamespaceURI:)
+func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI IString) IString {
+	rv := objc.Send[String](x_.ID, objc.Sel("resolvePrefixForNamespaceURI:"), namespaceURI)
+	return rv
+}
 
 
 // Sets all attributes of the receiver at once, replacing any existing attribute nodes.

@@ -35,12 +35,12 @@ type IMutableDictionary interface {
 	AddApplicationParameterHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddAuthorizationChallengeHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddAuthorizationResponseHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
-	AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */, isEndOfBody bool /* primitive/slice/pointer. */) unsafe.Pointer
+	AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */, isEndOfBody bool) unsafe.Pointer
 	AddByteSequenceHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddConnectionIDHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddCountHeader(inCount uint32 /* not a class type */) unsafe.Pointer
 	AddDescriptionHeader(inDescriptionString IString) unsafe.Pointer
-	AddEntriesFromDictionary(otherDictionary IDictionary /* already interface */)
+	AddEntriesFromDictionary(otherDictionary IDictionary)
 	AddHTTPHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddImageDescriptorHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */) unsafe.Pointer
 	AddImageHandleHeader(type_ IString) unsafe.Pointer
@@ -56,8 +56,8 @@ type IMutableDictionary interface {
 	GetHeaderBytes() IMutableData
 	RemoveAllObjects()
 	RemoveObjectForKey(aKey unsafe.Pointer)
-	RemoveObjectsForKeys(keyArray []objc.ID /* already interface */)
-	SetDictionary(otherDictionary IDictionary /* already interface */)
+	RemoveObjectsForKeys(keyArray []objc.ID)
+	SetDictionary(otherDictionary IDictionary)
 	SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject)
 	SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject)
 }
@@ -121,7 +121,7 @@ func NewMutableDictionary() MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
-func NewMutableDictionaryWithCapacity(numItems uint /* primitive/slice/pointer. */) MutableDictionary {
+func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
@@ -190,7 +190,7 @@ func NewMutableDictionaryWithSharedKeySet(keyset objectivec.IObject) MutableDict
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/dictionaryWithCapacity:
-func (mc _MutableDictionaryClass) DictionaryWithCapacity(numItems uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithCapacity:"), numItems)
 	return rv
 }
@@ -272,7 +272,7 @@ func (m_ MutableDictionary) AddAuthorizationResponseHeaderLength(inHeaderData un
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addBodyHeader(_:length:endOfBody:)
-func (m_ MutableDictionary) AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */, isEndOfBody bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (m_ MutableDictionary) AddBodyHeaderLengthEndOfBody(inHeaderData unsafe.Pointer, inHeaderDataLength uint32 /* not a class type */, isEndOfBody bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addBodyHeader:length:endOfBody:"), inHeaderData, inHeaderDataLength, isEndOfBody)
 	return rv
 }
@@ -314,7 +314,7 @@ func (m_ MutableDictionary) AddDescriptionHeader(inDescriptionString IString) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addEntries(from:)
-func (m_ MutableDictionary) AddEntriesFromDictionary(otherDictionary IDictionary /* already interface */) {
+func (m_ MutableDictionary) AddEntriesFromDictionary(otherDictionary IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addEntriesFromDictionary:"), otherDictionary)
 }
 
@@ -445,7 +445,7 @@ func (m_ MutableDictionary) RemoveObjectForKey(aKey unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/removeObjects(forKeys:)
-func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID /* already interface */) {
+func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsForKeys:"), keyArray)
 }
 
@@ -454,7 +454,7 @@ func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setDictionary(_:)
-func (m_ MutableDictionary) SetDictionary(otherDictionary IDictionary /* already interface */) {
+func (m_ MutableDictionary) SetDictionary(otherDictionary IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), otherDictionary)
 }
 

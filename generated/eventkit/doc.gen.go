@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to EventKit without requiring cgo.
-
-// Create, view, and edit calendar and reminder events.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit
+// See: https://developer.apple.com/documentation/EventKit
 package eventkit
 
 import (

@@ -30,11 +30,15 @@ type _MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEventClass stru
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent interface {
 	objectivec.IObject
+	// properties:
 	Ranges() unsafe.Pointer
 	SetRanges(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent
 type MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent struct {
 	objectivec.Object
@@ -77,7 +81,8 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent() MTREl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) Ranges() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ranges"))
@@ -85,8 +90,7 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) Range
 }
 
 
-// SetRanges sets the value of the ranges property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) SetRanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRanges:"), value)

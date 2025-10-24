@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,14 +33,14 @@ type _MKReverseGeocodingRequestClass struct {
 type IMKReverseGeocodingRequest interface {
 	objectivec.IObject
 	// properties:
-	IsCancelled() bool /* primitive/slice/pointer. */
-	SetIsCancelled(value bool /* primitive/slice/pointer. */)
-	IsLoading() bool /* primitive/slice/pointer. */
-	SetIsLoading(value bool /* primitive/slice/pointer. */)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
 	Location() objc.IObject /* cross-framework: Location */
 	SetLocation(value objc.IObject /* cross-framework: Location */)
-	PreferredLocale() foundation.objc.IObject /* cross-framework: Locale */
-	SetPreferredLocale(value foundation.objc.IObject /* cross-framework: Locale */)
+	PreferredLocale() objc.IObject /* cross-framework: Locale */
+	SetPreferredLocale(value objc.IObject /* cross-framework: Locale */)
 	// methods:
 }
 
@@ -100,7 +101,7 @@ func NewMKReverseGeocodingRequest() MKReverseGeocodingRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/iscancelled
-func (m_ MKReverseGeocodingRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
+func (m_ MKReverseGeocodingRequest) IsCancelled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -110,7 +111,7 @@ func (m_ MKReverseGeocodingRequest) IsCancelled() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/iscancelled
-func (m_ MKReverseGeocodingRequest) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
+func (m_ MKReverseGeocodingRequest) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -119,7 +120,7 @@ func (m_ MKReverseGeocodingRequest) SetIsCancelled(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/isloading
-func (m_ MKReverseGeocodingRequest) IsLoading() bool /* primitive/slice/pointer. */ {
+func (m_ MKReverseGeocodingRequest) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
 	return rv
 }
@@ -129,7 +130,7 @@ func (m_ MKReverseGeocodingRequest) IsLoading() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/isloading
-func (m_ MKReverseGeocodingRequest) SetIsLoading(value bool /* primitive/slice/pointer. */) {
+func (m_ MKReverseGeocodingRequest) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 
@@ -139,7 +140,7 @@ func (m_ MKReverseGeocodingRequest) SetIsLoading(value bool /* primitive/slice/p
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
 func (m_ MKReverseGeocodingRequest) Location() objc.IObject /* cross-framework: Location */ {
-	rv := objc.Send[Location](m_.ID, objc.Sel("location"))
+	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -157,7 +158,7 @@ func (m_ MKReverseGeocodingRequest) SetLocation(value objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
-func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.objc.IObject /* cross-framework: Locale */ {
+func (m_ MKReverseGeocodingRequest) PreferredLocale() objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
 	return rv
 }
@@ -167,7 +168,7 @@ func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
-func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value foundation.objc.IObject /* cross-framework: Locale */) {
+func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

@@ -30,13 +30,17 @@ type _MTRTestClusterClusterTestSimpleArgumentResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterTestSimpleArgumentResponseParams] class.
 type IMTRTestClusterClusterTestSimpleArgumentResponseParams interface {
 	IMTRUnitTestingClusterTestSimpleArgumentResponseParams
-	ReturnValue() foundation.Number
-	SetReturnValue(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ReturnValue() objc.IObject /* cross-framework: NSNumber */
+	SetReturnValue(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestSimpleArgumentResponseParams
 type MTRTestClusterClusterTestSimpleArgumentResponseParams struct {
 	MTRUnitTestingClusterTestSimpleArgumentResponseParams
@@ -81,33 +85,33 @@ func NewMTRTestClusterClusterTestSimpleArgumentResponseParams() MTRTestClusterCl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/returnvalue
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) ReturnValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("returnValue"))
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) ReturnValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("returnValue"))
 	return rv
 }
 
 
-// SetReturnValue sets the value of the returnValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/returnvalue
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetReturnValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetReturnValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReturnValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

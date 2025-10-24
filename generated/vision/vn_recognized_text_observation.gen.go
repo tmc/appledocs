@@ -29,13 +29,18 @@ type _RecognizedTextObservationClass struct {
 // An interface definition for the [RecognizedTextObservation] class.
 type IRecognizedTextObservation interface {
 	IRectangleObservation
-	TopCandidates(maxCandidateCount uint) []RecognizedText
+	// properties:
+	// methods:
 }
 
 // A request that detects and recognizes regions of text in an image.
 //
 // This type of observation results from a . It contains information about both the location and content of text and glyphs that Vision recognized in the input image.
+
+
+// A request that detects and recognizes regions of text in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedTextObservation
 type RecognizedTextObservation struct {
 	RectangleObservation
@@ -81,14 +86,6 @@ func NewRecognizedTextObservation() RecognizedTextObservation {
 	return getRecognizedTextObservationClass().New()
 }
 
-
-// Requests the top candidates for a recognized text string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedTextObservation/topCandidates(_:)
-func (r_ RecognizedTextObservation) TopCandidates(maxCandidateCount uint) []RecognizedText {
-	rv := objc.Send[[]RecognizedText](r_.ID, objc.Sel("topCandidates:"), maxCandidateCount)
-	return rv
-}
 
 
 

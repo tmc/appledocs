@@ -29,14 +29,20 @@ type _VZUSBMassStorageDeviceClass struct {
 // An interface definition for the [VZUSBMassStorageDevice] class.
 type IVZUSBMassStorageDevice interface {
 	IVZStorageDevice
+	// properties:
 	UsbDevices() unsafe.Pointer
 	SetUsbDevices(value unsafe.Pointer)
+	// methods:
 }
 
 // A class that represents a hot-pluggable USB mass storage device.
 //
 // Create this device either by instantiating it directly and passing to its initializer, or instantiating a in a . Direct instantiation creates an object that you can pass to . Instantiation through makes the device available in the property.
+
+
+// A class that represents a hot-pluggable USB mass storage device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBMassStorageDevice
 type VZUSBMassStorageDevice struct {
 	VZStorageDevice
@@ -83,8 +89,23 @@ func NewVZUSBMassStorageDevice() VZUSBMassStorageDevice {
 }
 
 
+
+// Creates a USB mass storage device with the provided configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBMassStorageDevice/init(configuration:)
+func NewVZUSBMassStorageDeviceWithConfiguration(configuration IVZUSBMassStorageDeviceConfiguration) VZUSBMassStorageDevice {
+	instance := getVZUSBMassStorageDeviceClass().Alloc()
+	rv := objc.Send[VZUSBMassStorageDevice](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The list of attached USB devices for the controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
 func (v_ VZUSBMassStorageDevice) UsbDevices() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbDevices"))
@@ -92,14 +113,12 @@ func (v_ VZUSBMassStorageDevice) UsbDevices() unsafe.Pointer {
 }
 
 
-// SetUsbDevices sets the value of the usbDevices property.
 // The list of attached USB devices for the controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices
 func (v_ VZUSBMassStorageDevice) SetUsbDevices(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), value)
 }
-
 
 

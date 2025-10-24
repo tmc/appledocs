@@ -35,12 +35,12 @@ type IImageConstraint interface {
 	SetImageConstraint(value IMLImageConstraint)
 	Type() FeatureType
 	SetType(value FeatureType)
-	PixelFormatType() unsafe.Pointer
-	SetPixelFormatType(value unsafe.Pointer)
-	PixelsHigh() int /* primitive/slice/pointer. */
-	SetPixelsHigh(value int /* primitive/slice/pointer. */)
-	PixelsWide() int /* primitive/slice/pointer. */
-	SetPixelsWide(value int /* primitive/slice/pointer. */)
+	PixelFormatType() uint32 /* not a class type */
+	SetPixelFormatType(value uint32 /* not a class type */)
+	PixelsHigh() int
+	SetPixelsHigh(value int)
+	PixelsWide() int
+	SetPixelsWide(value int)
 	SizeConstraint() objc.IObject /* cross-framework: ImageSizeConstraint */
 	SetSizeConstraint(value objc.IObject /* cross-framework: ImageSizeConstraint */)
 	// methods:
@@ -141,8 +141,8 @@ func (i_ ImageConstraint) SetType(value FeatureType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelformattype
-func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pixelFormatType"))
+func (i_ ImageConstraint) PixelFormatType() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](i_.ID, objc.Sel("pixelFormatType"))
 	return rv
 }
 
@@ -151,7 +151,7 @@ func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelformattype
-func (i_ ImageConstraint) SetPixelFormatType(value unsafe.Pointer) {
+func (i_ ImageConstraint) SetPixelFormatType(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelFormatType:"), value)
 }
 
@@ -160,7 +160,7 @@ func (i_ ImageConstraint) SetPixelFormatType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-func (i_ ImageConstraint) PixelsHigh() int /* primitive/slice/pointer. */ {
+func (i_ ImageConstraint) PixelsHigh() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (i_ ImageConstraint) PixelsHigh() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-func (i_ ImageConstraint) SetPixelsHigh(value int /* primitive/slice/pointer. */) {
+func (i_ ImageConstraint) SetPixelsHigh(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
 
@@ -179,7 +179,7 @@ func (i_ ImageConstraint) SetPixelsHigh(value int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-func (i_ ImageConstraint) PixelsWide() int /* primitive/slice/pointer. */ {
+func (i_ ImageConstraint) PixelsWide() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (i_ ImageConstraint) PixelsWide() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-func (i_ ImageConstraint) SetPixelsWide(value int /* primitive/slice/pointer. */) {
+func (i_ ImageConstraint) SetPixelsWide(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
 

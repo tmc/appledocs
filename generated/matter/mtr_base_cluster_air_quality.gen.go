@@ -29,9 +29,13 @@ type _MTRBaseClusterAirQualityClass struct {
 // An interface definition for the [MTRBaseClusterAirQuality] class.
 type IMTRBaseClusterAirQuality interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterAirQuality
 type MTRBaseClusterAirQuality struct {
 	MTRGenericBaseCluster

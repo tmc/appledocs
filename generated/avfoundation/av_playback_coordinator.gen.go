@@ -33,15 +33,15 @@ type IPlaybackCoordinator interface {
 	// properties:
 	OtherParticipants() IAVCoordinatedPlaybackParticipant
 	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
-	PauseSnapsToMediaTimeOfOriginator() bool /* primitive/slice/pointer. */
-	SetPauseSnapsToMediaTimeOfOriginator(value bool /* primitive/slice/pointer. */)
+	PauseSnapsToMediaTimeOfOriginator() bool
+	SetPauseSnapsToMediaTimeOfOriginator(value bool)
 	SuspensionReasons() unsafe.Pointer
 	SetSuspensionReasons(value unsafe.Pointer)
 	SuspensionReasonsThatTriggerWaiting() unsafe.Pointer
 	SetSuspensionReasonsThatTriggerWaiting(value unsafe.Pointer)
 	// methods:
-	ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int /* primitive/slice/pointer. */
-	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer. */, reason CoordinatedPlaybackSuspensionReason /* not a class type */)
+	ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int
+	SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason CoordinatedPlaybackSuspensionReason /* not a class type */)
 }
 
 // An object that coordinates the playback of players in a connected group.
@@ -101,7 +101,7 @@ func NewPlaybackCoordinator() PlaybackCoordinator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/participantLimitForWaitingOutSuspensions(withReason:)
-func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int /* primitive/slice/pointer. */ {
+func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason(reason CoordinatedPlaybackSuspensionReason /* not a class type */) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("participantLimitForWaitingOutSuspensionsWithReason:"), reason)
 	return rv
 }
@@ -111,7 +111,7 @@ func (p_ PlaybackCoordinator) ParticipantLimitForWaitingOutSuspensionsWithReason
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlaybackCoordinator/setParticipantLimit(_:forWaitingOutSuspensionsWithReason:)
-func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int /* primitive/slice/pointer. */, reason CoordinatedPlaybackSuspensionReason /* not a class type */) {
+func (p_ PlaybackCoordinator) SetParticipantLimitForWaitingOutSuspensionsWithReason(participantLimit int, reason CoordinatedPlaybackSuspensionReason /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParticipantLimit:forWaitingOutSuspensionsWithReason:"), participantLimit, reason)
 }
 
@@ -139,7 +139,7 @@ func (p_ PlaybackCoordinator) SetOtherParticipants(value IAVCoordinatedPlaybackP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
-func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool /* primitive/slice/pointer. */ {
+func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pauseSnapsToMediaTimeOfOriginator"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (p_ PlaybackCoordinator) PauseSnapsToMediaTimeOfOriginator() bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/pausesnapstomediatimeoforiginator
-func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool /* primitive/slice/pointer. */) {
+func (p_ PlaybackCoordinator) SetPauseSnapsToMediaTimeOfOriginator(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPauseSnapsToMediaTimeOfOriginator:"), value)
 }
 

@@ -30,17 +30,21 @@ type _MTRControllerFactoryParamsClass struct {
 // An interface definition for the [MTRControllerFactoryParams] class.
 type IMTRControllerFactoryParams interface {
 	IMTRDeviceControllerFactoryParams
-	CdCerts() foundation.Data
-	SetCdCerts(value foundation.IData)
-	PaaCerts() foundation.Data
-	SetPaaCerts(value foundation.IData)
+	// properties:
+	CdCerts() objc.IObject /* cross-framework: Data */
+	SetCdCerts(value objc.IObject /* cross-framework: Data */)
+	PaaCerts() objc.IObject /* cross-framework: Data */
+	SetPaaCerts(value objc.IObject /* cross-framework: Data */)
 	StartServer() bool
 	SetStartServer(value bool)
 	StorageDelegate() unsafe.Pointer
 	SetStorageDelegate(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams
 type MTRControllerFactoryParams struct {
 	MTRDeviceControllerFactoryParams
@@ -85,37 +89,38 @@ func NewMTRControllerFactoryParams() MTRControllerFactoryParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) CdCerts() foundation.Data {
+func (m_ MTRControllerFactoryParams) CdCerts() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("cdCerts"))
 	return rv
 }
 
 
-// SetCdCerts sets the value of the cdCerts property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) SetCdCerts(value foundation.IData) {
+func (m_ MTRControllerFactoryParams) SetCdCerts(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) PaaCerts() foundation.Data {
+func (m_ MTRControllerFactoryParams) PaaCerts() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("paaCerts"))
 	return rv
 }
 
 
-// SetPaaCerts sets the value of the paaCerts property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) SetPaaCerts(value foundation.IData) {
+func (m_ MTRControllerFactoryParams) SetPaaCerts(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaaCerts:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
 func (m_ MTRControllerFactoryParams) StartServer() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startServer"))
@@ -123,14 +128,14 @@ func (m_ MTRControllerFactoryParams) StartServer() bool {
 }
 
 
-// SetStartServer sets the value of the startServer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
 func (m_ MTRControllerFactoryParams) SetStartServer(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartServer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
 func (m_ MTRControllerFactoryParams) StorageDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storageDelegate"))
@@ -138,8 +143,7 @@ func (m_ MTRControllerFactoryParams) StorageDelegate() unsafe.Pointer {
 }
 
 
-// SetStorageDelegate sets the value of the storageDelegate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
 func (m_ MTRControllerFactoryParams) SetStorageDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageDelegate:"), value)

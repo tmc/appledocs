@@ -30,22 +30,28 @@ type _SFVoiceAnalyticsClass struct {
 // An interface definition for the [SFVoiceAnalytics] class.
 type ISFVoiceAnalytics interface {
 	objectivec.IObject
+	// properties:
 	IsFinal() bool
 	SetIsFinal(value bool)
-	Jitter() SFAcousticFeature
+	Jitter() ISFAcousticFeature
 	SetJitter(value ISFAcousticFeature)
-	Pitch() SFAcousticFeature
+	Pitch() ISFAcousticFeature
 	SetPitch(value ISFAcousticFeature)
-	Shimmer() SFAcousticFeature
+	Shimmer() ISFAcousticFeature
 	SetShimmer(value ISFAcousticFeature)
-	Voicing() SFAcousticFeature
+	Voicing() ISFAcousticFeature
 	SetVoicing(value ISFAcousticFeature)
+	// methods:
 }
 
 // A collection of vocal analysis metrics.
 //
 // Use an object to access the insights. Voice analytics include the following features: Use to measure how pitch varies in audio. Use to measure how amplitude varies in audio. Use to measure the highness and lowness of the tone. Use to identify voiced regions in speech. These results are part of the object and are available when the system sends the flag.
+
+
+// A collection of vocal analysis metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFVoiceAnalytics
 type SFVoiceAnalytics struct {
 	objectivec.Object
@@ -90,8 +96,10 @@ func NewSFVoiceAnalytics() SFVoiceAnalytics {
 }
 
 
+
 // A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
 func (s_ SFVoiceAnalytics) IsFinal() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isFinal"))
@@ -99,82 +107,85 @@ func (s_ SFVoiceAnalytics) IsFinal() bool {
 }
 
 
-// SetIsFinal sets the value of the isFinal property.
 // A Boolean value that indicates whether speech recognition is complete and whether the transcriptions are final.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal
 func (s_ SFVoiceAnalytics) SetIsFinal(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinal:"), value)
 }
 
+
 // The variation in pitch in each frame of a transcription segment, expressed as a percentage of the frame’s fundamental frequency.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter
-func (s_ SFVoiceAnalytics) Jitter() SFAcousticFeature {
+func (s_ SFVoiceAnalytics) Jitter() ISFAcousticFeature {
 	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("jitter"))
 	return rv
 }
 
 
-// SetJitter sets the value of the jitter property.
 // The variation in pitch in each frame of a transcription segment, expressed as a percentage of the frame’s fundamental frequency.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter
 func (s_ SFVoiceAnalytics) SetJitter(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setJitter:"), value)
 }
 
+
 // The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
-func (s_ SFVoiceAnalytics) Pitch() SFAcousticFeature {
+func (s_ SFVoiceAnalytics) Pitch() ISFAcousticFeature {
 	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("pitch"))
 	return rv
 }
 
 
-// SetPitch sets the value of the pitch property.
 // The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
 func (s_ SFVoiceAnalytics) SetPitch(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPitch:"), value)
 }
 
+
 // The variation in vocal volume stability (amplitude) in each frame of a transcription segment, expressed in decibels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/shimmer
-func (s_ SFVoiceAnalytics) Shimmer() SFAcousticFeature {
+func (s_ SFVoiceAnalytics) Shimmer() ISFAcousticFeature {
 	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("shimmer"))
 	return rv
 }
 
 
-// SetShimmer sets the value of the shimmer property.
 // The variation in vocal volume stability (amplitude) in each frame of a transcription segment, expressed in decibels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/shimmer
 func (s_ SFVoiceAnalytics) SetShimmer(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShimmer:"), value)
 }
 
+
 // The likelihood of a voice in each frame of a transcription segment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing
-func (s_ SFVoiceAnalytics) Voicing() SFAcousticFeature {
+func (s_ SFVoiceAnalytics) Voicing() ISFAcousticFeature {
 	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("voicing"))
 	return rv
 }
 
 
-// SetVoicing sets the value of the voicing property.
 // The likelihood of a voice in each frame of a transcription segment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing
 func (s_ SFVoiceAnalytics) SetVoicing(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoicing:"), value)

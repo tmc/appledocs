@@ -29,12 +29,18 @@ type _CSelectionLayerClass struct {
 // An interface definition for the [CSelectionLayer] class.
 type ICSelectionLayer interface {
 	ICLayer
+	// properties:
+	// methods:
 }
 
 // A layer for selecting elements from two tensors.
 //
 // A selection layer takes a condition tensor that acts as a mask. It determines whether the corresponding element or row in the output comes from tensor (if the element in the condition is ) or tensor (if ).
+
+
+// A layer for selecting elements from two tensors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSelectionLayer
 type CSelectionLayer struct {
 	CLayer

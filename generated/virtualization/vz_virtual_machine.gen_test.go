@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = virtualization.NewVZVirtualMachine
 
-// ExampleNewVZVirtualMachineWithConfiguration demonstrates how to create a VZVirtualMachine instance using NewVZVirtualMachineWithConfiguration.
-// Creates the VM and configures it with the specified data.
-func ExampleNewVZVirtualMachineWithConfiguration() {
-	_ = virtualization.NewVZVirtualMachineWithConfiguration(
-		virtualization.VZVirtualMachineConfiguration{}, // configuration VZVirtualMachineConfiguration
-	)
-	// Output:
-}

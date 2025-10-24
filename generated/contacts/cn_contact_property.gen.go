@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,23 +32,23 @@ type _CNContactPropertyClass struct {
 type ICNContactProperty interface {
 	objectivec.IObject
 	// properties:
-	GivenName() string /* primitive/slice/pointer. */
-	SetGivenName(value string /* primitive/slice/pointer. */)
-	JobTitle() string /* primitive/slice/pointer. */
-	SetJobTitle(value string /* primitive/slice/pointer. */)
+	GivenName() objc.IObject /* cross-framework: NSString */
+	SetGivenName(value objc.IObject /* cross-framework: NSString */)
+	JobTitle() objc.IObject /* cross-framework: NSString */
+	SetJobTitle(value objc.IObject /* cross-framework: NSString */)
 	PhoneNumbers() ICNPhoneNumber
 	SetPhoneNumbers(value ICNPhoneNumber)
 	Contact() ICNContact
 	SetContact(value ICNContact)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Key() string /* primitive/slice/pointer. */
-	SetKey(value string /* primitive/slice/pointer. */)
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Key() objc.IObject /* cross-framework: NSString */
+	SetKey(value objc.IObject /* cross-framework: NSString */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	Value() unsafe.Pointer
 	SetValue(value unsafe.Pointer)
-	CNContactPropertyNotFetchedExceptionName() string /* primitive/slice/pointer. */
+	CNContactPropertyNotFetchedExceptionName() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -108,8 +109,8 @@ func NewCNContactProperty() CNContactProperty {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/givenname
-func (c_ CNContactProperty) GivenName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
+func (c_ CNContactProperty) GivenName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("givenName"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (c_ CNContactProperty) GivenName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/givenname
-func (c_ CNContactProperty) SetGivenName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGivenName:"), objc.String(value))
+func (c_ CNContactProperty) SetGivenName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGivenName:"), value)
 }
 
 
@@ -127,8 +128,8 @@ func (c_ CNContactProperty) SetGivenName(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
-func (c_ CNContactProperty) JobTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
+func (c_ CNContactProperty) JobTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
@@ -137,8 +138,8 @@ func (c_ CNContactProperty) JobTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
-func (c_ CNContactProperty) SetJobTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setJobTitle:"), objc.String(value))
+func (c_ CNContactProperty) SetJobTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setJobTitle:"), value)
 }
 
 
@@ -184,8 +185,8 @@ func (c_ CNContactProperty) SetContact(value ICNContact) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/identifier
-func (c_ CNContactProperty) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNContactProperty) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -194,8 +195,8 @@ func (c_ CNContactProperty) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/identifier
-func (c_ CNContactProperty) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ CNContactProperty) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -203,8 +204,8 @@ func (c_ CNContactProperty) SetIdentifier(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/key
-func (c_ CNContactProperty) Key() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("key"))
+func (c_ CNContactProperty) Key() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -213,8 +214,8 @@ func (c_ CNContactProperty) Key() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/key
-func (c_ CNContactProperty) SetKey(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKey:"), objc.String(value))
+func (c_ CNContactProperty) SetKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKey:"), value)
 }
 
 
@@ -222,8 +223,8 @@ func (c_ CNContactProperty) SetKey(value string /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/label
-func (c_ CNContactProperty) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CNContactProperty) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -232,8 +233,8 @@ func (c_ CNContactProperty) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/label
-func (c_ CNContactProperty) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ CNContactProperty) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
 
 
@@ -260,8 +261,8 @@ func (c_ CNContactProperty) SetValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname
-func (c_ CNContactProperty) CNContactPropertyNotFetchedExceptionName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
+func (c_ CNContactProperty) CNContactPropertyNotFetchedExceptionName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
 	return rv
 }
 

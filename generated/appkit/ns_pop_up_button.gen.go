@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,48 +33,48 @@ type _PopUpButtonClass struct {
 type IPopUpButton interface {
 	IButton
 	// properties:
-	AltersStateOfSelectedItem() bool /* primitive/slice/pointer. */
-	SetAltersStateOfSelectedItem(value bool /* primitive/slice/pointer. */)
-	AutoenablesItems() bool /* primitive/slice/pointer. */
-	SetAutoenablesItems(value bool /* primitive/slice/pointer. */)
-	IndexOfSelectedItem() int /* primitive/slice/pointer. */
-	ItemArray() []MenuItem /* primitive/slice/pointer. */
-	ItemTitles() []string /* primitive/slice/pointer. */
+	AltersStateOfSelectedItem() bool
+	SetAltersStateOfSelectedItem(value bool)
+	AutoenablesItems() bool
+	SetAutoenablesItems(value bool)
+	IndexOfSelectedItem() int
+	ItemArray() []objc.IObject /* cross-framework: MenuItem */
+	ItemTitles() []string
 	LastItem() objc.IObject /* cross-framework: MenuItem */
 	Menu() IMenu
 	SetMenu(value IMenu)
-	NumberOfItems() int /* primitive/slice/pointer. */
+	NumberOfItems() int
 	PreferredEdge() RectEdge /* not a class type */
 	SetPreferredEdge(value RectEdge /* not a class type */)
-	PullsDown() bool /* primitive/slice/pointer. */
-	SetPullsDown(value bool /* primitive/slice/pointer. */)
+	PullsDown() bool
+	SetPullsDown(value bool)
 	SelectedItem() objc.IObject /* cross-framework: MenuItem */
-	SelectedTag() int /* primitive/slice/pointer. */
+	SelectedTag() int
 	TitleOfSelectedItem() objc.IObject /* cross-framework: NSString */
-	UsesItemFromMenu() bool /* primitive/slice/pointer. */
-	SetUsesItemFromMenu(value bool /* primitive/slice/pointer. */)
+	UsesItemFromMenu() bool
+	SetUsesItemFromMenu(value bool)
 	Image() IImage
 	SetImage(value IImage)
 	// methods:
-	AddItemWithTitle(title objc.IObject /* cross-framework NSString */)
-	AddItemsWithTitles(itemTitles []string /* primitive/slice/pointer. */)
-	IndexOfItem(item objc.IObject /* cross-framework MenuItem */) int /* primitive/slice/pointer. */
-	IndexOfItemWithRepresentedObject(obj objectivec.IObject) int /* primitive/slice/pointer. */
-	IndexOfItemWithTag(tag int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int /* primitive/slice/pointer. */
-	IndexOfItemWithTitle(title objc.IObject /* cross-framework NSString */) int /* primitive/slice/pointer. */
-	InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework NSString */, index int /* primitive/slice/pointer. */)
-	ItemAtIndex(index int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: MenuItem */
-	ItemWithTitle(title objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: MenuItem */
-	ItemTitleAtIndex(index int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	AddItemWithTitle(title objc.IObject /* cross-framework: NSString */)
+	AddItemsWithTitles(itemTitles []string)
+	IndexOfItem(item objc.IObject /* cross-framework: MenuItem */) int
+	IndexOfItemWithRepresentedObject(obj objectivec.IObject) int
+	IndexOfItemWithTag(tag int) int
+	IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int
+	IndexOfItemWithTitle(title objc.IObject /* cross-framework: NSString */) int
+	InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework: NSString */, index int)
+	ItemAtIndex(index int) objc.IObject /* cross-framework: MenuItem */
+	ItemWithTitle(title objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: MenuItem */
+	ItemTitleAtIndex(index int) objc.IObject /* cross-framework: String */
 	RemoveAllItems()
-	RemoveItemAtIndex(index int /* primitive/slice/pointer. */)
-	RemoveItemWithTitle(title objc.IObject /* cross-framework NSString */)
-	SelectItem(item objc.IObject /* cross-framework MenuItem */)
-	SelectItemAtIndex(index int /* primitive/slice/pointer. */)
-	SelectItemWithTag(tag int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SelectItemWithTitle(title objc.IObject /* cross-framework NSString */)
-	SetTitle(string_ objc.IObject /* cross-framework NSString */)
+	RemoveItemAtIndex(index int)
+	RemoveItemWithTitle(title objc.IObject /* cross-framework: NSString */)
+	SelectItem(item objc.IObject /* cross-framework: MenuItem */)
+	SelectItemAtIndex(index int)
+	SelectItemWithTag(tag int) bool
+	SelectItemWithTitle(title objc.IObject /* cross-framework: NSString */)
+	SetTitle(string_ objc.IObject /* cross-framework: NSString */)
 	SynchronizeTitleAndSelectedItem()
 }
 
@@ -136,7 +137,7 @@ func NewPopUpButton() PopUpButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/init(frame:pullsDown:)
-func NewPopUpButtonWithFramePullsDown(buttonFrame objc.IObject /* cross-framework Rect */, flag bool /* primitive/slice/pointer. */) PopUpButton {
+func NewPopUpButtonWithFramePullsDown(buttonFrame objc.IObject /* cross-framework: Rect */, flag bool) PopUpButton {
 	instance := getPopUpButtonClass().Alloc()
 	rv := objc.Send[PopUpButton](instance.ID, objc.Sel("initWithFrame:pullsDown:"), buttonFrame, flag)
 	rv.Autorelease()
@@ -169,7 +170,7 @@ func (pc _PopUpButtonClass) PullDownButtonWithImageMenu(image IImage, menu IMenu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullDownButtonWithTitle:image:menu:
-func (pc _PopUpButtonClass) PullDownButtonWithTitleImageMenu(title objc.IObject /* cross-framework NSString */, image IImage, menu IMenu) unsafe.Pointer {
+func (pc _PopUpButtonClass) PullDownButtonWithTitleImageMenu(title objc.IObject /* cross-framework: NSString */, image IImage, menu IMenu) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pullDownButtonWithTitle:image:menu:"), title, image, menu)
 	return rv
 }
@@ -179,7 +180,7 @@ func (pc _PopUpButtonClass) PullDownButtonWithTitleImageMenu(title objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullDownButtonWithTitle:menu:
-func (pc _PopUpButtonClass) PullDownButtonWithTitleMenu(title objc.IObject /* cross-framework NSString */, menu IMenu) unsafe.Pointer {
+func (pc _PopUpButtonClass) PullDownButtonWithTitleMenu(title objc.IObject /* cross-framework: NSString */, menu IMenu) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pullDownButtonWithTitle:menu:"), title, menu)
 	return rv
 }
@@ -189,7 +190,7 @@ func (pc _PopUpButtonClass) PullDownButtonWithTitleMenu(title objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/addItem(withTitle:)
-func (p_ PopUpButton) AddItemWithTitle(title objc.IObject /* cross-framework NSString */) {
+func (p_ PopUpButton) AddItemWithTitle(title objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addItemWithTitle:"), title)
 }
 
@@ -198,7 +199,7 @@ func (p_ PopUpButton) AddItemWithTitle(title objc.IObject /* cross-framework NSS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/addItems(withTitles:)
-func (p_ PopUpButton) AddItemsWithTitles(itemTitles []string /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) AddItemsWithTitles(itemTitles []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addItemsWithTitles:"), itemTitles)
 }
 
@@ -207,7 +208,7 @@ func (p_ PopUpButton) AddItemsWithTitles(itemTitles []string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/index(of:)
-func (p_ PopUpButton) IndexOfItem(item objc.IObject /* cross-framework MenuItem */) int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfItem(item objc.IObject /* cross-framework: MenuItem */) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItem:"), item)
 	return rv
 }
@@ -217,7 +218,7 @@ func (p_ PopUpButton) IndexOfItem(item objc.IObject /* cross-framework MenuItem 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withRepresentedObject:)
-func (p_ PopUpButton) IndexOfItemWithRepresentedObject(obj objectivec.IObject) int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfItemWithRepresentedObject(obj objectivec.IObject) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithRepresentedObject:"), obj)
 	return rv
 }
@@ -227,7 +228,7 @@ func (p_ PopUpButton) IndexOfItemWithRepresentedObject(obj objectivec.IObject) i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTag:)
-func (p_ PopUpButton) IndexOfItemWithTag(tag int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfItemWithTag(tag int) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTag:"), tag)
 	return rv
 }
@@ -237,7 +238,7 @@ func (p_ PopUpButton) IndexOfItemWithTag(tag int /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTarget:andAction:)
-func (p_ PopUpButton) IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfItemWithTargetAndAction(target objectivec.IObject, actionSelector objc.SEL) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTarget:andAction:"), target, actionSelector)
 	return rv
 }
@@ -247,7 +248,7 @@ func (p_ PopUpButton) IndexOfItemWithTargetAndAction(target objectivec.IObject, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfItem(withTitle:)
-func (p_ PopUpButton) IndexOfItemWithTitle(title objc.IObject /* cross-framework NSString */) int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfItemWithTitle(title objc.IObject /* cross-framework: NSString */) int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfItemWithTitle:"), title)
 	return rv
 }
@@ -257,7 +258,7 @@ func (p_ PopUpButton) IndexOfItemWithTitle(title objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/insertItem(withTitle:at:)
-func (p_ PopUpButton) InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework NSString */, index int /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) InsertItemWithTitleAtIndex(title objc.IObject /* cross-framework: NSString */, index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("insertItemWithTitle:atIndex:"), title, index)
 }
 
@@ -266,7 +267,7 @@ func (p_ PopUpButton) InsertItemWithTitleAtIndex(title objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/item(at:)
-func (p_ PopUpButton) ItemAtIndex(index int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: MenuItem */ {
+func (p_ PopUpButton) ItemAtIndex(index int) objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](p_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
 }
@@ -276,7 +277,7 @@ func (p_ PopUpButton) ItemAtIndex(index int /* primitive/slice/pointer. */) objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/item(withTitle:)
-func (p_ PopUpButton) ItemWithTitle(title objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: MenuItem */ {
+func (p_ PopUpButton) ItemWithTitle(title objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](p_.ID, objc.Sel("itemWithTitle:"), title)
 	return rv
 }
@@ -286,8 +287,8 @@ func (p_ PopUpButton) ItemWithTitle(title objc.IObject /* cross-framework NSStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemTitle(at:)
-func (p_ PopUpButton) ItemTitleAtIndex(index int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](p_.ID, objc.Sel("itemTitleAtIndex:"), index)
+func (p_ PopUpButton) ItemTitleAtIndex(index int) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("itemTitleAtIndex:"), index)
 	return rv
 }
 
@@ -305,7 +306,7 @@ func (p_ PopUpButton) RemoveAllItems() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/removeItem(at:)
-func (p_ PopUpButton) RemoveItemAtIndex(index int /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) RemoveItemAtIndex(index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeItemAtIndex:"), index)
 }
 
@@ -314,7 +315,7 @@ func (p_ PopUpButton) RemoveItemAtIndex(index int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/removeItem(withTitle:)
-func (p_ PopUpButton) RemoveItemWithTitle(title objc.IObject /* cross-framework NSString */) {
+func (p_ PopUpButton) RemoveItemWithTitle(title objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeItemWithTitle:"), title)
 }
 
@@ -323,7 +324,7 @@ func (p_ PopUpButton) RemoveItemWithTitle(title objc.IObject /* cross-framework 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/select(_:)
-func (p_ PopUpButton) SelectItem(item objc.IObject /* cross-framework MenuItem */) {
+func (p_ PopUpButton) SelectItem(item objc.IObject /* cross-framework: MenuItem */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItem:"), item)
 }
 
@@ -332,7 +333,7 @@ func (p_ PopUpButton) SelectItem(item objc.IObject /* cross-framework MenuItem *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(at:)
-func (p_ PopUpButton) SelectItemAtIndex(index int /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) SelectItemAtIndex(index int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItemAtIndex:"), index)
 }
 
@@ -341,7 +342,7 @@ func (p_ PopUpButton) SelectItemAtIndex(index int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(withTag:)
-func (p_ PopUpButton) SelectItemWithTag(tag int /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) SelectItemWithTag(tag int) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("selectItemWithTag:"), tag)
 	return rv
 }
@@ -351,7 +352,7 @@ func (p_ PopUpButton) SelectItemWithTag(tag int /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectItem(withTitle:)
-func (p_ PopUpButton) SelectItemWithTitle(title objc.IObject /* cross-framework NSString */) {
+func (p_ PopUpButton) SelectItemWithTitle(title objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectItemWithTitle:"), title)
 }
 
@@ -360,7 +361,7 @@ func (p_ PopUpButton) SelectItemWithTitle(title objc.IObject /* cross-framework 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/setTitle(_:)
-func (p_ PopUpButton) SetTitle(string_ objc.IObject /* cross-framework NSString */) {
+func (p_ PopUpButton) SetTitle(string_ objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), string_)
 }
 
@@ -378,7 +379,7 @@ func (p_ PopUpButton) SynchronizeTitleAndSelectedItem() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/altersStateOfSelectedItem
-func (p_ PopUpButton) AltersStateOfSelectedItem() bool /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) AltersStateOfSelectedItem() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("altersStateOfSelectedItem"))
 	return rv
 }
@@ -388,7 +389,7 @@ func (p_ PopUpButton) AltersStateOfSelectedItem() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/altersStateOfSelectedItem
-func (p_ PopUpButton) SetAltersStateOfSelectedItem(value bool /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) SetAltersStateOfSelectedItem(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAltersStateOfSelectedItem:"), value)
 }
 
@@ -397,7 +398,7 @@ func (p_ PopUpButton) SetAltersStateOfSelectedItem(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/autoenablesItems
-func (p_ PopUpButton) AutoenablesItems() bool /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) AutoenablesItems() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("autoenablesItems"))
 	return rv
 }
@@ -407,7 +408,7 @@ func (p_ PopUpButton) AutoenablesItems() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/autoenablesItems
-func (p_ PopUpButton) SetAutoenablesItems(value bool /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) SetAutoenablesItems(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutoenablesItems:"), value)
 }
 
@@ -416,7 +417,7 @@ func (p_ PopUpButton) SetAutoenablesItems(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/indexOfSelectedItem
-func (p_ PopUpButton) IndexOfSelectedItem() int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) IndexOfSelectedItem() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
 }
@@ -426,7 +427,7 @@ func (p_ PopUpButton) IndexOfSelectedItem() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemArray
-func (p_ PopUpButton) ItemArray() []MenuItem /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) ItemArray() []objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[[]MenuItem](p_.ID, objc.Sel("itemArray"))
 	return rv
 }
@@ -436,7 +437,7 @@ func (p_ PopUpButton) ItemArray() []MenuItem /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/itemTitles
-func (p_ PopUpButton) ItemTitles() []string /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) ItemTitles() []string {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("itemTitles"))
 	return rv
 }
@@ -475,7 +476,7 @@ func (p_ PopUpButton) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/numberOfItems
-func (p_ PopUpButton) NumberOfItems() int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) NumberOfItems() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfItems"))
 	return rv
 }
@@ -504,7 +505,7 @@ func (p_ PopUpButton) SetPreferredEdge(value RectEdge /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullsDown
-func (p_ PopUpButton) PullsDown() bool /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) PullsDown() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pullsDown"))
 	return rv
 }
@@ -514,7 +515,7 @@ func (p_ PopUpButton) PullsDown() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/pullsDown
-func (p_ PopUpButton) SetPullsDown(value bool /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) SetPullsDown(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPullsDown:"), value)
 }
 
@@ -533,7 +534,7 @@ func (p_ PopUpButton) SelectedItem() objc.IObject /* cross-framework: MenuItem *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/selectedTag
-func (p_ PopUpButton) SelectedTag() int /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) SelectedTag() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("selectedTag"))
 	return rv
 }
@@ -553,7 +554,7 @@ func (p_ PopUpButton) TitleOfSelectedItem() objc.IObject /* cross-framework: NSS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/usesItemFromMenu
-func (p_ PopUpButton) UsesItemFromMenu() bool /* primitive/slice/pointer. */ {
+func (p_ PopUpButton) UsesItemFromMenu() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesItemFromMenu"))
 	return rv
 }
@@ -563,7 +564,7 @@ func (p_ PopUpButton) UsesItemFromMenu() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/usesItemFromMenu
-func (p_ PopUpButton) SetUsesItemFromMenu(value bool /* primitive/slice/pointer. */) {
+func (p_ PopUpButton) SetUsesItemFromMenu(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesItemFromMenu:"), value)
 }
 

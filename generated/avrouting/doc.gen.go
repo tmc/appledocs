@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AVRouting without requiring cgo.
-
-// Display custom destinations to stream media in the system route picker.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting
+// See: https://developer.apple.com/documentation/AVRouting
 package avrouting
 
 import (

@@ -15,8 +15,8 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_IOBluetoothGetDeviceSelectorController func() unsafe.Pointer
-	_IOBluetoothGetPairingController func() unsafe.Pointer
+	_IOBluetoothGetDeviceSelectorController func() BluetoothDeviceSelectorControllerRef
+	_IOBluetoothGetPairingController func() BluetoothPairingControllerRef
 )
 
 func init() {
@@ -47,7 +47,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 10.2.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothGetDeviceSelectorController()
-func IOBluetoothGetDeviceSelectorController() unsafe.Pointer {
+func IOBluetoothGetDeviceSelectorController() BluetoothDeviceSelectorControllerRef {
 	return _IOBluetoothGetDeviceSelectorController()
 }
 
@@ -56,7 +56,7 @@ func IOBluetoothGetDeviceSelectorController() unsafe.Pointer {
 // Added in macOS 10.2.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothGetPairingController()
-func IOBluetoothGetPairingController() unsafe.Pointer {
+func IOBluetoothGetPairingController() BluetoothPairingControllerRef {
 	return _IOBluetoothGetPairingController()
 }
 

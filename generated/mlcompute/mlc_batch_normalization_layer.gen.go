@@ -29,28 +29,34 @@ type _CBatchNormalizationLayerClass struct {
 // An interface definition for the [CBatchNormalizationLayer] class.
 type ICBatchNormalizationLayer interface {
 	ICLayer
-	Beta() MLCTensor
+	// properties:
+	Beta() IMLCTensor
 	SetBeta(value IMLCTensor)
-	BetaParameter() MLCTensorParameter
-	SetBetaParameter(value IMLCTensorParameter)
+	BetaParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
 	FeatureChannelCount() int
 	SetFeatureChannelCount(value int)
-	Gamma() MLCTensor
+	Gamma() IMLCTensor
 	SetGamma(value IMLCTensor)
-	GammaParameter() MLCTensorParameter
-	SetGammaParameter(value IMLCTensorParameter)
-	Mean() MLCTensor
+	GammaParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	Mean() IMLCTensor
 	SetMean(value IMLCTensor)
 	Momentum() float32
 	SetMomentum(value float32)
-	Variance() MLCTensor
+	Variance() IMLCTensor
 	SetVariance(value IMLCTensor)
 	VarianceEpsilon() float32
 	SetVarianceEpsilon(value float32)
+	// methods:
 }
 
 // A layer that normalizes a batch of inputs.
+
+
+// A layer that normalizes a batch of inputs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCBatchNormalizationLayer
 type CBatchNormalizationLayer struct {
 	CLayer
@@ -97,44 +103,48 @@ func NewCBatchNormalizationLayer() CBatchNormalizationLayer {
 }
 
 
+
 // The beta tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
-func (c_ CBatchNormalizationLayer) Beta() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("beta"))
+func (c_ CBatchNormalizationLayer) Beta() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
 
-// SetBeta sets the value of the beta property.
 // The beta tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
 func (c_ CBatchNormalizationLayer) SetBeta(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
+
 // The beta tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/betaparameter
-func (c_ CBatchNormalizationLayer) BetaParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("betaParameter"))
+func (c_ CBatchNormalizationLayer) BetaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
 
-// SetBetaParameter sets the value of the betaParameter property.
 // The beta tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/betaparameter
-func (c_ CBatchNormalizationLayer) SetBetaParameter(value IMLCTensorParameter) {
+func (c_ CBatchNormalizationLayer) SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
+
 // The number of feature channels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
 func (c_ CBatchNormalizationLayer) FeatureChannelCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
@@ -142,71 +152,75 @@ func (c_ CBatchNormalizationLayer) FeatureChannelCount() int {
 }
 
 
-// SetFeatureChannelCount sets the value of the featureChannelCount property.
 // The number of feature channels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/featurechannelcount
 func (c_ CBatchNormalizationLayer) SetFeatureChannelCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
 }
 
+
 // The gamma tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gamma
-func (c_ CBatchNormalizationLayer) Gamma() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("gamma"))
+func (c_ CBatchNormalizationLayer) Gamma() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("gamma"))
 	return rv
 }
 
 
-// SetGamma sets the value of the gamma property.
 // The gamma tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gamma
 func (c_ CBatchNormalizationLayer) SetGamma(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
+
 // The gamma tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
-func (c_ CBatchNormalizationLayer) GammaParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("gammaParameter"))
+func (c_ CBatchNormalizationLayer) GammaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("gammaParameter"))
 	return rv
 }
 
 
-// SetGammaParameter sets the value of the gammaParameter property.
 // The gamma tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
-func (c_ CBatchNormalizationLayer) SetGammaParameter(value IMLCTensorParameter) {
+func (c_ CBatchNormalizationLayer) SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
 }
 
+
 // The mean tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
-func (c_ CBatchNormalizationLayer) Mean() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("mean"))
+func (c_ CBatchNormalizationLayer) Mean() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("mean"))
 	return rv
 }
 
 
-// SetMean sets the value of the mean property.
 // The mean tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
 func (c_ CBatchNormalizationLayer) SetMean(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
 }
 
+
 // The value you use for the running mean and variance computation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/momentum
 func (c_ CBatchNormalizationLayer) Momentum() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("momentum"))
@@ -214,35 +228,37 @@ func (c_ CBatchNormalizationLayer) Momentum() float32 {
 }
 
 
-// SetMomentum sets the value of the momentum property.
 // The value you use for the running mean and variance computation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/momentum
 func (c_ CBatchNormalizationLayer) SetMomentum(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
 }
 
+
 // The variance tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/variance
-func (c_ CBatchNormalizationLayer) Variance() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("variance"))
+func (c_ CBatchNormalizationLayer) Variance() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("variance"))
 	return rv
 }
 
 
-// SetVariance sets the value of the variance property.
 // The variance tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/variance
 func (c_ CBatchNormalizationLayer) SetVariance(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
 }
 
+
 // The variance epsilon you use for numerical stability.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/varianceepsilon
 func (c_ CBatchNormalizationLayer) VarianceEpsilon() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
@@ -250,10 +266,9 @@ func (c_ CBatchNormalizationLayer) VarianceEpsilon() float32 {
 }
 
 
-// SetVarianceEpsilon sets the value of the varianceEpsilon property.
 // The variance epsilon you use for numerical stability.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/varianceepsilon
 func (c_ CBatchNormalizationLayer) SetVarianceEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)

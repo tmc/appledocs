@@ -31,10 +31,10 @@ type _HKVisionPrescriptionClass struct {
 type IHKVisionPrescription interface {
 	IHKSample
 	// properties:
-	DateIssued() foundation.objc.IObject /* cross-framework: Date */
-	SetDateIssued(value foundation.objc.IObject /* cross-framework: Date */)
-	ExpirationDate() foundation.objc.IObject /* cross-framework: Date */
-	SetExpirationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	DateIssued() objc.IObject /* cross-framework: Date */
+	SetDateIssued(value objc.IObject /* cross-framework: Date */)
+	ExpirationDate() objc.IObject /* cross-framework: Date */
+	SetExpirationDate(value objc.IObject /* cross-framework: Date */)
 	PrescriptionType() unsafe.Pointer
 	SetPrescriptionType(value unsafe.Pointer)
 	// methods:
@@ -99,7 +99,7 @@ func NewHKVisionPrescription() HKVisionPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-func (h_ HKVisionPrescription) DateIssued() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKVisionPrescription) DateIssued() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("dateIssued"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (h_ HKVisionPrescription) DateIssued() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-func (h_ HKVisionPrescription) SetDateIssued(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKVisionPrescription) SetDateIssued(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
 }
 
@@ -118,7 +118,7 @@ func (h_ HKVisionPrescription) SetDateIssued(value foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) ExpirationDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKVisionPrescription) ExpirationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (h_ HKVisionPrescription) ExpirationDate() foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) SetExpirationDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKVisionPrescription) SetExpirationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 

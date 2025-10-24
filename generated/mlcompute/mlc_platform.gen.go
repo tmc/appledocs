@@ -31,10 +31,16 @@ type _CPlatformClass struct {
 // An interface definition for the [CPlatform] class.
 type ICPlatform interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A utility class for setting global properties in the framework.
+
+
+// A utility class for setting global properties in the framework.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform
 type CPlatform struct {
 	objectivec.Object
@@ -79,18 +85,22 @@ func NewCPlatform() CPlatform {
 }
 
 
+
 // Returns the global random number generator seed value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform/getRNGseed()
-func (cc _CPlatformClass) GetRNGseed() foundation.Number {
+func (cc _CPlatformClass) GetRNGseed() objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](objc.ID(cc.class), objc.Sel("getRNGseed"))
 	return rv
 }
 
+
 // Sets the global random number generator seed value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform/setRNGSeedTo(_:)
-func (cc _CPlatformClass) SetRNGSeedTo(seed foundation.INumber) {
+func (cc _CPlatformClass) SetRNGSeedTo(seed objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setRNGSeedTo:"), seed)
 }
 

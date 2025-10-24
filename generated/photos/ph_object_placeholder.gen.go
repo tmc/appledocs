@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHObjectPlaceholder] class.
@@ -29,16 +30,22 @@ type _PHObjectPlaceholderClass struct {
 // An interface definition for the [PHObjectPlaceholder] class.
 type IPHObjectPlaceholder interface {
 	IPHObject
+	// properties:
 	Hash() int
 	SetHash(value int)
-	LocalIdentifier() string
-	SetLocalIdentifier(value string)
+	LocalIdentifier() objc.IObject /* cross-framework: NSString */
+	SetLocalIdentifier(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A read-only proxy object that represents a Photos asset or collection to create.
 //
 // You obtain object placeholders when you use change requests to create assets, collections, or collection lists. After the change request completes, you can use the object placeholder to fetch the newly created object. You can also use an object placeholder to make additional change requests involving the object to create. For example, the following code uses a placeholder to add a newly created asset to an album. A placeholder always has the same local identifier as the asset, collection, or collection list that it represents. To find the object that corresponds to a placeholder, read the placeholder’s property and use it to fetch the actual object. Alternatively, because the class implements the and methods in terms of its property, you can also find the object for a placeholder using techniques that depend on these methods.
+
+
+// A read-only proxy object that represents a Photos asset or collection to create.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObjectPlaceholder
 type PHObjectPlaceholder struct {
 	PHObject
@@ -85,8 +92,10 @@ func NewPHObjectPlaceholder() PHObjectPlaceholder {
 }
 
 
+
 // Returns an integer that can be used as a table address in a hash table structure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (p_ PHObjectPlaceholder) Hash() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("hash"))
@@ -94,31 +103,31 @@ func (p_ PHObjectPlaceholder) Hash() int {
 }
 
 
-// SetHash sets the value of the hash property.
 // Returns an integer that can be used as a table address in a hash table structure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (p_ PHObjectPlaceholder) SetHash(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
 }
 
+
 // A unique string that persistently identifies the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObjectPlaceholder) LocalIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
 
-// SetLocalIdentifier sets the value of the localIdentifier property.
 // A unique string that persistently identifies the object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) SetLocalIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+func (p_ PHObjectPlaceholder) SetLocalIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
 }
 
 

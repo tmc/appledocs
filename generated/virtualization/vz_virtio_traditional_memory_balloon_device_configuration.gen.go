@@ -29,14 +29,20 @@ type _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] class.
 type IVZVirtioTraditionalMemoryBalloonDeviceConfiguration interface {
 	IVZMemoryBalloonDeviceConfiguration
-	MemoryBalloonDevices() VZMemoryBalloonDevice
+	// properties:
+	MemoryBalloonDevices() IVZMemoryBalloonDevice
 	SetMemoryBalloonDevices(value IVZMemoryBalloonDevice)
+	// methods:
 }
 
 // A configuration object that provides a way to reclaim memory from the guest system.
 //
 // Create a object when you want the ability to reclaim memory from the guest operating system. After creating this object, add it to the property of your object. In response, the virtual machine provides a object, which you use to initiate memory-related requests with the guest system. Access that object from the property of .
+
+
+// A configuration object that provides a way to reclaim memory from the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDeviceConfiguration
 type VZVirtioTraditionalMemoryBalloonDeviceConfiguration struct {
 	VZMemoryBalloonDeviceConfiguration
@@ -84,19 +90,20 @@ func NewVZVirtioTraditionalMemoryBalloonDeviceConfiguration() VZVirtioTraditiona
 
 
 
+
 // The array of devices that you use to adjust the amount of memory available to the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
-func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) MemoryBalloonDevices() VZMemoryBalloonDevice {
+func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) MemoryBalloonDevices() IVZMemoryBalloonDevice {
 	rv := objc.Send[VZMemoryBalloonDevice](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
 }
 
 
-// SetMemoryBalloonDevices sets the value of the memoryBalloonDevices property.
 // The array of devices that you use to adjust the amount of memory available to the guest system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
 func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) SetMemoryBalloonDevices(value IVZMemoryBalloonDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)

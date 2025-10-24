@@ -30,13 +30,18 @@ type _MediaTimingFunctionClass struct {
 // An interface definition for the [MediaTimingFunction] class.
 type IMediaTimingFunction interface {
 	objectivec.IObject
-	GetControlPointAtIndexValues(idx Iuintptr, ptr unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // A function that defines the pacing of an animation as a timing curve.
 //
 // represents one segment of a function that defines the pacing of an animation as a timing curve. The function maps an input time normalized to the range to an output time also in the range . You can create a media timing function by supplying your own cubic Bézier curve control points using the method or by using one of the predefined timing functions.
+
+
+// A function that defines the pacing of an animation as a timing curve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction
 type MediaTimingFunction struct {
 	objectivec.Object
@@ -82,9 +87,9 @@ func NewMediaTimingFunction() MediaTimingFunction {
 
 
 
-
 // Returns an initialized timing function modeled as a cubic Bézier curve using the specified control points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(controlPoints:_:_:_:)
 func NewMediaTimingFunctionWithControlPoints(c1x float32, c1y float32, c2x float32, c2y float32) MediaTimingFunction {
 	instance := getMediaTimingFunctionClass().Alloc()
@@ -93,38 +98,5 @@ func NewMediaTimingFunctionWithControlPoints(c1x float32, c1y float32, c2x float
 	return rv
 }
 
-
-
-// Creates and returns a new instance of configured with the predefined timing function specified by .
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
-func NewMediaTimingFunctionWithName(name IMediaTimingFunctionName) MediaTimingFunction {
-	rv := objc.Send[MediaTimingFunction](objc.ID(getMediaTimingFunctionClass().class), objc.Sel("functionWithName:"), name)
-	return rv
-}
-
-
-// Creates and returns a new instance of timing function modeled as a cubic Bézier curve using the specified control points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/functionWithControlPoints::::
-func (mc _MediaTimingFunctionClass) FunctionWithControlPoints(c1x float32, c1y float32, c2x float32, c2y float32) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("functionWithControlPoints::::"), c1x, c1y, c2x, c2y)
-	return rv
-}
-
-// Creates and returns a new instance of configured with the predefined timing function specified by .
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
-func (mc _MediaTimingFunctionClass) FunctionWithName(name IMediaTimingFunctionName) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("functionWithName:"), name)
-	return rv
-}
-
-// Returns the control point for the specified index.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/getControlPoint(at:values:)
-func (m_ MediaTimingFunction) GetControlPointAtIndexValues(idx Iuintptr, ptr unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getControlPointAtIndex:values:"), idx, ptr)
-}
 
 

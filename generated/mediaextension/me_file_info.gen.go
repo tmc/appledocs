@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +32,22 @@ type _MEFileInfoClass struct {
 // An interface definition for the [MEFileInfo] class.
 type IMEFileInfo interface {
 	objectivec.IObject
+	// properties:
 	FragmentsStatus() unsafe.Pointer
 	SetFragmentsStatus(value unsafe.Pointer)
-	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
-	SidecarFileName() string
-	SetSidecarFileName(value string)
+	Duration() objc.IObject /* cross-framework: Time */
+	SetDuration(value objc.IObject /* cross-framework: Time */)
+	SidecarFileName() objc.IObject /* cross-framework: NSString */
+	SetSidecarFileName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that contains file properties from the media asset.
+
+
+// An object that contains file properties from the media asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFileInfo
 type MEFileInfo struct {
 	objectivec.Object
@@ -84,8 +92,10 @@ func NewMEFileInfo() MEFileInfo {
 }
 
 
+
 // Indicates if the media asset contains fragments or is extendable by fragments.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFileInfo/fragmentsStatus-swift.property
 func (m_ MEFileInfo) FragmentsStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fragmentsStatus"))
@@ -93,46 +103,46 @@ func (m_ MEFileInfo) FragmentsStatus() unsafe.Pointer {
 }
 
 
-// SetFragmentsStatus sets the value of the fragmentsStatus property.
 // Indicates if the media asset contains fragments or is extendable by fragments.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEFileInfo/fragmentsStatus-swift.property
 func (m_ MEFileInfo) SetFragmentsStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentsStatus:"), value)
 }
 
+
 // The duration of the media asset, if available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/duration
-func (m_ MEFileInfo) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
+func (m_ MEFileInfo) Duration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
 // The duration of the media asset, if available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/duration
-func (m_ MEFileInfo) SetDuration(value unsafe.Pointer) {
+func (m_ MEFileInfo) SetDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SidecarFileName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("sidecarFileName"))
+func (m_ MEFileInfo) SidecarFileName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("sidecarFileName"))
 	return rv
 }
 
 
-// SetSidecarFileName sets the value of the sidecarFileName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SetSidecarFileName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), objc.String(value))
+func (m_ MEFileInfo) SetSidecarFileName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), value)
 }
 
 

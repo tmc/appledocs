@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NETunnelProviderProtocol] class.
@@ -29,16 +30,22 @@ type _NETunnelProviderProtocolClass struct {
 // An interface definition for the [NETunnelProviderProtocol] class.
 type INETunnelProviderProtocol interface {
 	INEVPNProtocol
-	ProviderBundleIdentifier() string
-	SetProviderBundleIdentifier(value string)
-	ProviderConfiguration() unsafe.Pointer
-	SetProviderConfiguration(value unsafe.Pointer)
+	// properties:
+	ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ProviderConfiguration() objc.IObject /* cross-framework: NSString */
+	SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // Configuration parameters for a VPN tunnel.
 //
 // objects are used to specify configuration parameters for Tunnel Provider extensions.
+
+
+// Configuration parameters for a VPN tunnel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol
 type NETunnelProviderProtocol struct {
 	NEVPNProtocol
@@ -85,39 +92,41 @@ func NewNETunnelProviderProtocol() NETunnelProviderProtocol {
 }
 
 
+
 // A string identifying the specific Tunnel Provider extension that should be used with this configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerBundleIdentifier
-func (n_ NETunnelProviderProtocol) ProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol/providerbundleidentifier
+func (n_ NETunnelProviderProtocol) ProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
 
-// SetProviderBundleIdentifier sets the value of the providerBundleIdentifier property.
 // A string identifying the specific Tunnel Provider extension that should be used with this configuration.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerBundleIdentifier
-func (n_ NETunnelProviderProtocol) SetProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol/providerbundleidentifier
+func (n_ NETunnelProviderProtocol) SetProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
 }
+
 
 // A dictionary containing keys and values defined by the Tunnel Provider developer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerConfiguration
-func (n_ NETunnelProviderProtocol) ProviderConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerConfiguration"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol/providerconfiguration
+func (n_ NETunnelProviderProtocol) ProviderConfiguration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
 
-// SetProviderConfiguration sets the value of the providerConfiguration property.
 // A dictionary containing keys and values defined by the Tunnel Provider developer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderProtocol/providerConfiguration
-func (n_ NETunnelProviderProtocol) SetProviderConfiguration(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol/providerconfiguration
+func (n_ NETunnelProviderProtocol) SetProviderConfiguration(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
 

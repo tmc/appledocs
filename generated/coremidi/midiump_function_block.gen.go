@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,11 +35,11 @@ type IMIDIUMPFunctionBlock interface {
 	Direction() MIDIUMPFunctionBlockDirection
 	FirstGroup() MIDIUMPGroupNumber /* typedef */
 	FunctionBlockID() MIDIUMPFunctionBlockID /* typedef */
-	IsEnabled() bool /* primitive/slice/pointer. */
+	IsEnabled() bool
 	MaxSysEx8Streams() unsafe.Pointer
 	MIDI1Info() MIDIUMPFunctionBlockMIDI1Info
 	MidiCIDevice() IMIDICIDevice
-	Name() string /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
 	TotalGroupsSpanned() MIDIUInteger7 /* typedef */
 	UIHint() MIDIUMPFunctionBlockUIHint
 	UMPEndpoint() IMIDIUMPEndpoint
@@ -117,7 +118,7 @@ func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID /* typed
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/isEnabled
-func (m_ MIDIUMPFunctionBlock) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPFunctionBlock) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -149,8 +150,8 @@ func (m_ MIDIUMPFunctionBlock) MidiCIDevice() IMIDICIDevice {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-func (m_ MIDIUMPFunctionBlock) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPFunctionBlock) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

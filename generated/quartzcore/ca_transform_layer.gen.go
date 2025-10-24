@@ -29,14 +29,20 @@ type _TransformLayerClass struct {
 // An interface definition for the [TransformLayer] class.
 type ITransformLayer interface {
 	ILayer
+	// properties:
 	ZPosition() float64
 	SetZPosition(value float64)
+	// methods:
 }
 
 // Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.
 //
 // Unlike normal layers, transform layers do not flatten their sublayers into the plane at . Due to this, they do not support many of the features of the class compositing model: Only the sublayers of a transform layer are rendered. The properties that are rendered by a layer are ignored, including: , , border style properties, stroke style properties, etc. The properties that assume 2D image processing are also ignored, including: , , , , , and shadow style properties. The property is applied to each sublayer individually, the transform layer does not form a compositing group. The method should never be called on a transform layer as they do not have a 2D coordinate space into which the point can be mapped.
+
+
+// Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransformLayer
 type TransformLayer struct {
 	Layer
@@ -83,8 +89,10 @@ func NewTransformLayer() TransformLayer {
 }
 
 
+
 // The layer’s position on the z axis. Animatable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/zposition
 func (t_ TransformLayer) ZPosition() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("zPosition"))
@@ -92,10 +100,9 @@ func (t_ TransformLayer) ZPosition() float64 {
 }
 
 
-// SetZPosition sets the value of the zPosition property.
 // The layer’s position on the z axis. Animatable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/zposition
 func (t_ TransformLayer) SetZPosition(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setZPosition:"), value)

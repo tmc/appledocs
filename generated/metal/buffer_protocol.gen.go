@@ -4,19 +4,18 @@ package metal
 
 import "github.com/ebitengine/purego/objc"
 
-// bufferProtocol is the buffer protocol.
+// BufferProtocol is the MTLBuffer protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 9.0+
-//   - iPadOS 9.0+
-//   - macOS 10.12+
-//   - tvOS 9.0+
+//   - iOS 8.0+
+//   - iPadOS 8.0+
+//   - macOS 10.11+
 //   - visionOS 1.0+
 //
-// Use this protocol when registering custom classes that conform to buffer.
-var bufferProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to MTLBuffer.
+var BufferProtocol *objc.Protocol
 
 func init() {
-	bufferProtocol = objc.GetProtocol("buffer")
+	BufferProtocol = objc.GetProtocol("MTLBuffer")
 }

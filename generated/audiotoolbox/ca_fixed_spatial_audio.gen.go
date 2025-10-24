@@ -30,7 +30,6 @@ type _FixedSpatialAudioClass struct {
 type IFixedSpatialAudio interface {
 	ISpatialAudioExperience
 	// properties:
-	SoundStageSize() SoundStageSize
 	// methods:
 }
 
@@ -98,15 +97,5 @@ func NewFixedSpatialAudioWithSoundStageSize(soundStageSize SoundStageSize) Fixed
 	return rv
 }
 
-
-
-// The experience’s sound stage size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio/soundStageSize
-func (f_ FixedSpatialAudio) SoundStageSize() SoundStageSize {
-	rv := objc.Send[SoundStageSize](f_.ID, objc.Sel("soundStageSize"))
-	return rv
-}
 
 

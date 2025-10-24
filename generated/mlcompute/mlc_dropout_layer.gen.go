@@ -29,14 +29,20 @@ type _CDropoutLayerClass struct {
 // An interface definition for the [CDropoutLayer] class.
 type ICDropoutLayer interface {
 	ICLayer
+	// properties:
 	Rate() float32
 	SetRate(value float32)
 	Seed() int
 	SetSeed(value int)
+	// methods:
 }
 
 // A layer that deactivates neurons randomly to avoid overfitting.
+
+
+// A layer that deactivates neurons randomly to avoid overfitting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDropoutLayer
 type CDropoutLayer struct {
 	CLayer
@@ -83,8 +89,10 @@ func NewCDropoutLayer() CDropoutLayer {
 }
 
 
+
 // The dropout rate you use for each element.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
 func (c_ CDropoutLayer) Rate() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("rate"))
@@ -92,17 +100,18 @@ func (c_ CDropoutLayer) Rate() float32 {
 }
 
 
-// SetRate sets the value of the rate property.
 // The dropout rate you use for each element.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/rate
 func (c_ CDropoutLayer) SetRate(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRate:"), value)
 }
 
+
 // The seed you use to generate random numbers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
 func (c_ CDropoutLayer) Seed() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("seed"))
@@ -110,10 +119,9 @@ func (c_ CDropoutLayer) Seed() int {
 }
 
 
-// SetSeed sets the value of the seed property.
 // The seed you use to generate random numbers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer/seed
 func (c_ CDropoutLayer) SetSeed(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)

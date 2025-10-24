@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,19 @@ type _MTRCommissioneeInfoClass struct {
 // An interface definition for the [MTRCommissioneeInfo] class.
 type IMTRCommissioneeInfo interface {
 	objectivec.IObject
-	EndpointsById() unsafe.Pointer
-	ProductIdentity() MTRProductIdentity
-	RootEndpoint() MTREndpointInfo
+	// properties:
+	EndpointsById() foundation.IDictionary
+	ProductIdentity() IMTRProductIdentity
+	RootEndpoint() IMTREndpointInfo
+	// methods:
 }
 
 // Information read from the commissionee device during commissioning.
+
+
+// Information read from the commissionee device during commissioning.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo
 type MTRCommissioneeInfo struct {
 	objectivec.Object
@@ -81,26 +88,32 @@ func NewMTRCommissioneeInfo() MTRCommissioneeInfo {
 }
 
 
+
 // Endpoint information for all endpoints of the commissionee. Will be present only if readEndpointInformation is set to YES on MTRCommissioningParameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo/endpointsById
-func (m_ MTRCommissioneeInfo) EndpointsById() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpointsById"))
+func (m_ MTRCommissioneeInfo) EndpointsById() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("endpointsById"))
 	return rv
 }
 
+
 // The product identity (VID / PID) of the commissionee.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo/productIdentity
-func (m_ MTRCommissioneeInfo) ProductIdentity() MTRProductIdentity {
+func (m_ MTRCommissioneeInfo) ProductIdentity() IMTRProductIdentity {
 	rv := objc.Send[MTRProductIdentity](m_.ID, objc.Sel("productIdentity"))
 	return rv
 }
 
+
 // Endpoint information for the root endpoint of the commissionee. Will be present only if readEndpointInformation is set to YES on MTRCommissioningParameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo/rootEndpoint
-func (m_ MTRCommissioneeInfo) RootEndpoint() MTREndpointInfo {
+func (m_ MTRCommissioneeInfo) RootEndpoint() IMTREndpointInfo {
 	rv := objc.Send[MTREndpointInfo](m_.ID, objc.Sel("rootEndpoint"))
 	return rv
 }

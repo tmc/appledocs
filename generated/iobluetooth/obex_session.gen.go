@@ -37,7 +37,7 @@ type IOBEXSession interface {
 	GetAvailableCommandPayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */
 	GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */
 	GetMaxPacketLength() OBEXMaxPacketLength /* typedef */
-	HasOpenOBEXConnection() bool /* primitive/slice/pointer. */
+	HasOpenOBEXConnection() bool
 	HasOpenTransportConnection() unsafe.Pointer
 	OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
 	OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
@@ -165,7 +165,7 @@ func (o_ OBEXSession) GetMaxPacketLength() OBEXMaxPacketLength /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/hasOpenOBEXConnection()
-func (o_ OBEXSession) HasOpenOBEXConnection() bool /* primitive/slice/pointer. */ {
+func (o_ OBEXSession) HasOpenOBEXConnection() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasOpenOBEXConnection"))
 	return rv
 }

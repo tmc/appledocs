@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _CSPersonClass struct {
 type ICSPerson interface {
 	objectivec.IObject
 	// properties:
-	ContactIdentifier() string /* primitive/slice/pointer. */
-	SetContactIdentifier(value string /* primitive/slice/pointer. */)
-	DisplayName() string /* primitive/slice/pointer. */
-	HandleIdentifier() string /* primitive/slice/pointer. */
-	Handles() []string /* primitive/slice/pointer. */
+	ContactIdentifier() objc.IObject /* cross-framework: NSString */
+	SetContactIdentifier(value objc.IObject /* cross-framework: NSString */)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	HandleIdentifier() objc.IObject /* cross-framework: NSString */
+	Handles() []string
 	// methods:
 }
 
@@ -96,9 +97,9 @@ func NewCSPerson() CSPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
-func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string /* primitive/slice/pointer. */, handles []string /* primitive/slice/pointer. */, handleIdentifier string /* primitive/slice/pointer. */) CSPerson {
+func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName objc.IObject /* cross-framework: NSString */, handles []string, handleIdentifier objc.IObject /* cross-framework: NSString */) CSPerson {
 	instance := getCSPersonClass().Alloc()
-	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), objc.String(displayName), handles, objc.String(handleIdentifier))
+	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), displayName, handles, handleIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +110,8 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) ContactIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CSPerson) ContactIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -119,8 +120,8 @@ func (c_ CSPerson) ContactIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) SetContactIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
+func (c_ CSPerson) SetContactIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), value)
 }
 
 
@@ -128,8 +129,8 @@ func (c_ CSPerson) SetContactIdentifier(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
-func (c_ CSPerson) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
+func (c_ CSPerson) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -138,8 +139,8 @@ func (c_ CSPerson) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
-func (c_ CSPerson) HandleIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
+func (c_ CSPerson) HandleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (c_ CSPerson) HandleIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handles
-func (c_ CSPerson) Handles() []string /* primitive/slice/pointer. */ {
+func (c_ CSPerson) Handles() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("handles"))
 	return rv
 }

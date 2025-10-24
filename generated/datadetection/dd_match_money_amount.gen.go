@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchMoneyAmount] class.
@@ -30,8 +31,8 @@ type _DDMatchMoneyAmountClass struct {
 type IDDMatchMoneyAmount interface {
 	IDDMatch
 	// properties:
-	Amount() float64 /* primitive/slice/pointer. */
-	Currency() string /* primitive/slice/pointer. */
+	Amount() float64
+	Currency() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -94,7 +95,7 @@ func NewDDMatchMoneyAmount() DDMatchMoneyAmount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/amount
-func (d_ DDMatchMoneyAmount) Amount() float64 /* primitive/slice/pointer. */ {
+func (d_ DDMatchMoneyAmount) Amount() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("amount"))
 	return rv
 }
@@ -104,8 +105,8 @@ func (d_ DDMatchMoneyAmount) Amount() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
-func (d_ DDMatchMoneyAmount) Currency() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
+func (d_ DDMatchMoneyAmount) Currency() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("currency"))
 	return rv
 }
 

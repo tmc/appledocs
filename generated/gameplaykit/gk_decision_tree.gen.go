@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,11 +36,11 @@ type IDecisionTree interface {
 	RandomSource() IGKRandomSource
 	SetRandomSource(value IGKRandomSource)
 	RootNode() IGKDecisionNode
-	Description() string /* primitive/slice/pointer. */
-	SetDescription(value string /* primitive/slice/pointer. */)
+	Description() objc.IObject /* cross-framework: NSString */
+	SetDescription(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	ExportToURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) bool /* primitive/slice/pointer. */
-	FindActionForAnswers(answers foundation.IDictionary /* already interface */) objc.ID
+	ExportToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objc.IObject /* cross-framework: Error */) bool
+	FindActionForAnswers(answers foundation.IDictionary) objc.ID
 }
 
 // A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
@@ -111,7 +112,7 @@ func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.objc.IObject /* cross-framework Array */, actions []objc.ID /* already interface */, attributes []objc.ID /* already interface */) DecisionTree {
+func NewDecisionTreeWithExamplesActionsAttributes(examples []objc.IObject /* cross-framework: Array */, actions []objc.ID, attributes []objc.ID) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
 	rv.Autorelease()
@@ -121,7 +122,7 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.objc.IOb
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) DecisionTree {
+func NewDecisionTreeWithURLError(url objc.IObject /* cross-framework: NSURL */, error_ objc.IObject /* cross-framework: Error */) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -132,7 +133,7 @@ func NewDecisionTreeWithURLError(url foundation.objc.IObject /* cross-framework 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-func (d_ DecisionTree) ExportToURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (d_ DecisionTree) ExportToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objc.IObject /* cross-framework: Error */) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
@@ -142,7 +143,7 @@ func (d_ DecisionTree) ExportToURLError(url foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/findAction(forAnswers:)
-func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary /* already interface */) objc.ID {
+func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
 }
@@ -181,8 +182,8 @@ func (d_ DecisionTree) RootNode() IGKDecisionNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) Description() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+func (d_ DecisionTree) Description() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -191,8 +192,8 @@ func (d_ DecisionTree) Description() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) SetDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
+func (d_ DecisionTree) SetDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
 }
 
 

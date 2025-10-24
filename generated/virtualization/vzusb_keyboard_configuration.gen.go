@@ -29,12 +29,18 @@ type _VZUSBKeyboardConfigurationClass struct {
 // An interface definition for the [VZUSBKeyboardConfiguration] class.
 type IVZUSBKeyboardConfiguration interface {
 	IVZKeyboardConfiguration
+	// properties:
+	// methods:
 }
 
 // A device that defines the configuration for a USB keyboard.
 //
 // A can use this device to send key events to the VM.
+
+
+// A device that defines the configuration for a USB keyboard.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBKeyboardConfiguration
 type VZUSBKeyboardConfiguration struct {
 	VZKeyboardConfiguration

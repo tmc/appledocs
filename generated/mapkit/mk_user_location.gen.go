@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,12 +38,12 @@ type IMKUserLocation interface {
 	SetUserLocation(value IMKUserLocation)
 	Heading() objc.IObject /* cross-framework: Heading */
 	SetHeading(value objc.IObject /* cross-framework: Heading */)
-	IsUpdating() bool /* primitive/slice/pointer. */
-	SetIsUpdating(value bool /* primitive/slice/pointer. */)
-	Subtitle() string /* primitive/slice/pointer. */
-	SetSubtitle(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	IsUpdating() bool
+	SetIsUpdating(value bool)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -103,7 +105,7 @@ func NewMKUserLocation() MKUserLocation {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/location
 func (m_ MKUserLocation) Location() objc.IObject /* cross-framework: Location */ {
-	rv := objc.Send[Location](m_.ID, objc.Sel("location"))
+	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (m_ MKUserLocation) SetUserLocation(value IMKUserLocation) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/heading
 func (m_ MKUserLocation) Heading() objc.IObject /* cross-framework: Heading */ {
-	rv := objc.Send[Heading](m_.ID, objc.Sel("heading"))
+	rv := objc.Send[corelocation.Heading](m_.ID, objc.Sel("heading"))
 	return rv
 }
 
@@ -150,7 +152,7 @@ func (m_ MKUserLocation) SetHeading(value objc.IObject /* cross-framework: Headi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
-func (m_ MKUserLocation) IsUpdating() bool /* primitive/slice/pointer. */ {
+func (m_ MKUserLocation) IsUpdating() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdating"))
 	return rv
 }
@@ -160,7 +162,7 @@ func (m_ MKUserLocation) IsUpdating() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/isupdating
-func (m_ MKUserLocation) SetIsUpdating(value bool /* primitive/slice/pointer. */) {
+func (m_ MKUserLocation) SetIsUpdating(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdating:"), value)
 }
 
@@ -169,8 +171,8 @@ func (m_ MKUserLocation) SetIsUpdating(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/subtitle
-func (m_ MKUserLocation) Subtitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKUserLocation) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -179,8 +181,8 @@ func (m_ MKUserLocation) Subtitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/subtitle
-func (m_ MKUserLocation) SetSubtitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (m_ MKUserLocation) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 
@@ -188,8 +190,8 @@ func (m_ MKUserLocation) SetSubtitle(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/title
-func (m_ MKUserLocation) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MKUserLocation) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -198,8 +200,8 @@ func (m_ MKUserLocation) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkuserlocation/title
-func (m_ MKUserLocation) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (m_ MKUserLocation) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
 }
 
 

@@ -30,13 +30,17 @@ type _MTRTestClusterClusterSimpleStructResponseParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterSimpleStructResponseParams] class.
 type IMTRTestClusterClusterSimpleStructResponseParams interface {
 	IMTRUnitTestingClusterSimpleStructResponseParams
-	Arg1() MTRUnitTestingClusterSimpleStruct
+	// properties:
+	Arg1() IMTRUnitTestingClusterSimpleStruct
 	SetArg1(value IMTRUnitTestingClusterSimpleStruct)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterSimpleStructResponseParams
 type MTRTestClusterClusterSimpleStructResponseParams struct {
 	MTRUnitTestingClusterSimpleStructResponseParams
@@ -81,33 +85,33 @@ func NewMTRTestClusterClusterSimpleStructResponseParams() MTRTestClusterClusterS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/arg1
-func (m_ MTRTestClusterClusterSimpleStructResponseParams) Arg1() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRTestClusterClusterSimpleStructResponseParams) Arg1() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/arg1
 func (m_ MTRTestClusterClusterSimpleStructResponseParams) SetArg1(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterSimpleStructResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStructResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

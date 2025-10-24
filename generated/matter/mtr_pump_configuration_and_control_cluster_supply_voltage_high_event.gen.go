@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterSupplyVoltageHighEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent] class.
 type IMTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent
 type MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent struct {
 	objectivec.Object

@@ -31,7 +31,7 @@ type _DDMatchLinkClass struct {
 type IDDMatchLink interface {
 	IDDMatch
 	// properties:
-	URL() foundation.objc.IObject /* cross-framework: URL */
+	URL() objc.IObject /* cross-framework: NSURL */
 	// methods:
 }
 
@@ -94,8 +94,8 @@ func NewDDMatchLink() DDMatchLink {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink/url
-func (d_ DDMatchLink) URL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("URL"))
+func (d_ DDMatchLink) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](d_.ID, objc.Sel("URL"))
 	return rv
 }
 

@@ -31,6 +31,7 @@ type ISetCommand interface {
 	IScriptCommand
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	SetKeySpecifier(value IScriptObjectSpecifier)
 	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
@@ -99,13 +100,22 @@ func (s_ SetCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) 
 }
 
 
-// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the AppleScript command.
+// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand/keySpecifier
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
 func (s_ SetCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
 	return rv
+}
+
+
+// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
+func (s_ SetCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
 }
 
 

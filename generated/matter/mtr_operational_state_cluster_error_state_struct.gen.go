@@ -31,15 +31,19 @@ type _MTROperationalStateClusterErrorStateStructClass struct {
 // An interface definition for the [MTROperationalStateClusterErrorStateStruct] class.
 type IMTROperationalStateClusterErrorStateStruct interface {
 	objectivec.IObject
-	ErrorStateDetails() string
-	SetErrorStateDetails(value string)
-	ErrorStateID() foundation.Number
-	SetErrorStateID(value foundation.INumber)
-	ErrorStateLabel() string
-	SetErrorStateLabel(value string)
+	// properties:
+	ErrorStateDetails() objc.IObject /* cross-framework: NSString */
+	SetErrorStateDetails(value objc.IObject /* cross-framework: NSString */)
+	ErrorStateID() objc.IObject /* cross-framework: NSNumber */
+	SetErrorStateID(value objc.IObject /* cross-framework: NSNumber */)
+	ErrorStateLabel() objc.IObject /* cross-framework: NSString */
+	SetErrorStateLabel(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterErrorStateStruct
 type MTROperationalStateClusterErrorStateStruct struct {
 	objectivec.Object
@@ -82,49 +86,49 @@ func NewMTROperationalStateClusterErrorStateStruct() MTROperationalStateClusterE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("errorStateDetails"))
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("errorStateDetails"))
 	return rv
 }
 
 
-// SetErrorStateDetails sets the value of the errorStateDetails property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), objc.String(value))
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorStateID"))
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("errorStateID"))
 	return rv
 }
 
 
-// SetErrorStateID sets the value of the errorStateID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value foundation.INumber) {
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("errorStateLabel"))
+func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("errorStateLabel"))
 	return rv
 }
 
 
-// SetErrorStateLabel sets the value of the errorStateLabel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
-func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), objc.String(value))
+func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), value)
 }
 
 

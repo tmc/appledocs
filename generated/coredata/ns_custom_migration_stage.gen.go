@@ -31,11 +31,11 @@ type ICustomMigrationStage interface {
 	IMigrationStage
 	// properties:
 	CurrentModel() IManagedObjectModelReference
-	DidMigrateHandler() unsafe.Pointer
-	SetDidMigrateHandler(value unsafe.Pointer)
+	DidMigrateHandler() func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	SetDidMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer)
 	NextModel() IManagedObjectModelReference
-	WillMigrateHandler() unsafe.Pointer
-	SetWillMigrateHandler(value unsafe.Pointer)
+	WillMigrateHandler() func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	SetWillMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer)
 	Container() IPersistentContainer
 	SetContainer(value IPersistentContainer)
 	// methods:
@@ -123,8 +123,8 @@ func (c_ CustomMigrationStage) CurrentModel() IManagedObjectModelReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
-func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didMigrateHandler"))
+func (c_ CustomMigrationStage) DidMigrateHandler() func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer](c_.ID, objc.Sel("didMigrateHandler"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (c_ CustomMigrationStage) DidMigrateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx
-func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
+func (c_ CustomMigrationStage) SetDidMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDidMigrateHandler:"), value)
 }
 
@@ -152,8 +152,8 @@ func (c_ CustomMigrationStage) NextModel() IManagedObjectModelReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
-func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willMigrateHandler"))
+func (c_ CustomMigrationStage) WillMigrateHandler() func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer](c_.ID, objc.Sel("willMigrateHandler"))
 	return rv
 }
 
@@ -162,7 +162,7 @@ func (c_ CustomMigrationStage) WillMigrateHandler() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73
-func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
+func (c_ CustomMigrationStage) SetWillMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
 }
 

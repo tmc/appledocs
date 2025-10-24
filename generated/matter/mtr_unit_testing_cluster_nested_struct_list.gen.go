@@ -31,11 +31,12 @@ type _MTRUnitTestingClusterNestedStructListClass struct {
 // An interface definition for the [MTRUnitTestingClusterNestedStructList] class.
 type IMTRUnitTestingClusterNestedStructList interface {
 	objectivec.IObject
-	A() foundation.Number
-	SetA(value foundation.INumber)
-	B() foundation.Number
-	SetB(value foundation.INumber)
-	C() MTRUnitTestingClusterSimpleStruct
+	// properties:
+	A() objc.IObject /* cross-framework: NSNumber */
+	SetA(value objc.IObject /* cross-framework: NSNumber */)
+	B() objc.IObject /* cross-framework: NSNumber */
+	SetB(value objc.IObject /* cross-framework: NSNumber */)
+	C() IMTRUnitTestingClusterSimpleStruct
 	SetC(value IMTRUnitTestingClusterSimpleStruct)
 	D() unsafe.Pointer
 	SetD(value unsafe.Pointer)
@@ -45,9 +46,12 @@ type IMTRUnitTestingClusterNestedStructList interface {
 	SetF(value unsafe.Pointer)
 	G() unsafe.Pointer
 	SetG(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterNestedStructList
 type MTRUnitTestingClusterNestedStructList struct {
 	objectivec.Object
@@ -90,52 +94,53 @@ func NewMTRUnitTestingClusterNestedStructList() MTRUnitTestingClusterNestedStruc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/a
-func (m_ MTRUnitTestingClusterNestedStructList) A() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("a"))
+func (m_ MTRUnitTestingClusterNestedStructList) A() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("a"))
 	return rv
 }
 
 
-// SetA sets the value of the a property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/a
-func (m_ MTRUnitTestingClusterNestedStructList) SetA(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterNestedStructList) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/b
-func (m_ MTRUnitTestingClusterNestedStructList) B() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("b"))
+func (m_ MTRUnitTestingClusterNestedStructList) B() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("b"))
 	return rv
 }
 
 
-// SetB sets the value of the b property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/b
-func (m_ MTRUnitTestingClusterNestedStructList) SetB(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterNestedStructList) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/c
-func (m_ MTRUnitTestingClusterNestedStructList) C() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRUnitTestingClusterNestedStructList) C() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("c"))
 	return rv
 }
 
 
-// SetC sets the value of the c property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/c
 func (m_ MTRUnitTestingClusterNestedStructList) SetC(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/d
 func (m_ MTRUnitTestingClusterNestedStructList) D() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("d"))
@@ -143,14 +148,14 @@ func (m_ MTRUnitTestingClusterNestedStructList) D() unsafe.Pointer {
 }
 
 
-// SetD sets the value of the d property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/d
 func (m_ MTRUnitTestingClusterNestedStructList) SetD(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setD:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/e
 func (m_ MTRUnitTestingClusterNestedStructList) E() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("e"))
@@ -158,14 +163,14 @@ func (m_ MTRUnitTestingClusterNestedStructList) E() unsafe.Pointer {
 }
 
 
-// SetE sets the value of the e property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/e
 func (m_ MTRUnitTestingClusterNestedStructList) SetE(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/f
 func (m_ MTRUnitTestingClusterNestedStructList) F() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("f"))
@@ -173,14 +178,14 @@ func (m_ MTRUnitTestingClusterNestedStructList) F() unsafe.Pointer {
 }
 
 
-// SetF sets the value of the f property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/f
 func (m_ MTRUnitTestingClusterNestedStructList) SetF(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/g
 func (m_ MTRUnitTestingClusterNestedStructList) G() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("g"))
@@ -188,8 +193,7 @@ func (m_ MTRUnitTestingClusterNestedStructList) G() unsafe.Pointer {
 }
 
 
-// SetG sets the value of the g property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusternestedstructlist/g
 func (m_ MTRUnitTestingClusterNestedStructList) SetG(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,23 +31,23 @@ type _RendererClass struct {
 // An interface definition for the [Renderer] class.
 type IRenderer interface {
 	objectivec.IObject
-	AddUpdateRect(r coregraphics.CGRect)
-	BeginFrameAtTimeTimeStamp(t ITimeInterval, ts unsafe.Pointer)
-	EndFrame()
-	NextFrameTime() TimeInterval
-	Render()
-	SetDestination(tex objectivec.IObject)
-	UpdateBounds() coregraphics.CGRect
-	Bounds() coregraphics.CGRect
-	SetBounds(value coregraphics.CGRect)
-	Layer() CALayer
+	// properties:
+	Bounds() objc.IObject /* cross-framework: Rect */
+	SetBounds(value objc.IObject /* cross-framework: Rect */)
+	Layer() ILayer
 	SetLayer(value ILayer)
+	// methods:
+	Render()
 }
 
 // A layer that allows an application to render a layer tree into a Core OpenGL context.
 //
 // For real-time output you should use an instance of to host the layer-tree.
+
+
+// A layer that allows an application to render a layer tree into a Core OpenGL context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer
 type Renderer struct {
 	objectivec.Object
@@ -93,126 +93,51 @@ func NewRenderer() Renderer {
 
 
 
-
-// Creates and returns a instance with the render target specified by the Core OpenGL context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(cglContext:options:)
-func NewRendererWithCGLContextOptions(ctx unsafe.Pointer, dict objectivec.IObject) Renderer {
-	rv := objc.Send[Renderer](objc.ID(getRendererClass().class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
-	return rv
-}
-
-
-
-// Creates a layer renderer from a Metal texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(mtlTexture:options:)
-func NewRendererWithMTLTextureOptions(tex objectivec.IObject, dict objectivec.IObject) Renderer {
-	rv := objc.Send[Renderer](objc.ID(getRendererClass().class), objc.Sel("rendererWithMTLTexture:options:"), tex, dict)
-	return rv
-}
-
-
-// Creates and returns a instance with the render target specified by the Core OpenGL context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(cglContext:options:)
-func (rc _RendererClass) RendererWithCGLContextOptions(ctx unsafe.Pointer, dict objectivec.IObject) Renderer {
-	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
-	return rv
-}
-
-// Creates a layer renderer from a Metal texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(mtlTexture:options:)
-func (rc _RendererClass) RendererWithMTLTextureOptions(tex objectivec.IObject, dict objectivec.IObject) Renderer {
-	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("rendererWithMTLTexture:options:"), tex, dict)
-	return rv
-}
-
-// Adds the rectangle to the update region of the current frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/addUpdate(_:)
-func (r_ Renderer) AddUpdateRect(r coregraphics.CGRect) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("addUpdateRect:"), r)
-}
-
-// Begin rendering a frame at the specified time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/beginFrame(atTime:timeStamp:)
-func (r_ Renderer) BeginFrameAtTimeTimeStamp(t ITimeInterval, ts unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("beginFrameAtTime:timeStamp:"), t, ts)
-}
-
-// Release any data associated with the current frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/endFrame()
-func (r_ Renderer) EndFrame() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("endFrame"))
-}
-
-// Returns the time at which the next update should happen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/nextFrameTime()
-func (r_ Renderer) NextFrameTime() TimeInterval {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("nextFrameTime"))
-	return rv
-}
-
 // Render the update region of the current frame to the target context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/render()
 func (r_ Renderer) Render() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("render"))
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/setDestination(_:)
-func (r_ Renderer) SetDestination(tex objectivec.IObject) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setDestination:"), tex)
-}
-
-// Returns the bounds of the update region that contains all pixels that will be rendered by the current frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/updateBounds()
-func (r_ Renderer) UpdateBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("updateBounds"))
-	return rv
-}
 
 // The bounds of the receiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/bounds
-func (r_ Renderer) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("bounds"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/carenderer/bounds
+func (r_ Renderer) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](r_.ID, objc.Sel("bounds"))
 	return rv
 }
 
 
-// SetBounds sets the value of the bounds property.
 // The bounds of the receiver.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/bounds
-func (r_ Renderer) SetBounds(value coregraphics.CGRect) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/carenderer/bounds
+func (r_ Renderer) SetBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBounds:"), value)
 }
 
+
 // The root layer of the layer-tree the receiver should render.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/layer
-func (r_ Renderer) Layer() CALayer {
-	rv := objc.Send[CALayer](r_.ID, objc.Sel("layer"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/carenderer/layer
+func (r_ Renderer) Layer() ILayer {
+	rv := objc.Send[Layer](r_.ID, objc.Sel("layer"))
 	return rv
 }
 
 
-// SetLayer sets the value of the layer property.
 // The root layer of the layer-tree the receiver should render.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/layer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/carenderer/layer
 func (r_ Renderer) SetLayer(value ILayer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }
+
 
 

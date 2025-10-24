@@ -29,11 +29,17 @@ type _MXDiskIOMetricClass struct {
 // An interface definition for the [MXDiskIOMetric] class.
 type IMXDiskIOMetric interface {
 	IMXMetric
+	// properties:
 	CumulativeLogicalWrites() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about disk usage.
+
+
+// An object representing metrics about disk usage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskIOMetric
 type MXDiskIOMetric struct {
 	MXMetric
@@ -80,8 +86,10 @@ func NewMXDiskIOMetric() MXDiskIOMetric {
 }
 
 
+
 // The total amount of data written to disk or other long term storage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskIOMetric/cumulativeLogicalWrites
 func (m_ MXDiskIOMetric) CumulativeLogicalWrites() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeLogicalWrites"))

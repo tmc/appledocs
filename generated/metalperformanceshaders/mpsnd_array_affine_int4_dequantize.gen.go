@@ -30,9 +30,13 @@ type _NDArrayAffineInt4DequantizeClass struct {
 // An interface definition for the [NDArrayAffineInt4Dequantize] class.
 type INDArrayAffineInt4Dequantize interface {
 	INDArrayMultiaryKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineInt4Dequantize
 type NDArrayAffineInt4Dequantize struct {
 	NDArrayMultiaryKernel
@@ -77,7 +81,8 @@ func NewNDArrayAffineInt4Dequantize() NDArrayAffineInt4Dequantize {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineInt4Dequantize/init(device:quantizationDescriptor:)
 func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device objectivec.IObject, quantizationDescriptor IMPSNDArrayAffineQuantizationDescriptor) NDArrayAffineInt4Dequantize {
 	instance := getNDArrayAffineInt4DequantizeClass().Alloc()

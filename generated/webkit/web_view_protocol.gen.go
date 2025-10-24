@@ -8,9 +8,9 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 11.0+
-//   - iPadOS 11.0+
-//   - macOS 10.13+
+//   - iOS 8.0+
+//   - iPadOS 8.0+
+//   - macOS 10.10+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to webView:.

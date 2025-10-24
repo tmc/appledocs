@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,26 @@ type _CLayerClass struct {
 // An interface definition for the [CLayer] class.
 type ICLayer interface {
 	objectivec.IObject
-	DeviceType() CDeviceType
-	SetDeviceType(value CDeviceType)
+	// properties:
+	DeviceType() CDeviceType /* not a class type */
+	SetDeviceType(value CDeviceType /* not a class type */)
 	IsDebuggingEnabled() bool
 	SetIsDebuggingEnabled(value bool)
-	Label() string
-	SetLabel(value string)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	LayerID() int
 	SetLayerID(value int)
+	// methods:
 }
 
 // The base class for all framework layers.
 //
 // This class defines a polymorphic interface for subclasses. There are subclasses for each supported neural network layer type. Use the appropriate subclass initializer to create a layer object.
+
+
+// The base class for all framework layers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCLayer
 type CLayer struct {
 	objectivec.Object
@@ -88,26 +95,29 @@ func NewCLayer() CLayer {
 }
 
 
+
 // A device type that indicates where the system executes the layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) DeviceType() CDeviceType {
+func (c_ CLayer) DeviceType() CDeviceType /* not a class type */ {
 	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
 
-// SetDeviceType sets the value of the deviceType property.
 // A device type that indicates where the system executes the layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) SetDeviceType(value CDeviceType) {
+func (c_ CLayer) SetDeviceType(value CDeviceType /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
 }
 
+
 // A Boolean that indicates whether you choose to debug the layer when executing a graph that includes it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/isdebuggingenabled
 func (c_ CLayer) IsDebuggingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDebuggingEnabled"))
@@ -115,35 +125,37 @@ func (c_ CLayer) IsDebuggingEnabled() bool {
 }
 
 
-// SetIsDebuggingEnabled sets the value of the isDebuggingEnabled property.
 // A Boolean that indicates whether you choose to debug the layer when executing a graph that includes it.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/isdebuggingenabled
 func (c_ CLayer) SetIsDebuggingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDebuggingEnabled:"), value)
 }
 
+
 // A string that helps identify this layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CLayer) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
 // A string that helps identify this layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) SetLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ CLayer) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
+
 
 // A unique number that identifies each layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/layerid
 func (c_ CLayer) LayerID() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("layerID"))
@@ -151,10 +163,9 @@ func (c_ CLayer) LayerID() int {
 }
 
 
-// SetLayerID sets the value of the layerID property.
 // A unique number that identifies each layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/layerid
 func (c_ CLayer) SetLayerID(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLayerID:"), value)

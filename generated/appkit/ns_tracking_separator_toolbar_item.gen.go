@@ -30,8 +30,8 @@ type _TrackingSeparatorToolbarItemClass struct {
 type ITrackingSeparatorToolbarItem interface {
 	IToolbarItem
 	// properties:
-	DividerIndex() int /* primitive/slice/pointer. */
-	SetDividerIndex(value int /* primitive/slice/pointer. */)
+	DividerIndex() int
+	SetDividerIndex(value int)
 	SplitView() ISplitView
 	SetSplitView(value ISplitView)
 	Target() unsafe.Pointer
@@ -98,7 +98,7 @@ func NewTrackingSeparatorToolbarItem() TrackingSeparatorToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/init(identifier:splitView:dividerIndex:)
-func NewTrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int /* primitive/slice/pointer. */) TrackingSeparatorToolbarItem {
+func NewTrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int) TrackingSeparatorToolbarItem {
 	rv := objc.Send[TrackingSeparatorToolbarItem](objc.ID(getTrackingSeparatorToolbarItemClass().class), objc.Sel("trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:"), identifier, splitView, dividerIndex)
 	return rv
 }
@@ -109,7 +109,7 @@ func NewTrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/init(identifier:splitView:dividerIndex:)
-func (tc _TrackingSeparatorToolbarItemClass) TrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int /* primitive/slice/pointer. */) unsafe.Pointer {
+func (tc _TrackingSeparatorToolbarItemClass) TrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:"), identifier, splitView, dividerIndex)
 	return rv
 }
@@ -119,7 +119,7 @@ func (tc _TrackingSeparatorToolbarItemClass) TrackingSeparatorToolbarItemWithIde
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/dividerIndex
-func (t_ TrackingSeparatorToolbarItem) DividerIndex() int /* primitive/slice/pointer. */ {
+func (t_ TrackingSeparatorToolbarItem) DividerIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("dividerIndex"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (t_ TrackingSeparatorToolbarItem) DividerIndex() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/dividerIndex
-func (t_ TrackingSeparatorToolbarItem) SetDividerIndex(value int /* primitive/slice/pointer. */) {
+func (t_ TrackingSeparatorToolbarItem) SetDividerIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDividerIndex:"), value)
 }
 

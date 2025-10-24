@@ -29,13 +29,19 @@ type _GraphVariableOpClass struct {
 // An interface definition for the [GraphVariableOp] class.
 type IGraphVariableOp interface {
 	IGraphOperation
-	Shape() unsafe.Pointer
-	DataType() unsafe.Pointer
-	SetDataType(value unsafe.Pointer)
+	// properties:
+	Shape() Shape /* not a class type */
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
+	// methods:
 }
 
 // The class that defines the parameters for a variable.
+
+
+// The class that defines the parameters for a variable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphVariableOp
 type GraphVariableOp struct {
 	GraphOperation
@@ -82,29 +88,32 @@ func NewGraphVariableOp() GraphVariableOp {
 }
 
 
+
 // The shape of the variable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphVariableOp/shape
-func (g_ GraphVariableOp) Shape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
-	return rv
-}
-
-// The data type of the variable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop/datatype
-func (g_ GraphVariableOp) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+func (g_ GraphVariableOp) Shape() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("shape"))
 	return rv
 }
 
 
-// SetDataType sets the value of the dataType property.
 // The data type of the variable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop/datatype
-func (g_ GraphVariableOp) SetDataType(value unsafe.Pointer) {
+func (g_ GraphVariableOp) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// The data type of the variable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop/datatype
+func (g_ GraphVariableOp) SetDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }
 

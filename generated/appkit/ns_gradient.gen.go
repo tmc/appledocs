@@ -33,8 +33,8 @@ type IGradient interface {
 	// properties:
 	ColorSpace() IColorSpace
 	SetColorSpace(value IColorSpace)
-	NumberOfColorStops() int /* primitive/slice/pointer. */
-	SetNumberOfColorStops(value int /* primitive/slice/pointer. */)
+	NumberOfColorStops() int
+	SetNumberOfColorStops(value int)
 	// methods:
 }
 
@@ -114,7 +114,7 @@ func (g_ Gradient) SetColorSpace(value IColorSpace) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/numberofcolorstops
-func (g_ Gradient) NumberOfColorStops() int /* primitive/slice/pointer. */ {
+func (g_ Gradient) NumberOfColorStops() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColorStops"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (g_ Gradient) NumberOfColorStops() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/numberofcolorstops
-func (g_ Gradient) SetNumberOfColorStops(value int /* primitive/slice/pointer. */) {
+func (g_ Gradient) SetNumberOfColorStops(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfColorStops:"), value)
 }
 

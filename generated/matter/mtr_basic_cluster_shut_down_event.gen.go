@@ -29,9 +29,13 @@ type _MTRBasicClusterShutDownEventClass struct {
 // An interface definition for the [MTRBasicClusterShutDownEvent] class.
 type IMTRBasicClusterShutDownEvent interface {
 	IMTRBasicInformationClusterShutDownEvent
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterShutDownEvent
 type MTRBasicClusterShutDownEvent struct {
 	MTRBasicInformationClusterShutDownEvent

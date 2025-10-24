@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -32,7 +33,9 @@ type IEPSImageRep interface {
 	IImageRep
 	// properties:
 	BoundingBox() objc.IObject /* cross-framework: Rect */
-	EPSRepresentation() objc.IObject /* cross-framework: NSData */
+	SetBoundingBox(value objc.IObject /* cross-framework: Rect */)
+	EpsRepresentation() objc.IObject /* cross-framework: Data */
+	SetEpsRepresentation(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -89,25 +92,12 @@ func NewEPSImageRep() EPSImageRep {
 
 
 
-// Returns a representation of an image initialized with the specified EPS data.
+// The rectangle that bounds the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/init(data:)
-func NewEPSImageRepWithData(epsData objc.IObject /* cross-framework NSData */) EPSImageRep {
-	instance := getEPSImageRepClass().Alloc()
-	rv := objc.Send[EPSImageRep](instance.ID, objc.Sel("initWithData:"), epsData)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns a representation of an image initialized with the specified EPS data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/imageRepWithData:
-func (ec _EPSImageRepClass) ImageRepWithData(epsData objc.IObject /* cross-framework NSData */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("imageRepWithData:"), epsData)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
+func (e_ EPSImageRep) BoundingBox() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](e_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
@@ -115,9 +105,18 @@ func (ec _EPSImageRepClass) ImageRepWithData(epsData objc.IObject /* cross-frame
 // The rectangle that bounds the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/boundingBox
-func (e_ EPSImageRep) BoundingBox() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](e_.ID, objc.Sel("boundingBox"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
+func (e_ EPSImageRep) SetBoundingBox(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setBoundingBox:"), value)
+}
+
+
+// The EPS representation of the image representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
+func (e_ EPSImageRep) EpsRepresentation() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("epsRepresentation"))
 	return rv
 }
 
@@ -125,10 +124,10 @@ func (e_ EPSImageRep) BoundingBox() objc.IObject /* cross-framework: Rect */ {
 // The EPS representation of the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/epsRepresentation
-func (e_ EPSImageRep) EPSRepresentation() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("EPSRepresentation"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
+func (e_ EPSImageRep) SetEpsRepresentation(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
 }
+
 
 

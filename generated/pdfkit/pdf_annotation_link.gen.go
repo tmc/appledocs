@@ -29,9 +29,13 @@ type _PDFAnnotationLinkClass struct {
 // An interface definition for the [PDFAnnotationLink] class.
 type IPDFAnnotationLink interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationLink
 type PDFAnnotationLink struct {
 	PDFAnnotation

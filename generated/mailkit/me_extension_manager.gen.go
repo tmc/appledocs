@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,8 +83,8 @@ func NewMEExtensionManager() MEExtensionManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEExtensionManager/reloadContentBlocker(withIdentifier:completionHandler:)
-func (mc _MEExtensionManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (mc _MEExtensionManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
 
 

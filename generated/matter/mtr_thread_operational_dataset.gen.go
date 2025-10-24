@@ -31,23 +31,27 @@ type _MTRThreadOperationalDatasetClass struct {
 // An interface definition for the [MTRThreadOperationalDataset] class.
 type IMTRThreadOperationalDataset interface {
 	objectivec.IObject
+	// properties:
 	Channel() unsafe.Pointer
 	SetChannel(value unsafe.Pointer)
-	ChannelNumber() foundation.Number
-	SetChannelNumber(value foundation.INumber)
-	ExtendedPANID() foundation.Data
-	SetExtendedPANID(value foundation.IData)
-	MasterKey() foundation.Data
-	SetMasterKey(value foundation.IData)
-	NetworkName() string
-	SetNetworkName(value string)
-	PanID() foundation.Data
-	SetPanID(value foundation.IData)
-	PsKc() foundation.Data
-	SetPsKc(value foundation.IData)
+	ChannelNumber() objc.IObject /* cross-framework: NSNumber */
+	SetChannelNumber(value objc.IObject /* cross-framework: NSNumber */)
+	ExtendedPANID() objc.IObject /* cross-framework: Data */
+	SetExtendedPANID(value objc.IObject /* cross-framework: Data */)
+	MasterKey() objc.IObject /* cross-framework: Data */
+	SetMasterKey(value objc.IObject /* cross-framework: Data */)
+	NetworkName() objc.IObject /* cross-framework: NSString */
+	SetNetworkName(value objc.IObject /* cross-framework: NSString */)
+	PanID() objc.IObject /* cross-framework: Data */
+	SetPanID(value objc.IObject /* cross-framework: Data */)
+	PsKc() objc.IObject /* cross-framework: Data */
+	SetPsKc(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadOperationalDataset
 type MTRThreadOperationalDataset struct {
 	objectivec.Object
@@ -90,7 +94,8 @@ func NewMTRThreadOperationalDataset() MTRThreadOperationalDataset {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channel
 func (m_ MTRThreadOperationalDataset) Channel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("channel"))
@@ -98,100 +103,99 @@ func (m_ MTRThreadOperationalDataset) Channel() unsafe.Pointer {
 }
 
 
-// SetChannel sets the value of the channel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channel
 func (m_ MTRThreadOperationalDataset) SetChannel(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
-func (m_ MTRThreadOperationalDataset) ChannelNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channelNumber"))
+func (m_ MTRThreadOperationalDataset) ChannelNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("channelNumber"))
 	return rv
 }
 
 
-// SetChannelNumber sets the value of the channelNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/channelnumber
-func (m_ MTRThreadOperationalDataset) SetChannelNumber(value foundation.INumber) {
+func (m_ MTRThreadOperationalDataset) SetChannelNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
-func (m_ MTRThreadOperationalDataset) ExtendedPANID() foundation.Data {
+func (m_ MTRThreadOperationalDataset) ExtendedPANID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("extendedPANID"))
 	return rv
 }
 
 
-// SetExtendedPANID sets the value of the extendedPANID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/extendedpanid
-func (m_ MTRThreadOperationalDataset) SetExtendedPANID(value foundation.IData) {
+func (m_ MTRThreadOperationalDataset) SetExtendedPANID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPANID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
-func (m_ MTRThreadOperationalDataset) MasterKey() foundation.Data {
+func (m_ MTRThreadOperationalDataset) MasterKey() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("masterKey"))
 	return rv
 }
 
 
-// SetMasterKey sets the value of the masterKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/masterkey
-func (m_ MTRThreadOperationalDataset) SetMasterKey(value foundation.IData) {
+func (m_ MTRThreadOperationalDataset) SetMasterKey(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKey:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
-func (m_ MTRThreadOperationalDataset) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadOperationalDataset) NetworkName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
 
-// SetNetworkName sets the value of the networkName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/networkname
-func (m_ MTRThreadOperationalDataset) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+func (m_ MTRThreadOperationalDataset) SetNetworkName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/panid
-func (m_ MTRThreadOperationalDataset) PanID() foundation.Data {
+func (m_ MTRThreadOperationalDataset) PanID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("panID"))
 	return rv
 }
 
 
-// SetPanID sets the value of the panID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/panid
-func (m_ MTRThreadOperationalDataset) SetPanID(value foundation.IData) {
+func (m_ MTRThreadOperationalDataset) SetPanID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/pskc
-func (m_ MTRThreadOperationalDataset) PsKc() foundation.Data {
+func (m_ MTRThreadOperationalDataset) PsKc() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("psKc"))
 	return rv
 }
 
 
-// SetPsKc sets the value of the psKc property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadoperationaldataset/pskc
-func (m_ MTRThreadOperationalDataset) SetPsKc(value foundation.IData) {
+func (m_ MTRThreadOperationalDataset) SetPsKc(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPsKc:"), value)
 }
 

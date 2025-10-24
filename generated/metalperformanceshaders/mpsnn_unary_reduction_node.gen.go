@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [UnaryReductionNode] class.
@@ -30,11 +29,15 @@ type _UnaryReductionNodeClass struct {
 // An interface definition for the [UnaryReductionNode] class.
 type IUnaryReductionNode interface {
 	IFilterNode
-	ClipRectSource() corelocation.Region
-	SetClipRectSource(value corelocation.IRegion)
+	// properties:
+	ClipRectSource() objc.IObject /* cross-framework: MTLRegion */
+	SetClipRectSource(value objc.IObject /* cross-framework: MTLRegion */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNUnaryReductionNode
 type UnaryReductionNode struct {
 	FilterNode
@@ -79,7 +82,8 @@ func NewUnaryReductionNode() UnaryReductionNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNUnaryReductionNode/init(source:)
 func NewUnaryReductionNodeWithSource(sourceNode IMPSNNImageNode) UnaryReductionNode {
 	instance := getUnaryReductionNodeClass().Alloc()
@@ -89,18 +93,18 @@ func NewUnaryReductionNodeWithSource(sourceNode IMPSNNImageNode) UnaryReductionN
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
-func (u_ UnaryReductionNode) ClipRectSource() corelocation.Region {
-	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("clipRectSource"))
+func (u_ UnaryReductionNode) ClipRectSource() objc.IObject /* cross-framework: MTLRegion */ {
+	rv := objc.Send[Region](u_.ID, objc.Sel("clipRectSource"))
 	return rv
 }
 
 
-// SetClipRectSource sets the value of the clipRectSource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
-func (u_ UnaryReductionNode) SetClipRectSource(value corelocation.IRegion) {
+func (u_ UnaryReductionNode) SetClipRectSource(value objc.IObject /* cross-framework: MTLRegion */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClipRectSource:"), value)
 }
 

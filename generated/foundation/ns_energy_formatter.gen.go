@@ -30,20 +30,20 @@ type _EnergyFormatterClass struct {
 type IEnergyFormatter interface {
 	IFormatter
 	// properties:
-	ForFoodEnergyUse() bool /* primitive/slice/pointer. */
-	SetForFoodEnergyUse(value bool /* primitive/slice/pointer. */)
+	ForFoodEnergyUse() bool
+	SetForFoodEnergyUse(value bool)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
 	UnitStyle() FormattingUnitStyle
 	SetUnitStyle(value FormattingUnitStyle)
-	IsForFoodEnergyUse() bool /* primitive/slice/pointer. */
-	SetIsForFoodEnergyUse(value bool /* primitive/slice/pointer. */)
+	IsForFoodEnergyUse() bool
+	SetIsForFoodEnergyUse(value bool)
 	// methods:
-	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */
-	StringFromJoules(numberInJoules float64 /* primitive/slice/pointer. */) IString
-	StringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit EnergyFormatterUnit) IString
-	UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer. */, unitp EnergyFormatterUnit) IString
-	UnitStringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit EnergyFormatterUnit) IString
+	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool
+	StringFromJoules(numberInJoules float64) IString
+	StringFromValueUnit(value float64, unit EnergyFormatterUnit) IString
+	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp EnergyFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit EnergyFormatterUnit) IString
 }
 
 // A formatter that provides localized descriptions of energy values.
@@ -103,7 +103,7 @@ func NewEnergyFormatter() EnergyFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/getObjectValue(_:for:errorDescription:)
-func (e_ EnergyFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */ {
+func (e_ EnergyFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, string_, error_)
 	return rv
 }
@@ -113,7 +113,7 @@ func (e_ EnergyFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromJoules:)
-func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64 /* primitive/slice/pointer. */) IString {
+func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("stringFromJoules:"), numberInJoules)
 	return rv
 }
@@ -123,7 +123,7 @@ func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromValue:unit:)
-func (e_ EnergyFormatter) StringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit EnergyFormatterUnit) IString {
+func (e_ EnergyFormatter) StringFromValueUnit(value float64, unit EnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("stringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -133,7 +133,7 @@ func (e_ EnergyFormatter) StringFromValueUnit(value float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromJoules:usedUnit:)
-func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64 /* primitive/slice/pointer. */, unitp EnergyFormatterUnit) IString {
+func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp EnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromJoules:usedUnit:"), numberInJoules, unitp)
 	return rv
 }
@@ -143,7 +143,7 @@ func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64 /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromValue:unit:)
-func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit EnergyFormatterUnit) IString {
+func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64, unit EnergyFormatterUnit) IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -153,7 +153,7 @@ func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/isForFoodEnergyUse
-func (e_ EnergyFormatter) ForFoodEnergyUse() bool /* primitive/slice/pointer. */ {
+func (e_ EnergyFormatter) ForFoodEnergyUse() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("forFoodEnergyUse"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (e_ EnergyFormatter) ForFoodEnergyUse() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/isForFoodEnergyUse
-func (e_ EnergyFormatter) SetForFoodEnergyUse(value bool /* primitive/slice/pointer. */) {
+func (e_ EnergyFormatter) SetForFoodEnergyUse(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setForFoodEnergyUse:"), value)
 }
 
@@ -210,7 +210,7 @@ func (e_ EnergyFormatter) SetUnitStyle(value FormattingUnitStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
-func (e_ EnergyFormatter) IsForFoodEnergyUse() bool /* primitive/slice/pointer. */ {
+func (e_ EnergyFormatter) IsForFoodEnergyUse() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isForFoodEnergyUse"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (e_ EnergyFormatter) IsForFoodEnergyUse() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
-func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool /* primitive/slice/pointer. */) {
+func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsForFoodEnergyUse:"), value)
 }
 

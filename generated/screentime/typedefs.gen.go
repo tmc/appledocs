@@ -6,6 +6,6 @@ package screentime
 // STWebHistoryProfileIdentifier - An identifier representing a web history profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/ProfileIdentifier
-// STWebHistoryProfileIdentifier has base type: NSString *
-type STWebHistoryProfileIdentifier uintptr
+// STWebHistoryProfileIdentifier is a string typedef
+type STWebHistoryProfileIdentifier = string
 

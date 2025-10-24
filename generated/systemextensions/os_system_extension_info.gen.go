@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,18 @@ type _OSSystemExtensionInfoClass struct {
 // An interface definition for the [OSSystemExtensionInfo] class.
 type IOSSystemExtensionInfo interface {
 	objectivec.IObject
-	BundleIdentifier() string
-	BundleShortVersion() string
-	BundleVersion() string
-	SetBundleVersion(value string)
+	// properties:
+	BundleIdentifier() objc.IObject /* cross-framework: NSString */
+	BundleShortVersion() objc.IObject /* cross-framework: NSString */
+	SetBundleShortVersion(value objc.IObject /* cross-framework: NSString */)
+	BundleVersion() objc.IObject /* cross-framework: NSString */
+	SetBundleVersion(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo
 type OSSystemExtensionInfo struct {
 	objectivec.Object
@@ -79,33 +85,42 @@ func NewOSSystemExtensionInfo() OSSystemExtensionInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleIdentifier
-func (o_ OSSystemExtensionInfo) BundleIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
+func (o_ OSSystemExtensionInfo) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleShortVersion
-func (o_ OSSystemExtensionInfo) BundleShortVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleshortversion
+func (o_ OSSystemExtensionInfo) BundleShortVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
 }
 
-//
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleshortversion
+func (o_ OSSystemExtensionInfo) SetBundleShortVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
-func (o_ OSSystemExtensionInfo) BundleVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionInfo) BundleVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleVersion"))
 	return rv
 }
 
 
-// SetBundleVersion sets the value of the bundleVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
-func (o_ OSSystemExtensionInfo) SetBundleVersion(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), objc.String(value))
+func (o_ OSSystemExtensionInfo) SetBundleVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), value)
 }
 
 

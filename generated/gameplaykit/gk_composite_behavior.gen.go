@@ -31,15 +31,15 @@ type _CompositeBehaviorClass struct {
 type ICompositeBehavior interface {
 	IBehavior
 	// properties:
-	BehaviorCount() int /* primitive/slice/pointer. */
+	BehaviorCount() int
 	// methods:
 	RemoveBehavior(behavior IGKBehavior)
 	RemoveAllBehaviors()
-	SetObjectForKeyedSubscript(weight foundation.objc.IObject /* cross-framework Number */, behavior IGKBehavior)
-	SetWeightForBehavior(weight float32 /* primitive/slice/pointer. */, behavior IGKBehavior)
-	ObjectForKeyedSubscript(behavior IGKBehavior) foundation.objc.IObject /* cross-framework: Number */
-	ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) IBehavior
-	WeightForBehavior(behavior IGKBehavior) float32 /* primitive/slice/pointer. */
+	SetObjectForKeyedSubscript(weight objc.IObject /* cross-framework: NSNumber */, behavior IGKBehavior)
+	SetWeightForBehavior(weight float32, behavior IGKBehavior)
+	ObjectForKeyedSubscript(behavior IGKBehavior) objc.IObject /* cross-framework: Number */
+	ObjectAtIndexedSubscript(idx uint) IBehavior
+	WeightForBehavior(behavior IGKBehavior) float32
 }
 
 // A set of behaviors, each of which is a set of goals, that together influence the movement of an agent.
@@ -101,7 +101,7 @@ func NewCompositeBehavior() CompositeBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
-func NewCompositeBehaviorWithBehaviors(behaviors []Behavior /* primitive/slice/pointer. */) CompositeBehavior {
+func NewCompositeBehaviorWithBehaviors(behaviors []IBehavior) CompositeBehavior {
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:"), behaviors)
 	return rv
 }
@@ -111,7 +111,7 @@ func NewCompositeBehaviorWithBehaviors(behaviors []Behavior /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
-func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors []Behavior /* primitive/slice/pointer. */, weights []foundation.objc.IObject /* cross-framework Number */) CompositeBehavior {
+func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors []IBehavior, weights []objc.IObject /* cross-framework: Number */) CompositeBehavior {
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
 	return rv
 }
@@ -122,7 +122,7 @@ func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors []Behavior /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
-func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors []Behavior /* primitive/slice/pointer. */) unsafe.Pointer {
+func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors []IBehavior) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("behaviorWithBehaviors:"), behaviors)
 	return rv
 }
@@ -132,7 +132,7 @@ func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors []Behavior /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
-func (cc _CompositeBehaviorClass) BehaviorWithBehaviorsAndWeights(behaviors []Behavior /* primitive/slice/pointer. */, weights []foundation.objc.IObject /* cross-framework Number */) unsafe.Pointer {
+func (cc _CompositeBehaviorClass) BehaviorWithBehaviorsAndWeights(behaviors []IBehavior, weights []objc.IObject /* cross-framework: Number */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
 	return rv
 }
@@ -160,7 +160,7 @@ func (c_ CompositeBehavior) RemoveAllBehaviors() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/setObject:forKeyedSubscript:
-func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight foundation.objc.IObject /* cross-framework Number */, behavior IGKBehavior) {
+func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight objc.IObject /* cross-framework: NSNumber */, behavior IGKBehavior) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, behavior)
 }
 
@@ -169,7 +169,7 @@ func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight foundation.objc.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/setWeight(_:for:)
-func (c_ CompositeBehavior) SetWeightForBehavior(weight float32 /* primitive/slice/pointer. */, behavior IGKBehavior) {
+func (c_ CompositeBehavior) SetWeightForBehavior(weight float32, behavior IGKBehavior) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeight:forBehavior:"), weight, behavior)
 }
 
@@ -178,7 +178,7 @@ func (c_ CompositeBehavior) SetWeightForBehavior(weight float32 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/subscript(_:)-6jng9
-func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior IGKBehavior) foundation.objc.IObject /* cross-framework: Number */ {
+func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior IGKBehavior) objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("objectForKeyedSubscript:"), behavior)
 	return rv
 }
@@ -188,7 +188,7 @@ func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior IGKBehavior) founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/subscript(_:)-6krdg
-func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) IBehavior {
+func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint) IBehavior {
 	rv := objc.Send[Behavior](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
@@ -198,7 +198,7 @@ func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/weight(for:)
-func (c_ CompositeBehavior) WeightForBehavior(behavior IGKBehavior) float32 /* primitive/slice/pointer. */ {
+func (c_ CompositeBehavior) WeightForBehavior(behavior IGKBehavior) float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("weightForBehavior:"), behavior)
 	return rv
 }
@@ -208,7 +208,7 @@ func (c_ CompositeBehavior) WeightForBehavior(behavior IGKBehavior) float32 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/behaviorCount
-func (c_ CompositeBehavior) BehaviorCount() int /* primitive/slice/pointer. */ {
+func (c_ CompositeBehavior) BehaviorCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("behaviorCount"))
 	return rv
 }

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +31,24 @@ type _PHProjectRegionOfInterestClass struct {
 // An interface definition for the [PHProjectRegionOfInterest] class.
 type IPHProjectRegionOfInterest interface {
 	objectivec.IObject
+	// properties:
 	Quality() float64
 	Weight() float64
 	Identifier() unsafe.Pointer
 	SetIdentifier(value unsafe.Pointer)
-	Rect() coregraphics.CGRect
-	SetRect(value coregraphics.CGRect)
+	Rect() objc.IObject /* cross-framework: Rect */
+	SetRect(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // A representation of a region of interest in a photo asset.
 //
 // A region of interest defines a rectangular portion of a photo corresponding to a face. Use a region of interest to determine where to focus, zoom, or crop your image in your project extension; for example, you can customize your slideshow’s transitions based on each photo’s highest-quality region of interest, as shown in .
+
+
+// A representation of a region of interest in a photo asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest
 type PHProjectRegionOfInterest struct {
 	objectivec.Object
@@ -87,24 +93,30 @@ func NewPHProjectRegionOfInterest() PHProjectRegionOfInterest {
 }
 
 
+
 // The region’s quality.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/quality
 func (p_ PHProjectRegionOfInterest) Quality() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("quality"))
 	return rv
 }
 
+
 // The face region’s weight.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectRegionOfInterest/weight
 func (p_ PHProjectRegionOfInterest) Weight() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("weight"))
 	return rv
 }
 
+
 // The region’s unique identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.property
 func (p_ PHProjectRegionOfInterest) Identifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("identifier"))
@@ -112,30 +124,30 @@ func (p_ PHProjectRegionOfInterest) Identifier() unsafe.Pointer {
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The region’s unique identifier.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.property
 func (p_ PHProjectRegionOfInterest) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
+
 // The rectangle representing the region’s location.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
-func (p_ PHProjectRegionOfInterest) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("rect"))
+func (p_ PHProjectRegionOfInterest) Rect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("rect"))
 	return rv
 }
 
 
-// SetRect sets the value of the rect property.
 // The rectangle representing the region’s location.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectregionofinterest/rect
-func (p_ PHProjectRegionOfInterest) SetRect(value coregraphics.CGRect) {
+func (p_ PHProjectRegionOfInterest) SetRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
 }
 

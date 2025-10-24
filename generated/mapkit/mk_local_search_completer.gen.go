@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,12 +38,12 @@ type IMKLocalSearchCompleter interface {
 	SetDelegate(value unsafe.Pointer)
 	FilterType() unsafe.Pointer
 	SetFilterType(value unsafe.Pointer)
-	IsSearching() bool /* primitive/slice/pointer. */
-	SetIsSearching(value bool /* primitive/slice/pointer. */)
+	IsSearching() bool
+	SetIsSearching(value bool)
 	PointOfInterestFilter() IMKPointOfInterestFilter
 	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
-	QueryFragment() string /* primitive/slice/pointer. */
-	SetQueryFragment(value string /* primitive/slice/pointer. */)
+	QueryFragment() objc.IObject /* cross-framework: NSString */
+	SetQueryFragment(value objc.IObject /* cross-framework: NSString */)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
 	RegionPriority() unsafe.Pointer
@@ -168,7 +169,7 @@ func (m_ MKLocalSearchCompleter) SetFilterType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/issearching
-func (m_ MKLocalSearchCompleter) IsSearching() bool /* primitive/slice/pointer. */ {
+func (m_ MKLocalSearchCompleter) IsSearching() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSearching"))
 	return rv
 }
@@ -178,7 +179,7 @@ func (m_ MKLocalSearchCompleter) IsSearching() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/issearching
-func (m_ MKLocalSearchCompleter) SetIsSearching(value bool /* primitive/slice/pointer. */) {
+func (m_ MKLocalSearchCompleter) SetIsSearching(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSearching:"), value)
 }
 
@@ -206,8 +207,8 @@ func (m_ MKLocalSearchCompleter) SetPointOfInterestFilter(value IMKPointOfIntere
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) QueryFragment() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("queryFragment"))
+func (m_ MKLocalSearchCompleter) QueryFragment() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("queryFragment"))
 	return rv
 }
 
@@ -216,8 +217,8 @@ func (m_ MKLocalSearchCompleter) QueryFragment() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) SetQueryFragment(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), objc.String(value))
+func (m_ MKLocalSearchCompleter) SetQueryFragment(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), value)
 }
 
 

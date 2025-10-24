@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -40,16 +41,16 @@ type IApplication interface {
 	EffectiveAppearance() IAppearance
 	HelpMenu() IMenu
 	SetHelpMenu(value IMenu)
-	Running() bool /* primitive/slice/pointer. */
+	Running() bool
 	ModalWindow() IWindow
-	OrderedWindows() []Window /* primitive/slice/pointer. */
+	OrderedWindows() []IWindow
 	ServicesProvider() objc.ID
 	SetServicesProvider(value objc.ID)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
 	NSApp() IApplication
 	SetNSApp(value IApplication)
-	ApplicationShouldSuppressHighDynamicRangeContent() bool /* primitive/slice/pointer. */
-	SetApplicationShouldSuppressHighDynamicRangeContent(value bool /* primitive/slice/pointer. */)
+	ApplicationShouldSuppressHighDynamicRangeContent() bool
+	SetApplicationShouldSuppressHighDynamicRangeContent(value bool)
 	CurrentSystemPresentationOptions() unsafe.Pointer
 	SetCurrentSystemPresentationOptions(value unsafe.Pointer)
 	Delegate() ApplicationDelegate /* not a class type */
@@ -58,14 +59,14 @@ type IApplication interface {
 	SetDockTile(value IDockTile)
 	EnabledRemoteNotificationTypes() unsafe.Pointer
 	SetEnabledRemoteNotificationTypes(value unsafe.Pointer)
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	IsFullKeyboardAccessEnabled() bool /* primitive/slice/pointer. */
-	SetIsFullKeyboardAccessEnabled(value bool /* primitive/slice/pointer. */)
-	IsRegisteredForRemoteNotifications() bool /* primitive/slice/pointer. */
-	SetIsRegisteredForRemoteNotifications(value bool /* primitive/slice/pointer. */)
-	IsRunning() bool /* primitive/slice/pointer. */
-	SetIsRunning(value bool /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFullKeyboardAccessEnabled() bool
+	SetIsFullKeyboardAccessEnabled(value bool)
+	IsRegisteredForRemoteNotifications() bool
+	SetIsRegisteredForRemoteNotifications(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
 	OrderedDocuments() objc.IObject /* cross-framework: Document */
 	SetOrderedDocuments(value objc.IObject /* cross-framework: Document */)
 	PresentationOptions() unsafe.Pointer
@@ -76,45 +77,45 @@ type IApplication interface {
 	AbortModal()
 	Activate()
 	BeginModalSessionForWindow(window IWindow) objc.IObject /* cross-framework: ModalSession */
-	CancelUserAttentionRequest(request int /* primitive/slice/pointer. */)
+	CancelUserAttentionRequest(request int)
 	Deactivate()
 	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
 	EnableRelaunchOnLogin()
-	EndModalSession(session objc.IObject /* cross-framework ModalSession */)
+	EndModalSession(session objc.IObject /* cross-framework: ModalSession */)
 	FinishLaunching()
 	Hide(sender objectivec.IObject)
-	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework: NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool) IEvent
 	OrderFrontStandardAboutPanel(sender objectivec.IObject)
-	PostEventAtStart(event IEvent, atStart bool /* primitive/slice/pointer. */)
+	PostEventAtStart(event IEvent, atStart bool)
 	PreventWindowOrdering()
 	RegisterForRemoteNotifications()
-	RegisterServicesMenuSendTypesReturnTypes(sendTypes []string /* primitive/slice/pointer. */, returnTypes []string /* primitive/slice/pointer. */)
+	RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string)
 	RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
-	ReplyToApplicationShouldTerminate(shouldTerminate bool /* primitive/slice/pointer. */)
+	ReplyToApplicationShouldTerminate(shouldTerminate bool)
 	ReplyToOpenOrPrint(reply ApplicationDelegateReply /* not a class type */)
-	RequestUserAttention(requestType RequestUserAttentionType) int /* primitive/slice/pointer. */
+	RequestUserAttention(requestType RequestUserAttentionType) int
 	Run()
 	RunModalForWindow(window IWindow) objc.IObject /* cross-framework: ModalResponse */
-	RunModalSession(session objc.IObject /* cross-framework ModalSession */) objc.IObject /* cross-framework: ModalResponse */
-	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework NSString */, stringToSearch objc.IObject /* cross-framework NSString */, searchRange objc.IObject /* cross-framework Range */, foundRange objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */
-	SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */
+	RunModalSession(session objc.IObject /* cross-framework: ModalSession */) objc.IObject /* cross-framework: ModalResponse */
+	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange objc.IObject /* cross-framework: Range */, foundRange objc.IObject /* cross-framework: Range */) bool
+	SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool
 	SendEvent(event IEvent)
-	SetWindowsNeedUpdate(needUpdate bool /* primitive/slice/pointer. */)
+	SetWindowsNeedUpdate(needUpdate bool)
 	ShowHelp(sender objectivec.IObject)
 	Stop(sender objectivec.IObject)
 	StopModal()
-	StopModalWithCode(returnCode objc.IObject /* cross-framework ModalResponse */)
+	StopModalWithCode(returnCode objc.IObject /* cross-framework: ModalResponse */)
 	TargetForAction(action objc.SEL) objc.ID
 	TargetForActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) objc.ID
 	Terminate(sender objectivec.IObject)
-	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */
+	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
 	UnhideAllApplications(sender objectivec.IObject)
 	UnhideWithoutActivation()
 	UnregisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
 	UpdateWindows()
-	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID
+	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID
 	YieldActivationToApplication(application IRunningApplication)
-	YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */)
+	YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */)
 }
 
 // An object that manages an app’s main event loop and resources used by all of that app’s objects.
@@ -222,7 +223,7 @@ func (a_ Application) BeginModalSessionForWindow(window IWindow) objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/cancelUserAttentionRequest(_:)
-func (a_ Application) CancelUserAttentionRequest(request int /* primitive/slice/pointer. */) {
+func (a_ Application) CancelUserAttentionRequest(request int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("cancelUserAttentionRequest:"), request)
 }
 
@@ -258,7 +259,7 @@ func (a_ Application) EnableRelaunchOnLogin() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/endModalSession(_:)
-func (a_ Application) EndModalSession(session objc.IObject /* cross-framework ModalSession */) {
+func (a_ Application) EndModalSession(session objc.IObject /* cross-framework: ModalSession */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("endModalSession:"), session)
 }
 
@@ -285,7 +286,7 @@ func (a_ Application) Hide(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/nextEvent(matching:until:inMode:dequeue:)
-func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
+func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework: NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool) IEvent {
 	rv := objc.Send[Event](a_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
@@ -304,7 +305,7 @@ func (a_ Application) OrderFrontStandardAboutPanel(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/postEvent(_:atStart:)
-func (a_ Application) PostEventAtStart(event IEvent, atStart bool /* primitive/slice/pointer. */) {
+func (a_ Application) PostEventAtStart(event IEvent, atStart bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("postEvent:atStart:"), event, atStart)
 }
 
@@ -331,7 +332,7 @@ func (a_ Application) RegisterForRemoteNotifications() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerServicesMenuSendTypes(_:returnTypes:)
-func (a_ Application) RegisterServicesMenuSendTypesReturnTypes(sendTypes []string /* primitive/slice/pointer. */, returnTypes []string /* primitive/slice/pointer. */) {
+func (a_ Application) RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("registerServicesMenuSendTypes:returnTypes:"), sendTypes, returnTypes)
 }
 
@@ -349,7 +350,7 @@ func (a_ Application) RegisterUserInterfaceItemSearchHandler(handler objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/reply(toApplicationShouldTerminate:)
-func (a_ Application) ReplyToApplicationShouldTerminate(shouldTerminate bool /* primitive/slice/pointer. */) {
+func (a_ Application) ReplyToApplicationShouldTerminate(shouldTerminate bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("replyToApplicationShouldTerminate:"), shouldTerminate)
 }
 
@@ -367,7 +368,7 @@ func (a_ Application) ReplyToOpenOrPrint(reply ApplicationDelegateReply /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/requestUserAttention(_:)
-func (a_ Application) RequestUserAttention(requestType RequestUserAttentionType) int /* primitive/slice/pointer. */ {
+func (a_ Application) RequestUserAttention(requestType RequestUserAttentionType) int {
 	rv := objc.Send[int](a_.ID, objc.Sel("requestUserAttention:"), requestType)
 	return rv
 }
@@ -396,7 +397,7 @@ func (a_ Application) RunModalForWindow(window IWindow) objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModalSession(_:)
-func (a_ Application) RunModalSession(session objc.IObject /* cross-framework ModalSession */) objc.IObject /* cross-framework: ModalResponse */ {
+func (a_ Application) RunModalSession(session objc.IObject /* cross-framework: ModalSession */) objc.IObject /* cross-framework: ModalResponse */ {
 	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModalSession:"), session)
 	return rv
 }
@@ -406,7 +407,7 @@ func (a_ Application) RunModalSession(session objc.IObject /* cross-framework Mo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/searchString(_:inUserInterfaceItemString:range:found:)
-func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework NSString */, stringToSearch objc.IObject /* cross-framework NSString */, searchRange objc.IObject /* cross-framework Range */, foundRange objc.IObject /* cross-framework Range */) bool /* primitive/slice/pointer. */ {
+func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange objc.IObject /* cross-framework: Range */, foundRange objc.IObject /* cross-framework: Range */) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("searchString:inUserInterfaceItemString:searchRange:foundRange:"), searchString, stringToSearch, searchRange, foundRange)
 	return rv
 }
@@ -416,7 +417,7 @@ func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/sendAction(_:to:from:)
-func (a_ Application) SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (a_ Application) SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendAction:to:from:"), action, target, sender)
 	return rv
 }
@@ -435,7 +436,7 @@ func (a_ Application) SendEvent(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/setWindowsNeedUpdate(_:)
-func (a_ Application) SetWindowsNeedUpdate(needUpdate bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetWindowsNeedUpdate(needUpdate bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWindowsNeedUpdate:"), needUpdate)
 }
 
@@ -471,7 +472,7 @@ func (a_ Application) StopModal() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/stopModal(withCode:)
-func (a_ Application) StopModalWithCode(returnCode objc.IObject /* cross-framework ModalResponse */) {
+func (a_ Application) StopModalWithCode(returnCode objc.IObject /* cross-framework: ModalResponse */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stopModalWithCode:"), returnCode)
 }
 
@@ -509,7 +510,7 @@ func (a_ Application) Terminate(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/tryToPerform(_:with:)
-func (a_ Application) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (a_ Application) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("tryToPerform:with:"), action, object)
 	return rv
 }
@@ -555,7 +556,7 @@ func (a_ Application) UpdateWindows() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/validRequestor(forSendType:returnType:)
-func (a_ Application) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID {
+func (a_ Application) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
 	return rv
 }
@@ -574,7 +575,7 @@ func (a_ Application) YieldActivationToApplication(application IRunningApplicati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/yieldActivation(toApplicationWithBundleIdentifier:)
-func (a_ Application) YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) {
+func (a_ Application) YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("yieldActivationToApplicationWithBundleIdentifier:"), bundleIdentifier)
 }
 
@@ -660,7 +661,7 @@ func (a_ Application) SetHelpMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isRunning
-func (a_ Application) Running() bool /* primitive/slice/pointer. */ {
+func (a_ Application) Running() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("running"))
 	return rv
 }
@@ -680,7 +681,7 @@ func (a_ Application) ModalWindow() IWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderedWindows
-func (a_ Application) OrderedWindows() []Window /* primitive/slice/pointer. */ {
+func (a_ Application) OrderedWindows() []IWindow {
 	rv := objc.Send[[]Window](a_.ID, objc.Sel("orderedWindows"))
 	return rv
 }
@@ -748,7 +749,7 @@ func (a_ Application) SetNSApp(value IApplication) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
-func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool /* primitive/slice/pointer. */ {
+func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("applicationShouldSuppressHighDynamicRangeContent"))
 	return rv
 }
@@ -758,7 +759,7 @@ func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
-func (a_ Application) SetApplicationShouldSuppressHighDynamicRangeContent(value bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetApplicationShouldSuppressHighDynamicRangeContent(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationShouldSuppressHighDynamicRangeContent:"), value)
 }
 
@@ -843,7 +844,7 @@ func (a_ Application) SetEnabledRemoteNotificationTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isactive
-func (a_ Application) IsActive() bool /* primitive/slice/pointer. */ {
+func (a_ Application) IsActive() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -853,7 +854,7 @@ func (a_ Application) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isactive
-func (a_ Application) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -862,7 +863,7 @@ func (a_ Application) SetIsActive(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isfullkeyboardaccessenabled
-func (a_ Application) IsFullKeyboardAccessEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ Application) IsFullKeyboardAccessEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isFullKeyboardAccessEnabled"))
 	return rv
 }
@@ -872,7 +873,7 @@ func (a_ Application) IsFullKeyboardAccessEnabled() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isfullkeyboardaccessenabled
-func (a_ Application) SetIsFullKeyboardAccessEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetIsFullKeyboardAccessEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsFullKeyboardAccessEnabled:"), value)
 }
 
@@ -881,7 +882,7 @@ func (a_ Application) SetIsFullKeyboardAccessEnabled(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isregisteredforremotenotifications
-func (a_ Application) IsRegisteredForRemoteNotifications() bool /* primitive/slice/pointer. */ {
+func (a_ Application) IsRegisteredForRemoteNotifications() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRegisteredForRemoteNotifications"))
 	return rv
 }
@@ -891,7 +892,7 @@ func (a_ Application) IsRegisteredForRemoteNotifications() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isregisteredforremotenotifications
-func (a_ Application) SetIsRegisteredForRemoteNotifications(value bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetIsRegisteredForRemoteNotifications(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRegisteredForRemoteNotifications:"), value)
 }
 
@@ -900,7 +901,7 @@ func (a_ Application) SetIsRegisteredForRemoteNotifications(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isrunning
-func (a_ Application) IsRunning() bool /* primitive/slice/pointer. */ {
+func (a_ Application) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
 }
@@ -910,7 +911,7 @@ func (a_ Application) IsRunning() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isrunning
-func (a_ Application) SetIsRunning(value bool /* primitive/slice/pointer. */) {
+func (a_ Application) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
 

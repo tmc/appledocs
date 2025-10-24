@@ -31,19 +31,23 @@ type _MTRCommissionerControlClusterReverseOpenCommissioningWindowParamsClass str
 // An interface definition for the [MTRCommissionerControlClusterReverseOpenCommissioningWindowParams] class.
 type IMTRCommissionerControlClusterReverseOpenCommissioningWindowParams interface {
 	objectivec.IObject
-	CommissioningTimeout() foundation.Number
-	SetCommissioningTimeout(value foundation.INumber)
-	Discriminator() foundation.Number
-	SetDiscriminator(value foundation.INumber)
-	Iterations() foundation.Number
-	SetIterations(value foundation.INumber)
-	PakePasscodeVerifier() foundation.NSData
-	SetPakePasscodeVerifier(value foundation.IData)
-	Salt() foundation.NSData
-	SetSalt(value foundation.IData)
+	// properties:
+	CommissioningTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetCommissioningTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	Discriminator() objc.IObject /* cross-framework: NSNumber */
+	SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */)
+	Iterations() objc.IObject /* cross-framework: NSNumber */
+	SetIterations(value objc.IObject /* cross-framework: NSNumber */)
+	PakePasscodeVerifier() objc.IObject /* cross-framework: NSData */
+	SetPakePasscodeVerifier(value objc.IObject /* cross-framework: NSData */)
+	Salt() objc.IObject /* cross-framework: NSData */
+	SetSalt(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams
 type MTRCommissionerControlClusterReverseOpenCommissioningWindowParams struct {
 	objectivec.Object
@@ -87,11 +91,11 @@ func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParams() MTRC
 
 
 
-
 // Initialize an MTRCommissionerControlClusterReverseOpenCommissioningWindowParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/init(responseValue:)
-func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRCommissionerControlClusterReverseOpenCommissioningWindowParams {
+func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRCommissionerControlClusterReverseOpenCommissioningWindowParams {
 	instance := getMTRCommissionerControlClusterReverseOpenCommissioningWindowParamsClass().Alloc()
 	rv := objc.Send[MTRCommissionerControlClusterReverseOpenCommissioningWindowParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -99,78 +103,78 @@ func NewMTRCommissionerControlClusterReverseOpenCommissioningWindowParamsWithRes
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/commissioningTimeout
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) CommissioningTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("commissioningTimeout"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) CommissioningTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("commissioningTimeout"))
 	return rv
 }
 
 
-// SetCommissioningTimeout sets the value of the commissioningTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/commissioningTimeout
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Discriminator() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Discriminator() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("discriminator"))
 	return rv
 }
 
 
-// SetDiscriminator sets the value of the discriminator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iterations() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("iterations"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iterations() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("iterations"))
 	return rv
 }
 
 
-// SetIterations sets the value of the iterations property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value foundation.INumber) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/pakePasscodeVerifier
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) PakePasscodeVerifier() foundation.NSData {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) PakePasscodeVerifier() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("pakePasscodeVerifier"))
 	return rv
 }
 
 
-// SetPakePasscodeVerifier sets the value of the pakePasscodeVerifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/pakePasscodeVerifier
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetPakePasscodeVerifier(value foundation.IData) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetPakePasscodeVerifier(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPakePasscodeVerifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/salt
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt() foundation.NSData {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("salt"))
 	return rv
 }
 
 
-// SetSalt sets the value of the salt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/salt
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetSalt(value foundation.IData) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetSalt(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSalt:"), value)
 }
 

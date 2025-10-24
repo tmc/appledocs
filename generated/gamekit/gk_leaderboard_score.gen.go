@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,14 @@ type _LeaderboardScoreClass struct {
 type ILeaderboardScore interface {
 	objectivec.IObject
 	// properties:
-	Context() int /* primitive/slice/pointer. */
-	SetContext(value int /* primitive/slice/pointer. */)
-	LeaderboardID() string /* primitive/slice/pointer. */
-	SetLeaderboardID(value string /* primitive/slice/pointer. */)
+	Context() int
+	SetContext(value int)
+	LeaderboardID() objc.IObject /* cross-framework: NSString */
+	SetLeaderboardID(value objc.IObject /* cross-framework: NSString */)
 	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
-	Value() int /* primitive/slice/pointer. */
-	SetValue(value int /* primitive/slice/pointer. */)
+	Value() int
+	SetValue(value int)
 	// methods:
 }
 
@@ -99,7 +100,7 @@ func NewLeaderboardScore() LeaderboardScore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) Context() int /* primitive/slice/pointer. */ {
+func (l_ LeaderboardScore) Context() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("context"))
 	return rv
 }
@@ -109,7 +110,7 @@ func (l_ LeaderboardScore) Context() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) SetContext(value int /* primitive/slice/pointer. */) {
+func (l_ LeaderboardScore) SetContext(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -118,8 +119,8 @@ func (l_ LeaderboardScore) SetContext(value int /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) LeaderboardID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardID"))
+func (l_ LeaderboardScore) LeaderboardID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("leaderboardID"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (l_ LeaderboardScore) LeaderboardID() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) SetLeaderboardID(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), objc.String(value))
+func (l_ LeaderboardScore) SetLeaderboardID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), value)
 }
 
 
@@ -156,7 +157,7 @@ func (l_ LeaderboardScore) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) Value() int /* primitive/slice/pointer. */ {
+func (l_ LeaderboardScore) Value() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("value"))
 	return rv
 }
@@ -166,7 +167,7 @@ func (l_ LeaderboardScore) Value() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) SetValue(value int /* primitive/slice/pointer. */) {
+func (l_ LeaderboardScore) SetValue(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setValue:"), value)
 }
 

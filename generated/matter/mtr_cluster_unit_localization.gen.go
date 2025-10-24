@@ -29,9 +29,13 @@ type _MTRClusterUnitLocalizationClass struct {
 // An interface definition for the [MTRClusterUnitLocalization] class.
 type IMTRClusterUnitLocalization interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterUnitLocalization
 type MTRClusterUnitLocalization struct {
 	MTRGenericCluster

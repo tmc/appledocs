@@ -31,29 +31,34 @@ type _UNNotificationContentClass struct {
 // An interface definition for the [UNNotificationContent] class.
 type IUNNotificationContent interface {
 	objectivec.IObject
-	ContentByUpdatingWithProviderError(provider objectivec.IObject, outError unsafe.Pointer) UNNotificationContent
-	Attachments() []UNNotificationAttachment
-	Badge() foundation.Number
-	Body() string
-	CategoryIdentifier() string
-	FilterCriteria() string
+	// properties:
+	Attachments() []IUNNotificationAttachment
+	Badge() objc.IObject /* cross-framework: NSNumber */
+	Body() objc.IObject /* cross-framework: NSString */
+	CategoryIdentifier() objc.IObject /* cross-framework: NSString */
+	FilterCriteria() objc.IObject /* cross-framework: NSString */
 	InterruptionLevel() UNNotificationInterruptionLevel
-	LaunchImageName() string
 	RelevanceScore() float64
-	Sound() UNNotificationSound
-	Subtitle() string
-	SummaryArgument() string
+	Sound() IUNNotificationSound
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SummaryArgument() objc.IObject /* cross-framework: NSString */
 	SummaryArgumentCount() uint
-	TargetContentIdentifier() string
-	ThreadIdentifier() string
-	Title() string
-	UserInfo() objc.ID
+	TargetContentIdentifier() objc.IObject /* cross-framework: NSString */
+	ThreadIdentifier() objc.IObject /* cross-framework: NSString */
+	Title() objc.IObject /* cross-framework: NSString */
+	UserInfo() objc.IObject /* cross-framework: NSDictionary */
+	// methods:
+	ContentByUpdatingWithProviderError(provider objectivec.IObject, outError unsafe.Pointer) IUNNotificationContent
 }
 
 // The uneditable content of a notification.
 //
 // A object contains the data associated with a notification. When your app receives a notification, the associated object contains an object of this type with the content that your app received. Use the content object to get the details of the notification, including the type of notification that the system delivered, any custom data you stored in the dictionary before scheduling the notification, and any attachments. Don’t create instances of this class directly. For remote notifications, the system derives the contents of this object from the JSON payload that your server sends to the APNS server. For local notifications, create a object, and configure the contents of that object instead.
+
+
+// The uneditable content of a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent
 type UNNotificationContent struct {
 	objectivec.Object
@@ -98,141 +103,164 @@ func NewUNNotificationContent() UNNotificationContent {
 }
 
 
+
 // Returns a copy of the notification that includes content from the specified provider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/updating(from:)
 func (u_ UNNotificationContent) ContentByUpdatingWithProviderError(provider objectivec.IObject, outError unsafe.Pointer) UNNotificationContent {
 	rv := objc.Send[UNNotificationContent](u_.ID, objc.Sel("contentByUpdatingWithProvider:error:"), provider, outError)
 	return rv
 }
 
+
 // The visual and audio attachments to display alongside the notification’s main content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/attachments
-func (u_ UNNotificationContent) Attachments() []UNNotificationAttachment {
+func (u_ UNNotificationContent) Attachments() []IUNNotificationAttachment {
 	rv := objc.Send[[]UNNotificationAttachment](u_.ID, objc.Sel("attachments"))
 	return rv
 }
 
+
 // The number that your app’s icon displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/badge
-func (u_ UNNotificationContent) Badge() foundation.Number {
-	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("badge"))
+func (u_ UNNotificationContent) Badge() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](u_.ID, objc.Sel("badge"))
 	return rv
 }
+
 
 // The localized text that provides the notification’s main content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/body
-func (u_ UNNotificationContent) Body() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("body"))
+func (u_ UNNotificationContent) Body() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("body"))
 	return rv
 }
+
 
 // The identifier of the notification’s category.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/categoryIdentifier
-func (u_ UNNotificationContent) CategoryIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("categoryIdentifier"))
+func (u_ UNNotificationContent) CategoryIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("categoryIdentifier"))
 	return rv
 }
+
 
 // The criteria the system evaluates to determine if it displays the notification in the current Focus.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/filterCriteria
-func (u_ UNNotificationContent) FilterCriteria() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("filterCriteria"))
+func (u_ UNNotificationContent) FilterCriteria() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("filterCriteria"))
 	return rv
 }
 
+
 // The notification’s importance and required delivery timing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/interruptionLevel
 func (u_ UNNotificationContent) InterruptionLevel() UNNotificationInterruptionLevel {
 	rv := objc.Send[UNNotificationInterruptionLevel](u_.ID, objc.Sel("interruptionLevel"))
 	return rv
 }
 
-// The name of the image or storyboard to use when your app launches because of the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/launchImageName
-func (u_ UNNotificationContent) LaunchImageName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("launchImageName"))
-	return rv
-}
 
 // The score the system uses to determine if the notification is the summary’s featured notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/relevanceScore
 func (u_ UNNotificationContent) RelevanceScore() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("relevanceScore"))
 	return rv
 }
 
+
 // The sound that plays when the system delivers the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/sound
-func (u_ UNNotificationContent) Sound() UNNotificationSound {
+func (u_ UNNotificationContent) Sound() IUNNotificationSound {
 	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("sound"))
 	return rv
 }
 
+
 // The localized text that provides the notification’s secondary description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/subtitle
-func (u_ UNNotificationContent) Subtitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
+func (u_ UNNotificationContent) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
+
 
 // The text the system adds to the notification summary to provide additional context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/summaryArgument
-func (u_ UNNotificationContent) SummaryArgument() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("summaryArgument"))
+func (u_ UNNotificationContent) SummaryArgument() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("summaryArgument"))
 	return rv
 }
 
+
 // The number the system adds to the notification summary when the notification represents multiple items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/summaryArgumentCount
 func (u_ UNNotificationContent) SummaryArgumentCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("summaryArgumentCount"))
 	return rv
 }
 
+
 // The value your app uses to determine which scene to display to handle the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/targetContentIdentifier
-func (u_ UNNotificationContent) TargetContentIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UNNotificationContent) TargetContentIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
+
 
 // The identifier that groups related notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/threadIdentifier
-func (u_ UNNotificationContent) ThreadIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("threadIdentifier"))
+func (u_ UNNotificationContent) ThreadIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("threadIdentifier"))
 	return rv
 }
+
 
 // The localized text that provides the notification’s primary description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/title
-func (u_ UNNotificationContent) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+func (u_ UNNotificationContent) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("title"))
 	return rv
 }
+
 
 // The custom data to associate with the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationContent/userInfo
-func (u_ UNNotificationContent) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("userInfo"))
+func (u_ UNNotificationContent) UserInfo() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
-
 
 

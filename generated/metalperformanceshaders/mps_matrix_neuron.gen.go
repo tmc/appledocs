@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MatrixNeuron] class.
@@ -29,27 +28,35 @@ type _MatrixNeuronClass struct {
 
 // An interface definition for the [MatrixNeuron] class.
 type IMatrixNeuron interface {
-	objectivec.IObject
+	IMatrixUnaryKernel
+	// properties:
 	Alpha() float64
 	SetAlpha(value float64)
 	SourceInputFeatureChannels() int
 	SetSourceInputFeatureChannels(value int)
 	SourceNumberOfFeatureVectors() int
 	SetSourceNumberOfFeatureVectors(value int)
+	// methods:
 }
 
 // A neuron activation kernel that operates on matrices.
+
+
+// A neuron activation kernel that operates on matrices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixNeuron
 type MatrixNeuron struct {
-	objectivec.Object
+	MatrixUnaryKernel
 }
 
 // MatrixNeuronFrom constructs a [MatrixNeuron] from an unsafe.Pointer.
 //
 // A neuron activation kernel that operates on matrices.
 func MatrixNeuronFrom(ptr unsafe.Pointer) MatrixNeuron {
-	return MatrixNeuron{objectivec.Object{objc.ID(ptr)}}
+	return MatrixNeuron{
+		MatrixUnaryKernel: MatrixUnaryKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -84,7 +91,8 @@ func NewMatrixNeuron() MatrixNeuron {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
 func (m_ MatrixNeuron) Alpha() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("alpha"))
@@ -92,14 +100,14 @@ func (m_ MatrixNeuron) Alpha() float64 {
 }
 
 
-// SetAlpha sets the value of the alpha property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/alpha
 func (m_ MatrixNeuron) SetAlpha(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlpha:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourceinputfeaturechannels
 func (m_ MatrixNeuron) SourceInputFeatureChannels() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("sourceInputFeatureChannels"))
@@ -107,14 +115,14 @@ func (m_ MatrixNeuron) SourceInputFeatureChannels() int {
 }
 
 
-// SetSourceInputFeatureChannels sets the value of the sourceInputFeatureChannels property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourceinputfeaturechannels
 func (m_ MatrixNeuron) SetSourceInputFeatureChannels(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceInputFeatureChannels:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourcenumberoffeaturevectors
 func (m_ MatrixNeuron) SourceNumberOfFeatureVectors() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("sourceNumberOfFeatureVectors"))
@@ -122,8 +130,7 @@ func (m_ MatrixNeuron) SourceNumberOfFeatureVectors() int {
 }
 
 
-// SetSourceNumberOfFeatureVectors sets the value of the sourceNumberOfFeatureVectors property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron/sourcenumberoffeaturevectors
 func (m_ MatrixNeuron) SetSourceNumberOfFeatureVectors(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNumberOfFeatureVectors:"), value)

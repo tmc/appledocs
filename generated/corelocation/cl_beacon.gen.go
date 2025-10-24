@@ -33,12 +33,12 @@ type IBeacon interface {
 	objectivec.IObject
 	// properties:
 	Accuracy() LocationAccuracy /* not a class type */
-	Major() foundation.objc.IObject /* cross-framework: Number */
-	Minor() foundation.objc.IObject /* cross-framework: Number */
+	Major() objc.IObject /* cross-framework: NSNumber */
+	Minor() objc.IObject /* cross-framework: NSNumber */
 	Proximity() Proximity
 	ProximityUUID() objc.IObject /* cross-framework: UUID */
-	Rssi() int /* primitive/slice/pointer. */
-	Timestamp() foundation.objc.IObject /* cross-framework: NSDate */
+	Rssi() int
+	Timestamp() objc.IObject /* cross-framework: NSDate */
 	UUID() objc.IObject /* cross-framework: UUID */
 	// methods:
 }
@@ -110,8 +110,8 @@ func (b_ Beacon) Accuracy() LocationAccuracy /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/major
-func (b_ Beacon) Major() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+func (b_ Beacon) Major() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (b_ Beacon) Major() foundation.objc.IObject /* cross-framework: Number */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/minor
-func (b_ Beacon) Minor() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
+func (b_ Beacon) Minor() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (b_ Beacon) Proximity() Proximity {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
 func (b_ Beacon) ProximityUUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](b_.ID, objc.Sel("proximityUUID"))
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (b_ Beacon) ProximityUUID() objc.IObject /* cross-framework: UUID */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/rssi
-func (b_ Beacon) Rssi() int /* primitive/slice/pointer. */ {
+func (b_ Beacon) Rssi() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("rssi"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (b_ Beacon) Rssi() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
-func (b_ Beacon) Timestamp() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (b_ Beacon) Timestamp() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](b_.ID, objc.Sel("timestamp"))
 	return rv
 }
@@ -171,7 +171,7 @@ func (b_ Beacon) Timestamp() foundation.objc.IObject /* cross-framework: NSDate 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
 func (b_ Beacon) UUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](b_.ID, objc.Sel("UUID"))
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
 

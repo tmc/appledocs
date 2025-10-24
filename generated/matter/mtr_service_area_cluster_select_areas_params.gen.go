@@ -31,15 +31,19 @@ type _MTRServiceAreaClusterSelectAreasParamsClass struct {
 // An interface definition for the [MTRServiceAreaClusterSelectAreasParams] class.
 type IMTRServiceAreaClusterSelectAreasParams interface {
 	objectivec.IObject
-	NewAreas() objc.ID
-	SetNewAreas(value objc.ID)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	NewAreas() objc.IObject /* cross-framework: NSArray */
+	SetNewAreas(value objc.IObject /* cross-framework: NSArray */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams
 type MTRServiceAreaClusterSelectAreasParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRServiceAreaClusterSelectAreasParams() MTRServiceAreaClusterSelectArea
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/newAreas
-func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("newAreas"))
+func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("newAreas"))
 	return rv
 }
 
 
-// SetNewAreas sets the value of the newAreas property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/newAreas
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetNewAreas(value objc.ID) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetNewAreas(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewAreas:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSelectAreasParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRServiceAreaClusterSelectAreasParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSelectAreasParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRServiceAreaClusterSelectAreasParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

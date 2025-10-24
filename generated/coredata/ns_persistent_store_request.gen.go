@@ -31,8 +31,8 @@ type _PersistentStoreRequestClass struct {
 type IPersistentStoreRequest interface {
 	objectivec.IObject
 	// properties:
-	AffectedStores() []PersistentStore /* primitive/slice/pointer. */
-	SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */)
+	AffectedStores() []IPersistentStore
+	SetAffectedStores(value []IPersistentStore)
 	RequestType() PersistentStoreRequestType
 	// methods:
 }
@@ -92,7 +92,7 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore /* primitive/slice/pointer. */ {
+func (p_ PersistentStoreRequest) AffectedStores() []IPersistentStore {
 	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
 	return rv
 }
@@ -102,7 +102,7 @@ func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */) {
+func (p_ PersistentStoreRequest) SetAffectedStores(value []IPersistentStore) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

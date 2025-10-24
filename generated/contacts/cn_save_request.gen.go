@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _CNSaveRequestClass struct {
 type ICNSaveRequest interface {
 	objectivec.IObject
 	// properties:
-	CNErrorUserInfoAffectedRecordsKey() string /* primitive/slice/pointer. */
-	ShouldRefetchContacts() bool /* primitive/slice/pointer. */
-	SetShouldRefetchContacts(value bool /* primitive/slice/pointer. */)
-	TransactionAuthor() string /* primitive/slice/pointer. */
-	SetTransactionAuthor(value string /* primitive/slice/pointer. */)
+	CNErrorUserInfoAffectedRecordsKey() objc.IObject /* cross-framework: NSString */
+	ShouldRefetchContacts() bool
+	SetShouldRefetchContacts(value bool)
+	TransactionAuthor() objc.IObject /* cross-framework: NSString */
+	SetTransactionAuthor(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -96,8 +97,8 @@ func NewCNSaveRequest() CNSaveRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey
-func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
+func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
 	return rv
 }
 
@@ -106,7 +107,7 @@ func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsaverequest/shouldrefetchcontacts
-func (c_ CNSaveRequest) ShouldRefetchContacts() bool /* primitive/slice/pointer. */ {
+func (c_ CNSaveRequest) ShouldRefetchContacts() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldRefetchContacts"))
 	return rv
 }
@@ -116,7 +117,7 @@ func (c_ CNSaveRequest) ShouldRefetchContacts() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsaverequest/shouldrefetchcontacts
-func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool /* primitive/slice/pointer. */) {
+func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldRefetchContacts:"), value)
 }
 
@@ -125,8 +126,8 @@ func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsaverequest/transactionauthor
-func (c_ CNSaveRequest) TransactionAuthor() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("transactionAuthor"))
+func (c_ CNSaveRequest) TransactionAuthor() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (c_ CNSaveRequest) TransactionAuthor() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnsaverequest/transactionauthor
-func (c_ CNSaveRequest) SetTransactionAuthor(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
+func (c_ CNSaveRequest) SetTransactionAuthor(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
 
 

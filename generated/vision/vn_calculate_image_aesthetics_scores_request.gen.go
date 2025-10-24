@@ -29,11 +29,18 @@ type _CalculateImageAestheticsScoresRequestClass struct {
 // An interface definition for the [CalculateImageAestheticsScoresRequest] class.
 type ICalculateImageAestheticsScoresRequest interface {
 	IImageBasedRequest
-	Results() []ImageAestheticsScoresObservation
+	// properties:
+	Results() objc.IObject /* cross-framework: ImageAestheticsScoresObservation */
+	SetResults(value objc.IObject /* cross-framework: ImageAestheticsScoresObservation */)
+	// methods:
 }
 
 // An object that analyzes an image for aesthetically pleasing attributes.
+
+
+// An object that analyzes an image for aesthetically pleasing attributes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCalculateImageAestheticsScoresRequest
 type CalculateImageAestheticsScoresRequest struct {
 	ImageBasedRequest
@@ -80,12 +87,23 @@ func NewCalculateImageAestheticsScoresRequest() CalculateImageAestheticsScoresRe
 }
 
 
+
 // The results of the aesthetics request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCalculateImageAestheticsScoresRequest/results
-func (c_ CalculateImageAestheticsScoresRequest) Results() []ImageAestheticsScoresObservation {
-	rv := objc.Send[[]ImageAestheticsScoresObservation](c_.ID, objc.Sel("results"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
+func (c_ CalculateImageAestheticsScoresRequest) Results() objc.IObject /* cross-framework: ImageAestheticsScoresObservation */ {
+	rv := objc.Send[ImageAestheticsScoresObservation](c_.ID, objc.Sel("results"))
 	return rv
+}
+
+
+// The results of the aesthetics request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
+func (c_ CalculateImageAestheticsScoresRequest) SetResults(value objc.IObject /* cross-framework: ImageAestheticsScoresObservation */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
 }
 
 

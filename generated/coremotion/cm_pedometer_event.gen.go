@@ -32,7 +32,7 @@ type _PedometerEventClass struct {
 type IPedometerEvent interface {
 	objectivec.IObject
 	// properties:
-	Date() foundation.objc.IObject /* cross-framework: NSDate */
+	Date() objc.IObject /* cross-framework: NSDate */
 	Type() PedometerEventType
 	// methods:
 }
@@ -92,7 +92,7 @@ func NewPedometerEvent() PedometerEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/date
-func (p_ PedometerEvent) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (p_ PedometerEvent) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
 }

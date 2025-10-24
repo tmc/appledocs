@@ -32,7 +32,7 @@ type _ImageMedianClass struct {
 type IImageMedian interface {
 	IUnaryImageKernel
 	// properties:
-	KernelDiameter() uint /* primitive/slice/pointer. */
+	KernelDiameter() uint
 	// methods:
 }
 
@@ -105,7 +105,7 @@ func NewImageMedianWithCoderDevice(aDecoder objc.IObject /* cross-framework: Cod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageMedian/init(device:kernelDiameter:)
-func NewImageMedianWithDeviceKernelDiameter(device objectivec.IObject, kernelDiameter uint /* primitive/slice/pointer. */) ImageMedian {
+func NewImageMedianWithDeviceKernelDiameter(device objectivec.IObject, kernelDiameter uint) ImageMedian {
 	instance := getImageMedianClass().Alloc()
 	rv := objc.Send[ImageMedian](instance.ID, objc.Sel("initWithDevice:kernelDiameter:"), device, kernelDiameter)
 	rv.Autorelease()
@@ -118,7 +118,7 @@ func NewImageMedianWithDeviceKernelDiameter(device objectivec.IObject, kernelDia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageMedian/maxKernelDiameter()
-func (ic _ImageMedianClass) MaxKernelDiameter() uint /* primitive/slice/pointer. */ {
+func (ic _ImageMedianClass) MaxKernelDiameter() uint {
 	rv := objc.Send[uint](objc.ID(ic.class), objc.Sel("maxKernelDiameter"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (ic _ImageMedianClass) MaxKernelDiameter() uint /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageMedian/minKernelDiameter()
-func (ic _ImageMedianClass) MinKernelDiameter() uint /* primitive/slice/pointer. */ {
+func (ic _ImageMedianClass) MinKernelDiameter() uint {
 	rv := objc.Send[uint](objc.ID(ic.class), objc.Sel("minKernelDiameter"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (ic _ImageMedianClass) MinKernelDiameter() uint /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageMedian/kernelDiameter
-func (i_ ImageMedian) KernelDiameter() uint /* primitive/slice/pointer. */ {
+func (i_ ImageMedian) KernelDiameter() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelDiameter"))
 	return rv
 }

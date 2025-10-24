@@ -30,12 +30,18 @@ type _NIConfigurationClass struct {
 // An interface definition for the [NIConfiguration] class.
 type INIConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract base class for interaction configurations.
 //
 // The class serves as the common identity for configuration objects. Don’t instantiate this class directly. Instead, instantiate one if its concrete subclasses: or . Use your configuration object to specify the features you want to enable in a Nearby Interaction session, and pass the object to the session’s   method.
+
+
+// An abstract base class for interaction configurations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIConfiguration
 type NIConfiguration struct {
 	objectivec.Object

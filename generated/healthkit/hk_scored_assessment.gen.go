@@ -30,8 +30,8 @@ type _HKScoredAssessmentClass struct {
 type IHKScoredAssessment interface {
 	IHKSample
 	// properties:
-	Score() int /* primitive/slice/pointer. */
-	SetScore(value int /* primitive/slice/pointer. */)
+	Score() int
+	SetScore(value int)
 	// methods:
 }
 
@@ -85,7 +85,7 @@ func NewHKScoredAssessment() HKScoredAssessment {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkscoredassessment/score
-func (h_ HKScoredAssessment) Score() int /* primitive/slice/pointer. */ {
+func (h_ HKScoredAssessment) Score() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("score"))
 	return rv
 }
@@ -93,7 +93,7 @@ func (h_ HKScoredAssessment) Score() int /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkscoredassessment/score
-func (h_ HKScoredAssessment) SetScore(value int /* primitive/slice/pointer. */) {
+func (h_ HKScoredAssessment) SetScore(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setScore:"), value)
 }
 

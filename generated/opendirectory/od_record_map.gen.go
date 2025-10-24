@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,21 @@ type _ODRecordMapClass struct {
 // An interface definition for the [ODRecordMap] class.
 type IODRecordMap interface {
 	objectivec.IObject
-	AttributeMapForStandardAttribute(standardAttribute string) ODAttributeMap
-	SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute string)
-	Attributes() objc.ID
-	Native() string
-	SetNative(value string)
-	OdPredicate() objc.ID
-	SetOdPredicate(value objc.ID)
-	StandardAttributeTypes() objc.ID
+	// properties:
+	Attributes() objc.IObject /* cross-framework: NSDictionary */
+	Native() objc.IObject /* cross-framework: NSString */
+	SetNative(value objc.IObject /* cross-framework: NSString */)
+	OdPredicate() objc.IObject /* cross-framework: NSDictionary */
+	SetOdPredicate(value objc.IObject /* cross-framework: NSDictionary */)
+	StandardAttributeTypes() objc.IObject /* cross-framework: NSArray */
+	// methods:
+	AttributeMapForStandardAttribute(standardAttribute objc.IObject /* cross-framework: NSString */) IODAttributeMap
+	SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute objc.IObject /* cross-framework: NSString */)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap
 type ODRecordMap struct {
 	objectivec.Object
@@ -83,67 +88,72 @@ func NewODRecordMap() ODRecordMap {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/recordMap
 func (oc _ODRecordMapClass) RecordMap() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("recordMap"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributeMap(forStandardAttribute:)
-func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute string) ODAttributeMap {
-	rv := objc.Send[ODAttributeMap](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), objc.String(standardAttribute))
+func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute objc.IObject /* cross-framework: NSString */) IODAttributeMap {
+	rv := objc.Send[ODAttributeMap](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), standardAttribute)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/setAttribute(_:forStandardAttribute:)
-func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, objc.String(standardAttribute))
+func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, standardAttribute)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributes-swift.property
-func (o_ ODRecordMap) Attributes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("attributes"))
+func (o_ ODRecordMap) Attributes() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](o_.ID, objc.Sel("attributes"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) Native() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("native"))
+func (o_ ODRecordMap) Native() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("native"))
 	return rv
 }
 
 
-// SetNative sets the value of the native property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) SetNative(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), objc.String(value))
+func (o_ ODRecordMap) SetNative(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property
-func (o_ ODRecordMap) OdPredicate() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("odPredicate"))
+func (o_ ODRecordMap) OdPredicate() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](o_.ID, objc.Sel("odPredicate"))
 	return rv
 }
 
 
-// SetOdPredicate sets the value of the odPredicate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property
-func (o_ ODRecordMap) SetOdPredicate(value objc.ID) {
+func (o_ ODRecordMap) SetOdPredicate(value objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOdPredicate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/standardAttributeTypes
-func (o_ ODRecordMap) StandardAttributeTypes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("standardAttributeTypes"))
+func (o_ ODRecordMap) StandardAttributeTypes() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("standardAttributeTypes"))
 	return rv
 }
 

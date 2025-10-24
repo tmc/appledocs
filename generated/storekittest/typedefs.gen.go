@@ -3,9 +3,9 @@
 package storekittest
 
 // Type aliases and typedefs
-// SKAdTestPostbackVersion - A constant that indicates the postback version.
+// AdTestPostbackVersion - A constant that indicates the postback version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackVersion
-// SKAdTestPostbackVersion has base type: NSString *
-type SKAdTestPostbackVersion uintptr
+// SKAdTestPostbackVersion is a string typedef
+type AdTestPostbackVersion = string
 

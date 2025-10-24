@@ -15,7 +15,7 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_MLAllComputeDevices func() unsafe.Pointer
+	_MLAllComputeDevices func() []unsafe.Pointer
 )
 
 func init() {
@@ -47,7 +47,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLAllComputeDevices
-func MLAllComputeDevices() unsafe.Pointer {
+func MLAllComputeDevices() []unsafe.Pointer {
 	return _MLAllComputeDevices()
 }
 

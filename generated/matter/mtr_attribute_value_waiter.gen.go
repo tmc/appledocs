@@ -31,11 +31,15 @@ type _MTRAttributeValueWaiterClass struct {
 // An interface definition for the [MTRAttributeValueWaiter] class.
 type IMTRAttributeValueWaiter interface {
 	objectivec.IObject
+	// properties:
+	UUID() objc.IObject /* cross-framework: UUID */
+	// methods:
 	Cancel()
-	UUID() foundation.UUID
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeValueWaiter
 type MTRAttributeValueWaiter struct {
 	objectivec.Object
@@ -78,16 +82,19 @@ func NewMTRAttributeValueWaiter() MTRAttributeValueWaiter {
 }
 
 
+
 // Cancel the wait for the set of attribute path/value pairs represented by this MTRAttributeValueWaiter. If the completion has not been called yet, it will becalled with MTRErrorCodeCancelled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeValueWaiter/cancel()
 func (m_ MTRAttributeValueWaiter) Cancel() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancel"))
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeValueWaiter/uuid
-func (m_ MTRAttributeValueWaiter) UUID() foundation.UUID {
+func (m_ MTRAttributeValueWaiter) UUID() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("UUID"))
 	return rv
 }

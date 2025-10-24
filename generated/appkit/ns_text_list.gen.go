@@ -31,15 +31,16 @@ type _TextListClass struct {
 type ITextList interface {
 	objectivec.IObject
 	// properties:
-	Ordered() bool /* primitive/slice/pointer. */
-	ListOptions() TextListOptions /* not a class type */
-	MarkerFormat() TextListMarkerFormat /* not a class type */
-	StartingItemNumber() int /* primitive/slice/pointer. */
-	SetStartingItemNumber(value int /* primitive/slice/pointer. */)
 	TextLists() ITextList
 	SetTextLists(value ITextList)
-	IsOrdered() bool /* primitive/slice/pointer. */
-	SetIsOrdered(value bool /* primitive/slice/pointer. */)
+	IsOrdered() bool
+	SetIsOrdered(value bool)
+	ListOptions() unsafe.Pointer
+	SetListOptions(value unsafe.Pointer)
+	MarkerFormat() unsafe.Pointer
+	SetMarkerFormat(value unsafe.Pointer)
+	StartingItemNumber() int
+	SetStartingItemNumber(value int)
 	// methods:
 }
 
@@ -96,105 +97,6 @@ func NewTextList() TextList {
 
 
 
-// Initializes and returns a newly allocated text list item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/init(coder:)
-func NewTextListWithCoder(coder objc.IObject /* cross-framework Coder */) TextList {
-	instance := getTextListClass().Alloc()
-	rv := objc.Send[TextList](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an initialized text list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/init(markerFormat:options:)
-func NewTextListWithMarkerFormatOptions(markerFormat TextListMarkerFormat /* not a class type */, options uint /* primitive/slice/pointer. */) TextList {
-	instance := getTextListClass().Alloc()
-	rv := objc.Send[TextList](instance.ID, objc.Sel("initWithMarkerFormat:options:"), markerFormat, options)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns a new text list with the format, options, and starting item number you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/init(markerFormat:options:startingItemNumber:)
-func NewTextListWithMarkerFormatOptionsStartingItemNumber(markerFormat TextListMarkerFormat /* not a class type */, options TextListOptions /* not a class type */, startingItemNumber int /* primitive/slice/pointer. */) TextList {
-	instance := getTextListClass().Alloc()
-	rv := objc.Send[TextList](instance.ID, objc.Sel("initWithMarkerFormat:options:startingItemNumber:"), markerFormat, options, startingItemNumber)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/includesTextListMarkers
-func (tc _TextListClass) IncludesTextListMarkers() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("includesTextListMarkers"))
-	return rv
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/includesTextListMarkers
-func (t_ TextList) IncludesTextListMarkers() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/isOrdered
-func (t_ TextList) Ordered() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("ordered"))
-	return rv
-}
-
-
-// Returns the list options mask value of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/listOptions
-func (t_ TextList) ListOptions() TextListOptions /* not a class type */ {
-	rv := objc.Send[TextListOptions](t_.ID, objc.Sel("listOptions"))
-	return rv
-}
-
-
-// Returns the marker format string used by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/markerFormat-swift.property
-func (t_ TextList) MarkerFormat() TextListMarkerFormat /* not a class type */ {
-	rv := objc.Send[TextListMarkerFormat](t_.ID, objc.Sel("markerFormat"))
-	return rv
-}
-
-
-// Sets the starting item number for the text list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/startingItemNumber
-func (t_ TextList) StartingItemNumber() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](t_.ID, objc.Sel("startingItemNumber"))
-	return rv
-}
-
-
-// Sets the starting item number for the text list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/startingItemNumber
-func (t_ TextList) SetStartingItemNumber(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStartingItemNumber:"), value)
-}
-
-
 // The text lists that contain the paragraph.
 //
 // [Full Topic]
@@ -216,7 +118,7 @@ func (t_ TextList) SetTextLists(value ITextList) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/isordered
-func (t_ TextList) IsOrdered() bool /* primitive/slice/pointer. */ {
+func (t_ TextList) IsOrdered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isOrdered"))
 	return rv
 }
@@ -224,8 +126,66 @@ func (t_ TextList) IsOrdered() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/isordered
-func (t_ TextList) SetIsOrdered(value bool /* primitive/slice/pointer. */) {
+func (t_ TextList) SetIsOrdered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsOrdered:"), value)
 }
+
+
+// Returns the list options mask value of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/listoptions
+func (t_ TextList) ListOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("listOptions"))
+	return rv
+}
+
+
+// Returns the list options mask value of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/listoptions
+func (t_ TextList) SetListOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setListOptions:"), value)
+}
+
+
+// Returns the marker format string used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.property
+func (t_ TextList) MarkerFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("markerFormat"))
+	return rv
+}
+
+
+// Returns the marker format string used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.property
+func (t_ TextList) SetMarkerFormat(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerFormat:"), value)
+}
+
+
+// Sets the starting item number for the text list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/startingitemnumber
+func (t_ TextList) StartingItemNumber() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("startingItemNumber"))
+	return rv
+}
+
+
+// Sets the starting item number for the text list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlist/startingitemnumber
+func (t_ TextList) SetStartingItemNumber(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStartingItemNumber:"), value)
+}
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,20 @@ type _SFSafariExtensionStateClass struct {
 // An interface definition for the [SFSafariExtensionState] class.
 type ISFSafariExtensionState interface {
 	objectivec.IObject
+	// properties:
 	Enabled() bool
-	SFExtensionProfileKey() string
+	SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	// methods:
 }
 
 // The state of a Safari app extension.
+
+
+// The state of a Safari app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionState
 type SFSafariExtensionState struct {
 	objectivec.Object
@@ -82,24 +89,30 @@ func NewSFSafariExtensionState() SFSafariExtensionState {
 }
 
 
+
 // A Boolean value that indicates whether the user has enabled the app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionState/isEnabled
 func (s_ SFSafariExtensionState) Enabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
 	return rv
 }
 
+
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariExtensionState) SFExtensionProfileKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariExtensionState) SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the user has enabled the app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariextensionstate/isenabled
 func (s_ SFSafariExtensionState) IsEnabled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
@@ -107,10 +120,9 @@ func (s_ SFSafariExtensionState) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean value that indicates whether the user has enabled the app extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariextensionstate/isenabled
 func (s_ SFSafariExtensionState) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)

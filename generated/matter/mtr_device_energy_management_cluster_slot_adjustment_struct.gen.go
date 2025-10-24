@@ -31,15 +31,19 @@ type _MTRDeviceEnergyManagementClusterSlotAdjustmentStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterSlotAdjustmentStruct] class.
 type IMTRDeviceEnergyManagementClusterSlotAdjustmentStruct interface {
 	objectivec.IObject
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	NominalPower() foundation.Number
-	SetNominalPower(value foundation.INumber)
-	SlotIndex() foundation.Number
-	SetSlotIndex(value foundation.INumber)
+	// properties:
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	NominalPower() objc.IObject /* cross-framework: NSNumber */
+	SetNominalPower(value objc.IObject /* cross-framework: NSNumber */)
+	SlotIndex() objc.IObject /* cross-framework: NSNumber */
+	SetSlotIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct
 type MTRDeviceEnergyManagementClusterSlotAdjustmentStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDeviceEnergyManagementClusterSlotAdjustmentStruct() MTRDeviceEnergyMa
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nominalPower"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nominalPower"))
 	return rv
 }
 
 
-// SetNominalPower sets the value of the nominalPower property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/slotIndex
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("slotIndex"))
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("slotIndex"))
 	return rv
 }
 
 
-// SetSlotIndex sets the value of the slotIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/slotIndex
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotIndex:"), value)
 }
 

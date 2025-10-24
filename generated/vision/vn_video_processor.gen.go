@@ -30,10 +30,16 @@ type _VideoProcessorClass struct {
 // An interface definition for the [VideoProcessor] class.
 type IVideoProcessor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that performs offline analysis of video content.
+
+
+// An object that performs offline analysis of video content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVideoProcessor
 type VideoProcessor struct {
 	objectivec.Object

@@ -32,14 +32,9 @@ type _CXActionClass struct {
 type ICXAction interface {
 	objectivec.IObject
 	// properties:
-	Complete() bool /* primitive/slice/pointer. */
-	TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */
-	UUID() objc.IObject /* cross-framework: UUID */
-	IsComplete() bool /* primitive/slice/pointer. */
-	SetIsComplete(value bool /* primitive/slice/pointer. */)
+	IsComplete() bool
+	SetIsComplete(value bool)
 	// methods:
-	Fail()
-	Fulfill()
 }
 
 // An abstract class that declares a programmatic interface for objects that represent a telephony action.
@@ -99,7 +94,7 @@ func NewCXAction() CXAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/init(coder:)
-func NewCXActionWithCoder(aDecoder Coder /* not a class type */) CXAction {
+func NewCXActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXAction {
 	instance := getCXActionClass().Alloc()
 	rv := objc.Send[CXAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -108,59 +103,11 @@ func NewCXActionWithCoder(aDecoder Coder /* not a class type */) CXAction {
 
 
 
-// Reports the failed execution of the action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/fail()
-func (c_ CXAction) Fail() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fail"))
-}
-
-
-// Reports the successful execution of the action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/fulfill()
-func (c_ CXAction) Fulfill() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fulfill"))
-}
-
-
-// A Boolean value that indicates whether the action has been performed by the provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/isComplete
-func (c_ CXAction) Complete() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
-	return rv
-}
-
-
-// The time after which the action cannot be completed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/timeoutDate
-func (c_ CXAction) TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("timeoutDate"))
-	return rv
-}
-
-
-// The unique identifier for the action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/uuid
-func (c_ CXAction) UUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](c_.ID, objc.Sel("UUID"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the action has been performed by the provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-func (c_ CXAction) IsComplete() bool /* primitive/slice/pointer. */ {
+func (c_ CXAction) IsComplete() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
 }
@@ -170,7 +117,7 @@ func (c_ CXAction) IsComplete() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-func (c_ CXAction) SetIsComplete(value bool /* primitive/slice/pointer. */) {
+func (c_ CXAction) SetIsComplete(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }
 

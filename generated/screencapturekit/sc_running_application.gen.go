@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,22 @@ type _RunningApplicationClass struct {
 // An interface definition for the [RunningApplication] class.
 type IRunningApplication interface {
 	objectivec.IObject
-	ApplicationName() string
-	BundleIdentifier() string
+	// properties:
+	ApplicationName() objc.IObject /* cross-framework: NSString */
+	BundleIdentifier() objc.IObject /* cross-framework: NSString */
 	ProcessID() unsafe.Pointer
+	SetProcessID(value unsafe.Pointer)
+	// methods:
 }
 
 // An instance that represents an app running on a device.
 //
 // Retrieve the available apps from an instance of . Select one or more apps to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+
+
+// An instance that represents an app running on a device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication
 type RunningApplication struct {
 	objectivec.Object
@@ -83,28 +91,43 @@ func NewRunningApplication() RunningApplication {
 }
 
 
+
 // The display name of the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/applicationName
-func (r_ RunningApplication) ApplicationName() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("applicationName"))
+func (r_ RunningApplication) ApplicationName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("applicationName"))
 	return rv
 }
+
 
 // The unique bundle identifier of the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/bundleIdentifier
-func (r_ RunningApplication) BundleIdentifier() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("bundleIdentifier"))
+func (r_ RunningApplication) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
+
 // The system process identifier of the app.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/processID
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scrunningapplication/processid
 func (r_ RunningApplication) ProcessID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("processID"))
 	return rv
+}
+
+
+// The system process identifier of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scrunningapplication/processid
+func (r_ RunningApplication) SetProcessID(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setProcessID:"), value)
 }
 
 

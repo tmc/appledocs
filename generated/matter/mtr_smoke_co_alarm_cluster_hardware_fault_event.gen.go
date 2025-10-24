@@ -30,9 +30,13 @@ type _MTRSmokeCOAlarmClusterHardwareFaultEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterHardwareFaultEvent] class.
 type IMTRSmokeCOAlarmClusterHardwareFaultEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterHardwareFaultEvent
 type MTRSmokeCOAlarmClusterHardwareFaultEvent struct {
 	objectivec.Object

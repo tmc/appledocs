@@ -32,34 +32,34 @@ type _INPersonClass struct {
 type IINPerson interface {
 	objectivec.IObject
 	// properties:
-	Aliases() INPersonHandle /* already interface */
-	SetAliases(value INPersonHandle /* already interface */)
-	ContactIdentifier() string /* primitive/slice/pointer. */
-	SetContactIdentifier(value string /* primitive/slice/pointer. */)
-	CustomIdentifier() string /* primitive/slice/pointer. */
-	SetCustomIdentifier(value string /* primitive/slice/pointer. */)
-	DisplayName() string /* primitive/slice/pointer. */
-	SetDisplayName(value string /* primitive/slice/pointer. */)
-	Handle() string /* primitive/slice/pointer. */
-	SetHandle(value string /* primitive/slice/pointer. */)
-	Image() INImage /* already interface */
-	SetImage(value INImage /* already interface */)
-	IsContactSuggestion() bool /* primitive/slice/pointer. */
-	SetIsContactSuggestion(value bool /* primitive/slice/pointer. */)
-	IsMe() bool /* primitive/slice/pointer. */
-	SetIsMe(value bool /* primitive/slice/pointer. */)
-	NameComponents() foundation.objc.IObject /* cross-framework: PersonNameComponents */
-	SetNameComponents(value foundation.objc.IObject /* cross-framework: PersonNameComponents */)
-	PersonHandle() INPersonHandle /* already interface */
-	SetPersonHandle(value INPersonHandle /* already interface */)
+	Aliases() INPersonHandle
+	SetAliases(value INPersonHandle)
+	ContactIdentifier() objc.IObject /* cross-framework: NSString */
+	SetContactIdentifier(value objc.IObject /* cross-framework: NSString */)
+	CustomIdentifier() objc.IObject /* cross-framework: NSString */
+	SetCustomIdentifier(value objc.IObject /* cross-framework: NSString */)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
+	Handle() objc.IObject /* cross-framework: NSString */
+	SetHandle(value objc.IObject /* cross-framework: NSString */)
+	Image() INImage
+	SetImage(value INImage)
+	IsContactSuggestion() bool
+	SetIsContactSuggestion(value bool)
+	IsMe() bool
+	SetIsMe(value bool)
+	NameComponents() objc.IObject /* cross-framework: PersonNameComponents */
+	SetNameComponents(value objc.IObject /* cross-framework: PersonNameComponents */)
+	PersonHandle() INPersonHandle
+	SetPersonHandle(value INPersonHandle)
 	Relationship() unsafe.Pointer
 	SetRelationship(value unsafe.Pointer)
-	SiriMatches() INPerson /* already interface */
-	SetSiriMatches(value INPerson /* already interface */)
-	SuggestionType() INPersonSuggestionType /* already interface */
-	SetSuggestionType(value INPersonSuggestionType /* already interface */)
-	SpokenPhrase() string /* primitive/slice/pointer. */
-	SetSpokenPhrase(value string /* primitive/slice/pointer. */)
+	SiriMatches() INPerson
+	SetSiriMatches(value INPerson)
+	SuggestionType() INPersonSuggestionType
+	SetSuggestionType(value INPersonSuggestionType)
+	SpokenPhrase() objc.IObject /* cross-framework: NSString */
+	SetSpokenPhrase(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -120,7 +120,7 @@ func NewINPerson() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/aliases
-func (i_ INPerson) Aliases() INPersonHandle /* already interface */ {
+func (i_ INPerson) Aliases() INPersonHandle {
 	rv := objc.Send[INPersonHandle](i_.ID, objc.Sel("aliases"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (i_ INPerson) Aliases() INPersonHandle /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/aliases
-func (i_ INPerson) SetAliases(value INPersonHandle /* already interface */) {
+func (i_ INPerson) SetAliases(value INPersonHandle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAliases:"), value)
 }
 
@@ -139,8 +139,8 @@ func (i_ INPerson) SetAliases(value INPersonHandle /* already interface */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
-func (i_ INPerson) ContactIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("contactIdentifier"))
+func (i_ INPerson) ContactIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (i_ INPerson) ContactIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/contactidentifier
-func (i_ INPerson) SetContactIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
+func (i_ INPerson) SetContactIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), value)
 }
 
 
@@ -158,8 +158,8 @@ func (i_ INPerson) SetContactIdentifier(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
-func (i_ INPerson) CustomIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("customIdentifier"))
+func (i_ INPerson) CustomIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("customIdentifier"))
 	return rv
 }
 
@@ -168,8 +168,8 @@ func (i_ INPerson) CustomIdentifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/customidentifier
-func (i_ INPerson) SetCustomIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), objc.String(value))
+func (i_ INPerson) SetCustomIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), value)
 }
 
 
@@ -177,8 +177,8 @@ func (i_ INPerson) SetCustomIdentifier(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
-func (i_ INPerson) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("displayName"))
+func (i_ INPerson) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -187,8 +187,8 @@ func (i_ INPerson) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/displayname
-func (i_ INPerson) SetDisplayName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (i_ INPerson) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 
@@ -196,8 +196,8 @@ func (i_ INPerson) SetDisplayName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
-func (i_ INPerson) Handle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("handle"))
+func (i_ INPerson) Handle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("handle"))
 	return rv
 }
 
@@ -206,8 +206,8 @@ func (i_ INPerson) Handle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/handle
-func (i_ INPerson) SetHandle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), objc.String(value))
+func (i_ INPerson) SetHandle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
 }
 
 
@@ -215,7 +215,7 @@ func (i_ INPerson) SetHandle(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/image
-func (i_ INPerson) Image() INImage /* already interface */ {
+func (i_ INPerson) Image() INImage {
 	rv := objc.Send[INImage](i_.ID, objc.Sel("image"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (i_ INPerson) Image() INImage /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/image
-func (i_ INPerson) SetImage(value INImage /* already interface */) {
+func (i_ INPerson) SetImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -234,7 +234,7 @@ func (i_ INPerson) SetImage(value INImage /* already interface */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/iscontactsuggestion
-func (i_ INPerson) IsContactSuggestion() bool /* primitive/slice/pointer. */ {
+func (i_ INPerson) IsContactSuggestion() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isContactSuggestion"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (i_ INPerson) IsContactSuggestion() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/iscontactsuggestion
-func (i_ INPerson) SetIsContactSuggestion(value bool /* primitive/slice/pointer. */) {
+func (i_ INPerson) SetIsContactSuggestion(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsContactSuggestion:"), value)
 }
 
@@ -253,7 +253,7 @@ func (i_ INPerson) SetIsContactSuggestion(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/isme
-func (i_ INPerson) IsMe() bool /* primitive/slice/pointer. */ {
+func (i_ INPerson) IsMe() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isMe"))
 	return rv
 }
@@ -263,7 +263,7 @@ func (i_ INPerson) IsMe() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/isme
-func (i_ INPerson) SetIsMe(value bool /* primitive/slice/pointer. */) {
+func (i_ INPerson) SetIsMe(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsMe:"), value)
 }
 
@@ -272,7 +272,7 @@ func (i_ INPerson) SetIsMe(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/namecomponents
-func (i_ INPerson) NameComponents() foundation.objc.IObject /* cross-framework: PersonNameComponents */ {
+func (i_ INPerson) NameComponents() objc.IObject /* cross-framework: PersonNameComponents */ {
 	rv := objc.Send[foundation.PersonNameComponents](i_.ID, objc.Sel("nameComponents"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (i_ INPerson) NameComponents() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/namecomponents
-func (i_ INPerson) SetNameComponents(value foundation.objc.IObject /* cross-framework: PersonNameComponents */) {
+func (i_ INPerson) SetNameComponents(value objc.IObject /* cross-framework: PersonNameComponents */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNameComponents:"), value)
 }
 
@@ -291,7 +291,7 @@ func (i_ INPerson) SetNameComponents(value foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/personhandle
-func (i_ INPerson) PersonHandle() INPersonHandle /* already interface */ {
+func (i_ INPerson) PersonHandle() INPersonHandle {
 	rv := objc.Send[INPersonHandle](i_.ID, objc.Sel("personHandle"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (i_ INPerson) PersonHandle() INPersonHandle /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/personhandle
-func (i_ INPerson) SetPersonHandle(value INPersonHandle /* already interface */) {
+func (i_ INPerson) SetPersonHandle(value INPersonHandle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPersonHandle:"), value)
 }
 
@@ -329,7 +329,7 @@ func (i_ INPerson) SetRelationship(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/sirimatches
-func (i_ INPerson) SiriMatches() INPerson /* already interface */ {
+func (i_ INPerson) SiriMatches() INPerson {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("siriMatches"))
 	return rv
 }
@@ -339,7 +339,7 @@ func (i_ INPerson) SiriMatches() INPerson /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/sirimatches
-func (i_ INPerson) SetSiriMatches(value INPerson /* already interface */) {
+func (i_ INPerson) SetSiriMatches(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSiriMatches:"), value)
 }
 
@@ -348,7 +348,7 @@ func (i_ INPerson) SetSiriMatches(value INPerson /* already interface */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/suggestiontype
-func (i_ INPerson) SuggestionType() INPersonSuggestionType /* already interface */ {
+func (i_ INPerson) SuggestionType() INPersonSuggestionType {
 	rv := objc.Send[INPersonSuggestionType](i_.ID, objc.Sel("suggestionType"))
 	return rv
 }
@@ -358,7 +358,7 @@ func (i_ INPerson) SuggestionType() INPersonSuggestionType /* already interface 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/suggestiontype
-func (i_ INPerson) SetSuggestionType(value INPersonSuggestionType /* already interface */) {
+func (i_ INPerson) SetSuggestionType(value INPersonSuggestionType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestionType:"), value)
 }
 
@@ -367,8 +367,8 @@ func (i_ INPerson) SetSuggestionType(value INPersonSuggestionType /* already int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
-func (i_ INPerson) SpokenPhrase() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("spokenPhrase"))
+func (i_ INPerson) SpokenPhrase() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("spokenPhrase"))
 	return rv
 }
 
@@ -377,8 +377,8 @@ func (i_ INPerson) SpokenPhrase() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/spokenphrase
-func (i_ INPerson) SetSpokenPhrase(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), objc.String(value))
+func (i_ INPerson) SetSpokenPhrase(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), value)
 }
 
 

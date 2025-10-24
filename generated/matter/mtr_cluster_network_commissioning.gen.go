@@ -29,9 +29,13 @@ type _MTRClusterNetworkCommissioningClass struct {
 // An interface definition for the [MTRClusterNetworkCommissioning] class.
 type IMTRClusterNetworkCommissioning interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterNetworkCommissioning
 type MTRClusterNetworkCommissioning struct {
 	MTRGenericCluster

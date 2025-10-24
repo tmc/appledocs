@@ -29,16 +29,23 @@ type _GraphTensorClass struct {
 // An interface definition for the [GraphTensor] class.
 type IGraphTensor interface {
 	IGraphObject
-	DataType() unsafe.Pointer
-	Shape() unsafe.Pointer
-	Operation() MPSGraphOperation
+	// properties:
+	Shape() Shape /* not a class type */
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
+	Operation() IMPSGraphOperation
 	SetOperation(value IMPSGraphOperation)
+	// methods:
 }
 
 // The symbolic representation of a compute data type.
 //
 // will take a refrence, this is so can work with the tensor. All tensors are created, owned and destroyed by the MPSGraph
+
+
+// The symbolic representation of a compute data type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor
 type GraphTensor struct {
 	GraphObject
@@ -85,35 +92,49 @@ func NewGraphTensor() GraphTensor {
 }
 
 
-// The data type of the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/dataType
-func (g_ GraphTensor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
-	return rv
-}
 
 // The shape of the tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensor/shape
-func (g_ GraphTensor) Shape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
+func (g_ GraphTensor) Shape() Shape /* not a class type */ {
+	rv := objc.Send[Shape](g_.ID, objc.Sel("shape"))
 	return rv
 }
 
+
+// The data type of the tensor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/datatype
+func (g_ GraphTensor) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
+	return rv
+}
+
+
+// The data type of the tensor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/datatype
+func (g_ GraphTensor) SetDataType(value DataType /* not a class type */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
+}
+
+
 // The operation responsible for creating this tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
-func (g_ GraphTensor) Operation() MPSGraphOperation {
-	rv := objc.Send[MPSGraphOperation](g_.ID, objc.Sel("operation"))
+func (g_ GraphTensor) Operation() IMPSGraphOperation {
+	rv := objc.Send[GraphOperation](g_.ID, objc.Sel("operation"))
 	return rv
 }
 
 
-// SetOperation sets the value of the operation property.
 // The operation responsible for creating this tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
 func (g_ GraphTensor) SetOperation(value IMPSGraphOperation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOperation:"), value)

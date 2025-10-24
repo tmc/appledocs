@@ -29,14 +29,20 @@ type _VZXHCIControllerClass struct {
 // An interface definition for the [VZXHCIController] class.
 type IVZXHCIController interface {
 	IVZUSBController
-	UsbControllers() VZUSBControllerConfiguration
+	// properties:
+	UsbControllers() IVZUSBControllerConfiguration
 	SetUsbControllers(value IVZUSBControllerConfiguration)
+	// methods:
 }
 
 // A class that represents a USB Extensible Host Controller Interface (XHCI) controller in a VM.
 //
 // Don’t create objects directly. Instead, you create a object at runtime though the property of the object by populating it with objects.
+
+
+// A class that represents a USB Extensible Host Controller Interface (XHCI) controller in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZXHCIController
 type VZXHCIController struct {
 	VZUSBController
@@ -83,19 +89,20 @@ func NewVZXHCIController() VZXHCIController {
 }
 
 
+
 // The list of configured USB controllers for the VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
-func (v_ VZXHCIController) UsbControllers() VZUSBControllerConfiguration {
+func (v_ VZXHCIController) UsbControllers() IVZUSBControllerConfiguration {
 	rv := objc.Send[VZUSBControllerConfiguration](v_.ID, objc.Sel("usbControllers"))
 	return rv
 }
 
 
-// SetUsbControllers sets the value of the usbControllers property.
 // The list of configured USB controllers for the VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
 func (v_ VZXHCIController) SetUsbControllers(value IVZUSBControllerConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)

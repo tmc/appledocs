@@ -31,19 +31,23 @@ type _MTRBindingClusterTargetStructClass struct {
 // An interface definition for the [MTRBindingClusterTargetStruct] class.
 type IMTRBindingClusterTargetStruct interface {
 	objectivec.IObject
-	Cluster() foundation.Number
-	SetCluster(value foundation.INumber)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	Group() foundation.Number
-	SetGroup(value foundation.INumber)
-	Node() foundation.Number
-	SetNode(value foundation.INumber)
+	// properties:
+	Cluster() objc.IObject /* cross-framework: NSNumber */
+	SetCluster(value objc.IObject /* cross-framework: NSNumber */)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Group() objc.IObject /* cross-framework: NSNumber */
+	SetGroup(value objc.IObject /* cross-framework: NSNumber */)
+	Node() objc.IObject /* cross-framework: NSNumber */
+	SetNode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBindingClusterTargetStruct
 type MTRBindingClusterTargetStruct struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRBindingClusterTargetStruct() MTRBindingClusterTargetStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
-func (m_ MTRBindingClusterTargetStruct) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+func (m_ MTRBindingClusterTargetStruct) Cluster() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
-func (m_ MTRBindingClusterTargetStruct) SetCluster(value foundation.INumber) {
+func (m_ MTRBindingClusterTargetStruct) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
-func (m_ MTRBindingClusterTargetStruct) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRBindingClusterTargetStruct) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
-func (m_ MTRBindingClusterTargetStruct) SetEndpoint(value foundation.INumber) {
+func (m_ MTRBindingClusterTargetStruct) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
-func (m_ MTRBindingClusterTargetStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRBindingClusterTargetStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
-func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
-func (m_ MTRBindingClusterTargetStruct) Group() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("group"))
+func (m_ MTRBindingClusterTargetStruct) Group() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("group"))
 	return rv
 }
 
 
-// SetGroup sets the value of the group property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
-func (m_ MTRBindingClusterTargetStruct) SetGroup(value foundation.INumber) {
+func (m_ MTRBindingClusterTargetStruct) SetGroup(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroup:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
-func (m_ MTRBindingClusterTargetStruct) Node() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
+func (m_ MTRBindingClusterTargetStruct) Node() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("node"))
 	return rv
 }
 
 
-// SetNode sets the value of the node property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
-func (m_ MTRBindingClusterTargetStruct) SetNode(value foundation.INumber) {
+func (m_ MTRBindingClusterTargetStruct) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 

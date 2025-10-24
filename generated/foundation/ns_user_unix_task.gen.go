@@ -37,6 +37,7 @@ type IUserUnixTask interface {
 	StandardOutput() IFileHandle
 	SetStandardOutput(value IFileHandle)
 	// methods:
+	ExecuteWithArgumentsCompletionHandler(arguments []string, handler UserUnixTaskCompletionHandler /* not a class type */)
 }
 
 // An object that executes unix applications.
@@ -94,10 +95,19 @@ func NewUserUnixTask() UserUnixTask {
 
 
 
+// Execute the unix script with the specified arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/execute(withArguments:completionHandler:)
+func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string, handler UserUnixTaskCompletionHandler /* not a class type */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithArguments:completionHandler:"), arguments, handler)
+}
+
+
 // The standard error stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standarderror
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
 func (u_ UserUnixTask) StandardError() IFileHandle {
 	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardError"))
 	return rv
@@ -107,7 +117,7 @@ func (u_ UserUnixTask) StandardError() IFileHandle {
 // The standard error stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standarderror
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
 func (u_ UserUnixTask) SetStandardError(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardError:"), value)
 }
@@ -116,7 +126,7 @@ func (u_ UserUnixTask) SetStandardError(value IFileHandle) {
 // The standard input stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standardinput
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
 func (u_ UserUnixTask) StandardInput() IFileHandle {
 	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardInput"))
 	return rv
@@ -126,7 +136,7 @@ func (u_ UserUnixTask) StandardInput() IFileHandle {
 // The standard input stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standardinput
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
 func (u_ UserUnixTask) SetStandardInput(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardInput:"), value)
 }
@@ -135,7 +145,7 @@ func (u_ UserUnixTask) SetStandardInput(value IFileHandle) {
 // The standard output stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standardoutput
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
 func (u_ UserUnixTask) StandardOutput() IFileHandle {
 	rv := objc.Send[FileHandle](u_.ID, objc.Sel("standardOutput"))
 	return rv
@@ -145,7 +155,7 @@ func (u_ UserUnixTask) StandardOutput() IFileHandle {
 // The standard output stream.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserunixtask/standardoutput
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
 func (u_ UserUnixTask) SetStandardOutput(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardOutput:"), value)
 }

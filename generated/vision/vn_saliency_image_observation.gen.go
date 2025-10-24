@@ -29,14 +29,20 @@ type _SaliencyImageObservationClass struct {
 // An interface definition for the [SaliencyImageObservation] class.
 type ISaliencyImageObservation interface {
 	IPixelBufferObservation
-	SalientObjects() VNRectangleObservation
-	SetSalientObjects(value IVNRectangleObservation)
+	// properties:
+	SalientObjects() objc.IObject /* cross-framework: RectangleObservation */
+	SetSalientObjects(value objc.IObject /* cross-framework: RectangleObservation */)
+	// methods:
 }
 
 // An observation that contains a grayscale heat map of important areas across an image.
 //
 // The heat map is a in a one-component floating-point pixel format. Its dimensions are 64 x 64 when fetched in real time, or 68 x 68 when requested in its deferred form.
+
+
+// An observation that contains a grayscale heat map of important areas across an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSaliencyImageObservation
 type SaliencyImageObservation struct {
 	PixelBufferObservation
@@ -83,21 +89,22 @@ func NewSaliencyImageObservation() SaliencyImageObservation {
 }
 
 
+
 // A collection of objects describing the distinct areas of the saliency heat map.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnsaliencyimageobservation/salientobjects
-func (s_ SaliencyImageObservation) SalientObjects() VNRectangleObservation {
-	rv := objc.Send[VNRectangleObservation](s_.ID, objc.Sel("salientObjects"))
+func (s_ SaliencyImageObservation) SalientObjects() objc.IObject /* cross-framework: RectangleObservation */ {
+	rv := objc.Send[RectangleObservation](s_.ID, objc.Sel("salientObjects"))
 	return rv
 }
 
 
-// SetSalientObjects sets the value of the salientObjects property.
 // A collection of objects describing the distinct areas of the saliency heat map.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnsaliencyimageobservation/salientobjects
-func (s_ SaliencyImageObservation) SetSalientObjects(value IVNRectangleObservation) {
+func (s_ SaliencyImageObservation) SetSalientObjects(value objc.IObject /* cross-framework: RectangleObservation */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSalientObjects:"), value)
 }
 

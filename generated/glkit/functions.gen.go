@@ -15,54 +15,54 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_GLKMathProject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int) unsafe.Pointer
-	_GLKMathUnproject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrix3Invert func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrix3InvertAndTranspose func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrix4Invert func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrix4InvertAndTranspose func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackCreate func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix2 func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix3 func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix3Inverse func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix3InverseTranspose func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix4 func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix4Inverse func(unsafe.Pointer) unsafe.Pointer
-	_GLKMatrixStackGetMatrix4InverseTranspose func(unsafe.Pointer) unsafe.Pointer
+	_GLKMathProject func(GLKVector3, GLKMatrix4, GLKMatrix4, []int) GLKVector3
+	_GLKMathUnproject func(GLKVector3, GLKMatrix4, GLKMatrix4, []int, unsafe.Pointer) GLKVector3
+	_GLKMatrix3Invert func(GLKMatrix3, unsafe.Pointer) GLKMatrix3
+	_GLKMatrix3InvertAndTranspose func(GLKMatrix3, unsafe.Pointer) GLKMatrix3
+	_GLKMatrix4Invert func(GLKMatrix4, unsafe.Pointer) GLKMatrix4
+	_GLKMatrix4InvertAndTranspose func(GLKMatrix4, unsafe.Pointer) GLKMatrix4
+	_GLKMatrixStackCreate func(unsafe.Pointer) GLKMatrixStackRef
+	_GLKMatrixStackGetMatrix2 func(GLKMatrixStackRef) GLKMatrix2
+	_GLKMatrixStackGetMatrix3 func(GLKMatrixStackRef) GLKMatrix3
+	_GLKMatrixStackGetMatrix3Inverse func(GLKMatrixStackRef) GLKMatrix3
+	_GLKMatrixStackGetMatrix3InverseTranspose func(GLKMatrixStackRef) GLKMatrix3
+	_GLKMatrixStackGetMatrix4 func(GLKMatrixStackRef) GLKMatrix4
+	_GLKMatrixStackGetMatrix4Inverse func(GLKMatrixStackRef) GLKMatrix4
+	_GLKMatrixStackGetMatrix4InverseTranspose func(GLKMatrixStackRef) GLKMatrix4
 	_GLKMatrixStackGetTypeID func() unsafe.Pointer
-	_GLKMatrixStackLoadMatrix4 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackMultiplyMatrix4 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackMultiplyMatrixStack func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackPop func(unsafe.Pointer)
-	_GLKMatrixStackPush func(unsafe.Pointer)
-	_GLKMatrixStackRotate func(unsafe.Pointer, float32, float32, float32, float32)
-	_GLKMatrixStackRotateWithVector3 func(unsafe.Pointer, float32, unsafe.Pointer)
-	_GLKMatrixStackRotateWithVector4 func(unsafe.Pointer, float32, unsafe.Pointer)
-	_GLKMatrixStackRotateX func(unsafe.Pointer, float32)
-	_GLKMatrixStackRotateY func(unsafe.Pointer, float32)
-	_GLKMatrixStackRotateZ func(unsafe.Pointer, float32)
-	_GLKMatrixStackScale func(unsafe.Pointer, float32, float32, float32)
-	_GLKMatrixStackScaleWithVector3 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackScaleWithVector4 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackSize func(unsafe.Pointer) int
-	_GLKMatrixStackTranslate func(unsafe.Pointer, float32, float32, float32)
-	_GLKMatrixStackTranslateWithVector3 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKMatrixStackTranslateWithVector4 func(unsafe.Pointer, unsafe.Pointer)
-	_GLKQuaternionAngle func(unsafe.Pointer) float32
-	_GLKQuaternionAxis func(unsafe.Pointer) unsafe.Pointer
-	_GLKQuaternionMakeWithMatrix3 func(unsafe.Pointer) unsafe.Pointer
-	_GLKQuaternionMakeWithMatrix4 func(unsafe.Pointer) unsafe.Pointer
-	_GLKQuaternionRotateVector3Array func(unsafe.Pointer, unsafe.Pointer, uintptr)
-	_GLKQuaternionRotateVector4Array func(unsafe.Pointer, unsafe.Pointer, uintptr)
-	_GLKQuaternionSlerp func(unsafe.Pointer, unsafe.Pointer, float32) unsafe.Pointer
-	_GLKVertexAttributeParametersFromModelIO func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKMatrix2 func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKMatrix3 func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKMatrix4 func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKQuaternion func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKVector2 func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKVector3 func(unsafe.Pointer) unsafe.Pointer
-	_NSStringFromGLKVector4 func(unsafe.Pointer) unsafe.Pointer
+	_GLKMatrixStackLoadMatrix4 func(GLKMatrixStackRef, GLKMatrix4)
+	_GLKMatrixStackMultiplyMatrix4 func(GLKMatrixStackRef, GLKMatrix4)
+	_GLKMatrixStackMultiplyMatrixStack func(GLKMatrixStackRef, GLKMatrixStackRef)
+	_GLKMatrixStackPop func(GLKMatrixStackRef)
+	_GLKMatrixStackPush func(GLKMatrixStackRef)
+	_GLKMatrixStackRotate func(GLKMatrixStackRef, float32, float32, float32, float32)
+	_GLKMatrixStackRotateWithVector3 func(GLKMatrixStackRef, float32, GLKVector3)
+	_GLKMatrixStackRotateWithVector4 func(GLKMatrixStackRef, float32, GLKVector4)
+	_GLKMatrixStackRotateX func(GLKMatrixStackRef, float32)
+	_GLKMatrixStackRotateY func(GLKMatrixStackRef, float32)
+	_GLKMatrixStackRotateZ func(GLKMatrixStackRef, float32)
+	_GLKMatrixStackScale func(GLKMatrixStackRef, float32, float32, float32)
+	_GLKMatrixStackScaleWithVector3 func(GLKMatrixStackRef, GLKVector3)
+	_GLKMatrixStackScaleWithVector4 func(GLKMatrixStackRef, GLKVector4)
+	_GLKMatrixStackSize func(GLKMatrixStackRef) int
+	_GLKMatrixStackTranslate func(GLKMatrixStackRef, float32, float32, float32)
+	_GLKMatrixStackTranslateWithVector3 func(GLKMatrixStackRef, GLKVector3)
+	_GLKMatrixStackTranslateWithVector4 func(GLKMatrixStackRef, GLKVector4)
+	_GLKQuaternionAngle func(GLKQuaternion) float32
+	_GLKQuaternionAxis func(GLKQuaternion) GLKVector3
+	_GLKQuaternionMakeWithMatrix3 func(GLKMatrix3) GLKQuaternion
+	_GLKQuaternionMakeWithMatrix4 func(GLKMatrix4) GLKQuaternion
+	_GLKQuaternionRotateVector3Array func(GLKQuaternion, unsafe.Pointer, uintptr)
+	_GLKQuaternionRotateVector4Array func(GLKQuaternion, unsafe.Pointer, uintptr)
+	_GLKQuaternionSlerp func(GLKQuaternion, GLKQuaternion, float32) GLKQuaternion
+	_GLKVertexAttributeParametersFromModelIO func(unsafe.Pointer) GLKVertexAttributeParameters
+	_NSStringFromGLKMatrix2 func(GLKMatrix2) unsafe.Pointer
+	_NSStringFromGLKMatrix3 func(GLKMatrix3) unsafe.Pointer
+	_NSStringFromGLKMatrix4 func(GLKMatrix4) unsafe.Pointer
+	_NSStringFromGLKQuaternion func(GLKQuaternion) unsafe.Pointer
+	_NSStringFromGLKVector2 func(GLKVector2) unsafe.Pointer
+	_NSStringFromGLKVector3 func(GLKVector3) unsafe.Pointer
+	_NSStringFromGLKVector4 func(GLKVector4) unsafe.Pointer
 )
 
 func init() {
@@ -141,7 +141,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMathProject(_:_:_:_:)
-func GLKMathProject(object unsafe.Pointer, model unsafe.Pointer, projection unsafe.Pointer, viewport []int) unsafe.Pointer {
+func GLKMathProject(object GLKVector3, model GLKMatrix4, projection GLKMatrix4, viewport []int) GLKVector3 {
 	return _GLKMathProject(object, model, projection, viewport)
 }
 
@@ -152,7 +152,7 @@ func GLKMathProject(object unsafe.Pointer, model unsafe.Pointer, projection unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMathUnproject(_:_:_:_:_:)
-func GLKMathUnproject(window unsafe.Pointer, model unsafe.Pointer, projection unsafe.Pointer, viewport []int, success unsafe.Pointer) unsafe.Pointer {
+func GLKMathUnproject(window GLKVector3, model GLKMatrix4, projection GLKMatrix4, viewport []int, success unsafe.Pointer) GLKVector3 {
 	return _GLKMathUnproject(window, model, projection, viewport, success)
 }
 
@@ -163,7 +163,7 @@ func GLKMathUnproject(window unsafe.Pointer, model unsafe.Pointer, projection un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix3Invert(_:_:)
-func GLKMatrix3Invert(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe.Pointer {
+func GLKMatrix3Invert(matrix GLKMatrix3, isInvertible unsafe.Pointer) GLKMatrix3 {
 	return _GLKMatrix3Invert(matrix, isInvertible)
 }
 
@@ -174,7 +174,7 @@ func GLKMatrix3Invert(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix3InvertAndTranspose(_:_:)
-func GLKMatrix3InvertAndTranspose(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe.Pointer {
+func GLKMatrix3InvertAndTranspose(matrix GLKMatrix3, isInvertible unsafe.Pointer) GLKMatrix3 {
 	return _GLKMatrix3InvertAndTranspose(matrix, isInvertible)
 }
 
@@ -185,7 +185,7 @@ func GLKMatrix3InvertAndTranspose(matrix unsafe.Pointer, isInvertible unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix4Invert(_:_:)
-func GLKMatrix4Invert(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe.Pointer {
+func GLKMatrix4Invert(matrix GLKMatrix4, isInvertible unsafe.Pointer) GLKMatrix4 {
 	return _GLKMatrix4Invert(matrix, isInvertible)
 }
 
@@ -196,7 +196,7 @@ func GLKMatrix4Invert(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix4InvertAndTranspose(_:_:)
-func GLKMatrix4InvertAndTranspose(matrix unsafe.Pointer, isInvertible unsafe.Pointer) unsafe.Pointer {
+func GLKMatrix4InvertAndTranspose(matrix GLKMatrix4, isInvertible unsafe.Pointer) GLKMatrix4 {
 	return _GLKMatrix4InvertAndTranspose(matrix, isInvertible)
 }
 
@@ -207,7 +207,7 @@ func GLKMatrix4InvertAndTranspose(matrix unsafe.Pointer, isInvertible unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackCreate(_:)
-func GLKMatrixStackCreate(alloc unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackCreate(alloc unsafe.Pointer) GLKMatrixStackRef {
 	return _GLKMatrixStackCreate(alloc)
 }
 
@@ -218,7 +218,7 @@ func GLKMatrixStackCreate(alloc unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix2(_:)
-func GLKMatrixStackGetMatrix2(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix2(stack GLKMatrixStackRef) GLKMatrix2 {
 	return _GLKMatrixStackGetMatrix2(stack)
 }
 
@@ -229,7 +229,7 @@ func GLKMatrixStackGetMatrix2(stack unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3(_:)
-func GLKMatrixStackGetMatrix3(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix3(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3(stack)
 }
 
@@ -240,7 +240,7 @@ func GLKMatrixStackGetMatrix3(stack unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3Inverse(_:)
-func GLKMatrixStackGetMatrix3Inverse(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix3Inverse(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3Inverse(stack)
 }
 
@@ -251,7 +251,7 @@ func GLKMatrixStackGetMatrix3Inverse(stack unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3InverseTranspose(_:)
-func GLKMatrixStackGetMatrix3InverseTranspose(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix3InverseTranspose(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3InverseTranspose(stack)
 }
 
@@ -262,7 +262,7 @@ func GLKMatrixStackGetMatrix3InverseTranspose(stack unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4(_:)
-func GLKMatrixStackGetMatrix4(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix4(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4(stack)
 }
 
@@ -273,7 +273,7 @@ func GLKMatrixStackGetMatrix4(stack unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4Inverse(_:)
-func GLKMatrixStackGetMatrix4Inverse(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix4Inverse(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4Inverse(stack)
 }
 
@@ -284,7 +284,7 @@ func GLKMatrixStackGetMatrix4Inverse(stack unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4InverseTranspose(_:)
-func GLKMatrixStackGetMatrix4InverseTranspose(stack unsafe.Pointer) unsafe.Pointer {
+func GLKMatrixStackGetMatrix4InverseTranspose(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4InverseTranspose(stack)
 }
 
@@ -306,7 +306,7 @@ func GLKMatrixStackGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackLoadMatrix4(_:_:)
-func GLKMatrixStackLoadMatrix4(stack unsafe.Pointer, matrix unsafe.Pointer) {
+func GLKMatrixStackLoadMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 	_GLKMatrixStackLoadMatrix4(stack, matrix)
 }
 
@@ -317,7 +317,7 @@ func GLKMatrixStackLoadMatrix4(stack unsafe.Pointer, matrix unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackMultiplyMatrix4(_:_:)
-func GLKMatrixStackMultiplyMatrix4(stack unsafe.Pointer, matrix unsafe.Pointer) {
+func GLKMatrixStackMultiplyMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 	_GLKMatrixStackMultiplyMatrix4(stack, matrix)
 }
 
@@ -328,7 +328,7 @@ func GLKMatrixStackMultiplyMatrix4(stack unsafe.Pointer, matrix unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackMultiplyMatrixStack(_:_:)
-func GLKMatrixStackMultiplyMatrixStack(stackLeft unsafe.Pointer, stackRight unsafe.Pointer) {
+func GLKMatrixStackMultiplyMatrixStack(stackLeft GLKMatrixStackRef, stackRight GLKMatrixStackRef) {
 	_GLKMatrixStackMultiplyMatrixStack(stackLeft, stackRight)
 }
 
@@ -339,7 +339,7 @@ func GLKMatrixStackMultiplyMatrixStack(stackLeft unsafe.Pointer, stackRight unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackPop(_:)
-func GLKMatrixStackPop(stack unsafe.Pointer) {
+func GLKMatrixStackPop(stack GLKMatrixStackRef) {
 	_GLKMatrixStackPop(stack)
 }
 
@@ -350,7 +350,7 @@ func GLKMatrixStackPop(stack unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackPush(_:)
-func GLKMatrixStackPush(stack unsafe.Pointer) {
+func GLKMatrixStackPush(stack GLKMatrixStackRef) {
 	_GLKMatrixStackPush(stack)
 }
 
@@ -361,7 +361,7 @@ func GLKMatrixStackPush(stack unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotate(_:_:_:_:_:)
-func GLKMatrixStackRotate(stack unsafe.Pointer, radians float32, x float32, y float32, z float32) {
+func GLKMatrixStackRotate(stack GLKMatrixStackRef, radians float32, x float32, y float32, z float32) {
 	_GLKMatrixStackRotate(stack, radians, x, y, z)
 }
 
@@ -372,7 +372,7 @@ func GLKMatrixStackRotate(stack unsafe.Pointer, radians float32, x float32, y fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateWithVector3(_:_:_:)
-func GLKMatrixStackRotateWithVector3(stack unsafe.Pointer, radians float32, axisVector unsafe.Pointer) {
+func GLKMatrixStackRotateWithVector3(stack GLKMatrixStackRef, radians float32, axisVector GLKVector3) {
 	_GLKMatrixStackRotateWithVector3(stack, radians, axisVector)
 }
 
@@ -383,7 +383,7 @@ func GLKMatrixStackRotateWithVector3(stack unsafe.Pointer, radians float32, axis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateWithVector4(_:_:_:)
-func GLKMatrixStackRotateWithVector4(stack unsafe.Pointer, radians float32, axisVector unsafe.Pointer) {
+func GLKMatrixStackRotateWithVector4(stack GLKMatrixStackRef, radians float32, axisVector GLKVector4) {
 	_GLKMatrixStackRotateWithVector4(stack, radians, axisVector)
 }
 
@@ -394,7 +394,7 @@ func GLKMatrixStackRotateWithVector4(stack unsafe.Pointer, radians float32, axis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateX(_:_:)
-func GLKMatrixStackRotateX(stack unsafe.Pointer, radians float32) {
+func GLKMatrixStackRotateX(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateX(stack, radians)
 }
 
@@ -405,7 +405,7 @@ func GLKMatrixStackRotateX(stack unsafe.Pointer, radians float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateY(_:_:)
-func GLKMatrixStackRotateY(stack unsafe.Pointer, radians float32) {
+func GLKMatrixStackRotateY(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateY(stack, radians)
 }
 
@@ -416,7 +416,7 @@ func GLKMatrixStackRotateY(stack unsafe.Pointer, radians float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateZ(_:_:)
-func GLKMatrixStackRotateZ(stack unsafe.Pointer, radians float32) {
+func GLKMatrixStackRotateZ(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateZ(stack, radians)
 }
 
@@ -427,7 +427,7 @@ func GLKMatrixStackRotateZ(stack unsafe.Pointer, radians float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScale(_:_:_:_:)
-func GLKMatrixStackScale(stack unsafe.Pointer, sx float32, sy float32, sz float32) {
+func GLKMatrixStackScale(stack GLKMatrixStackRef, sx float32, sy float32, sz float32) {
 	_GLKMatrixStackScale(stack, sx, sy, sz)
 }
 
@@ -438,7 +438,7 @@ func GLKMatrixStackScale(stack unsafe.Pointer, sx float32, sy float32, sz float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScaleWithVector3(_:_:)
-func GLKMatrixStackScaleWithVector3(stack unsafe.Pointer, scaleVector unsafe.Pointer) {
+func GLKMatrixStackScaleWithVector3(stack GLKMatrixStackRef, scaleVector GLKVector3) {
 	_GLKMatrixStackScaleWithVector3(stack, scaleVector)
 }
 
@@ -449,7 +449,7 @@ func GLKMatrixStackScaleWithVector3(stack unsafe.Pointer, scaleVector unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScaleWithVector4(_:_:)
-func GLKMatrixStackScaleWithVector4(stack unsafe.Pointer, scaleVector unsafe.Pointer) {
+func GLKMatrixStackScaleWithVector4(stack GLKMatrixStackRef, scaleVector GLKVector4) {
 	_GLKMatrixStackScaleWithVector4(stack, scaleVector)
 }
 
@@ -460,7 +460,7 @@ func GLKMatrixStackScaleWithVector4(stack unsafe.Pointer, scaleVector unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackSize(_:)
-func GLKMatrixStackSize(stack unsafe.Pointer) int {
+func GLKMatrixStackSize(stack GLKMatrixStackRef) int {
 	return _GLKMatrixStackSize(stack)
 }
 
@@ -471,7 +471,7 @@ func GLKMatrixStackSize(stack unsafe.Pointer) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslate(_:_:_:_:)
-func GLKMatrixStackTranslate(stack unsafe.Pointer, tx float32, ty float32, tz float32) {
+func GLKMatrixStackTranslate(stack GLKMatrixStackRef, tx float32, ty float32, tz float32) {
 	_GLKMatrixStackTranslate(stack, tx, ty, tz)
 }
 
@@ -482,7 +482,7 @@ func GLKMatrixStackTranslate(stack unsafe.Pointer, tx float32, ty float32, tz fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslateWithVector3(_:_:)
-func GLKMatrixStackTranslateWithVector3(stack unsafe.Pointer, translationVector unsafe.Pointer) {
+func GLKMatrixStackTranslateWithVector3(stack GLKMatrixStackRef, translationVector GLKVector3) {
 	_GLKMatrixStackTranslateWithVector3(stack, translationVector)
 }
 
@@ -493,7 +493,7 @@ func GLKMatrixStackTranslateWithVector3(stack unsafe.Pointer, translationVector 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslateWithVector4(_:_:)
-func GLKMatrixStackTranslateWithVector4(stack unsafe.Pointer, translationVector unsafe.Pointer) {
+func GLKMatrixStackTranslateWithVector4(stack GLKMatrixStackRef, translationVector GLKVector4) {
 	_GLKMatrixStackTranslateWithVector4(stack, translationVector)
 }
 
@@ -504,7 +504,7 @@ func GLKMatrixStackTranslateWithVector4(stack unsafe.Pointer, translationVector 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionAngle(_:)
-func GLKQuaternionAngle(quaternion unsafe.Pointer) float32 {
+func GLKQuaternionAngle(quaternion GLKQuaternion) float32 {
 	return _GLKQuaternionAngle(quaternion)
 }
 
@@ -515,7 +515,7 @@ func GLKQuaternionAngle(quaternion unsafe.Pointer) float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionAxis(_:)
-func GLKQuaternionAxis(quaternion unsafe.Pointer) unsafe.Pointer {
+func GLKQuaternionAxis(quaternion GLKQuaternion) GLKVector3 {
 	return _GLKQuaternionAxis(quaternion)
 }
 
@@ -526,7 +526,7 @@ func GLKQuaternionAxis(quaternion unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionMakeWithMatrix3(_:)
-func GLKQuaternionMakeWithMatrix3(matrix unsafe.Pointer) unsafe.Pointer {
+func GLKQuaternionMakeWithMatrix3(matrix GLKMatrix3) GLKQuaternion {
 	return _GLKQuaternionMakeWithMatrix3(matrix)
 }
 
@@ -537,7 +537,7 @@ func GLKQuaternionMakeWithMatrix3(matrix unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionMakeWithMatrix4(_:)
-func GLKQuaternionMakeWithMatrix4(matrix unsafe.Pointer) unsafe.Pointer {
+func GLKQuaternionMakeWithMatrix4(matrix GLKMatrix4) GLKQuaternion {
 	return _GLKQuaternionMakeWithMatrix4(matrix)
 }
 
@@ -548,7 +548,7 @@ func GLKQuaternionMakeWithMatrix4(matrix unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionRotateVector3Array(_:_:_:)
-func GLKQuaternionRotateVector3Array(quaternion unsafe.Pointer, vectors unsafe.Pointer, vectorCount uintptr) {
+func GLKQuaternionRotateVector3Array(quaternion GLKQuaternion, vectors unsafe.Pointer, vectorCount uintptr) {
 	_GLKQuaternionRotateVector3Array(quaternion, vectors, vectorCount)
 }
 
@@ -559,7 +559,7 @@ func GLKQuaternionRotateVector3Array(quaternion unsafe.Pointer, vectors unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionRotateVector4Array(_:_:_:)
-func GLKQuaternionRotateVector4Array(quaternion unsafe.Pointer, vectors unsafe.Pointer, vectorCount uintptr) {
+func GLKQuaternionRotateVector4Array(quaternion GLKQuaternion, vectors unsafe.Pointer, vectorCount uintptr) {
 	_GLKQuaternionRotateVector4Array(quaternion, vectors, vectorCount)
 }
 
@@ -570,7 +570,7 @@ func GLKQuaternionRotateVector4Array(quaternion unsafe.Pointer, vectors unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionSlerp(_:_:_:)
-func GLKQuaternionSlerp(quaternionStart unsafe.Pointer, quaternionEnd unsafe.Pointer, t float32) unsafe.Pointer {
+func GLKQuaternionSlerp(quaternionStart GLKQuaternion, quaternionEnd GLKQuaternion, t float32) GLKQuaternion {
 	return _GLKQuaternionSlerp(quaternionStart, quaternionEnd, t)
 }
 
@@ -579,7 +579,7 @@ func GLKQuaternionSlerp(quaternionStart unsafe.Pointer, quaternionEnd unsafe.Poi
 // Added in macOS 10.8.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKVertexAttributeParametersFromModelIO(_:)
-func GLKVertexAttributeParametersFromModelIO(vertexFormat unsafe.Pointer) unsafe.Pointer {
+func GLKVertexAttributeParametersFromModelIO(vertexFormat unsafe.Pointer) GLKVertexAttributeParameters {
 	return _GLKVertexAttributeParametersFromModelIO(vertexFormat)
 }
 
@@ -590,7 +590,7 @@ func GLKVertexAttributeParametersFromModelIO(vertexFormat unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix2(_:)
-func NSStringFromGLKMatrix2(matrix unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKMatrix2(matrix GLKMatrix2) unsafe.Pointer {
 	return _NSStringFromGLKMatrix2(matrix)
 }
 
@@ -601,7 +601,7 @@ func NSStringFromGLKMatrix2(matrix unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix3(_:)
-func NSStringFromGLKMatrix3(matrix unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKMatrix3(matrix GLKMatrix3) unsafe.Pointer {
 	return _NSStringFromGLKMatrix3(matrix)
 }
 
@@ -612,7 +612,7 @@ func NSStringFromGLKMatrix3(matrix unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix4(_:)
-func NSStringFromGLKMatrix4(matrix unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKMatrix4(matrix GLKMatrix4) unsafe.Pointer {
 	return _NSStringFromGLKMatrix4(matrix)
 }
 
@@ -623,7 +623,7 @@ func NSStringFromGLKMatrix4(matrix unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKQuaternion(_:)
-func NSStringFromGLKQuaternion(quaternion unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKQuaternion(quaternion GLKQuaternion) unsafe.Pointer {
 	return _NSStringFromGLKQuaternion(quaternion)
 }
 
@@ -634,7 +634,7 @@ func NSStringFromGLKQuaternion(quaternion unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector2(_:)
-func NSStringFromGLKVector2(vector unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKVector2(vector GLKVector2) unsafe.Pointer {
 	return _NSStringFromGLKVector2(vector)
 }
 
@@ -645,7 +645,7 @@ func NSStringFromGLKVector2(vector unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector3(_:)
-func NSStringFromGLKVector3(vector unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKVector3(vector GLKVector3) unsafe.Pointer {
 	return _NSStringFromGLKVector3(vector)
 }
 
@@ -656,7 +656,7 @@ func NSStringFromGLKVector3(vector unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector4(_:)
-func NSStringFromGLKVector4(vector unsafe.Pointer) unsafe.Pointer {
+func NSStringFromGLKVector4(vector GLKVector4) unsafe.Pointer {
 	return _NSStringFromGLKVector4(vector)
 }
 

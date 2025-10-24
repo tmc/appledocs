@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,23 @@ type _SecurityOriginClass struct {
 // An interface definition for the [SecurityOrigin] class.
 type ISecurityOrigin interface {
 	objectivec.IObject
-	Host() string
+	// properties:
+	Host() objc.IObject /* cross-framework: NSString */
 	Port() int
 	SetPort(value int)
-	Protocol() string
-	SetProtocol(value string)
+	Protocol() objc.IObject /* cross-framework: NSString */
+	SetProtocol(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that identifies the origin of a particular resource.
 //
 // A object is a transient, data-only object that identifies the host name, protocol, and port number associated with a particular resource. You don’t create objects directly. Instead, WebKit creates them for the resources it loads. A load is any load URL has the same security origin as the requesting web site. First-party webpages can access each other’s resources, such as scripts and databases. Because a object is transient, it doesn’t uniquely identify a security origin across multiple delegate method calls.
+
+
+// An object that identifies the origin of a particular resource.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSecurityOrigin
 type SecurityOrigin struct {
 	objectivec.Object
@@ -85,16 +92,20 @@ func NewSecurityOrigin() SecurityOrigin {
 }
 
 
+
 // The security origin’s host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSecurityOrigin/host
-func (s_ SecurityOrigin) Host() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("host"))
+func (s_ SecurityOrigin) Host() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("host"))
 	return rv
 }
 
+
 // The security origin’s port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/port
 func (s_ SecurityOrigin) Port() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("port"))
@@ -102,31 +113,31 @@ func (s_ SecurityOrigin) Port() int {
 }
 
 
-// SetPort sets the value of the port property.
 // The security origin’s port.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/port
 func (s_ SecurityOrigin) SetPort(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPort:"), value)
 }
 
+
 // The security origin’s protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
-func (s_ SecurityOrigin) Protocol() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("protocol"))
+func (s_ SecurityOrigin) Protocol() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("protocol"))
 	return rv
 }
 
 
-// SetProtocol sets the value of the protocol property.
 // The security origin’s protocol.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
-func (s_ SecurityOrigin) SetProtocol(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setProtocol:"), objc.String(value))
+func (s_ SecurityOrigin) SetProtocol(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setProtocol:"), value)
 }
 
 

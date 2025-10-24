@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [AnimationContext] class.
@@ -31,12 +32,12 @@ type _AnimationContextClass struct {
 type IAnimationContext interface {
 	objectivec.IObject
 	// properties:
-	AllowsImplicitAnimation() bool /* primitive/slice/pointer. */
-	SetAllowsImplicitAnimation(value bool /* primitive/slice/pointer. */)
+	AllowsImplicitAnimation() bool
+	SetAllowsImplicitAnimation(value bool)
 	CompletionHandler() unsafe.Pointer
 	SetCompletionHandler(value unsafe.Pointer)
-	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
+	Duration() float64
+	SetDuration(value float64)
 	TimingFunction() objc.IObject /* cross-framework: MediaTimingFunction */
 	SetTimingFunction(value objc.IObject /* cross-framework: MediaTimingFunction */)
 	// methods:
@@ -99,7 +100,7 @@ func NewAnimationContext() AnimationContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
-func (a_ AnimationContext) AllowsImplicitAnimation() bool /* primitive/slice/pointer. */ {
+func (a_ AnimationContext) AllowsImplicitAnimation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsImplicitAnimation"))
 	return rv
 }
@@ -109,7 +110,7 @@ func (a_ AnimationContext) AllowsImplicitAnimation() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/allowsimplicitanimation
-func (a_ AnimationContext) SetAllowsImplicitAnimation(value bool /* primitive/slice/pointer. */) {
+func (a_ AnimationContext) SetAllowsImplicitAnimation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsImplicitAnimation:"), value)
 }
 
@@ -137,8 +138,8 @@ func (a_ AnimationContext) SetCompletionHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
-func (a_ AnimationContext) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
+func (a_ AnimationContext) Duration() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (a_ AnimationContext) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/duration
-func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
+func (a_ AnimationContext) SetDuration(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -157,7 +158,7 @@ func (a_ AnimationContext) SetDuration(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
 func (a_ AnimationContext) TimingFunction() objc.IObject /* cross-framework: MediaTimingFunction */ {
-	rv := objc.Send[MediaTimingFunction](a_.ID, objc.Sel("timingFunction"))
+	rv := objc.Send[quartzcore.MediaTimingFunction](a_.ID, objc.Sel("timingFunction"))
 	return rv
 }
 

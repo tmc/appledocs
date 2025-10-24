@@ -10,9 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	CustomRoutingEventReason = _undefined // referenced in AVRouting
-	CustomRoutingPartialIP = _undefined // referenced in AVRouting
 	RoutingPlaybackParticipant = _undefined // referenced in AVRouting
-	UUID = _undefined // referenced in AVRouting
 )
 
 

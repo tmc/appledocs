@@ -8,8 +8,8 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 11.0+
-//   - iPadOS 11.0+
+//   - iOS 9.0+
+//   - iPadOS 9.0+
 //
 // Use this protocol when registering custom classes that conform to safariViewController:.
 var safariViewControllerProtocol *objc.Protocol

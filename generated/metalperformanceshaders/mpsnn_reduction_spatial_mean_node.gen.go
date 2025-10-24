@@ -29,9 +29,13 @@ type _ReductionSpatialMeanNodeClass struct {
 // An interface definition for the [ReductionSpatialMeanNode] class.
 type IReductionSpatialMeanNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionSpatialMeanNode
 type ReductionSpatialMeanNode struct {
 	UnaryReductionNode

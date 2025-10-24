@@ -31,15 +31,19 @@ type _MTRDoorLockClusterGetHolidayScheduleParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetHolidayScheduleParams] class.
 type IMTRDoorLockClusterGetHolidayScheduleParams interface {
 	objectivec.IObject
-	HolidayIndex() foundation.Number
-	SetHolidayIndex(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	HolidayIndex() objc.IObject /* cross-framework: NSNumber */
+	SetHolidayIndex(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterGetHolidayScheduleParams
 type MTRDoorLockClusterGetHolidayScheduleParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDoorLockClusterGetHolidayScheduleParams() MTRDoorLockClusterGetHolida
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) HolidayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) HolidayIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("holidayIndex"))
 	return rv
 }
 
 
-// SetHolidayIndex sets the value of the holidayIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetHolidayIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetHolidayIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

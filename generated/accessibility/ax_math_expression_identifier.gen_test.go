@@ -9,10 +9,3 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXMathExpressionIdentifier
 
-// ExampleNewAXMathExpressionIdentifierWithContent demonstrates how to create a AXMathExpressionIdentifier instance using NewAXMathExpressionIdentifierWithContent.
-func ExampleNewAXMathExpressionIdentifierWithContent() {
-	_ = accessibility.NewAXMathExpressionIdentifierWithContent(
-		"content", // content string
-	)
-	// Output:
-}

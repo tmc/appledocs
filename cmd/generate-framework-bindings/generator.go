@@ -156,12 +156,41 @@ func (g *Generator) IsTypedefType(typeName string) bool {
 	}
 
 	// O(1) lookup in index
+	// Try exact match first
 	_, ok := g.typedefIndex[typeName]
-	Debug.TimeInterval("IsTypedefType check", typeName, "",
+	if ok {
+		Debug.TimeInterval("IsTypedefType check (exact)", typeName, "",
+			"typeName", typeName,
+			"found", true,
+			"indexSize", len(g.typedefIndex))
+		return true
+	}
+
+	// Also try lowercase version (for title-cased typedef names like "Unichar")
+	// The index contains original names from Apple docs (e.g., "unichar")
+	// but mapObjCTypeToGo may return title-cased names (e.g., "Unichar")
+	lowercaseTypeName := ""
+	if len(typeName) > 0 {
+		lowercaseTypeName = strings.ToLower(typeName[:1]) + typeName[1:]
+	}
+	if lowercaseTypeName != "" && lowercaseTypeName != typeName {
+		_, ok = g.typedefIndex[lowercaseTypeName]
+		if ok {
+			Debug.TimeInterval("IsTypedefType check (lowercase)", typeName, "",
+				"typeName", typeName,
+				"lowercaseTypeName", lowercaseTypeName,
+				"found", true,
+				"indexSize", len(g.typedefIndex))
+			return true
+		}
+	}
+
+	Debug.TimeInterval("IsTypedefType check (not found)", typeName, "",
 		"typeName", typeName,
-		"found", ok,
+		"tried", lowercaseTypeName,
+		"found", false,
 		"indexSize", len(g.typedefIndex))
-	return ok
+	return false
 }
 
 // TypeToInterfaceType converts a struct type name to its interface type name using

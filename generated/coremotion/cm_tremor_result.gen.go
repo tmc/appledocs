@@ -32,14 +32,6 @@ type _TremorResultClass struct {
 type ITremorResult interface {
 	objectivec.IObject
 	// properties:
-	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
-	PercentMild() float32 /* primitive/slice/pointer. */
-	PercentModerate() float32 /* primitive/slice/pointer. */
-	PercentNone() float32 /* primitive/slice/pointer. */
-	PercentSlight() float32 /* primitive/slice/pointer. */
-	PercentStrong() float32 /* primitive/slice/pointer. */
-	PercentUnknown() float32 /* primitive/slice/pointer. */
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
 	// methods:
 }
 
@@ -92,87 +84,6 @@ func (t_ TremorResult) Autorelease() TremorResult {
 // NewTremorResult creates a new TremorResult instance.
 func NewTremorResult() TremorResult {
 	return getTremorResultClass().New()
-}
-
-
-
-// The result’s end time and date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/endDate
-func (t_ TremorResult) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("endDate"))
-	return rv
-}
-
-
-// The percentage of time when a tremor was likely, and the displacement amplitude was mild.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentMild
-func (t_ TremorResult) PercentMild() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentMild"))
-	return rv
-}
-
-
-// The percentage of time when a tremor was likely, and the displacement amplitude was moderate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentModerate
-func (t_ TremorResult) PercentModerate() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentModerate"))
-	return rv
-}
-
-
-// The percentage of time when no tremor was detected.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentNone
-func (t_ TremorResult) PercentNone() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentNone"))
-	return rv
-}
-
-
-// The percentage of time when a tremor was likely, and the displacement amplitude was slight.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentSlight
-func (t_ TremorResult) PercentSlight() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentSlight"))
-	return rv
-}
-
-
-// The percentage of time when a tremor was likely, and the displacement amplitude was strong.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentStrong
-func (t_ TremorResult) PercentStrong() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentStrong"))
-	return rv
-}
-
-
-// The percentage of time when the algorithm couldn’t make a determination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentUnknown
-func (t_ TremorResult) PercentUnknown() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](t_.ID, objc.Sel("percentUnknown"))
-	return rv
-}
-
-
-// The result’s start time and date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/startDate
-func (t_ TremorResult) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("startDate"))
-	return rv
 }
 
 

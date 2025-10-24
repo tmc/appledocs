@@ -31,7 +31,6 @@ type _InterstitialTimeRangeClass struct {
 type IInterstitialTimeRange interface {
 	objectivec.IObject
 	// properties:
-	TimeRange() TimeRange /* not a class type */
 	// methods:
 }
 
@@ -99,15 +98,5 @@ func NewInterstitialTimeRangeWithTimeRange(timeRange TimeRange /* not a class ty
 	return rv
 }
 
-
-
-// The time range identified as interstitial content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/timeRange
-func (i_ InterstitialTimeRange) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](i_.ID, objc.Sel("timeRange"))
-	return rv
-}
 
 

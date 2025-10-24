@@ -31,12 +31,12 @@ type _AudioEnvironmentReverbParametersClass struct {
 type IAudioEnvironmentReverbParameters interface {
 	objectivec.IObject
 	// properties:
-	Enable() bool /* primitive/slice/pointer. */
-	SetEnable(value bool /* primitive/slice/pointer. */)
+	Enable() bool
+	SetEnable(value bool)
 	FilterParameters() AudioUnitEQFilterParameters /* not a class type */
 	SetFilterParameters(value AudioUnitEQFilterParameters /* not a class type */)
-	Level() float32 /* primitive/slice/pointer. */
-	SetLevel(value float32 /* primitive/slice/pointer. */)
+	Level() float32
+	SetLevel(value float32)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
-func (a_ AudioEnvironmentReverbParameters) Enable() bool /* primitive/slice/pointer. */ {
+func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enable"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (a_ AudioEnvironmentReverbParameters) Enable() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
-func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
 
@@ -135,7 +135,7 @@ func (a_ AudioEnvironmentReverbParameters) SetFilterParameters(value AudioUnitEQ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) Level() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioEnvironmentReverbParameters) Level() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("level"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (a_ AudioEnvironmentReverbParameters) Level() float32 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
 }
 

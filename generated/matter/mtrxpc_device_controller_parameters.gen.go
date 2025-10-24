@@ -30,11 +30,15 @@ type _MTRXPCDeviceControllerParametersClass struct {
 // An interface definition for the [MTRXPCDeviceControllerParameters] class.
 type IMTRXPCDeviceControllerParameters interface {
 	IMTRDeviceControllerAbstractParameters
-	UniqueIdentifier() foundation.UUID
-	XpcConnectionBlock() unsafe.Pointer
+	// properties:
+	UniqueIdentifier() objc.IObject /* cross-framework: UUID */
+	XpcConnectionBlock() NSXPCConnection * (^ /* not a class type */
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters
 type MTRXPCDeviceControllerParameters struct {
 	MTRDeviceControllerAbstractParameters
@@ -80,20 +84,21 @@ func NewMTRXPCDeviceControllerParameters() MTRXPCDeviceControllerParameters {
 
 
 
-
 // A controller created from this way will connect to a remote instance of an MTRDeviceController loaded in an XPC Service
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpcConnectionBlock:uniqueIdentifier:)
-func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier foundation.IUUID) MTRXPCDeviceControllerParameters {
+func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(xpcConnectionBlock XPCConnection * (^ /* not a class type */, uniqueIdentifier objc.IObject /* cross-framework: UUID */) MTRXPCDeviceControllerParameters {
 	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
 	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPCConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpConnectionBlock:uniqueIdentifier:)
-func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier foundation.IUUID) MTRXPCDeviceControllerParameters {
+func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock XPCConnection * (^ /* not a class type */, uniqueIdentifier objc.IObject /* cross-framework: UUID */) MTRXPCDeviceControllerParameters {
 	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
 	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
 	rv.Autorelease()
@@ -101,17 +106,19 @@ func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/uniqueIdentifier
-func (m_ MTRXPCDeviceControllerParameters) UniqueIdentifier() foundation.UUID {
+func (m_ MTRXPCDeviceControllerParameters) UniqueIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/xpcConnectionBlock
-func (m_ MTRXPCDeviceControllerParameters) XpcConnectionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("xpcConnectionBlock"))
+func (m_ MTRXPCDeviceControllerParameters) XpcConnectionBlock() NSXPCConnection * (^ /* not a class type */ {
+	rv := objc.Send[XPCConnection * (^](m_.ID, objc.Sel("xpcConnectionBlock"))
 	return rv
 }
 

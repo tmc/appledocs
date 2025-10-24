@@ -31,11 +31,15 @@ type _MTRThreadNetworkDiagnosticsClusterConnectionStatusEventClass struct {
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent] class.
 type IMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent interface {
 	objectivec.IObject
-	ConnectionStatus() foundation.Number
-	SetConnectionStatus(value foundation.INumber)
+	// properties:
+	ConnectionStatus() objc.IObject /* cross-framework: NSNumber */
+	SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent
 type MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent() MTRThreadNetwo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("connectionStatus"))
+func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("connectionStatus"))
 	return rv
 }
 
 
-// SetConnectionStatus sets the value of the connectionStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.INumber) {
+func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
 }
 

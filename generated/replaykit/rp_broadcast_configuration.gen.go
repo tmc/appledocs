@@ -31,14 +31,16 @@ type _RPBroadcastConfigurationClass struct {
 // An interface definition for the [RPBroadcastConfiguration] class.
 type IRPBroadcastConfiguration interface {
 	objectivec.IObject
-	ClipDuration() foundation.TimeInterval
-	SetClipDuration(value foundation.ITimeInterval)
-	VideoCompressionProperties() unsafe.Pointer
-	SetVideoCompressionProperties(value unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // An object used to configure the movie clips produced during a live broadcast.
+
+
+// An object used to configure the movie clips produced during a live broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration
 type RPBroadcastConfiguration struct {
 	objectivec.Object
@@ -80,43 +82,6 @@ func (r_ RPBroadcastConfiguration) Autorelease() RPBroadcastConfiguration {
 // NewRPBroadcastConfiguration creates a new RPBroadcastConfiguration instance.
 func NewRPBroadcastConfiguration() RPBroadcastConfiguration {
 	return getRPBroadcastConfigurationClass().New()
-}
-
-
-// The duration of movie clips sent the to the movie clip handler extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
-func (r_ RPBroadcastConfiguration) ClipDuration() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("clipDuration"))
-	return rv
-}
-
-
-// SetClipDuration sets the value of the clipDuration property.
-// The duration of movie clips sent the to the movie clip handler extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
-func (r_ RPBroadcastConfiguration) SetClipDuration(value foundation.ITimeInterval) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setClipDuration:"), value)
-}
-
-// The compression properties for encoding movie clips that are to be overwritten.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/videoCompressionProperties
-func (r_ RPBroadcastConfiguration) VideoCompressionProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("videoCompressionProperties"))
-	return rv
-}
-
-
-// SetVideoCompressionProperties sets the value of the videoCompressionProperties property.
-// The compression properties for encoding movie clips that are to be overwritten.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/videoCompressionProperties
-func (r_ RPBroadcastConfiguration) SetVideoCompressionProperties(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setVideoCompressionProperties:"), value)
 }
 
 

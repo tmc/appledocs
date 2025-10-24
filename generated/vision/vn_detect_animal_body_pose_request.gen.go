@@ -29,16 +29,22 @@ type _DetectAnimalBodyPoseRequestClass struct {
 // An interface definition for the [DetectAnimalBodyPoseRequest] class.
 type IDetectAnimalBodyPoseRequest interface {
 	IImageBasedRequest
-	Results() VNAnimalBodyPoseObservation
+	// properties:
+	Results() IVNAnimalBodyPoseObservation
 	SetResults(value IVNAnimalBodyPoseObservation)
 	SupportedJointNames() unsafe.Pointer
 	SetSupportedJointNames(value unsafe.Pointer)
 	SupportedJointsGroupNames() unsafe.Pointer
 	SetSupportedJointsGroupNames(value unsafe.Pointer)
+	// methods:
 }
 
 // A request that detects an animal body pose.
+
+
+// A request that detects an animal body pose.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectAnimalBodyPoseRequest
 type DetectAnimalBodyPoseRequest struct {
 	ImageBasedRequest
@@ -85,26 +91,29 @@ func NewDetectAnimalBodyPoseRequest() DetectAnimalBodyPoseRequest {
 }
 
 
+
 // The animal body pose the request observes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
-func (d_ DetectAnimalBodyPoseRequest) Results() VNAnimalBodyPoseObservation {
-	rv := objc.Send[VNAnimalBodyPoseObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectAnimalBodyPoseRequest) Results() IVNAnimalBodyPoseObservation {
+	rv := objc.Send[AnimalBodyPoseObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The animal body pose the request observes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
 func (d_ DetectAnimalBodyPoseRequest) SetResults(value IVNAnimalBodyPoseObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // Retrieves the joint names the request supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointnames
 func (d_ DetectAnimalBodyPoseRequest) SupportedJointNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointNames"))
@@ -112,17 +121,18 @@ func (d_ DetectAnimalBodyPoseRequest) SupportedJointNames() unsafe.Pointer {
 }
 
 
-// SetSupportedJointNames sets the value of the supportedJointNames property.
 // Retrieves the joint names the request supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointnames
 func (d_ DetectAnimalBodyPoseRequest) SetSupportedJointNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointNames:"), value)
 }
 
+
 // Retrieves the joint group names the request supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
 func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("supportedJointsGroupNames"))
@@ -130,10 +140,9 @@ func (d_ DetectAnimalBodyPoseRequest) SupportedJointsGroupNames() unsafe.Pointer
 }
 
 
-// SetSupportedJointsGroupNames sets the value of the supportedJointsGroupNames property.
 // Retrieves the joint group names the request supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/supportedjointsgroupnames
 func (d_ DetectAnimalBodyPoseRequest) SetSupportedJointsGroupNames(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportedJointsGroupNames:"), value)

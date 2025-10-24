@@ -32,8 +32,6 @@ type _WaterSubmersionEventClass struct {
 type IWaterSubmersionEvent interface {
 	objectivec.IObject
 	// properties:
-	Date() foundation.objc.IObject /* cross-framework: NSDate */
-	State() WaterSubmersionState
 	// methods:
 }
 
@@ -84,27 +82,6 @@ func (w_ WaterSubmersionEvent) Autorelease() WaterSubmersionEvent {
 // NewWaterSubmersionEvent creates a new WaterSubmersionEvent instance.
 func NewWaterSubmersionEvent() WaterSubmersionEvent {
 	return getWaterSubmersionEventClass().New()
-}
-
-
-
-// The time and date of the event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/date
-func (w_ WaterSubmersionEvent) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
-	return rv
-}
-
-
-// The new submersion state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/state-swift.property
-func (w_ WaterSubmersionEvent) State() WaterSubmersionState {
-	rv := objc.Send[WaterSubmersionState](w_.ID, objc.Sel("state"))
-	return rv
 }
 
 

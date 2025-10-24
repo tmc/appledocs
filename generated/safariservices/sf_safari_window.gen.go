@@ -31,15 +31,21 @@ type _SFSafariWindowClass struct {
 // An interface definition for the [SFSafariWindow] class.
 type ISFSafariWindow interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	Close()
 	GetActiveTabWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetAllTabsWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetToolbarItemWithCompletionHandler(completionHandler unsafe.Pointer)
-	OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.IURL, activateTab bool, completionHandler unsafe.Pointer)
+	OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url objc.IObject /* cross-framework: NSURL */, activateTab bool, completionHandler unsafe.Pointer)
 }
 
 // A proxy for a Safari window.
+
+
+// A proxy for a Safari window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow
 type SFSafariWindow struct {
 	objectivec.Object
@@ -84,36 +90,44 @@ func NewSFSafariWindow() SFSafariWindow {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/close()
 func (s_ SFSafariWindow) Close() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("close"))
 }
 
+
 // Calls the completion handler with the active tab in the target window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/getActiveTab(completionHandler:)
 func (s_ SFSafariWindow) GetActiveTabWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getActiveTabWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/getAllTabs(completionHandler:)
 func (s_ SFSafariWindow) GetAllTabsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getAllTabsWithCompletionHandler:"), completionHandler)
 }
 
+
 // Gets the extension’s toolbar item from the target window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/getToolbarItem(completionHandler:)
 func (s_ SFSafariWindow) GetToolbarItemWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getToolbarItemWithCompletionHandler:"), completionHandler)
 }
 
+
 // Opens a tab at the end of the tab bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/openTab(with:makeActiveIfPossible:completionHandler:)
-func (s_ SFSafariWindow) OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.IURL, activateTab bool, completionHandler unsafe.Pointer) {
+func (s_ SFSafariWindow) OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url objc.IObject /* cross-framework: NSURL */, activateTab bool, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("openTabWithURL:makeActiveIfPossible:completionHandler:"), url, activateTab, completionHandler)
 }
 

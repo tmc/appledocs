@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PreviewSceneActivationConfiguration] class.
@@ -29,23 +28,31 @@ type _PreviewSceneActivationConfigurationClass struct {
 
 // An interface definition for the [PreviewSceneActivationConfiguration] class.
 type IPreviewSceneActivationConfiguration interface {
-	objectivec.IObject
+	IWindowSceneActivationConfiguration
+	// properties:
+	// methods:
 }
 
 // A scene configuration to preview items at the specified URLs.
 //
 // This class provides the configuration for a prominent scene presentation of a preview, either from a swipe gesture or a menu action. The user can detach the prominent Quick Look window and display it independently. To provide a preview from a swipe gesture, use an instance of this class with . To provide a preview from a menu action, use an instance of this class with .
+
+
+// A scene configuration to preview items at the specified URLs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewSceneActivationConfiguration
 type PreviewSceneActivationConfiguration struct {
-	objectivec.Object
+	WindowSceneActivationConfiguration
 }
 
 // PreviewSceneActivationConfigurationFrom constructs a [PreviewSceneActivationConfiguration] from an unsafe.Pointer.
 //
 // A scene configuration to preview items at the specified URLs.
 func PreviewSceneActivationConfigurationFrom(ptr unsafe.Pointer) PreviewSceneActivationConfiguration {
-	return PreviewSceneActivationConfiguration{objectivec.Object{objc.ID(ptr)}}
+	return PreviewSceneActivationConfiguration{
+		WindowSceneActivationConfiguration: WindowSceneActivationConfigurationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -78,6 +85,7 @@ func (p_ PreviewSceneActivationConfiguration) Autorelease() PreviewSceneActivati
 func NewPreviewSceneActivationConfiguration() PreviewSceneActivationConfiguration {
 	return getPreviewSceneActivationConfigurationClass().New()
 }
+
 
 
 

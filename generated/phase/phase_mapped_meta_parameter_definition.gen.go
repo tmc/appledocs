@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASEMappedMetaParameterDefinition] class.
@@ -29,16 +30,22 @@ type _PHASEMappedMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEMappedMetaParameterDefinition] class.
 type IPHASEMappedMetaParameterDefinition interface {
 	IPHASENumberMetaParameterDefinition
-	Envelope() PHASEEnvelope
+	// properties:
+	Envelope() IPHASEEnvelope
 	SetEnvelope(value IPHASEEnvelope)
-	InputMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	InputMetaParameterDefinition() IPHASENumberMetaParameterDefinition
 	SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	// methods:
 }
 
 // A metaparameter that graphs an input value on a set of mathematical curves.
 //
 // This class takes a metaparameter as input and plots its value on a curve defined by the property. Whereas the envelope’s function in and takes time because the relevant audio starts as its input parameter, in the case of the envelope property for this class, the app has full control over the input metaparameter’s value.
+
+
+// A metaparameter that graphs an input value on a set of mathematical curves.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMappedMetaParameterDefinition
 type PHASEMappedMetaParameterDefinition struct {
 	PHASENumberMetaParameterDefinition
@@ -86,49 +93,51 @@ func NewPHASEMappedMetaParameterDefinition() PHASEMappedMetaParameterDefinition 
 
 
 
-
 // Creates a specification for a named metaparameter that the app plots on a graph defined by the given set of curves.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMappedMetaParameterDefinition/init(inputMetaParameterDefinition:envelope:identifier:)
-func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition IPHASENumberMetaParameterDefinition, envelope IPHASEEnvelope, identifier string) PHASEMappedMetaParameterDefinition {
+func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition IPHASENumberMetaParameterDefinition, envelope IPHASEEnvelope, identifier objc.IObject /* cross-framework: NSString */) PHASEMappedMetaParameterDefinition {
 	instance := getPHASEMappedMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, objc.String(identifier))
+	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // A collection of line segments that curve and connect to form a graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
-func (p_ PHASEMappedMetaParameterDefinition) Envelope() PHASEEnvelope {
+func (p_ PHASEMappedMetaParameterDefinition) Envelope() IPHASEEnvelope {
 	rv := objc.Send[PHASEEnvelope](p_.ID, objc.Sel("envelope"))
 	return rv
 }
 
 
-// SetEnvelope sets the value of the envelope property.
 // A collection of line segments that curve and connect to form a graph.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
 func (p_ PHASEMappedMetaParameterDefinition) SetEnvelope(value IPHASEEnvelope) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnvelope:"), value)
 }
 
+
 // A linear input value to plot on a curve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() IPHASENumberMetaParameterDefinition {
 	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("inputMetaParameterDefinition"))
 	return rv
 }
 
 
-// SetInputMetaParameterDefinition sets the value of the inputMetaParameterDefinition property.
 // A linear input value to plot on a curve.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
 func (p_ PHASEMappedMetaParameterDefinition) SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)

@@ -29,9 +29,13 @@ type _MTRBaseClusterWakeOnLanClass struct {
 // An interface definition for the [MTRBaseClusterWakeOnLan] class.
 type IMTRBaseClusterWakeOnLan interface {
 	IMTRBaseClusterWakeOnLAN
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWakeOnLan-1dp5d
 type MTRBaseClusterWakeOnLan struct {
 	MTRBaseClusterWakeOnLAN

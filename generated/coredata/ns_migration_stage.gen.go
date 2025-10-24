@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _MigrationStageClass struct {
 type IMigrationStage interface {
 	objectivec.IObject
 	// properties:
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -91,8 +92,8 @@ func NewMigrationStage() MigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MigrationStage) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -101,8 +102,8 @@ func (m_ MigrationStage) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MigrationStage) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 

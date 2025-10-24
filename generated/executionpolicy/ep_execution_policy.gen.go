@@ -33,7 +33,7 @@ type IEPExecutionPolicy interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AddPolicyExceptionForURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	AddPolicyExceptionForURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool
 }
 
 
@@ -85,7 +85,7 @@ func NewEPExecutionPolicy() EPExecutionPolicy {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPExecutionPolicy/addException(for:)
-func (e_ EPExecutionPolicy) AddPolicyExceptionForURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (e_ EPExecutionPolicy) AddPolicyExceptionForURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("addPolicyExceptionForURL:error:"), url, error_)
 	return rv
 }

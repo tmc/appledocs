@@ -31,15 +31,19 @@ type _MTRAccessControlClusterReviewFabricRestrictionsParamsClass struct {
 // An interface definition for the [MTRAccessControlClusterReviewFabricRestrictionsParams] class.
 type IMTRAccessControlClusterReviewFabricRestrictionsParams interface {
 	objectivec.IObject
-	Arl() objc.ID
-	SetArl(value objc.ID)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Arl() objc.IObject /* cross-framework: NSArray */
+	SetArl(value objc.IObject /* cross-framework: NSArray */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams
 type MTRAccessControlClusterReviewFabricRestrictionsParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsParams() MTRAccessControl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/arl
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("arl"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("arl"))
 	return rv
 }
 
 
-// SetArl sets the value of the arl property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/arl
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value objc.ID) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArl:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

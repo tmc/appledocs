@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IIMKServer interface {
 	// properties:
 	// methods:
 	Bundle() objc.IObject /* cross-framework: Bundle */
-	LastKeyEventWasDeadKey() bool /* primitive/slice/pointer. */
-	PaletteWillTerminate() bool /* primitive/slice/pointer. */
+	LastKeyEventWasDeadKey() bool
+	PaletteWillTerminate() bool
 }
 
 // The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
@@ -92,9 +93,9 @@ func NewIMKServer() IMKServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:bundleIdentifier:)
-func NewIMKServerWithNameBundleIdentifier(name string /* primitive/slice/pointer. */, bundleIdentifier string /* primitive/slice/pointer. */) IMKServer {
+func NewIMKServerWithNameBundleIdentifier(name objc.IObject /* cross-framework: NSString */, bundleIdentifier objc.IObject /* cross-framework: NSString */) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), objc.String(name), objc.String(bundleIdentifier))
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), name, bundleIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -104,9 +105,9 @@ func NewIMKServerWithNameBundleIdentifier(name string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:controllerClass:delegateClass:)
-func NewIMKServerWithNameControllerClassDelegateClass(name string /* primitive/slice/pointer. */, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
+func NewIMKServerWithNameControllerClassDelegateClass(name objc.IObject /* cross-framework: NSString */, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), objc.String(name), controllerClassID, delegateClassID)
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), name, controllerClassID, delegateClassID)
 	rv.Autorelease()
 	return rv
 }
@@ -118,14 +119,14 @@ func NewIMKServerWithNameControllerClassDelegateClass(name string /* primitive/s
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/bundle()
 func (i_ IMKServer) Bundle() objc.IObject /* cross-framework: Bundle */ {
-	rv := objc.Send[Bundle](i_.ID, objc.Sel("bundle"))
+	rv := objc.Send[foundation.Bundle](i_.ID, objc.Sel("bundle"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/lastKeyEventWasDeadKey()
-func (i_ IMKServer) LastKeyEventWasDeadKey() bool /* primitive/slice/pointer. */ {
+func (i_ IMKServer) LastKeyEventWasDeadKey() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("lastKeyEventWasDeadKey"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (i_ IMKServer) LastKeyEventWasDeadKey() bool /* primitive/slice/pointer. */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/paletteWillTerminate()
-func (i_ IMKServer) PaletteWillTerminate() bool /* primitive/slice/pointer. */ {
+func (i_ IMKServer) PaletteWillTerminate() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("paletteWillTerminate"))
 	return rv
 }

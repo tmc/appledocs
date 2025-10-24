@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DiskArbitration without requiring cgo.
-
-// Provides mechanisms to register and block disk mount or unmount events.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DiskArbitration
+// See: https://developer.apple.com/documentation/DiskArbitration
 package diskarbitration
 
 import (

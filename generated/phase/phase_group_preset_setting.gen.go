@@ -30,16 +30,22 @@ type _PHASEGroupPresetSettingClass struct {
 // An interface definition for the [PHASEGroupPresetSetting] class.
 type IPHASEGroupPresetSetting interface {
 	objectivec.IObject
+	// properties:
 	Gain() float64
 	GainCurveType() PHASECurveType
 	Rate() float64
 	RateCurveType() PHASECurveType
+	// methods:
 }
 
 // Settings for group presets.
 //
 // This class defines playback speed and volume rates of change that an app can apply to groups. To create a group preset setting, instantiate an object of this type and pass it to the parameter of . For an example of preset settings, see .
+
+
+// Settings for group presets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting
 type PHASEGroupPresetSetting struct {
 	objectivec.Object
@@ -85,9 +91,9 @@ func NewPHASEGroupPresetSetting() PHASEGroupPresetSetting {
 
 
 
-
 // Creates a group preset setting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/init(gain:rate:gainCurveType:rateCurveType:)
 func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain float64, rate float64, gainCurveType PHASECurveType, rateCurveType PHASECurveType) PHASEGroupPresetSetting {
 	instance := getPHASEGroupPresetSettingClass().Alloc()
@@ -97,32 +103,40 @@ func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain float
 }
 
 
+
 // The volume of audio playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/gain
 func (p_ PHASEGroupPresetSetting) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
+
 // A rate of change for the setting’s volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/gainCurveType
 func (p_ PHASEGroupPresetSetting) GainCurveType() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("gainCurveType"))
 	return rv
 }
 
+
 // The playback speed for audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/rate
 func (p_ PHASEGroupPresetSetting) Rate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("rate"))
 	return rv
 }
 
+
 // A rate of change for the setting’s playback speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/rateCurveType
 func (p_ PHASEGroupPresetSetting) RateCurveType() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("rateCurveType"))

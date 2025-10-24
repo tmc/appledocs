@@ -29,13 +29,19 @@ type _GeneratePersonInstanceMaskRequestClass struct {
 // An interface definition for the [GeneratePersonInstanceMaskRequest] class.
 type IGeneratePersonInstanceMaskRequest interface {
 	IImageBasedRequest
-	Results() VNInstanceMaskObservation
+	// properties:
+	Results() IVNInstanceMaskObservation
 	SetResults(value IVNInstanceMaskObservation)
 	VNGeneratePersonInstanceMaskRequestRevision1() int
+	// methods:
 }
 
 // An object that produces a mask of individual people it finds in the input image.
+
+
+// An object that produces a mask of individual people it finds in the input image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonInstanceMaskRequest
 type GeneratePersonInstanceMaskRequest struct {
 	ImageBasedRequest
@@ -82,26 +88,29 @@ func NewGeneratePersonInstanceMaskRequest() GeneratePersonInstanceMaskRequest {
 }
 
 
+
 // The results of the instance mask request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
-func (g_ GeneratePersonInstanceMaskRequest) Results() VNInstanceMaskObservation {
-	rv := objc.Send[VNInstanceMaskObservation](g_.ID, objc.Sel("results"))
+func (g_ GeneratePersonInstanceMaskRequest) Results() IVNInstanceMaskObservation {
+	rv := objc.Send[InstanceMaskObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the instance mask request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
 func (g_ GeneratePersonInstanceMaskRequest) SetResults(value IVNInstanceMaskObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the person instance mask request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequestrevision1
 func (g_ GeneratePersonInstanceMaskRequest) VNGeneratePersonInstanceMaskRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGeneratePersonInstanceMaskRequestRevision1"))

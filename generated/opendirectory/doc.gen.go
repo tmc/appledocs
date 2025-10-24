@@ -2,12 +2,12 @@
 
 // Package opendirectory provides Go bindings for the OpenDirectory framework.
 //
-// Authenticate users, and search for contact information in Open Directory and LDAP directories. [Full Topic]
+// Authenticate users, and search for contact information in Open Directory and LDAP directories.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to OpenDirectory without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory
+// See: https://developer.apple.com/documentation/OpenDirectory
 package opendirectory
 
 import (

@@ -29,13 +29,19 @@ type _TrackRectangleRequestClass struct {
 // An interface definition for the [TrackRectangleRequest] class.
 type ITrackRectangleRequest interface {
 	ITrackingRequest
+	// properties:
 	VNTrackRectangleRequestRevision1() int
+	// methods:
 }
 
 // An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.
 //
 // Use this type of request to track the bounding boxes of rectangles throughout a sequence of images. Vision returns locations for rectangles found in all orientations and sizes.
+
+
+// An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackRectangleRequest
 type TrackRectangleRequest struct {
 	TrackingRequest
@@ -83,24 +89,14 @@ func NewTrackRectangleRequest() TrackRectangleRequest {
 
 
 
-
-// Creates a new rectangle tracking request with a rectangle observation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackRectangleRequest/init(rectangleObservation:completionHandler:)
-func NewTrackRectangleRequestWithRectangleObservationCompletionHandler(observation IVNRectangleObservation, completionHandler unsafe.Pointer) TrackRectangleRequest {
-	instance := getTrackRectangleRequestClass().Alloc()
-	rv := objc.Send[TrackRectangleRequest](instance.ID, objc.Sel("initWithRectangleObservation:completionHandler:"), observation, completionHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
 // A constant for specifying revision 1 of the rectangling tracking request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackrectanglerequestrevision1
 func (t_ TrackRectangleRequest) VNTrackRectangleRequestRevision1() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("VNTrackRectangleRequestRevision1"))
 	return rv
 }
+
 
 

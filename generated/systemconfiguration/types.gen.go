@@ -5,38 +5,29 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFDateRef is a CoreGraphics opaque type.
-type CFDateRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFErrorRef is a CoreGraphics opaque type.
-type CFErrorRef unsafe.Pointer
-
-// CFNumberRef is a CoreGraphics opaque type.
-type CFNumberRef unsafe.Pointer
-
-// CFPropertyListRef is a CoreGraphics opaque type.
-type CFPropertyListRef unsafe.Pointer
-
-// CFRunLoopRef is a CoreGraphics opaque type.
-type CFRunLoopRef unsafe.Pointer
-
-// CFRunLoopSourceRef is a CoreGraphics opaque type.
-type CFRunLoopSourceRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
+// C struct types
+// SCDynamicStoreContext - Structure containing user-specified data and callbacks for a dynamic store session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreContext
+type SCDynamicStoreContext struct {
+}// SCNetworkConnectionContext - A structure containing user-specified data and callbacks for a network connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionContext
+type SCNetworkConnectionContext struct {
+}// SCNetworkReachabilityContext - Structure containing user-specified data and callbacks used with 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityContext
+type SCNetworkReachabilityContext struct {
+}// SCPreferencesContext - A structure containing user-specified data and callbacks for accessing system configuration preferences.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesContext
+type SCPreferencesContext struct {
+}
 
 
 

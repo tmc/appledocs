@@ -31,14 +31,20 @@ type _MTREndpointInfoClass struct {
 // An interface definition for the [MTREndpointInfo] class.
 type IMTREndpointInfo interface {
 	objectivec.IObject
-	Children() []MTREndpointInfo
-	DeviceTypes() []MTRDeviceTypeRevision
-	EndpointID() foundation.Number
-	PartsList() []foundation.Number
+	// properties:
+	Children() []IMTREndpointInfo
+	DeviceTypes() []IMTRDeviceTypeRevision
+	EndpointID() objc.IObject /* cross-framework: NSNumber */
+	PartsList() []objc.IObject /* cross-framework: Number */
+	// methods:
 }
 
 // Meta-data about an endpoint of a Matter node.
+
+
+// Meta-data about an endpoint of a Matter node.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo
 type MTREndpointInfo struct {
 	objectivec.Object
@@ -83,31 +89,36 @@ func NewMTREndpointInfo() MTREndpointInfo {
 }
 
 
+
 // The direct children of this endpoint. This excludes indirect descendants even if they are listed in the PartsList attribute of this endpoint due to the Full-Family Pattern being used. Refer to Endpoint Composition Patterns in the Matter specification for details.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/children
-func (m_ MTREndpointInfo) Children() []MTREndpointInfo {
+func (m_ MTREndpointInfo) Children() []IMTREndpointInfo {
 	rv := objc.Send[[]MTREndpointInfo](m_.ID, objc.Sel("children"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/deviceTypes
-func (m_ MTREndpointInfo) DeviceTypes() []MTRDeviceTypeRevision {
+func (m_ MTREndpointInfo) DeviceTypes() []IMTRDeviceTypeRevision {
 	rv := objc.Send[[]MTRDeviceTypeRevision](m_.ID, objc.Sel("deviceTypes"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/endpointID
-func (m_ MTREndpointInfo) EndpointID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpointID"))
+func (m_ MTREndpointInfo) EndpointID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpointID"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREndpointInfo/partsList
-func (m_ MTREndpointInfo) PartsList() []foundation.Number {
+func (m_ MTREndpointInfo) PartsList() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("partsList"))
 	return rv
 }

@@ -31,15 +31,19 @@ type _MTRThreadNetworkDirectoryClusterAddNetworkParamsClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterAddNetworkParams] class.
 type IMTRThreadNetworkDirectoryClusterAddNetworkParams interface {
 	objectivec.IObject
-	OperationalDataset() foundation.NSData
-	SetOperationalDataset(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	OperationalDataset() objc.IObject /* cross-framework: NSData */
+	SetOperationalDataset(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams
 type MTRThreadNetworkDirectoryClusterAddNetworkParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRThreadNetworkDirectoryClusterAddNetworkParams() MTRThreadNetworkDirec
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() foundation.NSData {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
 
-// SetOperationalDataset sets the value of the operationalDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetOperationalDataset(value foundation.IData) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetOperationalDataset(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

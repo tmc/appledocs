@@ -32,9 +32,9 @@ type _FSTaskOptionsClass struct {
 type IFSTaskOptions interface {
 	objectivec.IObject
 	// properties:
-	TaskOptions() []string /* primitive/slice/pointer. */
+	TaskOptions() []string
 	// methods:
-	UrlForOption(option string /* primitive/slice/pointer. */) foundation.objc.IObject /* cross-framework: URL */
+	UrlForOption(option objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: URL */
 }
 
 // A class that passes command options to a task, optionally providing security-scoped URLs.
@@ -92,8 +92,8 @@ func NewFSTaskOptions() FSTaskOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions/url(forOption:)
-func (f_ FSTaskOptions) UrlForOption(option string /* primitive/slice/pointer. */) foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("urlForOption:"), objc.String(option))
+func (f_ FSTaskOptions) UrlForOption(option objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("urlForOption:"), option)
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (f_ FSTaskOptions) UrlForOption(option string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTaskOptions/taskOptions
-func (f_ FSTaskOptions) TaskOptions() []string /* primitive/slice/pointer. */ {
+func (f_ FSTaskOptions) TaskOptions() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("taskOptions"))
 	return rv
 }

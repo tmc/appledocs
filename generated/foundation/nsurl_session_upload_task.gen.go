@@ -31,6 +31,7 @@ type IURLSessionUploadTask interface {
 	IURLSessionDataTask
 	// properties:
 	// methods:
+	CancelByProducingResumeData(completionHandler unsafe.Pointer)
 }
 
 // A URL session task that uploads data to the network in a request body.
@@ -87,5 +88,12 @@ func NewURLSessionUploadTask() URLSessionUploadTask {
 }
 
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionUploadTask/cancel(byProducingResumeData:)
+func (u_ URLSessionUploadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
+}
 
 

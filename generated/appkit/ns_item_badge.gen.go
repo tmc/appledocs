@@ -31,20 +31,20 @@ type _ItemBadgeClass struct {
 type IItemBadge interface {
 	objectivec.IObject
 	// properties:
-	IsBordered() bool /* primitive/slice/pointer. */
-	SetIsBordered(value bool /* primitive/slice/pointer. */)
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
-	IsHidden() bool /* primitive/slice/pointer. */
-	SetIsHidden(value bool /* primitive/slice/pointer. */)
-	IsNavigational() bool /* primitive/slice/pointer. */
-	SetIsNavigational(value bool /* primitive/slice/pointer. */)
-	IsVisible() bool /* primitive/slice/pointer. */
-	SetIsVisible(value bool /* primitive/slice/pointer. */)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsNavigational() bool
+	SetIsNavigational(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
 	Style() unsafe.Pointer
 	SetStyle(value unsafe.Pointer)
-	Tag() int /* primitive/slice/pointer. */
-	SetTag(value int /* primitive/slice/pointer. */)
+	Tag() int
+	SetTag(value int)
 	VisibilityPriority() unsafe.Pointer
 	SetVisibilityPriority(value unsafe.Pointer)
 	// methods:
@@ -107,7 +107,7 @@ func NewItemBadge() ItemBadge {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-func (i_ ItemBadge) IsBordered() bool /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) IsBordered() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -117,7 +117,7 @@ func (i_ ItemBadge) IsBordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
-func (i_ ItemBadge) SetIsBordered(value bool /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetIsBordered(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -126,7 +126,7 @@ func (i_ ItemBadge) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-func (i_ ItemBadge) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) IsEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -136,14 +136,14 @@ func (i_ ItemBadge) IsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
-func (i_ ItemBadge) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-func (i_ ItemBadge) IsHidden() bool /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) IsHidden() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (i_ ItemBadge) IsHidden() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
-func (i_ ItemBadge) SetIsHidden(value bool /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetIsHidden(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -160,7 +160,7 @@ func (i_ ItemBadge) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-func (i_ ItemBadge) IsNavigational() bool /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) IsNavigational() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isNavigational"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (i_ ItemBadge) IsNavigational() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
-func (i_ ItemBadge) SetIsNavigational(value bool /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetIsNavigational(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsNavigational:"), value)
 }
 
@@ -179,7 +179,7 @@ func (i_ ItemBadge) SetIsNavigational(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-func (i_ ItemBadge) IsVisible() bool /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) IsVisible() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (i_ ItemBadge) IsVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
-func (i_ ItemBadge) SetIsVisible(value bool /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetIsVisible(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsVisible:"), value)
 }
 
@@ -217,7 +217,7 @@ func (i_ ItemBadge) SetStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
-func (i_ ItemBadge) Tag() int /* primitive/slice/pointer. */ {
+func (i_ ItemBadge) Tag() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -227,7 +227,7 @@ func (i_ ItemBadge) Tag() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/tag
-func (i_ ItemBadge) SetTag(value int /* primitive/slice/pointer. */) {
+func (i_ ItemBadge) SetTag(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTag:"), value)
 }
 

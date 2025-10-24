@@ -31,15 +31,19 @@ type _MTRContentAppObserverClusterContentAppMessageResponseParamsClass struct {
 // An interface definition for the [MTRContentAppObserverClusterContentAppMessageResponseParams] class.
 type IMTRContentAppObserverClusterContentAppMessageResponseParams interface {
 	objectivec.IObject
-	Data() string
-	SetData(value string)
-	EncodingHint() string
-	SetEncodingHint(value string)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: NSString */
+	SetData(value objc.IObject /* cross-framework: NSString */)
+	EncodingHint() objc.IObject /* cross-framework: NSString */
+	SetEncodingHint(value objc.IObject /* cross-framework: NSString */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams
 type MTRContentAppObserverClusterContentAppMessageResponseParams struct {
 	objectivec.Object
@@ -83,11 +87,11 @@ func NewMTRContentAppObserverClusterContentAppMessageResponseParams() MTRContent
 
 
 
-
 // Initialize an MTRContentAppObserverClusterContentAppMessageResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/init(responseValue:)
-func NewMTRContentAppObserverClusterContentAppMessageResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRContentAppObserverClusterContentAppMessageResponseParams {
+func NewMTRContentAppObserverClusterContentAppMessageResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRContentAppObserverClusterContentAppMessageResponseParams {
 	instance := getMTRContentAppObserverClusterContentAppMessageResponseParamsClass().Alloc()
 	rv := objc.Send[MTRContentAppObserverClusterContentAppMessageResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -95,48 +99,48 @@ func NewMTRContentAppObserverClusterContentAppMessageResponseParamsWithResponseV
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHint() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("encodingHint"))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) EncodingHint() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("encodingHint"))
 	return rv
 }
 
 
-// SetEncodingHint sets the value of the encodingHint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetEncodingHint(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetEncodingHint(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/status
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageResponseParams/status
-func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRContentAppObserverClusterContentAppMessageResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 

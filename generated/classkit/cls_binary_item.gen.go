@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SBinaryItem] class.
@@ -30,8 +31,8 @@ type _SBinaryItemClass struct {
 type ISBinaryItem interface {
 	ISActivityItem
 	// properties:
-	Value() bool /* primitive/slice/pointer. */
-	SetValue(value bool /* primitive/slice/pointer. */)
+	Value() bool
+	SetValue(value bool)
 	ValueType() SBinaryValueType
 	// methods:
 }
@@ -95,9 +96,9 @@ func NewSBinaryItem() SBinaryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
-func NewSBinaryItemWithIdentifierTitleType(identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */, valueType SBinaryValueType) SBinaryItem {
+func NewSBinaryItemWithIdentifierTitleType(identifier objc.IObject /* cross-framework: NSString */, title objc.IObject /* cross-framework: NSString */, valueType SBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
-	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
+	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), identifier, title, valueType)
 	rv.Autorelease()
 	return rv
 }
@@ -108,7 +109,7 @@ func NewSBinaryItemWithIdentifierTitleType(identifier string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-func (s_ SBinaryItem) Value() bool /* primitive/slice/pointer. */ {
+func (s_ SBinaryItem) Value() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("value"))
 	return rv
 }
@@ -118,7 +119,7 @@ func (s_ SBinaryItem) Value() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-func (s_ SBinaryItem) SetValue(value bool /* primitive/slice/pointer. */) {
+func (s_ SBinaryItem) SetValue(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
 

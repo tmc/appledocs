@@ -29,16 +29,22 @@ type _PHASEMixerDefinitionClass struct {
 // An interface definition for the [PHASEMixerDefinition] class.
 type IPHASEMixerDefinition interface {
 	IPHASEDefinition
+	// properties:
 	Gain() float64
 	SetGain(value float64)
-	GainMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	GainMetaParameterDefinition() IPHASENumberMetaParameterDefinition
 	SetGainMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
+	// methods:
 }
 
 // An object to initialize a mixer with a given configuration.
 //
 // A mixer combines multiple layers of audio to a single signal for transmission to the output device. The framework creates a mixer when you provide a mixer definition. Instead of creating an instance of this class, instantiate one of the mixer definition subclasses instead:
+
+
+// An object to initialize a mixer with a given configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition
 type PHASEMixerDefinition struct {
 	PHASEDefinition
@@ -85,8 +91,10 @@ func NewPHASEMixerDefinition() PHASEMixerDefinition {
 }
 
 
+
 // The mixer’s volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gain
 func (p_ PHASEMixerDefinition) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
@@ -94,28 +102,28 @@ func (p_ PHASEMixerDefinition) Gain() float64 {
 }
 
 
-// SetGain sets the value of the gain property.
 // The mixer’s volume.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gain
 func (p_ PHASEMixerDefinition) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 
+
 // A template for a parameter that changes the mixer’s volume gradually over a period of time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gainMetaParameterDefinition
-func (p_ PHASEMixerDefinition) GainMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+func (p_ PHASEMixerDefinition) GainMetaParameterDefinition() IPHASENumberMetaParameterDefinition {
 	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("gainMetaParameterDefinition"))
 	return rv
 }
 
 
-// SetGainMetaParameterDefinition sets the value of the gainMetaParameterDefinition property.
 // A template for a parameter that changes the mixer’s volume gradually over a period of time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerDefinition/gainMetaParameterDefinition
 func (p_ PHASEMixerDefinition) SetGainMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameterDefinition:"), value)

@@ -30,14 +30,22 @@ type _PHProjectClass struct {
 // An interface definition for the [PHProject] class.
 type IPHProject interface {
 	IPHAssetCollection
+	// properties:
 	HasProjectPreview() bool
-	ProjectExtensionData() foundation.NSData
+	SetHasProjectPreview(value bool)
+	ProjectExtensionData() objc.IObject /* cross-framework: Data */
+	SetProjectExtensionData(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // A representation of a Photos app project extension.
 //
 // This class represents the project when extended from macOS Photos. Projects can have the following types: Book Calendar Card Prints Slideshow Wall decor Users create projects by selecting one or more assets, right-clicking the selection, and grouping the assets, much like an album collection. Your app treats the project as a separate entity, represented as a .
+
+
+// A representation of a Photos app project extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProject
 type PHProject struct {
 	PHAssetCollection
@@ -84,20 +92,42 @@ func NewPHProject() PHProject {
 }
 
 
+
 // A property that indicates whether a project preview was previously set.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProject/hasProjectPreview
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phproject/hasprojectpreview
 func (p_ PHProject) HasProjectPreview() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasProjectPreview"))
 	return rv
 }
 
+
+// A property that indicates whether a project preview was previously set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phproject/hasprojectpreview
+func (p_ PHProject) SetHasProjectPreview(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasProjectPreview:"), value)
+}
+
+
 // Data associated with the project extension.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProject/projectExtensionData
-func (p_ PHProject) ProjectExtensionData() foundation.NSData {
-	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("projectExtensionData"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phproject/projectextensiondata
+func (p_ PHProject) ProjectExtensionData() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("projectExtensionData"))
 	return rv
+}
+
+
+// Data associated with the project extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phproject/projectextensiondata
+func (p_ PHProject) SetProjectExtensionData(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectExtensionData:"), value)
 }
 
 

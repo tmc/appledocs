@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GameCenterViewController] class.
@@ -97,9 +98,9 @@ func NewGameCenterViewController() GameCenterViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(achievementID:)
-func NewGameCenterViewControllerWithAchievementID(achievementID string /* primitive/slice/pointer. */) GameCenterViewController {
+func NewGameCenterViewControllerWithAchievementID(achievementID objc.IObject /* cross-framework: NSString */) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
-	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithAchievementID:"), objc.String(achievementID))
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithAchievementID:"), achievementID)
 	rv.Autorelease()
 	return rv
 }
@@ -109,9 +110,9 @@ func NewGameCenterViewControllerWithAchievementID(achievementID string /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
-func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string /* primitive/slice/pointer. */) GameCenterViewController {
+func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID objc.IObject /* cross-framework: NSString */) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
-	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), objc.String(leaderboardSetID))
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), leaderboardSetID)
 	rv.Autorelease()
 	return rv
 }

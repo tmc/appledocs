@@ -32,10 +32,10 @@ type _HKDeletedObjectClass struct {
 type IHKDeletedObject interface {
 	objectivec.IObject
 	// properties:
-	Metadata() string /* primitive/slice/pointer. */
-	SetMetadata(value string /* primitive/slice/pointer. */)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Metadata() objc.IObject /* cross-framework: NSString */
+	SetMetadata(value objc.IObject /* cross-framework: NSString */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -96,8 +96,8 @@ func NewHKDeletedObject() HKDeletedObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
-func (h_ HKDeletedObject) Metadata() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+func (h_ HKDeletedObject) Metadata() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -106,8 +106,8 @@ func (h_ HKDeletedObject) Metadata() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
-func (h_ HKDeletedObject) SetMetadata(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (h_ HKDeletedObject) SetMetadata(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
 }
 
 
@@ -115,7 +115,7 @@ func (h_ HKDeletedObject) SetMetadata(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
-func (h_ HKDeletedObject) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (h_ HKDeletedObject) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (h_ HKDeletedObject) Uuid() foundation.objc.IObject /* cross-framework: UUI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
-func (h_ HKDeletedObject) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (h_ HKDeletedObject) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 

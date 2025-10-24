@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKElectrocardiogram] class.
@@ -34,16 +35,16 @@ type IHKElectrocardiogram interface {
 	SetAverageHeartRate(value IHKQuantity)
 	Classification() unsafe.Pointer
 	SetClassification(value unsafe.Pointer)
-	NumberOfVoltageMeasurements() int /* primitive/slice/pointer. */
-	SetNumberOfVoltageMeasurements(value int /* primitive/slice/pointer. */)
+	NumberOfVoltageMeasurements() int
+	SetNumberOfVoltageMeasurements(value int)
 	SamplingFrequency() IHKQuantity
 	SetSamplingFrequency(value IHKQuantity)
 	SymptomsStatus() unsafe.Pointer
 	SetSymptomsStatus(value unsafe.Pointer)
-	HKMetadataKeyAppleECGAlgorithmVersion() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathAverageHeartRate() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathECGClassification() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathECGSymptomsStatus() string /* primitive/slice/pointer. */
+	HKMetadataKeyAppleECGAlgorithmVersion() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathAverageHeartRate() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathECGClassification() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathECGSymptomsStatus() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -144,7 +145,7 @@ func (h_ HKElectrocardiogram) SetClassification(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
-func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int /* primitive/slice/pointer. */ {
+func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("numberOfVoltageMeasurements"))
 	return rv
 }
@@ -154,7 +155,7 @@ func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
-func (h_ HKElectrocardiogram) SetNumberOfVoltageMeasurements(value int /* primitive/slice/pointer. */) {
+func (h_ HKElectrocardiogram) SetNumberOfVoltageMeasurements(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNumberOfVoltageMeasurements:"), value)
 }
 
@@ -201,8 +202,8 @@ func (h_ HKElectrocardiogram) SetSymptomsStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion
-func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
+func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
 	return rv
 }
 
@@ -211,8 +212,8 @@ func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverageheartrate
-func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
 	return rv
 }
 
@@ -221,8 +222,8 @@ func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgclassification
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
 	return rv
 }
 
@@ -231,8 +232,8 @@ func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
 	return rv
 }
 

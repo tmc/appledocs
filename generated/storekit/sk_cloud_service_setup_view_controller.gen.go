@@ -30,14 +30,18 @@ type _CloudServiceSetupViewControllerClass struct {
 // An interface definition for the [CloudServiceSetupViewController] class.
 type ICloudServiceSetupViewController interface {
 	appkit.IViewController
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	// methods:
 }
 
 // A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
 //
 // Use the view that this view controller presents to allow customers to set up cloud services that are associated with their iTunes Store account, like an Apple Music subscription. To enable the Apple Music subscriber setup flow in particular, you first request the current set of capabilities from . Then, present the setup view controller only when the capability is enabled and the capability is disabled. For information about other capabilities that you can enable by using this view controller, see .
+
+
+// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController
 type CloudServiceSetupViewController struct {
 	appkit.ViewController
@@ -81,25 +85,6 @@ func (c_ CloudServiceSetupViewController) Autorelease() CloudServiceSetupViewCon
 // NewCloudServiceSetupViewController creates a new CloudServiceSetupViewController instance.
 func NewCloudServiceSetupViewController() CloudServiceSetupViewController {
 	return getCloudServiceSetupViewControllerClass().New()
-}
-
-
-// The cloud service view controller’s delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController/delegate
-func (c_ CloudServiceSetupViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// SetDelegate sets the value of the delegate property.
-// The cloud service view controller’s delegate.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController/delegate
-func (c_ CloudServiceSetupViewController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,18 +32,22 @@ type _MediaQuerySectionClass struct {
 // An interface definition for the [MediaQuerySection] class.
 type IMediaQuerySection interface {
 	objectivec.IObject
-	Range() foundation.Range
-	Title() string
-	CollectionSections() MPMediaQuerySection
+	// properties:
+	CollectionSections() IMPMediaQuerySection
 	SetCollectionSections(value IMPMediaQuerySection)
-	ItemSections() MPMediaQuerySection
+	ItemSections() IMPMediaQuerySection
 	SetItemSections(value IMPMediaQuerySection)
+	// methods:
 }
 
 // A range of media items or media item collections from within a media query.
 //
 // You can use sections when displaying a query’s items or collections in your app’s user interface. You obtain an array of media query sections by using the or properties of a media query (an instance of the class). The property values of a media query section are read-only.
+
+
+// A range of media items or media item collections from within a media query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection
 type MediaQuerySection struct {
 	objectivec.Object
@@ -87,57 +92,42 @@ func NewMediaQuerySection() MediaQuerySection {
 }
 
 
-// The range in the media query’s items or collections array that the media query section represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/range
-func (m_ MediaQuerySection) Range() foundation.Range {
-	rv := objc.Send[foundation.Range](m_.ID, objc.Sel("range"))
-	return rv
-}
-
-// The localized title of the media query section.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/title
-func (m_ MediaQuerySection) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
-	return rv
-}
 
 // An array representing the section grouping of the query’s specified media item collections.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
-func (m_ MediaQuerySection) CollectionSections() MPMediaQuerySection {
-	rv := objc.Send[MPMediaQuerySection](m_.ID, objc.Sel("collectionSections"))
+func (m_ MediaQuerySection) CollectionSections() IMPMediaQuerySection {
+	rv := objc.Send[MediaQuerySection](m_.ID, objc.Sel("collectionSections"))
 	return rv
 }
 
 
-// SetCollectionSections sets the value of the collectionSections property.
 // An array representing the section grouping of the query’s specified media item collections.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
 func (m_ MediaQuerySection) SetCollectionSections(value IMPMediaQuerySection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCollectionSections:"), value)
 }
 
+
 // An array representing the section grouping of the query’s specified media items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
-func (m_ MediaQuerySection) ItemSections() MPMediaQuerySection {
-	rv := objc.Send[MPMediaQuerySection](m_.ID, objc.Sel("itemSections"))
+func (m_ MediaQuerySection) ItemSections() IMPMediaQuerySection {
+	rv := objc.Send[MediaQuerySection](m_.ID, objc.Sel("itemSections"))
 	return rv
 }
 
 
-// SetItemSections sets the value of the itemSections property.
 // An array representing the section grouping of the query’s specified media items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
 func (m_ MediaQuerySection) SetItemSections(value IMPMediaQuerySection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemSections:"), value)
 }
-
 
 

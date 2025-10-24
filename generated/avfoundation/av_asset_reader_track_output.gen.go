@@ -47,24 +47,24 @@ type IAssetReaderTrackOutput interface {
 	KCMFormatDescriptionExtension_Depth() objc.IObject /* cross-framework: String */
 	KCVPixelBufferHeightKey() objc.IObject /* cross-framework: String */
 	KCVPixelBufferWidthKey() objc.IObject /* cross-framework: String */
-	KCVPixelFormatType_32ARGB() unsafe.Pointer
-	SetKCVPixelFormatType_32ARGB(value unsafe.Pointer)
-	KCVPixelFormatType_32BGRA() unsafe.Pointer
-	SetKCVPixelFormatType_32BGRA(value unsafe.Pointer)
-	KCVPixelFormatType_420YpCbCr8BiPlanarFullRange() unsafe.Pointer
-	SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRange(value unsafe.Pointer)
-	KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange() unsafe.Pointer
-	SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange(value unsafe.Pointer)
-	KCVPixelFormatType_422YpCbCr10() unsafe.Pointer
-	SetKCVPixelFormatType_422YpCbCr10(value unsafe.Pointer)
-	KCVPixelFormatType_422YpCbCr16() unsafe.Pointer
-	SetKCVPixelFormatType_422YpCbCr16(value unsafe.Pointer)
-	KCVPixelFormatType_422YpCbCr8() unsafe.Pointer
-	SetKCVPixelFormatType_422YpCbCr8(value unsafe.Pointer)
-	KCVPixelFormatType_4444AYpCbCr16() unsafe.Pointer
-	SetKCVPixelFormatType_4444AYpCbCr16(value unsafe.Pointer)
-	KCVPixelFormatType_64ARGB() unsafe.Pointer
-	SetKCVPixelFormatType_64ARGB(value unsafe.Pointer)
+	KCVPixelFormatType_32ARGB() uint32 /* not a class type */
+	SetKCVPixelFormatType_32ARGB(value uint32 /* not a class type */)
+	KCVPixelFormatType_32BGRA() uint32 /* not a class type */
+	SetKCVPixelFormatType_32BGRA(value uint32 /* not a class type */)
+	KCVPixelFormatType_420YpCbCr8BiPlanarFullRange() uint32 /* not a class type */
+	SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRange(value uint32 /* not a class type */)
+	KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange() uint32 /* not a class type */
+	SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange(value uint32 /* not a class type */)
+	KCVPixelFormatType_422YpCbCr10() uint32 /* not a class type */
+	SetKCVPixelFormatType_422YpCbCr10(value uint32 /* not a class type */)
+	KCVPixelFormatType_422YpCbCr16() uint32 /* not a class type */
+	SetKCVPixelFormatType_422YpCbCr16(value uint32 /* not a class type */)
+	KCVPixelFormatType_422YpCbCr8() uint32 /* not a class type */
+	SetKCVPixelFormatType_422YpCbCr8(value uint32 /* not a class type */)
+	KCVPixelFormatType_4444AYpCbCr16() uint32 /* not a class type */
+	SetKCVPixelFormatType_4444AYpCbCr16(value uint32 /* not a class type */)
+	KCVPixelFormatType_64ARGB() uint32 /* not a class type */
+	SetKCVPixelFormatType_64ARGB(value uint32 /* not a class type */)
 	// methods:
 }
 
@@ -252,7 +252,7 @@ func (a_ AssetReaderTrackOutput) SetKAudioFormatLinearPCM(value unsafe.Pointer) 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth
 func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
 	return rv
 }
 
@@ -262,7 +262,7 @@ func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() objc.IObj
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferHeightKey
 func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
 	return rv
 }
 
@@ -272,7 +272,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() objc.IObject /* cross
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferWidthKey
 func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
 	return rv
 }
 
@@ -281,8 +281,8 @@ func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_32ARGB
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32ARGB() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_32ARGB"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32ARGB() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_32ARGB"))
 	return rv
 }
 
@@ -291,7 +291,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32ARGB() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_32ARGB
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32ARGB(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32ARGB(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_32ARGB:"), value)
 }
 
@@ -300,8 +300,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32ARGB(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_32BGRA
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32BGRA() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_32BGRA"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32BGRA() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_32BGRA"))
 	return rv
 }
 
@@ -310,7 +310,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_32BGRA() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_32BGRA
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32BGRA(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32BGRA(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_32BGRA:"), value)
 }
 
@@ -319,8 +319,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_32BGRA(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarFullRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarFullRange() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"))
 	return rv
 }
 
@@ -329,7 +329,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarFullRange(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRange(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRange(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_420YpCbCr8BiPlanarFullRange:"), value)
 }
 
@@ -338,8 +338,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarFullRan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"))
 	return rv
 }
 
@@ -348,7 +348,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_420YpCbCr8BiPlanarVideoRange:"), value)
 }
 
@@ -357,8 +357,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_420YpCbCr8BiPlanarVideoRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr10() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr10"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr10() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr10"))
 	return rv
 }
 
@@ -367,7 +367,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr10() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr10(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr10(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_422YpCbCr10:"), value)
 }
 
@@ -376,8 +376,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr10(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr16() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr16"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr16() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr16"))
 	return rv
 }
 
@@ -386,7 +386,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr16() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr16(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr16(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_422YpCbCr16:"), value)
 }
 
@@ -395,8 +395,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr16(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr8() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr8"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr8() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_422YpCbCr8"))
 	return rv
 }
 
@@ -405,7 +405,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_422YpCbCr8() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr8(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr8(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_422YpCbCr8:"), value)
 }
 
@@ -414,8 +414,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_422YpCbCr8(value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_4444AYpCbCr16() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_4444AYpCbCr16"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_4444AYpCbCr16() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_4444AYpCbCr16"))
 	return rv
 }
 
@@ -424,7 +424,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_4444AYpCbCr16() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_4444AYpCbCr16(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_4444AYpCbCr16(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_4444AYpCbCr16:"), value)
 }
 
@@ -433,8 +433,8 @@ func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_4444AYpCbCr16(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_64ARGB
-func (a_ AssetReaderTrackOutput) KCVPixelFormatType_64ARGB() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelFormatType_64ARGB"))
+func (a_ AssetReaderTrackOutput) KCVPixelFormatType_64ARGB() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](a_.ID, objc.Sel("kCVPixelFormatType_64ARGB"))
 	return rv
 }
 
@@ -443,7 +443,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelFormatType_64ARGB() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelFormatType_64ARGB
-func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_64ARGB(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetKCVPixelFormatType_64ARGB(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setKCVPixelFormatType_64ARGB:"), value)
 }
 

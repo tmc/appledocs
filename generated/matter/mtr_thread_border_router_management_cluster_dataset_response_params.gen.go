@@ -31,11 +31,15 @@ type _MTRThreadBorderRouterManagementClusterDatasetResponseParamsClass struct {
 // An interface definition for the [MTRThreadBorderRouterManagementClusterDatasetResponseParams] class.
 type IMTRThreadBorderRouterManagementClusterDatasetResponseParams interface {
 	objectivec.IObject
-	Dataset() foundation.NSData
-	SetDataset(value foundation.IData)
+	// properties:
+	Dataset() objc.IObject /* cross-framework: NSData */
+	SetDataset(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams
 type MTRThreadBorderRouterManagementClusterDatasetResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRThreadBorderRouterManagementClusterDatasetResponseParams() MTRThreadB
 
 
 
-
 // Initialize an MTRThreadBorderRouterManagementClusterDatasetResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/init(responseValue:)
-func NewMTRThreadBorderRouterManagementClusterDatasetResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRThreadBorderRouterManagementClusterDatasetResponseParams {
+func NewMTRThreadBorderRouterManagementClusterDatasetResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRThreadBorderRouterManagementClusterDatasetResponseParams {
 	instance := getMTRThreadBorderRouterManagementClusterDatasetResponseParamsClass().Alloc()
 	rv := objc.Send[MTRThreadBorderRouterManagementClusterDatasetResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRThreadBorderRouterManagementClusterDatasetResponseParamsWithResponseV
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/dataset
-func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() foundation.NSData {
+func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("dataset"))
 	return rv
 }
 
 
-// SetDataset sets the value of the dataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/dataset
-func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) SetDataset(value foundation.IData) {
+func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) SetDataset(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataset:"), value)
 }
 

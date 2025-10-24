@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [DispatchObject] class.
@@ -29,7 +28,7 @@ type _DispatchObjectClass struct {
 
 // An interface definition for the [DispatchObject] class.
 type IDispatchObject interface {
-	objectivec.IObject
+	IOS_object
 	// properties:
 	// methods:
 }
@@ -44,14 +43,16 @@ type IDispatchObject interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject
 type DispatchObject struct {
-	objectivec.Object
+	OS_object
 }
 
 // DispatchObjectFrom constructs a [DispatchObject] from an unsafe.Pointer.
 //
 // The base class for most dispatch types.
 func DispatchObjectFrom(ptr unsafe.Pointer) DispatchObject {
-	return DispatchObject{objectivec.Object{objc.ID(ptr)}}
+	return DispatchObject{
+		OS_object: OS_objectFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

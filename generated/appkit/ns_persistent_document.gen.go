@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coredata"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,21 +32,17 @@ type _PersistentDocumentClass struct {
 type IPersistentDocument interface {
 	IDocument
 	// properties:
+	HasUndoManager() bool
+	SetHasUndoManager(value bool)
+	IsDocumentEdited() bool
+	SetIsDocumentEdited(value bool)
+	UndoManager() objc.IObject /* cross-framework: UndoManager */
+	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
 	ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */
 	SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */)
 	ManagedObjectModel() objc.IObject /* cross-framework: ManagedObjectModel */
-	HasUndoManager() bool /* primitive/slice/pointer. */
-	SetHasUndoManager(value bool /* primitive/slice/pointer. */)
-	IsDocumentEdited() bool /* primitive/slice/pointer. */
-	SetIsDocumentEdited(value bool /* primitive/slice/pointer. */)
-	UndoManager() objc.IObject /* cross-framework: UndoManager */
-	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
+	SetManagedObjectModel(value objc.IObject /* cross-framework: ManagedObjectModel */)
 	// methods:
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework NSURL */, fileType objc.IObject /* cross-framework NSString */, configuration objc.IObject /* cross-framework NSString */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */
-	ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework NSURL */, inTypeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A document object that can integrate with Core Data.
@@ -103,90 +100,11 @@ func NewPersistentDocument() PersistentDocument {
 
 
 
-// Configures the receiver’s persistent store coordinator with the appropriate stores for a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework NSURL */, fileType objc.IObject /* cross-framework NSString */, configuration objc.IObject /* cross-framework NSString */, storeOptions foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, fileType, configuration, storeOptions, error_)
-	return rv
-}
-
-
-// Returns the type of persistent store associated with the specified file type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/persistentStoreType(forFileType:)
-func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](p_.ID, objc.Sel("persistentStoreTypeForFileType:"), fileType)
-	return rv
-}
-
-
-// Sets the contents of the receiver by reading from a file of a given type located by a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/read(from:ofType:)
-func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("readFromURL:ofType:error:"), absoluteURL, typeName, error_)
-	return rv
-}
-
-
-// Overridden to clean up the managed object context and controllers during a revert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/revert(toContentsOf:ofType:)
-func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework NSURL */, inTypeName objc.IObject /* cross-framework NSString */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), inAbsoluteURL, inTypeName, outError)
-	return rv
-}
-
-
-// Saves changes in the document’s managed object context and saves the document’s persistent store to a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/write(to:ofType:for:originalContentsURL:)
-func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework NSURL */, typeName objc.IObject /* cross-framework NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), absoluteURL, typeName, saveOperation, absoluteOriginalContentsURL, error_)
-	return rv
-}
-
-
-// The managed object context for the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
-func (p_ PersistentDocument) ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */ {
-	rv := objc.Send[ManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
-	return rv
-}
-
-
-// The managed object context for the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
-func (p_ PersistentDocument) SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
-}
-
-
-// The managed object model of the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectModel
-func (p_ PersistentDocument) ManagedObjectModel() objc.IObject /* cross-framework: ManagedObjectModel */ {
-	rv := objc.Send[ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the document owns an undo manager object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
-func (p_ PersistentDocument) HasUndoManager() bool /* primitive/slice/pointer. */ {
+func (p_ PersistentDocument) HasUndoManager() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasUndoManager"))
 	return rv
 }
@@ -196,7 +114,7 @@ func (p_ PersistentDocument) HasUndoManager() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
-func (p_ PersistentDocument) SetHasUndoManager(value bool /* primitive/slice/pointer. */) {
+func (p_ PersistentDocument) SetHasUndoManager(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasUndoManager:"), value)
 }
 
@@ -205,7 +123,7 @@ func (p_ PersistentDocument) SetHasUndoManager(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
-func (p_ PersistentDocument) IsDocumentEdited() bool /* primitive/slice/pointer. */ {
+func (p_ PersistentDocument) IsDocumentEdited() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDocumentEdited"))
 	return rv
 }
@@ -215,7 +133,7 @@ func (p_ PersistentDocument) IsDocumentEdited() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
-func (p_ PersistentDocument) SetIsDocumentEdited(value bool /* primitive/slice/pointer. */) {
+func (p_ PersistentDocument) SetIsDocumentEdited(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDocumentEdited:"), value)
 }
 
@@ -225,7 +143,7 @@ func (p_ PersistentDocument) SetIsDocumentEdited(value bool /* primitive/slice/p
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
 func (p_ PersistentDocument) UndoManager() objc.IObject /* cross-framework: UndoManager */ {
-	rv := objc.Send[UndoManager](p_.ID, objc.Sel("undoManager"))
+	rv := objc.Send[foundation.UndoManager](p_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -236,6 +154,44 @@ func (p_ PersistentDocument) UndoManager() objc.IObject /* cross-framework: Undo
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
 func (p_ PersistentDocument) SetUndoManager(value objc.IObject /* cross-framework: UndoManager */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
+}
+
+
+// The managed object context for the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectcontext
+func (p_ PersistentDocument) ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */ {
+	rv := objc.Send[coredata.ManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
+	return rv
+}
+
+
+// The managed object context for the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectcontext
+func (p_ PersistentDocument) SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
+}
+
+
+// The managed object model of the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectmodel
+func (p_ PersistentDocument) ManagedObjectModel() objc.IObject /* cross-framework: ManagedObjectModel */ {
+	rv := objc.Send[coredata.ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
+	return rv
+}
+
+
+// The managed object model of the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectmodel
+func (p_ PersistentDocument) SetManagedObjectModel(value objc.IObject /* cross-framework: ManagedObjectModel */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectModel:"), value)
 }
 
 

@@ -31,28 +31,28 @@ type _ScannerClass struct {
 type IScanner interface {
 	objectivec.IObject
 	// properties:
-	CaseSensitive() bool /* primitive/slice/pointer. */
-	SetCaseSensitive(value bool /* primitive/slice/pointer. */)
+	CaseSensitive() bool
+	SetCaseSensitive(value bool)
 	CharactersToBeSkipped() ICharacterSet
 	SetCharactersToBeSkipped(value ICharacterSet)
-	AtEnd() bool /* primitive/slice/pointer. */
+	AtEnd() bool
 	Locale() objc.ID
 	SetLocale(value objc.ID)
-	ScanLocation() uint /* primitive/slice/pointer. */
-	SetScanLocation(value uint /* primitive/slice/pointer. */)
+	ScanLocation() uint
+	SetScanLocation(value uint)
 	String() IString
-	NSNotFound() int /* primitive/slice/pointer. */
+	NSNotFound() int
 	CurrentIndex() unsafe.Pointer
 	SetCurrentIndex(value unsafe.Pointer)
-	IsAtEnd() bool /* primitive/slice/pointer. */
-	SetIsAtEnd(value bool /* primitive/slice/pointer. */)
+	IsAtEnd() bool
+	SetIsAtEnd(value bool)
 	// methods:
-	ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ScanInteger(result Integer /* not a class type */) bool /* primitive/slice/pointer. */
-	ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ScanHexDouble(result unsafe.Pointer) bool
+	ScanHexFloat(result unsafe.Pointer) bool
+	ScanHexLongLong(result unsafe.Pointer) bool
+	ScanInteger(result Integer /* not a class type */) bool
+	ScanLongLong(result unsafe.Pointer) bool
+	ScanUnsignedLongLong(result unsafe.Pointer) bool
 }
 
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
@@ -145,7 +145,7 @@ func (sc _ScannerClass) LocalizedScannerWithString(string_ IString) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexDouble(_:)
-func (s_ Scanner) ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanHexDouble(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexDouble:"), result)
 	return rv
 }
@@ -155,7 +155,7 @@ func (s_ Scanner) ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexFloat(_:)
-func (s_ Scanner) ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanHexFloat(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexFloat:"), result)
 	return rv
 }
@@ -165,7 +165,7 @@ func (s_ Scanner) ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexInt64(_:)
-func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexLongLong:"), result)
 	return rv
 }
@@ -175,7 +175,7 @@ func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt(_:)
-func (s_ Scanner) ScanInteger(result Integer /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanInteger(result Integer /* not a class type */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
 	return rv
 }
@@ -185,7 +185,7 @@ func (s_ Scanner) ScanInteger(result Integer /* not a class type */) bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt64(_:)
-func (s_ Scanner) ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanLongLong(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanLongLong:"), result)
 	return rv
 }
@@ -195,7 +195,7 @@ func (s_ Scanner) ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanUnsignedLongLong(_:)
-func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanUnsignedLongLong:"), result)
 	return rv
 }
@@ -205,7 +205,7 @@ func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/caseSensitive
-func (s_ Scanner) CaseSensitive() bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) CaseSensitive() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (s_ Scanner) CaseSensitive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/caseSensitive
-func (s_ Scanner) SetCaseSensitive(value bool /* primitive/slice/pointer. */) {
+func (s_ Scanner) SetCaseSensitive(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
 }
 
@@ -243,7 +243,7 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/isAtEnd
-func (s_ Scanner) AtEnd() bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) AtEnd() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("atEnd"))
 	return rv
 }
@@ -272,7 +272,7 @@ func (s_ Scanner) SetLocale(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanLocation
-func (s_ Scanner) ScanLocation() uint /* primitive/slice/pointer. */ {
+func (s_ Scanner) ScanLocation() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("scanLocation"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (s_ Scanner) ScanLocation() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanLocation
-func (s_ Scanner) SetScanLocation(value uint /* primitive/slice/pointer. */) {
+func (s_ Scanner) SetScanLocation(value uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
 }
 
@@ -301,7 +301,7 @@ func (s_ Scanner) String() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer. */ {
+func (s_ Scanner) NSNotFound() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -326,7 +326,7 @@ func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-func (s_ Scanner) IsAtEnd() bool /* primitive/slice/pointer. */ {
+func (s_ Scanner) IsAtEnd() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
@@ -336,7 +336,7 @@ func (s_ Scanner) IsAtEnd() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-func (s_ Scanner) SetIsAtEnd(value bool /* primitive/slice/pointer. */) {
+func (s_ Scanner) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
 }
 

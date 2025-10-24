@@ -29,13 +29,18 @@ type _ToolPickerLassoItemClass struct {
 // An interface definition for the [ToolPickerLassoItem] class.
 type IToolPickerLassoItem interface {
 	IToolPickerItem
-	LassoTool() PKLassoTool
+	// properties:
+	// methods:
 }
 
 // An item that represents a lasso tool in the tool picker.
 //
 // A lasso item represents a — a tool for selecting stroked lines and shapes in a canvas view — in a .
+
+
+// An item that represents a lasso tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerLassoItem
 type ToolPickerLassoItem struct {
 	ToolPickerItem
@@ -82,13 +87,5 @@ func NewToolPickerLassoItem() ToolPickerLassoItem {
 }
 
 
-
-// A lasso tool for selecting parts of a drawing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerLassoItem/lassoTool-1urgb
-func (t_ ToolPickerLassoItem) LassoTool() PKLassoTool {
-	rv := objc.Send[PKLassoTool](t_.ID, objc.Sel("lassoTool"))
-	return rv
-}
 
 

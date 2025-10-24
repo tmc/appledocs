@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +31,22 @@ type _MXMetricManagerClass struct {
 // An interface definition for the [MXMetricManager] class.
 type IMXMetricManager interface {
 	objectivec.IObject
+	// properties:
+	PastDiagnosticPayloads() []IMXDiagnosticPayload
+	PastPayloads() []IMXMetricPayload
+	// methods:
 	AddSubscriber(subscriber objectivec.IObject)
 	RemoveSubscriber(subscriber objectivec.IObject)
-	PastDiagnosticPayloads() []MXDiagnosticPayload
-	PastPayloads() []MXMetricPayload
 }
 
 // The shared object that registers you to receive metrics, creates logs for custom metrics, and gives access to past reports.
 //
 // The shared object manages your subscription for receiving on-device daily metrics. MetricKit starts accumulating reports for your app after calling for the first time. To receive the reports, call with an object that adopts the protocol. The system then delivers metric reports at most once per day, and diagnostic reports immediately in iOS 15 and later and macOS 12 and later. The reports contain the metrics from the past 24 hours and any previously undelivered daily reports. To pause receiving reports, call . The calls to add a subscriber and for receiving reports are safe to use in performance-sensitive code, such as app launch. The snippet below shows a simple class for using MetricKit.
+
+
+// The shared object that registers you to receive metrics, creates logs for custom metrics, and gives access to past reports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager
 type MXMetricManager struct {
 	objectivec.Object
@@ -84,71 +91,89 @@ func NewMXMetricManager() MXMetricManager {
 }
 
 
+
 // Starts to measure an extended launch task with the given task identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/extendLaunchMeasurement(forTaskID:)
-func (mc _MXMetricManagerClass) ExtendLaunchMeasurementForTaskIDError(taskID IMXLaunchTaskID, error_ unsafe.Pointer) bool {
+func (mc _MXMetricManagerClass) ExtendLaunchMeasurementForTaskIDError(taskID MXLaunchTaskID /* typedef */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("extendLaunchMeasurementForTaskID:error:"), taskID, error_)
 	return rv
 }
 
+
 // Signals the end of an extended launch task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/finishExtendedLaunchMeasurement(forTaskID:)
-func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(taskID IMXLaunchTaskID, error_ unsafe.Pointer) bool {
+func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(taskID MXLaunchTaskID /* typedef */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("finishExtendedLaunchMeasurementForTaskID:error:"), taskID, error_)
 	return rv
 }
 
+
 // Returns a log handle used for writing custom metric events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)
-func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), objc.String(category))
+func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), category)
 	return rv
 }
 
+
 // An object that returns the shared metrics manager instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/shared
 func (mc _MXMetricManagerClass) SharedManager() MXMetricManager {
 	rv := objc.Send[MXMetricManager](objc.ID(mc.class), objc.Sel("sharedManager"))
 	return rv
 }
+
 // Registers to receive a daily report of app metrics from the metrics manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/add(_:)
 func (m_ MXMetricManager) AddSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addSubscriber:"), subscriber)
 }
 
+
 // Unsubscribes from daily reports of app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/remove(_:)
 func (m_ MXMetricManager) RemoveSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeSubscriber:"), subscriber)
 }
 
+
 // Returns an array of the diagnostic reports generated since the last allocation of the shared manager instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/pastDiagnosticPayloads
-func (m_ MXMetricManager) PastDiagnosticPayloads() []MXDiagnosticPayload {
+func (m_ MXMetricManager) PastDiagnosticPayloads() []IMXDiagnosticPayload {
 	rv := objc.Send[[]MXDiagnosticPayload](m_.ID, objc.Sel("pastDiagnosticPayloads"))
 	return rv
 }
 
+
 // Returns an array of the daily metrics reports generated since the last allocation of the shared manager instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/pastPayloads
-func (m_ MXMetricManager) PastPayloads() []MXMetricPayload {
+func (m_ MXMetricManager) PastPayloads() []IMXMetricPayload {
 	rv := objc.Send[[]MXMetricPayload](m_.ID, objc.Sel("pastPayloads"))
 	return rv
 }
 
+
 // An object that returns the shared metrics manager instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/shared
-func (m_ MXMetricManager) SharedManager() MXMetricManager {
+func (m_ MXMetricManager) SharedManager() IMXMetricManager {
 	rv := objc.Send[MXMetricManager](m_.ID, objc.Sel("sharedManager"))
 	return rv
 }

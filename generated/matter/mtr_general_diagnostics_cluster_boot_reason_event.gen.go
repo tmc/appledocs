@@ -31,11 +31,15 @@ type _MTRGeneralDiagnosticsClusterBootReasonEventClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterBootReasonEvent] class.
 type IMTRGeneralDiagnosticsClusterBootReasonEvent interface {
 	objectivec.IObject
-	BootReason() foundation.Number
-	SetBootReason(value foundation.INumber)
+	// properties:
+	BootReason() objc.IObject /* cross-framework: NSNumber */
+	SetBootReason(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterBootReasonEvent
 type MTRGeneralDiagnosticsClusterBootReasonEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRGeneralDiagnosticsClusterBootReasonEvent() MTRGeneralDiagnosticsClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterbootreasonevent/bootreason
-func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) BootReason() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bootReason"))
+func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) BootReason() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("bootReason"))
 	return rv
 }
 
 
-// SetBootReason sets the value of the bootReason property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterbootreasonevent/bootreason
-func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) SetBootReason(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) SetBootReason(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBootReason:"), value)
 }
 

@@ -30,18 +30,24 @@ type _MTRClusterEnergyEVSEModeClass struct {
 // An interface definition for the [MTRClusterEnergyEVSEMode] class.
 type IMTRClusterEnergyEVSEMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer
+	// properties:
+	// methods:
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
 }
 
 // Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode
 type MTRClusterEnergyEVSEMode struct {
 	MTRGenericCluster
@@ -89,11 +95,11 @@ func NewMTRClusterEnergyEVSEMode() MTRClusterEnergyEVSEMode {
 
 
 
-
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/init(device:endpointID:queue:)
-func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterEnergyEVSEMode {
+func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterEnergyEVSEMode {
 	instance := getMTRClusterEnergyEVSEModeClass().Alloc()
 	rv := objc.Send[MTRClusterEnergyEVSEMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -101,58 +107,66 @@ func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device IMTRDevice, end
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
+func (m_ MTRClusterEnergyEVSEMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
 }
 

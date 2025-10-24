@@ -80,12 +80,4 @@ func NewLocalizedNumberFormatRule() LocalizedNumberFormatRule {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocalizedNumberFormatRule/automatic
-func (lc _LocalizedNumberFormatRuleClass) Automatic() ILocalizedNumberFormatRule {
-	rv := objc.Send[LocalizedNumberFormatRule](objc.ID(lc.class), objc.Sel("automatic"))
-	return rv
-}
-
-
 

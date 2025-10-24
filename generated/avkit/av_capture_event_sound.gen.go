@@ -90,7 +90,7 @@ func NewCaptureEventSound() CaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)
-func NewCaptureEventSoundWithURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) CaptureEventSound {
+func NewCaptureEventSoundWithURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) CaptureEventSound {
 	instance := getCaptureEventSoundClass().Alloc()
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -125,34 +125,4 @@ func (cc _CaptureEventSoundClass) EndVideoRecordingSound() CaptureEventSound {
 	rv := objc.Send[CaptureEventSound](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
 	return rv
 }
-
-// The default sound for starting a video recording.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
-func (c_ CaptureEventSound) BeginVideoRecordingSound() IAVCaptureEventSound {
-	rv := objc.Send[CaptureEventSound](c_.ID, objc.Sel("beginVideoRecordingSound"))
-	return rv
-}
-
-
-// The default sound for photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
-func (c_ CaptureEventSound) CameraShutterSound() IAVCaptureEventSound {
-	rv := objc.Send[CaptureEventSound](c_.ID, objc.Sel("cameraShutterSound"))
-	return rv
-}
-
-
-// The default sound for ending a video recording.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
-func (c_ CaptureEventSound) EndVideoRecordingSound() IAVCaptureEventSound {
-	rv := objc.Send[CaptureEventSound](c_.ID, objc.Sel("endVideoRecordingSound"))
-	return rv
-}
-
 

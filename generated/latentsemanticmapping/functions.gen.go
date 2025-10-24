@@ -15,35 +15,35 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_LSMMapAddCategory func(unsafe.Pointer) unsafe.Pointer
-	_LSMMapAddText func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapAddTextWithWeight func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float32) unsafe.Pointer
-	_LSMMapApplyClusters func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapCompile func(unsafe.Pointer) unsafe.Pointer
-	_LSMMapCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapCreateClusters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapCreateFromURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapGetCategoryCount func(unsafe.Pointer) unsafe.Pointer
-	_LSMMapGetProperties func(unsafe.Pointer) unsafe.Pointer
+	_LSMMapAddCategory func(LSMMapRef) LSMCategory
+	_LSMMapAddText func(LSMMapRef, LSMTextRef, LSMCategory) unsafe.Pointer
+	_LSMMapAddTextWithWeight func(LSMMapRef, LSMTextRef, LSMCategory, float32) unsafe.Pointer
+	_LSMMapApplyClusters func(LSMMapRef, unsafe.Pointer) unsafe.Pointer
+	_LSMMapCompile func(LSMMapRef) unsafe.Pointer
+	_LSMMapCreate func(unsafe.Pointer, unsafe.Pointer) LSMMapRef
+	_LSMMapCreateClusters func(unsafe.Pointer, LSMMapRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMMapCreateFromURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) LSMMapRef
+	_LSMMapGetCategoryCount func(LSMMapRef) unsafe.Pointer
+	_LSMMapGetProperties func(LSMMapRef) unsafe.Pointer
 	_LSMMapGetTypeID func() unsafe.Pointer
-	_LSMMapSetProperties func(unsafe.Pointer, unsafe.Pointer)
-	_LSMMapSetStopWords func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapStartTraining func(unsafe.Pointer) unsafe.Pointer
-	_LSMMapWriteToStream func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapWriteToURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultCopyToken func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultCopyTokenCluster func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultCopyWord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultCopyWordCluster func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultGetCategory func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMResultGetCount func(unsafe.Pointer) unsafe.Pointer
-	_LSMResultGetScore func(unsafe.Pointer, unsafe.Pointer) float32
+	_LSMMapSetProperties func(LSMMapRef, unsafe.Pointer)
+	_LSMMapSetStopWords func(LSMMapRef, LSMTextRef) unsafe.Pointer
+	_LSMMapStartTraining func(LSMMapRef) unsafe.Pointer
+	_LSMMapWriteToStream func(LSMMapRef, LSMTextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMMapWriteToURL func(LSMMapRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMResultCopyToken func(LSMResultRef, unsafe.Pointer) unsafe.Pointer
+	_LSMResultCopyTokenCluster func(LSMResultRef, unsafe.Pointer) unsafe.Pointer
+	_LSMResultCopyWord func(LSMResultRef, unsafe.Pointer) unsafe.Pointer
+	_LSMResultCopyWordCluster func(LSMResultRef, unsafe.Pointer) unsafe.Pointer
+	_LSMResultCreate func(unsafe.Pointer, LSMMapRef, LSMTextRef, unsafe.Pointer, unsafe.Pointer) LSMResultRef
+	_LSMResultGetCategory func(LSMResultRef, unsafe.Pointer) LSMCategory
+	_LSMResultGetCount func(LSMResultRef) unsafe.Pointer
+	_LSMResultGetScore func(LSMResultRef, unsafe.Pointer) float32
 	_LSMResultGetTypeID func() unsafe.Pointer
-	_LSMTextAddToken func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMTextAddWord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMTextAddWords func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMTextCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMTextAddToken func(LSMTextRef, unsafe.Pointer) unsafe.Pointer
+	_LSMTextAddWord func(LSMTextRef, unsafe.Pointer) unsafe.Pointer
+	_LSMTextAddWords func(LSMTextRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMTextCreate func(unsafe.Pointer, LSMMapRef) LSMTextRef
 	_LSMTextGetTypeID func() unsafe.Pointer
 )
 
@@ -104,7 +104,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddCategory(_:)
-func LSMMapAddCategory(mapref unsafe.Pointer) unsafe.Pointer {
+func LSMMapAddCategory(mapref LSMMapRef) LSMCategory {
 	return _LSMMapAddCategory(mapref)
 }
 
@@ -114,7 +114,7 @@ func LSMMapAddCategory(mapref unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddText(_:_:_:)
-func LSMMapAddText(mapref unsafe.Pointer, textref unsafe.Pointer, category unsafe.Pointer) unsafe.Pointer {
+func LSMMapAddText(mapref LSMMapRef, textref LSMTextRef, category LSMCategory) unsafe.Pointer {
 	return _LSMMapAddText(mapref, textref, category)
 }
 
@@ -124,7 +124,7 @@ func LSMMapAddText(mapref unsafe.Pointer, textref unsafe.Pointer, category unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddTextWithWeight(_:_:_:_:)
-func LSMMapAddTextWithWeight(mapref unsafe.Pointer, textref unsafe.Pointer, category unsafe.Pointer, weight float32) unsafe.Pointer {
+func LSMMapAddTextWithWeight(mapref LSMMapRef, textref LSMTextRef, category LSMCategory, weight float32) unsafe.Pointer {
 	return _LSMMapAddTextWithWeight(mapref, textref, category, weight)
 }
 
@@ -134,7 +134,7 @@ func LSMMapAddTextWithWeight(mapref unsafe.Pointer, textref unsafe.Pointer, cate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapApplyClusters(_:_:)
-func LSMMapApplyClusters(mapref unsafe.Pointer, clusters unsafe.Pointer) unsafe.Pointer {
+func LSMMapApplyClusters(mapref LSMMapRef, clusters unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapApplyClusters(mapref, clusters)
 }
 
@@ -144,7 +144,7 @@ func LSMMapApplyClusters(mapref unsafe.Pointer, clusters unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCompile(_:)
-func LSMMapCompile(mapref unsafe.Pointer) unsafe.Pointer {
+func LSMMapCompile(mapref LSMMapRef) unsafe.Pointer {
 	return _LSMMapCompile(mapref)
 }
 
@@ -154,7 +154,7 @@ func LSMMapCompile(mapref unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreate(_:_:)
-func LSMMapCreate(alloc unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMMapCreate(alloc unsafe.Pointer, flags unsafe.Pointer) LSMMapRef {
 	return _LSMMapCreate(alloc, flags)
 }
 
@@ -164,7 +164,7 @@ func LSMMapCreate(alloc unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreateClusters(_:_:_:_:_:)
-func LSMMapCreateClusters(alloc unsafe.Pointer, mapref unsafe.Pointer, subset unsafe.Pointer, numClusters unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMMapCreateClusters(alloc unsafe.Pointer, mapref LSMMapRef, subset unsafe.Pointer, numClusters unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapCreateClusters(alloc, mapref, subset, numClusters, flags)
 }
 
@@ -174,7 +174,7 @@ func LSMMapCreateClusters(alloc unsafe.Pointer, mapref unsafe.Pointer, subset un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreateFromURL(_:_:_:)
-func LSMMapCreateFromURL(alloc unsafe.Pointer, file unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMMapCreateFromURL(alloc unsafe.Pointer, file unsafe.Pointer, flags unsafe.Pointer) LSMMapRef {
 	return _LSMMapCreateFromURL(alloc, file, flags)
 }
 
@@ -184,7 +184,7 @@ func LSMMapCreateFromURL(alloc unsafe.Pointer, file unsafe.Pointer, flags unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapGetCategoryCount(_:)
-func LSMMapGetCategoryCount(mapref unsafe.Pointer) unsafe.Pointer {
+func LSMMapGetCategoryCount(mapref LSMMapRef) unsafe.Pointer {
 	return _LSMMapGetCategoryCount(mapref)
 }
 
@@ -194,7 +194,7 @@ func LSMMapGetCategoryCount(mapref unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapGetProperties(_:)
-func LSMMapGetProperties(mapref unsafe.Pointer) unsafe.Pointer {
+func LSMMapGetProperties(mapref LSMMapRef) unsafe.Pointer {
 	return _LSMMapGetProperties(mapref)
 }
 
@@ -214,7 +214,7 @@ func LSMMapGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapSetProperties(_:_:)
-func LSMMapSetProperties(mapref unsafe.Pointer, properties unsafe.Pointer) {
+func LSMMapSetProperties(mapref LSMMapRef, properties unsafe.Pointer) {
 	_LSMMapSetProperties(mapref, properties)
 }
 
@@ -224,7 +224,7 @@ func LSMMapSetProperties(mapref unsafe.Pointer, properties unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapSetStopWords(_:_:)
-func LSMMapSetStopWords(mapref unsafe.Pointer, textref unsafe.Pointer) unsafe.Pointer {
+func LSMMapSetStopWords(mapref LSMMapRef, textref LSMTextRef) unsafe.Pointer {
 	return _LSMMapSetStopWords(mapref, textref)
 }
 
@@ -234,7 +234,7 @@ func LSMMapSetStopWords(mapref unsafe.Pointer, textref unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapStartTraining(_:)
-func LSMMapStartTraining(mapref unsafe.Pointer) unsafe.Pointer {
+func LSMMapStartTraining(mapref LSMMapRef) unsafe.Pointer {
 	return _LSMMapStartTraining(mapref)
 }
 
@@ -244,7 +244,7 @@ func LSMMapStartTraining(mapref unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapWriteToStream(_:_:_:_:)
-func LSMMapWriteToStream(mapref unsafe.Pointer, textref unsafe.Pointer, stream unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func LSMMapWriteToStream(mapref LSMMapRef, textref LSMTextRef, stream unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapWriteToStream(mapref, textref, stream, options)
 }
 
@@ -254,7 +254,7 @@ func LSMMapWriteToStream(mapref unsafe.Pointer, textref unsafe.Pointer, stream u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapWriteToURL(_:_:_:)
-func LSMMapWriteToURL(mapref unsafe.Pointer, file unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMMapWriteToURL(mapref LSMMapRef, file unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapWriteToURL(mapref, file, flags)
 }
 
@@ -264,7 +264,7 @@ func LSMMapWriteToURL(mapref unsafe.Pointer, file unsafe.Pointer, flags unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyToken(_:_:)
-func LSMResultCopyToken(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultCopyToken(result LSMResultRef, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyToken(result, n)
 }
 
@@ -274,7 +274,7 @@ func LSMResultCopyToken(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyTokenCluster(_:_:)
-func LSMResultCopyTokenCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultCopyTokenCluster(result LSMResultRef, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyTokenCluster(result, n)
 }
 
@@ -284,7 +284,7 @@ func LSMResultCopyTokenCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyWord(_:_:)
-func LSMResultCopyWord(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultCopyWord(result LSMResultRef, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyWord(result, n)
 }
 
@@ -294,7 +294,7 @@ func LSMResultCopyWord(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyWordCluster(_:_:)
-func LSMResultCopyWordCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultCopyWordCluster(result LSMResultRef, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyWordCluster(result, n)
 }
 
@@ -304,7 +304,7 @@ func LSMResultCopyWordCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCreate(_:_:_:_:_:)
-func LSMResultCreate(alloc unsafe.Pointer, mapref unsafe.Pointer, textref unsafe.Pointer, numResults unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMResultCreate(alloc unsafe.Pointer, mapref LSMMapRef, textref LSMTextRef, numResults unsafe.Pointer, flags unsafe.Pointer) LSMResultRef {
 	return _LSMResultCreate(alloc, mapref, textref, numResults, flags)
 }
 
@@ -314,7 +314,7 @@ func LSMResultCreate(alloc unsafe.Pointer, mapref unsafe.Pointer, textref unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetCategory(_:_:)
-func LSMResultGetCategory(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultGetCategory(result LSMResultRef, n unsafe.Pointer) LSMCategory {
 	return _LSMResultGetCategory(result, n)
 }
 
@@ -324,7 +324,7 @@ func LSMResultGetCategory(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetCount(_:)
-func LSMResultGetCount(result unsafe.Pointer) unsafe.Pointer {
+func LSMResultGetCount(result LSMResultRef) unsafe.Pointer {
 	return _LSMResultGetCount(result)
 }
 
@@ -334,7 +334,7 @@ func LSMResultGetCount(result unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetScore(_:_:)
-func LSMResultGetScore(result unsafe.Pointer, n unsafe.Pointer) float32 {
+func LSMResultGetScore(result LSMResultRef, n unsafe.Pointer) float32 {
 	return _LSMResultGetScore(result, n)
 }
 
@@ -354,7 +354,7 @@ func LSMResultGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddToken(_:_:)
-func LSMTextAddToken(textref unsafe.Pointer, token unsafe.Pointer) unsafe.Pointer {
+func LSMTextAddToken(textref LSMTextRef, token unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddToken(textref, token)
 }
 
@@ -364,7 +364,7 @@ func LSMTextAddToken(textref unsafe.Pointer, token unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddWord(_:_:)
-func LSMTextAddWord(textref unsafe.Pointer, word unsafe.Pointer) unsafe.Pointer {
+func LSMTextAddWord(textref LSMTextRef, word unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddWord(textref, word)
 }
 
@@ -374,7 +374,7 @@ func LSMTextAddWord(textref unsafe.Pointer, word unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddWords(_:_:_:_:)
-func LSMTextAddWords(textref unsafe.Pointer, words unsafe.Pointer, locale unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func LSMTextAddWords(textref LSMTextRef, words unsafe.Pointer, locale unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddWords(textref, words, locale, flags)
 }
 
@@ -384,7 +384,7 @@ func LSMTextAddWords(textref unsafe.Pointer, words unsafe.Pointer, locale unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextCreate(_:_:)
-func LSMTextCreate(alloc unsafe.Pointer, mapref unsafe.Pointer) unsafe.Pointer {
+func LSMTextCreate(alloc unsafe.Pointer, mapref LSMMapRef) LSMTextRef {
 	return _LSMTextCreate(alloc, mapref)
 }
 

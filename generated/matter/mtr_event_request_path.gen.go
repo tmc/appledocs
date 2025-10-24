@@ -31,15 +31,19 @@ type _MTREventRequestPathClass struct {
 // An interface definition for the [MTREventRequestPath] class.
 type IMTREventRequestPath interface {
 	objectivec.IObject
-	Cluster() foundation.Number
-	SetCluster(value foundation.INumber)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
-	Event() foundation.Number
-	SetEvent(value foundation.INumber)
+	// properties:
+	Cluster() objc.IObject /* cross-framework: NSNumber */
+	SetCluster(value objc.IObject /* cross-framework: NSNumber */)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	Event() objc.IObject /* cross-framework: NSNumber */
+	SetEvent(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventRequestPath
 type MTREventRequestPath struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTREventRequestPath() MTREventRequestPath {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/cluster
-func (m_ MTREventRequestPath) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+func (m_ MTREventRequestPath) Cluster() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/cluster
-func (m_ MTREventRequestPath) SetCluster(value foundation.INumber) {
+func (m_ MTREventRequestPath) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/endpoint
-func (m_ MTREventRequestPath) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTREventRequestPath) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/endpoint
-func (m_ MTREventRequestPath) SetEndpoint(value foundation.INumber) {
+func (m_ MTREventRequestPath) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
-func (m_ MTREventRequestPath) Event() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
+func (m_ MTREventRequestPath) Event() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("event"))
 	return rv
 }
 
 
-// SetEvent sets the value of the event property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventrequestpath/event
-func (m_ MTREventRequestPath) SetEvent(value foundation.INumber) {
+func (m_ MTREventRequestPath) SetEvent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
 }
 

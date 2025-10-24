@@ -99,7 +99,7 @@ func NewListFormatter() ListFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/localizedString(byJoining:)
-func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string /* primitive/slice/pointer. */) IString {
+func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) IString {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localizedStringByJoiningStrings:"), strings)
 	return rv
 }

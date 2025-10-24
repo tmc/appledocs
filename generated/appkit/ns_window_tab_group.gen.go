@@ -32,21 +32,21 @@ type IWindowTabGroup interface {
 	objectivec.IObject
 	// properties:
 	Identifier() objc.IObject /* cross-framework: WindowTabbingIdentifier */
-	OverviewVisible() bool /* primitive/slice/pointer. */
-	SetOverviewVisible(value bool /* primitive/slice/pointer. */)
-	TabBarVisible() bool /* primitive/slice/pointer. */
+	OverviewVisible() bool
+	SetOverviewVisible(value bool)
+	TabBarVisible() bool
 	SelectedWindow() IWindow
 	SetSelectedWindow(value IWindow)
-	Windows() []Window /* primitive/slice/pointer. */
+	Windows() []IWindow
 	TabGroup() IWindowTabGroup
 	SetTabGroup(value IWindowTabGroup)
-	IsOverviewVisible() bool /* primitive/slice/pointer. */
-	SetIsOverviewVisible(value bool /* primitive/slice/pointer. */)
-	IsTabBarVisible() bool /* primitive/slice/pointer. */
-	SetIsTabBarVisible(value bool /* primitive/slice/pointer. */)
+	IsOverviewVisible() bool
+	SetIsOverviewVisible(value bool)
+	IsTabBarVisible() bool
+	SetIsTabBarVisible(value bool)
 	// methods:
 	AddWindow(window IWindow)
-	InsertWindowAtIndex(window IWindow, index int /* primitive/slice/pointer. */)
+	InsertWindowAtIndex(window IWindow, index int)
 	RemoveWindow(window IWindow)
 }
 
@@ -116,7 +116,7 @@ func (w_ WindowTabGroup) AddWindow(window IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/insertWindow(_:at:)
-func (w_ WindowTabGroup) InsertWindowAtIndex(window IWindow, index int /* primitive/slice/pointer. */) {
+func (w_ WindowTabGroup) InsertWindowAtIndex(window IWindow, index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("insertWindow:atIndex:"), window, index)
 }
 
@@ -144,7 +144,7 @@ func (w_ WindowTabGroup) Identifier() objc.IObject /* cross-framework: WindowTab
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isOverviewVisible
-func (w_ WindowTabGroup) OverviewVisible() bool /* primitive/slice/pointer. */ {
+func (w_ WindowTabGroup) OverviewVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("overviewVisible"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (w_ WindowTabGroup) OverviewVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isOverviewVisible
-func (w_ WindowTabGroup) SetOverviewVisible(value bool /* primitive/slice/pointer. */) {
+func (w_ WindowTabGroup) SetOverviewVisible(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOverviewVisible:"), value)
 }
 
@@ -163,7 +163,7 @@ func (w_ WindowTabGroup) SetOverviewVisible(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/isTabBarVisible
-func (w_ WindowTabGroup) TabBarVisible() bool /* primitive/slice/pointer. */ {
+func (w_ WindowTabGroup) TabBarVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("tabBarVisible"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (w_ WindowTabGroup) SetSelectedWindow(value IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/windows
-func (w_ WindowTabGroup) Windows() []Window /* primitive/slice/pointer. */ {
+func (w_ WindowTabGroup) Windows() []IWindow {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("windows"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (w_ WindowTabGroup) SetTabGroup(value IWindowTabGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/isoverviewvisible
-func (w_ WindowTabGroup) IsOverviewVisible() bool /* primitive/slice/pointer. */ {
+func (w_ WindowTabGroup) IsOverviewVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isOverviewVisible"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (w_ WindowTabGroup) IsOverviewVisible() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/isoverviewvisible
-func (w_ WindowTabGroup) SetIsOverviewVisible(value bool /* primitive/slice/pointer. */) {
+func (w_ WindowTabGroup) SetIsOverviewVisible(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOverviewVisible:"), value)
 }
 
@@ -240,7 +240,7 @@ func (w_ WindowTabGroup) SetIsOverviewVisible(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/istabbarvisible
-func (w_ WindowTabGroup) IsTabBarVisible() bool /* primitive/slice/pointer. */ {
+func (w_ WindowTabGroup) IsTabBarVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isTabBarVisible"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (w_ WindowTabGroup) IsTabBarVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtabgroup/istabbarvisible
-func (w_ WindowTabGroup) SetIsTabBarVisible(value bool /* primitive/slice/pointer. */) {
+func (w_ WindowTabGroup) SetIsTabBarVisible(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsTabBarVisible:"), value)
 }
 

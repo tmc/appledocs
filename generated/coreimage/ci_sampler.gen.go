@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +34,7 @@ type ISampler interface {
 	objectivec.IObject
 	// properties:
 	Definition() ICIFilterShape
-	Extent() coregraphics.CGRect
+	Extent() objc.IObject /* cross-framework: Rect */
 	// methods:
 }
 
@@ -118,7 +119,7 @@ func NewSamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) Samp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:options:)
-func NewSamplerWithImageOptions(im ICIImage, dict objectivec.IObject) Sampler {
+func NewSamplerWithImageOptions(im ICIImage, dict objc.IObject /* cross-framework: NSDictionary */) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
 	rv.Autorelease()
@@ -151,7 +152,7 @@ func (sc _SamplerClass) SamplerWithImageKeysAndValues(im ICIImage, key0 objectiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:options:
-func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objectivec.IObject) unsafe.Pointer {
+func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objc.IObject /* cross-framework: NSDictionary */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:options:"), im, dict)
 	return rv
 }
@@ -171,8 +172,8 @@ func (s_ Sampler) Definition() ICIFilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/extent
-func (s_ Sampler) Extent() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("extent"))
+func (s_ Sampler) Extent() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("extent"))
 	return rv
 }
 

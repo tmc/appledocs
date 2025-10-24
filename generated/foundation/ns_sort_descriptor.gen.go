@@ -31,7 +31,7 @@ type _SortDescriptorClass struct {
 type ISortDescriptor interface {
 	objectivec.IObject
 	// properties:
-	Ascending() bool /* primitive/slice/pointer. */
+	Ascending() bool
 	Comparator() Comparator /* not a class type */
 	Key() IString
 	ReversedSortDescriptor() objc.ID
@@ -114,7 +114,7 @@ func NewSortDescriptorWithCoder(coder ICoder) SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:)
-func NewSortDescriptorWithKeyAscending(key IString, ascending bool /* primitive/slice/pointer. */) SortDescriptor {
+func NewSortDescriptorWithKeyAscending(key IString, ascending bool) SortDescriptor {
 	instance := getSortDescriptorClass().Alloc()
 	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:"), key, ascending)
 	rv.Autorelease()
@@ -126,7 +126,7 @@ func NewSortDescriptorWithKeyAscending(key IString, ascending bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:comparator:)
-func NewSortDescriptorWithKeyAscendingComparator(key IString, ascending bool /* primitive/slice/pointer. */, cmptr Comparator /* not a class type */) SortDescriptor {
+func NewSortDescriptorWithKeyAscendingComparator(key IString, ascending bool, cmptr Comparator /* not a class type */) SortDescriptor {
 	instance := getSortDescriptorClass().Alloc()
 	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:comparator:"), key, ascending, cmptr)
 	rv.Autorelease()
@@ -138,7 +138,7 @@ func NewSortDescriptorWithKeyAscendingComparator(key IString, ascending bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:selector:)
-func NewSortDescriptorWithKeyAscendingSelector(key IString, ascending bool /* primitive/slice/pointer. */, selector objc.SEL) SortDescriptor {
+func NewSortDescriptorWithKeyAscendingSelector(key IString, ascending bool, selector objc.SEL) SortDescriptor {
 	instance := getSortDescriptorClass().Alloc()
 	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:selector:"), key, ascending, selector)
 	rv.Autorelease()
@@ -151,7 +151,7 @@ func NewSortDescriptorWithKeyAscendingSelector(key IString, ascending bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:
-func (sc _SortDescriptorClass) SortDescriptorWithKeyAscending(key IString, ascending bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (sc _SortDescriptorClass) SortDescriptorWithKeyAscending(key IString, ascending bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:"), key, ascending)
 	return rv
 }
@@ -161,7 +161,7 @@ func (sc _SortDescriptorClass) SortDescriptorWithKeyAscending(key IString, ascen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:comparator:
-func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key IString, ascending bool /* primitive/slice/pointer. */, cmptr Comparator /* not a class type */) unsafe.Pointer {
+func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key IString, ascending bool, cmptr Comparator /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:comparator:"), key, ascending, cmptr)
 	return rv
 }
@@ -171,7 +171,7 @@ func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingComparator(key IStr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/sortDescriptorWithKey:ascending:selector:
-func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingSelector(key IString, ascending bool /* primitive/slice/pointer. */, selector objc.SEL) unsafe.Pointer {
+func (sc _SortDescriptorClass) SortDescriptorWithKeyAscendingSelector(key IString, ascending bool, selector objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sortDescriptorWithKey:ascending:selector:"), key, ascending, selector)
 	return rv
 }
@@ -200,7 +200,7 @@ func (s_ SortDescriptor) CompareObjectToObject(object1 objectivec.IObject, objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/ascending
-func (s_ SortDescriptor) Ascending() bool /* primitive/slice/pointer. */ {
+func (s_ SortDescriptor) Ascending() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("ascending"))
 	return rv
 }

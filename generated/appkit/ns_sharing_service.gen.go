@@ -55,7 +55,7 @@ type ISharingService interface {
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	CanPerformWithItems(items objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */
+	CanPerformWithItems(items objc.IObject /* cross-framework: NSArray */) bool
 }
 
 // An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
@@ -115,7 +115,7 @@ func NewSharingService() SharingService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/canPerform(withItems:)
-func (s_ SharingService) CanPerformWithItems(items objc.IObject /* cross-framework NSArray */) bool /* primitive/slice/pointer. */ {
+func (s_ SharingService) CanPerformWithItems(items objc.IObject /* cross-framework: NSArray */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canPerformWithItems:"), items)
 	return rv
 }

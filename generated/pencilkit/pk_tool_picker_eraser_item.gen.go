@@ -29,13 +29,19 @@ type _ToolPickerEraserItemClass struct {
 // An interface definition for the [ToolPickerEraserItem] class.
 type IToolPickerEraserItem interface {
 	IToolPickerItem
-	EraserTool() PKEraserTool
+	// properties:
+	EraserTool() IPKEraserTool
+	// methods:
 }
 
 // An item that represents an eraser tool in the tool picker.
 //
 // An eraser item represents a  — a tool for erasing content in a canvas view — in a .
+
+
+// An item that represents an eraser tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem
 type ToolPickerEraserItem struct {
 	ToolPickerItem
@@ -83,9 +89,9 @@ func NewToolPickerEraserItem() ToolPickerEraserItem {
 
 
 
-
 // Creates a new eraser item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:
 func NewToolPickerEraserItemWithEraserType(eraserType EraserType) ToolPickerEraserItem {
 	instance := getToolPickerEraserItemClass().Alloc()
@@ -95,9 +101,9 @@ func NewToolPickerEraserItemWithEraserType(eraserType EraserType) ToolPickerEras
 }
 
 
-
 // Creates a new eraser item with the specified width.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:width:
 func NewToolPickerEraserItemWithEraserTypeWidth(eraserType EraserType, width float64) ToolPickerEraserItem {
 	instance := getToolPickerEraserItemClass().Alloc()
@@ -107,11 +113,13 @@ func NewToolPickerEraserItemWithEraserTypeWidth(eraserType EraserType, width flo
 }
 
 
+
 // An eraser tool for erasing parts of a drawing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/eraserTool-4q3hp
-func (t_ ToolPickerEraserItem) EraserTool() PKEraserTool {
-	rv := objc.Send[PKEraserTool](t_.ID, objc.Sel("eraserTool"))
+func (t_ ToolPickerEraserItem) EraserTool() IPKEraserTool {
+	rv := objc.Send[EraserTool](t_.ID, objc.Sel("eraserTool"))
 	return rv
 }
 

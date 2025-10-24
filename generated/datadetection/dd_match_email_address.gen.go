@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchEmailAddress] class.
@@ -30,8 +31,8 @@ type _DDMatchEmailAddressClass struct {
 type IDDMatchEmailAddress interface {
 	IDDMatch
 	// properties:
-	EmailAddress() string /* primitive/slice/pointer. */
-	Label() string /* primitive/slice/pointer. */
+	EmailAddress() objc.IObject /* cross-framework: NSString */
+	Label() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
-func (d_ DDMatchEmailAddress) EmailAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
+func (d_ DDMatchEmailAddress) EmailAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (d_ DDMatchEmailAddress) EmailAddress() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
-func (d_ DDMatchEmailAddress) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("label"))
+func (d_ DDMatchEmailAddress) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("label"))
 	return rv
 }
 

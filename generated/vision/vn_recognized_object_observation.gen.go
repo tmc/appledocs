@@ -29,13 +29,20 @@ type _RecognizedObjectObservationClass struct {
 // An interface definition for the [RecognizedObjectObservation] class.
 type IRecognizedObjectObservation interface {
 	IDetectedObjectObservation
-	Labels() []ClassificationObservation
+	// properties:
+	Labels() IVNClassificationObservation
+	SetLabels(value IVNClassificationObservation)
+	// methods:
 }
 
 // A detected object observation with an array of classification labels that classify the recognized object.
 //
 // The confidence of the classifications sum up to Multiply the classification confidence with the confidence of this observation.
+
+
+// A detected object observation with an array of classification labels that classify the recognized object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedObjectObservation
 type RecognizedObjectObservation struct {
 	DetectedObjectObservation
@@ -82,12 +89,23 @@ func NewRecognizedObjectObservation() RecognizedObjectObservation {
 }
 
 
+
 // An array of observations that classify the recognized object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedObjectObservation/labels
-func (r_ RecognizedObjectObservation) Labels() []ClassificationObservation {
-	rv := objc.Send[[]ClassificationObservation](r_.ID, objc.Sel("labels"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation/labels
+func (r_ RecognizedObjectObservation) Labels() IVNClassificationObservation {
+	rv := objc.Send[ClassificationObservation](r_.ID, objc.Sel("labels"))
 	return rv
+}
+
+
+// An array of observations that classify the recognized object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation/labels
+func (r_ RecognizedObjectObservation) SetLabels(value IVNClassificationObservation) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabels:"), value)
 }
 
 

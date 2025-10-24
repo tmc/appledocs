@@ -32,8 +32,8 @@ type _CKAssetClass struct {
 type ICKAsset interface {
 	objectivec.IObject
 	// properties:
-	FileURL() foundation.objc.IObject /* cross-framework: URL */
-	SetFileURL(value foundation.objc.IObject /* cross-framework: URL */)
+	FileURL() objc.IObject /* cross-framework: URL */
+	SetFileURL(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCKAsset() CKAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
-func (c_ CKAsset) FileURL() foundation.objc.IObject /* cross-framework: URL */ {
+func (c_ CKAsset) FileURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (c_ CKAsset) FileURL() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
-func (c_ CKAsset) SetFileURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (c_ CKAsset) SetFileURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFileURL:"), value)
 }
 

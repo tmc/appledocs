@@ -7,11 +7,10 @@ import "github.com/ebitengine/purego/objc"
 // commitProtocol is the commit protocol.
 //
 // Availability:
-//   - Mac Catalyst 16.0+
-//   - iOS 16.0+
-//   - iPadOS 16.0+
-//   - macOS 13.0+
-//   - tvOS 16.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 8.0+
+//   - iPadOS 8.0+
+//   - macOS 10.11+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to commit.

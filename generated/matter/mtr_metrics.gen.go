@@ -31,13 +31,17 @@ type _MTRMetricsClass struct {
 // An interface definition for the [MTRMetrics] class.
 type IMTRMetrics interface {
 	objectivec.IObject
-	AllKeys() string
-	SetAllKeys(value string)
-	UniqueIdentifier() foundation.UUID
-	SetUniqueIdentifier(value foundation.IUUID)
+	// properties:
+	AllKeys() objc.IObject /* cross-framework: NSString */
+	SetAllKeys(value objc.IObject /* cross-framework: NSString */)
+	UniqueIdentifier() objc.IObject /* cross-framework: UUID */
+	SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMetrics
 type MTRMetrics struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRMetrics() MTRMetrics {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) AllKeys() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("allKeys"))
+func (m_ MTRMetrics) AllKeys() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("allKeys"))
 	return rv
 }
 
 
-// SetAllKeys sets the value of the allKeys property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) SetAllKeys(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), objc.String(value))
+func (m_ MTRMetrics) SetAllKeys(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) UniqueIdentifier() foundation.UUID {
+func (m_ MTRMetrics) UniqueIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
 
-// SetUniqueIdentifier sets the value of the uniqueIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) SetUniqueIdentifier(value foundation.IUUID) {
+func (m_ MTRMetrics) SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 

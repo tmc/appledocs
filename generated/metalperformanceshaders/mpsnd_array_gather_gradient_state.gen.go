@@ -29,9 +29,13 @@ type _NDArrayGatherGradientStateClass struct {
 // An interface definition for the [NDArrayGatherGradientState] class.
 type INDArrayGatherGradientState interface {
 	INDArrayGradientState
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGatherGradientState
 type NDArrayGatherGradientState struct {
 	NDArrayGradientState

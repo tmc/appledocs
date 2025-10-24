@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FinderSync without requiring cgo.
-
-// Modify the Finder’s user interface to express file synchronization and control.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FinderSync
+// See: https://developer.apple.com/documentation/FinderSync
 package findersync
 
 import (

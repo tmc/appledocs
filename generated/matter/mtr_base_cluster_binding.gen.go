@@ -29,9 +29,13 @@ type _MTRBaseClusterBindingClass struct {
 // An interface definition for the [MTRBaseClusterBinding] class.
 type IMTRBaseClusterBinding interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBinding
 type MTRBaseClusterBinding struct {
 	MTRGenericBaseCluster

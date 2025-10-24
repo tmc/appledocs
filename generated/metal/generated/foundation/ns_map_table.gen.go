@@ -31,17 +31,13 @@ type _MapTableClass struct {
 type IMapTable interface {
 	objectivec.IObject
 	// properties:
-	Count() uint /* primitive/slice/pointer. */
-	KeyPointerFunctions() IPointerFunctions
-	ValuePointerFunctions() IPointerFunctions
+	Count() int
+	SetCount(value int)
+	KeyPointerFunctions() objc.IObject /* cross-framework: PointerFunctions */
+	SetKeyPointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */)
+	ValuePointerFunctions() objc.IObject /* cross-framework: PointerFunctions */
+	SetValuePointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */)
 	// methods:
-	DictionaryRepresentation() IDictionary /* already interface */
-	KeyEnumerator() unsafe.Pointer
-	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
-	ObjectEnumerator() unsafe.Pointer
-	RemoveAllObjects()
-	RemoveObjectForKey(aKey unsafe.Pointer)
-	SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 }
 
 // A collection similar to a dictionary, but with a broader range of available memory semantics.
@@ -97,204 +93,31 @@ func NewMapTable() MapTable {
 
 
 
-// Returns a new map table, initialized with the given options
+// The number of key-value pairs in the map table.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyOptions:valueOptions:)
-func NewMapTableWithKeyOptionsValueOptions(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions) MapTable {
-	rv := objc.Send[MapTable](objc.ID(getMapTableClass().class), objc.Sel("mapTableWithKeyOptions:valueOptions:"), keyOptions, valueOptions)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+func (m_ MapTable) Count() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("count"))
 	return rv
-}
-
-
-// Returns a map table, initialized with the given options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyOptions:valueOptions:capacity:)
-func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
-	instance := getMapTableClass().Alloc()
-	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyOptions:valueOptions:capacity:"), keyOptions, valueOptions, initialCapacity)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns a map table, initialized with the given functions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyPointerFunctions:valuePointerFunctions:capacity:)
-func NewMapTableWithKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions IPointerFunctions, valueFunctions IPointerFunctions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
-	instance := getMapTableClass().Alloc()
-	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyPointerFunctions:valuePointerFunctions:capacity:"), keyFunctions, valueFunctions, initialCapacity)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a new map table, initialized with the given options
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyOptions:valueOptions:)
-func (mc _MapTableClass) MapTableWithKeyOptionsValueOptions(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("mapTableWithKeyOptions:valueOptions:"), keyOptions, valueOptions)
-	return rv
-}
-
-
-// Returns a new map table object which has strong references to the keys and values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithStrongToStrongObjects
-func (mc _MapTableClass) MapTableWithStrongToStrongObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithStrongToStrongObjects"))
-	return rv
-}
-
-
-// Returns a new map table object which has strong references to the keys and weak references to the values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithStrongToWeakObjects
-func (mc _MapTableClass) MapTableWithStrongToWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithStrongToWeakObjects"))
-	return rv
-}
-
-
-// Returns a new map table object which has weak references to the keys and strong references to the values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithWeakToStrongObjects
-func (mc _MapTableClass) MapTableWithWeakToStrongObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithWeakToStrongObjects"))
-	return rv
-}
-
-
-// Returns a new map table object which has weak references to the keys and values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithWeakToWeakObjects
-func (mc _MapTableClass) MapTableWithWeakToWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithWeakToWeakObjects"))
-	return rv
-}
-
-
-// Returns a new map table object which has strong references to the keys and values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/strongToStrongObjects()
-func (mc _MapTableClass) StrongToStrongObjectsMapTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("strongToStrongObjectsMapTable"))
-	return rv
-}
-
-
-// Returns a new map table object which has strong references to the keys and weak references to the values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/strongToWeakObjects()
-func (mc _MapTableClass) StrongToWeakObjectsMapTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("strongToWeakObjectsMapTable"))
-	return rv
-}
-
-
-// Returns a new map table object which has weak references to the keys and strong references to the values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/weakToStrongObjects()
-func (mc _MapTableClass) WeakToStrongObjectsMapTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("weakToStrongObjectsMapTable"))
-	return rv
-}
-
-
-// Returns a new map table object which has weak references to the keys and values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/weakToWeakObjects()
-func (mc _MapTableClass) WeakToWeakObjectsMapTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("weakToWeakObjectsMapTable"))
-	return rv
-}
-
-
-// Returns a dictionary representation of the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/dictionaryRepresentation()
-func (m_ MapTable) DictionaryRepresentation() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
-	return rv
-}
-
-
-// Returns an enumerator object that lets you access each key in the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/keyEnumerator()
-func (m_ MapTable) KeyEnumerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("keyEnumerator"))
-	return rv
-}
-
-
-// Returns a the value associated with a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/object(forKey:)
-func (m_ MapTable) ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectForKey:"), aKey)
-	return rv
-}
-
-
-// Returns an enumerator object that lets you access each value in the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/objectEnumerator()
-func (m_ MapTable) ObjectEnumerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectEnumerator"))
-	return rv
-}
-
-
-// Empties the map table of its entries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/removeAllObjects()
-func (m_ MapTable) RemoveAllObjects() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllObjects"))
-}
-
-
-// Removes a given key and its associated value from the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/removeObject(forKey:)
-func (m_ MapTable) RemoveObjectForKey(aKey unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectForKey:"), aKey)
-}
-
-
-// Adds a given key-value pair to the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/setObject(_:forKey:)
-func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
 
 // The number of key-value pairs in the map table.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/count
-func (m_ MapTable) Count() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/count
+func (m_ MapTable) SetCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
+}
+
+
+// The pointer functions the map table uses to manage keys.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+func (m_ MapTable) KeyPointerFunctions() objc.IObject /* cross-framework: PointerFunctions */ {
+	rv := objc.Send[PointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
 	return rv
 }
 
@@ -302,9 +125,18 @@ func (m_ MapTable) Count() uint /* primitive/slice/pointer. */ {
 // The pointer functions the map table uses to manage keys.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/keyPointerFunctions
-func (m_ MapTable) KeyPointerFunctions() IPointerFunctions {
-	rv := objc.Send[PointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
+func (m_ MapTable) SetKeyPointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
+}
+
+
+// The pointer functions the map table uses to manage values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) ValuePointerFunctions() objc.IObject /* cross-framework: PointerFunctions */ {
+	rv := objc.Send[PointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
 	return rv
 }
 
@@ -312,10 +144,10 @@ func (m_ MapTable) KeyPointerFunctions() IPointerFunctions {
 // The pointer functions the map table uses to manage values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/valuePointerFunctions
-func (m_ MapTable) ValuePointerFunctions() IPointerFunctions {
-	rv := objc.Send[PointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
+func (m_ MapTable) SetValuePointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
 }
+
 
 

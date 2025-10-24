@@ -30,11 +30,15 @@ type _CNNGroupNormalizationNodeClass struct {
 // An interface definition for the [CNNGroupNormalizationNode] class.
 type ICNNGroupNormalizationNode interface {
 	IFilterNode
-	TrainingStyle() unsafe.Pointer
-	SetTrainingStyle(value unsafe.Pointer)
+	// properties:
+	TrainingStyle() TrainingStyle /* not a class type */
+	SetTrainingStyle(value TrainingStyle /* not a class type */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode
 type CNNGroupNormalizationNode struct {
 	FilterNode
@@ -79,7 +83,8 @@ func NewCNNGroupNormalizationNode() CNNGroupNormalizationNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/init(source:dataSource:)
 func NewCNNGroupNormalizationNodeWithSourceDataSource(source IMPSNNImageNode, dataSource objectivec.IObject) CNNGroupNormalizationNode {
 	instance := getCNNGroupNormalizationNodeClass().Alloc()
@@ -89,25 +94,26 @@ func NewCNNGroupNormalizationNodeWithSourceDataSource(source IMPSNNImageNode, da
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/nodeWithSource:dataSource:
 func (cc _CNNGroupNormalizationNodeClass) NodeWithSourceDataSource(source IMPSNNImageNode, dataSource objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSource:dataSource:"), source, dataSource)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/trainingStyle
-func (c_ CNNGroupNormalizationNode) TrainingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trainingStyle"))
+func (c_ CNNGroupNormalizationNode) TrainingStyle() TrainingStyle /* not a class type */ {
+	rv := objc.Send[TrainingStyle](c_.ID, objc.Sel("trainingStyle"))
 	return rv
 }
 
 
-// SetTrainingStyle sets the value of the trainingStyle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/trainingStyle
-func (c_ CNNGroupNormalizationNode) SetTrainingStyle(value unsafe.Pointer) {
+func (c_ CNNGroupNormalizationNode) SetTrainingStyle(value TrainingStyle /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrainingStyle:"), value)
 }
 

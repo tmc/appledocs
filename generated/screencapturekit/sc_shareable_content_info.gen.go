@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +31,20 @@ type _ShareableContentInfoClass struct {
 // An interface definition for the [ShareableContentInfo] class.
 type IShareableContentInfo interface {
 	objectivec.IObject
-	ContentRect() coregraphics.CGRect
-	Style() ShareableContentStyle
+	// properties:
 	PointPixelScale() float32
-	SetPointPixelScale(value float32)
+	Style() ShareableContentStyle
+	ContentRect() objc.IObject /* cross-framework: Rect */
+	SetContentRect(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // An instance that provides information for the content in a given stream.
+
+
+// An instance that provides information for the content in a given stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo
 type ShareableContentInfo struct {
 	objectivec.Object
@@ -83,38 +89,43 @@ func NewShareableContentInfo() ShareableContentInfo {
 }
 
 
-// The size and location of content for the stream.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/contentRect
-func (s_ ShareableContentInfo) ContentRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("contentRect"))
-	return rv
-}
-
-// The current presentation style of the stream.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/style
-func (s_ ShareableContentInfo) Style() ShareableContentStyle {
-	rv := objc.Send[ShareableContentStyle](s_.ID, objc.Sel("style"))
-	return rv
-}
 
 // The scaling from points to output pixel resolution for the stream.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/pointPixelScale
 func (s_ ShareableContentInfo) PointPixelScale() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("pointPixelScale"))
 	return rv
 }
 
 
-// SetPointPixelScale sets the value of the pointPixelScale property.
-// The scaling from points to output pixel resolution for the stream.
-
+// The current presentation style of the stream.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/pointpixelscale
-func (s_ ShareableContentInfo) SetPointPixelScale(value float32) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPointPixelScale:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/style
+func (s_ ShareableContentInfo) Style() ShareableContentStyle {
+	rv := objc.Send[ShareableContentStyle](s_.ID, objc.Sel("style"))
+	return rv
+}
+
+
+// The size and location of content for the stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/contentrect
+func (s_ ShareableContentInfo) ContentRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("contentRect"))
+	return rv
+}
+
+
+// The size and location of content for the stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/contentrect
+func (s_ ShareableContentInfo) SetContentRect(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContentRect:"), value)
 }
 
 

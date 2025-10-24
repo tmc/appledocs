@@ -30,19 +30,26 @@ type _PHASEConeDirectivityModelSubbandParametersClass struct {
 // An interface definition for the [PHASEConeDirectivityModelSubbandParameters] class.
 type IPHASEConeDirectivityModelSubbandParameters interface {
 	objectivec.IObject
-	SetInnerAngleOuterAngle(innerAngle float64, outerAngle float64)
+	// properties:
 	Frequency() float64
 	SetFrequency(value float64)
 	InnerAngle() float64
+	SetInnerAngle(value float64)
 	OuterAngle() float64
+	SetOuterAngle(value float64)
 	OuterGain() float64
 	SetOuterGain(value float64)
+	// methods:
 }
 
 // A data set that projects sound of a certain frequency outward in the shape of a cone.
 //
 // This class defines one subband in the class’s . The inner and outer angles you define with describe a cone that directs sound of a given toward the listener. The cone’s point rests at the 3D position of the sound source. The framework adjusts the volume of the sound according to location of the listener in the 3D scene: If the listener positions in an area outside of the subband’s , the sound emanates from the source at the volume defined by . If the listener positions inside the area defined by , the sound emanates from the source at maximum volume. If the listener positions in between the outer and inner angles, the framework blends the volume to a value between and the maximum.
+
+
+// A data set that projects sound of a certain frequency outward in the shape of a cone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters
 type PHASEConeDirectivityModelSubbandParameters struct {
 	objectivec.Object
@@ -88,63 +95,80 @@ func NewPHASEConeDirectivityModelSubbandParameters() PHASEConeDirectivityModelSu
 
 
 
-// Configures a focus area for cone-based sound directivity.
+// A frequency in the audio spectrum where the pattern and sharpness resonate most.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/setAngles(innerAngle:outerAngle:)
-func (p_ PHASEConeDirectivityModelSubbandParameters) SetInnerAngleOuterAngle(innerAngle float64, outerAngle float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInnerAngle:outerAngle:"), innerAngle, outerAngle)
-}
-
-// A frequency in the audio spectrum where the subband resonates most.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/frequency
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/frequency
 func (p_ PHASEConeDirectivityModelSubbandParameters) Frequency() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("frequency"))
 	return rv
 }
 
 
-// SetFrequency sets the value of the frequency property.
-// A frequency in the audio spectrum where the subband resonates most.
-
+// A frequency in the audio spectrum where the pattern and sharpness resonate most.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/frequency
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/frequency
 func (p_ PHASEConeDirectivityModelSubbandParameters) SetFrequency(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFrequency:"), value)
 }
 
+
 // An angle, in degrees, that determines the size of the audio emitting area inside the cone.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/innerAngle
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/innerangle
 func (p_ PHASEConeDirectivityModelSubbandParameters) InnerAngle() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("innerAngle"))
 	return rv
 }
 
+
+// An angle, in degrees, that determines the size of the audio emitting area inside the cone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/innerangle
+func (p_ PHASEConeDirectivityModelSubbandParameters) SetInnerAngle(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInnerAngle:"), value)
+}
+
+
 // An angle, in degrees, that determines the size of the audio emitting area outside the cone.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerAngle
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outerangle
 func (p_ PHASEConeDirectivityModelSubbandParameters) OuterAngle() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("outerAngle"))
 	return rv
 }
 
+
+// An angle, in degrees, that determines the size of the audio emitting area outside the cone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outerangle
+func (p_ PHASEConeDirectivityModelSubbandParameters) SetOuterAngle(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOuterAngle:"), value)
+}
+
+
 // The loudness of the audio the outside area of the cone emits.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerGain
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outergain
 func (p_ PHASEConeDirectivityModelSubbandParameters) OuterGain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("outerGain"))
 	return rv
 }
 
 
-// SetOuterGain sets the value of the outerGain property.
 // The loudness of the audio the outside area of the cone emits.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEConeDirectivityModelSubbandParameters/outerGain
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outergain
 func (p_ PHASEConeDirectivityModelSubbandParameters) SetOuterGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOuterGain:"), value)
 }
+
 
 

@@ -30,12 +30,18 @@ type _GraphObjectClass struct {
 // An interface definition for the [GraphObject] class.
 type IGraphObject interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The common base class for all Metal Performance Shaders Graph objects.
 //
 // Only the child classes should be used.
+
+
+// The common base class for all Metal Performance Shaders Graph objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphObject
 type GraphObject struct {
 	objectivec.Object

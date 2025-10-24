@@ -30,17 +30,21 @@ type _MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams] class.
 type IMTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams interface {
 	IMTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UpdateToken() foundation.Data
-	SetUpdateToken(value foundation.IData)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UpdateToken() objc.IObject /* cross-framework: Data */
+	SetUpdateToken(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams-6s1jv
 type MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams struct {
 	MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams
@@ -85,63 +89,63 @@ func NewMTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams() MTROtaSof
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/serversideprocessingtimeout
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/serversideprocessingtimeout
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/softwareversion
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/softwareversion
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateToken() foundation.Data {
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("updateToken"))
 	return rv
 }
 
 
-// SetUpdateToken sets the value of the updateToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
-func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetUpdateToken(value foundation.IData) {
+func (m_ MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetUpdateToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
 }
 

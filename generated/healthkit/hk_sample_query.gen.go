@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/cloudkit"
 )
 
 // The class instance for the [HKSampleQuery] class.
@@ -30,11 +31,11 @@ type _HKSampleQueryClass struct {
 type IHKSampleQuery interface {
 	IHKQuery
 	// properties:
-	HKObjectQueryNoLimit() int /* primitive/slice/pointer. */
-	Limit() int /* primitive/slice/pointer. */
-	SetLimit(value int /* primitive/slice/pointer. */)
-	SortDescriptors() SortDescriptor /* not a class type */
-	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	HKObjectQueryNoLimit() int
+	Limit() int
+	SetLimit(value int)
+	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
 	// methods:
 }
 
@@ -97,7 +98,7 @@ func NewHKSampleQuery() HKSampleQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-func (h_ HKSampleQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. */ {
+func (h_ HKSampleQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }
@@ -107,7 +108,7 @@ func (h_ HKSampleQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
-func (h_ HKSampleQuery) Limit() int /* primitive/slice/pointer. */ {
+func (h_ HKSampleQuery) Limit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
 }
@@ -117,7 +118,7 @@ func (h_ HKSampleQuery) Limit() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/limit
-func (h_ HKSampleQuery) SetLimit(value int /* primitive/slice/pointer. */) {
+func (h_ HKSampleQuery) SetLimit(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
 
@@ -126,8 +127,8 @@ func (h_ HKSampleQuery) SetLimit(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SortDescriptors() SortDescriptor /* not a class type */ {
-	rv := objc.Send[SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
+func (h_ HKSampleQuery) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
+	rv := objc.Send[cloudkit.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (h_ HKSampleQuery) SortDescriptors() SortDescriptor /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SetSortDescriptors(value SortDescriptor /* not a class type */) {
+func (h_ HKSampleQuery) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

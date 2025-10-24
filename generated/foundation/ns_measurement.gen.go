@@ -31,8 +31,7 @@ type _MeasurementClass struct {
 type IMeasurement interface {
 	objectivec.IObject
 	// properties:
-	DoubleValue() float64 /* primitive/slice/pointer. */
-	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
+	DoubleValue() float64
 	Unit() IUnit
 	SetUnit(value IUnit)
 	// methods:
@@ -94,19 +93,10 @@ func NewMeasurement() Measurement {
 // The measurement value, represented as a double-precision floating-point number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) DoubleValue() float64 /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/doubleValue
+func (m_ Measurement) DoubleValue() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
-}
-
-
-// The measurement value, represented as a double-precision floating-point number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
 

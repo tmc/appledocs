@@ -30,22 +30,28 @@ type _ImageNodeClass struct {
 // An interface definition for the [ImageNode] class.
 type IImageNode interface {
 	objectivec.IObject
+	// properties:
 	ExportFromGraph() bool
 	SetExportFromGraph(value bool)
-	Format() unsafe.Pointer
-	SetFormat(value unsafe.Pointer)
-	Handle() unsafe.Pointer
-	SetHandle(value unsafe.Pointer)
-	ImageAllocator() unsafe.Pointer
-	SetImageAllocator(value unsafe.Pointer)
+	Format() ImageFeatureChannelFormat /* not a class type */
+	SetFormat(value ImageFeatureChannelFormat /* not a class type */)
+	Handle() Handle /* not a class type */
+	SetHandle(value Handle /* not a class type */)
+	ImageAllocator() ImageAllocator /* not a class type */
+	SetImageAllocator(value ImageAllocator /* not a class type */)
 	StopGradient() bool
 	SetStopGradient(value bool)
 	SynchronizeResource() bool
 	SetSynchronizeResource(value bool)
+	// methods:
 }
 
 // A placeholder node denoting the position of a neural network image in a graph.
+
+
+// A placeholder node denoting the position of a neural network image in a graph.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNImageNode
 type ImageNode struct {
 	objectivec.Object
@@ -90,7 +96,8 @@ func NewImageNode() ImageNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
 func (i_ ImageNode) ExportFromGraph() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("exportFromGraph"))
@@ -98,59 +105,59 @@ func (i_ ImageNode) ExportFromGraph() bool {
 }
 
 
-// SetExportFromGraph sets the value of the exportFromGraph property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
 func (i_ ImageNode) SetExportFromGraph(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("format"))
+func (i_ ImageNode) Format() ImageFeatureChannelFormat /* not a class type */ {
+	rv := objc.Send[ImageFeatureChannelFormat](i_.ID, objc.Sel("format"))
 	return rv
 }
 
 
-// SetFormat sets the value of the format property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) SetFormat(value unsafe.Pointer) {
+func (i_ ImageNode) SetFormat(value ImageFeatureChannelFormat /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
-func (i_ ImageNode) Handle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("handle"))
+func (i_ ImageNode) Handle() Handle /* not a class type */ {
+	rv := objc.Send[Handle](i_.ID, objc.Sel("handle"))
 	return rv
 }
 
 
-// SetHandle sets the value of the handle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
-func (i_ ImageNode) SetHandle(value unsafe.Pointer) {
+func (i_ ImageNode) SetHandle(value Handle /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) ImageAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAllocator"))
+func (i_ ImageNode) ImageAllocator() ImageAllocator /* not a class type */ {
+	rv := objc.Send[ImageAllocator](i_.ID, objc.Sel("imageAllocator"))
 	return rv
 }
 
 
-// SetImageAllocator sets the value of the imageAllocator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) SetImageAllocator(value unsafe.Pointer) {
+func (i_ ImageNode) SetImageAllocator(value ImageAllocator /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAllocator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
 func (i_ ImageNode) StopGradient() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("stopGradient"))
@@ -158,14 +165,14 @@ func (i_ ImageNode) StopGradient() bool {
 }
 
 
-// SetStopGradient sets the value of the stopGradient property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
 func (i_ ImageNode) SetStopGradient(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStopGradient:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
 func (i_ ImageNode) SynchronizeResource() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("synchronizeResource"))
@@ -173,8 +180,7 @@ func (i_ ImageNode) SynchronizeResource() bool {
 }
 
 
-// SetSynchronizeResource sets the value of the synchronizeResource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
 func (i_ ImageNode) SetSynchronizeResource(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSynchronizeResource:"), value)

@@ -30,9 +30,13 @@ type _supportedOptionsClass struct {
 // An interface definition for the [supportedOptions] class.
 type IsupportedOptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/supportedOptions-c.ivar
 type supportedOptions struct {
 	objectivec.Object

@@ -31,13 +31,17 @@ type _MTROvenModeClusterChangeToModeResponseParamsClass struct {
 // An interface definition for the [MTROvenModeClusterChangeToModeResponseParams] class.
 type IMTROvenModeClusterChangeToModeResponseParams interface {
 	objectivec.IObject
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	StatusText() string
-	SetStatusText(value string)
+	// properties:
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	StatusText() objc.IObject /* cross-framework: NSString */
+	SetStatusText(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams
 type MTROvenModeClusterChangeToModeResponseParams struct {
 	objectivec.Object
@@ -81,11 +85,11 @@ func NewMTROvenModeClusterChangeToModeResponseParams() MTROvenModeClusterChangeT
 
 
 
-
 // Initialize an MTROvenModeClusterChangeToModeResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/init(responseValue:)
-func NewMTROvenModeClusterChangeToModeResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTROvenModeClusterChangeToModeResponseParams {
+func NewMTROvenModeClusterChangeToModeResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTROvenModeClusterChangeToModeResponseParams {
 	instance := getMTROvenModeClusterChangeToModeResponseParamsClass().Alloc()
 	rv := objc.Send[MTROvenModeClusterChangeToModeResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -93,34 +97,34 @@ func NewMTROvenModeClusterChangeToModeResponseParamsWithResponseValueError(respo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/status
-func (m_ MTROvenModeClusterChangeToModeResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTROvenModeClusterChangeToModeResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/status
-func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/statusText
-func (m_ MTROvenModeClusterChangeToModeResponseParams) StatusText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+func (m_ MTROvenModeClusterChangeToModeResponseParams) StatusText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
 
-// SetStatusText sets the value of the statusText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenModeClusterChangeToModeResponseParams/statusText
-func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatusText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+func (m_ MTROvenModeClusterChangeToModeResponseParams) SetStatusText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
 
 

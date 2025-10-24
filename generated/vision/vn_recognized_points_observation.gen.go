@@ -30,15 +30,21 @@ type _RecognizedPointsObservationClass struct {
 // An interface definition for the [RecognizedPointsObservation] class.
 type IRecognizedPointsObservation interface {
 	IObservation
-	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) coreml.MultiArray
-	RecognizedPointForKeyError(pointKey IRecognizedPointKey, error_ unsafe.Pointer) RecognizedPoint
-	RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer
-	AvailableGroupKeys() []string
-	AvailableKeys() []string
+	// properties:
+	AvailableGroupKeys() objc.IObject /* cross-framework: RecognizedPointGroupKey */
+	SetAvailableGroupKeys(value objc.IObject /* cross-framework: RecognizedPointGroupKey */)
+	AvailableKeys() objc.IObject /* cross-framework: RecognizedPointKey */
+	SetAvailableKeys(value objc.IObject /* cross-framework: RecognizedPointKey */)
+	// methods:
+	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) objc.IObject /* cross-framework: MultiArray */
 }
 
 // An observation that provides the points the analysis recognized.
+
+
+// An observation that provides the points the analysis recognized.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation
 type RecognizedPointsObservation struct {
 	Observation
@@ -85,44 +91,52 @@ func NewRecognizedPointsObservation() RecognizedPointsObservation {
 }
 
 
+
 // Retrieves the grouping of normalized point coordinates and confidence scores in a format compatible with Core ML.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()
-func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) coreml.MultiArray {
+func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) objc.IObject /* cross-framework: MultiArray */ {
 	rv := objc.Send[coreml.MultiArray](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
 	return rv
 }
 
-// Retrieves a recognized point for a key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoint(forKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey IRecognizedPointKey, error_ unsafe.Pointer) RecognizedPoint {
-	rv := objc.Send[RecognizedPoint](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
-	return rv
-}
-
-// Retrieves the recognized points for a key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoints(forGroupKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
-	return rv
-}
 
 // The available point group keys in the observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/availableGroupKeys
-func (r_ RecognizedPointsObservation) AvailableGroupKeys() []string {
-	rv := objc.Send[[]string](r_.ID, objc.Sel("availableGroupKeys"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation/availablegroupkeys
+func (r_ RecognizedPointsObservation) AvailableGroupKeys() objc.IObject /* cross-framework: RecognizedPointGroupKey */ {
+	rv := objc.Send[RecognizedPointGroupKey](r_.ID, objc.Sel("availableGroupKeys"))
 	return rv
 }
 
+
+// The available point group keys in the observation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation/availablegroupkeys
+func (r_ RecognizedPointsObservation) SetAvailableGroupKeys(value objc.IObject /* cross-framework: RecognizedPointGroupKey */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableGroupKeys:"), value)
+}
+
+
 // The available point keys in the observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/availableKeys
-func (r_ RecognizedPointsObservation) AvailableKeys() []string {
-	rv := objc.Send[[]string](r_.ID, objc.Sel("availableKeys"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation/availablekeys
+func (r_ RecognizedPointsObservation) AvailableKeys() objc.IObject /* cross-framework: RecognizedPointKey */ {
+	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("availableKeys"))
 	return rv
+}
+
+
+// The available point keys in the observation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation/availablekeys
+func (r_ RecognizedPointsObservation) SetAvailableKeys(value objc.IObject /* cross-framework: RecognizedPointKey */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableKeys:"), value)
 }
 
 

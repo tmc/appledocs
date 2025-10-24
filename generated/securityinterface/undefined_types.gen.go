@@ -11,20 +11,10 @@ type _undefined = int
 type (
 	Array = _undefined // referenced in SecurityInterface
 	AuthorizationCallbacks = _undefined // referenced in SecurityInterface
-	AuthorizationEngineRef = _undefined // referenced in SecurityInterface
-	AuthorizationFlags = _undefined // referenced in SecurityInterface
 	AuthorizationRights = _undefined // referenced in SecurityInterface
-	AuthorizationString = _undefined // referenced in SecurityInterface
 	Error = _undefined // referenced in SecurityInterface
 	Responder = _undefined // referenced in SecurityInterface
 	SFAuthorization = _undefined // referenced in SecurityInterface
-	SFAuthorizationViewState = _undefined // referenced in SecurityInterface
-	SFButtonType = _undefined // referenced in SecurityInterface
-	SFViewType = _undefined // referenced in SecurityInterface
-	SecCertificateRef = _undefined // referenced in SecurityInterface
-	SecIdentityRef = _undefined // referenced in SecurityInterface
-	SecKeychainRef = _undefined // referenced in SecurityInterface
-	SecTrustRef = _undefined // referenced in SecurityInterface
 	String = _undefined // referenced in SecurityInterface
 	View = _undefined // referenced in SecurityInterface
 )

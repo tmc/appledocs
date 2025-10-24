@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -33,20 +34,20 @@ type ICaptureFileOutput interface {
 	// properties:
 	Delegate() CaptureFileOutputDelegate /* not a class type */
 	SetDelegate(value CaptureFileOutputDelegate /* not a class type */)
-	IsRecording() bool /* primitive/slice/pointer. */
-	SetIsRecording(value bool /* primitive/slice/pointer. */)
-	IsRecordingPaused() bool /* primitive/slice/pointer. */
-	SetIsRecordingPaused(value bool /* primitive/slice/pointer. */)
-	MaxRecordedDuration() Time /* not a class type */
-	SetMaxRecordedDuration(value Time /* not a class type */)
+	IsRecording() bool
+	SetIsRecording(value bool)
+	IsRecordingPaused() bool
+	SetIsRecordingPaused(value bool)
+	MaxRecordedDuration() objc.IObject /* cross-framework: Time */
+	SetMaxRecordedDuration(value objc.IObject /* cross-framework: Time */)
 	MaxRecordedFileSize() unsafe.Pointer
 	SetMaxRecordedFileSize(value unsafe.Pointer)
 	MinFreeDiskSpaceLimit() unsafe.Pointer
 	SetMinFreeDiskSpaceLimit(value unsafe.Pointer)
 	OutputFileURL() objc.IObject /* cross-framework: URL */
 	SetOutputFileURL(value objc.IObject /* cross-framework: URL */)
-	RecordedDuration() Time /* not a class type */
-	SetRecordedDuration(value Time /* not a class type */)
+	RecordedDuration() objc.IObject /* cross-framework: Time */
+	SetRecordedDuration(value objc.IObject /* cross-framework: Time */)
 	RecordedFileSize() unsafe.Pointer
 	SetRecordedFileSize(value unsafe.Pointer)
 	// methods:
@@ -128,7 +129,7 @@ func (c_ CaptureFileOutput) SetDelegate(value CaptureFileOutputDelegate /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureFileOutput) IsRecording() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecording"))
 	return rv
 }
@@ -138,7 +139,7 @@ func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureFileOutput) SetIsRecording(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecording:"), value)
 }
 
@@ -147,7 +148,7 @@ func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureFileOutput) IsRecordingPaused() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecordingPaused"))
 	return rv
 }
@@ -157,7 +158,7 @@ func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecordingPaused:"), value)
 }
 
@@ -166,8 +167,8 @@ func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) MaxRecordedDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("maxRecordedDuration"))
+func (c_ CaptureFileOutput) MaxRecordedDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("maxRecordedDuration"))
 	return rv
 }
 
@@ -176,7 +177,7 @@ func (c_ CaptureFileOutput) MaxRecordedDuration() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) SetMaxRecordedDuration(value Time /* not a class type */) {
+func (c_ CaptureFileOutput) SetMaxRecordedDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRecordedDuration:"), value)
 }
 
@@ -242,8 +243,8 @@ func (c_ CaptureFileOutput) SetOutputFileURL(value objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) RecordedDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("recordedDuration"))
+func (c_ CaptureFileOutput) RecordedDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("recordedDuration"))
 	return rv
 }
 
@@ -252,7 +253,7 @@ func (c_ CaptureFileOutput) RecordedDuration() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) SetRecordedDuration(value Time /* not a class type */) {
+func (c_ CaptureFileOutput) SetRecordedDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordedDuration:"), value)
 }
 

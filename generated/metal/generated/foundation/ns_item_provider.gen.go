@@ -41,10 +41,10 @@ type IItemProvider interface {
 	SetPreferredPresentationStyle(value unsafe.Pointer)
 	PreviewImageHandler() unsafe.Pointer
 	SetPreviewImageHandler(value unsafe.Pointer)
-	RegisteredContentTypes() objc.IObject /* cross-framework: UTType */
-	SetRegisteredContentTypes(value objc.IObject /* cross-framework: UTType */)
-	RegisteredContentTypesForOpenInPlace() objc.IObject /* cross-framework: UTType */
-	SetRegisteredContentTypesForOpenInPlace(value objc.IObject /* cross-framework: UTType */)
+	RegisteredContentTypes() objectivec.IObject
+	SetRegisteredContentTypes(value objectivec.IObject)
+	RegisteredContentTypesForOpenInPlace() objectivec.IObject
+	SetRegisteredContentTypesForOpenInPlace(value objectivec.IObject)
 	RegisteredTypeIdentifiers() IString
 	SetRegisteredTypeIdentifiers(value IString)
 	SourceFrame() objc.IObject /* cross-framework: Rect */
@@ -208,7 +208,7 @@ func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
-func (i_ ItemProvider) RegisteredContentTypes() objc.IObject /* cross-framework: UTType */ {
+func (i_ ItemProvider) RegisteredContentTypes() objectivec.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypes"))
 	return rv
 }
@@ -218,7 +218,7 @@ func (i_ ItemProvider) RegisteredContentTypes() objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
-func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject /* cross-framework: UTType */) {
+func (i_ ItemProvider) SetRegisteredContentTypes(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypes:"), value)
 }
 
@@ -227,7 +227,7 @@ func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject /* cross-framework: UTType */ {
+func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objectivec.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
 	return rv
 }
@@ -237,7 +237,7 @@ func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objc.IObject /* cross-framework: UTType */) {
+func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypesForOpenInPlace:"), value)
 }
 

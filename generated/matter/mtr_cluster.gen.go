@@ -30,9 +30,13 @@ type _MTRClusterClass struct {
 // An interface definition for the [MTRCluster] class.
 type IMTRCluster interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCluster
 type MTRCluster struct {
 	objectivec.Object

@@ -30,9 +30,13 @@ type _MTRQRCodeSetupPayloadParserClass struct {
 // An interface definition for the [MTRQRCodeSetupPayloadParser] class.
 type IMTRQRCodeSetupPayloadParser interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRQRCodeSetupPayloadParser
 type MTRQRCodeSetupPayloadParser struct {
 	objectivec.Object

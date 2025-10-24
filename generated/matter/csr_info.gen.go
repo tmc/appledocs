@@ -31,17 +31,21 @@ type _CSRInfoClass struct {
 // An interface definition for the [CSRInfo] class.
 type ICSRInfo interface {
 	objectivec.IObject
-	Csr() foundation.Data
-	SetCsr(value foundation.IData)
-	Elements() foundation.Data
-	SetElements(value foundation.IData)
-	ElementsSignature() foundation.Data
-	SetElementsSignature(value foundation.IData)
-	Nonce() foundation.Data
-	SetNonce(value foundation.IData)
+	// properties:
+	Csr() objc.IObject /* cross-framework: Data */
+	SetCsr(value objc.IObject /* cross-framework: Data */)
+	Elements() objc.IObject /* cross-framework: Data */
+	SetElements(value objc.IObject /* cross-framework: Data */)
+	ElementsSignature() objc.IObject /* cross-framework: Data */
+	SetElementsSignature(value objc.IObject /* cross-framework: Data */)
+	Nonce() objc.IObject /* cross-framework: Data */
+	SetNonce(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/CSRInfo
 type CSRInfo struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewCSRInfo() CSRInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/csr
-func (c_ CSRInfo) Csr() foundation.Data {
+func (c_ CSRInfo) Csr() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("csr"))
 	return rv
 }
 
 
-// SetCsr sets the value of the csr property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/csr
-func (c_ CSRInfo) SetCsr(value foundation.IData) {
+func (c_ CSRInfo) SetCsr(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCsr:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elements
-func (c_ CSRInfo) Elements() foundation.Data {
+func (c_ CSRInfo) Elements() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("elements"))
 	return rv
 }
 
 
-// SetElements sets the value of the elements property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elements
-func (c_ CSRInfo) SetElements(value foundation.IData) {
+func (c_ CSRInfo) SetElements(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setElements:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elementssignature
-func (c_ CSRInfo) ElementsSignature() foundation.Data {
+func (c_ CSRInfo) ElementsSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("elementsSignature"))
 	return rv
 }
 
 
-// SetElementsSignature sets the value of the elementsSignature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/elementssignature
-func (c_ CSRInfo) SetElementsSignature(value foundation.IData) {
+func (c_ CSRInfo) SetElementsSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setElementsSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/nonce
-func (c_ CSRInfo) Nonce() foundation.Data {
+func (c_ CSRInfo) Nonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("nonce"))
 	return rv
 }
 
 
-// SetNonce sets the value of the nonce property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/csrinfo/nonce
-func (c_ CSRInfo) SetNonce(value foundation.IData) {
+func (c_ CSRInfo) SetNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNonce:"), value)
 }
 

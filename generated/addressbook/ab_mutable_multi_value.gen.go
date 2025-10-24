@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +33,12 @@ type IABMutableMultiValue interface {
 	IABMultiValue
 	// properties:
 	// methods:
-	AddValueWithLabel(value objectivec.IObject, label string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	InsertValueWithLabelAtIndex(value objectivec.IObject, label string /* primitive/slice/pointer. */, index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	RemoveValueAndLabelAtIndex(index uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	ReplaceValueAtIndexWithValue(index uint /* primitive/slice/pointer. */, value objectivec.IObject) bool /* primitive/slice/pointer. */
-	ReplaceLabelAtIndexWithLabel(index uint /* primitive/slice/pointer. */, label string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetPrimaryIdentifier(identifier string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	AddValueWithLabel(value objectivec.IObject, label objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
+	InsertValueWithLabelAtIndex(value objectivec.IObject, label objc.IObject /* cross-framework: NSString */, index uint) objc.IObject /* cross-framework: String */
+	RemoveValueAndLabelAtIndex(index uint) bool
+	ReplaceValueAtIndexWithValue(index uint, value objectivec.IObject) bool
+	ReplaceLabelAtIndexWithLabel(index uint, label objc.IObject /* cross-framework: NSString */) bool
+	SetPrimaryIdentifier(identifier objc.IObject /* cross-framework: NSString */) bool
 }
 
 // A mutable representation of a property that might have multiple values.
@@ -99,8 +100,8 @@ func NewABMutableMultiValue() ABMutableMultiValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/add(_:withLabel:)
-func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("addValue:withLabel:"), value, objc.String(label))
+func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("addValue:withLabel:"), value, label)
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (a_ ABMutableMultiValue) AddValueWithLabel(value objectivec.IObject, label 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/insert(_:withLabel:at:)
-func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObject, label string /* primitive/slice/pointer. */, index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, objc.String(label), index)
+func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObject, label objc.IObject /* cross-framework: NSString */, index uint) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("insertValue:withLabel:atIndex:"), value, label, index)
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (a_ ABMutableMultiValue) InsertValueWithLabelAtIndex(value objectivec.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/removeAndLabel(at:)
-func (a_ ABMutableMultiValue) RemoveValueAndLabelAtIndex(index uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (a_ ABMutableMultiValue) RemoveValueAndLabelAtIndex(index uint) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueAndLabelAtIndex:"), index)
 	return rv
 }
@@ -129,7 +130,7 @@ func (a_ ABMutableMultiValue) RemoveValueAndLabelAtIndex(index uint /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/replace(at:withValue:)
-func (a_ ABMutableMultiValue) ReplaceValueAtIndexWithValue(index uint /* primitive/slice/pointer. */, value objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (a_ ABMutableMultiValue) ReplaceValueAtIndexWithValue(index uint, value objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("replaceValueAtIndex:withValue:"), index, value)
 	return rv
 }
@@ -139,8 +140,8 @@ func (a_ ABMutableMultiValue) ReplaceValueAtIndexWithValue(index uint /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/replaceLabel(at:withLabel:)
-func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint /* primitive/slice/pointer. */, label string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("replaceLabelAtIndex:withLabel:"), index, objc.String(label))
+func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint, label objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("replaceLabelAtIndex:withLabel:"), index, label)
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (a_ ABMutableMultiValue) ReplaceLabelAtIndexWithLabel(index uint /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue/setPrimaryIdentifier(_:)
-func (a_ ABMutableMultiValue) SetPrimaryIdentifier(identifier string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setPrimaryIdentifier:"), objc.String(identifier))
+func (a_ ABMutableMultiValue) SetPrimaryIdentifier(identifier objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPrimaryIdentifier:"), identifier)
 	return rv
 }
 

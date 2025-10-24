@@ -30,8 +30,8 @@ type _FragmentedMovieMinderClass struct {
 type IFragmentedMovieMinder interface {
 	IFragmentedAssetMinder
 	// properties:
-	MindingInterval() unsafe.Pointer
-	SetMindingInterval(value unsafe.Pointer)
+	MindingInterval() float64
+	SetMindingInterval(value float64)
 	Movies() objc.IObject /* cross-framework: FragmentedMovie */
 	SetMovies(value objc.IObject /* cross-framework: FragmentedMovie */)
 	// methods:
@@ -96,8 +96,8 @@ func NewFragmentedMovieMinder() FragmentedMovieMinder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
-func (f_ FragmentedMovieMinder) MindingInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mindingInterval"))
+func (f_ FragmentedMovieMinder) MindingInterval() float64 {
+	rv := objc.Send[float64](f_.ID, objc.Sel("mindingInterval"))
 	return rv
 }
 
@@ -106,7 +106,7 @@ func (f_ FragmentedMovieMinder) MindingInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/mindinginterval
-func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
+func (f_ FragmentedMovieMinder) SetMindingInterval(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMindingInterval:"), value)
 }
 

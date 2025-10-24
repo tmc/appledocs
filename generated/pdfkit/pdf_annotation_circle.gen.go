@@ -30,15 +30,19 @@ type _PDFAnnotationCircleClass struct {
 // An interface definition for the [PDFAnnotationCircle] class.
 type IPDFAnnotationCircle interface {
 	IPDFAnnotation
-	Color() appkit.Color
-	SetColor(value appkit.IColor)
+	// properties:
+	Color() objc.IObject /* cross-framework: Color */
+	SetColor(value objc.IObject /* cross-framework: Color */)
 	LineWidth() float64
 	SetLineWidth(value float64)
-	Style() PDFBorderStyle
-	SetStyle(value PDFBorderStyle)
+	Style() unsafe.Pointer
+	SetStyle(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationCircle
 type PDFAnnotationCircle struct {
 	PDFAnnotation
@@ -83,26 +87,29 @@ func NewPDFAnnotationCircle() PDFAnnotationCircle {
 }
 
 
+
 // Sets the stroke color for the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationCircle) Color() appkit.Color {
+func (p_ PDFAnnotationCircle) Color() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
 // Sets the stroke color for the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationCircle) SetColor(value appkit.IColor) {
+func (p_ PDFAnnotationCircle) SetColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
+
 // Sets the line width (in points) for the border.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth
 func (p_ PDFAnnotationCircle) LineWidth() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("lineWidth"))
@@ -110,30 +117,30 @@ func (p_ PDFAnnotationCircle) LineWidth() float64 {
 }
 
 
-// SetLineWidth sets the value of the lineWidth property.
 // Sets the line width (in points) for the border.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth
 func (p_ PDFAnnotationCircle) SetLineWidth(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLineWidth:"), value)
 }
 
+
 // Sets the border style.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationCircle) Style() PDFBorderStyle {
-	rv := objc.Send[PDFBorderStyle](p_.ID, objc.Sel("style"))
+func (p_ PDFAnnotationCircle) Style() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
 	return rv
 }
 
 
-// SetStyle sets the value of the style property.
 // Sets the border style.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationCircle) SetStyle(value PDFBorderStyle) {
+func (p_ PDFAnnotationCircle) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

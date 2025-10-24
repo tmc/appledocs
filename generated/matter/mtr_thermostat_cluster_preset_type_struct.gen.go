@@ -31,15 +31,19 @@ type _MTRThermostatClusterPresetTypeStructClass struct {
 // An interface definition for the [MTRThermostatClusterPresetTypeStruct] class.
 type IMTRThermostatClusterPresetTypeStruct interface {
 	objectivec.IObject
-	NumberOfPresets() foundation.Number
-	SetNumberOfPresets(value foundation.INumber)
-	PresetScenario() foundation.Number
-	SetPresetScenario(value foundation.INumber)
-	PresetTypeFeatures() foundation.Number
-	SetPresetTypeFeatures(value foundation.INumber)
+	// properties:
+	NumberOfPresets() objc.IObject /* cross-framework: NSNumber */
+	SetNumberOfPresets(value objc.IObject /* cross-framework: NSNumber */)
+	PresetScenario() objc.IObject /* cross-framework: NSNumber */
+	SetPresetScenario(value objc.IObject /* cross-framework: NSNumber */)
+	PresetTypeFeatures() objc.IObject /* cross-framework: NSNumber */
+	SetPresetTypeFeatures(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct
 type MTRThermostatClusterPresetTypeStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRThermostatClusterPresetTypeStruct() MTRThermostatClusterPresetTypeStr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/numberOfPresets
-func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("numberOfPresets"))
+func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("numberOfPresets"))
 	return rv
 }
 
 
-// SetNumberOfPresets sets the value of the numberOfPresets property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/numberOfPresets
-func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfPresets:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
-func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("presetScenario"))
+func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("presetScenario"))
 	return rv
 }
 
 
-// SetPresetScenario sets the value of the presetScenario property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
-func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("presetTypeFeatures"))
+func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("presetTypeFeatures"))
 	return rv
 }
 
 
-// SetPresetTypeFeatures sets the value of the presetTypeFeatures property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetTypeFeatures:"), value)
 }
 

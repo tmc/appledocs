@@ -31,17 +31,21 @@ type _MTROperationalCertificateChainClass struct {
 // An interface definition for the [MTROperationalCertificateChain] class.
 type IMTROperationalCertificateChain interface {
 	objectivec.IObject
-	AdminSubject() foundation.Number
-	SetAdminSubject(value foundation.INumber)
-	IntermediateCertificate() foundation.Data
-	SetIntermediateCertificate(value foundation.IData)
-	OperationalCertificate() foundation.Data
-	SetOperationalCertificate(value foundation.IData)
-	RootCertificate() foundation.Data
-	SetRootCertificate(value foundation.IData)
+	// properties:
+	AdminSubject() objc.IObject /* cross-framework: NSNumber */
+	SetAdminSubject(value objc.IObject /* cross-framework: NSNumber */)
+	IntermediateCertificate() MTRCertificateDERBytes /* typedef */
+	SetIntermediateCertificate(value MTRCertificateDERBytes /* typedef */)
+	OperationalCertificate() MTRCertificateDERBytes /* typedef */
+	SetOperationalCertificate(value MTRCertificateDERBytes /* typedef */)
+	RootCertificate() MTRCertificateDERBytes /* typedef */
+	SetRootCertificate(value MTRCertificateDERBytes /* typedef */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain
 type MTROperationalCertificateChain struct {
 	objectivec.Object
@@ -84,65 +88,75 @@ func NewMTROperationalCertificateChain() MTROperationalCertificateChain {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/adminsubject
-func (m_ MTROperationalCertificateChain) AdminSubject() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("adminSubject"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/init(operationalCertificate:intermediateCertificate:rootCertificate:adminSubject:)
+func NewMTROperationalCertificateChainWithOperationalCertificateIntermediateCertificateRootCertificateAdminSubject(operationalCertificate MTRCertificateDERBytes /* typedef */, intermediateCertificate MTRCertificateDERBytes /* typedef */, rootCertificate MTRCertificateDERBytes /* typedef */, adminSubject objc.IObject /* cross-framework: NSNumber */) MTROperationalCertificateChain {
+	instance := getMTROperationalCertificateChainClass().Alloc()
+	rv := objc.Send[MTROperationalCertificateChain](instance.ID, objc.Sel("initWithOperationalCertificate:intermediateCertificate:rootCertificate:adminSubject:"), operationalCertificate, intermediateCertificate, rootCertificate, adminSubject)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetAdminSubject sets the value of the adminSubject property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/adminsubject
-func (m_ MTROperationalCertificateChain) SetAdminSubject(value foundation.INumber) {
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/adminSubject
+func (m_ MTROperationalCertificateChain) AdminSubject() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("adminSubject"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/adminSubject
+func (m_ MTROperationalCertificateChain) SetAdminSubject(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminSubject:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/intermediatecertificate
-func (m_ MTROperationalCertificateChain) IntermediateCertificate() foundation.Data {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificate"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/intermediateCertificate
+func (m_ MTROperationalCertificateChain) IntermediateCertificate() MTRCertificateDERBytes /* typedef */ {
+	rv := objc.Send[MTRCertificateDERBytes](m_.ID, objc.Sel("intermediateCertificate"))
 	return rv
 }
 
 
-// SetIntermediateCertificate sets the value of the intermediateCertificate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/intermediatecertificate
-func (m_ MTROperationalCertificateChain) SetIntermediateCertificate(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/intermediateCertificate
+func (m_ MTROperationalCertificateChain) SetIntermediateCertificate(value MTRCertificateDERBytes /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificate:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/operationalcertificate
-func (m_ MTROperationalCertificateChain) OperationalCertificate() foundation.Data {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificate"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/operationalCertificate
+func (m_ MTROperationalCertificateChain) OperationalCertificate() MTRCertificateDERBytes /* typedef */ {
+	rv := objc.Send[MTRCertificateDERBytes](m_.ID, objc.Sel("operationalCertificate"))
 	return rv
 }
 
 
-// SetOperationalCertificate sets the value of the operationalCertificate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/operationalcertificate
-func (m_ MTROperationalCertificateChain) SetOperationalCertificate(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/operationalCertificate
+func (m_ MTROperationalCertificateChain) SetOperationalCertificate(value MTRCertificateDERBytes /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificate:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/rootcertificate
-func (m_ MTROperationalCertificateChain) RootCertificate() foundation.Data {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/rootCertificate
+func (m_ MTROperationalCertificateChain) RootCertificate() MTRCertificateDERBytes /* typedef */ {
+	rv := objc.Send[MTRCertificateDERBytes](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
 
-// SetRootCertificate sets the value of the rootCertificate property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/rootcertificate
-func (m_ MTROperationalCertificateChain) SetRootCertificate(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCertificateChain/rootCertificate
+func (m_ MTROperationalCertificateChain) SetRootCertificate(value MTRCertificateDERBytes /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
-
 
 

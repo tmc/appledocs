@@ -31,22 +31,22 @@ type _TaskClass struct {
 type ITask interface {
 	objectivec.IObject
 	// properties:
-	Arguments() []string /* primitive/slice/pointer. */
-	SetArguments(value []string /* primitive/slice/pointer. */)
+	Arguments() []string
+	SetArguments(value []string)
 	CurrentDirectoryPath() IString
 	SetCurrentDirectoryPath(value IString)
 	CurrentDirectoryURL() IURL
 	SetCurrentDirectoryURL(value IURL)
-	Environment() IDictionary /* already interface */
-	SetEnvironment(value IDictionary /* already interface */)
+	Environment() IDictionary
+	SetEnvironment(value IDictionary)
 	ExecutableURL() IURL
 	SetExecutableURL(value IURL)
-	Running() bool /* primitive/slice/pointer. */
+	Running() bool
 	LaunchPath() IString
 	SetLaunchPath(value IString)
 	LaunchRequirementData() IData
 	SetLaunchRequirementData(value IData)
-	ProcessIdentifier() int /* primitive/slice/pointer. */
+	ProcessIdentifier() int
 	QualityOfService() QualityOfService
 	SetQualityOfService(value QualityOfService)
 	StandardError() objc.ID
@@ -55,19 +55,19 @@ type ITask interface {
 	SetStandardInput(value objc.ID)
 	StandardOutput() objc.ID
 	SetStandardOutput(value objc.ID)
-	TerminationHandler() func(unsafe.Pointer) /* not a class type */
-	SetTerminationHandler(value func(unsafe.Pointer) /* not a class type */)
+	TerminationHandler() func(unsafe.Pointer)
+	SetTerminationHandler(value func(unsafe.Pointer))
 	TerminationReason() TaskTerminationReason
-	TerminationStatus() int /* primitive/slice/pointer. */
-	IsRunning() bool /* primitive/slice/pointer. */
-	SetIsRunning(value bool /* primitive/slice/pointer. */)
+	TerminationStatus() int
+	IsRunning() bool
+	SetIsRunning(value bool)
 	LaunchRequirement() unsafe.Pointer
 	SetLaunchRequirement(value unsafe.Pointer)
 	// methods:
 	Interrupt()
-	Resume() bool /* primitive/slice/pointer. */
-	LaunchAndReturnError(error_ IError) bool /* primitive/slice/pointer. */
-	Suspend() bool /* primitive/slice/pointer. */
+	Resume() bool
+	LaunchAndReturnError(error_ IError) bool
+	Suspend() bool
 	Terminate()
 	WaitUntilExit()
 }
@@ -130,7 +130,7 @@ func NewTask() Task {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchedProcess(launchPath:arguments:)
-func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path IString, arguments []string /* primitive/slice/pointer. */) ITask {
+func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path IString, arguments []string) ITask {
 	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithLaunchPath:arguments:"), path, arguments)
 	return rv
 }
@@ -140,7 +140,7 @@ func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path IString, arguments
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run(_:arguments:terminationHandler:)
-func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandler(url IURL, arguments []string /* primitive/slice/pointer. */, error_ IError, terminationHandler unsafe.Pointer) ITask {
+func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandler(url IURL, arguments []string, error_ IError, terminationHandler unsafe.Pointer) ITask {
 	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), url, arguments, error_, terminationHandler)
 	return rv
 }
@@ -159,7 +159,7 @@ func (t_ Task) Interrupt() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/resume()
-func (t_ Task) Resume() bool /* primitive/slice/pointer. */ {
+func (t_ Task) Resume() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resume"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (t_ Task) Resume() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
-func (t_ Task) LaunchAndReturnError(error_ IError) bool /* primitive/slice/pointer. */ {
+func (t_ Task) LaunchAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error_)
 	return rv
 }
@@ -179,7 +179,7 @@ func (t_ Task) LaunchAndReturnError(error_ IError) bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/suspend()
-func (t_ Task) Suspend() bool /* primitive/slice/pointer. */ {
+func (t_ Task) Suspend() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("suspend"))
 	return rv
 }
@@ -207,7 +207,7 @@ func (t_ Task) WaitUntilExit() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/arguments
-func (t_ Task) Arguments() []string /* primitive/slice/pointer. */ {
+func (t_ Task) Arguments() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("arguments"))
 	return rv
 }
@@ -217,7 +217,7 @@ func (t_ Task) Arguments() []string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/arguments
-func (t_ Task) SetArguments(value []string /* primitive/slice/pointer. */) {
+func (t_ Task) SetArguments(value []string) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -274,8 +274,8 @@ func (t_ Task) SetCurrentDirectoryURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-func (t_ Task) Environment() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](t_.ID, objc.Sel("environment"))
+func (t_ Task) Environment() IDictionary {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("environment"))
 	return rv
 }
 
@@ -284,7 +284,7 @@ func (t_ Task) Environment() IDictionary /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/environment
-func (t_ Task) SetEnvironment(value IDictionary /* already interface */) {
+func (t_ Task) SetEnvironment(value IDictionary) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnvironment:"), value)
 }
 
@@ -312,7 +312,7 @@ func (t_ Task) SetExecutableURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/isRunning
-func (t_ Task) Running() bool /* primitive/slice/pointer. */ {
+func (t_ Task) Running() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("running"))
 	return rv
 }
@@ -356,7 +356,7 @@ func (t_ Task) SetLaunchRequirementData(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
-func (t_ Task) ProcessIdentifier() int /* primitive/slice/pointer. */ {
+func (t_ Task) ProcessIdentifier() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
@@ -442,7 +442,7 @@ func (t_ Task) SetStandardOutput(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
-func (t_ Task) TerminationHandler() func(unsafe.Pointer) /* not a class type */ {
+func (t_ Task) TerminationHandler() func(unsafe.Pointer) {
 	rv := objc.Send[func(unsafe.Pointer)](t_.ID, objc.Sel("terminationHandler"))
 	return rv
 }
@@ -452,7 +452,7 @@ func (t_ Task) TerminationHandler() func(unsafe.Pointer) /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
-func (t_ Task) SetTerminationHandler(value func(unsafe.Pointer) /* not a class type */) {
+func (t_ Task) SetTerminationHandler(value func(unsafe.Pointer)) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationHandler:"), value)
 }
 
@@ -471,7 +471,7 @@ func (t_ Task) TerminationReason() TaskTerminationReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationStatus
-func (t_ Task) TerminationStatus() int /* primitive/slice/pointer. */ {
+func (t_ Task) TerminationStatus() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("terminationStatus"))
 	return rv
 }
@@ -481,7 +481,7 @@ func (t_ Task) TerminationStatus() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/isrunning
-func (t_ Task) IsRunning() bool /* primitive/slice/pointer. */ {
+func (t_ Task) IsRunning() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRunning"))
 	return rv
 }
@@ -491,7 +491,7 @@ func (t_ Task) IsRunning() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/isrunning
-func (t_ Task) SetIsRunning(value bool /* primitive/slice/pointer. */) {
+func (t_ Task) SetIsRunning(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRunning:"), value)
 }
 

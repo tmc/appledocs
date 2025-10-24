@@ -30,15 +30,19 @@ type _MTRTestClusterClusterSimpleStructEchoRequestParamsClass struct {
 // An interface definition for the [MTRTestClusterClusterSimpleStructEchoRequestParams] class.
 type IMTRTestClusterClusterSimpleStructEchoRequestParams interface {
 	IMTRUnitTestingClusterSimpleStructEchoRequestParams
-	Arg1() MTRUnitTestingClusterSimpleStruct
+	// properties:
+	Arg1() IMTRUnitTestingClusterSimpleStruct
 	SetArg1(value IMTRUnitTestingClusterSimpleStruct)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterSimpleStructEchoRequestParams
 type MTRTestClusterClusterSimpleStructEchoRequestParams struct {
 	MTRUnitTestingClusterSimpleStructEchoRequestParams
@@ -83,48 +87,48 @@ func NewMTRTestClusterClusterSimpleStructEchoRequestParams() MTRTestClusterClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) Arg1() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) Arg1() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/arg1
 func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetArg1(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructechorequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterSimpleStructEchoRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

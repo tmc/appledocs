@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _AXFeatureOverrideSessionClass struct {
 type IAXFeatureOverrideSession interface {
 	objectivec.IObject
 	// properties:
-	AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */
+	AXFeatureOverrideSessionErrorDomain() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -88,8 +89,8 @@ func NewAXFeatureOverrideSession() AXFeatureOverrideSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
+func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
 

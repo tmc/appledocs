@@ -29,11 +29,17 @@ type _MXAppResponsivenessMetricClass struct {
 // An interface definition for the [MXAppResponsivenessMetric] class.
 type IMXAppResponsivenessMetric interface {
 	IMXMetric
+	// properties:
 	HistogrammedApplicationHangTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the responsiveness of the app to user interaction.
+
+
+// An object representing metrics about the responsiveness of the app to user interaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppResponsivenessMetric
 type MXAppResponsivenessMetric struct {
 	MXMetric
@@ -80,8 +86,10 @@ func NewMXAppResponsivenessMetric() MXAppResponsivenessMetric {
 }
 
 
+
 // A histogram of the different durations of time in which the app is too busy to handle user interaction responsively.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppResponsivenessMetric/histogrammedApplicationHangTime
 func (m_ MXAppResponsivenessMetric) HistogrammedApplicationHangTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedApplicationHangTime"))

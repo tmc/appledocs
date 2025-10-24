@@ -31,15 +31,19 @@ type _MTRAccessControlClusterFabricRestrictionReviewUpdateEventClass struct {
 // An interface definition for the [MTRAccessControlClusterFabricRestrictionReviewUpdateEvent] class.
 type IMTRAccessControlClusterFabricRestrictionReviewUpdateEvent interface {
 	objectivec.IObject
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	Instruction() string
-	SetInstruction(value string)
-	Token() foundation.Number
-	SetToken(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Instruction() objc.IObject /* cross-framework: NSString */
+	SetInstruction(value objc.IObject /* cross-framework: NSString */)
+	Token() objc.IObject /* cross-framework: NSNumber */
+	SetToken(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent
 type MTRAccessControlClusterFabricRestrictionReviewUpdateEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRAccessControlClusterFabricRestrictionReviewUpdateEvent() MTRAccessCon
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/fabricIndex
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/fabricIndex
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/instruction
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("instruction"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Instruction() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("instruction"))
 	return rv
 }
 
 
-// SetInstruction sets the value of the instruction property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/instruction
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstruction(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstruction:"), objc.String(value))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetInstruction(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstruction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/token
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("token"))
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) Token() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("token"))
 	return rv
 }
 
 
-// SetToken sets the value of the token property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterFabricRestrictionReviewUpdateEvent/token
-func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetToken(value foundation.INumber) {
+func (m_ MTRAccessControlClusterFabricRestrictionReviewUpdateEvent) SetToken(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
 

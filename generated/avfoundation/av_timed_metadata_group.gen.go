@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 )
 
 // The class instance for the [TimedMetadataGroup] class.
@@ -32,8 +33,8 @@ type ITimedMetadataGroup interface {
 	// properties:
 	Items() IAVMetadataItem
 	SetItems(value IAVMetadataItem)
-	TimeRange() TimeRange /* not a class type */
-	SetTimeRange(value TimeRange /* not a class type */)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
 	// methods:
 }
 
@@ -115,8 +116,8 @@ func (t_ TimedMetadataGroup) SetItems(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
-func (t_ TimedMetadataGroup) TimeRange() TimeRange /* not a class type */ {
-	rv := objc.Send[TimeRange](t_.ID, objc.Sel("timeRange"))
+func (t_ TimedMetadataGroup) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](t_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -125,7 +126,7 @@ func (t_ TimedMetadataGroup) TimeRange() TimeRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/timerange
-func (t_ TimedMetadataGroup) SetTimeRange(value TimeRange /* not a class type */) {
+func (t_ TimedMetadataGroup) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRange:"), value)
 }
 

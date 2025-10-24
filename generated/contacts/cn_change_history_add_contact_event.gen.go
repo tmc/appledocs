@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNChangeHistoryAddContactEvent] class.
@@ -31,7 +32,7 @@ type ICNChangeHistoryAddContactEvent interface {
 	ICNChangeHistoryEvent
 	// properties:
 	Contact() ICNContact
-	ContainerIdentifier() string /* primitive/slice/pointer. */
+	ContainerIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -102,8 +103,8 @@ func (c_ CNChangeHistoryAddContactEvent) Contact() ICNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/containerIdentifier
-func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

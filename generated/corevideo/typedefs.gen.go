@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for CoreVideo. DO NOT EDIT.
 
 package corevideo
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // BufferRef - A reference to a Core Video buffer.
@@ -16,8 +19,9 @@ type DisplayLinkRef uintptr
 // DisplayLinkOutputCallback - A type for a display link callback function that the system invokes when it’s time for the app to output a video frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVDisplayLinkOutputCallback
-// CVDisplayLinkOutputCallback has base type: int (*)(struct __CVDisplayLink *, const CVTimeStamp *, const CVTimeStamp *, unsigned long long, unsigned long long *, void *)
-type DisplayLinkOutputCallback uintptr
+// CVDisplayLinkOutputCallback is a callback function
+// C type: int (*)(struct __CVDisplayLink *, const CVTimeStamp *, const CVTimeStamp *, unsigned long long, unsigned long long *, void *)
+type DisplayLinkOutputCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint64, uint64, unsafe.Pointer) int32
 // EAGLContext - A type that resolves to an   pointer when appropriate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVEAGLContext
@@ -96,13 +100,15 @@ type PixelBufferPoolRef uintptr
 // PixelBufferReleaseBytesCallback - A type that defines a release callback function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferReleaseBytesCallback
-// CVPixelBufferReleaseBytesCallback has base type: void (*)(void *, const void *)
-type PixelBufferReleaseBytesCallback uintptr
+// CVPixelBufferReleaseBytesCallback is a callback function
+// C type: void (*)(void *, const void *)
+type PixelBufferReleaseBytesCallback = func(unsafe.Pointer, unsafe.Pointer)
 // PixelBufferReleasePlanarBytesCallback - Defines a pointer to a pixel buffer release callback function, which is called when a pixel buffer created by   is released.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferReleasePlanarBytesCallback
-// CVPixelBufferReleasePlanarBytesCallback has base type: void (*)(void *, const void *, unsigned long, unsigned long, const void **)
-type PixelBufferReleasePlanarBytesCallback uintptr
+// CVPixelBufferReleasePlanarBytesCallback is a callback function
+// C type: void (*)(void *, const void *, unsigned long, unsigned long, const void **)
+type PixelBufferReleasePlanarBytesCallback = func(unsafe.Pointer, unsafe.Pointer, uint, uint, unsafe.Pointer)
 // Return - A Core Video error type return value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVReturn

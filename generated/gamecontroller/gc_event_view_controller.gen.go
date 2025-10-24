@@ -31,8 +31,8 @@ type _GCEventViewControllerClass struct {
 type IGCEventViewController interface {
 	appkit.IViewController
 	// properties:
-	ControllerUserInteractionEnabled() bool /* primitive/slice/pointer. */
-	SetControllerUserInteractionEnabled(value bool /* primitive/slice/pointer. */)
+	ControllerUserInteractionEnabled() bool
+	SetControllerUserInteractionEnabled(value bool)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewGCEventViewController() GCEventViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventViewController/controllerUserInteractionEnabled
-func (g_ GCEventViewController) ControllerUserInteractionEnabled() bool /* primitive/slice/pointer. */ {
+func (g_ GCEventViewController) ControllerUserInteractionEnabled() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("controllerUserInteractionEnabled"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (g_ GCEventViewController) ControllerUserInteractionEnabled() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventViewController/controllerUserInteractionEnabled
-func (g_ GCEventViewController) SetControllerUserInteractionEnabled(value bool /* primitive/slice/pointer. */) {
+func (g_ GCEventViewController) SetControllerUserInteractionEnabled(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControllerUserInteractionEnabled:"), value)
 }
 

@@ -31,19 +31,23 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustRequestParams] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	Power() foundation.Number
-	SetPower(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	Power() objc.IObject /* cross-framework: NSNumber */
+	SetPower(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams
 type MTRDeviceEnergyManagementClusterPowerAdjustRequestParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustRequestParams() MTRDeviceEner
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/power
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Power() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("power"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Power() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("power"))
 	return rv
 }
 
 
-// SetPower sets the value of the power property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/power
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetPower(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetPower(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPower:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

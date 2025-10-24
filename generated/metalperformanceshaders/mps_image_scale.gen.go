@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageScale] class.
@@ -29,12 +31,18 @@ type _ImageScaleClass struct {
 // An interface definition for the [ImageScale] class.
 type IImageScale interface {
 	IUnaryImageKernel
-	ScaleTransform() unsafe.Pointer
-	SetScaleTransform(value unsafe.Pointer)
+	// properties:
+	ScaleTransform() MPSScaleTransform /* not a class type */
+	SetScaleTransform(value MPSScaleTransform /* not a class type */)
+	// methods:
 }
 
 // A filter that resizes and changes the aspect ratio of an image.
+
+
+// A filter that resizes and changes the aspect ratio of an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageScale
 type ImageScale struct {
 	UnaryImageKernel
@@ -81,20 +89,40 @@ func NewImageScale() ImageScale {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale/scaletransform
-func (i_ ImageScale) ScaleTransform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scaleTransform"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageScale/init(coder:device:)
+func NewImageScaleWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageScale {
+	instance := getImageScaleClass().Alloc()
+	rv := objc.Send[ImageScale](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetScaleTransform sets the value of the scaleTransform property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale/scaletransform
-func (i_ ImageScale) SetScaleTransform(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setScaleTransform:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageScale/init(device:)
+func NewImageScaleWithDevice(device objectivec.IObject) ImageScale {
+	instance := getImageScaleClass().Alloc()
+	rv := objc.Send[ImageScale](instance.ID, objc.Sel("initWithDevice:"), device)
+	rv.Autorelease()
+	return rv
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageScale/scaleTransform
+func (i_ ImageScale) ScaleTransform() MPSScaleTransform /* not a class type */ {
+	rv := objc.Send[ScaleTransform](i_.ID, objc.Sel("scaleTransform"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageScale/scaleTransform
+func (i_ ImageScale) SetScaleTransform(value MPSScaleTransform /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScaleTransform:"), value)
+}
 
 

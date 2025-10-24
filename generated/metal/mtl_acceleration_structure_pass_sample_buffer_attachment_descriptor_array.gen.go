@@ -30,9 +30,13 @@ type _AccelerationStructurePassSampleBufferAttachmentDescriptorArrayClass struct
 // An interface definition for the [AccelerationStructurePassSampleBufferAttachmentDescriptorArray] class.
 type IAccelerationStructurePassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray
 type AccelerationStructurePassSampleBufferAttachmentDescriptorArray struct {
 	objectivec.Object

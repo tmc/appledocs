@@ -31,15 +31,19 @@ type _MTRAttributeRequestPathClass struct {
 // An interface definition for the [MTRAttributeRequestPath] class.
 type IMTRAttributeRequestPath interface {
 	objectivec.IObject
-	Attribute() foundation.Number
-	SetAttribute(value foundation.INumber)
-	Cluster() foundation.Number
-	SetCluster(value foundation.INumber)
-	Endpoint() foundation.Number
-	SetEndpoint(value foundation.INumber)
+	// properties:
+	Attribute() objc.IObject /* cross-framework: NSNumber */
+	SetAttribute(value objc.IObject /* cross-framework: NSNumber */)
+	Cluster() objc.IObject /* cross-framework: NSNumber */
+	SetCluster(value objc.IObject /* cross-framework: NSNumber */)
+	Endpoint() objc.IObject /* cross-framework: NSNumber */
+	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeRequestPath
 type MTRAttributeRequestPath struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRAttributeRequestPath() MTRAttributeRequestPath {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
-func (m_ MTRAttributeRequestPath) Attribute() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attribute"))
+func (m_ MTRAttributeRequestPath) Attribute() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("attribute"))
 	return rv
 }
 
 
-// SetAttribute sets the value of the attribute property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
-func (m_ MTRAttributeRequestPath) SetAttribute(value foundation.INumber) {
+func (m_ MTRAttributeRequestPath) SetAttribute(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
-func (m_ MTRAttributeRequestPath) Cluster() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cluster"))
+func (m_ MTRAttributeRequestPath) Cluster() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
 
-// SetCluster sets the value of the cluster property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
-func (m_ MTRAttributeRequestPath) SetCluster(value foundation.INumber) {
+func (m_ MTRAttributeRequestPath) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
-func (m_ MTRAttributeRequestPath) Endpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endpoint"))
+func (m_ MTRAttributeRequestPath) Endpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 
-// SetEndpoint sets the value of the endpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
-func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.INumber) {
+func (m_ MTRAttributeRequestPath) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

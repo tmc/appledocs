@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchShipmentTrackingNumber] class.
@@ -30,8 +31,8 @@ type _DDMatchShipmentTrackingNumberClass struct {
 type IDDMatchShipmentTrackingNumber interface {
 	IDDMatch
 	// properties:
-	Carrier() string /* primitive/slice/pointer. */
-	TrackingNumber() string /* primitive/slice/pointer. */
+	Carrier() objc.IObject /* cross-framework: NSString */
+	TrackingNumber() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
-func (d_ DDMatchShipmentTrackingNumber) Carrier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
+func (d_ DDMatchShipmentTrackingNumber) Carrier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("carrier"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (d_ DDMatchShipmentTrackingNumber) Carrier() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
-func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
+func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("trackingNumber"))
 	return rv
 }
 

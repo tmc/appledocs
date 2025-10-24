@@ -29,9 +29,13 @@ type _MTRBaseClusterOccupancySensingClass struct {
 // An interface definition for the [MTRBaseClusterOccupancySensing] class.
 type IMTRBaseClusterOccupancySensing interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOccupancySensing
 type MTRBaseClusterOccupancySensing struct {
 	MTRGenericBaseCluster

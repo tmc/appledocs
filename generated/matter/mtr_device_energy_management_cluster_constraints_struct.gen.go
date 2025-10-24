@@ -31,19 +31,23 @@ type _MTRDeviceEnergyManagementClusterConstraintsStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterConstraintsStruct] class.
 type IMTRDeviceEnergyManagementClusterConstraintsStruct interface {
 	objectivec.IObject
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	LoadControl() foundation.Number
-	SetLoadControl(value foundation.INumber)
-	MaximumEnergy() foundation.Number
-	SetMaximumEnergy(value foundation.INumber)
-	NominalPower() foundation.Number
-	SetNominalPower(value foundation.INumber)
-	StartTime() foundation.Number
-	SetStartTime(value foundation.INumber)
+	// properties:
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	LoadControl() objc.IObject /* cross-framework: NSNumber */
+	SetLoadControl(value objc.IObject /* cross-framework: NSNumber */)
+	MaximumEnergy() objc.IObject /* cross-framework: NSNumber */
+	SetMaximumEnergy(value objc.IObject /* cross-framework: NSNumber */)
+	NominalPower() objc.IObject /* cross-framework: NSNumber */
+	SetNominalPower(value objc.IObject /* cross-framework: NSNumber */)
+	StartTime() objc.IObject /* cross-framework: NSNumber */
+	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct
 type MTRDeviceEnergyManagementClusterConstraintsStruct struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRDeviceEnergyManagementClusterConstraintsStruct() MTRDeviceEnergyManag
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("loadControl"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("loadControl"))
 	return rv
 }
 
 
-// SetLoadControl sets the value of the loadControl property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLoadControl:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumEnergy"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maximumEnergy"))
 	return rv
 }
 
 
-// SetMaximumEnergy sets the value of the maximumEnergy property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumEnergy:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nominalPower"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nominalPower"))
 	return rv
 }
 
 
-// SetNominalPower sets the value of the nominalPower property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
 
-// SetStartTime sets the value of the startTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

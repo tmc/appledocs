@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,20 @@ type _MXAverageClass struct {
 // An interface definition for the [MXAverage] class.
 type IMXAverage interface {
 	objectivec.IObject
+	// properties:
 	AverageMeasurement() unsafe.Pointer
 	SampleCount() int
 	StandardDeviation() float64
-	MXErrorDomain() string
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A unit of measure for an average.
+
+
+// A unit of measure for an average.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage
 type MXAverage struct {
 	objectivec.Object
@@ -82,35 +89,43 @@ func NewMXAverage() MXAverage {
 }
 
 
+
 // The value of the average.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/averageMeasurement
 func (m_ MXAverage) AverageMeasurement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averageMeasurement"))
 	return rv
 }
 
+
 // The number of samples used to calculate the average.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/sampleCount
 func (m_ MXAverage) SampleCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("sampleCount"))
 	return rv
 }
 
+
 // The standard deviation of the distribution of values used to calculate the average.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAverage/standardDeviation
 func (m_ MXAverage) StandardDeviation() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("standardDeviation"))
 	return rv
 }
 
+
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXAverage) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXAverage) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

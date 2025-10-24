@@ -29,9 +29,13 @@ type _MTRClusterContentLauncherClass struct {
 // An interface definition for the [MTRClusterContentLauncher] class.
 type IMTRClusterContentLauncher interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentLauncher
 type MTRClusterContentLauncher struct {
 	MTRGenericCluster

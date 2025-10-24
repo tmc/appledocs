@@ -33,8 +33,8 @@ type IGLKMeshBuffer interface {
 	// properties:
 	Allocator() IGLKMeshBufferAllocator
 	GlBufferName() unsafe.Pointer
-	Length() uint /* primitive/slice/pointer. */
-	Offset() uint /* primitive/slice/pointer. */
+	Length() uint
+	Offset() uint
 	Type() unsafe.Pointer
 	Zone() objc.ID
 	// methods:
@@ -104,7 +104,7 @@ func (g_ GLKMeshBuffer) GlBufferName() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/length
-func (g_ GLKMeshBuffer) Length() uint /* primitive/slice/pointer. */ {
+func (g_ GLKMeshBuffer) Length() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("length"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (g_ GLKMeshBuffer) Length() uint /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/offset
-func (g_ GLKMeshBuffer) Offset() uint /* primitive/slice/pointer. */ {
+func (g_ GLKMeshBuffer) Offset() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("offset"))
 	return rv
 }

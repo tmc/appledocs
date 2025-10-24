@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASESoundEventNodeDefinition] class.
@@ -29,17 +30,23 @@ type _PHASESoundEventNodeDefinitionClass struct {
 // An interface definition for the [PHASESoundEventNodeDefinition] class.
 type IPHASESoundEventNodeDefinition interface {
 	IPHASEDefinition
-	Children() []PHASESoundEventNodeDefinition
-	Identifier() string
-	SetIdentifier(value string)
-	MetaParameters() PHASEMetaParameter
+	// properties:
+	Children() []IPHASESoundEventNodeDefinition
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	MetaParameters() IPHASEMetaParameter
 	SetMetaParameters(value IPHASEMetaParameter)
+	// methods:
 }
 
 // A base class for sound event nodes that connect to form a node hierarchy.
 //
 // This class defines the base functionality for an object that, depending on the derived class’s type, either plays audio or hands off the invocation to one or more other nodes.
+
+
+// A base class for sound event nodes that connect to form a node hierarchy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEventNodeDefinition
 type PHASESoundEventNodeDefinition struct {
 	PHASEDefinition
@@ -86,45 +93,49 @@ func NewPHASESoundEventNodeDefinition() PHASESoundEventNodeDefinition {
 }
 
 
+
 // An array of child sound event nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEventNodeDefinition/children
-func (p_ PHASESoundEventNodeDefinition) Children() []PHASESoundEventNodeDefinition {
+func (p_ PHASESoundEventNodeDefinition) Children() []IPHASESoundEventNodeDefinition {
 	rv := objc.Send[[]PHASESoundEventNodeDefinition](p_.ID, objc.Sel("children"))
 	return rv
 }
 
+
 // A unique name for the definition.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
-func (p_ PHASESoundEventNodeDefinition) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASESoundEventNodeDefinition) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A unique name for the definition.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
-func (p_ PHASESoundEventNodeDefinition) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PHASESoundEventNodeDefinition) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
+
 
 // The object’s meta parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESoundEventNodeDefinition) MetaParameters() PHASEMetaParameter {
+func (p_ PHASESoundEventNodeDefinition) MetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
 
-// SetMetaParameters sets the value of the metaParameters property.
 // The object’s meta parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
 func (p_ PHASESoundEventNodeDefinition) SetMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)

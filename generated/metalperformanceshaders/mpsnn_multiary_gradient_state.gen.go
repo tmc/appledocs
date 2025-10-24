@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [MultiaryGradientState] class.
@@ -29,18 +30,22 @@ type _MultiaryGradientStateClass struct {
 // An interface definition for the [MultiaryGradientState] class.
 type IMultiaryGradientState interface {
 	IState
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNMultiaryGradientState
 type MultiaryGradientState struct {
-	State
+	coreml.State
 }
 
 // MultiaryGradientStateFrom constructs a [MultiaryGradientState] from an unsafe.Pointer.
 func MultiaryGradientStateFrom(ptr unsafe.Pointer) MultiaryGradientState {
 	return MultiaryGradientState{
-		State: StateFrom(ptr),
+		State: coreml.StateFrom(ptr),
 	}
 }
 

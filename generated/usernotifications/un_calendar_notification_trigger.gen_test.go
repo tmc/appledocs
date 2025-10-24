@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = usernotifications.NewUNCalendarNotificationTrigger
 
+// ExampleUNCalendarNotificationTrigger_NextTriggerDate demonstrates using NextTriggerDate on a UNCalendarNotificationTrigger instance.
+// The next date at which the trigger conditions are met.
+func ExampleUNCalendarNotificationTrigger_NextTriggerDate() {
+	obj := usernotifications.NewUNCalendarNotificationTrigger()
+	_ = obj.NextTriggerDate()
+	// Output:
+	}
+

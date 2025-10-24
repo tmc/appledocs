@@ -31,15 +31,19 @@ type _MTRThreadNetworkDirectoryClusterGetOperationalDatasetParamsClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams] class.
 type IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams interface {
 	objectivec.IObject
-	ExtendedPanID() foundation.NSData
-	SetExtendedPanID(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ExtendedPanID() objc.IObject /* cross-framework: NSData */
+	SetExtendedPanID(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams
 type MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams() MTRThreadN
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPanID() foundation.NSData {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPanID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("extendedPanID"))
 	return rv
 }
 
 
-// SetExtendedPanID sets the value of the extendedPanID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetExtendedPanID(value foundation.IData) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetExtendedPanID(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

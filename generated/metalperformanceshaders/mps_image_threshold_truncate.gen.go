@@ -32,10 +32,10 @@ type _ImageThresholdTruncateClass struct {
 type IImageThresholdTruncate interface {
 	IUnaryImageKernel
 	// properties:
-	ThresholdValue() float32 /* primitive/slice/pointer. */
-	SetThresholdValue(value float32 /* primitive/slice/pointer. */)
-	Transform() float32 /* primitive/slice/pointer. */
-	SetTransform(value float32 /* primitive/slice/pointer. */)
+	ThresholdValue() float32
+	SetThresholdValue(value float32)
+	Transform() float32
+	SetTransform(value float32)
 	// methods:
 }
 
@@ -109,7 +109,7 @@ func NewImageThresholdTruncateWithCoderDevice(aDecoder objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/thresholdvalue
-func (i_ ImageThresholdTruncate) ThresholdValue() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdTruncate) ThresholdValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (i_ ImageThresholdTruncate) ThresholdValue() float32 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/thresholdvalue
-func (i_ ImageThresholdTruncate) SetThresholdValue(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageThresholdTruncate) SetThresholdValue(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
 }
 
@@ -128,7 +128,7 @@ func (i_ ImageThresholdTruncate) SetThresholdValue(value float32 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/transform
-func (i_ ImageThresholdTruncate) Transform() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdTruncate) Transform() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("transform"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (i_ ImageThresholdTruncate) Transform() float32 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate/transform
-func (i_ ImageThresholdTruncate) SetTransform(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageThresholdTruncate) SetTransform(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
 }
 

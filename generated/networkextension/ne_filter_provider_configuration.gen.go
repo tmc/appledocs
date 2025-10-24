@@ -31,32 +31,38 @@ type _NEFilterProviderConfigurationClass struct {
 // An interface definition for the [NEFilterProviderConfiguration] class.
 type INEFilterProviderConfiguration interface {
 	objectivec.IObject
+	// properties:
 	FilterBrowsers() bool
 	SetFilterBrowsers(value bool)
-	FilterDataProviderBundleIdentifier() string
-	SetFilterDataProviderBundleIdentifier(value string)
-	FilterPacketProviderBundleIdentifier() string
-	SetFilterPacketProviderBundleIdentifier(value string)
+	FilterDataProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetFilterDataProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
+	FilterPacketProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */
+	SetFilterPacketProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */)
 	FilterPackets() bool
 	SetFilterPackets(value bool)
 	FilterSockets() bool
 	SetFilterSockets(value bool)
-	IdentityReference() foundation.Data
-	SetIdentityReference(value foundation.IData)
-	Organization() string
-	SetOrganization(value string)
-	PasswordReference() foundation.Data
-	SetPasswordReference(value foundation.IData)
-	ServerAddress() string
-	SetServerAddress(value string)
-	Username() string
-	SetUsername(value string)
-	VendorConfiguration() string
-	SetVendorConfiguration(value string)
+	IdentityReference() objc.IObject /* cross-framework: Data */
+	SetIdentityReference(value objc.IObject /* cross-framework: Data */)
+	Organization() objc.IObject /* cross-framework: NSString */
+	SetOrganization(value objc.IObject /* cross-framework: NSString */)
+	PasswordReference() objc.IObject /* cross-framework: Data */
+	SetPasswordReference(value objc.IObject /* cross-framework: Data */)
+	ServerAddress() objc.IObject /* cross-framework: NSString */
+	SetServerAddress(value objc.IObject /* cross-framework: NSString */)
+	Username() objc.IObject /* cross-framework: NSString */
+	SetUsername(value objc.IObject /* cross-framework: NSString */)
+	VendorConfiguration() objc.IObject /* cross-framework: NSString */
+	SetVendorConfiguration(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // Configuration parameters for a content filter.
+
+
+// Configuration parameters for a content filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProviderConfiguration
 type NEFilterProviderConfiguration struct {
 	objectivec.Object
@@ -101,8 +107,10 @@ func NewNEFilterProviderConfiguration() NEFilterProviderConfiguration {
 }
 
 
+
 // A Boolean value that indicates that the system applies the filter to flows of network data originated from WebKit browser objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterbrowsers
 func (n_ NEFilterProviderConfiguration) FilterBrowsers() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("filterBrowsers"))
@@ -110,53 +118,56 @@ func (n_ NEFilterProviderConfiguration) FilterBrowsers() bool {
 }
 
 
-// SetFilterBrowsers sets the value of the filterBrowsers property.
 // A Boolean value that indicates that the system applies the filter to flows of network data originated from WebKit browser objects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterbrowsers
 func (n_ NEFilterProviderConfiguration) SetFilterBrowsers(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterBrowsers:"), value)
 }
 
+
 // The bundle identifier of the filter data provider system extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterdataproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) FilterDataProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("filterDataProviderBundleIdentifier"))
+func (n_ NEFilterProviderConfiguration) FilterDataProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("filterDataProviderBundleIdentifier"))
 	return rv
 }
 
 
-// SetFilterDataProviderBundleIdentifier sets the value of the filterDataProviderBundleIdentifier property.
 // The bundle identifier of the filter data provider system extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterdataproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) SetFilterDataProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterDataProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetFilterDataProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterDataProviderBundleIdentifier:"), value)
 }
+
 
 // The bundle identifier of the filter packet provider system extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpacketproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) FilterPacketProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("filterPacketProviderBundleIdentifier"))
+func (n_ NEFilterProviderConfiguration) FilterPacketProviderBundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("filterPacketProviderBundleIdentifier"))
 	return rv
 }
 
 
-// SetFilterPacketProviderBundleIdentifier sets the value of the filterPacketProviderBundleIdentifier property.
 // The bundle identifier of the filter packet provider system extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpacketproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) SetFilterPacketProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterPacketProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetFilterPacketProviderBundleIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterPacketProviderBundleIdentifier:"), value)
 }
+
 
 // A Boolean value that indicates that the system applies the filter to packets of network data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpackets
 func (n_ NEFilterProviderConfiguration) FilterPackets() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("filterPackets"))
@@ -164,17 +175,18 @@ func (n_ NEFilterProviderConfiguration) FilterPackets() bool {
 }
 
 
-// SetFilterPackets sets the value of the filterPackets property.
 // A Boolean value that indicates that the system applies the filter to packets of network data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpackets
 func (n_ NEFilterProviderConfiguration) SetFilterPackets(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterPackets:"), value)
 }
 
+
 // A Boolean value that indicates that the system applies the filter to flows of network data originated from sockets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filtersockets
 func (n_ NEFilterProviderConfiguration) FilterSockets() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("filterSockets"))
@@ -182,121 +194,126 @@ func (n_ NEFilterProviderConfiguration) FilterSockets() bool {
 }
 
 
-// SetFilterSockets sets the value of the filterSockets property.
 // A Boolean value that indicates that the system applies the filter to flows of network data originated from sockets.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filtersockets
 func (n_ NEFilterProviderConfiguration) SetFilterSockets(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterSockets:"), value)
 }
 
+
 // A persistent reference to a keychain item containing a certificate and private key associated with the filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/identityreference
-func (n_ NEFilterProviderConfiguration) IdentityReference() foundation.Data {
+func (n_ NEFilterProviderConfiguration) IdentityReference() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("identityReference"))
 	return rv
 }
 
 
-// SetIdentityReference sets the value of the identityReference property.
 // A persistent reference to a keychain item containing a certificate and private key associated with the filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/identityreference
-func (n_ NEFilterProviderConfiguration) SetIdentityReference(value foundation.IData) {
+func (n_ NEFilterProviderConfiguration) SetIdentityReference(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
 }
 
+
 // A string that identifies the organization that administers the filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/organization
-func (n_ NEFilterProviderConfiguration) Organization() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("organization"))
+func (n_ NEFilterProviderConfiguration) Organization() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("organization"))
 	return rv
 }
 
 
-// SetOrganization sets the value of the organization property.
 // A string that identifies the organization that administers the filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/organization
-func (n_ NEFilterProviderConfiguration) SetOrganization(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOrganization:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetOrganization(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOrganization:"), value)
 }
+
 
 // A persistent reference to a keychain item containing a password associated with the filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/passwordreference
-func (n_ NEFilterProviderConfiguration) PasswordReference() foundation.Data {
+func (n_ NEFilterProviderConfiguration) PasswordReference() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("passwordReference"))
 	return rv
 }
 
 
-// SetPasswordReference sets the value of the passwordReference property.
 // A persistent reference to a keychain item containing a password associated with the filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/passwordreference
-func (n_ NEFilterProviderConfiguration) SetPasswordReference(value foundation.IData) {
+func (n_ NEFilterProviderConfiguration) SetPasswordReference(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPasswordReference:"), value)
 }
 
+
 // The address of a server that the Filter Control Provider may contact for rules and other configuration information.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/serveraddress
-func (n_ NEFilterProviderConfiguration) ServerAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("serverAddress"))
+func (n_ NEFilterProviderConfiguration) ServerAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 
 
-// SetServerAddress sets the value of the serverAddress property.
 // The address of a server that the Filter Control Provider may contact for rules and other configuration information.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/serveraddress
-func (n_ NEFilterProviderConfiguration) SetServerAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetServerAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), value)
 }
+
 
 // A string that identifies the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/username
-func (n_ NEFilterProviderConfiguration) Username() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("username"))
+func (n_ NEFilterProviderConfiguration) Username() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("username"))
 	return rv
 }
 
 
-// SetUsername sets the value of the username property.
 // A string that identifies the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/username
-func (n_ NEFilterProviderConfiguration) SetUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetUsername(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), value)
 }
+
 
 // A dictionary of provider-specific configuration settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/vendorconfiguration
-func (n_ NEFilterProviderConfiguration) VendorConfiguration() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("vendorConfiguration"))
+func (n_ NEFilterProviderConfiguration) VendorConfiguration() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("vendorConfiguration"))
 	return rv
 }
 
 
-// SetVendorConfiguration sets the value of the vendorConfiguration property.
 // A dictionary of provider-specific configuration settings.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/vendorconfiguration
-func (n_ NEFilterProviderConfiguration) SetVendorConfiguration(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setVendorConfiguration:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetVendorConfiguration(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setVendorConfiguration:"), value)
 }
 
 

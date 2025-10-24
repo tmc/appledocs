@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageThresholdBinary] class.
@@ -29,18 +31,24 @@ type _ImageThresholdBinaryClass struct {
 // An interface definition for the [ImageThresholdBinary] class.
 type IImageThresholdBinary interface {
 	IUnaryImageKernel
+	// properties:
 	MaximumValue() float32
 	SetMaximumValue(value float32)
 	ThresholdValue() float32
 	SetThresholdValue(value float32)
 	Transform() float32
 	SetTransform(value float32)
+	// methods:
 }
 
 // A filter that returns a specified value for each pixel with a value greater than a specified threshold or 0 otherwise.
 //
 // An filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold. The following listing shows the threshold binary function. Listing 1. Threshold binary function
+
+
+// A filter that returns a specified value for each pixel with a value greater than a specified threshold or 0 otherwise.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdBinary
 type ImageThresholdBinary struct {
 	UnaryImageKernel
@@ -87,8 +95,21 @@ func NewImageThresholdBinary() ImageThresholdBinary {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdBinary/init(coder:device:)
+func NewImageThresholdBinaryWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageThresholdBinary {
+	instance := getImageThresholdBinaryClass().Alloc()
+	rv := objc.Send[ImageThresholdBinary](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The maximum value used to initialize the threshold filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/maximumvalue
 func (i_ ImageThresholdBinary) MaximumValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("maximumValue"))
@@ -96,17 +117,18 @@ func (i_ ImageThresholdBinary) MaximumValue() float32 {
 }
 
 
-// SetMaximumValue sets the value of the maximumValue property.
 // The maximum value used to initialize the threshold filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/maximumvalue
 func (i_ ImageThresholdBinary) SetMaximumValue(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumValue:"), value)
 }
 
+
 // The threshold value used to initialize the threshold filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/thresholdvalue
 func (i_ ImageThresholdBinary) ThresholdValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
@@ -114,17 +136,18 @@ func (i_ ImageThresholdBinary) ThresholdValue() float32 {
 }
 
 
-// SetThresholdValue sets the value of the thresholdValue property.
 // The threshold value used to initialize the threshold filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/thresholdvalue
 func (i_ ImageThresholdBinary) SetThresholdValue(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
 }
 
+
 // The color transform used to initialize the threshold filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
 func (i_ ImageThresholdBinary) Transform() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("transform"))
@@ -132,14 +155,12 @@ func (i_ ImageThresholdBinary) Transform() float32 {
 }
 
 
-// SetTransform sets the value of the transform property.
 // The color transform used to initialize the threshold filter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary/transform
 func (i_ ImageThresholdBinary) SetTransform(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
 }
-
 
 

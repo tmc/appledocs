@@ -29,18 +29,24 @@ type _CNNFullyConnectedGradientNodeClass struct {
 
 // An interface definition for the [CNNFullyConnectedGradientNode] class.
 type ICNNFullyConnectedGradientNode interface {
-	objectivec.IObject
+	ICNNConvolutionGradientNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNFullyConnectedGradientNode
 type CNNFullyConnectedGradientNode struct {
-	objectivec.Object
+	CNNConvolutionGradientNode
 }
 
 // CNNFullyConnectedGradientNodeFrom constructs a [CNNFullyConnectedGradientNode] from an unsafe.Pointer.
 func CNNFullyConnectedGradientNodeFrom(ptr unsafe.Pointer) CNNFullyConnectedGradientNode {
-	return CNNFullyConnectedGradientNode{objectivec.Object{objc.ID(ptr)}}
+	return CNNFullyConnectedGradientNode{
+		CNNConvolutionGradientNode: CNNConvolutionGradientNodeFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -75,9 +81,10 @@ func NewCNNFullyConnectedGradientNode() CNNFullyConnectedGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNFullyConnectedGradientNode/init(sourceGradient:sourceImage:convolutionGradientState:weights:)
-func NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGradientStateWeights(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer, weights objectivec.IObject) CNNFullyConnectedGradientNode {
+func NewCNNFullyConnectedGradientNodeWithSourceGradientSourceImageConvolutionGradientStateWeights(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState objc.IObject /* cross-framework: CNNConvolutionGradientStateNode */, weights objectivec.IObject) CNNFullyConnectedGradientNode {
 	instance := getCNNFullyConnectedGradientNodeClass().Alloc()
 	rv := objc.Send[CNNFullyConnectedGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:convolutionGradientState:weights:"), sourceGradient, sourceImage, gradientState, weights)
 	rv.Autorelease()

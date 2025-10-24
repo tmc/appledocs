@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,14 @@ type _ModelConfigurationClass struct {
 type IModelConfiguration interface {
 	objectivec.IObject
 	// properties:
-	AllowLowPrecisionAccumulationOnGPU() bool /* primitive/slice/pointer. */
-	SetAllowLowPrecisionAccumulationOnGPU(value bool /* primitive/slice/pointer. */)
+	AllowLowPrecisionAccumulationOnGPU() bool
+	SetAllowLowPrecisionAccumulationOnGPU(value bool)
 	ComputeUnits() ComputeUnits /* not a class type */
 	SetComputeUnits(value ComputeUnits /* not a class type */)
-	FunctionName() string /* primitive/slice/pointer. */
-	SetFunctionName(value string /* primitive/slice/pointer. */)
-	ModelDisplayName() string /* primitive/slice/pointer. */
-	SetModelDisplayName(value string /* primitive/slice/pointer. */)
+	FunctionName() objc.IObject /* cross-framework: NSString */
+	SetFunctionName(value objc.IObject /* cross-framework: NSString */)
+	ModelDisplayName() objc.IObject /* cross-framework: NSString */
+	SetModelDisplayName(value objc.IObject /* cross-framework: NSString */)
 	OptimizationHints() IOptimizationHints
 	SetOptimizationHints(value IOptimizationHints)
 	Parameters() IMLParameterKey
@@ -105,7 +106,7 @@ func NewModelConfiguration() ModelConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
-func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool /* primitive/slice/pointer. */ {
+func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowLowPrecisionAccumulationOnGPU"))
 	return rv
 }
@@ -115,7 +116,7 @@ func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
-func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool /* primitive/slice/pointer. */) {
+func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowLowPrecisionAccumulationOnGPU:"), value)
 }
 
@@ -143,8 +144,8 @@ func (m_ ModelConfiguration) SetComputeUnits(value ComputeUnits /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
-func (m_ ModelConfiguration) FunctionName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
+func (m_ ModelConfiguration) FunctionName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("functionName"))
 	return rv
 }
 
@@ -153,8 +154,8 @@ func (m_ ModelConfiguration) FunctionName() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
-func (m_ ModelConfiguration) SetFunctionName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
+func (m_ ModelConfiguration) SetFunctionName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), value)
 }
 
 
@@ -162,8 +163,8 @@ func (m_ ModelConfiguration) SetFunctionName(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) ModelDisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
+func (m_ ModelConfiguration) ModelDisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("modelDisplayName"))
 	return rv
 }
 
@@ -172,8 +173,8 @@ func (m_ ModelConfiguration) ModelDisplayName() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) SetModelDisplayName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
+func (m_ ModelConfiguration) SetModelDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _MKAddressClass struct {
 type IMKAddress interface {
 	objectivec.IObject
 	// properties:
-	FullAddress() string /* primitive/slice/pointer. */
-	SetFullAddress(value string /* primitive/slice/pointer. */)
-	ShortAddress() string /* primitive/slice/pointer. */
-	SetShortAddress(value string /* primitive/slice/pointer. */)
+	FullAddress() objc.IObject /* cross-framework: NSString */
+	SetFullAddress(value objc.IObject /* cross-framework: NSString */)
+	ShortAddress() objc.IObject /* cross-framework: NSString */
+	SetShortAddress(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewMKAddress() MKAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) FullAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("fullAddress"))
+func (m_ MKAddress) FullAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("fullAddress"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (m_ MKAddress) FullAddress() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) SetFullAddress(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), objc.String(value))
+func (m_ MKAddress) SetFullAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), value)
 }
 
 
@@ -114,8 +115,8 @@ func (m_ MKAddress) SetFullAddress(value string /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) ShortAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("shortAddress"))
+func (m_ MKAddress) ShortAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("shortAddress"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (m_ MKAddress) ShortAddress() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) SetShortAddress(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))
+func (m_ MKAddress) SetShortAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), value)
 }
 
 

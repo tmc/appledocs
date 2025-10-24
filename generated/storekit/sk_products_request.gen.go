@@ -29,14 +29,20 @@ type _ProductsRequestClass struct {
 // An interface definition for the [ProductsRequest] class.
 type IProductsRequest interface {
 	IRequest
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	Delegate() ProductsRequestDelegate /* not a class type */
+	SetDelegate(value ProductsRequestDelegate /* not a class type */)
+	// methods:
 }
 
 // An object that can retrieve localized information from the App Store about a specified list of products.
 //
 // Your app uses an object to present localized prices and other information to the user without having to maintain that list of product information itself. To use an object, you initialize it with a list of product identifier strings, attach a delegate, and then call the request’s method. When the request completes, your delegate receives an object.
+
+
+// An object that can retrieve localized information from the App Store about a specified list of products.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductsRequest
 type ProductsRequest struct {
 	Request
@@ -83,21 +89,22 @@ func NewProductsRequest() ProductsRequest {
 }
 
 
+
 // The delegate that receives the response of the app’s products request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsrequest/delegate
-func (p_ ProductsRequest) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+func (p_ ProductsRequest) Delegate() ProductsRequestDelegate /* not a class type */ {
+	rv := objc.Send[ProductsRequestDelegate](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate that receives the response of the app’s products request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsrequest/delegate
-func (p_ ProductsRequest) SetDelegate(value unsafe.Pointer) {
+func (p_ ProductsRequest) SetDelegate(value ProductsRequestDelegate /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ListFormatter] class.
@@ -36,8 +35,6 @@ type IListFormatter interface {
 	Locale() ILocale
 	SetLocale(value ILocale)
 	// methods:
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromItems(items IArray) IString
 }
 
 // An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
@@ -95,40 +92,10 @@ func NewListFormatter() ListFormatter {
 
 
 
-// Constructs a formatted string from an array of strings that uses the list format specific to the current locale.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/localizedString(byJoining:)
-func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string /* primitive/slice/pointer. */) IString {
-	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localizedStringByJoiningStrings:"), strings)
-	return rv
-}
-
-
-// Creates a formatted string for an array of items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/string(for:)
-func (l_ ListFormatter) StringForObjectValue(obj objectivec.IObject) IString {
-	rv := objc.Send[String](l_.ID, objc.Sel("stringForObjectValue:"), obj)
-	return rv
-}
-
-
-// Creates a formatted string for an array of items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/string(from:)
-func (l_ ListFormatter) StringFromItems(items IArray) IString {
-	rv := objc.Send[String](l_.ID, objc.Sel("stringFromItems:"), items)
-	return rv
-}
-
-
 // An object that formats each item in the list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/itemFormatter
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
 func (l_ ListFormatter) ItemFormatter() IFormatter {
 	rv := objc.Send[Formatter](l_.ID, objc.Sel("itemFormatter"))
 	return rv
@@ -138,7 +105,7 @@ func (l_ ListFormatter) ItemFormatter() IFormatter {
 // An object that formats each item in the list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/itemFormatter
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/itemformatter
 func (l_ ListFormatter) SetItemFormatter(value IFormatter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setItemFormatter:"), value)
 }
@@ -147,7 +114,7 @@ func (l_ ListFormatter) SetItemFormatter(value IFormatter) {
 // The locale to use when formatting items in the list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/locale
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
 func (l_ ListFormatter) Locale() ILocale {
 	rv := objc.Send[Locale](l_.ID, objc.Sel("locale"))
 	return rv
@@ -157,7 +124,7 @@ func (l_ ListFormatter) Locale() ILocale {
 // The locale to use when formatting items in the list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/locale
+// [Full Topic]: https://developer.apple.com/documentation/foundation/listformatter/locale
 func (l_ ListFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLocale:"), value)
 }

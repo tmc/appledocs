@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,18 @@ type _ToolPickerItemClass struct {
 // An interface definition for the [ToolPickerItem] class.
 type IToolPickerItem interface {
 	objectivec.IObject
-	Identifier() string
-	Tool() PKTool
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
+	Tool() IPKTool
+	// methods:
 }
 
 // The base class for an item in the tool picker.
+
+
+// The base class for an item in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem
 type ToolPickerItem struct {
 	objectivec.Object
@@ -80,19 +87,23 @@ func NewToolPickerItem() ToolPickerItem {
 }
 
 
+
 // A string that identifies the item in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/identifier
-func (t_ ToolPickerItem) Identifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerItem) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The this tool picker item represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/tool-918ln
-func (t_ ToolPickerItem) Tool() PKTool {
-	rv := objc.Send[PKTool](t_.ID, objc.Sel("tool"))
+func (t_ ToolPickerItem) Tool() IPKTool {
+	rv := objc.Send[Tool](t_.ID, objc.Sel("tool"))
 	return rv
 }
 

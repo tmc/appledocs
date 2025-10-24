@@ -31,7 +31,7 @@ type _ModelStructureNeuralNetworkClass struct {
 type IModelStructureNeuralNetwork interface {
 	objectivec.IObject
 	// properties:
-	Layers() []ModelStructureNeuralNetworkLayer /* primitive/slice/pointer. */
+	Layers() []IModelStructureNeuralNetworkLayer
 	// methods:
 }
 
@@ -90,7 +90,7 @@ func NewModelStructureNeuralNetwork() ModelStructureNeuralNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork/layers
-func (m_ ModelStructureNeuralNetwork) Layers() []ModelStructureNeuralNetworkLayer /* primitive/slice/pointer. */ {
+func (m_ ModelStructureNeuralNetwork) Layers() []IModelStructureNeuralNetworkLayer {
 	rv := objc.Send[[]ModelStructureNeuralNetworkLayer](m_.ID, objc.Sel("layers"))
 	return rv
 }

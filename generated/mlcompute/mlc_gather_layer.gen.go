@@ -29,12 +29,18 @@ type _CGatherLayerClass struct {
 // An interface definition for the [CGatherLayer] class.
 type ICGatherLayer interface {
 	ICLayer
+	// properties:
 	Dimension() int
 	SetDimension(value int)
+	// methods:
 }
 
 // A layer that fetches data at the locations you specify.
+
+
+// A layer that fetches data at the locations you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer
 type CGatherLayer struct {
 	CLayer
@@ -81,8 +87,10 @@ func NewCGatherLayer() CGatherLayer {
 }
 
 
+
 // The dimension to index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
 func (c_ CGatherLayer) Dimension() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
@@ -90,10 +98,9 @@ func (c_ CGatherLayer) Dimension() int {
 }
 
 
-// SetDimension sets the value of the dimension property.
 // The dimension to index.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
 func (c_ CGatherLayer) SetDimension(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)

@@ -31,17 +31,21 @@ type _MTRNetworkCommissioningClusterNetworkConfigResponseParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterNetworkConfigResponseParams] class.
 type IMTRNetworkCommissioningClusterNetworkConfigResponseParams interface {
 	objectivec.IObject
-	DebugText() string
-	SetDebugText(value string)
-	NetworkIndex() foundation.Number
-	SetNetworkIndex(value foundation.INumber)
-	NetworkingStatus() foundation.Number
-	SetNetworkingStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DebugText() objc.IObject /* cross-framework: NSString */
+	SetDebugText(value objc.IObject /* cross-framework: NSString */)
+	NetworkIndex() objc.IObject /* cross-framework: NSNumber */
+	SetNetworkIndex(value objc.IObject /* cross-framework: NSNumber */)
+	NetworkingStatus() objc.IObject /* cross-framework: NSNumber */
+	SetNetworkingStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterNetworkConfigResponseParams
 type MTRNetworkCommissioningClusterNetworkConfigResponseParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRNetworkCommissioningClusterNetworkConfigResponseParams() MTRNetworkCo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
 
-// SetDebugText sets the value of the debugText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkindex
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkIndex"))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("networkIndex"))
 	return rv
 }
 
 
-// SetNetworkIndex sets the value of the networkIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkindex
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkIndex(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkingstatus
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkingStatus() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("networkingStatus"))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkingStatus() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("networkingStatus"))
 	return rv
 }
 
 
-// SetNetworkingStatus sets the value of the networkingStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkingstatus
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkingStatus(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkingStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -9,13 +9,10 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Action = _undefined // referenced in QuartzCore
 	AffineTransform = _undefined // referenced in QuartzCore
 	AnimationCalculationMode = _undefined // referenced in QuartzCore
 	AnimationDelegate = _undefined // referenced in QuartzCore
 	AnimationRotationMode = _undefined // referenced in QuartzCore
-	AnyHashable = _undefined // referenced in QuartzCore
-	Bool = _undefined // referenced in QuartzCore
 	ColorRef = _undefined // referenced in QuartzCore
 	ColorSpaceRef = _undefined // referenced in QuartzCore
 	ConstraintAttribute = _undefined // referenced in QuartzCore
@@ -26,9 +23,6 @@ type (
 	EmitterLayerRenderMode = _undefined // referenced in QuartzCore
 	FrameRateRange = _undefined // referenced in QuartzCore
 	GradientLayerType = _undefined // referenced in QuartzCore
-	LContextObj = _undefined // referenced in QuartzCore
-	LPixelFormatObj = _undefined // referenced in QuartzCore
-	LayoutManager = _undefined // referenced in QuartzCore
 	MetalDrawable = _undefined // referenced in QuartzCore
 	NAnimationEvent = _undefined // referenced in QuartzCore
 	PathRef = _undefined // referenced in QuartzCore
@@ -44,11 +38,9 @@ type (
 	Size = _undefined // referenced in QuartzCore
 	TextLayerAlignmentMode = _undefined // referenced in QuartzCore
 	TextLayerTruncationMode = _undefined // referenced in QuartzCore
-	TimeStamp = _undefined // referenced in QuartzCore
 	TransitionSubtype = _undefined // referenced in QuartzCore
 	TransitionType = _undefined // referenced in QuartzCore
 	TypeRef = _undefined // referenced in QuartzCore
-	UInt32 = _undefined // referenced in QuartzCore
 	ValueFunctionName = _undefined // referenced in QuartzCore
 )
 

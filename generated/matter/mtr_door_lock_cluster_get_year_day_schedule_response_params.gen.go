@@ -31,21 +31,25 @@ type _MTRDoorLockClusterGetYearDayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetYearDayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetYearDayScheduleResponseParams interface {
 	objectivec.IObject
-	LocalEndTime() foundation.Number
-	SetLocalEndTime(value foundation.INumber)
-	LocalStartTime() foundation.Number
-	SetLocalStartTime(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
-	YearDayIndex() foundation.Number
-	SetYearDayIndex(value foundation.INumber)
+	// properties:
+	LocalEndTime() objc.IObject /* cross-framework: NSNumber */
+	SetLocalEndTime(value objc.IObject /* cross-framework: NSNumber */)
+	LocalStartTime() objc.IObject /* cross-framework: NSNumber */
+	SetLocalStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	YearDayIndex() objc.IObject /* cross-framework: NSNumber */
+	SetYearDayIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterGetYearDayScheduleResponseParams
 type MTRDoorLockClusterGetYearDayScheduleResponseParams struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRDoorLockClusterGetYearDayScheduleResponseParams() MTRDoorLockClusterG
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalEndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalEndTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("localEndTime"))
 	return rv
 }
 
 
-// SetLocalEndTime sets the value of the localEndTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalEndTime(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalEndTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) LocalStartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("localStartTime"))
 	return rv
 }
 
 
-// SetLocalStartTime sets the value of the localStartTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalStartTime(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetLocalStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/userindex
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/userindex
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/yeardayindex
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) YearDayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("yearDayIndex"))
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) YearDayIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("yearDayIndex"))
 	return rv
 }
 
 
-// SetYearDayIndex sets the value of the yearDayIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetyeardayscheduleresponseparams/yeardayindex
-func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetYearDayIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetYearDayScheduleResponseParams) SetYearDayIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setYearDayIndex:"), value)
 }
 

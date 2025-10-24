@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHAssetResourceCreationOptions] class.
@@ -30,20 +32,26 @@ type _PHAssetResourceCreationOptionsClass struct {
 // An interface definition for the [PHAssetResourceCreationOptions] class.
 type IPHAssetResourceCreationOptions interface {
 	objectivec.IObject
-	ContentType() unsafe.Pointer
-	SetContentType(value unsafe.Pointer)
-	OriginalFilename() string
-	SetOriginalFilename(value string)
+	// properties:
+	ContentType() objc.IObject /* cross-framework: UTType */
+	SetContentType(value objc.IObject /* cross-framework: UTType */)
+	OriginalFilename() objc.IObject /* cross-framework: NSString */
+	SetOriginalFilename(value objc.IObject /* cross-framework: NSString */)
 	ShouldMoveFile() bool
 	SetShouldMoveFile(value bool)
-	UniformTypeIdentifier() string
-	SetUniformTypeIdentifier(value string)
+	UniformTypeIdentifier() objc.IObject /* cross-framework: NSString */
+	SetUniformTypeIdentifier(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A set of options affecting the creation of a new Photos asset from underlying resources.
 //
 // You use this class when creating an asset for addition to the Photos library with a object.
+
+
+// A set of options affecting the creation of a new Photos asset from underlying resources.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions
 type PHAssetResourceCreationOptions struct {
 	objectivec.Object
@@ -88,76 +96,80 @@ func NewPHAssetResourceCreationOptions() PHAssetResourceCreationOptions {
 }
 
 
+
 // The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/contentType
-func (p_ PHAssetResourceCreationOptions) ContentType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/contenttype
+func (p_ PHAssetResourceCreationOptions) ContentType() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 
-// SetContentType sets the value of the contentType property.
 // The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/contentType
-func (p_ PHAssetResourceCreationOptions) SetContentType(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/contenttype
+func (p_ PHAssetResourceCreationOptions) SetContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentType:"), value)
 }
 
+
 // The filename for the asset resource being created.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/originalFilename
-func (p_ PHAssetResourceCreationOptions) OriginalFilename() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("originalFilename"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/originalfilename
+func (p_ PHAssetResourceCreationOptions) OriginalFilename() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
 
-// SetOriginalFilename sets the value of the originalFilename property.
 // The filename for the asset resource being created.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/originalFilename
-func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/originalfilename
+func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), value)
 }
+
 
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/shouldMoveFile
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/shouldmovefile
 func (p_ PHAssetResourceCreationOptions) ShouldMoveFile() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldMoveFile"))
 	return rv
 }
 
 
-// SetShouldMoveFile sets the value of the shouldMoveFile property.
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/shouldMoveFile
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/shouldmovefile
 func (p_ PHAssetResourceCreationOptions) SetShouldMoveFile(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMoveFile:"), value)
 }
 
+
 // The uniform type identifier for the resource.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/uniformTypeIdentifier
-func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/uniformtypeidentifier
+func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 
 
-// SetUniformTypeIdentifier sets the value of the uniformTypeIdentifier property.
 // The uniform type identifier for the resource.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceCreationOptions/uniformTypeIdentifier
-func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phassetresourcecreationoptions/uniformtypeidentifier
+func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), value)
 }
 
 

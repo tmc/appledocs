@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,22 +31,26 @@ type _NDArrayClass struct {
 // An interface definition for the [NDArray] class.
 type INDArray interface {
 	objectivec.IObject
-	ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) NDArray
-	DataType() unsafe.Pointer
-	SetDataType(value unsafe.Pointer)
+	// properties:
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
 	DataTypeSize() int
 	SetDataTypeSize(value int)
-	Device() unsafe.Pointer
-	SetDevice(value unsafe.Pointer)
-	Label() string
-	SetLabel(value string)
+	Device() Device /* not a class type */
+	SetDevice(value Device /* not a class type */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	NumberOfDimensions() int
 	SetNumberOfDimensions(value int)
-	Parent() MPSNDArray
+	Parent() IMPSNDArray
 	SetParent(value IMPSNDArray)
+	// methods:
+	ArrayViewWithShapeStrides(shape Shape /* not a class type */, strides Shape /* not a class type */) INDArray
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArray
 type NDArray struct {
 	objectivec.Object
@@ -88,29 +93,31 @@ func NewNDArray() NDArray {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArray/arrayView(withShape:strides:)
-func (n_ NDArray) ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) NDArray {
+func (n_ NDArray) ArrayViewWithShapeStrides(shape Shape /* not a class type */, strides Shape /* not a class type */) INDArray {
 	rv := objc.Send[NDArray](n_.ID, objc.Sel("arrayViewWithShape:strides:"), shape, strides)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatype
-func (n_ NDArray) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dataType"))
+func (n_ NDArray) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](n_.ID, objc.Sel("dataType"))
 	return rv
 }
 
 
-// SetDataType sets the value of the dataType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatype
-func (n_ NDArray) SetDataType(value unsafe.Pointer) {
+func (n_ NDArray) SetDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDataType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
 func (n_ NDArray) DataTypeSize() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("dataTypeSize"))
@@ -118,44 +125,44 @@ func (n_ NDArray) DataTypeSize() int {
 }
 
 
-// SetDataTypeSize sets the value of the dataTypeSize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/datatypesize
 func (n_ NDArray) SetDataTypeSize(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDataTypeSize:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/device
-func (n_ NDArray) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("device"))
+func (n_ NDArray) Device() Device /* not a class type */ {
+	rv := objc.Send[Device](n_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/device
-func (n_ NDArray) SetDevice(value unsafe.Pointer) {
+func (n_ NDArray) SetDevice(value Device /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDevice:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) Label() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("label"))
+func (n_ NDArray) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) SetLabel(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (n_ NDArray) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/numberofdimensions
 func (n_ NDArray) NumberOfDimensions() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("numberOfDimensions"))
@@ -163,23 +170,22 @@ func (n_ NDArray) NumberOfDimensions() int {
 }
 
 
-// SetNumberOfDimensions sets the value of the numberOfDimensions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/numberofdimensions
 func (n_ NDArray) SetNumberOfDimensions(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberOfDimensions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
-func (n_ NDArray) Parent() MPSNDArray {
-	rv := objc.Send[MPSNDArray](n_.ID, objc.Sel("parent"))
+func (n_ NDArray) Parent() IMPSNDArray {
+	rv := objc.Send[NDArray](n_.ID, objc.Sel("parent"))
 	return rv
 }
 
 
-// SetParent sets the value of the parent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
 func (n_ NDArray) SetParent(value IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setParent:"), value)

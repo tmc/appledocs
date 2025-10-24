@@ -4,7 +4,7 @@ package metal
 
 import "github.com/ebitengine/purego/objc"
 
-// deviceProtocol is the device protocol.
+// DeviceProtocol is the MTLDevice protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.1+
@@ -13,9 +13,9 @@ import "github.com/ebitengine/purego/objc"
 //   - macOS 10.11+
 //   - visionOS 1.0+
 //
-// Use this protocol when registering custom classes that conform to device.
-var deviceProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to MTLDevice.
+var DeviceProtocol *objc.Protocol
 
 func init() {
-	deviceProtocol = objc.GetProtocol("device")
+	DeviceProtocol = objc.GetProtocol("MTLDevice")
 }

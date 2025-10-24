@@ -2,12 +2,12 @@
 
 // Package systemconfiguration provides Go bindings for the SystemConfiguration framework.
 //
-// Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active. [Full Topic]
+// Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SystemConfiguration without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration
+// See: https://developer.apple.com/documentation/SystemConfiguration
 package systemconfiguration
 
 import (

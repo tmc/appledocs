@@ -32,10 +32,8 @@ type _InterAppAudioSwitcherViewClass struct {
 type IInterAppAudioSwitcherView interface {
 	appkit.IView
 	// properties:
-	ShowingAppNames() bool /* primitive/slice/pointer. */
-	SetShowingAppNames(value bool /* primitive/slice/pointer. */)
-	IsShowingAppNames() bool /* primitive/slice/pointer. */
-	SetIsShowingAppNames(value bool /* primitive/slice/pointer. */)
+	IsShowingAppNames() bool
+	SetIsShowingAppNames(value bool)
 	// methods:
 }
 
@@ -93,23 +91,8 @@ func NewInterAppAudioSwitcherView() InterAppAudioSwitcherView {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/isShowingAppNames
-func (i_ InterAppAudioSwitcherView) ShowingAppNames() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](i_.ID, objc.Sel("showingAppNames"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/isShowingAppNames
-func (i_ InterAppAudioSwitcherView) SetShowingAppNames(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setShowingAppNames:"), value)
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
-func (i_ InterAppAudioSwitcherView) IsShowingAppNames() bool /* primitive/slice/pointer. */ {
+func (i_ InterAppAudioSwitcherView) IsShowingAppNames() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isShowingAppNames"))
 	return rv
 }
@@ -117,9 +100,8 @@ func (i_ InterAppAudioSwitcherView) IsShowingAppNames() bool /* primitive/slice/
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudioswitcherview/isshowingappnames
-func (i_ InterAppAudioSwitcherView) SetIsShowingAppNames(value bool /* primitive/slice/pointer. */) {
+func (i_ InterAppAudioSwitcherView) SetIsShowingAppNames(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsShowingAppNames:"), value)
 }
-
 
 

@@ -30,15 +30,19 @@ type _MTRTimeSynchronizationClusterTimeZoneTypeClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterTimeZoneType] class.
 type IMTRTimeSynchronizationClusterTimeZoneType interface {
 	IMTRTimeSynchronizationClusterTimeZoneStruct
-	Name() string
-	SetName(value string)
-	Offset() foundation.Number
-	SetOffset(value foundation.INumber)
-	ValidAt() foundation.Number
-	SetValidAt(value foundation.INumber)
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Offset() objc.IObject /* cross-framework: NSNumber */
+	SetOffset(value objc.IObject /* cross-framework: NSNumber */)
+	ValidAt() objc.IObject /* cross-framework: NSNumber */
+	SetValidAt(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneType
 type MTRTimeSynchronizationClusterTimeZoneType struct {
 	MTRTimeSynchronizationClusterTimeZoneStruct
@@ -83,48 +87,48 @@ func NewMTRTimeSynchronizationClusterTimeZoneType() MTRTimeSynchronizationCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) Offset() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offset"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) Offset() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offset"))
 	return rv
 }
 
 
-// SetOffset sets the value of the offset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetOffset(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetOffset(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/validat
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) ValidAt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("validAt"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) ValidAt() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("validAt"))
 	return rv
 }
 
 
-// SetValidAt sets the value of the validAt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/validat
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetValidAt(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetValidAt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidAt:"), value)
 }
 

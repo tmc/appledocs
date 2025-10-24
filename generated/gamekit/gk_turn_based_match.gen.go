@@ -32,34 +32,34 @@ type _TurnBasedMatchClass struct {
 type ITurnBasedMatch interface {
 	objectivec.IObject
 	// properties:
-	Participants() []TurnBasedParticipant /* primitive/slice/pointer. */
+	Participants() []ITurnBasedParticipant
 	ActiveExchanges() IGKTurnBasedExchange
 	SetActiveExchanges(value IGKTurnBasedExchange)
 	CompletedExchanges() IGKTurnBasedExchange
 	SetCompletedExchanges(value IGKTurnBasedExchange)
-	CreationDate() foundation.objc.IObject /* cross-framework: Date */
-	SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	CreationDate() objc.IObject /* cross-framework: Date */
+	SetCreationDate(value objc.IObject /* cross-framework: Date */)
 	CurrentParticipant() IGKTurnBasedParticipant
 	SetCurrentParticipant(value IGKTurnBasedParticipant)
-	ExchangeDataMaximumSize() int /* primitive/slice/pointer. */
-	SetExchangeDataMaximumSize(value int /* primitive/slice/pointer. */)
-	ExchangeMaxInitiatedExchangesPerPlayer() int /* primitive/slice/pointer. */
-	SetExchangeMaxInitiatedExchangesPerPlayer(value int /* primitive/slice/pointer. */)
+	ExchangeDataMaximumSize() int
+	SetExchangeDataMaximumSize(value int)
+	ExchangeMaxInitiatedExchangesPerPlayer() int
+	SetExchangeMaxInitiatedExchangesPerPlayer(value int)
 	Exchanges() IGKTurnBasedExchange
 	SetExchanges(value IGKTurnBasedExchange)
-	MatchData() foundation.objc.IObject /* cross-framework: Data */
-	SetMatchData(value foundation.objc.IObject /* cross-framework: Data */)
-	MatchDataMaximumSize() int /* primitive/slice/pointer. */
-	SetMatchDataMaximumSize(value int /* primitive/slice/pointer. */)
-	MatchID() string /* primitive/slice/pointer. */
-	SetMatchID(value string /* primitive/slice/pointer. */)
-	Message() string /* primitive/slice/pointer. */
-	SetMessage(value string /* primitive/slice/pointer. */)
+	MatchData() objc.IObject /* cross-framework: Data */
+	SetMatchData(value objc.IObject /* cross-framework: Data */)
+	MatchDataMaximumSize() int
+	SetMatchDataMaximumSize(value int)
+	MatchID() objc.IObject /* cross-framework: NSString */
+	SetMatchID(value objc.IObject /* cross-framework: NSString */)
+	Message() objc.IObject /* cross-framework: NSString */
+	SetMessage(value objc.IObject /* cross-framework: NSString */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
 	// methods:
-	SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant /* primitive/slice/pointer. */, data foundation.objc.IObject /* cross-framework NSData */, key string /* primitive/slice/pointer. */, arguments []string /* primitive/slice/pointer. */, timeout foundation.TimeInterval /* not a class type */, completionHandler unsafe.Pointer)
-	SetLocalizableMessageWithKeyArguments(key string /* primitive/slice/pointer. */, arguments []string /* primitive/slice/pointer. */)
+	SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []ITurnBasedParticipant, data objc.IObject /* cross-framework: NSData */, key objc.IObject /* cross-framework: NSString */, arguments []string, timeout float64, completionHandler unsafe.Pointer)
+	SetLocalizableMessageWithKeyArguments(key objc.IObject /* cross-framework: NSString */, arguments []string)
 }
 
 // An object that encapsulates the match data for games where players take turns.
@@ -119,8 +119,8 @@ func NewTurnBasedMatch() TurnBasedMatch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/load(withID:withCompletionHandler:)
-func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("loadMatchWithID:withCompletionHandler:"), objc.String(matchID), completionHandler)
+func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("loadMatchWithID:withCompletionHandler:"), matchID, completionHandler)
 }
 
 
@@ -128,8 +128,8 @@ func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)
-func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant /* primitive/slice/pointer. */, data foundation.objc.IObject /* cross-framework NSData */, key string /* primitive/slice/pointer. */, arguments []string /* primitive/slice/pointer. */, timeout foundation.TimeInterval /* not a class type */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"), participants, data, objc.String(key), arguments, timeout, completionHandler)
+func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []ITurnBasedParticipant, data objc.IObject /* cross-framework: NSData */, key objc.IObject /* cross-framework: NSString */, arguments []string, timeout float64, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"), participants, data, key, arguments, timeout, completionHandler)
 }
 
 
@@ -137,8 +137,8 @@ func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/setLocalizableMessageWithKey(_:arguments:)
-func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key string /* primitive/slice/pointer. */, arguments []string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLocalizableMessageWithKey:arguments:"), objc.String(key), arguments)
+func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key objc.IObject /* cross-framework: NSString */, arguments []string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLocalizableMessageWithKey:arguments:"), key, arguments)
 }
 
 
@@ -146,7 +146,7 @@ func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key string /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/participants
-func (t_ TurnBasedMatch) Participants() []TurnBasedParticipant /* primitive/slice/pointer. */ {
+func (t_ TurnBasedMatch) Participants() []ITurnBasedParticipant {
 	rv := objc.Send[[]TurnBasedParticipant](t_.ID, objc.Sel("participants"))
 	return rv
 }
@@ -194,7 +194,7 @@ func (t_ TurnBasedMatch) SetCompletedExchanges(value IGKTurnBasedExchange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/creationdate
-func (t_ TurnBasedMatch) CreationDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (t_ TurnBasedMatch) CreationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -204,7 +204,7 @@ func (t_ TurnBasedMatch) CreationDate() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/creationdate
-func (t_ TurnBasedMatch) SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (t_ TurnBasedMatch) SetCreationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -232,7 +232,7 @@ func (t_ TurnBasedMatch) SetCurrentParticipant(value IGKTurnBasedParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
-func (t_ TurnBasedMatch) ExchangeDataMaximumSize() int /* primitive/slice/pointer. */ {
+func (t_ TurnBasedMatch) ExchangeDataMaximumSize() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("exchangeDataMaximumSize"))
 	return rv
 }
@@ -242,7 +242,7 @@ func (t_ TurnBasedMatch) ExchangeDataMaximumSize() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangedatamaximumsize
-func (t_ TurnBasedMatch) SetExchangeDataMaximumSize(value int /* primitive/slice/pointer. */) {
+func (t_ TurnBasedMatch) SetExchangeDataMaximumSize(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExchangeDataMaximumSize:"), value)
 }
 
@@ -251,7 +251,7 @@ func (t_ TurnBasedMatch) SetExchangeDataMaximumSize(value int /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangemaxinitiatedexchangesperplayer
-func (t_ TurnBasedMatch) ExchangeMaxInitiatedExchangesPerPlayer() int /* primitive/slice/pointer. */ {
+func (t_ TurnBasedMatch) ExchangeMaxInitiatedExchangesPerPlayer() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("exchangeMaxInitiatedExchangesPerPlayer"))
 	return rv
 }
@@ -261,7 +261,7 @@ func (t_ TurnBasedMatch) ExchangeMaxInitiatedExchangesPerPlayer() int /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchangemaxinitiatedexchangesperplayer
-func (t_ TurnBasedMatch) SetExchangeMaxInitiatedExchangesPerPlayer(value int /* primitive/slice/pointer. */) {
+func (t_ TurnBasedMatch) SetExchangeMaxInitiatedExchangesPerPlayer(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExchangeMaxInitiatedExchangesPerPlayer:"), value)
 }
 
@@ -289,7 +289,7 @@ func (t_ TurnBasedMatch) SetExchanges(value IGKTurnBasedExchange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdata
-func (t_ TurnBasedMatch) MatchData() foundation.objc.IObject /* cross-framework: Data */ {
+func (t_ TurnBasedMatch) MatchData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("matchData"))
 	return rv
 }
@@ -299,7 +299,7 @@ func (t_ TurnBasedMatch) MatchData() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdata
-func (t_ TurnBasedMatch) SetMatchData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (t_ TurnBasedMatch) SetMatchData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchData:"), value)
 }
 
@@ -308,7 +308,7 @@ func (t_ TurnBasedMatch) SetMatchData(value foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
-func (t_ TurnBasedMatch) MatchDataMaximumSize() int /* primitive/slice/pointer. */ {
+func (t_ TurnBasedMatch) MatchDataMaximumSize() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("matchDataMaximumSize"))
 	return rv
 }
@@ -318,7 +318,7 @@ func (t_ TurnBasedMatch) MatchDataMaximumSize() int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdatamaximumsize
-func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int /* primitive/slice/pointer. */) {
+func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchDataMaximumSize:"), value)
 }
 
@@ -327,8 +327,8 @@ func (t_ TurnBasedMatch) SetMatchDataMaximumSize(value int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchid
-func (t_ TurnBasedMatch) MatchID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("matchID"))
+func (t_ TurnBasedMatch) MatchID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("matchID"))
 	return rv
 }
 
@@ -337,8 +337,8 @@ func (t_ TurnBasedMatch) MatchID() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchid
-func (t_ TurnBasedMatch) SetMatchID(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchID:"), objc.String(value))
+func (t_ TurnBasedMatch) SetMatchID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchID:"), value)
 }
 
 
@@ -346,8 +346,8 @@ func (t_ TurnBasedMatch) SetMatchID(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) Message() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("message"))
+func (t_ TurnBasedMatch) Message() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -356,8 +356,8 @@ func (t_ TurnBasedMatch) Message() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/message
-func (t_ TurnBasedMatch) SetMessage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
+func (t_ TurnBasedMatch) SetMessage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), value)
 }
 
 
@@ -378,6 +378,5 @@ func (t_ TurnBasedMatch) Status() unsafe.Pointer {
 func (t_ TurnBasedMatch) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 

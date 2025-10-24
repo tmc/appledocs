@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,10 +38,10 @@ type IAXCustomContent interface {
 	SetAttributedValue(value objc.IObject /* cross-framework: AttributedString */)
 	Importance() unsafe.Pointer
 	SetImportance(value unsafe.Pointer)
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
-	Value() string /* primitive/slice/pointer. */
-	SetValue(value string /* primitive/slice/pointer. */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Value() objc.IObject /* cross-framework: NSString */
+	SetValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -102,7 +103,7 @@ func NewAXCustomContent() AXCustomContent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
 func (a_ AXCustomContent) AttributedLabel() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedLabel"))
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (a_ AXCustomContent) SetAttributedLabel(value objc.IObject /* cross-framewo
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
 func (a_ AXCustomContent) AttributedValue() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedValue"))
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedValue"))
 	return rv
 }
 
@@ -158,8 +159,8 @@ func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("label"))
+func (a_ AXCustomContent) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -168,8 +169,8 @@ func (a_ AXCustomContent) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (a_ AXCustomContent) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
 }
 
 
@@ -177,8 +178,8 @@ func (a_ AXCustomContent) SetLabel(value string /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) Value() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("value"))
+func (a_ AXCustomContent) Value() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -187,8 +188,8 @@ func (a_ AXCustomContent) Value() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) SetValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), objc.String(value))
+func (a_ AXCustomContent) SetValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), value)
 }
 
 

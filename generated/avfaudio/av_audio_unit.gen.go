@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnit] class.
@@ -32,16 +34,16 @@ type IAudioUnit interface {
 	// properties:
 	AuAudioUnit() IAudioUnit
 	SetAuAudioUnit(value IAudioUnit)
-	AudioComponentDescription() unsafe.Pointer
-	SetAudioComponentDescription(value unsafe.Pointer)
-	AudioUnit() IAudioUnit
-	SetAudioUnit(value IAudioUnit)
-	ManufacturerName() string /* primitive/slice/pointer. */
-	SetManufacturerName(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	Version() int /* primitive/slice/pointer. */
-	SetVersion(value int /* primitive/slice/pointer. */)
+	AudioComponentDescription() objc.IObject /* cross-framework: AudioComponentDescription */
+	SetAudioComponentDescription(value objc.IObject /* cross-framework: AudioComponentDescription */)
+	AudioUnit() audiotoolbox.IAudioUnit
+	SetAudioUnit(value audiotoolbox.IAudioUnit)
+	ManufacturerName() objc.IObject /* cross-framework: NSString */
+	SetManufacturerName(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Version() int
+	SetVersion(value int)
 	// methods:
 }
 
@@ -102,7 +104,7 @@ func NewAudioUnit() AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)
-func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHandler(audioComponentDescription unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHandler(audioComponentDescription objc.IObject /* cross-framework: AudioComponentDescription */, options unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("instantiateWithComponentDescription:options:completionHandler:"), audioComponentDescription, options, completionHandler)
 }
 
@@ -130,8 +132,8 @@ func (a_ AudioUnit) SetAuAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
-func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioComponentDescription"))
+func (a_ AudioUnit) AudioComponentDescription() objc.IObject /* cross-framework: AudioComponentDescription */ {
+	rv := objc.Send[audiotoolbox.AudioComponentDescription](a_.ID, objc.Sel("audioComponentDescription"))
 	return rv
 }
 
@@ -140,7 +142,7 @@ func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
-func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
+func (a_ AudioUnit) SetAudioComponentDescription(value objc.IObject /* cross-framework: AudioComponentDescription */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponentDescription:"), value)
 }
 
@@ -149,8 +151,8 @@ func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiounit
-func (a_ AudioUnit) AudioUnit() IAudioUnit {
-	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
+func (a_ AudioUnit) AudioUnit() audiotoolbox.IAudioUnit {
+	rv := objc.Send[audiotoolbox.AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
 }
 
@@ -159,7 +161,7 @@ func (a_ AudioUnit) AudioUnit() IAudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiounit
-func (a_ AudioUnit) SetAudioUnit(value IAudioUnit) {
+func (a_ AudioUnit) SetAudioUnit(value audiotoolbox.IAudioUnit) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioUnit:"), value)
 }
 
@@ -168,8 +170,8 @@ func (a_ AudioUnit) SetAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-func (a_ AudioUnit) ManufacturerName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("manufacturerName"))
+func (a_ AudioUnit) ManufacturerName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("manufacturerName"))
 	return rv
 }
 
@@ -178,8 +180,8 @@ func (a_ AudioUnit) ManufacturerName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/manufacturername
-func (a_ AudioUnit) SetManufacturerName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), objc.String(value))
+func (a_ AudioUnit) SetManufacturerName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setManufacturerName:"), value)
 }
 
 
@@ -187,8 +189,8 @@ func (a_ AudioUnit) SetManufacturerName(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-func (a_ AudioUnit) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnit) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -197,8 +199,8 @@ func (a_ AudioUnit) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/name
-func (a_ AudioUnit) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+func (a_ AudioUnit) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -206,7 +208,7 @@ func (a_ AudioUnit) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
-func (a_ AudioUnit) Version() int /* primitive/slice/pointer. */ {
+func (a_ AudioUnit) Version() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("version"))
 	return rv
 }
@@ -216,7 +218,7 @@ func (a_ AudioUnit) Version() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/version
-func (a_ AudioUnit) SetVersion(value int /* primitive/slice/pointer. */) {
+func (a_ AudioUnit) SetVersion(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
 }
 

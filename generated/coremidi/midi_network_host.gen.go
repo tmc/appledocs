@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +32,15 @@ type _MIDINetworkHostClass struct {
 type IMIDINetworkHost interface {
 	objectivec.IObject
 	// properties:
-	Address() string /* primitive/slice/pointer. */
-	Name() string /* primitive/slice/pointer. */
-	NetServiceDomain() string /* primitive/slice/pointer. */
-	NetServiceName() string /* primitive/slice/pointer. */
-	MIDINetworkBonjourServiceType() string /* primitive/slice/pointer. */
-	Port() int /* primitive/slice/pointer. */
-	SetPort(value int /* primitive/slice/pointer. */)
+	Address() objc.IObject /* cross-framework: NSString */
+	Name() objc.IObject /* cross-framework: NSString */
+	NetServiceDomain() objc.IObject /* cross-framework: NSString */
+	NetServiceName() objc.IObject /* cross-framework: NSString */
+	MIDINetworkBonjourServiceType() objc.IObject /* cross-framework: NSString */
+	Port() int
+	SetPort(value int)
 	// methods:
-	HasSameAddressAs(other IMIDINetworkHost) bool /* primitive/slice/pointer. */
+	HasSameAddressAs(other IMIDINetworkHost) bool
 }
 
 // An object that represents the host’s network address.
@@ -97,8 +98,8 @@ func NewMIDINetworkHost() MIDINetworkHost {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:address:port:)
-func NewMIDINetworkHostWithNameAddressPort(name string /* primitive/slice/pointer. */, address string /* primitive/slice/pointer. */, port uint /* primitive/slice/pointer. */) MIDINetworkHost {
-	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:address:port:"), objc.String(name), objc.String(address), port)
+func NewMIDINetworkHostWithNameAddressPort(name objc.IObject /* cross-framework: NSString */, address objc.IObject /* cross-framework: NSString */, port uint) MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:address:port:"), name, address, port)
 	return rv
 }
 
@@ -107,8 +108,8 @@ func NewMIDINetworkHostWithNameAddressPort(name string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netService:)
-func NewMIDINetworkHostWithNameNetService(name string /* primitive/slice/pointer. */, netService NetService /* not a class type */) MIDINetworkHost {
-	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netService:"), objc.String(name), netService)
+func NewMIDINetworkHostWithNameNetService(name objc.IObject /* cross-framework: NSString */, netService objc.IObject /* cross-framework: NetService */) MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netService:"), name, netService)
 	return rv
 }
 
@@ -118,8 +119,8 @@ func NewMIDINetworkHostWithNameNetService(name string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:address:port:)
-func (mc _MIDINetworkHostClass) HostWithNameAddressPort(name string /* primitive/slice/pointer. */, address string /* primitive/slice/pointer. */, port uint /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:address:port:"), objc.String(name), objc.String(address), port)
+func (mc _MIDINetworkHostClass) HostWithNameAddressPort(name objc.IObject /* cross-framework: NSString */, address objc.IObject /* cross-framework: NSString */, port uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:address:port:"), name, address, port)
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (mc _MIDINetworkHostClass) HostWithNameAddressPort(name string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netService:)
-func (mc _MIDINetworkHostClass) HostWithNameNetService(name string /* primitive/slice/pointer. */, netService NetService /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netService:"), objc.String(name), netService)
+func (mc _MIDINetworkHostClass) HostWithNameNetService(name objc.IObject /* cross-framework: NSString */, netService objc.IObject /* cross-framework: NetService */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netService:"), name, netService)
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (mc _MIDINetworkHostClass) HostWithNameNetService(name string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/hasSameAddress(as:)
-func (m_ MIDINetworkHost) HasSameAddressAs(other IMIDINetworkHost) bool /* primitive/slice/pointer. */ {
+func (m_ MIDINetworkHost) HasSameAddressAs(other IMIDINetworkHost) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasSameAddressAs:"), other)
 	return rv
 }
@@ -148,8 +149,8 @@ func (m_ MIDINetworkHost) HasSameAddressAs(other IMIDINetworkHost) bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/address
-func (m_ MIDINetworkHost) Address() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("address"))
+func (m_ MIDINetworkHost) Address() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -158,8 +159,8 @@ func (m_ MIDINetworkHost) Address() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/name
-func (m_ MIDINetworkHost) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDINetworkHost) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -168,8 +169,8 @@ func (m_ MIDINetworkHost) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/netServiceDomain
-func (m_ MIDINetworkHost) NetServiceDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("netServiceDomain"))
+func (m_ MIDINetworkHost) NetServiceDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("netServiceDomain"))
 	return rv
 }
 
@@ -178,8 +179,8 @@ func (m_ MIDINetworkHost) NetServiceDomain() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/netServiceName
-func (m_ MIDINetworkHost) NetServiceName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("netServiceName"))
+func (m_ MIDINetworkHost) NetServiceName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("netServiceName"))
 	return rv
 }
 
@@ -188,8 +189,8 @@ func (m_ MIDINetworkHost) NetServiceName() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype
-func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
+func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MIDINetworkBonjourServiceType"))
 	return rv
 }
 
@@ -198,7 +199,7 @@ func (m_ MIDINetworkHost) MIDINetworkBonjourServiceType() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/port
-func (m_ MIDINetworkHost) Port() int /* primitive/slice/pointer. */ {
+func (m_ MIDINetworkHost) Port() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("port"))
 	return rv
 }
@@ -208,7 +209,7 @@ func (m_ MIDINetworkHost) Port() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/port
-func (m_ MIDINetworkHost) SetPort(value int /* primitive/slice/pointer. */) {
+func (m_ MIDINetworkHost) SetPort(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
 }
 

@@ -29,9 +29,13 @@ type _MTRClusterOtaSoftwareUpdateProviderClass struct {
 // An interface definition for the [MTRClusterOtaSoftwareUpdateProvider] class.
 type IMTRClusterOtaSoftwareUpdateProvider interface {
 	IMTRClusterOTASoftwareUpdateProvider
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOtaSoftwareUpdateProvider-4p8us
 type MTRClusterOtaSoftwareUpdateProvider struct {
 	MTRClusterOTASoftwareUpdateProvider

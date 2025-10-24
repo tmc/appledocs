@@ -31,8 +31,8 @@ type ICircularRegion interface {
 	IRegion
 	// properties:
 	Radius() LocationDistance /* not a class type */
-	Center() LocationCoordinate2D /* not a class type */
-	SetCenter(value LocationCoordinate2D /* not a class type */)
+	Center() CLLocationCoordinate2D /* not a class type */
+	SetCenter(value CLLocationCoordinate2D /* not a class type */)
 	// methods:
 }
 
@@ -105,7 +105,7 @@ func (c_ CircularRegion) Radius() LocationDistance /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/center
-func (c_ CircularRegion) Center() LocationCoordinate2D /* not a class type */ {
+func (c_ CircularRegion) Center() CLLocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](c_.ID, objc.Sel("center"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (c_ CircularRegion) Center() LocationCoordinate2D /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/center
-func (c_ CircularRegion) SetCenter(value LocationCoordinate2D /* not a class type */) {
+func (c_ CircularRegion) SetCenter(value CLLocationCoordinate2D /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
 }
 

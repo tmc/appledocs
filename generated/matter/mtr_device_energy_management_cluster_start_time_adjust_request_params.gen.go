@@ -31,17 +31,21 @@ type _MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams] class.
 type IMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	RequestedStartTime() foundation.Number
-	SetRequestedStartTime(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	RequestedStartTime() objc.IObject /* cross-framework: NSNumber */
+	SetRequestedStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams
 type MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams() MTRDevice
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/requestedStartTime
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) RequestedStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("requestedStartTime"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) RequestedStartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("requestedStartTime"))
 	return rv
 }
 
 
-// SetRequestedStartTime sets the value of the requestedStartTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/requestedStartTime
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetRequestedStartTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetRequestedStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedStartTime:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

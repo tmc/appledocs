@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +32,9 @@ type _InputPickerInteractionClass struct {
 type IInputPickerInteraction interface {
 	objectivec.IObject
 	// properties:
-	AudioSession() objc.IObject /* cross-framework: AudioSession */
-	SetAudioSession(value objc.IObject /* cross-framework: AudioSession */)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Presented() bool /* primitive/slice/pointer. */
-	IsPresented() bool /* primitive/slice/pointer. */
-	SetIsPresented(value bool /* primitive/slice/pointer. */)
+	IsPresented() bool
+	SetIsPresented(value bool)
 	// methods:
-	Dismiss()
-	Present()
 }
 
 // Use to present an input picker.
@@ -98,7 +92,7 @@ func NewInputPickerInteraction() InputPickerInteraction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/init(audioSession:)
-func NewInputPickerInteractionWithAudioSession(audioSession objc.IObject /* cross-framework AudioSession */) InputPickerInteraction {
+func NewInputPickerInteractionWithAudioSession(audioSession objc.IObject /* cross-framework: AudioSession */) InputPickerInteraction {
 	instance := getInputPickerInteractionClass().Alloc()
 	rv := objc.Send[InputPickerInteraction](instance.ID, objc.Sel("initWithAudioSession:"), audioSession)
 	rv.Autorelease()
@@ -107,77 +101,11 @@ func NewInputPickerInteractionWithAudioSession(audioSession objc.IObject /* cros
 
 
 
-// Dismisses the input picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/dismiss()
-func (i_ InputPickerInteraction) Dismiss() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("dismiss"))
-}
-
-
-// Presents the input picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/present()
-func (i_ InputPickerInteraction) Present() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("present"))
-}
-
-
-// The audio session for the picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) AudioSession() objc.IObject /* cross-framework: AudioSession */ {
-	rv := objc.Send[AudioSession](i_.ID, objc.Sel("audioSession"))
-	return rv
-}
-
-
-// The audio session for the picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) SetAudioSession(value objc.IObject /* cross-framework: AudioSession */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSession:"), value)
-}
-
-
-// The input picker view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/delegate-swift.property
-func (i_ InputPickerInteraction) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The input picker view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/delegate-swift.property
-func (i_ InputPickerInteraction) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean value that indicates whether the picker is currently visible.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/isPresented
-func (i_ InputPickerInteraction) Presented() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](i_.ID, objc.Sel("presented"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the picker is currently visible.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) IsPresented() bool /* primitive/slice/pointer. */ {
+func (i_ InputPickerInteraction) IsPresented() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isPresented"))
 	return rv
 }
@@ -187,7 +115,7 @@ func (i_ InputPickerInteraction) IsPresented() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) SetIsPresented(value bool /* primitive/slice/pointer. */) {
+func (i_ InputPickerInteraction) SetIsPresented(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPresented:"), value)
 }
 

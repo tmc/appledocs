@@ -31,16 +31,22 @@ type _VZSharedDirectoryClass struct {
 // An interface definition for the [VZSharedDirectory] class.
 type IVZSharedDirectory interface {
 	objectivec.IObject
+	// properties:
 	ReadOnly() bool
-	URL() foundation.URL
+	URL() objc.IObject /* cross-framework: NSURL */
 	IsReadOnly() bool
 	SetIsReadOnly(value bool)
+	// methods:
 }
 
 // A directory on the host that you can expose to a guest.
 //
 // This exposes a directory from the host file system to the guest.
+
+
+// A directory on the host that you can expose to a guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory
 type VZSharedDirectory struct {
 	objectivec.Object
@@ -86,11 +92,11 @@ func NewVZSharedDirectory() VZSharedDirectory {
 
 
 
-
 // Initialize with a host directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/init(url:readOnly:)
-func NewVZSharedDirectoryWithURLReadOnly(url foundation.IURL, readOnly bool) VZSharedDirectory {
+func NewVZSharedDirectoryWithURLReadOnly(url objc.IObject /* cross-framework: NSURL */, readOnly bool) VZSharedDirectory {
 	instance := getVZSharedDirectoryClass().Alloc()
 	rv := objc.Send[VZSharedDirectory](instance.ID, objc.Sel("initWithURL:readOnly:"), url, readOnly)
 	rv.Autorelease()
@@ -98,24 +104,30 @@ func NewVZSharedDirectoryWithURLReadOnly(url foundation.IURL, readOnly bool) VZS
 }
 
 
+
 // A Boolean value that indicates whether the directory is read-only to the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/isReadOnly
 func (v_ VZSharedDirectory) ReadOnly() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("readOnly"))
 	return rv
 }
 
+
 // A file URL to a directory on the host system to expose to the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/url
-func (v_ VZSharedDirectory) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
+func (v_ VZSharedDirectory) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](v_.ID, objc.Sel("URL"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the directory is read-only to the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzshareddirectory/isreadonly
 func (v_ VZSharedDirectory) IsReadOnly() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isReadOnly"))
@@ -123,10 +135,9 @@ func (v_ VZSharedDirectory) IsReadOnly() bool {
 }
 
 
-// SetIsReadOnly sets the value of the isReadOnly property.
 // A Boolean value that indicates whether the directory is read-only to the guest.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzshareddirectory/isreadonly
 func (v_ VZSharedDirectory) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsReadOnly:"), value)

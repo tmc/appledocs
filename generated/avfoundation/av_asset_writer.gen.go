@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
@@ -33,49 +34,49 @@ type _AssetWriterClass struct {
 type IAssetWriter interface {
 	objectivec.IObject
 	// properties:
-	AvailableMediaTypes() []string /* primitive/slice/pointer. */
+	AvailableMediaTypes() []string
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DirectoryForTemporaryFiles() objc.IObject /* cross-framework: NSURL */
 	SetDirectoryForTemporaryFiles(value objc.IObject /* cross-framework: NSURL */)
 	Error() Error
-	InitialMovieFragmentInterval() Time /* not a class type */
-	SetInitialMovieFragmentInterval(value Time /* not a class type */)
-	InitialMovieFragmentSequenceNumber() int /* primitive/slice/pointer. */
-	SetInitialMovieFragmentSequenceNumber(value int /* primitive/slice/pointer. */)
-	InitialSegmentStartTime() Time /* not a class type */
-	SetInitialSegmentStartTime(value Time /* not a class type */)
-	InputGroups() []AssetWriterInputGroup /* primitive/slice/pointer. */
-	Inputs() []AssetWriterInput /* primitive/slice/pointer. */
-	Metadata() []MetadataItem /* primitive/slice/pointer. */
-	SetMetadata(value []MetadataItem /* primitive/slice/pointer. */)
-	MovieFragmentInterval() Time /* not a class type */
-	SetMovieFragmentInterval(value Time /* not a class type */)
+	InitialMovieFragmentInterval() objc.IObject /* cross-framework: Time */
+	SetInitialMovieFragmentInterval(value objc.IObject /* cross-framework: Time */)
+	InitialMovieFragmentSequenceNumber() int
+	SetInitialMovieFragmentSequenceNumber(value int)
+	InitialSegmentStartTime() objc.IObject /* cross-framework: Time */
+	SetInitialSegmentStartTime(value objc.IObject /* cross-framework: Time */)
+	InputGroups() []IAssetWriterInputGroup
+	Inputs() []IAssetWriterInput
+	Metadata() []IMetadataItem
+	SetMetadata(value []IMetadataItem)
+	MovieFragmentInterval() objc.IObject /* cross-framework: Time */
+	SetMovieFragmentInterval(value objc.IObject /* cross-framework: Time */)
 	MovieTimeScale() TimeScale /* not a class type */
 	SetMovieTimeScale(value TimeScale /* not a class type */)
 	OutputFileType() objc.IObject /* cross-framework: FileType */
 	OutputFileTypeProfile() FileTypeProfile /* not a class type */
 	SetOutputFileTypeProfile(value FileTypeProfile /* not a class type */)
-	OverallDurationHint() Time /* not a class type */
-	SetOverallDurationHint(value Time /* not a class type */)
-	PreferredOutputSegmentInterval() Time /* not a class type */
-	SetPreferredOutputSegmentInterval(value Time /* not a class type */)
-	ProducesCombinableFragments() bool /* primitive/slice/pointer. */
-	SetProducesCombinableFragments(value bool /* primitive/slice/pointer. */)
-	ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */
-	SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */)
+	OverallDurationHint() objc.IObject /* cross-framework: Time */
+	SetOverallDurationHint(value objc.IObject /* cross-framework: Time */)
+	PreferredOutputSegmentInterval() objc.IObject /* cross-framework: Time */
+	SetPreferredOutputSegmentInterval(value objc.IObject /* cross-framework: Time */)
+	ProducesCombinableFragments() bool
+	SetProducesCombinableFragments(value bool)
+	ShouldOptimizeForNetworkUse() bool
+	SetShouldOptimizeForNetworkUse(value bool)
 	Status() AssetWriterStatus
 	OutputURL() objc.IObject /* cross-framework: URL */
 	SetOutputURL(value objc.IObject /* cross-framework: URL */)
 	// methods:
 	AddInputGroup(inputGroup IAVAssetWriterInputGroup)
-	CanAddInput(input IAVAssetWriterInput) bool /* primitive/slice/pointer. */
-	CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool /* primitive/slice/pointer. */
-	CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary /* already interface */, mediaType MediaType /* not a class type */) bool /* primitive/slice/pointer. */
+	CanAddInput(input IAVAssetWriterInput) bool
+	CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool
+	CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary, mediaType MediaType /* not a class type */) bool
 	CancelWriting()
-	EndSessionAtSourceTime(endTime Time /* not a class type */)
+	EndSessionAtSourceTime(endTime objc.IObject /* cross-framework: Time */)
 	FlushSegment()
-	StartSessionAtSourceTime(startTime Time /* not a class type */)
+	StartSessionAtSourceTime(startTime objc.IObject /* cross-framework: Time */)
 }
 
 // An object that writes media data to a container file.
@@ -135,7 +136,7 @@ func NewAssetWriter() AssetWriter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(contentType:)
-func NewAssetWriterWithContentType(outputContentType objc.IObject /* cross-framework UTType */) AssetWriter {
+func NewAssetWriterWithContentType(outputContentType objc.IObject /* cross-framework: UTType */) AssetWriter {
 	instance := getAssetWriterClass().Alloc()
 	rv := objc.Send[AssetWriter](instance.ID, objc.Sel("initWithContentType:"), outputContentType)
 	rv.Autorelease()
@@ -147,7 +148,7 @@ func NewAssetWriterWithContentType(outputContentType objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(outputURL:fileType:)
-func NewAssetWriterWithURLFileTypeError(outputURL objc.IObject /* cross-framework NSURL */, outputFileType objc.IObject /* cross-framework FileType */, outError unsafe.Pointer) AssetWriter {
+func NewAssetWriterWithURLFileTypeError(outputURL objc.IObject /* cross-framework: NSURL */, outputFileType objc.IObject /* cross-framework: FileType */, outError unsafe.Pointer) AssetWriter {
 	instance := getAssetWriterClass().Alloc()
 	rv := objc.Send[AssetWriter](instance.ID, objc.Sel("initWithURL:fileType:error:"), outputURL, outputFileType, outError)
 	rv.Autorelease()
@@ -160,7 +161,7 @@ func NewAssetWriterWithURLFileTypeError(outputURL objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(url:fileType:)
-func (ac _AssetWriterClass) AssetWriterWithURLFileTypeError(outputURL objc.IObject /* cross-framework NSURL */, outputFileType objc.IObject /* cross-framework FileType */, outError unsafe.Pointer) unsafe.Pointer {
+func (ac _AssetWriterClass) AssetWriterWithURLFileTypeError(outputURL objc.IObject /* cross-framework: NSURL */, outputFileType objc.IObject /* cross-framework: FileType */, outError unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("assetWriterWithURL:fileType:error:"), outputURL, outputFileType, outError)
 	return rv
 }
@@ -179,7 +180,7 @@ func (a_ AssetWriter) AddInputGroup(inputGroup IAVAssetWriterInputGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j
-func (a_ AssetWriter) CanAddInput(input IAVAssetWriterInput) bool /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) CanAddInput(input IAVAssetWriterInput) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canAddInput:"), input)
 	return rv
 }
@@ -189,7 +190,7 @@ func (a_ AssetWriter) CanAddInput(input IAVAssetWriterInput) bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-8s1oh
-func (a_ AssetWriter) CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canAddInputGroup:"), inputGroup)
 	return rv
 }
@@ -199,7 +200,7 @@ func (a_ AssetWriter) CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canApply(outputSettings:forMediaType:)
-func (a_ AssetWriter) CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary /* already interface */, mediaType MediaType /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary, mediaType MediaType /* not a class type */) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canApplyOutputSettings:forMediaType:"), outputSettings, mediaType)
 	return rv
 }
@@ -218,7 +219,7 @@ func (a_ AssetWriter) CancelWriting() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/endSession(atSourceTime:)
-func (a_ AssetWriter) EndSessionAtSourceTime(endTime Time /* not a class type */) {
+func (a_ AssetWriter) EndSessionAtSourceTime(endTime objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("endSessionAtSourceTime:"), endTime)
 }
 
@@ -236,7 +237,7 @@ func (a_ AssetWriter) FlushSegment() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)
-func (a_ AssetWriter) StartSessionAtSourceTime(startTime Time /* not a class type */) {
+func (a_ AssetWriter) StartSessionAtSourceTime(startTime objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startSessionAtSourceTime:"), startTime)
 }
 
@@ -245,7 +246,7 @@ func (a_ AssetWriter) StartSessionAtSourceTime(startTime Time /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/availableMediaTypes
-func (a_ AssetWriter) AvailableMediaTypes() []string /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) AvailableMediaTypes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("availableMediaTypes"))
 	return rv
 }
@@ -303,8 +304,8 @@ func (a_ AssetWriter) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentInterval
-func (a_ AssetWriter) InitialMovieFragmentInterval() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("initialMovieFragmentInterval"))
+func (a_ AssetWriter) InitialMovieFragmentInterval() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("initialMovieFragmentInterval"))
 	return rv
 }
 
@@ -313,7 +314,7 @@ func (a_ AssetWriter) InitialMovieFragmentInterval() Time /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentInterval
-func (a_ AssetWriter) SetInitialMovieFragmentInterval(value Time /* not a class type */) {
+func (a_ AssetWriter) SetInitialMovieFragmentInterval(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentInterval:"), value)
 }
 
@@ -322,7 +323,7 @@ func (a_ AssetWriter) SetInitialMovieFragmentInterval(value Time /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentSequenceNumber
-func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("initialMovieFragmentSequenceNumber"))
 	return rv
 }
@@ -332,7 +333,7 @@ func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentSequenceNumber
-func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int /* primitive/slice/pointer. */) {
+func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentSequenceNumber:"), value)
 }
 
@@ -341,8 +342,8 @@ func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialSegmentStartTime
-func (a_ AssetWriter) InitialSegmentStartTime() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("initialSegmentStartTime"))
+func (a_ AssetWriter) InitialSegmentStartTime() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("initialSegmentStartTime"))
 	return rv
 }
 
@@ -351,7 +352,7 @@ func (a_ AssetWriter) InitialSegmentStartTime() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialSegmentStartTime
-func (a_ AssetWriter) SetInitialSegmentStartTime(value Time /* not a class type */) {
+func (a_ AssetWriter) SetInitialSegmentStartTime(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialSegmentStartTime:"), value)
 }
 
@@ -360,7 +361,7 @@ func (a_ AssetWriter) SetInitialSegmentStartTime(value Time /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/inputGroups
-func (a_ AssetWriter) InputGroups() []AssetWriterInputGroup /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) InputGroups() []IAssetWriterInputGroup {
 	rv := objc.Send[[]AssetWriterInputGroup](a_.ID, objc.Sel("inputGroups"))
 	return rv
 }
@@ -370,7 +371,7 @@ func (a_ AssetWriter) InputGroups() []AssetWriterInputGroup /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/inputs
-func (a_ AssetWriter) Inputs() []AssetWriterInput /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) Inputs() []IAssetWriterInput {
 	rv := objc.Send[[]AssetWriterInput](a_.ID, objc.Sel("inputs"))
 	return rv
 }
@@ -380,7 +381,7 @@ func (a_ AssetWriter) Inputs() []AssetWriterInput /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/metadata
-func (a_ AssetWriter) Metadata() []MetadataItem /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) Metadata() []IMetadataItem {
 	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -390,7 +391,7 @@ func (a_ AssetWriter) Metadata() []MetadataItem /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/metadata
-func (a_ AssetWriter) SetMetadata(value []MetadataItem /* primitive/slice/pointer. */) {
+func (a_ AssetWriter) SetMetadata(value []IMetadataItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -409,8 +410,8 @@ func (a_ AssetWriter) SetMetadata(value []MetadataItem /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieFragmentInterval
-func (a_ AssetWriter) MovieFragmentInterval() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("movieFragmentInterval"))
+func (a_ AssetWriter) MovieFragmentInterval() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("movieFragmentInterval"))
 	return rv
 }
 
@@ -419,7 +420,7 @@ func (a_ AssetWriter) MovieFragmentInterval() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieFragmentInterval
-func (a_ AssetWriter) SetMovieFragmentInterval(value Time /* not a class type */) {
+func (a_ AssetWriter) SetMovieFragmentInterval(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
 
@@ -476,8 +477,8 @@ func (a_ AssetWriter) SetOutputFileTypeProfile(value FileTypeProfile /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/overallDurationHint
-func (a_ AssetWriter) OverallDurationHint() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("overallDurationHint"))
+func (a_ AssetWriter) OverallDurationHint() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("overallDurationHint"))
 	return rv
 }
 
@@ -486,7 +487,7 @@ func (a_ AssetWriter) OverallDurationHint() Time /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/overallDurationHint
-func (a_ AssetWriter) SetOverallDurationHint(value Time /* not a class type */) {
+func (a_ AssetWriter) SetOverallDurationHint(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallDurationHint:"), value)
 }
 
@@ -495,8 +496,8 @@ func (a_ AssetWriter) SetOverallDurationHint(value Time /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/preferredOutputSegmentInterval
-func (a_ AssetWriter) PreferredOutputSegmentInterval() Time /* not a class type */ {
-	rv := objc.Send[Time](a_.ID, objc.Sel("preferredOutputSegmentInterval"))
+func (a_ AssetWriter) PreferredOutputSegmentInterval() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("preferredOutputSegmentInterval"))
 	return rv
 }
 
@@ -505,7 +506,7 @@ func (a_ AssetWriter) PreferredOutputSegmentInterval() Time /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/preferredOutputSegmentInterval
-func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value Time /* not a class type */) {
+func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredOutputSegmentInterval:"), value)
 }
 
@@ -514,7 +515,7 @@ func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value Time /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/producesCombinableFragments
-func (a_ AssetWriter) ProducesCombinableFragments() bool /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) ProducesCombinableFragments() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("producesCombinableFragments"))
 	return rv
 }
@@ -524,7 +525,7 @@ func (a_ AssetWriter) ProducesCombinableFragments() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/producesCombinableFragments
-func (a_ AssetWriter) SetProducesCombinableFragments(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetWriter) SetProducesCombinableFragments(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProducesCombinableFragments:"), value)
 }
 
@@ -533,7 +534,7 @@ func (a_ AssetWriter) SetProducesCombinableFragments(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/shouldOptimizeForNetworkUse
-func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */ {
+func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldOptimizeForNetworkUse"))
 	return rv
 }
@@ -543,7 +544,7 @@ func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/shouldOptimizeForNetworkUse
-func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
 }
 

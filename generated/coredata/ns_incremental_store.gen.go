@@ -32,7 +32,7 @@ type IIncrementalStore interface {
 	// properties:
 	// methods:
 	ExecuteRequestWithContextError(request IPersistentStoreRequest, context IManagedObjectContext, error_ unsafe.Pointer) objc.ID
-	LoadMetadata(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	LoadMetadata(error_ unsafe.Pointer) bool
 }
 
 // An abstract superclass defining the API through which Core Data communicates with a store.
@@ -104,7 +104,7 @@ func (i_ IncrementalStore) ExecuteRequestWithContextError(request IPersistentSto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore/loadMetadata()
-func (i_ IncrementalStore) LoadMetadata(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (i_ IncrementalStore) LoadMetadata(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("loadMetadata:"), error_)
 	return rv
 }

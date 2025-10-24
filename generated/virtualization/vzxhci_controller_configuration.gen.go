@@ -29,12 +29,18 @@ type _VZXHCIControllerConfigurationClass struct {
 // An interface definition for the [VZXHCIControllerConfiguration] class.
 type IVZXHCIControllerConfiguration interface {
 	IVZUSBControllerConfiguration
+	// properties:
+	// methods:
 }
 
 // The configuration object for the USB Extensible Host Controller Interface (XHCI) controller.
 //
 // Use this configuration to create a USB XHCI controller device for the guest.
+
+
+// The configuration object for the USB Extensible Host Controller Interface (XHCI) controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZXHCIControllerConfiguration
 type VZXHCIControllerConfiguration struct {
 	VZUSBControllerConfiguration
@@ -79,7 +85,6 @@ func (v_ VZXHCIControllerConfiguration) Autorelease() VZXHCIControllerConfigurat
 func NewVZXHCIControllerConfiguration() VZXHCIControllerConfiguration {
 	return getVZXHCIControllerConfigurationClass().New()
 }
-
 
 
 

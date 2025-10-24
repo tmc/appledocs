@@ -31,18 +31,18 @@ type _USBHostCIEndpointStateMachineClass struct {
 type IUSBHostCIEndpointStateMachine interface {
 	objectivec.IObject
 	// properties:
-	ControllerInterface() IOUSBHostControllerInterface /* already interface */
-	SetControllerInterface(value IOUSBHostControllerInterface /* already interface */)
+	ControllerInterface() IOUSBHostControllerInterface
+	SetControllerInterface(value IOUSBHostControllerInterface)
 	CurrentTransferMessage() USBHostCIMessage /* not a class type */
 	SetCurrentTransferMessage(value USBHostCIMessage /* not a class type */)
-	DeviceAddress() int /* primitive/slice/pointer. */
-	SetDeviceAddress(value int /* primitive/slice/pointer. */)
-	EndpointAddress() int /* primitive/slice/pointer. */
-	SetEndpointAddress(value int /* primitive/slice/pointer. */)
+	DeviceAddress() int
+	SetDeviceAddress(value int)
+	EndpointAddress() int
+	SetEndpointAddress(value int)
 	EndpointState() USBHostCIEndpointState /* not a class type */
 	SetEndpointState(value USBHostCIEndpointState /* not a class type */)
 	// methods:
-	InspectCommandError(command USBHostCIMessage /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	InspectCommandError(command USBHostCIMessage /* not a class type */, error_ unsafe.Pointer) bool
 }
 
 
@@ -93,7 +93,7 @@ func NewUSBHostCIEndpointStateMachine() USBHostCIEndpointStateMachine {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/inspectCommand(_:)
-func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command USBHostCIMessage /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command USBHostCIMessage /* not a class type */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("inspectCommand:error:"), command, error_)
 	return rv
 }
@@ -101,7 +101,7 @@ func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command USBHostCIMes
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/controllerinterface
-func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface /* already interface */ {
+func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface {
 	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControlle
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/controllerinterface
-func (u_ USBHostCIEndpointStateMachine) SetControllerInterface(value IOUSBHostControllerInterface /* already interface */) {
+func (u_ USBHostCIEndpointStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
 }
 
@@ -131,7 +131,7 @@ func (u_ USBHostCIEndpointStateMachine) SetCurrentTransferMessage(value USBHostC
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/deviceaddress
-func (u_ USBHostCIEndpointStateMachine) DeviceAddress() int /* primitive/slice/pointer. */ {
+func (u_ USBHostCIEndpointStateMachine) DeviceAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("deviceAddress"))
 	return rv
 }
@@ -139,14 +139,14 @@ func (u_ USBHostCIEndpointStateMachine) DeviceAddress() int /* primitive/slice/p
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/deviceaddress
-func (u_ USBHostCIEndpointStateMachine) SetDeviceAddress(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostCIEndpointStateMachine) SetDeviceAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceAddress:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointaddress
-func (u_ USBHostCIEndpointStateMachine) EndpointAddress() int /* primitive/slice/pointer. */ {
+func (u_ USBHostCIEndpointStateMachine) EndpointAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("endpointAddress"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (u_ USBHostCIEndpointStateMachine) EndpointAddress() int /* primitive/slice
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/endpointaddress
-func (u_ USBHostCIEndpointStateMachine) SetEndpointAddress(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostCIEndpointStateMachine) SetEndpointAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEndpointAddress:"), value)
 }
 

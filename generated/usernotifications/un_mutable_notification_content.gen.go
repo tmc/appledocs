@@ -30,44 +30,48 @@ type _UNMutableNotificationContentClass struct {
 // An interface definition for the [UNMutableNotificationContent] class.
 type IUNMutableNotificationContent interface {
 	IUNNotificationContent
-	Attachments() []UNNotificationAttachment
-	SetAttachments(value []UNNotificationAttachment)
-	Badge() foundation.Number
-	SetBadge(value foundation.INumber)
-	Body() string
-	SetBody(value string)
-	CategoryIdentifier() string
-	SetCategoryIdentifier(value string)
-	FilterCriteria() string
-	SetFilterCriteria(value string)
+	// properties:
+	Attachments() []IUNNotificationAttachment
+	SetAttachments(value []IUNNotificationAttachment)
+	Badge() objc.IObject /* cross-framework: NSNumber */
+	SetBadge(value objc.IObject /* cross-framework: NSNumber */)
+	Body() objc.IObject /* cross-framework: NSString */
+	SetBody(value objc.IObject /* cross-framework: NSString */)
+	CategoryIdentifier() objc.IObject /* cross-framework: NSString */
+	SetCategoryIdentifier(value objc.IObject /* cross-framework: NSString */)
+	FilterCriteria() objc.IObject /* cross-framework: NSString */
+	SetFilterCriteria(value objc.IObject /* cross-framework: NSString */)
 	InterruptionLevel() UNNotificationInterruptionLevel
 	SetInterruptionLevel(value UNNotificationInterruptionLevel)
-	LaunchImageName() string
-	SetLaunchImageName(value string)
 	RelevanceScore() float64
 	SetRelevanceScore(value float64)
-	Sound() UNNotificationSound
+	Sound() IUNNotificationSound
 	SetSound(value IUNNotificationSound)
-	Subtitle() string
-	SetSubtitle(value string)
-	SummaryArgument() string
-	SetSummaryArgument(value string)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
+	SummaryArgument() objc.IObject /* cross-framework: NSString */
+	SetSummaryArgument(value objc.IObject /* cross-framework: NSString */)
 	SummaryArgumentCount() uint
 	SetSummaryArgumentCount(value uint)
-	TargetContentIdentifier() string
-	SetTargetContentIdentifier(value string)
-	ThreadIdentifier() string
-	SetThreadIdentifier(value string)
-	Title() string
-	SetTitle(value string)
-	UserInfo() objc.ID
-	SetUserInfo(value objc.ID)
+	TargetContentIdentifier() objc.IObject /* cross-framework: NSString */
+	SetTargetContentIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ThreadIdentifier() objc.IObject /* cross-framework: NSString */
+	SetThreadIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	UserInfo() objc.IObject /* cross-framework: NSDictionary */
+	SetUserInfo(value objc.IObject /* cross-framework: NSDictionary */)
+	// methods:
 }
 
 // The editable content for a notification.
 //
 // Create a object when you want to specify the payload for a local notification. Specifically, use this object to specify the title and message for an alert, the sound to play, or the value to assign to your app’s badge. You might also provide details about how the system handles the notification. For example, you can specify a custom launch image and a thread identifier for visually grouping related notifications. After creating your content object, assign it to a object, add a trigger condition, and schedule your notification. The trigger condition defines when the system delivers the notification to the user. Listing 1 shows the scheduling of a local notification that displays an alert and plays a sound after a delay of five seconds. Store the strings for the alert’s title and body in the app’s file. Listing 1. Creating the content for a local notification
+
+
+// The editable content for a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent
 type UNMutableNotificationContent struct {
 	UNNotificationContent
@@ -114,21 +118,22 @@ func NewUNMutableNotificationContent() UNMutableNotificationContent {
 }
 
 
+
 // The visual and audio attachments to display alongside the notification’s main content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/attachments
-func (u_ UNMutableNotificationContent) Attachments() []UNNotificationAttachment {
+func (u_ UNMutableNotificationContent) Attachments() []IUNNotificationAttachment {
 	rv := objc.Send[[]UNNotificationAttachment](u_.ID, objc.Sel("attachments"))
 	return rv
 }
 
 
-// SetAttachments sets the value of the attachments property.
 // The visual and audio attachments to display alongside the notification’s main content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/attachments
-func (u_ UNMutableNotificationContent) SetAttachments(value []UNNotificationAttachment) {
+func (u_ UNMutableNotificationContent) SetAttachments(value []IUNNotificationAttachment) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -142,80 +147,86 @@ func (u_ UNMutableNotificationContent) SetAttachments(value []UNNotificationAtta
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAttachments:"), nsArray)
 }
 
+
 // The number that your app’s icon displays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/badge
-func (u_ UNMutableNotificationContent) Badge() foundation.Number {
-	rv := objc.Send[foundation.Number](u_.ID, objc.Sel("badge"))
+func (u_ UNMutableNotificationContent) Badge() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](u_.ID, objc.Sel("badge"))
 	return rv
 }
 
 
-// SetBadge sets the value of the badge property.
 // The number that your app’s icon displays.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/badge
-func (u_ UNMutableNotificationContent) SetBadge(value foundation.INumber) {
+func (u_ UNMutableNotificationContent) SetBadge(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setBadge:"), value)
 }
 
+
 // The localized text that provides the notification’s main content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/body
-func (u_ UNMutableNotificationContent) Body() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("body"))
+func (u_ UNMutableNotificationContent) Body() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("body"))
 	return rv
 }
 
 
-// SetBody sets the value of the body property.
 // The localized text that provides the notification’s main content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/body
-func (u_ UNMutableNotificationContent) SetBody(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setBody:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetBody(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setBody:"), value)
 }
+
 
 // The identifier of the notification’s category.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier
-func (u_ UNMutableNotificationContent) CategoryIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("categoryIdentifier"))
+func (u_ UNMutableNotificationContent) CategoryIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("categoryIdentifier"))
 	return rv
 }
 
 
-// SetCategoryIdentifier sets the value of the categoryIdentifier property.
 // The identifier of the notification’s category.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier
-func (u_ UNMutableNotificationContent) SetCategoryIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCategoryIdentifier:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetCategoryIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCategoryIdentifier:"), value)
 }
+
 
 // The criteria the system evaluates to determine if it displays the notification in the current Focus.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/filterCriteria
-func (u_ UNMutableNotificationContent) FilterCriteria() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("filterCriteria"))
+func (u_ UNMutableNotificationContent) FilterCriteria() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("filterCriteria"))
 	return rv
 }
 
 
-// SetFilterCriteria sets the value of the filterCriteria property.
 // The criteria the system evaluates to determine if it displays the notification in the current Focus.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/filterCriteria
-func (u_ UNMutableNotificationContent) SetFilterCriteria(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setFilterCriteria:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetFilterCriteria(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setFilterCriteria:"), value)
 }
+
 
 // The notification’s importance and required delivery timing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/interruptionLevel
 func (u_ UNMutableNotificationContent) InterruptionLevel() UNNotificationInterruptionLevel {
 	rv := objc.Send[UNNotificationInterruptionLevel](u_.ID, objc.Sel("interruptionLevel"))
@@ -223,35 +234,18 @@ func (u_ UNMutableNotificationContent) InterruptionLevel() UNNotificationInterru
 }
 
 
-// SetInterruptionLevel sets the value of the interruptionLevel property.
 // The notification’s importance and required delivery timing.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/interruptionLevel
 func (u_ UNMutableNotificationContent) SetInterruptionLevel(value UNNotificationInterruptionLevel) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInterruptionLevel:"), value)
 }
 
-// The name of the image or storyboard to use when your app launches because of the notification.
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/launchImageName
-func (u_ UNMutableNotificationContent) LaunchImageName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("launchImageName"))
-	return rv
-}
-
-
-// SetLaunchImageName sets the value of the launchImageName property.
-// The name of the image or storyboard to use when your app launches because of the notification.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/launchImageName
-func (u_ UNMutableNotificationContent) SetLaunchImageName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setLaunchImageName:"), objc.String(value))
-}
 
 // The score the system uses to determine if the notification is the summary’s featured notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/relevanceScore
 func (u_ UNMutableNotificationContent) RelevanceScore() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("relevanceScore"))
@@ -259,71 +253,75 @@ func (u_ UNMutableNotificationContent) RelevanceScore() float64 {
 }
 
 
-// SetRelevanceScore sets the value of the relevanceScore property.
 // The score the system uses to determine if the notification is the summary’s featured notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/relevanceScore
 func (u_ UNMutableNotificationContent) SetRelevanceScore(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRelevanceScore:"), value)
 }
 
+
 // The sound that plays when the system delivers the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/sound
-func (u_ UNMutableNotificationContent) Sound() UNNotificationSound {
+func (u_ UNMutableNotificationContent) Sound() IUNNotificationSound {
 	rv := objc.Send[UNNotificationSound](u_.ID, objc.Sel("sound"))
 	return rv
 }
 
 
-// SetSound sets the value of the sound property.
 // The sound that plays when the system delivers the notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/sound
 func (u_ UNMutableNotificationContent) SetSound(value IUNNotificationSound) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSound:"), value)
 }
 
+
 // The localized text that provides the notification’s secondary description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/subtitle
-func (u_ UNMutableNotificationContent) Subtitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
+func (u_ UNMutableNotificationContent) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
 
-// SetSubtitle sets the value of the subtitle property.
 // The localized text that provides the notification’s secondary description.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/subtitle
-func (u_ UNMutableNotificationContent) SetSubtitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), value)
 }
+
 
 // The text the system adds to the notification summary to provide additional context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgument
-func (u_ UNMutableNotificationContent) SummaryArgument() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("summaryArgument"))
+func (u_ UNMutableNotificationContent) SummaryArgument() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("summaryArgument"))
 	return rv
 }
 
 
-// SetSummaryArgument sets the value of the summaryArgument property.
 // The text the system adds to the notification summary to provide additional context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgument
-func (u_ UNMutableNotificationContent) SetSummaryArgument(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSummaryArgument:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetSummaryArgument(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSummaryArgument:"), value)
 }
+
 
 // The number the system adds to the notification summary when the notification represents multiple items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgumentCount
 func (u_ UNMutableNotificationContent) SummaryArgumentCount() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("summaryArgumentCount"))
@@ -331,86 +329,88 @@ func (u_ UNMutableNotificationContent) SummaryArgumentCount() uint {
 }
 
 
-// SetSummaryArgumentCount sets the value of the summaryArgumentCount property.
 // The number the system adds to the notification summary when the notification represents multiple items.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/summaryArgumentCount
 func (u_ UNMutableNotificationContent) SetSummaryArgumentCount(value uint) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSummaryArgumentCount:"), value)
 }
 
+
 // The value your app uses to determine which scene to display to handle the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/targetContentIdentifier
-func (u_ UNMutableNotificationContent) TargetContentIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UNMutableNotificationContent) TargetContentIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
 
 
-// SetTargetContentIdentifier sets the value of the targetContentIdentifier property.
 // The value your app uses to determine which scene to display to handle the notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/targetContentIdentifier
-func (u_ UNMutableNotificationContent) SetTargetContentIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetTargetContentIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), value)
 }
+
 
 // The identifier that groups related notifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/threadIdentifier
-func (u_ UNMutableNotificationContent) ThreadIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("threadIdentifier"))
+func (u_ UNMutableNotificationContent) ThreadIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("threadIdentifier"))
 	return rv
 }
 
 
-// SetThreadIdentifier sets the value of the threadIdentifier property.
 // The identifier that groups related notifications.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/threadIdentifier
-func (u_ UNMutableNotificationContent) SetThreadIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setThreadIdentifier:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetThreadIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setThreadIdentifier:"), value)
 }
+
 
 // The localized text that provides the notification’s primary description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/title
-func (u_ UNMutableNotificationContent) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+func (u_ UNMutableNotificationContent) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The localized text that provides the notification’s primary description.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/title
-func (u_ UNMutableNotificationContent) SetTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (u_ UNMutableNotificationContent) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
 }
+
 
 // The custom data to associate with the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/userInfo
-func (u_ UNMutableNotificationContent) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("userInfo"))
+func (u_ UNMutableNotificationContent) UserInfo() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
 
-// SetUserInfo sets the value of the userInfo property.
 // The custom data to associate with the notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNMutableNotificationContent/userInfo
-func (u_ UNMutableNotificationContent) SetUserInfo(value objc.ID) {
+func (u_ UNMutableNotificationContent) SetUserInfo(value objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 

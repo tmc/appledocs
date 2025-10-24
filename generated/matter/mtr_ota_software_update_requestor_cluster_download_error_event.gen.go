@@ -30,17 +30,21 @@ type _MTROtaSoftwareUpdateRequestorClusterDownloadErrorEventClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent] class.
 type IMTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent interface {
 	IMTROTASoftwareUpdateRequestorClusterDownloadErrorEvent
-	BytesDownloaded() foundation.Number
-	SetBytesDownloaded(value foundation.INumber)
-	PlatformCode() foundation.Number
-	SetPlatformCode(value foundation.INumber)
-	ProgressPercent() foundation.Number
-	SetProgressPercent(value foundation.INumber)
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
+	// properties:
+	BytesDownloaded() objc.IObject /* cross-framework: NSNumber */
+	SetBytesDownloaded(value objc.IObject /* cross-framework: NSNumber */)
+	PlatformCode() objc.IObject /* cross-framework: NSNumber */
+	SetPlatformCode(value objc.IObject /* cross-framework: NSNumber */)
+	ProgressPercent() objc.IObject /* cross-framework: NSNumber */
+	SetProgressPercent(value objc.IObject /* cross-framework: NSNumber */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent-73h3t
 type MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent struct {
 	MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent
@@ -85,63 +89,63 @@ func NewMTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent() MTROtaSoftwareU
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("bytesDownloaded"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("bytesDownloaded"))
 	return rv
 }
 
 
-// SetBytesDownloaded sets the value of the bytesDownloaded property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/bytesdownloaded
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/platformcode
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) PlatformCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("platformCode"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) PlatformCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("platformCode"))
 	return rv
 }
 
 
-// SetPlatformCode sets the value of the platformCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/platformcode
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlatformCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("progressPercent"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("progressPercent"))
 	return rv
 }
 
 
-// SetProgressPercent sets the value of the progressPercent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/progresspercent
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressPercent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/softwareversion
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-73h3t/softwareversion
-func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

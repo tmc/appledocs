@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,17 @@ type _SFSafariExtensionHandlerClass struct {
 // An interface definition for the [SFSafariExtensionHandler] class.
 type ISFSafariExtensionHandler interface {
 	objectivec.IObject
-	SFExtensionProfileKey() string
+	// properties:
+	SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A base class that you subclass to handle events in your Safari app extension.
+
+
+// A base class that you subclass to handle events in your Safari app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariExtensionHandler
 type SFSafariExtensionHandler struct {
 	objectivec.Object
@@ -79,11 +86,13 @@ func NewSFSafariExtensionHandler() SFSafariExtensionHandler {
 }
 
 
+
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariExtensionHandler) SFExtensionProfileKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariExtensionHandler) SFExtensionProfileKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 

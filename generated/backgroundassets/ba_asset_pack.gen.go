@@ -32,10 +32,10 @@ type _BAAssetPackClass struct {
 type IBAAssetPack interface {
 	objectivec.IObject
 	// properties:
-	DownloadSize() int /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
-	UserInfo() foundation.objc.IObject /* cross-framework: NSData */
-	Version() int /* primitive/slice/pointer. */
+	DownloadSize() int
+	Identifier() objc.IObject /* cross-framework: NSString */
+	UserInfo() objc.IObject /* cross-framework: NSData */
+	Version() int
 	// methods:
 	Download() IBADownload
 	DownloadForContentRequest(contentRequest BAContentRequest) IBADownload
@@ -118,7 +118,7 @@ func (b_ BAAssetPack) DownloadForContentRequest(contentRequest BAContentRequest)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadSize
-func (b_ BAAssetPack) DownloadSize() int /* primitive/slice/pointer. */ {
+func (b_ BAAssetPack) DownloadSize() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("downloadSize"))
 	return rv
 }
@@ -128,8 +128,8 @@ func (b_ BAAssetPack) DownloadSize() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-func (b_ BAAssetPack) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+func (b_ BAAssetPack) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (b_ BAAssetPack) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/userInfo
-func (b_ BAAssetPack) UserInfo() foundation.objc.IObject /* cross-framework: NSData */ {
+func (b_ BAAssetPack) UserInfo() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (b_ BAAssetPack) UserInfo() foundation.objc.IObject /* cross-framework: NSD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/version
-func (b_ BAAssetPack) Version() int /* primitive/slice/pointer. */ {
+func (b_ BAAssetPack) Version() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("version"))
 	return rv
 }

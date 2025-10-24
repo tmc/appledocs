@@ -33,11 +33,11 @@ type IMutableString interface {
 	// methods:
 	AppendString(aString IString)
 	AppendFormat(format IString)
-	ApplyTransformReverseRangeUpdatedRange(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */, range_ objc.IObject /* cross-framework Range */, resultingRange objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */
-	DeleteCharactersInRange(range_ objc.IObject /* cross-framework Range */)
-	InsertStringAtIndex(aString IString, loc uint /* primitive/slice/pointer. */)
-	ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, aString IString)
-	ReplaceOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */
+	ApplyTransformReverseRangeUpdatedRange(transform objc.IObject /* cross-framework: StringTransform */, reverse bool, range_ objc.IObject /* cross-framework: Range */, resultingRange objc.IObject /* cross-framework: RangePointer */) bool
+	DeleteCharactersInRange(range_ objc.IObject /* cross-framework: Range */)
+	InsertStringAtIndex(aString IString, loc uint)
+	ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, aString IString)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework: Range */) uint
 	SetString(aString IString)
 }
 
@@ -100,7 +100,7 @@ func NewMutableString() MutableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)
-func NewMutableStringWithCapacity(capacity uint /* primitive/slice/pointer. */) MutableString {
+func NewMutableStringWithCapacity(capacity uint) MutableString {
 	instance := getMutableStringClass().Alloc()
 	rv := objc.Send[MutableString](instance.ID, objc.Sel("initWithCapacity:"), capacity)
 	rv.Autorelease()
@@ -113,7 +113,7 @@ func NewMutableStringWithCapacity(capacity uint /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/stringWithCapacity:
-func (mc _MutableStringClass) StringWithCapacity(capacity uint /* primitive/slice/pointer. */) IMutableString {
+func (mc _MutableStringClass) StringWithCapacity(capacity uint) IMutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("stringWithCapacity:"), capacity)
 	return rv
 }
@@ -141,7 +141,7 @@ func (m_ MutableString) AppendFormat(format IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/applyTransform(_:reverse:range:updatedRange:)
-func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */, range_ objc.IObject /* cross-framework Range */, resultingRange objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */ {
+func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform objc.IObject /* cross-framework: StringTransform */, reverse bool, range_ objc.IObject /* cross-framework: Range */, resultingRange objc.IObject /* cross-framework: RangePointer */) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("applyTransform:reverse:range:updatedRange:"), transform, reverse, range_, resultingRange)
 	return rv
 }
@@ -151,7 +151,7 @@ func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform objc.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/deleteCharacters(in:)
-func (m_ MutableString) DeleteCharactersInRange(range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableString) DeleteCharactersInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
 }
 
@@ -160,7 +160,7 @@ func (m_ MutableString) DeleteCharactersInRange(range_ objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/insert(_:at:)
-func (m_ MutableString) InsertStringAtIndex(aString IString, loc uint /* primitive/slice/pointer. */) {
+func (m_ MutableString) InsertStringAtIndex(aString IString, loc uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertString:atIndex:"), aString, loc)
 }
 
@@ -169,7 +169,7 @@ func (m_ MutableString) InsertStringAtIndex(aString IString, loc uint /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceCharacters(in:with:)
-func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, aString IString) {
+func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, aString IString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, aString)
 }
 
@@ -178,7 +178,7 @@ func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceOccurrences(of:with:options:range:)
-func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) uint /* primitive/slice/pointer. */ {
+func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
 	return rv
 }

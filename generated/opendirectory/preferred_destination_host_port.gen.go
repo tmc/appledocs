@@ -30,9 +30,13 @@ type _preferredDestinationHostPortClass struct {
 // An interface definition for the [preferredDestinationHostPort] class.
 type IpreferredDestinationHostPort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-c.ivar
 type preferredDestinationHostPort struct {
 	objectivec.Object

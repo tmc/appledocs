@@ -30,14 +30,14 @@ type _AudioInputNodeClass struct {
 type IAudioInputNode interface {
 	IAudioIONode
 	// properties:
-	VoiceProcessingBypassed() bool /* primitive/slice/pointer. */
-	SetVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */)
-	IsVoiceProcessingAGCEnabled() bool /* primitive/slice/pointer. */
-	SetIsVoiceProcessingAGCEnabled(value bool /* primitive/slice/pointer. */)
-	IsVoiceProcessingBypassed() bool /* primitive/slice/pointer. */
-	SetIsVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */)
-	IsVoiceProcessingInputMuted() bool /* primitive/slice/pointer. */
-	SetIsVoiceProcessingInputMuted(value bool /* primitive/slice/pointer. */)
+	VoiceProcessingBypassed() bool
+	SetVoiceProcessingBypassed(value bool)
+	IsVoiceProcessingAGCEnabled() bool
+	SetIsVoiceProcessingAGCEnabled(value bool)
+	IsVoiceProcessingBypassed() bool
+	SetIsVoiceProcessingBypassed(value bool)
+	IsVoiceProcessingInputMuted() bool
+	SetIsVoiceProcessingInputMuted(value bool)
 	VoiceProcessingOtherAudioDuckingConfiguration() AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */
 	SetVoiceProcessingOtherAudioDuckingConfiguration(value AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */)
 	// methods:
@@ -102,7 +102,7 @@ func NewAudioInputNode() AudioInputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
-func (a_ AudioInputNode) VoiceProcessingBypassed() bool /* primitive/slice/pointer. */ {
+func (a_ AudioInputNode) VoiceProcessingBypassed() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("voiceProcessingBypassed"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (a_ AudioInputNode) VoiceProcessingBypassed() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
-func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVoiceProcessingBypassed:"), value)
 }
 
@@ -121,7 +121,7 @@ func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
-func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingAGCEnabled"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
-func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingAGCEnabled:"), value)
 }
 
@@ -140,7 +140,7 @@ func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
-func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool /* primitive/slice/pointer. */ {
+func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingBypassed"))
 	return rv
 }
@@ -150,7 +150,7 @@ func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
-func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingBypassed:"), value)
 }
 
@@ -159,7 +159,7 @@ func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
-func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool /* primitive/slice/pointer. */ {
+func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingInputMuted"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
-func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingInputMuted:"), value)
 }
 

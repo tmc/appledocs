@@ -30,17 +30,21 @@ type _CommandBufferClass struct {
 // An interface definition for the [CommandBuffer] class.
 type ICommandBuffer interface {
 	objectivec.IObject
-	PrefetchHeapForWorkloadSize(size Iuintptr)
+	// properties:
 	CommandBuffer() objc.ID
 	HeapProvider() objc.ID
 	SetHeapProvider(value objc.ID)
-	Predicate() MPSPredicate
+	Predicate() IMPSPredicate
 	SetPredicate(value IMPSPredicate)
-	RootCommandBuffer() CommandBuffer
+	RootCommandBuffer() ICommandBuffer
 	SetRootCommandBuffer(value ICommandBuffer)
+	// methods:
+	PrefetchHeapForWorkloadSize(size uintptr /* not a class type */)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer
 type CommandBuffer struct {
 	objectivec.Object
@@ -83,20 +87,23 @@ func NewCommandBuffer() CommandBuffer {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/prefetchHeap(forWorkloadSize:)
-func (c_ CommandBuffer) PrefetchHeapForWorkloadSize(size Iuintptr) {
+func (c_ CommandBuffer) PrefetchHeapForWorkloadSize(size uintptr /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prefetchHeapForWorkloadSize:"), size)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/commandBuffer
 func (c_ CommandBuffer) CommandBuffer() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("commandBuffer"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/heapProvider
 func (c_ CommandBuffer) HeapProvider() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("heapProvider"))
@@ -104,38 +111,37 @@ func (c_ CommandBuffer) HeapProvider() objc.ID {
 }
 
 
-// SetHeapProvider sets the value of the heapProvider property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/heapProvider
 func (c_ CommandBuffer) SetHeapProvider(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHeapProvider:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/predicate
-func (c_ CommandBuffer) Predicate() MPSPredicate {
-	rv := objc.Send[MPSPredicate](c_.ID, objc.Sel("predicate"))
+func (c_ CommandBuffer) Predicate() IMPSPredicate {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 
-// SetPredicate sets the value of the predicate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/predicate
 func (c_ CommandBuffer) SetPredicate(value IMPSPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
-func (c_ CommandBuffer) RootCommandBuffer() CommandBuffer {
+func (c_ CommandBuffer) RootCommandBuffer() ICommandBuffer {
 	rv := objc.Send[CommandBuffer](c_.ID, objc.Sel("rootCommandBuffer"))
 	return rv
 }
 
 
-// SetRootCommandBuffer sets the value of the rootCommandBuffer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
 func (c_ CommandBuffer) SetRootCommandBuffer(value ICommandBuffer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRootCommandBuffer:"), value)

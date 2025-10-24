@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,10 +33,10 @@ type _GSSyncedDirectoryStateClass struct {
 type IGSSyncedDirectoryState interface {
 	objectivec.IObject
 	// properties:
-	ConflictedVersions() []GSSyncedDirectoryVersion /* primitive/slice/pointer. */
-	Error() Error /* not a class type */
+	ConflictedVersions() []GSSyncedDirectoryVersion /* not a class type */
+	Error() objc.IObject /* cross-framework: Error */
 	State() GSSyncState
-	Url() foundation.objc.IObject /* cross-framework: URL */
+	Url() objc.IObject /* cross-framework: NSURL */
 	DirectoryState() IGSSyncedDirectoryState
 	SetDirectoryState(value IGSSyncedDirectoryState)
 	// methods:
@@ -98,7 +99,7 @@ func NewGSSyncedDirectoryState() GSSyncedDirectoryState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState/conflictedVersions
-func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion /* primitive/slice/pointer. */ {
+func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion /* not a class type */ {
 	rv := objc.Send[[]GSSyncedDirectoryVersion](g_.ID, objc.Sel("conflictedVersions"))
 	return rv
 }
@@ -108,8 +109,8 @@ func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState/error
-func (g_ GSSyncedDirectoryState) Error() Error /* not a class type */ {
-	rv := objc.Send[Error](g_.ID, objc.Sel("error"))
+func (g_ GSSyncedDirectoryState) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](g_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (g_ GSSyncedDirectoryState) State() GSSyncState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState/url
-func (g_ GSSyncedDirectoryState) Url() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](g_.ID, objc.Sel("url"))
+func (g_ GSSyncedDirectoryState) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](g_.ID, objc.Sel("url"))
 	return rv
 }
 

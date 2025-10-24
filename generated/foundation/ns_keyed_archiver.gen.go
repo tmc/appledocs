@@ -36,19 +36,19 @@ type IKeyedArchiver interface {
 	EncodedData() IData
 	OutputFormat() PropertyListFormat
 	SetOutputFormat(value PropertyListFormat)
-	RequiresSecureCoding() bool /* primitive/slice/pointer. */
-	SetRequiresSecureCoding(value bool /* primitive/slice/pointer. */)
+	RequiresSecureCoding() bool
+	SetRequiresSecureCoding(value bool)
 	// methods:
 	ClassNameForClass(cls objc.Class) IString
-	EncodeDoubleForKey(value float64 /* primitive/slice/pointer. */, key IString)
-	EncodeInt32ForKey(value unsafe.Pointer, key IString)
-	EncodeFloatForKey(value float32 /* primitive/slice/pointer. */, key IString)
+	EncodeDoubleForKey(value float64, key IString)
+	EncodeInt32ForKey(value int32 /* not a class type */, key IString)
+	EncodeFloatForKey(value float32, key IString)
 	EncodeObjectForKey(object objectivec.IObject, key IString)
-	EncodeBoolForKey(value bool /* primitive/slice/pointer. */, key IString)
-	EncodeInt64ForKey(value unsafe.Pointer, key IString)
-	EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, key IString)
+	EncodeBoolForKey(value bool, key IString)
+	EncodeInt64ForKey(value int64, key IString)
+	EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key IString)
 	EncodeConditionalObjectForKey(object objectivec.IObject, key IString)
-	EncodeIntForKey(value int /* primitive/slice/pointer. */, key IString)
+	EncodeIntForKey(value int, key IString)
 	FinishEncoding()
 	SetClassNameForClass(codedName IString, cls objc.Class)
 }
@@ -124,7 +124,7 @@ func NewKeyedArchiverForWritingWithMutableData(data IMutableData) KeyedArchiver 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/init(requiringSecureCoding:)
-func NewKeyedArchiverRequiringSecureCoding(requiresSecureCoding bool /* primitive/slice/pointer. */) KeyedArchiver {
+func NewKeyedArchiverRequiringSecureCoding(requiresSecureCoding bool) KeyedArchiver {
 	instance := getKeyedArchiverClass().Alloc()
 	rv := objc.Send[KeyedArchiver](instance.ID, objc.Sel("initRequiringSecureCoding:"), requiresSecureCoding)
 	rv.Autorelease()
@@ -137,7 +137,7 @@ func NewKeyedArchiverRequiringSecureCoding(requiresSecureCoding bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archiveRootObject(_:toFile:)
-func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path IString) bool /* primitive/slice/pointer. */ {
+func (kc _KeyedArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path IString) bool {
 	rv := objc.Send[bool](objc.ID(kc.class), objc.Sel("archiveRootObject:toFile:"), rootObject, path)
 	return rv
 }
@@ -157,7 +157,7 @@ func (kc _KeyedArchiverClass) ArchivedDataWithRootObject(rootObject objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/archivedData(withRootObject:requiringSecureCoding:)
-func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool /* primitive/slice/pointer. */, error_ IError) IData {
+func (kc _KeyedArchiverClass) ArchivedDataWithRootObjectRequiringSecureCodingError(object objectivec.IObject, requiresSecureCoding bool, error_ IError) IData {
 	rv := objc.Send[Data](objc.ID(kc.class), objc.Sel("archivedDataWithRootObject:requiringSecureCoding:error:"), object, requiresSecureCoding, error_)
 	return rv
 }
@@ -196,7 +196,7 @@ func (k_ KeyedArchiver) ClassNameForClass(cls objc.Class) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
-func (k_ KeyedArchiver) EncodeDoubleForKey(value float64 /* primitive/slice/pointer. */, key IString) {
+func (k_ KeyedArchiver) EncodeDoubleForKey(value float64, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
 }
 
@@ -205,7 +205,7 @@ func (k_ KeyedArchiver) EncodeDoubleForKey(value float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-5i7tc
-func (k_ KeyedArchiver) EncodeInt32ForKey(value unsafe.Pointer, key IString) {
+func (k_ KeyedArchiver) EncodeInt32ForKey(value int32 /* not a class type */, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeInt32:forKey:"), value, key)
 }
 
@@ -214,7 +214,7 @@ func (k_ KeyedArchiver) EncodeInt32ForKey(value unsafe.Pointer, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-67rcs
-func (k_ KeyedArchiver) EncodeFloatForKey(value float32 /* primitive/slice/pointer. */, key IString) {
+func (k_ KeyedArchiver) EncodeFloatForKey(value float32, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeFloat:forKey:"), value, key)
 }
 
@@ -232,7 +232,7 @@ func (k_ KeyedArchiver) EncodeObjectForKey(object objectivec.IObject, key IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-9pxhm
-func (k_ KeyedArchiver) EncodeBoolForKey(value bool /* primitive/slice/pointer. */, key IString) {
+func (k_ KeyedArchiver) EncodeBoolForKey(value bool, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeBool:forKey:"), value, key)
 }
 
@@ -241,7 +241,7 @@ func (k_ KeyedArchiver) EncodeBoolForKey(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-ycdd
-func (k_ KeyedArchiver) EncodeInt64ForKey(value unsafe.Pointer, key IString) {
+func (k_ KeyedArchiver) EncodeInt64ForKey(value int64, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeInt64:forKey:"), value, key)
 }
 
@@ -250,7 +250,7 @@ func (k_ KeyedArchiver) EncodeInt64ForKey(value unsafe.Pointer, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodeBytes(_:length:forKey:)
-func (k_ KeyedArchiver) EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, key IString) {
+func (k_ KeyedArchiver) EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeBytes:length:forKey:"), bytes, length, key)
 }
 
@@ -268,7 +268,7 @@ func (k_ KeyedArchiver) EncodeConditionalObjectForKey(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encodeInt:forKey:
-func (k_ KeyedArchiver) EncodeIntForKey(value int /* primitive/slice/pointer. */, key IString) {
+func (k_ KeyedArchiver) EncodeIntForKey(value int, key IString) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("encodeInt:forKey:"), value, key)
 }
 
@@ -343,7 +343,7 @@ func (k_ KeyedArchiver) SetOutputFormat(value PropertyListFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
-func (k_ KeyedArchiver) RequiresSecureCoding() bool /* primitive/slice/pointer. */ {
+func (k_ KeyedArchiver) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
 }
@@ -353,7 +353,7 @@ func (k_ KeyedArchiver) RequiresSecureCoding() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/requiresSecureCoding
-func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool /* primitive/slice/pointer. */) {
+func (k_ KeyedArchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 

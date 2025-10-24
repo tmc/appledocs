@@ -29,9 +29,13 @@ type _MTRClusterPowerSourceConfigurationClass struct {
 // An interface definition for the [MTRClusterPowerSourceConfiguration] class.
 type IMTRClusterPowerSourceConfiguration interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerSourceConfiguration
 type MTRClusterPowerSourceConfiguration struct {
 	MTRGenericCluster

@@ -9,12 +9,19 @@ import (
 // Suppress unused import errors
 var _ = corespotlight.NewCSUserQuery
 
-// ExampleNewCSUserQueryWithUserQueryStringUserQueryContext demonstrates how to create a CSUserQuery instance using NewCSUserQueryWithUserQueryStringUserQueryContext.
-// Creates a new user query that searches for the specified term.
-func ExampleNewCSUserQueryWithUserQueryStringUserQueryContext() {
-	_ = corespotlight.NewCSUserQueryWithUserQueryStringUserQueryContext(
-		"kMDItemFSName == '*.txt'", // userQueryString string
-		corespotlight.CSUserQueryContext{}, // userQueryContext CSUserQueryContext
-	)
+// ExampleCSUserQuery_Cancel demonstrates using Cancel on a CSUserQuery instance.
+// Cancels the current query operation.
+func ExampleCSUserQuery_Cancel() {
+	obj := corespotlight.NewCSUserQuery()
+	obj.Cancel()
 	// Output:
-}
+	}
+
+// ExampleCSUserQuery_Start demonstrates using Start on a CSUserQuery instance.
+// Starts searching the index for items that match the current query   string and parameters.
+func ExampleCSUserQuery_Start() {
+	obj := corespotlight.NewCSUserQuery()
+	obj.Start()
+	// Output:
+	}
+

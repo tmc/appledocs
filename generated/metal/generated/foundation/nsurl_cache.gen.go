@@ -31,21 +31,15 @@ type _URLCacheClass struct {
 type IURLCache interface {
 	objectivec.IObject
 	// properties:
-	CurrentDiskUsage() uint /* primitive/slice/pointer. */
-	CurrentMemoryUsage() uint /* primitive/slice/pointer. */
-	DiskCapacity() uint /* primitive/slice/pointer. */
-	SetDiskCapacity(value uint /* primitive/slice/pointer. */)
-	MemoryCapacity() uint /* primitive/slice/pointer. */
-	SetMemoryCapacity(value uint /* primitive/slice/pointer. */)
+	CurrentDiskUsage() int
+	SetCurrentDiskUsage(value int)
+	CurrentMemoryUsage() int
+	SetCurrentMemoryUsage(value int)
+	DiskCapacity() int
+	SetDiskCapacity(value int)
+	MemoryCapacity() int
+	SetMemoryCapacity(value int)
 	// methods:
-	CachedResponseForRequest(request URLRequest /* not a class type */) ICachedURLResponse
-	GetCachedResponseForDataTaskCompletionHandler(dataTask IURLSessionDataTask, completionHandler unsafe.Pointer)
-	RemoveAllCachedResponses()
-	RemoveCachedResponseForRequest(request URLRequest /* not a class type */)
-	RemoveCachedResponseForDataTask(dataTask IURLSessionDataTask)
-	RemoveCachedResponsesSinceDate(date IDate)
-	StoreCachedResponseForRequest(cachedResponse ICachedURLResponse, request URLRequest /* not a class type */)
-	StoreCachedResponseForDataTask(cachedResponse ICachedURLResponse, dataTask IURLSessionDataTask)
 }
 
 // An object that maps URL requests to cached response objects.
@@ -101,119 +95,31 @@ func NewURLCache() URLCache {
 
 
 
-// Creates a URL cache object with the specified memory and disk capacities, in the specified directory.
+// The current size of the on-disk cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLCache/initWithMemoryCapacity:diskCapacity:directoryURL:
-func NewURLCacheWithMemoryCapacityDiskCapacityDirectoryURL(memoryCapacity uint /* primitive/slice/pointer. */, diskCapacity uint /* primitive/slice/pointer. */, directoryURL IURL) URLCache {
-	instance := getURLCacheClass().Alloc()
-	rv := objc.Send[URLCache](instance.ID, objc.Sel("initWithMemoryCapacity:diskCapacity:directoryURL:"), memoryCapacity, diskCapacity, directoryURL)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+func (u_ URLCache) CurrentDiskUsage() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("currentDiskUsage"))
 	return rv
-}
-
-
-// Creates a URL cache object with the specified values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/init(memoryCapacity:diskCapacity:diskPath:)
-func NewURLCacheWithMemoryCapacityDiskCapacityDiskPath(memoryCapacity uint /* primitive/slice/pointer. */, diskCapacity uint /* primitive/slice/pointer. */, path IString) URLCache {
-	instance := getURLCacheClass().Alloc()
-	rv := objc.Send[URLCache](instance.ID, objc.Sel("initWithMemoryCapacity:diskCapacity:diskPath:"), memoryCapacity, diskCapacity, path)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The shared URL cache instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/shared
-func (uc _URLCacheClass) SharedURLCache() URLCache {
-	rv := objc.Send[URLCache](objc.ID(uc.class), objc.Sel("sharedURLCache"))
-	return rv
-}
-
-// Returns the cached URL response in the cache for the specified URL request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/cachedResponse(for:)
-func (u_ URLCache) CachedResponseForRequest(request URLRequest /* not a class type */) ICachedURLResponse {
-	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponseForRequest:"), request)
-	return rv
-}
-
-
-// Gets the cached URL response for a data task, passing it to the provided completion handler.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/getCachedResponse(for:completionHandler:)
-func (u_ URLCache) GetCachedResponseForDataTaskCompletionHandler(dataTask IURLSessionDataTask, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("getCachedResponseForDataTask:completionHandler:"), dataTask, completionHandler)
-}
-
-
-// Clears the receiver’s cache, removing all stored cached URL responses.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/removeAllCachedResponses()
-func (u_ URLCache) RemoveAllCachedResponses() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllCachedResponses"))
-}
-
-
-// Removes the cached URL response for a specified URL request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/removeCachedResponse(for:)-1dh89
-func (u_ URLCache) RemoveCachedResponseForRequest(request URLRequest /* not a class type */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResponseForRequest:"), request)
-}
-
-
-// Removes the cached URL response for a specified data task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/removeCachedResponse(for:)-1zwp6
-func (u_ URLCache) RemoveCachedResponseForDataTask(dataTask IURLSessionDataTask) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResponseForDataTask:"), dataTask)
-}
-
-
-// Clears the given cache of any cached responses since the provided date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/removeCachedResponses(since:)
-func (u_ URLCache) RemoveCachedResponsesSinceDate(date IDate) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResponsesSinceDate:"), date)
-}
-
-
-// Stores a cached URL response for a specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/storeCachedResponse(_:for:)-7p7bl
-func (u_ URLCache) StoreCachedResponseForRequest(cachedResponse ICachedURLResponse, request URLRequest /* not a class type */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("storeCachedResponse:forRequest:"), cachedResponse, request)
-}
-
-
-// Stores a cached URL response for a specified data task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/storeCachedResponse(_:for:)-8uq91
-func (u_ URLCache) StoreCachedResponseForDataTask(cachedResponse ICachedURLResponse, dataTask IURLSessionDataTask) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("storeCachedResponse:forDataTask:"), cachedResponse, dataTask)
 }
 
 
 // The current size of the on-disk cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/currentDiskUsage
-func (u_ URLCache) CurrentDiskUsage() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](u_.ID, objc.Sel("currentDiskUsage"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentdiskusage
+func (u_ URLCache) SetCurrentDiskUsage(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentDiskUsage:"), value)
+}
+
+
+// The current size of the in-memory cache, in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) CurrentMemoryUsage() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("currentMemoryUsage"))
 	return rv
 }
 
@@ -221,9 +127,18 @@ func (u_ URLCache) CurrentDiskUsage() uint /* primitive/slice/pointer. */ {
 // The current size of the in-memory cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/currentMemoryUsage
-func (u_ URLCache) CurrentMemoryUsage() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](u_.ID, objc.Sel("currentMemoryUsage"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/currentmemoryusage
+func (u_ URLCache) SetCurrentMemoryUsage(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentMemoryUsage:"), value)
+}
+
+
+// The capacity of the on-disk cache, in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+func (u_ URLCache) DiskCapacity() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("diskCapacity"))
 	return rv
 }
 
@@ -231,18 +146,8 @@ func (u_ URLCache) CurrentMemoryUsage() uint /* primitive/slice/pointer. */ {
 // The capacity of the on-disk cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/diskCapacity
-func (u_ URLCache) DiskCapacity() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](u_.ID, objc.Sel("diskCapacity"))
-	return rv
-}
-
-
-// The capacity of the on-disk cache, in bytes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/diskCapacity
-func (u_ URLCache) SetDiskCapacity(value uint /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/diskcapacity
+func (u_ URLCache) SetDiskCapacity(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDiskCapacity:"), value)
 }
 
@@ -250,9 +155,9 @@ func (u_ URLCache) SetDiskCapacity(value uint /* primitive/slice/pointer. */) {
 // The capacity of the in-memory cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/memoryCapacity
-func (u_ URLCache) MemoryCapacity() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](u_.ID, objc.Sel("memoryCapacity"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+func (u_ URLCache) MemoryCapacity() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("memoryCapacity"))
 	return rv
 }
 
@@ -260,28 +165,10 @@ func (u_ URLCache) MemoryCapacity() uint /* primitive/slice/pointer. */ {
 // The capacity of the in-memory cache, in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/memoryCapacity
-func (u_ URLCache) SetMemoryCapacity(value uint /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcache/memorycapacity
+func (u_ URLCache) SetMemoryCapacity(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMemoryCapacity:"), value)
 }
 
-
-// The shared URL cache instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/shared
-func (u_ URLCache) SharedURLCache() IURLCache {
-	rv := objc.Send[URLCache](u_.ID, objc.Sel("sharedURLCache"))
-	return rv
-}
-
-
-// The shared URL cache instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCache/shared
-func (u_ URLCache) SetSharedURLCache(value IURLCache) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedURLCache:"), value)
-}
 
 

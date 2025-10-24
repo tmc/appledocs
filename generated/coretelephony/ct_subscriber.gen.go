@@ -32,15 +32,13 @@ type _SubscriberClass struct {
 type ISubscriber interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SIMInserted() bool /* primitive/slice/pointer. */
-	CarrierToken() foundation.objc.IObject /* cross-framework: Data */
-	SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */)
+	CarrierToken() objc.IObject /* cross-framework: Data */
+	SetCarrierToken(value objc.IObject /* cross-framework: Data */)
 	Delegate() SubscriberDelegate /* not a class type */
 	SetDelegate(value SubscriberDelegate /* not a class type */)
-	IsSIMInserted() bool /* primitive/slice/pointer. */
-	SetIsSIMInserted(value bool /* primitive/slice/pointer. */)
-	CTSubscriberTokenRefreshed() string /* primitive/slice/pointer. */
+	IsSIMInserted() bool
+	SetIsSIMInserted(value bool)
+	CTSubscriberTokenRefreshed() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -95,31 +93,11 @@ func NewSubscriber() Subscriber {
 
 
 
-// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/identifier
-func (s_ Subscriber) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// A Boolean property that indicates whether a SIM is present.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/isSIMInserted
-func (s_ Subscriber) SIMInserted() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("SIMInserted"))
-	return rv
-}
-
-
 // A data object containing authorization information about the subscriber.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) CarrierToken() foundation.objc.IObject /* cross-framework: Data */ {
+func (s_ Subscriber) CarrierToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
@@ -129,7 +107,7 @@ func (s_ Subscriber) CarrierToken() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */) {
+func (s_ Subscriber) SetCarrierToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
@@ -157,7 +135,7 @@ func (s_ Subscriber) SetDelegate(value SubscriberDelegate /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
-func (s_ Subscriber) IsSIMInserted() bool /* primitive/slice/pointer. */ {
+func (s_ Subscriber) IsSIMInserted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSIMInserted"))
 	return rv
 }
@@ -167,7 +145,7 @@ func (s_ Subscriber) IsSIMInserted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
-func (s_ Subscriber) SetIsSIMInserted(value bool /* primitive/slice/pointer. */) {
+func (s_ Subscriber) SetIsSIMInserted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
 }
 
@@ -176,10 +154,9 @@ func (s_ Subscriber) SetIsSIMInserted(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
-func (s_ Subscriber) CTSubscriberTokenRefreshed() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
+func (s_ Subscriber) CTSubscriberTokenRefreshed() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
 }
-
 
 

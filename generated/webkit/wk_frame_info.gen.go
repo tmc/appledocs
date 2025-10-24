@@ -31,20 +31,27 @@ type _FrameInfoClass struct {
 // An interface definition for the [FrameInfo] class.
 type IFrameInfo interface {
 	objectivec.IObject
+	// properties:
 	MainFrame() bool
-	Request() foundation.URLRequest
 	IsMainFrame() bool
 	SetIsMainFrame(value bool)
-	SecurityOrigin() WKSecurityOrigin
+	Request() objc.IObject /* cross-framework: URLRequest */
+	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
+	SecurityOrigin() IWKSecurityOrigin
 	SetSecurityOrigin(value IWKSecurityOrigin)
-	WebView() WKWebView
+	WebView() IWKWebView
 	SetWebView(value IWKWebView)
+	// methods:
 }
 
 // An object that contains information about a frame on a webpage.
 //
 // An instance of this class is a transient, data-only object; it does not uniquely identify a frame across multiple delegate method calls.
+
+
+// An object that contains information about a frame on a webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo
 type FrameInfo struct {
 	objectivec.Object
@@ -89,24 +96,20 @@ func NewFrameInfo() FrameInfo {
 }
 
 
+
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/isMainFrame
 func (f_ FrameInfo) MainFrame() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("mainFrame"))
 	return rv
 }
 
-// The frame’s current request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/request
-func (f_ FrameInfo) Request() foundation.URLRequest {
-	rv := objc.Send[foundation.URLRequest](f_.ID, objc.Sel("request"))
-	return rv
-}
 
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/ismainframe
 func (f_ FrameInfo) IsMainFrame() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isMainFrame"))
@@ -114,46 +117,66 @@ func (f_ FrameInfo) IsMainFrame() bool {
 }
 
 
-// SetIsMainFrame sets the value of the isMainFrame property.
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/ismainframe
 func (f_ FrameInfo) SetIsMainFrame(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMainFrame:"), value)
 }
 
-// The frame’s security origin.
+
+// The frame’s current request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
-func (f_ FrameInfo) SecurityOrigin() WKSecurityOrigin {
-	rv := objc.Send[WKSecurityOrigin](f_.ID, objc.Sel("securityOrigin"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/request
+func (f_ FrameInfo) Request() objc.IObject /* cross-framework: URLRequest */ {
+	rv := objc.Send[foundation.URLRequest](f_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// SetSecurityOrigin sets the value of the securityOrigin property.
-// The frame’s security origin.
-
+// The frame’s current request.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/request
+func (f_ FrameInfo) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRequest:"), value)
+}
+
+
+// The frame’s security origin.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
+func (f_ FrameInfo) SecurityOrigin() IWKSecurityOrigin {
+	rv := objc.Send[SecurityOrigin](f_.ID, objc.Sel("securityOrigin"))
+	return rv
+}
+
+
+// The frame’s security origin.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
 func (f_ FrameInfo) SetSecurityOrigin(value IWKSecurityOrigin) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSecurityOrigin:"), value)
 }
 
+
 // The web view that contains this frame and the containing webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
-func (f_ FrameInfo) WebView() WKWebView {
-	rv := objc.Send[WKWebView](f_.ID, objc.Sel("webView"))
+func (f_ FrameInfo) WebView() IWKWebView {
+	rv := objc.Send[WebView](f_.ID, objc.Sel("webView"))
 	return rv
 }
 
 
-// SetWebView sets the value of the webView property.
 // The web view that contains this frame and the containing webpage.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
 func (f_ FrameInfo) SetWebView(value IWKWebView) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWebView:"), value)

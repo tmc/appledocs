@@ -568,60 +568,6 @@ type MTRContentLauncherMetricType uint
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter
 type MTRContentLauncherParameter uint
 
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/actor
-	MTRContentLauncherParameterActor MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/any
-	MTRContentLauncherParameterAny MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/channel
-	MTRContentLauncherParameterChannel MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/character
-	MTRContentLauncherParameterCharacter MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/director
-	MTRContentLauncherParameterDirector MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/episode
-	MTRContentLauncherParameterEpisode MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/event
-	MTRContentLauncherParameterEvent MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/franchise
-	MTRContentLauncherParameterFranchise MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/genre
-	MTRContentLauncherParameterGenre MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/league
-	MTRContentLauncherParameterLeague MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/popularity
-	MTRContentLauncherParameterPopularity MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/provider
-	MTRContentLauncherParameterProvider MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/season
-	MTRContentLauncherParameterSeason MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/sport
-	MTRContentLauncherParameterSport MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/sportsTeam
-	MTRContentLauncherParameterSportsTeam MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/type
-	MTRContentLauncherParameterType MTRContentLauncherParameter = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherParameter/video
-	MTRContentLauncherParameterVideo MTRContentLauncherParameter = 0
-)
-
 // MTRContentLauncherStatus enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherStatus
@@ -1991,69 +1937,6 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code
 type MTRErrorCode uint
 
-const (
-	// MTRErrorCodeAccessDenied - Access to some resource was denied.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/accessDenied
-	MTRErrorCodeAccessDenied MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/bufferTooSmall
-	MTRErrorCodeBufferTooSmall MTRErrorCode = 0
-	// MTRErrorCodeBusy - A request was made to some entity, and that entity cannot handle the   request right now, but might be able to at a different point in time.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/busy
-	MTRErrorCodeBusy MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/cancelled
-	MTRErrorCodeCancelled MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/dnssdUnauthorized
-	MTRErrorCodeDNSSDUnauthorized MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/fabricExists
-	MTRErrorCodeFabricExists MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/generalError
-	MTRErrorCodeGeneralError MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/integrityCheckFailed
-	MTRErrorCodeIntegrityCheckFailed MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidArgument
-	MTRErrorCodeInvalidArgument MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidIntegerValue
-	MTRErrorCodeInvalidIntegerValue MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidMessageLength
-	MTRErrorCodeInvalidMessageLength MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidState
-	MTRErrorCodeInvalidState MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/invalidStringLength
-	MTRErrorCodeInvalidStringLength MTRErrorCode = 0
-	// MTRErrorCodeNotFound - Something was requested that could not be located.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/notFound
-	MTRErrorCodeNotFound MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/schemaMismatch
-	MTRErrorCodeSchemaMismatch MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/timeout
-	MTRErrorCodeTimeout MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/tlvDecodeFailed
-	MTRErrorCodeTLVDecodeFailed MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/unknownSchema
-	MTRErrorCodeUnknownSchema MTRErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRError/Code/wrongAddressType
-	MTRErrorCodeWrongAddressType MTRErrorCode = 0
-)
-
 // MTREthernetNetworkDiagnosticsFeature enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREthernetNetworkDiagnosticsFeature
@@ -2073,135 +1956,6 @@ type MTREthernetNetworkDiagnosticsPHYRateType uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType
 type MTREventIDType uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterAccessControlEventAccessControlEntryChangedID
-	MTRClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterAccessControlEventAccessControlExtensionChangedID
-	MTRClusterAccessControlEventAccessControlExtensionChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterBasicEventLeaveID
-	MTRClusterBasicEventLeaveID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterBasicEventStartUpID
-	MTRClusterBasicEventStartUpID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterDoorLockEventLockOperationErrorID
-	MTRClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterDoorLockEventLockOperationID
-	MTRClusterDoorLockEventLockOperationID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventDryRunningID
-	MTRClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventElectronicTemperatureHighID
-	MTRClusterPumpConfigurationAndControlEventElectronicTemperatureHighID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventMotorTemperatureHighID
-	MTRClusterPumpConfigurationAndControlEventMotorTemperatureHighID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSensorFailureID
-	MTRClusterPumpConfigurationAndControlEventSensorFailureID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSupplyVoltageLowID
-	MTRClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterPumpConfigurationAndControlEventSystemPressureHighID
-	MTRClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterSwitchEventMultiPressOngoingID
-	MTRClusterSwitchEventMultiPressOngoingID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterThreadNetworkDiagnosticsEventConnectionStatusID
-	MTRClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterAccessControlEventAccessControlEntryChangedID
-	MTREventIDTypeClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterActionsEventStateChangedID
-	MTREventIDTypeClusterActionsEventStateChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBasicInformationEventReachableChangedID
-	MTREventIDTypeClusterBasicInformationEventReachableChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBooleanStateConfigurationEventSensorFaultID
-	MTREventIDTypeClusterBooleanStateConfigurationEventSensorFaultID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventActiveChangedID
-	MTREventIDTypeClusterBridgedDeviceBasicInformationEventActiveChangedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventLeaveID
-	MTREventIDTypeClusterBridgedDeviceBasicInformationEventLeaveID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterBridgedDeviceBasicInformationEventShutDownID
-	MTREventIDTypeClusterBridgedDeviceBasicInformationEventShutDownID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDeviceEnergyManagementEventPowerAdjustStartID
-	MTREventIDTypeClusterDeviceEnergyManagementEventPowerAdjustStartID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDoorLockEventLockOperationErrorID
-	MTREventIDTypeClusterDoorLockEventLockOperationErrorID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterDoorLockEventLockOperationID
-	MTREventIDTypeClusterDoorLockEventLockOperationID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID
-	MTREventIDTypeClusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterGeneralDiagnosticsEventBootReasonID
-	MTREventIDTypeClusterGeneralDiagnosticsEventBootReasonID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterOTASoftwareUpdateRequestorEventDownloadErrorID
-	MTREventIDTypeClusterOTASoftwareUpdateRequestorEventDownloadErrorID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterOvenCavityOperationalStateEventOperationCompletionID
-	MTREventIDTypeClusterOvenCavityOperationalStateEventOperationCompletionID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPowerSourceEventBatFaultChangeID
-	MTREventIDTypeClusterPowerSourceEventBatFaultChangeID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventAirDetectionID
-	MTREventIDTypeClusterPumpConfigurationAndControlEventAirDetectionID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventDryRunningID
-	MTREventIDTypeClusterPumpConfigurationAndControlEventDryRunningID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventSupplyVoltageLowID
-	MTREventIDTypeClusterPumpConfigurationAndControlEventSupplyVoltageLowID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterPumpConfigurationAndControlEventSystemPressureHighID
-	MTREventIDTypeClusterPumpConfigurationAndControlEventSystemPressureHighID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterRVCOperationalStateEventOperationalErrorID
-	MTREventIDTypeClusterRVCOperationalStateEventOperationalErrorID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSmokeCOAlarmEventCOAlarmID
-	MTREventIDTypeClusterSmokeCOAlarmEventCOAlarmID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSoftwareDiagnosticsEventSoftwareFaultID
-	MTREventIDTypeClusterSoftwareDiagnosticsEventSoftwareFaultID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSwitchEventLongReleaseID
-	MTREventIDTypeClusterSwitchEventLongReleaseID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterSwitchEventShortReleaseID
-	MTREventIDTypeClusterSwitchEventShortReleaseID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterTargetNavigatorEventTargetUpdatedID
-	MTREventIDTypeClusterTargetNavigatorEventTargetUpdatedID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterThreadNetworkDiagnosticsEventConnectionStatusID
-	MTREventIDTypeClusterThreadNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterWiFiNetworkDiagnosticsEventAssociationFailureID
-	MTREventIDTypeClusterWiFiNetworkDiagnosticsEventAssociationFailureID MTREventIDType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/clusterWiFiNetworkDiagnosticsEventConnectionStatusID
-	MTREventIDTypeClusterWiFiNetworkDiagnosticsEventConnectionStatusID MTREventIDType = 0
-)
 
 // MTREventPriority enum type
 //
@@ -2660,6 +2414,18 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlFeature
 type MTRLevelControlFeature uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlFeature/frequency
+	MTRLevelControlFeatureFrequency MTRLevelControlFeature = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlFeature/lighting
+	MTRLevelControlFeatureLighting MTRLevelControlFeature = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlFeature/onOff
+	MTRLevelControlFeatureOnOff MTRLevelControlFeature = 0
+)
+
 // MTRLevelControlMoveMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlMoveMode
@@ -2988,6 +2754,33 @@ type MTRNitrogenDioxideConcentrationMeasurementMeasurementMedium uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit
 type MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/BQM3
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitBQM3 MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/MGM3
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitMGM3 MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/NGM3
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitNGM3 MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/PM3
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitPM3 MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/PPB
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitPPB MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/PPM
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitPPM MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/PPT
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitPPT MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit/UGM3
+	MTRNitrogenDioxideConcentrationMeasurementMeasurementUnitUGM3 MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit = 0
+)
 
 // MTROTAImageDigestType enum type
 //
@@ -3365,33 +3158,6 @@ type MTRPM1ConcentrationMeasurementMeasurementMedium uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit
 type MTRPM1ConcentrationMeasurementMeasurementUnit uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/BQM3
-	MTRPM1ConcentrationMeasurementMeasurementUnitBQM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/MGM3
-	MTRPM1ConcentrationMeasurementMeasurementUnitMGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/NGM3
-	MTRPM1ConcentrationMeasurementMeasurementUnitNGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PM3
-	MTRPM1ConcentrationMeasurementMeasurementUnitPM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPB
-	MTRPM1ConcentrationMeasurementMeasurementUnitPPB MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPM
-	MTRPM1ConcentrationMeasurementMeasurementUnitPPM MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/PPT
-	MTRPM1ConcentrationMeasurementMeasurementUnitPPT MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPM1ConcentrationMeasurementMeasurementUnit/UGM3
-	MTRPM1ConcentrationMeasurementMeasurementUnitUGM3 MTRPM1ConcentrationMeasurementMeasurementUnit = 0
-)
 
 // MTRPM25ConcentrationMeasurementFeature enum type
 //

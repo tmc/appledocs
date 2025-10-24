@@ -31,13 +31,17 @@ type _MTRRVCOperationalStateClusterResumeParamsClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterResumeParams] class.
 type IMTRRVCOperationalStateClusterResumeParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterResumeParams
 type MTRRVCOperationalStateClusterResumeParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRRVCOperationalStateClusterResumeParams() MTRRVCOperationalStateCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/serversideprocessingtimeout
-func (m_ MTRRVCOperationalStateClusterResumeParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRRVCOperationalStateClusterResumeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/serversideprocessingtimeout
-func (m_ MTRRVCOperationalStateClusterResumeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterResumeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
-func (m_ MTRRVCOperationalStateClusterResumeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRRVCOperationalStateClusterResumeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
-func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

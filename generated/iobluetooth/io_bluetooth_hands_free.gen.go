@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,39 +34,39 @@ type IBluetoothHandsFree interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Device() IOBluetoothDevice /* already interface */
+	Device() IOBluetoothDevice
 	DeviceCallHoldModes() uint32 /* not a class type */
 	DeviceSupportedFeatures() uint32 /* not a class type */
 	DeviceSupportedSMSServices() uint32 /* not a class type */
-	InputVolume() float32 /* primitive/slice/pointer. */
-	SetInputVolume(value float32 /* primitive/slice/pointer. */)
-	Connected() bool /* primitive/slice/pointer. */
-	InputMuted() bool /* primitive/slice/pointer. */
-	SetInputMuted(value bool /* primitive/slice/pointer. */)
-	OutputMuted() bool /* primitive/slice/pointer. */
-	SetOutputMuted(value bool /* primitive/slice/pointer. */)
-	SMSEnabled() bool /* primitive/slice/pointer. */
-	OutputVolume() float32 /* primitive/slice/pointer. */
-	SetOutputVolume(value float32 /* primitive/slice/pointer. */)
+	InputVolume() float32
+	SetInputVolume(value float32)
+	Connected() bool
+	InputMuted() bool
+	SetInputMuted(value bool)
+	OutputMuted() bool
+	SetOutputMuted(value bool)
+	SMSEnabled() bool
+	OutputVolume() float32
+	SetOutputVolume(value float32)
 	SMSMode() BluetoothSMSMode
 	SupportedFeatures() uint32 /* not a class type */
 	SetSupportedFeatures(value uint32 /* not a class type */)
-	IsConnected() bool /* primitive/slice/pointer. */
-	SetIsConnected(value bool /* primitive/slice/pointer. */)
-	IsInputMuted() bool /* primitive/slice/pointer. */
-	SetIsInputMuted(value bool /* primitive/slice/pointer. */)
-	IsOutputMuted() bool /* primitive/slice/pointer. */
-	SetIsOutputMuted(value bool /* primitive/slice/pointer. */)
-	IsSMSEnabled() bool /* primitive/slice/pointer. */
-	SetIsSMSEnabled(value bool /* primitive/slice/pointer. */)
+	IsConnected() bool
+	SetIsConnected(value bool)
+	IsInputMuted() bool
+	SetIsInputMuted(value bool)
+	IsOutputMuted() bool
+	SetIsOutputMuted(value bool)
+	IsSMSEnabled() bool
+	SetIsSMSEnabled(value bool)
 	// methods:
 	Connect()
 	ConnectSCO()
 	Disconnect()
 	DisconnectSCO()
-	Indicator(indicatorName string /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	IsSCOConnected() bool /* primitive/slice/pointer. */
-	SetIndicatorValue(indicatorName string /* primitive/slice/pointer. */, indicatorValue int /* primitive/slice/pointer. */)
+	Indicator(indicatorName objc.IObject /* cross-framework: NSString */) int
+	IsSCOConnected() bool
+	SetIndicatorValue(indicatorName objc.IObject /* cross-framework: NSString */, indicatorValue int)
 }
 
 // Hands free profile class.
@@ -125,7 +126,7 @@ func NewBluetoothHandsFree() BluetoothHandsFree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/init(device:delegate:)
-func NewBluetoothHandsFreeWithDeviceDelegate(device BluetoothDevice /* already interface */, inDelegate objectivec.IObject) BluetoothHandsFree {
+func NewBluetoothHandsFreeWithDeviceDelegate(device IOBluetoothDevice, inDelegate objectivec.IObject) BluetoothHandsFree {
 	instance := getBluetoothHandsFreeClass().Alloc()
 	rv := objc.Send[BluetoothHandsFree](instance.ID, objc.Sel("initWithDevice:delegate:"), device, inDelegate)
 	rv.Autorelease()
@@ -174,8 +175,8 @@ func (b_ BluetoothHandsFree) DisconnectSCO() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/indicator(_:)
-func (b_ BluetoothHandsFree) Indicator(indicatorName string /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](b_.ID, objc.Sel("indicator:"), objc.String(indicatorName))
+func (b_ BluetoothHandsFree) Indicator(indicatorName objc.IObject /* cross-framework: NSString */) int {
+	rv := objc.Send[int](b_.ID, objc.Sel("indicator:"), indicatorName)
 	return rv
 }
 
@@ -184,7 +185,7 @@ func (b_ BluetoothHandsFree) Indicator(indicatorName string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isSCOConnected()
-func (b_ BluetoothHandsFree) IsSCOConnected() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) IsSCOConnected() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSCOConnected"))
 	return rv
 }
@@ -194,8 +195,8 @@ func (b_ BluetoothHandsFree) IsSCOConnected() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/setIndicator(_:value:)
-func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName string /* primitive/slice/pointer. */, indicatorValue int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), objc.String(indicatorName), indicatorValue)
+func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName objc.IObject /* cross-framework: NSString */, indicatorValue int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), indicatorName, indicatorValue)
 }
 
 
@@ -222,7 +223,7 @@ func (b_ BluetoothHandsFree) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/device
-func (b_ BluetoothHandsFree) Device() IOBluetoothDevice /* already interface */ {
+func (b_ BluetoothHandsFree) Device() IOBluetoothDevice {
 	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
@@ -262,7 +263,7 @@ func (b_ BluetoothHandsFree) DeviceSupportedSMSServices() uint32 /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/inputVolume
-func (b_ BluetoothHandsFree) InputVolume() float32 /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) InputVolume() float32 {
 	rv := objc.Send[float32](b_.ID, objc.Sel("inputVolume"))
 	return rv
 }
@@ -272,14 +273,14 @@ func (b_ BluetoothHandsFree) InputVolume() float32 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/inputVolume
-func (b_ BluetoothHandsFree) SetInputVolume(value float32 /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetInputVolume(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInputVolume:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isConnected
-func (b_ BluetoothHandsFree) Connected() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) Connected() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("connected"))
 	return rv
 }
@@ -289,7 +290,7 @@ func (b_ BluetoothHandsFree) Connected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isInputMuted
-func (b_ BluetoothHandsFree) InputMuted() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) InputMuted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("inputMuted"))
 	return rv
 }
@@ -299,7 +300,7 @@ func (b_ BluetoothHandsFree) InputMuted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isInputMuted
-func (b_ BluetoothHandsFree) SetInputMuted(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetInputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInputMuted:"), value)
 }
 
@@ -308,7 +309,7 @@ func (b_ BluetoothHandsFree) SetInputMuted(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isOutputMuted
-func (b_ BluetoothHandsFree) OutputMuted() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) OutputMuted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("outputMuted"))
 	return rv
 }
@@ -318,7 +319,7 @@ func (b_ BluetoothHandsFree) OutputMuted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isOutputMuted
-func (b_ BluetoothHandsFree) SetOutputMuted(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetOutputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOutputMuted:"), value)
 }
 
@@ -327,7 +328,7 @@ func (b_ BluetoothHandsFree) SetOutputMuted(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/isSMSEnabled
-func (b_ BluetoothHandsFree) SMSEnabled() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) SMSEnabled() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("SMSEnabled"))
 	return rv
 }
@@ -337,7 +338,7 @@ func (b_ BluetoothHandsFree) SMSEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/outputVolume
-func (b_ BluetoothHandsFree) OutputVolume() float32 /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) OutputVolume() float32 {
 	rv := objc.Send[float32](b_.ID, objc.Sel("outputVolume"))
 	return rv
 }
@@ -347,7 +348,7 @@ func (b_ BluetoothHandsFree) OutputVolume() float32 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/outputVolume
-func (b_ BluetoothHandsFree) SetOutputVolume(value float32 /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOutputVolume:"), value)
 }
 
@@ -383,7 +384,7 @@ func (b_ BluetoothHandsFree) SetSupportedFeatures(value uint32 /* not a class ty
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
-func (b_ BluetoothHandsFree) IsConnected() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) IsConnected() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -391,7 +392,7 @@ func (b_ BluetoothHandsFree) IsConnected() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isconnected
-func (b_ BluetoothHandsFree) SetIsConnected(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetIsConnected(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsConnected:"), value)
 }
 
@@ -400,7 +401,7 @@ func (b_ BluetoothHandsFree) SetIsConnected(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
-func (b_ BluetoothHandsFree) IsInputMuted() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) IsInputMuted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isInputMuted"))
 	return rv
 }
@@ -410,7 +411,7 @@ func (b_ BluetoothHandsFree) IsInputMuted() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isinputmuted
-func (b_ BluetoothHandsFree) SetIsInputMuted(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetIsInputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsInputMuted:"), value)
 }
 
@@ -419,7 +420,7 @@ func (b_ BluetoothHandsFree) SetIsInputMuted(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
-func (b_ BluetoothHandsFree) IsOutputMuted() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) IsOutputMuted() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isOutputMuted"))
 	return rv
 }
@@ -429,7 +430,7 @@ func (b_ BluetoothHandsFree) IsOutputMuted() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/isoutputmuted
-func (b_ BluetoothHandsFree) SetIsOutputMuted(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetIsOutputMuted(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsOutputMuted:"), value)
 }
 
@@ -438,7 +439,7 @@ func (b_ BluetoothHandsFree) SetIsOutputMuted(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
-func (b_ BluetoothHandsFree) IsSMSEnabled() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothHandsFree) IsSMSEnabled() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSMSEnabled"))
 	return rv
 }
@@ -448,7 +449,7 @@ func (b_ BluetoothHandsFree) IsSMSEnabled() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree/issmsenabled
-func (b_ BluetoothHandsFree) SetIsSMSEnabled(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothHandsFree) SetIsSMSEnabled(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSMSEnabled:"), value)
 }
 

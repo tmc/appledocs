@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CoreMLRequest] class.
@@ -30,22 +31,29 @@ type _CoreMLRequestClass struct {
 // An interface definition for the [CoreMLRequest] class.
 type ICoreMLRequest interface {
 	IImageBasedRequest
-	ImageCropAndScaleOption() ImageCropAndScaleOption
-	SetImageCropAndScaleOption(value IImageCropAndScaleOption)
-	Model() VNCoreMLModel
-	ModelDescription() coreml.ModelDescription
-	SetModelDescription(value coreml.IModelDescription)
-	PredictedFeatureName() string
-	SetPredictedFeatureName(value string)
+	// properties:
+	ImageCropAndScaleOption() ImageCropAndScaleOption /* not a class type */
+	SetImageCropAndScaleOption(value ImageCropAndScaleOption /* not a class type */)
+	ModelDescription() objc.IObject /* cross-framework: ModelDescription */
+	SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */)
+	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
+	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	Model() IVNCoreMLModel
+	SetModel(value IVNCoreMLModel)
 	VNCoreMLRequestRevision1() int
-	Confidence() Confidence
-	SetConfidence(value IConfidence)
+	Confidence() Confidence /* not a class type */
+	SetConfidence(value Confidence /* not a class type */)
+	// methods:
 }
 
 // An image-analysis request that uses a Core ML model to process images.
 //
 // The results array of a Core ML-based image analysis request contains a different observation type, depending on the kind of object you use: If the model predicts a single feature, the model’s object has a non- value for and Vision treats the model as a classifier. The results are objects. If the model’s outputs include at least one output with a feature type of , Vision treats that model as an image-to-image model. The results are objects. Otherwise, Vision treats the model as a general predictor model. The results are objects.
+
+
+// An image-analysis request that uses a Core ML model to process images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest
 type CoreMLRequest struct {
 	ImageBasedRequest
@@ -93,116 +101,109 @@ func NewCoreMLRequest() CoreMLRequest {
 
 
 
-
-// Creates a model container to use with an image analysis request based on the model you provide.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/init(model:)
-func NewCoreMLRequestWithModel(model IVNCoreMLModel) CoreMLRequest {
-	instance := getCoreMLRequestClass().Alloc()
-	rv := objc.Send[CoreMLRequest](instance.ID, objc.Sel("initWithModel:"), model)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a model container to use with an image analysis request based on the model you provide, with an optional completion handler.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/init(model:completionHandler:)
-func NewCoreMLRequestWithModelCompletionHandler(model IVNCoreMLModel, completionHandler unsafe.Pointer) CoreMLRequest {
-	instance := getCoreMLRequestClass().Alloc()
-	rv := objc.Send[CoreMLRequest](instance.ID, objc.Sel("initWithModel:completionHandler:"), model, completionHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
 // An optional setting that tells the Vision algorithm how to scale an input image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) ImageCropAndScaleOption() ImageCropAndScaleOption {
+func (c_ CoreMLRequest) ImageCropAndScaleOption() ImageCropAndScaleOption /* not a class type */ {
 	rv := objc.Send[ImageCropAndScaleOption](c_.ID, objc.Sel("imageCropAndScaleOption"))
 	return rv
 }
 
 
-// SetImageCropAndScaleOption sets the value of the imageCropAndScaleOption property.
 // An optional setting that tells the Vision algorithm how to scale an input image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) SetImageCropAndScaleOption(value IImageCropAndScaleOption) {
+func (c_ CoreMLRequest) SetImageCropAndScaleOption(value ImageCropAndScaleOption /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
-// The model to base the image analysis request on.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/model
-func (c_ CoreMLRequest) Model() VNCoreMLModel {
-	rv := objc.Send[VNCoreMLModel](c_.ID, objc.Sel("model"))
-	return rv
-}
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLRequest) ModelDescription() coreml.ModelDescription {
+func (c_ CoreMLRequest) ModelDescription() objc.IObject /* cross-framework: ModelDescription */ {
 	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
 
-// SetModelDescription sets the value of the modelDescription property.
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLRequest) SetModelDescription(value coreml.IModelDescription) {
+func (c_ CoreMLRequest) SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
+
 // The name of the primary prediction feature output description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ CoreMLRequest) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
 
-// SetPredictedFeatureName sets the value of the predictedFeatureName property.
 // The name of the primary prediction feature output description.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+func (c_ CoreMLRequest) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
+
+
+// The model to base the image analysis request on.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
+func (c_ CoreMLRequest) Model() IVNCoreMLModel {
+	rv := objc.Send[CoreMLModel](c_.ID, objc.Sel("model"))
+	return rv
+}
+
+
+// The model to base the image analysis request on.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
+func (c_ CoreMLRequest) SetModel(value IVNCoreMLModel) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModel:"), value)
+}
+
 
 // A constant for specifying revision 1 of a Core ML request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequestrevision1
 func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("VNCoreMLRequestRevision1"))
 	return rv
 }
 
+
 // The level of confidence in the observation’s accuracy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) Confidence() Confidence {
+func (c_ CoreMLRequest) Confidence() Confidence /* not a class type */ {
 	rv := objc.Send[Confidence](c_.ID, objc.Sel("confidence"))
 	return rv
 }
 
 
-// SetConfidence sets the value of the confidence property.
 // The level of confidence in the observation’s accuracy.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) SetConfidence(value IConfidence) {
+func (c_ CoreMLRequest) SetConfidence(value Confidence /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
+
 
 

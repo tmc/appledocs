@@ -31,15 +31,19 @@ type _MTRWaterHeaterModeClusterChangeToModeParamsClass struct {
 // An interface definition for the [MTRWaterHeaterModeClusterChangeToModeParams] class.
 type IMTRWaterHeaterModeClusterChangeToModeParams interface {
 	objectivec.IObject
-	NewMode() foundation.Number
-	SetNewMode(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	NewMode() objc.IObject /* cross-framework: NSNumber */
+	SetNewMode(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams
 type MTRWaterHeaterModeClusterChangeToModeParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRWaterHeaterModeClusterChangeToModeParams() MTRWaterHeaterModeClusterC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/newMode
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) NewMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newMode"))
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) NewMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newMode"))
 	return rv
 }
 
 
-// SetNewMode sets the value of the newMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/newMode
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetNewMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

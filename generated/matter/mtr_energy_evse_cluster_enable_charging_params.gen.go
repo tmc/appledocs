@@ -31,19 +31,23 @@ type _MTREnergyEVSEClusterEnableChargingParamsClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnableChargingParams] class.
 type IMTREnergyEVSEClusterEnableChargingParams interface {
 	objectivec.IObject
-	ChargingEnabledUntil() foundation.Number
-	SetChargingEnabledUntil(value foundation.INumber)
-	MaximumChargeCurrent() foundation.Number
-	SetMaximumChargeCurrent(value foundation.INumber)
-	MinimumChargeCurrent() foundation.Number
-	SetMinimumChargeCurrent(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ChargingEnabledUntil() objc.IObject /* cross-framework: NSNumber */
+	SetChargingEnabledUntil(value objc.IObject /* cross-framework: NSNumber */)
+	MaximumChargeCurrent() objc.IObject /* cross-framework: NSNumber */
+	SetMaximumChargeCurrent(value objc.IObject /* cross-framework: NSNumber */)
+	MinimumChargeCurrent() objc.IObject /* cross-framework: NSNumber */
+	SetMinimumChargeCurrent(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams
 type MTREnergyEVSEClusterEnableChargingParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTREnergyEVSEClusterEnableChargingParams() MTREnergyEVSEClusterEnableCha
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/chargingEnabledUntil
-func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("chargingEnabledUntil"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("chargingEnabledUntil"))
 	return rv
 }
 
 
-// SetChargingEnabledUntil sets the value of the chargingEnabledUntil property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/chargingEnabledUntil
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingEnabledUntil:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumChargeCurrent"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maximumChargeCurrent"))
 	return rv
 }
 
 
-// SetMaximumChargeCurrent sets the value of the maximumChargeCurrent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumChargeCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minimumChargeCurrent"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minimumChargeCurrent"))
 	return rv
 }
 
 
-// SetMinimumChargeCurrent sets the value of the minimumChargeCurrent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumChargeCurrent:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

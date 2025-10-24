@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,26 +32,27 @@ type _WebExtensionContextClass struct {
 // An interface definition for the [WebExtensionContext] class.
 type IWebExtensionContext interface {
 	objectivec.IObject
-	BaseURL() foundation.URL
-	SetBaseURL(value foundation.IURL)
-	Commands() unsafe.Pointer
-	SetCommands(value unsafe.Pointer)
-	CurrentPermissionMatchPatterns() unsafe.Pointer
-	SetCurrentPermissionMatchPatterns(value unsafe.Pointer)
+	// properties:
+	BaseURL() objc.IObject /* cross-framework: URL */
+	SetBaseURL(value objc.IObject /* cross-framework: URL */)
+	Commands() WebExtensionCommand /* not a class type */
+	SetCommands(value WebExtensionCommand /* not a class type */)
+	CurrentPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */
+	SetCurrentPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */)
 	CurrentPermissions() unsafe.Pointer
 	SetCurrentPermissions(value unsafe.Pointer)
-	DeniedPermissionMatchPatterns() foundation.Date
-	SetDeniedPermissionMatchPatterns(value foundation.IDate)
-	DeniedPermissions() foundation.Date
-	SetDeniedPermissions(value foundation.IDate)
-	Errors() foundation.Error
-	SetErrors(value foundation.IError)
-	FocusedWindow() unsafe.Pointer
-	SetFocusedWindow(value unsafe.Pointer)
-	GrantedPermissionMatchPatterns() foundation.Date
-	SetGrantedPermissionMatchPatterns(value foundation.IDate)
-	GrantedPermissions() foundation.Date
-	SetGrantedPermissions(value foundation.IDate)
+	DeniedPermissionMatchPatterns() objc.IObject /* cross-framework: Date */
+	SetDeniedPermissionMatchPatterns(value objc.IObject /* cross-framework: Date */)
+	DeniedPermissions() objc.IObject /* cross-framework: Date */
+	SetDeniedPermissions(value objc.IObject /* cross-framework: Date */)
+	Errors() objc.IObject /* cross-framework: Error */
+	SetErrors(value objc.IObject /* cross-framework: Error */)
+	FocusedWindow() WebExtensionWindow /* not a class type */
+	SetFocusedWindow(value WebExtensionWindow /* not a class type */)
+	GrantedPermissionMatchPatterns() objc.IObject /* cross-framework: Date */
+	SetGrantedPermissionMatchPatterns(value objc.IObject /* cross-framework: Date */)
+	GrantedPermissions() objc.IObject /* cross-framework: Date */
+	SetGrantedPermissions(value objc.IObject /* cross-framework: Date */)
 	HasAccessToAllHosts() bool
 	SetHasAccessToAllHosts(value bool)
 	HasAccessToAllURLs() bool
@@ -63,36 +65,41 @@ type IWebExtensionContext interface {
 	SetHasInjectedContent(value bool)
 	HasRequestedOptionalAccessToAllHosts() bool
 	SetHasRequestedOptionalAccessToAllHosts(value bool)
-	InspectionName() string
-	SetInspectionName(value string)
+	InspectionName() objc.IObject /* cross-framework: NSString */
+	SetInspectionName(value objc.IObject /* cross-framework: NSString */)
 	IsInspectable() bool
 	SetIsInspectable(value bool)
 	IsLoaded() bool
 	SetIsLoaded(value bool)
 	OpenTabs() unsafe.Pointer
 	SetOpenTabs(value unsafe.Pointer)
-	OpenWindows() unsafe.Pointer
-	SetOpenWindows(value unsafe.Pointer)
-	OptionsPageURL() foundation.URL
-	SetOptionsPageURL(value foundation.IURL)
-	OverrideNewTabPageURL() foundation.URL
-	SetOverrideNewTabPageURL(value foundation.IURL)
-	UniqueIdentifier() string
-	SetUniqueIdentifier(value string)
-	UnsupportedAPIs() string
-	SetUnsupportedAPIs(value string)
-	WebExtension() WKWebExtension
+	OpenWindows() WebExtensionWindow /* not a class type */
+	SetOpenWindows(value WebExtensionWindow /* not a class type */)
+	OptionsPageURL() objc.IObject /* cross-framework: URL */
+	SetOptionsPageURL(value objc.IObject /* cross-framework: URL */)
+	OverrideNewTabPageURL() objc.IObject /* cross-framework: URL */
+	SetOverrideNewTabPageURL(value objc.IObject /* cross-framework: URL */)
+	UniqueIdentifier() objc.IObject /* cross-framework: NSString */
+	SetUniqueIdentifier(value objc.IObject /* cross-framework: NSString */)
+	UnsupportedAPIs() objc.IObject /* cross-framework: NSString */
+	SetUnsupportedAPIs(value objc.IObject /* cross-framework: NSString */)
+	WebExtension() IWKWebExtension
 	SetWebExtension(value IWKWebExtension)
-	WebExtensionController() WKWebExtensionController
+	WebExtensionController() IWKWebExtensionController
 	SetWebExtensionController(value IWKWebExtensionController)
-	WebViewConfiguration() WKWebViewConfiguration
+	WebViewConfiguration() IWKWebViewConfiguration
 	SetWebViewConfiguration(value IWKWebViewConfiguration)
+	// methods:
 }
 
 // An object that represents the runtime environment for a web extension.
 //
 // This class provides methods for managing the extension’s permissions, allowing it to inject content, run background logic, show popovers, and display other web-based UI to the user.
+
+
+// An object that represents the runtime environment for a web extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionContext
 type WebExtensionContext struct {
 	objectivec.Object
@@ -137,62 +144,67 @@ func NewWebExtensionContext() WebExtensionContext {
 }
 
 
+
 // The base URL the context uses for loading extension resources or injecting content into webpages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/baseurl
-func (w_ WebExtensionContext) BaseURL() foundation.URL {
+func (w_ WebExtensionContext) BaseURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("baseURL"))
 	return rv
 }
 
 
-// SetBaseURL sets the value of the baseURL property.
 // The base URL the context uses for loading extension resources or injecting content into webpages.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/baseurl
-func (w_ WebExtensionContext) SetBaseURL(value foundation.IURL) {
+func (w_ WebExtensionContext) SetBaseURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBaseURL:"), value)
 }
 
+
 // The commands associated with the extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/commands
-func (w_ WebExtensionContext) Commands() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("commands"))
+func (w_ WebExtensionContext) Commands() WebExtensionCommand /* not a class type */ {
+	rv := objc.Send[WebExtensionCommand](w_.ID, objc.Sel("commands"))
 	return rv
 }
 
 
-// SetCommands sets the value of the commands property.
 // The commands associated with the extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/commands
-func (w_ WebExtensionContext) SetCommands(value unsafe.Pointer) {
+func (w_ WebExtensionContext) SetCommands(value WebExtensionCommand /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCommands:"), value)
 }
 
+
 // The currently granted permission match patterns that have not expired.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/currentpermissionmatchpatterns
-func (w_ WebExtensionContext) CurrentPermissionMatchPatterns() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("currentPermissionMatchPatterns"))
+func (w_ WebExtensionContext) CurrentPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */ {
+	rv := objc.Send[WebExtensionMatchPattern](w_.ID, objc.Sel("currentPermissionMatchPatterns"))
 	return rv
 }
 
 
-// SetCurrentPermissionMatchPatterns sets the value of the currentPermissionMatchPatterns property.
 // The currently granted permission match patterns that have not expired.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/currentpermissionmatchpatterns
-func (w_ WebExtensionContext) SetCurrentPermissionMatchPatterns(value unsafe.Pointer) {
+func (w_ WebExtensionContext) SetCurrentPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCurrentPermissionMatchPatterns:"), value)
 }
 
+
 // The currently granted permissions that have not expired.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/currentpermissions
 func (w_ WebExtensionContext) CurrentPermissions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("currentPermissions"))
@@ -200,125 +212,132 @@ func (w_ WebExtensionContext) CurrentPermissions() unsafe.Pointer {
 }
 
 
-// SetCurrentPermissions sets the value of the currentPermissions property.
 // The currently granted permissions that have not expired.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/currentpermissions
 func (w_ WebExtensionContext) SetCurrentPermissions(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCurrentPermissions:"), value)
 }
 
+
 // The currently denied permission match patterns and their expiration dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionmatchpatterns
-func (w_ WebExtensionContext) DeniedPermissionMatchPatterns() foundation.Date {
+func (w_ WebExtensionContext) DeniedPermissionMatchPatterns() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](w_.ID, objc.Sel("deniedPermissionMatchPatterns"))
 	return rv
 }
 
 
-// SetDeniedPermissionMatchPatterns sets the value of the deniedPermissionMatchPatterns property.
 // The currently denied permission match patterns and their expiration dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionmatchpatterns
-func (w_ WebExtensionContext) SetDeniedPermissionMatchPatterns(value foundation.IDate) {
+func (w_ WebExtensionContext) SetDeniedPermissionMatchPatterns(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDeniedPermissionMatchPatterns:"), value)
 }
 
+
 // The currently denied permissions and their expiration dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissions
-func (w_ WebExtensionContext) DeniedPermissions() foundation.Date {
+func (w_ WebExtensionContext) DeniedPermissions() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](w_.ID, objc.Sel("deniedPermissions"))
 	return rv
 }
 
 
-// SetDeniedPermissions sets the value of the deniedPermissions property.
 // The currently denied permissions and their expiration dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissions
-func (w_ WebExtensionContext) SetDeniedPermissions(value foundation.IDate) {
+func (w_ WebExtensionContext) SetDeniedPermissions(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDeniedPermissions:"), value)
 }
 
+
 // All errors that occurred in the extension context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errors
-func (w_ WebExtensionContext) Errors() foundation.Error {
-	rv := objc.Send[foundation.Error](w_.ID, objc.Sel("errors"))
+func (w_ WebExtensionContext) Errors() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](w_.ID, objc.Sel("errors"))
 	return rv
 }
 
 
-// SetErrors sets the value of the errors property.
 // All errors that occurred in the extension context.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errors
-func (w_ WebExtensionContext) SetErrors(value foundation.IError) {
+func (w_ WebExtensionContext) SetErrors(value objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setErrors:"), value)
 }
 
+
 // The window that currently has focus for this extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/focusedwindow
-func (w_ WebExtensionContext) FocusedWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("focusedWindow"))
+func (w_ WebExtensionContext) FocusedWindow() WebExtensionWindow /* not a class type */ {
+	rv := objc.Send[WebExtensionWindow](w_.ID, objc.Sel("focusedWindow"))
 	return rv
 }
 
 
-// SetFocusedWindow sets the value of the focusedWindow property.
 // The window that currently has focus for this extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/focusedwindow
-func (w_ WebExtensionContext) SetFocusedWindow(value unsafe.Pointer) {
+func (w_ WebExtensionContext) SetFocusedWindow(value WebExtensionWindow /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFocusedWindow:"), value)
 }
 
+
 // The currently granted permission match patterns and their expiration dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionmatchpatterns
-func (w_ WebExtensionContext) GrantedPermissionMatchPatterns() foundation.Date {
+func (w_ WebExtensionContext) GrantedPermissionMatchPatterns() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](w_.ID, objc.Sel("grantedPermissionMatchPatterns"))
 	return rv
 }
 
 
-// SetGrantedPermissionMatchPatterns sets the value of the grantedPermissionMatchPatterns property.
 // The currently granted permission match patterns and their expiration dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionmatchpatterns
-func (w_ WebExtensionContext) SetGrantedPermissionMatchPatterns(value foundation.IDate) {
+func (w_ WebExtensionContext) SetGrantedPermissionMatchPatterns(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setGrantedPermissionMatchPatterns:"), value)
 }
 
+
 // The currently granted permissions and their expiration dates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissions
-func (w_ WebExtensionContext) GrantedPermissions() foundation.Date {
+func (w_ WebExtensionContext) GrantedPermissions() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](w_.ID, objc.Sel("grantedPermissions"))
 	return rv
 }
 
 
-// SetGrantedPermissions sets the value of the grantedPermissions property.
 // The currently granted permissions and their expiration dates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissions
-func (w_ WebExtensionContext) SetGrantedPermissions(value foundation.IDate) {
+func (w_ WebExtensionContext) SetGrantedPermissions(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setGrantedPermissions:"), value)
 }
 
+
 // A Boolean value indicating if the currently granted permission match patterns set contains the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoallhosts
 func (w_ WebExtensionContext) HasAccessToAllHosts() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasAccessToAllHosts"))
@@ -326,17 +345,18 @@ func (w_ WebExtensionContext) HasAccessToAllHosts() bool {
 }
 
 
-// SetHasAccessToAllHosts sets the value of the hasAccessToAllHosts property.
 // A Boolean value indicating if the currently granted permission match patterns set contains the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoallhosts
 func (w_ WebExtensionContext) SetHasAccessToAllHosts(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasAccessToAllHosts:"), value)
 }
 
+
 // A Boolean value indicating if the currently granted permission match patterns set contains the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoallurls
 func (w_ WebExtensionContext) HasAccessToAllURLs() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasAccessToAllURLs"))
@@ -344,17 +364,18 @@ func (w_ WebExtensionContext) HasAccessToAllURLs() bool {
 }
 
 
-// SetHasAccessToAllURLs sets the value of the hasAccessToAllURLs property.
 // A Boolean value indicating if the currently granted permission match patterns set contains the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoallurls
 func (w_ WebExtensionContext) SetHasAccessToAllURLs(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasAccessToAllURLs:"), value)
 }
 
+
 // A Boolean value indicating if the extension has access to private data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoprivatedata
 func (w_ WebExtensionContext) HasAccessToPrivateData() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasAccessToPrivateData"))
@@ -362,17 +383,18 @@ func (w_ WebExtensionContext) HasAccessToPrivateData() bool {
 }
 
 
-// SetHasAccessToPrivateData sets the value of the hasAccessToPrivateData property.
 // A Boolean value indicating if the extension has access to private data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasaccesstoprivatedata
 func (w_ WebExtensionContext) SetHasAccessToPrivateData(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasAccessToPrivateData:"), value)
 }
 
+
 // A boolean value indicating whether the extension includes rules used for content modification or blocking.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hascontentmodificationrules
 func (w_ WebExtensionContext) HasContentModificationRules() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasContentModificationRules"))
@@ -380,17 +402,18 @@ func (w_ WebExtensionContext) HasContentModificationRules() bool {
 }
 
 
-// SetHasContentModificationRules sets the value of the hasContentModificationRules property.
 // A boolean value indicating whether the extension includes rules used for content modification or blocking.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hascontentmodificationrules
 func (w_ WebExtensionContext) SetHasContentModificationRules(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasContentModificationRules:"), value)
 }
 
+
 // A Boolean value indicating whether the extension has script or stylesheet content that can be injected into webpages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasinjectedcontent
 func (w_ WebExtensionContext) HasInjectedContent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasInjectedContent"))
@@ -398,17 +421,18 @@ func (w_ WebExtensionContext) HasInjectedContent() bool {
 }
 
 
-// SetHasInjectedContent sets the value of the hasInjectedContent property.
 // A Boolean value indicating whether the extension has script or stylesheet content that can be injected into webpages.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasinjectedcontent
 func (w_ WebExtensionContext) SetHasInjectedContent(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasInjectedContent:"), value)
 }
 
+
 // A Boolean value indicating if the extension has requested optional access to all hosts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasrequestedoptionalaccesstoallhosts
 func (w_ WebExtensionContext) HasRequestedOptionalAccessToAllHosts() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasRequestedOptionalAccessToAllHosts"))
@@ -416,35 +440,37 @@ func (w_ WebExtensionContext) HasRequestedOptionalAccessToAllHosts() bool {
 }
 
 
-// SetHasRequestedOptionalAccessToAllHosts sets the value of the hasRequestedOptionalAccessToAllHosts property.
 // A Boolean value indicating if the extension has requested optional access to all hosts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/hasrequestedoptionalaccesstoallhosts
 func (w_ WebExtensionContext) SetHasRequestedOptionalAccessToAllHosts(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasRequestedOptionalAccessToAllHosts:"), value)
 }
 
+
 // The name shown when inspecting the background web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/inspectionname
-func (w_ WebExtensionContext) InspectionName() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("inspectionName"))
+func (w_ WebExtensionContext) InspectionName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("inspectionName"))
 	return rv
 }
 
 
-// SetInspectionName sets the value of the inspectionName property.
 // The name shown when inspecting the background web view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/inspectionname
-func (w_ WebExtensionContext) SetInspectionName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectionName:"), objc.String(value))
+func (w_ WebExtensionContext) SetInspectionName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setInspectionName:"), value)
 }
+
 
 // Determines whether Web Inspector can inspect the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/isinspectable
 func (w_ WebExtensionContext) IsInspectable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isInspectable"))
@@ -452,17 +478,18 @@ func (w_ WebExtensionContext) IsInspectable() bool {
 }
 
 
-// SetIsInspectable sets the value of the isInspectable property.
 // Determines whether Web Inspector can inspect the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/isinspectable
 func (w_ WebExtensionContext) SetIsInspectable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsInspectable:"), value)
 }
 
+
 // A Boolean value indicating if this context is loaded in an extension controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/isloaded
 func (w_ WebExtensionContext) IsLoaded() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isLoaded"))
@@ -470,17 +497,18 @@ func (w_ WebExtensionContext) IsLoaded() bool {
 }
 
 
-// SetIsLoaded sets the value of the isLoaded property.
 // A Boolean value indicating if this context is loaded in an extension controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/isloaded
 func (w_ WebExtensionContext) SetIsLoaded(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLoaded:"), value)
 }
 
+
 // A set of open tabs in all open windows that are exposed to this extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/opentabs
 func (w_ WebExtensionContext) OpenTabs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("openTabs"))
@@ -488,154 +516,161 @@ func (w_ WebExtensionContext) OpenTabs() unsafe.Pointer {
 }
 
 
-// SetOpenTabs sets the value of the openTabs property.
 // A set of open tabs in all open windows that are exposed to this extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/opentabs
 func (w_ WebExtensionContext) SetOpenTabs(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOpenTabs:"), value)
 }
 
+
 // The open windows that are exposed to this extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/openwindows
-func (w_ WebExtensionContext) OpenWindows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("openWindows"))
+func (w_ WebExtensionContext) OpenWindows() WebExtensionWindow /* not a class type */ {
+	rv := objc.Send[WebExtensionWindow](w_.ID, objc.Sel("openWindows"))
 	return rv
 }
 
 
-// SetOpenWindows sets the value of the openWindows property.
 // The open windows that are exposed to this extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/openwindows
-func (w_ WebExtensionContext) SetOpenWindows(value unsafe.Pointer) {
+func (w_ WebExtensionContext) SetOpenWindows(value WebExtensionWindow /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOpenWindows:"), value)
 }
 
+
 // The URL of the extension’s options page, if the extension has one.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/optionspageurl
-func (w_ WebExtensionContext) OptionsPageURL() foundation.URL {
+func (w_ WebExtensionContext) OptionsPageURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("optionsPageURL"))
 	return rv
 }
 
 
-// SetOptionsPageURL sets the value of the optionsPageURL property.
 // The URL of the extension’s options page, if the extension has one.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/optionspageurl
-func (w_ WebExtensionContext) SetOptionsPageURL(value foundation.IURL) {
+func (w_ WebExtensionContext) SetOptionsPageURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOptionsPageURL:"), value)
 }
 
+
 // The URL to use as an alternative to the default new tab page, if the extension has one.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/overridenewtabpageurl
-func (w_ WebExtensionContext) OverrideNewTabPageURL() foundation.URL {
+func (w_ WebExtensionContext) OverrideNewTabPageURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("overrideNewTabPageURL"))
 	return rv
 }
 
 
-// SetOverrideNewTabPageURL sets the value of the overrideNewTabPageURL property.
 // The URL to use as an alternative to the default new tab page, if the extension has one.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/overridenewtabpageurl
-func (w_ WebExtensionContext) SetOverrideNewTabPageURL(value foundation.IURL) {
+func (w_ WebExtensionContext) SetOverrideNewTabPageURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOverrideNewTabPageURL:"), value)
 }
 
+
 // A unique identifier used to distinguish the extension from other extensions and target it for messages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/uniqueidentifier
-func (w_ WebExtensionContext) UniqueIdentifier() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("uniqueIdentifier"))
+func (w_ WebExtensionContext) UniqueIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
 
-// SetUniqueIdentifier sets the value of the uniqueIdentifier property.
 // A unique identifier used to distinguish the extension from other extensions and target it for messages.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/uniqueidentifier
-func (w_ WebExtensionContext) SetUniqueIdentifier(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
+func (w_ WebExtensionContext) SetUniqueIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
+
 
 // Specifies unsupported APIs for this extension, making them
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/unsupportedapis
-func (w_ WebExtensionContext) UnsupportedAPIs() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("unsupportedAPIs"))
+func (w_ WebExtensionContext) UnsupportedAPIs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("unsupportedAPIs"))
 	return rv
 }
 
 
-// SetUnsupportedAPIs sets the value of the unsupportedAPIs property.
 // Specifies unsupported APIs for this extension, making them
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/unsupportedapis
-func (w_ WebExtensionContext) SetUnsupportedAPIs(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setUnsupportedAPIs:"), objc.String(value))
+func (w_ WebExtensionContext) SetUnsupportedAPIs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setUnsupportedAPIs:"), value)
 }
+
 
 // The extension this context represents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webextension
-func (w_ WebExtensionContext) WebExtension() WKWebExtension {
-	rv := objc.Send[WKWebExtension](w_.ID, objc.Sel("webExtension"))
+func (w_ WebExtensionContext) WebExtension() IWKWebExtension {
+	rv := objc.Send[WebExtension](w_.ID, objc.Sel("webExtension"))
 	return rv
 }
 
 
-// SetWebExtension sets the value of the webExtension property.
 // The extension this context represents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webextension
 func (w_ WebExtensionContext) SetWebExtension(value IWKWebExtension) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtension:"), value)
 }
 
+
 // The extension controller this context is loaded in, otherwise
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webextensioncontroller
-func (w_ WebExtensionContext) WebExtensionController() WKWebExtensionController {
-	rv := objc.Send[WKWebExtensionController](w_.ID, objc.Sel("webExtensionController"))
+func (w_ WebExtensionContext) WebExtensionController() IWKWebExtensionController {
+	rv := objc.Send[WebExtensionController](w_.ID, objc.Sel("webExtensionController"))
 	return rv
 }
 
 
-// SetWebExtensionController sets the value of the webExtensionController property.
 // The extension controller this context is loaded in, otherwise
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webextensioncontroller
 func (w_ WebExtensionContext) SetWebExtensionController(value IWKWebExtensionController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)
 }
 
+
 // The web view configuration to use for web views that load pages from this extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webviewconfiguration
-func (w_ WebExtensionContext) WebViewConfiguration() WKWebViewConfiguration {
-	rv := objc.Send[WKWebViewConfiguration](w_.ID, objc.Sel("webViewConfiguration"))
+func (w_ WebExtensionContext) WebViewConfiguration() IWKWebViewConfiguration {
+	rv := objc.Send[WebViewConfiguration](w_.ID, objc.Sel("webViewConfiguration"))
 	return rv
 }
 
 
-// SetWebViewConfiguration sets the value of the webViewConfiguration property.
 // The web view configuration to use for web views that load pages from this extension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontext/webviewconfiguration
 func (w_ WebExtensionContext) SetWebViewConfiguration(value IWKWebViewConfiguration) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebViewConfiguration:"), value)

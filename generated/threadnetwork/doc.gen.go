@@ -2,12 +2,12 @@
 
 // Package threadnetwork provides Go bindings for the ThreadNetwork framework.
 //
-// Create robust, smart device networks using Thread Border Routers. [Full Topic]
+// Create robust, smart device networks using Thread Border Routers.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ThreadNetwork without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork
+// See: https://developer.apple.com/documentation/ThreadNetwork
 package threadnetwork
 
 import (

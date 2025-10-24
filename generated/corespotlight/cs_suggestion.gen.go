@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -112,7 +113,7 @@ func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) ComparisonResult /* no
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/localizedAttributedSuggestion-oq3b
 func (c_ CSSuggestion) LocalizedAttributedSuggestion() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
 	return rv
 }
 

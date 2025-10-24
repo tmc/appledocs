@@ -32,17 +32,17 @@ type _CKRecordClass struct {
 type ICKRecord interface {
 	objectivec.IObject
 	// properties:
-	RecordChangeTag() string /* primitive/slice/pointer. */
-	CreationDate() foundation.objc.IObject /* cross-framework: Date */
-	SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	RecordChangeTag() objc.IObject /* cross-framework: NSString */
+	CreationDate() objc.IObject /* cross-framework: Date */
+	SetCreationDate(value objc.IObject /* cross-framework: Date */)
 	CreatorUserRecordID() objc.IObject /* cross-framework: CKRecordID */
 	SetCreatorUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	EncryptedValues() unsafe.Pointer
 	SetEncryptedValues(value unsafe.Pointer)
 	LastModifiedUserRecordID() objc.IObject /* cross-framework: CKRecordID */
 	SetLastModifiedUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
-	ModificationDate() foundation.objc.IObject /* cross-framework: Date */
-	SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	ModificationDate() objc.IObject /* cross-framework: Date */
+	SetModificationDate(value objc.IObject /* cross-framework: Date */)
 	Parent() ICKReference
 	SetParent(value ICKReference)
 	RecordID() objc.IObject /* cross-framework: CKRecordID */
@@ -52,7 +52,7 @@ type ICKRecord interface {
 	Share() ICKReference
 	SetShare(value ICKReference)
 	// methods:
-	EncodeSystemFieldsWithCoder(coder Coder /* not a class type */)
+	EncodeSystemFieldsWithCoder(coder objc.IObject /* cross-framework: Coder */)
 }
 
 // A collection of key-value pairs that store your app’s data.
@@ -112,7 +112,7 @@ func NewCKRecord() CKRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/encodeSystemFields(with:)
-func (c_ CKRecord) EncodeSystemFieldsWithCoder(coder Coder /* not a class type */) {
+func (c_ CKRecord) EncodeSystemFieldsWithCoder(coder objc.IObject /* cross-framework: Coder */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeSystemFieldsWithCoder:"), coder)
 }
 
@@ -121,8 +121,8 @@ func (c_ CKRecord) EncodeSystemFieldsWithCoder(coder Coder /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordChangeTag
-func (c_ CKRecord) RecordChangeTag() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+func (c_ CKRecord) RecordChangeTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ CKRecord) RecordChangeTag() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecord) CreationDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (c_ CKRecord) CreationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (c_ CKRecord) CreationDate() foundation.objc.IObject /* cross-framework: Da
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecord) SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (c_ CKRecord) SetCreationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -207,7 +207,7 @@ func (c_ CKRecord) SetLastModifiedUserRecordID(value objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecord) ModificationDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (c_ CKRecord) ModificationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("modificationDate"))
 	return rv
 }
@@ -217,7 +217,7 @@ func (c_ CKRecord) ModificationDate() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecord) SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (c_ CKRecord) SetModificationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
 }
 

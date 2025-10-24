@@ -31,15 +31,19 @@ type _MTREnergyEVSEClusterEnergyTransferStartedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEnergyTransferStartedEvent] class.
 type IMTREnergyEVSEClusterEnergyTransferStartedEvent interface {
 	objectivec.IObject
-	MaximumCurrent() foundation.Number
-	SetMaximumCurrent(value foundation.INumber)
-	SessionID() foundation.Number
-	SetSessionID(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	MaximumCurrent() objc.IObject /* cross-framework: NSNumber */
+	SetMaximumCurrent(value objc.IObject /* cross-framework: NSNumber */)
+	SessionID() objc.IObject /* cross-framework: NSNumber */
+	SetSessionID(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent
 type MTREnergyEVSEClusterEnergyTransferStartedEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTREnergyEVSEClusterEnergyTransferStartedEvent() MTREnergyEVSEClusterEne
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/maximumCurrent
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumCurrent"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maximumCurrent"))
 	return rv
 }
 
 
-// SetMaximumCurrent sets the value of the maximumCurrent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/maximumCurrent
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
 
-// SetSessionID sets the value of the sessionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

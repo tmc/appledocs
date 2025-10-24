@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,20 @@ type _ContentSharingPickerConfigurationClass struct {
 // An interface definition for the [ContentSharingPickerConfiguration] class.
 type IContentSharingPickerConfiguration interface {
 	objectivec.IObject
-	AllowedPickerModes() ContentSharingPickerMode
-	SetAllowedPickerModes(value ContentSharingPickerMode)
+	// properties:
 	ExcludedBundleIDs() []string
 	SetExcludedBundleIDs(value []string)
+	ExcludedWindowIDs() []objc.IObject /* cross-framework: Number */
+	SetExcludedWindowIDs(value []objc.IObject /* cross-framework: Number */)
+	// methods:
 }
 
 // An instance for configuring the system content-sharing picker.
+
+
+// An instance for configuring the system content-sharing picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class
 type ContentSharingPickerConfiguration struct {
 	objectivec.Object
@@ -82,26 +89,10 @@ func NewContentSharingPickerConfiguration() ContentSharingPickerConfiguration {
 }
 
 
-// The content-selection modes supported by the picker.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/allowedPickerModes
-func (c_ ContentSharingPickerConfiguration) AllowedPickerModes() ContentSharingPickerMode {
-	rv := objc.Send[ContentSharingPickerMode](c_.ID, objc.Sel("allowedPickerModes"))
-	return rv
-}
-
-
-// SetAllowedPickerModes sets the value of the allowedPickerModes property.
-// The content-selection modes supported by the picker.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/allowedPickerModes
-func (c_ ContentSharingPickerConfiguration) SetAllowedPickerModes(value ContentSharingPickerMode) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedPickerModes:"), value)
-}
 
 // A list of bundle IDs to exclude from the sharing picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
 func (c_ ContentSharingPickerConfiguration) ExcludedBundleIDs() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("excludedBundleIDs"))
@@ -109,10 +100,9 @@ func (c_ ContentSharingPickerConfiguration) ExcludedBundleIDs() []string {
 }
 
 
-// SetExcludedBundleIDs sets the value of the excludedBundleIDs property.
 // A list of bundle IDs to exclude from the sharing picker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedBundleIDs
 func (c_ ContentSharingPickerConfiguration) SetExcludedBundleIDs(value []string) {
 	// Convert Go slice to NSArray
@@ -126,6 +116,35 @@ func (c_ ContentSharingPickerConfiguration) SetExcludedBundleIDs(value []string)
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedBundleIDs:"), nsArray)
+}
+
+
+// A list of window IDs to exclude from the sharing picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedWindowIDs
+func (c_ ContentSharingPickerConfiguration) ExcludedWindowIDs() []objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("excludedWindowIDs"))
+	return rv
+}
+
+
+// A list of window IDs to exclude from the sharing picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/excludedWindowIDs
+func (c_ ContentSharingPickerConfiguration) SetExcludedWindowIDs(value []objc.IObject /* cross-framework: Number */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExcludedWindowIDs:"), nsArray)
 }
 
 

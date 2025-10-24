@@ -31,11 +31,15 @@ type _MTRBasicInformationClusterReachableChangedEventClass struct {
 // An interface definition for the [MTRBasicInformationClusterReachableChangedEvent] class.
 type IMTRBasicInformationClusterReachableChangedEvent interface {
 	objectivec.IObject
-	ReachableNewValue() foundation.Number
-	SetReachableNewValue(value foundation.INumber)
+	// properties:
+	ReachableNewValue() objc.IObject /* cross-framework: NSNumber */
+	SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterReachableChangedEvent
 type MTRBasicInformationClusterReachableChangedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBasicInformationClusterReachableChangedEvent() MTRBasicInformationClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBasicInformationClusterReachableChangedEvent) ReachableNewValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reachableNewValue"))
+func (m_ MTRBasicInformationClusterReachableChangedEvent) ReachableNewValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reachableNewValue"))
 	return rv
 }
 
 
-// SetReachableNewValue sets the value of the reachableNewValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value foundation.INumber) {
+func (m_ MTRBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
 

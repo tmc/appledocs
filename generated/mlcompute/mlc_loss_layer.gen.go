@@ -29,14 +29,20 @@ type _CLossLayerClass struct {
 // An interface definition for the [CLossLayer] class.
 type ICLossLayer interface {
 	ICLayer
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
-	Weights() MLCTensor
+	// properties:
+	Descriptor() CLossDescriptor /* not a class type */
+	SetDescriptor(value CLossDescriptor /* not a class type */)
+	Weights() IMLCTensor
 	SetWeights(value IMLCTensor)
+	// methods:
 }
 
 // A layer that estimates the inaccuracies of the model to reduce the loss on the next evaluation.
+
+
+// A layer that estimates the inaccuracies of the model to reduce the loss on the next evaluation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCLossLayer
 type CLossLayer struct {
 	CLayer
@@ -83,45 +89,39 @@ func NewCLossLayer() CLossLayer {
 }
 
 
-// Creates a mean squared loss layer with the reduction type and weights you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCLossLayer/meanSquaredError(reductionType:weights:)
-func (cc _CLossLayerClass) MeanSquaredErrorLossWithReductionTypeWeights(reductionType CReductionType, weights IMLCTensor) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("meanSquaredErrorLossWithReductionType:weights:"), reductionType, weights)
-	return rv
-}
 
 // The configuration object you use to create the loss layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/descriptor
-func (c_ CLossLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CLossLayer) Descriptor() CLossDescriptor /* not a class type */ {
+	rv := objc.Send[CLossDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the loss layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/descriptor
-func (c_ CLossLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CLossLayer) SetDescriptor(value CLossDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 
+
 // The loss label weights tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
-func (c_ CLossLayer) Weights() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
+func (c_ CLossLayer) Weights() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
 
-// SetWeights sets the value of the weights property.
 // The loss label weights tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
 func (c_ CLossLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)

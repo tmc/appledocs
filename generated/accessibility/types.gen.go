@@ -5,19 +5,14 @@ import (
 	"unsafe"
 )
 
-// CGColorRef is a CoreGraphics opaque type.
-type CGColorRef unsafe.Pointer
 
-
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
-
-type Importance = int
-
-type Language = int
+// C struct types
+// AccessibilitySettings - A structure for working with accessibility system settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings
+type AccessibilitySettings struct {
+}
 
 
 

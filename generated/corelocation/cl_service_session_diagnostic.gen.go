@@ -31,14 +31,6 @@ type _ServiceSessionDiagnosticClass struct {
 type IServiceSessionDiagnostic interface {
 	objectivec.IObject
 	// properties:
-	AlwaysAuthorizationDenied() bool /* primitive/slice/pointer. */
-	AuthorizationDenied() bool /* primitive/slice/pointer. */
-	AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */
-	AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */
-	AuthorizationRestricted() bool /* primitive/slice/pointer. */
-	FullAccuracyDenied() bool /* primitive/slice/pointer. */
-	InsufficientlyInUse() bool /* primitive/slice/pointer. */
-	ServiceSessionRequired() bool /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -84,71 +76,6 @@ func (s_ ServiceSessionDiagnostic) Autorelease() ServiceSessionDiagnostic {
 // NewServiceSessionDiagnostic creates a new ServiceSessionDiagnostic instance.
 func NewServiceSessionDiagnostic() ServiceSessionDiagnostic {
 	return getServiceSessionDiagnosticClass().New()
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/alwaysAuthorizationDenied
-func (s_ ServiceSessionDiagnostic) AlwaysAuthorizationDenied() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("alwaysAuthorizationDenied"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/authorizationDenied
-func (s_ ServiceSessionDiagnostic) AuthorizationDenied() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("authorizationDenied"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/authorizationDeniedGlobally
-func (s_ ServiceSessionDiagnostic) AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("authorizationDeniedGlobally"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/authorizationRequestInProgress
-func (s_ ServiceSessionDiagnostic) AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("authorizationRequestInProgress"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/authorizationRestricted
-func (s_ ServiceSessionDiagnostic) AuthorizationRestricted() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("authorizationRestricted"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/fullAccuracyDenied
-func (s_ ServiceSessionDiagnostic) FullAccuracyDenied() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("fullAccuracyDenied"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/insufficientlyInUse
-func (s_ ServiceSessionDiagnostic) InsufficientlyInUse() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("insufficientlyInUse"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic/serviceSessionRequired
-func (s_ ServiceSessionDiagnostic) ServiceSessionRequired() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("serviceSessionRequired"))
-	return rv
 }
 
 

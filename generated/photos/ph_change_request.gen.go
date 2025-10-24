@@ -30,10 +30,16 @@ type _PHChangeRequestClass struct {
 // An interface definition for the [PHChangeRequest] class.
 type IPHChangeRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract base class of the framework’s photo library change requests.
+
+
+// The abstract base class of the framework’s photo library change requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHChangeRequest
 type PHChangeRequest struct {
 	objectivec.Object

@@ -30,13 +30,18 @@ type _QCCompositionRepositoryClass struct {
 // An interface definition for the [QCCompositionRepository] class.
 type IQCCompositionRepository interface {
 	objectivec.IObject
-	CompositionWithIdentifier(identifier string) QCComposition
+	// properties:
+	// methods:
 }
 
 // The class represents a system-wide centralized repository of built-in and installed Quartz Composer compositions ( and ). The class cannot be subclassed.
 //
 // Compositions in the repository are represented by the class. You can use the methods of the class to fetch all compositions or only those that meet specific criteria.
+
+
+// The class represents a system-wide centralized repository of built-in and installed Quartz Composer compositions ( and ). The class cannot be subclassed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository
 type QCCompositionRepository struct {
 	objectivec.Object
@@ -80,22 +85,6 @@ func NewQCCompositionRepository() QCCompositionRepository {
 	return getQCCompositionRepositoryClass().New()
 }
 
-
-// Returns the shared instance of the composition repository.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository/shared()
-func (qc _QCCompositionRepositoryClass) SharedCompositionRepository() QCCompositionRepository {
-	rv := objc.Send[QCCompositionRepository](objc.ID(qc.class), objc.Sel("sharedCompositionRepository"))
-	return rv
-}
-
-// Returns the composition that corresponds to the identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository/composition(withIdentifier:)
-func (q_ QCCompositionRepository) CompositionWithIdentifier(identifier string) QCComposition {
-	rv := objc.Send[QCComposition](q_.ID, objc.Sel("compositionWithIdentifier:"), objc.String(identifier))
-	return rv
-}
 
 
 

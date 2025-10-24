@@ -32,13 +32,13 @@ type INotificationCenter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject)
-	AddObserverForNameObjectQueueUsingBlock(name objc.IObject /* cross-framework NotificationName */, obj objectivec.IObject, queue IOperationQueue, block unsafe.Pointer) objc.ID
+	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject)
+	AddObserverForNameObjectQueueUsingBlock(name objc.IObject /* cross-framework: NotificationName */, obj objectivec.IObject, queue IOperationQueue, block unsafe.Pointer) objc.ID
 	PostNotification(notification INotification)
-	PostNotificationNameObject(aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject)
-	PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject, aUserInfo IDictionary)
+	PostNotificationNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject)
+	PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject, aUserInfo IDictionary)
 	RemoveObserver(observer objectivec.IObject)
-	RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject)
+	RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject)
 }
 
 // A notification dispatch mechanism that enables the broadcast of information to registered observers.
@@ -107,7 +107,7 @@ func (nc _NotificationCenterClass) DefaultCenter() NotificationCenter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(_:selector:name:object:)
-func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject) {
+func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
 }
 
@@ -116,7 +116,7 @@ func (n_ NotificationCenter) AddObserverSelectorNameObject(observer objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(forName:object:queue:using:)
-func (n_ NotificationCenter) AddObserverForNameObjectQueueUsingBlock(name objc.IObject /* cross-framework NotificationName */, obj objectivec.IObject, queue IOperationQueue, block unsafe.Pointer) objc.ID {
+func (n_ NotificationCenter) AddObserverForNameObjectQueueUsingBlock(name objc.IObject /* cross-framework: NotificationName */, obj objectivec.IObject, queue IOperationQueue, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("addObserverForName:object:queue:usingBlock:"), name, obj, queue, block)
 	return rv
 }
@@ -135,7 +135,7 @@ func (n_ NotificationCenter) PostNotification(notification INotification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:)
-func (n_ NotificationCenter) PostNotificationNameObject(aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject) {
+func (n_ NotificationCenter) PostNotificationNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:"), aName, anObject)
 }
 
@@ -144,7 +144,7 @@ func (n_ NotificationCenter) PostNotificationNameObject(aName objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/post(name:object:userInfo:)
-func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject, aUserInfo IDictionary) {
+func (n_ NotificationCenter) PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject, aUserInfo IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
 }
 
@@ -162,7 +162,7 @@ func (n_ NotificationCenter) RemoveObserver(observer objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:name:object:)
-func (n_ NotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework NotificationName */, anObject objectivec.IObject) {
+func (n_ NotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
 }
 

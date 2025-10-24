@@ -30,9 +30,13 @@ type _trustTypeClass struct {
 // An interface definition for the [trustType] class.
 type ItrustType interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustType-c.ivar
 type trustType struct {
 	objectivec.Object

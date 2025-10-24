@@ -30,15 +30,21 @@ type _ShareableContentClass struct {
 // An interface definition for the [ShareableContent] class.
 type IShareableContent interface {
 	objectivec.IObject
-	Applications() []RunningApplication
-	Displays() []Display
-	Windows() []Window
+	// properties:
+	Applications() []IRunningApplication
+	Displays() []IDisplay
+	Windows() []IWindow
+	// methods:
 }
 
 // An instance that represents a set of displays, apps, and windows that your app can capture.
 //
 // Use the , , and properties to create a object that specifies what display content to capture. You apply the filter to an instance of to limit its output to only the content matching your filter.
+
+
+// An instance that represents a set of displays, apps, and windows that your app can capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent
 type ShareableContent struct {
 	objectivec.Object
@@ -83,39 +89,39 @@ func NewShareableContent() ShareableContent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/getCurrentProcessShareableContent(completionHandler:)
 func (sc _ShareableContentClass) GetCurrentProcessShareableContentWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getCurrentProcessShareableContentWithCompletionHandler:"), completionHandler)
 }
 
-// Retrieves the displays, apps, and windows that match your criteria.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/getExcludingDesktopWindows(_:onScreenWindowsOnly:completionHandler:)
-func (sc _ShareableContentClass) GetShareableContentExcludingDesktopWindowsOnScreenWindowsOnlyCompletionHandler(excludeDesktopWindows bool, onScreenWindowsOnly bool, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getShareableContentExcludingDesktopWindows:onScreenWindowsOnly:completionHandler:"), excludeDesktopWindows, onScreenWindowsOnly, completionHandler)
-}
 
 // The apps available for capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/applications
-func (s_ ShareableContent) Applications() []RunningApplication {
+func (s_ ShareableContent) Applications() []IRunningApplication {
 	rv := objc.Send[[]RunningApplication](s_.ID, objc.Sel("applications"))
 	return rv
 }
 
+
 // The displays available for capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/displays
-func (s_ ShareableContent) Displays() []Display {
+func (s_ ShareableContent) Displays() []IDisplay {
 	rv := objc.Send[[]Display](s_.ID, objc.Sel("displays"))
 	return rv
 }
 
+
 // The windows available for capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContent/windows
-func (s_ ShareableContent) Windows() []Window {
+func (s_ ShareableContent) Windows() []IWindow {
 	rv := objc.Send[[]Window](s_.ID, objc.Sel("windows"))
 	return rv
 }

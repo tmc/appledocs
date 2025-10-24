@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _HKUnitClass struct {
 type IHKUnit interface {
 	objectivec.IObject
 	// properties:
-	UnitString() string /* primitive/slice/pointer. */
-	SetUnitString(value string /* primitive/slice/pointer. */)
-	HKUnitMolarMassBloodGlucose() float64 /* primitive/slice/pointer. */
-	SetHKUnitMolarMassBloodGlucose(value float64 /* primitive/slice/pointer. */)
+	UnitString() objc.IObject /* cross-framework: NSString */
+	SetUnitString(value objc.IObject /* cross-framework: NSString */)
+	HKUnitMolarMassBloodGlucose() float64
+	SetHKUnitMolarMassBloodGlucose(value float64)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewHKUnit() HKUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunit/unitstring
-func (h_ HKUnit) UnitString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("unitString"))
+func (h_ HKUnit) UnitString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("unitString"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (h_ HKUnit) UnitString() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunit/unitstring
-func (h_ HKUnit) SetUnitString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setUnitString:"), objc.String(value))
+func (h_ HKUnit) SetUnitString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUnitString:"), value)
 }
 
 
@@ -114,7 +115,7 @@ func (h_ HKUnit) SetUnitString(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
-func (h_ HKUnit) HKUnitMolarMassBloodGlucose() float64 /* primitive/slice/pointer. */ {
+func (h_ HKUnit) HKUnitMolarMassBloodGlucose() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("HKUnitMolarMassBloodGlucose"))
 	return rv
 }
@@ -124,7 +125,7 @@ func (h_ HKUnit) HKUnitMolarMassBloodGlucose() float64 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose
-func (h_ HKUnit) SetHKUnitMolarMassBloodGlucose(value float64 /* primitive/slice/pointer. */) {
+func (h_ HKUnit) SetHKUnitMolarMassBloodGlucose(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHKUnitMolarMassBloodGlucose:"), value)
 }
 

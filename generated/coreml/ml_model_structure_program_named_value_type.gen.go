@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ModelStructureProgramNamedValueTypeClass struct {
 type IModelStructureProgramNamedValueType interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
 	Type() IMLModelStructureProgramValueType
 	// methods:
 }
@@ -91,8 +92,8 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-func (m_ ModelStructureProgramNamedValueType) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramNamedValueType) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

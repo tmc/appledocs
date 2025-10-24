@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [DetectedObjectObservation] class.
@@ -30,16 +30,22 @@ type _DetectedObjectObservationClass struct {
 // An interface definition for the [DetectedObjectObservation] class.
 type IDetectedObjectObservation interface {
 	IObservation
-	BoundingBox() coregraphics.CGRect
-	SetBoundingBox(value coregraphics.CGRect)
-	GlobalSegmentationMask() VNPixelBufferObservation
+	// properties:
+	BoundingBox() objc.IObject /* cross-framework: Rect */
+	SetBoundingBox(value objc.IObject /* cross-framework: Rect */)
+	GlobalSegmentationMask() IVNPixelBufferObservation
 	SetGlobalSegmentationMask(value IVNPixelBufferObservation)
+	// methods:
 }
 
 // An observation that provides the position and extent of an image feature that an image- analysis request detects.
 //
 // This class is the observation type that generates. It represents an object that the Vision request detects and tracks.
+
+
+// An observation that provides the position and extent of an image feature that an image- analysis request detects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectedObjectObservation
 type DetectedObjectObservation struct {
 	Observation
@@ -86,37 +92,39 @@ func NewDetectedObjectObservation() DetectedObjectObservation {
 }
 
 
+
 // The bounding box of the object that the request detects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/boundingbox
-func (d_ DetectedObjectObservation) BoundingBox() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("boundingBox"))
+func (d_ DetectedObjectObservation) BoundingBox() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
 
-// SetBoundingBox sets the value of the boundingBox property.
 // The bounding box of the object that the request detects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/boundingbox
-func (d_ DetectedObjectObservation) SetBoundingBox(value coregraphics.CGRect) {
+func (d_ DetectedObjectObservation) SetBoundingBox(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBoundingBox:"), value)
 }
 
+
 // A resulting pixel buffer from a request to generate a segmentation mask for an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
-func (d_ DetectedObjectObservation) GlobalSegmentationMask() VNPixelBufferObservation {
-	rv := objc.Send[VNPixelBufferObservation](d_.ID, objc.Sel("globalSegmentationMask"))
+func (d_ DetectedObjectObservation) GlobalSegmentationMask() IVNPixelBufferObservation {
+	rv := objc.Send[PixelBufferObservation](d_.ID, objc.Sel("globalSegmentationMask"))
 	return rv
 }
 
 
-// SetGlobalSegmentationMask sets the value of the globalSegmentationMask property.
 // A resulting pixel buffer from a request to generate a segmentation mask for an image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
 func (d_ DetectedObjectObservation) SetGlobalSegmentationMask(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGlobalSegmentationMask:"), value)

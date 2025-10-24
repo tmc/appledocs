@@ -29,15 +29,21 @@ type _DetectDocumentSegmentationRequestClass struct {
 // An interface definition for the [DetectDocumentSegmentationRequest] class.
 type IDetectDocumentSegmentationRequest interface {
 	IImageBasedRequest
-	Results() VNRectangleObservation
-	SetResults(value IVNRectangleObservation)
+	// properties:
+	Results() objc.IObject /* cross-framework: RectangleObservation */
+	SetResults(value objc.IObject /* cross-framework: RectangleObservation */)
 	VNDetectDocumentSegmentationRequestRevision1() int
+	// methods:
 }
 
 // An object that detects rectangular regions that contain text in the input image.
 //
 // Perform this request to detect a document in an image. The result that the request generates contains the four corner points of a document’s quadrilateral and saliency mask.
+
+
+// An object that detects rectangular regions that contain text in the input image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectDocumentSegmentationRequest
 type DetectDocumentSegmentationRequest struct {
 	ImageBasedRequest
@@ -84,26 +90,29 @@ func NewDetectDocumentSegmentationRequest() DetectDocumentSegmentationRequest {
 }
 
 
+
 // The results of a document segmentation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
-func (d_ DetectDocumentSegmentationRequest) Results() VNRectangleObservation {
-	rv := objc.Send[VNRectangleObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectDocumentSegmentationRequest) Results() objc.IObject /* cross-framework: RectangleObservation */ {
+	rv := objc.Send[RectangleObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of a document segmentation request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
-func (d_ DetectDocumentSegmentationRequest) SetResults(value IVNRectangleObservation) {
+func (d_ DetectDocumentSegmentationRequest) SetResults(value objc.IObject /* cross-framework: RectangleObservation */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the document segmentation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequestrevision1
 func (d_ DetectDocumentSegmentationRequest) VNDetectDocumentSegmentationRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectDocumentSegmentationRequestRevision1"))

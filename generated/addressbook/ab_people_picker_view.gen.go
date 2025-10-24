@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,42 +35,42 @@ type IABPeoplePickerView interface {
 	// properties:
 	AccessoryView() objc.IObject /* cross-framework: View */
 	SetAccessoryView(value objc.IObject /* cross-framework: View */)
-	AllowsGroupSelection() bool /* primitive/slice/pointer. */
-	SetAllowsGroupSelection(value bool /* primitive/slice/pointer. */)
-	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
-	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
-	AutosaveName() string /* primitive/slice/pointer. */
-	SetAutosaveName(value string /* primitive/slice/pointer. */)
-	DisplayedProperty() string /* primitive/slice/pointer. */
-	SetDisplayedProperty(value string /* primitive/slice/pointer. */)
+	AllowsGroupSelection() bool
+	SetAllowsGroupSelection(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	AutosaveName() objc.IObject /* cross-framework: NSString */
+	SetAutosaveName(value objc.IObject /* cross-framework: NSString */)
+	DisplayedProperty() objc.IObject /* cross-framework: NSString */
+	SetDisplayedProperty(value objc.IObject /* cross-framework: NSString */)
 	GroupDoubleAction() objc.SEL
 	SetGroupDoubleAction(value objc.SEL)
 	NameDoubleAction() objc.SEL
 	SetNameDoubleAction(value objc.SEL)
-	SelectedGroups() objc.ID
-	SelectedRecords() objc.ID
+	SelectedGroups() objc.IObject /* cross-framework: NSArray */
+	SelectedRecords() objc.IObject /* cross-framework: NSArray */
 	Target() objc.ID
 	SetTarget(value objc.ID)
 	ValueSelectionBehavior() unsafe.Pointer
 	SetValueSelectionBehavior(value unsafe.Pointer)
 	// methods:
-	AddProperty(property string /* primitive/slice/pointer. */)
+	AddProperty(property objc.IObject /* cross-framework: NSString */)
 	ClearSearchField(sender objectivec.IObject)
-	ColumnTitleForProperty(property string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	ColumnTitleForProperty(property objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
 	DeselectRecord(record IABRecord)
 	DeselectGroup(group IABGroup)
 	DeselectAll(sender objectivec.IObject)
-	DeselectIdentifierForPerson(identifier string /* primitive/slice/pointer. */, person IABPerson)
+	DeselectIdentifierForPerson(identifier objc.IObject /* cross-framework: NSString */, person IABPerson)
 	EditInAddressBook(sender objectivec.IObject)
 	Properties() objc.IObject /* cross-framework: Array */
-	RemoveProperty(property string /* primitive/slice/pointer. */)
-	SelectGroupByExtendingSelection(group IABGroup, extend bool /* primitive/slice/pointer. */)
-	SelectRecordByExtendingSelection(record IABRecord, extend bool /* primitive/slice/pointer. */)
-	SelectIdentifierForPersonByExtendingSelection(identifier string /* primitive/slice/pointer. */, person IABPerson, extend bool /* primitive/slice/pointer. */)
+	RemoveProperty(property objc.IObject /* cross-framework: NSString */)
+	SelectGroupByExtendingSelection(group IABGroup, extend bool)
+	SelectRecordByExtendingSelection(record IABRecord, extend bool)
+	SelectIdentifierForPersonByExtendingSelection(identifier objc.IObject /* cross-framework: NSString */, person IABPerson, extend bool)
 	SelectInAddressBook(sender objectivec.IObject)
 	SelectedIdentifiersForPerson(person IABPerson) objc.IObject /* cross-framework: Array */
 	SelectedValues() objc.IObject /* cross-framework: Array */
-	SetColumnTitleForProperty(title string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */)
+	SetColumnTitleForProperty(title objc.IObject /* cross-framework: NSString */, property objc.IObject /* cross-framework: NSString */)
 }
 
 // An object you use to customize the behavior of people-picker views in an app’s user interface.
@@ -129,8 +130,8 @@ func NewABPeoplePickerView() ABPeoplePickerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/addProperty(_:)
-func (a_ ABPeoplePickerView) AddProperty(property string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addProperty:"), objc.String(property))
+func (a_ ABPeoplePickerView) AddProperty(property objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addProperty:"), property)
 }
 
 
@@ -147,8 +148,8 @@ func (a_ ABPeoplePickerView) ClearSearchField(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/columnTitle(forProperty:)
-func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
+func (a_ ABPeoplePickerView) ColumnTitleForProperty(property objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("columnTitleForProperty:"), property)
 	return rv
 }
 
@@ -184,8 +185,8 @@ func (a_ ABPeoplePickerView) DeselectAll(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/deselectIdentifier(_:for:)
-func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier string /* primitive/slice/pointer. */, person IABPerson) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("deselectIdentifier:forPerson:"), objc.String(identifier), person)
+func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier objc.IObject /* cross-framework: NSString */, person IABPerson) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("deselectIdentifier:forPerson:"), identifier, person)
 }
 
 
@@ -203,7 +204,7 @@ func (a_ ABPeoplePickerView) EditInAddressBook(sender objectivec.IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/properties()
 func (a_ ABPeoplePickerView) Properties() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("properties"))
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -212,8 +213,8 @@ func (a_ ABPeoplePickerView) Properties() objc.IObject /* cross-framework: Array
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/removeProperty(_:)
-func (a_ ABPeoplePickerView) RemoveProperty(property string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeProperty:"), objc.String(property))
+func (a_ ABPeoplePickerView) RemoveProperty(property objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeProperty:"), property)
 }
 
 
@@ -221,7 +222,7 @@ func (a_ ABPeoplePickerView) RemoveProperty(property string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/select(_:byExtendingSelection:)-6mrii
-func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, extend bool /* primitive/slice/pointer. */) {
+func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, extend bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectGroup:byExtendingSelection:"), group, extend)
 }
 
@@ -230,7 +231,7 @@ func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, ext
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/select(_:byExtendingSelection:)-9eldk
-func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, extend bool /* primitive/slice/pointer. */) {
+func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, extend bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectRecord:byExtendingSelection:"), record, extend)
 }
 
@@ -239,8 +240,8 @@ func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectIdentifier(_:for:byExtendingSelection:)
-func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier string /* primitive/slice/pointer. */, person IABPerson, extend bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("selectIdentifier:forPerson:byExtendingSelection:"), objc.String(identifier), person, extend)
+func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier objc.IObject /* cross-framework: NSString */, person IABPerson, extend bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("selectIdentifier:forPerson:byExtendingSelection:"), identifier, person, extend)
 }
 
 
@@ -258,7 +259,7 @@ func (a_ ABPeoplePickerView) SelectInAddressBook(sender objectivec.IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedIdentifiers(for:)
 func (a_ ABPeoplePickerView) SelectedIdentifiersForPerson(person IABPerson) objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("selectedIdentifiersForPerson:"), person)
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("selectedIdentifiersForPerson:"), person)
 	return rv
 }
 
@@ -268,7 +269,7 @@ func (a_ ABPeoplePickerView) SelectedIdentifiersForPerson(person IABPerson) objc
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedValues()
 func (a_ ABPeoplePickerView) SelectedValues() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](a_.ID, objc.Sel("selectedValues"))
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("selectedValues"))
 	return rv
 }
 
@@ -277,8 +278,8 @@ func (a_ ABPeoplePickerView) SelectedValues() objc.IObject /* cross-framework: A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/setColumnTitle(_:forProperty:)
-func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setColumnTitle:forProperty:"), objc.String(title), objc.String(property))
+func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title objc.IObject /* cross-framework: NSString */, property objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setColumnTitle:forProperty:"), title, property)
 }
 
 
@@ -287,7 +288,7 @@ func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string /* primitive
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
 func (a_ ABPeoplePickerView) AccessoryView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[View](a_.ID, objc.Sel("accessoryView"))
+	rv := objc.Send[appkit.View](a_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -305,7 +306,7 @@ func (a_ ABPeoplePickerView) SetAccessoryView(value objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsGroupSelection
-func (a_ ABPeoplePickerView) AllowsGroupSelection() bool /* primitive/slice/pointer. */ {
+func (a_ ABPeoplePickerView) AllowsGroupSelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsGroupSelection"))
 	return rv
 }
@@ -315,7 +316,7 @@ func (a_ ABPeoplePickerView) AllowsGroupSelection() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsGroupSelection
-func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool /* primitive/slice/pointer. */) {
+func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsGroupSelection:"), value)
 }
 
@@ -324,7 +325,7 @@ func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsMultipleSelection
-func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool /* primitive/slice/pointer. */ {
+func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
@@ -334,7 +335,7 @@ func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsMultipleSelection
-func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */) {
+func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
@@ -343,8 +344,8 @@ func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) AutosaveName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("autosaveName"))
+func (a_ ABPeoplePickerView) AutosaveName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("autosaveName"))
 	return rv
 }
 
@@ -353,8 +354,8 @@ func (a_ ABPeoplePickerView) AutosaveName() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) SetAutosaveName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), objc.String(value))
+func (a_ ABPeoplePickerView) SetAutosaveName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), value)
 }
 
 
@@ -362,8 +363,8 @@ func (a_ ABPeoplePickerView) SetAutosaveName(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) DisplayedProperty() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("displayedProperty"))
+func (a_ ABPeoplePickerView) DisplayedProperty() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("displayedProperty"))
 	return rv
 }
 
@@ -372,8 +373,8 @@ func (a_ ABPeoplePickerView) DisplayedProperty() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) SetDisplayedProperty(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), objc.String(value))
+func (a_ ABPeoplePickerView) SetDisplayedProperty(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), value)
 }
 
 
@@ -419,8 +420,8 @@ func (a_ ABPeoplePickerView) SetNameDoubleAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedGroups
-func (a_ ABPeoplePickerView) SelectedGroups() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("selectedGroups"))
+func (a_ ABPeoplePickerView) SelectedGroups() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("selectedGroups"))
 	return rv
 }
 
@@ -429,8 +430,8 @@ func (a_ ABPeoplePickerView) SelectedGroups() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedRecords
-func (a_ ABPeoplePickerView) SelectedRecords() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("selectedRecords"))
+func (a_ ABPeoplePickerView) SelectedRecords() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("selectedRecords"))
 	return rv
 }
 

@@ -9,12 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AudioChannelLayout = _undefined // referenced in PHASE
-	Bool = _undefined // referenced in PHASE
 	Element = _undefined // referenced in PHASE
 	Flags = _undefined // referenced in PHASE
-	PHASECullOption = _undefined // referenced in PHASE
-	PHASEPullStreamRenderHandler = _undefined // referenced in PHASE
 )
 
 

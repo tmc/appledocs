@@ -31,17 +31,21 @@ type _MTRLevelControlClusterStopWithOnOffParamsClass struct {
 // An interface definition for the [MTRLevelControlClusterStopWithOnOffParams] class.
 type IMTRLevelControlClusterStopWithOnOffParams interface {
 	objectivec.IObject
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlClusterStopWithOnOffParams
 type MTRLevelControlClusterStopWithOnOffParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRLevelControlClusterStopWithOnOffParams() MTRLevelControlClusterStopWi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRLevelControlClusterStopWithOnOffParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRLevelControlClusterStopWithOnOffParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStopWithOnOffParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRLevelControlClusterStopWithOnOffParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStopWithOnOffParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRLevelControlClusterStopWithOnOffParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStopWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRLevelControlClusterStopWithOnOffParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStopWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRLevelControlClusterStopWithOnOffParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

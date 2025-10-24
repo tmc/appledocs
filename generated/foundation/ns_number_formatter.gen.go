@@ -30,10 +30,10 @@ type _NumberFormatterClass struct {
 type INumberFormatter interface {
 	IFormatter
 	// properties:
-	AllowsFloats() bool /* primitive/slice/pointer. */
-	SetAllowsFloats(value bool /* primitive/slice/pointer. */)
-	AlwaysShowsDecimalSeparator() bool /* primitive/slice/pointer. */
-	SetAlwaysShowsDecimalSeparator(value bool /* primitive/slice/pointer. */)
+	AllowsFloats() bool
+	SetAllowsFloats(value bool)
+	AlwaysShowsDecimalSeparator() bool
+	SetAlwaysShowsDecimalSeparator(value bool)
 	AttributedStringForNil() IAttributedString
 	SetAttributedStringForNil(value IAttributedString)
 	AttributedStringForNotANumber() IAttributedString
@@ -54,48 +54,48 @@ type INumberFormatter interface {
 	SetExponentSymbol(value IString)
 	Format() IString
 	SetFormat(value IString)
-	FormatWidth() uint /* primitive/slice/pointer. */
-	SetFormatWidth(value uint /* primitive/slice/pointer. */)
+	FormatWidth() uint
+	SetFormatWidth(value uint)
 	FormatterBehavior() NumberFormatterBehavior
 	SetFormatterBehavior(value NumberFormatterBehavior)
 	FormattingContext() FormattingContext
 	SetFormattingContext(value FormattingContext)
-	GeneratesDecimalNumbers() bool /* primitive/slice/pointer. */
-	SetGeneratesDecimalNumbers(value bool /* primitive/slice/pointer. */)
+	GeneratesDecimalNumbers() bool
+	SetGeneratesDecimalNumbers(value bool)
 	GroupingSeparator() IString
 	SetGroupingSeparator(value IString)
-	GroupingSize() uint /* primitive/slice/pointer. */
-	SetGroupingSize(value uint /* primitive/slice/pointer. */)
-	HasThousandSeparators() bool /* primitive/slice/pointer. */
-	SetHasThousandSeparators(value bool /* primitive/slice/pointer. */)
+	GroupingSize() uint
+	SetGroupingSize(value uint)
+	HasThousandSeparators() bool
+	SetHasThousandSeparators(value bool)
 	InternationalCurrencySymbol() IString
 	SetInternationalCurrencySymbol(value IString)
-	Lenient() bool /* primitive/slice/pointer. */
-	SetLenient(value bool /* primitive/slice/pointer. */)
-	PartialStringValidationEnabled() bool /* primitive/slice/pointer. */
-	SetPartialStringValidationEnabled(value bool /* primitive/slice/pointer. */)
+	Lenient() bool
+	SetLenient(value bool)
+	PartialStringValidationEnabled() bool
+	SetPartialStringValidationEnabled(value bool)
 	Locale() ILocale
 	SetLocale(value ILocale)
-	LocalizesFormat() bool /* primitive/slice/pointer. */
-	SetLocalizesFormat(value bool /* primitive/slice/pointer. */)
+	LocalizesFormat() bool
+	SetLocalizesFormat(value bool)
 	Maximum() INumber
 	SetMaximum(value INumber)
-	MaximumFractionDigits() uint /* primitive/slice/pointer. */
-	SetMaximumFractionDigits(value uint /* primitive/slice/pointer. */)
-	MaximumIntegerDigits() uint /* primitive/slice/pointer. */
-	SetMaximumIntegerDigits(value uint /* primitive/slice/pointer. */)
-	MaximumSignificantDigits() uint /* primitive/slice/pointer. */
-	SetMaximumSignificantDigits(value uint /* primitive/slice/pointer. */)
+	MaximumFractionDigits() uint
+	SetMaximumFractionDigits(value uint)
+	MaximumIntegerDigits() uint
+	SetMaximumIntegerDigits(value uint)
+	MaximumSignificantDigits() uint
+	SetMaximumSignificantDigits(value uint)
 	Minimum() INumber
 	SetMinimum(value INumber)
-	MinimumFractionDigits() uint /* primitive/slice/pointer. */
-	SetMinimumFractionDigits(value uint /* primitive/slice/pointer. */)
-	MinimumGroupingDigits() int /* primitive/slice/pointer. */
-	SetMinimumGroupingDigits(value int /* primitive/slice/pointer. */)
-	MinimumIntegerDigits() uint /* primitive/slice/pointer. */
-	SetMinimumIntegerDigits(value uint /* primitive/slice/pointer. */)
-	MinimumSignificantDigits() uint /* primitive/slice/pointer. */
-	SetMinimumSignificantDigits(value uint /* primitive/slice/pointer. */)
+	MinimumFractionDigits() uint
+	SetMinimumFractionDigits(value uint)
+	MinimumGroupingDigits() int
+	SetMinimumGroupingDigits(value int)
+	MinimumIntegerDigits() uint
+	SetMinimumIntegerDigits(value uint)
+	MinimumSignificantDigits() uint
+	SetMinimumSignificantDigits(value uint)
 	MinusSign() IString
 	SetMinusSign(value IString)
 	Multiplier() INumber
@@ -138,36 +138,36 @@ type INumberFormatter interface {
 	SetRoundingIncrement(value INumber)
 	RoundingMode() NumberFormatterRoundingMode
 	SetRoundingMode(value NumberFormatterRoundingMode)
-	SecondaryGroupingSize() uint /* primitive/slice/pointer. */
-	SetSecondaryGroupingSize(value uint /* primitive/slice/pointer. */)
-	TextAttributesForNegativeInfinity() IDictionary /* already interface */
-	SetTextAttributesForNegativeInfinity(value IDictionary /* already interface */)
-	TextAttributesForNegativeValues() IDictionary /* already interface */
-	SetTextAttributesForNegativeValues(value IDictionary /* already interface */)
-	TextAttributesForNil() IDictionary /* already interface */
-	SetTextAttributesForNil(value IDictionary /* already interface */)
-	TextAttributesForNotANumber() IDictionary /* already interface */
-	SetTextAttributesForNotANumber(value IDictionary /* already interface */)
-	TextAttributesForPositiveInfinity() IDictionary /* already interface */
-	SetTextAttributesForPositiveInfinity(value IDictionary /* already interface */)
-	TextAttributesForPositiveValues() IDictionary /* already interface */
-	SetTextAttributesForPositiveValues(value IDictionary /* already interface */)
-	TextAttributesForZero() IDictionary /* already interface */
-	SetTextAttributesForZero(value IDictionary /* already interface */)
+	SecondaryGroupingSize() uint
+	SetSecondaryGroupingSize(value uint)
+	TextAttributesForNegativeInfinity() IDictionary
+	SetTextAttributesForNegativeInfinity(value IDictionary)
+	TextAttributesForNegativeValues() IDictionary
+	SetTextAttributesForNegativeValues(value IDictionary)
+	TextAttributesForNil() IDictionary
+	SetTextAttributesForNil(value IDictionary)
+	TextAttributesForNotANumber() IDictionary
+	SetTextAttributesForNotANumber(value IDictionary)
+	TextAttributesForPositiveInfinity() IDictionary
+	SetTextAttributesForPositiveInfinity(value IDictionary)
+	TextAttributesForPositiveValues() IDictionary
+	SetTextAttributesForPositiveValues(value IDictionary)
+	TextAttributesForZero() IDictionary
+	SetTextAttributesForZero(value IDictionary)
 	ThousandSeparator() IString
 	SetThousandSeparator(value IString)
-	UsesGroupingSeparator() bool /* primitive/slice/pointer. */
-	SetUsesGroupingSeparator(value bool /* primitive/slice/pointer. */)
-	UsesSignificantDigits() bool /* primitive/slice/pointer. */
-	SetUsesSignificantDigits(value bool /* primitive/slice/pointer. */)
+	UsesGroupingSeparator() bool
+	SetUsesGroupingSeparator(value bool)
+	UsesSignificantDigits() bool
+	SetUsesSignificantDigits(value bool)
 	ZeroSymbol() IString
 	SetZeroSymbol(value IString)
-	IsLenient() bool /* primitive/slice/pointer. */
-	SetIsLenient(value bool /* primitive/slice/pointer. */)
-	IsPartialStringValidationEnabled() bool /* primitive/slice/pointer. */
-	SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer. */)
+	IsLenient() bool
+	SetIsLenient(value bool)
+	IsPartialStringValidationEnabled() bool
+	SetIsPartialStringValidationEnabled(value bool)
 	// methods:
-	GetObjectValueForStringRangeError(obj unsafe.Pointer, string_ IString, rangep objc.IObject /* cross-framework Range */, error_ IError) bool /* primitive/slice/pointer. */
+	GetObjectValueForStringRangeError(obj unsafe.Pointer, string_ IString, rangep objc.IObject /* cross-framework: Range */, error_ IError) bool
 	NumberFromString(string_ IString) INumber
 	StringFromNumber(number INumber) IString
 }
@@ -260,7 +260,7 @@ func (nc _NumberFormatterClass) SetDefaultFormatterBehavior(behavior NumberForma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/getObjectValue(_:for:range:)
-func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj unsafe.Pointer, string_ IString, rangep objc.IObject /* cross-framework Range */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) GetObjectValueForStringRangeError(obj unsafe.Pointer, string_ IString, rangep objc.IObject /* cross-framework: Range */, error_ IError) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, string_, rangep, error_)
 	return rv
 }
@@ -290,7 +290,7 @@ func (n_ NumberFormatter) StringFromNumber(number INumber) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/allowsFloats
-func (n_ NumberFormatter) AllowsFloats() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) AllowsFloats() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("allowsFloats"))
 	return rv
 }
@@ -300,7 +300,7 @@ func (n_ NumberFormatter) AllowsFloats() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/allowsFloats
-func (n_ NumberFormatter) SetAllowsFloats(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetAllowsFloats(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowsFloats:"), value)
 }
 
@@ -309,7 +309,7 @@ func (n_ NumberFormatter) SetAllowsFloats(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/alwaysShowsDecimalSeparator
-func (n_ NumberFormatter) AlwaysShowsDecimalSeparator() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) AlwaysShowsDecimalSeparator() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("alwaysShowsDecimalSeparator"))
 	return rv
 }
@@ -319,7 +319,7 @@ func (n_ NumberFormatter) AlwaysShowsDecimalSeparator() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/alwaysShowsDecimalSeparator
-func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlwaysShowsDecimalSeparator:"), value)
 }
 
@@ -518,7 +518,7 @@ func (n_ NumberFormatter) SetFormat(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
-func (n_ NumberFormatter) FormatWidth() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) FormatWidth() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("formatWidth"))
 	return rv
 }
@@ -528,7 +528,7 @@ func (n_ NumberFormatter) FormatWidth() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
-func (n_ NumberFormatter) SetFormatWidth(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetFormatWidth(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatWidth:"), value)
 }
 
@@ -575,7 +575,7 @@ func (n_ NumberFormatter) SetFormattingContext(value FormattingContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/generatesDecimalNumbers
-func (n_ NumberFormatter) GeneratesDecimalNumbers() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
 	return rv
 }
@@ -585,7 +585,7 @@ func (n_ NumberFormatter) GeneratesDecimalNumbers() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/generatesDecimalNumbers
-func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
 }
 
@@ -613,7 +613,7 @@ func (n_ NumberFormatter) SetGroupingSeparator(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/groupingSize
-func (n_ NumberFormatter) GroupingSize() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) GroupingSize() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("groupingSize"))
 	return rv
 }
@@ -623,7 +623,7 @@ func (n_ NumberFormatter) GroupingSize() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/groupingSize
-func (n_ NumberFormatter) SetGroupingSize(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetGroupingSize(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGroupingSize:"), value)
 }
 
@@ -632,7 +632,7 @@ func (n_ NumberFormatter) SetGroupingSize(value uint /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/hasThousandSeparators
-func (n_ NumberFormatter) HasThousandSeparators() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) HasThousandSeparators() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasThousandSeparators"))
 	return rv
 }
@@ -642,7 +642,7 @@ func (n_ NumberFormatter) HasThousandSeparators() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/hasThousandSeparators
-func (n_ NumberFormatter) SetHasThousandSeparators(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetHasThousandSeparators(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasThousandSeparators:"), value)
 }
 
@@ -670,7 +670,7 @@ func (n_ NumberFormatter) SetInternationalCurrencySymbol(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isLenient
-func (n_ NumberFormatter) Lenient() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) Lenient() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("lenient"))
 	return rv
 }
@@ -680,7 +680,7 @@ func (n_ NumberFormatter) Lenient() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isLenient
-func (n_ NumberFormatter) SetLenient(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetLenient(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLenient:"), value)
 }
 
@@ -689,7 +689,7 @@ func (n_ NumberFormatter) SetLenient(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isPartialStringValidationEnabled
-func (n_ NumberFormatter) PartialStringValidationEnabled() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) PartialStringValidationEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("partialStringValidationEnabled"))
 	return rv
 }
@@ -699,7 +699,7 @@ func (n_ NumberFormatter) PartialStringValidationEnabled() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isPartialStringValidationEnabled
-func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPartialStringValidationEnabled:"), value)
 }
 
@@ -727,7 +727,7 @@ func (n_ NumberFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizesFormat
-func (n_ NumberFormatter) LocalizesFormat() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) LocalizesFormat() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("localizesFormat"))
 	return rv
 }
@@ -737,7 +737,7 @@ func (n_ NumberFormatter) LocalizesFormat() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizesFormat
-func (n_ NumberFormatter) SetLocalizesFormat(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetLocalizesFormat(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizesFormat:"), value)
 }
 
@@ -765,7 +765,7 @@ func (n_ NumberFormatter) SetMaximum(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumFractionDigits
-func (n_ NumberFormatter) MaximumFractionDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MaximumFractionDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumFractionDigits"))
 	return rv
 }
@@ -775,7 +775,7 @@ func (n_ NumberFormatter) MaximumFractionDigits() uint /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumFractionDigits
-func (n_ NumberFormatter) SetMaximumFractionDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMaximumFractionDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumFractionDigits:"), value)
 }
 
@@ -784,7 +784,7 @@ func (n_ NumberFormatter) SetMaximumFractionDigits(value uint /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumIntegerDigits
-func (n_ NumberFormatter) MaximumIntegerDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MaximumIntegerDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumIntegerDigits"))
 	return rv
 }
@@ -794,7 +794,7 @@ func (n_ NumberFormatter) MaximumIntegerDigits() uint /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumIntegerDigits
-func (n_ NumberFormatter) SetMaximumIntegerDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMaximumIntegerDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumIntegerDigits:"), value)
 }
 
@@ -803,7 +803,7 @@ func (n_ NumberFormatter) SetMaximumIntegerDigits(value uint /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumSignificantDigits
-func (n_ NumberFormatter) MaximumSignificantDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MaximumSignificantDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumSignificantDigits"))
 	return rv
 }
@@ -813,7 +813,7 @@ func (n_ NumberFormatter) MaximumSignificantDigits() uint /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumSignificantDigits
-func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSignificantDigits:"), value)
 }
 
@@ -841,7 +841,7 @@ func (n_ NumberFormatter) SetMinimum(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumFractionDigits
-func (n_ NumberFormatter) MinimumFractionDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MinimumFractionDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumFractionDigits"))
 	return rv
 }
@@ -851,14 +851,14 @@ func (n_ NumberFormatter) MinimumFractionDigits() uint /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumFractionDigits
-func (n_ NumberFormatter) SetMinimumFractionDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMinimumFractionDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumFractionDigits:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
-func (n_ NumberFormatter) MinimumGroupingDigits() int /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MinimumGroupingDigits() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("minimumGroupingDigits"))
 	return rv
 }
@@ -866,7 +866,7 @@ func (n_ NumberFormatter) MinimumGroupingDigits() int /* primitive/slice/pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
-func (n_ NumberFormatter) SetMinimumGroupingDigits(value int /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMinimumGroupingDigits(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumGroupingDigits:"), value)
 }
 
@@ -875,7 +875,7 @@ func (n_ NumberFormatter) SetMinimumGroupingDigits(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumIntegerDigits
-func (n_ NumberFormatter) MinimumIntegerDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MinimumIntegerDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumIntegerDigits"))
 	return rv
 }
@@ -885,7 +885,7 @@ func (n_ NumberFormatter) MinimumIntegerDigits() uint /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumIntegerDigits
-func (n_ NumberFormatter) SetMinimumIntegerDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMinimumIntegerDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumIntegerDigits:"), value)
 }
 
@@ -894,7 +894,7 @@ func (n_ NumberFormatter) SetMinimumIntegerDigits(value uint /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumSignificantDigits
-func (n_ NumberFormatter) MinimumSignificantDigits() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) MinimumSignificantDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumSignificantDigits"))
 	return rv
 }
@@ -904,7 +904,7 @@ func (n_ NumberFormatter) MinimumSignificantDigits() uint /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumSignificantDigits
-func (n_ NumberFormatter) SetMinimumSignificantDigits(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetMinimumSignificantDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumSignificantDigits:"), value)
 }
 
@@ -1312,7 +1312,7 @@ func (n_ NumberFormatter) SetRoundingMode(value NumberFormatterRoundingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/secondaryGroupingSize
-func (n_ NumberFormatter) SecondaryGroupingSize() uint /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) SecondaryGroupingSize() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("secondaryGroupingSize"))
 	return rv
 }
@@ -1322,7 +1322,7 @@ func (n_ NumberFormatter) SecondaryGroupingSize() uint /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/secondaryGroupingSize
-func (n_ NumberFormatter) SetSecondaryGroupingSize(value uint /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetSecondaryGroupingSize(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryGroupingSize:"), value)
 }
 
@@ -1331,8 +1331,8 @@ func (n_ NumberFormatter) SetSecondaryGroupingSize(value uint /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeInfinity
-func (n_ NumberFormatter) TextAttributesForNegativeInfinity() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForNegativeInfinity"))
+func (n_ NumberFormatter) TextAttributesForNegativeInfinity() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNegativeInfinity"))
 	return rv
 }
 
@@ -1341,7 +1341,7 @@ func (n_ NumberFormatter) TextAttributesForNegativeInfinity() IDictionary /* alr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeInfinity
-func (n_ NumberFormatter) SetTextAttributesForNegativeInfinity(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForNegativeInfinity(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNegativeInfinity:"), value)
 }
 
@@ -1350,8 +1350,8 @@ func (n_ NumberFormatter) SetTextAttributesForNegativeInfinity(value IDictionary
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeValues
-func (n_ NumberFormatter) TextAttributesForNegativeValues() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForNegativeValues"))
+func (n_ NumberFormatter) TextAttributesForNegativeValues() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNegativeValues"))
 	return rv
 }
 
@@ -1360,7 +1360,7 @@ func (n_ NumberFormatter) TextAttributesForNegativeValues() IDictionary /* alrea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeValues
-func (n_ NumberFormatter) SetTextAttributesForNegativeValues(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForNegativeValues(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNegativeValues:"), value)
 }
 
@@ -1369,8 +1369,8 @@ func (n_ NumberFormatter) SetTextAttributesForNegativeValues(value IDictionary /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNil
-func (n_ NumberFormatter) TextAttributesForNil() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForNil"))
+func (n_ NumberFormatter) TextAttributesForNil() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNil"))
 	return rv
 }
 
@@ -1379,7 +1379,7 @@ func (n_ NumberFormatter) TextAttributesForNil() IDictionary /* already interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNil
-func (n_ NumberFormatter) SetTextAttributesForNil(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForNil(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNil:"), value)
 }
 
@@ -1388,8 +1388,8 @@ func (n_ NumberFormatter) SetTextAttributesForNil(value IDictionary /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNotANumber
-func (n_ NumberFormatter) TextAttributesForNotANumber() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForNotANumber"))
+func (n_ NumberFormatter) TextAttributesForNotANumber() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForNotANumber"))
 	return rv
 }
 
@@ -1398,7 +1398,7 @@ func (n_ NumberFormatter) TextAttributesForNotANumber() IDictionary /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNotANumber
-func (n_ NumberFormatter) SetTextAttributesForNotANumber(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForNotANumber(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNotANumber:"), value)
 }
 
@@ -1407,8 +1407,8 @@ func (n_ NumberFormatter) SetTextAttributesForNotANumber(value IDictionary /* al
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveInfinity
-func (n_ NumberFormatter) TextAttributesForPositiveInfinity() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForPositiveInfinity"))
+func (n_ NumberFormatter) TextAttributesForPositiveInfinity() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForPositiveInfinity"))
 	return rv
 }
 
@@ -1417,7 +1417,7 @@ func (n_ NumberFormatter) TextAttributesForPositiveInfinity() IDictionary /* alr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveInfinity
-func (n_ NumberFormatter) SetTextAttributesForPositiveInfinity(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForPositiveInfinity(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForPositiveInfinity:"), value)
 }
 
@@ -1426,8 +1426,8 @@ func (n_ NumberFormatter) SetTextAttributesForPositiveInfinity(value IDictionary
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveValues
-func (n_ NumberFormatter) TextAttributesForPositiveValues() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForPositiveValues"))
+func (n_ NumberFormatter) TextAttributesForPositiveValues() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForPositiveValues"))
 	return rv
 }
 
@@ -1436,7 +1436,7 @@ func (n_ NumberFormatter) TextAttributesForPositiveValues() IDictionary /* alrea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveValues
-func (n_ NumberFormatter) SetTextAttributesForPositiveValues(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForPositiveValues(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForPositiveValues:"), value)
 }
 
@@ -1445,8 +1445,8 @@ func (n_ NumberFormatter) SetTextAttributesForPositiveValues(value IDictionary /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForZero
-func (n_ NumberFormatter) TextAttributesForZero() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](n_.ID, objc.Sel("textAttributesForZero"))
+func (n_ NumberFormatter) TextAttributesForZero() IDictionary {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("textAttributesForZero"))
 	return rv
 }
 
@@ -1455,7 +1455,7 @@ func (n_ NumberFormatter) TextAttributesForZero() IDictionary /* already interfa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForZero
-func (n_ NumberFormatter) SetTextAttributesForZero(value IDictionary /* already interface */) {
+func (n_ NumberFormatter) SetTextAttributesForZero(value IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForZero:"), value)
 }
 
@@ -1483,7 +1483,7 @@ func (n_ NumberFormatter) SetThousandSeparator(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesGroupingSeparator
-func (n_ NumberFormatter) UsesGroupingSeparator() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) UsesGroupingSeparator() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("usesGroupingSeparator"))
 	return rv
 }
@@ -1493,7 +1493,7 @@ func (n_ NumberFormatter) UsesGroupingSeparator() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesGroupingSeparator
-func (n_ NumberFormatter) SetUsesGroupingSeparator(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetUsesGroupingSeparator(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUsesGroupingSeparator:"), value)
 }
 
@@ -1502,7 +1502,7 @@ func (n_ NumberFormatter) SetUsesGroupingSeparator(value bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesSignificantDigits
-func (n_ NumberFormatter) UsesSignificantDigits() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) UsesSignificantDigits() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("usesSignificantDigits"))
 	return rv
 }
@@ -1512,7 +1512,7 @@ func (n_ NumberFormatter) UsesSignificantDigits() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesSignificantDigits
-func (n_ NumberFormatter) SetUsesSignificantDigits(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetUsesSignificantDigits(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUsesSignificantDigits:"), value)
 }
 
@@ -1540,7 +1540,7 @@ func (n_ NumberFormatter) SetZeroSymbol(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
-func (n_ NumberFormatter) IsLenient() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) IsLenient() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isLenient"))
 	return rv
 }
@@ -1550,7 +1550,7 @@ func (n_ NumberFormatter) IsLenient() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/islenient
-func (n_ NumberFormatter) SetIsLenient(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetIsLenient(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsLenient:"), value)
 }
 
@@ -1559,7 +1559,7 @@ func (n_ NumberFormatter) SetIsLenient(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
-func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool /* primitive/slice/pointer. */ {
+func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isPartialStringValidationEnabled"))
 	return rv
 }
@@ -1569,7 +1569,7 @@ func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
-func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool /* primitive/slice/pointer. */) {
+func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
 }
 

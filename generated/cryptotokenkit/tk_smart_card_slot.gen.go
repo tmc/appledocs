@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,17 +33,17 @@ type _TKSmartCardSlotClass struct {
 type ITKSmartCardSlot interface {
 	objectivec.IObject
 	// properties:
-	MaxOutputLength() int /* primitive/slice/pointer. */
+	MaxOutputLength() int
 	Atr() unsafe.Pointer
 	SetAtr(value unsafe.Pointer)
-	MaxInputLength() int /* primitive/slice/pointer. */
-	SetMaxInputLength(value int /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	State() coreml.objc.IObject /* cross-framework: State */
-	SetState(value coreml.objc.IObject /* cross-framework: State */)
-	SlotNames() string /* primitive/slice/pointer. */
-	SetSlotNames(value string /* primitive/slice/pointer. */)
+	MaxInputLength() int
+	SetMaxInputLength(value int)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	State() objc.IObject /* cross-framework: State */
+	SetState(value objc.IObject /* cross-framework: State */)
+	SlotNames() objc.IObject /* cross-framework: NSString */
+	SetSlotNames(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 	MakeSmartCard() ITKSmartCard
 }
@@ -114,7 +115,7 @@ func (t_ TKSmartCardSlot) MakeSmartCard() ITKSmartCard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/maxOutputLength
-func (t_ TKSmartCardSlot) MaxOutputLength() int /* primitive/slice/pointer. */ {
+func (t_ TKSmartCardSlot) MaxOutputLength() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("maxOutputLength"))
 	return rv
 }
@@ -143,7 +144,7 @@ func (t_ TKSmartCardSlot) SetAtr(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
-func (t_ TKSmartCardSlot) MaxInputLength() int /* primitive/slice/pointer. */ {
+func (t_ TKSmartCardSlot) MaxInputLength() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("maxInputLength"))
 	return rv
 }
@@ -153,7 +154,7 @@ func (t_ TKSmartCardSlot) MaxInputLength() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
-func (t_ TKSmartCardSlot) SetMaxInputLength(value int /* primitive/slice/pointer. */) {
+func (t_ TKSmartCardSlot) SetMaxInputLength(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxInputLength:"), value)
 }
 
@@ -162,8 +163,8 @@ func (t_ TKSmartCardSlot) SetMaxInputLength(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
-func (t_ TKSmartCardSlot) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+func (t_ TKSmartCardSlot) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -172,8 +173,8 @@ func (t_ TKSmartCardSlot) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
-func (t_ TKSmartCardSlot) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
+func (t_ TKSmartCardSlot) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -181,7 +182,7 @@ func (t_ TKSmartCardSlot) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
-func (t_ TKSmartCardSlot) State() coreml.objc.IObject /* cross-framework: State */ {
+func (t_ TKSmartCardSlot) State() objc.IObject /* cross-framework: State */ {
 	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
 	return rv
 }
@@ -191,7 +192,7 @@ func (t_ TKSmartCardSlot) State() coreml.objc.IObject /* cross-framework: State 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
-func (t_ TKSmartCardSlot) SetState(value coreml.objc.IObject /* cross-framework: State */) {
+func (t_ TKSmartCardSlot) SetState(value objc.IObject /* cross-framework: State */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
 
@@ -200,8 +201,8 @@ func (t_ TKSmartCardSlot) SetState(value coreml.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SlotNames() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("slotNames"))
+func (t_ TKSmartCardSlot) SlotNames() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("slotNames"))
 	return rv
 }
 
@@ -210,8 +211,8 @@ func (t_ TKSmartCardSlot) SlotNames() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SetSlotNames(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), objc.String(value))
+func (t_ TKSmartCardSlot) SetSlotNames(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), value)
 }
 
 

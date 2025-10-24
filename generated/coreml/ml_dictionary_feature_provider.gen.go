@@ -32,9 +32,9 @@ type _DictionaryFeatureProviderClass struct {
 type IDictionaryFeatureProvider interface {
 	objectivec.IObject
 	// properties:
-	Dictionary() foundation.IDictionary /* already interface */
+	Dictionary() foundation.IDictionary
 	// methods:
-	ObjectForKeyedSubscript(featureName string /* primitive/slice/pointer. */) IFeatureValue
+	ObjectForKeyedSubscript(featureName objc.IObject /* cross-framework: NSString */) IFeatureValue
 }
 
 // A convenience wrapper for the given dictionary of data.
@@ -94,7 +94,7 @@ func NewDictionaryFeatureProvider() DictionaryFeatureProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/init(dictionary:)
-func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDictionary /* already interface */, error_ unsafe.Pointer) DictionaryFeatureProvider {
+func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDictionary, error_ unsafe.Pointer) DictionaryFeatureProvider {
 	instance := getDictionaryFeatureProviderClass().Alloc()
 	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
@@ -107,8 +107,8 @@ func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDict
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/subscript(_:)
-func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string /* primitive/slice/pointer. */) IFeatureValue {
-	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), objc.String(featureName))
+func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName objc.IObject /* cross-framework: NSString */) IFeatureValue {
+	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), featureName)
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/dictionary
-func (d_ DictionaryFeatureProvider) Dictionary() foundation.IDictionary /* already interface */ {
+func (d_ DictionaryFeatureProvider) Dictionary() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](d_.ID, objc.Sel("dictionary"))
 	return rv
 }

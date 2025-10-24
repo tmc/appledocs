@@ -31,17 +31,21 @@ type _MTRGroupsClusterRemoveGroupResponseParamsClass struct {
 // An interface definition for the [MTRGroupsClusterRemoveGroupResponseParams] class.
 type IMTRGroupsClusterRemoveGroupResponseParams interface {
 	objectivec.IObject
-	GroupID() foundation.Number
-	SetGroupID(value foundation.INumber)
-	GroupId() foundation.Number
-	SetGroupId(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	GroupID() objc.IObject /* cross-framework: NSNumber */
+	SetGroupID(value objc.IObject /* cross-framework: NSNumber */)
+	GroupId() objc.IObject /* cross-framework: NSNumber */
+	SetGroupId(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterRemoveGroupResponseParams
 type MTRGroupsClusterRemoveGroupResponseParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRGroupsClusterRemoveGroupResponseParams() MTRGroupsClusterRemoveGroupR
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5taii
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupID"))
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupID"))
 	return rv
 }
 
 
-// SetGroupID sets the value of the groupID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5taii
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupID(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5tahm
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupId"))
 	return rv
 }
 
 
-// SetGroupId sets the value of the groupId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5tahm
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupId(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/status
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/status
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

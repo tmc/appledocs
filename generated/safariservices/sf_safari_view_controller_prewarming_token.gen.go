@@ -30,10 +30,13 @@ type _SFSafariViewControllerPrewarmingTokenClass struct {
 // An interface definition for the [SFSafariViewControllerPrewarmingToken] class.
 type ISFSafariViewControllerPrewarmingToken interface {
 	objectivec.IObject
-	Invalidate()
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/PrewarmingToken
 type SFSafariViewControllerPrewarmingToken struct {
 	objectivec.Object
@@ -73,13 +76,6 @@ func (s_ SFSafariViewControllerPrewarmingToken) Autorelease() SFSafariViewContro
 // NewSFSafariViewControllerPrewarmingToken creates a new SFSafariViewControllerPrewarmingToken instance.
 func NewSFSafariViewControllerPrewarmingToken() SFSafariViewControllerPrewarmingToken {
 	return getSFSafariViewControllerPrewarmingTokenClass().New()
-}
-
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/PrewarmingToken/invalidate()
-func (s_ SFSafariViewControllerPrewarmingToken) Invalidate() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("invalidate"))
 }
 
 

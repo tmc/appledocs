@@ -30,12 +30,20 @@ type _MESampleLocationClass struct {
 // An interface definition for the [MESampleLocation] class.
 type IMESampleLocation interface {
 	objectivec.IObject
-	ByteSource() MEByteSource
-	SampleLocation() unsafe.Pointer
+	// properties:
+	ByteSource() IMEByteSource
+	SetByteSource(value IMEByteSource)
+	SampleLocation() SampleCursorStorageRange /* not a class type */
+	SetSampleLocation(value SampleCursorStorageRange /* not a class type */)
+	// methods:
 }
 
 // An object that provides information about the sample location with the media.
+
+
+// An object that provides information about the sample location with the media.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation
 type MESampleLocation struct {
 	objectivec.Object
@@ -81,11 +89,11 @@ func NewMESampleLocation() MESampleLocation {
 
 
 
-
 // Creates a sample location object with the byte source and sample location that you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/init(byteSource:sampleLocation:)
-func NewMESampleLocationWithByteSourceSampleLocation(byteSource IMEByteSource, sampleLocation unsafe.Pointer) MESampleLocation {
+func NewMESampleLocationWithByteSourceSampleLocation(byteSource IMEByteSource, sampleLocation SampleCursorStorageRange /* not a class type */) MESampleLocation {
 	instance := getMESampleLocationClass().Alloc()
 	rv := objc.Send[MESampleLocation](instance.ID, objc.Sel("initWithByteSource:sampleLocation:"), byteSource, sampleLocation)
 	rv.Autorelease()
@@ -93,20 +101,42 @@ func NewMESampleLocationWithByteSourceSampleLocation(byteSource IMEByteSource, s
 }
 
 
+
 // The byte source to use to read the data for the sample.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/byteSource
-func (m_ MESampleLocation) ByteSource() MEByteSource {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplelocation/bytesource
+func (m_ MESampleLocation) ByteSource() IMEByteSource {
 	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
 }
 
+
+// The byte source to use to read the data for the sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplelocation/bytesource
+func (m_ MESampleLocation) SetByteSource(value IMEByteSource) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setByteSource:"), value)
+}
+
+
 // The starting file offset and size in bytes of the sample.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/sampleLocation
-func (m_ MESampleLocation) SampleLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sampleLocation"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplelocation/samplelocation
+func (m_ MESampleLocation) SampleLocation() SampleCursorStorageRange /* not a class type */ {
+	rv := objc.Send[SampleCursorStorageRange](m_.ID, objc.Sel("sampleLocation"))
 	return rv
+}
+
+
+// The starting file offset and size in bytes of the sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplelocation/samplelocation
+func (m_ MESampleLocation) SetSampleLocation(value SampleCursorStorageRange /* not a class type */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSampleLocation:"), value)
 }
 
 

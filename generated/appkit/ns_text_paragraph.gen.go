@@ -30,12 +30,14 @@ type _TextParagraphClass struct {
 // An interface definition for the [TextParagraph] class.
 type ITextParagraph interface {
 	ITextElement
-	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.IAttributedString)
-	ParagraphContentRange() NSTextRange
-	SetParagraphContentRange(value ITextRange)
-	ParagraphSeparatorRange() NSTextRange
-	SetParagraphSeparatorRange(value ITextRange)
+	// properties:
+	AttributedString() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
+	ParagraphContentRange() objc.IObject /* cross-framework: TextRange */
+	SetParagraphContentRange(value objc.IObject /* cross-framework: TextRange */)
+	ParagraphSeparatorRange() objc.IObject /* cross-framework: TextRange */
+	SetParagraphSeparatorRange(value objc.IObject /* cross-framework: TextRange */)
+	// methods:
 }
 
 // A class that represents a single paragraph backed by an attributed string as the contents.
@@ -95,7 +97,7 @@ func NewTextParagraph() TextParagraph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) AttributedString() foundation.AttributedString {
+func (t_ TextParagraph) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) {
+func (t_ TextParagraph) SetAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -114,8 +116,8 @@ func (t_ TextParagraph) SetAttributedString(value foundation.IAttributedString) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
-	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphContentRange"))
+func (t_ TextParagraph) ParagraphContentRange() objc.IObject /* cross-framework: TextRange */ {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
 }
 
@@ -124,7 +126,7 @@ func (t_ TextParagraph) ParagraphContentRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
+func (t_ TextParagraph) SetParagraphContentRange(value objc.IObject /* cross-framework: TextRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
 }
 
@@ -133,8 +135,8 @@ func (t_ TextParagraph) SetParagraphContentRange(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
-	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
+func (t_ TextParagraph) ParagraphSeparatorRange() objc.IObject /* cross-framework: TextRange */ {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
 }
 
@@ -143,7 +145,7 @@ func (t_ TextParagraph) ParagraphSeparatorRange() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) SetParagraphSeparatorRange(value ITextRange) {
+func (t_ TextParagraph) SetParagraphSeparatorRange(value objc.IObject /* cross-framework: TextRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
 }
 

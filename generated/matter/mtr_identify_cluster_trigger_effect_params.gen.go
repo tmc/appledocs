@@ -31,17 +31,21 @@ type _MTRIdentifyClusterTriggerEffectParamsClass struct {
 // An interface definition for the [MTRIdentifyClusterTriggerEffectParams] class.
 type IMTRIdentifyClusterTriggerEffectParams interface {
 	objectivec.IObject
-	EffectIdentifier() foundation.Number
-	SetEffectIdentifier(value foundation.INumber)
-	EffectVariant() foundation.Number
-	SetEffectVariant(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	EffectIdentifier() objc.IObject /* cross-framework: NSNumber */
+	SetEffectIdentifier(value objc.IObject /* cross-framework: NSNumber */)
+	EffectVariant() objc.IObject /* cross-framework: NSNumber */
+	SetEffectVariant(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRIdentifyClusterTriggerEffectParams
 type MTRIdentifyClusterTriggerEffectParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRIdentifyClusterTriggerEffectParams() MTRIdentifyClusterTriggerEffectP
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
-func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectIdentifier"))
+func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("effectIdentifier"))
 	return rv
 }
 
 
-// SetEffectIdentifier sets the value of the effectIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value foundation.INumber) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
-func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectVariant"))
+func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("effectVariant"))
 	return rv
 }
 
 
-// SetEffectVariant sets the value of the effectVariant property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value foundation.INumber) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterTriggerEffectParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRIdentifyClusterTriggerEffectParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -32,10 +32,10 @@ type _MIDICIProfileClass struct {
 type IMIDICIProfile interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	ProfileID() foundation.objc.IObject /* cross-framework: Data */
-	SetProfileID(value foundation.objc.IObject /* cross-framework: Data */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	ProfileID() objc.IObject /* cross-framework: Data */
+	SetProfileID(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -94,8 +94,8 @@ func NewMIDICIProfile() MIDICIProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDICIProfile) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -104,8 +104,8 @@ func (m_ MIDICIProfile) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MIDICIProfile) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -113,7 +113,7 @@ func (m_ MIDICIProfile) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-func (m_ MIDICIProfile) ProfileID() foundation.objc.IObject /* cross-framework: Data */ {
+func (m_ MIDICIProfile) ProfileID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("profileID"))
 	return rv
 }
@@ -123,7 +123,7 @@ func (m_ MIDICIProfile) ProfileID() foundation.objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-func (m_ MIDICIProfile) SetProfileID(value foundation.objc.IObject /* cross-framework: Data */) {
+func (m_ MIDICIProfile) SetProfileID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileID:"), value)
 }
 

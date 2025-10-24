@@ -21,8 +21,8 @@ var (
 	_MTREventNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MTRRequestCommandNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MTRResponseCommandNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTRSetLogCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTRSetMessageReliabilityParameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MTRSetLogCallback func(unsafe.Pointer, unsafe.Pointer)
+	_MTRSetMessageReliabilityParameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 )
 
 func init() {
@@ -54,85 +54,83 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// MTRAttributeNameForID is a Matter function. [Full Topic]
+// MTRAttributeNameForID is a Matter function.
 //
 // Added in macOS 14.6.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeNameForID(_:_:)
 func MTRAttributeNameForID(clusterID unsafe.Pointer, attributeID unsafe.Pointer) unsafe.Pointer {
 	return _MTRAttributeNameForID(clusterID, attributeID)
-	}
+}
 
-
-// MTRClusterNameForID is a Matter function. [Full Topic]
+// MTRClusterNameForID is a Matter function.
 //
 // Added in macOS 14.6.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterNameForID(_:)
 func MTRClusterNameForID(clusterID unsafe.Pointer) unsafe.Pointer {
 	return _MTRClusterNameForID(clusterID)
-	}
+}
 
-
-// MTRDeviceControllerStorageClasses is a Matter function. [Full Topic]
+// MTRDeviceControllerStorageClasses is a Matter function.
 //
 // Added in macOS 14.6.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerStorageClasses()
 func MTRDeviceControllerStorageClasses() unsafe.Pointer {
 	return _MTRDeviceControllerStorageClasses()
-	}
+}
 
-
-// Resolve Matter event IDs into a descriptive string. [Full Topic]
+// Resolve Matter event IDs into a descriptive string.
 //
 // Added in macOS 15.2.
+// Resolve Matter event IDs into a descriptive string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventNameForID(_:_:)
 func MTREventNameForID(clusterID unsafe.Pointer, eventID unsafe.Pointer) unsafe.Pointer {
 	return _MTREventNameForID(clusterID, eventID)
-	}
+}
 
-
-// Resolve Matter request (client to server) command IDs into a descriptive string. [Full Topic]
+// Resolve Matter request (client to server) command IDs into a descriptive string.
 //
 // Added in macOS 15.2.
+// Resolve Matter request (client to server) command IDs into a descriptive string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRequestCommandNameForID(_:_:)
 func MTRRequestCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Pointer) unsafe.Pointer {
 	return _MTRRequestCommandNameForID(clusterID, commandID)
-	}
+}
 
-
-// Resolve Matter response (server to client) command IDs into a descriptive string. [Full Topic]
+// Resolve Matter response (server to client) command IDs into a descriptive string.
 //
 // Added in macOS 15.2.
+// Resolve Matter response (server to client) command IDs into a descriptive string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRResponseCommandNameForID(_:_:)
 func MTRResponseCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Pointer) unsafe.Pointer {
 	return _MTRResponseCommandNameForID(clusterID, commandID)
-	}
+}
 
-
-// MTRSetLogCallback is a Matter function. [Full Topic]
+// MTRSetLogCallback is a Matter function.
 //
 // Added in macOS 13.3.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetLogCallback(_:_:)
 func MTRSetLogCallback(logTypeThreshold unsafe.Pointer, callback unsafe.Pointer) {
 	_MTRSetLogCallback(logTypeThreshold, callback)
-	}
+}
 
-
-// MTRSetMessageReliabilityParameters is a Matter function. [Full Topic]
+// MTRSetMessageReliabilityParameters is a Matter function.
 //
 // Added in macOS 14.6.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetMessageReliabilityParameters(_:_:_:_:)
 func MTRSetMessageReliabilityParameters(idleRetransmitMs unsafe.Pointer, activeRetransmitMs unsafe.Pointer, activeThresholdMs unsafe.Pointer, additionalRetransmitDelayMs unsafe.Pointer) {
 	_MTRSetMessageReliabilityParameters(idleRetransmitMs, activeRetransmitMs, activeThresholdMs, additionalRetransmitDelayMs)
-	}
-
+}
 
 
 

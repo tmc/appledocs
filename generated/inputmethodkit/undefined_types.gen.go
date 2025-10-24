@@ -13,13 +13,10 @@ type (
 	AttributedString = _undefined // referenced in InputMethodKit
 	Bundle = _undefined // referenced in InputMethodKit
 	Dictionary = _undefined // referenced in InputMethodKit
-	IMKTextInput = _undefined // referenced in InputMethodKit
 	Menu = _undefined // referenced in InputMethodKit
 	MutableDictionary = _undefined // referenced in InputMethodKit
-	Object = _undefined // referenced in InputMethodKit
 	Range = _undefined // referenced in InputMethodKit
 	Rect = _undefined // referenced in InputMethodKit
-	TISInputSourceRef = _undefined // referenced in InputMethodKit
 )
 
 

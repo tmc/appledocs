@@ -31,15 +31,19 @@ type _MTRDescriptorClusterDeviceTypeStructClass struct {
 // An interface definition for the [MTRDescriptorClusterDeviceTypeStruct] class.
 type IMTRDescriptorClusterDeviceTypeStruct interface {
 	objectivec.IObject
-	DeviceType() foundation.Number
-	SetDeviceType(value foundation.INumber)
-	Revision() foundation.Number
-	SetRevision(value foundation.INumber)
-	Type() foundation.Number
-	SetType(value foundation.INumber)
+	// properties:
+	DeviceType() objc.IObject /* cross-framework: NSNumber */
+	SetDeviceType(value objc.IObject /* cross-framework: NSNumber */)
+	Revision() objc.IObject /* cross-framework: NSNumber */
+	SetRevision(value objc.IObject /* cross-framework: NSNumber */)
+	Type() objc.IObject /* cross-framework: NSNumber */
+	SetType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDescriptorClusterDeviceTypeStruct
 type MTRDescriptorClusterDeviceTypeStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDescriptorClusterDeviceTypeStruct() MTRDescriptorClusterDeviceTypeStr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
-func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceType"))
+func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
 
-// SetDeviceType sets the value of the deviceType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value foundation.INumber) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
-func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("revision"))
+func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("revision"))
 	return rv
 }
 
 
-// SetRevision sets the value of the revision property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value foundation.INumber) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
-func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.INumber) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

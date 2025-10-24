@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SkipIntervalCommandEvent] class.
@@ -30,11 +29,18 @@ type _SkipIntervalCommandEventClass struct {
 // An interface definition for the [SkipIntervalCommandEvent] class.
 type ISkipIntervalCommandEvent interface {
 	IRemoteCommandEvent
-	Interval() foundation.TimeInterval
+	// properties:
+	Interval() float64
+	SetInterval(value float64)
+	// methods:
 }
 
 // An event requesting a change in the current skip interval.
+
+
+// An event requesting a change in the current skip interval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPSkipIntervalCommandEvent
 type SkipIntervalCommandEvent struct {
 	RemoteCommandEvent
@@ -81,12 +87,23 @@ func NewSkipIntervalCommandEvent() SkipIntervalCommandEvent {
 }
 
 
+
 // The chosen interval, in seconds, for the skip command event.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPSkipIntervalCommandEvent/interval
-func (s_ SkipIntervalCommandEvent) Interval() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("interval"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommandevent/interval
+func (s_ SkipIntervalCommandEvent) Interval() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("interval"))
 	return rv
+}
+
+
+// The chosen interval, in seconds, for the skip command event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommandevent/interval
+func (s_ SkipIntervalCommandEvent) SetInterval(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInterval:"), value)
 }
 
 

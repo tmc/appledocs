@@ -30,17 +30,17 @@ type _MeshGraphClass struct {
 type IMeshGraph interface {
 	IGraph
 	// properties:
-	BufferRadius() float32 /* primitive/slice/pointer. */
-	Obstacles() []PolygonObstacle /* primitive/slice/pointer. */
-	TriangleCount() uint /* primitive/slice/pointer. */
+	BufferRadius() float32
+	Obstacles() []IPolygonObstacle
+	TriangleCount() uint
 	TriangulationMode() MeshGraphTriangulationMode
 	SetTriangulationMode(value MeshGraphTriangulationMode)
 	// methods:
-	AddObstacles(obstacles []PolygonObstacle /* primitive/slice/pointer. */)
-	ClassForGenericArgumentAtIndex(index uint /* primitive/slice/pointer. */) objc.Class
+	AddObstacles(obstacles []IPolygonObstacle)
+	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeUsingObstacles(node unsafe.Pointer)
-	RemoveObstacles(obstacles []PolygonObstacle /* primitive/slice/pointer. */)
-	TriangleAtIndex(index uint /* primitive/slice/pointer. */) Triangle /* not a class type */
+	RemoveObstacles(obstacles []IPolygonObstacle)
+	TriangleAtIndex(index uint) GKTriangle /* not a class type */
 	Triangulate()
 }
 
@@ -103,7 +103,7 @@ func NewMeshGraph() MeshGraph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/init(bufferRadius:minCoordinate:maxCoordinate:)
-func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32 /* primitive/slice/pointer. */, min unsafe.Pointer, max unsafe.Pointer) MeshGraph {
+func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer) MeshGraph {
 	instance := getMeshGraphClass().Alloc()
 	rv := objc.Send[MeshGraph](instance.ID, objc.Sel("initWithBufferRadius:minCoordinate:maxCoordinate:"), bufferRadius, min, max)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/init(bufferRadius:minCoordinate:maxCoordinate:nodeClass:)
-func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32 /* primitive/slice/pointer. */, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) MeshGraph {
+func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) MeshGraph {
 	instance := getMeshGraphClass().Alloc()
 	rv := objc.Send[MeshGraph](instance.ID, objc.Sel("initWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:"), bufferRadius, min, max, nodeClass)
 	rv.Autorelease()
@@ -128,7 +128,7 @@ func NewMeshGraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadiu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/graphWithBufferRadius:minCoordinate:maxCoordinate:
-func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32 /* primitive/slice/pointer. */, min unsafe.Pointer, max unsafe.Pointer) unsafe.Pointer {
+func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("graphWithBufferRadius:minCoordinate:maxCoordinate:"), bufferRadius, min, max)
 	return rv
 }
@@ -138,7 +138,7 @@ func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinate(buffer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:
-func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32 /* primitive/slice/pointer. */, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
+func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeClass(bufferRadius float32, min unsafe.Pointer, max unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:"), bufferRadius, min, max, nodeClass)
 	return rv
 }
@@ -148,14 +148,14 @@ func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeCla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/addObstacles(_:)
-func (m_ MeshGraph) AddObstacles(obstacles []PolygonObstacle /* primitive/slice/pointer. */) {
+func (m_ MeshGraph) AddObstacles(obstacles []IPolygonObstacle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObstacles:"), obstacles)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/classForGenericArgument(at:)
-func (m_ MeshGraph) ClassForGenericArgumentAtIndex(index uint /* primitive/slice/pointer. */) objc.Class {
+func (m_ MeshGraph) ClassForGenericArgumentAtIndex(index uint) objc.Class {
 	rv := objc.Send[objc.Class](m_.ID, objc.Sel("classForGenericArgumentAtIndex:"), index)
 	return rv
 }
@@ -174,7 +174,7 @@ func (m_ MeshGraph) ConnectNodeUsingObstacles(node unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/removeObstacles(_:)
-func (m_ MeshGraph) RemoveObstacles(obstacles []PolygonObstacle /* primitive/slice/pointer. */) {
+func (m_ MeshGraph) RemoveObstacles(obstacles []IPolygonObstacle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObstacles:"), obstacles)
 }
 
@@ -183,7 +183,7 @@ func (m_ MeshGraph) RemoveObstacles(obstacles []PolygonObstacle /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangle(at:)
-func (m_ MeshGraph) TriangleAtIndex(index uint /* primitive/slice/pointer. */) Triangle /* not a class type */ {
+func (m_ MeshGraph) TriangleAtIndex(index uint) GKTriangle /* not a class type */ {
 	rv := objc.Send[Triangle](m_.ID, objc.Sel("triangleAtIndex:"), index)
 	return rv
 }
@@ -202,7 +202,7 @@ func (m_ MeshGraph) Triangulate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/bufferRadius
-func (m_ MeshGraph) BufferRadius() float32 /* primitive/slice/pointer. */ {
+func (m_ MeshGraph) BufferRadius() float32 {
 	rv := objc.Send[float32](m_.ID, objc.Sel("bufferRadius"))
 	return rv
 }
@@ -212,7 +212,7 @@ func (m_ MeshGraph) BufferRadius() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/obstacles
-func (m_ MeshGraph) Obstacles() []PolygonObstacle /* primitive/slice/pointer. */ {
+func (m_ MeshGraph) Obstacles() []IPolygonObstacle {
 	rv := objc.Send[[]PolygonObstacle](m_.ID, objc.Sel("obstacles"))
 	return rv
 }
@@ -222,7 +222,7 @@ func (m_ MeshGraph) Obstacles() []PolygonObstacle /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangleCount
-func (m_ MeshGraph) TriangleCount() uint /* primitive/slice/pointer. */ {
+func (m_ MeshGraph) TriangleCount() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("triangleCount"))
 	return rv
 }

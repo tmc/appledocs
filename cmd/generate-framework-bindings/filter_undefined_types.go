@@ -12,6 +12,7 @@ import (
 // undefined_types.gen.go to only include types that are actually referenced
 // in other generated files. This eliminates unused type aliases that were
 // collected but never used (e.g., due to framework hierarchy violations).
+// It also removes types that are already defined in typedefs.gen.go to prevent duplicates.
 func filterUnusedUndefinedTypes(archive *txtar.Archive) *txtar.Archive {
 	// Find the undefined_types.gen.go file
 	var undefinedTypesIdx = -1
@@ -31,6 +32,43 @@ func filterUnusedUndefinedTypes(archive *txtar.Archive) *txtar.Archive {
 	undefinedTypes := extractUndefinedTypeNames(string(archive.Files[undefinedTypesIdx].Data))
 	if len(undefinedTypes) == 0 {
 		return archive
+	}
+
+	// Extract all typedef names to exclude from undefined types
+	typedefNames := extractTypedefNames(archive)
+	if Debug != nil {
+		Debug.Log(DebugUndefined, "Extracted typedef names", nil, "count", len(typedefNames), "undefined_count", len(undefinedTypes))
+		Debug.Log(DebugUndefined, "Undefined types list", nil)
+		for name := range undefinedTypes {
+			Debug.Log(DebugUndefined, "  Undefined type", nil, "name", name)
+		}
+	}
+	// Remove types that are already defined as typedefs
+	removedCount := 0
+	for typeName := range typedefNames {
+		if undefinedTypes[typeName] {
+			if Debug != nil {
+				Debug.Log(DebugUndefined, "Removing typedef from undefined types", nil, "typename", typeName)
+			}
+			removedCount++
+		}
+		delete(undefinedTypes, typeName)
+	}
+	if Debug != nil {
+		Debug.Log(DebugUndefined, "Removed typedefs", nil, "count", removedCount, "remaining", len(undefinedTypes))
+	}
+	if len(undefinedTypes) == 0 {
+		// All undefined types are actually typedefs, remove the file
+		newFiles := make([]txtar.File, 0, len(archive.Files)-1)
+		for i, file := range archive.Files {
+			if i != undefinedTypesIdx {
+				newFiles = append(newFiles, file)
+			}
+		}
+		return &txtar.Archive{
+			Comment: archive.Comment,
+			Files:   newFiles,
+		}
 	}
 
 	// Scan all OTHER files for type usage
@@ -84,6 +122,32 @@ func filterUnusedUndefinedTypes(archive *txtar.Archive) *txtar.Archive {
 	// Update the archive
 	archive.Files[undefinedTypesIdx].Data = []byte(newContent)
 	return archive
+}
+
+// extractTypedefNames parses typedefs.gen.go and extracts all typedef names.
+func extractTypedefNames(archive *txtar.Archive) map[string]bool {
+	types := make(map[string]bool)
+
+	// Find typedefs.gen.go
+	for _, file := range archive.Files {
+		if file.Name != "typedefs.gen.go" {
+			continue
+		}
+
+		// Pattern: "type TypeName" at start of line
+		pattern := regexp.MustCompile(`^type\s+([A-Z][a-zA-Z0-9]*)\s+`)
+
+		scanner := bufio.NewScanner(strings.NewReader(string(file.Data)))
+		for scanner.Scan() {
+			line := scanner.Text()
+			if matches := pattern.FindStringSubmatch(line); matches != nil {
+				types[matches[1]] = true
+			}
+		}
+		break
+	}
+
+	return types
 }
 
 // extractUndefinedTypeNames parses undefined_types.gen.go and extracts

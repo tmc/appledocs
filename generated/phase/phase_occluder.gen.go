@@ -29,13 +29,19 @@ type _PHASEOccluderClass struct {
 // An interface definition for the [PHASEOccluder] class.
 type IPHASEOccluder interface {
 	IPHASEObject
-	Shapes() []PHASEShape
+	// properties:
+	Shapes() []IPHASEShape
+	// methods:
 }
 
 // An object with a shape and position that blocks audio from reaching the listener.
 //
 // The framework lowers the volume of an audio signal when an instance of this class positions somewhere along the path between the sound source and the listener. For an example that demonstrates sound occlusion, see .
+
+
+// An object with a shape and position that blocks audio from reaching the listener.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEOccluder
 type PHASEOccluder struct {
 	PHASEObject
@@ -83,11 +89,11 @@ func NewPHASEOccluder() PHASEOccluder {
 
 
 
-
 // Creates an occluder with the given engine and shapes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEOccluder/init(engine:shapes:)
-func NewPHASEOccluderWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PHASEOccluder {
+func NewPHASEOccluderWithEngineShapes(engine IPHASEEngine, shapes []IPHASEShape) PHASEOccluder {
 	instance := getPHASEOccluderClass().Alloc()
 	rv := objc.Send[PHASEOccluder](instance.ID, objc.Sel("initWithEngine:shapes:"), engine, shapes)
 	rv.Autorelease()
@@ -95,10 +101,12 @@ func NewPHASEOccluderWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) 
 }
 
 
+
 // An array of shapes that collectively define the occluder’s audio-deflecting surface and texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEOccluder/shapes
-func (p_ PHASEOccluder) Shapes() []PHASEShape {
+func (p_ PHASEOccluder) Shapes() []IPHASEShape {
 	rv := objc.Send[[]PHASEShape](p_.ID, objc.Sel("shapes"))
 	return rv
 }

@@ -2,12 +2,12 @@
 
 // Package musickit provides Go bindings for the MusicKit framework.
 //
-// Integrate your app with Apple Music. [Full Topic]
+// Integrate your app with Apple Music.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MusicKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MusicKit
+// See: https://developer.apple.com/documentation/MusicKit
 package musickit
 
 import (

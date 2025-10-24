@@ -29,12 +29,18 @@ type _ImageTransposeClass struct {
 // An interface definition for the [ImageTranspose] class.
 type IImageTranspose interface {
 	IUnaryImageKernel
+	// properties:
+	// methods:
 }
 
 // A filter that transposes an image.
 //
 // An filter applies a matrix transposition to the source image by exchanging its rows with its columns.
+
+
+// A filter that transposes an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageTranspose
 type ImageTranspose struct {
 	UnaryImageKernel

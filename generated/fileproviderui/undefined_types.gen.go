@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Error = _undefined // referenced in FileProviderUI
 	FileProviderDomainIdentifier = _undefined // referenced in FileProviderUI
 )
 

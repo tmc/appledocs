@@ -30,9 +30,13 @@ type _nativeClass struct {
 // An interface definition for the [native] class.
 type Inative interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-c.ivar
 type native struct {
 	objectivec.Object

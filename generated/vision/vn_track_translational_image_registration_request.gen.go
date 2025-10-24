@@ -29,14 +29,20 @@ type _TrackTranslationalImageRegistrationRequestClass struct {
 // An interface definition for the [TrackTranslationalImageRegistrationRequest] class.
 type ITrackTranslationalImageRegistrationRequest interface {
 	IStatefulRequest
-	Results() VNImageTranslationAlignmentObservation
+	// properties:
+	Results() IVNImageTranslationAlignmentObservation
 	SetResults(value IVNImageTranslationAlignmentObservation)
+	// methods:
 }
 
 // An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.
 //
 // This request is similar to . However, as a , it automatically computes the registration against the previous frame.
+
+
+// An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackTranslationalImageRegistrationRequest
 type TrackTranslationalImageRegistrationRequest struct {
 	StatefulRequest
@@ -83,19 +89,20 @@ func NewTrackTranslationalImageRegistrationRequest() TrackTranslationalImageRegi
 }
 
 
+
 // The observed translational image alignment request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequest/results
-func (t_ TrackTranslationalImageRegistrationRequest) Results() VNImageTranslationAlignmentObservation {
-	rv := objc.Send[VNImageTranslationAlignmentObservation](t_.ID, objc.Sel("results"))
+func (t_ TrackTranslationalImageRegistrationRequest) Results() IVNImageTranslationAlignmentObservation {
+	rv := objc.Send[ImageTranslationAlignmentObservation](t_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The observed translational image alignment request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequest/results
 func (t_ TrackTranslationalImageRegistrationRequest) SetResults(value IVNImageTranslationAlignmentObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)

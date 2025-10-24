@@ -29,9 +29,13 @@ type _MTRClusterGroupKeyManagementClass struct {
 // An interface definition for the [MTRClusterGroupKeyManagement] class.
 type IMTRClusterGroupKeyManagement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterGroupKeyManagement
 type MTRClusterGroupKeyManagement struct {
 	MTRGenericCluster

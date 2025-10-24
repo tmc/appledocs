@@ -31,30 +31,36 @@ type _NERelayClass struct {
 // An interface definition for the [NERelay] class.
 type INERelay interface {
 	objectivec.IObject
-	AdditionalHTTPHeaderFields() unsafe.Pointer
-	SetAdditionalHTTPHeaderFields(value unsafe.Pointer)
-	DnsOverHTTPSURL() foundation.URL
-	SetDnsOverHTTPSURL(value foundation.IURL)
-	HTTP2RelayURL() foundation.URL
-	SetHTTP2RelayURL(value foundation.IURL)
-	HTTP3RelayURL() foundation.URL
-	SetHTTP3RelayURL(value foundation.IURL)
-	IdentityData() foundation.NSData
-	SetIdentityData(value foundation.IData)
-	IdentityDataPassword() string
-	SetIdentityDataPassword(value string)
-	RawPublicKeys() []foundation.Data
-	SetRawPublicKeys(value []foundation.IData)
-	SyntheticDNSAnswerIPv4Prefix() string
-	SetSyntheticDNSAnswerIPv4Prefix(value string)
-	SyntheticDNSAnswerIPv6Prefix() string
-	SetSyntheticDNSAnswerIPv6Prefix(value string)
+	// properties:
+	HTTP3RelayURL() objc.IObject /* cross-framework: NSURL */
+	SetHTTP3RelayURL(value objc.IObject /* cross-framework: NSURL */)
+	AdditionalHTTPHeaderFields() objc.IObject /* cross-framework: NSString */
+	SetAdditionalHTTPHeaderFields(value objc.IObject /* cross-framework: NSString */)
+	DnsOverHTTPSURL() objc.IObject /* cross-framework: URL */
+	SetDnsOverHTTPSURL(value objc.IObject /* cross-framework: URL */)
+	Http2RelayURL() objc.IObject /* cross-framework: URL */
+	SetHttp2RelayURL(value objc.IObject /* cross-framework: URL */)
+	IdentityData() objc.IObject /* cross-framework: Data */
+	SetIdentityData(value objc.IObject /* cross-framework: Data */)
+	IdentityDataPassword() objc.IObject /* cross-framework: NSString */
+	SetIdentityDataPassword(value objc.IObject /* cross-framework: NSString */)
+	RawPublicKeys() objc.IObject /* cross-framework: Data */
+	SetRawPublicKeys(value objc.IObject /* cross-framework: Data */)
+	SyntheticDNSAnswerIPv4Prefix() objc.IObject /* cross-framework: NSString */
+	SetSyntheticDNSAnswerIPv4Prefix(value objc.IObject /* cross-framework: NSString */)
+	SyntheticDNSAnswerIPv6Prefix() objc.IObject /* cross-framework: NSString */
+	SetSyntheticDNSAnswerIPv6Prefix(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A single relay server configuration that you can chain together with other relays.
 //
 // Relay servers are secure HTTP proxies that allow proxying TCP traffic using the method and UDP traffic using the protocol defined in .
+
+
+// A single relay server configuration that you can chain together with other relays.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay
 type NERelay struct {
 	objectivec.Object
@@ -99,176 +105,175 @@ func NewNERelay() NERelay {
 }
 
 
-// A dictionary of additional HTTP headers to send as part of requests to the relay.
+
+// A URL identifying the relay server accessible using HTTP/3.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/additionalHTTPHeaderFields
-func (n_ NERelay) AdditionalHTTPHeaderFields() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("additionalHTTPHeaderFields"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
+func (n_ NERelay) HTTP3RelayURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](n_.ID, objc.Sel("HTTP3RelayURL"))
 	return rv
 }
 
 
-// SetAdditionalHTTPHeaderFields sets the value of the additionalHTTPHeaderFields property.
-// A dictionary of additional HTTP headers to send as part of requests to the relay.
-
+// A URL identifying the relay server accessible using HTTP/3.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/additionalHTTPHeaderFields
-func (n_ NERelay) SetAdditionalHTTPHeaderFields(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
+func (n_ NERelay) SetHTTP3RelayURL(value objc.IObject /* cross-framework: NSURL */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHTTP3RelayURL:"), value)
+}
+
+
+// A dictionary of additional HTTP headers to send as part of
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/additionalhttpheaderfields
+func (n_ NERelay) AdditionalHTTPHeaderFields() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("additionalHTTPHeaderFields"))
+	return rv
+}
+
+
+// A dictionary of additional HTTP headers to send as part of
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/additionalhttpheaderfields
+func (n_ NERelay) SetAdditionalHTTPHeaderFields(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAdditionalHTTPHeaderFields:"), value)
 }
 
+
 // The URL of a DNS-over-HTTPS (DoH) resolver accessible from the relay.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/dnsOverHTTPSURL
-func (n_ NERelay) DnsOverHTTPSURL() foundation.URL {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/dnsoverhttpsurl
+func (n_ NERelay) DnsOverHTTPSURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("dnsOverHTTPSURL"))
 	return rv
 }
 
 
-// SetDnsOverHTTPSURL sets the value of the dnsOverHTTPSURL property.
 // The URL of a DNS-over-HTTPS (DoH) resolver accessible from the relay.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/dnsOverHTTPSURL
-func (n_ NERelay) SetDnsOverHTTPSURL(value foundation.IURL) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/dnsoverhttpsurl
+func (n_ NERelay) SetDnsOverHTTPSURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsOverHTTPSURL:"), value)
 }
 
+
 // A URL identifying the relay server accessible using HTTP/2.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http2RelayURL
-func (n_ NERelay) HTTP2RelayURL() foundation.URL {
-	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("HTTP2RelayURL"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/http2relayurl
+func (n_ NERelay) Http2RelayURL() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("http2RelayURL"))
 	return rv
 }
 
 
-// SetHTTP2RelayURL sets the value of the HTTP2RelayURL property.
 // A URL identifying the relay server accessible using HTTP/2.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http2RelayURL
-func (n_ NERelay) SetHTTP2RelayURL(value foundation.IURL) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHTTP2RelayURL:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/http2relayurl
+func (n_ NERelay) SetHttp2RelayURL(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHttp2RelayURL:"), value)
 }
 
-// A URL identifying the relay server accessible using HTTP/3.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
-func (n_ NERelay) HTTP3RelayURL() foundation.URL {
-	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("HTTP3RelayURL"))
-	return rv
-}
-
-
-// SetHTTP3RelayURL sets the value of the HTTP3RelayURL property.
-// A URL identifying the relay server accessible using HTTP/3.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/http3RelayURL
-func (n_ NERelay) SetHTTP3RelayURL(value foundation.IURL) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHTTP3RelayURL:"), value)
-}
 
 // The PKCS12 data for the relay client authentication.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityData
-func (n_ NERelay) IdentityData() foundation.NSData {
-	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("identityData"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/identitydata
+func (n_ NERelay) IdentityData() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("identityData"))
 	return rv
 }
 
 
-// SetIdentityData sets the value of the identityData property.
 // The PKCS12 data for the relay client authentication.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityData
-func (n_ NERelay) SetIdentityData(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/identitydata
+func (n_ NERelay) SetIdentityData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityData:"), value)
 }
 
+
 // The password the relay uses to decrypt the PKCS12 identity data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityDataPassword
-func (n_ NERelay) IdentityDataPassword() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("identityDataPassword"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/identitydatapassword
+func (n_ NERelay) IdentityDataPassword() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("identityDataPassword"))
 	return rv
 }
 
 
-// SetIdentityDataPassword sets the value of the identityDataPassword property.
 // The password the relay uses to decrypt the PKCS12 identity data.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/identityDataPassword
-func (n_ NERelay) SetIdentityDataPassword(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/identitydatapassword
+func (n_ NERelay) SetIdentityDataPassword(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), value)
 }
+
 
 // An array of TLS raw public keys that the relay server can present during the TLS handshake.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) RawPublicKeys() []foundation.Data {
-	rv := objc.Send[[]foundation.Data](n_.ID, objc.Sel("rawPublicKeys"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/rawpublickeys
+func (n_ NERelay) RawPublicKeys() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("rawPublicKeys"))
 	return rv
 }
 
 
-// SetRawPublicKeys sets the value of the rawPublicKeys property.
 // An array of TLS raw public keys that the relay server can present during the TLS handshake.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/rawPublicKeys
-func (n_ NERelay) SetRawPublicKeys(value []foundation.IData) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRawPublicKeys:"), nsArray)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/rawpublickeys
+func (n_ NERelay) SetRawPublicKeys(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRawPublicKeys:"), value)
 }
+
 
 // An IPv4 address prefix the relay uses to handle address info requests.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv4Prefix
-func (n_ NERelay) SyntheticDNSAnswerIPv4Prefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("syntheticDNSAnswerIPv4Prefix"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/syntheticdnsansweripv4prefix
+func (n_ NERelay) SyntheticDNSAnswerIPv4Prefix() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("syntheticDNSAnswerIPv4Prefix"))
 	return rv
 }
 
 
-// SetSyntheticDNSAnswerIPv4Prefix sets the value of the syntheticDNSAnswerIPv4Prefix property.
 // An IPv4 address prefix the relay uses to handle address info requests.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv4Prefix
-func (n_ NERelay) SetSyntheticDNSAnswerIPv4Prefix(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv4Prefix:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/syntheticdnsansweripv4prefix
+func (n_ NERelay) SetSyntheticDNSAnswerIPv4Prefix(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv4Prefix:"), value)
 }
+
 
 // An IPv6 address prefix the relay uses to handle address info requests.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv6Prefix
-func (n_ NERelay) SyntheticDNSAnswerIPv6Prefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("syntheticDNSAnswerIPv6Prefix"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/syntheticdnsansweripv6prefix
+func (n_ NERelay) SyntheticDNSAnswerIPv6Prefix() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("syntheticDNSAnswerIPv6Prefix"))
 	return rv
 }
 
 
-// SetSyntheticDNSAnswerIPv6Prefix sets the value of the syntheticDNSAnswerIPv6Prefix property.
 // An IPv6 address prefix the relay uses to handle address info requests.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelay/syntheticDNSAnswerIPv6Prefix
-func (n_ NERelay) SetSyntheticDNSAnswerIPv6Prefix(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv6Prefix:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelay/syntheticdnsansweripv6prefix
+func (n_ NERelay) SetSyntheticDNSAnswerIPv6Prefix(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSyntheticDNSAnswerIPv6Prefix:"), value)
 }
 
 

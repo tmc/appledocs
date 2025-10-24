@@ -30,12 +30,18 @@ type _MAFlashingLightsProcessorResultClass struct {
 // An interface definition for the [MAFlashingLightsProcessorResult] class.
 type IMAFlashingLightsProcessorResult interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that reports the result of the flashing lights processor.
 //
 // An object is the result of calling . This object indicates whether the method successfully processed the input surface, the intensity of flashing lights in the input surface, and the amount of mitigation in the output surface.
+
+
+// An object that reports the result of the flashing lights processor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessorResult
 type MAFlashingLightsProcessorResult struct {
 	objectivec.Object

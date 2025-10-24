@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +31,9 @@ type _PlayableContentManagerContextClass struct {
 // An interface definition for the [PlayableContentManagerContext] class.
 type IPlayableContentManagerContext interface {
 	objectivec.IObject
-	ImageCropRect() coregraphics.CGRect
-	SetImageCropRect(value coregraphics.CGRect)
+	// properties:
+	ImageCropRect() objc.IObject /* cross-framework: Rect */
+	SetImageCropRect(value objc.IObject /* cross-framework: Rect */)
 	ContentLimitsEnabled() bool
 	SetContentLimitsEnabled(value bool)
 	ContentLimitsEnforced() bool
@@ -45,10 +46,15 @@ type IPlayableContentManagerContext interface {
 	SetEnforcedContentTreeDepth(value int)
 	ShowsRouteButton() bool
 	SetShowsRouteButton(value bool)
+	// methods:
 }
 
 // An object representing the current state of the playable endpoint.
+
+
+// An object representing the current state of the playable endpoint.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPPlayableContentManagerContext
 type PlayableContentManagerContext struct {
 	objectivec.Object
@@ -93,26 +99,29 @@ func NewPlayableContentManagerContext() PlayableContentManagerContext {
 }
 
 
+
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (p_ PlayableContentManagerContext) ImageCropRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("imageCropRect"))
+func (p_ PlayableContentManagerContext) ImageCropRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("imageCropRect"))
 	return rv
 }
 
 
-// SetImageCropRect sets the value of the imageCropRect property.
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (p_ PlayableContentManagerContext) SetImageCropRect(value coregraphics.CGRect) {
+func (p_ PlayableContentManagerContext) SetImageCropRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImageCropRect:"), value)
 }
 
+
 // A Boolean value that indicates whether the content server enables content limits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/contentlimitsenabled
 func (p_ PlayableContentManagerContext) ContentLimitsEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("contentLimitsEnabled"))
@@ -120,17 +129,18 @@ func (p_ PlayableContentManagerContext) ContentLimitsEnabled() bool {
 }
 
 
-// SetContentLimitsEnabled sets the value of the contentLimitsEnabled property.
 // A Boolean value that indicates whether the content server enables content limits.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/contentlimitsenabled
 func (p_ PlayableContentManagerContext) SetContentLimitsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLimitsEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether the content server enforces content limits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/contentlimitsenforced
 func (p_ PlayableContentManagerContext) ContentLimitsEnforced() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("contentLimitsEnforced"))
@@ -138,17 +148,18 @@ func (p_ PlayableContentManagerContext) ContentLimitsEnforced() bool {
 }
 
 
-// SetContentLimitsEnforced sets the value of the contentLimitsEnforced property.
 // A Boolean value that indicates whether the content server enforces content limits.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/contentlimitsenforced
 func (p_ PlayableContentManagerContext) SetContentLimitsEnforced(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLimitsEnforced:"), value)
 }
 
+
 // Returns a Boolean that indicates whether the content server is available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/endpointavailable
 func (p_ PlayableContentManagerContext) EndpointAvailable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("endpointAvailable"))
@@ -156,17 +167,18 @@ func (p_ PlayableContentManagerContext) EndpointAvailable() bool {
 }
 
 
-// SetEndpointAvailable sets the value of the endpointAvailable property.
 // Returns a Boolean that indicates whether the content server is available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/endpointavailable
 func (p_ PlayableContentManagerContext) SetEndpointAvailable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndpointAvailable:"), value)
 }
 
+
 // Returns the number of content items to display during content limiting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
 func (p_ PlayableContentManagerContext) EnforcedContentItemsCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentItemsCount"))
@@ -174,17 +186,18 @@ func (p_ PlayableContentManagerContext) EnforcedContentItemsCount() int {
 }
 
 
-// SetEnforcedContentItemsCount sets the value of the enforcedContentItemsCount property.
 // Returns the number of content items to display during content limiting.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontentitemscount
 func (p_ PlayableContentManagerContext) SetEnforcedContentItemsCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentItemsCount:"), value)
 }
 
+
 // The maximum depth of the navigation hierarchy allowed by the content server.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
 func (p_ PlayableContentManagerContext) EnforcedContentTreeDepth() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("enforcedContentTreeDepth"))
@@ -192,17 +205,18 @@ func (p_ PlayableContentManagerContext) EnforcedContentTreeDepth() int {
 }
 
 
-// SetEnforcedContentTreeDepth sets the value of the enforcedContentTreeDepth property.
 // The maximum depth of the navigation hierarchy allowed by the content server.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext/enforcedcontenttreedepth
 func (p_ PlayableContentManagerContext) SetEnforcedContentTreeDepth(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnforcedContentTreeDepth:"), value)
 }
 
+
 // A Boolean value that indicates whether the route button is visible in the volume view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (p_ PlayableContentManagerContext) ShowsRouteButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsRouteButton"))
@@ -210,10 +224,9 @@ func (p_ PlayableContentManagerContext) ShowsRouteButton() bool {
 }
 
 
-// SetShowsRouteButton sets the value of the showsRouteButton property.
 // A Boolean value that indicates whether the route button is visible in the volume view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (p_ PlayableContentManagerContext) SetShowsRouteButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsRouteButton:"), value)

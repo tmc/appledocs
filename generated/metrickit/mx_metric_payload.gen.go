@@ -31,32 +31,37 @@ type _MXMetricPayloadClass struct {
 // An interface definition for the [MXMetricPayload] class.
 type IMXMetricPayload interface {
 	objectivec.IObject
-	DictionaryRepresentation() foundation.Dictionary
-	JSONRepresentation() foundation.Data
-	AnimationMetrics() MXAnimationMetric
-	ApplicationExitMetrics() MXAppExitMetric
-	ApplicationLaunchMetrics() MXAppLaunchMetric
-	ApplicationResponsivenessMetrics() MXAppResponsivenessMetric
-	ApplicationTimeMetrics() MXAppRunTimeMetric
-	CellularConditionMetrics() MXCellularConditionMetric
-	CpuMetrics() MXCPUMetric
-	DiskIOMetrics() MXDiskIOMetric
-	DiskSpaceUsageMetrics() MXDiskSpaceUsageMetric
-	DisplayMetrics() MXDisplayMetric
-	GpuMetrics() MXGPUMetric
+	// properties:
+	AnimationMetrics() IMXAnimationMetric
+	ApplicationExitMetrics() IMXAppExitMetric
+	ApplicationLaunchMetrics() IMXAppLaunchMetric
+	ApplicationResponsivenessMetrics() IMXAppResponsivenessMetric
+	ApplicationTimeMetrics() IMXAppRunTimeMetric
+	CellularConditionMetrics() IMXCellularConditionMetric
+	CpuMetrics() IMXCPUMetric
+	DiskIOMetrics() IMXDiskIOMetric
+	DiskSpaceUsageMetrics() IMXDiskSpaceUsageMetric
+	DisplayMetrics() IMXDisplayMetric
+	GpuMetrics() IMXGPUMetric
 	IncludesMultipleApplicationVersions() bool
-	LatestApplicationVersion() string
-	LocationActivityMetrics() MXLocationActivityMetric
-	MemoryMetrics() MXMemoryMetric
-	MetaData() MXMetaData
-	NetworkTransferMetrics() MXNetworkTransferMetric
-	SignpostMetrics() []MXSignpostMetric
-	TimeStampBegin() foundation.NSDate
-	TimeStampEnd() foundation.NSDate
+	LatestApplicationVersion() objc.IObject /* cross-framework: NSString */
+	LocationActivityMetrics() IMXLocationActivityMetric
+	MemoryMetrics() IMXMemoryMetric
+	MetaData() IMXMetaData
+	NetworkTransferMetrics() IMXNetworkTransferMetric
+	SignpostMetrics() []IMXSignpostMetric
+	TimeStampBegin() objc.IObject /* cross-framework: NSDate */
+	TimeStampEnd() objc.IObject /* cross-framework: NSDate */
+	// methods:
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An object that encapsulates a daily metrics report.
+
+
+// An object that encapsulates a daily metrics report.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload
 type MXMetricPayload struct {
 	objectivec.Object
@@ -101,180 +106,212 @@ func NewMXMetricPayload() MXMetricPayload {
 }
 
 
-// Returns the results of the payload as a dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/DictionaryRepresentation-1nrgx
-func (m_ MXMetricPayload) DictionaryRepresentation() foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("DictionaryRepresentation"))
-	return rv
-}
 
 // Returns the contents of the payload in JSON format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/jsonRepresentation()
-func (m_ MXMetricPayload) JSONRepresentation() foundation.Data {
+func (m_ MXMetricPayload) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
+
 // The metrics for the responsiveness of app animations for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/animationMetrics
-func (m_ MXMetricPayload) AnimationMetrics() MXAnimationMetric {
+func (m_ MXMetricPayload) AnimationMetrics() IMXAnimationMetric {
 	rv := objc.Send[MXAnimationMetric](m_.ID, objc.Sel("animationMetrics"))
 	return rv
 }
 
+
 // The app foreground and background exit metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationExitMetrics
-func (m_ MXMetricPayload) ApplicationExitMetrics() MXAppExitMetric {
+func (m_ MXMetricPayload) ApplicationExitMetrics() IMXAppExitMetric {
 	rv := objc.Send[MXAppExitMetric](m_.ID, objc.Sel("applicationExitMetrics"))
 	return rv
 }
 
+
 // The app launch and resume metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationLaunchMetrics
-func (m_ MXMetricPayload) ApplicationLaunchMetrics() MXAppLaunchMetric {
+func (m_ MXMetricPayload) ApplicationLaunchMetrics() IMXAppLaunchMetric {
 	rv := objc.Send[MXAppLaunchMetric](m_.ID, objc.Sel("applicationLaunchMetrics"))
 	return rv
 }
 
+
 // The metrics indicating an app’s responsiveness to user interaction for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationResponsivenessMetrics
-func (m_ MXMetricPayload) ApplicationResponsivenessMetrics() MXAppResponsivenessMetric {
+func (m_ MXMetricPayload) ApplicationResponsivenessMetrics() IMXAppResponsivenessMetric {
 	rv := objc.Send[MXAppResponsivenessMetric](m_.ID, objc.Sel("applicationResponsivenessMetrics"))
 	return rv
 }
 
+
 // The app foreground and background time metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationTimeMetrics
-func (m_ MXMetricPayload) ApplicationTimeMetrics() MXAppRunTimeMetric {
+func (m_ MXMetricPayload) ApplicationTimeMetrics() IMXAppRunTimeMetric {
 	rv := objc.Send[MXAppRunTimeMetric](m_.ID, objc.Sel("applicationTimeMetrics"))
 	return rv
 }
 
+
 // The cellular condition measurements for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/cellularConditionMetrics
-func (m_ MXMetricPayload) CellularConditionMetrics() MXCellularConditionMetric {
+func (m_ MXMetricPayload) CellularConditionMetrics() IMXCellularConditionMetric {
 	rv := objc.Send[MXCellularConditionMetric](m_.ID, objc.Sel("cellularConditionMetrics"))
 	return rv
 }
 
+
 // The CPU metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/cpuMetrics
-func (m_ MXMetricPayload) CpuMetrics() MXCPUMetric {
+func (m_ MXMetricPayload) CpuMetrics() IMXCPUMetric {
 	rv := objc.Send[MXCPUMetric](m_.ID, objc.Sel("cpuMetrics"))
 	return rv
 }
 
+
 // The storage metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/diskIOMetrics
-func (m_ MXMetricPayload) DiskIOMetrics() MXDiskIOMetric {
+func (m_ MXMetricPayload) DiskIOMetrics() IMXDiskIOMetric {
 	rv := objc.Send[MXDiskIOMetric](m_.ID, objc.Sel("diskIOMetrics"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/diskSpaceUsageMetrics
-func (m_ MXMetricPayload) DiskSpaceUsageMetrics() MXDiskSpaceUsageMetric {
+func (m_ MXMetricPayload) DiskSpaceUsageMetrics() IMXDiskSpaceUsageMetric {
 	rv := objc.Send[MXDiskSpaceUsageMetric](m_.ID, objc.Sel("diskSpaceUsageMetrics"))
 	return rv
 }
 
+
 // The display metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/displayMetrics
-func (m_ MXMetricPayload) DisplayMetrics() MXDisplayMetric {
+func (m_ MXMetricPayload) DisplayMetrics() IMXDisplayMetric {
 	rv := objc.Send[MXDisplayMetric](m_.ID, objc.Sel("displayMetrics"))
 	return rv
 }
 
+
 // The GPU metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/gpuMetrics
-func (m_ MXMetricPayload) GpuMetrics() MXGPUMetric {
+func (m_ MXMetricPayload) GpuMetrics() IMXGPUMetric {
 	rv := objc.Send[MXGPUMetric](m_.ID, objc.Sel("gpuMetrics"))
 	return rv
 }
 
+
 // A Boolean indicating if the version of the app changed at least once during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/includesMultipleApplicationVersions
 func (m_ MXMetricPayload) IncludesMultipleApplicationVersions() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("includesMultipleApplicationVersions"))
 	return rv
 }
 
+
 // The version of the app on the device at the end of the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/latestApplicationVersion
-func (m_ MXMetricPayload) LatestApplicationVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("latestApplicationVersion"))
+func (m_ MXMetricPayload) LatestApplicationVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("latestApplicationVersion"))
 	return rv
 }
 
+
 // The location-tracking activity for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/locationActivityMetrics
-func (m_ MXMetricPayload) LocationActivityMetrics() MXLocationActivityMetric {
+func (m_ MXMetricPayload) LocationActivityMetrics() IMXLocationActivityMetric {
 	rv := objc.Send[MXLocationActivityMetric](m_.ID, objc.Sel("locationActivityMetrics"))
 	return rv
 }
 
+
 // The memory metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/memoryMetrics
-func (m_ MXMetricPayload) MemoryMetrics() MXMemoryMetric {
+func (m_ MXMetricPayload) MemoryMetrics() IMXMemoryMetric {
 	rv := objc.Send[MXMemoryMetric](m_.ID, objc.Sel("memoryMetrics"))
 	return rv
 }
 
+
 // A set of system-level information for the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/metaData
-func (m_ MXMetricPayload) MetaData() MXMetaData {
+func (m_ MXMetricPayload) MetaData() IMXMetaData {
 	rv := objc.Send[MXMetaData](m_.ID, objc.Sel("metaData"))
 	return rv
 }
 
+
 // The network-transfer activity for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/networkTransferMetrics
-func (m_ MXMetricPayload) NetworkTransferMetrics() MXNetworkTransferMetric {
+func (m_ MXMetricPayload) NetworkTransferMetrics() IMXNetworkTransferMetric {
 	rv := objc.Send[MXNetworkTransferMetric](m_.ID, objc.Sel("networkTransferMetrics"))
 	return rv
 }
 
+
 // An array of the custom metrics for the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/signpostMetrics
-func (m_ MXMetricPayload) SignpostMetrics() []MXSignpostMetric {
+func (m_ MXMetricPayload) SignpostMetrics() []IMXSignpostMetric {
 	rv := objc.Send[[]MXSignpostMetric](m_.ID, objc.Sel("signpostMetrics"))
 	return rv
 }
 
+
 // The starting time of the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/timeStampBegin
-func (m_ MXMetricPayload) TimeStampBegin() foundation.NSDate {
+func (m_ MXMetricPayload) TimeStampBegin() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampBegin"))
 	return rv
 }
 
+
 // The ending time of the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/timeStampEnd
-func (m_ MXMetricPayload) TimeStampEnd() foundation.NSDate {
+func (m_ MXMetricPayload) TimeStampEnd() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampEnd"))
 	return rv
 }
-
 
 

@@ -37,16 +37,16 @@ type IRelationshipDescription interface {
 	SetDestinationEntity(value IEntityDescription)
 	InverseRelationship() IRelationshipDescription
 	SetInverseRelationship(value IRelationshipDescription)
-	IsOrdered() bool /* primitive/slice/pointer. */
-	SetIsOrdered(value bool /* primitive/slice/pointer. */)
-	IsToMany() bool /* primitive/slice/pointer. */
-	SetIsToMany(value bool /* primitive/slice/pointer. */)
-	MaxCount() int /* primitive/slice/pointer. */
-	SetMaxCount(value int /* primitive/slice/pointer. */)
-	MinCount() int /* primitive/slice/pointer. */
-	SetMinCount(value int /* primitive/slice/pointer. */)
-	VersionHash() foundation.objc.IObject /* cross-framework: Data */
-	SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	IsOrdered() bool
+	SetIsOrdered(value bool)
+	IsToMany() bool
+	SetIsToMany(value bool)
+	MaxCount() int
+	SetMaxCount(value int)
+	MinCount() int
+	SetMinCount(value int)
+	VersionHash() objc.IObject /* cross-framework: Data */
+	SetVersionHash(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -166,7 +166,7 @@ func (r_ RelationshipDescription) SetInverseRelationship(value IRelationshipDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
-func (r_ RelationshipDescription) IsOrdered() bool /* primitive/slice/pointer. */ {
+func (r_ RelationshipDescription) IsOrdered() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isOrdered"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (r_ RelationshipDescription) IsOrdered() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/isordered
-func (r_ RelationshipDescription) SetIsOrdered(value bool /* primitive/slice/pointer. */) {
+func (r_ RelationshipDescription) SetIsOrdered(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsOrdered:"), value)
 }
 
@@ -185,7 +185,7 @@ func (r_ RelationshipDescription) SetIsOrdered(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
-func (r_ RelationshipDescription) IsToMany() bool /* primitive/slice/pointer. */ {
+func (r_ RelationshipDescription) IsToMany() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isToMany"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (r_ RelationshipDescription) IsToMany() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/istomany
-func (r_ RelationshipDescription) SetIsToMany(value bool /* primitive/slice/pointer. */) {
+func (r_ RelationshipDescription) SetIsToMany(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsToMany:"), value)
 }
 
@@ -204,7 +204,7 @@ func (r_ RelationshipDescription) SetIsToMany(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
-func (r_ RelationshipDescription) MaxCount() int /* primitive/slice/pointer. */ {
+func (r_ RelationshipDescription) MaxCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("maxCount"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (r_ RelationshipDescription) MaxCount() int /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount
-func (r_ RelationshipDescription) SetMaxCount(value int /* primitive/slice/pointer. */) {
+func (r_ RelationshipDescription) SetMaxCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMaxCount:"), value)
 }
 
@@ -223,7 +223,7 @@ func (r_ RelationshipDescription) SetMaxCount(value int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
-func (r_ RelationshipDescription) MinCount() int /* primitive/slice/pointer. */ {
+func (r_ RelationshipDescription) MinCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("minCount"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (r_ RelationshipDescription) MinCount() int /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/mincount
-func (r_ RelationshipDescription) SetMinCount(value int /* primitive/slice/pointer. */) {
+func (r_ RelationshipDescription) SetMinCount(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMinCount:"), value)
 }
 
@@ -242,7 +242,7 @@ func (r_ RelationshipDescription) SetMinCount(value int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-func (r_ RelationshipDescription) VersionHash() foundation.objc.IObject /* cross-framework: Data */ {
+func (r_ RelationshipDescription) VersionHash() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](r_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (r_ RelationshipDescription) VersionHash() foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-func (r_ RelationshipDescription) SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
+func (r_ RelationshipDescription) SetVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
 }
 

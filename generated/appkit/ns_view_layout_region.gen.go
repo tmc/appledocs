@@ -80,20 +80,4 @@ func NewViewLayoutRegion() ViewLayoutRegion {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/marginsLayoutRegionWithCornerAdaptation:
-func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptivityAxis ViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
-	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("marginsLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/safeAreaLayoutRegionWithCornerAdaptation:
-func (vc _ViewLayoutRegionClass) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAxis ViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
-	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("safeAreaLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
-	return rv
-}
-
-
 

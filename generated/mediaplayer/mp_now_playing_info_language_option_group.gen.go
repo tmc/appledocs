@@ -30,15 +30,21 @@ type _NowPlayingInfoLanguageOptionGroupClass struct {
 // An interface definition for the [NowPlayingInfoLanguageOptionGroup] class.
 type INowPlayingInfoLanguageOptionGroup interface {
 	objectivec.IObject
+	// properties:
 	AllowEmptySelection() bool
-	DefaultLanguageOption() MPNowPlayingInfoLanguageOption
-	LanguageOptions() []NowPlayingInfoLanguageOption
+	DefaultLanguageOption() IMPNowPlayingInfoLanguageOption
+	LanguageOptions() []INowPlayingInfoLanguageOption
+	// methods:
 }
 
 // A grouped set of language options where only a single language option can be active at a time.
 //
 // The and classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+
+
+// A grouped set of language options where only a single language option can be active at a time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup
 type NowPlayingInfoLanguageOptionGroup struct {
 	objectivec.Object
@@ -84,11 +90,11 @@ func NewNowPlayingInfoLanguageOptionGroup() NowPlayingInfoLanguageOptionGroup {
 
 
 
-
 // Creates a new language option group with the supplied language options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/init(languageOptions:defaultLanguageOption:allowEmptySelection:)
-func NewNowPlayingInfoLanguageOptionGroupWithLanguageOptionsDefaultLanguageOptionAllowEmptySelection(languageOptions []NowPlayingInfoLanguageOption, defaultLanguageOption IMPNowPlayingInfoLanguageOption, allowEmptySelection bool) NowPlayingInfoLanguageOptionGroup {
+func NewNowPlayingInfoLanguageOptionGroupWithLanguageOptionsDefaultLanguageOptionAllowEmptySelection(languageOptions []INowPlayingInfoLanguageOption, defaultLanguageOption IMPNowPlayingInfoLanguageOption, allowEmptySelection bool) NowPlayingInfoLanguageOptionGroup {
 	instance := getNowPlayingInfoLanguageOptionGroupClass().Alloc()
 	rv := objc.Send[NowPlayingInfoLanguageOptionGroup](instance.ID, objc.Sel("initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:"), languageOptions, defaultLanguageOption, allowEmptySelection)
 	rv.Autorelease()
@@ -96,26 +102,32 @@ func NewNowPlayingInfoLanguageOptionGroupWithLanguageOptionsDefaultLanguageOptio
 }
 
 
+
 // A Boolean that indicates whether the system requires a selection for the language option group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/allowEmptySelection
 func (n_ NowPlayingInfoLanguageOptionGroup) AllowEmptySelection() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("allowEmptySelection"))
 	return rv
 }
 
+
 // The default language option for the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/defaultLanguageOption
-func (n_ NowPlayingInfoLanguageOptionGroup) DefaultLanguageOption() MPNowPlayingInfoLanguageOption {
-	rv := objc.Send[MPNowPlayingInfoLanguageOption](n_.ID, objc.Sel("defaultLanguageOption"))
+func (n_ NowPlayingInfoLanguageOptionGroup) DefaultLanguageOption() IMPNowPlayingInfoLanguageOption {
+	rv := objc.Send[NowPlayingInfoLanguageOption](n_.ID, objc.Sel("defaultLanguageOption"))
 	return rv
 }
 
+
 // The available language options for the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/languageOptions
-func (n_ NowPlayingInfoLanguageOptionGroup) LanguageOptions() []NowPlayingInfoLanguageOption {
+func (n_ NowPlayingInfoLanguageOptionGroup) LanguageOptions() []INowPlayingInfoLanguageOption {
 	rv := objc.Send[[]NowPlayingInfoLanguageOption](n_.ID, objc.Sel("languageOptions"))
 	return rv
 }

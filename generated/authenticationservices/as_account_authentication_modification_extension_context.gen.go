@@ -31,7 +31,7 @@ type _AccountAuthenticationModificationExtensionContextClass struct {
 type IAccountAuthenticationModificationExtensionContext interface {
 	foundation.IExtensionContext
 	// properties:
-	ASExtensionLocalizedFailureReasonErrorKey() string /* primitive/slice/pointer. */
+	ASExtensionLocalizedFailureReasonErrorKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -92,8 +92,8 @@ func NewAccountAuthenticationModificationExtensionContext() AccountAuthenticatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
-func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
+func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
 	return rv
 }
 

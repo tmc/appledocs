@@ -31,19 +31,23 @@ type _MTROnOffClusterOffWithEffectParamsClass struct {
 // An interface definition for the [MTROnOffClusterOffWithEffectParams] class.
 type IMTROnOffClusterOffWithEffectParams interface {
 	objectivec.IObject
-	EffectId() foundation.Number
-	SetEffectId(value foundation.INumber)
-	EffectIdentifier() foundation.Number
-	SetEffectIdentifier(value foundation.INumber)
-	EffectVariant() foundation.Number
-	SetEffectVariant(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	EffectId() objc.IObject /* cross-framework: NSNumber */
+	SetEffectId(value objc.IObject /* cross-framework: NSNumber */)
+	EffectIdentifier() objc.IObject /* cross-framework: NSNumber */
+	SetEffectIdentifier(value objc.IObject /* cross-framework: NSNumber */)
+	EffectVariant() objc.IObject /* cross-framework: NSNumber */
+	SetEffectVariant(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROnOffClusterOffWithEffectParams
 type MTROnOffClusterOffWithEffectParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTROnOffClusterOffWithEffectParams() MTROnOffClusterOffWithEffectParams 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectid
-func (m_ MTROnOffClusterOffWithEffectParams) EffectId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectId"))
+func (m_ MTROnOffClusterOffWithEffectParams) EffectId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("effectId"))
 	return rv
 }
 
 
-// SetEffectId sets the value of the effectId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectid
-func (m_ MTROnOffClusterOffWithEffectParams) SetEffectId(value foundation.INumber) {
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectidentifier
-func (m_ MTROnOffClusterOffWithEffectParams) EffectIdentifier() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectIdentifier"))
+func (m_ MTROnOffClusterOffWithEffectParams) EffectIdentifier() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("effectIdentifier"))
 	return rv
 }
 
 
-// SetEffectIdentifier sets the value of the effectIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectidentifier
-func (m_ MTROnOffClusterOffWithEffectParams) SetEffectIdentifier(value foundation.INumber) {
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectIdentifier(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectvariant
-func (m_ MTROnOffClusterOffWithEffectParams) EffectVariant() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("effectVariant"))
+func (m_ MTROnOffClusterOffWithEffectParams) EffectVariant() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("effectVariant"))
 	return rv
 }
 
 
-// SetEffectVariant sets the value of the effectVariant property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/effectvariant
-func (m_ MTROnOffClusterOffWithEffectParams) SetEffectVariant(value foundation.INumber) {
+func (m_ MTROnOffClusterOffWithEffectParams) SetEffectVariant(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterOffWithEffectParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROnOffClusterOffWithEffectParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterOffWithEffectParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROnOffClusterOffWithEffectParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOffWithEffectParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROnOffClusterOffWithEffectParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteroffwitheffectparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOffWithEffectParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROnOffClusterOffWithEffectParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

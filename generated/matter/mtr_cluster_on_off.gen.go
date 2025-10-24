@@ -29,9 +29,13 @@ type _MTRClusterOnOffClass struct {
 // An interface definition for the [MTRClusterOnOff] class.
 type IMTRClusterOnOff interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOnOff
 type MTRClusterOnOff struct {
 	MTRGenericCluster

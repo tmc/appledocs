@@ -29,6 +29,7 @@ type _MXDiskSpaceUsageMetricClass struct {
 // An interface definition for the [MXDiskSpaceUsageMetric] class.
 type IMXDiskSpaceUsageMetric interface {
 	IMXMetric
+	// properties:
 	TotalBinaryFileCount() int
 	TotalBinaryFileSize() unsafe.Pointer
 	TotalCacheFolderSize() unsafe.Pointer
@@ -37,10 +38,15 @@ type IMXDiskSpaceUsageMetric interface {
 	TotalDataFileSize() unsafe.Pointer
 	TotalDiskSpaceCapacity() unsafe.Pointer
 	TotalDiskSpaceUsedSize() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about your app’s disk space usage.
+
+
+// An object representing metrics about your app’s disk space usage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric
 type MXDiskSpaceUsageMetric struct {
 	MXMetric
@@ -87,64 +93,80 @@ func NewMXDiskSpaceUsageMetric() MXDiskSpaceUsageMetric {
 }
 
 
+
 // The total number of your app’s binary files.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalBinaryFileCount
 func (m_ MXDiskSpaceUsageMetric) TotalBinaryFileCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("totalBinaryFileCount"))
 	return rv
 }
 
+
 // The total size of disk space your app’s binary files occupy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalBinaryFileSize
 func (m_ MXDiskSpaceUsageMetric) TotalBinaryFileSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalBinaryFileSize"))
 	return rv
 }
 
+
 // The total size of your application’s cache folder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalCacheFolderSize
 func (m_ MXDiskSpaceUsageMetric) TotalCacheFolderSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalCacheFolderSize"))
 	return rv
 }
 
+
 // The total size of all clone files that are attributed to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalCloneSize
 func (m_ MXDiskSpaceUsageMetric) TotalCloneSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalCloneSize"))
 	return rv
 }
 
+
 // The total number of data files in your app’s container(s).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalDataFileCount
 func (m_ MXDiskSpaceUsageMetric) TotalDataFileCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("totalDataFileCount"))
 	return rv
 }
 
+
 // The total size of disk space your app uses for storing data files.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalDataFileSize
 func (m_ MXDiskSpaceUsageMetric) TotalDataFileSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalDataFileSize"))
 	return rv
 }
 
+
 // The total disk space capacity of the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalDiskSpaceCapacity
 func (m_ MXDiskSpaceUsageMetric) TotalDiskSpaceCapacity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalDiskSpaceCapacity"))
 	return rv
 }
 
+
 // The total amount of used disk storage on the current device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskSpaceUsageMetric/totalDiskSpaceUsedSize
 func (m_ MXDiskSpaceUsageMetric) TotalDiskSpaceUsedSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalDiskSpaceUsedSize"))

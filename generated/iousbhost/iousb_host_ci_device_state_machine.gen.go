@@ -31,11 +31,11 @@ type _USBHostCIDeviceStateMachineClass struct {
 type IUSBHostCIDeviceStateMachine interface {
 	objectivec.IObject
 	// properties:
-	ControllerInterface() IOUSBHostControllerInterface /* already interface */
-	CompleteRoute() int /* primitive/slice/pointer. */
-	SetCompleteRoute(value int /* primitive/slice/pointer. */)
-	DeviceAddress() int /* primitive/slice/pointer. */
-	SetDeviceAddress(value int /* primitive/slice/pointer. */)
+	ControllerInterface() IOUSBHostControllerInterface
+	CompleteRoute() int
+	SetCompleteRoute(value int)
+	DeviceAddress() int
+	SetDeviceAddress(value int)
 	DeviceState() USBHostCIDeviceState /* not a class type */
 	SetDeviceState(value USBHostCIDeviceState /* not a class type */)
 	// methods:
@@ -89,7 +89,7 @@ func NewUSBHostCIDeviceStateMachine() USBHostCIDeviceStateMachine {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/controllerInterface
-func (u_ USBHostCIDeviceStateMachine) ControllerInterface() IOUSBHostControllerInterface /* already interface */ {
+func (u_ USBHostCIDeviceStateMachine) ControllerInterface() IOUSBHostControllerInterface {
 	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
@@ -97,7 +97,7 @@ func (u_ USBHostCIDeviceStateMachine) ControllerInterface() IOUSBHostControllerI
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int /* primitive/slice/pointer. */ {
+func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("completeRoute"))
 	return rv
 }
@@ -105,14 +105,14 @@ func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int /* primitive/slice/poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) SetCompleteRoute(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostCIDeviceStateMachine) SetCompleteRoute(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCompleteRoute:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/deviceaddress
-func (u_ USBHostCIDeviceStateMachine) DeviceAddress() int /* primitive/slice/pointer. */ {
+func (u_ USBHostCIDeviceStateMachine) DeviceAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("deviceAddress"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (u_ USBHostCIDeviceStateMachine) DeviceAddress() int /* primitive/slice/poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/deviceaddress
-func (u_ USBHostCIDeviceStateMachine) SetDeviceAddress(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostCIDeviceStateMachine) SetDeviceAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceAddress:"), value)
 }
 

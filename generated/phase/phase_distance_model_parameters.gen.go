@@ -30,16 +30,22 @@ type _PHASEDistanceModelParametersClass struct {
 // An interface definition for the [PHASEDistanceModelParameters] class.
 type IPHASEDistanceModelParameters interface {
 	objectivec.IObject
-	FadeOutParameters() PHASEDistanceModelFadeOutParameters
+	// properties:
+	FadeOutParameters() IPHASEDistanceModelFadeOutParameters
 	SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters)
-	DistanceModelParameters() PHASEDistanceModelParameters
+	DistanceModelParameters() IPHASEDistanceModelParameters
 	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
+	// methods:
 }
 
 // A base class for a sound’s rate of change over distance.
 //
 // When your app outputs sound with a 3D position and orientation, designate a subclass of this class to indicate the manner in which PHASE changes sound with distance. Assign an instance of either or , depending on your app’s needs, to the class’s property.
+
+
+// A base class for a sound’s rate of change over distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters
 type PHASEDistanceModelParameters struct {
 	objectivec.Object
@@ -84,37 +90,39 @@ func NewPHASEDistanceModelParameters() PHASEDistanceModelParameters {
 }
 
 
+
 // A distance over which the framework fades out the mixer’s sound.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
-func (p_ PHASEDistanceModelParameters) FadeOutParameters() PHASEDistanceModelFadeOutParameters {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
+func (p_ PHASEDistanceModelParameters) FadeOutParameters() IPHASEDistanceModelFadeOutParameters {
 	rv := objc.Send[PHASEDistanceModelFadeOutParameters](p_.ID, objc.Sel("fadeOutParameters"))
 	return rv
 }
 
 
-// SetFadeOutParameters sets the value of the fadeOutParameters property.
 // A distance over which the framework fades out the mixer’s sound.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
 func (p_ PHASEDistanceModelParameters) SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFadeOutParameters:"), value)
 }
 
+
 // An effect that changes sound as it carries over a distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEDistanceModelParameters) DistanceModelParameters() PHASEDistanceModelParameters {
+func (p_ PHASEDistanceModelParameters) DistanceModelParameters() IPHASEDistanceModelParameters {
 	rv := objc.Send[PHASEDistanceModelParameters](p_.ID, objc.Sel("distanceModelParameters"))
 	return rv
 }
 
 
-// SetDistanceModelParameters sets the value of the distanceModelParameters property.
 // An effect that changes sound as it carries over a distance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
 func (p_ PHASEDistanceModelParameters) SetDistanceModelParameters(value IPHASEDistanceModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)

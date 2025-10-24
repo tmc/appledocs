@@ -29,9 +29,13 @@ type _MTRClusterSmokeCOAlarmClass struct {
 // An interface definition for the [MTRClusterSmokeCOAlarm] class.
 type IMTRClusterSmokeCOAlarm interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterSmokeCOAlarm
 type MTRClusterSmokeCOAlarm struct {
 	MTRGenericCluster

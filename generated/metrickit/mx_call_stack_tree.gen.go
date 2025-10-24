@@ -31,12 +31,18 @@ type _MXCallStackTreeClass struct {
 // An interface definition for the [MXCallStackTree] class.
 type IMXCallStackTree interface {
 	objectivec.IObject
-	JSONRepresentation() foundation.Data
-	MXErrorDomain() string
+	// properties:
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An object representing the call stack for an exception.
+
+
+// An object representing the call stack for an exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCallStackTree
 type MXCallStackTree struct {
 	objectivec.Object
@@ -81,19 +87,23 @@ func NewMXCallStackTree() MXCallStackTree {
 }
 
 
+
 // Returns the contents of the stack tree in JSON format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCallStackTree/jsonRepresentation()
-func (m_ MXCallStackTree) JSONRepresentation() foundation.Data {
+func (m_ MXCallStackTree) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
+
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXCallStackTree) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXCallStackTree) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

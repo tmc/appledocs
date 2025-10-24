@@ -31,13 +31,17 @@ type _MTRDataTypeAtomicAttributeStatusStructClass struct {
 // An interface definition for the [MTRDataTypeAtomicAttributeStatusStruct] class.
 type IMTRDataTypeAtomicAttributeStatusStruct interface {
 	objectivec.IObject
-	AttributeID() foundation.Number
-	SetAttributeID(value foundation.INumber)
-	StatusCode() foundation.Number
-	SetStatusCode(value foundation.INumber)
+	// properties:
+	AttributeID() objc.IObject /* cross-framework: NSNumber */
+	SetAttributeID(value objc.IObject /* cross-framework: NSNumber */)
+	StatusCode() objc.IObject /* cross-framework: NSNumber */
+	SetStatusCode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct
 type MTRDataTypeAtomicAttributeStatusStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRDataTypeAtomicAttributeStatusStruct() MTRDataTypeAtomicAttributeStatu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/attributeID
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attributeID"))
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("attributeID"))
 	return rv
 }
 
 
-// SetAttributeID sets the value of the attributeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/attributeID
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value foundation.INumber) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
 
-// SetStatusCode sets the value of the statusCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value foundation.INumber) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 

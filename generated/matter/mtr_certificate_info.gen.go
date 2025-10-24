@@ -31,19 +31,23 @@ type _MTRCertificateInfoClass struct {
 // An interface definition for the [MTRCertificateInfo] class.
 type IMTRCertificateInfo interface {
 	objectivec.IObject
-	Issuer() MTRDistinguishedNameInfo
+	// properties:
+	Issuer() IMTRDistinguishedNameInfo
 	SetIssuer(value IMTRDistinguishedNameInfo)
-	NotAfter() foundation.Date
-	SetNotAfter(value foundation.IDate)
-	NotBefore() foundation.Date
-	SetNotBefore(value foundation.IDate)
-	PublicKeyData() foundation.Data
-	SetPublicKeyData(value foundation.IData)
-	Subject() MTRDistinguishedNameInfo
+	NotAfter() objc.IObject /* cross-framework: Date */
+	SetNotAfter(value objc.IObject /* cross-framework: Date */)
+	NotBefore() objc.IObject /* cross-framework: Date */
+	SetNotBefore(value objc.IObject /* cross-framework: Date */)
+	PublicKeyData() objc.IObject /* cross-framework: Data */
+	SetPublicKeyData(value objc.IObject /* cross-framework: Data */)
+	Subject() IMTRDistinguishedNameInfo
 	SetSubject(value IMTRDistinguishedNameInfo)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificateInfo
 type MTRCertificateInfo struct {
 	objectivec.Object
@@ -86,79 +90,80 @@ func NewMTRCertificateInfo() MTRCertificateInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
-func (m_ MTRCertificateInfo) Issuer() MTRDistinguishedNameInfo {
+func (m_ MTRCertificateInfo) Issuer() IMTRDistinguishedNameInfo {
 	rv := objc.Send[MTRDistinguishedNameInfo](m_.ID, objc.Sel("issuer"))
 	return rv
 }
 
 
-// SetIssuer sets the value of the issuer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
 func (m_ MTRCertificateInfo) SetIssuer(value IMTRDistinguishedNameInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIssuer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
-func (m_ MTRCertificateInfo) NotAfter() foundation.Date {
+func (m_ MTRCertificateInfo) NotAfter() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("notAfter"))
 	return rv
 }
 
 
-// SetNotAfter sets the value of the notAfter property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
-func (m_ MTRCertificateInfo) SetNotAfter(value foundation.IDate) {
+func (m_ MTRCertificateInfo) SetNotAfter(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotAfter:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
-func (m_ MTRCertificateInfo) NotBefore() foundation.Date {
+func (m_ MTRCertificateInfo) NotBefore() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("notBefore"))
 	return rv
 }
 
 
-// SetNotBefore sets the value of the notBefore property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
-func (m_ MTRCertificateInfo) SetNotBefore(value foundation.IDate) {
+func (m_ MTRCertificateInfo) SetNotBefore(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotBefore:"), value)
 }
 
+
 // Public key data for this certificate
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
-func (m_ MTRCertificateInfo) PublicKeyData() foundation.Data {
+func (m_ MTRCertificateInfo) PublicKeyData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("publicKeyData"))
 	return rv
 }
 
 
-// SetPublicKeyData sets the value of the publicKeyData property.
 // Public key data for this certificate
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
-func (m_ MTRCertificateInfo) SetPublicKeyData(value foundation.IData) {
+func (m_ MTRCertificateInfo) SetPublicKeyData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPublicKeyData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
-func (m_ MTRCertificateInfo) Subject() MTRDistinguishedNameInfo {
+func (m_ MTRCertificateInfo) Subject() IMTRDistinguishedNameInfo {
 	rv := objc.Send[MTRDistinguishedNameInfo](m_.ID, objc.Sel("subject"))
 	return rv
 }
 
 
-// SetSubject sets the value of the subject property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
 func (m_ MTRCertificateInfo) SetSubject(value IMTRDistinguishedNameInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubject:"), value)

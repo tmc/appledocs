@@ -30,13 +30,15 @@ type _VZFileHandleNetworkDeviceAttachmentClass struct {
 // An interface definition for the [VZFileHandleNetworkDeviceAttachment] class.
 type IVZFileHandleNetworkDeviceAttachment interface {
 	IVZNetworkDeviceAttachment
-	FileHandle() foundation.FileHandle
+	// properties:
+	FileHandle() objc.IObject /* cross-framework: FileHandle */
 	MaximumTransmissionUnit() int
 	SetMaximumTransmissionUnit(value int)
-	Attachment() VZNetworkDeviceAttachment
-	SetAttachment(value VZNetworkDeviceAttachment)
-	NetworkDevices() VZNetworkDeviceConfiguration
-	SetNetworkDevices(value VZNetworkDeviceConfiguration)
+	Attachment() IVZNetworkDeviceAttachment
+	SetAttachment(value IVZNetworkDeviceAttachment)
+	NetworkDevices() IVZNetworkDeviceConfiguration
+	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
+	// methods:
 }
 
 // A network device that transmits raw network packets and frames using a datagram socket.
@@ -98,7 +100,7 @@ func NewVZFileHandleNetworkDeviceAttachment() VZFileHandleNetworkDeviceAttachmen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/init(fileHandle:)
-func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle foundation.FileHandle) VZFileHandleNetworkDeviceAttachment {
+func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle objc.IObject /* cross-framework: FileHandle */) VZFileHandleNetworkDeviceAttachment {
 	instance := getVZFileHandleNetworkDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZFileHandleNetworkDeviceAttachment](instance.ID, objc.Sel("initWithFileHandle:"), fileHandle)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/fileHandle
-func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() foundation.FileHandle {
+func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() objc.IObject /* cross-framework: FileHandle */ {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandle"))
 	return rv
 }
@@ -140,7 +142,7 @@ func (v_ VZFileHandleNetworkDeviceAttachment) SetMaximumTransmissionUnit(value i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() VZNetworkDeviceAttachment {
+func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() IVZNetworkDeviceAttachment {
 	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() VZNetworkDeviceAttach
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value VZNetworkDeviceAttachment) {
+func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
@@ -159,7 +161,7 @@ func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value VZNetworkDevic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() VZNetworkDeviceConfiguration {
+func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() IVZNetworkDeviceConfiguration {
 	rv := objc.Send[VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() VZNetworkDeviceCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value VZNetworkDeviceConfiguration) {
+func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value IVZNetworkDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
 }
 

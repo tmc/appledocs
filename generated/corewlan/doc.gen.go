@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreWLAN without requiring cgo.
-
-// Query AirPort interfaces and choose wireless networks.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN
+// See: https://developer.apple.com/documentation/CoreWLAN
 package corewlan
 
 import (

@@ -29,11 +29,14 @@ type _MTRGenericClusterClass struct {
 // An interface definition for the [MTRGenericCluster] class.
 type IMTRGenericCluster interface {
 	IMTRCluster
-	Device() MTRDevice
-	SetDevice(value IMTRDevice)
+	// properties:
+	Device() IMTRDevice
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGenericCluster
 type MTRGenericCluster struct {
 	MTRCluster
@@ -78,19 +81,12 @@ func NewMTRGenericCluster() MTRGenericCluster {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgenericcluster/device
-func (m_ MTRGenericCluster) Device() MTRDevice {
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGenericCluster/device
+func (m_ MTRGenericCluster) Device() IMTRDevice {
 	rv := objc.Send[MTRDevice](m_.ID, objc.Sel("device"))
 	return rv
-}
-
-
-// SetDevice sets the value of the device property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgenericcluster/device
-func (m_ MTRGenericCluster) SetDevice(value IMTRDevice) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDevice:"), value)
 }
 
 

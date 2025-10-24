@@ -29,14 +29,20 @@ type _VZMacGraphicsDeviceConfigurationClass struct {
 // An interface definition for the [VZMacGraphicsDeviceConfiguration] class.
 type IVZMacGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
-	Displays() []VZMacGraphicsDisplayConfiguration
-	SetDisplays(value []VZMacGraphicsDisplayConfiguration)
+	// properties:
+	Displays() []IVZMacGraphicsDisplayConfiguration
+	SetDisplays(value []IVZMacGraphicsDisplayConfiguration)
+	// methods:
 }
 
 // Configuration for a display attached to a Mac graphics device.
 //
 // Use this device to attach a display that’s shown in a .
+
+
+// Configuration for a display attached to a Mac graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDeviceConfiguration
 type VZMacGraphicsDeviceConfiguration struct {
 	VZGraphicsDeviceConfiguration
@@ -84,21 +90,22 @@ func NewVZMacGraphicsDeviceConfiguration() VZMacGraphicsDeviceConfiguration {
 
 
 
+
 // The displays associated with this graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDeviceConfiguration/displays
-func (v_ VZMacGraphicsDeviceConfiguration) Displays() []VZMacGraphicsDisplayConfiguration {
+func (v_ VZMacGraphicsDeviceConfiguration) Displays() []IVZMacGraphicsDisplayConfiguration {
 	rv := objc.Send[[]VZMacGraphicsDisplayConfiguration](v_.ID, objc.Sel("displays"))
 	return rv
 }
 
 
-// SetDisplays sets the value of the displays property.
 // The displays associated with this graphics device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDeviceConfiguration/displays
-func (v_ VZMacGraphicsDeviceConfiguration) SetDisplays(value []VZMacGraphicsDisplayConfiguration) {
+func (v_ VZMacGraphicsDeviceConfiguration) SetDisplays(value []IVZMacGraphicsDisplayConfiguration) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

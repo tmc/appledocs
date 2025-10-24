@@ -31,8 +31,8 @@ type _ExtensionItemClass struct {
 type IExtensionItem interface {
 	objectivec.IObject
 	// properties:
-	Attachments() IItemProvider
-	SetAttachments(value IItemProvider)
+	Attachments() []IItemProvider
+	SetAttachments(value []IItemProvider)
 	AttributedContentText() IAttributedString
 	SetAttributedContentText(value IAttributedString)
 	AttributedTitle() IAttributedString
@@ -96,9 +96,9 @@ func NewExtensionItem() ExtensionItem {
 // An optional array of media data associated with the extension item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
-func (e_ ExtensionItem) Attachments() IItemProvider {
-	rv := objc.Send[ItemProvider](e_.ID, objc.Sel("attachments"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
+func (e_ ExtensionItem) Attachments() []IItemProvider {
+	rv := objc.Send[[]ItemProvider](e_.ID, objc.Sel("attachments"))
 	return rv
 }
 
@@ -106,9 +106,19 @@ func (e_ ExtensionItem) Attachments() IItemProvider {
 // An optional array of media data associated with the extension item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
-func (e_ ExtensionItem) SetAttachments(value IItemProvider) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setAttachments:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
+func (e_ ExtensionItem) SetAttachments(value []IItemProvider) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAttachments:"), nsArray)
 }
 
 

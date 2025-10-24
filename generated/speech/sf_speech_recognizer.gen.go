@@ -31,25 +31,30 @@ type _SFSpeechRecognizerClass struct {
 // An interface definition for the [SFSpeechRecognizer] class.
 type ISFSpeechRecognizer interface {
 	objectivec.IObject
-	RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate objectivec.IObject) SFSpeechRecognitionTask
-	SupportsOnDeviceRecognition() bool
-	SetSupportsOnDeviceRecognition(value bool)
+	// properties:
 	DefaultTaskHint() SFSpeechRecognitionTaskHint
-	SetDefaultTaskHint(value ISFSpeechRecognitionTaskHint)
+	SetDefaultTaskHint(value SFSpeechRecognitionTaskHint)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	IsAvailable() bool
 	SetIsAvailable(value bool)
-	Locale() foundation.Locale
-	SetLocale(value foundation.ILocale)
-	Queue() foundation.OperationQueue
-	SetQueue(value foundation.IOperationQueue)
+	Locale() objc.IObject /* cross-framework: Locale */
+	SetLocale(value objc.IObject /* cross-framework: Locale */)
+	Queue() objc.IObject /* cross-framework: OperationQueue */
+	SetQueue(value objc.IObject /* cross-framework: OperationQueue */)
+	SupportsOnDeviceRecognition() bool
+	SetSupportsOnDeviceRecognition(value bool)
+	// methods:
 }
 
 // An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
 //
 // An object is the central object for managing the speech recognizer process. Use this object to: Request authorization to use speech recognition services. Specify the language to use during the recognition process. Initiate new speech recognition tasks.
+
+
+// An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer
 type SFSpeechRecognizer struct {
 	objectivec.Object
@@ -94,34 +99,10 @@ func NewSFSpeechRecognizer() SFSpeechRecognizer {
 }
 
 
-// Recognizes speech from the audio source associated with the specified request, using the specified delegate to manage the results.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:delegate:)
-func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate objectivec.IObject) SFSpeechRecognitionTask {
-	rv := objc.Send[SFSpeechRecognitionTask](s_.ID, objc.Sel("recognitionTaskWithRequest:delegate:"), request, delegate)
-	return rv
-}
-
-// A Boolean value that indicates whether the speech recognizer can operate without network access.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
-func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("supportsOnDeviceRecognition"))
-	return rv
-}
-
-
-// SetSupportsOnDeviceRecognition sets the value of the supportsOnDeviceRecognition property.
-// A Boolean value that indicates whether the speech recognizer can operate without network access.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/supportsOnDeviceRecognition
-func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportsOnDeviceRecognition:"), value)
-}
 
 // A hint that indicates the type of speech recognition being requested.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
 func (s_ SFSpeechRecognizer) DefaultTaskHint() SFSpeechRecognitionTaskHint {
 	rv := objc.Send[SFSpeechRecognitionTaskHint](s_.ID, objc.Sel("defaultTaskHint"))
@@ -129,17 +110,18 @@ func (s_ SFSpeechRecognizer) DefaultTaskHint() SFSpeechRecognitionTaskHint {
 }
 
 
-// SetDefaultTaskHint sets the value of the defaultTaskHint property.
 // A hint that indicates the type of speech recognition being requested.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
-func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value ISFSpeechRecognitionTaskHint) {
+func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value SFSpeechRecognitionTaskHint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultTaskHint:"), value)
 }
 
+
 // The delegate object that handles changes to the availability of speech recognition services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/delegate
 func (s_ SFSpeechRecognizer) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
@@ -147,17 +129,18 @@ func (s_ SFSpeechRecognizer) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object that handles changes to the availability of speech recognition services.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/delegate
 func (s_ SFSpeechRecognizer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the speech recognizer is currently available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/isavailable
 func (s_ SFSpeechRecognizer) IsAvailable() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAvailable"))
@@ -165,49 +148,69 @@ func (s_ SFSpeechRecognizer) IsAvailable() bool {
 }
 
 
-// SetIsAvailable sets the value of the isAvailable property.
 // A Boolean value that indicates whether the speech recognizer is currently available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/isavailable
 func (s_ SFSpeechRecognizer) SetIsAvailable(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAvailable:"), value)
 }
 
+
 // The locale of the speech recognizer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/locale
-func (s_ SFSpeechRecognizer) Locale() foundation.Locale {
+func (s_ SFSpeechRecognizer) Locale() objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](s_.ID, objc.Sel("locale"))
 	return rv
 }
 
 
-// SetLocale sets the value of the locale property.
 // The locale of the speech recognizer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/locale
-func (s_ SFSpeechRecognizer) SetLocale(value foundation.ILocale) {
+func (s_ SFSpeechRecognizer) SetLocale(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
 }
 
+
 // The queue on which to execute recognition task handlers and delegate methods.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/queue
-func (s_ SFSpeechRecognizer) Queue() foundation.OperationQueue {
+func (s_ SFSpeechRecognizer) Queue() objc.IObject /* cross-framework: OperationQueue */ {
 	rv := objc.Send[foundation.OperationQueue](s_.ID, objc.Sel("queue"))
 	return rv
 }
 
 
-// SetQueue sets the value of the queue property.
 // The queue on which to execute recognition task handlers and delegate methods.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/queue
-func (s_ SFSpeechRecognizer) SetQueue(value foundation.IOperationQueue) {
+func (s_ SFSpeechRecognizer) SetQueue(value objc.IObject /* cross-framework: OperationQueue */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQueue:"), value)
+}
+
+
+// A Boolean value that indicates whether the speech recognizer can operate without network access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/supportsondevicerecognition
+func (s_ SFSpeechRecognizer) SupportsOnDeviceRecognition() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("supportsOnDeviceRecognition"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the speech recognizer can operate without network access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/supportsondevicerecognition
+func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportsOnDeviceRecognition:"), value)
 }
 
 

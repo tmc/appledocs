@@ -29,9 +29,13 @@ type _CNNGroupNormalizationGradientNodeClass struct {
 // An interface definition for the [CNNGroupNormalizationGradientNode] class.
 type ICNNGroupNormalizationGradientNode interface {
 	IGradientFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientNode
 type CNNGroupNormalizationGradientNode struct {
 	GradientFilterNode
@@ -76,9 +80,10 @@ func NewCNNGroupNormalizationGradientNode() CNNGroupNormalizationGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientNode/init(sourceGradient:sourceImage:gradientState:)
-func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) CNNGroupNormalizationGradientNode {
+func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState GradientStateNode /* not a class type */) CNNGroupNormalizationGradientNode {
 	instance := getCNNGroupNormalizationGradientNodeClass().Alloc()
 	rv := objc.Send[CNNGroupNormalizationGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()
@@ -86,9 +91,10 @@ func NewCNNGroupNormalizationGradientNodeWithSourceGradientSourceImageGradientSt
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationGradientNode/nodeWithSourceGradient:sourceImage:gradientState:
-func (cc _CNNGroupNormalizationGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) unsafe.Pointer {
+func (cc _CNNGroupNormalizationGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState GradientStateNode /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	return rv
 }

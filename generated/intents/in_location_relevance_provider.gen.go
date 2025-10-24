@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INLocationRelevanceProvider] class.
@@ -29,7 +29,7 @@ type _INLocationRelevanceProviderClass struct {
 
 // An interface definition for the [INLocationRelevanceProvider] class.
 type IINLocationRelevanceProvider interface {
-	objectivec.IObject
+	IINRelevanceProvider
 	// properties:
 	Region() objc.IObject /* cross-framework: Region */
 	SetRegion(value objc.IObject /* cross-framework: Region */)
@@ -46,14 +46,16 @@ type IINLocationRelevanceProvider interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INLocationRelevanceProvider
 type INLocationRelevanceProvider struct {
-	objectivec.Object
+	INRelevanceProvider
 }
 
 // INLocationRelevanceProviderFrom constructs a [INLocationRelevanceProvider] from an unsafe.Pointer.
 //
 // The provider class that specifies a relevant location.
 func INLocationRelevanceProviderFrom(ptr unsafe.Pointer) INLocationRelevanceProvider {
-	return INLocationRelevanceProvider{objectivec.Object{objc.ID(ptr)}}
+	return INLocationRelevanceProvider{
+		INRelevanceProvider: INRelevanceProviderFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -94,7 +96,7 @@ func NewINLocationRelevanceProvider() INLocationRelevanceProvider {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlocationrelevanceprovider/region
 func (i_ INLocationRelevanceProvider) Region() objc.IObject /* cross-framework: Region */ {
-	rv := objc.Send[Region](i_.ID, objc.Sel("region"))
+	rv := objc.Send[corelocation.Region](i_.ID, objc.Sel("region"))
 	return rv
 }
 

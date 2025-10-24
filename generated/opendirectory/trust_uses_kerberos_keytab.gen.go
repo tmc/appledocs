@@ -30,9 +30,13 @@ type _trustUsesKerberosKeytabClass struct {
 // An interface definition for the [trustUsesKerberosKeytab] class.
 type ItrustUsesKerberosKeytab interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesKerberosKeytab-c.ivar
 type trustUsesKerberosKeytab struct {
 	objectivec.Object

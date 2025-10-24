@@ -31,17 +31,21 @@ type _MTRActionsClusterStartActionParamsClass struct {
 // An interface definition for the [MTRActionsClusterStartActionParams] class.
 type IMTRActionsClusterStartActionParams interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	InvokeID() foundation.Number
-	SetInvokeID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	InvokeID() objc.IObject /* cross-framework: NSNumber */
+	SetInvokeID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterStartActionParams
 type MTRActionsClusterStartActionParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRActionsClusterStartActionParams() MTRActionsClusterStartActionParams 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/actionid
-func (m_ MTRActionsClusterStartActionParams) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterStartActionParams) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/actionid
-func (m_ MTRActionsClusterStartActionParams) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterStartActionParams) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/invokeid
-func (m_ MTRActionsClusterStartActionParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+func (m_ MTRActionsClusterStartActionParams) InvokeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("invokeID"))
 	return rv
 }
 
 
-// SetInvokeID sets the value of the invokeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/invokeid
-func (m_ MTRActionsClusterStartActionParams) SetInvokeID(value foundation.INumber) {
+func (m_ MTRActionsClusterStartActionParams) SetInvokeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStartActionParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRActionsClusterStartActionParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStartActionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRActionsClusterStartActionParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterStartActionParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRActionsClusterStartActionParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterStartActionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRActionsClusterStartActionParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

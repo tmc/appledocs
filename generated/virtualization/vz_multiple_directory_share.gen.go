@@ -30,13 +30,19 @@ type _VZMultipleDirectoryShareClass struct {
 // An interface definition for the [VZMultipleDirectoryShare] class.
 type IVZMultipleDirectoryShare interface {
 	IVZDirectoryShare
-	Directories() unsafe.Pointer
+	// properties:
+	Directories() foundation.IDictionary
+	// methods:
 }
 
 // An object that describes a directory share for multiple directories.
 //
 // This directory share exposes multiple directories from the host file system to the guest VM.
+
+
+// An object that describes a directory share for multiple directories.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare
 type VZMultipleDirectoryShare struct {
 	VZDirectoryShare
@@ -84,11 +90,11 @@ func NewVZMultipleDirectoryShare() VZMultipleDirectoryShare {
 
 
 
-
 // Creates the directory share with a set of directories on the host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/init(directories:)
-func NewVZMultipleDirectoryShareWithDirectories(directories unsafe.Pointer) VZMultipleDirectoryShare {
+func NewVZMultipleDirectoryShareWithDirectories(directories foundation.IDictionary) VZMultipleDirectoryShare {
 	instance := getVZMultipleDirectoryShareClass().Alloc()
 	rv := objc.Send[VZMultipleDirectoryShare](instance.ID, objc.Sel("initWithDirectories:"), directories)
 	rv.Autorelease()
@@ -96,27 +102,33 @@ func NewVZMultipleDirectoryShareWithDirectories(directories unsafe.Pointer) VZMu
 }
 
 
+
 // Transforms a string to be a valid directory name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/canonicalizedName(from:)
-func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), objc.String(name))
+func (vc _VZMultipleDirectoryShareClass) CanonicalizedNameFromName(name objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](objc.ID(vc.class), objc.Sel("canonicalizedNameFromName:"), name)
 	return rv
 }
+
 
 // Check if a name is a valid directory name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/validateName(_:)
-func (vc _VZMultipleDirectoryShareClass) ValidateNameError(name string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateName:error:"), objc.String(name), error_)
+func (vc _VZMultipleDirectoryShareClass) ValidateNameError(name objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateName:error:"), name, error_)
 	return rv
 }
 
+
 // The directories on the host to expose to the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMultipleDirectoryShare/directories
-func (v_ VZMultipleDirectoryShare) Directories() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directories"))
+func (v_ VZMultipleDirectoryShare) Directories() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](v_.ID, objc.Sel("directories"))
 	return rv
 }
 

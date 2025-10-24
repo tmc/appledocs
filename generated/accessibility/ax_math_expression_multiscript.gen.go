@@ -31,8 +31,8 @@ type IAXMathExpressionMultiscript interface {
 	IAXMathExpression
 	// properties:
 	BaseExpression() IAXMathExpression
-	PostscriptExpressions() []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */
-	PrescriptExpressions() []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */
+	PostscriptExpressions() []IAXMathExpressionSubSuperscript
+	PrescriptExpressions() []IAXMathExpressionSubSuperscript
 	// methods:
 }
 
@@ -86,7 +86,7 @@ func NewAXMathExpressionMultiscript() AXMathExpressionMultiscript {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionMultiscript/init(baseExpression:prescriptExpressions:postscriptExpressions:)
-func NewAXMathExpressionMultiscriptWithBaseExpressionPrescriptExpressionsPostscriptExpressions(baseExpression IAXMathExpression, prescriptExpressions []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */, postscriptExpressions []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */) AXMathExpressionMultiscript {
+func NewAXMathExpressionMultiscriptWithBaseExpressionPrescriptExpressionsPostscriptExpressions(baseExpression IAXMathExpression, prescriptExpressions []IAXMathExpressionSubSuperscript, postscriptExpressions []IAXMathExpressionSubSuperscript) AXMathExpressionMultiscript {
 	instance := getAXMathExpressionMultiscriptClass().Alloc()
 	rv := objc.Send[AXMathExpressionMultiscript](instance.ID, objc.Sel("initWithBaseExpression:prescriptExpressions:postscriptExpressions:"), baseExpression, prescriptExpressions, postscriptExpressions)
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func (a_ AXMathExpressionMultiscript) BaseExpression() IAXMathExpression {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionMultiscript/postscriptExpressions
-func (a_ AXMathExpressionMultiscript) PostscriptExpressions() []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */ {
+func (a_ AXMathExpressionMultiscript) PostscriptExpressions() []IAXMathExpressionSubSuperscript {
 	rv := objc.Send[[]AXMathExpressionSubSuperscript](a_.ID, objc.Sel("postscriptExpressions"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (a_ AXMathExpressionMultiscript) PostscriptExpressions() []AXMathExpression
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionMultiscript/prescriptExpressions
-func (a_ AXMathExpressionMultiscript) PrescriptExpressions() []AXMathExpressionSubSuperscript /* primitive/slice/pointer. */ {
+func (a_ AXMathExpressionMultiscript) PrescriptExpressions() []IAXMathExpressionSubSuperscript {
 	rv := objc.Send[[]AXMathExpressionSubSuperscript](a_.ID, objc.Sel("prescriptExpressions"))
 	return rv
 }

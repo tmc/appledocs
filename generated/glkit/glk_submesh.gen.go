@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +36,7 @@ type IGLKSubmesh interface {
 	ElementCount() unsafe.Pointer
 	Mesh() IGLKMesh
 	Mode() unsafe.Pointer
-	Name() string /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
 	Type() unsafe.Pointer
 	// methods:
 }
@@ -120,8 +121,8 @@ func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
-func (g_ GLKSubmesh) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GLKSubmesh) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("name"))
 	return rv
 }
 

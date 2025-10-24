@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Accelerate without requiring cgo.
-
-// Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accelerate
+// See: https://developer.apple.com/documentation/Accelerate
 package accelerate
 
 import (

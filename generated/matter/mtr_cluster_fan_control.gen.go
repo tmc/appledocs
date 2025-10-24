@@ -29,9 +29,13 @@ type _MTRClusterFanControlClass struct {
 // An interface definition for the [MTRClusterFanControl] class.
 type IMTRClusterFanControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterFanControl
 type MTRClusterFanControl struct {
 	MTRGenericCluster

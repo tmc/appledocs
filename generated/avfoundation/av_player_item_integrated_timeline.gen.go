@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -36,8 +37,8 @@ type IPlayerItemIntegratedTimeline interface {
 	SetCurrentDate(value objc.IObject /* cross-framework: Date */)
 	CurrentSnapshot() objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */
 	SetCurrentSnapshot(value objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */)
-	CurrentTime() Time /* not a class type */
-	SetCurrentTime(value Time /* not a class type */)
+	CurrentTime() objc.IObject /* cross-framework: Time */
+	SetCurrentTime(value objc.IObject /* cross-framework: Time */)
 	// methods:
 }
 
@@ -136,8 +137,8 @@ func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
-func (p_ PlayerItemIntegratedTimeline) CurrentTime() Time /* not a class type */ {
-	rv := objc.Send[Time](p_.ID, objc.Sel("currentTime"))
+func (p_ PlayerItemIntegratedTimeline) CurrentTime() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](p_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentTime() Time /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
-func (p_ PlayerItemIntegratedTimeline) SetCurrentTime(value Time /* not a class type */) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentTime(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentTime:"), value)
 }
 

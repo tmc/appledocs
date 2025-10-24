@@ -30,9 +30,13 @@ type _defaultModuleEntriesClass struct {
 // An interface definition for the [defaultModuleEntries] class.
 type IdefaultModuleEntries interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-c.ivar
 type defaultModuleEntries struct {
 	objectivec.Object

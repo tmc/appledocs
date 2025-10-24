@@ -31,15 +31,15 @@ type _NetServiceClass struct {
 type INetService interface {
 	objectivec.IObject
 	// properties:
-	Addresses() []Data /* primitive/slice/pointer. */
+	Addresses() []IData
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Domain() IString
 	HostName() IString
-	IncludesPeerToPeer() bool /* primitive/slice/pointer. */
-	SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */)
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
 	Name() IString
-	Port() int /* primitive/slice/pointer. */
+	Port() int
 	Type() IString
 	// methods:
 }
@@ -113,7 +113,7 @@ func NewNetServiceWithDomainTypeName(domain IString, type_ IString, name IString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name IString, port int /* primitive/slice/pointer. */) NetService {
+func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name IString, port int) NetService {
 	instance := getNetServiceClass().Alloc()
 	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
 	rv.Autorelease()
@@ -126,7 +126,7 @@ func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name ISt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
-func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary /* already interface */) IData {
+func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary) IData {
 	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
@@ -136,8 +136,8 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
+func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary {
+	rv := objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/addresses
-func (n_ NetService) Addresses() []Data /* primitive/slice/pointer. */ {
+func (n_ NetService) Addresses() []IData {
 	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (n_ NetService) HostName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-func (n_ NetService) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
+func (n_ NetService) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
@@ -205,7 +205,7 @@ func (n_ NetService) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-func (n_ NetService) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */) {
+func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
 
@@ -224,7 +224,7 @@ func (n_ NetService) Name() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/port
-func (n_ NetService) Port() int /* primitive/slice/pointer. */ {
+func (n_ NetService) Port() int {
 	rv := objc.Send[int](n_.ID, objc.Sel("port"))
 	return rv
 }

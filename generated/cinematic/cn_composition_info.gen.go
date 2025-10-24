@@ -31,7 +31,7 @@ type ICNCompositionInfo interface {
 	ICNAssetInfo
 	// properties:
 	// methods:
-	InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange TimeRange /* not a class type */, assetInfo ICNAssetInfo, startTime Time /* not a class type */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange TimeRange /* not a class type */, assetInfo ICNAssetInfo, startTime Time /* not a class type */, outError unsafe.Pointer) bool
 }
 
 // An object that enables you to add the appropriate number of tracks for a Cinematic asset.
@@ -91,7 +91,7 @@ func NewCNCompositionInfo() CNCompositionInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCompositionInfo-vzoh/insertTimeRange:ofCinematicAssetInfo:atTime:error:
-func (c_ CNCompositionInfo) InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange TimeRange /* not a class type */, assetInfo ICNAssetInfo, startTime Time /* not a class type */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (c_ CNCompositionInfo) InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange TimeRange /* not a class type */, assetInfo ICNAssetInfo, startTime Time /* not a class type */, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("insertTimeRange:ofCinematicAssetInfo:atTime:error:"), timeRange, assetInfo, startTime, outError)
 	return rv
 }

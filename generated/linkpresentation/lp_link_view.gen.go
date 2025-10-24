@@ -108,7 +108,7 @@ func NewLPLinkViewWithMetadata(metadata ILPLinkMetadata) LPLinkView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(url:)
-func NewLPLinkViewWithURL(URL foundation.objc.IObject /* cross-framework URL */) LPLinkView {
+func NewLPLinkViewWithURL(URL objc.IObject /* cross-framework: NSURL */) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
 	rv := objc.Send[LPLinkView](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()

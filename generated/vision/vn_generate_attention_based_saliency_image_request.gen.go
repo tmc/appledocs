@@ -29,13 +29,19 @@ type _GenerateAttentionBasedSaliencyImageRequestClass struct {
 // An interface definition for the [GenerateAttentionBasedSaliencyImageRequest] class.
 type IGenerateAttentionBasedSaliencyImageRequest interface {
 	IImageBasedRequest
-	Results() VNSaliencyImageObservation
+	// properties:
+	Results() IVNSaliencyImageObservation
 	SetResults(value IVNSaliencyImageObservation)
 	VNGenerateAttentionBasedSaliencyImageRequestRevision1() int
+	// methods:
 }
 
 // An object that produces a heat map that identifies the parts of an image most likely to draw attention.
+
+
+// An object that produces a heat map that identifies the parts of an image most likely to draw attention.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateAttentionBasedSaliencyImageRequest
 type GenerateAttentionBasedSaliencyImageRequest struct {
 	ImageBasedRequest
@@ -82,26 +88,29 @@ func NewGenerateAttentionBasedSaliencyImageRequest() GenerateAttentionBasedSalie
 }
 
 
+
 // The results of the image saliency request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
-func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() VNSaliencyImageObservation {
-	rv := objc.Send[VNSaliencyImageObservation](g_.ID, objc.Sel("results"))
+func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() IVNSaliencyImageObservation {
+	rv := objc.Send[SaliencyImageObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the image saliency request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
 func (g_ GenerateAttentionBasedSaliencyImageRequest) SetResults(value IVNSaliencyImageObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the image saliency request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequestrevision1
 func (g_ GenerateAttentionBasedSaliencyImageRequest) VNGenerateAttentionBasedSaliencyImageRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateAttentionBasedSaliencyImageRequestRevision1"))

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ArrayController] class.
@@ -31,38 +32,38 @@ type _ArrayControllerClass struct {
 type IArrayController interface {
 	IObjectController
 	// properties:
-	AlwaysUsesMultipleValuesMarker() bool /* primitive/slice/pointer. */
-	SetAlwaysUsesMultipleValuesMarker(value bool /* primitive/slice/pointer. */)
+	AlwaysUsesMultipleValuesMarker() bool
+	SetAlwaysUsesMultipleValuesMarker(value bool)
 	ArrangedObjects() unsafe.Pointer
 	SetArrangedObjects(value unsafe.Pointer)
 	AutomaticRearrangementKeyPaths() objc.IObject /* cross-framework: NSString */
 	SetAutomaticRearrangementKeyPaths(value objc.IObject /* cross-framework: NSString */)
-	AutomaticallyRearrangesObjects() bool /* primitive/slice/pointer. */
-	SetAutomaticallyRearrangesObjects(value bool /* primitive/slice/pointer. */)
-	AvoidsEmptySelection() bool /* primitive/slice/pointer. */
-	SetAvoidsEmptySelection(value bool /* primitive/slice/pointer. */)
-	CanInsert() bool /* primitive/slice/pointer. */
-	SetCanInsert(value bool /* primitive/slice/pointer. */)
-	CanSelectNext() bool /* primitive/slice/pointer. */
-	SetCanSelectNext(value bool /* primitive/slice/pointer. */)
-	CanSelectPrevious() bool /* primitive/slice/pointer. */
-	SetCanSelectPrevious(value bool /* primitive/slice/pointer. */)
-	ClearsFilterPredicateOnInsertion() bool /* primitive/slice/pointer. */
-	SetClearsFilterPredicateOnInsertion(value bool /* primitive/slice/pointer. */)
+	AutomaticallyRearrangesObjects() bool
+	SetAutomaticallyRearrangesObjects(value bool)
+	AvoidsEmptySelection() bool
+	SetAvoidsEmptySelection(value bool)
+	CanInsert() bool
+	SetCanInsert(value bool)
+	CanSelectNext() bool
+	SetCanSelectNext(value bool)
+	CanSelectPrevious() bool
+	SetCanSelectPrevious(value bool)
+	ClearsFilterPredicateOnInsertion() bool
+	SetClearsFilterPredicateOnInsertion(value bool)
 	FilterPredicate() objc.IObject /* cross-framework: Predicate */
 	SetFilterPredicate(value objc.IObject /* cross-framework: Predicate */)
-	PreservesSelection() bool /* primitive/slice/pointer. */
-	SetPreservesSelection(value bool /* primitive/slice/pointer. */)
+	PreservesSelection() bool
+	SetPreservesSelection(value bool)
 	SelectedObjects() unsafe.Pointer
 	SetSelectedObjects(value unsafe.Pointer)
-	SelectionIndex() int /* primitive/slice/pointer. */
-	SetSelectionIndex(value int /* primitive/slice/pointer. */)
+	SelectionIndex() int
+	SetSelectionIndex(value int)
 	SelectionIndexes() objc.IObject /* cross-framework: IndexSet */
 	SetSelectionIndexes(value objc.IObject /* cross-framework: IndexSet */)
-	SelectsInsertedObjects() bool /* primitive/slice/pointer. */
-	SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */)
-	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
-	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
+	SelectsInsertedObjects() bool
+	SetSelectsInsertedObjects(value bool)
+	SortDescriptors() objectivec.IObject
+	SetSortDescriptors(value objectivec.IObject)
 	// methods:
 }
 
@@ -125,7 +126,7 @@ func NewArrayController() ArrayController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/alwaysusesmultiplevaluesmarker
-func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
 }
@@ -135,7 +136,7 @@ func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/alwaysusesmultiplevaluesmarker
-func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
 }
 
@@ -182,7 +183,7 @@ func (a_ ArrayController) SetAutomaticRearrangementKeyPaths(value objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticallyrearrangesobjects
-func (a_ ArrayController) AutomaticallyRearrangesObjects() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) AutomaticallyRearrangesObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("automaticallyRearrangesObjects"))
 	return rv
 }
@@ -192,7 +193,7 @@ func (a_ ArrayController) AutomaticallyRearrangesObjects() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticallyrearrangesobjects
-func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticallyRearrangesObjects:"), value)
 }
 
@@ -201,7 +202,7 @@ func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/avoidsemptyselection
-func (a_ ArrayController) AvoidsEmptySelection() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
 }
@@ -211,7 +212,7 @@ func (a_ ArrayController) AvoidsEmptySelection() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/avoidsemptyselection
-func (a_ ArrayController) SetAvoidsEmptySelection(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
 }
 
@@ -220,7 +221,7 @@ func (a_ ArrayController) SetAvoidsEmptySelection(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/caninsert
-func (a_ ArrayController) CanInsert() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) CanInsert() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canInsert"))
 	return rv
 }
@@ -230,7 +231,7 @@ func (a_ ArrayController) CanInsert() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/caninsert
-func (a_ ArrayController) SetCanInsert(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetCanInsert(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanInsert:"), value)
 }
 
@@ -239,7 +240,7 @@ func (a_ ArrayController) SetCanInsert(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectnext
-func (a_ ArrayController) CanSelectNext() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) CanSelectNext() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectNext"))
 	return rv
 }
@@ -249,7 +250,7 @@ func (a_ ArrayController) CanSelectNext() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectnext
-func (a_ ArrayController) SetCanSelectNext(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetCanSelectNext(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanSelectNext:"), value)
 }
 
@@ -258,7 +259,7 @@ func (a_ ArrayController) SetCanSelectNext(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectprevious
-func (a_ ArrayController) CanSelectPrevious() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) CanSelectPrevious() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectPrevious"))
 	return rv
 }
@@ -268,7 +269,7 @@ func (a_ ArrayController) CanSelectPrevious() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/canselectprevious
-func (a_ ArrayController) SetCanSelectPrevious(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetCanSelectPrevious(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanSelectPrevious:"), value)
 }
 
@@ -277,7 +278,7 @@ func (a_ ArrayController) SetCanSelectPrevious(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/clearsfilterpredicateoninsertion
-func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("clearsFilterPredicateOnInsertion"))
 	return rv
 }
@@ -287,7 +288,7 @@ func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/clearsfilterpredicateoninsertion
-func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setClearsFilterPredicateOnInsertion:"), value)
 }
 
@@ -297,7 +298,7 @@ func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool /* prim
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
 func (a_ ArrayController) FilterPredicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](a_.ID, objc.Sel("filterPredicate"))
+	rv := objc.Send[foundation.Predicate](a_.ID, objc.Sel("filterPredicate"))
 	return rv
 }
 
@@ -315,7 +316,7 @@ func (a_ ArrayController) SetFilterPredicate(value objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/preservesselection
-func (a_ ArrayController) PreservesSelection() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) PreservesSelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preservesSelection"))
 	return rv
 }
@@ -325,7 +326,7 @@ func (a_ ArrayController) PreservesSelection() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/preservesselection
-func (a_ ArrayController) SetPreservesSelection(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesSelection:"), value)
 }
 
@@ -353,7 +354,7 @@ func (a_ ArrayController) SetSelectedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindex
-func (a_ ArrayController) SelectionIndex() int /* primitive/slice/pointer. */ {
+func (a_ ArrayController) SelectionIndex() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("selectionIndex"))
 	return rv
 }
@@ -363,7 +364,7 @@ func (a_ ArrayController) SelectionIndex() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindex
-func (a_ ArrayController) SetSelectionIndex(value int /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetSelectionIndex(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndex:"), value)
 }
 
@@ -391,7 +392,7 @@ func (a_ ArrayController) SetSelectionIndexes(value objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectsinsertedobjects
-func (a_ ArrayController) SelectsInsertedObjects() bool /* primitive/slice/pointer. */ {
+func (a_ ArrayController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
 }
@@ -401,7 +402,7 @@ func (a_ ArrayController) SelectsInsertedObjects() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectsinsertedobjects
-func (a_ ArrayController) SetSelectsInsertedObjects(value bool /* primitive/slice/pointer. */) {
+func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
 }
 
@@ -410,8 +411,8 @@ func (a_ ArrayController) SetSelectsInsertedObjects(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
-	rv := objc.Send[SortDescriptor](a_.ID, objc.Sel("sortDescriptors"))
+func (a_ ArrayController) SortDescriptors() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -420,7 +421,7 @@ func (a_ ArrayController) SortDescriptors() objc.IObject /* cross-framework: Sor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
+func (a_ ArrayController) SetSortDescriptors(value objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

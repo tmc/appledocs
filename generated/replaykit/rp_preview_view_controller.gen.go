@@ -30,16 +30,20 @@ type _RPPreviewViewControllerClass struct {
 // An interface definition for the [RPPreviewViewController] class.
 type IRPPreviewViewController interface {
 	appkit.IViewController
-	Mode() RPPreviewViewControllerMode
-	SetMode(value RPPreviewViewControllerMode)
+	// properties:
 	PreviewControllerDelegate() objc.ID
 	SetPreviewControllerDelegate(value objc.ID)
+	// methods:
 }
 
 // An object that displays a user interface where users preview and edit a screen recording that you create with ReplayKit.
 //
 // Upon completion of a successful recording, the preview view controller is passed into the completion handler for .
+
+
+// An object that displays a user interface where users preview and edit a screen recording that you create with ReplayKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController
 type RPPreviewViewController struct {
 	appkit.ViewController
@@ -86,26 +90,10 @@ func NewRPPreviewViewController() RPPreviewViewController {
 }
 
 
-// The type of screen that appears when the view is presented.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/mode
-func (r_ RPPreviewViewController) Mode() RPPreviewViewControllerMode {
-	rv := objc.Send[RPPreviewViewControllerMode](r_.ID, objc.Sel("mode"))
-	return rv
-}
-
-
-// SetMode sets the value of the mode property.
-// The type of screen that appears when the view is presented.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/mode
-func (r_ RPPreviewViewController) SetMode(value RPPreviewViewControllerMode) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setMode:"), value)
-}
 
 // The preview view controller’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/previewControllerDelegate
 func (r_ RPPreviewViewController) PreviewControllerDelegate() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("previewControllerDelegate"))
@@ -113,14 +101,12 @@ func (r_ RPPreviewViewController) PreviewControllerDelegate() objc.ID {
 }
 
 
-// SetPreviewControllerDelegate sets the value of the previewControllerDelegate property.
 // The preview view controller’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/previewControllerDelegate
 func (r_ RPPreviewViewController) SetPreviewControllerDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreviewControllerDelegate:"), value)
 }
-
 
 

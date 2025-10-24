@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in QuickLook
 	PreviewControllerDataSource = _undefined // referenced in QuickLook
 	PreviewControllerDelegate = _undefined // referenced in QuickLook
 	PreviewItem = _undefined // referenced in QuickLook

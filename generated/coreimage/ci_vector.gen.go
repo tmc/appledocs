@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,17 +33,17 @@ type _VectorClass struct {
 type IVector interface {
 	objectivec.IObject
 	// properties:
-	CGAffineTransformValue() coregraphics.CGAffineTransform
-	CGPointValue() coregraphics.CGPoint
-	CGRectValue() coregraphics.CGRect
+	CGAffineTransformValue() objc.IObject /* cross-framework: AffineTransform */
+	CGPointValue() objc.IObject /* cross-framework: Point */
+	CGRectValue() objc.IObject /* cross-framework: Rect */
 	Count() uintptr /* not a class type */
-	StringRepresentation() string /* primitive/slice/pointer. */
-	W() float64 /* primitive/slice/pointer. */
-	X() float64 /* primitive/slice/pointer. */
-	Y() float64 /* primitive/slice/pointer. */
-	Z() float64 /* primitive/slice/pointer. */
+	StringRepresentation() objc.IObject /* cross-framework: NSString */
+	W() float64
+	X() float64
+	Y() float64
+	Z() float64
 	// methods:
-	ValueAtIndex(index uintptr /* not a class type */) float64 /* primitive/slice/pointer. */
+	ValueAtIndex(index uintptr /* not a class type */) float64
 }
 
 // The Core Image class that defines a vector object.
@@ -102,7 +103,7 @@ func NewVector() Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgAffineTransform:)
-func NewVectorWithCGAffineTransform(t coregraphics.CGAffineTransform) Vector {
+func NewVectorWithCGAffineTransform(t objc.IObject /* cross-framework: AffineTransform */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGAffineTransform:"), t)
 	rv.Autorelease()
@@ -114,7 +115,7 @@ func NewVectorWithCGAffineTransform(t coregraphics.CGAffineTransform) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgPoint:)
-func NewVectorWithCGPoint(p coregraphics.CGPoint) Vector {
+func NewVectorWithCGPoint(p objc.IObject /* cross-framework: Point */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGPoint:"), p)
 	rv.Autorelease()
@@ -126,7 +127,7 @@ func NewVectorWithCGPoint(p coregraphics.CGPoint) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(cgRect:)
-func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
+func NewVectorWithCGRect(r objc.IObject /* cross-framework: Rect */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithCGRect:"), r)
 	rv.Autorelease()
@@ -138,9 +139,9 @@ func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(string:)
-func NewVectorWithString(representation string /* primitive/slice/pointer. */) Vector {
+func NewVectorWithString(representation objc.IObject /* cross-framework: NSString */) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), objc.String(representation))
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), representation)
 	rv.Autorelease()
 	return rv
 }
@@ -150,7 +151,7 @@ func NewVectorWithString(representation string /* primitive/slice/pointer. */) V
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
-func NewVectorWithValuesCount(values coregraphics.float64 /* primitive/slice/pointer. */, count uintptr /* not a class type */) Vector {
+func NewVectorWithValuesCount(values corefoundation.CGFloat, count uintptr /* not a class type */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
 	rv.Autorelease()
@@ -162,7 +163,7 @@ func NewVectorWithValuesCount(values coregraphics.float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:)
-func NewVectorWithX(x float64 /* primitive/slice/pointer. */) Vector {
+func NewVectorWithX(x float64) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:"), x)
 	rv.Autorelease()
@@ -174,7 +175,7 @@ func NewVectorWithX(x float64 /* primitive/slice/pointer. */) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:)
-func NewVectorWithXY(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */) Vector {
+func NewVectorWithXY(x float64, y float64) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:"), x, y)
 	rv.Autorelease()
@@ -186,7 +187,7 @@ func NewVectorWithXY(x float64 /* primitive/slice/pointer. */, y float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:)
-func NewVectorWithXYZ(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */) Vector {
+func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:"), x, y, z)
 	rv.Autorelease()
@@ -198,7 +199,7 @@ func NewVectorWithXYZ(x float64 /* primitive/slice/pointer. */, y float64 /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:w:)
-func NewVectorWithXYZW(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */, w float64 /* primitive/slice/pointer. */) Vector {
+func NewVectorWithXYZW(x float64, y float64, z float64, w float64) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:W:"), x, y, z, w)
 	rv.Autorelease()
@@ -211,7 +212,7 @@ func NewVectorWithXYZW(x float64 /* primitive/slice/pointer. */, y float64 /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGAffineTransform:
-func (vc _VectorClass) VectorWithCGAffineTransform(t coregraphics.CGAffineTransform) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGAffineTransform(t objc.IObject /* cross-framework: AffineTransform */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGAffineTransform:"), t)
 	return rv
 }
@@ -221,7 +222,7 @@ func (vc _VectorClass) VectorWithCGAffineTransform(t coregraphics.CGAffineTransf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGPoint:
-func (vc _VectorClass) VectorWithCGPoint(p coregraphics.CGPoint) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGPoint(p objc.IObject /* cross-framework: Point */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGPoint:"), p)
 	return rv
 }
@@ -231,7 +232,7 @@ func (vc _VectorClass) VectorWithCGPoint(p coregraphics.CGPoint) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithCGRect:
-func (vc _VectorClass) VectorWithCGRect(r coregraphics.CGRect) unsafe.Pointer {
+func (vc _VectorClass) VectorWithCGRect(r objc.IObject /* cross-framework: Rect */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithCGRect:"), r)
 	return rv
 }
@@ -241,8 +242,8 @@ func (vc _VectorClass) VectorWithCGRect(r coregraphics.CGRect) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithString:
-func (vc _VectorClass) VectorWithString(representation string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithString:"), objc.String(representation))
+func (vc _VectorClass) VectorWithString(representation objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithString:"), representation)
 	return rv
 }
 
@@ -251,7 +252,7 @@ func (vc _VectorClass) VectorWithString(representation string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithValues:count:
-func (vc _VectorClass) VectorWithValuesCount(values float64 /* primitive/slice/pointer. */, count uintptr /* not a class type */) unsafe.Pointer {
+func (vc _VectorClass) VectorWithValuesCount(values float64, count uintptr /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithValues:count:"), values, count)
 	return rv
 }
@@ -261,7 +262,7 @@ func (vc _VectorClass) VectorWithValuesCount(values float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:
-func (vc _VectorClass) VectorWithX(x float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (vc _VectorClass) VectorWithX(x float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:"), x)
 	return rv
 }
@@ -271,7 +272,7 @@ func (vc _VectorClass) VectorWithX(x float64 /* primitive/slice/pointer. */) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:
-func (vc _VectorClass) VectorWithXY(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXY(x float64, y float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:"), x, y)
 	return rv
 }
@@ -281,7 +282,7 @@ func (vc _VectorClass) VectorWithXY(x float64 /* primitive/slice/pointer. */, y 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:Z:
-func (vc _VectorClass) VectorWithXYZ(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXYZ(x float64, y float64, z float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:Z:"), x, y, z)
 	return rv
 }
@@ -291,7 +292,7 @@ func (vc _VectorClass) VectorWithXYZ(x float64 /* primitive/slice/pointer. */, y
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:Z:W:
-func (vc _VectorClass) VectorWithXYZW(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */, w float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXYZW(x float64, y float64, z float64, w float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:Z:W:"), x, y, z, w)
 	return rv
 }
@@ -301,7 +302,7 @@ func (vc _VectorClass) VectorWithXYZW(x float64 /* primitive/slice/pointer. */, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/value(at:)
-func (v_ Vector) ValueAtIndex(index uintptr /* not a class type */) float64 /* primitive/slice/pointer. */ {
+func (v_ Vector) ValueAtIndex(index uintptr /* not a class type */) float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }
@@ -311,8 +312,8 @@ func (v_ Vector) ValueAtIndex(index uintptr /* not a class type */) float64 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgAffineTransformValue
-func (v_ Vector) CGAffineTransformValue() coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](v_.ID, objc.Sel("CGAffineTransformValue"))
+func (v_ Vector) CGAffineTransformValue() objc.IObject /* cross-framework: AffineTransform */ {
+	rv := objc.Send[corefoundation.AffineTransform](v_.ID, objc.Sel("CGAffineTransformValue"))
 	return rv
 }
 
@@ -321,8 +322,8 @@ func (v_ Vector) CGAffineTransformValue() coregraphics.CGAffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgPointValue
-func (v_ Vector) CGPointValue() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("CGPointValue"))
+func (v_ Vector) CGPointValue() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](v_.ID, objc.Sel("CGPointValue"))
 	return rv
 }
 
@@ -331,8 +332,8 @@ func (v_ Vector) CGPointValue() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/cgRectValue
-func (v_ Vector) CGRectValue() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("CGRectValue"))
+func (v_ Vector) CGRectValue() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](v_.ID, objc.Sel("CGRectValue"))
 	return rv
 }
 
@@ -351,8 +352,8 @@ func (v_ Vector) Count() uintptr /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/stringRepresentation
-func (v_ Vector) StringRepresentation() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("stringRepresentation"))
+func (v_ Vector) StringRepresentation() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 
@@ -361,7 +362,7 @@ func (v_ Vector) StringRepresentation() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/w
-func (v_ Vector) W() float64 /* primitive/slice/pointer. */ {
+func (v_ Vector) W() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("W"))
 	return rv
 }
@@ -371,7 +372,7 @@ func (v_ Vector) W() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/x
-func (v_ Vector) X() float64 /* primitive/slice/pointer. */ {
+func (v_ Vector) X() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("X"))
 	return rv
 }
@@ -381,7 +382,7 @@ func (v_ Vector) X() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/y
-func (v_ Vector) Y() float64 /* primitive/slice/pointer. */ {
+func (v_ Vector) Y() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Y"))
 	return rv
 }
@@ -391,7 +392,7 @@ func (v_ Vector) Y() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/z
-func (v_ Vector) Z() float64 /* primitive/slice/pointer. */ {
+func (v_ Vector) Z() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Z"))
 	return rv
 }

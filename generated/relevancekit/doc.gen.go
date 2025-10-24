@@ -2,12 +2,12 @@
 
 // Package relevancekit provides Go bindings for the RelevanceKit framework.
 //
-// Provide on-device intelligence with contextual clues that increase your widget’s visibility on Apple Watch. [Full Topic]
+// Provide on-device intelligence with contextual clues that increase your widget’s visibility on Apple Watch.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to RelevanceKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/RelevanceKit
+// See: https://developer.apple.com/documentation/RelevanceKit
 package relevancekit
 
 import (

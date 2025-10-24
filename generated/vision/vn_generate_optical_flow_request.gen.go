@@ -29,22 +29,28 @@ type _GenerateOpticalFlowRequestClass struct {
 // An interface definition for the [GenerateOpticalFlowRequest] class.
 type IGenerateOpticalFlowRequest interface {
 	ITargetedImageRequest
+	// properties:
 	ComputationAccuracy() unsafe.Pointer
 	SetComputationAccuracy(value unsafe.Pointer)
 	KeepNetworkOutput() bool
 	SetKeepNetworkOutput(value bool)
-	OutputPixelFormat() unsafe.Pointer
-	SetOutputPixelFormat(value unsafe.Pointer)
-	Results() VNPixelBufferObservation
+	OutputPixelFormat() uint32 /* not a class type */
+	SetOutputPixelFormat(value uint32 /* not a class type */)
+	Results() IVNPixelBufferObservation
 	SetResults(value IVNPixelBufferObservation)
 	VNGenerateOpticalFlowRequestRevision1() int
 	VNGenerateOpticalFlowRequestRevision2() int
+	// methods:
 }
 
 // An object that generates directional change vectors for each pixel in the targeted image.
 //
 // This request operates at a pixel level, so both images need to have the same dimensions to successfully perform the analysis. Setting a region of interest limits the region in which the analysis occurs. However, the system reports the resulting observation at full resolution. Optical flow requests are resource-intensive, so create only one request at a time, and release it immediately after generating optical flows.
+
+
+// An object that generates directional change vectors for each pixel in the targeted image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateOpticalFlowRequest
 type GenerateOpticalFlowRequest struct {
 	TargetedImageRequest
@@ -91,8 +97,10 @@ func NewGenerateOpticalFlowRequest() GenerateOpticalFlowRequest {
 }
 
 
+
 // The accuracy level for computing optical flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
 func (g_ GenerateOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("computationAccuracy"))
@@ -100,17 +108,18 @@ func (g_ GenerateOpticalFlowRequest) ComputationAccuracy() unsafe.Pointer {
 }
 
 
-// SetComputationAccuracy sets the value of the computationAccuracy property.
 // The accuracy level for computing optical flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.property
 func (g_ GenerateOpticalFlowRequest) SetComputationAccuracy(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setComputationAccuracy:"), value)
 }
 
+
 // A Boolean value that indicates whether to keep the raw pixel buffer coming from the machine learning network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/keepnetworkoutput
 func (g_ GenerateOpticalFlowRequest) KeepNetworkOutput() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("keepNetworkOutput"))
@@ -118,61 +127,66 @@ func (g_ GenerateOpticalFlowRequest) KeepNetworkOutput() bool {
 }
 
 
-// SetKeepNetworkOutput sets the value of the keepNetworkOutput property.
 // A Boolean value that indicates whether to keep the raw pixel buffer coming from the machine learning network.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/keepnetworkoutput
 func (g_ GenerateOpticalFlowRequest) SetKeepNetworkOutput(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKeepNetworkOutput:"), value)
 }
 
+
 // The output buffer’s pixel format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/outputpixelformat
-func (g_ GenerateOpticalFlowRequest) OutputPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputPixelFormat"))
+func (g_ GenerateOpticalFlowRequest) OutputPixelFormat() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](g_.ID, objc.Sel("outputPixelFormat"))
 	return rv
 }
 
 
-// SetOutputPixelFormat sets the value of the outputPixelFormat property.
 // The output buffer’s pixel format.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/outputpixelformat
-func (g_ GenerateOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) {
+func (g_ GenerateOpticalFlowRequest) SetOutputPixelFormat(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
+
 // The results of the request to generate optical flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
-func (g_ GenerateOpticalFlowRequest) Results() VNPixelBufferObservation {
-	rv := objc.Send[VNPixelBufferObservation](g_.ID, objc.Sel("results"))
+func (g_ GenerateOpticalFlowRequest) Results() IVNPixelBufferObservation {
+	rv := objc.Send[PixelBufferObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the request to generate optical flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
 func (g_ GenerateOpticalFlowRequest) SetResults(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the optical flow generation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1
 func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the optical flow generation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2
 func (g_ GenerateOpticalFlowRequest) VNGenerateOpticalFlowRequestRevision2() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateOpticalFlowRequestRevision2"))

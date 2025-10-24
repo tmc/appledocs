@@ -30,12 +30,18 @@ type _PHASEDirectivityModelParametersClass struct {
 // An interface definition for the [PHASEDirectivityModelParameters] class.
 type IPHASEDirectivityModelParameters interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A base class for objects that direct sound.
 //
 // Several classes derive from this class that implement a unique strategy to direct sound. Rather than create an instance of this class, instantiate a subclass, such as or .
+
+
+// A base class for objects that direct sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDirectivityModelParameters
 type PHASEDirectivityModelParameters struct {
 	objectivec.Object

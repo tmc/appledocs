@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GroupActivities without requiring cgo.
-
-// Create app-specific activities your users can share and experience together.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GroupActivities
+// See: https://developer.apple.com/documentation/GroupActivities
 package groupactivities
 
 import (

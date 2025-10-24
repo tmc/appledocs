@@ -30,10 +30,10 @@ type _DecimalNumberClass struct {
 type IDecimalNumber interface {
 	INumber
 	// properties:
-	DecimalValue() unsafe.Pointer
-	SetDecimalValue(value unsafe.Pointer)
-	DoubleValue() float64 /* primitive/slice/pointer. */
-	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
+	DecimalValue() objc.IObject /* cross-framework: Decimal */
+	SetDecimalValue(value objc.IObject /* cross-framework: Decimal */)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
 	ObjCType() unsafe.Pointer
 	SetObjCType(value unsafe.Pointer)
 	// methods:
@@ -98,8 +98,8 @@ func NewDecimalNumber() DecimalNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/decimalvalue
-func (d_ DecimalNumber) DecimalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decimalValue"))
+func (d_ DecimalNumber) DecimalValue() objc.IObject /* cross-framework: Decimal */ {
+	rv := objc.Send[Decimal](d_.ID, objc.Sel("decimalValue"))
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (d_ DecimalNumber) DecimalValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/decimalvalue
-func (d_ DecimalNumber) SetDecimalValue(value unsafe.Pointer) {
+func (d_ DecimalNumber) SetDecimalValue(value objc.IObject /* cross-framework: Decimal */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDecimalValue:"), value)
 }
 
@@ -117,7 +117,7 @@ func (d_ DecimalNumber) SetDecimalValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
-func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer. */ {
+func (d_ DecimalNumber) DoubleValue() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
-func (d_ DecimalNumber) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
+func (d_ DecimalNumber) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

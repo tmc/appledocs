@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CandidateListTouchBarItem] class.
@@ -29,26 +30,26 @@ type _CandidateListTouchBarItemClass struct {
 // An interface definition for the [CandidateListTouchBarItem] class.
 type ICandidateListTouchBarItem interface {
 	ITouchBarItem
-	AttributedStringForCandidate() unsafe.Pointer
-	SetAttributedStringForCandidate(value unsafe.Pointer)
-	Collapsed() bool
-	SetCollapsed(value bool)
+	// properties:
 	AllowsCollapsing() bool
 	SetAllowsCollapsing(value bool)
 	AllowsTextInputContextCandidates() bool
 	SetAllowsTextInputContextCandidates(value bool)
+	AttributedStringForCandidate() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedStringForCandidate(value objc.IObject /* cross-framework: AttributedString */)
 	Candidates() unsafe.Pointer
 	SetCandidates(value unsafe.Pointer)
-	Client() unsafe.Pointer
-	SetClient(value unsafe.Pointer)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Client() TextInputClient /* not a class type */
+	SetClient(value TextInputClient /* not a class type */)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
+	Delegate() CandidateListTouchBarItemDelegate /* not a class type */
+	SetDelegate(value CandidateListTouchBarItemDelegate /* not a class type */)
 	IsCandidateListVisible() bool
 	SetIsCandidateListVisible(value bool)
 	IsCollapsed() bool
 	SetIsCollapsed(value bool)
+	// methods:
 }
 
 // A bar item that, along with its delegate, provides a list of textual suggestions for the current text view.
@@ -104,44 +105,6 @@ func NewCandidateListTouchBarItem() CandidateListTouchBarItem {
 
 
 
-// A block that converts a candidate object into an attributed string for display in the candidate list item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/attributedStringForCandidate
-func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringForCandidate"))
-	return rv
-}
-
-
-// A block that converts a candidate object into an attributed string for display in the candidate list item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/attributedStringForCandidate
-func (c_ CandidateListTouchBarItem) SetAttributedStringForCandidate(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringForCandidate:"), value)
-}
-
-
-// A Boolean value that controls the visibility of the candidate list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/isCollapsed
-func (c_ CandidateListTouchBarItem) Collapsed() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("collapsed"))
-	return rv
-}
-
-
-// A Boolean value that controls the visibility of the candidate list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCandidateListTouchBarItem/isCollapsed
-func (c_ CandidateListTouchBarItem) SetCollapsed(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCollapsed:"), value)
-}
-
-
 // A Boolean value that specifies whether the item can be collapsed.
 //
 // [Full Topic]
@@ -180,6 +143,25 @@ func (c_ CandidateListTouchBarItem) SetAllowsTextInputContextCandidates(value bo
 }
 
 
+// A block that converts a candidate object into an attributed string for display in the candidate list item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/attributedstringforcandidate
+func (c_ CandidateListTouchBarItem) AttributedStringForCandidate() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringForCandidate"))
+	return rv
+}
+
+
+// A block that converts a candidate object into an attributed string for display in the candidate list item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/attributedstringforcandidate
+func (c_ CandidateListTouchBarItem) SetAttributedStringForCandidate(value objc.IObject /* cross-framework: AttributedString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringForCandidate:"), value)
+}
+
+
 // The array of candidate objects previously set by
 //
 // [Full Topic]
@@ -203,8 +185,8 @@ func (c_ CandidateListTouchBarItem) SetCandidates(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/client
-func (c_ CandidateListTouchBarItem) Client() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("client"))
+func (c_ CandidateListTouchBarItem) Client() TextInputClient /* not a class type */ {
+	rv := objc.Send[TextInputClient](c_.ID, objc.Sel("client"))
 	return rv
 }
 
@@ -213,7 +195,7 @@ func (c_ CandidateListTouchBarItem) Client() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/client
-func (c_ CandidateListTouchBarItem) SetClient(value unsafe.Pointer) {
+func (c_ CandidateListTouchBarItem) SetClient(value TextInputClient /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClient:"), value)
 }
 
@@ -222,8 +204,8 @@ func (c_ CandidateListTouchBarItem) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/customizationlabel
-func (c_ CandidateListTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("customizationLabel"))
+func (c_ CandidateListTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
@@ -232,8 +214,8 @@ func (c_ CandidateListTouchBarItem) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/customizationlabel
-func (c_ CandidateListTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (c_ CandidateListTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 
@@ -241,8 +223,8 @@ func (c_ CandidateListTouchBarItem) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/delegate
-func (c_ CandidateListTouchBarItem) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+func (c_ CandidateListTouchBarItem) Delegate() CandidateListTouchBarItemDelegate /* not a class type */ {
+	rv := objc.Send[CandidateListTouchBarItemDelegate](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -251,7 +233,7 @@ func (c_ CandidateListTouchBarItem) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem/delegate
-func (c_ CandidateListTouchBarItem) SetDelegate(value unsafe.Pointer) {
+func (c_ CandidateListTouchBarItem) SetDelegate(value CandidateListTouchBarItemDelegate /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 

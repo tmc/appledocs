@@ -31,8 +31,8 @@ type _DepthDataClass struct {
 type IDepthData interface {
 	objectivec.IObject
 	// properties:
-	AvailableDepthDataTypes() unsafe.Pointer
-	SetAvailableDepthDataTypes(value unsafe.Pointer)
+	AvailableDepthDataTypes() uint32 /* not a class type */
+	SetAvailableDepthDataTypes(value uint32 /* not a class type */)
 	CameraCalibrationData() objc.IObject /* cross-framework: CameraCalibrationData */
 	SetCameraCalibrationData(value objc.IObject /* cross-framework: CameraCalibrationData */)
 	DepthDataAccuracy() unsafe.Pointer
@@ -41,10 +41,10 @@ type IDepthData interface {
 	SetDepthDataMap(value PixelBuffer /* not a class type */)
 	DepthDataQuality() unsafe.Pointer
 	SetDepthDataQuality(value unsafe.Pointer)
-	DepthDataType() unsafe.Pointer
-	SetDepthDataType(value unsafe.Pointer)
-	IsDepthDataFiltered() bool /* primitive/slice/pointer. */
-	SetIsDepthDataFiltered(value bool /* primitive/slice/pointer. */)
+	DepthDataType() uint32 /* not a class type */
+	SetDepthDataType(value uint32 /* not a class type */)
+	IsDepthDataFiltered() bool
+	SetIsDepthDataFiltered(value bool)
 	// methods:
 }
 
@@ -105,8 +105,8 @@ func NewDepthData() DepthData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/availabledepthdatatypes-3ifx1
-func (d_ DepthData) AvailableDepthDataTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("availableDepthDataTypes"))
+func (d_ DepthData) AvailableDepthDataTypes() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](d_.ID, objc.Sel("availableDepthDataTypes"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (d_ DepthData) AvailableDepthDataTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/availabledepthdatatypes-3ifx1
-func (d_ DepthData) SetAvailableDepthDataTypes(value unsafe.Pointer) {
+func (d_ DepthData) SetAvailableDepthDataTypes(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAvailableDepthDataTypes:"), value)
 }
 
@@ -200,8 +200,8 @@ func (d_ DepthData) SetDepthDataQuality(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatatype
-func (d_ DepthData) DepthDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataType"))
+func (d_ DepthData) DepthDataType() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](d_.ID, objc.Sel("depthDataType"))
 	return rv
 }
 
@@ -210,7 +210,7 @@ func (d_ DepthData) DepthDataType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatatype
-func (d_ DepthData) SetDepthDataType(value unsafe.Pointer) {
+func (d_ DepthData) SetDepthDataType(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataType:"), value)
 }
 
@@ -219,7 +219,7 @@ func (d_ DepthData) SetDepthDataType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
-func (d_ DepthData) IsDepthDataFiltered() bool /* primitive/slice/pointer. */ {
+func (d_ DepthData) IsDepthDataFiltered() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthDataFiltered"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (d_ DepthData) IsDepthDataFiltered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
-func (d_ DepthData) SetIsDepthDataFiltered(value bool /* primitive/slice/pointer. */) {
+func (d_ DepthData) SetIsDepthDataFiltered(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthDataFiltered:"), value)
 }
 

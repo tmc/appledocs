@@ -36,8 +36,8 @@ type IAssetDownloadConfiguration interface {
 	SetArtworkData(value objc.IObject /* cross-framework: Data */)
 	AuxiliaryContentConfigurations() AssetDownloadContentConfiguration /* not a class type */
 	SetAuxiliaryContentConfigurations(value AssetDownloadContentConfiguration /* not a class type */)
-	OptimizesAuxiliaryContentConfigurations() bool /* primitive/slice/pointer. */
-	SetOptimizesAuxiliaryContentConfigurations(value bool /* primitive/slice/pointer. */)
+	OptimizesAuxiliaryContentConfigurations() bool
+	SetOptimizesAuxiliaryContentConfigurations(value bool)
 	PrimaryContentConfiguration() AssetDownloadContentConfiguration /* not a class type */
 	SetPrimaryContentConfiguration(value AssetDownloadContentConfiguration /* not a class type */)
 	// methods:
@@ -136,7 +136,7 @@ func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value Ass
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool /* primitive/slice/pointer. */ {
+func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("optimizesAuxiliaryContentConfigurations"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool /* primitive/slice/pointer. */) {
+func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOptimizesAuxiliaryContentConfigurations:"), value)
 }
 

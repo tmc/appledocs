@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,11 @@ type _PHASEDuckerClass struct {
 // An interface definition for the [PHASEDucker] class.
 type IPHASEDucker interface {
 	objectivec.IObject
-	Activate()
-	Deactivate()
+	// properties:
 	AttackCurve() PHASECurveType
 	AttackTime() float64
 	Gain() float64
-	Identifier() string
+	Identifier() objc.IObject /* cross-framework: NSString */
 	Active() bool
 	ReleaseCurve() PHASECurveType
 	ReleaseTime() float64
@@ -43,12 +43,19 @@ type IPHASEDucker interface {
 	TargetGroups() unsafe.Pointer
 	IsActive() bool
 	SetIsActive(value bool)
+	// methods:
+	Activate()
+	Deactivate()
 }
 
 // An object that manages competing sounds.
 //
 // When a sound plays in any of the source groups, this class lowers the volume of all the target groups so the listener hears the source sound more clearly. You set the source and target using objects; see and .
+
+
+// An object that manages competing sounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker
 type PHASEDucker struct {
 	objectivec.Object
@@ -94,9 +101,9 @@ func NewPHASEDucker() PHASEDucker {
 
 
 
-
 // Creates an object that manages competing sounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/init(engine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:)
 func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAttackCurveReleaseCurve(engine IPHASEEngine, sourceGroups unsafe.Pointer, targetGroups unsafe.Pointer, gain float64, attackTime float64, releaseTime float64, attackCurve PHASECurveType, releaseCurve PHASECurveType) PHASEDucker {
 	instance := getPHASEDuckerClass().Alloc()
@@ -106,94 +113,118 @@ func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAt
 }
 
 
+
 // Instructs the ducker to begin altering sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/activate()
 func (p_ PHASEDucker) Activate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("activate"))
 }
 
+
 // Stops the ducker from altering sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/deactivate()
 func (p_ PHASEDucker) Deactivate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deactivate"))
 }
 
+
 // A mathematical curve that shapes transition progress as sound reduction begins.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/attackCurve
 func (p_ PHASEDucker) AttackCurve() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("attackCurve"))
 	return rv
 }
 
+
 // The amount of time for sound reduction to reach maximum strength.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/attackTime
 func (p_ PHASEDucker) AttackTime() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("attackTime"))
 	return rv
 }
 
+
 // The amount of volume reduction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/gain
 func (p_ PHASEDucker) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
 	return rv
 }
 
+
 // A unique value for the ducker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/identifier
-func (p_ PHASEDucker) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDucker) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean value that determines whether the ducker reduces sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/isActive
 func (p_ PHASEDucker) Active() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("active"))
 	return rv
 }
 
+
 // A mathematical curve that shapes transition progress as sound reduction ends.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/releaseCurve
 func (p_ PHASEDucker) ReleaseCurve() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("releaseCurve"))
 	return rv
 }
 
+
 // The amount of time to transition from maximum sound reduction to no reduction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/releaseTime
 func (p_ PHASEDucker) ReleaseTime() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("releaseTime"))
 	return rv
 }
 
+
 // The sounds that determine volume reduction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/sourceGroups
 func (p_ PHASEDucker) SourceGroups() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceGroups"))
 	return rv
 }
 
+
 // The sounds that reduce in volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/targetGroups
 func (p_ PHASEDucker) TargetGroups() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("targetGroups"))
 	return rv
 }
 
+
 // A Boolean value that determines whether the ducker reduces sound.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
 func (p_ PHASEDucker) IsActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isActive"))
@@ -201,10 +232,9 @@ func (p_ PHASEDucker) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that determines whether the ducker reduces sound.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseducker/isactive
 func (p_ PHASEDucker) SetIsActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsActive:"), value)

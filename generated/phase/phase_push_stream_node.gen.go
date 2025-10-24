@@ -30,22 +30,28 @@ type _PHASEPushStreamNodeClass struct {
 // An interface definition for the [PHASEPushStreamNode] class.
 type IPHASEPushStreamNode interface {
 	IPHASEStreamNode
-	Format() avfaudio.AudioFormat
-	SetFormat(value avfaudio.AudioFormat)
-	GainMetaParameter() PHASENumberMetaParameter
+	// properties:
+	Format() objc.IObject /* cross-framework: AudioFormat */
+	SetFormat(value objc.IObject /* cross-framework: AudioFormat */)
+	GainMetaParameter() IPHASENumberMetaParameter
 	SetGainMetaParameter(value IPHASENumberMetaParameter)
-	Mixer() PHASEMixer
+	Mixer() IPHASEMixer
 	SetMixer(value IPHASEMixer)
-	RateMetaParameter() PHASENumberMetaParameter
+	RateMetaParameter() IPHASENumberMetaParameter
 	SetRateMetaParameter(value IPHASENumberMetaParameter)
-	PushStreamNodes() PHASEPushStreamNode
+	PushStreamNodes() IPHASEPushStreamNode
 	SetPushStreamNodes(value IPHASEPushStreamNode)
+	// methods:
 }
 
 // An audio stream you manage to provide a sound buffer data.
 //
 // A sound event’s dictionary populates with an instance of this class when PHASE invokes a in your event node tree. Your app provides the audio data that the sound event plays by calling one or more of this class’s buffer-scheduling functions, for example, .
+
+
+// An audio stream you manage to provide a sound buffer data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode
 type PHASEPushStreamNode struct {
 	PHASEStreamNode
@@ -92,91 +98,96 @@ func NewPHASEPushStreamNode() PHASEPushStreamNode {
 }
 
 
+
 // The format of the audio stream data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
-func (p_ PHASEPushStreamNode) Format() avfaudio.AudioFormat {
+func (p_ PHASEPushStreamNode) Format() objc.IObject /* cross-framework: AudioFormat */ {
 	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 
 
-// SetFormat sets the value of the format property.
 // The format of the audio stream data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
-func (p_ PHASEPushStreamNode) SetFormat(value avfaudio.AudioFormat) {
+func (p_ PHASEPushStreamNode) SetFormat(value objc.IObject /* cross-framework: AudioFormat */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFormat:"), value)
 }
 
+
 // A meta parameter for dynamic loudness control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
-func (p_ PHASEPushStreamNode) GainMetaParameter() PHASENumberMetaParameter {
+func (p_ PHASEPushStreamNode) GainMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
 }
 
 
-// SetGainMetaParameter sets the value of the gainMetaParameter property.
 // A meta parameter for dynamic loudness control.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
 func (p_ PHASEPushStreamNode) SetGainMetaParameter(value IPHASENumberMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameter:"), value)
 }
 
+
 // The audio stream’s output pipeline.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
-func (p_ PHASEPushStreamNode) Mixer() PHASEMixer {
+func (p_ PHASEPushStreamNode) Mixer() IPHASEMixer {
 	rv := objc.Send[PHASEMixer](p_.ID, objc.Sel("mixer"))
 	return rv
 }
 
 
-// SetMixer sets the value of the mixer property.
 // The audio stream’s output pipeline.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
 func (p_ PHASEPushStreamNode) SetMixer(value IPHASEMixer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMixer:"), value)
 }
 
+
 // A meta parameter for dynamic rate control.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
-func (p_ PHASEPushStreamNode) RateMetaParameter() PHASENumberMetaParameter {
+func (p_ PHASEPushStreamNode) RateMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("rateMetaParameter"))
 	return rv
 }
 
 
-// SetRateMetaParameter sets the value of the rateMetaParameter property.
 // A meta parameter for dynamic rate control.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
 func (p_ PHASEPushStreamNode) SetRateMetaParameter(value IPHASENumberMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameter:"), value)
 }
 
+
 // A collection of audio streams for playback.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes
-func (p_ PHASEPushStreamNode) PushStreamNodes() PHASEPushStreamNode {
+func (p_ PHASEPushStreamNode) PushStreamNodes() IPHASEPushStreamNode {
 	rv := objc.Send[PHASEPushStreamNode](p_.ID, objc.Sel("pushStreamNodes"))
 	return rv
 }
 
 
-// SetPushStreamNodes sets the value of the pushStreamNodes property.
 // A collection of audio streams for playback.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes
 func (p_ PHASEPushStreamNode) SetPushStreamNodes(value IPHASEPushStreamNode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPushStreamNodes:"), value)

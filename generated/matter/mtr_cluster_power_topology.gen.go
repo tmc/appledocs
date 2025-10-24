@@ -30,17 +30,23 @@ type _MTRClusterPowerTopologyClass struct {
 // An interface definition for the [MTRClusterPowerTopology] class.
 type IMTRClusterPowerTopology interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	// properties:
+	// methods:
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
 }
 
 // Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
+
+
+// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology
 type MTRClusterPowerTopology struct {
 	MTRGenericCluster
@@ -88,11 +94,11 @@ func NewMTRClusterPowerTopology() MTRClusterPowerTopology {
 
 
 
-
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/init(device:endpointID:queue:)
-func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterPowerTopology {
+func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterPowerTopology {
 	instance := getMTRClusterPowerTopologyClass().Alloc()
 	rv := objc.Send[MTRClusterPowerTopology](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -100,52 +106,59 @@ func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device IMTRDevice, endp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeActiveEndpoints(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeActiveEndpointsWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveEndpointsWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAttributeList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAvailableEndpoints(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAvailableEndpointsWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAvailableEndpointsWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeClusterRevision(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeFeatureMap(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterPowerTopology) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 

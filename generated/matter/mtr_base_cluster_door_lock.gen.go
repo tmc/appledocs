@@ -29,9 +29,13 @@ type _MTRBaseClusterDoorLockClass struct {
 // An interface definition for the [MTRBaseClusterDoorLock] class.
 type IMTRBaseClusterDoorLock interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDoorLock
 type MTRBaseClusterDoorLock struct {
 	MTRGenericBaseCluster

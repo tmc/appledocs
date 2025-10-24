@@ -30,10 +30,10 @@ type _InputStreamClass struct {
 type IInputStream interface {
 	IStream
 	// properties:
-	HasBytesAvailable() bool /* primitive/slice/pointer. */
+	HasBytesAvailable() bool
+	SetHasBytesAvailable(value bool)
 	// methods:
-	GetBufferLength(buffer unsafe.Pointer, len_ UInteger /* not a class type */) bool /* primitive/slice/pointer. */
-	ReadMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
+	ReadMaxLength(buffer unsafe.Pointer, len_ uint) int
 }
 
 // A stream that provides read-only stream functionality.
@@ -91,88 +91,11 @@ func NewInputStream() InputStream {
 
 
 
-// Initializes and returns an object for reading from a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
-func NewInputStreamWithData(data IData) InputStream {
-	instance := getInputStreamClass().Alloc()
-	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithData:"), data)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes and returns an object that reads data from the file at a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
-func NewInputStreamWithFileAtPath(path IString) InputStream {
-	instance := getInputStreamClass().Alloc()
-	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), path)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes and returns an object that reads data from the file at a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
-func NewInputStreamWithURL(url IURL) InputStream {
-	instance := getInputStreamClass().Alloc()
-	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns an initialized object that reads data from the file at a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(URL:)-y5k
-func (ic _InputStreamClass) InputStreamWithURL(url IURL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithURL:"), url)
-	return rv
-}
-
-
-// Creates and returns an initialized object for reading from a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithData:
-func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithData:"), data)
-	return rv
-}
-
-
-// Creates and returns an initialized object that reads data from the file at a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithFileAtPath:
-func (ic _InputStreamClass) InputStreamWithFileAtPath(path IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), path)
-	return rv
-}
-
-
-// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/getBuffer(_:length:)
-func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ UInteger /* not a class type */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
-	return rv
-}
-
-
 // Reads up to a given number of bytes into a given buffer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/read(_:maxLength:)
-func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len_)
 	return rv
 }
@@ -181,10 +104,20 @@ func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint /* primitiv
 // A Boolean value that indicates whether the receiver has bytes available to read.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/hasBytesAvailable
-func (i_ InputStream) HasBytesAvailable() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
+func (i_ InputStream) HasBytesAvailable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv
 }
+
+
+// A Boolean value that indicates whether the receiver has bytes available to read.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable
+func (i_ InputStream) SetHasBytesAvailable(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setHasBytesAvailable:"), value)
+}
+
 
 

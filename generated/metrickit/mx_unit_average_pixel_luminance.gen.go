@@ -30,14 +30,20 @@ type _MXUnitAveragePixelLuminanceClass struct {
 // An interface definition for the [MXUnitAveragePixelLuminance] class.
 type IMXUnitAveragePixelLuminance interface {
 	foundation.IDimension
-	AveragePixelLuminance() MXUnitAveragePixelLuminance
+	// properties:
+	AveragePixelLuminance() IMXUnitAveragePixelLuminance
 	SetAveragePixelLuminance(value IMXUnitAveragePixelLuminance)
+	// methods:
 }
 
 // A unit of measure of pixel luminosity on an OLED display.
 //
 // Luminosity represents the brightness of each red, green, and blue component pixel. Unlike LCD displays, each pixel requires power to display a color, and white draws the most power per pixel. defines the base unit as the average luminance of all the pixels on the screen for some period of time. Reducing the average luminance of the display reduces the amount of power consumed by the app.
+
+
+// A unit of measure of pixel luminosity on an OLED display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitAveragePixelLuminance
 type MXUnitAveragePixelLuminance struct {
 	foundation.Dimension
@@ -84,19 +90,20 @@ func NewMXUnitAveragePixelLuminance() MXUnitAveragePixelLuminance {
 }
 
 
+
 // The average amount of luminosity of the pixels on an OLED display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
-func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() MXUnitAveragePixelLuminance {
+func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() IMXUnitAveragePixelLuminance {
 	rv := objc.Send[MXUnitAveragePixelLuminance](m_.ID, objc.Sel("averagePixelLuminance"))
 	return rv
 }
 
 
-// SetAveragePixelLuminance sets the value of the averagePixelLuminance property.
 // The average amount of luminosity of the pixels on an OLED display.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
 func (m_ MXUnitAveragePixelLuminance) SetAveragePixelLuminance(value IMXUnitAveragePixelLuminance) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAveragePixelLuminance:"), value)

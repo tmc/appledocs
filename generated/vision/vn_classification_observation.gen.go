@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ClassificationObservation] class.
@@ -30,21 +31,28 @@ type _ClassificationObservationClass struct {
 // An interface definition for the [ClassificationObservation] class.
 type IClassificationObservation interface {
 	IObservation
+	// properties:
+	ModelDescription() objc.IObject /* cross-framework: ModelDescription */
+	SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */)
+	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
+	SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */)
+	HasPrecisionRecallCurve() bool
+	SetHasPrecisionRecallCurve(value bool)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 	HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool
 	HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool
-	HasPrecisionRecallCurve() bool
-	ModelDescription() coreml.ModelDescription
-	SetModelDescription(value coreml.IModelDescription)
-	PredictedFeatureName() string
-	SetPredictedFeatureName(value string)
-	Identifier() string
-	SetIdentifier(value string)
 }
 
 // An object that represents classification information that an image-analysis request produces.
 //
 // This type of observation results from performing a image analysis with a Core ML model whose role is classification (rather than prediction or image-to-image processing). Vision infers that an object is a classifier model if that model predicts a single feature. That is, the model’s object has a non- value for its property.
+
+
+// An object that represents classification information that an image-analysis request produces.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation
 type ClassificationObservation struct {
 	Observation
@@ -91,82 +99,100 @@ func NewClassificationObservation() ClassificationObservation {
 }
 
 
+
 // Determines whether the observation for a specific recall has a minimum precision value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)
 func (c_ ClassificationObservation) HasMinimumPrecisionForRecall(minimumPrecision float32, recall float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumPrecision:forRecall:"), minimumPrecision, recall)
 	return rv
 }
 
+
 // Determines whether the observation for a specific precision has a minimum recall value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)
 func (c_ ClassificationObservation) HasMinimumRecallForPrecision(minimumRecall float32, precision float32) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMinimumRecall:forPrecision:"), minimumRecall, precision)
 	return rv
 }
 
-// A Boolean variable indicating whether the observation contains precision and recall curves.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassificationObservation/hasPrecisionRecallCurve
-func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasPrecisionRecallCurve"))
-	return rv
-}
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ ClassificationObservation) ModelDescription() coreml.ModelDescription {
+func (c_ ClassificationObservation) ModelDescription() objc.IObject /* cross-framework: ModelDescription */ {
 	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
 
-// SetModelDescription sets the value of the modelDescription property.
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ ClassificationObservation) SetModelDescription(value coreml.IModelDescription) {
+func (c_ ClassificationObservation) SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
+
 // The name of the primary prediction feature output description.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ ClassificationObservation) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
 
-// SetPredictedFeatureName sets the value of the predictedFeatureName property.
 // The name of the primary prediction feature output description.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+func (c_ ClassificationObservation) SetPredictedFeatureName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 
-// Classification label identifying the type of observation.
+
+// A Boolean variable indicating whether the observation contains precision and recall curves.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/hasprecisionrecallcurve
+func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasPrecisionRecallCurve"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
-// Classification label identifying the type of observation.
-
+// A Boolean variable indicating whether the observation contains precision and recall curves.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/hasprecisionrecallcurve
+func (c_ ClassificationObservation) SetHasPrecisionRecallCurve(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHasPrecisionRecallCurve:"), value)
+}
+
+
+// Classification label identifying the type of observation.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) SetIdentifier(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ ClassificationObservation) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// Classification label identifying the type of observation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
+func (c_ ClassificationObservation) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImagePlayground without requiring cgo.
-
-// Present a system interface to generate images based on descriptive information.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImagePlayground
+// See: https://developer.apple.com/documentation/ImagePlayground
 package imageplayground
 
 import (

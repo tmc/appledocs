@@ -29,16 +29,22 @@ type _PHASEStringMetaParameterDefinitionClass struct {
 // An interface definition for the [PHASEStringMetaParameterDefinition] class.
 type IPHASEStringMetaParameterDefinition interface {
 	IPHASEMetaParameterDefinition
-	GlobalMetaParameters() PHASEMetaParameter
+	// properties:
+	GlobalMetaParameters() IPHASEMetaParameter
 	SetGlobalMetaParameters(value IPHASEMetaParameter)
-	MetaParameters() PHASEMetaParameter
+	MetaParameters() IPHASEMetaParameter
 	SetMetaParameters(value IPHASEMetaParameter)
+	// methods:
 }
 
 // A specification for a metaparameter defined by text.
 //
 // Use this class to spawn discrete instances of , for example, a “player speed” metaparameter that the app changes gradually from to . To use a number metaparameter, create an instance of this class and: Register it with the engine by calling , then access the instance of this class in the engine’s dictionary. Pass it to the initializer, , and then access the instance of this class in a sound event’s dictionary.
+
+
+// A specification for a metaparameter defined by text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition
 type PHASEStringMetaParameterDefinition struct {
 	PHASEMetaParameterDefinition
@@ -86,64 +92,42 @@ func NewPHASEStringMetaParameterDefinition() PHASEStringMetaParameterDefinition 
 
 
 
-
-// Creates a specification for a textual metaparameter with the given value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:)
-func NewPHASEStringMetaParameterDefinitionWithValue(value string) PHASEStringMetaParameterDefinition {
-	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:"), objc.String(value))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a specification for a named textual metaparameter with the given value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:identifier:)
-func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value string, identifier string) PHASEStringMetaParameterDefinition {
-	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:identifier:"), objc.String(value), objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
 // A dictionary of metaparameters that all sound event assets share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEStringMetaParameterDefinition) GlobalMetaParameters() PHASEMetaParameter {
+func (p_ PHASEStringMetaParameterDefinition) GlobalMetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
 
-// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
 // A dictionary of metaparameters that all sound event assets share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
 func (p_ PHASEStringMetaParameterDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
+
 // The object’s meta parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEStringMetaParameterDefinition) MetaParameters() PHASEMetaParameter {
+func (p_ PHASEStringMetaParameterDefinition) MetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
 
-// SetMetaParameters sets the value of the metaParameters property.
 // The object’s meta parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
 func (p_ PHASEStringMetaParameterDefinition) SetMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
+
 
 

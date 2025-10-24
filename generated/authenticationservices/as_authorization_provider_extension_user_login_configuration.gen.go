@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _AuthorizationProviderExtensionUserLoginConfigurationClass struct {
 type IAuthorizationProviderExtensionUserLoginConfiguration interface {
 	objectivec.IObject
 	// properties:
-	LoginUserName() string /* primitive/slice/pointer. */
-	SetLoginUserName(value string /* primitive/slice/pointer. */)
+	LoginUserName() objc.IObject /* cross-framework: NSString */
+	SetLoginUserName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -84,16 +85,16 @@ func NewAuthorizationProviderExtensionUserLoginConfiguration() AuthorizationProv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("loginUserName"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), value)
 }
 
 

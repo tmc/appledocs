@@ -30,11 +30,11 @@ type _ImageThresholdBinaryInverseClass struct {
 type IImageThresholdBinaryInverse interface {
 	IUnaryImageKernel
 	// properties:
-	MaximumValue() float32 /* primitive/slice/pointer. */
-	ThresholdValue() float32 /* primitive/slice/pointer. */
-	SetThresholdValue(value float32 /* primitive/slice/pointer. */)
-	Transform() float32 /* primitive/slice/pointer. */
-	SetTransform(value float32 /* primitive/slice/pointer. */)
+	MaximumValue() float32
+	ThresholdValue() float32
+	SetThresholdValue(value float32)
+	Transform() float32
+	SetTransform(value float32)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewImageThresholdBinaryInverse() ImageThresholdBinaryInverse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdBinaryInverse/maximumValue
-func (i_ ImageThresholdBinaryInverse) MaximumValue() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdBinaryInverse) MaximumValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("maximumValue"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (i_ ImageThresholdBinaryInverse) MaximumValue() float32 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse/thresholdvalue
-func (i_ ImageThresholdBinaryInverse) ThresholdValue() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdBinaryInverse) ThresholdValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
 	return rv
 }
@@ -117,7 +117,7 @@ func (i_ ImageThresholdBinaryInverse) ThresholdValue() float32 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse/thresholdvalue
-func (i_ ImageThresholdBinaryInverse) SetThresholdValue(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageThresholdBinaryInverse) SetThresholdValue(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThresholdValue:"), value)
 }
 
@@ -126,7 +126,7 @@ func (i_ ImageThresholdBinaryInverse) SetThresholdValue(value float32 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse/transform
-func (i_ ImageThresholdBinaryInverse) Transform() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdBinaryInverse) Transform() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("transform"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (i_ ImageThresholdBinaryInverse) Transform() float32 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse/transform
-func (i_ ImageThresholdBinaryInverse) SetTransform(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageThresholdBinaryInverse) SetTransform(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
 }
 

@@ -32,7 +32,7 @@ type IComputePlanDeviceUsage interface {
 	objectivec.IObject
 	// properties:
 	PreferredComputeDevice() objc.ID
-	SupportedComputeDevices() []objc.ID /* already interface */
+	SupportedComputeDevices() []objc.ID
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func (c_ ComputePlanDeviceUsage) PreferredComputeDevice() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanDeviceUsage/supportedComputeDevices
-func (c_ ComputePlanDeviceUsage) SupportedComputeDevices() []objc.ID /* already interface */ {
+func (c_ ComputePlanDeviceUsage) SupportedComputeDevices() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("supportedComputeDevices"))
 	return rv
 }

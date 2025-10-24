@@ -31,25 +31,29 @@ type _MTRColorControlClusterMoveColorTemperatureParamsClass struct {
 // An interface definition for the [MTRColorControlClusterMoveColorTemperatureParams] class.
 type IMTRColorControlClusterMoveColorTemperatureParams interface {
 	objectivec.IObject
-	ColorTemperatureMaximumMireds() foundation.Number
-	SetColorTemperatureMaximumMireds(value foundation.INumber)
-	ColorTemperatureMinimumMireds() foundation.Number
-	SetColorTemperatureMinimumMireds(value foundation.INumber)
-	MoveMode() foundation.Number
-	SetMoveMode(value foundation.INumber)
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	Rate() foundation.Number
-	SetRate(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ColorTemperatureMaximumMireds() objc.IObject /* cross-framework: NSNumber */
+	SetColorTemperatureMaximumMireds(value objc.IObject /* cross-framework: NSNumber */)
+	ColorTemperatureMinimumMireds() objc.IObject /* cross-framework: NSNumber */
+	SetColorTemperatureMinimumMireds(value objc.IObject /* cross-framework: NSNumber */)
+	MoveMode() objc.IObject /* cross-framework: NSNumber */
+	SetMoveMode(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	Rate() objc.IObject /* cross-framework: NSNumber */
+	SetRate(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveColorTemperatureParams
 type MTRColorControlClusterMoveColorTemperatureParams struct {
 	objectivec.Object
@@ -92,123 +96,123 @@ func NewMTRColorControlClusterMoveColorTemperatureParams() MTRColorControlCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMaximumMireds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMaximumMireds"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMaximumMireds() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("colorTemperatureMaximumMireds"))
 	return rv
 }
 
 
-// SetColorTemperatureMaximumMireds sets the value of the colorTemperatureMaximumMireds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperaturemaximummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMaximumMireds(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMaximumMireds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMaximumMireds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMinimumMireds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("colorTemperatureMinimumMireds"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) ColorTemperatureMinimumMireds() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("colorTemperatureMinimumMireds"))
 	return rv
 }
 
 
-// SetColorTemperatureMinimumMireds sets the value of the colorTemperatureMinimumMireds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/colortemperatureminimummireds
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMinimumMireds(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetColorTemperatureMinimumMireds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMinimumMireds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/movemode
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) MoveMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("moveMode"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) MoveMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("moveMode"))
 	return rv
 }
 
 
-// SetMoveMode sets the value of the moveMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/movemode
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetMoveMode(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetMoveMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoveMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsmask
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsmask
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/rate
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) Rate() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rate"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) Rate() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rate"))
 	return rv
 }
 
 
-// SetRate sets the value of the rate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/rate
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetRate(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetRate(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovecolortemperatureparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveColorTemperatureParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

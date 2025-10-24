@@ -30,10 +30,16 @@ type _IKPictureTakerClass struct {
 // An interface definition for the [IKPictureTaker] class.
 type IIKPictureTaker interface {
 	appkit.IPanel
+	// properties:
+	// methods:
 }
 
 // The class represents a panel that allows users to choose images by browsing the file system. The picture taker panel provides an Open Recent menu, supports image cropping, and supports taking snapshots from an iSight or other digital camera.
+
+
+// The class represents a panel that allows users to choose images by browsing the file system. The picture taker panel provides an Open Recent menu, supports image cropping, and supports taking snapshots from an iSight or other digital camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKPictureTaker
 type IKPictureTaker struct {
 	appkit.Panel

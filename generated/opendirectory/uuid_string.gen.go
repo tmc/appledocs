@@ -30,9 +30,13 @@ type _uuidStringClass struct {
 // An interface definition for the [uuidString] class.
 type IuuidString interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-c.ivar
 type uuidString struct {
 	objectivec.Object

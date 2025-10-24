@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +33,8 @@ type IStagedMigrationManager interface {
 	objectivec.IObject
 	// properties:
 	Container() IPersistentContainer
-	Stages() []MigrationStage /* primitive/slice/pointer. */
-	NSPersistentStoreStagedMigrationManagerOptionKey() string /* primitive/slice/pointer. */
+	Stages() []IMigrationStage
+	NSPersistentStoreStagedMigrationManagerOptionKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -104,7 +105,7 @@ func (s_ StagedMigrationManager) Container() IPersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
-func (s_ StagedMigrationManager) Stages() []MigrationStage /* primitive/slice/pointer. */ {
+func (s_ StagedMigrationManager) Stages() []IMigrationStage {
 	rv := objc.Send[[]MigrationStage](s_.ID, objc.Sel("stages"))
 	return rv
 }
@@ -114,8 +115,8 @@ func (s_ StagedMigrationManager) Stages() []MigrationStage /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
-func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
+func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv
 }
 

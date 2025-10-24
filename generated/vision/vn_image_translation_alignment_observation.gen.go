@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ImageTranslationAlignmentObservation] class.
@@ -30,15 +30,21 @@ type _ImageTranslationAlignmentObservationClass struct {
 // An interface definition for the [ImageTranslationAlignmentObservation] class.
 type IImageTranslationAlignmentObservation interface {
 	IImageAlignmentObservation
-	AlignmentTransform() coregraphics.CGAffineTransform
-	SetAlignmentTransform(value coregraphics.CGAffineTransform)
+	// properties:
+	AlignmentTransform() objc.IObject /* cross-framework: AffineTransform */
+	SetAlignmentTransform(value objc.IObject /* cross-framework: AffineTransform */)
 	VNTranslationalImageRegistrationRequestRevision1() int
+	// methods:
 }
 
 // Affine transform information that an image-alignment request produces.
 //
 // This type of observation results from a , informing the performed to align the input images.
+
+
+// Affine transform information that an image-alignment request produces.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageTranslationAlignmentObservation
 type ImageTranslationAlignmentObservation struct {
 	ImageAlignmentObservation
@@ -85,26 +91,29 @@ func NewImageTranslationAlignmentObservation() ImageTranslationAlignmentObservat
 }
 
 
+
 // The alignment transform to align the floating image with the reference image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
-func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("alignmentTransform"))
+func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() objc.IObject /* cross-framework: AffineTransform */ {
+	rv := objc.Send[corefoundation.AffineTransform](i_.ID, objc.Sel("alignmentTransform"))
 	return rv
 }
 
 
-// SetAlignmentTransform sets the value of the alignmentTransform property.
 // The alignment transform to align the floating image with the reference image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
-func (i_ ImageTranslationAlignmentObservation) SetAlignmentTransform(value coregraphics.CGAffineTransform) {
+func (i_ ImageTranslationAlignmentObservation) SetAlignmentTransform(value objc.IObject /* cross-framework: AffineTransform */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentTransform:"), value)
 }
 
+
 // A constant for specifying revision 1 of the translational image registration request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1
 func (i_ ImageTranslationAlignmentObservation) VNTranslationalImageRegistrationRequestRevision1() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("VNTranslationalImageRegistrationRequestRevision1"))

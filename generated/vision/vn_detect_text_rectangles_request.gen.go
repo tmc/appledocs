@@ -29,17 +29,23 @@ type _DetectTextRectanglesRequestClass struct {
 // An interface definition for the [DetectTextRectanglesRequest] class.
 type IDetectTextRectanglesRequest interface {
 	IImageBasedRequest
+	// properties:
 	ReportCharacterBoxes() bool
 	SetReportCharacterBoxes(value bool)
-	Results() VNTextObservation
+	Results() IVNTextObservation
 	SetResults(value IVNTextObservation)
 	VNDetectTextRectanglesRequestRevision1() int
+	// methods:
 }
 
 // An image-analysis request that finds regions of visible text in an image.
 //
 // This request returns detected text characters as rectangular bounding boxes with origin and size.
+
+
+// An image-analysis request that finds regions of visible text in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTextRectanglesRequest
 type DetectTextRectanglesRequest struct {
 	ImageBasedRequest
@@ -86,8 +92,10 @@ func NewDetectTextRectanglesRequest() DetectTextRectanglesRequest {
 }
 
 
+
 // A Boolean value that indicates whether the request detects character bounding boxes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
 func (d_ DetectTextRectanglesRequest) ReportCharacterBoxes() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("reportCharacterBoxes"))
@@ -95,35 +103,37 @@ func (d_ DetectTextRectanglesRequest) ReportCharacterBoxes() bool {
 }
 
 
-// SetReportCharacterBoxes sets the value of the reportCharacterBoxes property.
 // A Boolean value that indicates whether the request detects character bounding boxes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/reportcharacterboxes
 func (d_ DetectTextRectanglesRequest) SetReportCharacterBoxes(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setReportCharacterBoxes:"), value)
 }
 
+
 // The results of the request to detect text rectangles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
-func (d_ DetectTextRectanglesRequest) Results() VNTextObservation {
-	rv := objc.Send[VNTextObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectTextRectanglesRequest) Results() IVNTextObservation {
+	rv := objc.Send[TextObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the request to detect text rectangles.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
 func (d_ DetectTextRectanglesRequest) SetResults(value IVNTextObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the text rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequestrevision1
 func (d_ DetectTextRectanglesRequest) VNDetectTextRectanglesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectTextRectanglesRequestRevision1"))

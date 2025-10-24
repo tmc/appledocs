@@ -29,9 +29,13 @@ type _MTRBaseClusterThermostatUserInterfaceConfigurationClass struct {
 // An interface definition for the [MTRBaseClusterThermostatUserInterfaceConfiguration] class.
 type IMTRBaseClusterThermostatUserInterfaceConfiguration interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThermostatUserInterfaceConfiguration
 type MTRBaseClusterThermostatUserInterfaceConfiguration struct {
 	MTRGenericBaseCluster

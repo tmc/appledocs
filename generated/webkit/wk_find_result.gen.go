@@ -30,14 +30,20 @@ type _FindResultClass struct {
 // An interface definition for the [FindResult] class.
 type IFindResult interface {
 	objectivec.IObject
+	// properties:
 	MatchFound() bool
 	SetMatchFound(value bool)
+	// methods:
 }
 
 // An object that contains the results of searching the web view’s contents.
 //
 // When you perform a search using the methods of , the web view creates a object and delivers it to your completion handler. You don’t create instances of this class directly. Use the objects that the web view provides to determine whether it found a match for the content.
+
+
+// An object that contains the results of searching the web view’s contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFindResult
 type FindResult struct {
 	objectivec.Object
@@ -82,8 +88,10 @@ func NewFindResult() FindResult {
 }
 
 
+
 // A Boolean value that indicates whether the web view found a match during the search.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindresult/matchfound
 func (f_ FindResult) MatchFound() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("matchFound"))
@@ -91,10 +99,9 @@ func (f_ FindResult) MatchFound() bool {
 }
 
 
-// SetMatchFound sets the value of the matchFound property.
 // A Boolean value that indicates whether the web view found a match during the search.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkfindresult/matchfound
 func (f_ FindResult) SetMatchFound(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMatchFound:"), value)

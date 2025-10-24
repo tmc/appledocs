@@ -32,7 +32,7 @@ type ITableCellView interface {
 	// properties:
 	BackgroundStyle() BackgroundStyle
 	SetBackgroundStyle(value BackgroundStyle)
-	DraggingImageComponents() []DraggingImageComponent /* primitive/slice/pointer. */
+	DraggingImageComponents() []IDraggingImageComponent
 	ImageView() IImageView
 	SetImageView(value IImageView)
 	ObjectValue() objc.ID
@@ -122,7 +122,7 @@ func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
-func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent /* primitive/slice/pointer. */ {
+func (t_ TableCellView) DraggingImageComponents() []IDraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }

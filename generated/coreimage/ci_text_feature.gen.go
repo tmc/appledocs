@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextFeature] class.
@@ -31,13 +32,13 @@ type _TextFeatureClass struct {
 type ITextFeature interface {
 	IFeature
 	// properties:
-	BottomLeft() coregraphics.CGPoint
-	BottomRight() coregraphics.CGPoint
-	Bounds() coregraphics.CGRect
-	SubFeatures() objc.ID
-	TopLeft() coregraphics.CGPoint
-	TopRight() coregraphics.CGPoint
-	CIDetectorTypeText() string /* primitive/slice/pointer. */
+	BottomLeft() objc.IObject /* cross-framework: Point */
+	BottomRight() objc.IObject /* cross-framework: Point */
+	Bounds() objc.IObject /* cross-framework: Rect */
+	SubFeatures() objc.IObject /* cross-framework: NSArray */
+	TopLeft() objc.IObject /* cross-framework: Point */
+	TopRight() objc.IObject /* cross-framework: Point */
+	CIDetectorTypeText() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -100,8 +101,8 @@ func NewTextFeature() TextFeature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomLeft
-func (t_ TextFeature) BottomLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("bottomLeft"))
+func (t_ TextFeature) BottomLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (t_ TextFeature) BottomLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bottomRight
-func (t_ TextFeature) BottomRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("bottomRight"))
+func (t_ TextFeature) BottomRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("bottomRight"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (t_ TextFeature) BottomRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/bounds
-func (t_ TextFeature) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
+func (t_ TextFeature) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (t_ TextFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/subFeatures
-func (t_ TextFeature) SubFeatures() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("subFeatures"))
+func (t_ TextFeature) SubFeatures() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](t_.ID, objc.Sel("subFeatures"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (t_ TextFeature) SubFeatures() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topLeft
-func (t_ TextFeature) TopLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("topLeft"))
+func (t_ TextFeature) TopLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("topLeft"))
 	return rv
 }
 
@@ -150,8 +151,8 @@ func (t_ TextFeature) TopLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/topRight
-func (t_ TextFeature) TopRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("topRight"))
+func (t_ TextFeature) TopRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("topRight"))
 	return rv
 }
 
@@ -160,8 +161,8 @@ func (t_ TextFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypetext
-func (t_ TextFeature) CIDetectorTypeText() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("CIDetectorTypeText"))
+func (t_ TextFeature) CIDetectorTypeText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("CIDetectorTypeText"))
 	return rv
 }
 

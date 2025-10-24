@@ -36,12 +36,12 @@ type IAudioEngine interface {
 	SetAttachedNodes(value IAVAudioNode)
 	InputNode() IAVAudioInputNode
 	SetInputNode(value IAVAudioInputNode)
-	IsAutoShutdownEnabled() bool /* primitive/slice/pointer. */
-	SetIsAutoShutdownEnabled(value bool /* primitive/slice/pointer. */)
-	IsInManualRenderingMode() bool /* primitive/slice/pointer. */
-	SetIsInManualRenderingMode(value bool /* primitive/slice/pointer. */)
-	IsRunning() bool /* primitive/slice/pointer. */
-	SetIsRunning(value bool /* primitive/slice/pointer. */)
+	IsAutoShutdownEnabled() bool
+	SetIsAutoShutdownEnabled(value bool)
+	IsInManualRenderingMode() bool
+	SetIsInManualRenderingMode(value bool)
+	IsRunning() bool
+	SetIsRunning(value bool)
 	ManualRenderingBlock() AudioEngineManualRenderingBlock /* not a class type */
 	SetManualRenderingBlock(value AudioEngineManualRenderingBlock /* not a class type */)
 	ManualRenderingFormat() IAVAudioFormat
@@ -57,7 +57,7 @@ type IAudioEngine interface {
 	OutputNode() IAVAudioOutputNode
 	SetOutputNode(value IAVAudioOutputNode)
 	// methods:
-	ConnectMIDIToNodesFormatEventListBlock(sourceNode IAVAudioNode, destinationNodes []AudioNode /* primitive/slice/pointer. */, format IAVAudioFormat, tapBlock MIDIEventListBlock /* not a class type */)
+	ConnectMIDIToNodesFormatEventListBlock(sourceNode IAVAudioNode, destinationNodes []IAudioNode, format IAVAudioFormat, tapBlock MIDIEventListBlock /* not a class type */)
 }
 
 // An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
@@ -117,7 +117,7 @@ func NewAudioEngine() AudioEngine {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/connectMIDI(_:to:format:eventListBlock:)-7qtd5
-func (a_ AudioEngine) ConnectMIDIToNodesFormatEventListBlock(sourceNode IAVAudioNode, destinationNodes []AudioNode /* primitive/slice/pointer. */, format IAVAudioFormat, tapBlock MIDIEventListBlock /* not a class type */) {
+func (a_ AudioEngine) ConnectMIDIToNodesFormatEventListBlock(sourceNode IAVAudioNode, destinationNodes []IAudioNode, format IAVAudioFormat, tapBlock MIDIEventListBlock /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("connectMIDI:toNodes:format:eventListBlock:"), sourceNode, destinationNodes, format, tapBlock)
 }
 
@@ -174,7 +174,7 @@ func (a_ AudioEngine) SetInputNode(value IAVAudioInputNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
-func (a_ AudioEngine) IsAutoShutdownEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioEngine) IsAutoShutdownEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAutoShutdownEnabled"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (a_ AudioEngine) IsAutoShutdownEnabled() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isautoshutdownenabled
-func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAutoShutdownEnabled:"), value)
 }
 
@@ -193,7 +193,7 @@ func (a_ AudioEngine) SetIsAutoShutdownEnabled(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
-func (a_ AudioEngine) IsInManualRenderingMode() bool /* primitive/slice/pointer. */ {
+func (a_ AudioEngine) IsInManualRenderingMode() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInManualRenderingMode"))
 	return rv
 }
@@ -203,7 +203,7 @@ func (a_ AudioEngine) IsInManualRenderingMode() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isinmanualrenderingmode
-func (a_ AudioEngine) SetIsInManualRenderingMode(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioEngine) SetIsInManualRenderingMode(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInManualRenderingMode:"), value)
 }
 
@@ -212,7 +212,7 @@ func (a_ AudioEngine) SetIsInManualRenderingMode(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
-func (a_ AudioEngine) IsRunning() bool /* primitive/slice/pointer. */ {
+func (a_ AudioEngine) IsRunning() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
 }
@@ -222,7 +222,7 @@ func (a_ AudioEngine) IsRunning() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/isrunning
-func (a_ AudioEngine) SetIsRunning(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioEngine) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
 

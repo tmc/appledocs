@@ -29,9 +29,13 @@ type _MTRApplicationBasicClusterApplicationBasicApplicationClass struct {
 // An interface definition for the [MTRApplicationBasicClusterApplicationBasicApplication] class.
 type IMTRApplicationBasicClusterApplicationBasicApplication interface {
 	IMTRApplicationBasicClusterApplicationStruct
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationBasicClusterApplicationBasicApplication
 type MTRApplicationBasicClusterApplicationBasicApplication struct {
 	MTRApplicationBasicClusterApplicationStruct

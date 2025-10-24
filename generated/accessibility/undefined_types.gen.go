@@ -9,13 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AXDataPointValue = _undefined // referenced in Accessibility
-	AttributedString = _undefined // referenced in Accessibility
-	Bool = _undefined // referenced in Accessibility
 	ColorRef = _undefined // referenced in Accessibility
 	Importance = _undefined // referenced in Accessibility
 	Language = _undefined // referenced in Accessibility
-	Locale = _undefined // referenced in Accessibility
 )
 
 

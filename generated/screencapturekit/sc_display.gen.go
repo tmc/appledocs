@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +31,25 @@ type _DisplayClass struct {
 // An interface definition for the [Display] class.
 type IDisplay interface {
 	objectivec.IObject
-	DisplayID() unsafe.Pointer
-	Frame() coregraphics.CGRect
+	// properties:
+	DisplayID() DirectDisplayID /* not a class type */
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	Height() int
 	SetHeight(value int)
 	Width() int
 	SetWidth(value int)
+	// methods:
 }
 
 // An instance that represents a display device.
 //
 // A display object represents a physical display connected to a Mac. Query the display to retrieve its unique identifier and onscreen coordinates. Retrieve the available displays from an instance of . Select a display to capture and use it to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+
+
+// An instance that represents a display device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay
 type Display struct {
 	objectivec.Object
@@ -87,24 +94,39 @@ func NewDisplay() Display {
 }
 
 
+
 // The Core Graphics display identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/displayID
-func (d_ Display) DisplayID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayID"))
+func (d_ Display) DisplayID() DirectDisplayID /* not a class type */ {
+	rv := objc.Send[DirectDisplayID](d_.ID, objc.Sel("displayID"))
 	return rv
 }
+
 
 // The frame of the display.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/frame
-func (d_ Display) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](d_.ID, objc.Sel("frame"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/frame
+func (d_ Display) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("frame"))
 	return rv
 }
 
+
+// The frame of the display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/frame
+func (d_ Display) SetFrame(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFrame:"), value)
+}
+
+
 // The height of the display in points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
 func (d_ Display) Height() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("height"))
@@ -112,17 +134,18 @@ func (d_ Display) Height() int {
 }
 
 
-// SetHeight sets the value of the height property.
 // The height of the display in points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
 func (d_ Display) SetHeight(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setHeight:"), value)
 }
 
+
 // The width of the display in points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
 func (d_ Display) Width() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("width"))
@@ -130,10 +153,9 @@ func (d_ Display) Width() int {
 }
 
 
-// SetWidth sets the value of the width property.
 // The width of the display in points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
 func (d_ Display) SetWidth(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWidth:"), value)

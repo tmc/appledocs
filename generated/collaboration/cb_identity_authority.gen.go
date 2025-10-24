@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _CBIdentityAuthorityClass struct {
 type ICBIdentityAuthority interface {
 	objectivec.IObject
 	// properties:
-	LocalizedName() string /* primitive/slice/pointer. */
-	SetLocalizedName(value string /* primitive/slice/pointer. */)
+	LocalizedName() objc.IObject /* cross-framework: NSString */
+	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -101,8 +102,8 @@ func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
-func (c_ CBIdentityAuthority) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+func (c_ CBIdentityAuthority) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (c_ CBIdentityAuthority) LocalizedName() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
-func (c_ CBIdentityAuthority) SetLocalizedName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (c_ CBIdentityAuthority) SetLocalizedName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 

@@ -31,17 +31,21 @@ type _MTRDeviceEnergyManagementClusterCostStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterCostStruct] class.
 type IMTRDeviceEnergyManagementClusterCostStruct interface {
 	objectivec.IObject
-	CostType() foundation.Number
-	SetCostType(value foundation.INumber)
-	Currency() foundation.Number
-	SetCurrency(value foundation.INumber)
-	DecimalPoints() foundation.Number
-	SetDecimalPoints(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	CostType() objc.IObject /* cross-framework: NSNumber */
+	SetCostType(value objc.IObject /* cross-framework: NSNumber */)
+	Currency() objc.IObject /* cross-framework: NSNumber */
+	SetCurrency(value objc.IObject /* cross-framework: NSNumber */)
+	DecimalPoints() objc.IObject /* cross-framework: NSNumber */
+	SetDecimalPoints(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct
 type MTRDeviceEnergyManagementClusterCostStruct struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRDeviceEnergyManagementClusterCostStruct() MTRDeviceEnergyManagementCl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/costType
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("costType"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("costType"))
 	return rv
 }
 
 
-// SetCostType sets the value of the costType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/costType
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCostType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currency"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("currency"))
 	return rv
 }
 
 
-// SetCurrency sets the value of the currency property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrency:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("decimalPoints"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("decimalPoints"))
 	return rv
 }
 
 
-// SetDecimalPoints sets the value of the decimalPoints property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDecimalPoints:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

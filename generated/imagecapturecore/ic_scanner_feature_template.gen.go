@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ICScannerFeatureTemplate] class.
@@ -29,9 +29,9 @@ type _ICScannerFeatureTemplateClass struct {
 
 // An interface definition for the [ICScannerFeatureTemplate] class.
 type IICScannerFeatureTemplate interface {
-	objectivec.IObject
+	IICScannerFeature
 	// properties:
-	Targets() []MutableArray /* primitive/slice/pointer. */
+	Targets() []objc.IObject /* cross-framework: MutableArray */
 	// methods:
 }
 
@@ -43,14 +43,16 @@ type IICScannerFeatureTemplate interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerFeatureTemplate
 type ICScannerFeatureTemplate struct {
-	objectivec.Object
+	ICScannerFeature
 }
 
 // ICScannerFeatureTemplateFrom constructs a [ICScannerFeatureTemplate] from an unsafe.Pointer.
 //
 // A group of one or more rectangular scan areas that can be used with a scanner functional unit.
 func ICScannerFeatureTemplateFrom(ptr unsafe.Pointer) ICScannerFeatureTemplate {
-	return ICScannerFeatureTemplate{objectivec.Object{objc.ID(ptr)}}
+	return ICScannerFeatureTemplate{
+		ICScannerFeature: ICScannerFeatureFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -88,8 +90,8 @@ func NewICScannerFeatureTemplate() ICScannerFeatureTemplate {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerFeatureTemplate/targets
-func (i_ ICScannerFeatureTemplate) Targets() []MutableArray /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]MutableArray](i_.ID, objc.Sel("targets"))
+func (i_ ICScannerFeatureTemplate) Targets() []objc.IObject /* cross-framework: MutableArray */ {
+	rv := objc.Send[[]foundation.MutableArray](i_.ID, objc.Sel("targets"))
 	return rv
 }
 

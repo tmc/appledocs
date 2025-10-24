@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent] class.
 type IMTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent
 type MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent struct {
 	objectivec.Object

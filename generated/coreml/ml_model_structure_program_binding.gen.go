@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ModelStructureProgramBindingClass struct {
 type IModelStructureProgramBinding interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
 	Value() IMLModelStructureProgramValue
 	// methods:
 }
@@ -93,8 +94,8 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-func (m_ ModelStructureProgramBinding) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramBinding) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

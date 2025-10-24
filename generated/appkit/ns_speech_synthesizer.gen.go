@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,29 +30,18 @@ type _SpeechSynthesizerClass struct {
 // An interface definition for the [SpeechSynthesizer] class.
 type ISpeechSynthesizer interface {
 	objectivec.IObject
-	AddSpeechDictionary(speechDictionary unsafe.Pointer)
-	ContinueSpeaking()
-	ObjectForPropertyError(property ISpeechPropertyKey, outError unsafe.Pointer) objc.ID
-	PauseSpeakingAtBoundary(boundary ISpeechBoundary)
-	PhonemesFromText(text string) foundation.String
-	SetObjectForPropertyError(object objectivec.IObject, property ISpeechPropertyKey, outError unsafe.Pointer) bool
-	SetVoice(voice ISpeechSynthesizerVoiceName) bool
-	StartSpeakingString(string_ string) bool
-	StartSpeakingStringToURL(string_ string, url foundation.IURL) bool
-	StopSpeaking()
-	StopSpeakingAtBoundary(boundary ISpeechBoundary)
-	Voice() SpeechSynthesizerVoiceName
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Speaking() bool
+	// properties:
+	Delegate() SpeechSynthesizerDelegate /* not a class type */
+	SetDelegate(value SpeechSynthesizerDelegate /* not a class type */)
+	IsSpeaking() bool
+	SetIsSpeaking(value bool)
 	Rate() float32
 	SetRate(value float32)
 	UsesFeedbackWindow() bool
 	SetUsesFeedbackWindow(value bool)
 	Volume() float32
 	SetVolume(value float32)
-	IsSpeaking() bool
-	SetIsSpeaking(value bool)
+	// methods:
 }
 
 // The Cocoa interface to speech synthesis in macOS.
@@ -109,187 +97,12 @@ func NewSpeechSynthesizer() SpeechSynthesizer {
 
 
 
-// Initializes the receiver with a voice.
+// The synthesizer’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/init(voice:)
-func NewSpeechSynthesizerWithVoice(voice ISpeechSynthesizerVoiceName) SpeechSynthesizer {
-	instance := getSpeechSynthesizerClass().Alloc()
-	rv := objc.Send[SpeechSynthesizer](instance.ID, objc.Sel("initWithVoice:"), voice)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Provides the attribute dictionary of a voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/attributes(forVoice:)
-func (sc _SpeechSynthesizerClass) AttributesForVoice(voice ISpeechSynthesizerVoiceName) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("attributesForVoice:"), voice)
-	return rv
-}
-
-
-// Provides the identifiers of the voices available on the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/availableVoices
-func (sc _SpeechSynthesizerClass) AvailableVoices() []string {
-	rv := objc.Send[[]string](objc.ID(sc.class), objc.Sel("availableVoices"))
-	return rv
-}
-
-// Provides the identifier of the default voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/defaultVoice
-func (sc _SpeechSynthesizerClass) DefaultVoice() SpeechSynthesizerVoiceName {
-	rv := objc.Send[SpeechSynthesizerVoiceName](objc.ID(sc.class), objc.Sel("defaultVoice"))
-	return rv
-}
-
-// A Boolean value indicating whether any application is currently speaking through the sound output device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking
-func (sc _SpeechSynthesizerClass) AnyApplicationSpeaking() bool {
-	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("anyApplicationSpeaking"))
-	return rv
-}
-
-// Registers the given speech dictionary with the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/addSpeechDictionary(_:)
-func (s_ SpeechSynthesizer) AddSpeechDictionary(speechDictionary unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("addSpeechDictionary:"), speechDictionary)
-}
-
-
-// Resumes synthesis.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/continueSpeaking()
-func (s_ SpeechSynthesizer) ContinueSpeaking() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("continueSpeaking"))
-}
-
-
-// Provides the value of a receiver’s property.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/object(forProperty:)
-func (s_ SpeechSynthesizer) ObjectForPropertyError(property ISpeechPropertyKey, outError unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("objectForProperty:error:"), property, outError)
-	return rv
-}
-
-
-// Pauses synthesis in progress at a given boundary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/pauseSpeaking(at:)
-func (s_ SpeechSynthesizer) PauseSpeakingAtBoundary(boundary ISpeechBoundary) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("pauseSpeakingAtBoundary:"), boundary)
-}
-
-
-// Provides the phoneme symbols generated by the given text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/phonemes(from:)
-func (s_ SpeechSynthesizer) PhonemesFromText(text string) foundation.String {
-	rv := objc.Send[foundation.String](s_.ID, objc.Sel("phonemesFromText:"), objc.String(text))
-	return rv
-}
-
-
-// Specifies the value of a receiver’s property.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/setObject(_:forProperty:)
-func (s_ SpeechSynthesizer) SetObjectForPropertyError(object objectivec.IObject, property ISpeechPropertyKey, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("setObject:forProperty:error:"), object, property, outError)
-	return rv
-}
-
-
-// Sets the receiver’s current voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/setVoice(_:)
-func (s_ SpeechSynthesizer) SetVoice(voice ISpeechSynthesizerVoiceName) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("setVoice:"), voice)
-	return rv
-}
-
-
-// Begins speaking synthesized text through the system’s default sound output device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:)
-func (s_ SpeechSynthesizer) StartSpeakingString(string_ string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("startSpeakingString:"), objc.String(string_))
-	return rv
-}
-
-
-// Begins synthesizing text into a sound (AIFF) file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/startSpeaking(_:to:)
-func (s_ SpeechSynthesizer) StartSpeakingStringToURL(string_ string, url foundation.IURL) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("startSpeakingString:toURL:"), objc.String(string_), url)
-	return rv
-}
-
-
-// Stops synthesis in progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking()
-func (s_ SpeechSynthesizer) StopSpeaking() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("stopSpeaking"))
-}
-
-
-// Stops synthesis in progress at a given boundary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/stopSpeaking(at:)
-func (s_ SpeechSynthesizer) StopSpeakingAtBoundary(boundary ISpeechBoundary) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("stopSpeakingAtBoundary:"), boundary)
-}
-
-
-// Returns the identifier of the receiver’s current voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/voice()
-func (s_ SpeechSynthesizer) Voice() SpeechSynthesizerVoiceName {
-	rv := objc.Send[SpeechSynthesizerVoiceName](s_.ID, objc.Sel("voice"))
-	return rv
-}
-
-
-// Provides the identifiers of the voices available on the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/availableVoices
-func (s_ SpeechSynthesizer) AvailableVoices() []string {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("availableVoices"))
-	return rv
-}
-
-
-// Provides the identifier of the default voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/defaultVoice
-func (s_ SpeechSynthesizer) DefaultVoice() SpeechSynthesizerVoiceName {
-	rv := objc.Send[SpeechSynthesizerVoiceName](s_.ID, objc.Sel("defaultVoice"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/delegate
+func (s_ SpeechSynthesizer) Delegate() SpeechSynthesizerDelegate /* not a class type */ {
+	rv := objc.Send[SpeechSynthesizerDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -297,96 +110,9 @@ func (s_ SpeechSynthesizer) DefaultVoice() SpeechSynthesizerVoiceName {
 // The synthesizer’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/delegate
-func (s_ SpeechSynthesizer) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The synthesizer’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/delegate
-func (s_ SpeechSynthesizer) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/delegate
+func (s_ SpeechSynthesizer) SetDelegate(value SpeechSynthesizerDelegate /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean value indicating whether any application is currently speaking through the sound output device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/isAnyApplicationSpeaking
-func (s_ SpeechSynthesizer) AnyApplicationSpeaking() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("anyApplicationSpeaking"))
-	return rv
-}
-
-
-// Indicates whether the receiver is currently generating synthesized speech.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/isSpeaking
-func (s_ SpeechSynthesizer) Speaking() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("speaking"))
-	return rv
-}
-
-
-// The synthesizer’s speaking rate (words per minute).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/rate
-func (s_ SpeechSynthesizer) Rate() float32 {
-	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
-	return rv
-}
-
-
-// The synthesizer’s speaking rate (words per minute).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/rate
-func (s_ SpeechSynthesizer) SetRate(value float32) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
-}
-
-
-// Indicates whether the receiver uses the speech feedback window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow
-func (s_ SpeechSynthesizer) UsesFeedbackWindow() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("usesFeedbackWindow"))
-	return rv
-}
-
-
-// Indicates whether the receiver uses the speech feedback window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/usesFeedbackWindow
-func (s_ SpeechSynthesizer) SetUsesFeedbackWindow(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesFeedbackWindow:"), value)
-}
-
-
-// The synthesizer’s speaking volume.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/volume
-func (s_ SpeechSynthesizer) Volume() float32 {
-	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
-	return rv
-}
-
-
-// The synthesizer’s speaking volume.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/volume
-func (s_ SpeechSynthesizer) SetVolume(value float32) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 
 
@@ -407,5 +133,63 @@ func (s_ SpeechSynthesizer) IsSpeaking() bool {
 func (s_ SpeechSynthesizer) SetIsSpeaking(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpeaking:"), value)
 }
+
+
+// The synthesizer’s speaking rate (words per minute).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/rate
+func (s_ SpeechSynthesizer) Rate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
+	return rv
+}
+
+
+// The synthesizer’s speaking rate (words per minute).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/rate
+func (s_ SpeechSynthesizer) SetRate(value float32) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
+}
+
+
+// Indicates whether the receiver uses the speech feedback window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/usesfeedbackwindow
+func (s_ SpeechSynthesizer) UsesFeedbackWindow() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("usesFeedbackWindow"))
+	return rv
+}
+
+
+// Indicates whether the receiver uses the speech feedback window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/usesfeedbackwindow
+func (s_ SpeechSynthesizer) SetUsesFeedbackWindow(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUsesFeedbackWindow:"), value)
+}
+
+
+// The synthesizer’s speaking volume.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/volume
+func (s_ SpeechSynthesizer) Volume() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
+	return rv
+}
+
+
+// The synthesizer’s speaking volume.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/volume
+func (s_ SpeechSynthesizer) SetVolume(value float32) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
+}
+
 
 

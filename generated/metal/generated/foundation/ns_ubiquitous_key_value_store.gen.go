@@ -31,29 +31,12 @@ type _UbiquitousKeyValueStoreClass struct {
 type IUbiquitousKeyValueStore interface {
 	objectivec.IObject
 	// properties:
-	DictionaryRepresentation() IDictionary /* already interface */
+	DictionaryRepresentation() IString
+	SetDictionaryRepresentation(value IString)
 	NSUbiquitousKeyValueStoreChangeReasonKey() IString
-	NSUbiquitousKeyValueStoreQuotaViolationChange() int /* primitive/slice/pointer. */
-	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int /* primitive/slice/pointer. */)
+	NSUbiquitousKeyValueStoreQuotaViolationChange() int
+	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int)
 	// methods:
-	ArrayForKey(aKey IString) IArray
-	BoolForKey(aKey IString) bool /* primitive/slice/pointer. */
-	DataForKey(aKey IString) IData
-	DictionaryForKey(aKey IString) IDictionary /* already interface */
-	DoubleForKey(aKey IString) float64 /* primitive/slice/pointer. */
-	LongLongForKey(aKey IString) unsafe.Pointer
-	ObjectForKey(aKey IString) objc.ID
-	RemoveObjectForKey(aKey IString)
-	SetDoubleForKey(value float64 /* primitive/slice/pointer. */, aKey IString)
-	SetStringForKey(aString IString, aKey IString)
-	SetDataForKey(aData IData, aKey IString)
-	SetArrayForKey(anArray IArray, aKey IString)
-	SetLongLongForKey(value unsafe.Pointer, aKey IString)
-	SetBoolForKey(value bool /* primitive/slice/pointer. */, aKey IString)
-	SetObjectForKey(anObject objectivec.IObject, aKey IString)
-	SetDictionaryForKey(aDictionary IDictionary /* already interface */, aKey IString)
-	StringForKey(aKey IString) IString
-	Synchronize() bool /* primitive/slice/pointer. */
 }
 
 // An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
@@ -109,192 +92,12 @@ func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
 
 
 
-// Returns the shared iCloud key-value store object.
+// A dictionary containing all of the key-value pairs in the key-value store.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/default
-func (uc _UbiquitousKeyValueStoreClass) DefaultStore() UbiquitousKeyValueStore {
-	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("defaultStore"))
-	return rv
-}
-
-// Returns the array associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/array(forKey:)
-func (u_ UbiquitousKeyValueStore) ArrayForKey(aKey IString) IArray {
-	rv := objc.Send[Array](u_.ID, objc.Sel("arrayForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the Boolean value associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/bool(forKey:)
-func (u_ UbiquitousKeyValueStore) BoolForKey(aKey IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("boolForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the data object associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/data(forKey:)
-func (u_ UbiquitousKeyValueStore) DataForKey(aKey IString) IData {
-	rv := objc.Send[Data](u_.ID, objc.Sel("dataForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the dictionary object associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/dictionary(forKey:)
-func (u_ UbiquitousKeyValueStore) DictionaryForKey(aKey IString) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](u_.ID, objc.Sel("dictionaryForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the double value associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/double(forKey:)
-func (u_ UbiquitousKeyValueStore) DoubleForKey(aKey IString) float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](u_.ID, objc.Sel("doubleForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the value associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/longLong(forKey:)
-func (u_ UbiquitousKeyValueStore) LongLongForKey(aKey IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("longLongForKey:"), aKey)
-	return rv
-}
-
-
-// Returns the object associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/object(forKey:)
-func (u_ UbiquitousKeyValueStore) ObjectForKey(aKey IString) objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("objectForKey:"), aKey)
-	return rv
-}
-
-
-// Removes the value associated with the specified key from the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/removeObject(forKey:)
-func (u_ UbiquitousKeyValueStore) RemoveObjectForKey(aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeObjectForKey:"), aKey)
-}
-
-
-// Sets a double value for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-1xml0
-func (u_ UbiquitousKeyValueStore) SetDoubleForKey(value float64 /* primitive/slice/pointer. */, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDouble:forKey:"), value, aKey)
-}
-
-
-// Sets a string object for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-2rlp
-func (u_ UbiquitousKeyValueStore) SetStringForKey(aString IString, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setString:forKey:"), aString, aKey)
-}
-
-
-// Sets a data object for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-3ga7z
-func (u_ UbiquitousKeyValueStore) SetDataForKey(aData IData, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setData:forKey:"), aData, aKey)
-}
-
-
-// Sets an array object for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-40a8f
-func (u_ UbiquitousKeyValueStore) SetArrayForKey(anArray IArray, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setArray:forKey:"), anArray, aKey)
-}
-
-
-// Sets a value for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-7tt20
-func (u_ UbiquitousKeyValueStore) SetLongLongForKey(value unsafe.Pointer, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setLongLong:forKey:"), value, aKey)
-}
-
-
-// Sets a Boolean value for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-8o8mq
-func (u_ UbiquitousKeyValueStore) SetBoolForKey(value bool /* primitive/slice/pointer. */, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setBool:forKey:"), value, aKey)
-}
-
-
-// Sets an object for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-9e3de
-func (u_ UbiquitousKeyValueStore) SetObjectForKey(anObject objectivec.IObject, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
-}
-
-
-// Sets a dictionary object for the specified key in the key-value store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-9vmlm
-func (u_ UbiquitousKeyValueStore) SetDictionaryForKey(aDictionary IDictionary /* already interface */, aKey IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDictionary:forKey:"), aDictionary, aKey)
-}
-
-
-// Returns the string associated with the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/string(forKey:)
-func (u_ UbiquitousKeyValueStore) StringForKey(aKey IString) IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), aKey)
-	return rv
-}
-
-
-// Explicitly synchronizes in-memory keys and values with those stored on disk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/synchronize()
-func (u_ UbiquitousKeyValueStore) Synchronize() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("synchronize"))
-	return rv
-}
-
-
-// Returns the shared iCloud key-value store object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/default
-func (u_ UbiquitousKeyValueStore) DefaultStore() IUbiquitousKeyValueStore {
-	rv := objc.Send[UbiquitousKeyValueStore](u_.ID, objc.Sel("defaultStore"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/dictionaryrepresentation
+func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
@@ -302,10 +105,9 @@ func (u_ UbiquitousKeyValueStore) DefaultStore() IUbiquitousKeyValueStore {
 // A dictionary containing all of the key-value pairs in the key-value store.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/dictionaryRepresentation
-func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](u_.ID, objc.Sel("dictionaryRepresentation"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/dictionaryrepresentation
+func (u_ UbiquitousKeyValueStore) SetDictionaryRepresentation(value IString) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDictionaryRepresentation:"), value)
 }
 
 
@@ -319,7 +121,7 @@ func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreChangeReasonKey() ISt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
-func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange() int /* primitive/slice/pointer. */ {
+func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUbiquitousKeyValueStoreQuotaViolationChange"))
 	return rv
 }
@@ -327,7 +129,7 @@ func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange(
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
-func (u_ UbiquitousKeyValueStore) SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int /* primitive/slice/pointer. */) {
+func (u_ UbiquitousKeyValueStore) SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUbiquitousKeyValueStoreQuotaViolationChange:"), value)
 }
 

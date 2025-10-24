@@ -11,15 +11,7 @@ type _undefined = int
 type (
 	BeaconMajorValue = _undefined // referenced in CoreLocation
 	BeaconMinorValue = _undefined // referenced in CoreLocation
-	Bool = _undefined // referenced in CoreLocation
-	CLLocationCoordinate2D = _undefined // referenced in CoreLocation
-	CLLocationDegrees = _undefined // referenced in CoreLocation
-	Date = _undefined // referenced in CoreLocation
-	GeocodeCompletionHandler = _undefined // referenced in CoreLocation
-	Int = _undefined // referenced in CoreLocation
-	Locale = _undefined // referenced in CoreLocation
 	LocationAccuracy = _undefined // referenced in CoreLocation
-	LocationCoordinate2D = _undefined // referenced in CoreLocation
 	LocationDegrees = _undefined // referenced in CoreLocation
 	LocationDirection = _undefined // referenced in CoreLocation
 	LocationDirectionAccuracy = _undefined // referenced in CoreLocation
@@ -27,10 +19,6 @@ type (
 	LocationSpeed = _undefined // referenced in CoreLocation
 	LocationSpeedAccuracy = _undefined // referenced in CoreLocation
 	MonitoringState = _undefined // referenced in CoreLocation
-	MutableDictionary = _undefined // referenced in CoreLocation
-	String = _undefined // referenced in CoreLocation
-	TimeZone = _undefined // referenced in CoreLocation
-	UUID = _undefined // referenced in CoreLocation
 )
 
 

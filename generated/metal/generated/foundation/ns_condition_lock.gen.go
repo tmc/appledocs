@@ -31,8 +31,8 @@ type _ConditionLockClass struct {
 type IConditionLock interface {
 	objectivec.IObject
 	// properties:
-	Condition() int /* primitive/slice/pointer. */
-	SetCondition(value int /* primitive/slice/pointer. */)
+	Condition() int
+	SetCondition(value int)
 	Name() IString
 	SetName(value IString)
 	// methods:
@@ -95,7 +95,7 @@ func NewConditionLock() ConditionLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
-func (c_ ConditionLock) Condition() int /* primitive/slice/pointer. */ {
+func (c_ ConditionLock) Condition() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("condition"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (c_ ConditionLock) Condition() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsconditionlock/condition
-func (c_ ConditionLock) SetCondition(value int /* primitive/slice/pointer. */) {
+func (c_ ConditionLock) SetCondition(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCondition:"), value)
 }
 

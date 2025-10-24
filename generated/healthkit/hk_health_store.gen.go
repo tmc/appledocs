@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,19 +33,15 @@ type _HKHealthStoreClass struct {
 type IHKHealthStore interface {
 	objectivec.IObject
 	// properties:
-	AuthorizationViewControllerPresenter() objc.IObject /* cross-framework: ViewController */
-	SetAuthorizationViewControllerPresenter(value objc.IObject /* cross-framework: ViewController */)
-	WorkoutSessionMirroringStartHandler() unsafe.Pointer
-	SetWorkoutSessionMirroringStartHandler(value unsafe.Pointer)
 	// methods:
 	ActivityMoveModeWithError(error_ unsafe.Pointer) IHKActivityMoveModeObject
 	AuthorizationStatusForType(type_ IHKObjectType) HKAuthorizationStatus
 	BiologicalSexWithError(error_ unsafe.Pointer) IHKBiologicalSexObject
 	BloodTypeWithError(error_ unsafe.Pointer) IHKBloodTypeObject
 	DateOfBirthComponentsWithError(error_ unsafe.Pointer) objc.IObject /* cross-framework: DateComponents */
-	DeleteObjectsWithCompletion(objects []HKObject /* primitive/slice/pointer. */, completion unsafe.Pointer)
+	DeleteObjectsWithCompletion(objects []IHKObject, completion unsafe.Pointer)
 	DeleteObjectWithCompletion(object IHKObject, completion unsafe.Pointer)
-	DeleteObjectsOfTypePredicateWithCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer)
+	DeleteObjectsOfTypePredicateWithCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer)
 	DisableAllBackgroundDeliveryWithCompletion(completion unsafe.Pointer)
 	DisableBackgroundDeliveryForTypeWithCompletion(type_ IHKObjectType, completion unsafe.Pointer)
 	EarliestPermittedSampleDate() objc.IObject /* cross-framework: Date */
@@ -53,17 +50,16 @@ type IHKHealthStore interface {
 	FitzpatrickSkinTypeWithError(error_ unsafe.Pointer) IHKFitzpatrickSkinTypeObject
 	GetRequestStatusForAuthorizationToShareTypesReadTypesCompletion(typesToShare unsafe.Pointer, typesToRead unsafe.Pointer, completion unsafe.Pointer)
 	HandleAuthorizationForExtensionWithCompletion(completion unsafe.Pointer)
-	PreferredUnitsForQuantityTypesCompletion(quantityTypes unsafe.Pointer, completion foundation.IDictionary /* already interface */)
-	RecalibrateEstimatesForSampleTypeAtDateCompletion(sampleType IHKSampleType, date foundation.objc.IObject /* cross-framework NSDate */, completion unsafe.Pointer)
-	RecoverActiveWorkoutSessionWithCompletion(completion unsafe.Pointer)
+	PreferredUnitsForQuantityTypesCompletion(quantityTypes unsafe.Pointer, completion foundation.IDictionary)
+	RecalibrateEstimatesForSampleTypeAtDateCompletion(sampleType IHKSampleType, date objc.IObject /* cross-framework: NSDate */, completion unsafe.Pointer)
 	RelateWorkoutEffortSampleWithWorkoutActivityCompletion(sample IHKSample, workout IHKWorkout, activity IHKWorkoutActivity, completion unsafe.Pointer)
 	RequestAuthorizationToShareTypesReadTypesCompletion(typesToShare unsafe.Pointer, typesToRead unsafe.Pointer, completion unsafe.Pointer)
-	RequestPerObjectReadAuthorizationForTypePredicateCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer)
-	SaveObjectsWithCompletion(objects []HKObject /* primitive/slice/pointer. */, completion unsafe.Pointer)
+	RequestPerObjectReadAuthorizationForTypePredicateCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer)
+	SaveObjectsWithCompletion(objects []IHKObject, completion unsafe.Pointer)
 	SaveObjectWithCompletion(object IHKObject, completion unsafe.Pointer)
 	StartWatchAppWithWorkoutConfigurationCompletion(workoutConfiguration IHKWorkoutConfiguration, completion unsafe.Pointer)
 	StopQuery(query IHKQuery)
-	SupportsHealthRecords() bool /* primitive/slice/pointer. */
+	SupportsHealthRecords() bool
 	UnrelateWorkoutEffortSampleFromWorkoutActivityCompletion(sample IHKSample, workout IHKWorkout, activity IHKWorkoutActivity, completion unsafe.Pointer)
 	WheelchairUseWithError(error_ unsafe.Pointer) IHKWheelchairUseObject
 }
@@ -125,7 +121,7 @@ func NewHKHealthStore() HKHealthStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()
-func (hc _HKHealthStoreClass) IsHealthDataAvailable() bool /* primitive/slice/pointer. */ {
+func (hc _HKHealthStoreClass) IsHealthDataAvailable() bool {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("isHealthDataAvailable"))
 	return rv
 }
@@ -176,7 +172,7 @@ func (h_ HKHealthStore) BloodTypeWithError(error_ unsafe.Pointer) IHKBloodTypeOb
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/dateOfBirthComponents()
 func (h_ HKHealthStore) DateOfBirthComponentsWithError(error_ unsafe.Pointer) objc.IObject /* cross-framework: DateComponents */ {
-	rv := objc.Send[DateComponents](h_.ID, objc.Sel("dateOfBirthComponentsWithError:"), error_)
+	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateOfBirthComponentsWithError:"), error_)
 	return rv
 }
 
@@ -185,7 +181,7 @@ func (h_ HKHealthStore) DateOfBirthComponentsWithError(error_ unsafe.Pointer) ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/delete(_:withCompletion:)-17hzm
-func (h_ HKHealthStore) DeleteObjectsWithCompletion(objects []HKObject /* primitive/slice/pointer. */, completion unsafe.Pointer) {
+func (h_ HKHealthStore) DeleteObjectsWithCompletion(objects []IHKObject, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("deleteObjects:withCompletion:"), objects, completion)
 }
 
@@ -203,7 +199,7 @@ func (h_ HKHealthStore) DeleteObjectWithCompletion(object IHKObject, completion 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/deleteObjects(of:predicate:withCompletion:)
-func (h_ HKHealthStore) DeleteObjectsOfTypePredicateWithCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer) {
+func (h_ HKHealthStore) DeleteObjectsOfTypePredicateWithCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("deleteObjectsOfType:predicate:withCompletion:"), objectType, predicate, completion)
 }
 
@@ -231,7 +227,7 @@ func (h_ HKHealthStore) DisableBackgroundDeliveryForTypeWithCompletion(type_ IHK
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/earliestPermittedSampleDate()
 func (h_ HKHealthStore) EarliestPermittedSampleDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[Date](h_.ID, objc.Sel("earliestPermittedSampleDate"))
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("earliestPermittedSampleDate"))
 	return rv
 }
 
@@ -286,7 +282,7 @@ func (h_ HKHealthStore) HandleAuthorizationForExtensionWithCompletion(completion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/preferredUnits(for:completion:)
-func (h_ HKHealthStore) PreferredUnitsForQuantityTypesCompletion(quantityTypes unsafe.Pointer, completion foundation.IDictionary /* already interface */) {
+func (h_ HKHealthStore) PreferredUnitsForQuantityTypesCompletion(quantityTypes unsafe.Pointer, completion foundation.IDictionary) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("preferredUnitsForQuantityTypes:completion:"), quantityTypes, completion)
 }
 
@@ -295,17 +291,8 @@ func (h_ HKHealthStore) PreferredUnitsForQuantityTypesCompletion(quantityTypes u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/recalibrateEstimates(sampleType:date:completion:)
-func (h_ HKHealthStore) RecalibrateEstimatesForSampleTypeAtDateCompletion(sampleType IHKSampleType, date foundation.objc.IObject /* cross-framework NSDate */, completion unsafe.Pointer) {
+func (h_ HKHealthStore) RecalibrateEstimatesForSampleTypeAtDateCompletion(sampleType IHKSampleType, date objc.IObject /* cross-framework: NSDate */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("recalibrateEstimatesForSampleType:atDate:completion:"), sampleType, date, completion)
-}
-
-
-// Recovers an active workout session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/recoverActiveWorkoutSession(completion:)
-func (h_ HKHealthStore) RecoverActiveWorkoutSessionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("recoverActiveWorkoutSessionWithCompletion:"), completion)
 }
 
 
@@ -329,7 +316,7 @@ func (h_ HKHealthStore) RequestAuthorizationToShareTypesReadTypesCompletion(type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/requestPerObjectReadAuthorization(for:predicate:completion:)
-func (h_ HKHealthStore) RequestPerObjectReadAuthorizationForTypePredicateCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer) {
+func (h_ HKHealthStore) RequestPerObjectReadAuthorizationForTypePredicateCompletion(objectType IHKObjectType, predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("requestPerObjectReadAuthorizationForType:predicate:completion:"), objectType, predicate, completion)
 }
 
@@ -338,7 +325,7 @@ func (h_ HKHealthStore) RequestPerObjectReadAuthorizationForTypePredicateComplet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/save(_:withCompletion:)-47iwb
-func (h_ HKHealthStore) SaveObjectsWithCompletion(objects []HKObject /* primitive/slice/pointer. */, completion unsafe.Pointer) {
+func (h_ HKHealthStore) SaveObjectsWithCompletion(objects []IHKObject, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("saveObjects:withCompletion:"), objects, completion)
 }
 
@@ -374,7 +361,7 @@ func (h_ HKHealthStore) StopQuery(query IHKQuery) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/supportsHealthRecords()
-func (h_ HKHealthStore) SupportsHealthRecords() bool /* primitive/slice/pointer. */ {
+func (h_ HKHealthStore) SupportsHealthRecords() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("supportsHealthRecords"))
 	return rv
 }
@@ -395,44 +382,5 @@ func (h_ HKHealthStore) WheelchairUseWithError(error_ unsafe.Pointer) IHKWheelch
 	rv := objc.Send[HKWheelchairUseObject](h_.ID, objc.Sel("wheelchairUseWithError:"), error_)
 	return rv
 }
-
-
-// The view controller that presents HealthKit authorization sheets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/authorizationViewControllerPresenter
-func (h_ HKHealthStore) AuthorizationViewControllerPresenter() objc.IObject /* cross-framework: ViewController */ {
-	rv := objc.Send[ViewController](h_.ID, objc.Sel("authorizationViewControllerPresenter"))
-	return rv
-}
-
-
-// The view controller that presents HealthKit authorization sheets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/authorizationViewControllerPresenter
-func (h_ HKHealthStore) SetAuthorizationViewControllerPresenter(value objc.IObject /* cross-framework: ViewController */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAuthorizationViewControllerPresenter:"), value)
-}
-
-
-// A block that the system calls when it starts a mirrored workout session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/workoutSessionMirroringStartHandler
-func (h_ HKHealthStore) WorkoutSessionMirroringStartHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutSessionMirroringStartHandler"))
-	return rv
-}
-
-
-// A block that the system calls when it starts a mirrored workout session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/workoutSessionMirroringStartHandler
-func (h_ HKHealthStore) SetWorkoutSessionMirroringStartHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutSessionMirroringStartHandler:"), value)
-}
-
 
 

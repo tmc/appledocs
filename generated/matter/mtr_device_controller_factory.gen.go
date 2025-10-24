@@ -30,16 +30,20 @@ type _MTRDeviceControllerFactoryClass struct {
 // An interface definition for the [MTRDeviceControllerFactory] class.
 type IMTRDeviceControllerFactory interface {
 	objectivec.IObject
-	CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
-	CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
-	StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool
+	// properties:
 	IsRunning() bool
 	SetIsRunning(value bool)
-	KnownFabrics() MTRFabricInfo
+	KnownFabrics() IMTRFabricInfo
 	SetKnownFabrics(value IMTRFabricInfo)
+	// methods:
+	CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) IMTRDeviceController
+	CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) IMTRDeviceController
+	StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory
 type MTRDeviceControllerFactory struct {
 	objectivec.Object
@@ -82,28 +86,32 @@ func NewMTRDeviceControllerFactory() MTRDeviceControllerFactory {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/createController(onExistingFabric:)
-func (m_ MTRDeviceControllerFactory) CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController {
+func (m_ MTRDeviceControllerFactory) CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) IMTRDeviceController {
 	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("createControllerOnExistingFabric:error:"), startupParams, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/createController(onNewFabric:)
-func (m_ MTRDeviceControllerFactory) CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController {
+func (m_ MTRDeviceControllerFactory) CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) IMTRDeviceController {
 	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("createControllerOnNewFabric:error:"), startupParams, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/start(_:)
 func (m_ MTRDeviceControllerFactory) StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startControllerFactory:error:"), startupParams, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/isrunning
 func (m_ MTRDeviceControllerFactory) IsRunning() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
@@ -111,23 +119,22 @@ func (m_ MTRDeviceControllerFactory) IsRunning() bool {
 }
 
 
-// SetIsRunning sets the value of the isRunning property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/isrunning
 func (m_ MTRDeviceControllerFactory) SetIsRunning(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
-func (m_ MTRDeviceControllerFactory) KnownFabrics() MTRFabricInfo {
+func (m_ MTRDeviceControllerFactory) KnownFabrics() IMTRFabricInfo {
 	rv := objc.Send[MTRFabricInfo](m_.ID, objc.Sel("knownFabrics"))
 	return rv
 }
 
 
-// SetKnownFabrics sets the value of the knownFabrics property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
 func (m_ MTRDeviceControllerFactory) SetKnownFabrics(value IMTRFabricInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKnownFabrics:"), value)

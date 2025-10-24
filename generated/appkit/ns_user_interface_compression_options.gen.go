@@ -30,8 +30,10 @@ type _UserInterfaceCompressionOptionsClass struct {
 // An interface definition for the [UserInterfaceCompressionOptions] class.
 type IUserInterfaceCompressionOptions interface {
 	objectivec.IObject
+	// properties:
 	IsEmpty() bool
 	SetIsEmpty(value bool)
+	// methods:
 }
 
 // An object that specifies how user interface elements resize themselves when space is constrained.
@@ -87,19 +89,6 @@ func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
 
 
 
-// Creates an option object with the given identifier string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(identifier:)
-func NewUserInterfaceCompressionOptionsWithIdentifier(identifier string) UserInterfaceCompressionOptions {
-	instance := getUserInterfaceCompressionOptionsClass().Alloc()
-	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // A Boolean value that denotes whether the option is empty.
 //
 // [Full Topic]
@@ -117,5 +106,6 @@ func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
 func (u_ UserInterfaceCompressionOptions) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEmpty:"), value)
 }
+
 
 

@@ -31,10 +31,6 @@ type _GCEventInteractionClass struct {
 type IGCEventInteraction interface {
 	objectivec.IObject
 	// properties:
-	HandledEventTypes() unsafe.Pointer
-	SetHandledEventTypes(value unsafe.Pointer)
-	ReceivesEventsInView() bool /* primitive/slice/pointer. */
-	SetReceivesEventsInView(value bool /* primitive/slice/pointer. */)
 	ControllerPausedHandler() unsafe.Pointer
 	SetControllerPausedHandler(value unsafe.Pointer)
 	// methods:
@@ -92,44 +88,6 @@ func NewGCEventInteraction() GCEventInteraction {
 }
 
 
-
-
-// The types of game controller events that should be delivered through the Game Controller framework.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("handledEventTypes"))
-	return rv
-}
-
-
-// The types of game controller events that should be delivered through the Game Controller framework.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setHandledEventTypes:"), value)
-}
-
-
-// A Boolean value that determines whether events are delivered exclusively through the Game Controller framework.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/receivesEventsInView
-func (g_ GCEventInteraction) ReceivesEventsInView() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
-	return rv
-}
-
-
-// A Boolean value that determines whether events are delivered exclusively through the Game Controller framework.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/receivesEventsInView
-func (g_ GCEventInteraction) SetReceivesEventsInView(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
-}
 
 
 // The block that the framework calls when the user presses the pause button on the controller.

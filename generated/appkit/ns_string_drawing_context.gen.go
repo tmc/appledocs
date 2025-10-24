@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _StringDrawingContextClass struct {
 type IStringDrawingContext interface {
 	objectivec.IObject
 	// properties:
-	ActualScaleFactor() float64 /* primitive/slice/pointer. */
-	SetActualScaleFactor(value float64 /* primitive/slice/pointer. */)
-	MinimumScaleFactor() float64 /* primitive/slice/pointer. */
-	SetMinimumScaleFactor(value float64 /* primitive/slice/pointer. */)
+	ActualScaleFactor() float64
+	SetActualScaleFactor(value float64)
+	MinimumScaleFactor() float64
+	SetMinimumScaleFactor(value float64)
 	TotalBounds() objc.IObject /* cross-framework: Rect */
 	SetTotalBounds(value objc.IObject /* cross-framework: Rect */)
 	// methods:
@@ -97,7 +98,7 @@ func NewStringDrawingContext() StringDrawingContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
-func (s_ StringDrawingContext) ActualScaleFactor() float64 /* primitive/slice/pointer. */ {
+func (s_ StringDrawingContext) ActualScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("actualScaleFactor"))
 	return rv
 }
@@ -107,7 +108,7 @@ func (s_ StringDrawingContext) ActualScaleFactor() float64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
-func (s_ StringDrawingContext) SetActualScaleFactor(value float64 /* primitive/slice/pointer. */) {
+func (s_ StringDrawingContext) SetActualScaleFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActualScaleFactor:"), value)
 }
 
@@ -116,7 +117,7 @@ func (s_ StringDrawingContext) SetActualScaleFactor(value float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
-func (s_ StringDrawingContext) MinimumScaleFactor() float64 /* primitive/slice/pointer. */ {
+func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
 	return rv
 }
@@ -126,7 +127,7 @@ func (s_ StringDrawingContext) MinimumScaleFactor() float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
-func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64 /* primitive/slice/pointer. */) {
+func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
 }
 
@@ -136,7 +137,7 @@ func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64 /* primitive/
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
 func (s_ StringDrawingContext) TotalBounds() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("totalBounds"))
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("totalBounds"))
 	return rv
 }
 

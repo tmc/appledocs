@@ -1,54 +1,28 @@
 // Code generated from Apple documentation for GameController. DO NOT EDIT.
 
 package gamecontroller
-import (
-	"unsafe"
-)
 
 
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
-
-type CHHapticEngine = int
-
-type GCAcceleration = int
-
-type GCControllerPlayerIndex = int
-
-type GCControllerTouchpadHandler = int
-
-type GCDualSenseAdaptiveTriggerPositionalAmplitudes = int
-
-type GCExtendedGamepadValueChangedHandler = int
-
-type GCGamepad = int
-
-type GCKeyboardInput = int
-
-type GCMotionValueChangedHandler = int
-
-type GCMouseInput = int
-
-type GCQuaternion = int
-
-type GCRacingWheelInput = int
-
-type GCRotationRate = int
-
-type GCUIEventTypes = int
-
-type Mode = int
-
-type Status = int
-
-type SystemGestureState = int
-
-type TouchState = int
-
-type Void = int
+// C struct types
+// GCAcceleration - A three-dimensional acceleration vector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCAcceleration
+type GCAcceleration struct {
+	X float64 // The acceleration measurement along the x-axis, in multiples of earth’s gravity.
+	Y float64 // The acceleration measurement along the y-axis, in multiples of earth’s gravity.
+	Z float64 // The acceleration measurement along the z-axis, in multiples of earth’s gravity.
+}// GCQuaternion - A quaternion that represents a controller’s measurement of attitude.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCQuaternion
+type GCQuaternion struct {
+}// GCRotationRate - A structure that represents rotation rates around the x, y, and z axes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRotationRate
+type GCRotationRate struct {
+}
 
 
 

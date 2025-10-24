@@ -26,3 +26,27 @@ func ExampleNewPHASEEngineWithUpdateModeRenderingMode() {
 	)
 	// Output:
 }
+// ExamplePHASEEngine_Pause demonstrates using Pause on a PHASEEngine instance.
+// Pauses all audio playback.
+func ExamplePHASEEngine_Pause() {
+	obj := phase.NewPHASEEngine()
+	obj.Pause()
+	// Output:
+	}
+
+// ExamplePHASEEngine_Stop demonstrates using Stop on a PHASEEngine instance.
+// Stops all audio playback.
+func ExamplePHASEEngine_Stop() {
+	obj := phase.NewPHASEEngine()
+	obj.Stop()
+	// Output:
+	}
+
+// ExamplePHASEEngine_Update demonstrates using Update on a PHASEEngine instance.
+// Processes app commands and increments framework processing.
+func ExamplePHASEEngine_Update() {
+	obj := phase.NewPHASEEngine()
+	obj.Update()
+	// Output:
+	}
+

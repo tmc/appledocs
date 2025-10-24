@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DataDetection without requiring cgo.
-
-// Access and utilize common types of data that the data detection system matches.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DataDetection
+// See: https://developer.apple.com/documentation/DataDetection
 package datadetection
 
 import (

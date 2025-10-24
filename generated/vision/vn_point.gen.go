@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +30,22 @@ type _PointClass struct {
 // An interface definition for the [Point] class.
 type IPoint interface {
 	objectivec.IObject
-	DistanceToPoint(point IVNPoint) float64
-	Location() coregraphics.CGPoint
+	// properties:
+	Location() IPoint
+	SetLocation(value IPoint)
 	X() float64
+	SetX(value float64)
 	Y() float64
+	SetY(value float64)
+	// methods:
 }
 
 // An immutable object that represents a single 2D point in an image.
+
+
+// An immutable object that represents a single 2D point in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint
 type Point struct {
 	objectivec.Object
@@ -84,91 +91,61 @@ func NewPoint() Point {
 
 
 
-
-// Creates a point object from the specified Core Graphics point.
+// The Core Graphics point for this point.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/init(location:)
-func NewPointWithLocation(location coregraphics.CGPoint) Point {
-	instance := getPointClass().Alloc()
-	rv := objc.Send[Point](instance.ID, objc.Sel("initWithLocation:"), location)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/location
+func (p_ Point) Location() IPoint {
+	rv := objc.Send[Point](p_.ID, objc.Sel("location"))
 	return rv
 }
 
-
-
-// Creates a point object with the specified coordinates.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/init(x:y:)
-func NewPointWithXY(x float64, y float64) Point {
-	instance := getPointClass().Alloc()
-	rv := objc.Send[Point](instance.ID, objc.Sel("initWithX:y:"), x, y)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a point object that’s shifted by the X and Y offsets of the specified vector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/apply(_:to:)
-func (pc _PointClass) PointByApplyingVectorToPoint(vector IVNVector, point IVNPoint) Point {
-	rv := objc.Send[Point](objc.ID(pc.class), objc.Sel("pointByApplyingVector:toPoint:"), vector, point)
-	return rv
-}
-
-// Calculates the distance between two points.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:_:)
-func (pc _PointClass) DistanceBetweenPointPoint(point1 IVNPoint, point2 IVNPoint) float64 {
-	rv := objc.Send[float64](objc.ID(pc.class), objc.Sel("distanceBetweenPoint:point:"), point1, point2)
-	return rv
-}
-
-// A point object that represents the origin.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
-func (pc _PointClass) ZeroPoint() Point {
-	rv := objc.Send[VNPoint](objc.ID(pc.class), objc.Sel("zeroPoint"))
-	return rv
-}
-// Returns the distance to another point.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:)
-func (p_ Point) DistanceToPoint(point IVNPoint) float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("distanceToPoint:"), point)
-	return rv
-}
 
 // The Core Graphics point for this point.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/location
-func (p_ Point) Location() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](p_.ID, objc.Sel("location"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/location
+func (p_ Point) SetLocation(value IPoint) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocation:"), value)
 }
+
 
 // The x-coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/x
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/x
 func (p_ Point) X() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("x"))
 	return rv
 }
 
+
+// The x-coordinate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/x
+func (p_ Point) SetX(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setX:"), value)
+}
+
+
 // The y-coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/y
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/y
 func (p_ Point) Y() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("y"))
 	return rv
 }
 
-// A point object that represents the origin.
+
+// The y-coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
-func (p_ Point) ZeroPoint() VNPoint {
-	rv := objc.Send[VNPoint](p_.ID, objc.Sel("zeroPoint"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnpoint/y
+func (p_ Point) SetY(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setY:"), value)
 }
+
 
 

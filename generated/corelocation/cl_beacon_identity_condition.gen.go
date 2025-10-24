@@ -32,8 +32,8 @@ type IBeaconIdentityCondition interface {
 	ICondition
 	// properties:
 	UUID() objc.IObject /* cross-framework: UUID */
-	Major() foundation.objc.IObject /* cross-framework: Number */
-	Minor() foundation.objc.IObject /* cross-framework: Number */
+	Major() objc.IObject /* cross-framework: NSNumber */
+	Minor() objc.IObject /* cross-framework: NSNumber */
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
-func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework UUID */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework: UUID */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework UUI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
-func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framework UUID */, major BeaconMajorValue /* not a class type */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framework: UUID */, major BeaconMajorValue /* not a class type */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:"), uuid, major)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
-func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-framework UUID */, major BeaconMajorValue /* not a class type */, minor BeaconMinorValue /* not a class type */) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-framework: UUID */, major BeaconMajorValue /* not a class type */, minor BeaconMinorValue /* not a class type */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
 	rv.Autorelease()
@@ -134,7 +134,7 @@ func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-fra
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/UUID
 func (b_ BeaconIdentityCondition) UUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](b_.ID, objc.Sel("UUID"))
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
 
@@ -143,8 +143,8 @@ func (b_ BeaconIdentityCondition) UUID() objc.IObject /* cross-framework: UUID *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/major
-func (b_ BeaconIdentityCondition) Major() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+func (b_ BeaconIdentityCondition) Major() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (b_ BeaconIdentityCondition) Major() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/minor
-func (b_ BeaconIdentityCondition) Minor() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
+func (b_ BeaconIdentityCondition) Minor() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
 

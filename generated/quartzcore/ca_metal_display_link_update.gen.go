@@ -30,13 +30,21 @@ type _MetalDisplayLinkUpdateClass struct {
 // An interface definition for the [MetalDisplayLinkUpdate] class.
 type IMetalDisplayLinkUpdate interface {
 	objectivec.IObject
-	Drawable() objc.ID
-	TargetPresentationTimestamp() TimeInterval
-	TargetTimestamp() TimeInterval
+	// properties:
+	TargetTimestamp() float64
+	Drawable() MetalDrawable /* not a class type */
+	SetDrawable(value MetalDrawable /* not a class type */)
+	TargetPresentationTimestamp() float64
+	SetTargetPresentationTimestamp(value float64)
+	// methods:
 }
 
 // Stores information about a single update from a Metal display link instance.
+
+
+// Stores information about a single update from a Metal display link instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update
 type MetalDisplayLinkUpdate struct {
 	objectivec.Object
@@ -81,28 +89,52 @@ func NewMetalDisplayLinkUpdate() MetalDisplayLinkUpdate {
 }
 
 
-// The Metal drawable your app uses to render the next frame.
+
+// A deadline that indicates when your app needs to finish rendering to the drawable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/drawable
-func (m_ MetalDisplayLinkUpdate) Drawable() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("drawable"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetTimestamp
+func (m_ MetalDisplayLinkUpdate) TargetTimestamp() float64 {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("targetTimestamp"))
 	return rv
 }
 
+
+// The Metal drawable your app uses to render the next frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/update/drawable
+func (m_ MetalDisplayLinkUpdate) Drawable() MetalDrawable /* not a class type */ {
+	rv := objc.Send[MetalDrawable](m_.ID, objc.Sel("drawable"))
+	return rv
+}
+
+
+// The Metal drawable your app uses to render the next frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/update/drawable
+func (m_ MetalDisplayLinkUpdate) SetDrawable(value MetalDrawable /* not a class type */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDrawable:"), value)
+}
+
+
 // The time the system estimates until the display of the next frame.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetPresentationTimestamp
-func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() TimeInterval {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/update/targetpresentationtimestamp
+func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() float64 {
 	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("targetPresentationTimestamp"))
 	return rv
 }
 
-// A deadline that indicates when your app needs to finish rendering to the drawable.
+
+// The time the system estimates until the display of the next frame.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetTimestamp
-func (m_ MetalDisplayLinkUpdate) TargetTimestamp() TimeInterval {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("targetTimestamp"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/update/targetpresentationtimestamp
+func (m_ MetalDisplayLinkUpdate) SetTargetPresentationTimestamp(value float64) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetPresentationTimestamp:"), value)
 }
 
 

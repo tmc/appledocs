@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,21 +32,27 @@ type _ThumbnailRepresentationClass struct {
 // An interface definition for the [ThumbnailRepresentation] class.
 type IThumbnailRepresentation interface {
 	objectivec.IObject
-	CGImage() coregraphics.CGImageRef
-	ContentRect() coregraphics.CGRect
-	SetContentRect(value coregraphics.CGRect)
-	NsImage() appkit.Image
-	SetNsImage(value appkit.IImage)
+	// properties:
+	CGImage() ImageRef /* not a class type */
+	ContentRect() objc.IObject /* cross-framework: Rect */
+	SetContentRect(value objc.IObject /* cross-framework: Rect */)
+	NsImage() objc.IObject /* cross-framework: Image */
+	SetNsImage(value objc.IObject /* cross-framework: Image */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
-	UiImage() appkit.Image
-	SetUiImage(value appkit.IImage)
+	UiImage() objc.IObject /* cross-framework: Image */
+	SetUiImage(value objc.IObject /* cross-framework: Image */)
+	// methods:
 }
 
 // Information about the thumbnail that the thumbnail generator returns.
 //
 // QuickLook Thumbnailing is a non-UI framework, so your app doesn’t have to link to either or . Quicklook Thumbnailing generates a thumbnail as a Core Graphics image object and makes the thumbnail available as the property. If an app links to AppKit or UIKit, the thumbnail is available through the or properties. For more information on the different types of thumbnails that can create, see .
+
+
+// Information about the thumbnail that the thumbnail generator returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailRepresentation
 type ThumbnailRepresentation struct {
 	objectivec.Object
@@ -91,52 +97,58 @@ func NewThumbnailRepresentation() ThumbnailRepresentation {
 }
 
 
+
 // A thumbnail in the form of a Core Graphics image object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/cgImage
-func (t_ ThumbnailRepresentation) CGImage() coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](t_.ID, objc.Sel("CGImage"))
-	return rv
-}
-
-// The rectangle within the thumbnail image of the document that represents its contents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/contentrect
-func (t_ ThumbnailRepresentation) ContentRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("contentRect"))
+func (t_ ThumbnailRepresentation) CGImage() ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](t_.ID, objc.Sel("CGImage"))
 	return rv
 }
 
 
-// SetContentRect sets the value of the contentRect property.
 // The rectangle within the thumbnail image of the document that represents its contents.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/contentrect
-func (t_ ThumbnailRepresentation) SetContentRect(value coregraphics.CGRect) {
+func (t_ ThumbnailRepresentation) ContentRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("contentRect"))
+	return rv
+}
+
+
+// The rectangle within the thumbnail image of the document that represents its contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/contentrect
+func (t_ ThumbnailRepresentation) SetContentRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentRect:"), value)
 }
 
+
 // A thumbnail in the form of an AppKit image object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) NsImage() appkit.Image {
+func (t_ ThumbnailRepresentation) NsImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("nsImage"))
 	return rv
 }
 
 
-// SetNsImage sets the value of the nsImage property.
 // A thumbnail in the form of an AppKit image object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) SetNsImage(value appkit.IImage) {
+func (t_ ThumbnailRepresentation) SetNsImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNsImage:"), value)
 }
 
+
 // The type of thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/type
 func (t_ ThumbnailRepresentation) Type() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("type"))
@@ -144,30 +156,30 @@ func (t_ ThumbnailRepresentation) Type() unsafe.Pointer {
 }
 
 
-// SetType sets the value of the type property.
 // The type of thumbnail.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/type
 func (t_ ThumbnailRepresentation) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
 
+
 // A thumbnail in the form of a UIKit image object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) UiImage() appkit.Image {
+func (t_ ThumbnailRepresentation) UiImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("uiImage"))
 	return rv
 }
 
 
-// SetUiImage sets the value of the uiImage property.
 // A thumbnail in the form of a UIKit image object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) SetUiImage(value appkit.IImage) {
+func (t_ ThumbnailRepresentation) SetUiImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUiImage:"), value)
 }
 

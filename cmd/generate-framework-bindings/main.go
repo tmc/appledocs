@@ -255,6 +255,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				}
 			}
 
+			// Add manual types from manualFrameworkTypes (e.g., geometry types from rect_types.go)
+			if manualTypes, exists := manualFrameworkTypes[strings.ToLower(framework)]; exists {
+				for _, typeName := range manualTypes {
+					currentFrameworkStructs[typeName] = true
+				}
+			}
+
 			if verbose {
 				fmt.Fprintf(os.Stderr, "[%s] Repopulated type maps from cache: %d classes, %d enums, %d typedefs, %d structs\n",
 					framework, len(currentFrameworkClasses), len(currentFrameworkEnums), len(currentFrameworkTypedefs), len(currentFrameworkStructs))
@@ -586,6 +593,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 					"struct", strct.Name,
 					"stripped", strippedName,
 					"framework", framework)
+			}
+		}
+
+		// Add manual types from manualFrameworkTypes (e.g., geometry types from rect_types.go)
+		if manualTypes, exists := manualFrameworkTypes[strings.ToLower(framework)]; exists {
+			for _, typeName := range manualTypes {
+				currentFrameworkStructs[typeName] = true
 			}
 		}
 

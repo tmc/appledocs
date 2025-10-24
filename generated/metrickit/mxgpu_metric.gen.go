@@ -29,11 +29,17 @@ type _MXGPUMetricClass struct {
 // An interface definition for the [MXGPUMetric] class.
 type IMXGPUMetric interface {
 	IMXMetric
+	// properties:
 	CumulativeGPUTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the use of the GPU.
+
+
+// An object representing metrics about the use of the GPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXGPUMetric
 type MXGPUMetric struct {
 	MXMetric
@@ -80,8 +86,10 @@ func NewMXGPUMetric() MXGPUMetric {
 }
 
 
+
 // The total amount of GPU time used by the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXGPUMetric/cumulativeGPUTime
 func (m_ MXGPUMetric) CumulativeGPUTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeGPUTime"))

@@ -31,11 +31,15 @@ type _MTRSmokeCOAlarmClusterLowBatteryEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterLowBatteryEvent] class.
 type IMTRSmokeCOAlarmClusterLowBatteryEvent interface {
 	objectivec.IObject
-	AlarmSeverityLevel() foundation.Number
-	SetAlarmSeverityLevel(value foundation.INumber)
+	// properties:
+	AlarmSeverityLevel() objc.IObject /* cross-framework: NSNumber */
+	SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterLowBatteryEvent
 type MTRSmokeCOAlarmClusterLowBatteryEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSmokeCOAlarmClusterLowBatteryEvent() MTRSmokeCOAlarmClusterLowBattery
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterlowbatteryevent/alarmseveritylevel
-func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) AlarmSeverityLevel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmSeverityLevel"))
+func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) AlarmSeverityLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarmSeverityLevel"))
 	return rv
 }
 
 
-// SetAlarmSeverityLevel sets the value of the alarmSeverityLevel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterlowbatteryevent/alarmseveritylevel
-func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) SetAlarmSeverityLevel(value foundation.INumber) {
+func (m_ MTRSmokeCOAlarmClusterLowBatteryEvent) SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmSeverityLevel:"), value)
 }
 

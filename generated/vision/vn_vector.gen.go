@@ -30,6 +30,7 @@ type _VectorClass struct {
 // An interface definition for the [Vector] class.
 type IVector interface {
 	objectivec.IObject
+	// properties:
 	Length() float64
 	SetLength(value float64)
 	R() float64
@@ -42,10 +43,15 @@ type IVector interface {
 	SetX(value float64)
 	Y() float64
 	SetY(value float64)
+	// methods:
 }
 
 // An immutable 2D vector represented by its x-axis and y-axis projections.
+
+
+// An immutable 2D vector represented by its x-axis and y-axis projections.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNVector
 type Vector struct {
 	objectivec.Object
@@ -90,8 +96,10 @@ func NewVector() Vector {
 }
 
 
+
 // The length, or absolute value, of the vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/length
 func (v_ Vector) Length() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("length"))
@@ -99,17 +107,18 @@ func (v_ Vector) Length() float64 {
 }
 
 
-// SetLength sets the value of the length property.
 // The length, or absolute value, of the vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/length
 func (v_ Vector) SetLength(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLength:"), value)
 }
 
+
 // The radius, absolute value, or length of the vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/r
 func (v_ Vector) R() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("r"))
@@ -117,17 +126,18 @@ func (v_ Vector) R() float64 {
 }
 
 
-// SetR sets the value of the r property.
 // The radius, absolute value, or length of the vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/r
 func (v_ Vector) SetR(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setR:"), value)
 }
 
+
 // The squared length of the vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/squaredlength
 func (v_ Vector) SquaredLength() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("squaredLength"))
@@ -135,17 +145,18 @@ func (v_ Vector) SquaredLength() float64 {
 }
 
 
-// SetSquaredLength sets the value of the squaredLength property.
 // The squared length of the vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/squaredlength
 func (v_ Vector) SetSquaredLength(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSquaredLength:"), value)
 }
 
+
 // The angle between the vector direction and the positive direction of the x-axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/theta
 func (v_ Vector) Theta() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("theta"))
@@ -153,17 +164,18 @@ func (v_ Vector) Theta() float64 {
 }
 
 
-// SetTheta sets the value of the theta property.
 // The angle between the vector direction and the positive direction of the x-axis.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/theta
 func (v_ Vector) SetTheta(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTheta:"), value)
 }
 
+
 // A signed projection that indicates the vector’s direction on the x-axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/x
 func (v_ Vector) X() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("x"))
@@ -171,17 +183,18 @@ func (v_ Vector) X() float64 {
 }
 
 
-// SetX sets the value of the x property.
 // A signed projection that indicates the vector’s direction on the x-axis.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/x
 func (v_ Vector) SetX(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setX:"), value)
 }
 
+
 // A signed projection that indicates the vector’s direction on the y-axis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/y
 func (v_ Vector) Y() float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("y"))
@@ -189,10 +202,9 @@ func (v_ Vector) Y() float64 {
 }
 
 
-// SetY sets the value of the y property.
 // A signed projection that indicates the vector’s direction on the y-axis.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnvector/y
 func (v_ Vector) SetY(value float64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setY:"), value)

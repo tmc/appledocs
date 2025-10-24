@@ -31,13 +31,17 @@ type _MTRGroupsClusterRemoveAllGroupsParamsClass struct {
 // An interface definition for the [MTRGroupsClusterRemoveAllGroupsParams] class.
 type IMTRGroupsClusterRemoveAllGroupsParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterRemoveAllGroupsParams
 type MTRGroupsClusterRemoveAllGroupsParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRGroupsClusterRemoveAllGroupsParams() MTRGroupsClusterRemoveAllGroupsP
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterRemoveAllGroupsParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGroupsClusterRemoveAllGroupsParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterRemoveAllGroupsParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupsClusterRemoveAllGroupsParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

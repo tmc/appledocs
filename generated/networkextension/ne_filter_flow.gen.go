@@ -31,28 +31,34 @@ type _NEFilterFlowClass struct {
 // An interface definition for the [NEFilterFlow] class.
 type INEFilterFlow interface {
 	objectivec.IObject
-	Direction() NETrafficDirection
-	SetDirection(value NETrafficDirection)
-	Identifier() foundation.UUID
-	SetIdentifier(value foundation.IUUID)
-	SourceAppAuditToken() foundation.Data
-	SetSourceAppAuditToken(value foundation.IData)
-	SourceAppIdentifier() string
-	SetSourceAppIdentifier(value string)
-	SourceAppUniqueIdentifier() foundation.Data
-	SetSourceAppUniqueIdentifier(value foundation.IData)
-	SourceAppVersion() string
-	SetSourceAppVersion(value string)
-	SourceProcessAuditToken() foundation.Data
-	SetSourceProcessAuditToken(value foundation.IData)
-	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	// properties:
+	Direction() unsafe.Pointer
+	SetDirection(value unsafe.Pointer)
+	Identifier() objc.IObject /* cross-framework: UUID */
+	SetIdentifier(value objc.IObject /* cross-framework: UUID */)
+	SourceAppAuditToken() objc.IObject /* cross-framework: Data */
+	SetSourceAppAuditToken(value objc.IObject /* cross-framework: Data */)
+	SourceAppIdentifier() objc.IObject /* cross-framework: NSString */
+	SetSourceAppIdentifier(value objc.IObject /* cross-framework: NSString */)
+	SourceAppUniqueIdentifier() objc.IObject /* cross-framework: Data */
+	SetSourceAppUniqueIdentifier(value objc.IObject /* cross-framework: Data */)
+	SourceAppVersion() objc.IObject /* cross-framework: NSString */
+	SetSourceAppVersion(value objc.IObject /* cross-framework: NSString */)
+	SourceProcessAuditToken() objc.IObject /* cross-framework: Data */
+	SetSourceProcessAuditToken(value objc.IObject /* cross-framework: Data */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	NEFilterFlowBytesMax() uint64
 	SetNEFilterFlowBytesMax(value uint64)
+	// methods:
 }
 
 // The abstract base class for types that represent flows of network data.
+
+
+// The abstract base class for types that represent flows of network data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterFlow
 type NEFilterFlow struct {
 	objectivec.Object
@@ -97,152 +103,162 @@ func NewNEFilterFlow() NEFilterFlow {
 }
 
 
+
 // The initial direction of the flow: incoming or outgoing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) Direction() NETrafficDirection {
-	rv := objc.Send[NETrafficDirection](n_.ID, objc.Sel("direction"))
+func (n_ NEFilterFlow) Direction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
 	return rv
 }
 
 
-// SetDirection sets the value of the direction property.
 // The initial direction of the flow: incoming or outgoing.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) SetDirection(value NETrafficDirection) {
+func (n_ NEFilterFlow) SetDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
 }
 
+
 // The unique identifier of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) Identifier() foundation.UUID {
+func (n_ NEFilterFlow) Identifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // The unique identifier of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) SetIdentifier(value foundation.IUUID) {
+func (n_ NEFilterFlow) SetIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
 }
 
+
 // The audit token of the source application of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappaudittoken
-func (n_ NEFilterFlow) SourceAppAuditToken() foundation.Data {
+func (n_ NEFilterFlow) SourceAppAuditToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceAppAuditToken"))
 	return rv
 }
 
 
-// SetSourceAppAuditToken sets the value of the sourceAppAuditToken property.
 // The audit token of the source application of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappaudittoken
-func (n_ NEFilterFlow) SetSourceAppAuditToken(value foundation.IData) {
+func (n_ NEFilterFlow) SetSourceAppAuditToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppAuditToken:"), value)
 }
 
+
 // A string containing the identifier of the source app of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SourceAppIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppIdentifier"))
+func (n_ NEFilterFlow) SourceAppIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sourceAppIdentifier"))
 	return rv
 }
 
 
-// SetSourceAppIdentifier sets the value of the sourceAppIdentifier property.
 // A string containing the identifier of the source app of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SetSourceAppIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), objc.String(value))
+func (n_ NEFilterFlow) SetSourceAppIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), value)
 }
+
 
 // A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SourceAppUniqueIdentifier() foundation.Data {
+func (n_ NEFilterFlow) SourceAppUniqueIdentifier() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
 	return rv
 }
 
 
-// SetSourceAppUniqueIdentifier sets the value of the sourceAppUniqueIdentifier property.
 // A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value foundation.IData) {
+func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppUniqueIdentifier:"), value)
 }
 
+
 // The short version string of the app that is the source of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SourceAppVersion() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppVersion"))
+func (n_ NEFilterFlow) SourceAppVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("sourceAppVersion"))
 	return rv
 }
 
 
-// SetSourceAppVersion sets the value of the sourceAppVersion property.
 // The short version string of the app that is the source of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SetSourceAppVersion(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), objc.String(value))
+func (n_ NEFilterFlow) SetSourceAppVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), value)
 }
+
 
 // The audit token of the process that created the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceprocessaudittoken
-func (n_ NEFilterFlow) SourceProcessAuditToken() foundation.Data {
+func (n_ NEFilterFlow) SourceProcessAuditToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceProcessAuditToken"))
 	return rv
 }
 
 
-// SetSourceProcessAuditToken sets the value of the sourceProcessAuditToken property.
 // The audit token of the process that created the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceprocessaudittoken
-func (n_ NEFilterFlow) SetSourceProcessAuditToken(value foundation.IData) {
+func (n_ NEFilterFlow) SetSourceProcessAuditToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceProcessAuditToken:"), value)
 }
 
+
 // The flow’s HTTP URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/url
-func (n_ NEFilterFlow) Url() foundation.URL {
+func (n_ NEFilterFlow) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetUrl sets the value of the url property.
 // The flow’s HTTP URL.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/url
-func (n_ NEFilterFlow) SetUrl(value foundation.IURL) {
+func (n_ NEFilterFlow) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUrl:"), value)
 }
 
+
 // The maximum number of bytes to pass or peek for a flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflowbytesmax
 func (n_ NEFilterFlow) NEFilterFlowBytesMax() uint64 {
 	rv := objc.Send[uint64](n_.ID, objc.Sel("NEFilterFlowBytesMax"))
@@ -250,10 +266,9 @@ func (n_ NEFilterFlow) NEFilterFlowBytesMax() uint64 {
 }
 
 
-// SetNEFilterFlowBytesMax sets the value of the NEFilterFlowBytesMax property.
 // The maximum number of bytes to pass or peek for a flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflowbytesmax
 func (n_ NEFilterFlow) SetNEFilterFlowBytesMax(value uint64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNEFilterFlowBytesMax:"), value)

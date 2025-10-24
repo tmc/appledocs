@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DriverKit without requiring cgo.
-
-// Develop device drivers that run in user space.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DriverKit
+// See: https://developer.apple.com/documentation/DriverKit
 package driverkit
 
 import (

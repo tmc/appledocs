@@ -30,11 +30,15 @@ type _MTRTestClusterClusterTestFabricScopedEventEventClass struct {
 // An interface definition for the [MTRTestClusterClusterTestFabricScopedEventEvent] class.
 type IMTRTestClusterClusterTestFabricScopedEventEvent interface {
 	IMTRUnitTestingClusterTestFabricScopedEventEvent
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestFabricScopedEventEvent
 type MTRTestClusterClusterTestFabricScopedEventEvent struct {
 	MTRUnitTestingClusterTestFabricScopedEventEvent
@@ -79,18 +83,18 @@ func NewMTRTestClusterClusterTestFabricScopedEventEvent() MTRTestClusterClusterT
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
-func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
-func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

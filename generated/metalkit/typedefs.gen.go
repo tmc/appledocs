@@ -3,19 +3,19 @@
 package metalkit
 
 // Type aliases and typedefs
-// MTKModelError - Constants used to declare Model Errors.
+// ModelError - Constants used to declare Model Errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKModelError
-// MTKModelError has base type: NSString *
-type MTKModelError uintptr
-// MTKTextureLoaderError - Errors returned by the texture loader.
+// MTKModelError is a string typedef
+type ModelError = string
+// TextureLoaderError - Errors returned by the texture loader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/Error
-// MTKTextureLoaderError has base type: NSString *
-type MTKTextureLoaderError uintptr
-// MTKTextureLoaderOption - Keys and values used to specify loading options.
+// MTKTextureLoaderError is a string typedef
+type TextureLoaderError = string
+// TextureLoaderOption - Keys and values used to specify loading options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKTextureLoader/Option
-// MTKTextureLoaderOption has base type: NSString *
-type MTKTextureLoaderOption uintptr
+// MTKTextureLoaderOption is a string typedef
+type TextureLoaderOption = string
 

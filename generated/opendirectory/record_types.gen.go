@@ -30,9 +30,13 @@ type _recordTypesClass struct {
 // An interface definition for the [recordTypes] class.
 type IrecordTypes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordTypes-c.ivar
 type recordTypes struct {
 	objectivec.Object

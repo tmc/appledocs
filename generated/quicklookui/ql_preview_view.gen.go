@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PreviewView] class.
@@ -31,19 +30,24 @@ type _PreviewViewClass struct {
 // An interface definition for the [PreviewView] class.
 type IPreviewView interface {
 	appkit.IView
-	Close()
+	// properties:
 	Autostarts() bool
 	SetAutostarts(value bool)
 	DisplayState() unsafe.Pointer
 	SetDisplayState(value unsafe.Pointer)
-	PreviewItem() unsafe.Pointer
-	SetPreviewItem(value unsafe.Pointer)
+	PreviewItem() PreviewItem /* not a class type */
+	SetPreviewItem(value PreviewItem /* not a class type */)
 	ShouldCloseWithWindow() bool
 	SetShouldCloseWithWindow(value bool)
+	// methods:
 }
 
 // A Quick Look preview of an item that you can embed into your view hierarchy.
+
+
+// A Quick Look preview of an item that you can embed into your view hierarchy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView
 type PreviewView struct {
 	appkit.View
@@ -91,39 +95,9 @@ func NewPreviewView() PreviewView {
 
 
 
-
-// Creates a preview view with the provided frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:)
-func NewPreviewViewWithFrame(frame foundation.IRect) PreviewView {
-	instance := getPreviewViewClass().Alloc()
-	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:"), frame)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a preview view with the provided frame and style.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:style:)
-func NewPreviewViewWithFrameStyle(frame foundation.IRect, style unsafe.Pointer) PreviewView {
-	instance := getPreviewViewClass().Alloc()
-	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:style:"), frame, style)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Closes the view, releasing the current preview item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/close()
-func (p_ PreviewView) Close() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("close"))
-}
-
 // A Boolean value that determines whether the preview starts automatically.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
 func (p_ PreviewView) Autostarts() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("autostarts"))
@@ -131,17 +105,18 @@ func (p_ PreviewView) Autostarts() bool {
 }
 
 
-// SetAutostarts sets the value of the autostarts property.
 // A Boolean value that determines whether the preview starts automatically.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/autostarts
 func (p_ PreviewView) SetAutostarts(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutostarts:"), value)
 }
 
+
 // The current display state of the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/displaystate
 func (p_ PreviewView) DisplayState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("displayState"))
@@ -149,35 +124,37 @@ func (p_ PreviewView) DisplayState() unsafe.Pointer {
 }
 
 
-// SetDisplayState sets the value of the displayState property.
 // The current display state of the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/displaystate
 func (p_ PreviewView) SetDisplayState(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayState:"), value)
 }
 
+
 // The item to preview.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/previewitem
-func (p_ PreviewView) PreviewItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("previewItem"))
+func (p_ PreviewView) PreviewItem() PreviewItem /* not a class type */ {
+	rv := objc.Send[PreviewItem](p_.ID, objc.Sel("previewItem"))
 	return rv
 }
 
 
-// SetPreviewItem sets the value of the previewItem property.
 // The item to preview.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/previewitem
-func (p_ PreviewView) SetPreviewItem(value unsafe.Pointer) {
+func (p_ PreviewView) SetPreviewItem(value PreviewItem /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItem:"), value)
 }
 
+
 // A Boolean value that determines whether the preview should close when its window closes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
 func (p_ PreviewView) ShouldCloseWithWindow() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("shouldCloseWithWindow"))
@@ -185,13 +162,14 @@ func (p_ PreviewView) ShouldCloseWithWindow() bool {
 }
 
 
-// SetShouldCloseWithWindow sets the value of the shouldCloseWithWindow property.
 // A Boolean value that determines whether the preview should close when its window closes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewview/shouldclosewithwindow
 func (p_ PreviewView) SetShouldCloseWithWindow(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldCloseWithWindow:"), value)
 }
+
+
 
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExceptionHandling without requiring cgo.
-
-// Monitor and debug exceptional conditions in code.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling
+// See: https://developer.apple.com/documentation/ExceptionHandling
 package exceptionhandling
 
 import (

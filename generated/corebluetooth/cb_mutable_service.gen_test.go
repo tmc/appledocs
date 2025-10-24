@@ -9,12 +9,3 @@ import (
 // Suppress unused import errors
 var _ = corebluetooth.NewCBMutableService
 
-// ExampleNewCBMutableServiceWithTypePrimary demonstrates how to create a CBMutableService instance using NewCBMutableServiceWithTypePrimary.
-// Creates a newly initialized mutable service specified by UUID and service type.
-func ExampleNewCBMutableServiceWithTypePrimary() {
-	_ = corebluetooth.NewCBMutableServiceWithTypePrimary(
-		corebluetooth.CBUUID{}, // UUID CBUUID
-		false, // isPrimary bool
-	)
-	// Output:
-}

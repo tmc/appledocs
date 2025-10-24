@@ -7,8 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [Window] class.
@@ -32,38 +34,38 @@ type _WindowClass struct {
 type IWindow interface {
 	IResponder
 	// properties:
-	AcceptsMouseMovedEvents() bool /* primitive/slice/pointer. */
-	SetAcceptsMouseMovedEvents(value bool /* primitive/slice/pointer. */)
-	AllowsConcurrentViewDrawing() bool /* primitive/slice/pointer. */
-	SetAllowsConcurrentViewDrawing(value bool /* primitive/slice/pointer. */)
-	AllowsToolTipsWhenApplicationIsInactive() bool /* primitive/slice/pointer. */
-	SetAllowsToolTipsWhenApplicationIsInactive(value bool /* primitive/slice/pointer. */)
-	AlphaValue() float64 /* primitive/slice/pointer. */
-	SetAlphaValue(value float64 /* primitive/slice/pointer. */)
+	AcceptsMouseMovedEvents() bool
+	SetAcceptsMouseMovedEvents(value bool)
+	AllowsConcurrentViewDrawing() bool
+	SetAllowsConcurrentViewDrawing(value bool)
+	AllowsToolTipsWhenApplicationIsInactive() bool
+	SetAllowsToolTipsWhenApplicationIsInactive(value bool)
+	AlphaValue() float64
+	SetAlphaValue(value float64)
 	AnimationBehavior() WindowAnimationBehavior
 	SetAnimationBehavior(value WindowAnimationBehavior)
 	AppearanceSource() unsafe.Pointer
 	SetAppearanceSource(value unsafe.Pointer)
-	AreCursorRectsEnabled() bool /* primitive/slice/pointer. */
+	AreCursorRectsEnabled() bool
 	AspectRatio() objc.IObject /* cross-framework: Size */
 	SetAspectRatio(value objc.IObject /* cross-framework: Size */)
 	AttachedSheet() IWindow
-	AutorecalculatesKeyViewLoop() bool /* primitive/slice/pointer. */
-	SetAutorecalculatesKeyViewLoop(value bool /* primitive/slice/pointer. */)
+	AutorecalculatesKeyViewLoop() bool
+	SetAutorecalculatesKeyViewLoop(value bool)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	BackingLocation() WindowBackingLocation
-	BackingScaleFactor() float64 /* primitive/slice/pointer. */
+	BackingScaleFactor() float64
 	BackingType() BackingStoreType
 	SetBackingType(value BackingStoreType)
-	CanBecomeKeyWindow() bool /* primitive/slice/pointer. */
-	CanBecomeMainWindow() bool /* primitive/slice/pointer. */
-	CanBecomeVisibleWithoutLogin() bool /* primitive/slice/pointer. */
-	SetCanBecomeVisibleWithoutLogin(value bool /* primitive/slice/pointer. */)
-	CanHide() bool /* primitive/slice/pointer. */
-	SetCanHide(value bool /* primitive/slice/pointer. */)
+	CanBecomeKeyWindow() bool
+	CanBecomeMainWindow() bool
+	CanBecomeVisibleWithoutLogin() bool
+	SetCanBecomeVisibleWithoutLogin(value bool)
+	CanHide() bool
+	SetCanHide(value bool)
 	CascadingReferenceFrame() objc.IObject /* cross-framework: Rect */
-	ChildWindows() []Window /* primitive/slice/pointer. */
+	ChildWindows() []IWindow
 	CollectionBehavior() WindowCollectionBehavior
 	SetCollectionBehavior(value WindowCollectionBehavior)
 	ColorSpace() IColorSpace
@@ -90,60 +92,60 @@ type IWindow interface {
 	SetDelegate(value objc.ID)
 	DepthLimit() WindowDepth
 	SetDepthLimit(value WindowDepth)
-	DeviceDescription() foundation.IDictionary /* already interface */
-	DisplaysWhenScreenProfileChanges() bool /* primitive/slice/pointer. */
-	SetDisplaysWhenScreenProfileChanges(value bool /* primitive/slice/pointer. */)
+	DeviceDescription() foundation.IDictionary
+	DisplaysWhenScreenProfileChanges() bool
+	SetDisplaysWhenScreenProfileChanges(value bool)
 	DockTile() IDockTile
-	Drawers() []Drawer /* primitive/slice/pointer. */
+	Drawers() []IDrawer
 	FirstResponder() IResponder
 	Frame() objc.IObject /* cross-framework: Rect */
 	FrameAutosaveName() objc.IObject /* cross-framework: WindowFrameAutosaveName */
 	StringWithSavedFrame() objc.IObject /* cross-framework: WindowPersistableFrameDescriptor */
 	GraphicsContext() IGraphicsContext
-	HasActiveWindowSharingSession() bool /* primitive/slice/pointer. */
-	HasCloseBox() bool /* primitive/slice/pointer. */
-	HasDynamicDepthLimit() bool /* primitive/slice/pointer. */
-	HasShadow() bool /* primitive/slice/pointer. */
-	SetHasShadow(value bool /* primitive/slice/pointer. */)
-	HasTitleBar() bool /* primitive/slice/pointer. */
-	HidesOnDeactivate() bool /* primitive/slice/pointer. */
-	SetHidesOnDeactivate(value bool /* primitive/slice/pointer. */)
-	IgnoresMouseEvents() bool /* primitive/slice/pointer. */
-	SetIgnoresMouseEvents(value bool /* primitive/slice/pointer. */)
-	InLiveResize() bool /* primitive/slice/pointer. */
+	HasActiveWindowSharingSession() bool
+	HasCloseBox() bool
+	HasDynamicDepthLimit() bool
+	HasShadow() bool
+	SetHasShadow(value bool)
+	HasTitleBar() bool
+	HidesOnDeactivate() bool
+	SetHidesOnDeactivate(value bool)
+	IgnoresMouseEvents() bool
+	SetIgnoresMouseEvents(value bool)
+	InLiveResize() bool
 	InitialFirstResponder() IView
 	SetInitialFirstResponder(value IView)
-	Autodisplay() bool /* primitive/slice/pointer. */
-	SetAutodisplay(value bool /* primitive/slice/pointer. */)
-	DocumentEdited() bool /* primitive/slice/pointer. */
-	SetDocumentEdited(value bool /* primitive/slice/pointer. */)
-	ExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */
-	SetExcludedFromWindowsMenu(value bool /* primitive/slice/pointer. */)
-	FloatingPanel() bool /* primitive/slice/pointer. */
-	FlushWindowDisabled() bool /* primitive/slice/pointer. */
-	KeyWindow() bool /* primitive/slice/pointer. */
-	MainWindow() bool /* primitive/slice/pointer. */
-	Miniaturizable() bool /* primitive/slice/pointer. */
-	Miniaturized() bool /* primitive/slice/pointer. */
-	ModalPanel() bool /* primitive/slice/pointer. */
-	Movable() bool /* primitive/slice/pointer. */
-	SetMovable(value bool /* primitive/slice/pointer. */)
-	MovableByWindowBackground() bool /* primitive/slice/pointer. */
-	SetMovableByWindowBackground(value bool /* primitive/slice/pointer. */)
-	OnActiveSpace() bool /* primitive/slice/pointer. */
-	OneShot() bool /* primitive/slice/pointer. */
-	SetOneShot(value bool /* primitive/slice/pointer. */)
-	Opaque() bool /* primitive/slice/pointer. */
-	SetOpaque(value bool /* primitive/slice/pointer. */)
-	ReleasedWhenClosed() bool /* primitive/slice/pointer. */
-	SetReleasedWhenClosed(value bool /* primitive/slice/pointer. */)
-	Resizable() bool /* primitive/slice/pointer. */
-	Restorable() bool /* primitive/slice/pointer. */
-	SetRestorable(value bool /* primitive/slice/pointer. */)
-	Sheet() bool /* primitive/slice/pointer. */
-	Visible() bool /* primitive/slice/pointer. */
-	Zoomable() bool /* primitive/slice/pointer. */
-	Zoomed() bool /* primitive/slice/pointer. */
+	Autodisplay() bool
+	SetAutodisplay(value bool)
+	DocumentEdited() bool
+	SetDocumentEdited(value bool)
+	ExcludedFromWindowsMenu() bool
+	SetExcludedFromWindowsMenu(value bool)
+	FloatingPanel() bool
+	FlushWindowDisabled() bool
+	KeyWindow() bool
+	MainWindow() bool
+	Miniaturizable() bool
+	Miniaturized() bool
+	ModalPanel() bool
+	Movable() bool
+	SetMovable(value bool)
+	MovableByWindowBackground() bool
+	SetMovableByWindowBackground(value bool)
+	OnActiveSpace() bool
+	OneShot() bool
+	SetOneShot(value bool)
+	Opaque() bool
+	SetOpaque(value bool)
+	ReleasedWhenClosed() bool
+	SetReleasedWhenClosed(value bool)
+	Resizable() bool
+	Restorable() bool
+	SetRestorable(value bool)
+	Sheet() bool
+	Visible() bool
+	Zoomable() bool
+	Zoomed() bool
 	KeyViewSelectionDirection() SelectionDirection
 	Level() objc.IObject /* cross-framework: WindowLevel */
 	SetLevel(value objc.IObject /* cross-framework: WindowLevel */)
@@ -161,16 +163,16 @@ type IWindow interface {
 	SetMiniwindowTitle(value objc.IObject /* cross-framework: NSString */)
 	MouseLocationOutsideOfEventStream() objc.IObject /* cross-framework: Point */
 	OcclusionState() WindowOcclusionState
-	OrderedIndex() int /* primitive/slice/pointer. */
-	SetOrderedIndex(value int /* primitive/slice/pointer. */)
+	OrderedIndex() int
+	SetOrderedIndex(value int)
 	ParentWindow() IWindow
 	SetParentWindow(value IWindow)
 	PreferredBackingLocation() WindowBackingLocation
 	SetPreferredBackingLocation(value WindowBackingLocation)
-	PreservesContentDuringLiveResize() bool /* primitive/slice/pointer. */
-	SetPreservesContentDuringLiveResize(value bool /* primitive/slice/pointer. */)
-	PreventsApplicationTerminationWhenModal() bool /* primitive/slice/pointer. */
-	SetPreventsApplicationTerminationWhenModal(value bool /* primitive/slice/pointer. */)
+	PreservesContentDuringLiveResize() bool
+	SetPreservesContentDuringLiveResize(value bool)
+	PreventsApplicationTerminationWhenModal() bool
+	SetPreventsApplicationTerminationWhenModal(value bool)
 	RepresentedFilename() objc.IObject /* cross-framework: NSString */
 	SetRepresentedFilename(value objc.IObject /* cross-framework: NSString */)
 	RepresentedURL() objc.IObject /* cross-framework: NSURL */
@@ -184,18 +186,18 @@ type IWindow interface {
 	SharingType() WindowSharingType
 	SetSharingType(value WindowSharingType)
 	SheetParent() IWindow
-	Sheets() []Window /* primitive/slice/pointer. */
-	ShowsResizeIndicator() bool /* primitive/slice/pointer. */
-	SetShowsResizeIndicator(value bool /* primitive/slice/pointer. */)
-	ShowsToolbarButton() bool /* primitive/slice/pointer. */
-	SetShowsToolbarButton(value bool /* primitive/slice/pointer. */)
+	Sheets() []IWindow
+	ShowsResizeIndicator() bool
+	SetShowsResizeIndicator(value bool)
+	ShowsToolbarButton() bool
+	SetShowsToolbarButton(value bool)
 	StyleMask() WindowStyleMask
 	SetStyleMask(value WindowStyleMask)
 	Subtitle() objc.IObject /* cross-framework: NSString */
 	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
 	Tab() IWindowTab
 	TabGroup() IWindowTabGroup
-	TabbedWindows() []Window /* primitive/slice/pointer. */
+	TabbedWindows() []IWindow
 	TabbingIdentifier() objc.IObject /* cross-framework: WindowTabbingIdentifier */
 	SetTabbingIdentifier(value objc.IObject /* cross-framework: WindowTabbingIdentifier */)
 	TabbingMode() WindowTabbingMode
@@ -204,78 +206,78 @@ type IWindow interface {
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	TitleVisibility() WindowTitleVisibility
 	SetTitleVisibility(value WindowTitleVisibility)
-	TitlebarAccessoryViewControllers() []TitlebarAccessoryViewController /* primitive/slice/pointer. */
-	SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryViewController /* primitive/slice/pointer. */)
-	TitlebarAppearsTransparent() bool /* primitive/slice/pointer. */
-	SetTitlebarAppearsTransparent(value bool /* primitive/slice/pointer. */)
+	TitlebarAccessoryViewControllers() []ITitlebarAccessoryViewController
+	SetTitlebarAccessoryViewControllers(value []ITitlebarAccessoryViewController)
+	TitlebarAppearsTransparent() bool
+	SetTitlebarAppearsTransparent(value bool)
 	TitlebarSeparatorStyle() TitlebarSeparatorStyle
 	SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle)
 	Toolbar() IToolbar
 	SetToolbar(value IToolbar)
 	ToolbarStyle() WindowToolbarStyle
 	SetToolbarStyle(value WindowToolbarStyle)
-	ViewsNeedDisplay() bool /* primitive/slice/pointer. */
-	SetViewsNeedDisplay(value bool /* primitive/slice/pointer. */)
+	ViewsNeedDisplay() bool
+	SetViewsNeedDisplay(value bool)
 	WindowController() IWindowController
 	SetWindowController(value IWindowController)
-	WindowNumber() int /* primitive/slice/pointer. */
+	WindowNumber() int
 	WindowRef() unsafe.Pointer
 	WindowTitlebarLayoutDirection() UserInterfaceLayoutDirection
-	WorksWhenModal() bool /* primitive/slice/pointer. */
-	NumberOfColorComponents() int /* primitive/slice/pointer. */
-	SetNumberOfColorComponents(value int /* primitive/slice/pointer. */)
-	BitsPerPixel() int /* primitive/slice/pointer. */
-	SetBitsPerPixel(value int /* primitive/slice/pointer. */)
-	BitsPerSample() int /* primitive/slice/pointer. */
-	SetBitsPerSample(value int /* primitive/slice/pointer. */)
+	WorksWhenModal() bool
+	NumberOfColorComponents() int
+	SetNumberOfColorComponents(value int)
+	BitsPerPixel() int
+	SetBitsPerPixel(value int)
+	BitsPerSample() int
+	SetBitsPerSample(value int)
 	ColorSpaceName() objc.IObject /* cross-framework: ColorSpaceName */
 	SetColorSpaceName(value objc.IObject /* cross-framework: ColorSpaceName */)
-	IsPlanar() bool /* primitive/slice/pointer. */
-	SetIsPlanar(value bool /* primitive/slice/pointer. */)
-	CanBecomeKey() bool /* primitive/slice/pointer. */
-	SetCanBecomeKey(value bool /* primitive/slice/pointer. */)
-	CanBecomeMain() bool /* primitive/slice/pointer. */
-	SetCanBecomeMain(value bool /* primitive/slice/pointer. */)
+	IsPlanar() bool
+	SetIsPlanar(value bool)
+	CanBecomeKey() bool
+	SetCanBecomeKey(value bool)
+	CanBecomeMain() bool
+	SetCanBecomeMain(value bool)
 	FrameDescriptor() unsafe.Pointer
 	SetFrameDescriptor(value unsafe.Pointer)
-	IsDocumentEdited() bool /* primitive/slice/pointer. */
-	SetIsDocumentEdited(value bool /* primitive/slice/pointer. */)
-	IsExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */
-	SetIsExcludedFromWindowsMenu(value bool /* primitive/slice/pointer. */)
-	IsFloatingPanel() bool /* primitive/slice/pointer. */
-	SetIsFloatingPanel(value bool /* primitive/slice/pointer. */)
-	IsKeyWindow() bool /* primitive/slice/pointer. */
-	SetIsKeyWindow(value bool /* primitive/slice/pointer. */)
-	IsMainWindow() bool /* primitive/slice/pointer. */
-	SetIsMainWindow(value bool /* primitive/slice/pointer. */)
-	IsMiniaturizable() bool /* primitive/slice/pointer. */
-	SetIsMiniaturizable(value bool /* primitive/slice/pointer. */)
-	IsMiniaturized() bool /* primitive/slice/pointer. */
-	SetIsMiniaturized(value bool /* primitive/slice/pointer. */)
-	IsModalPanel() bool /* primitive/slice/pointer. */
-	SetIsModalPanel(value bool /* primitive/slice/pointer. */)
-	IsMovable() bool /* primitive/slice/pointer. */
-	SetIsMovable(value bool /* primitive/slice/pointer. */)
-	IsMovableByWindowBackground() bool /* primitive/slice/pointer. */
-	SetIsMovableByWindowBackground(value bool /* primitive/slice/pointer. */)
-	IsOnActiveSpace() bool /* primitive/slice/pointer. */
-	SetIsOnActiveSpace(value bool /* primitive/slice/pointer. */)
-	IsOpaque() bool /* primitive/slice/pointer. */
-	SetIsOpaque(value bool /* primitive/slice/pointer. */)
-	IsReleasedWhenClosed() bool /* primitive/slice/pointer. */
-	SetIsReleasedWhenClosed(value bool /* primitive/slice/pointer. */)
-	IsResizable() bool /* primitive/slice/pointer. */
-	SetIsResizable(value bool /* primitive/slice/pointer. */)
-	IsRestorable() bool /* primitive/slice/pointer. */
-	SetIsRestorable(value bool /* primitive/slice/pointer. */)
-	IsSheet() bool /* primitive/slice/pointer. */
-	SetIsSheet(value bool /* primitive/slice/pointer. */)
-	IsVisible() bool /* primitive/slice/pointer. */
-	SetIsVisible(value bool /* primitive/slice/pointer. */)
-	IsZoomable() bool /* primitive/slice/pointer. */
-	SetIsZoomable(value bool /* primitive/slice/pointer. */)
-	IsZoomed() bool /* primitive/slice/pointer. */
-	SetIsZoomed(value bool /* primitive/slice/pointer. */)
+	IsDocumentEdited() bool
+	SetIsDocumentEdited(value bool)
+	IsExcludedFromWindowsMenu() bool
+	SetIsExcludedFromWindowsMenu(value bool)
+	IsFloatingPanel() bool
+	SetIsFloatingPanel(value bool)
+	IsKeyWindow() bool
+	SetIsKeyWindow(value bool)
+	IsMainWindow() bool
+	SetIsMainWindow(value bool)
+	IsMiniaturizable() bool
+	SetIsMiniaturizable(value bool)
+	IsMiniaturized() bool
+	SetIsMiniaturized(value bool)
+	IsModalPanel() bool
+	SetIsModalPanel(value bool)
+	IsMovable() bool
+	SetIsMovable(value bool)
+	IsMovableByWindowBackground() bool
+	SetIsMovableByWindowBackground(value bool)
+	IsOnActiveSpace() bool
+	SetIsOnActiveSpace(value bool)
+	IsOpaque() bool
+	SetIsOpaque(value bool)
+	IsReleasedWhenClosed() bool
+	SetIsReleasedWhenClosed(value bool)
+	IsResizable() bool
+	SetIsResizable(value bool)
+	IsRestorable() bool
+	SetIsRestorable(value bool)
+	IsSheet() bool
+	SetIsSheet(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	IsZoomable() bool
+	SetIsZoomable(value bool)
+	IsZoomed() bool
+	SetIsZoomed(value bool)
 	Parent() IWindow
 	SetParent(value IWindow)
 	// methods:
@@ -283,31 +285,31 @@ type IWindow interface {
 	AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode)
 	AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController)
 	AnchorAttributeForOrientation(orientation LayoutConstraintOrientation) LayoutAttribute
-	AnimationResizeTime(newFrame objc.IObject /* cross-framework Rect */) TimeInterval /* not a class type */
-	AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool /* primitive/slice/pointer. */
-	BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
+	AnimationResizeTime(newFrame objc.IObject /* cross-framework: Rect */) float64
+	AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool
+	BackingAlignedRectOptions(rect objc.IObject /* cross-framework: Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
 	BecomeKeyWindow()
 	BecomeMainWindow()
 	BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
-	BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession
+	BeginDraggingSessionWithItemsEventSource(items []IDraggingItem, event IEvent, source objectivec.IObject) IDraggingSession
 	BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
-	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* primitive/slice/pointer. */
-	CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
+	CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */
 	Center()
 	Close()
-	ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */
-	ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64 /* primitive/slice/pointer. */
-	ContentRectForFrameRect(frameRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ConvertRectFromScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ConvertPointFromScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
-	ConvertPointToScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
-	ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
-	ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
-	ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	ConvertRectToScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
-	DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */
+	ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework: Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */
+	ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64
+	ContentRectForFrameRect(frameRect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectFromBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectFromScreen(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertPointFromScreen(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointToScreen(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointFromBacking(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */
+	ConvertPointToBacking(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */
+	ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	ConvertRectToScreen(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	DataWithEPSInsideRect(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Data */
+	DataWithPDFInsideRect(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Data */
 	Deminiaturize(sender objectivec.IObject)
 	DisableCursorRects()
 	DisableKeyEquivalentForDefaultButtonCell()
@@ -322,17 +324,17 @@ type IWindow interface {
 	EnableSnapshotRestoration()
 	EndEditingFor(object objectivec.IObject)
 	EndSheet(sheetWindow IWindow)
-	EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject /* cross-framework ModalResponse */)
-	FieldEditorForObject(createFlag bool /* primitive/slice/pointer. */, object objectivec.IObject) IText
-	FrameRectForContentRect(contentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */
-	HandleCloseScriptCommand(command objc.IObject /* cross-framework CloseCommand */) objc.ID
-	HandlePrintScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID
-	HandleSaveScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID
-	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int /* primitive/slice/pointer. */)
+	EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject /* cross-framework: ModalResponse */)
+	FieldEditorForObject(createFlag bool, object objectivec.IObject) IText
+	FrameRectForContentRect(contentRect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	HandleCloseScriptCommand(command objc.IObject /* cross-framework: CloseCommand */) objc.ID
+	HandlePrintScriptCommand(command objc.IObject /* cross-framework: ScriptCommand */) objc.ID
+	HandleSaveScriptCommand(command objc.IObject /* cross-framework: ScriptCommand */) objc.ID
+	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int)
 	InvalidateCursorRectsForView(view IView)
 	InvalidateShadow()
 	LayoutIfNeeded()
-	MakeFirstResponder(responder IResponder) bool /* primitive/slice/pointer. */
+	MakeFirstResponder(responder IResponder) bool
 	MakeKeyWindow()
 	MakeKeyAndOrderFront(sender objectivec.IObject)
 	MakeMainWindow()
@@ -340,8 +342,8 @@ type IWindow interface {
 	Miniaturize(sender objectivec.IObject)
 	MoveTabToNewWindow(sender objectivec.IObject)
 	NextEventMatchingMask(mask EventMask) IEvent
-	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent
-	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int /* primitive/slice/pointer. */)
+	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework: NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool) IEvent
+	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int)
 	OrderBack(sender objectivec.IObject)
 	OrderFront(sender objectivec.IObject)
 	OrderFrontRegardless()
@@ -350,19 +352,19 @@ type IWindow interface {
 	PerformWindowDragWithEvent(event IEvent)
 	PerformMiniaturize(sender objectivec.IObject)
 	PerformZoom(sender objectivec.IObject)
-	PostEventAtStart(event IEvent, flag bool /* primitive/slice/pointer. */)
+	PostEventAtStart(event IEvent, flag bool)
 	Print(sender objectivec.IObject)
 	RecalculateKeyViewLoop()
-	RegisterForDraggedTypes(newTypes []string /* primitive/slice/pointer. */)
+	RegisterForDraggedTypes(newTypes []string)
 	RemoveChildWindow(childWin IWindow)
-	RemoveTitlebarAccessoryViewControllerAtIndex(index int /* primitive/slice/pointer. */)
+	RemoveTitlebarAccessoryViewControllerAtIndex(index int)
 	RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
-	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
 	ResetCursorRects()
 	ResignKeyWindow()
 	ResignMainWindow()
 	RunToolbarCustomizationPalette(sender objectivec.IObject)
-	SaveFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */)
+	SaveFrameUsingName(name objc.IObject /* cross-framework: WindowFrameAutosaveName */)
 	SelectKeyViewFollowingView(view IView)
 	SelectKeyViewPrecedingView(view IView)
 	SelectNextKeyView(sender objectivec.IObject)
@@ -371,31 +373,31 @@ type IWindow interface {
 	SelectPreviousTab(sender objectivec.IObject)
 	SendEvent(event IEvent)
 	SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation LayoutConstraintOrientation)
-	SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge RectEdge /* not a class type */)
-	SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge RectEdge /* not a class type */)
-	SetContentSize(size objc.IObject /* cross-framework Size */)
-	SetDynamicDepthLimit(flag bool /* primitive/slice/pointer. */)
-	SetFrameDisplay(frameRect objc.IObject /* cross-framework Rect */, flag bool /* primitive/slice/pointer. */)
-	SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework Rect */, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */)
-	SetFrameFromString(string_ objc.IObject /* cross-framework WindowPersistableFrameDescriptor */)
-	SetFrameOrigin(point objc.IObject /* cross-framework Point */)
-	SetFrameTopLeftPoint(point objc.IObject /* cross-framework Point */)
-	SetFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */) bool /* primitive/slice/pointer. */
-	SetFrameUsingNameForce(name objc.IObject /* cross-framework WindowFrameAutosaveName */, force bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework NSString */)
+	SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge RectEdge /* not a class type */)
+	SetContentBorderThicknessForEdge(thickness float64, edge RectEdge /* not a class type */)
+	SetContentSize(size objc.IObject /* cross-framework: Size */)
+	SetDynamicDepthLimit(flag bool)
+	SetFrameDisplay(frameRect objc.IObject /* cross-framework: Rect */, flag bool)
+	SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework: Rect */, displayFlag bool, animateFlag bool)
+	SetFrameFromString(string_ objc.IObject /* cross-framework: WindowPersistableFrameDescriptor */)
+	SetFrameOrigin(point objc.IObject /* cross-framework: Point */)
+	SetFrameTopLeftPoint(point objc.IObject /* cross-framework: Point */)
+	SetFrameUsingName(name objc.IObject /* cross-framework: WindowFrameAutosaveName */) bool
+	SetFrameUsingNameForce(name objc.IObject /* cross-framework: WindowFrameAutosaveName */, force bool) bool
+	SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework: NSString */)
 	StandardWindowButton(b WindowButton) IButton
 	ToggleFullScreen(sender objectivec.IObject)
 	ToggleTabBar(sender objectivec.IObject)
 	ToggleTabOverview(sender objectivec.IObject)
 	ToggleToolbarShown(sender objectivec.IObject)
-	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout TimeInterval /* not a class type */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer)
+	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer)
 	TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
-	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */
+	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
 	UnregisterDraggedTypes()
 	Update()
 	UpdateConstraintsIfNeeded()
-	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID
-	VisualizeConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */)
+	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID
+	VisualizeConstraints(constraints []ILayoutConstraint)
 	Zoom(sender objectivec.IObject)
 }
 
@@ -458,7 +460,7 @@ func NewWindow() Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect objc.IObject /* cross-framework Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */) Window {
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect objc.IObject /* cross-framework: Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
@@ -470,7 +472,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
-func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect objc.IObject /* cross-framework Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool /* primitive/slice/pointer. */, screen IScreen) Window {
+func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect objc.IObject /* cross-framework: Rect */, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen IScreen) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
 	rv.Autorelease()
@@ -505,8 +507,8 @@ func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:styleMask:)
-func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect objc.IObject /* cross-framework Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](objc.ID(wc.class), objc.Sel("contentRectForFrameRect:styleMask:"), fRect, style)
+func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect objc.IObject /* cross-framework: Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](objc.ID(wc.class), objc.Sel("contentRectForFrameRect:styleMask:"), fRect, style)
 	return rv
 }
 
@@ -515,8 +517,8 @@ func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameRect(forContentRect:styleMask:)
-func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect objc.IObject /* cross-framework Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](objc.ID(wc.class), objc.Sel("frameRectForContentRect:styleMask:"), cRect, style)
+func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect objc.IObject /* cross-framework: Rect */, style WindowStyleMask) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](objc.ID(wc.class), objc.Sel("frameRectForContentRect:styleMask:"), cRect, style)
 	return rv
 }
 
@@ -544,7 +546,7 @@ func (wc _WindowClass) MenuChanged(menu IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFrameWidth(withTitle:styleMask:)
-func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title objc.IObject /* cross-framework NSString */, style WindowStyleMask) float64 /* primitive/slice/pointer. */ {
+func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title objc.IObject /* cross-framework: NSString */, style WindowStyleMask) float64 {
 	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), title, style)
 	return rv
 }
@@ -554,7 +556,7 @@ func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/removeFrame(usingName:)
-func (wc _WindowClass) RemoveFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */) {
+func (wc _WindowClass) RemoveFrameUsingName(name objc.IObject /* cross-framework: WindowFrameAutosaveName */) {
 	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("removeFrameUsingName:"), name)
 }
 
@@ -573,7 +575,7 @@ func (wc _WindowClass) StandardWindowButtonForStyleMask(b WindowButton, styleMas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumber(at:belowWindowWithWindowNumber:)
-func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point objc.IObject /* cross-framework Point */, windowNumber int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point objc.IObject /* cross-framework: Point */, windowNumber int) int {
 	rv := objc.Send[int](objc.ID(wc.class), objc.Sel("windowNumberAtPoint:belowWindowWithWindowNumber:"), point, windowNumber)
 	return rv
 }
@@ -583,7 +585,7 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) objc.IObject /* cross-framework: Number */ {
+func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
@@ -593,7 +595,7 @@ func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
-func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool /* primitive/slice/pointer. */ {
+func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
@@ -657,7 +659,7 @@ func (w_ Window) AnchorAttributeForOrientation(orientation LayoutConstraintOrien
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationResizeTime(_:)
-func (w_ Window) AnimationResizeTime(newFrame objc.IObject /* cross-framework Rect */) TimeInterval /* not a class type */ {
+func (w_ Window) AnimationResizeTime(newFrame objc.IObject /* cross-framework: Rect */) float64 {
 	rv := objc.Send[TimeInterval](w_.ID, objc.Sel("animationResizeTime:"), newFrame)
 	return rv
 }
@@ -667,7 +669,7 @@ func (w_ Window) AnimationResizeTime(newFrame objc.IObject /* cross-framework Re
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/autorecalculatesContentBorderThickness(for:)
-func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* not a class type */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autorecalculatesContentBorderThicknessForEdge:"), edge)
 	return rv
 }
@@ -677,8 +679,8 @@ func (w_ Window) AutorecalculatesContentBorderThicknessForEdge(edge RectEdge /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingAlignedRect(_:options:)
-func (w_ Window) BackingAlignedRectOptions(rect objc.IObject /* cross-framework Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
+func (w_ Window) BackingAlignedRectOptions(rect objc.IObject /* cross-framework: Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
 	return rv
 }
 
@@ -712,7 +714,7 @@ func (w_ Window) BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handle
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/beginDraggingSession(items:event:source:)
-func (w_ Window) BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession {
+func (w_ Window) BeginDraggingSessionWithItemsEventSource(items []IDraggingItem, event IEvent, source objectivec.IObject) IDraggingSession {
 	rv := objc.Send[DraggingSession](w_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
 	return rv
 }
@@ -731,7 +733,7 @@ func (w_ Window) BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canRepresent(_:)
-func (w_ Window) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
 	return rv
 }
@@ -741,8 +743,8 @@ func (w_ Window) CanRepresentDisplayGamut(displayGamut DisplayGamut) bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cascadeTopLeft(from:)
-func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("cascadeTopLeftFromPoint:"), topLeftPoint)
+func (w_ Window) CascadeTopLeftFromPoint(topLeftPoint objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("cascadeTopLeftFromPoint:"), topLeftPoint)
 	return rv
 }
 
@@ -769,8 +771,8 @@ func (w_ Window) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/constrainFrameRect(_:to:)
-func (w_ Window) ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("constrainFrameRect:toScreen:"), frameRect, screen)
+func (w_ Window) ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-framework: Rect */, screen IScreen) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("constrainFrameRect:toScreen:"), frameRect, screen)
 	return rv
 }
 
@@ -779,7 +781,7 @@ func (w_ Window) ConstrainFrameRectToScreen(frameRect objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentBorderThickness(for:)
-func (w_ Window) ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64 /* primitive/slice/pointer. */ {
+func (w_ Window) ContentBorderThicknessForEdge(edge RectEdge /* not a class type */) float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("contentBorderThicknessForEdge:"), edge)
 	return rv
 }
@@ -789,8 +791,8 @@ func (w_ Window) ContentBorderThicknessForEdge(edge RectEdge /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:)
-func (w_ Window) ContentRectForFrameRect(frameRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("contentRectForFrameRect:"), frameRect)
+func (w_ Window) ContentRectForFrameRect(frameRect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("contentRectForFrameRect:"), frameRect)
 	return rv
 }
 
@@ -799,8 +801,8 @@ func (w_ Window) ContentRectForFrameRect(frameRect objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertFromBacking(_:)
-func (w_ Window) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectFromBacking:"), rect)
+func (w_ Window) ConvertRectFromBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("convertRectFromBacking:"), rect)
 	return rv
 }
 
@@ -809,8 +811,8 @@ func (w_ Window) ConvertRectFromBacking(rect objc.IObject /* cross-framework Rec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertFromScreen(_:)
-func (w_ Window) ConvertRectFromScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectFromScreen:"), rect)
+func (w_ Window) ConvertRectFromScreen(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("convertRectFromScreen:"), rect)
 	return rv
 }
 
@@ -819,8 +821,8 @@ func (w_ Window) ConvertRectFromScreen(rect objc.IObject /* cross-framework Rect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPoint(fromScreen:)
-func (w_ Window) ConvertPointFromScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointFromScreen:"), point)
+func (w_ Window) ConvertPointFromScreen(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("convertPointFromScreen:"), point)
 	return rv
 }
 
@@ -829,8 +831,8 @@ func (w_ Window) ConvertPointFromScreen(point objc.IObject /* cross-framework Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPoint(toScreen:)
-func (w_ Window) ConvertPointToScreen(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointToScreen:"), point)
+func (w_ Window) ConvertPointToScreen(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("convertPointToScreen:"), point)
 	return rv
 }
 
@@ -839,8 +841,8 @@ func (w_ Window) ConvertPointToScreen(point objc.IObject /* cross-framework Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPointFromBacking(_:)
-func (w_ Window) ConvertPointFromBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointFromBacking:"), point)
+func (w_ Window) ConvertPointFromBacking(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("convertPointFromBacking:"), point)
 	return rv
 }
 
@@ -849,8 +851,8 @@ func (w_ Window) ConvertPointFromBacking(point objc.IObject /* cross-framework P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertPointToBacking(_:)
-func (w_ Window) ConvertPointToBacking(point objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("convertPointToBacking:"), point)
+func (w_ Window) ConvertPointToBacking(point objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("convertPointToBacking:"), point)
 	return rv
 }
 
@@ -859,8 +861,8 @@ func (w_ Window) ConvertPointToBacking(point objc.IObject /* cross-framework Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertToBacking(_:)
-func (w_ Window) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectToBacking:"), rect)
+func (w_ Window) ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("convertRectToBacking:"), rect)
 	return rv
 }
 
@@ -869,8 +871,8 @@ func (w_ Window) ConvertRectToBacking(rect objc.IObject /* cross-framework Rect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertToScreen(_:)
-func (w_ Window) ConvertRectToScreen(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("convertRectToScreen:"), rect)
+func (w_ Window) ConvertRectToScreen(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("convertRectToScreen:"), rect)
 	return rv
 }
 
@@ -879,8 +881,8 @@ func (w_ Window) ConvertRectToScreen(rect objc.IObject /* cross-framework Rect *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithEPS(inside:)
-func (w_ Window) DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[Data](w_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
+func (w_ Window) DataWithEPSInsideRect(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](w_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
 	return rv
 }
 
@@ -889,8 +891,8 @@ func (w_ Window) DataWithEPSInsideRect(rect objc.IObject /* cross-framework Rect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dataWithPDF(inside:)
-func (w_ Window) DataWithPDFInsideRect(rect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[Data](w_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
+func (w_ Window) DataWithPDFInsideRect(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](w_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
 	return rv
 }
 
@@ -970,7 +972,7 @@ func (w_ Window) DisplayIfNeeded() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/displayLink(target:selector:)
 func (w_ Window) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */ {
-	rv := objc.Send[DisplayLink](w_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+	rv := objc.Send[quartzcore.DisplayLink](w_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 
@@ -1011,6 +1013,8 @@ func (w_ Window) EndEditingFor(object objectivec.IObject) {
 }
 
 
+// Ends a document-modal session and dismisses the specified sheet.
+//
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endSheet(_:)-4dmmq
 func (w_ Window) EndSheet(sheetWindow IWindow) {
@@ -1022,7 +1026,7 @@ func (w_ Window) EndSheet(sheetWindow IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endSheet(_:returnCode:)
-func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject /* cross-framework ModalResponse */) {
+func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject /* cross-framework: ModalResponse */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("endSheet:returnCode:"), sheetWindow, returnCode)
 }
 
@@ -1031,7 +1035,7 @@ func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/fieldEditor(_:for:)
-func (w_ Window) FieldEditorForObject(createFlag bool /* primitive/slice/pointer. */, object objectivec.IObject) IText {
+func (w_ Window) FieldEditorForObject(createFlag bool, object objectivec.IObject) IText {
 	rv := objc.Send[Text](w_.ID, objc.Sel("fieldEditor:forObject:"), createFlag, object)
 	return rv
 }
@@ -1041,8 +1045,8 @@ func (w_ Window) FieldEditorForObject(createFlag bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameRect(forContentRect:)
-func (w_ Window) FrameRectForContentRect(contentRect objc.IObject /* cross-framework Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("frameRectForContentRect:"), contentRect)
+func (w_ Window) FrameRectForContentRect(contentRect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("frameRectForContentRect:"), contentRect)
 	return rv
 }
 
@@ -1051,7 +1055,7 @@ func (w_ Window) FrameRectForContentRect(contentRect objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleClose(_:)
-func (w_ Window) HandleCloseScriptCommand(command objc.IObject /* cross-framework CloseCommand */) objc.ID {
+func (w_ Window) HandleCloseScriptCommand(command objc.IObject /* cross-framework: CloseCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleCloseScriptCommand:"), command)
 	return rv
 }
@@ -1061,7 +1065,7 @@ func (w_ Window) HandleCloseScriptCommand(command objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handlePrint(_:)
-func (w_ Window) HandlePrintScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID {
+func (w_ Window) HandlePrintScriptCommand(command objc.IObject /* cross-framework: ScriptCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handlePrintScriptCommand:"), command)
 	return rv
 }
@@ -1071,7 +1075,7 @@ func (w_ Window) HandlePrintScriptCommand(command objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleSave(_:)
-func (w_ Window) HandleSaveScriptCommand(command objc.IObject /* cross-framework ScriptCommand */) objc.ID {
+func (w_ Window) HandleSaveScriptCommand(command objc.IObject /* cross-framework: ScriptCommand */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleSaveScriptCommand:"), command)
 	return rv
 }
@@ -1081,7 +1085,7 @@ func (w_ Window) HandleSaveScriptCommand(command objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/insertTitlebarAccessoryViewController(_:at:)
-func (w_ Window) InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int /* primitive/slice/pointer. */) {
+func (w_ Window) InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("insertTitlebarAccessoryViewController:atIndex:"), childViewController, index)
 }
 
@@ -1117,7 +1121,7 @@ func (w_ Window) LayoutIfNeeded() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/makeFirstResponder(_:)
-func (w_ Window) MakeFirstResponder(responder IResponder) bool /* primitive/slice/pointer. */ {
+func (w_ Window) MakeFirstResponder(responder IResponder) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("makeFirstResponder:"), responder)
 	return rv
 }
@@ -1191,7 +1195,7 @@ func (w_ Window) NextEventMatchingMask(mask EventMask) IEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:until:inMode:dequeue:)
-func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool /* primitive/slice/pointer. */) IEvent {
+func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework: NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool) IEvent {
 	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
@@ -1201,7 +1205,7 @@ func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, exp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/order(_:relativeTo:)
-func (w_ Window) OrderWindowRelativeTo(place WindowOrderingMode, otherWin int /* primitive/slice/pointer. */) {
+func (w_ Window) OrderWindowRelativeTo(place WindowOrderingMode, otherWin int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("orderWindow:relativeTo:"), place, otherWin)
 }
 
@@ -1282,7 +1286,7 @@ func (w_ Window) PerformZoom(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/postEvent(_:atStart:)
-func (w_ Window) PostEventAtStart(event IEvent, flag bool /* primitive/slice/pointer. */) {
+func (w_ Window) PostEventAtStart(event IEvent, flag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("postEvent:atStart:"), event, flag)
 }
 
@@ -1309,7 +1313,7 @@ func (w_ Window) RecalculateKeyViewLoop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/registerForDraggedTypes(_:)
-func (w_ Window) RegisterForDraggedTypes(newTypes []string /* primitive/slice/pointer. */) {
+func (w_ Window) RegisterForDraggedTypes(newTypes []string) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("registerForDraggedTypes:"), newTypes)
 }
 
@@ -1327,7 +1331,7 @@ func (w_ Window) RemoveChildWindow(childWin IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/removeTitlebarAccessoryViewController(at:)
-func (w_ Window) RemoveTitlebarAccessoryViewControllerAtIndex(index int /* primitive/slice/pointer. */) {
+func (w_ Window) RemoveTitlebarAccessoryViewControllerAtIndex(index int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("removeTitlebarAccessoryViewControllerAtIndex:"), index)
 }
 
@@ -1341,7 +1345,7 @@ func (w_ Window) RequestSharingOfWindowCompletionHandler(window IWindow, complet
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/requestSharingOfWindow(usingPreview:title:completionHandler:)
-func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer) {
+func (w_ Window) RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("requestSharingOfWindowUsingPreview:title:completionHandler:"), image, title, completionHandler)
 }
 
@@ -1386,7 +1390,7 @@ func (w_ Window) RunToolbarCustomizationPalette(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/saveFrame(usingName:)
-func (w_ Window) SaveFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */) {
+func (w_ Window) SaveFrameUsingName(name objc.IObject /* cross-framework: WindowFrameAutosaveName */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("saveFrameUsingName:"), name)
 }
 
@@ -1467,7 +1471,7 @@ func (w_ Window) SetAnchorAttributeForOrientation(attr LayoutAttribute, orientat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setAutorecalculatesContentBorderThickness(_:for:)
-func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* primitive/slice/pointer. */, edge RectEdge /* not a class type */) {
+func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutorecalculatesContentBorderThickness:forEdge:"), flag, edge)
 }
 
@@ -1476,7 +1480,7 @@ func (w_ Window) SetAutorecalculatesContentBorderThicknessForEdge(flag bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setContentBorderThickness(_:for:)
-func (w_ Window) SetContentBorderThicknessForEdge(thickness float64 /* primitive/slice/pointer. */, edge RectEdge /* not a class type */) {
+func (w_ Window) SetContentBorderThicknessForEdge(thickness float64, edge RectEdge /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentBorderThickness:forEdge:"), thickness, edge)
 }
 
@@ -1485,7 +1489,7 @@ func (w_ Window) SetContentBorderThicknessForEdge(thickness float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setContentSize(_:)
-func (w_ Window) SetContentSize(size objc.IObject /* cross-framework Size */) {
+func (w_ Window) SetContentSize(size objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setContentSize:"), size)
 }
 
@@ -1494,7 +1498,7 @@ func (w_ Window) SetContentSize(size objc.IObject /* cross-framework Size */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setDynamicDepthLimit(_:)
-func (w_ Window) SetDynamicDepthLimit(flag bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetDynamicDepthLimit(flag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDynamicDepthLimit:"), flag)
 }
 
@@ -1503,7 +1507,7 @@ func (w_ Window) SetDynamicDepthLimit(flag bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(_:display:)
-func (w_ Window) SetFrameDisplay(frameRect objc.IObject /* cross-framework Rect */, flag bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetFrameDisplay(frameRect objc.IObject /* cross-framework: Rect */, flag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:display:"), frameRect, flag)
 }
 
@@ -1512,7 +1516,7 @@ func (w_ Window) SetFrameDisplay(frameRect objc.IObject /* cross-framework Rect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(_:display:animate:)
-func (w_ Window) SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework Rect */, displayFlag bool /* primitive/slice/pointer. */, animateFlag bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framework: Rect */, displayFlag bool, animateFlag bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:display:animate:"), frameRect, displayFlag, animateFlag)
 }
 
@@ -1521,7 +1525,7 @@ func (w_ Window) SetFrameDisplayAnimate(frameRect objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(from:)
-func (w_ Window) SetFrameFromString(string_ objc.IObject /* cross-framework WindowPersistableFrameDescriptor */) {
+func (w_ Window) SetFrameFromString(string_ objc.IObject /* cross-framework: WindowPersistableFrameDescriptor */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameFromString:"), string_)
 }
 
@@ -1530,7 +1534,7 @@ func (w_ Window) SetFrameFromString(string_ objc.IObject /* cross-framework Wind
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameOrigin(_:)
-func (w_ Window) SetFrameOrigin(point objc.IObject /* cross-framework Point */) {
+func (w_ Window) SetFrameOrigin(point objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameOrigin:"), point)
 }
 
@@ -1539,7 +1543,7 @@ func (w_ Window) SetFrameOrigin(point objc.IObject /* cross-framework Point */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameTopLeftPoint(_:)
-func (w_ Window) SetFrameTopLeftPoint(point objc.IObject /* cross-framework Point */) {
+func (w_ Window) SetFrameTopLeftPoint(point objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameTopLeftPoint:"), point)
 }
 
@@ -1548,7 +1552,7 @@ func (w_ Window) SetFrameTopLeftPoint(point objc.IObject /* cross-framework Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:)
-func (w_ Window) SetFrameUsingName(name objc.IObject /* cross-framework WindowFrameAutosaveName */) bool /* primitive/slice/pointer. */ {
+func (w_ Window) SetFrameUsingName(name objc.IObject /* cross-framework: WindowFrameAutosaveName */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:"), name)
 	return rv
 }
@@ -1558,7 +1562,7 @@ func (w_ Window) SetFrameUsingName(name objc.IObject /* cross-framework WindowFr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:force:)
-func (w_ Window) SetFrameUsingNameForce(name objc.IObject /* cross-framework WindowFrameAutosaveName */, force bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (w_ Window) SetFrameUsingNameForce(name objc.IObject /* cross-framework: WindowFrameAutosaveName */, force bool) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:force:"), name, force)
 	return rv
 }
@@ -1568,7 +1572,7 @@ func (w_ Window) SetFrameUsingNameForce(name objc.IObject /* cross-framework Win
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setTitleWithRepresentedFilename(_:)
-func (w_ Window) SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework NSString */) {
+func (w_ Window) SetTitleWithRepresentedFilename(filename objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleWithRepresentedFilename:"), filename)
 }
 
@@ -1623,7 +1627,7 @@ func (w_ Window) ToggleToolbarShown(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/trackEvents(matching:timeout:mode:handler:)
-func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout TimeInterval /* not a class type */, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer) {
+func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode RunLoopMode /* not a class type */, trackingHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("trackEventsMatchingMask:timeout:mode:handler:"), mask, timeout, mode, trackingHandler)
 }
 
@@ -1639,7 +1643,7 @@ func (w_ Window) TransferWindowSharingToWindowCompletionHandler(window IWindow, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tryToPerform(_:with:)
-func (w_ Window) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+func (w_ Window) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("tryToPerform:with:"), action, object)
 	return rv
 }
@@ -1676,7 +1680,7 @@ func (w_ Window) UpdateConstraintsIfNeeded() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/validRequestor(forSendType:returnType:)
-func (w_ Window) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID {
+func (w_ Window) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
 	return rv
 }
@@ -1686,7 +1690,7 @@ func (w_ Window) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/visualizeConstraints(_:)
-func (w_ Window) VisualizeConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */) {
+func (w_ Window) VisualizeConstraints(constraints []ILayoutConstraint) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("visualizeConstraints:"), constraints)
 }
 
@@ -1704,7 +1708,7 @@ func (w_ Window) Zoom(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/acceptsMouseMovedEvents
-func (w_ Window) AcceptsMouseMovedEvents() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AcceptsMouseMovedEvents() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("acceptsMouseMovedEvents"))
 	return rv
 }
@@ -1714,7 +1718,7 @@ func (w_ Window) AcceptsMouseMovedEvents() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/acceptsMouseMovedEvents
-func (w_ Window) SetAcceptsMouseMovedEvents(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAcceptsMouseMovedEvents(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAcceptsMouseMovedEvents:"), value)
 }
 
@@ -1723,7 +1727,7 @@ func (w_ Window) SetAcceptsMouseMovedEvents(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
-func (w_ Window) AllowsAutomaticWindowTabbing() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AllowsAutomaticWindowTabbing() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsAutomaticWindowTabbing"))
 	return rv
 }
@@ -1733,7 +1737,7 @@ func (w_ Window) AllowsAutomaticWindowTabbing() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsAutomaticWindowTabbing
-func (w_ Window) SetAllowsAutomaticWindowTabbing(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAllowsAutomaticWindowTabbing(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsAutomaticWindowTabbing:"), value)
 }
 
@@ -1742,7 +1746,7 @@ func (w_ Window) SetAllowsAutomaticWindowTabbing(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsConcurrentViewDrawing
-func (w_ Window) AllowsConcurrentViewDrawing() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AllowsConcurrentViewDrawing() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsConcurrentViewDrawing"))
 	return rv
 }
@@ -1752,7 +1756,7 @@ func (w_ Window) AllowsConcurrentViewDrawing() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsConcurrentViewDrawing
-func (w_ Window) SetAllowsConcurrentViewDrawing(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAllowsConcurrentViewDrawing(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsConcurrentViewDrawing:"), value)
 }
 
@@ -1761,7 +1765,7 @@ func (w_ Window) SetAllowsConcurrentViewDrawing(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsToolTipsWhenApplicationIsInactive
-func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsToolTipsWhenApplicationIsInactive"))
 	return rv
 }
@@ -1771,7 +1775,7 @@ func (w_ Window) AllowsToolTipsWhenApplicationIsInactive() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/allowsToolTipsWhenApplicationIsInactive
-func (w_ Window) SetAllowsToolTipsWhenApplicationIsInactive(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAllowsToolTipsWhenApplicationIsInactive(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsToolTipsWhenApplicationIsInactive:"), value)
 }
 
@@ -1780,7 +1784,7 @@ func (w_ Window) SetAllowsToolTipsWhenApplicationIsInactive(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/alphaValue
-func (w_ Window) AlphaValue() float64 /* primitive/slice/pointer. */ {
+func (w_ Window) AlphaValue() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("alphaValue"))
 	return rv
 }
@@ -1790,7 +1794,7 @@ func (w_ Window) AlphaValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/alphaValue
-func (w_ Window) SetAlphaValue(value float64 /* primitive/slice/pointer. */) {
+func (w_ Window) SetAlphaValue(value float64) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAlphaValue:"), value)
 }
 
@@ -1837,7 +1841,7 @@ func (w_ Window) SetAppearanceSource(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/areCursorRectsEnabled
-func (w_ Window) AreCursorRectsEnabled() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AreCursorRectsEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("areCursorRectsEnabled"))
 	return rv
 }
@@ -1848,7 +1852,7 @@ func (w_ Window) AreCursorRectsEnabled() bool /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/aspectRatio
 func (w_ Window) AspectRatio() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("aspectRatio"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("aspectRatio"))
 	return rv
 }
 
@@ -1876,7 +1880,7 @@ func (w_ Window) AttachedSheet() IWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/autorecalculatesKeyViewLoop
-func (w_ Window) AutorecalculatesKeyViewLoop() bool /* primitive/slice/pointer. */ {
+func (w_ Window) AutorecalculatesKeyViewLoop() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autorecalculatesKeyViewLoop"))
 	return rv
 }
@@ -1886,7 +1890,7 @@ func (w_ Window) AutorecalculatesKeyViewLoop() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/autorecalculatesKeyViewLoop
-func (w_ Window) SetAutorecalculatesKeyViewLoop(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAutorecalculatesKeyViewLoop(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutorecalculatesKeyViewLoop:"), value)
 }
 
@@ -1924,7 +1928,7 @@ func (w_ Window) BackingLocation() WindowBackingLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingScaleFactor
-func (w_ Window) BackingScaleFactor() float64 /* primitive/slice/pointer. */ {
+func (w_ Window) BackingScaleFactor() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("backingScaleFactor"))
 	return rv
 }
@@ -1953,7 +1957,7 @@ func (w_ Window) SetBackingType(value BackingStoreType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canBecomeKey
-func (w_ Window) CanBecomeKeyWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanBecomeKeyWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeKeyWindow"))
 	return rv
 }
@@ -1963,7 +1967,7 @@ func (w_ Window) CanBecomeKeyWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canBecomeMain
-func (w_ Window) CanBecomeMainWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanBecomeMainWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeMainWindow"))
 	return rv
 }
@@ -1973,7 +1977,7 @@ func (w_ Window) CanBecomeMainWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin
-func (w_ Window) CanBecomeVisibleWithoutLogin() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanBecomeVisibleWithoutLogin() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeVisibleWithoutLogin"))
 	return rv
 }
@@ -1983,7 +1987,7 @@ func (w_ Window) CanBecomeVisibleWithoutLogin() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canBecomeVisibleWithoutLogin
-func (w_ Window) SetCanBecomeVisibleWithoutLogin(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetCanBecomeVisibleWithoutLogin(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeVisibleWithoutLogin:"), value)
 }
 
@@ -1992,7 +1996,7 @@ func (w_ Window) SetCanBecomeVisibleWithoutLogin(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canHide
-func (w_ Window) CanHide() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanHide() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canHide"))
 	return rv
 }
@@ -2002,7 +2006,7 @@ func (w_ Window) CanHide() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canHide
-func (w_ Window) SetCanHide(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetCanHide(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanHide:"), value)
 }
 
@@ -2010,7 +2014,7 @@ func (w_ Window) SetCanHide(value bool /* primitive/slice/pointer. */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cascadingReferenceFrame
 func (w_ Window) CascadingReferenceFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("cascadingReferenceFrame"))
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("cascadingReferenceFrame"))
 	return rv
 }
 
@@ -2019,7 +2023,7 @@ func (w_ Window) CascadingReferenceFrame() objc.IObject /* cross-framework: Rect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/childWindows
-func (w_ Window) ChildWindows() []Window /* primitive/slice/pointer. */ {
+func (w_ Window) ChildWindows() []IWindow {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("childWindows"))
 	return rv
 }
@@ -2068,7 +2072,7 @@ func (w_ Window) SetColorSpace(value IColorSpace) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentAspectRatio
 func (w_ Window) ContentAspectRatio() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("contentAspectRatio"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("contentAspectRatio"))
 	return rv
 }
 
@@ -2097,7 +2101,7 @@ func (w_ Window) ContentLayoutGuide() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentLayoutRect
 func (w_ Window) ContentLayoutRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("contentLayoutRect"))
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("contentLayoutRect"))
 	return rv
 }
 
@@ -2107,7 +2111,7 @@ func (w_ Window) ContentLayoutRect() objc.IObject /* cross-framework: Rect */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMaxSize
 func (w_ Window) ContentMaxSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("contentMaxSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("contentMaxSize"))
 	return rv
 }
 
@@ -2126,7 +2130,7 @@ func (w_ Window) SetContentMaxSize(value objc.IObject /* cross-framework: Size *
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentMinSize
 func (w_ Window) ContentMinSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("contentMinSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("contentMinSize"))
 	return rv
 }
 
@@ -2145,7 +2149,7 @@ func (w_ Window) SetContentMinSize(value objc.IObject /* cross-framework: Size *
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentResizeIncrements
 func (w_ Window) ContentResizeIncrements() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("contentResizeIncrements"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("contentResizeIncrements"))
 	return rv
 }
 
@@ -2288,7 +2292,7 @@ func (w_ Window) SetDepthLimit(value WindowDepth) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deviceDescription
-func (w_ Window) DeviceDescription() foundation.IDictionary /* already interface */ {
+func (w_ Window) DeviceDescription() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
@@ -2298,7 +2302,7 @@ func (w_ Window) DeviceDescription() foundation.IDictionary /* already interface
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/displaysWhenScreenProfileChanges
-func (w_ Window) DisplaysWhenScreenProfileChanges() bool /* primitive/slice/pointer. */ {
+func (w_ Window) DisplaysWhenScreenProfileChanges() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("displaysWhenScreenProfileChanges"))
 	return rv
 }
@@ -2308,7 +2312,7 @@ func (w_ Window) DisplaysWhenScreenProfileChanges() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/displaysWhenScreenProfileChanges
-func (w_ Window) SetDisplaysWhenScreenProfileChanges(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetDisplaysWhenScreenProfileChanges(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplaysWhenScreenProfileChanges:"), value)
 }
 
@@ -2327,7 +2331,7 @@ func (w_ Window) DockTile() IDockTile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/drawers
-func (w_ Window) Drawers() []Drawer /* primitive/slice/pointer. */ {
+func (w_ Window) Drawers() []IDrawer {
 	rv := objc.Send[[]Drawer](w_.ID, objc.Sel("drawers"))
 	return rv
 }
@@ -2348,7 +2352,7 @@ func (w_ Window) FirstResponder() IResponder {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frame
 func (w_ Window) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](w_.ID, objc.Sel("frame"))
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("frame"))
 	return rv
 }
 
@@ -2385,7 +2389,7 @@ func (w_ Window) GraphicsContext() IGraphicsContext {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasActiveWindowSharingSession
-func (w_ Window) HasActiveWindowSharingSession() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HasActiveWindowSharingSession() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasActiveWindowSharingSession"))
 	return rv
 }
@@ -2395,7 +2399,7 @@ func (w_ Window) HasActiveWindowSharingSession() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasCloseBox
-func (w_ Window) HasCloseBox() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HasCloseBox() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasCloseBox"))
 	return rv
 }
@@ -2405,7 +2409,7 @@ func (w_ Window) HasCloseBox() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasDynamicDepthLimit
-func (w_ Window) HasDynamicDepthLimit() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HasDynamicDepthLimit() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasDynamicDepthLimit"))
 	return rv
 }
@@ -2415,7 +2419,7 @@ func (w_ Window) HasDynamicDepthLimit() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasShadow
-func (w_ Window) HasShadow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HasShadow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasShadow"))
 	return rv
 }
@@ -2425,7 +2429,7 @@ func (w_ Window) HasShadow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasShadow
-func (w_ Window) SetHasShadow(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetHasShadow(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHasShadow:"), value)
 }
 
@@ -2434,7 +2438,7 @@ func (w_ Window) SetHasShadow(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hasTitleBar
-func (w_ Window) HasTitleBar() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HasTitleBar() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasTitleBar"))
 	return rv
 }
@@ -2444,7 +2448,7 @@ func (w_ Window) HasTitleBar() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hidesOnDeactivate
-func (w_ Window) HidesOnDeactivate() bool /* primitive/slice/pointer. */ {
+func (w_ Window) HidesOnDeactivate() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hidesOnDeactivate"))
 	return rv
 }
@@ -2454,7 +2458,7 @@ func (w_ Window) HidesOnDeactivate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/hidesOnDeactivate
-func (w_ Window) SetHidesOnDeactivate(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetHidesOnDeactivate(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHidesOnDeactivate:"), value)
 }
 
@@ -2463,7 +2467,7 @@ func (w_ Window) SetHidesOnDeactivate(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ignoresMouseEvents
-func (w_ Window) IgnoresMouseEvents() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IgnoresMouseEvents() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("ignoresMouseEvents"))
 	return rv
 }
@@ -2473,7 +2477,7 @@ func (w_ Window) IgnoresMouseEvents() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ignoresMouseEvents
-func (w_ Window) SetIgnoresMouseEvents(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIgnoresMouseEvents(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIgnoresMouseEvents:"), value)
 }
 
@@ -2482,7 +2486,7 @@ func (w_ Window) SetIgnoresMouseEvents(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/inLiveResize
-func (w_ Window) InLiveResize() bool /* primitive/slice/pointer. */ {
+func (w_ Window) InLiveResize() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("inLiveResize"))
 	return rv
 }
@@ -2511,7 +2515,7 @@ func (w_ Window) SetInitialFirstResponder(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isAutodisplay
-func (w_ Window) Autodisplay() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Autodisplay() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("autodisplay"))
 	return rv
 }
@@ -2521,7 +2525,7 @@ func (w_ Window) Autodisplay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isAutodisplay
-func (w_ Window) SetAutodisplay(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetAutodisplay(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAutodisplay:"), value)
 }
 
@@ -2530,7 +2534,7 @@ func (w_ Window) SetAutodisplay(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isDocumentEdited
-func (w_ Window) DocumentEdited() bool /* primitive/slice/pointer. */ {
+func (w_ Window) DocumentEdited() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("documentEdited"))
 	return rv
 }
@@ -2540,7 +2544,7 @@ func (w_ Window) DocumentEdited() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isDocumentEdited
-func (w_ Window) SetDocumentEdited(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetDocumentEdited(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDocumentEdited:"), value)
 }
 
@@ -2549,7 +2553,7 @@ func (w_ Window) SetDocumentEdited(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isExcludedFromWindowsMenu
-func (w_ Window) ExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ExcludedFromWindowsMenu() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("excludedFromWindowsMenu"))
 	return rv
 }
@@ -2559,7 +2563,7 @@ func (w_ Window) ExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isExcludedFromWindowsMenu
-func (w_ Window) SetExcludedFromWindowsMenu(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetExcludedFromWindowsMenu(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExcludedFromWindowsMenu:"), value)
 }
 
@@ -2568,7 +2572,7 @@ func (w_ Window) SetExcludedFromWindowsMenu(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isFloatingPanel
-func (w_ Window) FloatingPanel() bool /* primitive/slice/pointer. */ {
+func (w_ Window) FloatingPanel() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("floatingPanel"))
 	return rv
 }
@@ -2578,7 +2582,7 @@ func (w_ Window) FloatingPanel() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isFlushWindowDisabled
-func (w_ Window) FlushWindowDisabled() bool /* primitive/slice/pointer. */ {
+func (w_ Window) FlushWindowDisabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("flushWindowDisabled"))
 	return rv
 }
@@ -2588,7 +2592,7 @@ func (w_ Window) FlushWindowDisabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isKeyWindow
-func (w_ Window) KeyWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) KeyWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("keyWindow"))
 	return rv
 }
@@ -2598,7 +2602,7 @@ func (w_ Window) KeyWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMainWindow
-func (w_ Window) MainWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) MainWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("mainWindow"))
 	return rv
 }
@@ -2608,7 +2612,7 @@ func (w_ Window) MainWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMiniaturizable
-func (w_ Window) Miniaturizable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Miniaturizable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("miniaturizable"))
 	return rv
 }
@@ -2618,7 +2622,7 @@ func (w_ Window) Miniaturizable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMiniaturized
-func (w_ Window) Miniaturized() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Miniaturized() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("miniaturized"))
 	return rv
 }
@@ -2628,7 +2632,7 @@ func (w_ Window) Miniaturized() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isModalPanel
-func (w_ Window) ModalPanel() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ModalPanel() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("modalPanel"))
 	return rv
 }
@@ -2638,7 +2642,7 @@ func (w_ Window) ModalPanel() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMovable
-func (w_ Window) Movable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Movable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("movable"))
 	return rv
 }
@@ -2648,7 +2652,7 @@ func (w_ Window) Movable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMovable
-func (w_ Window) SetMovable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetMovable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMovable:"), value)
 }
 
@@ -2657,7 +2661,7 @@ func (w_ Window) SetMovable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMovableByWindowBackground
-func (w_ Window) MovableByWindowBackground() bool /* primitive/slice/pointer. */ {
+func (w_ Window) MovableByWindowBackground() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("movableByWindowBackground"))
 	return rv
 }
@@ -2667,7 +2671,7 @@ func (w_ Window) MovableByWindowBackground() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isMovableByWindowBackground
-func (w_ Window) SetMovableByWindowBackground(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetMovableByWindowBackground(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMovableByWindowBackground:"), value)
 }
 
@@ -2676,7 +2680,7 @@ func (w_ Window) SetMovableByWindowBackground(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOnActiveSpace
-func (w_ Window) OnActiveSpace() bool /* primitive/slice/pointer. */ {
+func (w_ Window) OnActiveSpace() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("onActiveSpace"))
 	return rv
 }
@@ -2686,7 +2690,7 @@ func (w_ Window) OnActiveSpace() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOneShot
-func (w_ Window) OneShot() bool /* primitive/slice/pointer. */ {
+func (w_ Window) OneShot() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("oneShot"))
 	return rv
 }
@@ -2696,7 +2700,7 @@ func (w_ Window) OneShot() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOneShot
-func (w_ Window) SetOneShot(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetOneShot(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOneShot:"), value)
 }
 
@@ -2705,7 +2709,7 @@ func (w_ Window) SetOneShot(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOpaque
-func (w_ Window) Opaque() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Opaque() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("opaque"))
 	return rv
 }
@@ -2715,7 +2719,7 @@ func (w_ Window) Opaque() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isOpaque
-func (w_ Window) SetOpaque(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetOpaque(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOpaque:"), value)
 }
 
@@ -2724,7 +2728,7 @@ func (w_ Window) SetOpaque(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isReleasedWhenClosed
-func (w_ Window) ReleasedWhenClosed() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ReleasedWhenClosed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("releasedWhenClosed"))
 	return rv
 }
@@ -2734,7 +2738,7 @@ func (w_ Window) ReleasedWhenClosed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isReleasedWhenClosed
-func (w_ Window) SetReleasedWhenClosed(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetReleasedWhenClosed(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setReleasedWhenClosed:"), value)
 }
 
@@ -2743,7 +2747,7 @@ func (w_ Window) SetReleasedWhenClosed(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isResizable
-func (w_ Window) Resizable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Resizable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("resizable"))
 	return rv
 }
@@ -2753,7 +2757,7 @@ func (w_ Window) Resizable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isRestorable
-func (w_ Window) Restorable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Restorable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("restorable"))
 	return rv
 }
@@ -2763,7 +2767,7 @@ func (w_ Window) Restorable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isRestorable
-func (w_ Window) SetRestorable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetRestorable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRestorable:"), value)
 }
 
@@ -2772,7 +2776,7 @@ func (w_ Window) SetRestorable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isSheet
-func (w_ Window) Sheet() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Sheet() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("sheet"))
 	return rv
 }
@@ -2782,7 +2786,7 @@ func (w_ Window) Sheet() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isVisible
-func (w_ Window) Visible() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Visible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("visible"))
 	return rv
 }
@@ -2792,7 +2796,7 @@ func (w_ Window) Visible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isZoomable
-func (w_ Window) Zoomable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Zoomable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("zoomable"))
 	return rv
 }
@@ -2802,7 +2806,7 @@ func (w_ Window) Zoomable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/isZoomed
-func (w_ Window) Zoomed() bool /* primitive/slice/pointer. */ {
+func (w_ Window) Zoomed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("zoomed"))
 	return rv
 }
@@ -2842,7 +2846,7 @@ func (w_ Window) SetLevel(value objc.IObject /* cross-framework: WindowLevel */)
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxFullScreenContentSize
 func (w_ Window) MaxFullScreenContentSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("maxFullScreenContentSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("maxFullScreenContentSize"))
 	return rv
 }
 
@@ -2861,7 +2865,7 @@ func (w_ Window) SetMaxFullScreenContentSize(value objc.IObject /* cross-framewo
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/maxSize
 func (w_ Window) MaxSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("maxSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("maxSize"))
 	return rv
 }
 
@@ -2880,7 +2884,7 @@ func (w_ Window) SetMaxSize(value objc.IObject /* cross-framework: Size */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFullScreenContentSize
 func (w_ Window) MinFullScreenContentSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("minFullScreenContentSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("minFullScreenContentSize"))
 	return rv
 }
 
@@ -2899,7 +2903,7 @@ func (w_ Window) SetMinFullScreenContentSize(value objc.IObject /* cross-framewo
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minSize
 func (w_ Window) MinSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("minSize"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("minSize"))
 	return rv
 }
 
@@ -2956,7 +2960,7 @@ func (w_ Window) SetMiniwindowTitle(value objc.IObject /* cross-framework: NSStr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/mouseLocationOutsideOfEventStream
 func (w_ Window) MouseLocationOutsideOfEventStream() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](w_.ID, objc.Sel("mouseLocationOutsideOfEventStream"))
+	rv := objc.Send[corefoundation.Point](w_.ID, objc.Sel("mouseLocationOutsideOfEventStream"))
 	return rv
 }
 
@@ -2975,7 +2979,7 @@ func (w_ Window) OcclusionState() WindowOcclusionState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/orderedIndex
-func (w_ Window) OrderedIndex() int /* primitive/slice/pointer. */ {
+func (w_ Window) OrderedIndex() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("orderedIndex"))
 	return rv
 }
@@ -2985,7 +2989,7 @@ func (w_ Window) OrderedIndex() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/orderedIndex
-func (w_ Window) SetOrderedIndex(value int /* primitive/slice/pointer. */) {
+func (w_ Window) SetOrderedIndex(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOrderedIndex:"), value)
 }
 
@@ -3032,7 +3036,7 @@ func (w_ Window) SetPreferredBackingLocation(value WindowBackingLocation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preservesContentDuringLiveResize
-func (w_ Window) PreservesContentDuringLiveResize() bool /* primitive/slice/pointer. */ {
+func (w_ Window) PreservesContentDuringLiveResize() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("preservesContentDuringLiveResize"))
 	return rv
 }
@@ -3042,7 +3046,7 @@ func (w_ Window) PreservesContentDuringLiveResize() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preservesContentDuringLiveResize
-func (w_ Window) SetPreservesContentDuringLiveResize(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetPreservesContentDuringLiveResize(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreservesContentDuringLiveResize:"), value)
 }
 
@@ -3051,7 +3055,7 @@ func (w_ Window) SetPreservesContentDuringLiveResize(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preventsApplicationTerminationWhenModal
-func (w_ Window) PreventsApplicationTerminationWhenModal() bool /* primitive/slice/pointer. */ {
+func (w_ Window) PreventsApplicationTerminationWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("preventsApplicationTerminationWhenModal"))
 	return rv
 }
@@ -3061,7 +3065,7 @@ func (w_ Window) PreventsApplicationTerminationWhenModal() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preventsApplicationTerminationWhenModal
-func (w_ Window) SetPreventsApplicationTerminationWhenModal(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetPreventsApplicationTerminationWhenModal(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreventsApplicationTerminationWhenModal:"), value)
 }
 
@@ -3119,7 +3123,7 @@ func (w_ Window) ResizeFlags() EventModifierFlags {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/resizeIncrements
 func (w_ Window) ResizeIncrements() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](w_.ID, objc.Sel("resizeIncrements"))
+	rv := objc.Send[corefoundation.Size](w_.ID, objc.Sel("resizeIncrements"))
 	return rv
 }
 
@@ -3195,7 +3199,7 @@ func (w_ Window) SheetParent() IWindow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheets
-func (w_ Window) Sheets() []Window /* primitive/slice/pointer. */ {
+func (w_ Window) Sheets() []IWindow {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("sheets"))
 	return rv
 }
@@ -3205,7 +3209,7 @@ func (w_ Window) Sheets() []Window /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/showsResizeIndicator
-func (w_ Window) ShowsResizeIndicator() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ShowsResizeIndicator() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("showsResizeIndicator"))
 	return rv
 }
@@ -3215,7 +3219,7 @@ func (w_ Window) ShowsResizeIndicator() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/showsResizeIndicator
-func (w_ Window) SetShowsResizeIndicator(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetShowsResizeIndicator(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsResizeIndicator:"), value)
 }
 
@@ -3224,7 +3228,7 @@ func (w_ Window) SetShowsResizeIndicator(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/showsToolbarButton
-func (w_ Window) ShowsToolbarButton() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ShowsToolbarButton() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("showsToolbarButton"))
 	return rv
 }
@@ -3234,7 +3238,7 @@ func (w_ Window) ShowsToolbarButton() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/showsToolbarButton
-func (w_ Window) SetShowsToolbarButton(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetShowsToolbarButton(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShowsToolbarButton:"), value)
 }
 
@@ -3301,7 +3305,7 @@ func (w_ Window) TabGroup() IWindowTabGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbedWindows
-func (w_ Window) TabbedWindows() []Window /* primitive/slice/pointer. */ {
+func (w_ Window) TabbedWindows() []IWindow {
 	rv := objc.Send[[]Window](w_.ID, objc.Sel("tabbedWindows"))
 	return rv
 }
@@ -3387,7 +3391,7 @@ func (w_ Window) SetTitleVisibility(value WindowTitleVisibility) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewController /* primitive/slice/pointer. */ {
+func (w_ Window) TitlebarAccessoryViewControllers() []ITitlebarAccessoryViewController {
 	rv := objc.Send[[]TitlebarAccessoryViewController](w_.ID, objc.Sel("titlebarAccessoryViewControllers"))
 	return rv
 }
@@ -3397,7 +3401,7 @@ func (w_ Window) TitlebarAccessoryViewControllers() []TitlebarAccessoryViewContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAccessoryViewControllers
-func (w_ Window) SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryViewController /* primitive/slice/pointer. */) {
+func (w_ Window) SetTitlebarAccessoryViewControllers(value []ITitlebarAccessoryViewController) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -3416,7 +3420,7 @@ func (w_ Window) SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryVi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAppearsTransparent
-func (w_ Window) TitlebarAppearsTransparent() bool /* primitive/slice/pointer. */ {
+func (w_ Window) TitlebarAppearsTransparent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("titlebarAppearsTransparent"))
 	return rv
 }
@@ -3426,7 +3430,7 @@ func (w_ Window) TitlebarAppearsTransparent() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarAppearsTransparent
-func (w_ Window) SetTitlebarAppearsTransparent(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetTitlebarAppearsTransparent(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarAppearsTransparent:"), value)
 }
 
@@ -3502,7 +3506,7 @@ func (w_ Window) UserTabbingPreference() WindowUserTabbingPreference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/viewsNeedDisplay
-func (w_ Window) ViewsNeedDisplay() bool /* primitive/slice/pointer. */ {
+func (w_ Window) ViewsNeedDisplay() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("viewsNeedDisplay"))
 	return rv
 }
@@ -3512,7 +3516,7 @@ func (w_ Window) ViewsNeedDisplay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/viewsNeedDisplay
-func (w_ Window) SetViewsNeedDisplay(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetViewsNeedDisplay(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setViewsNeedDisplay:"), value)
 }
 
@@ -3540,7 +3544,7 @@ func (w_ Window) SetWindowController(value IWindowController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumber
-func (w_ Window) WindowNumber() int /* primitive/slice/pointer. */ {
+func (w_ Window) WindowNumber() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("windowNumber"))
 	return rv
 }
@@ -3570,7 +3574,7 @@ func (w_ Window) WindowTitlebarLayoutDirection() UserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/worksWhenModal
-func (w_ Window) WorksWhenModal() bool /* primitive/slice/pointer. */ {
+func (w_ Window) WorksWhenModal() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
@@ -3580,7 +3584,7 @@ func (w_ Window) WorksWhenModal() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents
-func (w_ Window) NumberOfColorComponents() int /* primitive/slice/pointer. */ {
+func (w_ Window) NumberOfColorComponents() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("numberOfColorComponents"))
 	return rv
 }
@@ -3590,7 +3594,7 @@ func (w_ Window) NumberOfColorComponents() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents
-func (w_ Window) SetNumberOfColorComponents(value int /* primitive/slice/pointer. */) {
+func (w_ Window) SetNumberOfColorComponents(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setNumberOfColorComponents:"), value)
 }
 
@@ -3599,7 +3603,7 @@ func (w_ Window) SetNumberOfColorComponents(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel
-func (w_ Window) BitsPerPixel() int /* primitive/slice/pointer. */ {
+func (w_ Window) BitsPerPixel() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("bitsPerPixel"))
 	return rv
 }
@@ -3609,7 +3613,7 @@ func (w_ Window) BitsPerPixel() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel
-func (w_ Window) SetBitsPerPixel(value int /* primitive/slice/pointer. */) {
+func (w_ Window) SetBitsPerPixel(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBitsPerPixel:"), value)
 }
 
@@ -3618,7 +3622,7 @@ func (w_ Window) SetBitsPerPixel(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample
-func (w_ Window) BitsPerSample() int /* primitive/slice/pointer. */ {
+func (w_ Window) BitsPerSample() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("bitsPerSample"))
 	return rv
 }
@@ -3628,7 +3632,7 @@ func (w_ Window) BitsPerSample() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample
-func (w_ Window) SetBitsPerSample(value int /* primitive/slice/pointer. */) {
+func (w_ Window) SetBitsPerSample(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBitsPerSample:"), value)
 }
 
@@ -3656,7 +3660,7 @@ func (w_ Window) SetColorSpaceName(value objc.IObject /* cross-framework: ColorS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar
-func (w_ Window) IsPlanar() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsPlanar() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isPlanar"))
 	return rv
 }
@@ -3666,7 +3670,7 @@ func (w_ Window) IsPlanar() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar
-func (w_ Window) SetIsPlanar(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsPlanar(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsPlanar:"), value)
 }
 
@@ -3675,7 +3679,7 @@ func (w_ Window) SetIsPlanar(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomekey
-func (w_ Window) CanBecomeKey() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanBecomeKey() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeKey"))
 	return rv
 }
@@ -3685,7 +3689,7 @@ func (w_ Window) CanBecomeKey() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomekey
-func (w_ Window) SetCanBecomeKey(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetCanBecomeKey(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeKey:"), value)
 }
 
@@ -3694,7 +3698,7 @@ func (w_ Window) SetCanBecomeKey(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomemain
-func (w_ Window) CanBecomeMain() bool /* primitive/slice/pointer. */ {
+func (w_ Window) CanBecomeMain() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canBecomeMain"))
 	return rv
 }
@@ -3704,7 +3708,7 @@ func (w_ Window) CanBecomeMain() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/canbecomemain
-func (w_ Window) SetCanBecomeMain(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetCanBecomeMain(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCanBecomeMain:"), value)
 }
 
@@ -3732,7 +3736,7 @@ func (w_ Window) SetFrameDescriptor(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isdocumentedited
-func (w_ Window) IsDocumentEdited() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsDocumentEdited() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isDocumentEdited"))
 	return rv
 }
@@ -3742,7 +3746,7 @@ func (w_ Window) IsDocumentEdited() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isdocumentedited
-func (w_ Window) SetIsDocumentEdited(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsDocumentEdited(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsDocumentEdited:"), value)
 }
 
@@ -3751,7 +3755,7 @@ func (w_ Window) SetIsDocumentEdited(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isexcludedfromwindowsmenu
-func (w_ Window) IsExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsExcludedFromWindowsMenu() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isExcludedFromWindowsMenu"))
 	return rv
 }
@@ -3761,7 +3765,7 @@ func (w_ Window) IsExcludedFromWindowsMenu() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isexcludedfromwindowsmenu
-func (w_ Window) SetIsExcludedFromWindowsMenu(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsExcludedFromWindowsMenu(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsExcludedFromWindowsMenu:"), value)
 }
 
@@ -3770,7 +3774,7 @@ func (w_ Window) SetIsExcludedFromWindowsMenu(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isfloatingpanel
-func (w_ Window) IsFloatingPanel() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsFloatingPanel() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isFloatingPanel"))
 	return rv
 }
@@ -3780,7 +3784,7 @@ func (w_ Window) IsFloatingPanel() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isfloatingpanel
-func (w_ Window) SetIsFloatingPanel(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsFloatingPanel(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsFloatingPanel:"), value)
 }
 
@@ -3789,7 +3793,7 @@ func (w_ Window) SetIsFloatingPanel(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iskeywindow
-func (w_ Window) IsKeyWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsKeyWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isKeyWindow"))
 	return rv
 }
@@ -3799,7 +3803,7 @@ func (w_ Window) IsKeyWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iskeywindow
-func (w_ Window) SetIsKeyWindow(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsKeyWindow(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsKeyWindow:"), value)
 }
 
@@ -3808,7 +3812,7 @@ func (w_ Window) SetIsKeyWindow(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismainwindow
-func (w_ Window) IsMainWindow() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsMainWindow() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isMainWindow"))
 	return rv
 }
@@ -3818,7 +3822,7 @@ func (w_ Window) IsMainWindow() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismainwindow
-func (w_ Window) SetIsMainWindow(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsMainWindow(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMainWindow:"), value)
 }
 
@@ -3827,7 +3831,7 @@ func (w_ Window) SetIsMainWindow(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturizable
-func (w_ Window) IsMiniaturizable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsMiniaturizable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isMiniaturizable"))
 	return rv
 }
@@ -3837,7 +3841,7 @@ func (w_ Window) IsMiniaturizable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturizable
-func (w_ Window) SetIsMiniaturizable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsMiniaturizable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMiniaturizable:"), value)
 }
 
@@ -3846,7 +3850,7 @@ func (w_ Window) SetIsMiniaturizable(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturized
-func (w_ Window) IsMiniaturized() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsMiniaturized() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isMiniaturized"))
 	return rv
 }
@@ -3856,7 +3860,7 @@ func (w_ Window) IsMiniaturized() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isminiaturized
-func (w_ Window) SetIsMiniaturized(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsMiniaturized(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMiniaturized:"), value)
 }
 
@@ -3865,7 +3869,7 @@ func (w_ Window) SetIsMiniaturized(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismodalpanel
-func (w_ Window) IsModalPanel() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsModalPanel() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isModalPanel"))
 	return rv
 }
@@ -3875,7 +3879,7 @@ func (w_ Window) IsModalPanel() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismodalpanel
-func (w_ Window) SetIsModalPanel(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsModalPanel(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsModalPanel:"), value)
 }
 
@@ -3884,7 +3888,7 @@ func (w_ Window) SetIsModalPanel(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovable
-func (w_ Window) IsMovable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsMovable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isMovable"))
 	return rv
 }
@@ -3894,7 +3898,7 @@ func (w_ Window) IsMovable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovable
-func (w_ Window) SetIsMovable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsMovable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMovable:"), value)
 }
 
@@ -3903,7 +3907,7 @@ func (w_ Window) SetIsMovable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovablebywindowbackground
-func (w_ Window) IsMovableByWindowBackground() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsMovableByWindowBackground() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isMovableByWindowBackground"))
 	return rv
 }
@@ -3913,7 +3917,7 @@ func (w_ Window) IsMovableByWindowBackground() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/ismovablebywindowbackground
-func (w_ Window) SetIsMovableByWindowBackground(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsMovableByWindowBackground(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsMovableByWindowBackground:"), value)
 }
 
@@ -3922,7 +3926,7 @@ func (w_ Window) SetIsMovableByWindowBackground(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isonactivespace
-func (w_ Window) IsOnActiveSpace() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsOnActiveSpace() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isOnActiveSpace"))
 	return rv
 }
@@ -3932,7 +3936,7 @@ func (w_ Window) IsOnActiveSpace() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isonactivespace
-func (w_ Window) SetIsOnActiveSpace(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsOnActiveSpace(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOnActiveSpace:"), value)
 }
 
@@ -3941,7 +3945,7 @@ func (w_ Window) SetIsOnActiveSpace(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isopaque
-func (w_ Window) IsOpaque() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsOpaque() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isOpaque"))
 	return rv
 }
@@ -3951,7 +3955,7 @@ func (w_ Window) IsOpaque() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isopaque
-func (w_ Window) SetIsOpaque(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsOpaque(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOpaque:"), value)
 }
 
@@ -3960,7 +3964,7 @@ func (w_ Window) SetIsOpaque(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isreleasedwhenclosed
-func (w_ Window) IsReleasedWhenClosed() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsReleasedWhenClosed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isReleasedWhenClosed"))
 	return rv
 }
@@ -3970,7 +3974,7 @@ func (w_ Window) IsReleasedWhenClosed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isreleasedwhenclosed
-func (w_ Window) SetIsReleasedWhenClosed(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsReleasedWhenClosed(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsReleasedWhenClosed:"), value)
 }
 
@@ -3979,7 +3983,7 @@ func (w_ Window) SetIsReleasedWhenClosed(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isresizable
-func (w_ Window) IsResizable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsResizable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isResizable"))
 	return rv
 }
@@ -3989,7 +3993,7 @@ func (w_ Window) IsResizable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isresizable
-func (w_ Window) SetIsResizable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsResizable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsResizable:"), value)
 }
 
@@ -3998,7 +4002,7 @@ func (w_ Window) SetIsResizable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isrestorable
-func (w_ Window) IsRestorable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsRestorable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isRestorable"))
 	return rv
 }
@@ -4008,7 +4012,7 @@ func (w_ Window) IsRestorable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isrestorable
-func (w_ Window) SetIsRestorable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsRestorable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsRestorable:"), value)
 }
 
@@ -4017,7 +4021,7 @@ func (w_ Window) SetIsRestorable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/issheet
-func (w_ Window) IsSheet() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsSheet() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isSheet"))
 	return rv
 }
@@ -4027,7 +4031,7 @@ func (w_ Window) IsSheet() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/issheet
-func (w_ Window) SetIsSheet(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsSheet(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsSheet:"), value)
 }
 
@@ -4036,7 +4040,7 @@ func (w_ Window) SetIsSheet(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isvisible
-func (w_ Window) IsVisible() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsVisible() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -4046,7 +4050,7 @@ func (w_ Window) IsVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/isvisible
-func (w_ Window) SetIsVisible(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsVisible(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsVisible:"), value)
 }
 
@@ -4055,7 +4059,7 @@ func (w_ Window) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomable
-func (w_ Window) IsZoomable() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsZoomable() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isZoomable"))
 	return rv
 }
@@ -4065,7 +4069,7 @@ func (w_ Window) IsZoomable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomable
-func (w_ Window) SetIsZoomable(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsZoomable(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsZoomable:"), value)
 }
 
@@ -4074,7 +4078,7 @@ func (w_ Window) SetIsZoomable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomed
-func (w_ Window) IsZoomed() bool /* primitive/slice/pointer. */ {
+func (w_ Window) IsZoomed() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isZoomed"))
 	return rv
 }
@@ -4084,7 +4088,7 @@ func (w_ Window) IsZoomed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/iszoomed
-func (w_ Window) SetIsZoomed(value bool /* primitive/slice/pointer. */) {
+func (w_ Window) SetIsZoomed(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsZoomed:"), value)
 }
 

@@ -32,8 +32,8 @@ type _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass struct {
 type IAuthorizationPublicKeyCredentialLargeBlobAssertionInput interface {
 	objectivec.IObject
 	// properties:
-	DataToWrite() foundation.objc.IObject /* cross-framework: NSData */
-	SetDataToWrite(value foundation.objc.IObject /* cross-framework: NSData */)
+	DataToWrite() objc.IObject /* cross-framework: NSData */
+	SetDataToWrite(value objc.IObject /* cross-framework: NSData */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(ope
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() foundation.objc.IObject /* cross-framework: NSData */ {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("dataToWrite"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value foundation.objc.IObject /* cross-framework: NSData */) {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataToWrite:"), value)
 }
 

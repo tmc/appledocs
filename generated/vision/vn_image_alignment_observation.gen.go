@@ -29,12 +29,18 @@ type _ImageAlignmentObservationClass struct {
 // An interface definition for the [ImageAlignmentObservation] class.
 type IImageAlignmentObservation interface {
 	IObservation
+	// properties:
+	// methods:
 }
 
 // The abstract superclass for image-analysis results that describe the relative alignment of two images.
 //
 // This abstract superclass forms the basis of image alignment or registration output. You receive its subclasses, such as and , by performing specific registration requests. Don’t create one of these classes yourself.
+
+
+// The abstract superclass for image-analysis results that describe the relative alignment of two images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageAlignmentObservation
 type ImageAlignmentObservation struct {
 	Observation

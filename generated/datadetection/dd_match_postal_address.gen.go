@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchPostalAddress] class.
@@ -30,11 +31,11 @@ type _DDMatchPostalAddressClass struct {
 type IDDMatchPostalAddress interface {
 	IDDMatch
 	// properties:
-	City() string /* primitive/slice/pointer. */
-	Country() string /* primitive/slice/pointer. */
-	PostalCode() string /* primitive/slice/pointer. */
-	State() string /* primitive/slice/pointer. */
-	Street() string /* primitive/slice/pointer. */
+	City() objc.IObject /* cross-framework: NSString */
+	Country() objc.IObject /* cross-framework: NSString */
+	PostalCode() objc.IObject /* cross-framework: NSString */
+	State() objc.IObject /* cross-framework: NSString */
+	Street() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -97,8 +98,8 @@ func NewDDMatchPostalAddress() DDMatchPostalAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/city
-func (d_ DDMatchPostalAddress) City() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("city"))
+func (d_ DDMatchPostalAddress) City() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("city"))
 	return rv
 }
 
@@ -107,8 +108,8 @@ func (d_ DDMatchPostalAddress) City() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/country
-func (d_ DDMatchPostalAddress) Country() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("country"))
+func (d_ DDMatchPostalAddress) Country() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("country"))
 	return rv
 }
 
@@ -117,8 +118,8 @@ func (d_ DDMatchPostalAddress) Country() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/postalCode
-func (d_ DDMatchPostalAddress) PostalCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("postalCode"))
+func (d_ DDMatchPostalAddress) PostalCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (d_ DDMatchPostalAddress) PostalCode() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/state
-func (d_ DDMatchPostalAddress) State() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("state"))
+func (d_ DDMatchPostalAddress) State() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -137,8 +138,8 @@ func (d_ DDMatchPostalAddress) State() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/street
-func (d_ DDMatchPostalAddress) Street() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("street"))
+func (d_ DDMatchPostalAddress) Street() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("street"))
 	return rv
 }
 

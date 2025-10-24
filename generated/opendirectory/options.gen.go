@@ -30,9 +30,13 @@ type _optionsClass struct {
 // An interface definition for the [options] class.
 type Ioptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/options
 type options struct {
 	objectivec.Object

@@ -29,11 +29,18 @@ type _RecognizedPointClass struct {
 // An interface definition for the [RecognizedPoint] class.
 type IRecognizedPoint interface {
 	IDetectedPoint
-	Identifier() RecognizedPointKey
+	// properties:
+	Identifier() objc.IObject /* cross-framework: RecognizedPointKey */
+	SetIdentifier(value objc.IObject /* cross-framework: RecognizedPointKey */)
+	// methods:
 }
 
 // An object that represents a normalized point in an image, along with an identifier label and a confidence value.
+
+
+// An object that represents a normalized point in an image, along with an identifier label and a confidence value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint
 type RecognizedPoint struct {
 	DetectedPoint
@@ -80,12 +87,23 @@ func NewRecognizedPoint() RecognizedPoint {
 }
 
 
+
 // The point’s identifier label.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint/identifier
-func (r_ RecognizedPoint) Identifier() RecognizedPointKey {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoint/identifier
+func (r_ RecognizedPoint) Identifier() objc.IObject /* cross-framework: RecognizedPointKey */ {
 	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("identifier"))
 	return rv
+}
+
+
+// The point’s identifier label.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoint/identifier
+func (r_ RecognizedPoint) SetIdentifier(value objc.IObject /* cross-framework: RecognizedPointKey */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

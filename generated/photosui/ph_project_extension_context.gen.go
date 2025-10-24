@@ -30,20 +30,27 @@ type _PHProjectExtensionContextClass struct {
 
 // An interface definition for the [PHProjectExtensionContext] class.
 type IPHProjectExtensionContext interface {
-	IExtensionContext
-	ShowEditorForAsset(asset photos.IPHAsset)
-	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) foundation.Progress
-	PhotoLibrary() photos.PHPhotoLibrary
-	Project() photos.PHProject
+	foundation.IExtensionContext
+	// properties:
+	PhotoLibrary() objc.IObject /* cross-framework: PHPhotoLibrary */
+	SetPhotoLibrary(value objc.IObject /* cross-framework: PHPhotoLibrary */)
+	Project() objc.IObject /* cross-framework: PHProject */
+	SetProject(value objc.IObject /* cross-framework: PHProject */)
+	// methods:
+	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) objc.IObject /* cross-framework: Progress */
 }
 
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 //
 // When a Photos project extension is initialized, it is handed an extension context object. This object provides the extension with access to the underlying project, as well as the photo library from which assets are fetched and edited.
+
+
+// An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext
 type PHProjectExtensionContext struct {
-	ExtensionContext
+	foundation.ExtensionContext
 }
 
 // PHProjectExtensionContextFrom constructs a [PHProjectExtensionContext] from an unsafe.Pointer.
@@ -51,7 +58,7 @@ type PHProjectExtensionContext struct {
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 func PHProjectExtensionContextFrom(ptr unsafe.Pointer) PHProjectExtensionContext {
 	return PHProjectExtensionContext{
-		ExtensionContext: ExtensionContextFrom(ptr),
+		ExtensionContext: foundation.ExtensionContextFrom(ptr),
 	}
 }
 
@@ -87,35 +94,52 @@ func NewPHProjectExtensionContext() PHProjectExtensionContext {
 }
 
 
-// Invokes the built-in photo editor for the given asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/showEditor(for:)
-func (p_ PHProjectExtensionContext) ShowEditorForAsset(asset photos.IPHAsset) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("showEditorForAsset:"), asset)
-}
 
 // Creates an updated instance from existing project information and current assets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/updatedProjectInfo(from:completion:)
-func (p_ PHProjectExtensionContext) UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) foundation.Progress {
+func (p_ PHProjectExtensionContext) UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) objc.IObject /* cross-framework: Progress */ {
 	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("updatedProjectInfoFromProjectInfo:completion:"), existingProjectInfo, completion)
 	return rv
 }
 
+
 // A read-only version of the photo library being modified.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/photoLibrary
-func (p_ PHProjectExtensionContext) PhotoLibrary() photos.PHPhotoLibrary {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectextensioncontext/photolibrary
+func (p_ PHProjectExtensionContext) PhotoLibrary() objc.IObject /* cross-framework: PHPhotoLibrary */ {
 	rv := objc.Send[photos.PHPhotoLibrary](p_.ID, objc.Sel("photoLibrary"))
 	return rv
 }
 
+
+// A read-only version of the photo library being modified.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectextensioncontext/photolibrary
+func (p_ PHProjectExtensionContext) SetPhotoLibrary(value objc.IObject /* cross-framework: PHPhotoLibrary */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPhotoLibrary:"), value)
+}
+
+
 // A read-only version of the project being edited.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/project
-func (p_ PHProjectExtensionContext) Project() photos.PHProject {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectextensioncontext/project
+func (p_ PHProjectExtensionContext) Project() objc.IObject /* cross-framework: PHProject */ {
 	rv := objc.Send[photos.PHProject](p_.ID, objc.Sel("project"))
 	return rv
+}
+
+
+// A read-only version of the project being edited.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectextensioncontext/project
+func (p_ PHProjectExtensionContext) SetProject(value objc.IObject /* cross-framework: PHProject */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProject:"), value)
 }
 
 

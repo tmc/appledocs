@@ -29,13 +29,18 @@ type _FeedbackCommandEventClass struct {
 // An interface definition for the [FeedbackCommandEvent] class.
 type IFeedbackCommandEvent interface {
 	IRemoteCommandEvent
-	Negative() bool
+	// properties:
 	IsNegative() bool
 	SetIsNegative(value bool)
+	// methods:
 }
 
 // An event requesting a change in the feedback setting.
+
+
+// An event requesting a change in the feedback setting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent
 type FeedbackCommandEvent struct {
 	RemoteCommandEvent
@@ -82,16 +87,10 @@ func NewFeedbackCommandEvent() FeedbackCommandEvent {
 }
 
 
-// A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent/isNegative
-func (f_ FeedbackCommandEvent) Negative() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("negative"))
-	return rv
-}
 
 // A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent/isnegative
 func (f_ FeedbackCommandEvent) IsNegative() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isNegative"))
@@ -99,10 +98,9 @@ func (f_ FeedbackCommandEvent) IsNegative() bool {
 }
 
 
-// SetIsNegative sets the value of the isNegative property.
 // A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent/isnegative
 func (f_ FeedbackCommandEvent) SetIsNegative(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsNegative:"), value)

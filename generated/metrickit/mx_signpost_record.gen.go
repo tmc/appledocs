@@ -31,20 +31,26 @@ type _MXSignpostRecordClass struct {
 // An interface definition for the [MXSignpostRecord] class.
 type IMXSignpostRecord interface {
 	objectivec.IObject
-	DictionaryRepresentation() foundation.Dictionary
-	JSONRepresentation() foundation.Data
-	BeginTimeStamp() foundation.NSDate
-	Category() string
+	// properties:
+	BeginTimeStamp() objc.IObject /* cross-framework: NSDate */
+	Category() objc.IObject /* cross-framework: NSString */
 	Duration() unsafe.Pointer
-	EndTimeStamp() foundation.NSDate
+	EndTimeStamp() objc.IObject /* cross-framework: NSDate */
 	IsInterval() bool
-	Name() string
-	Subsystem() string
-	MXErrorDomain() string
+	Name() objc.IObject /* cross-framework: NSString */
+	Subsystem() objc.IObject /* cross-framework: NSString */
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
+	DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An object representing the record for a signpost interval or event.
+
+
+// An object representing the record for a signpost interval or event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord
 type MXSignpostRecord struct {
 	objectivec.Object
@@ -89,74 +95,85 @@ func NewMXSignpostRecord() MXSignpostRecord {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/dictionaryRepresentation()
-func (m_ MXSignpostRecord) DictionaryRepresentation() foundation.Dictionary {
+func (m_ MXSignpostRecord) DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */ {
 	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/jsonRepresentation()
-func (m_ MXSignpostRecord) JSONRepresentation() foundation.Data {
+func (m_ MXSignpostRecord) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/beginTimeStamp
-func (m_ MXSignpostRecord) BeginTimeStamp() foundation.NSDate {
+func (m_ MXSignpostRecord) BeginTimeStamp() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("beginTimeStamp"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/category
-func (m_ MXSignpostRecord) Category() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("category"))
+func (m_ MXSignpostRecord) Category() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("category"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/duration
 func (m_ MXSignpostRecord) Duration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/endTimeStamp
-func (m_ MXSignpostRecord) EndTimeStamp() foundation.NSDate {
+func (m_ MXSignpostRecord) EndTimeStamp() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("endTimeStamp"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/isInterval
 func (m_ MXSignpostRecord) IsInterval() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isInterval"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/name
-func (m_ MXSignpostRecord) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MXSignpostRecord) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/subsystem
-func (m_ MXSignpostRecord) Subsystem() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subsystem"))
+func (m_ MXSignpostRecord) Subsystem() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("subsystem"))
 	return rv
 }
+
 
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXSignpostRecord) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXSignpostRecord) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

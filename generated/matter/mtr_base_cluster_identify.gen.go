@@ -29,9 +29,13 @@ type _MTRBaseClusterIdentifyClass struct {
 // An interface definition for the [MTRBaseClusterIdentify] class.
 type IMTRBaseClusterIdentify interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterIdentify
 type MTRBaseClusterIdentify struct {
 	MTRGenericBaseCluster

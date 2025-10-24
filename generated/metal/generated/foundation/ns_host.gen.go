@@ -32,10 +32,15 @@ type IHost interface {
 	objectivec.IObject
 	// properties:
 	Address() IString
-	Addresses() []string /* primitive/slice/pointer. */
+	SetAddress(value IString)
+	Addresses() IString
+	SetAddresses(value IString)
 	LocalizedName() IString
+	SetLocalizedName(value IString)
 	Name() IString
-	Names() []string /* primitive/slice/pointer. */
+	SetName(value IString)
+	Names() IString
+	SetNames(value IString)
 	// methods:
 }
 
@@ -92,91 +97,31 @@ func NewHost() Host {
 
 
 
-// Returns the with the Internet address .
+// Returns one of the network addresses of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func NewHostWithAddress(address IString) Host {
-	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), address)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
+func (h_ Host) Address() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("address"))
 	return rv
-}
-
-
-// Returns a host with a specific name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func NewHostWithName(name IString) Host {
-	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), name)
-	return rv
-}
-
-
-
-// Returns an object representing the host the process is running on.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/current()
-func (hc _HostClass) CurrentHost() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("currentHost"))
-	return rv
-}
-
-
-// Returns the with the Internet address .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func (hc _HostClass) HostWithAddress(address IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithAddress:"), address)
-	return rv
-}
-
-
-// Returns a host with a specific name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func (hc _HostClass) HostWithName(name IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithName:"), name)
-	return rv
-}
-
-
-// Releases the cache of existing objects so subsequent requests for objects create new ones.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/flushHostCache
-func (hc _HostClass) FlushHostCache() {
-	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("flushHostCache"))
-}
-
-
-// Indicates whether caching is turned on or off.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/isHostCacheEnabled
-func (hc _HostClass) IsHostCacheEnabled() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("isHostCacheEnabled"))
-	return rv
-}
-
-
-// Specifies whether the receiver is to cache instances as it creates them to avoid creating duplicate instances.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/setHostCacheEnabled:
-func (hc _HostClass) SetHostCacheEnabled(flag bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
 
 
 // Returns one of the network addresses of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/address
-func (h_ Host) Address() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("address"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/address
+func (h_ Host) SetAddress(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAddress:"), value)
+}
+
+
+// Returns all the network addresses of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/addresses
+func (h_ Host) Addresses() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("addresses"))
 	return rv
 }
 
@@ -184,19 +129,37 @@ func (h_ Host) Address() IString {
 // Returns all the network addresses of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
-func (h_ Host) Addresses() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/addresses
+func (h_ Host) SetAddresses(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAddresses:"), value)
+}
+
+
+// Returns the name used as by default when publishing
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/localizedname
+func (h_ Host) LocalizedName() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
 
-// Returns the name used as by default when publishing .
+// Returns the name used as by default when publishing
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-func (h_ Host) LocalizedName() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("localizedName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/localizedname
+func (h_ Host) SetLocalizedName(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLocalizedName:"), value)
+}
+
+
+// Returns one of the hostnames of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/name
+func (h_ Host) Name() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -204,9 +167,18 @@ func (h_ Host) LocalizedName() IString {
 // Returns one of the hostnames of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-func (h_ Host) Name() IString {
-	rv := objc.Send[String](h_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/name
+func (h_ Host) SetName(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
+}
+
+
+// Returns all the hostnames of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+func (h_ Host) Names() IString {
+	rv := objc.Send[String](h_.ID, objc.Sel("names"))
 	return rv
 }
 
@@ -214,10 +186,10 @@ func (h_ Host) Name() IString {
 // Returns all the hostnames of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/names
-func (h_ Host) Names() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](h_.ID, objc.Sel("names"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/host/names
+func (h_ Host) SetNames(value IString) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setNames:"), value)
 }
+
 
 

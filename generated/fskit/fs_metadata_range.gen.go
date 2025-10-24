@@ -31,9 +31,9 @@ type _FSMetadataRangeClass struct {
 type IFSMetadataRange interface {
 	objectivec.IObject
 	// properties:
-	SegmentCount() uint64 /* primitive/slice/pointer. */
-	SegmentLength() uint64 /* primitive/slice/pointer. */
-	SetSegmentLength(value uint64 /* primitive/slice/pointer. */)
+	SegmentCount() uint64
+	SegmentLength() uint64
+	SetSegmentLength(value uint64)
 	StartOffset() unsafe.Pointer
 	SetStartOffset(value unsafe.Pointer)
 	// methods:
@@ -96,7 +96,7 @@ func NewFSMetadataRange() FSMetadataRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/segmentCount
-func (f_ FSMetadataRange) SegmentCount() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSMetadataRange) SegmentCount() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentCount"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (f_ FSMetadataRange) SegmentCount() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
-func (f_ FSMetadataRange) SegmentLength() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSMetadataRange) SegmentLength() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentLength"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (f_ FSMetadataRange) SegmentLength() uint64 /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
-func (f_ FSMetadataRange) SetSegmentLength(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSMetadataRange) SetSegmentLength(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSegmentLength:"), value)
 }
 

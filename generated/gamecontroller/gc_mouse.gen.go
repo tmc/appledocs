@@ -93,7 +93,7 @@ func NewGCMouse() GCMouse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/mice()
-func (gc _GCMouseClass) Mice() []GCMouse /* primitive/slice/pointer. */ {
+func (gc _GCMouseClass) Mice() []IGCMouse {
 	rv := objc.Send[[]GCMouse](objc.ID(gc.class), objc.Sel("mice"))
 	return rv
 }

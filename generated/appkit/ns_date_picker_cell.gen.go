@@ -45,8 +45,8 @@ type IDatePickerCell interface {
 	SetDateValue(value objc.IObject /* cross-framework: Date */)
 	Delegate() DatePickerCellDelegate /* not a class type */
 	SetDelegate(value DatePickerCellDelegate /* not a class type */)
-	DrawsBackground() bool /* primitive/slice/pointer. */
-	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
 	Locale() objc.IObject /* cross-framework: Locale */
 	SetLocale(value objc.IObject /* cross-framework: Locale */)
 	MaxDate() objc.IObject /* cross-framework: Date */
@@ -55,8 +55,8 @@ type IDatePickerCell interface {
 	SetMinDate(value objc.IObject /* cross-framework: Date */)
 	TextColor() IColor
 	SetTextColor(value IColor)
-	TimeInterval() unsafe.Pointer
-	SetTimeInterval(value unsafe.Pointer)
+	TimeInterval() float64
+	SetTimeInterval(value float64)
 	TimeZone() objc.IObject /* cross-framework: TimeZone */
 	SetTimeZone(value objc.IObject /* cross-framework: TimeZone */)
 	// methods:
@@ -252,7 +252,7 @@ func (d_ DatePickerCell) SetDelegate(value DatePickerCellDelegate /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-func (d_ DatePickerCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
+func (d_ DatePickerCell) DrawsBackground() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -262,7 +262,7 @@ func (d_ DatePickerCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-func (d_ DatePickerCell) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePickerCell) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -347,8 +347,8 @@ func (d_ DatePickerCell) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timeinterval
-func (d_ DatePickerCell) TimeInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeInterval"))
+func (d_ DatePickerCell) TimeInterval() float64 {
+	rv := objc.Send[float64](d_.ID, objc.Sel("timeInterval"))
 	return rv
 }
 
@@ -357,7 +357,7 @@ func (d_ DatePickerCell) TimeInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timeinterval
-func (d_ DatePickerCell) SetTimeInterval(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetTimeInterval(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeInterval:"), value)
 }
 

@@ -30,9 +30,13 @@ type _customAttributesClass struct {
 // An interface definition for the [customAttributes] class.
 type IcustomAttributes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customAttributes-c.ivar
 type customAttributes struct {
 	objectivec.Object

@@ -30,9 +30,13 @@ type _hideRegistrationClass struct {
 // An interface definition for the [hideRegistration] class.
 type IhideRegistration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/hideRegistration-c.ivar
 type hideRegistration struct {
 	objectivec.Object

@@ -32,8 +32,6 @@ type IAssertionHandler interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int /* primitive/slice/pointer. */, format IString)
-	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int /* primitive/slice/pointer. */, format IString)
 }
 
 // An object that logs an assertion to the console.
@@ -87,39 +85,6 @@ func NewAssertionHandler() AssertionHandler {
 	return getAssertionHandlerClass().New()
 }
 
-
-
-// Returns the object associated with the current thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
-	rv := objc.Send[AssertionHandler](objc.ID(ac.class), objc.Sel("currentHandler"))
-	return rv
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int /* primitive/slice/pointer. */, format IString) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), functionName, fileName, line, format)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int /* primitive/slice/pointer. */, format IString) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, fileName, line, format)
-}
-
-
-// Returns the object associated with the current thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-func (a_ AssertionHandler) CurrentHandler() IAssertionHandler {
-	rv := objc.Send[AssertionHandler](a_.ID, objc.Sel("currentHandler"))
-	return rv
-}
 
 
 

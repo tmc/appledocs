@@ -29,24 +29,30 @@ type _GraphCompilationDescriptorClass struct {
 // An interface definition for the [GraphCompilationDescriptor] class.
 type IGraphCompilationDescriptor interface {
 	IGraphObject
+	// properties:
+	OptimizationProfile() GraphOptimizationProfile
+	SetOptimizationProfile(value GraphOptimizationProfile)
+	Callables() IMPSGraphExecutable
+	SetCallables(value IMPSGraphExecutable)
+	CompilationCompletionHandler() GraphCompilationCompletionHandler /* not a class type */
+	SetCompilationCompletionHandler(value GraphCompilationCompletionHandler /* not a class type */)
 	DispatchQueue() unsafe.Pointer
 	SetDispatchQueue(value unsafe.Pointer)
-	OptimizationProfile() GraphOptimizationProfile
-	SetOptimizationProfile(value IGraphOptimizationProfile)
-	Callables() MPSGraphExecutable
-	SetCallables(value IMPSGraphExecutable)
-	CompilationCompletionHandler() unsafe.Pointer
-	SetCompilationCompletionHandler(value unsafe.Pointer)
 	OptimizationLevel() GraphOptimization
-	SetOptimizationLevel(value IGraphOptimization)
+	SetOptimizationLevel(value GraphOptimization)
 	ReducedPrecisionFastMath() GraphReducedPrecisionFastMath
-	SetReducedPrecisionFastMath(value IGraphReducedPrecisionFastMath)
+	SetReducedPrecisionFastMath(value GraphReducedPrecisionFastMath)
 	WaitForCompilationCompletion() bool
 	SetWaitForCompilationCompletion(value bool)
+	// methods:
 }
 
 // A class that consists of all the levers for compiling graphs.
+
+
+// A class that consists of all the levers for compiling graphs.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor
 type GraphCompilationDescriptor struct {
 	GraphObject
@@ -93,26 +99,10 @@ func NewGraphCompilationDescriptor() GraphCompilationDescriptor {
 }
 
 
-// The dispatch queue used for the compilation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
-func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dispatchQueue"))
-	return rv
-}
-
-
-// SetDispatchQueue sets the value of the dispatchQueue property.
-// The dispatch queue used for the compilation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/dispatchQueue
-func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
-}
 
 // The optimization profile for the graph optimization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
 func (g_ GraphCompilationDescriptor) OptimizationProfile() GraphOptimizationProfile {
 	rv := objc.Send[GraphOptimizationProfile](g_.ID, objc.Sel("optimizationProfile"))
@@ -120,53 +110,75 @@ func (g_ GraphCompilationDescriptor) OptimizationProfile() GraphOptimizationProf
 }
 
 
-// SetOptimizationProfile sets the value of the optimizationProfile property.
 // The optimization profile for the graph optimization.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
-func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value IGraphOptimizationProfile) {
+func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value GraphOptimizationProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
 }
 
+
 // The dictionary used during runtime to lookup the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
-func (g_ GraphCompilationDescriptor) Callables() MPSGraphExecutable {
-	rv := objc.Send[MPSGraphExecutable](g_.ID, objc.Sel("callables"))
+func (g_ GraphCompilationDescriptor) Callables() IMPSGraphExecutable {
+	rv := objc.Send[GraphExecutable](g_.ID, objc.Sel("callables"))
 	return rv
 }
 
 
-// SetCallables sets the value of the callables property.
 // The dictionary used during runtime to lookup the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
 func (g_ GraphCompilationDescriptor) SetCallables(value IMPSGraphExecutable) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), value)
 }
 
+
 // The handler that the graph calls when the compilation completes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/compilationcompletionhandler
-func (g_ GraphCompilationDescriptor) CompilationCompletionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("compilationCompletionHandler"))
+func (g_ GraphCompilationDescriptor) CompilationCompletionHandler() GraphCompilationCompletionHandler /* not a class type */ {
+	rv := objc.Send[GraphCompilationCompletionHandler](g_.ID, objc.Sel("compilationCompletionHandler"))
 	return rv
 }
 
 
-// SetCompilationCompletionHandler sets the value of the compilationCompletionHandler property.
 // The handler that the graph calls when the compilation completes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/compilationcompletionhandler
-func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value unsafe.Pointer) {
+func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value GraphCompilationCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationCompletionHandler:"), value)
 }
 
+
+// The dispatch queue used for the compilation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/dispatchqueue
+func (g_ GraphCompilationDescriptor) DispatchQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dispatchQueue"))
+	return rv
+}
+
+
+// The dispatch queue used for the compilation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/dispatchqueue
+func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDispatchQueue:"), value)
+}
+
+
 // The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
 func (g_ GraphCompilationDescriptor) OptimizationLevel() GraphOptimization {
 	rv := objc.Send[GraphOptimization](g_.ID, objc.Sel("optimizationLevel"))
@@ -174,17 +186,18 @@ func (g_ GraphCompilationDescriptor) OptimizationLevel() GraphOptimization {
 }
 
 
-// SetOptimizationLevel sets the value of the optimizationLevel property.
 // The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
-func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value IGraphOptimization) {
+func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value GraphOptimization) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationLevel:"), value)
 }
 
+
 // Across the executable allow reduced precision fast math optimizations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/reducedprecisionfastmath
 func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() GraphReducedPrecisionFastMath {
 	rv := objc.Send[GraphReducedPrecisionFastMath](g_.ID, objc.Sel("reducedPrecisionFastMath"))
@@ -192,17 +205,18 @@ func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() GraphReducedPrec
 }
 
 
-// SetReducedPrecisionFastMath sets the value of the reducedPrecisionFastMath property.
 // Across the executable allow reduced precision fast math optimizations.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/reducedprecisionfastmath
-func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value IGraphReducedPrecisionFastMath) {
+func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value GraphReducedPrecisionFastMath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReducedPrecisionFastMath:"), value)
 }
 
+
 // Flag that makes the compile or specialize call blocking till the entire compilation is complete, defaults to NO.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/waitforcompilationcompletion
 func (g_ GraphCompilationDescriptor) WaitForCompilationCompletion() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("waitForCompilationCompletion"))
@@ -210,10 +224,9 @@ func (g_ GraphCompilationDescriptor) WaitForCompilationCompletion() bool {
 }
 
 
-// SetWaitForCompilationCompletion sets the value of the waitForCompilationCompletion property.
 // Flag that makes the compile or specialize call blocking till the entire compilation is complete, defaults to NO.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/waitforcompilationcompletion
 func (g_ GraphCompilationDescriptor) SetWaitForCompilationCompletion(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWaitForCompilationCompletion:"), value)

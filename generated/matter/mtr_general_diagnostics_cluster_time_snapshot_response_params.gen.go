@@ -31,13 +31,17 @@ type _MTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams] class.
 type IMTRGeneralDiagnosticsClusterTimeSnapshotResponseParams interface {
 	objectivec.IObject
-	PosixTimeMs() foundation.Number
-	SetPosixTimeMs(value foundation.INumber)
-	SystemTimeMs() foundation.Number
-	SetSystemTimeMs(value foundation.INumber)
+	// properties:
+	PosixTimeMs() objc.IObject /* cross-framework: NSNumber */
+	SetPosixTimeMs(value objc.IObject /* cross-framework: NSNumber */)
+	SystemTimeMs() objc.IObject /* cross-framework: NSNumber */
+	SetSystemTimeMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams
 type MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams struct {
 	objectivec.Object
@@ -81,11 +85,11 @@ func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParams() MTRGeneralDiagn
 
 
 
-
 // Initialize an MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/init(responseValue:)
-func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams {
+func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams {
 	instance := getMTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsClass().Alloc()
 	rv := objc.Send[MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -93,33 +97,33 @@ func NewMTRGeneralDiagnosticsClusterTimeSnapshotResponseParamsWithResponseValueE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/posixTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("posixTimeMs"))
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("posixTimeMs"))
 	return rv
 }
 
 
-// SetPosixTimeMs sets the value of the posixTimeMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/posixTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosixTimeMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemTimeMs"))
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("systemTimeMs"))
 	return rv
 }
 
 
-// SetSystemTimeMs sets the value of the systemTimeMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemTimeMs:"), value)
 }
 

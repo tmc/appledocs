@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [GradientState] class.
@@ -29,13 +30,19 @@ type _GradientStateClass struct {
 // An interface definition for the [GradientState] class.
 type IGradientState interface {
 	IState
+	// properties:
+	// methods:
 }
 
 // A class representing the state of a gradient kernel when it was encoded.
+
+
+// A class representing the state of a gradient kernel when it was encoded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGradientState
 type GradientState struct {
-	State
+	coreml.State
 }
 
 // GradientStateFrom constructs a [GradientState] from an unsafe.Pointer.
@@ -43,7 +50,7 @@ type GradientState struct {
 // A class representing the state of a gradient kernel when it was encoded.
 func GradientStateFrom(ptr unsafe.Pointer) GradientState {
 	return GradientState{
-		State: StateFrom(ptr),
+		State: coreml.StateFrom(ptr),
 	}
 }
 

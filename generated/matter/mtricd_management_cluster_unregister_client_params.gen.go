@@ -31,17 +31,21 @@ type _MTRICDManagementClusterUnregisterClientParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterUnregisterClientParams] class.
 type IMTRICDManagementClusterUnregisterClientParams interface {
 	objectivec.IObject
-	CheckInNodeID() foundation.Number
-	SetCheckInNodeID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	VerificationKey() foundation.NSData
-	SetVerificationKey(value foundation.IData)
+	// properties:
+	CheckInNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	VerificationKey() objc.IObject /* cross-framework: NSData */
+	SetVerificationKey(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams
 type MTRICDManagementClusterUnregisterClientParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRICDManagementClusterUnregisterClientParams() MTRICDManagementClusterU
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("checkInNodeID"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("checkInNodeID"))
 	return rv
 }
 
 
-// SetCheckInNodeID sets the value of the checkInNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value foundation.INumber) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() foundation.NSData {
+func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("verificationKey"))
 	return rv
 }
 
 
-// SetVerificationKey sets the value of the verificationKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetVerificationKey(value foundation.IData) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetVerificationKey(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
 }
 

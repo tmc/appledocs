@@ -15,4 +15,20 @@ func ExampleNewSFAuthorization() {
 	_ = securityfoundation.NewSFAuthorization()
 	// Output:
 }
+// ExampleSFAuthorization_AuthorizationRef demonstrates using AuthorizationRef on a SFAuthorization instance.
+// Returns the authorization reference for this object.
+func ExampleSFAuthorization_AuthorizationRef() {
+	obj := securityfoundation.NewSFAuthorization()
+	_ = obj.AuthorizationRef()
+	// Output:
+	}
+
+// ExampleSFAuthorization_InvalidateCredentials demonstrates using InvalidateCredentials on a SFAuthorization instance.
+// Prevents any rights that were obtained by this object from being preserved.
+func ExampleSFAuthorization_InvalidateCredentials() {
+	obj := securityfoundation.NewSFAuthorization()
+	obj.InvalidateCredentials()
+	// Output:
+	}
+
 

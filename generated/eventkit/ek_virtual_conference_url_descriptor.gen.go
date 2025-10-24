@@ -32,14 +32,14 @@ type _EKVirtualConferenceURLDescriptorClass struct {
 type IEKVirtualConferenceURLDescriptor interface {
 	objectivec.IObject
 	// properties:
-	ConferenceDetails() string /* primitive/slice/pointer. */
-	SetConferenceDetails(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	ConferenceDetails() objc.IObject /* cross-framework: NSString */
+	SetConferenceDetails(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	UrlDescriptors() IEKVirtualConferenceURLDescriptor
 	SetUrlDescriptors(value IEKVirtualConferenceURLDescriptor)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -100,8 +100,8 @@ func NewEKVirtualConferenceURLDescriptor() EKVirtualConferenceURLDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/conferencedetails
-func (e_ EKVirtualConferenceURLDescriptor) ConferenceDetails() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
+func (e_ EKVirtualConferenceURLDescriptor) ConferenceDetails() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (e_ EKVirtualConferenceURLDescriptor) ConferenceDetails() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/conferencedetails
-func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setConferenceDetails:"), objc.String(value))
+func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setConferenceDetails:"), value)
 }
 
 
@@ -119,8 +119,8 @@ func (e_ EKVirtualConferenceURLDescriptor) SetConferenceDetails(value string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/title
-func (e_ EKVirtualConferenceURLDescriptor) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceURLDescriptor) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (e_ EKVirtualConferenceURLDescriptor) Title() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor/title
-func (e_ EKVirtualConferenceURLDescriptor) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (e_ EKVirtualConferenceURLDescriptor) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -157,7 +157,7 @@ func (e_ EKVirtualConferenceURLDescriptor) SetUrlDescriptors(value IEKVirtualCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor/url
-func (e_ EKVirtualConferenceURLDescriptor) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (e_ EKVirtualConferenceURLDescriptor) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("url"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (e_ EKVirtualConferenceURLDescriptor) Url() foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor/url
-func (e_ EKVirtualConferenceURLDescriptor) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (e_ EKVirtualConferenceURLDescriptor) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrl:"), value)
 }
 

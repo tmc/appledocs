@@ -31,15 +31,19 @@ type _MTROperationalCredentialsClusterCSRResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterCSRResponseParams] class.
 type IMTROperationalCredentialsClusterCSRResponseParams interface {
 	objectivec.IObject
-	AttestationSignature() foundation.Data
-	SetAttestationSignature(value foundation.IData)
-	NocsrElements() foundation.Data
-	SetNocsrElements(value foundation.IData)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	AttestationSignature() objc.IObject /* cross-framework: Data */
+	SetAttestationSignature(value objc.IObject /* cross-framework: Data */)
+	NocsrElements() objc.IObject /* cross-framework: Data */
+	SetNocsrElements(value objc.IObject /* cross-framework: Data */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterCSRResponseParams
 type MTROperationalCredentialsClusterCSRResponseParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTROperationalCredentialsClusterCSRResponseParams() MTROperationalCreden
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() foundation.Data {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
 	return rv
 }
 
 
-// SetAttestationSignature sets the value of the attestationSignature property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() foundation.Data {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("nocsrElements"))
 	return rv
 }
 
 
-// SetNocsrElements sets the value of the nocsrElements property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNocsrElements:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

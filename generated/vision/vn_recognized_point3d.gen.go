@@ -29,11 +29,18 @@ type _RecognizedPoint3DClass struct {
 // An interface definition for the [RecognizedPoint3D] class.
 type IRecognizedPoint3D interface {
 	IPoint3D
-	Identifier() RecognizedPointKey
+	// properties:
+	Identifier() objc.IObject /* cross-framework: RecognizedPointKey */
+	SetIdentifier(value objc.IObject /* cross-framework: RecognizedPointKey */)
+	// methods:
 }
 
 // A 3D point that includes an identifier to the point.
+
+
+// A 3D point that includes an identifier to the point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint3D
 type RecognizedPoint3D struct {
 	Point3D
@@ -80,12 +87,23 @@ func NewRecognizedPoint3D() RecognizedPoint3D {
 }
 
 
+
 // The identifier that provides context about what kind of point the request recognizes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint3D/identifier
-func (r_ RecognizedPoint3D) Identifier() RecognizedPointKey {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoint3d/identifier
+func (r_ RecognizedPoint3D) Identifier() objc.IObject /* cross-framework: RecognizedPointKey */ {
 	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("identifier"))
 	return rv
+}
+
+
+// The identifier that provides context about what kind of point the request recognizes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoint3d/identifier
+func (r_ RecognizedPoint3D) SetIdentifier(value objc.IObject /* cross-framework: RecognizedPointKey */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

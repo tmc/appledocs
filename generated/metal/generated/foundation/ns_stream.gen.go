@@ -31,12 +31,12 @@ type _StreamClass struct {
 type IStream interface {
 	objectivec.IObject
 	// properties:
-	NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */
-	NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */
+	NSStreamSOCKSErrorDomain() IString
+	NSStreamSocketSSLErrorDomain() IString
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	StreamError() unsafe.Pointer
-	SetStreamError(value unsafe.Pointer)
+	StreamError() IError
+	SetStreamError(value IError)
 	StreamStatus() unsafe.Pointer
 	SetStreamStatus(value unsafe.Pointer)
 	// methods:
@@ -99,8 +99,8 @@ func NewStream() Stream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (s_ Stream) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+func (s_ Stream) NSStreamSOCKSErrorDomain() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (s_ Stream) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (s_ Stream) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
+func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (s_ Stream) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
-func (s_ Stream) StreamError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamError"))
+func (s_ Stream) StreamError() IError {
+	rv := objc.Send[Error](s_.ID, objc.Sel("streamError"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (s_ Stream) StreamError() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
-func (s_ Stream) SetStreamError(value unsafe.Pointer) {
+func (s_ Stream) SetStreamError(value IError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamError:"), value)
 }
 
@@ -170,7 +170,6 @@ func (s_ Stream) StreamStatus() unsafe.Pointer {
 func (s_ Stream) SetStreamStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamStatus:"), value)
 }
-
 
 
 

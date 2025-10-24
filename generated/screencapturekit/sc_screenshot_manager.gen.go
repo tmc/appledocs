@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +31,16 @@ type _ScreenshotManagerClass struct {
 // An interface definition for the [ScreenshotManager] class.
 type IScreenshotManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An instance for the capture of single frames from a stream.
+
+
+// An instance for the capture of single frames from a stream.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotManager
 type ScreenshotManager struct {
 	objectivec.Object
@@ -79,17 +85,12 @@ func NewScreenshotManager() ScreenshotManager {
 }
 
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotManager/captureImage(in:completionHandler:)
-func (sc _ScreenshotManagerClass) CaptureImageInRectCompletionHandler(rect coregraphics.CGRect, completionHandler unsafe.Pointer) {
+func (sc _ScreenshotManagerClass) CaptureImageInRectCompletionHandler(rect objc.IObject /* cross-framework: Rect */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("captureImageInRect:completionHandler:"), rect, completionHandler)
 }
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotManager/captureScreenshot(contentFilter:configuration:completionHandler:)
-func (sc _ScreenshotManagerClass) CaptureScreenshotWithFilterConfigurationCompletionHandler(contentFilter ISCContentFilter, config ISCScreenshotConfiguration, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("captureScreenshotWithFilter:configuration:completionHandler:"), contentFilter, config, completionHandler)
-}
-
 
 

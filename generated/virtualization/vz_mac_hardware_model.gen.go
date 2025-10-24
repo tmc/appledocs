@@ -31,7 +31,8 @@ type _VZMacHardwareModelClass struct {
 // An interface definition for the [VZMacHardwareModel] class.
 type IVZMacHardwareModel interface {
 	objectivec.IObject
-	DataRepresentation() foundation.NSData
+	// properties:
+	DataRepresentation() objc.IObject /* cross-framework: NSData */
 	Supported() bool
 	IsSupported() bool
 	SetIsSupported(value bool)
@@ -39,6 +40,7 @@ type IVZMacHardwareModel interface {
 	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
 	HardwareModel() IVZMacHardwareModel
 	SetHardwareModel(value IVZMacHardwareModel)
+	// methods:
 }
 
 // A specification for the hardware elements and configurations present in a particular Mac hardware model.
@@ -98,7 +100,7 @@ func NewVZMacHardwareModel() VZMacHardwareModel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/init(dataRepresentation:)
-func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation foundation.NSData) VZMacHardwareModel {
+func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation objc.IObject /* cross-framework: NSData */) VZMacHardwareModel {
 	instance := getVZMacHardwareModelClass().Alloc()
 	rv := objc.Send[VZMacHardwareModel](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation foundation.N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/dataRepresentation
-func (v_ VZMacHardwareModel) DataRepresentation() foundation.NSData {
+func (v_ VZMacHardwareModel) DataRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }

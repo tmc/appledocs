@@ -35,8 +35,8 @@ type IFSItemAttributes interface {
 	SetAccessTime(value unsafe.Pointer)
 	AddedTime() unsafe.Pointer
 	SetAddedTime(value unsafe.Pointer)
-	AllocSize() uint64 /* primitive/slice/pointer. */
-	SetAllocSize(value uint64 /* primitive/slice/pointer. */)
+	AllocSize() uint64
+	SetAllocSize(value uint64)
 	BackupTime() unsafe.Pointer
 	SetBackupTime(value unsafe.Pointer)
 	BirthTime() unsafe.Pointer
@@ -49,8 +49,8 @@ type IFSItemAttributes interface {
 	SetFlags(value unsafe.Pointer)
 	Gid() unsafe.Pointer
 	SetGid(value unsafe.Pointer)
-	InhibitKernelOffloadedIO() bool /* primitive/slice/pointer. */
-	SetInhibitKernelOffloadedIO(value bool /* primitive/slice/pointer. */)
+	InhibitKernelOffloadedIO() bool
+	SetInhibitKernelOffloadedIO(value bool)
 	LinkCount() unsafe.Pointer
 	SetLinkCount(value unsafe.Pointer)
 	Mode() unsafe.Pointer
@@ -59,16 +59,16 @@ type IFSItemAttributes interface {
 	SetModifyTime(value unsafe.Pointer)
 	ParentID() unsafe.Pointer
 	SetParentID(value unsafe.Pointer)
-	Size() uint64 /* primitive/slice/pointer. */
-	SetSize(value uint64 /* primitive/slice/pointer. */)
-	SupportsLimitedXAttrs() bool /* primitive/slice/pointer. */
-	SetSupportsLimitedXAttrs(value bool /* primitive/slice/pointer. */)
+	Size() uint64
+	SetSize(value uint64)
+	SupportsLimitedXAttrs() bool
+	SetSupportsLimitedXAttrs(value bool)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
 	Uid() unsafe.Pointer
 	SetUid(value unsafe.Pointer)
 	// methods:
-	IsValid(attribute unsafe.Pointer) bool /* primitive/slice/pointer. */
+	IsValid(attribute unsafe.Pointer) bool
 }
 
 // Attributes of an item, such as size, creation and modification times, and user and group identifiers.
@@ -126,7 +126,7 @@ func NewFSItemAttributes() FSItemAttributes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/isValid(_:)
-func (f_ FSItemAttributes) IsValid(attribute unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (f_ FSItemAttributes) IsValid(attribute unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isValid:"), attribute)
 	return rv
 }
@@ -174,7 +174,7 @@ func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/allocsize
-func (f_ FSItemAttributes) AllocSize() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSItemAttributes) AllocSize() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("allocSize"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (f_ FSItemAttributes) AllocSize() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/allocsize
-func (f_ FSItemAttributes) SetAllocSize(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSItemAttributes) SetAllocSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAllocSize:"), value)
 }
 
@@ -307,7 +307,7 @@ func (f_ FSItemAttributes) SetGid(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/inhibitkerneloffloadedio
-func (f_ FSItemAttributes) InhibitKernelOffloadedIO() bool /* primitive/slice/pointer. */ {
+func (f_ FSItemAttributes) InhibitKernelOffloadedIO() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("inhibitKernelOffloadedIO"))
 	return rv
 }
@@ -317,7 +317,7 @@ func (f_ FSItemAttributes) InhibitKernelOffloadedIO() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/inhibitkerneloffloadedio
-func (f_ FSItemAttributes) SetInhibitKernelOffloadedIO(value bool /* primitive/slice/pointer. */) {
+func (f_ FSItemAttributes) SetInhibitKernelOffloadedIO(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInhibitKernelOffloadedIO:"), value)
 }
 
@@ -402,7 +402,7 @@ func (f_ FSItemAttributes) SetParentID(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/size
-func (f_ FSItemAttributes) Size() uint64 /* primitive/slice/pointer. */ {
+func (f_ FSItemAttributes) Size() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("size"))
 	return rv
 }
@@ -412,7 +412,7 @@ func (f_ FSItemAttributes) Size() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/size
-func (f_ FSItemAttributes) SetSize(value uint64 /* primitive/slice/pointer. */) {
+func (f_ FSItemAttributes) SetSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSize:"), value)
 }
 
@@ -421,7 +421,7 @@ func (f_ FSItemAttributes) SetSize(value uint64 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/supportslimitedxattrs
-func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool /* primitive/slice/pointer. */ {
+func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsLimitedXAttrs"))
 	return rv
 }
@@ -431,7 +431,7 @@ func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/supportslimitedxattrs
-func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool /* primitive/slice/pointer. */) {
+func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsLimitedXAttrs:"), value)
 }
 

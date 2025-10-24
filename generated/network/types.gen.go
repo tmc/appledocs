@@ -5,8 +5,7 @@ import (
 	"unsafe"
 )
 
-// CFErrorRef is a CoreGraphics opaque type.
-type CFErrorRef unsafe.Pointer
+
 
 
 

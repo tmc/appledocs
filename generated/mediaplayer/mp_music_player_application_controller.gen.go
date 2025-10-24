@@ -29,11 +29,16 @@ type _MusicPlayerApplicationControllerClass struct {
 // An interface definition for the [MusicPlayerApplicationController] class.
 type IMusicPlayerApplicationController interface {
 	IMusicPlayerController
-	PerformQueueTransactionCompletionHandler(queueTransaction unsafe.Pointer, completionHandler unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // A media player object that you use to revise the queue that’s currently playing.
+
+
+// A media player object that you use to revise the queue that’s currently playing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerApplicationController
 type MusicPlayerApplicationController struct {
 	MusicPlayerController
@@ -77,14 +82,6 @@ func (m_ MusicPlayerApplicationController) Autorelease() MusicPlayerApplicationC
 // NewMusicPlayerApplicationController creates a new MusicPlayerApplicationController instance.
 func NewMusicPlayerApplicationController() MusicPlayerApplicationController {
 	return getMusicPlayerApplicationControllerClass().New()
-}
-
-
-// Changes the contents of the media items in the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerApplicationController/perform(queueTransaction:completionHandler:)
-func (m_ MusicPlayerApplicationController) PerformQueueTransactionCompletionHandler(queueTransaction unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("performQueueTransaction:completionHandler:"), queueTransaction, completionHandler)
 }
 
 

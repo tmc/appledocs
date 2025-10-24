@@ -30,6 +30,8 @@ type _VZConsoleDeviceConfigurationClass struct {
 // An interface definition for the [VZConsoleDeviceConfiguration] class.
 type IVZConsoleDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a console device configuration.

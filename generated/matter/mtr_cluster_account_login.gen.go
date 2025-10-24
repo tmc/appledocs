@@ -29,9 +29,13 @@ type _MTRClusterAccountLoginClass struct {
 // An interface definition for the [MTRClusterAccountLogin] class.
 type IMTRClusterAccountLogin interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterAccountLogin
 type MTRClusterAccountLogin struct {
 	MTRGenericCluster

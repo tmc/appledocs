@@ -31,19 +31,23 @@ type _MTROptionalQRCodeInfoClass struct {
 // An interface definition for the [MTROptionalQRCodeInfo] class.
 type IMTROptionalQRCodeInfo interface {
 	objectivec.IObject
-	InfoType() foundation.Number
-	SetInfoType(value foundation.INumber)
-	IntegerValue() foundation.Number
-	SetIntegerValue(value foundation.INumber)
-	StringValue() string
-	SetStringValue(value string)
-	Tag() foundation.Number
-	SetTag(value foundation.INumber)
+	// properties:
+	InfoType() objc.IObject /* cross-framework: NSNumber */
+	SetInfoType(value objc.IObject /* cross-framework: NSNumber */)
+	IntegerValue() objc.IObject /* cross-framework: NSNumber */
+	SetIntegerValue(value objc.IObject /* cross-framework: NSNumber */)
+	StringValue() objc.IObject /* cross-framework: NSString */
+	SetStringValue(value objc.IObject /* cross-framework: NSString */)
+	Tag() objc.IObject /* cross-framework: NSNumber */
+	SetTag(value objc.IObject /* cross-framework: NSNumber */)
 	Type() MTROptionalQRCodeInfoType
 	SetType(value MTROptionalQRCodeInfoType)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROptionalQRCodeInfo
 type MTROptionalQRCodeInfo struct {
 	objectivec.Object
@@ -86,67 +90,68 @@ func NewMTROptionalQRCodeInfo() MTROptionalQRCodeInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/infotype
-func (m_ MTROptionalQRCodeInfo) InfoType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("infoType"))
+func (m_ MTROptionalQRCodeInfo) InfoType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("infoType"))
 	return rv
 }
 
 
-// SetInfoType sets the value of the infoType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/infotype
-func (m_ MTROptionalQRCodeInfo) SetInfoType(value foundation.INumber) {
+func (m_ MTROptionalQRCodeInfo) SetInfoType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInfoType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/integervalue
-func (m_ MTROptionalQRCodeInfo) IntegerValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("integerValue"))
+func (m_ MTROptionalQRCodeInfo) IntegerValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("integerValue"))
 	return rv
 }
 
 
-// SetIntegerValue sets the value of the integerValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/integervalue
-func (m_ MTROptionalQRCodeInfo) SetIntegerValue(value foundation.INumber) {
+func (m_ MTROptionalQRCodeInfo) SetIntegerValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntegerValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/stringvalue
-func (m_ MTROptionalQRCodeInfo) StringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+func (m_ MTROptionalQRCodeInfo) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 
-// SetStringValue sets the value of the stringValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/stringvalue
-func (m_ MTROptionalQRCodeInfo) SetStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (m_ MTROptionalQRCodeInfo) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
-func (m_ MTROptionalQRCodeInfo) Tag() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("tag"))
+func (m_ MTROptionalQRCodeInfo) Tag() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("tag"))
 	return rv
 }
 
 
-// SetTag sets the value of the tag property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/tag
-func (m_ MTROptionalQRCodeInfo) SetTag(value foundation.INumber) {
+func (m_ MTROptionalQRCodeInfo) SetTag(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
 func (m_ MTROptionalQRCodeInfo) Type() MTROptionalQRCodeInfoType {
 	rv := objc.Send[MTROptionalQRCodeInfoType](m_.ID, objc.Sel("type"))
@@ -154,8 +159,7 @@ func (m_ MTROptionalQRCodeInfo) Type() MTROptionalQRCodeInfoType {
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroptionalqrcodeinfo/type
 func (m_ MTROptionalQRCodeInfo) SetType(value MTROptionalQRCodeInfoType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)

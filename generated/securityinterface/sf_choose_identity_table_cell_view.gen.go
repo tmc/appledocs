@@ -30,11 +30,15 @@ type _SFChooseIdentityTableCellViewClass struct {
 // An interface definition for the [SFChooseIdentityTableCellView] class.
 type ISFChooseIdentityTableCellView interface {
 	appkit.ITableCellView
-	IssuerTextField() appkit.TextField
-	SetIssuerTextField(value appkit.ITextField)
+	// properties:
+	IssuerTextField() objc.IObject /* cross-framework: TextField */
+	SetIssuerTextField(value objc.IObject /* cross-framework: TextField */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView
 type SFChooseIdentityTableCellView struct {
 	appkit.TableCellView
@@ -79,18 +83,18 @@ func NewSFChooseIdentityTableCellView() SFChooseIdentityTableCellView {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView/issuerTextField-swift.property
-func (s_ SFChooseIdentityTableCellView) IssuerTextField() appkit.TextField {
+func (s_ SFChooseIdentityTableCellView) IssuerTextField() objc.IObject /* cross-framework: TextField */ {
 	rv := objc.Send[appkit.TextField](s_.ID, objc.Sel("issuerTextField"))
 	return rv
 }
 
 
-// SetIssuerTextField sets the value of the issuerTextField property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView/issuerTextField-swift.property
-func (s_ SFChooseIdentityTableCellView) SetIssuerTextField(value appkit.ITextField) {
+func (s_ SFChooseIdentityTableCellView) SetIssuerTextField(value objc.IObject /* cross-framework: TextField */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIssuerTextField:"), value)
 }
 

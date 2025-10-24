@@ -30,18 +30,25 @@ type _VertexDescriptorClass struct {
 // An interface definition for the [VertexDescriptor] class.
 type IVertexDescriptor interface {
 	objectivec.IObject
-	Reset()
-	Attributes() MTLVertexAttributeDescriptorArray
-	Layouts() MTLVertexBufferLayoutDescriptorArray
+	// properties:
 	MTLBufferLayoutStrideDynamic() int
-	VertexDescriptor() MTLVertexDescriptor
+	VertexDescriptor() IMTLVertexDescriptor
 	SetVertexDescriptor(value IMTLVertexDescriptor)
+	Attributes() objc.IObject /* cross-framework: VertexAttributeDescriptorArray */
+	SetAttributes(value objc.IObject /* cross-framework: VertexAttributeDescriptorArray */)
+	Layouts() objc.IObject /* cross-framework: VertexBufferLayoutDescriptorArray */
+	SetLayouts(value objc.IObject /* cross-framework: VertexBufferLayoutDescriptorArray */)
+	// methods:
 }
 
 // An object that describes how to organize and map data to a vertex function.
 //
 // A object is used to configure how vertex data stored in memory is mapped to attributes in a vertex shader. A pipeline state is the state of the graphics rendering pipeline, including shaders, blending, multisampling, and visibility testing. For every pipeline state, there can be only one object. When you configure a object to create this pipeline state, you use a object to establish the vertex layout for the function associated with the pipeline. Create and configure a object, then use this object to set the property of the object.
+
+
+// An object that describes how to organize and map data to a vertex function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor
 type VertexDescriptor struct {
 	objectivec.Object
@@ -86,60 +93,69 @@ func NewVertexDescriptor() VertexDescriptor {
 }
 
 
-// Creates and returns a new vertex descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/vertexDescriptor
-func (vc _VertexDescriptorClass) VertexDescriptor() VertexDescriptor {
-	rv := objc.Send[VertexDescriptor](objc.ID(vc.class), objc.Sel("vertexDescriptor"))
-	return rv
-}
 
-// Resets the default state for the vertex descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/reset()
-func (v_ VertexDescriptor) Reset() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("reset"))
-}
-
-// An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/attributes
-func (v_ VertexDescriptor) Attributes() MTLVertexAttributeDescriptorArray {
-	rv := objc.Send[MTLVertexAttributeDescriptorArray](v_.ID, objc.Sel("attributes"))
-	return rv
-}
-
-// An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/layouts
-func (v_ VertexDescriptor) Layouts() MTLVertexBufferLayoutDescriptorArray {
-	rv := objc.Send[MTLVertexBufferLayoutDescriptorArray](v_.ID, objc.Sel("layouts"))
-	return rv
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic
 func (v_ VertexDescriptor) MTLBufferLayoutStrideDynamic() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("MTLBufferLayoutStrideDynamic"))
 	return rv
 }
 
+
 // The organization of vertex data in an attribute’s argument table.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
-func (v_ VertexDescriptor) VertexDescriptor() MTLVertexDescriptor {
-	rv := objc.Send[MTLVertexDescriptor](v_.ID, objc.Sel("vertexDescriptor"))
+func (v_ VertexDescriptor) VertexDescriptor() IMTLVertexDescriptor {
+	rv := objc.Send[VertexDescriptor](v_.ID, objc.Sel("vertexDescriptor"))
 	return rv
 }
 
 
-// SetVertexDescriptor sets the value of the vertexDescriptor property.
 // The organization of vertex data in an attribute’s argument table.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
 func (v_ VertexDescriptor) SetVertexDescriptor(value IMTLVertexDescriptor) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexDescriptor:"), value)
+}
+
+
+// An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexdescriptor/attributes
+func (v_ VertexDescriptor) Attributes() objc.IObject /* cross-framework: VertexAttributeDescriptorArray */ {
+	rv := objc.Send[VertexAttributeDescriptorArray](v_.ID, objc.Sel("attributes"))
+	return rv
+}
+
+
+// An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexdescriptor/attributes
+func (v_ VertexDescriptor) SetAttributes(value objc.IObject /* cross-framework: VertexAttributeDescriptorArray */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributes:"), value)
+}
+
+
+// An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexdescriptor/layouts
+func (v_ VertexDescriptor) Layouts() objc.IObject /* cross-framework: VertexBufferLayoutDescriptorArray */ {
+	rv := objc.Send[VertexBufferLayoutDescriptorArray](v_.ID, objc.Sel("layouts"))
+	return rv
+}
+
+
+// An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexdescriptor/layouts
+func (v_ VertexDescriptor) SetLayouts(value objc.IObject /* cross-framework: VertexBufferLayoutDescriptorArray */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setLayouts:"), value)
 }
 
 

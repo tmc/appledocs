@@ -31,8 +31,8 @@ type IDeleteCommand interface {
 	IScriptCommand
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	SetKeySpecifier(value IScriptObjectSpecifier)
 	// methods:
-	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 
 // A command that deletes a scriptable object.
@@ -90,22 +90,22 @@ func NewDeleteCommand() DeleteCommand {
 
 
 
-// Sets the receiver’s object specifier.
+// Returns a specifier for the object or objects to be deleted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/setReceiversSpecifier(_:)
-func (d_ DeleteCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdeletecommand/keyspecifier
+func (d_ DeleteCommand) KeySpecifier() IScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](d_.ID, objc.Sel("keySpecifier"))
+	return rv
 }
 
 
 // Returns a specifier for the object or objects to be deleted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/keySpecifier
-func (d_ DeleteCommand) KeySpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](d_.ID, objc.Sel("keySpecifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdeletecommand/keyspecifier
+func (d_ DeleteCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setKeySpecifier:"), value)
 }
 
 

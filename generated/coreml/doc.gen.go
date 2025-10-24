@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreML without requiring cgo.
-
-// Integrate machine learning models into your app.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML
+// See: https://developer.apple.com/documentation/CoreML
 package coreml
 
 import (

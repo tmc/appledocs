@@ -88,4 +88,23 @@ func NewUnitFuelEfficiency() UnitFuelEfficiency {
 
 
 
+// The miles per imperial gallon unit of fuel efficiency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
+func (uc _UnitFuelEfficiencyClass) MilesPerImperialGallon() UnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](objc.ID(uc.class), objc.Sel("milesPerImperialGallon"))
+	return rv
+}
+
+// The miles per imperial gallon unit of fuel efficiency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFuelEfficiency/milesPerImperialGallon
+func (u_ UnitFuelEfficiency) MilesPerImperialGallon() IUnitFuelEfficiency {
+	rv := objc.Send[UnitFuelEfficiency](u_.ID, objc.Sel("milesPerImperialGallon"))
+	return rv
+}
+
+
 

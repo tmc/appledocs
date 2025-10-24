@@ -31,8 +31,8 @@ type _RuleEditorClass struct {
 type IRuleEditor interface {
 	IControl
 	// properties:
-	CanRemoveAllRows() bool /* primitive/slice/pointer. */
-	SetCanRemoveAllRows(value bool /* primitive/slice/pointer. */)
+	CanRemoveAllRows() bool
+	SetCanRemoveAllRows(value bool)
 	CriteriaKeyPath() objc.IObject /* cross-framework: NSString */
 	SetCriteriaKeyPath(value objc.IObject /* cross-framework: NSString */)
 	Delegate() RuleEditorDelegate /* not a class type */
@@ -43,18 +43,18 @@ type IRuleEditor interface {
 	SetFormattingDictionary(value objc.IObject /* cross-framework: NSString */)
 	FormattingStringsFilename() objc.IObject /* cross-framework: NSString */
 	SetFormattingStringsFilename(value objc.IObject /* cross-framework: NSString */)
-	IsEditable() bool /* primitive/slice/pointer. */
-	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	NestingMode() unsafe.Pointer
 	SetNestingMode(value unsafe.Pointer)
-	NumberOfRows() int /* primitive/slice/pointer. */
-	SetNumberOfRows(value int /* primitive/slice/pointer. */)
+	NumberOfRows() int
+	SetNumberOfRows(value int)
 	Predicate() objc.IObject /* cross-framework: Predicate */
 	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
-	RowClass() unsafe.Pointer
-	SetRowClass(value unsafe.Pointer)
-	RowHeight() float64 /* primitive/slice/pointer. */
-	SetRowHeight(value float64 /* primitive/slice/pointer. */)
+	RowClass() objc.Class
+	SetRowClass(value objc.Class)
+	RowHeight() float64
+	SetRowHeight(value float64)
 	RowTypeKeyPath() objc.IObject /* cross-framework: NSString */
 	SetRowTypeKeyPath(value objc.IObject /* cross-framework: NSString */)
 	SelectedRowIndexes() objc.IObject /* cross-framework: IndexSet */
@@ -123,7 +123,7 @@ func NewRuleEditor() RuleEditor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/canremoveallrows
-func (r_ RuleEditor) CanRemoveAllRows() bool /* primitive/slice/pointer. */ {
+func (r_ RuleEditor) CanRemoveAllRows() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("canRemoveAllRows"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (r_ RuleEditor) CanRemoveAllRows() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/canremoveallrows
-func (r_ RuleEditor) SetCanRemoveAllRows(value bool /* primitive/slice/pointer. */) {
+func (r_ RuleEditor) SetCanRemoveAllRows(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCanRemoveAllRows:"), value)
 }
 
@@ -237,7 +237,7 @@ func (r_ RuleEditor) SetFormattingStringsFilename(value objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/iseditable
-func (r_ RuleEditor) IsEditable() bool /* primitive/slice/pointer. */ {
+func (r_ RuleEditor) IsEditable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -247,7 +247,7 @@ func (r_ RuleEditor) IsEditable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/iseditable
-func (r_ RuleEditor) SetIsEditable(value bool /* primitive/slice/pointer. */) {
+func (r_ RuleEditor) SetIsEditable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -275,7 +275,7 @@ func (r_ RuleEditor) SetNestingMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/numberofrows
-func (r_ RuleEditor) NumberOfRows() int /* primitive/slice/pointer. */ {
+func (r_ RuleEditor) NumberOfRows() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("numberOfRows"))
 	return rv
 }
@@ -285,7 +285,7 @@ func (r_ RuleEditor) NumberOfRows() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/numberofrows
-func (r_ RuleEditor) SetNumberOfRows(value int /* primitive/slice/pointer. */) {
+func (r_ RuleEditor) SetNumberOfRows(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfRows:"), value)
 }
 
@@ -295,7 +295,7 @@ func (r_ RuleEditor) SetNumberOfRows(value int /* primitive/slice/pointer. */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/predicate
 func (r_ RuleEditor) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](r_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -313,8 +313,8 @@ func (r_ RuleEditor) SetPredicate(value objc.IObject /* cross-framework: Predica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowclass
-func (r_ RuleEditor) RowClass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rowClass"))
+func (r_ RuleEditor) RowClass() objc.Class {
+	rv := objc.Send[objc.Class](r_.ID, objc.Sel("rowClass"))
 	return rv
 }
 
@@ -323,7 +323,7 @@ func (r_ RuleEditor) RowClass() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowclass
-func (r_ RuleEditor) SetRowClass(value unsafe.Pointer) {
+func (r_ RuleEditor) SetRowClass(value objc.Class) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRowClass:"), value)
 }
 
@@ -332,7 +332,7 @@ func (r_ RuleEditor) SetRowClass(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowheight
-func (r_ RuleEditor) RowHeight() float64 /* primitive/slice/pointer. */ {
+func (r_ RuleEditor) RowHeight() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("rowHeight"))
 	return rv
 }
@@ -342,7 +342,7 @@ func (r_ RuleEditor) RowHeight() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowheight
-func (r_ RuleEditor) SetRowHeight(value float64 /* primitive/slice/pointer. */) {
+func (r_ RuleEditor) SetRowHeight(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRowHeight:"), value)
 }
 

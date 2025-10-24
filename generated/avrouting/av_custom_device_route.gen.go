@@ -32,8 +32,8 @@ type _CustomDeviceRouteClass struct {
 type ICustomDeviceRoute interface {
 	objectivec.IObject
 	// properties:
-	BluetoothIdentifier() foundation.objc.IObject /* cross-framework: UUID */
-	SetBluetoothIdentifier(value foundation.objc.IObject /* cross-framework: UUID */)
+	BluetoothIdentifier() objc.IObject /* cross-framework: UUID */
+	SetBluetoothIdentifier(value objc.IObject /* cross-framework: UUID */)
 	NetworkEndpoint() unsafe.Pointer
 	SetNetworkEndpoint(value unsafe.Pointer)
 	Reason() CustomRoutingEventReason /* not a class type */
@@ -100,7 +100,7 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
-func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.objc.IObject /* cross-framework: UUID */ {
+func (c_ CustomDeviceRoute) BluetoothIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
-func (c_ CustomDeviceRoute) SetBluetoothIdentifier(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (c_ CustomDeviceRoute) SetBluetoothIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBluetoothIdentifier:"), value)
 }
 

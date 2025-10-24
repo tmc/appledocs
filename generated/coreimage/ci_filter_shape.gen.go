@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,14 +32,14 @@ type _FilterShapeClass struct {
 type IFilterShape interface {
 	objectivec.IObject
 	// properties:
-	Extent() coregraphics.CGRect
+	Extent() objc.IObject /* cross-framework: Rect */
 	// methods:
-	InsetByXY(dx int /* primitive/slice/pointer. */, dy int /* primitive/slice/pointer. */) IFilterShape
-	IntersectWithRect(r coregraphics.CGRect) IFilterShape
+	InsetByXY(dx int, dy int) IFilterShape
+	IntersectWithRect(r objc.IObject /* cross-framework: Rect */) IFilterShape
 	IntersectWith(s2 ICIFilterShape) IFilterShape
-	TransformByInterior(m coregraphics.CGAffineTransform, flag bool /* primitive/slice/pointer. */) IFilterShape
+	TransformByInterior(m objc.IObject /* cross-framework: AffineTransform */, flag bool) IFilterShape
 	UnionWith(s2 ICIFilterShape) IFilterShape
-	UnionWithRect(r coregraphics.CGRect) IFilterShape
+	UnionWithRect(r objc.IObject /* cross-framework: Rect */) IFilterShape
 }
 
 // A description of the bounding shape of a filter and the domain of definition for a filter operation.
@@ -99,7 +99,7 @@ func NewFilterShape() FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/init(rect:)
-func NewFilterShapeWithRect(r coregraphics.CGRect) FilterShape {
+func NewFilterShapeWithRect(r objc.IObject /* cross-framework: Rect */) FilterShape {
 	instance := getFilterShapeClass().Alloc()
 	rv := objc.Send[FilterShape](instance.ID, objc.Sel("initWithRect:"), r)
 	rv.Autorelease()
@@ -112,7 +112,7 @@ func NewFilterShapeWithRect(r coregraphics.CGRect) FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/shapeWithRect:
-func (fc _FilterShapeClass) ShapeWithRect(r coregraphics.CGRect) unsafe.Pointer {
+func (fc _FilterShapeClass) ShapeWithRect(r objc.IObject /* cross-framework: Rect */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("shapeWithRect:"), r)
 	return rv
 }
@@ -122,7 +122,7 @@ func (fc _FilterShapeClass) ShapeWithRect(r coregraphics.CGRect) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/insetBy(x:y:)
-func (f_ FilterShape) InsetByXY(dx int /* primitive/slice/pointer. */, dy int /* primitive/slice/pointer. */) IFilterShape {
+func (f_ FilterShape) InsetByXY(dx int, dy int) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("insetByX:Y:"), dx, dy)
 	return rv
 }
@@ -132,7 +132,7 @@ func (f_ FilterShape) InsetByXY(dx int /* primitive/slice/pointer. */, dy int /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/intersect(with:)-2o2n8
-func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) IFilterShape {
+func (f_ FilterShape) IntersectWithRect(r objc.IObject /* cross-framework: Rect */) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("intersectWithRect:"), r)
 	return rv
 }
@@ -152,7 +152,7 @@ func (f_ FilterShape) IntersectWith(s2 ICIFilterShape) IFilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/transform(by:interior:)
-func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool /* primitive/slice/pointer. */) IFilterShape {
+func (f_ FilterShape) TransformByInterior(m objc.IObject /* cross-framework: AffineTransform */, flag bool) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("transformBy:interior:"), m, flag)
 	return rv
 }
@@ -172,7 +172,7 @@ func (f_ FilterShape) UnionWith(s2 ICIFilterShape) IFilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/union(with:)-75ebo
-func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) IFilterShape {
+func (f_ FilterShape) UnionWithRect(r objc.IObject /* cross-framework: Rect */) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("unionWithRect:"), r)
 	return rv
 }
@@ -182,8 +182,8 @@ func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) IFilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/extent
-func (f_ FilterShape) Extent() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](f_.ID, objc.Sel("extent"))
+func (f_ FilterShape) Extent() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](f_.ID, objc.Sel("extent"))
 	return rv
 }
 

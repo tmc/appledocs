@@ -32,6 +32,7 @@ type _IKCameraDeviceViewClass struct {
 // An interface definition for the [IKCameraDeviceView] class.
 type IIKCameraDeviceView interface {
 	appkit.IView
+	// properties:
 	CameraDevice() imagecapturecore.ICCameraDevice
 	SetCameraDevice(value imagecapturecore.ICCameraDevice)
 	CanDeleteSelectedItems() bool
@@ -48,12 +49,12 @@ type IIKCameraDeviceView interface {
 	SetDisplaysDownloadsDirectoryControl(value bool)
 	DisplaysPostProcessApplicationControl() bool
 	SetDisplaysPostProcessApplicationControl(value bool)
-	DownloadAllControlLabel() string
-	SetDownloadAllControlLabel(value string)
-	DownloadSelectedControlLabel() string
-	SetDownloadSelectedControlLabel(value string)
-	DownloadsDirectory() foundation.URL
-	SetDownloadsDirectory(value foundation.IURL)
+	DownloadAllControlLabel() objc.IObject /* cross-framework: NSString */
+	SetDownloadAllControlLabel(value objc.IObject /* cross-framework: NSString */)
+	DownloadSelectedControlLabel() objc.IObject /* cross-framework: NSString */
+	SetDownloadSelectedControlLabel(value objc.IObject /* cross-framework: NSString */)
+	DownloadsDirectory() objc.IObject /* cross-framework: URL */
+	SetDownloadsDirectory(value objc.IObject /* cross-framework: URL */)
 	HasDisplayModeIcon() bool
 	SetHasDisplayModeIcon(value bool)
 	HasDisplayModeTable() bool
@@ -62,14 +63,19 @@ type IIKCameraDeviceView interface {
 	SetIconSize(value int)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
-	PostProcessApplication() foundation.URL
-	SetPostProcessApplication(value foundation.IURL)
+	PostProcessApplication() objc.IObject /* cross-framework: URL */
+	SetPostProcessApplication(value objc.IObject /* cross-framework: URL */)
 	TransferMode() unsafe.Pointer
 	SetTransferMode(value unsafe.Pointer)
+	// methods:
 }
 
 // The class displays the contents of the selected camera.
+
+
+// The class displays the contents of the selected camera.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKCameraDeviceView
 type IKCameraDeviceView struct {
 	appkit.View
@@ -116,8 +122,10 @@ func NewIKCameraDeviceView() IKCameraDeviceView {
 }
 
 
+
 // The current camera device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/cameradevice
 func (i_ IKCameraDeviceView) CameraDevice() imagecapturecore.ICCameraDevice {
 	rv := objc.Send[imagecapturecore.ICCameraDevice](i_.ID, objc.Sel("cameraDevice"))
@@ -125,17 +133,18 @@ func (i_ IKCameraDeviceView) CameraDevice() imagecapturecore.ICCameraDevice {
 }
 
 
-// SetCameraDevice sets the value of the cameraDevice property.
 // The current camera device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/cameradevice
 func (i_ IKCameraDeviceView) SetCameraDevice(value imagecapturecore.ICCameraDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCameraDevice:"), value)
 }
 
+
 // Returns whether the selected items can be deleted.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/candeleteselecteditems
 func (i_ IKCameraDeviceView) CanDeleteSelectedItems() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canDeleteSelectedItems"))
@@ -143,17 +152,18 @@ func (i_ IKCameraDeviceView) CanDeleteSelectedItems() bool {
 }
 
 
-// SetCanDeleteSelectedItems sets the value of the canDeleteSelectedItems property.
 // Returns whether the selected items can be deleted.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/candeleteselecteditems
 func (i_ IKCameraDeviceView) SetCanDeleteSelectedItems(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCanDeleteSelectedItems:"), value)
 }
 
+
 // Returns whether the selected items can be downloaded
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/candownloadselecteditems
 func (i_ IKCameraDeviceView) CanDownloadSelectedItems() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canDownloadSelectedItems"))
@@ -161,17 +171,18 @@ func (i_ IKCameraDeviceView) CanDownloadSelectedItems() bool {
 }
 
 
-// SetCanDownloadSelectedItems sets the value of the canDownloadSelectedItems property.
 // Returns whether the selected items can be downloaded
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/candownloadselecteditems
 func (i_ IKCameraDeviceView) SetCanDownloadSelectedItems(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCanDownloadSelectedItems:"), value)
 }
 
+
 // Returns whether the selected items can be rotated left.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/canrotateselecteditemsleft
 func (i_ IKCameraDeviceView) CanRotateSelectedItemsLeft() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canRotateSelectedItemsLeft"))
@@ -179,17 +190,18 @@ func (i_ IKCameraDeviceView) CanRotateSelectedItemsLeft() bool {
 }
 
 
-// SetCanRotateSelectedItemsLeft sets the value of the canRotateSelectedItemsLeft property.
 // Returns whether the selected items can be rotated left.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/canrotateselecteditemsleft
 func (i_ IKCameraDeviceView) SetCanRotateSelectedItemsLeft(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCanRotateSelectedItemsLeft:"), value)
 }
 
+
 // Returns whether the selected items can be rotated right.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/canrotateselecteditemsright
 func (i_ IKCameraDeviceView) CanRotateSelectedItemsRight() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canRotateSelectedItemsRight"))
@@ -197,17 +209,18 @@ func (i_ IKCameraDeviceView) CanRotateSelectedItemsRight() bool {
 }
 
 
-// SetCanRotateSelectedItemsRight sets the value of the canRotateSelectedItemsRight property.
 // Returns whether the selected items can be rotated right.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/canrotateselecteditemsright
 func (i_ IKCameraDeviceView) SetCanRotateSelectedItemsRight(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCanRotateSelectedItemsRight:"), value)
 }
 
+
 // The camera device view delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/delegate
 func (i_ IKCameraDeviceView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
@@ -215,17 +228,18 @@ func (i_ IKCameraDeviceView) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The camera device view delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/delegate
 func (i_ IKCameraDeviceView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Specifies whether the downloads directory control should be displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/displaysdownloadsdirectorycontrol
 func (i_ IKCameraDeviceView) DisplaysDownloadsDirectoryControl() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysDownloadsDirectoryControl"))
@@ -233,17 +247,18 @@ func (i_ IKCameraDeviceView) DisplaysDownloadsDirectoryControl() bool {
 }
 
 
-// SetDisplaysDownloadsDirectoryControl sets the value of the displaysDownloadsDirectoryControl property.
 // Specifies whether the downloads directory control should be displayed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/displaysdownloadsdirectorycontrol
 func (i_ IKCameraDeviceView) SetDisplaysDownloadsDirectoryControl(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysDownloadsDirectoryControl:"), value)
 }
 
+
 // Displays whether the post process application control should be displayed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/displayspostprocessapplicationcontrol
 func (i_ IKCameraDeviceView) DisplaysPostProcessApplicationControl() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysPostProcessApplicationControl"))
@@ -251,71 +266,75 @@ func (i_ IKCameraDeviceView) DisplaysPostProcessApplicationControl() bool {
 }
 
 
-// SetDisplaysPostProcessApplicationControl sets the value of the displaysPostProcessApplicationControl property.
 // Displays whether the post process application control should be displayed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/displayspostprocessapplicationcontrol
 func (i_ IKCameraDeviceView) SetDisplaysPostProcessApplicationControl(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysPostProcessApplicationControl:"), value)
 }
 
+
 // Allows the “Download All” control to be renamed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) DownloadAllControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("downloadAllControlLabel"))
+func (i_ IKCameraDeviceView) DownloadAllControlLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("downloadAllControlLabel"))
 	return rv
 }
 
 
-// SetDownloadAllControlLabel sets the value of the downloadAllControlLabel property.
 // Allows the “Download All” control to be renamed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), objc.String(value))
+func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), value)
 }
+
 
 // Allows the “Download Selected” control to be renamed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("downloadSelectedControlLabel"))
+func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("downloadSelectedControlLabel"))
 	return rv
 }
 
 
-// SetDownloadSelectedControlLabel sets the value of the downloadSelectedControlLabel property.
 // Allows the “Download Selected” control to be renamed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), objc.String(value))
+func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), value)
 }
+
 
 // Specifies the directory where files are downloaded
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadsdirectory
-func (i_ IKCameraDeviceView) DownloadsDirectory() foundation.URL {
+func (i_ IKCameraDeviceView) DownloadsDirectory() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("downloadsDirectory"))
 	return rv
 }
 
 
-// SetDownloadsDirectory sets the value of the downloadsDirectory property.
 // Specifies the directory where files are downloaded
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadsdirectory
-func (i_ IKCameraDeviceView) SetDownloadsDirectory(value foundation.IURL) {
+func (i_ IKCameraDeviceView) SetDownloadsDirectory(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 
+
 // Returns whether the device view is being displayed in icon mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/hasdisplaymodeicon
 func (i_ IKCameraDeviceView) HasDisplayModeIcon() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasDisplayModeIcon"))
@@ -323,17 +342,18 @@ func (i_ IKCameraDeviceView) HasDisplayModeIcon() bool {
 }
 
 
-// SetHasDisplayModeIcon sets the value of the hasDisplayModeIcon property.
 // Returns whether the device view is being displayed in icon mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/hasdisplaymodeicon
 func (i_ IKCameraDeviceView) SetHasDisplayModeIcon(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHasDisplayModeIcon:"), value)
 }
 
+
 // Returns whether the device view is being displayed in table mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/hasdisplaymodetable
 func (i_ IKCameraDeviceView) HasDisplayModeTable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasDisplayModeTable"))
@@ -341,17 +361,18 @@ func (i_ IKCameraDeviceView) HasDisplayModeTable() bool {
 }
 
 
-// SetHasDisplayModeTable sets the value of the hasDisplayModeTable property.
 // Returns whether the device view is being displayed in table mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/hasdisplaymodetable
 func (i_ IKCameraDeviceView) SetHasDisplayModeTable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHasDisplayModeTable:"), value)
 }
 
+
 // Specifies the icon size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/iconsize
 func (i_ IKCameraDeviceView) IconSize() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("iconSize"))
@@ -359,17 +380,18 @@ func (i_ IKCameraDeviceView) IconSize() int {
 }
 
 
-// SetIconSize sets the value of the iconSize property.
 // Specifies the icon size.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/iconsize
 func (i_ IKCameraDeviceView) SetIconSize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIconSize:"), value)
 }
 
+
 // Specifies the display mode of the camera device view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/mode
 func (i_ IKCameraDeviceView) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mode"))
@@ -377,35 +399,37 @@ func (i_ IKCameraDeviceView) Mode() unsafe.Pointer {
 }
 
 
-// SetMode sets the value of the mode property.
 // Specifies the display mode of the camera device view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/mode
 func (i_ IKCameraDeviceView) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMode:"), value)
 }
 
+
 // The URL of the application used to post process the image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/postprocessapplication
-func (i_ IKCameraDeviceView) PostProcessApplication() foundation.URL {
+func (i_ IKCameraDeviceView) PostProcessApplication() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("postProcessApplication"))
 	return rv
 }
 
 
-// SetPostProcessApplication sets the value of the postProcessApplication property.
 // The URL of the application used to post process the image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/postprocessapplication
-func (i_ IKCameraDeviceView) SetPostProcessApplication(value foundation.IURL) {
+func (i_ IKCameraDeviceView) SetPostProcessApplication(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPostProcessApplication:"), value)
 }
 
+
 // Determines how the contents are saved by the delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/transfermode
 func (i_ IKCameraDeviceView) TransferMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transferMode"))
@@ -413,10 +437,9 @@ func (i_ IKCameraDeviceView) TransferMode() unsafe.Pointer {
 }
 
 
-// SetTransferMode sets the value of the transferMode property.
 // Determines how the contents are saved by the delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/transfermode
 func (i_ IKCameraDeviceView) SetTransferMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransferMode:"), value)

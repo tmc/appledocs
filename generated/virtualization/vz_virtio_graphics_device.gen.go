@@ -29,6 +29,8 @@ type _VZVirtioGraphicsDeviceClass struct {
 // An interface definition for the [VZVirtioGraphicsDevice] class.
 type IVZVirtioGraphicsDevice interface {
 	IVZGraphicsDevice
+	// properties:
+	// methods:
 }
 
 // A Virtio graphics device.

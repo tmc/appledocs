@@ -29,12 +29,18 @@ type _VZVirtioGraphicsDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioGraphicsDeviceConfiguration] class.
 type IVZVirtioGraphicsDeviceConfiguration interface {
 	IVZGraphicsDeviceConfiguration
-	Scanouts() []VZVirtioGraphicsScanoutConfiguration
-	SetScanouts(value []VZVirtioGraphicsScanoutConfiguration)
+	// properties:
+	Scanouts() []IVZVirtioGraphicsScanoutConfiguration
+	SetScanouts(value []IVZVirtioGraphicsScanoutConfiguration)
+	// methods:
 }
 
 // Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
+
+
+// Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration
 type VZVirtioGraphicsDeviceConfiguration struct {
 	VZGraphicsDeviceConfiguration
@@ -82,21 +88,22 @@ func NewVZVirtioGraphicsDeviceConfiguration() VZVirtioGraphicsDeviceConfiguratio
 
 
 
+
 // The array of output devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
-func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []VZVirtioGraphicsScanoutConfiguration {
+func (v_ VZVirtioGraphicsDeviceConfiguration) Scanouts() []IVZVirtioGraphicsScanoutConfiguration {
 	rv := objc.Send[[]VZVirtioGraphicsScanoutConfiguration](v_.ID, objc.Sel("scanouts"))
 	return rv
 }
 
 
-// SetScanouts sets the value of the scanouts property.
 // The array of output devices.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDeviceConfiguration/scanouts
-func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []VZVirtioGraphicsScanoutConfiguration) {
+func (v_ VZVirtioGraphicsDeviceConfiguration) SetScanouts(value []IVZVirtioGraphicsScanoutConfiguration) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

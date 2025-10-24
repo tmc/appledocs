@@ -29,10 +29,16 @@ type _GradientFilterNodeClass struct {
 // An interface definition for the [GradientFilterNode] class.
 type IGradientFilterNode interface {
 	IFilterNode
+	// properties:
+	// methods:
 }
 
 // A representation of a gradient filter.
+
+
+// A representation of a gradient filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGradientFilterNode
 type GradientFilterNode struct {
 	FilterNode

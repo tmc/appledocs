@@ -32,8 +32,8 @@ type _CNScriptChangesClass struct {
 type ICNScriptChanges interface {
 	objectivec.IObject
 	// properties:
-	AddedDetectionTracks() []CNDetectionTrack /* primitive/slice/pointer. */
-	DataRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	AddedDetectionTracks() []ICNDetectionTrack
+	DataRepresentation() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCNScriptChanges() CNScriptChanges {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/addedDetectionTracks
-func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack /* primitive/slice/pointer. */ {
+func (c_ CNScriptChanges) AddedDetectionTracks() []ICNDetectionTrack {
 	rv := objc.Send[[]CNDetectionTrack](c_.ID, objc.Sel("addedDetectionTracks"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
-func (c_ CNScriptChanges) DataRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CNScriptChanges) DataRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }

@@ -30,7 +30,7 @@ type _CBGroupIdentityClass struct {
 type ICBGroupIdentity interface {
 	ICBIdentity
 	// properties:
-	MemberIdentities() []CBIdentity /* primitive/slice/pointer. */
+	MemberIdentities() []ICBIdentity
 	PosixGID() unsafe.Pointer
 	SetPosixGID(value unsafe.Pointer)
 	// methods:
@@ -91,7 +91,7 @@ func NewCBGroupIdentity() CBGroupIdentity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/memberIdentities
-func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity /* primitive/slice/pointer. */ {
+func (c_ CBGroupIdentity) MemberIdentities() []ICBIdentity {
 	rv := objc.Send[[]CBIdentity](c_.ID, objc.Sel("memberIdentities"))
 	return rv
 }

@@ -29,9 +29,13 @@ type _NDArrayGatherGradientClass struct {
 // An interface definition for the [NDArrayGatherGradient] class.
 type INDArrayGatherGradient interface {
 	INDArrayBinaryPrimaryGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGatherGradient
 type NDArrayGatherGradient struct {
 	NDArrayBinaryPrimaryGradientKernel

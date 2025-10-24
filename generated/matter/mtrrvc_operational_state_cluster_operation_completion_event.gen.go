@@ -31,15 +31,19 @@ type _MTRRVCOperationalStateClusterOperationCompletionEventClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterOperationCompletionEvent] class.
 type IMTRRVCOperationalStateClusterOperationCompletionEvent interface {
 	objectivec.IObject
-	CompletionErrorCode() foundation.Number
-	SetCompletionErrorCode(value foundation.INumber)
-	PausedTime() foundation.Number
-	SetPausedTime(value foundation.INumber)
-	TotalOperationalTime() foundation.Number
-	SetTotalOperationalTime(value foundation.INumber)
+	// properties:
+	CompletionErrorCode() objc.IObject /* cross-framework: NSNumber */
+	SetCompletionErrorCode(value objc.IObject /* cross-framework: NSNumber */)
+	PausedTime() objc.IObject /* cross-framework: NSNumber */
+	SetPausedTime(value objc.IObject /* cross-framework: NSNumber */)
+	TotalOperationalTime() objc.IObject /* cross-framework: NSNumber */
+	SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterOperationCompletionEvent
 type MTRRVCOperationalStateClusterOperationCompletionEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRRVCOperationalStateClusterOperationCompletionEvent() MTRRVCOperationa
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/completionerrorcode
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) CompletionErrorCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("completionErrorCode"))
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) CompletionErrorCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("completionErrorCode"))
 	return rv
 }
 
 
-// SetCompletionErrorCode sets the value of the completionErrorCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/completionerrorcode
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/pausedtime
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) PausedTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("pausedTime"))
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) PausedTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("pausedTime"))
 	return rv
 }
 
 
-// SetPausedTime sets the value of the pausedTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/pausedtime
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetPausedTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/totaloperationaltime
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) TotalOperationalTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("totalOperationalTime"))
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) TotalOperationalTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("totalOperationalTime"))
 	return rv
 }
 
 
-// SetTotalOperationalTime sets the value of the totalOperationalTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationcompletionevent/totaloperationaltime
-func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

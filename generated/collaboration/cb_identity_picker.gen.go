@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _CBIdentityPickerClass struct {
 type ICBIdentityPicker interface {
 	objectivec.IObject
 	// properties:
-	Identities() []CBIdentity /* primitive/slice/pointer. */
-	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
-	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	Identities() []ICBIdentity
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -94,7 +95,7 @@ func NewCBIdentityPicker() CBIdentityPicker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/identities
-func (c_ CBIdentityPicker) Identities() []CBIdentity /* primitive/slice/pointer. */ {
+func (c_ CBIdentityPicker) Identities() []ICBIdentity {
 	rv := objc.Send[[]CBIdentity](c_.ID, objc.Sel("identities"))
 	return rv
 }
@@ -104,7 +105,7 @@ func (c_ CBIdentityPicker) Identities() []CBIdentity /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/allowsmultipleselection
-func (c_ CBIdentityPicker) AllowsMultipleSelection() bool /* primitive/slice/pointer. */ {
+func (c_ CBIdentityPicker) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
@@ -114,7 +115,7 @@ func (c_ CBIdentityPicker) AllowsMultipleSelection() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/allowsmultipleselection
-func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */) {
+func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
@@ -123,8 +124,8 @@ func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/title
-func (c_ CBIdentityPicker) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ CBIdentityPicker) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -133,8 +134,8 @@ func (c_ CBIdentityPicker) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/title
-func (c_ CBIdentityPicker) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ CBIdentityPicker) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 

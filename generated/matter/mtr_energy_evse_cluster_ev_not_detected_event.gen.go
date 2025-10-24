@@ -31,17 +31,21 @@ type _MTREnergyEVSEClusterEVNotDetectedEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterEVNotDetectedEvent] class.
 type IMTREnergyEVSEClusterEVNotDetectedEvent interface {
 	objectivec.IObject
-	SessionDuration() foundation.Number
-	SetSessionDuration(value foundation.INumber)
-	SessionEnergyCharged() foundation.Number
-	SetSessionEnergyCharged(value foundation.INumber)
-	SessionID() foundation.Number
-	SetSessionID(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	SessionDuration() objc.IObject /* cross-framework: NSNumber */
+	SetSessionDuration(value objc.IObject /* cross-framework: NSNumber */)
+	SessionEnergyCharged() objc.IObject /* cross-framework: NSNumber */
+	SetSessionEnergyCharged(value objc.IObject /* cross-framework: NSNumber */)
+	SessionID() objc.IObject /* cross-framework: NSNumber */
+	SetSessionID(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent
 type MTREnergyEVSEClusterEVNotDetectedEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTREnergyEVSEClusterEVNotDetectedEvent() MTREnergyEVSEClusterEVNotDetect
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionDuration
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionDuration"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionDuration"))
 	return rv
 }
 
 
-// SetSessionDuration sets the value of the sessionDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionDuration
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionEnergyCharged"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionEnergyCharged"))
 	return rv
 }
 
 
-// SetSessionEnergyCharged sets the value of the sessionEnergyCharged property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionEnergyCharged:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
 
-// SetSessionID sets the value of the sessionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

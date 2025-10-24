@@ -29,15 +29,21 @@ type _MXCPUExceptionDiagnosticClass struct {
 // An interface definition for the [MXCPUExceptionDiagnostic] class.
 type IMXCPUExceptionDiagnostic interface {
 	IMXDiagnostic
-	CallStackTree() MXCallStackTree
+	// properties:
+	CallStackTree() IMXCallStackTree
 	TotalCPUTime() unsafe.Pointer
 	TotalSampledTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing a diagnostic report for a fatal or nonfatal CPU exception.
 //
 // A CPU exception occurs when your app uses an excessive amount of CPU time over a short period.
+
+
+// An object representing a diagnostic report for a fatal or nonfatal CPU exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUExceptionDiagnostic
 type MXCPUExceptionDiagnostic struct {
 	MXDiagnostic
@@ -84,24 +90,30 @@ func NewMXCPUExceptionDiagnostic() MXCPUExceptionDiagnostic {
 }
 
 
+
 // The app call stack associated with the CPU exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUExceptionDiagnostic/callStackTree
-func (m_ MXCPUExceptionDiagnostic) CallStackTree() MXCallStackTree {
+func (m_ MXCPUExceptionDiagnostic) CallStackTree() IMXCallStackTree {
 	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 
+
 // The total CPU time used during the exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUExceptionDiagnostic/totalCPUTime
 func (m_ MXCPUExceptionDiagnostic) TotalCPUTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalCPUTime"))
 	return rv
 }
 
+
 // The total time the app was sampled during the exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUExceptionDiagnostic/totalSampledTime
 func (m_ MXCPUExceptionDiagnostic) TotalSampledTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalSampledTime"))

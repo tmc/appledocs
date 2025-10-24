@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/mlcompute"
+	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
 
 // The class instance for the [IKDeviceBrowserView] class.
@@ -31,6 +31,7 @@ type _IKDeviceBrowserViewClass struct {
 // An interface definition for the [IKDeviceBrowserView] class.
 type IIKDeviceBrowserView interface {
 	appkit.IView
+	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DisplaysLocalCameras() bool
@@ -43,14 +44,19 @@ type IIKDeviceBrowserView interface {
 	SetDisplaysNetworkScanners(value bool)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
-	SelectedDevice() mlcompute.ICDevice
-	SetSelectedDevice(value mlcompute.ICDevice)
+	SelectedDevice() imagecapturecore.ICDevice
+	SetSelectedDevice(value imagecapturecore.ICDevice)
+	// methods:
 }
 
 // The allows you to select a camera or scanner from a list of the available devices.
 //
 // The delegate must conform to the protocol. The delegate provides methods to inform you of selection changes in the browser as well as errors encountered when creating the browser list.
+
+
+// The allows you to select a camera or scanner from a list of the available devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKDeviceBrowserView
 type IKDeviceBrowserView struct {
 	appkit.View
@@ -97,8 +103,10 @@ func NewIKDeviceBrowserView() IKDeviceBrowserView {
 }
 
 
+
 // Specifies the delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/delegate
 func (i_ IKDeviceBrowserView) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
@@ -106,17 +114,18 @@ func (i_ IKDeviceBrowserView) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Specifies the delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/delegate
 func (i_ IKDeviceBrowserView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Specifies whether local cameras are displayed by the browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displayslocalcameras
 func (i_ IKDeviceBrowserView) DisplaysLocalCameras() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysLocalCameras"))
@@ -124,17 +133,18 @@ func (i_ IKDeviceBrowserView) DisplaysLocalCameras() bool {
 }
 
 
-// SetDisplaysLocalCameras sets the value of the displaysLocalCameras property.
 // Specifies whether local cameras are displayed by the browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displayslocalcameras
 func (i_ IKDeviceBrowserView) SetDisplaysLocalCameras(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysLocalCameras:"), value)
 }
 
+
 // Specifies whether local scanners are displayed by the browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displayslocalscanners
 func (i_ IKDeviceBrowserView) DisplaysLocalScanners() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysLocalScanners"))
@@ -142,17 +152,18 @@ func (i_ IKDeviceBrowserView) DisplaysLocalScanners() bool {
 }
 
 
-// SetDisplaysLocalScanners sets the value of the displaysLocalScanners property.
 // Specifies whether local scanners are displayed by the browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displayslocalscanners
 func (i_ IKDeviceBrowserView) SetDisplaysLocalScanners(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysLocalScanners:"), value)
 }
 
+
 // Specifies whether network cameras are displayed by the browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displaysnetworkcameras
 func (i_ IKDeviceBrowserView) DisplaysNetworkCameras() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysNetworkCameras"))
@@ -160,17 +171,18 @@ func (i_ IKDeviceBrowserView) DisplaysNetworkCameras() bool {
 }
 
 
-// SetDisplaysNetworkCameras sets the value of the displaysNetworkCameras property.
 // Specifies whether network cameras are displayed by the browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displaysnetworkcameras
 func (i_ IKDeviceBrowserView) SetDisplaysNetworkCameras(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysNetworkCameras:"), value)
 }
 
+
 // Specifies whether network scanners are displayed by the browser.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displaysnetworkscanners
 func (i_ IKDeviceBrowserView) DisplaysNetworkScanners() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("displaysNetworkScanners"))
@@ -178,17 +190,18 @@ func (i_ IKDeviceBrowserView) DisplaysNetworkScanners() bool {
 }
 
 
-// SetDisplaysNetworkScanners sets the value of the displaysNetworkScanners property.
 // Specifies whether network scanners are displayed by the browser.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/displaysnetworkscanners
 func (i_ IKDeviceBrowserView) SetDisplaysNetworkScanners(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplaysNetworkScanners:"), value)
 }
 
+
 // Specifies the browser display mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/mode
 func (i_ IKDeviceBrowserView) Mode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mode"))
@@ -196,30 +209,30 @@ func (i_ IKDeviceBrowserView) Mode() unsafe.Pointer {
 }
 
 
-// SetMode sets the value of the mode property.
 // Specifies the browser display mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/mode
 func (i_ IKDeviceBrowserView) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMode:"), value)
 }
 
+
 // Returns the selected device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/selecteddevice
-func (i_ IKDeviceBrowserView) SelectedDevice() mlcompute.ICDevice {
-	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("selectedDevice"))
+func (i_ IKDeviceBrowserView) SelectedDevice() imagecapturecore.ICDevice {
+	rv := objc.Send[imagecapturecore.ICDevice](i_.ID, objc.Sel("selectedDevice"))
 	return rv
 }
 
 
-// SetSelectedDevice sets the value of the selectedDevice property.
 // Returns the selected device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/selecteddevice
-func (i_ IKDeviceBrowserView) SetSelectedDevice(value mlcompute.ICDevice) {
+func (i_ IKDeviceBrowserView) SetSelectedDevice(value imagecapturecore.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedDevice:"), value)
 }
 

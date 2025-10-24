@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +32,21 @@ type _CNContactRelationClass struct {
 type ICNContactRelation interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	CNLabelContactRelationAssistant() string /* primitive/slice/pointer. */
-	CNLabelContactRelationBrother() string /* primitive/slice/pointer. */
-	CNLabelContactRelationChild() string /* primitive/slice/pointer. */
-	CNLabelContactRelationDaughter() string /* primitive/slice/pointer. */
-	CNLabelContactRelationFather() string /* primitive/slice/pointer. */
-	CNLabelContactRelationFriend() string /* primitive/slice/pointer. */
-	CNLabelContactRelationManager() string /* primitive/slice/pointer. */
-	CNLabelContactRelationMother() string /* primitive/slice/pointer. */
-	CNLabelContactRelationParent() string /* primitive/slice/pointer. */
-	CNLabelContactRelationPartner() string /* primitive/slice/pointer. */
-	CNLabelContactRelationSister() string /* primitive/slice/pointer. */
-	CNLabelContactRelationSon() string /* primitive/slice/pointer. */
-	CNLabelContactRelationSpouse() string /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	CNLabelContactRelationAssistant() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationBrother() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationChild() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationDaughter() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationFather() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationFriend() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationManager() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationMother() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationParent() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationPartner() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationSister() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationSon() objc.IObject /* cross-framework: NSString */
+	CNLabelContactRelationSpouse() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -106,8 +107,8 @@ func NewCNContactRelation() CNContactRelation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ CNContactRelation) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (c_ CNContactRelation) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ CNContactRelation) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -125,8 +126,8 @@ func (c_ CNContactRelation) SetName(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant
-func (c_ CNContactRelation) CNLabelContactRelationAssistant() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
+func (c_ CNContactRelation) CNLabelContactRelationAssistant() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (c_ CNContactRelation) CNLabelContactRelationAssistant() string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother
-func (c_ CNContactRelation) CNLabelContactRelationBrother() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
+func (c_ CNContactRelation) CNLabelContactRelationBrother() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (c_ CNContactRelation) CNLabelContactRelationBrother() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchild
-func (c_ CNContactRelation) CNLabelContactRelationChild() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationChild"))
+func (c_ CNContactRelation) CNLabelContactRelationChild() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationChild"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (c_ CNContactRelation) CNLabelContactRelationChild() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughter
-func (c_ CNContactRelation) CNLabelContactRelationDaughter() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughter"))
+func (c_ CNContactRelation) CNLabelContactRelationDaughter() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationDaughter"))
 	return rv
 }
 
@@ -165,8 +166,8 @@ func (c_ CNContactRelation) CNLabelContactRelationDaughter() string /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfather
-func (c_ CNContactRelation) CNLabelContactRelationFather() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFather"))
+func (c_ CNContactRelation) CNLabelContactRelationFather() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationFather"))
 	return rv
 }
 
@@ -175,8 +176,8 @@ func (c_ CNContactRelation) CNLabelContactRelationFather() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfriend
-func (c_ CNContactRelation) CNLabelContactRelationFriend() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFriend"))
+func (c_ CNContactRelation) CNLabelContactRelationFriend() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationFriend"))
 	return rv
 }
 
@@ -185,8 +186,8 @@ func (c_ CNContactRelation) CNLabelContactRelationFriend() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager
-func (c_ CNContactRelation) CNLabelContactRelationManager() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationManager"))
+func (c_ CNContactRelation) CNLabelContactRelationManager() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationManager"))
 	return rv
 }
 
@@ -195,8 +196,8 @@ func (c_ CNContactRelation) CNLabelContactRelationManager() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother
-func (c_ CNContactRelation) CNLabelContactRelationMother() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMother"))
+func (c_ CNContactRelation) CNLabelContactRelationMother() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationMother"))
 	return rv
 }
 
@@ -205,8 +206,8 @@ func (c_ CNContactRelation) CNLabelContactRelationMother() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent
-func (c_ CNContactRelation) CNLabelContactRelationParent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParent"))
+func (c_ CNContactRelation) CNLabelContactRelationParent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationParent"))
 	return rv
 }
 
@@ -215,8 +216,8 @@ func (c_ CNContactRelation) CNLabelContactRelationParent() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner
-func (c_ CNContactRelation) CNLabelContactRelationPartner() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
+func (c_ CNContactRelation) CNLabelContactRelationPartner() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
 	return rv
 }
 
@@ -225,8 +226,8 @@ func (c_ CNContactRelation) CNLabelContactRelationPartner() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsister
-func (c_ CNContactRelation) CNLabelContactRelationSister() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSister"))
+func (c_ CNContactRelation) CNLabelContactRelationSister() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationSister"))
 	return rv
 }
 
@@ -235,8 +236,8 @@ func (c_ CNContactRelation) CNLabelContactRelationSister() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson
-func (c_ CNContactRelation) CNLabelContactRelationSon() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSon"))
+func (c_ CNContactRelation) CNLabelContactRelationSon() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationSon"))
 	return rv
 }
 
@@ -245,8 +246,8 @@ func (c_ CNContactRelation) CNLabelContactRelationSon() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse
-func (c_ CNContactRelation) CNLabelContactRelationSpouse() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
+func (c_ CNContactRelation) CNLabelContactRelationSpouse() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
 	return rv
 }
 

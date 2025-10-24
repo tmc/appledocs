@@ -31,8 +31,6 @@ type _AccountAuthenticationModificationControllerClass struct {
 type IAccountAuthenticationModificationController interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	PresentationContextProvider() AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */
 	SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */)
 	// methods:
@@ -89,25 +87,6 @@ func NewAccountAuthenticationModificationController() AccountAuthenticationModif
 
 
 
-// An object that receives notifications about the request’s status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
-func (a_ AccountAuthenticationModificationController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// An object that receives notifications about the request’s status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/delegate
-func (a_ AccountAuthenticationModificationController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
 // An object that provides a presentation context for the account modification request’s user interface.
 //
 // [Full Topic]
@@ -125,6 +104,5 @@ func (a_ AccountAuthenticationModificationController) PresentationContextProvide
 func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
-
 
 

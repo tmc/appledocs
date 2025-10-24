@@ -31,18 +31,18 @@ type _EKReminderClass struct {
 type IEKReminder interface {
 	IEKCalendarItem
 	// properties:
-	CompletionDate() foundation.objc.IObject /* cross-framework: NSDate */
-	SetCompletionDate(value foundation.objc.IObject /* cross-framework: NSDate */)
+	CompletionDate() objc.IObject /* cross-framework: NSDate */
+	SetCompletionDate(value objc.IObject /* cross-framework: NSDate */)
 	DueDateComponents() objc.IObject /* cross-framework: DateComponents */
 	SetDueDateComponents(value objc.IObject /* cross-framework: DateComponents */)
-	Completed() bool /* primitive/slice/pointer. */
-	SetCompleted(value bool /* primitive/slice/pointer. */)
-	Priority() uint /* primitive/slice/pointer. */
-	SetPriority(value uint /* primitive/slice/pointer. */)
+	Completed() bool
+	SetCompleted(value bool)
+	Priority() uint
+	SetPriority(value uint)
 	StartDateComponents() objc.IObject /* cross-framework: DateComponents */
 	SetStartDateComponents(value objc.IObject /* cross-framework: DateComponents */)
-	IsCompleted() bool /* primitive/slice/pointer. */
-	SetIsCompleted(value bool /* primitive/slice/pointer. */)
+	IsCompleted() bool
+	SetIsCompleted(value bool)
 	// methods:
 }
 
@@ -126,7 +126,7 @@ func (ec _EKReminderClass) ReminderWithEventStore(eventStore IEKEventStore) EKRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
-func (e_ EKReminder) CompletionDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (e_ EKReminder) CompletionDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("completionDate"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (e_ EKReminder) CompletionDate() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
-func (e_ EKReminder) SetCompletionDate(value foundation.objc.IObject /* cross-framework: NSDate */) {
+func (e_ EKReminder) SetCompletionDate(value objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
@@ -146,7 +146,7 @@ func (e_ EKReminder) SetCompletionDate(value foundation.objc.IObject /* cross-fr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
 func (e_ EKReminder) DueDateComponents() objc.IObject /* cross-framework: DateComponents */ {
-	rv := objc.Send[DateComponents](e_.ID, objc.Sel("dueDateComponents"))
+	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("dueDateComponents"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (e_ EKReminder) SetDueDateComponents(value objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/isCompleted
-func (e_ EKReminder) Completed() bool /* primitive/slice/pointer. */ {
+func (e_ EKReminder) Completed() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("completed"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (e_ EKReminder) Completed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/isCompleted
-func (e_ EKReminder) SetCompleted(value bool /* primitive/slice/pointer. */) {
+func (e_ EKReminder) SetCompleted(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompleted:"), value)
 }
 
@@ -183,7 +183,7 @@ func (e_ EKReminder) SetCompleted(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/priority
-func (e_ EKReminder) Priority() uint /* primitive/slice/pointer. */ {
+func (e_ EKReminder) Priority() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("priority"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (e_ EKReminder) Priority() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/priority
-func (e_ EKReminder) SetPriority(value uint /* primitive/slice/pointer. */) {
+func (e_ EKReminder) SetPriority(value uint) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -203,7 +203,7 @@ func (e_ EKReminder) SetPriority(value uint /* primitive/slice/pointer. */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
 func (e_ EKReminder) StartDateComponents() objc.IObject /* cross-framework: DateComponents */ {
-	rv := objc.Send[DateComponents](e_.ID, objc.Sel("startDateComponents"))
+	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("startDateComponents"))
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (e_ EKReminder) SetStartDateComponents(value objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
-func (e_ EKReminder) IsCompleted() bool /* primitive/slice/pointer. */ {
+func (e_ EKReminder) IsCompleted() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCompleted"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (e_ EKReminder) IsCompleted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekreminder/iscompleted
-func (e_ EKReminder) SetIsCompleted(value bool /* primitive/slice/pointer. */) {
+func (e_ EKReminder) SetIsCompleted(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCompleted:"), value)
 }
 

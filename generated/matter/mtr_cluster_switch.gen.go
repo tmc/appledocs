@@ -29,9 +29,13 @@ type _MTRClusterSwitchClass struct {
 // An interface definition for the [MTRClusterSwitch] class.
 type IMTRClusterSwitch interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterSwitch
 type MTRClusterSwitch struct {
 	MTRGenericCluster

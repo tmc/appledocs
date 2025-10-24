@@ -30,18 +30,24 @@ type _MTRClusterRefrigeratorAlarmClass struct {
 // An interface definition for the [MTRClusterRefrigeratorAlarm] class.
 type IMTRClusterRefrigeratorAlarm interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeMaskWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeStateWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeSupportedWithParams(params IMTRReadParams) unsafe.Pointer
+	// properties:
+	// methods:
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeMaskWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeStateWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeSupportedWithParams(params IMTRReadParams) foundation.IDictionary
 }
 
 // Cluster Refrigerator Alarm Attributes and commands for configuring the Refrigerator alarm.
+
+
+// Cluster Refrigerator Alarm Attributes and commands for configuring the Refrigerator alarm.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm
 type MTRClusterRefrigeratorAlarm struct {
 	MTRGenericCluster
@@ -89,11 +95,11 @@ func NewMTRClusterRefrigeratorAlarm() MTRClusterRefrigeratorAlarm {
 
 
 
-
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/init(device:endpointID:queue:)
-func NewMTRClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterRefrigeratorAlarm {
+func NewMTRClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterRefrigeratorAlarm {
 	instance := getMTRClusterRefrigeratorAlarmClass().Alloc()
 	rv := objc.Send[MTRClusterRefrigeratorAlarm](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -101,59 +107,67 @@ func NewMTRClusterRefrigeratorAlarmWithDeviceEndpointIDQueue(device IMTRDevice, 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeAttributeList(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeClusterRevision(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeFeatureMap(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeMask(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeMaskWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeMaskWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeMaskWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMaskWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeState(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeStateWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeStateWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeStateWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeStateWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAlarm/readAttributeSupported(with:)
-func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeSupportedWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedWithParams:"), params)
+func (m_ MTRClusterRefrigeratorAlarm) ReadAttributeSupportedWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedWithParams:"), params)
 	return rv
 }
 

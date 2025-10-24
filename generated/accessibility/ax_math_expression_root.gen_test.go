@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXMathExpressionRoot
 
-// ExampleNewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression demonstrates how to create a AXMathExpressionRoot instance using NewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression.
-func ExampleNewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression() {
-	_ = accessibility.NewAXMathExpressionRootWithRadicandExpressionsRootIndexExpression(
-		[]accessibility.AXMathExpression{}, // radicandExpressions []AXMathExpression
-		accessibility.AXMathExpression{}, // rootIndexExpression AXMathExpression
-	)
-	// Output:
-}

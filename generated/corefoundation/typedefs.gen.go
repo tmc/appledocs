@@ -612,8 +612,7 @@ type StringTokenizerRef uintptr
 // TimeInterval - Type used to represent elapsed time in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeInterval
-// CFTimeInterval has base type: double
-type TimeInterval uintptr
+type TimeInterval = float64
 // TimeZoneRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZone

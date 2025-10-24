@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RectangleFeature] class.
@@ -31,12 +32,12 @@ type _RectangleFeatureClass struct {
 type IRectangleFeature interface {
 	IFeature
 	// properties:
-	BottomLeft() coregraphics.CGPoint
-	BottomRight() coregraphics.CGPoint
-	Bounds() coregraphics.CGRect
-	TopLeft() coregraphics.CGPoint
-	TopRight() coregraphics.CGPoint
-	CIDetectorTypeRectangle() string /* primitive/slice/pointer. */
+	BottomLeft() objc.IObject /* cross-framework: Point */
+	BottomRight() objc.IObject /* cross-framework: Point */
+	Bounds() objc.IObject /* cross-framework: Rect */
+	TopLeft() objc.IObject /* cross-framework: Point */
+	TopRight() objc.IObject /* cross-framework: Point */
+	CIDetectorTypeRectangle() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -99,8 +100,8 @@ func NewRectangleFeature() RectangleFeature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomLeft-swift.property
-func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomLeft"))
+func (r_ RectangleFeature) BottomLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (r_ RectangleFeature) BottomLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bottomRight-swift.property
-func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("bottomRight"))
+func (r_ RectangleFeature) BottomRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("bottomRight"))
 	return rv
 }
 
@@ -119,8 +120,8 @@ func (r_ RectangleFeature) BottomRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/bounds-swift.property
-func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](r_.ID, objc.Sel("bounds"))
+func (r_ RectangleFeature) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](r_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -129,8 +130,8 @@ func (r_ RectangleFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topLeft-swift.property
-func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topLeft"))
+func (r_ RectangleFeature) TopLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("topLeft"))
 	return rv
 }
 
@@ -139,8 +140,8 @@ func (r_ RectangleFeature) TopLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRectangleFeature/topRight-swift.property
-func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](r_.ID, objc.Sel("topRight"))
+func (r_ RectangleFeature) TopRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("topRight"))
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
-func (r_ RectangleFeature) CIDetectorTypeRectangle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
+func (r_ RectangleFeature) CIDetectorTypeRectangle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
 	return rv
 }
 

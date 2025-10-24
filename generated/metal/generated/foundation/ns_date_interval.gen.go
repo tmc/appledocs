@@ -31,15 +31,13 @@ type _DateIntervalClass struct {
 type IDateInterval interface {
 	objectivec.IObject
 	// properties:
-	Duration() objc.IObject /* cross-framework: TimeInterval */
+	Duration() float64
+	SetDuration(value float64)
 	EndDate() IDate
+	SetEndDate(value IDate)
 	StartDate() IDate
+	SetStartDate(value IDate)
 	// methods:
-	Compare(dateInterval IDateInterval) ComparisonResult
-	ContainsDate(date IDate) bool /* primitive/slice/pointer. */
-	IntersectionWithDateInterval(dateInterval IDateInterval) IDateInterval
-	IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */
-	IsEqualToDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */
 }
 
 // An object representing the span of time between a specific start date and end date.
@@ -95,89 +93,12 @@ func NewDateInterval() DateInterval {
 
 
 
-// Returns a date interval initialized from data in the given unarchiver.
+// The duration of the date interval.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(coder:)
-func NewDateIntervalWithCoder(coder ICoder) DateInterval {
-	instance := getDateIntervalClass().Alloc()
-	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a date interval with a given start date and duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
-func NewDateIntervalWithStartDateDuration(startDate IDate, duration objc.IObject /* cross-framework: TimeInterval */) DateInterval {
-	instance := getDateIntervalClass().Alloc()
-	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a date interval from a given start date and end date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:end:)
-func NewDateIntervalWithStartDateEndDate(startDate IDate, endDate IDate) DateInterval {
-	instance := getDateIntervalClass().Alloc()
-	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:endDate:"), startDate, endDate)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Compares the receiver with the specified date interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
-func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
-	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
-	return rv
-}
-
-
-// Indicates whether the receiver contains the specified date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/contains(_:)
-func (d_ DateInterval) ContainsDate(date IDate) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](d_.ID, objc.Sel("containsDate:"), date)
-	return rv
-}
-
-
-// Returns the intersection between the receiver and the specified date interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/intersection(with:)
-func (d_ DateInterval) IntersectionWithDateInterval(dateInterval IDateInterval) IDateInterval {
-	rv := objc.Send[DateInterval](d_.ID, objc.Sel("intersectionWithDateInterval:"), dateInterval)
-	return rv
-}
-
-
-// Indicates whether the receiver intersects with the specified date interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/intersects(_:)
-func (d_ DateInterval) IntersectsDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](d_.ID, objc.Sel("intersectsDateInterval:"), dateInterval)
-	return rv
-}
-
-
-// Indicates whether the receiver is equal to the specified date interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/isEqual(to:)
-func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToDateInterval:"), dateInterval)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+func (d_ DateInterval) Duration() float64 {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -185,9 +106,18 @@ func (d_ DateInterval) IsEqualToDateInterval(dateInterval IDateInterval) bool /*
 // The duration of the date interval.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/duration
-func (d_ DateInterval) Duration() objc.IObject /* cross-framework: TimeInterval */ {
-	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
+func (d_ DateInterval) SetDuration(value float64) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
+}
+
+
+// The end date of the date interval.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+func (d_ DateInterval) EndDate() IDate {
+	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -195,9 +125,18 @@ func (d_ DateInterval) Duration() objc.IObject /* cross-framework: TimeInterval 
 // The end date of the date interval.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/endDate
-func (d_ DateInterval) EndDate() IDate {
-	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
+func (d_ DateInterval) SetEndDate(value IDate) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
+}
+
+
+// The start date of the date interval.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/startdate
+func (d_ DateInterval) StartDate() IDate {
+	rv := objc.Send[Date](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -205,10 +144,10 @@ func (d_ DateInterval) EndDate() IDate {
 // The start date of the date interval.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/startDate
-func (d_ DateInterval) StartDate() IDate {
-	rv := objc.Send[Date](d_.ID, objc.Sel("startDate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/startdate
+func (d_ DateInterval) SetStartDate(value IDate) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
 }
+
 
 

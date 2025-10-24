@@ -34,24 +34,24 @@ type ICBIdentity interface {
 	objectivec.IObject
 	// properties:
 	Authority() ICBIdentityAuthority
-	Aliases() string /* primitive/slice/pointer. */
-	SetAliases(value string /* primitive/slice/pointer. */)
-	EmailAddress() string /* primitive/slice/pointer. */
-	SetEmailAddress(value string /* primitive/slice/pointer. */)
-	FullName() string /* primitive/slice/pointer. */
-	SetFullName(value string /* primitive/slice/pointer. */)
-	Image() appkit.objc.IObject /* cross-framework: Image */
-	SetImage(value appkit.objc.IObject /* cross-framework: Image */)
-	IsHidden() bool /* primitive/slice/pointer. */
-	SetIsHidden(value bool /* primitive/slice/pointer. */)
-	PersistentReference() foundation.objc.IObject /* cross-framework: Data */
-	SetPersistentReference(value foundation.objc.IObject /* cross-framework: Data */)
-	PosixName() string /* primitive/slice/pointer. */
-	SetPosixName(value string /* primitive/slice/pointer. */)
-	UniqueIdentifier() foundation.objc.IObject /* cross-framework: UUID */
-	SetUniqueIdentifier(value foundation.objc.IObject /* cross-framework: UUID */)
-	UuidString() string /* primitive/slice/pointer. */
-	SetUuidString(value string /* primitive/slice/pointer. */)
+	Aliases() objc.IObject /* cross-framework: NSString */
+	SetAliases(value objc.IObject /* cross-framework: NSString */)
+	EmailAddress() objc.IObject /* cross-framework: NSString */
+	SetEmailAddress(value objc.IObject /* cross-framework: NSString */)
+	FullName() objc.IObject /* cross-framework: NSString */
+	SetFullName(value objc.IObject /* cross-framework: NSString */)
+	Image() objc.IObject /* cross-framework: Image */
+	SetImage(value objc.IObject /* cross-framework: Image */)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	PersistentReference() objc.IObject /* cross-framework: Data */
+	SetPersistentReference(value objc.IObject /* cross-framework: Data */)
+	PosixName() objc.IObject /* cross-framework: NSString */
+	SetPosixName(value objc.IObject /* cross-framework: NSString */)
+	UniqueIdentifier() objc.IObject /* cross-framework: UUID */
+	SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */)
+	UuidString() objc.IObject /* cross-framework: NSString */
+	SetUuidString(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -112,8 +112,8 @@ func NewCBIdentity() CBIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-func NewCBIdentityWithNameAuthority(name string /* primitive/slice/pointer. */, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
+func NewCBIdentityWithNameAuthority(name objc.IObject /* cross-framework: NSString */, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(getCBIdentityClass().class), objc.Sel("identityWithName:authority:"), name, authority)
 	return rv
 }
 
@@ -123,8 +123,8 @@ func NewCBIdentityWithNameAuthority(name string /* primitive/slice/pointer. */, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentity/init(name:authority:)
-func (cc _CBIdentityClass) IdentityWithNameAuthority(name string /* primitive/slice/pointer. */, authority ICBIdentityAuthority) CBIdentity {
-	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithName:authority:"), objc.String(name), authority)
+func (cc _CBIdentityClass) IdentityWithNameAuthority(name objc.IObject /* cross-framework: NSString */, authority ICBIdentityAuthority) CBIdentity {
+	rv := objc.Send[CBIdentity](objc.ID(cc.class), objc.Sel("identityWithName:authority:"), name, authority)
 	return rv
 }
 
@@ -143,8 +143,8 @@ func (c_ CBIdentity) Authority() ICBIdentityAuthority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/aliases
-func (c_ CBIdentity) Aliases() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("aliases"))
+func (c_ CBIdentity) Aliases() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("aliases"))
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (c_ CBIdentity) Aliases() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/aliases
-func (c_ CBIdentity) SetAliases(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAliases:"), objc.String(value))
+func (c_ CBIdentity) SetAliases(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAliases:"), value)
 }
 
 
@@ -162,8 +162,8 @@ func (c_ CBIdentity) SetAliases(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/emailaddress
-func (c_ CBIdentity) EmailAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("emailAddress"))
+func (c_ CBIdentity) EmailAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("emailAddress"))
 	return rv
 }
 
@@ -172,8 +172,8 @@ func (c_ CBIdentity) EmailAddress() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/emailaddress
-func (c_ CBIdentity) SetEmailAddress(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
+func (c_ CBIdentity) SetEmailAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEmailAddress:"), value)
 }
 
 
@@ -181,8 +181,8 @@ func (c_ CBIdentity) SetEmailAddress(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/fullname
-func (c_ CBIdentity) FullName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("fullName"))
+func (c_ CBIdentity) FullName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("fullName"))
 	return rv
 }
 
@@ -191,8 +191,8 @@ func (c_ CBIdentity) FullName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/fullname
-func (c_ CBIdentity) SetFullName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFullName:"), objc.String(value))
+func (c_ CBIdentity) SetFullName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFullName:"), value)
 }
 
 
@@ -200,7 +200,7 @@ func (c_ CBIdentity) SetFullName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/image
-func (c_ CBIdentity) Image() appkit.objc.IObject /* cross-framework: Image */ {
+func (c_ CBIdentity) Image() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("image"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (c_ CBIdentity) Image() appkit.objc.IObject /* cross-framework: Image */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/image
-func (c_ CBIdentity) SetImage(value appkit.objc.IObject /* cross-framework: Image */) {
+func (c_ CBIdentity) SetImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -219,7 +219,7 @@ func (c_ CBIdentity) SetImage(value appkit.objc.IObject /* cross-framework: Imag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-func (c_ CBIdentity) IsHidden() bool /* primitive/slice/pointer. */ {
+func (c_ CBIdentity) IsHidden() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (c_ CBIdentity) IsHidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/ishidden
-func (c_ CBIdentity) SetIsHidden(value bool /* primitive/slice/pointer. */) {
+func (c_ CBIdentity) SetIsHidden(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -238,7 +238,7 @@ func (c_ CBIdentity) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/persistentreference
-func (c_ CBIdentity) PersistentReference() foundation.objc.IObject /* cross-framework: Data */ {
+func (c_ CBIdentity) PersistentReference() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("persistentReference"))
 	return rv
 }
@@ -248,7 +248,7 @@ func (c_ CBIdentity) PersistentReference() foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/persistentreference
-func (c_ CBIdentity) SetPersistentReference(value foundation.objc.IObject /* cross-framework: Data */) {
+func (c_ CBIdentity) SetPersistentReference(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPersistentReference:"), value)
 }
 
@@ -257,8 +257,8 @@ func (c_ CBIdentity) SetPersistentReference(value foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/posixname
-func (c_ CBIdentity) PosixName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("posixName"))
+func (c_ CBIdentity) PosixName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("posixName"))
 	return rv
 }
 
@@ -267,14 +267,14 @@ func (c_ CBIdentity) PosixName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/posixname
-func (c_ CBIdentity) SetPosixName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPosixName:"), objc.String(value))
+func (c_ CBIdentity) SetPosixName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPosixName:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/uniqueidentifier
-func (c_ CBIdentity) UniqueIdentifier() foundation.objc.IObject /* cross-framework: UUID */ {
+func (c_ CBIdentity) UniqueIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (c_ CBIdentity) UniqueIdentifier() foundation.objc.IObject /* cross-framewo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/uniqueidentifier
-func (c_ CBIdentity) SetUniqueIdentifier(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (c_ CBIdentity) SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 
@@ -291,8 +291,8 @@ func (c_ CBIdentity) SetUniqueIdentifier(value foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/uuidstring
-func (c_ CBIdentity) UuidString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("uuidString"))
+func (c_ CBIdentity) UuidString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
@@ -301,8 +301,8 @@ func (c_ CBIdentity) UuidString() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentity/uuidstring
-func (c_ CBIdentity) SetUuidString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUuidString:"), objc.String(value))
+func (c_ CBIdentity) SetUuidString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUuidString:"), value)
 }
 
 

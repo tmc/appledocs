@@ -31,15 +31,22 @@ type _BackForwardListItemClass struct {
 // An interface definition for the [BackForwardListItem] class.
 type IBackForwardListItem interface {
 	objectivec.IObject
-	InitialURL() foundation.URL
-	Title() string
-	URL() foundation.URL
+	// properties:
+	Title() objc.IObject /* cross-framework: NSString */
+	URL() objc.IObject /* cross-framework: NSURL */
+	InitialURL() objc.IObject /* cross-framework: URL */
+	SetInitialURL(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // A representation of a webpage that the web view previously visited.
 //
 // Use a object to get information about previously visited webpages. This object identifies the page’s title and URL. It also identifes the URL that requested the webpage. You don’t create objects directly. Instead, a object creates them in conjunction with its associated web view when the web view loads new pages.
+
+
+// A representation of a webpage that the web view previously visited.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem
 type BackForwardListItem struct {
 	objectivec.Object
@@ -84,28 +91,43 @@ func NewBackForwardListItem() BackForwardListItem {
 }
 
 
+
+// The title of the webpage this item represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/title
+func (b_ BackForwardListItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The URL of the webpage this item represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/url
+func (b_ BackForwardListItem) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](b_.ID, objc.Sel("URL"))
+	return rv
+}
+
+
 // The source URL that originally asked the web view to load this page.
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/initialURL
-func (b_ BackForwardListItem) InitialURL() foundation.URL {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlistitem/initialurl
+func (b_ BackForwardListItem) InitialURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("initialURL"))
 	return rv
 }
 
-// The title of the webpage this item represents.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/title
-func (b_ BackForwardListItem) Title() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("title"))
-	return rv
-}
 
-// The URL of the webpage this item represents.
+// The source URL that originally asked the web view to load this page.
 //
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/url
-func (b_ BackForwardListItem) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlistitem/initialurl
+func (b_ BackForwardListItem) SetInitialURL(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setInitialURL:"), value)
 }
 
 

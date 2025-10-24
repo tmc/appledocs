@@ -30,10 +30,13 @@ type _QuartzFilterManagerClass struct {
 // An interface definition for the [QuartzFilterManager] class.
 type IQuartzFilterManager interface {
 	objectivec.IObject
-	ImportFilter(filterProperties objectivec.IObject) QuartzFilter
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterManager
 type QuartzFilterManager struct {
 	objectivec.Object
@@ -75,13 +78,6 @@ func NewQuartzFilterManager() QuartzFilterManager {
 	return getQuartzFilterManagerClass().New()
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterManager/importFilter(_:)
-func (q_ QuartzFilterManager) ImportFilter(filterProperties objectivec.IObject) QuartzFilter {
-	rv := objc.Send[QuartzFilter](q_.ID, objc.Sel("importFilter:"), filterProperties)
-	return rv
-}
 
 
 

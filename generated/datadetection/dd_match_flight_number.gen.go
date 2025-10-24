@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchFlightNumber] class.
@@ -30,8 +31,8 @@ type _DDMatchFlightNumberClass struct {
 type IDDMatchFlightNumber interface {
 	IDDMatch
 	// properties:
-	Airline() string /* primitive/slice/pointer. */
-	FlightNumber() string /* primitive/slice/pointer. */
+	Airline() objc.IObject /* cross-framework: NSString */
+	FlightNumber() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
-func (d_ DDMatchFlightNumber) Airline() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
+func (d_ DDMatchFlightNumber) Airline() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("airline"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (d_ DDMatchFlightNumber) Airline() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
-func (d_ DDMatchFlightNumber) FlightNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
+func (d_ DDMatchFlightNumber) FlightNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("flightNumber"))
 	return rv
 }
 

@@ -30,13 +30,19 @@ type _RemoteLayerServerClass struct {
 // An interface definition for the [RemoteLayerServer] class.
 type IRemoteLayerServer interface {
 	objectivec.IObject
+	// properties:
 	ServerPort() unsafe.Pointer
+	// methods:
 }
 
 // A legacy class for cross-process rendering.
 //
 // is a legacy class for cross-process rendering. and , available with , offer an improved way to perform cross-process rendering.
+
+
+// A legacy class for cross-process rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer
 type RemoteLayerServer struct {
 	objectivec.Object
@@ -81,16 +87,10 @@ func NewRemoteLayerServer() RemoteLayerServer {
 }
 
 
-// Returns the (singleton) instance of the shared remote layer server.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer/shared()
-func (rc _RemoteLayerServerClass) SharedServer() RemoteLayerServer {
-	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("sharedServer"))
-	return rv
-}
 
 // The port number of the server.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer/serverPort
 func (r_ RemoteLayerServer) ServerPort() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("serverPort"))

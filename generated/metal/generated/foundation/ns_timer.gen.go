@@ -33,16 +33,15 @@ type ITimer interface {
 	// properties:
 	FireDate() IDate
 	SetFireDate(value IDate)
-	Valid() bool /* primitive/slice/pointer. */
-	TimeInterval() objc.IObject /* cross-framework: TimeInterval */
-	Tolerance() objc.IObject /* cross-framework: TimeInterval */
-	SetTolerance(value objc.IObject /* cross-framework: TimeInterval */)
-	UserInfo() objc.ID
-	IsValid() bool /* primitive/slice/pointer. */
-	SetIsValid(value bool /* primitive/slice/pointer. */)
+	IsValid() bool
+	SetIsValid(value bool)
+	TimeInterval() float64
+	SetTimeInterval(value float64)
+	Tolerance() float64
+	SetTolerance(value float64)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	// methods:
-	Fire()
-	Invalidate()
 }
 
 // A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.
@@ -98,143 +97,10 @@ func NewTimer() Timer {
 
 
 
-// Initializes a timer for the specified date and time interval with the specified block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fire:interval:repeats:block:)
-func NewTimerWithFireDateIntervalRepeatsBlock(date IDate, interval objc.IObject /* cross-framework: TimeInterval */, repeats bool /* primitive/slice/pointer. */, block unsafe.Pointer) Timer {
-	instance := getTimerClass().Alloc()
-	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:repeats:block:"), date, interval, repeats, block)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a timer using the specified object and selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fireAt:interval:target:selector:userInfo:repeats:)
-func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date IDate, ti objc.IObject /* cross-framework: TimeInterval */, t objectivec.IObject, s objc.SEL, ui objectivec.IObject, rep bool /* primitive/slice/pointer. */) Timer {
-	instance := getTimerClass().Alloc()
-	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:target:selector:userInfo:repeats:"), date, ti, t, s, ui, rep)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a timer object with the specified invocation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:invocation:repeats:)
-func NewTimerWithTimeIntervalInvocationRepeats(ti objc.IObject /* cross-framework: TimeInterval */, invocation IInvocation, yesOrNo bool /* primitive/slice/pointer. */) Timer {
-	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:invocation:repeats:"), ti, invocation, yesOrNo)
-	return rv
-}
-
-
-// Initializes a timer object with the specified time interval and block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:repeats:block:)
-func NewTimerWithTimeIntervalRepeatsBlock(interval objc.IObject /* cross-framework: TimeInterval */, repeats bool /* primitive/slice/pointer. */, block unsafe.Pointer) Timer {
-	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:repeats:block:"), interval, repeats, block)
-	return rv
-}
-
-
-// Initializes a timer object with the specified object and selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:target:selector:userInfo:repeats:)
-func NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti objc.IObject /* cross-framework: TimeInterval */, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool /* primitive/slice/pointer. */) Timer {
-	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
-	return rv
-}
-
-
-
-// Initializes a timer object with the specified invocation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:invocation:repeats:)
-func (tc _TimerClass) TimerWithTimeIntervalInvocationRepeats(ti objc.IObject /* cross-framework: TimeInterval */, invocation IInvocation, yesOrNo bool /* primitive/slice/pointer. */) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("timerWithTimeInterval:invocation:repeats:"), ti, invocation, yesOrNo)
-	return rv
-}
-
-
-// Initializes a timer object with the specified time interval and block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:repeats:block:)
-func (tc _TimerClass) TimerWithTimeIntervalRepeatsBlock(interval objc.IObject /* cross-framework: TimeInterval */, repeats bool /* primitive/slice/pointer. */, block unsafe.Pointer) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("timerWithTimeInterval:repeats:block:"), interval, repeats, block)
-	return rv
-}
-
-
-// Initializes a timer object with the specified object and selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:target:selector:userInfo:repeats:)
-func (tc _TimerClass) TimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti objc.IObject /* cross-framework: TimeInterval */, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool /* primitive/slice/pointer. */) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
-	return rv
-}
-
-
-// Creates a new timer and schedules it on the current run loop in the default mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/scheduledTimer(timeInterval:invocation:repeats:)
-func (tc _TimerClass) ScheduledTimerWithTimeIntervalInvocationRepeats(ti objc.IObject /* cross-framework: TimeInterval */, invocation IInvocation, yesOrNo bool /* primitive/slice/pointer. */) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("scheduledTimerWithTimeInterval:invocation:repeats:"), ti, invocation, yesOrNo)
-	return rv
-}
-
-
-// Creates a timer and schedules it on the current run loop in the default mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/scheduledTimer(timeInterval:target:selector:userInfo:repeats:)
-func (tc _TimerClass) ScheduledTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti objc.IObject /* cross-framework: TimeInterval */, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool /* primitive/slice/pointer. */) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
-	return rv
-}
-
-
-// Creates a timer and schedules it on the current run loop in the default mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/scheduledTimer(withTimeInterval:repeats:block:)
-func (tc _TimerClass) ScheduledTimerWithTimeIntervalRepeatsBlock(interval objc.IObject /* cross-framework: TimeInterval */, repeats bool /* primitive/slice/pointer. */, block unsafe.Pointer) ITimer {
-	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("scheduledTimerWithTimeInterval:repeats:block:"), interval, repeats, block)
-	return rv
-}
-
-
-// Causes the timer’s message to be sent to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fire()
-func (t_ Timer) Fire() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("fire"))
-}
-
-
-// Stops the timer from ever firing again and requests its removal from its run loop.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/invalidate()
-func (t_ Timer) Invalidate() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("invalidate"))
-}
-
-
 // The date at which the timer will fire.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/firedate
 func (t_ Timer) FireDate() IDate {
 	rv := objc.Send[Date](t_.ID, objc.Sel("fireDate"))
 	return rv
@@ -244,7 +110,7 @@ func (t_ Timer) FireDate() IDate {
 // The date at which the timer will fire.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/fireDate
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/firedate
 func (t_ Timer) SetFireDate(value IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFireDate:"), value)
 }
@@ -253,57 +119,8 @@ func (t_ Timer) SetFireDate(value IDate) {
 // A Boolean value that indicates whether the timer is currently valid.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/isValid
-func (t_ Timer) Valid() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](t_.ID, objc.Sel("valid"))
-	return rv
-}
-
-
-// The timer’s time interval, in seconds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/timeInterval
-func (t_ Timer) TimeInterval() objc.IObject /* cross-framework: TimeInterval */ {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("timeInterval"))
-	return rv
-}
-
-
-// The amount of time after the scheduled fire date that the timer may fire.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/tolerance
-func (t_ Timer) Tolerance() objc.IObject /* cross-framework: TimeInterval */ {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("tolerance"))
-	return rv
-}
-
-
-// The amount of time after the scheduled fire date that the timer may fire.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/tolerance
-func (t_ Timer) SetTolerance(value objc.IObject /* cross-framework: TimeInterval */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTolerance:"), value)
-}
-
-
-// The receiver’s object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/userInfo
-func (t_ Timer) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the timer is currently valid.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
-func (t_ Timer) IsValid() bool /* primitive/slice/pointer. */ {
+func (t_ Timer) IsValid() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
 	return rv
 }
@@ -313,8 +130,66 @@ func (t_ Timer) IsValid() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/timer/isvalid
-func (t_ Timer) SetIsValid(value bool /* primitive/slice/pointer. */) {
+func (t_ Timer) SetIsValid(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
 }
+
+
+// The timer’s time interval, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/timeinterval
+func (t_ Timer) TimeInterval() float64 {
+	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("timeInterval"))
+	return rv
+}
+
+
+// The timer’s time interval, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/timeinterval
+func (t_ Timer) SetTimeInterval(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeInterval:"), value)
+}
+
+
+// The amount of time after the scheduled fire date that the timer may fire.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/tolerance
+func (t_ Timer) Tolerance() float64 {
+	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("tolerance"))
+	return rv
+}
+
+
+// The amount of time after the scheduled fire date that the timer may fire.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/tolerance
+func (t_ Timer) SetTolerance(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTolerance:"), value)
+}
+
+
+// The receiver’s
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/userinfo
+func (t_ Timer) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// The receiver’s
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/timer/userinfo
+func (t_ Timer) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUserInfo:"), value)
+}
+
 
 

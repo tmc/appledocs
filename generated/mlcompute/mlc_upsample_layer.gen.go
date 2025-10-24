@@ -29,16 +29,22 @@ type _CUpsampleLayerClass struct {
 // An interface definition for the [CUpsampleLayer] class.
 type ICUpsampleLayer interface {
 	ICLayer
+	// properties:
 	AlignsCorners() bool
 	SetAlignsCorners(value bool)
-	SampleMode() unsafe.Pointer
-	SetSampleMode(value unsafe.Pointer)
+	SampleMode() CSampleMode /* not a class type */
+	SetSampleMode(value CSampleMode /* not a class type */)
 	Shape() int
 	SetShape(value int)
+	// methods:
 }
 
 // A layer that applies upsampling with the shape you specify.
+
+
+// A layer that applies upsampling with the shape you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCUpsampleLayer
 type CUpsampleLayer struct {
 	CLayer
@@ -85,8 +91,10 @@ func NewCUpsampleLayer() CUpsampleLayer {
 }
 
 
+
 // A Boolean that indicates whether the layer aligns the corner pixels of the input and output tensors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/alignscorners
 func (c_ CUpsampleLayer) AlignsCorners() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("alignsCorners"))
@@ -94,35 +102,37 @@ func (c_ CUpsampleLayer) AlignsCorners() bool {
 }
 
 
-// SetAlignsCorners sets the value of the alignsCorners property.
 // A Boolean that indicates whether the layer aligns the corner pixels of the input and output tensors.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/alignscorners
 func (c_ CUpsampleLayer) SetAlignsCorners(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignsCorners:"), value)
 }
 
+
 // The upsampling algorithm type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/samplemode
-func (c_ CUpsampleLayer) SampleMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleMode"))
+func (c_ CUpsampleLayer) SampleMode() CSampleMode /* not a class type */ {
+	rv := objc.Send[CSampleMode](c_.ID, objc.Sel("sampleMode"))
 	return rv
 }
 
 
-// SetSampleMode sets the value of the sampleMode property.
 // The upsampling algorithm type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/samplemode
-func (c_ CUpsampleLayer) SetSampleMode(value unsafe.Pointer) {
+func (c_ CUpsampleLayer) SetSampleMode(value CSampleMode /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleMode:"), value)
 }
 
+
 // An array that contains the dimensions of the result tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
 func (c_ CUpsampleLayer) Shape() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
@@ -130,10 +140,9 @@ func (c_ CUpsampleLayer) Shape() int {
 }
 
 
-// SetShape sets the value of the shape property.
 // An array that contains the dimensions of the result tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcupsamplelayer/shape-61n1u
 func (c_ CUpsampleLayer) SetShape(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)

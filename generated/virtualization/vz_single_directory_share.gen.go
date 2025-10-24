@@ -29,8 +29,9 @@ type _VZSingleDirectoryShareClass struct {
 // An interface definition for the [VZSingleDirectoryShare] class.
 type IVZSingleDirectoryShare interface {
 	IVZDirectoryShare
-	Directory() VZSharedDirectory
-	SetDirectory(value VZSharedDirectory)
+	// properties:
+	Directory() IVZSharedDirectory
+	// methods:
 }
 
 // An object that defines the directory share for a single directory.
@@ -88,23 +89,26 @@ func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 
 
 
-// The directory on the host to share with the guest VM.
+// Creates a directory share with a directory that you specify on the host.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare/directory
-func (v_ VZSingleDirectoryShare) Directory() VZSharedDirectory {
-	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/init(directory:)
+func NewVZSingleDirectoryShareWithDirectory(directory IVZSharedDirectory) VZSingleDirectoryShare {
+	instance := getVZSingleDirectoryShareClass().Alloc()
+	rv := objc.Send[VZSingleDirectoryShare](instance.ID, objc.Sel("initWithDirectory:"), directory)
+	rv.Autorelease()
 	return rv
 }
 
 
+
 // The directory on the host to share with the guest VM.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare/directory
-func (v_ VZSingleDirectoryShare) SetDirectory(value VZSharedDirectory) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectory:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/directory
+func (v_ VZSingleDirectoryShare) Directory() IVZSharedDirectory {
+	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
+	return rv
 }
-
 
 

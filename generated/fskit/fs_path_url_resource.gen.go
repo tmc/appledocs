@@ -31,11 +31,11 @@ type _FSPathURLResourceClass struct {
 type IFSPathURLResource interface {
 	IFSResource
 	// properties:
-	Writable() bool /* primitive/slice/pointer. */
-	IsWritable() bool /* primitive/slice/pointer. */
-	SetIsWritable(value bool /* primitive/slice/pointer. */)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	Writable() bool
+	IsWritable() bool
+	SetIsWritable(value bool)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewFSPathURLResource() FSPathURLResource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/isWritable
-func (f_ FSPathURLResource) Writable() bool /* primitive/slice/pointer. */ {
+func (f_ FSPathURLResource) Writable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writable"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (f_ FSPathURLResource) Writable() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/iswritable
-func (f_ FSPathURLResource) IsWritable() bool /* primitive/slice/pointer. */ {
+func (f_ FSPathURLResource) IsWritable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isWritable"))
 	return rv
 }
@@ -112,14 +112,14 @@ func (f_ FSPathURLResource) IsWritable() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/iswritable
-func (f_ FSPathURLResource) SetIsWritable(value bool /* primitive/slice/pointer. */) {
+func (f_ FSPathURLResource) SetIsWritable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/url
-func (f_ FSPathURLResource) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (f_ FSPathURLResource) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (f_ FSPathURLResource) Url() foundation.objc.IObject /* cross-framework: UR
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/url
-func (f_ FSPathURLResource) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (f_ FSPathURLResource) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 

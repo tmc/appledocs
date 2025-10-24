@@ -8,17 +8,6 @@ package phase
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset/AssetType
 type PHASEAssetType uint
 
-const (
-	// PHASEAssetTypeResident - A sound asset that plays after fully loading in memory.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset/AssetType/resident
-	PHASEAssetTypeResident PHASEAssetType = 0
-	// PHASEAssetTypeStreamed - A sound asset that streams from disk into memory as it plays.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAsset/AssetType/streamed
-	PHASEAssetTypeStreamed PHASEAssetType = 0
-)
-
 // PHASEAssetError - Codes that identify framework asset errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetError-swift.struct/Code
@@ -42,11 +31,6 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASECalibrationMode
 type PHASECalibrationMode uint
-
-// PHASECullOption - The actions the engine takes when it culls sound.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASECullOption
-type PHASECullOption uint
 
 // PHASECurveType - Options that apply a mathematical function to an input value.
 //
@@ -173,13 +157,6 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMedium/Preset
 type PHASEMediumPreset uint
-
-const (
-	// PHASEMediumPresetAir - A medium that simulates sound traveling through air.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMedium/Preset/air
-	PHASEMediumPresetAir PHASEMediumPreset = 0
-)
 
 // PHASENormalizationMode - Options that determine whether the framework adjusts a sound asset’s loudness for the user’s output device.
 //

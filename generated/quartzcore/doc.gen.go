@@ -2,12 +2,12 @@
 
 // Package quartzcore provides Go bindings for the QuartzCore framework.
 //
-// Render, compose, and animate visual elements. [Full Topic]
+// Render, compose, and animate visual elements.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to QuartzCore without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore
+// See: https://developer.apple.com/documentation/QuartzCore
 package quartzcore
 
 import (

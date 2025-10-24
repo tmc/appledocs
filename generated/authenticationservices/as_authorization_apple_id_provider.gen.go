@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _AuthorizationAppleIDProviderClass struct {
 type IAuthorizationAppleIDProvider interface {
 	objectivec.IObject
 	// properties:
-	User() string /* primitive/slice/pointer. */
-	SetUser(value string /* primitive/slice/pointer. */)
+	User() objc.IObject /* cross-framework: NSString */
+	SetUser(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	GetCredentialStateForUserIDCompletion(userID string /* primitive/slice/pointer. */, completion unsafe.Pointer)
+	GetCredentialStateForUserIDCompletion(userID objc.IObject /* cross-framework: NSString */, completion unsafe.Pointer)
 }
 
 // A mechanism for generating requests to authenticate users based on their Apple ID.
@@ -94,8 +95,8 @@ func NewAuthorizationAppleIDProvider() AuthorizationAppleIDProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)
-func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), objc.String(userID), completion)
+func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID objc.IObject /* cross-framework: NSString */, completion unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), userID, completion)
 }
 
 
@@ -103,8 +104,8 @@ func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(use
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) User() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDProvider) User() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (a_ AuthorizationAppleIDProvider) User() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) SetUser(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+func (a_ AuthorizationAppleIDProvider) SetUser(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
 }
 
 

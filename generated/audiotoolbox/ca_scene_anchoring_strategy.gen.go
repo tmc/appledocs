@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SceneAnchoringStrategy] class.
@@ -30,7 +31,6 @@ type _SceneAnchoringStrategyClass struct {
 type ISceneAnchoringStrategy interface {
 	IAnchoringStrategy
 	// properties:
-	SceneIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -89,20 +89,12 @@ func NewSceneAnchoringStrategy() SceneAnchoringStrategy {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/initWithSceneIdentifier:
-func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string /* primitive/slice/pointer. */) SceneAnchoringStrategy {
+func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier objc.IObject /* cross-framework: NSString */) SceneAnchoringStrategy {
 	instance := getSceneAnchoringStrategyClass().Alloc()
-	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), objc.String(sceneIdentifier))
+	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), sceneIdentifier)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/sceneIdentifier
-func (s_ SceneAnchoringStrategy) SceneIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("sceneIdentifier"))
-	return rv
-}
 
 

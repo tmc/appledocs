@@ -31,15 +31,19 @@ type _MTRGroupKeyManagementClusterGroupKeyMapStructClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterGroupKeyMapStruct] class.
 type IMTRGroupKeyManagementClusterGroupKeyMapStruct interface {
 	objectivec.IObject
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	GroupId() foundation.Number
-	SetGroupId(value foundation.INumber)
-	GroupKeySetID() foundation.Number
-	SetGroupKeySetID(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	GroupId() objc.IObject /* cross-framework: NSNumber */
+	SetGroupId(value objc.IObject /* cross-framework: NSNumber */)
+	GroupKeySetID() objc.IObject /* cross-framework: NSNumber */
+	SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterGroupKeyMapStruct
 type MTRGroupKeyManagementClusterGroupKeyMapStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRGroupKeyManagementClusterGroupKeyMapStruct() MTRGroupKeyManagementClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupId"))
 	return rv
 }
 
 
-// SetGroupId sets the value of the groupId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupKeySetID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupKeySetID"))
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupKeySetID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupKeySetID"))
 	return rv
 }
 
 
-// SetGroupKeySetID sets the value of the groupKeySetID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
 

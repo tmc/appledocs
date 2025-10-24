@@ -29,16 +29,18 @@ type _PressGestureRecognizerClass struct {
 // An interface definition for the [PressGestureRecognizer] class.
 type IPressGestureRecognizer interface {
 	IGestureRecognizer
-	MinimumPressDuration() float64
-	SetMinimumPressDuration(value float64)
+	// properties:
 	DelaysPrimaryMouseButtonEvents() bool
 	SetDelaysPrimaryMouseButtonEvents(value bool)
 	AllowableMovement() float64
 	SetAllowableMovement(value float64)
 	ButtonMask() int
 	SetButtonMask(value int)
+	MinimumPressDuration() float64
+	SetMinimumPressDuration(value float64)
 	NumberOfTouchesRequired() int
 	SetNumberOfTouchesRequired(value int)
+	// methods:
 }
 
 // A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it.
@@ -96,25 +98,6 @@ func NewPressGestureRecognizer() PressGestureRecognizer {
 
 
 
-// The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer/minimumPressDuration
-func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("minimumPressDuration"))
-	return rv
-}
-
-
-// The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressGestureRecognizer/minimumPressDuration
-func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumPressDuration:"), value)
-}
-
-
 // A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.
 //
 // [Full Topic]
@@ -169,6 +152,25 @@ func (p_ PressGestureRecognizer) ButtonMask() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask
 func (p_ PressGestureRecognizer) SetButtonMask(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setButtonMask:"), value)
+}
+
+
+// The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/minimumpressduration
+func (p_ PressGestureRecognizer) MinimumPressDuration() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("minimumPressDuration"))
+	return rv
+}
+
+
+// The minimum time (in seconds) that the user must hold the mouse button in the view for a valid gesture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/minimumpressduration
+func (p_ PressGestureRecognizer) SetMinimumPressDuration(value float64) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimumPressDuration:"), value)
 }
 
 

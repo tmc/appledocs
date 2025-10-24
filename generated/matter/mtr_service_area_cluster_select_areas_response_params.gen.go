@@ -31,13 +31,17 @@ type _MTRServiceAreaClusterSelectAreasResponseParamsClass struct {
 // An interface definition for the [MTRServiceAreaClusterSelectAreasResponseParams] class.
 type IMTRServiceAreaClusterSelectAreasResponseParams interface {
 	objectivec.IObject
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	StatusText() string
-	SetStatusText(value string)
+	// properties:
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	StatusText() objc.IObject /* cross-framework: NSString */
+	SetStatusText(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams
 type MTRServiceAreaClusterSelectAreasResponseParams struct {
 	objectivec.Object
@@ -81,11 +85,11 @@ func NewMTRServiceAreaClusterSelectAreasResponseParams() MTRServiceAreaClusterSe
 
 
 
-
 // Initialize an MTRServiceAreaClusterSelectAreasResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/init(responseValue:)
-func NewMTRServiceAreaClusterSelectAreasResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRServiceAreaClusterSelectAreasResponseParams {
+func NewMTRServiceAreaClusterSelectAreasResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRServiceAreaClusterSelectAreasResponseParams {
 	instance := getMTRServiceAreaClusterSelectAreasResponseParamsClass().Alloc()
 	rv := objc.Send[MTRServiceAreaClusterSelectAreasResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -93,34 +97,34 @@ func NewMTRServiceAreaClusterSelectAreasResponseParamsWithResponseValueError(res
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/status
-func (m_ MTRServiceAreaClusterSelectAreasResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRServiceAreaClusterSelectAreasResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/status
-func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/statusText
-func (m_ MTRServiceAreaClusterSelectAreasResponseParams) StatusText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+func (m_ MTRServiceAreaClusterSelectAreasResponseParams) StatusText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
 
-// SetStatusText sets the value of the statusText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasResponseParams/statusText
-func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatusText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+func (m_ MTRServiceAreaClusterSelectAreasResponseParams) SetStatusText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
 
 

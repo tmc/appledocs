@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,13 +33,12 @@ type _ContinuityDeviceClass struct {
 type IContinuityDevice interface {
 	objectivec.IObject
 	// properties:
-	VideoDevices() []CaptureDevice /* primitive/slice/pointer. */
 	AudioSessionInputs() objc.IObject /* cross-framework: AudioSessionPortDescription */
 	SetAudioSessionInputs(value objc.IObject /* cross-framework: AudioSessionPortDescription */)
 	ConnectionID() objc.IObject /* cross-framework: UUID */
 	SetConnectionID(value objc.IObject /* cross-framework: UUID */)
-	IsConnected() bool /* primitive/slice/pointer. */
-	SetIsConnected(value bool /* primitive/slice/pointer. */)
+	IsConnected() bool
+	SetIsConnected(value bool)
 	// methods:
 }
 
@@ -95,22 +95,12 @@ func NewContinuityDevice() ContinuityDevice {
 
 
 
-// An array of the continuity device’s video-capture devices available to your app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/videoDevices
-func (c_ ContinuityDevice) VideoDevices() []CaptureDevice /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("videoDevices"))
-	return rv
-}
-
-
 // An array of the continuity device’s audio session port descriptions that’s available to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs
 func (c_ ContinuityDevice) AudioSessionInputs() objc.IObject /* cross-framework: AudioSessionPortDescription */ {
-	rv := objc.Send[AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
+	rv := objc.Send[avfaudio.AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 
@@ -147,7 +137,7 @@ func (c_ ContinuityDevice) SetConnectionID(value objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/isconnected
-func (c_ ContinuityDevice) IsConnected() bool /* primitive/slice/pointer. */ {
+func (c_ ContinuityDevice) IsConnected() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -157,9 +147,8 @@ func (c_ ContinuityDevice) IsConnected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/isconnected
-func (c_ ContinuityDevice) SetIsConnected(value bool /* primitive/slice/pointer. */) {
+func (c_ ContinuityDevice) SetIsConnected(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConnected:"), value)
 }
-
 
 

@@ -29,17 +29,23 @@ type _DetectFaceRectanglesRequestClass struct {
 // An interface definition for the [DetectFaceRectanglesRequest] class.
 type IDetectFaceRectanglesRequest interface {
 	IImageBasedRequest
-	Results() VNFaceObservation
-	SetResults(value IVNFaceObservation)
+	// properties:
+	Results() objc.IObject /* cross-framework: FaceObservation */
+	SetResults(value objc.IObject /* cross-framework: FaceObservation */)
 	VNDetectFaceRectanglesRequestRevision1() int
 	VNDetectFaceRectanglesRequestRevision2() int
 	VNDetectFaceRectanglesRequestRevision3() int
+	// methods:
 }
 
 // A request that finds faces within an image.
 //
 // This request returns faces as rectangular bounding boxes with origin and size.
+
+
+// A request that finds faces within an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceRectanglesRequest
 type DetectFaceRectanglesRequest struct {
 	ImageBasedRequest
@@ -86,42 +92,49 @@ func NewDetectFaceRectanglesRequest() DetectFaceRectanglesRequest {
 }
 
 
+
 // The results of the face detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
-func (d_ DetectFaceRectanglesRequest) Results() VNFaceObservation {
-	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectFaceRectanglesRequest) Results() objc.IObject /* cross-framework: FaceObservation */ {
+	rv := objc.Send[FaceObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the face detection request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
-func (d_ DetectFaceRectanglesRequest) SetResults(value IVNFaceObservation) {
+func (d_ DetectFaceRectanglesRequest) SetResults(value objc.IObject /* cross-framework: FaceObservation */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the face rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1
 func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the face rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2
 func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision2"))
 	return rv
 }
 
+
 // A constant for specifying revision 3 of the face rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision3
 func (d_ DetectFaceRectanglesRequest) VNDetectFaceRectanglesRequestRevision3() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceRectanglesRequestRevision3"))

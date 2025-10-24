@@ -31,12 +31,12 @@ type _GraphClass struct {
 type IGraph interface {
 	objectivec.IObject
 	// properties:
-	Nodes() []GraphNode /* primitive/slice/pointer. */
+	Nodes() []IGraphNode
 	// methods:
-	AddNodes(nodes []GraphNode /* primitive/slice/pointer. */)
-	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool /* primitive/slice/pointer. */)
-	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */
-	RemoveNodes(nodes []GraphNode /* primitive/slice/pointer. */)
+	AddNodes(nodes []IGraphNode)
+	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool)
+	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []IGraphNode
+	RemoveNodes(nodes []IGraphNode)
 }
 
 // A collection of nodes that describes the navigability of a game world and provides methods to search for routes through that space.
@@ -96,7 +96,7 @@ func NewGraph() Graph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/init(_:)
-func NewGraphWithNodes(nodes []GraphNode /* primitive/slice/pointer. */) Graph {
+func NewGraphWithNodes(nodes []IGraphNode) Graph {
 	instance := getGraphClass().Alloc()
 	rv := objc.Send[Graph](instance.ID, objc.Sel("initWithNodes:"), nodes)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewGraphWithNodes(nodes []GraphNode /* primitive/slice/pointer. */) Graph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/graphWithNodes:
-func (gc _GraphClass) GraphWithNodes(nodes []GraphNode /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GraphClass) GraphWithNodes(nodes []IGraphNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphWithNodes:"), nodes)
 	return rv
 }
@@ -119,7 +119,7 @@ func (gc _GraphClass) GraphWithNodes(nodes []GraphNode /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/add(_:)
-func (g_ Graph) AddNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
+func (g_ Graph) AddNodes(nodes []IGraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addNodes:"), nodes)
 }
 
@@ -128,7 +128,7 @@ func (g_ Graph) AddNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/connectToLowestCostNode(node:bidirectional:)
-func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool /* primitive/slice/pointer. */) {
+func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToLowestCostNode:bidirectional:"), node, bidirectional)
 }
 
@@ -137,7 +137,7 @@ func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/findPath(from:to:)
-func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */ {
+func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []IGraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:toNode:"), startNode, endNode)
 	return rv
 }
@@ -147,7 +147,7 @@ func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/remove(_:)
-func (g_ Graph) RemoveNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
+func (g_ Graph) RemoveNodes(nodes []IGraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeNodes:"), nodes)
 }
 
@@ -156,7 +156,7 @@ func (g_ Graph) RemoveNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/nodes
-func (g_ Graph) Nodes() []GraphNode /* primitive/slice/pointer. */ {
+func (g_ Graph) Nodes() []IGraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("nodes"))
 	return rv
 }

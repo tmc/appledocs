@@ -30,12 +30,18 @@ type _StoreReviewControllerClass struct {
 // An interface definition for the [StoreReviewController] class.
 type IStoreReviewController interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that controls the process of requesting App Store ratings and reviews from customers.
 //
 // Use the method to indicate when it makes sense within the logic of your app to ask the customer for ratings and reviews.
+
+
+// An object that controls the process of requesting App Store ratings and reviews from customers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController
 type StoreReviewController struct {
 	objectivec.Object
@@ -80,19 +86,22 @@ func NewStoreReviewController() StoreReviewController {
 }
 
 
+
 // Tells StoreKit to ask the customer to rate or review your app, if appropriate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController/requestReview()
 func (sc _StoreReviewControllerClass) RequestReview() {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestReview"))
 }
 
+
 // Tells StoreKit to ask the customer to rate or review the app, if appropriate, using the specified scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController/requestReview(in:)
-func (sc _StoreReviewControllerClass) RequestReviewInScene(windowScene unsafe.Pointer) {
+func (sc _StoreReviewControllerClass) RequestReviewInScene(windowScene WindowScene /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestReviewInScene:"), windowScene)
 }
-
 
 

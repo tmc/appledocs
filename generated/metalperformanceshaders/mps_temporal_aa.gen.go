@@ -30,12 +30,16 @@ type _TemporalAAClass struct {
 // An interface definition for the [TemporalAA] class.
 type ITemporalAA interface {
 	IKernel
-	EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject)
+	// properties:
 	BlendFactor() float32
 	SetBlendFactor(value float32)
+	// methods:
+	EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporalAA
 type TemporalAA struct {
 	Kernel
@@ -80,13 +84,15 @@ func NewTemporalAA() TemporalAA {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporalAA/encode(to:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:)
 func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:"), commandBuffer, sourceTexture, previousTexture, destinationTexture, motionVectorTexture, depthTexture)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
 func (t_ TemporalAA) BlendFactor() float32 {
 	rv := objc.Send[float32](t_.ID, objc.Sel("blendFactor"))
@@ -94,8 +100,7 @@ func (t_ TemporalAA) BlendFactor() float32 {
 }
 
 
-// SetBlendFactor sets the value of the blendFactor property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa/blendfactor
 func (t_ TemporalAA) SetBlendFactor(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBlendFactor:"), value)

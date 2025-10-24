@@ -9,9 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in SafariServices
 	EventAttribution = _undefined // referenced in SafariServices
-	SFAuthenticationCompletionHandler = _undefined // referenced in SafariServices
 )
 
 

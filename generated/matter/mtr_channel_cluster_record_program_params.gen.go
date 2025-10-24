@@ -31,19 +31,23 @@ type _MTRChannelClusterRecordProgramParamsClass struct {
 // An interface definition for the [MTRChannelClusterRecordProgramParams] class.
 type IMTRChannelClusterRecordProgramParams interface {
 	objectivec.IObject
-	Data() foundation.NSData
-	SetData(value foundation.IData)
-	ProgramIdentifier() string
-	SetProgramIdentifier(value string)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	ShouldRecordSeries() foundation.Number
-	SetShouldRecordSeries(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: NSData */
+	SetData(value objc.IObject /* cross-framework: NSData */)
+	ProgramIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProgramIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	ShouldRecordSeries() objc.IObject /* cross-framework: NSNumber */
+	SetShouldRecordSeries(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams
 type MTRChannelClusterRecordProgramParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTRChannelClusterRecordProgramParams() MTRChannelClusterRecordProgramPar
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/data
-func (m_ MTRChannelClusterRecordProgramParams) Data() foundation.NSData {
+func (m_ MTRChannelClusterRecordProgramParams) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/data
-func (m_ MTRChannelClusterRecordProgramParams) SetData(value foundation.IData) {
+func (m_ MTRChannelClusterRecordProgramParams) SetData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
 
-// SetProgramIdentifier sets the value of the programIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
+func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
 }
+
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("shouldRecordSeries"))
+func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("shouldRecordSeries"))
 	return rv
 }
 
 
-// SetShouldRecordSeries sets the value of the shouldRecordSeries property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value foundation.INumber) {
+func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -31,15 +31,19 @@ type _MTRThermostatClusterAtomicResponseParamsClass struct {
 // An interface definition for the [MTRThermostatClusterAtomicResponseParams] class.
 type IMTRThermostatClusterAtomicResponseParams interface {
 	objectivec.IObject
-	AttributeStatus() objc.ID
-	SetAttributeStatus(value objc.ID)
-	StatusCode() foundation.Number
-	SetStatusCode(value foundation.INumber)
-	Timeout() foundation.Number
-	SetTimeout(value foundation.INumber)
+	// properties:
+	AttributeStatus() objc.IObject /* cross-framework: NSArray */
+	SetAttributeStatus(value objc.IObject /* cross-framework: NSArray */)
+	StatusCode() objc.IObject /* cross-framework: NSNumber */
+	SetStatusCode(value objc.IObject /* cross-framework: NSNumber */)
+	Timeout() objc.IObject /* cross-framework: NSNumber */
+	SetTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams
 type MTRThermostatClusterAtomicResponseParams struct {
 	objectivec.Object
@@ -83,11 +87,11 @@ func NewMTRThermostatClusterAtomicResponseParams() MTRThermostatClusterAtomicRes
 
 
 
-
 // Initialize an MTRThermostatClusterAtomicResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/init(responseValue:)
-func NewMTRThermostatClusterAtomicResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRThermostatClusterAtomicResponseParams {
+func NewMTRThermostatClusterAtomicResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRThermostatClusterAtomicResponseParams {
 	instance := getMTRThermostatClusterAtomicResponseParamsClass().Alloc()
 	rv := objc.Send[MTRThermostatClusterAtomicResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -95,48 +99,48 @@ func NewMTRThermostatClusterAtomicResponseParamsWithResponseValueError(responseV
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/attributeStatus
-func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("attributeStatus"))
+func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("attributeStatus"))
 	return rv
 }
 
 
-// SetAttributeStatus sets the value of the attributeStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/attributeStatus
-func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value objc.ID) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
-func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
+func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
 
-// SetStatusCode sets the value of the statusCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
-func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
-func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeout"))
+func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timeout"))
 	return rv
 }
 
 
-// SetTimeout sets the value of the timeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
-func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

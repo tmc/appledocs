@@ -33,19 +33,19 @@ type ICKShare interface {
 	// properties:
 	CurrentUserParticipant() objc.IObject /* cross-framework: CKShareParticipant */
 	Owner() objc.IObject /* cross-framework: CKShareParticipant */
-	RecordName() string /* primitive/slice/pointer. */
-	SetRecordName(value string /* primitive/slice/pointer. */)
+	RecordName() objc.IObject /* cross-framework: NSString */
+	SetRecordName(value objc.IObject /* cross-framework: NSString */)
 	Parent() ICKReference
 	SetParent(value ICKReference)
 	RecordID() objc.IObject /* cross-framework: CKRecordID */
 	SetRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	Share() ICKReference
 	SetShare(value ICKReference)
-	CKRecordNameZoneWideShare() string /* primitive/slice/pointer. */
+	CKRecordNameZoneWideShare() objc.IObject /* cross-framework: NSString */
 	UserIdentity() ICKUserIdentity
 	SetUserIdentity(value ICKUserIdentity)
-	AllowsAccessRequests() bool /* primitive/slice/pointer. */
-	SetAllowsAccessRequests(value bool /* primitive/slice/pointer. */)
+	AllowsAccessRequests() bool
+	SetAllowsAccessRequests(value bool)
 	BlockedIdentities() ICKShareBlockedIdentity
 	SetBlockedIdentities(value ICKShareBlockedIdentity)
 	Participants() objc.IObject /* cross-framework: CKShareParticipant */
@@ -54,10 +54,10 @@ type ICKShare interface {
 	SetPublicPermission(value unsafe.Pointer)
 	Requesters() ICKShareAccessRequester
 	SetRequesters(value ICKShareAccessRequester)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
-	HasiCloudAccount() bool /* primitive/slice/pointer. */
-	SetHasiCloudAccount(value bool /* primitive/slice/pointer. */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	HasiCloudAccount() bool
+	SetHasiCloudAccount(value bool)
 	// methods:
 }
 
@@ -140,8 +140,8 @@ func (c_ CKShare) Owner() objc.IObject /* cross-framework: CKShareParticipant */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/id/recordname
-func (c_ CKShare) RecordName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordName"))
+func (c_ CKShare) RecordName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("recordName"))
 	return rv
 }
 
@@ -150,8 +150,8 @@ func (c_ CKShare) RecordName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/id/recordname
-func (c_ CKShare) SetRecordName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordName:"), objc.String(value))
+func (c_ CKShare) SetRecordName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordName:"), value)
 }
 
 
@@ -216,8 +216,8 @@ func (c_ CKShare) SetShare(value ICKReference) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare
-func (c_ CKShare) CKRecordNameZoneWideShare() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
+func (c_ CKShare) CKRecordNameZoneWideShare() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CKRecordNameZoneWideShare"))
 	return rv
 }
 
@@ -245,7 +245,7 @@ func (c_ CKShare) SetUserIdentity(value ICKUserIdentity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/allowsaccessrequests
-func (c_ CKShare) AllowsAccessRequests() bool /* primitive/slice/pointer. */ {
+func (c_ CKShare) AllowsAccessRequests() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsAccessRequests"))
 	return rv
 }
@@ -255,7 +255,7 @@ func (c_ CKShare) AllowsAccessRequests() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/allowsaccessrequests
-func (c_ CKShare) SetAllowsAccessRequests(value bool /* primitive/slice/pointer. */) {
+func (c_ CKShare) SetAllowsAccessRequests(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsAccessRequests:"), value)
 }
 
@@ -340,7 +340,7 @@ func (c_ CKShare) SetRequesters(value ICKShareAccessRequester) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKShare) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (c_ CKShare) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
 }
@@ -350,7 +350,7 @@ func (c_ CKShare) Url() foundation.objc.IObject /* cross-framework: URL */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKShare) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (c_ CKShare) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -359,7 +359,7 @@ func (c_ CKShare) SetUrl(value foundation.objc.IObject /* cross-framework: URL *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKShare) HasiCloudAccount() bool /* primitive/slice/pointer. */ {
+func (c_ CKShare) HasiCloudAccount() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
 }
@@ -369,7 +369,7 @@ func (c_ CKShare) HasiCloudAccount() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKShare) SetHasiCloudAccount(value bool /* primitive/slice/pointer. */) {
+func (c_ CKShare) SetHasiCloudAccount(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
 }
 

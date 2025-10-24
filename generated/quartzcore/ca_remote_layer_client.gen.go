@@ -30,16 +30,22 @@ type _RemoteLayerClientClass struct {
 // An interface definition for the [RemoteLayerClient] class.
 type IRemoteLayerClient interface {
 	objectivec.IObject
-	Invalidate()
-	ClientId() uint32
-	Layer() CALayer
+	// properties:
+	ClientId() unsafe.Pointer
+	SetClientId(value unsafe.Pointer)
+	Layer() ILayer
 	SetLayer(value ILayer)
+	// methods:
 }
 
 // A legacy class for cross-process rendering.
 //
 // is a legacy class for cross-process rendering. and , available with , offer an improved way to perform cross-process rendering.
+
+
+// A legacy class for cross-process rendering.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient
 type RemoteLayerClient struct {
 	objectivec.Object
@@ -85,9 +91,9 @@ func NewRemoteLayerClient() RemoteLayerClient {
 
 
 
-
 // Creates a layer client from a server port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/init(serverPort:)
 func NewRemoteLayerClientWithServerPort(port unsafe.Pointer) RemoteLayerClient {
 	instance := getRemoteLayerClientClass().Alloc()
@@ -97,35 +103,40 @@ func NewRemoteLayerClientWithServerPort(port unsafe.Pointer) RemoteLayerClient {
 }
 
 
-// Invalidates a remote layer client.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/invalidate()
-func (r_ RemoteLayerClient) Invalidate() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("invalidate"))
-}
 
 // The ID of the remote layer client.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/clientId
-func (r_ RemoteLayerClient) ClientId() uint32 {
-	rv := objc.Send[uint32](r_.ID, objc.Sel("clientId"))
-	return rv
-}
-
-// The layer associated with the remote client.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/layer
-func (r_ RemoteLayerClient) Layer() CALayer {
-	rv := objc.Send[CALayer](r_.ID, objc.Sel("layer"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caremotelayerclient/clientid
+func (r_ RemoteLayerClient) ClientId() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("clientId"))
 	return rv
 }
 
 
-// SetLayer sets the value of the layer property.
-// The layer associated with the remote client.
-
+// The ID of the remote layer client.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/layer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caremotelayerclient/clientid
+func (r_ RemoteLayerClient) SetClientId(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setClientId:"), value)
+}
+
+
+// The layer associated with the remote client.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caremotelayerclient/layer
+func (r_ RemoteLayerClient) Layer() ILayer {
+	rv := objc.Send[Layer](r_.ID, objc.Sel("layer"))
+	return rv
+}
+
+
+// The layer associated with the remote client.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caremotelayerclient/layer
 func (r_ RemoteLayerClient) SetLayer(value ILayer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }

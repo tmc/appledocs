@@ -9,9 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in QuickLookUI
 	Data = _undefined // referenced in QuickLookUI
-	Error = _undefined // referenced in QuickLookUI
 	PreviewItem = _undefined // referenced in QuickLookUI
 	PreviewPanelDataSource = _undefined // referenced in QuickLookUI
 	StringEncoding = _undefined // referenced in QuickLookUI

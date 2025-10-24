@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type IINPersonHandle interface {
 	SetLabel(value unsafe.Pointer)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
-	Value() string /* primitive/slice/pointer. */
-	SetValue(value string /* primitive/slice/pointer. */)
+	Value() objc.IObject /* cross-framework: NSString */
+	SetValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -135,8 +136,8 @@ func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) Value() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("value"))
+func (i_ INPersonHandle) Value() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (i_ INPersonHandle) Value() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) SetValue(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
+func (i_ INPersonHandle) SetValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
 }
 
 

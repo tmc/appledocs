@@ -29,21 +29,24 @@ type _NINearbyPeerConfigurationClass struct {
 // An interface definition for the [NINearbyPeerConfiguration] class.
 type ININearbyPeerConfiguration interface {
 	INIConfiguration
-	CameraAssistanceEnabled() bool
-	SetCameraAssistanceEnabled(value bool)
-	ExtendedDistanceMeasurementEnabled() bool
-	SetExtendedDistanceMeasurementEnabled(value bool)
-	PeerDiscoveryToken() NIDiscoveryToken
+	// properties:
 	IsCameraAssistanceEnabled() bool
 	SetIsCameraAssistanceEnabled(value bool)
 	IsExtendedDistanceMeasurementEnabled() bool
 	SetIsExtendedDistanceMeasurementEnabled(value bool)
+	PeerDiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */
+	SetPeerDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */)
+	// methods:
 }
 
 // A configuration that enables interaction between iPhone or Apple Watch devices.
 //
 // A peer interaction session enables two Apple devices to share their respective distance and direction through the device’s Ultra Wideband (UWB) chip. To start a peer interaction session, create a instance and pass it to an instance with the function. For an example app that demonstrates this configuration, see .
+
+
+// A configuration that enables interaction between iPhone or Apple Watch devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration
 type NINearbyPeerConfiguration struct {
 	NIConfiguration
@@ -90,52 +93,23 @@ func NewNINearbyPeerConfiguration() NINearbyPeerConfiguration {
 }
 
 
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
+
+// Creates a configuration for interaction between devices, including iPhone and Apple Watch.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyPeerConfiguration) CameraAssistanceEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("cameraAssistanceEnabled"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/init(peerToken:)
+func NewNINearbyPeerConfigurationWithPeerToken(peerToken objc.IObject /* cross-framework: NIDiscoveryToken */) NINearbyPeerConfiguration {
+	instance := getNINearbyPeerConfigurationClass().Alloc()
+	rv := objc.Send[NINearbyPeerConfiguration](instance.ID, objc.Sel("initWithPeerToken:"), peerToken)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetCameraAssistanceEnabled sets the value of the cameraAssistanceEnabled property.
-// A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled
-func (n_ NINearbyPeerConfiguration) SetCameraAssistanceEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCameraAssistanceEnabled:"), value)
-}
-
-// A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled
-func (n_ NINearbyPeerConfiguration) ExtendedDistanceMeasurementEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("extendedDistanceMeasurementEnabled"))
-	return rv
-}
-
-
-// SetExtendedDistanceMeasurementEnabled sets the value of the extendedDistanceMeasurementEnabled property.
-// A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled
-func (n_ NINearbyPeerConfiguration) SetExtendedDistanceMeasurementEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setExtendedDistanceMeasurementEnabled:"), value)
-}
-
-// A value that uniquely identifies the other peer in the interaction session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken
-func (n_ NINearbyPeerConfiguration) PeerDiscoveryToken() NIDiscoveryToken {
-	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("peerDiscoveryToken"))
-	return rv
-}
 
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
 func (n_ NINearbyPeerConfiguration) IsCameraAssistanceEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isCameraAssistanceEnabled"))
@@ -143,17 +117,18 @@ func (n_ NINearbyPeerConfiguration) IsCameraAssistanceEnabled() bool {
 }
 
 
-// SetIsCameraAssistanceEnabled sets the value of the isCameraAssistanceEnabled property.
 // A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled
 func (n_ NINearbyPeerConfiguration) SetIsCameraAssistanceEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsCameraAssistanceEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/isextendeddistancemeasurementenabled
 func (n_ NINearbyPeerConfiguration) IsExtendedDistanceMeasurementEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isExtendedDistanceMeasurementEnabled"))
@@ -161,14 +136,31 @@ func (n_ NINearbyPeerConfiguration) IsExtendedDistanceMeasurementEnabled() bool 
 }
 
 
-// SetIsExtendedDistanceMeasurementEnabled sets the value of the isExtendedDistanceMeasurementEnabled property.
 // A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/isextendeddistancemeasurementenabled
 func (n_ NINearbyPeerConfiguration) SetIsExtendedDistanceMeasurementEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsExtendedDistanceMeasurementEnabled:"), value)
 }
 
+
+// A value that uniquely identifies the other peer in the interaction session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/peerdiscoverytoken
+func (n_ NINearbyPeerConfiguration) PeerDiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */ {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("peerDiscoveryToken"))
+	return rv
+}
+
+
+// A value that uniquely identifies the other peer in the interaction session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/peerdiscoverytoken
+func (n_ NINearbyPeerConfiguration) SetPeerDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPeerDiscoveryToken:"), value)
+}
 
 

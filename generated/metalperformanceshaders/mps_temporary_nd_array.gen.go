@@ -29,11 +29,15 @@ type _TemporaryNDArrayClass struct {
 // An interface definition for the [TemporaryNDArray] class.
 type ITemporaryNDArray interface {
 	INDArray
+	// properties:
 	ReadCount() uint
 	SetReadCount(value uint)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporaryNDArray
 type TemporaryNDArray struct {
 	NDArray
@@ -78,7 +82,8 @@ func NewTemporaryNDArray() TemporaryNDArray {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporaryNDArray/readCount
 func (t_ TemporaryNDArray) ReadCount() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("readCount"))
@@ -86,8 +91,7 @@ func (t_ TemporaryNDArray) ReadCount() uint {
 }
 
 
-// SetReadCount sets the value of the readCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporaryNDArray/readCount
 func (t_ TemporaryNDArray) SetReadCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReadCount:"), value)

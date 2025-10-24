@@ -34,8 +34,8 @@ type ICKOperation interface {
 	SetGroup(value ICKOperationGroup)
 	Configuration() ICKOperationConfiguration
 	SetConfiguration(value ICKOperationConfiguration)
-	IsLongLived() bool /* primitive/slice/pointer. */
-	SetIsLongLived(value bool /* primitive/slice/pointer. */)
+	IsLongLived() bool
+	SetIsLongLived(value bool)
 	LongLivedOperationWasPersistedBlock() unsafe.Pointer
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
 	OperationID() unsafe.Pointer
@@ -142,7 +142,7 @@ func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) IsLongLived() bool /* primitive/slice/pointer. */ {
+func (c_ CKOperation) IsLongLived() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (c_ CKOperation) IsLongLived() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) SetIsLongLived(value bool /* primitive/slice/pointer. */) {
+func (c_ CKOperation) SetIsLongLived(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
 }
 

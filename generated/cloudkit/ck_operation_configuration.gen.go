@@ -33,16 +33,16 @@ type ICKOperationConfiguration interface {
 	// properties:
 	QualityOfService() QualityOfService /* not a class type */
 	SetQualityOfService(value QualityOfService /* not a class type */)
-	AllowsCellularAccess() bool /* primitive/slice/pointer. */
-	SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
 	Container() ICKContainer
 	SetContainer(value ICKContainer)
-	IsLongLived() bool /* primitive/slice/pointer. */
-	SetIsLongLived(value bool /* primitive/slice/pointer. */)
-	TimeoutIntervalForRequest() unsafe.Pointer
-	SetTimeoutIntervalForRequest(value unsafe.Pointer)
-	TimeoutIntervalForResource() unsafe.Pointer
-	SetTimeoutIntervalForResource(value unsafe.Pointer)
+	IsLongLived() bool
+	SetIsLongLived(value bool)
+	TimeoutIntervalForRequest() float64
+	SetTimeoutIntervalForRequest(value float64)
+	TimeoutIntervalForResource() float64
+	SetTimeoutIntervalForResource(value float64)
 	Configuration() ICKOperationConfiguration
 	SetConfiguration(value ICKOperationConfiguration)
 	Group() ICKOperationGroup
@@ -130,7 +130,7 @@ func (c_ CKOperationConfiguration) SetQualityOfService(value QualityOfService /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
-func (c_ CKOperationConfiguration) AllowsCellularAccess() bool /* primitive/slice/pointer. */ {
+func (c_ CKOperationConfiguration) AllowsCellularAccess() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (c_ CKOperationConfiguration) AllowsCellularAccess() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
-func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */) {
+func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
@@ -168,7 +168,7 @@ func (c_ CKOperationConfiguration) SetContainer(value ICKContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/islonglived
-func (c_ CKOperationConfiguration) IsLongLived() bool /* primitive/slice/pointer. */ {
+func (c_ CKOperationConfiguration) IsLongLived() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (c_ CKOperationConfiguration) IsLongLived() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/islonglived
-func (c_ CKOperationConfiguration) SetIsLongLived(value bool /* primitive/slice/pointer. */) {
+func (c_ CKOperationConfiguration) SetIsLongLived(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
 }
 
@@ -187,8 +187,8 @@ func (c_ CKOperationConfiguration) SetIsLongLived(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforrequest
-func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeoutIntervalForRequest"))
+func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("timeoutIntervalForRequest"))
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforrequest
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -206,8 +206,8 @@ func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforresource
-func (c_ CKOperationConfiguration) TimeoutIntervalForResource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeoutIntervalForResource"))
+func (c_ CKOperationConfiguration) TimeoutIntervalForResource() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("timeoutIntervalForResource"))
 	return rv
 }
 
@@ -216,7 +216,7 @@ func (c_ CKOperationConfiguration) TimeoutIntervalForResource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforresource
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 

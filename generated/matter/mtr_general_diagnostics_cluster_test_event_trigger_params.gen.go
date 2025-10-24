@@ -31,17 +31,21 @@ type _MTRGeneralDiagnosticsClusterTestEventTriggerParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterTestEventTriggerParams] class.
 type IMTRGeneralDiagnosticsClusterTestEventTriggerParams interface {
 	objectivec.IObject
-	EnableKey() foundation.Data
-	SetEnableKey(value foundation.IData)
-	EventTrigger() foundation.Number
-	SetEventTrigger(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	EnableKey() objc.IObject /* cross-framework: Data */
+	SetEnableKey(value objc.IObject /* cross-framework: Data */)
+	EventTrigger() objc.IObject /* cross-framework: NSNumber */
+	SetEventTrigger(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTestEventTriggerParams
 type MTRGeneralDiagnosticsClusterTestEventTriggerParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRGeneralDiagnosticsClusterTestEventTriggerParams() MTRGeneralDiagnosti
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/enablekey
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EnableKey() foundation.Data {
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EnableKey() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("enableKey"))
 	return rv
 }
 
 
-// SetEnableKey sets the value of the enableKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/enablekey
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEnableKey(value foundation.IData) {
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEnableKey(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EventTrigger() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("eventTrigger"))
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EventTrigger() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("eventTrigger"))
 	return rv
 }
 
 
-// SetEventTrigger sets the value of the eventTrigger property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEventTrigger(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEventTrigger(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTrigger:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
-func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

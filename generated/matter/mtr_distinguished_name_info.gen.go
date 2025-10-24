@@ -31,19 +31,23 @@ type _MTRDistinguishedNameInfoClass struct {
 // An interface definition for the [MTRDistinguishedNameInfo] class.
 type IMTRDistinguishedNameInfo interface {
 	objectivec.IObject
-	CaseAuthenticatedTags() foundation.Number
-	SetCaseAuthenticatedTags(value foundation.INumber)
-	FabricID() foundation.Number
-	SetFabricID(value foundation.INumber)
-	IntermediateCACertificateID() foundation.Number
-	SetIntermediateCACertificateID(value foundation.INumber)
-	NodeID() foundation.Number
-	SetNodeID(value foundation.INumber)
-	RootCACertificateID() foundation.Number
-	SetRootCACertificateID(value foundation.INumber)
+	// properties:
+	CaseAuthenticatedTags() objc.IObject /* cross-framework: NSNumber */
+	SetCaseAuthenticatedTags(value objc.IObject /* cross-framework: NSNumber */)
+	FabricID() objc.IObject /* cross-framework: NSNumber */
+	SetFabricID(value objc.IObject /* cross-framework: NSNumber */)
+	IntermediateCACertificateID() objc.IObject /* cross-framework: NSNumber */
+	SetIntermediateCACertificateID(value objc.IObject /* cross-framework: NSNumber */)
+	NodeID() objc.IObject /* cross-framework: NSNumber */
+	SetNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	RootCACertificateID() objc.IObject /* cross-framework: NSNumber */
+	SetRootCACertificateID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDistinguishedNameInfo
 type MTRDistinguishedNameInfo struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRDistinguishedNameInfo() MTRDistinguishedNameInfo {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/caseauthenticatedtags
-func (m_ MTRDistinguishedNameInfo) CaseAuthenticatedTags() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("caseAuthenticatedTags"))
+func (m_ MTRDistinguishedNameInfo) CaseAuthenticatedTags() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("caseAuthenticatedTags"))
 	return rv
 }
 
 
-// SetCaseAuthenticatedTags sets the value of the caseAuthenticatedTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/caseauthenticatedtags
-func (m_ MTRDistinguishedNameInfo) SetCaseAuthenticatedTags(value foundation.INumber) {
+func (m_ MTRDistinguishedNameInfo) SetCaseAuthenticatedTags(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAuthenticatedTags:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/fabricid
-func (m_ MTRDistinguishedNameInfo) FabricID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricID"))
+func (m_ MTRDistinguishedNameInfo) FabricID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricID"))
 	return rv
 }
 
 
-// SetFabricID sets the value of the fabricID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/fabricid
-func (m_ MTRDistinguishedNameInfo) SetFabricID(value foundation.INumber) {
+func (m_ MTRDistinguishedNameInfo) SetFabricID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/intermediatecacertificateid
-func (m_ MTRDistinguishedNameInfo) IntermediateCACertificateID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("intermediateCACertificateID"))
+func (m_ MTRDistinguishedNameInfo) IntermediateCACertificateID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("intermediateCACertificateID"))
 	return rv
 }
 
 
-// SetIntermediateCACertificateID sets the value of the intermediateCACertificateID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/intermediatecacertificateid
-func (m_ MTRDistinguishedNameInfo) SetIntermediateCACertificateID(value foundation.INumber) {
+func (m_ MTRDistinguishedNameInfo) SetIntermediateCACertificateID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCACertificateID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/nodeid
-func (m_ MTRDistinguishedNameInfo) NodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
+func (m_ MTRDistinguishedNameInfo) NodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
 
-// SetNodeID sets the value of the nodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/nodeid
-func (m_ MTRDistinguishedNameInfo) SetNodeID(value foundation.INumber) {
+func (m_ MTRDistinguishedNameInfo) SetNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/rootcacertificateid
-func (m_ MTRDistinguishedNameInfo) RootCACertificateID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("rootCACertificateID"))
+func (m_ MTRDistinguishedNameInfo) RootCACertificateID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rootCACertificateID"))
 	return rv
 }
 
 
-// SetRootCACertificateID sets the value of the rootCACertificateID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdistinguishednameinfo/rootcacertificateid
-func (m_ MTRDistinguishedNameInfo) SetRootCACertificateID(value foundation.INumber) {
+func (m_ MTRDistinguishedNameInfo) SetRootCACertificateID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCACertificateID:"), value)
 }
 

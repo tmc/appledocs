@@ -31,19 +31,23 @@ type _MTRGroupsClusterAddGroupIfIdentifyingParamsClass struct {
 // An interface definition for the [MTRGroupsClusterAddGroupIfIdentifyingParams] class.
 type IMTRGroupsClusterAddGroupIfIdentifyingParams interface {
 	objectivec.IObject
-	GroupID() foundation.Number
-	SetGroupID(value foundation.INumber)
-	GroupId() foundation.Number
-	SetGroupId(value foundation.INumber)
-	GroupName() string
-	SetGroupName(value string)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	GroupID() objc.IObject /* cross-framework: NSNumber */
+	SetGroupID(value objc.IObject /* cross-framework: NSNumber */)
+	GroupId() objc.IObject /* cross-framework: NSNumber */
+	SetGroupId(value objc.IObject /* cross-framework: NSNumber */)
+	GroupName() objc.IObject /* cross-framework: NSString */
+	SetGroupName(value objc.IObject /* cross-framework: NSString */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterAddGroupIfIdentifyingParams
 type MTRGroupsClusterAddGroupIfIdentifyingParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRGroupsClusterAddGroupIfIdentifyingParams() MTRGroupsClusterAddGroupIf
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupid-1fuio
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupID"))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupID"))
 	return rv
 }
 
 
-// SetGroupID sets the value of the groupID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupid-1fuio
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupID(value foundation.INumber) {
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupid-1fujk
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("groupId"))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("groupId"))
 	return rv
 }
 
 
-// SetGroupId sets the value of the groupId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupid-1fujk
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupId(value foundation.INumber) {
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupname
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) GroupName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("groupName"))
 	return rv
 }
 
 
-// SetGroupName sets the value of the groupName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/groupname
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetGroupName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupifidentifyingparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupsClusterAddGroupIfIdentifyingParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

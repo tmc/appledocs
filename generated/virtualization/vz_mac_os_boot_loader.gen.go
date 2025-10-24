@@ -29,8 +29,10 @@ type _VZMacOSBootLoaderClass struct {
 // An interface definition for the [VZMacOSBootLoader] class.
 type IVZMacOSBootLoader interface {
 	IVZBootLoader
+	// properties:
 	Platform() IVZPlatformConfiguration
 	SetPlatform(value IVZPlatformConfiguration)
+	// methods:
 }
 
 // An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
@@ -88,6 +90,7 @@ func NewVZMacOSBootLoader() VZMacOSBootLoader {
 
 
 
+
 // The hardware platform to use.
 //
 // [Full Topic]
@@ -105,6 +108,5 @@ func (v_ VZMacOSBootLoader) Platform() IVZPlatformConfiguration {
 func (v_ VZMacOSBootLoader) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
-
 
 

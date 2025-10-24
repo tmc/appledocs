@@ -5,11 +5,14 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
 
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
+// C struct types
+// MTAudioProcessingTapCallbacks - A structure that defines life cycle callbacks for an audio processing tap object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapCallbacks
+type MTAudioProcessingTapCallbacks struct {
+}
 
 
 

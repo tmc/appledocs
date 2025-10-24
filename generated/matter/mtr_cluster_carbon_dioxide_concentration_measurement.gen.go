@@ -29,9 +29,13 @@ type _MTRClusterCarbonDioxideConcentrationMeasurementClass struct {
 // An interface definition for the [MTRClusterCarbonDioxideConcentrationMeasurement] class.
 type IMTRClusterCarbonDioxideConcentrationMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterCarbonDioxideConcentrationMeasurement
 type MTRClusterCarbonDioxideConcentrationMeasurement struct {
 	MTRGenericCluster

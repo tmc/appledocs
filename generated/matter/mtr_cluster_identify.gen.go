@@ -29,9 +29,13 @@ type _MTRClusterIdentifyClass struct {
 // An interface definition for the [MTRClusterIdentify] class.
 type IMTRClusterIdentify interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterIdentify
 type MTRClusterIdentify struct {
 	MTRGenericCluster

@@ -31,10 +31,10 @@ type _URLDownloadClass struct {
 type IURLDownload interface {
 	objectivec.IObject
 	// properties:
-	DeletesFileUponFailure() bool /* primitive/slice/pointer. */
-	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */)
-	Request() unsafe.Pointer
-	SetRequest(value unsafe.Pointer)
+	DeletesFileUponFailure() bool
+	SetDeletesFileUponFailure(value bool)
+	Request() objc.IObject /* cross-framework: URLRequest */
+	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
 	ResumeData() IData
 	SetResumeData(value IData)
 	// methods:
@@ -97,7 +97,7 @@ func NewURLDownload() URLDownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/deletesfileuponfailure
-func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer. */ {
+func (u_ URLDownload) DeletesFileUponFailure() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("deletesFileUponFailure"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/deletesfileuponfailure
-func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */) {
+func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
 
@@ -116,8 +116,8 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
+func (u_ URLDownload) Request() objc.IObject /* cross-framework: URLRequest */ {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (u_ URLDownload) Request() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurldownload/request
-func (u_ URLDownload) SetRequest(value unsafe.Pointer) {
+func (u_ URLDownload) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 

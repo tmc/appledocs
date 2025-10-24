@@ -31,17 +31,21 @@ type _MTRICDManagementClusterMonitoringRegistrationStructClass struct {
 // An interface definition for the [MTRICDManagementClusterMonitoringRegistrationStruct] class.
 type IMTRICDManagementClusterMonitoringRegistrationStruct interface {
 	objectivec.IObject
-	CheckInNodeID() foundation.Number
-	SetCheckInNodeID(value foundation.INumber)
-	ClientType() foundation.Number
-	SetClientType(value foundation.INumber)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	MonitoredSubject() foundation.Number
-	SetMonitoredSubject(value foundation.INumber)
+	// properties:
+	CheckInNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	ClientType() objc.IObject /* cross-framework: NSNumber */
+	SetClientType(value objc.IObject /* cross-framework: NSNumber */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	MonitoredSubject() objc.IObject /* cross-framework: NSNumber */
+	SetMonitoredSubject(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct
 type MTRICDManagementClusterMonitoringRegistrationStruct struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRICDManagementClusterMonitoringRegistrationStruct() MTRICDManagementCl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/checkInNodeID
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) CheckInNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("checkInNodeID"))
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) CheckInNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("checkInNodeID"))
 	return rv
 }
 
 
-// SetCheckInNodeID sets the value of the checkInNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/checkInNodeID
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetCheckInNodeID(value foundation.INumber) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/clientType
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) ClientType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("clientType"))
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) ClientType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("clientType"))
 	return rv
 }
 
 
-// SetClientType sets the value of the clientType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/clientType
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetClientType(value foundation.INumber) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetClientType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/fabricIndex
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/fabricIndex
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/monitoredSubject
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) MonitoredSubject() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("monitoredSubject"))
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) MonitoredSubject() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("monitoredSubject"))
 	return rv
 }
 
 
-// SetMonitoredSubject sets the value of the monitoredSubject property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/monitoredSubject
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetMonitoredSubject(value foundation.INumber) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetMonitoredSubject(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMonitoredSubject:"), value)
 }
 

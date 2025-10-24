@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,17 +30,18 @@ type _OSLogStoreClass struct {
 // An interface definition for the [OSLogStore] class.
 type IOSLogStore interface {
 	objectivec.IObject
-	EntriesEnumeratorAndReturnError(error_ unsafe.Pointer) OSLogEnumerator
-	EntriesEnumeratorWithOptionsPositionPredicateError(options OSLogEnumeratorOptions, position OSLogPosition, predicate foundation.IPredicate, error_ unsafe.Pointer) OSLogEnumerator
-	PositionWithDate(date foundation.IDate) OSLogPosition
-	PositionWithTimeIntervalSinceEnd(seconds foundation.ITimeInterval) OSLogPosition
-	PositionWithTimeIntervalSinceLatestBoot(seconds foundation.ITimeInterval) OSLogPosition
+	// properties:
+	// methods:
 }
 
 // A set of entries from the unified logging system.
 //
 // Instances of this class represent a fixed range of entries and may be backed by a or your Mac’s local store. In Swift, Use the function to retrieve a filtered array of log entries. In Objective-C, use instances of this class to create objects. One store can support multiple instances concurrently.
+
+
+// A set of entries from the unified logging system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore
 type OSLogStore struct {
 	objectivec.Object
@@ -86,85 +86,6 @@ func NewOSLogStore() OSLogStore {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(scope:)
-func NewOSLogStoreWithScopeError(scope IOSLogStoreScope, error_ unsafe.Pointer) OSLogStore {
-	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithScope:error:"), scope, error_)
-	return rv
-}
 
-
-
-// Creates a log store based on a log archive.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)
-func NewOSLogStoreWithURLError(url foundation.IURL, error_ unsafe.Pointer) OSLogStore {
-	rv := objc.Send[OSLogStore](objc.ID(getOSLogStoreClass().class), objc.Sel("storeWithURL:error:"), url, error_)
-	return rv
-}
-
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(scope:)
-func (oc _OSLogStoreClass) StoreWithScopeError(scope IOSLogStoreScope, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("storeWithScope:error:"), scope, error_)
-	return rv
-}
-
-// Creates a log store based on a log archive.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/init(url:)
-func (oc _OSLogStoreClass) StoreWithURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("storeWithURL:error:"), url, error_)
-	return rv
-}
-
-// Creates a log store representing the Mac’s local store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/local()
-func (oc _OSLogStoreClass) LocalStoreAndReturnError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("localStoreAndReturnError:"), error_)
-	return rv
-}
-
-// Returns a log enumerator with default options for viewing the entries.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/entriesEnumeratorAndReturnError:
-func (o_ OSLogStore) EntriesEnumeratorAndReturnError(error_ unsafe.Pointer) OSLogEnumerator {
-	rv := objc.Send[OSLogEnumerator](o_.ID, objc.Sel("entriesEnumeratorAndReturnError:"), error_)
-	return rv
-}
-
-// Returns a log enumerator based on an underlying store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/entriesEnumeratorWithOptions:position:predicate:error:
-func (o_ OSLogStore) EntriesEnumeratorWithOptionsPositionPredicateError(options OSLogEnumeratorOptions, position OSLogPosition, predicate foundation.IPredicate, error_ unsafe.Pointer) OSLogEnumerator {
-	rv := objc.Send[OSLogEnumerator](o_.ID, objc.Sel("entriesEnumeratorWithOptions:position:predicate:error:"), options, position, predicate, error_)
-	return rv
-}
-
-// Returns a position representing the time specified.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/position(date:)
-func (o_ OSLogStore) PositionWithDate(date foundation.IDate) OSLogPosition {
-	rv := objc.Send[OSLogPosition](o_.ID, objc.Sel("positionWithDate:"), date)
-	return rv
-}
-
-// Returns a position representing time since the end of the time range that the entries span.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/position(timeIntervalSinceEnd:)
-func (o_ OSLogStore) PositionWithTimeIntervalSinceEnd(seconds foundation.ITimeInterval) OSLogPosition {
-	rv := objc.Send[OSLogPosition](o_.ID, objc.Sel("positionWithTimeIntervalSinceEnd:"), seconds)
-	return rv
-}
-
-// Returns a position representing time since the last boot in the series of entries.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogStore/position(timeIntervalSinceLatestBoot:)
-func (o_ OSLogStore) PositionWithTimeIntervalSinceLatestBoot(seconds foundation.ITimeInterval) OSLogPosition {
-	rv := objc.Send[OSLogPosition](o_.ID, objc.Sel("positionWithTimeIntervalSinceLatestBoot:"), seconds)
-	return rv
-}
 
 

@@ -32,10 +32,10 @@ type _SubscriberInfoClass struct {
 type ISubscriberInfo interface {
 	objectivec.IObject
 	// properties:
-	CarrierToken() foundation.objc.IObject /* cross-framework: Data */
-	SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	CarrierToken() objc.IObject /* cross-framework: Data */
+	SetCarrierToken(value objc.IObject /* cross-framework: Data */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -106,7 +106,7 @@ func (sc _SubscriberInfoClass) Subscriber() ISubscriber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ SubscriberInfo) CarrierToken() foundation.objc.IObject /* cross-framework: Data */ {
+func (s_ SubscriberInfo) CarrierToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (s_ SubscriberInfo) CarrierToken() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ SubscriberInfo) SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */) {
+func (s_ SubscriberInfo) SetCarrierToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
@@ -125,8 +125,8 @@ func (s_ SubscriberInfo) SetCarrierToken(value foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SubscriberInfo) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -135,9 +135,8 @@ func (s_ SubscriberInfo) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ SubscriberInfo) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 

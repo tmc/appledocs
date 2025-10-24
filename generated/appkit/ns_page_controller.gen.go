@@ -36,8 +36,8 @@ type IPageController interface {
 	SetArrangedObjects(value objc.IObject /* cross-framework: NSArray */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	SelectedIndex() int /* primitive/slice/pointer. */
-	SetSelectedIndex(value int /* primitive/slice/pointer. */)
+	SelectedIndex() int
+	SetSelectedIndex(value int)
 	SelectedViewController() IViewController
 	TransitionStyle() PageControllerTransitionStyle
 	SetTransitionStyle(value PageControllerTransitionStyle)
@@ -191,7 +191,7 @@ func (p_ PageController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/selectedIndex
-func (p_ PageController) SelectedIndex() int /* primitive/slice/pointer. */ {
+func (p_ PageController) SelectedIndex() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("selectedIndex"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (p_ PageController) SelectedIndex() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/selectedIndex
-func (p_ PageController) SetSelectedIndex(value int /* primitive/slice/pointer. */) {
+func (p_ PageController) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedIndex:"), value)
 }
 

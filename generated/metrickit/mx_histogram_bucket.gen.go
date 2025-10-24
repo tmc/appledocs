@@ -31,17 +31,24 @@ type _MXHistogramBucketClass struct {
 // An interface definition for the [MXHistogramBucket] class.
 type IMXHistogramBucket interface {
 	objectivec.IObject
-	BucketCount() uint
+	// properties:
 	BucketEnd() unsafe.Pointer
 	BucketStart() unsafe.Pointer
-	BucketEnumerator() foundation.Enumerator
-	SetBucketEnumerator(value foundation.IEnumerator)
+	BucketEnumerator() objc.IObject /* cross-framework: Enumerator */
+	SetBucketEnumerator(value objc.IObject /* cross-framework: Enumerator */)
 	TotalBucketCount() int
 	SetTotalBucketCount(value int)
+	BucketCount() int
+	SetBucketCount(value int)
+	// methods:
 }
 
 // An object representing a bucket of data in a histogram.
+
+
+// An object representing a bucket of data in a histogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket
 type MXHistogramBucket struct {
 	objectivec.Object
@@ -86,50 +93,49 @@ func NewMXHistogramBucket() MXHistogramBucket {
 }
 
 
-// An integer representing the number of samples in the bucket.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket/bucketCount
-func (m_ MXHistogramBucket) BucketCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("bucketCount"))
-	return rv
-}
 
 // The value of the ending measurement for the bucket.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket/bucketEnd
 func (m_ MXHistogramBucket) BucketEnd() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnd"))
 	return rv
 }
 
+
 // The value of the starting measurement for the bucket.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket/bucketStart
 func (m_ MXHistogramBucket) BucketStart() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
 	return rv
 }
 
+
 // An enumerator for the buckets containing the data in the histogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) BucketEnumerator() foundation.Enumerator {
+func (m_ MXHistogramBucket) BucketEnumerator() objc.IObject /* cross-framework: Enumerator */ {
 	rv := objc.Send[foundation.Enumerator](m_.ID, objc.Sel("bucketEnumerator"))
 	return rv
 }
 
 
-// SetBucketEnumerator sets the value of the bucketEnumerator property.
 // An enumerator for the buckets containing the data in the histogram.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) SetBucketEnumerator(value foundation.IEnumerator) {
+func (m_ MXHistogramBucket) SetBucketEnumerator(value objc.IObject /* cross-framework: Enumerator */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnumerator:"), value)
 }
 
+
 // The total number of buckets in the histogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/totalbucketcount
 func (m_ MXHistogramBucket) TotalBucketCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("totalBucketCount"))
@@ -137,13 +143,31 @@ func (m_ MXHistogramBucket) TotalBucketCount() int {
 }
 
 
-// SetTotalBucketCount sets the value of the totalBucketCount property.
 // The total number of buckets in the histogram.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/totalbucketcount
 func (m_ MXHistogramBucket) SetTotalBucketCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalBucketCount:"), value)
+}
+
+
+// An integer representing the number of samples in the bucket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketcount
+func (m_ MXHistogramBucket) BucketCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("bucketCount"))
+	return rv
+}
+
+
+// An integer representing the number of samples in the bucket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketcount
+func (m_ MXHistogramBucket) SetBucketCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketCount:"), value)
 }
 
 

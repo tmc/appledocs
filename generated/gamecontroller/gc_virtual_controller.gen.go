@@ -34,7 +34,6 @@ type IGCVirtualController interface {
 	Controller() IGCController
 	SetController(value IGCController)
 	// methods:
-	ConnectWithReplyHandler(reply unsafe.Pointer)
 }
 
 // A software emulation of a real controller that you configure specifically for your game.
@@ -94,22 +93,13 @@ func NewGCVirtualController() GCVirtualController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
-func NewGCVirtualControllerWithConfiguration(configuration objc.IObject /* cross-framework GCVirtualControllerConfiguration */) GCVirtualController {
+func NewGCVirtualControllerWithConfiguration(configuration objc.IObject /* cross-framework: GCVirtualControllerConfiguration */) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// Connects the virtual controller to the device and displays it on the screen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/connect(replyHandler:)
-func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("connectWithReplyHandler:"), reply)
-}
 
 
 // The underlying controller object that you use to access input elements.

@@ -31,15 +31,19 @@ type _MTROperationalCredentialsClusterRemoveFabricParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterRemoveFabricParams] class.
 type IMTROperationalCredentialsClusterRemoveFabricParams interface {
 	objectivec.IObject
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterRemoveFabricParams
 type MTROperationalCredentialsClusterRemoveFabricParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTROperationalCredentialsClusterRemoveFabricParams() MTROperationalCrede
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

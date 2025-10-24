@@ -31,16 +31,22 @@ type _NetServiceClass struct {
 type INetService interface {
 	objectivec.IObject
 	// properties:
-	Addresses() []Data /* primitive/slice/pointer. */
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Addresses() IData
+	SetAddresses(value IData)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	Domain() IString
+	SetDomain(value IString)
 	HostName() IString
-	IncludesPeerToPeer() bool /* primitive/slice/pointer. */
-	SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */)
+	SetHostName(value IString)
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
 	Name() IString
-	Port() int /* primitive/slice/pointer. */
+	SetName(value IString)
+	Port() int
+	SetPort(value int)
 	Type() IString
+	SetType(value IString)
 	// methods:
 }
 
@@ -97,57 +103,31 @@ func NewNetService() NetService {
 
 
 
-// Returns the receiver, initialized as a network service of a given type and sets the initial host information.
+// A read-only array containing
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
-func NewNetServiceWithDomainTypeName(domain IString, type_ IString, name IString) NetService {
-	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), domain, type_, name)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/addresses
+func (n_ NetService) Addresses() IData {
+	rv := objc.Send[Data](n_.ID, objc.Sel("addresses"))
 	return rv
 }
 
 
-// Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
+// A read-only array containing
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-func NewNetServiceWithDomainTypeNamePort(domain IString, type_ IString, name IString, port int /* primitive/slice/pointer. */) NetService {
-	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/addresses
+func (n_ NetService) SetAddresses(value IData) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAddresses:"), value)
 }
 
 
-
-// Returns an object representing a TXT record formed from a given dictionary.
+// The delegate for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
-func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary /* already interface */) IData {
-	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
-	return rv
-}
-
-
-// Returns a dictionary representing a TXT record given as an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
-	return rv
-}
-
-
-// A read-only array containing objects, each of which contains a socket address for the service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/addresses
-func (n_ NetService) Addresses() []Data /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/delegate
+func (n_ NetService) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -155,18 +135,8 @@ func (n_ NetService) Addresses() []Data /* primitive/slice/pointer. */ {
 // The delegate for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-func (n_ NetService) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The delegate for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/delegate
-func (n_ NetService) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/delegate
+func (n_ NetService) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -174,9 +144,28 @@ func (n_ NetService) SetDelegate(value objc.ID) {
 // A string containing the domain for this service.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/domain
 func (n_ NetService) Domain() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("domain"))
+	return rv
+}
+
+
+// A string containing the domain for this service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/domain
+func (n_ NetService) SetDomain(value IString) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDomain:"), value)
+}
+
+
+// A string containing the DNS hostname for this service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/hostname
+func (n_ NetService) HostName() IString {
+	rv := objc.Send[String](n_.ID, objc.Sel("hostName"))
 	return rv
 }
 
@@ -184,18 +173,17 @@ func (n_ NetService) Domain() IString {
 // A string containing the DNS hostname for this service.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
-func (n_ NetService) HostName() IString {
-	rv := objc.Send[String](n_.ID, objc.Sel("hostName"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/hostname
+func (n_ NetService) SetHostName(value IString) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHostName:"), value)
 }
 
 
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-func (n_ NetService) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/includespeertopeer
+func (n_ NetService) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
@@ -204,8 +192,8 @@ func (n_ NetService) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/includesPeerToPeer
-func (n_ NetService) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/includespeertopeer
+func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
 
@@ -213,9 +201,28 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer
 // A string containing the name of this service.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/name
 func (n_ NetService) Name() IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// A string containing the name of this service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/name
+func (n_ NetService) SetName(value IString) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), value)
+}
+
+
+// The port on which the service is listening for connections.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/port
+func (n_ NetService) Port() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("port"))
 	return rv
 }
 
@@ -223,9 +230,18 @@ func (n_ NetService) Name() IString {
 // The port on which the service is listening for connections.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/port
-func (n_ NetService) Port() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](n_.ID, objc.Sel("port"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/port
+func (n_ NetService) SetPort(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPort:"), value)
+}
+
+
+// The type of the published service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/type
+func (n_ NetService) Type() IString {
+	rv := objc.Send[String](n_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -233,10 +249,10 @@ func (n_ NetService) Port() int /* primitive/slice/pointer. */ {
 // The type of the published service.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-func (n_ NetService) Type() IString {
-	rv := objc.Send[String](n_.ID, objc.Sel("type"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservice/type
+func (n_ NetService) SetType(value IString) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setType:"), value)
 }
+
 
 

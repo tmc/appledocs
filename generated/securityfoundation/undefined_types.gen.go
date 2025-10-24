@@ -9,12 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AuthorizationEnvironment = _undefined // referenced in SecurityFoundation
-	AuthorizationFlags = _undefined // referenced in SecurityFoundation
 	AuthorizationRef = _undefined // referenced in SecurityFoundation
-	AuthorizationRights = _undefined // referenced in SecurityFoundation
-	AuthorizationString = _undefined // referenced in SecurityFoundation
-	OSStatus = _undefined // referenced in SecurityFoundation
 )
 
 

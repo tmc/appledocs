@@ -31,17 +31,21 @@ type _MTRDoorLockClusterClearYearDayScheduleParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearYearDayScheduleParams] class.
 type IMTRDoorLockClusterClearYearDayScheduleParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
-	YearDayIndex() foundation.Number
-	SetYearDayIndex(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	YearDayIndex() objc.IObject /* cross-framework: NSNumber */
+	SetYearDayIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterClearYearDayScheduleParams
 type MTRDoorLockClusterClearYearDayScheduleParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRDoorLockClusterClearYearDayScheduleParams() MTRDoorLockClusterClearYe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/userindex
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/userindex
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/yeardayindex
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) YearDayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("yearDayIndex"))
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) YearDayIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("yearDayIndex"))
 	return rv
 }
 
 
-// SetYearDayIndex sets the value of the yearDayIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearyeardayscheduleparams/yeardayindex
-func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetYearDayIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearYearDayScheduleParams) SetYearDayIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setYearDayIndex:"), value)
 }
 

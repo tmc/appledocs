@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,22 @@ type _NETunnelNetworkSettingsClass struct {
 // An interface definition for the [NETunnelNetworkSettings] class.
 type INETunnelNetworkSettings interface {
 	objectivec.IObject
-	DNSSettings() NEDNSSettings
-	SetDNSSettings(value INEDNSSettings)
-	ProxySettings() NEProxySettings
-	SetProxySettings(value INEProxySettings)
-	TunnelRemoteAddress() string
+	// properties:
+	DnsSettings() INEDNSSettings
+	SetDnsSettings(value INEDNSSettings)
+	ProxySettings() objc.IObject /* cross-framework: NEProxySettings */
+	SetProxySettings(value objc.IObject /* cross-framework: NEProxySettings */)
+	TunnelRemoteAddress() objc.IObject /* cross-framework: NSString */
+	SetTunnelRemoteAddress(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // The configuration for a tunnel provider’s virtual interface.
+
+
+// The configuration for a tunnel provider’s virtual interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings
 type NETunnelNetworkSettings struct {
 	objectivec.Object
@@ -84,60 +92,61 @@ func NewNETunnelNetworkSettings() NETunnelNetworkSettings {
 
 
 
-
-// Initialize a object.
+// The tunnel DNS settings.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/init(tunnelRemoteAddress:)
-func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address string) NETunnelNetworkSettings {
-	instance := getNETunnelNetworkSettingsClass().Alloc()
-	rv := objc.Send[NETunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:"), objc.String(address))
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/dnssettings
+func (n_ NETunnelNetworkSettings) DnsSettings() INEDNSSettings {
+	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("dnsSettings"))
 	return rv
 }
 
 
 // The tunnel DNS settings.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/dnsSettings
-func (n_ NETunnelNetworkSettings) DNSSettings() NEDNSSettings {
-	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("DNSSettings"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/dnssettings
+func (n_ NETunnelNetworkSettings) SetDnsSettings(value INEDNSSettings) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSettings:"), value)
 }
 
-
-// SetDNSSettings sets the value of the DNSSettings property.
-// The tunnel DNS settings.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/dnsSettings
-func (n_ NETunnelNetworkSettings) SetDNSSettings(value INEDNSSettings) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDNSSettings:"), value)
-}
 
 // The tunnel HTTP proxy settings.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/proxySettings
-func (n_ NETunnelNetworkSettings) ProxySettings() NEProxySettings {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/proxysettings
+func (n_ NETunnelNetworkSettings) ProxySettings() objc.IObject /* cross-framework: NEProxySettings */ {
 	rv := objc.Send[NEProxySettings](n_.ID, objc.Sel("proxySettings"))
 	return rv
 }
 
 
-// SetProxySettings sets the value of the proxySettings property.
 // The tunnel HTTP proxy settings.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/proxySettings
-func (n_ NETunnelNetworkSettings) SetProxySettings(value INEProxySettings) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/proxysettings
+func (n_ NETunnelNetworkSettings) SetProxySettings(value objc.IObject /* cross-framework: NEProxySettings */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProxySettings:"), value)
 }
 
+
 // The IP address of the tunnel server.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/tunnelRemoteAddress
-func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("tunnelRemoteAddress"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/tunnelremoteaddress
+func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("tunnelRemoteAddress"))
 	return rv
 }
+
+
+// The IP address of the tunnel server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelnetworksettings/tunnelremoteaddress
+func (n_ NETunnelNetworkSettings) SetTunnelRemoteAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelRemoteAddress:"), value)
+}
+
 
 

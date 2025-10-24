@@ -50,77 +50,83 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Copies the job description dictionaries for all jobs in the specified domain. [Full Topic]
+// Copies the job description dictionaries for all jobs in the specified domain.
 //
 // Deprecated: This function was deprecated in macOS 10.10.
 //
 // Added in macOS 10.6.
+// Copies the job description dictionaries for all jobs in the specified domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMCopyAllJobDictionaries(_:)
 func SMCopyAllJobDictionaries(domain unsafe.Pointer) unsafe.Pointer {
 	return _SMCopyAllJobDictionaries(domain)
-	}
+}
 
-
-// Submits the executable for the given label as a job to . [Full Topic]
+// Submits the executable for the given label as a job to .
 //
 // Deprecated: This function was deprecated in macOS 13.0.
 //
 // Added in macOS 10.6.
+// Submits the executable for the given label as a job to .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobBless(_:_:_:_:)
 func SMJobBless(domain unsafe.Pointer, executableLabel unsafe.Pointer, auth unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobBless(domain, executableLabel, auth, outError)
-	}
+}
 
-
-// Copies the job description dictionary for the specified job label. [Full Topic]
+// Copies the job description dictionary for the specified job label.
 //
 // Deprecated: This function was deprecated in macOS 10.10.
 //
 // Added in macOS 10.6.
+// Copies the job description dictionary for the specified job label.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobCopyDictionary(_:_:)
 func SMJobCopyDictionary(domain unsafe.Pointer, jobLabel unsafe.Pointer) unsafe.Pointer {
 	return _SMJobCopyDictionary(domain, jobLabel)
-	}
+}
 
-
-// Removes the job with the specified label from the specified domain. [Full Topic]
+// Removes the job with the specified label from the specified domain.
 //
 // Deprecated: This function was deprecated in macOS 10.10.
 //
 // Added in macOS 10.6.
+// Removes the job with the specified label from the specified domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobRemove(_:_:_:_:_:)
 func SMJobRemove(domain unsafe.Pointer, jobLabel unsafe.Pointer, auth unsafe.Pointer, wait unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobRemove(domain, jobLabel, auth, wait, outError)
-	}
+}
 
-
-// Submits the specified job to the specified domain. [Full Topic]
+// Submits the specified job to the specified domain.
 //
 // Deprecated: This function was deprecated in macOS 10.10.
 //
 // Added in macOS 10.6.
+// Submits the specified job to the specified domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMJobSubmit(_:_:_:_:)
 func SMJobSubmit(domain unsafe.Pointer, job unsafe.Pointer, auth unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer {
 	return _SMJobSubmit(domain, job, auth, outError)
-	}
+}
 
-
-// Enables a helper executable in the main app-bundle directory. [Full Topic]
+// Enables a helper executable in the main app-bundle directory.
 //
 // Deprecated: This function was deprecated in macOS 13.0.
 //
 // Added in macOS 10.6.
+// Enables a helper executable in the main app-bundle directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMLoginItemSetEnabled(_:_:)
 func SMLoginItemSetEnabled(identifier unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
 	return _SMLoginItemSetEnabled(identifier, enabled)
-	}
-
+}
 
 
 

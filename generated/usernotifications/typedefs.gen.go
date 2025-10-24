@@ -6,6 +6,6 @@ package usernotifications
 // UNNotificationSoundName - A string providing the name of a sound file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSoundName
-// UNNotificationSoundName has base type: NSString *
-type UNNotificationSoundName uintptr
+// UNNotificationSoundName is a string typedef
+type UNNotificationSoundName = string
 

@@ -31,21 +31,26 @@ type _MXDiagnosticPayloadClass struct {
 // An interface definition for the [MXDiagnosticPayload] class.
 type IMXDiagnosticPayload interface {
 	objectivec.IObject
-	DictionaryRepresentation() foundation.Dictionary
-	JSONRepresentation() foundation.Data
-	AppLaunchDiagnostics() []MXAppLaunchDiagnostic
-	CpuExceptionDiagnostics() []MXCPUExceptionDiagnostic
-	CrashDiagnostics() []MXCrashDiagnostic
-	DiskWriteExceptionDiagnostics() []MXDiskWriteExceptionDiagnostic
-	HangDiagnostics() []MXHangDiagnostic
-	TimeStampBegin() foundation.NSDate
-	TimeStampEnd() foundation.NSDate
+	// properties:
+	CpuExceptionDiagnostics() []IMXCPUExceptionDiagnostic
+	CrashDiagnostics() []IMXCrashDiagnostic
+	DiskWriteExceptionDiagnostics() []IMXDiskWriteExceptionDiagnostic
+	HangDiagnostics() []IMXHangDiagnostic
+	TimeStampBegin() objc.IObject /* cross-framework: NSDate */
+	TimeStampEnd() objc.IObject /* cross-framework: NSDate */
+	// methods:
+	DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An object that encapsulates a diagnostic report.
 //
 // The system delivers a diagnostic report as soon as it’s available.
+
+
+// An object that encapsulates a diagnostic report.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload
 type MXDiagnosticPayload struct {
 	objectivec.Object
@@ -90,77 +95,84 @@ func NewMXDiagnosticPayload() MXDiagnosticPayload {
 }
 
 
+
 // Returns the results of the payload as a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/dictionaryRepresentation()
-func (m_ MXDiagnosticPayload) DictionaryRepresentation() foundation.Dictionary {
+func (m_ MXDiagnosticPayload) DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */ {
 	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
+
 // Returns the contents of the payload in JSON format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/jsonRepresentation()
-func (m_ MXDiagnosticPayload) JSONRepresentation() foundation.Data {
+func (m_ MXDiagnosticPayload) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
-// The diagnostic reports for the app launch time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/appLaunchDiagnostics
-func (m_ MXDiagnosticPayload) AppLaunchDiagnostics() []MXAppLaunchDiagnostic {
-	rv := objc.Send[[]MXAppLaunchDiagnostic](m_.ID, objc.Sel("appLaunchDiagnostics"))
-	return rv
-}
 
 // The diagnostic reports for fatal and nonfatal CPU exceptions for the app during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/cpuExceptionDiagnostics
-func (m_ MXDiagnosticPayload) CpuExceptionDiagnostics() []MXCPUExceptionDiagnostic {
+func (m_ MXDiagnosticPayload) CpuExceptionDiagnostics() []IMXCPUExceptionDiagnostic {
 	rv := objc.Send[[]MXCPUExceptionDiagnostic](m_.ID, objc.Sel("cpuExceptionDiagnostics"))
 	return rv
 }
 
+
 // The diagnostic reports for app crashes during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/crashDiagnostics
-func (m_ MXDiagnosticPayload) CrashDiagnostics() []MXCrashDiagnostic {
+func (m_ MXDiagnosticPayload) CrashDiagnostics() []IMXCrashDiagnostic {
 	rv := objc.Send[[]MXCrashDiagnostic](m_.ID, objc.Sel("crashDiagnostics"))
 	return rv
 }
 
+
 // The diagnostic reports for disk write exceptions for the app during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/diskWriteExceptionDiagnostics
-func (m_ MXDiagnosticPayload) DiskWriteExceptionDiagnostics() []MXDiskWriteExceptionDiagnostic {
+func (m_ MXDiagnosticPayload) DiskWriteExceptionDiagnostics() []IMXDiskWriteExceptionDiagnostic {
 	rv := objc.Send[[]MXDiskWriteExceptionDiagnostic](m_.ID, objc.Sel("diskWriteExceptionDiagnostics"))
 	return rv
 }
 
+
 // The diagnostic reports for times when the app was too busy to handle input responsively during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/hangDiagnostics
-func (m_ MXDiagnosticPayload) HangDiagnostics() []MXHangDiagnostic {
+func (m_ MXDiagnosticPayload) HangDiagnostics() []IMXHangDiagnostic {
 	rv := objc.Send[[]MXHangDiagnostic](m_.ID, objc.Sel("hangDiagnostics"))
 	return rv
 }
 
+
 // The starting time of the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/timeStampBegin
-func (m_ MXDiagnosticPayload) TimeStampBegin() foundation.NSDate {
+func (m_ MXDiagnosticPayload) TimeStampBegin() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampBegin"))
 	return rv
 }
 
+
 // The ending time of the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/timeStampEnd
-func (m_ MXDiagnosticPayload) TimeStampEnd() foundation.NSDate {
+func (m_ MXDiagnosticPayload) TimeStampEnd() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampEnd"))
 	return rv
 }
-
 
 

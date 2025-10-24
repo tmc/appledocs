@@ -30,10 +30,10 @@ type _ImageConvolutionClass struct {
 type IImageConvolution interface {
 	IUnaryImageKernel
 	// properties:
-	Bias() float32 /* primitive/slice/pointer. */
-	SetBias(value float32 /* primitive/slice/pointer. */)
-	KernelHeight() uint /* primitive/slice/pointer. */
-	KernelWidth() uint /* primitive/slice/pointer. */
+	Bias() float32
+	SetBias(value float32)
+	KernelHeight() uint
+	KernelWidth() uint
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewImageConvolution() ImageConvolution {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConvolution/bias
-func (i_ ImageConvolution) Bias() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageConvolution) Bias() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("bias"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (i_ ImageConvolution) Bias() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConvolution/bias
-func (i_ ImageConvolution) SetBias(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageConvolution) SetBias(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBias:"), value)
 }
 
@@ -115,7 +115,7 @@ func (i_ ImageConvolution) SetBias(value float32 /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConvolution/kernelHeight
-func (i_ ImageConvolution) KernelHeight() uint /* primitive/slice/pointer. */ {
+func (i_ ImageConvolution) KernelHeight() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelHeight"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (i_ ImageConvolution) KernelHeight() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConvolution/kernelWidth
-func (i_ ImageConvolution) KernelWidth() uint /* primitive/slice/pointer. */ {
+func (i_ ImageConvolution) KernelWidth() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelWidth"))
 	return rv
 }

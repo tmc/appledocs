@@ -7,8 +7,10 @@ import "github.com/ebitengine/purego/objc"
 // sessionProtocol is the session: protocol.
 //
 // Availability:
-//   - iOS 26.0+
-//   - iPadOS 26.0+
+//   - Mac Catalyst 15.0+
+//   - iOS 15.0+
+//   - iPadOS 15.0+
+//   - watchOS 8.0+
 //
 // Use this protocol when registering custom classes that conform to session:.
 var sessionProtocol *objc.Protocol

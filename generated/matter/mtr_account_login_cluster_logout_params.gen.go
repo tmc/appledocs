@@ -31,15 +31,19 @@ type _MTRAccountLoginClusterLogoutParamsClass struct {
 // An interface definition for the [MTRAccountLoginClusterLogoutParams] class.
 type IMTRAccountLoginClusterLogoutParams interface {
 	objectivec.IObject
-	Node() foundation.Number
-	SetNode(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Node() objc.IObject /* cross-framework: NSNumber */
+	SetNode(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLogoutParams
 type MTRAccountLoginClusterLogoutParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRAccountLoginClusterLogoutParams() MTRAccountLoginClusterLogoutParams 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/node
-func (m_ MTRAccountLoginClusterLogoutParams) Node() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
+func (m_ MTRAccountLoginClusterLogoutParams) Node() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("node"))
 	return rv
 }
 
 
-// SetNode sets the value of the node property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/node
-func (m_ MTRAccountLoginClusterLogoutParams) SetNode(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLogoutParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRAccountLoginClusterLogoutParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLogoutParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/timedinvoketimeoutms
-func (m_ MTRAccountLoginClusterLogoutParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRAccountLoginClusterLogoutParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/timedinvoketimeoutms
-func (m_ MTRAccountLoginClusterLogoutParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

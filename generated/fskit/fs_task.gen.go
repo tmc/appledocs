@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +33,10 @@ type _FSTaskClass struct {
 type IFSTask interface {
 	objectivec.IObject
 	// properties:
-	CancellationHandler() unsafe.Pointer
-	SetCancellationHandler(value unsafe.Pointer)
+	CancellationHandler() objc.IObject /* cross-framework: Error */
+	SetCancellationHandler(value objc.IObject /* cross-framework: Error */)
 	// methods:
-	LogMessage(str string /* primitive/slice/pointer. */)
+	LogMessage(str objc.IObject /* cross-framework: NSString */)
 }
 
 // A class that enables a file system module to pass log messages and completion notifications to clients.
@@ -94,22 +96,22 @@ func NewFSTask() FSTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/logMessage(_:)
-func (f_ FSTask) LogMessage(str string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), objc.String(str))
+func (f_ FSTask) LogMessage(str objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), str)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fstask/cancellationhandler
-func (f_ FSTask) CancellationHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cancellationHandler"))
+func (f_ FSTask) CancellationHandler() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](f_.ID, objc.Sel("cancellationHandler"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fstask/cancellationhandler
-func (f_ FSTask) SetCancellationHandler(value unsafe.Pointer) {
+func (f_ FSTask) SetCancellationHandler(value objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCancellationHandler:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _EnvironmentMechanismClass struct {
 type IEnvironmentMechanism interface {
 	objectivec.IObject
 	// properties:
-	IconSystemName() string /* primitive/slice/pointer. */
-	IsUsable() bool /* primitive/slice/pointer. */
-	LocalizedName() string /* primitive/slice/pointer. */
+	IconSystemName() objc.IObject /* cross-framework: NSString */
+	IsUsable() bool
+	LocalizedName() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -87,15 +88,15 @@ func NewEnvironmentMechanism() EnvironmentMechanism {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/iconSystemName
-func (e_ EnvironmentMechanism) IconSystemName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("iconSystemName"))
+func (e_ EnvironmentMechanism) IconSystemName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("iconSystemName"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/isUsable
-func (e_ EnvironmentMechanism) IsUsable() bool /* primitive/slice/pointer. */ {
+func (e_ EnvironmentMechanism) IsUsable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isUsable"))
 	return rv
 }
@@ -105,8 +106,8 @@ func (e_ EnvironmentMechanism) IsUsable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/localizedName
-func (e_ EnvironmentMechanism) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("localizedName"))
+func (e_ EnvironmentMechanism) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

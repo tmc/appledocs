@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,14 @@ type _AudioUnitPresetClass struct {
 type IAudioUnitPreset interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	Number() int /* primitive/slice/pointer. */
-	SetNumber(value int /* primitive/slice/pointer. */)
-	FullState() string /* primitive/slice/pointer. */
-	SetFullState(value string /* primitive/slice/pointer. */)
-	FullStateForDocument() string /* primitive/slice/pointer. */
-	SetFullStateForDocument(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Number() int
+	SetNumber(value int)
+	FullState() objc.IObject /* cross-framework: NSString */
+	SetFullState(value objc.IObject /* cross-framework: NSString */)
+	FullStateForDocument() objc.IObject /* cross-framework: NSString */
+	SetFullStateForDocument(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -99,8 +100,8 @@ func NewAudioUnitPreset() AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitPreset) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (a_ AudioUnitPreset) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+func (a_ AudioUnitPreset) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -118,7 +119,7 @@ func (a_ AudioUnitPreset) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-func (a_ AudioUnitPreset) Number() int /* primitive/slice/pointer. */ {
+func (a_ AudioUnitPreset) Number() int {
 	rv := objc.Send[int](a_.ID, objc.Sel("number"))
 	return rv
 }
@@ -128,7 +129,7 @@ func (a_ AudioUnitPreset) Number() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-func (a_ AudioUnitPreset) SetNumber(value int /* primitive/slice/pointer. */) {
+func (a_ AudioUnitPreset) SetNumber(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumber:"), value)
 }
 
@@ -137,8 +138,8 @@ func (a_ AudioUnitPreset) SetNumber(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) FullState() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("fullState"))
+func (a_ AudioUnitPreset) FullState() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("fullState"))
 	return rv
 }
 
@@ -147,8 +148,8 @@ func (a_ AudioUnitPreset) FullState() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) SetFullState(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), objc.String(value))
+func (a_ AudioUnitPreset) SetFullState(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), value)
 }
 
 
@@ -156,8 +157,8 @@ func (a_ AudioUnitPreset) SetFullState(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) FullStateForDocument() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("fullStateForDocument"))
+func (a_ AudioUnitPreset) FullStateForDocument() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
 }
 
@@ -166,8 +167,8 @@ func (a_ AudioUnitPreset) FullStateForDocument() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) SetFullStateForDocument(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), objc.String(value))
+func (a_ AudioUnitPreset) SetFullStateForDocument(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), value)
 }
 
 

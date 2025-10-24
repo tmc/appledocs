@@ -30,6 +30,7 @@ type _PGDeviceDescriptorClass struct {
 // An interface definition for the [PGDeviceDescriptor] class.
 type IPGDeviceDescriptor interface {
 	objectivec.IObject
+	// properties:
 	AddTraceRange() unsafe.Pointer
 	SetAddTraceRange(value unsafe.Pointer)
 	CreateTask() unsafe.Pointer
@@ -38,12 +39,12 @@ type IPGDeviceDescriptor interface {
 	SetDestroyTask(value unsafe.Pointer)
 	Device() objc.ID
 	SetDevice(value objc.ID)
-	DisplayPortCount() uint32
-	SetDisplayPortCount(value Iuint32)
+	DisplayPortCount() uint32 /* not a class type */
+	SetDisplayPortCount(value uint32 /* not a class type */)
 	MapMemory() unsafe.Pointer
 	SetMapMemory(value unsafe.Pointer)
-	MmioLength() uintptr
-	SetMmioLength(value Iuintptr)
+	MmioLength() uintptr /* not a class type */
+	SetMmioLength(value uintptr /* not a class type */)
 	RaiseInterrupt() unsafe.Pointer
 	SetRaiseInterrupt(value unsafe.Pointer)
 	ReadMemory() unsafe.Pointer
@@ -52,10 +53,15 @@ type IPGDeviceDescriptor interface {
 	SetRemoveTraceRange(value unsafe.Pointer)
 	UnmapMemory() unsafe.Pointer
 	SetUnmapMemory(value unsafe.Pointer)
+	// methods:
 }
 
 // A description of the paravirtualized graphics device to create.
+
+
+// A description of the paravirtualized graphics device to create.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor
 type PGDeviceDescriptor struct {
 	objectivec.Object
@@ -100,8 +106,10 @@ func NewPGDeviceDescriptor() PGDeviceDescriptor {
 }
 
 
+
 // A handler that the framework calls to add a trace range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/addTraceRange
 func (p_ PGDeviceDescriptor) AddTraceRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("addTraceRange"))
@@ -109,17 +117,18 @@ func (p_ PGDeviceDescriptor) AddTraceRange() unsafe.Pointer {
 }
 
 
-// SetAddTraceRange sets the value of the addTraceRange property.
 // A handler that the framework calls to add a trace range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/addTraceRange
 func (p_ PGDeviceDescriptor) SetAddTraceRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAddTraceRange:"), value)
 }
 
+
 // A handler that the framework calls to create a task object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/createTask
 func (p_ PGDeviceDescriptor) CreateTask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("createTask"))
@@ -127,17 +136,18 @@ func (p_ PGDeviceDescriptor) CreateTask() unsafe.Pointer {
 }
 
 
-// SetCreateTask sets the value of the createTask property.
 // A handler that the framework calls to create a task object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/createTask
 func (p_ PGDeviceDescriptor) SetCreateTask(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreateTask:"), value)
 }
 
+
 // A handler that the framework calls to destroy a task object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/destroyTask
 func (p_ PGDeviceDescriptor) DestroyTask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("destroyTask"))
@@ -145,17 +155,18 @@ func (p_ PGDeviceDescriptor) DestroyTask() unsafe.Pointer {
 }
 
 
-// SetDestroyTask sets the value of the destroyTask property.
 // A handler that the framework calls to destroy a task object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/destroyTask
 func (p_ PGDeviceDescriptor) SetDestroyTask(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDestroyTask:"), value)
 }
 
+
 // The Metal device object to use to back the virtual graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/device
 func (p_ PGDeviceDescriptor) Device() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("device"))
@@ -163,32 +174,33 @@ func (p_ PGDeviceDescriptor) Device() objc.ID {
 }
 
 
-// SetDevice sets the value of the device property.
 // The Metal device object to use to back the virtual graphics device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/device
 func (p_ PGDeviceDescriptor) SetDevice(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDevice:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/displayPortCount
-func (p_ PGDeviceDescriptor) DisplayPortCount() uint32 {
+func (p_ PGDeviceDescriptor) DisplayPortCount() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](p_.ID, objc.Sel("displayPortCount"))
 	return rv
 }
 
 
-// SetDisplayPortCount sets the value of the displayPortCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/displayPortCount
-func (p_ PGDeviceDescriptor) SetDisplayPortCount(value Iuint32) {
+func (p_ PGDeviceDescriptor) SetDisplayPortCount(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayPortCount:"), value)
 }
 
+
 // A handler that the framework calls to map memory into the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mapMemory
 func (p_ PGDeviceDescriptor) MapMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mapMemory"))
@@ -196,35 +208,37 @@ func (p_ PGDeviceDescriptor) MapMemory() unsafe.Pointer {
 }
 
 
-// SetMapMemory sets the value of the mapMemory property.
 // A handler that the framework calls to map memory into the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mapMemory
 func (p_ PGDeviceDescriptor) SetMapMemory(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMapMemory:"), value)
 }
 
+
 // The length in bytes of the memory-mapped IO section.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mmioLength
-func (p_ PGDeviceDescriptor) MmioLength() uintptr {
+func (p_ PGDeviceDescriptor) MmioLength() uintptr /* not a class type */ {
 	rv := objc.Send[uintptr](p_.ID, objc.Sel("mmioLength"))
 	return rv
 }
 
 
-// SetMmioLength sets the value of the mmioLength property.
 // The length in bytes of the memory-mapped IO section.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/mmioLength
-func (p_ PGDeviceDescriptor) SetMmioLength(value Iuintptr) {
+func (p_ PGDeviceDescriptor) SetMmioLength(value uintptr /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMmioLength:"), value)
 }
 
+
 // A handler that the system calls to raise an interrupt in the guest environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/raiseInterrupt
 func (p_ PGDeviceDescriptor) RaiseInterrupt() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("raiseInterrupt"))
@@ -232,17 +246,18 @@ func (p_ PGDeviceDescriptor) RaiseInterrupt() unsafe.Pointer {
 }
 
 
-// SetRaiseInterrupt sets the value of the raiseInterrupt property.
 // A handler that the system calls to raise an interrupt in the guest environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/raiseInterrupt
 func (p_ PGDeviceDescriptor) SetRaiseInterrupt(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRaiseInterrupt:"), value)
 }
 
+
 // A handler that the framework calls to read data from the guest’s memory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/readMemory
 func (p_ PGDeviceDescriptor) ReadMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("readMemory"))
@@ -250,17 +265,18 @@ func (p_ PGDeviceDescriptor) ReadMemory() unsafe.Pointer {
 }
 
 
-// SetReadMemory sets the value of the readMemory property.
 // A handler that the framework calls to read data from the guest’s memory.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/readMemory
 func (p_ PGDeviceDescriptor) SetReadMemory(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReadMemory:"), value)
 }
 
+
 // A handler that the framework calls to remove a trace range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/removeTraceRange
 func (p_ PGDeviceDescriptor) RemoveTraceRange() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("removeTraceRange"))
@@ -268,17 +284,18 @@ func (p_ PGDeviceDescriptor) RemoveTraceRange() unsafe.Pointer {
 }
 
 
-// SetRemoveTraceRange sets the value of the removeTraceRange property.
 // A handler that the framework calls to remove a trace range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/removeTraceRange
 func (p_ PGDeviceDescriptor) SetRemoveTraceRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRemoveTraceRange:"), value)
 }
 
+
 // A handler that the framework calls to unmap memory from the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/unmapMemory
 func (p_ PGDeviceDescriptor) UnmapMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unmapMemory"))
@@ -286,10 +303,9 @@ func (p_ PGDeviceDescriptor) UnmapMemory() unsafe.Pointer {
 }
 
 
-// SetUnmapMemory sets the value of the unmapMemory property.
 // A handler that the framework calls to unmap memory from the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDeviceDescriptor/unmapMemory
 func (p_ PGDeviceDescriptor) SetUnmapMemory(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUnmapMemory:"), value)

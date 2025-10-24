@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FPUIActionExtensionViewController] class.
@@ -33,8 +35,8 @@ type IFPUIActionExtensionViewController interface {
 	// properties:
 	ExtensionContext() IFPUIActionExtensionContext
 	// methods:
-	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string /* primitive/slice/pointer. */, itemIdentifiers []string /* primitive/slice/pointer. */)
-	PrepareForError(error_ Error /* not a class type */)
+	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier objc.IObject /* cross-framework: NSString */, itemIdentifiers []string)
+	PrepareForError(error_ objc.IObject /* cross-framework: Error */)
 }
 
 // The custom user interface used to perform a selected action.
@@ -96,8 +98,8 @@ func NewFPUIActionExtensionViewController() FPUIActionExtensionViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)
-func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string /* primitive/slice/pointer. */, itemIdentifiers []string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), objc.String(actionIdentifier), itemIdentifiers)
+func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier objc.IObject /* cross-framework: NSString */, itemIdentifiers []string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), actionIdentifier, itemIdentifiers)
 }
 
 
@@ -105,7 +107,7 @@ func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)
-func (f_ FPUIActionExtensionViewController) PrepareForError(error_ Error /* not a class type */) {
+func (f_ FPUIActionExtensionViewController) PrepareForError(error_ objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForError:"), error_)
 }
 

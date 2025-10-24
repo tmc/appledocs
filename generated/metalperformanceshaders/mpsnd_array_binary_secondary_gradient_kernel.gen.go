@@ -30,9 +30,13 @@ type _NDArrayBinarySecondaryGradientKernelClass struct {
 // An interface definition for the [NDArrayBinarySecondaryGradientKernel] class.
 type INDArrayBinarySecondaryGradientKernel interface {
 	INDArrayMultiaryGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinarySecondaryGradientKernel
 type NDArrayBinarySecondaryGradientKernel struct {
 	NDArrayMultiaryGradientKernel
@@ -77,7 +81,8 @@ func NewNDArrayBinarySecondaryGradientKernel() NDArrayBinarySecondaryGradientKer
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinarySecondaryGradientKernel/init(device:)
 func NewNDArrayBinarySecondaryGradientKernelWithDevice(device objectivec.IObject) NDArrayBinarySecondaryGradientKernel {
 	instance := getNDArrayBinarySecondaryGradientKernelClass().Alloc()

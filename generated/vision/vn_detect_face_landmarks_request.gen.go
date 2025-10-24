@@ -29,21 +29,27 @@ type _DetectFaceLandmarksRequestClass struct {
 // An interface definition for the [DetectFaceLandmarksRequest] class.
 type IDetectFaceLandmarksRequest interface {
 	IImageBasedRequest
-	Constellation() unsafe.Pointer
-	SetConstellation(value unsafe.Pointer)
-	Results() VNFaceObservation
-	SetResults(value IVNFaceObservation)
+	// properties:
+	Constellation() RequestFaceLandmarksConstellation /* not a class type */
+	SetConstellation(value RequestFaceLandmarksConstellation /* not a class type */)
+	Results() objc.IObject /* cross-framework: FaceObservation */
+	SetResults(value objc.IObject /* cross-framework: FaceObservation */)
 	VNDetectFaceLandmarksRequestRevision1() int
 	VNDetectFaceLandmarksRequestRevision2() int
 	VNDetectFaceLandmarksRequestRevision3() int
-	InputFaceObservations() VNFaceObservation
-	SetInputFaceObservations(value IVNFaceObservation)
+	InputFaceObservations() objc.IObject /* cross-framework: FaceObservation */
+	SetInputFaceObservations(value objc.IObject /* cross-framework: FaceObservation */)
+	// methods:
 }
 
 // An image-analysis request that finds facial features like eyes and mouth in an image.
 //
 // By default, a face landmarks request first locates all faces in the input image, then analyzes each to detect facial features. If you’ve already located all the faces in an image, or want to detect landmarks in only a subset of the faces in the image, set the property to an array of objects representing the faces you want to analyze. You can either use face observations output by a or manually create instances with the bounding boxes of the faces you want to analyze.
+
+
+// An image-analysis request that finds facial features like eyes and mouth in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectFaceLandmarksRequest
 type DetectFaceLandmarksRequest struct {
 	ImageBasedRequest
@@ -90,81 +96,90 @@ func NewDetectFaceLandmarksRequest() DetectFaceLandmarksRequest {
 }
 
 
+
 // A variable that describes how a face landmarks request orders or enumerates the resulting features.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/constellation
-func (d_ DetectFaceLandmarksRequest) Constellation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("constellation"))
+func (d_ DetectFaceLandmarksRequest) Constellation() RequestFaceLandmarksConstellation /* not a class type */ {
+	rv := objc.Send[RequestFaceLandmarksConstellation](d_.ID, objc.Sel("constellation"))
 	return rv
 }
 
 
-// SetConstellation sets the value of the constellation property.
 // A variable that describes how a face landmarks request orders or enumerates the resulting features.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/constellation
-func (d_ DetectFaceLandmarksRequest) SetConstellation(value unsafe.Pointer) {
+func (d_ DetectFaceLandmarksRequest) SetConstellation(value RequestFaceLandmarksConstellation /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setConstellation:"), value)
 }
 
+
 // The results of the face landmarks request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
-func (d_ DetectFaceLandmarksRequest) Results() VNFaceObservation {
-	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectFaceLandmarksRequest) Results() objc.IObject /* cross-framework: FaceObservation */ {
+	rv := objc.Send[FaceObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the face landmarks request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
-func (d_ DetectFaceLandmarksRequest) SetResults(value IVNFaceObservation) {
+func (d_ DetectFaceLandmarksRequest) SetResults(value objc.IObject /* cross-framework: FaceObservation */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the face landmarks detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision1
 func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the face landmarks detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision2
 func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision2"))
 	return rv
 }
 
+
 // A constant for specifying revision 3 of the face landmarks detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision3
 func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision3() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectFaceLandmarksRequestRevision3"))
 	return rv
 }
 
+
 // An array of
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
-func (d_ DetectFaceLandmarksRequest) InputFaceObservations() VNFaceObservation {
-	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("inputFaceObservations"))
+func (d_ DetectFaceLandmarksRequest) InputFaceObservations() objc.IObject /* cross-framework: FaceObservation */ {
+	rv := objc.Send[FaceObservation](d_.ID, objc.Sel("inputFaceObservations"))
 	return rv
 }
 
 
-// SetInputFaceObservations sets the value of the inputFaceObservations property.
 // An array of
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
-func (d_ DetectFaceLandmarksRequest) SetInputFaceObservations(value IVNFaceObservation) {
+func (d_ DetectFaceLandmarksRequest) SetInputFaceObservations(value objc.IObject /* cross-framework: FaceObservation */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInputFaceObservations:"), value)
 }
 

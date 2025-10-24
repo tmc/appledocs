@@ -30,16 +30,16 @@ type _SegmentedCellClass struct {
 type ISegmentedCell interface {
 	IActionCell
 	// properties:
-	SegmentCount() int /* primitive/slice/pointer. */
-	SetSegmentCount(value int /* primitive/slice/pointer. */)
+	SegmentCount() int
+	SetSegmentCount(value int)
 	SegmentStyle() unsafe.Pointer
 	SetSegmentStyle(value unsafe.Pointer)
-	SelectedSegment() int /* primitive/slice/pointer. */
-	SetSelectedSegment(value int /* primitive/slice/pointer. */)
+	SelectedSegment() int
+	SetSelectedSegment(value int)
 	TrackingMode() unsafe.Pointer
 	SetTrackingMode(value unsafe.Pointer)
 	// methods:
-	SetImageScalingForSegment(scaling ImageScaling, segment int /* primitive/slice/pointer. */)
+	SetImageScalingForSegment(scaling ImageScaling, segment int)
 }
 
 // An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
@@ -101,7 +101,7 @@ func NewSegmentedCell() SegmentedCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setImageScaling(_:forSegment:)
-func (s_ SegmentedCell) SetImageScalingForSegment(scaling ImageScaling, segment int /* primitive/slice/pointer. */) {
+func (s_ SegmentedCell) SetImageScalingForSegment(scaling ImageScaling, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageScaling:forSegment:"), scaling, segment)
 }
 
@@ -110,7 +110,7 @@ func (s_ SegmentedCell) SetImageScalingForSegment(scaling ImageScaling, segment 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
-func (s_ SegmentedCell) SegmentCount() int /* primitive/slice/pointer. */ {
+func (s_ SegmentedCell) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (s_ SegmentedCell) SegmentCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/segmentcount
-func (s_ SegmentedCell) SetSegmentCount(value int /* primitive/slice/pointer. */) {
+func (s_ SegmentedCell) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
 }
 
@@ -148,7 +148,7 @@ func (s_ SegmentedCell) SetSegmentStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
-func (s_ SegmentedCell) SelectedSegment() int /* primitive/slice/pointer. */ {
+func (s_ SegmentedCell) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (s_ SegmentedCell) SelectedSegment() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcell/selectedsegment
-func (s_ SegmentedCell) SetSelectedSegment(value int /* primitive/slice/pointer. */) {
+func (s_ SegmentedCell) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
 }
 

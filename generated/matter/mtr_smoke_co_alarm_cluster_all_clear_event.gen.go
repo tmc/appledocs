@@ -30,9 +30,13 @@ type _MTRSmokeCOAlarmClusterAllClearEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterAllClearEvent] class.
 type IMTRSmokeCOAlarmClusterAllClearEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterAllClearEvent
 type MTRSmokeCOAlarmClusterAllClearEvent struct {
 	objectivec.Object

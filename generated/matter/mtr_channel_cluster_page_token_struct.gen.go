@@ -31,15 +31,19 @@ type _MTRChannelClusterPageTokenStructClass struct {
 // An interface definition for the [MTRChannelClusterPageTokenStruct] class.
 type IMTRChannelClusterPageTokenStruct interface {
 	objectivec.IObject
-	After() string
-	SetAfter(value string)
-	Before() string
-	SetBefore(value string)
-	Limit() foundation.Number
-	SetLimit(value foundation.INumber)
+	// properties:
+	After() objc.IObject /* cross-framework: NSString */
+	SetAfter(value objc.IObject /* cross-framework: NSString */)
+	Before() objc.IObject /* cross-framework: NSString */
+	SetBefore(value objc.IObject /* cross-framework: NSString */)
+	Limit() objc.IObject /* cross-framework: NSNumber */
+	SetLimit(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct
 type MTRChannelClusterPageTokenStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRChannelClusterPageTokenStruct() MTRChannelClusterPageTokenStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/after
-func (m_ MTRChannelClusterPageTokenStruct) After() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("after"))
+func (m_ MTRChannelClusterPageTokenStruct) After() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("after"))
 	return rv
 }
 
 
-// SetAfter sets the value of the after property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/after
-func (m_ MTRChannelClusterPageTokenStruct) SetAfter(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAfter:"), objc.String(value))
+func (m_ MTRChannelClusterPageTokenStruct) SetAfter(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAfter:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/before
-func (m_ MTRChannelClusterPageTokenStruct) Before() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("before"))
+func (m_ MTRChannelClusterPageTokenStruct) Before() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("before"))
 	return rv
 }
 
 
-// SetBefore sets the value of the before property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/before
-func (m_ MTRChannelClusterPageTokenStruct) SetBefore(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBefore:"), objc.String(value))
+func (m_ MTRChannelClusterPageTokenStruct) SetBefore(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBefore:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/limit
-func (m_ MTRChannelClusterPageTokenStruct) Limit() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("limit"))
+func (m_ MTRChannelClusterPageTokenStruct) Limit() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("limit"))
 	return rv
 }
 
 
-// SetLimit sets the value of the limit property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/limit
-func (m_ MTRChannelClusterPageTokenStruct) SetLimit(value foundation.INumber) {
+func (m_ MTRChannelClusterPageTokenStruct) SetLimit(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLimit:"), value)
 }
 

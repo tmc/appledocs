@@ -38,12 +38,12 @@ type IHKWorkoutSession interface {
 	SetCurrentActivity(value IHKWorkoutActivity)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	EndDate() foundation.objc.IObject /* cross-framework: Date */
-	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
+	EndDate() objc.IObject /* cross-framework: Date */
+	SetEndDate(value objc.IObject /* cross-framework: Date */)
 	LocationType() unsafe.Pointer
 	SetLocationType(value unsafe.Pointer)
-	StartDate() foundation.objc.IObject /* cross-framework: Date */
-	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	StartDate() objc.IObject /* cross-framework: Date */
+	SetStartDate(value objc.IObject /* cross-framework: Date */)
 	State() HKWorkoutSessionState
 	SetState(value HKWorkoutSessionState)
 	Type() HKWorkoutSessionType
@@ -167,7 +167,7 @@ func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-func (h_ HKWorkoutSession) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKWorkoutSession) EndDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -177,7 +177,7 @@ func (h_ HKWorkoutSession) EndDate() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-func (h_ HKWorkoutSession) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKWorkoutSession) SetEndDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -205,7 +205,7 @@ func (h_ HKWorkoutSession) SetLocationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-func (h_ HKWorkoutSession) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKWorkoutSession) StartDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (h_ HKWorkoutSession) StartDate() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-func (h_ HKWorkoutSession) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKWorkoutSession) SetStartDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

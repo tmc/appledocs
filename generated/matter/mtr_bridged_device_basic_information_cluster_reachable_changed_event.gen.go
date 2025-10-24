@@ -31,11 +31,15 @@ type _MTRBridgedDeviceBasicInformationClusterReachableChangedEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterReachableChangedEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterReachableChangedEvent interface {
 	objectivec.IObject
-	ReachableNewValue() foundation.Number
-	SetReachableNewValue(value foundation.INumber)
+	// properties:
+	ReachableNewValue() objc.IObject /* cross-framework: NSNumber */
+	SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterReachableChangedEvent
 type MTRBridgedDeviceBasicInformationClusterReachableChangedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBridgedDeviceBasicInformationClusterReachableChangedEvent() MTRBridge
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) ReachableNewValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reachableNewValue"))
+func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) ReachableNewValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reachableNewValue"))
 	return rv
 }
 
 
-// SetReachableNewValue sets the value of the reachableNewValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value foundation.INumber) {
+func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
 

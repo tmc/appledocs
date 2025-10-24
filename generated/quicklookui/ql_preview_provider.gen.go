@@ -30,12 +30,18 @@ type _PreviewProviderClass struct {
 // An interface definition for the [PreviewProvider] class.
 type IPreviewProvider interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class that you subclass to provide a data-based Quick Look preview extension.
 //
 // When you subclass , conform your subclass . To provide a data-based Quick Look extension, make the following modifications to your Info.plist file: Set the Boolean key to . Add the type identifiers for your extension’s supported content types to the array. Change the value of to the name of your subclass. For example, if you named your subclass , set the value to . After updating the extension’s file, implement the method to return a for the provided .
+
+
+// A class that you subclass to provide a data-based Quick Look preview extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewProvider
 type PreviewProvider struct {
 	objectivec.Object

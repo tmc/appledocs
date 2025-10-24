@@ -29,9 +29,13 @@ type _NDArrayLUTQuantizationDescriptorClass struct {
 // An interface definition for the [NDArrayLUTQuantizationDescriptor] class.
 type INDArrayLUTQuantizationDescriptor interface {
 	INDArrayQuantizationDescriptor
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTQuantizationDescriptor
 type NDArrayLUTQuantizationDescriptor struct {
 	NDArrayQuantizationDescriptor
@@ -76,18 +80,20 @@ func NewNDArrayLUTQuantizationDescriptor() NDArrayLUTQuantizationDescriptor {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTQuantizationDescriptor/init(dataType:)
-func NewNDArrayLUTQuantizationDescriptorWithDataType(quantizationDataType unsafe.Pointer) NDArrayLUTQuantizationDescriptor {
+func NewNDArrayLUTQuantizationDescriptorWithDataType(quantizationDataType DataType /* not a class type */) NDArrayLUTQuantizationDescriptor {
 	instance := getNDArrayLUTQuantizationDescriptorClass().Alloc()
 	rv := objc.Send[NDArrayLUTQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:"), quantizationDataType)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTQuantizationDescriptor/init(dataType:vectorAxis:)
-func NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis(quantizationDataType unsafe.Pointer, vectorAxis uint) NDArrayLUTQuantizationDescriptor {
+func NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis(quantizationDataType DataType /* not a class type */, vectorAxis uint) NDArrayLUTQuantizationDescriptor {
 	instance := getNDArrayLUTQuantizationDescriptorClass().Alloc()
 	rv := objc.Send[NDArrayLUTQuantizationDescriptor](instance.ID, objc.Sel("initWithDataType:vectorAxis:"), quantizationDataType, vectorAxis)
 	rv.Autorelease()

@@ -34,8 +34,8 @@ type ITextRange interface {
 	Location() objc.ID
 	EndLocation() TextLocation /* not a class type */
 	SetEndLocation(value TextLocation /* not a class type */)
-	IsEmpty() bool /* primitive/slice/pointer. */
-	SetIsEmpty(value bool /* primitive/slice/pointer. */)
+	IsEmpty() bool
+	SetIsEmpty(value bool)
 	// methods:
 }
 
@@ -125,7 +125,7 @@ func (t_ TextRange) SetEndLocation(value TextLocation /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
-func (t_ TextRange) IsEmpty() bool /* primitive/slice/pointer. */ {
+func (t_ TextRange) IsEmpty() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEmpty"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (t_ TextRange) IsEmpty() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
-func (t_ TextRange) SetIsEmpty(value bool /* primitive/slice/pointer. */) {
+func (t_ TextRange) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEmpty:"), value)
 }
 

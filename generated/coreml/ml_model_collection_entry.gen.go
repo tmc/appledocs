@@ -32,10 +32,10 @@ type _ModelCollectionEntryClass struct {
 type IModelCollectionEntry interface {
 	objectivec.IObject
 	// properties:
-	ModelIdentifier() string /* primitive/slice/pointer. */
-	SetModelIdentifier(value string /* primitive/slice/pointer. */)
-	ModelURL() foundation.objc.IObject /* cross-framework: URL */
-	SetModelURL(value foundation.objc.IObject /* cross-framework: URL */)
+	ModelIdentifier() objc.IObject /* cross-framework: NSString */
+	SetModelIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ModelURL() objc.IObject /* cross-framework: URL */
+	SetModelURL(value objc.IObject /* cross-framework: URL */)
 	Entries() IMLModelCollectionEntry
 	SetEntries(value IMLModelCollectionEntry)
 	// methods:
@@ -96,8 +96,8 @@ func NewModelCollectionEntry() ModelCollectionEntry {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
+func (m_ ModelCollectionEntry) ModelIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 
@@ -106,8 +106,8 @@ func (m_ ModelCollectionEntry) ModelIdentifier() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
-func (m_ ModelCollectionEntry) SetModelIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelIdentifier:"), objc.String(value))
+func (m_ ModelCollectionEntry) SetModelIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelIdentifier:"), value)
 }
 
 
@@ -115,7 +115,7 @@ func (m_ ModelCollectionEntry) SetModelIdentifier(value string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
-func (m_ ModelCollectionEntry) ModelURL() foundation.objc.IObject /* cross-framework: URL */ {
+func (m_ ModelCollectionEntry) ModelURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (m_ ModelCollectionEntry) ModelURL() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
-func (m_ ModelCollectionEntry) SetModelURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (m_ ModelCollectionEntry) SetModelURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelURL:"), value)
 }
 

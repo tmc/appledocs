@@ -40,13 +40,15 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// A human-readable description for a particular convergence status reason. [Full Topic]
+// A human-readable description for a particular convergence status reason.
+
+// A human-readable description for a particular convergence status reason.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergenceStatusReasonDescription
 func NIAlgorithmConvergenceStatusReasonDescription(reason unsafe.Pointer) unsafe.Pointer {
 	return _NIAlgorithmConvergenceStatusReasonDescription(reason)
-	}
-
+}
 
 
 

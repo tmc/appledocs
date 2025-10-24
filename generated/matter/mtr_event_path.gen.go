@@ -30,11 +30,15 @@ type _MTREventPathClass struct {
 // An interface definition for the [MTREventPath] class.
 type IMTREventPath interface {
 	IMTRClusterPath
-	Event() foundation.Number
-	SetEvent(value foundation.INumber)
+	// properties:
+	Event() objc.IObject /* cross-framework: NSNumber */
+	SetEvent(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventPath
 type MTREventPath struct {
 	MTRClusterPath
@@ -79,18 +83,18 @@ func NewMTREventPath() MTREventPath {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventpath/event
-func (m_ MTREventPath) Event() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("event"))
+func (m_ MTREventPath) Event() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("event"))
 	return rv
 }
 
 
-// SetEvent sets the value of the event property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventpath/event
-func (m_ MTREventPath) SetEvent(value foundation.INumber) {
+func (m_ MTREventPath) SetEvent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
 }
 

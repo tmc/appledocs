@@ -31,10 +31,10 @@ type _NetServiceBrowserClass struct {
 type INetServiceBrowser interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	IncludesPeerToPeer() bool /* primitive/slice/pointer. */
-	SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
 	// methods:
 }
 
@@ -91,13 +91,12 @@ func NewNetServiceBrowser() NetServiceBrowser {
 
 
 
-
 // The delegate object for this instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-func (n_ NetServiceBrowser) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservicebrowser/delegate
+func (n_ NetServiceBrowser) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -105,8 +104,8 @@ func (n_ NetServiceBrowser) Delegate() objc.ID {
 // The delegate object for this instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/delegate
-func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservicebrowser/delegate
+func (n_ NetServiceBrowser) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -114,8 +113,8 @@ func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservicebrowser/includespeertopeer
+func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
@@ -124,9 +123,10 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool /* primitive/slice/pointer
 // Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/netservicebrowser/includespeertopeer
+func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
+
 
 

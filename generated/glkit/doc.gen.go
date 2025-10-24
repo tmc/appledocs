@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GLKit without requiring cgo.
-
-// Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit
+// See: https://developer.apple.com/documentation/GLKit
 package glkit
 
 import (

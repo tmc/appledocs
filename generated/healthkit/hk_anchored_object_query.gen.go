@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKAnchoredObjectQuery] class.
@@ -32,7 +33,7 @@ type IHKAnchoredObjectQuery interface {
 	// properties:
 	UpdateHandler() unsafe.Pointer
 	SetUpdateHandler(value unsafe.Pointer)
-	HKObjectQueryNoLimit() int /* primitive/slice/pointer. */
+	HKObjectQueryNoLimit() int
 	// methods:
 }
 
@@ -95,7 +96,7 @@ func NewHKAnchoredObjectQuery() HKAnchoredObjectQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:completionHandler:)
-func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework Predicate */, anchor uint /* primitive/slice/pointer. */, limit uint /* primitive/slice/pointer. */, handler unsafe.Pointer) HKAnchoredObjectQuery {
+func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework: Predicate */, anchor uint, limit uint, handler unsafe.Pointer) HKAnchoredObjectQuery {
 	instance := getHKAnchoredObjectQueryClass().Alloc()
 	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:completionHandler:"), type_, predicate, anchor, limit, handler)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:resultsHandler:)
-func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitResultsHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework Predicate */, anchor objc.IObject /* cross-framework HKQueryAnchor */, limit uint /* primitive/slice/pointer. */, handler unsafe.Pointer) HKAnchoredObjectQuery {
+func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitResultsHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework: Predicate */, anchor objc.IObject /* cross-framework: HKQueryAnchor */, limit uint, handler unsafe.Pointer) HKAnchoredObjectQuery {
 	instance := getHKAnchoredObjectQueryClass().Alloc()
 	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:resultsHandler:"), type_, predicate, anchor, limit, handler)
 	rv.Autorelease()
@@ -139,7 +140,7 @@ func (h_ HKAnchoredObjectQuery) SetUpdateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. */ {
+func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }

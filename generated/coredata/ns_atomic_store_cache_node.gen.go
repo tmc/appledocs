@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IAtomicStoreCacheNode interface {
 	// properties:
 	ObjectID() IManagedObjectID
 	SetObjectID(value IManagedObjectID)
-	PropertyCache() MutableDictionary /* not a class type */
-	SetPropertyCache(value MutableDictionary /* not a class type */)
+	PropertyCache() objc.IObject /* cross-framework: MutableDictionary */
+	SetPropertyCache(value objc.IObject /* cross-framework: MutableDictionary */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/value(forKey:)
-func (a_ AtomicStoreCacheNode) ValueForKey(key string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), objc.String(key))
+func (a_ AtomicStoreCacheNode) ValueForKey(key objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (a_ AtomicStoreCacheNode) SetObjectID(value IManagedObjectID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
-func (a_ AtomicStoreCacheNode) PropertyCache() MutableDictionary /* not a class type */ {
-	rv := objc.Send[MutableDictionary](a_.ID, objc.Sel("propertyCache"))
+func (a_ AtomicStoreCacheNode) PropertyCache() objc.IObject /* cross-framework: MutableDictionary */ {
+	rv := objc.Send[foundation.MutableDictionary](a_.ID, objc.Sel("propertyCache"))
 	return rv
 }
 
@@ -134,7 +135,7 @@ func (a_ AtomicStoreCacheNode) PropertyCache() MutableDictionary /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
-func (a_ AtomicStoreCacheNode) SetPropertyCache(value MutableDictionary /* not a class type */) {
+func (a_ AtomicStoreCacheNode) SetPropertyCache(value objc.IObject /* cross-framework: MutableDictionary */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPropertyCache:"), value)
 }
 

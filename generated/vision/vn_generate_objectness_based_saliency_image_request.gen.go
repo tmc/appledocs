@@ -29,15 +29,21 @@ type _GenerateObjectnessBasedSaliencyImageRequestClass struct {
 // An interface definition for the [GenerateObjectnessBasedSaliencyImageRequest] class.
 type IGenerateObjectnessBasedSaliencyImageRequest interface {
 	IImageBasedRequest
-	Results() VNSaliencyImageObservation
+	// properties:
+	Results() IVNSaliencyImageObservation
 	SetResults(value IVNSaliencyImageObservation)
 	VNGenerateObjectnessBasedSaliencyImageRequestRevision1() int
+	// methods:
 }
 
 // A request that generates a heat map that identifies the parts of an image most likely to represent objects.
 //
 // The resulting observation, , encodes this data as a heat map, which you can use to highlight regions of interest.
+
+
+// A request that generates a heat map that identifies the parts of an image most likely to represent objects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateObjectnessBasedSaliencyImageRequest
 type GenerateObjectnessBasedSaliencyImageRequest struct {
 	ImageBasedRequest
@@ -84,26 +90,29 @@ func NewGenerateObjectnessBasedSaliencyImageRequest() GenerateObjectnessBasedSal
 }
 
 
+
 // The results of the image saliency request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest/results
-func (g_ GenerateObjectnessBasedSaliencyImageRequest) Results() VNSaliencyImageObservation {
-	rv := objc.Send[VNSaliencyImageObservation](g_.ID, objc.Sel("results"))
+func (g_ GenerateObjectnessBasedSaliencyImageRequest) Results() IVNSaliencyImageObservation {
+	rv := objc.Send[SaliencyImageObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the image saliency request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest/results
 func (g_ GenerateObjectnessBasedSaliencyImageRequest) SetResults(value IVNSaliencyImageObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the image saliency request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequestrevision1
 func (g_ GenerateObjectnessBasedSaliencyImageRequest) VNGenerateObjectnessBasedSaliencyImageRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateObjectnessBasedSaliencyImageRequestRevision1"))

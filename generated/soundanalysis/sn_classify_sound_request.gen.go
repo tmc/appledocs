@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +33,26 @@ type _SNClassifySoundRequestClass struct {
 // An interface definition for the [SNClassifySoundRequest] class.
 type ISNClassifySoundRequest interface {
 	objectivec.IObject
-	KnownClassifications() []string
+	// properties:
+	KnownClassifications() objc.IObject /* cross-framework: NSString */
+	SetKnownClassifications(value objc.IObject /* cross-framework: NSString */)
 	OverlapFactor() float64
 	SetOverlapFactor(value float64)
-	WindowDuration() unsafe.Pointer
-	SetWindowDuration(value unsafe.Pointer)
-	WindowDurationConstraint() unsafe.Pointer
-	SetWindowDurationConstraint(value unsafe.Pointer)
+	WindowDuration() objc.IObject /* cross-framework: Time */
+	SetWindowDuration(value objc.IObject /* cross-framework: Time */)
+	WindowDurationConstraint() ISNTimeDurationConstraint
+	SetWindowDurationConstraint(value ISNTimeDurationConstraint)
+	// methods:
 }
 
 // A request that classifies sound using a Core ML model.
 //
 // An represents a specific sound classification model. Analyze audio data with a sound classification model by: Creating an , either with the Sound Analysis model, or by providing your custom Core ML model. Adding the sound request to an or to process an audio file or stream, respectively. For more information about creating and using classify sound requests, see:
+
+
+// A request that classifies sound using a Core ML model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest
 type SNClassifySoundRequest struct {
 	objectivec.Object
@@ -89,11 +98,11 @@ func NewSNClassifySoundRequest() SNClassifySoundRequest {
 
 
 
-
 // Creates a request that uses the framework’s built-in sound classification model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)
-func NewSNClassifySoundRequestWithClassifierIdentifierError(classifierIdentifier ISNClassifierIdentifier, error_ unsafe.Pointer) SNClassifySoundRequest {
+func NewSNClassifySoundRequestWithClassifierIdentifierError(classifierIdentifier unsafe.Pointer, error_ unsafe.Pointer) SNClassifySoundRequest {
 	instance := getSNClassifySoundRequestClass().Alloc()
 	rv := objc.Send[SNClassifySoundRequest](instance.ID, objc.Sel("initWithClassifierIdentifier:error:"), classifierIdentifier, error_)
 	rv.Autorelease()
@@ -101,11 +110,11 @@ func NewSNClassifySoundRequestWithClassifierIdentifierError(classifierIdentifier
 }
 
 
-
 // Creates a request that uses a custom sound classification model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)
-func NewSNClassifySoundRequestWithMLModelError(mlModel coreml.IModel, error_ unsafe.Pointer) SNClassifySoundRequest {
+func NewSNClassifySoundRequestWithMLModelError(mlModel objc.IObject /* cross-framework: Model */, error_ unsafe.Pointer) SNClassifySoundRequest {
 	instance := getSNClassifySoundRequestClass().Alloc()
 	rv := objc.Send[SNClassifySoundRequest](instance.ID, objc.Sel("initWithMLModel:error:"), mlModel, error_)
 	rv.Autorelease()
@@ -113,65 +122,79 @@ func NewSNClassifySoundRequestWithMLModelError(mlModel coreml.IModel, error_ uns
 }
 
 
+
 // A string array that contains every prediction label in the request’s underlying sound classifier model.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications
-func (s_ SNClassifySoundRequest) KnownClassifications() []string {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("knownClassifications"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/knownclassifications
+func (s_ SNClassifySoundRequest) KnownClassifications() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("knownClassifications"))
 	return rv
 }
 
+
+// A string array that contains every prediction label in the request’s underlying sound classifier model.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/knownclassifications
+func (s_ SNClassifySoundRequest) SetKnownClassifications(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKnownClassifications:"), value)
+}
+
+
 // The amount of overlap between successive analysis windows when the model operates on a fixed-size audio block.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/overlapfactor
 func (s_ SNClassifySoundRequest) OverlapFactor() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("overlapFactor"))
 	return rv
 }
 
 
-// SetOverlapFactor sets the value of the overlapFactor property.
 // The amount of overlap between successive analysis windows when the model operates on a fixed-size audio block.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/overlapfactor
 func (s_ SNClassifySoundRequest) SetOverlapFactor(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setOverlapFactor:"), value)
 }
 
+
 // The duration of the audio buffer the request sends to the underlying sound classifier for each prediction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowduration
-func (s_ SNClassifySoundRequest) WindowDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("windowDuration"))
+func (s_ SNClassifySoundRequest) WindowDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](s_.ID, objc.Sel("windowDuration"))
 	return rv
 }
 
 
-// SetWindowDuration sets the value of the windowDuration property.
 // The duration of the audio buffer the request sends to the underlying sound classifier for each prediction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowduration
-func (s_ SNClassifySoundRequest) SetWindowDuration(value unsafe.Pointer) {
+func (s_ SNClassifySoundRequest) SetWindowDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWindowDuration:"), value)
 }
 
+
 // A range or list of sound duration times the request’s underlying sound classifier supports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5no60
-func (s_ SNClassifySoundRequest) WindowDurationConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("windowDurationConstraint"))
+func (s_ SNClassifySoundRequest) WindowDurationConstraint() ISNTimeDurationConstraint {
+	rv := objc.Send[SNTimeDurationConstraint](s_.ID, objc.Sel("windowDurationConstraint"))
 	return rv
 }
 
 
-// SetWindowDurationConstraint sets the value of the windowDurationConstraint property.
 // A range or list of sound duration times the request’s underlying sound classifier supports.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5no60
-func (s_ SNClassifySoundRequest) SetWindowDurationConstraint(value unsafe.Pointer) {
+func (s_ SNClassifySoundRequest) SetWindowDurationConstraint(value ISNTimeDurationConstraint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWindowDurationConstraint:"), value)
 }
 

@@ -33,7 +33,7 @@ type IDomainStateBiometry interface {
 	objectivec.IObject
 	// properties:
 	BiometryType() BiometryType
-	StateHash() foundation.objc.IObject /* cross-framework: NSData */
+	StateHash() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func (d_ DomainStateBiometry) BiometryType() BiometryType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/stateHash
-func (d_ DomainStateBiometry) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
+func (d_ DomainStateBiometry) StateHash() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }

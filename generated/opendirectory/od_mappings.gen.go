@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,22 +31,26 @@ type _ODMappingsClass struct {
 // An interface definition for the [ODMappings] class.
 type IODMappings interface {
 	objectivec.IObject
-	RecordMapForStandardRecordType(stdType string) ODRecordMap
-	SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType string)
-	Comment() string
-	SetComment(value string)
-	Function() string
-	SetFunction(value string)
-	FunctionAttributes() objc.ID
-	SetFunctionAttributes(value objc.ID)
-	Identifier() string
-	SetIdentifier(value string)
-	RecordTypes() objc.ID
-	TemplateName() string
-	SetTemplateName(value string)
+	// properties:
+	Comment() objc.IObject /* cross-framework: NSString */
+	SetComment(value objc.IObject /* cross-framework: NSString */)
+	Function() objc.IObject /* cross-framework: NSString */
+	SetFunction(value objc.IObject /* cross-framework: NSString */)
+	FunctionAttributes() objc.IObject /* cross-framework: NSArray */
+	SetFunctionAttributes(value objc.IObject /* cross-framework: NSArray */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	RecordTypes() objc.IObject /* cross-framework: NSArray */
+	TemplateName() objc.IObject /* cross-framework: NSString */
+	SetTemplateName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
+	RecordMapForStandardRecordType(stdType objc.IObject /* cross-framework: NSString */) IODRecordMap
+	SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType objc.IObject /* cross-framework: NSString */)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings
 type ODMappings struct {
 	objectivec.Object
@@ -88,106 +93,110 @@ func NewODMappings() ODMappings {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/mappings
 func (oc _ODMappingsClass) Mappings() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("mappings"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordMap(forStandardRecordType:)
-func (o_ ODMappings) RecordMapForStandardRecordType(stdType string) ODRecordMap {
-	rv := objc.Send[ODRecordMap](o_.ID, objc.Sel("recordMapForStandardRecordType:"), objc.String(stdType))
+func (o_ ODMappings) RecordMapForStandardRecordType(stdType objc.IObject /* cross-framework: NSString */) IODRecordMap {
+	rv := objc.Send[ODRecordMap](o_.ID, objc.Sel("recordMapForStandardRecordType:"), stdType)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/setRecordMap(_:forStandardRecordType:)
-func (o_ ODMappings) SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setRecordMap:forStandardRecordType:"), map_, objc.String(stdType))
+func (o_ ODMappings) SetRecordMapForStandardRecordType(map_ IODRecordMap, stdType objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setRecordMap:forStandardRecordType:"), map_, stdType)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) Comment() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("comment"))
+func (o_ ODMappings) Comment() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("comment"))
 	return rv
 }
 
 
-// SetComment sets the value of the comment property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-swift.property
-func (o_ ODMappings) SetComment(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), objc.String(value))
+func (o_ ODMappings) SetComment(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) Function() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("function"))
+func (o_ ODMappings) Function() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("function"))
 	return rv
 }
 
 
-// SetFunction sets the value of the function property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-swift.property
-func (o_ ODMappings) SetFunction(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), objc.String(value))
+func (o_ ODMappings) SetFunction(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setFunction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/functionAttributes-swift.property
-func (o_ ODMappings) FunctionAttributes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("functionAttributes"))
+func (o_ ODMappings) FunctionAttributes() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("functionAttributes"))
 	return rv
 }
 
 
-// SetFunctionAttributes sets the value of the functionAttributes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/functionAttributes-swift.property
-func (o_ ODMappings) SetFunctionAttributes(value objc.ID) {
+func (o_ ODMappings) SetFunctionAttributes(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFunctionAttributes:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) Identifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("identifier"))
+func (o_ ODMappings) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-swift.property
-func (o_ ODMappings) SetIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (o_ ODMappings) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/recordTypes-swift.property
-func (o_ ODMappings) RecordTypes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("recordTypes"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) TemplateName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("templateName"))
+func (o_ ODMappings) RecordTypes() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("recordTypes"))
 	return rv
 }
 
 
-// SetTemplateName sets the value of the templateName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
-func (o_ ODMappings) SetTemplateName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), objc.String(value))
+func (o_ ODMappings) TemplateName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("templateName"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-swift.property
+func (o_ ODMappings) SetTemplateName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
 }
 
 

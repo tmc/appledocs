@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,62 +34,62 @@ type ICaptureDeviceFormat interface {
 	// properties:
 	AutoFocusSystem() unsafe.Pointer
 	SetAutoFocusSystem(value unsafe.Pointer)
-	DefaultSimulatedAperture() float32 /* primitive/slice/pointer. */
-	SetDefaultSimulatedAperture(value float32 /* primitive/slice/pointer. */)
+	DefaultSimulatedAperture() float32
+	SetDefaultSimulatedAperture(value float32)
 	FormatDescription() FormatDescription /* not a class type */
 	SetFormatDescription(value FormatDescription /* not a class type */)
-	GeometricDistortionCorrectedVideoFieldOfView() float32 /* primitive/slice/pointer. */
-	SetGeometricDistortionCorrectedVideoFieldOfView(value float32 /* primitive/slice/pointer. */)
-	IsAutoVideoFrameRateSupported() bool /* primitive/slice/pointer. */
-	SetIsAutoVideoFrameRateSupported(value bool /* primitive/slice/pointer. */)
-	IsBackgroundReplacementSupported() bool /* primitive/slice/pointer. */
-	SetIsBackgroundReplacementSupported(value bool /* primitive/slice/pointer. */)
-	IsCameraLensSmudgeDetectionSupported() bool /* primitive/slice/pointer. */
-	SetIsCameraLensSmudgeDetectionSupported(value bool /* primitive/slice/pointer. */)
-	IsCenterStageSupported() bool /* primitive/slice/pointer. */
-	SetIsCenterStageSupported(value bool /* primitive/slice/pointer. */)
-	IsCinematicVideoCaptureSupported() bool /* primitive/slice/pointer. */
-	SetIsCinematicVideoCaptureSupported(value bool /* primitive/slice/pointer. */)
-	IsGlobalToneMappingSupported() bool /* primitive/slice/pointer. */
-	SetIsGlobalToneMappingSupported(value bool /* primitive/slice/pointer. */)
-	IsHighPhotoQualitySupported() bool /* primitive/slice/pointer. */
-	SetIsHighPhotoQualitySupported(value bool /* primitive/slice/pointer. */)
-	IsHighestPhotoQualitySupported() bool /* primitive/slice/pointer. */
-	SetIsHighestPhotoQualitySupported(value bool /* primitive/slice/pointer. */)
-	IsMultiCamSupported() bool /* primitive/slice/pointer. */
-	SetIsMultiCamSupported(value bool /* primitive/slice/pointer. */)
-	IsPortraitEffectSupported() bool /* primitive/slice/pointer. */
-	SetIsPortraitEffectSupported(value bool /* primitive/slice/pointer. */)
-	IsPortraitEffectsMatteStillImageDeliverySupported() bool /* primitive/slice/pointer. */
-	SetIsPortraitEffectsMatteStillImageDeliverySupported(value bool /* primitive/slice/pointer. */)
-	IsSmartFramingSupported() bool /* primitive/slice/pointer. */
-	SetIsSmartFramingSupported(value bool /* primitive/slice/pointer. */)
-	IsSpatialVideoCaptureSupported() bool /* primitive/slice/pointer. */
-	SetIsSpatialVideoCaptureSupported(value bool /* primitive/slice/pointer. */)
-	IsStudioLightSupported() bool /* primitive/slice/pointer. */
-	SetIsStudioLightSupported(value bool /* primitive/slice/pointer. */)
-	IsVideoBinned() bool /* primitive/slice/pointer. */
-	SetIsVideoBinned(value bool /* primitive/slice/pointer. */)
-	IsVideoHDRSupported() bool /* primitive/slice/pointer. */
-	SetIsVideoHDRSupported(value bool /* primitive/slice/pointer. */)
-	MaxExposureDuration() Time /* not a class type */
-	SetMaxExposureDuration(value Time /* not a class type */)
-	MaxISO() float32 /* primitive/slice/pointer. */
-	SetMaxISO(value float32 /* primitive/slice/pointer. */)
-	MaxSimulatedAperture() float32 /* primitive/slice/pointer. */
-	SetMaxSimulatedAperture(value float32 /* primitive/slice/pointer. */)
+	GeometricDistortionCorrectedVideoFieldOfView() float32
+	SetGeometricDistortionCorrectedVideoFieldOfView(value float32)
+	IsAutoVideoFrameRateSupported() bool
+	SetIsAutoVideoFrameRateSupported(value bool)
+	IsBackgroundReplacementSupported() bool
+	SetIsBackgroundReplacementSupported(value bool)
+	IsCameraLensSmudgeDetectionSupported() bool
+	SetIsCameraLensSmudgeDetectionSupported(value bool)
+	IsCenterStageSupported() bool
+	SetIsCenterStageSupported(value bool)
+	IsCinematicVideoCaptureSupported() bool
+	SetIsCinematicVideoCaptureSupported(value bool)
+	IsGlobalToneMappingSupported() bool
+	SetIsGlobalToneMappingSupported(value bool)
+	IsHighPhotoQualitySupported() bool
+	SetIsHighPhotoQualitySupported(value bool)
+	IsHighestPhotoQualitySupported() bool
+	SetIsHighestPhotoQualitySupported(value bool)
+	IsMultiCamSupported() bool
+	SetIsMultiCamSupported(value bool)
+	IsPortraitEffectSupported() bool
+	SetIsPortraitEffectSupported(value bool)
+	IsPortraitEffectsMatteStillImageDeliverySupported() bool
+	SetIsPortraitEffectsMatteStillImageDeliverySupported(value bool)
+	IsSmartFramingSupported() bool
+	SetIsSmartFramingSupported(value bool)
+	IsSpatialVideoCaptureSupported() bool
+	SetIsSpatialVideoCaptureSupported(value bool)
+	IsStudioLightSupported() bool
+	SetIsStudioLightSupported(value bool)
+	IsVideoBinned() bool
+	SetIsVideoBinned(value bool)
+	IsVideoHDRSupported() bool
+	SetIsVideoHDRSupported(value bool)
+	MaxExposureDuration() objc.IObject /* cross-framework: Time */
+	SetMaxExposureDuration(value objc.IObject /* cross-framework: Time */)
+	MaxISO() float32
+	SetMaxISO(value float32)
+	MaxSimulatedAperture() float32
+	SetMaxSimulatedAperture(value float32)
 	MediaType() MediaType /* not a class type */
 	SetMediaType(value MediaType /* not a class type */)
-	MinExposureDuration() Time /* not a class type */
-	SetMinExposureDuration(value Time /* not a class type */)
-	MinISO() float32 /* primitive/slice/pointer. */
-	SetMinISO(value float32 /* primitive/slice/pointer. */)
-	MinSimulatedAperture() float32 /* primitive/slice/pointer. */
-	SetMinSimulatedAperture(value float32 /* primitive/slice/pointer. */)
-	ReactionEffectsSupported() bool /* primitive/slice/pointer. */
-	SetReactionEffectsSupported(value bool /* primitive/slice/pointer. */)
-	SecondaryNativeResolutionZoomFactors() float64 /* primitive/slice/pointer. */
-	SetSecondaryNativeResolutionZoomFactors(value float64 /* primitive/slice/pointer. */)
+	MinExposureDuration() objc.IObject /* cross-framework: Time */
+	SetMinExposureDuration(value objc.IObject /* cross-framework: Time */)
+	MinISO() float32
+	SetMinISO(value float32)
+	MinSimulatedAperture() float32
+	SetMinSimulatedAperture(value float32)
+	ReactionEffectsSupported() bool
+	SetReactionEffectsSupported(value bool)
+	SecondaryNativeResolutionZoomFactors() float64
+	SetSecondaryNativeResolutionZoomFactors(value float64)
 	SupportedColorSpaces() CaptureColorSpace /* not a class type */
 	SetSupportedColorSpaces(value CaptureColorSpace /* not a class type */)
 	SupportedDepthDataFormats() IAVCaptureDeviceFormat
@@ -97,18 +98,18 @@ type ICaptureDeviceFormat interface {
 	SetSupportedDynamicAspectRatios(value unsafe.Pointer)
 	SupportedMaxPhotoDimensions() VideoDimensions /* not a class type */
 	SetSupportedMaxPhotoDimensions(value VideoDimensions /* not a class type */)
-	SupportedVideoZoomFactorsForDepthDataDelivery() float64 /* primitive/slice/pointer. */
-	SetSupportedVideoZoomFactorsForDepthDataDelivery(value float64 /* primitive/slice/pointer. */)
-	SupportedVideoZoomRangesForDepthDataDelivery() float64 /* primitive/slice/pointer. */
-	SetSupportedVideoZoomRangesForDepthDataDelivery(value float64 /* primitive/slice/pointer. */)
-	SystemRecommendedExposureBiasRange() float32 /* primitive/slice/pointer. */
-	SetSystemRecommendedExposureBiasRange(value float32 /* primitive/slice/pointer. */)
-	SystemRecommendedVideoZoomRange() float64 /* primitive/slice/pointer. */
-	SetSystemRecommendedVideoZoomRange(value float64 /* primitive/slice/pointer. */)
-	UnsupportedCaptureOutputClasses() unsafe.Pointer
-	SetUnsupportedCaptureOutputClasses(value unsafe.Pointer)
-	VideoFieldOfView() float32 /* primitive/slice/pointer. */
-	SetVideoFieldOfView(value float32 /* primitive/slice/pointer. */)
+	SupportedVideoZoomFactorsForDepthDataDelivery() float64
+	SetSupportedVideoZoomFactorsForDepthDataDelivery(value float64)
+	SupportedVideoZoomRangesForDepthDataDelivery() float64
+	SetSupportedVideoZoomRangesForDepthDataDelivery(value float64)
+	SystemRecommendedExposureBiasRange() float32
+	SetSystemRecommendedExposureBiasRange(value float32)
+	SystemRecommendedVideoZoomRange() float64
+	SetSystemRecommendedVideoZoomRange(value float64)
+	UnsupportedCaptureOutputClasses() objc.Class
+	SetUnsupportedCaptureOutputClasses(value objc.Class)
+	VideoFieldOfView() float32
+	SetVideoFieldOfView(value float32)
 	VideoFrameRateRangeForBackgroundReplacement() FrameRateRange /* not a class type */
 	SetVideoFrameRateRangeForBackgroundReplacement(value FrameRateRange /* not a class type */)
 	VideoFrameRateRangeForCenterStage() FrameRateRange /* not a class type */
@@ -121,30 +122,30 @@ type ICaptureDeviceFormat interface {
 	SetVideoFrameRateRangeForReactionEffectsInProgress(value FrameRateRange /* not a class type */)
 	VideoFrameRateRangeForStudioLight() FrameRateRange /* not a class type */
 	SetVideoFrameRateRangeForStudioLight(value FrameRateRange /* not a class type */)
-	VideoMaxZoomFactor() float64 /* primitive/slice/pointer. */
-	SetVideoMaxZoomFactor(value float64 /* primitive/slice/pointer. */)
-	VideoMaxZoomFactorForCenterStage() float64 /* primitive/slice/pointer. */
-	SetVideoMaxZoomFactorForCenterStage(value float64 /* primitive/slice/pointer. */)
-	VideoMaxZoomFactorForCinematicVideo() float64 /* primitive/slice/pointer. */
-	SetVideoMaxZoomFactorForCinematicVideo(value float64 /* primitive/slice/pointer. */)
-	VideoMinZoomFactorForCenterStage() float64 /* primitive/slice/pointer. */
-	SetVideoMinZoomFactorForCenterStage(value float64 /* primitive/slice/pointer. */)
-	VideoMinZoomFactorForCinematicVideo() float64 /* primitive/slice/pointer. */
-	SetVideoMinZoomFactorForCinematicVideo(value float64 /* primitive/slice/pointer. */)
+	VideoMaxZoomFactor() float64
+	SetVideoMaxZoomFactor(value float64)
+	VideoMaxZoomFactorForCenterStage() float64
+	SetVideoMaxZoomFactorForCenterStage(value float64)
+	VideoMaxZoomFactorForCinematicVideo() float64
+	SetVideoMaxZoomFactorForCinematicVideo(value float64)
+	VideoMinZoomFactorForCenterStage() float64
+	SetVideoMinZoomFactorForCenterStage(value float64)
+	VideoMinZoomFactorForCinematicVideo() float64
+	SetVideoMinZoomFactorForCinematicVideo(value float64)
 	VideoSupportedFrameRateRanges() FrameRateRange /* not a class type */
 	SetVideoSupportedFrameRateRanges(value FrameRateRange /* not a class type */)
-	VideoZoomFactorUpscaleThreshold() float64 /* primitive/slice/pointer. */
-	SetVideoZoomFactorUpscaleThreshold(value float64 /* primitive/slice/pointer. */)
-	ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool /* primitive/slice/pointer. */
-	SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool /* primitive/slice/pointer. */)
+	VideoZoomFactorUpscaleThreshold() float64
+	SetVideoZoomFactorUpscaleThreshold(value float64)
+	ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool
+	SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool)
 	ActiveDepthDataFormat() IAVCaptureDeviceFormat
 	SetActiveDepthDataFormat(value IAVCaptureDeviceFormat)
 	ActiveFormat() IAVCaptureDeviceFormat
 	SetActiveFormat(value IAVCaptureDeviceFormat)
 	Formats() IAVCaptureDeviceFormat
 	SetFormats(value IAVCaptureDeviceFormat)
-	VideoZoomFactor() float64 /* primitive/slice/pointer. */
-	SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */)
+	VideoZoomFactor() float64
+	SetVideoZoomFactor(value float64)
 	// methods:
 }
 
@@ -224,7 +225,7 @@ func (c_ CaptureDeviceFormat) SetAutoFocusSystem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/defaultsimulatedaperture
-func (c_ CaptureDeviceFormat) DefaultSimulatedAperture() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) DefaultSimulatedAperture() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("defaultSimulatedAperture"))
 	return rv
 }
@@ -234,7 +235,7 @@ func (c_ CaptureDeviceFormat) DefaultSimulatedAperture() float32 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/defaultsimulatedaperture
-func (c_ CaptureDeviceFormat) SetDefaultSimulatedAperture(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetDefaultSimulatedAperture(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultSimulatedAperture:"), value)
 }
 
@@ -262,7 +263,7 @@ func (c_ CaptureDeviceFormat) SetFormatDescription(value FormatDescription /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/geometricdistortioncorrectedvideofieldofview
-func (c_ CaptureDeviceFormat) GeometricDistortionCorrectedVideoFieldOfView() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) GeometricDistortionCorrectedVideoFieldOfView() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("geometricDistortionCorrectedVideoFieldOfView"))
 	return rv
 }
@@ -272,7 +273,7 @@ func (c_ CaptureDeviceFormat) GeometricDistortionCorrectedVideoFieldOfView() flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/geometricdistortioncorrectedvideofieldofview
-func (c_ CaptureDeviceFormat) SetGeometricDistortionCorrectedVideoFieldOfView(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetGeometricDistortionCorrectedVideoFieldOfView(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGeometricDistortionCorrectedVideoFieldOfView:"), value)
 }
 
@@ -281,7 +282,7 @@ func (c_ CaptureDeviceFormat) SetGeometricDistortionCorrectedVideoFieldOfView(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isautovideoframeratesupported
-func (c_ CaptureDeviceFormat) IsAutoVideoFrameRateSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsAutoVideoFrameRateSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoVideoFrameRateSupported"))
 	return rv
 }
@@ -291,7 +292,7 @@ func (c_ CaptureDeviceFormat) IsAutoVideoFrameRateSupported() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isautovideoframeratesupported
-func (c_ CaptureDeviceFormat) SetIsAutoVideoFrameRateSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsAutoVideoFrameRateSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoVideoFrameRateSupported:"), value)
 }
 
@@ -300,7 +301,7 @@ func (c_ CaptureDeviceFormat) SetIsAutoVideoFrameRateSupported(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isbackgroundreplacementsupported
-func (c_ CaptureDeviceFormat) IsBackgroundReplacementSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsBackgroundReplacementSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBackgroundReplacementSupported"))
 	return rv
 }
@@ -310,7 +311,7 @@ func (c_ CaptureDeviceFormat) IsBackgroundReplacementSupported() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isbackgroundreplacementsupported
-func (c_ CaptureDeviceFormat) SetIsBackgroundReplacementSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsBackgroundReplacementSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBackgroundReplacementSupported:"), value)
 }
 
@@ -319,7 +320,7 @@ func (c_ CaptureDeviceFormat) SetIsBackgroundReplacementSupported(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscameralenssmudgedetectionsupported
-func (c_ CaptureDeviceFormat) IsCameraLensSmudgeDetectionSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsCameraLensSmudgeDetectionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraLensSmudgeDetectionSupported"))
 	return rv
 }
@@ -329,7 +330,7 @@ func (c_ CaptureDeviceFormat) IsCameraLensSmudgeDetectionSupported() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscameralenssmudgedetectionsupported
-func (c_ CaptureDeviceFormat) SetIsCameraLensSmudgeDetectionSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsCameraLensSmudgeDetectionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraLensSmudgeDetectionSupported:"), value)
 }
 
@@ -338,7 +339,7 @@ func (c_ CaptureDeviceFormat) SetIsCameraLensSmudgeDetectionSupported(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscenterstagesupported
-func (c_ CaptureDeviceFormat) IsCenterStageSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsCenterStageSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCenterStageSupported"))
 	return rv
 }
@@ -348,7 +349,7 @@ func (c_ CaptureDeviceFormat) IsCenterStageSupported() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscenterstagesupported
-func (c_ CaptureDeviceFormat) SetIsCenterStageSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsCenterStageSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCenterStageSupported:"), value)
 }
 
@@ -357,7 +358,7 @@ func (c_ CaptureDeviceFormat) SetIsCenterStageSupported(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscinematicvideocapturesupported
-func (c_ CaptureDeviceFormat) IsCinematicVideoCaptureSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsCinematicVideoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCinematicVideoCaptureSupported"))
 	return rv
 }
@@ -367,7 +368,7 @@ func (c_ CaptureDeviceFormat) IsCinematicVideoCaptureSupported() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/iscinematicvideocapturesupported
-func (c_ CaptureDeviceFormat) SetIsCinematicVideoCaptureSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsCinematicVideoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCinematicVideoCaptureSupported:"), value)
 }
 
@@ -376,7 +377,7 @@ func (c_ CaptureDeviceFormat) SetIsCinematicVideoCaptureSupported(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isglobaltonemappingsupported
-func (c_ CaptureDeviceFormat) IsGlobalToneMappingSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsGlobalToneMappingSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isGlobalToneMappingSupported"))
 	return rv
 }
@@ -386,7 +387,7 @@ func (c_ CaptureDeviceFormat) IsGlobalToneMappingSupported() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isglobaltonemappingsupported
-func (c_ CaptureDeviceFormat) SetIsGlobalToneMappingSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsGlobalToneMappingSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsGlobalToneMappingSupported:"), value)
 }
 
@@ -395,7 +396,7 @@ func (c_ CaptureDeviceFormat) SetIsGlobalToneMappingSupported(value bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ishighphotoqualitysupported
-func (c_ CaptureDeviceFormat) IsHighPhotoQualitySupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsHighPhotoQualitySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighPhotoQualitySupported"))
 	return rv
 }
@@ -405,7 +406,7 @@ func (c_ CaptureDeviceFormat) IsHighPhotoQualitySupported() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ishighphotoqualitysupported
-func (c_ CaptureDeviceFormat) SetIsHighPhotoQualitySupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsHighPhotoQualitySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighPhotoQualitySupported:"), value)
 }
 
@@ -414,7 +415,7 @@ func (c_ CaptureDeviceFormat) SetIsHighPhotoQualitySupported(value bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ishighestphotoqualitysupported
-func (c_ CaptureDeviceFormat) IsHighestPhotoQualitySupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsHighestPhotoQualitySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighestPhotoQualitySupported"))
 	return rv
 }
@@ -424,7 +425,7 @@ func (c_ CaptureDeviceFormat) IsHighestPhotoQualitySupported() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ishighestphotoqualitysupported
-func (c_ CaptureDeviceFormat) SetIsHighestPhotoQualitySupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsHighestPhotoQualitySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighestPhotoQualitySupported:"), value)
 }
 
@@ -433,7 +434,7 @@ func (c_ CaptureDeviceFormat) SetIsHighestPhotoQualitySupported(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ismulticamsupported
-func (c_ CaptureDeviceFormat) IsMultiCamSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsMultiCamSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultiCamSupported"))
 	return rv
 }
@@ -443,7 +444,7 @@ func (c_ CaptureDeviceFormat) IsMultiCamSupported() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/ismulticamsupported
-func (c_ CaptureDeviceFormat) SetIsMultiCamSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsMultiCamSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultiCamSupported:"), value)
 }
 
@@ -452,7 +453,7 @@ func (c_ CaptureDeviceFormat) SetIsMultiCamSupported(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isportraiteffectsupported
-func (c_ CaptureDeviceFormat) IsPortraitEffectSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsPortraitEffectSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectSupported"))
 	return rv
 }
@@ -462,7 +463,7 @@ func (c_ CaptureDeviceFormat) IsPortraitEffectSupported() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isportraiteffectsupported
-func (c_ CaptureDeviceFormat) SetIsPortraitEffectSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsPortraitEffectSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectSupported:"), value)
 }
 
@@ -471,7 +472,7 @@ func (c_ CaptureDeviceFormat) SetIsPortraitEffectSupported(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isportraiteffectsmattestillimagedeliverysupported
-func (c_ CaptureDeviceFormat) IsPortraitEffectsMatteStillImageDeliverySupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsPortraitEffectsMatteStillImageDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectsMatteStillImageDeliverySupported"))
 	return rv
 }
@@ -481,7 +482,7 @@ func (c_ CaptureDeviceFormat) IsPortraitEffectsMatteStillImageDeliverySupported(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isportraiteffectsmattestillimagedeliverysupported
-func (c_ CaptureDeviceFormat) SetIsPortraitEffectsMatteStillImageDeliverySupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsPortraitEffectsMatteStillImageDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectsMatteStillImageDeliverySupported:"), value)
 }
 
@@ -490,7 +491,7 @@ func (c_ CaptureDeviceFormat) SetIsPortraitEffectsMatteStillImageDeliverySupport
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/issmartframingsupported
-func (c_ CaptureDeviceFormat) IsSmartFramingSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsSmartFramingSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSmartFramingSupported"))
 	return rv
 }
@@ -500,7 +501,7 @@ func (c_ CaptureDeviceFormat) IsSmartFramingSupported() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/issmartframingsupported
-func (c_ CaptureDeviceFormat) SetIsSmartFramingSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsSmartFramingSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSmartFramingSupported:"), value)
 }
 
@@ -509,7 +510,7 @@ func (c_ CaptureDeviceFormat) SetIsSmartFramingSupported(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isspatialvideocapturesupported
-func (c_ CaptureDeviceFormat) IsSpatialVideoCaptureSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsSpatialVideoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSpatialVideoCaptureSupported"))
 	return rv
 }
@@ -519,7 +520,7 @@ func (c_ CaptureDeviceFormat) IsSpatialVideoCaptureSupported() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isspatialvideocapturesupported
-func (c_ CaptureDeviceFormat) SetIsSpatialVideoCaptureSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsSpatialVideoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSpatialVideoCaptureSupported:"), value)
 }
 
@@ -528,7 +529,7 @@ func (c_ CaptureDeviceFormat) SetIsSpatialVideoCaptureSupported(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isstudiolightsupported
-func (c_ CaptureDeviceFormat) IsStudioLightSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsStudioLightSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isStudioLightSupported"))
 	return rv
 }
@@ -538,7 +539,7 @@ func (c_ CaptureDeviceFormat) IsStudioLightSupported() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isstudiolightsupported
-func (c_ CaptureDeviceFormat) SetIsStudioLightSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsStudioLightSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsStudioLightSupported:"), value)
 }
 
@@ -547,7 +548,7 @@ func (c_ CaptureDeviceFormat) SetIsStudioLightSupported(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideobinned
-func (c_ CaptureDeviceFormat) IsVideoBinned() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsVideoBinned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoBinned"))
 	return rv
 }
@@ -557,7 +558,7 @@ func (c_ CaptureDeviceFormat) IsVideoBinned() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideobinned
-func (c_ CaptureDeviceFormat) SetIsVideoBinned(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsVideoBinned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoBinned:"), value)
 }
 
@@ -566,7 +567,7 @@ func (c_ CaptureDeviceFormat) SetIsVideoBinned(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideohdrsupported
-func (c_ CaptureDeviceFormat) IsVideoHDRSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) IsVideoHDRSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoHDRSupported"))
 	return rv
 }
@@ -576,7 +577,7 @@ func (c_ CaptureDeviceFormat) IsVideoHDRSupported() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/isvideohdrsupported
-func (c_ CaptureDeviceFormat) SetIsVideoHDRSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetIsVideoHDRSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoHDRSupported:"), value)
 }
 
@@ -585,8 +586,8 @@ func (c_ CaptureDeviceFormat) SetIsVideoHDRSupported(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxexposureduration
-func (c_ CaptureDeviceFormat) MaxExposureDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("maxExposureDuration"))
+func (c_ CaptureDeviceFormat) MaxExposureDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("maxExposureDuration"))
 	return rv
 }
 
@@ -595,7 +596,7 @@ func (c_ CaptureDeviceFormat) MaxExposureDuration() Time /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxexposureduration
-func (c_ CaptureDeviceFormat) SetMaxExposureDuration(value Time /* not a class type */) {
+func (c_ CaptureDeviceFormat) SetMaxExposureDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxExposureDuration:"), value)
 }
 
@@ -604,7 +605,7 @@ func (c_ CaptureDeviceFormat) SetMaxExposureDuration(value Time /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxiso
-func (c_ CaptureDeviceFormat) MaxISO() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) MaxISO() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("maxISO"))
 	return rv
 }
@@ -614,7 +615,7 @@ func (c_ CaptureDeviceFormat) MaxISO() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxiso
-func (c_ CaptureDeviceFormat) SetMaxISO(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetMaxISO(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxISO:"), value)
 }
 
@@ -623,7 +624,7 @@ func (c_ CaptureDeviceFormat) SetMaxISO(value float32 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxsimulatedaperture
-func (c_ CaptureDeviceFormat) MaxSimulatedAperture() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) MaxSimulatedAperture() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("maxSimulatedAperture"))
 	return rv
 }
@@ -633,7 +634,7 @@ func (c_ CaptureDeviceFormat) MaxSimulatedAperture() float32 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/maxsimulatedaperture
-func (c_ CaptureDeviceFormat) SetMaxSimulatedAperture(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetMaxSimulatedAperture(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxSimulatedAperture:"), value)
 }
 
@@ -661,8 +662,8 @@ func (c_ CaptureDeviceFormat) SetMediaType(value MediaType /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/minexposureduration
-func (c_ CaptureDeviceFormat) MinExposureDuration() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("minExposureDuration"))
+func (c_ CaptureDeviceFormat) MinExposureDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](c_.ID, objc.Sel("minExposureDuration"))
 	return rv
 }
 
@@ -671,7 +672,7 @@ func (c_ CaptureDeviceFormat) MinExposureDuration() Time /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/minexposureduration
-func (c_ CaptureDeviceFormat) SetMinExposureDuration(value Time /* not a class type */) {
+func (c_ CaptureDeviceFormat) SetMinExposureDuration(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinExposureDuration:"), value)
 }
 
@@ -680,7 +681,7 @@ func (c_ CaptureDeviceFormat) SetMinExposureDuration(value Time /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/miniso
-func (c_ CaptureDeviceFormat) MinISO() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) MinISO() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("minISO"))
 	return rv
 }
@@ -690,7 +691,7 @@ func (c_ CaptureDeviceFormat) MinISO() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/miniso
-func (c_ CaptureDeviceFormat) SetMinISO(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetMinISO(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinISO:"), value)
 }
 
@@ -699,7 +700,7 @@ func (c_ CaptureDeviceFormat) SetMinISO(value float32 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/minsimulatedaperture
-func (c_ CaptureDeviceFormat) MinSimulatedAperture() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) MinSimulatedAperture() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("minSimulatedAperture"))
 	return rv
 }
@@ -709,7 +710,7 @@ func (c_ CaptureDeviceFormat) MinSimulatedAperture() float32 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/minsimulatedaperture
-func (c_ CaptureDeviceFormat) SetMinSimulatedAperture(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetMinSimulatedAperture(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinSimulatedAperture:"), value)
 }
 
@@ -718,7 +719,7 @@ func (c_ CaptureDeviceFormat) SetMinSimulatedAperture(value float32 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/reactioneffectssupported
-func (c_ CaptureDeviceFormat) ReactionEffectsSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) ReactionEffectsSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("reactionEffectsSupported"))
 	return rv
 }
@@ -728,7 +729,7 @@ func (c_ CaptureDeviceFormat) ReactionEffectsSupported() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/reactioneffectssupported
-func (c_ CaptureDeviceFormat) SetReactionEffectsSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetReactionEffectsSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReactionEffectsSupported:"), value)
 }
 
@@ -737,7 +738,7 @@ func (c_ CaptureDeviceFormat) SetReactionEffectsSupported(value bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/secondarynativeresolutionzoomfactors
-func (c_ CaptureDeviceFormat) SecondaryNativeResolutionZoomFactors() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) SecondaryNativeResolutionZoomFactors() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("secondaryNativeResolutionZoomFactors"))
 	return rv
 }
@@ -747,7 +748,7 @@ func (c_ CaptureDeviceFormat) SecondaryNativeResolutionZoomFactors() float64 /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/secondarynativeresolutionzoomfactors
-func (c_ CaptureDeviceFormat) SetSecondaryNativeResolutionZoomFactors(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetSecondaryNativeResolutionZoomFactors(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecondaryNativeResolutionZoomFactors:"), value)
 }
 
@@ -832,7 +833,7 @@ func (c_ CaptureDeviceFormat) SetSupportedMaxPhotoDimensions(value VideoDimensio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supportedvideozoomfactorsfordepthdatadelivery
-func (c_ CaptureDeviceFormat) SupportedVideoZoomFactorsForDepthDataDelivery() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) SupportedVideoZoomFactorsForDepthDataDelivery() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("supportedVideoZoomFactorsForDepthDataDelivery"))
 	return rv
 }
@@ -842,7 +843,7 @@ func (c_ CaptureDeviceFormat) SupportedVideoZoomFactorsForDepthDataDelivery() fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supportedvideozoomfactorsfordepthdatadelivery
-func (c_ CaptureDeviceFormat) SetSupportedVideoZoomFactorsForDepthDataDelivery(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetSupportedVideoZoomFactorsForDepthDataDelivery(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedVideoZoomFactorsForDepthDataDelivery:"), value)
 }
 
@@ -851,7 +852,7 @@ func (c_ CaptureDeviceFormat) SetSupportedVideoZoomFactorsForDepthDataDelivery(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supportedvideozoomrangesfordepthdatadelivery
-func (c_ CaptureDeviceFormat) SupportedVideoZoomRangesForDepthDataDelivery() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) SupportedVideoZoomRangesForDepthDataDelivery() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("supportedVideoZoomRangesForDepthDataDelivery"))
 	return rv
 }
@@ -861,7 +862,7 @@ func (c_ CaptureDeviceFormat) SupportedVideoZoomRangesForDepthDataDelivery() flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supportedvideozoomrangesfordepthdatadelivery
-func (c_ CaptureDeviceFormat) SetSupportedVideoZoomRangesForDepthDataDelivery(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetSupportedVideoZoomRangesForDepthDataDelivery(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedVideoZoomRangesForDepthDataDelivery:"), value)
 }
 
@@ -870,7 +871,7 @@ func (c_ CaptureDeviceFormat) SetSupportedVideoZoomRangesForDepthDataDelivery(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedexposurebiasrange
-func (c_ CaptureDeviceFormat) SystemRecommendedExposureBiasRange() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) SystemRecommendedExposureBiasRange() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("systemRecommendedExposureBiasRange"))
 	return rv
 }
@@ -880,7 +881,7 @@ func (c_ CaptureDeviceFormat) SystemRecommendedExposureBiasRange() float32 /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedexposurebiasrange
-func (c_ CaptureDeviceFormat) SetSystemRecommendedExposureBiasRange(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetSystemRecommendedExposureBiasRange(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemRecommendedExposureBiasRange:"), value)
 }
 
@@ -889,7 +890,7 @@ func (c_ CaptureDeviceFormat) SetSystemRecommendedExposureBiasRange(value float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedvideozoomrange
-func (c_ CaptureDeviceFormat) SystemRecommendedVideoZoomRange() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) SystemRecommendedVideoZoomRange() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("systemRecommendedVideoZoomRange"))
 	return rv
 }
@@ -899,7 +900,7 @@ func (c_ CaptureDeviceFormat) SystemRecommendedVideoZoomRange() float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedvideozoomrange
-func (c_ CaptureDeviceFormat) SetSystemRecommendedVideoZoomRange(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetSystemRecommendedVideoZoomRange(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemRecommendedVideoZoomRange:"), value)
 }
 
@@ -908,8 +909,8 @@ func (c_ CaptureDeviceFormat) SetSystemRecommendedVideoZoomRange(value float64 /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/unsupportedcaptureoutputclasses
-func (c_ CaptureDeviceFormat) UnsupportedCaptureOutputClasses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("unsupportedCaptureOutputClasses"))
+func (c_ CaptureDeviceFormat) UnsupportedCaptureOutputClasses() objc.Class {
+	rv := objc.Send[objc.Class](c_.ID, objc.Sel("unsupportedCaptureOutputClasses"))
 	return rv
 }
 
@@ -918,7 +919,7 @@ func (c_ CaptureDeviceFormat) UnsupportedCaptureOutputClasses() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/unsupportedcaptureoutputclasses
-func (c_ CaptureDeviceFormat) SetUnsupportedCaptureOutputClasses(value unsafe.Pointer) {
+func (c_ CaptureDeviceFormat) SetUnsupportedCaptureOutputClasses(value objc.Class) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnsupportedCaptureOutputClasses:"), value)
 }
 
@@ -927,7 +928,7 @@ func (c_ CaptureDeviceFormat) SetUnsupportedCaptureOutputClasses(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videofieldofview
-func (c_ CaptureDeviceFormat) VideoFieldOfView() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoFieldOfView() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("videoFieldOfView"))
 	return rv
 }
@@ -937,7 +938,7 @@ func (c_ CaptureDeviceFormat) VideoFieldOfView() float32 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videofieldofview
-func (c_ CaptureDeviceFormat) SetVideoFieldOfView(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoFieldOfView(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoFieldOfView:"), value)
 }
 
@@ -1060,7 +1061,7 @@ func (c_ CaptureDeviceFormat) SetVideoFrameRateRangeForStudioLight(value FrameRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactor
-func (c_ CaptureDeviceFormat) VideoMaxZoomFactor() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoMaxZoomFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMaxZoomFactor"))
 	return rv
 }
@@ -1070,7 +1071,7 @@ func (c_ CaptureDeviceFormat) VideoMaxZoomFactor() float64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactor
-func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactor(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMaxZoomFactor:"), value)
 }
 
@@ -1079,7 +1080,7 @@ func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactor(value float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactorforcenterstage
-func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCenterStage() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCenterStage() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMaxZoomFactorForCenterStage"))
 	return rv
 }
@@ -1089,7 +1090,7 @@ func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCenterStage() float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactorforcenterstage
-func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCenterStage(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCenterStage(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMaxZoomFactorForCenterStage:"), value)
 }
 
@@ -1098,7 +1099,7 @@ func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCenterStage(value float64 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactorforcinematicvideo
-func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCinematicVideo() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCinematicVideo() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMaxZoomFactorForCinematicVideo"))
 	return rv
 }
@@ -1108,7 +1109,7 @@ func (c_ CaptureDeviceFormat) VideoMaxZoomFactorForCinematicVideo() float64 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videomaxzoomfactorforcinematicvideo
-func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCinematicVideo(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCinematicVideo(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMaxZoomFactorForCinematicVideo:"), value)
 }
 
@@ -1117,7 +1118,7 @@ func (c_ CaptureDeviceFormat) SetVideoMaxZoomFactorForCinematicVideo(value float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videominzoomfactorforcenterstage
-func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCenterStage() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCenterStage() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMinZoomFactorForCenterStage"))
 	return rv
 }
@@ -1127,7 +1128,7 @@ func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCenterStage() float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videominzoomfactorforcenterstage
-func (c_ CaptureDeviceFormat) SetVideoMinZoomFactorForCenterStage(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoMinZoomFactorForCenterStage(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinZoomFactorForCenterStage:"), value)
 }
 
@@ -1136,7 +1137,7 @@ func (c_ CaptureDeviceFormat) SetVideoMinZoomFactorForCenterStage(value float64 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videominzoomfactorforcinematicvideo
-func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCinematicVideo() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCinematicVideo() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMinZoomFactorForCinematicVideo"))
 	return rv
 }
@@ -1146,7 +1147,7 @@ func (c_ CaptureDeviceFormat) VideoMinZoomFactorForCinematicVideo() float64 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videominzoomfactorforcinematicvideo
-func (c_ CaptureDeviceFormat) SetVideoMinZoomFactorForCinematicVideo(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoMinZoomFactorForCinematicVideo(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMinZoomFactorForCinematicVideo:"), value)
 }
 
@@ -1174,7 +1175,7 @@ func (c_ CaptureDeviceFormat) SetVideoSupportedFrameRateRanges(value FrameRateRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videozoomfactorupscalethreshold
-func (c_ CaptureDeviceFormat) VideoZoomFactorUpscaleThreshold() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoZoomFactorUpscaleThreshold() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactorUpscaleThreshold"))
 	return rv
 }
@@ -1184,7 +1185,7 @@ func (c_ CaptureDeviceFormat) VideoZoomFactorUpscaleThreshold() float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/videozoomfactorupscalethreshold
-func (c_ CaptureDeviceFormat) SetVideoZoomFactorUpscaleThreshold(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoZoomFactorUpscaleThreshold(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactorUpscaleThreshold:"), value)
 }
 
@@ -1193,7 +1194,7 @@ func (c_ CaptureDeviceFormat) SetVideoZoomFactorUpscaleThreshold(value float64 /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/zoomfactorsoutsideofvideozoomrangesfordepthdeliverysupported
-func (c_ CaptureDeviceFormat) ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported"))
 	return rv
 }
@@ -1203,7 +1204,7 @@ func (c_ CaptureDeviceFormat) ZoomFactorsOutsideOfVideoZoomRangesForDepthDeliver
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/zoomfactorsoutsideofvideozoomrangesfordepthdeliverysupported
-func (c_ CaptureDeviceFormat) SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported:"), value)
 }
 
@@ -1269,7 +1270,7 @@ func (c_ CaptureDeviceFormat) SetFormats(value IAVCaptureDeviceFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureDeviceFormat) VideoZoomFactor() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureDeviceFormat) VideoZoomFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactor"))
 	return rv
 }
@@ -1279,7 +1280,7 @@ func (c_ CaptureDeviceFormat) VideoZoomFactor() float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureDeviceFormat) SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureDeviceFormat) SetVideoZoomFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactor:"), value)
 }
 

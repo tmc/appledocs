@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,21 @@ type _MEVideoDecoderPixelBufferManagerClass struct {
 // An interface definition for the [MEVideoDecoderPixelBufferManager] class.
 type IMEVideoDecoderPixelBufferManager interface {
 	objectivec.IObject
-	RegisterCustomPixelFormat(customPixelFormat unsafe.Pointer)
-	PixelBufferAttributes() unsafe.Pointer
-	SetPixelBufferAttributes(value unsafe.Pointer)
+	// properties:
+	PixelBufferAttributes() foundation.IDictionary
+	SetPixelBufferAttributes(value foundation.IDictionary)
+	// methods:
+	RegisterCustomPixelFormat(customPixelFormat foundation.IDictionary)
 }
 
 // Describes pixel buffer requirements and creates new pixel buffers.
 //
+// Contains the interfaces that the uses for two tasks. First, to declare its set of requirements for output objects in the form of a dictionary. Second, to create pixel buffers that match decoder output requirements but also satisfy and client requirements.
+
+
+// Describes pixel buffer requirements and creates new pixel buffers.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEVideoDecoderPixelBufferManager
 type MEVideoDecoderPixelBufferManager struct {
 	objectivec.Object
@@ -81,27 +90,29 @@ func NewMEVideoDecoderPixelBufferManager() MEVideoDecoderPixelBufferManager {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/registerCustomPixelFormat(_:)
-func (m_ MEVideoDecoderPixelBufferManager) RegisterCustomPixelFormat(customPixelFormat unsafe.Pointer) {
+func (m_ MEVideoDecoderPixelBufferManager) RegisterCustomPixelFormat(customPixelFormat foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("registerCustomPixelFormat:"), customPixelFormat)
 }
 
+
 // A dictionary that contains the attributes Video Toolbox uses to create a pixel buffer for the decoder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/pixelBufferAttributes
-func (m_ MEVideoDecoderPixelBufferManager) PixelBufferAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pixelBufferAttributes"))
+func (m_ MEVideoDecoderPixelBufferManager) PixelBufferAttributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("pixelBufferAttributes"))
 	return rv
 }
 
 
-// SetPixelBufferAttributes sets the value of the pixelBufferAttributes property.
 // A dictionary that contains the attributes Video Toolbox uses to create a pixel buffer for the decoder.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/pixelBufferAttributes
-func (m_ MEVideoDecoderPixelBufferManager) SetPixelBufferAttributes(value unsafe.Pointer) {
+func (m_ MEVideoDecoderPixelBufferManager) SetPixelBufferAttributes(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPixelBufferAttributes:"), value)
 }
 

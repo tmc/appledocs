@@ -32,23 +32,23 @@ type _PersistentStoreClass struct {
 type IPersistentStore interface {
 	objectivec.IObject
 	// properties:
-	Metadata() foundation.IDictionary /* already interface */
-	SetMetadata(value foundation.IDictionary /* already interface */)
-	Type() string /* primitive/slice/pointer. */
-	ConfigurationName() string /* primitive/slice/pointer. */
-	SetConfigurationName(value string /* primitive/slice/pointer. */)
+	Metadata() foundation.IDictionary
+	SetMetadata(value foundation.IDictionary)
+	Type() objc.IObject /* cross-framework: NSString */
+	ConfigurationName() objc.IObject /* cross-framework: NSString */
+	SetConfigurationName(value objc.IObject /* cross-framework: NSString */)
 	CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate
 	SetCoreSpotlightExporter(value ICoreDataCoreSpotlightDelegate)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	IsReadOnly() bool /* primitive/slice/pointer. */
-	SetIsReadOnly(value bool /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	IsReadOnly() bool
+	SetIsReadOnly(value bool)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
 	PersistentStoreCoordinator() IPersistentStoreCoordinator
 	SetPersistentStoreCoordinator(value IPersistentStoreCoordinator)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -109,9 +109,9 @@ func NewPersistentStore() PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
-func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name string /* primitive/slice/pointer. */, url foundation.objc.IObject /* cross-framework URL */, options objectivec.IObject) PersistentStore {
+func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name objc.IObject /* cross-framework: NSString */, url objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */) PersistentStore {
 	instance := getPersistentStoreClass().Alloc()
-	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
+	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, name, url, options)
 	rv.Autorelease()
 	return rv
 }
@@ -122,7 +122,7 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
-func (p_ PersistentStore) Metadata() foundation.IDictionary /* already interface */ {
+func (p_ PersistentStore) Metadata() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (p_ PersistentStore) Metadata() foundation.IDictionary /* already interface
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
-func (p_ PersistentStore) SetMetadata(value foundation.IDictionary /* already interface */) {
+func (p_ PersistentStore) SetMetadata(value foundation.IDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
 }
 
@@ -141,8 +141,8 @@ func (p_ PersistentStore) SetMetadata(value foundation.IDictionary /* already in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/type
-func (p_ PersistentStore) Type() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+func (p_ PersistentStore) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -151,8 +151,8 @@ func (p_ PersistentStore) Type() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) ConfigurationName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("configurationName"))
+func (p_ PersistentStore) ConfigurationName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("configurationName"))
 	return rv
 }
 
@@ -161,8 +161,8 @@ func (p_ PersistentStore) ConfigurationName() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/configurationname
-func (p_ PersistentStore) SetConfigurationName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), objc.String(value))
+func (p_ PersistentStore) SetConfigurationName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), value)
 }
 
 
@@ -189,8 +189,8 @@ func (p_ PersistentStore) SetCoreSpotlightExporter(value ICoreDataCoreSpotlightD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PersistentStore) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -199,8 +199,8 @@ func (p_ PersistentStore) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (p_ PersistentStore) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PersistentStore) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -208,7 +208,7 @@ func (p_ PersistentStore) SetIdentifier(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
-func (p_ PersistentStore) IsReadOnly() bool /* primitive/slice/pointer. */ {
+func (p_ PersistentStore) IsReadOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadOnly"))
 	return rv
 }
@@ -218,7 +218,7 @@ func (p_ PersistentStore) IsReadOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/isreadonly
-func (p_ PersistentStore) SetIsReadOnly(value bool /* primitive/slice/pointer. */) {
+func (p_ PersistentStore) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
 
@@ -265,7 +265,7 @@ func (p_ PersistentStore) SetPersistentStoreCoordinator(value IPersistentStoreCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
-func (p_ PersistentStore) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (p_ PersistentStore) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -275,7 +275,7 @@ func (p_ PersistentStore) Url() foundation.objc.IObject /* cross-framework: URL 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
-func (p_ PersistentStore) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (p_ PersistentStore) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

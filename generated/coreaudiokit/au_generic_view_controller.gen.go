@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [GenericViewController] class.
@@ -86,7 +87,7 @@ func NewGenericViewController() GenericViewController {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
 func (g_ GenericViewController) AuAudioUnit() objc.IObject /* cross-framework: AudioUnit */ {
-	rv := objc.Send[AudioUnit](g_.ID, objc.Sel("auAudioUnit"))
+	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("auAudioUnit"))
 	return rv
 }
 

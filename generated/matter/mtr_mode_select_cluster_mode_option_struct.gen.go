@@ -31,15 +31,19 @@ type _MTRModeSelectClusterModeOptionStructClass struct {
 // An interface definition for the [MTRModeSelectClusterModeOptionStruct] class.
 type IMTRModeSelectClusterModeOptionStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	Mode() foundation.Number
-	SetMode(value foundation.INumber)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Mode() objc.IObject /* cross-framework: NSNumber */
+	SetMode(value objc.IObject /* cross-framework: NSNumber */)
 	SemanticTags() unsafe.Pointer
 	SetSemanticTags(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRModeSelectClusterModeOptionStruct
 type MTRModeSelectClusterModeOptionStruct struct {
 	objectivec.Object
@@ -82,37 +86,38 @@ func NewMTRModeSelectClusterModeOptionStruct() MTRModeSelectClusterModeOptionStr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRModeSelectClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
-func (m_ MTRModeSelectClusterModeOptionStruct) Mode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+func (m_ MTRModeSelectClusterModeOptionStruct) Mode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
 
-// SetMode sets the value of the mode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
-func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value foundation.INumber) {
+func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
 func (m_ MTRModeSelectClusterModeOptionStruct) SemanticTags() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("semanticTags"))
@@ -120,8 +125,7 @@ func (m_ MTRModeSelectClusterModeOptionStruct) SemanticTags() unsafe.Pointer {
 }
 
 
-// SetSemanticTags sets the value of the semanticTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
 func (m_ MTRModeSelectClusterModeOptionStruct) SetSemanticTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSemanticTags:"), value)

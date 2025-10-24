@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +32,26 @@ type _SNClassificationClass struct {
 // An interface definition for the [SNClassification] class.
 type ISNClassification interface {
 	objectivec.IObject
-	Identifier() string
+	// properties:
 	Confidence() float64
 	SetConfidence(value float64)
-	Classifications() SNClassification
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Classifications() ISNClassification
 	SetClassifications(value ISNClassification)
-	TimeRange() unsafe.Pointer
-	SetTimeRange(value unsafe.Pointer)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
+	// methods:
 }
 
 // A type that pairs a sound classifier’s prediction with its confidence in that prediction.
 //
 // An represents a single sound classification prediction, and the sound classifier model’s confidence in that prediction.
+
+
+// A type that pairs a sound classifier’s prediction with its confidence in that prediction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification
 type SNClassification struct {
 	objectivec.Object
@@ -87,16 +96,10 @@ func NewSNClassification() SNClassification {
 }
 
 
-// A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
-func (s_ SNClassification) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
-	return rv
-}
 
 // The confidence value the model has in its prediction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
 func (s_ SNClassification) Confidence() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("confidence"))
@@ -104,48 +107,68 @@ func (s_ SNClassification) Confidence() float64 {
 }
 
 
-// SetConfidence sets the value of the confidence property.
 // The confidence value the model has in its prediction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/confidence
 func (s_ SNClassification) SetConfidence(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setConfidence:"), value)
 }
 
+
+// A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/identifier
+func (s_ SNClassification) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassification/identifier
+func (s_ SNClassification) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+
 // A sorted array of the request’s top classification candidates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
-func (s_ SNClassification) Classifications() SNClassification {
+func (s_ SNClassification) Classifications() ISNClassification {
 	rv := objc.Send[SNClassification](s_.ID, objc.Sel("classifications"))
 	return rv
 }
 
 
-// SetClassifications sets the value of the classifications property.
 // A sorted array of the request’s top classification candidates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
 func (s_ SNClassification) SetClassifications(value ISNClassification) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassifications:"), value)
 }
 
+
 // The time span that corresponds to the result’s classifications.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassification) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("timeRange"))
+func (s_ SNClassification) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](s_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
 
-// SetTimeRange sets the value of the timeRange property.
 // The time span that corresponds to the result’s classifications.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassification) SetTimeRange(value unsafe.Pointer) {
+func (s_ SNClassification) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
 }
 

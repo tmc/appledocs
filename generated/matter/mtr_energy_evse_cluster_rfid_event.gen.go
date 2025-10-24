@@ -31,11 +31,15 @@ type _MTREnergyEVSEClusterRFIDEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterRFIDEvent] class.
 type IMTREnergyEVSEClusterRFIDEvent interface {
 	objectivec.IObject
-	Uid() foundation.NSData
-	SetUid(value foundation.IData)
+	// properties:
+	Uid() objc.IObject /* cross-framework: NSData */
+	SetUid(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterRFIDEvent
 type MTREnergyEVSEClusterRFIDEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTREnergyEVSEClusterRFIDEvent() MTREnergyEVSEClusterRFIDEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterRFIDEvent/uid
-func (m_ MTREnergyEVSEClusterRFIDEvent) Uid() foundation.NSData {
+func (m_ MTREnergyEVSEClusterRFIDEvent) Uid() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("uid"))
 	return rv
 }
 
 
-// SetUid sets the value of the uid property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterRFIDEvent/uid
-func (m_ MTREnergyEVSEClusterRFIDEvent) SetUid(value foundation.IData) {
+func (m_ MTREnergyEVSEClusterRFIDEvent) SetUid(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUid:"), value)
 }
 

@@ -31,11 +31,15 @@ type _MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsClass stru
 // An interface definition for the [MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams] class.
 type IMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams interface {
 	objectivec.IObject
-	OperationalDataset() foundation.NSData
-	SetOperationalDataset(value foundation.IData)
+	// properties:
+	OperationalDataset() objc.IObject /* cross-framework: NSData */
+	SetOperationalDataset(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams
 type MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams() MTRTh
 
 
 
-
 // Initialize an MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/init(responseValue:)
-func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams {
+func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams {
 	instance := getMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsClass().Alloc()
 	rv := objc.Send[MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsWithResp
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) OperationalDataset() foundation.NSData {
+func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) OperationalDataset() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
 
-// SetOperationalDataset sets the value of the operationalDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) SetOperationalDataset(value foundation.IData) {
+func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) SetOperationalDataset(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 

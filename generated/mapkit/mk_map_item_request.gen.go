@@ -35,10 +35,10 @@ type IMKMapItemRequest interface {
 	SetFeature(value unsafe.Pointer)
 	FeatureAnnotation() IMKMapFeatureAnnotation
 	SetFeatureAnnotation(value IMKMapFeatureAnnotation)
-	IsCancelled() bool /* primitive/slice/pointer. */
-	SetIsCancelled(value bool /* primitive/slice/pointer. */)
-	IsLoading() bool /* primitive/slice/pointer. */
-	SetIsLoading(value bool /* primitive/slice/pointer. */)
+	IsCancelled() bool
+	SetIsCancelled(value bool)
+	IsLoading() bool
+	SetIsLoading(value bool)
 	MapFeature() unsafe.Pointer
 	SetMapFeature(value unsafe.Pointer)
 	MapFeatureAnnotation() IMKMapFeatureAnnotation
@@ -143,7 +143,7 @@ func (m_ MKMapItemRequest) SetFeatureAnnotation(value IMKMapFeatureAnnotation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/iscancelled
-func (m_ MKMapItemRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
+func (m_ MKMapItemRequest) IsCancelled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (m_ MKMapItemRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/iscancelled
-func (m_ MKMapItemRequest) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
+func (m_ MKMapItemRequest) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MKMapItemRequest) SetIsCancelled(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/isloading
-func (m_ MKMapItemRequest) IsLoading() bool /* primitive/slice/pointer. */ {
+func (m_ MKMapItemRequest) IsLoading() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (m_ MKMapItemRequest) IsLoading() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/isloading
-func (m_ MKMapItemRequest) SetIsLoading(value bool /* primitive/slice/pointer. */) {
+func (m_ MKMapItemRequest) SetIsLoading(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 

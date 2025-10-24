@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
@@ -33,58 +34,57 @@ type _WorkspaceClass struct {
 type IWorkspace interface {
 	objectivec.IObject
 	// properties:
-	AccessibilityDisplayShouldDifferentiateWithoutColor() bool /* primitive/slice/pointer. */
-	AccessibilityDisplayShouldIncreaseContrast() bool /* primitive/slice/pointer. */
-	AccessibilityDisplayShouldInvertColors() bool /* primitive/slice/pointer. */
-	AccessibilityDisplayShouldReduceMotion() bool /* primitive/slice/pointer. */
-	AccessibilityDisplayShouldReduceTransparency() bool /* primitive/slice/pointer. */
-	FileLabelColors() []Color /* primitive/slice/pointer. */
-	FileLabels() []string /* primitive/slice/pointer. */
+	AccessibilityDisplayShouldDifferentiateWithoutColor() bool
+	AccessibilityDisplayShouldIncreaseContrast() bool
+	AccessibilityDisplayShouldInvertColors() bool
+	AccessibilityDisplayShouldReduceMotion() bool
+	AccessibilityDisplayShouldReduceTransparency() bool
+	FileLabelColors() []IColor
+	FileLabels() []string
 	FrontmostApplication() IRunningApplication
-	SwitchControlEnabled() bool /* primitive/slice/pointer. */
-	VoiceOverEnabled() bool /* primitive/slice/pointer. */
+	SwitchControlEnabled() bool
+	VoiceOverEnabled() bool
 	MenuBarOwningApplication() IRunningApplication
 	NotificationCenter() objc.IObject /* cross-framework: NotificationCenter */
-	RunningApplications() []RunningApplication /* primitive/slice/pointer. */
-	IsSwitchControlEnabled() bool /* primitive/slice/pointer. */
-	SetIsSwitchControlEnabled(value bool /* primitive/slice/pointer. */)
-	IsVoiceOverEnabled() bool /* primitive/slice/pointer. */
-	SetIsVoiceOverEnabled(value bool /* primitive/slice/pointer. */)
+	RunningApplications() []IRunningApplication
+	IsSwitchControlEnabled() bool
+	SetIsSwitchControlEnabled(value bool)
+	IsVoiceOverEnabled() bool
+	SetIsVoiceOverEnabled(value bool)
 	// methods:
-	ActivateFileViewerSelectingURLs(fileURLs objc.IObject /* cross-framework URL */)
-	DesktopImageOptionsForScreen(screen IScreen) foundation.IDictionary /* already interface */
+	ActivateFileViewerSelectingURLs(fileURLs []objc.IObject /* cross-framework: URL */)
+	DesktopImageOptionsForScreen(screen IScreen) foundation.IDictionary
 	DesktopImageURLForScreen(screen IScreen) objc.IObject /* cross-framework: URL */
-	DuplicateURLsCompletionHandler(URLs objc.IObject /* cross-framework URL */, handler foundation.IDictionary /* already interface */)
-	ExtendPowerOffBy(requested int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	GetFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(fullPath objc.IObject /* cross-framework NSString */, removableFlag unsafe.Pointer, writableFlag unsafe.Pointer, unmountableFlag unsafe.Pointer, description objc.IObject /* cross-framework NSString */, fileSystemType objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
+	DuplicateURLsCompletionHandler(URLs []objc.IObject /* cross-framework: URL */, handler foundation.IDictionary)
+	ExtendPowerOffBy(requested int) int
+	GetFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(fullPath objc.IObject /* cross-framework: NSString */, removableFlag unsafe.Pointer, writableFlag unsafe.Pointer, unmountableFlag unsafe.Pointer, description objc.IObject /* cross-framework: NSString */, fileSystemType objc.IObject /* cross-framework: NSString */) bool
 	HideOtherApplications()
-	IconForContentType(contentType objc.IObject /* cross-framework UTType */) IImage
-	IconForFile(fullPath objc.IObject /* cross-framework NSString */) IImage
-	IconForFiles(fullPaths []string /* primitive/slice/pointer. */) IImage
-	IsFilePackageAtPath(fullPath objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
-	NoteFileSystemChanged(path objc.IObject /* cross-framework NSString */)
-	OpenURL(url objc.IObject /* cross-framework NSURL */) bool /* primitive/slice/pointer. */
-	OpenURLConfigurationCompletionHandler(url objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
-	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls objc.IObject /* cross-framework URL */, applicationURL objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
-	OpenApplicationAtURLConfigurationCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
-	RecycleURLsCompletionHandler(URLs objc.IObject /* cross-framework URL */, handler foundation.IDictionary /* already interface */)
+	IconForContentType(contentType objc.IObject /* cross-framework: UTType */) IImage
+	IconForFile(fullPath objc.IObject /* cross-framework: NSString */) IImage
+	IconForFiles(fullPaths []string) IImage
+	IsFilePackageAtPath(fullPath objc.IObject /* cross-framework: NSString */) bool
+	OpenURL(url objc.IObject /* cross-framework: NSURL */) bool
+	OpenURLConfigurationCompletionHandler(url objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
+	OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls []objc.IObject /* cross-framework: URL */, applicationURL objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
+	OpenApplicationAtURLConfigurationCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer)
+	RecycleURLsCompletionHandler(URLs []objc.IObject /* cross-framework: URL */, handler foundation.IDictionary)
 	RequestAuthorizationOfTypeCompletionHandler(type_ WorkspaceAuthorizationType, completionHandler unsafe.Pointer)
-	SelectFileInFileViewerRootedAtPath(fullPath objc.IObject /* cross-framework NSString */, rootFullPath objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
-	SetDefaultApplicationAtURLToOpenContentTypeCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, contentType objc.IObject /* cross-framework UTType */, completionHandler unsafe.Pointer)
-	SetDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, url objc.IObject /* cross-framework NSURL */, completionHandler unsafe.Pointer)
-	SetDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, url objc.IObject /* cross-framework NSURL */, completionHandler unsafe.Pointer)
-	SetDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, urlScheme objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer)
-	SetDesktopImageURLForScreenOptionsError(url objc.IObject /* cross-framework NSURL */, screen IScreen, options foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetIconForFileOptions(image IImage, fullPath objc.IObject /* cross-framework NSString */, options WorkspaceIconCreationOptions) bool /* primitive/slice/pointer. */
-	ShowSearchResultsForQueryString(queryString objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
-	UnmountAndEjectDeviceAtURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	UnmountAndEjectDeviceAtPath(path objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */
-	URLForApplicationToOpenURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: URL */
-	URLForApplicationToOpenContentType(contentType objc.IObject /* cross-framework UTType */) objc.IObject /* cross-framework: URL */
-	URLForApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: URL */
-	URLsForApplicationsToOpenContentType(contentType objc.IObject /* cross-framework UTType */) objc.IObject /* cross-framework: URL */
-	URLsForApplicationsToOpenURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: URL */
-	URLsForApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: URL */
+	SelectFileInFileViewerRootedAtPath(fullPath objc.IObject /* cross-framework: NSString */, rootFullPath objc.IObject /* cross-framework: NSString */) bool
+	SetDefaultApplicationAtURLToOpenContentTypeCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, contentType objc.IObject /* cross-framework: UTType */, completionHandler unsafe.Pointer)
+	SetDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)
+	SetDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)
+	SetDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, urlScheme objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
+	SetDesktopImageURLForScreenOptionsError(url objc.IObject /* cross-framework: NSURL */, screen IScreen, options foundation.IDictionary, error_ unsafe.Pointer) bool
+	SetIconForFileOptions(image IImage, fullPath objc.IObject /* cross-framework: NSString */, options WorkspaceIconCreationOptions) bool
+	ShowSearchResultsForQueryString(queryString objc.IObject /* cross-framework: NSString */) bool
+	UnmountAndEjectDeviceAtURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool
+	UnmountAndEjectDeviceAtPath(path objc.IObject /* cross-framework: NSString */) bool
+	URLForApplicationToOpenURL(url objc.IObject /* cross-framework: NSURL */) objc.IObject /* cross-framework: URL */
+	URLForApplicationToOpenContentType(contentType objc.IObject /* cross-framework: UTType */) objc.IObject /* cross-framework: URL */
+	URLForApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: URL */
+	URLsForApplicationsToOpenContentType(contentType objc.IObject /* cross-framework: UTType */) []objc.IObject /* cross-framework: URL */
+	URLsForApplicationsToOpenURL(url objc.IObject /* cross-framework: NSURL */) []objc.IObject /* cross-framework: URL */
+	URLsForApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: URL */
 }
 
 // A workspace that can launch other apps and perform a variety of file-handling services.
@@ -153,7 +153,7 @@ func (wc _WorkspaceClass) SharedWorkspace() Workspace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/activateFileViewerSelecting(_:)
-func (w_ Workspace) ActivateFileViewerSelectingURLs(fileURLs objc.IObject /* cross-framework URL */) {
+func (w_ Workspace) ActivateFileViewerSelectingURLs(fileURLs []objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("activateFileViewerSelectingURLs:"), fileURLs)
 }
 
@@ -162,7 +162,7 @@ func (w_ Workspace) ActivateFileViewerSelectingURLs(fileURLs objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/desktopImageOptions(for:)
-func (w_ Workspace) DesktopImageOptionsForScreen(screen IScreen) foundation.IDictionary /* already interface */ {
+func (w_ Workspace) DesktopImageOptionsForScreen(screen IScreen) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("desktopImageOptionsForScreen:"), screen)
 	return rv
 }
@@ -173,7 +173,7 @@ func (w_ Workspace) DesktopImageOptionsForScreen(screen IScreen) foundation.IDic
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/desktopImageURL(for:)
 func (w_ Workspace) DesktopImageURLForScreen(screen IScreen) objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[URL](w_.ID, objc.Sel("desktopImageURLForScreen:"), screen)
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("desktopImageURLForScreen:"), screen)
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (w_ Workspace) DesktopImageURLForScreen(screen IScreen) objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/duplicate(_:completionHandler:)
-func (w_ Workspace) DuplicateURLsCompletionHandler(URLs objc.IObject /* cross-framework URL */, handler foundation.IDictionary /* already interface */) {
+func (w_ Workspace) DuplicateURLsCompletionHandler(URLs []objc.IObject /* cross-framework: URL */, handler foundation.IDictionary) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("duplicateURLs:completionHandler:"), URLs, handler)
 }
 
@@ -191,7 +191,7 @@ func (w_ Workspace) DuplicateURLsCompletionHandler(URLs objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/extendPowerOff(by:)
-func (w_ Workspace) ExtendPowerOffBy(requested int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
+func (w_ Workspace) ExtendPowerOffBy(requested int) int {
 	rv := objc.Send[int](w_.ID, objc.Sel("extendPowerOffBy:"), requested)
 	return rv
 }
@@ -201,7 +201,7 @@ func (w_ Workspace) ExtendPowerOffBy(requested int /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/getFileSystemInfo(forPath:isRemovable:isWritable:isUnmountable:description:type:)
-func (w_ Workspace) GetFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(fullPath objc.IObject /* cross-framework NSString */, removableFlag unsafe.Pointer, writableFlag unsafe.Pointer, unmountableFlag unsafe.Pointer, description objc.IObject /* cross-framework NSString */, fileSystemType objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) GetFileSystemInfoForPathIsRemovableIsWritableIsUnmountableDescriptionType(fullPath objc.IObject /* cross-framework: NSString */, removableFlag unsafe.Pointer, writableFlag unsafe.Pointer, unmountableFlag unsafe.Pointer, description objc.IObject /* cross-framework: NSString */, fileSystemType objc.IObject /* cross-framework: NSString */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:"), fullPath, removableFlag, writableFlag, unmountableFlag, description, fileSystemType)
 	return rv
 }
@@ -220,7 +220,7 @@ func (w_ Workspace) HideOtherApplications() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/icon(for:)
-func (w_ Workspace) IconForContentType(contentType objc.IObject /* cross-framework UTType */) IImage {
+func (w_ Workspace) IconForContentType(contentType objc.IObject /* cross-framework: UTType */) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("iconForContentType:"), contentType)
 	return rv
 }
@@ -230,7 +230,7 @@ func (w_ Workspace) IconForContentType(contentType objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/icon(forFile:)
-func (w_ Workspace) IconForFile(fullPath objc.IObject /* cross-framework NSString */) IImage {
+func (w_ Workspace) IconForFile(fullPath objc.IObject /* cross-framework: NSString */) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("iconForFile:"), fullPath)
 	return rv
 }
@@ -240,7 +240,7 @@ func (w_ Workspace) IconForFile(fullPath objc.IObject /* cross-framework NSStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/icon(forFiles:)
-func (w_ Workspace) IconForFiles(fullPaths []string /* primitive/slice/pointer. */) IImage {
+func (w_ Workspace) IconForFiles(fullPaths []string) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("iconForFiles:"), fullPaths)
 	return rv
 }
@@ -250,18 +250,9 @@ func (w_ Workspace) IconForFiles(fullPaths []string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/isFilePackage(atPath:)
-func (w_ Workspace) IsFilePackageAtPath(fullPath objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) IsFilePackageAtPath(fullPath objc.IObject /* cross-framework: NSString */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isFilePackageAtPath:"), fullPath)
 	return rv
-}
-
-
-// Informs the workspace object that the file system changed at the specified path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/noteFileSystemChanged(_:)
-func (w_ Workspace) NoteFileSystemChanged(path objc.IObject /* cross-framework NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("noteFileSystemChanged:"), path)
 }
 
 
@@ -269,7 +260,7 @@ func (w_ Workspace) NoteFileSystemChanged(path objc.IObject /* cross-framework N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:)
-func (w_ Workspace) OpenURL(url objc.IObject /* cross-framework NSURL */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) OpenURL(url objc.IObject /* cross-framework: NSURL */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("openURL:"), url)
 	return rv
 }
@@ -279,7 +270,7 @@ func (w_ Workspace) OpenURL(url objc.IObject /* cross-framework NSURL */) bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:configuration:completionHandler:)
-func (w_ Workspace) OpenURLConfigurationCompletionHandler(url objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLConfigurationCompletionHandler(url objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURL:configuration:completionHandler:"), url, configuration, completionHandler)
 }
 
@@ -288,7 +279,7 @@ func (w_ Workspace) OpenURLConfigurationCompletionHandler(url objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/open(_:withApplicationAt:configuration:completionHandler:)
-func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls objc.IObject /* cross-framework URL */, applicationURL objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(urls []objc.IObject /* cross-framework: URL */, applicationURL objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openURLs:withApplicationAtURL:configuration:completionHandler:"), urls, applicationURL, configuration, completionHandler)
 }
 
@@ -297,7 +288,7 @@ func (w_ Workspace) OpenURLsWithApplicationAtURLConfigurationCompletionHandler(u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/openApplication(at:configuration:completionHandler:)
-func (w_ Workspace) OpenApplicationAtURLConfigurationCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
+func (w_ Workspace) OpenApplicationAtURLConfigurationCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, configuration IWorkspaceOpenConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("openApplicationAtURL:configuration:completionHandler:"), applicationURL, configuration, completionHandler)
 }
 
@@ -306,7 +297,7 @@ func (w_ Workspace) OpenApplicationAtURLConfigurationCompletionHandler(applicati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/recycle(_:completionHandler:)
-func (w_ Workspace) RecycleURLsCompletionHandler(URLs objc.IObject /* cross-framework URL */, handler foundation.IDictionary /* already interface */) {
+func (w_ Workspace) RecycleURLsCompletionHandler(URLs []objc.IObject /* cross-framework: URL */, handler foundation.IDictionary) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("recycleURLs:completionHandler:"), URLs, handler)
 }
 
@@ -324,7 +315,7 @@ func (w_ Workspace) RequestAuthorizationOfTypeCompletionHandler(type_ WorkspaceA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/selectFile(_:inFileViewerRootedAtPath:)
-func (w_ Workspace) SelectFileInFileViewerRootedAtPath(fullPath objc.IObject /* cross-framework NSString */, rootFullPath objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) SelectFileInFileViewerRootedAtPath(fullPath objc.IObject /* cross-framework: NSString */, rootFullPath objc.IObject /* cross-framework: NSString */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("selectFile:inFileViewerRootedAtPath:"), fullPath, rootFullPath)
 	return rv
 }
@@ -334,7 +325,7 @@ func (w_ Workspace) SelectFileInFileViewerRootedAtPath(fullPath objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setDefaultApplication(at:toOpen:completion:)
-func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, contentType objc.IObject /* cross-framework UTType */, completionHandler unsafe.Pointer) {
+func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, contentType objc.IObject /* cross-framework: UTType */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultApplicationAtURL:toOpenContentType:completionHandler:"), applicationURL, contentType, completionHandler)
 }
 
@@ -343,7 +334,7 @@ func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setDefaultApplication(at:toOpenContentTypeOfFileAt:completion:)
-func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, url objc.IObject /* cross-framework NSURL */, completionHandler unsafe.Pointer) {
+func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeOfFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:"), applicationURL, url, completionHandler)
 }
 
@@ -352,7 +343,7 @@ func (w_ Workspace) SetDefaultApplicationAtURLToOpenContentTypeOfFileAtURLComple
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setDefaultApplication(at:toOpenFileAt:completion:)
-func (w_ Workspace) SetDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, url objc.IObject /* cross-framework NSURL */, completionHandler unsafe.Pointer) {
+func (w_ Workspace) SetDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:"), applicationURL, url, completionHandler)
 }
 
@@ -361,7 +352,7 @@ func (w_ Workspace) SetDefaultApplicationAtURLToOpenFileAtURLCompletionHandler(a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setDefaultApplication(at:toOpenURLsWithScheme:completion:)
-func (w_ Workspace) SetDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(applicationURL objc.IObject /* cross-framework NSURL */, urlScheme objc.IObject /* cross-framework NSString */, completionHandler unsafe.Pointer) {
+func (w_ Workspace) SetDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHandler(applicationURL objc.IObject /* cross-framework: NSURL */, urlScheme objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:"), applicationURL, urlScheme, completionHandler)
 }
 
@@ -370,7 +361,7 @@ func (w_ Workspace) SetDefaultApplicationAtURLToOpenURLsWithSchemeCompletionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setDesktopImageURL(_:for:options:)
-func (w_ Workspace) SetDesktopImageURLForScreenOptionsError(url objc.IObject /* cross-framework NSURL */, screen IScreen, options foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) SetDesktopImageURLForScreenOptionsError(url objc.IObject /* cross-framework: NSURL */, screen IScreen, options foundation.IDictionary, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setDesktopImageURL:forScreen:options:error:"), url, screen, options, error_)
 	return rv
 }
@@ -380,7 +371,7 @@ func (w_ Workspace) SetDesktopImageURLForScreenOptionsError(url objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/setIcon(_:forFile:options:)
-func (w_ Workspace) SetIconForFileOptions(image IImage, fullPath objc.IObject /* cross-framework NSString */, options WorkspaceIconCreationOptions) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) SetIconForFileOptions(image IImage, fullPath objc.IObject /* cross-framework: NSString */, options WorkspaceIconCreationOptions) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setIcon:forFile:options:"), image, fullPath, options)
 	return rv
 }
@@ -390,7 +381,7 @@ func (w_ Workspace) SetIconForFileOptions(image IImage, fullPath objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/showSearchResults(forQueryString:)
-func (w_ Workspace) ShowSearchResultsForQueryString(queryString objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) ShowSearchResultsForQueryString(queryString objc.IObject /* cross-framework: NSString */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("showSearchResultsForQueryString:"), queryString)
 	return rv
 }
@@ -400,7 +391,7 @@ func (w_ Workspace) ShowSearchResultsForQueryString(queryString objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/unmountAndEjectDevice(at:)
-func (w_ Workspace) UnmountAndEjectDeviceAtURLError(url objc.IObject /* cross-framework NSURL */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) UnmountAndEjectDeviceAtURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("unmountAndEjectDeviceAtURL:error:"), url, error_)
 	return rv
 }
@@ -410,7 +401,7 @@ func (w_ Workspace) UnmountAndEjectDeviceAtURLError(url objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/unmountAndEjectDevice(atPath:)
-func (w_ Workspace) UnmountAndEjectDeviceAtPath(path objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) UnmountAndEjectDeviceAtPath(path objc.IObject /* cross-framework: NSString */) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("unmountAndEjectDeviceAtPath:"), path)
 	return rv
 }
@@ -420,8 +411,8 @@ func (w_ Workspace) UnmountAndEjectDeviceAtPath(path objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlForApplication(toOpen:)-7qkzf
-func (w_ Workspace) URLForApplicationToOpenURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[URL](w_.ID, objc.Sel("URLForApplicationToOpenURL:"), url)
+func (w_ Workspace) URLForApplicationToOpenURL(url objc.IObject /* cross-framework: NSURL */) objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("URLForApplicationToOpenURL:"), url)
 	return rv
 }
 
@@ -430,8 +421,8 @@ func (w_ Workspace) URLForApplicationToOpenURL(url objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlForApplication(toOpen:)-95cvp
-func (w_ Workspace) URLForApplicationToOpenContentType(contentType objc.IObject /* cross-framework UTType */) objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[URL](w_.ID, objc.Sel("URLForApplicationToOpenContentType:"), contentType)
+func (w_ Workspace) URLForApplicationToOpenContentType(contentType objc.IObject /* cross-framework: UTType */) objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("URLForApplicationToOpenContentType:"), contentType)
 	return rv
 }
 
@@ -440,8 +431,8 @@ func (w_ Workspace) URLForApplicationToOpenContentType(contentType objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlForApplication(withBundleIdentifier:)
-func (w_ Workspace) URLForApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[URL](w_.ID, objc.Sel("URLForApplicationWithBundleIdentifier:"), bundleIdentifier)
+func (w_ Workspace) URLForApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](w_.ID, objc.Sel("URLForApplicationWithBundleIdentifier:"), bundleIdentifier)
 	return rv
 }
 
@@ -450,7 +441,7 @@ func (w_ Workspace) URLForApplicationWithBundleIdentifier(bundleIdentifier objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlsForApplications(toOpen:)-60rkm
-func (w_ Workspace) URLsForApplicationsToOpenContentType(contentType objc.IObject /* cross-framework UTType */) objc.IObject /* cross-framework: URL */ {
+func (w_ Workspace) URLsForApplicationsToOpenContentType(contentType objc.IObject /* cross-framework: UTType */) []objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](w_.ID, objc.Sel("URLsForApplicationsToOpenContentType:"), contentType)
 	return rv
 }
@@ -460,7 +451,7 @@ func (w_ Workspace) URLsForApplicationsToOpenContentType(contentType objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlsForApplications(toOpen:)-ualk
-func (w_ Workspace) URLsForApplicationsToOpenURL(url objc.IObject /* cross-framework NSURL */) objc.IObject /* cross-framework: URL */ {
+func (w_ Workspace) URLsForApplicationsToOpenURL(url objc.IObject /* cross-framework: NSURL */) []objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](w_.ID, objc.Sel("URLsForApplicationsToOpenURL:"), url)
 	return rv
 }
@@ -470,7 +461,7 @@ func (w_ Workspace) URLsForApplicationsToOpenURL(url objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/urlsForApplications(withBundleIdentifier:)
-func (w_ Workspace) URLsForApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: URL */ {
+func (w_ Workspace) URLsForApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](w_.ID, objc.Sel("URLsForApplicationsWithBundleIdentifier:"), bundleIdentifier)
 	return rv
 }
@@ -480,7 +471,7 @@ func (w_ Workspace) URLsForApplicationsWithBundleIdentifier(bundleIdentifier obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/accessibilityDisplayShouldDifferentiateWithoutColor
-func (w_ Workspace) AccessibilityDisplayShouldDifferentiateWithoutColor() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) AccessibilityDisplayShouldDifferentiateWithoutColor() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldDifferentiateWithoutColor"))
 	return rv
 }
@@ -490,7 +481,7 @@ func (w_ Workspace) AccessibilityDisplayShouldDifferentiateWithoutColor() bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/accessibilityDisplayShouldIncreaseContrast
-func (w_ Workspace) AccessibilityDisplayShouldIncreaseContrast() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) AccessibilityDisplayShouldIncreaseContrast() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldIncreaseContrast"))
 	return rv
 }
@@ -500,7 +491,7 @@ func (w_ Workspace) AccessibilityDisplayShouldIncreaseContrast() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/accessibilityDisplayShouldInvertColors
-func (w_ Workspace) AccessibilityDisplayShouldInvertColors() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) AccessibilityDisplayShouldInvertColors() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldInvertColors"))
 	return rv
 }
@@ -510,7 +501,7 @@ func (w_ Workspace) AccessibilityDisplayShouldInvertColors() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/accessibilityDisplayShouldReduceMotion
-func (w_ Workspace) AccessibilityDisplayShouldReduceMotion() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) AccessibilityDisplayShouldReduceMotion() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldReduceMotion"))
 	return rv
 }
@@ -520,7 +511,7 @@ func (w_ Workspace) AccessibilityDisplayShouldReduceMotion() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/accessibilityDisplayShouldReduceTransparency
-func (w_ Workspace) AccessibilityDisplayShouldReduceTransparency() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) AccessibilityDisplayShouldReduceTransparency() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("accessibilityDisplayShouldReduceTransparency"))
 	return rv
 }
@@ -530,7 +521,7 @@ func (w_ Workspace) AccessibilityDisplayShouldReduceTransparency() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/fileLabelColors
-func (w_ Workspace) FileLabelColors() []Color /* primitive/slice/pointer. */ {
+func (w_ Workspace) FileLabelColors() []IColor {
 	rv := objc.Send[[]Color](w_.ID, objc.Sel("fileLabelColors"))
 	return rv
 }
@@ -540,7 +531,7 @@ func (w_ Workspace) FileLabelColors() []Color /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/fileLabels
-func (w_ Workspace) FileLabels() []string /* primitive/slice/pointer. */ {
+func (w_ Workspace) FileLabels() []string {
 	rv := objc.Send[[]string](w_.ID, objc.Sel("fileLabels"))
 	return rv
 }
@@ -560,7 +551,7 @@ func (w_ Workspace) FrontmostApplication() IRunningApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/isSwitchControlEnabled
-func (w_ Workspace) SwitchControlEnabled() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) SwitchControlEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("switchControlEnabled"))
 	return rv
 }
@@ -570,7 +561,7 @@ func (w_ Workspace) SwitchControlEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/isVoiceOverEnabled
-func (w_ Workspace) VoiceOverEnabled() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) VoiceOverEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("voiceOverEnabled"))
 	return rv
 }
@@ -591,7 +582,7 @@ func (w_ Workspace) MenuBarOwningApplication() IRunningApplication {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/notificationCenter
 func (w_ Workspace) NotificationCenter() objc.IObject /* cross-framework: NotificationCenter */ {
-	rv := objc.Send[NotificationCenter](w_.ID, objc.Sel("notificationCenter"))
+	rv := objc.Send[foundation.NotificationCenter](w_.ID, objc.Sel("notificationCenter"))
 	return rv
 }
 
@@ -600,7 +591,7 @@ func (w_ Workspace) NotificationCenter() objc.IObject /* cross-framework: Notifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/runningApplications
-func (w_ Workspace) RunningApplications() []RunningApplication /* primitive/slice/pointer. */ {
+func (w_ Workspace) RunningApplications() []IRunningApplication {
 	rv := objc.Send[[]RunningApplication](w_.ID, objc.Sel("runningApplications"))
 	return rv
 }
@@ -620,7 +611,7 @@ func (w_ Workspace) SharedWorkspace() IWorkspace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isswitchcontrolenabled
-func (w_ Workspace) IsSwitchControlEnabled() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) IsSwitchControlEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isSwitchControlEnabled"))
 	return rv
 }
@@ -630,7 +621,7 @@ func (w_ Workspace) IsSwitchControlEnabled() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isswitchcontrolenabled
-func (w_ Workspace) SetIsSwitchControlEnabled(value bool /* primitive/slice/pointer. */) {
+func (w_ Workspace) SetIsSwitchControlEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsSwitchControlEnabled:"), value)
 }
 
@@ -639,7 +630,7 @@ func (w_ Workspace) SetIsSwitchControlEnabled(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isvoiceoverenabled
-func (w_ Workspace) IsVoiceOverEnabled() bool /* primitive/slice/pointer. */ {
+func (w_ Workspace) IsVoiceOverEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isVoiceOverEnabled"))
 	return rv
 }
@@ -649,7 +640,7 @@ func (w_ Workspace) IsVoiceOverEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsworkspace/isvoiceoverenabled
-func (w_ Workspace) SetIsVoiceOverEnabled(value bool /* primitive/slice/pointer. */) {
+func (w_ Workspace) SetIsVoiceOverEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsVoiceOverEnabled:"), value)
 }
 

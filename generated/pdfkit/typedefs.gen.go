@@ -3,11 +3,6 @@
 package pdfkit
 
 // Type aliases and typedefs
-// PDFAnnotationHighlightingMode type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationHighlightingMode
-// PDFAnnotationHighlightingMode has base type: NSString * const
-type PDFAnnotationHighlightingMode uintptr
 // PDFAnnotationKey - Keys for setting properties of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationKey
@@ -28,24 +23,19 @@ type PDFAnnotationTextIconType uintptr
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationWidgetSubtype
 // PDFAnnotationWidgetSubtype has base type: NSString * const
 type PDFAnnotationWidgetSubtype uintptr
-// PDFBorderKey type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorderKey
-// PDFBorderKey has base type: NSString * const
-type PDFBorderKey uintptr
 // PDFDocumentAttribute - A structure that specifies document attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocumentAttribute
-// PDFDocumentAttribute has base type: NSString *
-type PDFDocumentAttribute uintptr
+// PDFDocumentAttribute is a string typedef
+type PDFDocumentAttribute = string
 // PDFDocumentWriteOption - A structure that specifies file writing options for a document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDocumentWriteOption
-// PDFDocumentWriteOption has base type: NSString *
-type PDFDocumentWriteOption uintptr
+// PDFDocumentWriteOption is a string typedef
+type PDFDocumentWriteOption = string
 // PDFPageImageInitializationOption type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFPage/ImageInitializationOption
-// PDFPageImageInitializationOption has base type: NSString *
-type PDFPageImageInitializationOption uintptr
+// PDFPageImageInitializationOption is a string typedef
+type PDFPageImageInitializationOption = string
 

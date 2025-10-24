@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _CBMutableDescriptorClass struct {
 type ICBMutableDescriptor interface {
 	ICBDescriptor
 	// properties:
-	CBUUIDCharacteristicFormatString() string /* primitive/slice/pointer. */
-	CBUUIDCharacteristicUserDescriptionString() string /* primitive/slice/pointer. */
+	CBUUIDCharacteristicFormatString() objc.IObject /* cross-framework: NSString */
+	CBUUIDCharacteristicUserDescriptionString() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -108,8 +109,8 @@ func NewCBMutableDescriptorWithTypeValue(UUID ICBUUID, value objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
-func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (c_ CBMutableDescriptor) CBUUIDCharacteristicFormatString() string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
-func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
+func (c_ CBMutableDescriptor) CBUUIDCharacteristicUserDescriptionString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv
 }
 

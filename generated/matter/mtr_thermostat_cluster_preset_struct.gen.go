@@ -31,21 +31,25 @@ type _MTRThermostatClusterPresetStructClass struct {
 // An interface definition for the [MTRThermostatClusterPresetStruct] class.
 type IMTRThermostatClusterPresetStruct interface {
 	objectivec.IObject
-	BuiltIn() foundation.Number
-	SetBuiltIn(value foundation.INumber)
-	CoolingSetpoint() foundation.Number
-	SetCoolingSetpoint(value foundation.INumber)
-	HeatingSetpoint() foundation.Number
-	SetHeatingSetpoint(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	PresetHandle() foundation.NSData
-	SetPresetHandle(value foundation.IData)
-	PresetScenario() foundation.Number
-	SetPresetScenario(value foundation.INumber)
+	// properties:
+	BuiltIn() objc.IObject /* cross-framework: NSNumber */
+	SetBuiltIn(value objc.IObject /* cross-framework: NSNumber */)
+	CoolingSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetCoolingSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	HeatingSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetHeatingSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	PresetHandle() objc.IObject /* cross-framework: NSData */
+	SetPresetHandle(value objc.IObject /* cross-framework: NSData */)
+	PresetScenario() objc.IObject /* cross-framework: NSNumber */
+	SetPresetScenario(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct
 type MTRThermostatClusterPresetStruct struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRThermostatClusterPresetStruct() MTRThermostatClusterPresetStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/builtIn
-func (m_ MTRThermostatClusterPresetStruct) BuiltIn() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("builtIn"))
+func (m_ MTRThermostatClusterPresetStruct) BuiltIn() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("builtIn"))
 	return rv
 }
 
 
-// SetBuiltIn sets the value of the builtIn property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/builtIn
-func (m_ MTRThermostatClusterPresetStruct) SetBuiltIn(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetStruct) SetBuiltIn(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/coolingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) CoolingSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolingSetpoint"))
+func (m_ MTRThermostatClusterPresetStruct) CoolingSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("coolingSetpoint"))
 	return rv
 }
 
 
-// SetCoolingSetpoint sets the value of the coolingSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/coolingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) SetCoolingSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetStruct) SetCoolingSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/heatingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) HeatingSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatingSetpoint"))
+func (m_ MTRThermostatClusterPresetStruct) HeatingSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("heatingSetpoint"))
 	return rv
 }
 
 
-// SetHeatingSetpoint sets the value of the heatingSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/heatingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterPresetStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRThermostatClusterPresetStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle
-func (m_ MTRThermostatClusterPresetStruct) PresetHandle() foundation.NSData {
+func (m_ MTRThermostatClusterPresetStruct) PresetHandle() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
 
-// SetPresetHandle sets the value of the presetHandle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle
-func (m_ MTRThermostatClusterPresetStruct) SetPresetHandle(value foundation.IData) {
+func (m_ MTRThermostatClusterPresetStruct) SetPresetHandle(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetScenario
-func (m_ MTRThermostatClusterPresetStruct) PresetScenario() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("presetScenario"))
+func (m_ MTRThermostatClusterPresetStruct) PresetScenario() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("presetScenario"))
 	return rv
 }
 
 
-// SetPresetScenario sets the value of the presetScenario property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetScenario
-func (m_ MTRThermostatClusterPresetStruct) SetPresetScenario(value foundation.INumber) {
+func (m_ MTRThermostatClusterPresetStruct) SetPresetScenario(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
 

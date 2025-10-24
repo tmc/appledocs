@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +32,13 @@ type _MonitorClass struct {
 type IMonitor interface {
 	objectivec.IObject
 	// properties:
-	MonitoredIdentifiers() []string /* primitive/slice/pointer. */
-	Name() string /* primitive/slice/pointer. */
+	MonitoredIdentifiers() []string
+	Name() objc.IObject /* cross-framework: NSString */
 	// methods:
-	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string /* primitive/slice/pointer. */)
-	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string /* primitive/slice/pointer. */, state MonitoringState /* not a class type */)
-	MonitoringRecordForIdentifier(identifier string /* primitive/slice/pointer. */) IMonitoringRecord
-	RemoveConditionFromMonitoringWithIdentifier(identifier string /* primitive/slice/pointer. */)
+	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */)
+	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */, state MonitoringState /* not a class type */)
+	MonitoringRecordForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IMonitoringRecord
+	RemoveConditionFromMonitoringWithIdentifier(identifier objc.IObject /* cross-framework: NSString */)
 }
 
 // An object that monitors the conditions you add to it.
@@ -106,8 +107,8 @@ func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config ICLMoni
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:
-func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, objc.String(identifier))
+func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, identifier)
 }
 
 
@@ -115,8 +116,8 @@ func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, id
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
-func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string /* primitive/slice/pointer. */, state MonitoringState /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, objc.String(identifier), state)
+func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier objc.IObject /* cross-framework: NSString */, state MonitoringState /* not a class type */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, identifier, state)
 }
 
 
@@ -124,8 +125,8 @@ func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
-func (m_ Monitor) MonitoringRecordForIdentifier(identifier string /* primitive/slice/pointer. */) IMonitoringRecord {
-	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), objc.String(identifier))
+func (m_ Monitor) MonitoringRecordForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IMonitoringRecord {
+	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), identifier)
 	return rv
 }
 
@@ -134,8 +135,8 @@ func (m_ Monitor) MonitoringRecordForIdentifier(identifier string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/removeConditionFromMonitoringWithIdentifier:
-func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), objc.String(identifier))
+func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), identifier)
 }
 
 
@@ -143,7 +144,7 @@ func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoredIdentifiers
-func (m_ Monitor) MonitoredIdentifiers() []string /* primitive/slice/pointer. */ {
+func (m_ Monitor) MonitoredIdentifiers() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("monitoredIdentifiers"))
 	return rv
 }
@@ -153,8 +154,8 @@ func (m_ Monitor) MonitoredIdentifiers() []string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/name
-func (m_ Monitor) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ Monitor) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

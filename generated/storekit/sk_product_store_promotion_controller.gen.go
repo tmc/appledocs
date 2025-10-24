@@ -30,16 +30,18 @@ type _ProductStorePromotionControllerClass struct {
 // An interface definition for the [ProductStorePromotionController] class.
 type IProductStorePromotionController interface {
 	objectivec.IObject
-	FetchStorePromotionOrderWithCompletionHandler(completionHandler unsafe.Pointer)
-	FetchStorePromotionVisibilityForProductCompletionHandler(product ISKProduct, completionHandler unsafe.Pointer)
-	UpdateStorePromotionOrderCompletionHandler(promotionOrder []Product, completionHandler unsafe.Pointer)
-	UpdateStorePromotionVisibilityForProductCompletionHandler(promotionVisibility unsafe.Pointer, product ISKProduct, completionHandler unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // A product promotion controller for customizing the order and visibility of In-App Purchases per device.
 //
 // For information about promoting In-App Purchases, see .
+
+
+// A product promotion controller for customizing the order and visibility of In-App Purchases per device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductStorePromotionController
 type ProductStorePromotionController struct {
 	objectivec.Object
@@ -83,34 +85,6 @@ func NewProductStorePromotionController() ProductStorePromotionController {
 	return getProductStorePromotionControllerClass().New()
 }
 
-
-// Reads the product order override that determines the promoted product order on this device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionOrder(completionHandler:)
-func (p_ ProductStorePromotionController) FetchStorePromotionOrderWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("fetchStorePromotionOrderWithCompletionHandler:"), completionHandler)
-}
-
-// Reads the visibility setting of a promoted product in the App Store for this device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionVisibility(for:completionHandler:)
-func (p_ ProductStorePromotionController) FetchStorePromotionVisibilityForProductCompletionHandler(product ISKProduct, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("fetchStorePromotionVisibilityForProduct:completionHandler:"), product, completionHandler)
-}
-
-// Overrides the promoted product order on this device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionOrder:completionHandler:)
-func (p_ ProductStorePromotionController) UpdateStorePromotionOrderCompletionHandler(promotionOrder []Product, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("updateStorePromotionOrder:completionHandler:"), promotionOrder, completionHandler)
-}
-
-// Updates the visibility of the product on the App Store, per device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionVisibility:for:completionHandler:)
-func (p_ ProductStorePromotionController) UpdateStorePromotionVisibilityForProductCompletionHandler(promotionVisibility unsafe.Pointer, product ISKProduct, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("updateStorePromotionVisibility:forProduct:completionHandler:"), promotionVisibility, product, completionHandler)
-}
 
 
 

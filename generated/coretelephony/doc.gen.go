@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreTelephony without requiring cgo.
-
-// Access information about a user’s cellular service provider, such as its unique identifier and whether the carrier allows VoIP.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony
+// See: https://developer.apple.com/documentation/CoreTelephony
 package coretelephony
 
 import (

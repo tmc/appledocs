@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterTurbineOperationEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterTurbineOperationEvent] class.
 type IMTRPumpConfigurationAndControlClusterTurbineOperationEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterTurbineOperationEvent
 type MTRPumpConfigurationAndControlClusterTurbineOperationEvent struct {
 	objectivec.Object

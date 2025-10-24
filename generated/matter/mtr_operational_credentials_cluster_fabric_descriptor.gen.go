@@ -30,15 +30,19 @@ type _MTROperationalCredentialsClusterFabricDescriptorClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterFabricDescriptor] class.
 type IMTROperationalCredentialsClusterFabricDescriptor interface {
 	IMTROperationalCredentialsClusterFabricDescriptorStruct
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	Label() string
-	SetLabel(value string)
-	RootPublicKey() foundation.Data
-	SetRootPublicKey(value foundation.IData)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	RootPublicKey() objc.IObject /* cross-framework: Data */
+	SetRootPublicKey(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterFabricDescriptor
 type MTROperationalCredentialsClusterFabricDescriptor struct {
 	MTROperationalCredentialsClusterFabricDescriptorStruct
@@ -83,48 +87,48 @@ func NewMTROperationalCredentialsClusterFabricDescriptor() MTROperationalCredent
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() foundation.Data {
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
 }
 
 
-// SetRootPublicKey sets the value of the rootPublicKey property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetRootPublicKey(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetRootPublicKey(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _PlaybackSpeedClass struct {
 type IPlaybackSpeed interface {
 	objectivec.IObject
 	// properties:
-	LocalizedName() string /* primitive/slice/pointer. */
-	LocalizedNumericName() string /* primitive/slice/pointer. */
-	Rate() float32 /* primitive/slice/pointer. */
+	LocalizedName() objc.IObject /* cross-framework: NSString */
+	LocalizedNumericName() objc.IObject /* cross-framework: NSString */
+	Rate() float32
 	SelectedSpeed() IAVPlaybackSpeed
 	SetSelectedSpeed(value IAVPlaybackSpeed)
 	Speeds() IAVPlaybackSpeed
@@ -96,9 +97,9 @@ func NewPlaybackSpeed() PlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/init(rate:localizedName:)
-func NewPlaybackSpeedWithRateLocalizedName(rate float32 /* primitive/slice/pointer. */, localizedName string /* primitive/slice/pointer. */) PlaybackSpeed {
+func NewPlaybackSpeedWithRateLocalizedName(rate float32, localizedName objc.IObject /* cross-framework: NSString */) PlaybackSpeed {
 	instance := getPlaybackSpeedClass().Alloc()
-	rv := objc.Send[PlaybackSpeed](instance.ID, objc.Sel("initWithRate:localizedName:"), rate, objc.String(localizedName))
+	rv := objc.Send[PlaybackSpeed](instance.ID, objc.Sel("initWithRate:localizedName:"), rate, localizedName)
 	rv.Autorelease()
 	return rv
 }
@@ -109,7 +110,7 @@ func NewPlaybackSpeedWithRateLocalizedName(rate float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/systemDefaultSpeeds
-func (pc _PlaybackSpeedClass) SystemDefaultSpeeds() []PlaybackSpeed /* primitive/slice/pointer. */ {
+func (pc _PlaybackSpeedClass) SystemDefaultSpeeds() []IPlaybackSpeed {
 	rv := objc.Send[[]PlaybackSpeed](objc.ID(pc.class), objc.Sel("systemDefaultSpeeds"))
 	return rv
 }
@@ -118,8 +119,8 @@ func (pc _PlaybackSpeedClass) SystemDefaultSpeeds() []PlaybackSpeed /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/localizedName
-func (p_ PlaybackSpeed) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedName"))
+func (p_ PlaybackSpeed) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (p_ PlaybackSpeed) LocalizedName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/localizedNumericName
-func (p_ PlaybackSpeed) LocalizedNumericName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedNumericName"))
+func (p_ PlaybackSpeed) LocalizedNumericName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedNumericName"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (p_ PlaybackSpeed) LocalizedNumericName() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/rate
-func (p_ PlaybackSpeed) Rate() float32 /* primitive/slice/pointer. */ {
+func (p_ PlaybackSpeed) Rate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("rate"))
 	return rv
 }
@@ -148,7 +149,7 @@ func (p_ PlaybackSpeed) Rate() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlaybackSpeed/systemDefaultSpeeds
-func (p_ PlaybackSpeed) SystemDefaultSpeeds() []PlaybackSpeed /* primitive/slice/pointer. */ {
+func (p_ PlaybackSpeed) SystemDefaultSpeeds() []IPlaybackSpeed {
 	rv := objc.Send[[]PlaybackSpeed](p_.ID, objc.Sel("systemDefaultSpeeds"))
 	return rv
 }

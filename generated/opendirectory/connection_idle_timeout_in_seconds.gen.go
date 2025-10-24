@@ -30,9 +30,13 @@ type _connectionIdleTimeoutInSecondsClass struct {
 // An interface definition for the [connectionIdleTimeoutInSeconds] class.
 type IconnectionIdleTimeoutInSeconds interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-c.ivar
 type connectionIdleTimeoutInSeconds struct {
 	objectivec.Object

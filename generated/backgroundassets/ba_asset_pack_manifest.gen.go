@@ -95,9 +95,9 @@ func NewBAAssetPackManifest() BAAssetPackManifest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data foundation.objc.IObject /* cross-framework NSData */, applicationGroupIdentifier string /* primitive/slice/pointer. */, error_ unsafe.Pointer) BAAssetPackManifest {
+func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data objc.IObject /* cross-framework: NSData */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
-	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, objc.String(applicationGroupIdentifier), error_)
+	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, applicationGroupIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -107,9 +107,9 @@ func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data foundati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initWithContentsOfURL:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL foundation.objc.IObject /* cross-framework URL */, applicationGroupIdentifier string /* primitive/slice/pointer. */, error_ unsafe.Pointer) BAAssetPackManifest {
+func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL objc.IObject /* cross-framework: NSURL */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
-	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, objc.String(applicationGroupIdentifier), error_)
+	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, applicationGroupIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }

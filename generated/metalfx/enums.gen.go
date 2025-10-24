@@ -6,21 +6,21 @@ package metalfx
 // MTLFXSpatialScalerColorProcessingMode - The color space modes for the input and output textures you use with a spatial scaling effect instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode
-type FXSpatialScalerColorProcessingMode uint
+type MTLFXSpatialScalerColorProcessingMode uint
 
 const (
-	// FXSpatialScalerColorProcessingModeHDR - Indicates your input and output textures use a high dynamic range color space.
+	// MTLFXSpatialScalerColorProcessingModeHDR - Indicates your input and output textures use a high dynamic range color space.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode/hdr
-	FXSpatialScalerColorProcessingModeHDR FXSpatialScalerColorProcessingMode = 0
-	// FXSpatialScalerColorProcessingModeLinear - Indicates your input and output textures use a linear color space.
+	MTLFXSpatialScalerColorProcessingModeHDR MTLFXSpatialScalerColorProcessingMode = 0
+	// MTLFXSpatialScalerColorProcessingModeLinear - Indicates your input and output textures use a linear color space.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode/linear
-	FXSpatialScalerColorProcessingModeLinear FXSpatialScalerColorProcessingMode = 0
-	// FXSpatialScalerColorProcessingModePerceptual - Indicates your input and output textures use a perceptual color space.
+	MTLFXSpatialScalerColorProcessingModeLinear MTLFXSpatialScalerColorProcessingMode = 0
+	// MTLFXSpatialScalerColorProcessingModePerceptual - Indicates your input and output textures use a perceptual color space.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode/perceptual
-	FXSpatialScalerColorProcessingModePerceptual FXSpatialScalerColorProcessingMode = 0
+	MTLFXSpatialScalerColorProcessingModePerceptual MTLFXSpatialScalerColorProcessingMode = 0
 )
 
 

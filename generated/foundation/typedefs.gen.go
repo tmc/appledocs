@@ -8,36 +8,11 @@ package foundation
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/CenterType
 // NSDistributedNotificationCenterType is a string typedef
 type DistributedNotificationCenterType = string
-// FileAttributeKey - Keys in dictionaries used to get and set file attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeKey
-// NSFileAttributeKey is a string typedef
-type FileAttributeKey = string
-// FileAttributeType - Values representing a file’s type attribute.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileAttributeType
-// NSFileAttributeType is a string typedef
-type FileAttributeType = string
 // FileProtectionType - Protection level values that can be associated with a file attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileProtectionType
 // NSFileProtectionType is a string typedef
 type FileProtectionType = string
-// HTTPCookiePropertyKey - Constants that define the supported keys in a cookie attributes dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookiePropertyKey
-// NSHTTPCookiePropertyKey is a string typedef
-type HTTPCookiePropertyKey = string
-// HTTPCookieStringPolicy - Values that indicate whether to restrict the cookie to requests sent back to the same site that created it.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStringPolicy
-// NSHTTPCookieStringPolicy is a string typedef
-type HTTPCookieStringPolicy = string
-// AppleEventManagerSuspensionID - Identifies an Apple event whose handling has been suspended. Can be used to resume handling of the Apple event.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/SuspensionID
-// NSAppleEventManagerSuspensionID has base type: const struct __NSAppleEventManagerSuspension *
-type AppleEventManagerSuspensionID uintptr
 // AttributedStringKey - The attributes you apply to ranges of characters in an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/Key
@@ -53,21 +28,6 @@ type AttributedStringFormattingContextKey = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Identifier
 // NSCalendarIdentifier is a string typedef
 type CalendarIdentifier = string
-// ErrorUserInfoKey - These keys may exist in the user info dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/UserInfoKey
-// NSErrorUserInfoKey is a string typedef
-type ErrorUserInfoKey = string
-// ErrorDomain type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSErrorDomain
-// NSErrorDomain is a string typedef
-type ErrorDomain = string
-// ExceptionName type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExceptionName
-// NSExceptionName is a string typedef
-type ExceptionName = string
 // FileProviderServiceName - The name used to identify a File Provider service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderServiceName
@@ -149,11 +109,6 @@ type SizeArray uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizePointer
 // NSSizePointer has base type: NSSize *
 type SizePointer uintptr
-// StringTransform - Constants representing an ICU string transform.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/StringTransform
-// NSStringTransform is a string typedef
-type StringTransform = string
 // TextCheckingKey type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingKey
@@ -164,38 +119,20 @@ type TextCheckingKey = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingTypes
 // NSTextCheckingTypes has base type: uint64_t
 type TextCheckingTypes uintptr
-// TimeInterval - A number of seconds.
+// URLBookmarkFileCreationOptions - Options used when creating file bookmark data
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/TimeInterval
-// NSTimeInterval has base type: double
-type TimeInterval uintptr
-// UncaughtExceptionHandler type alias
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkFileCreationOptions
+type URLBookmarkFileCreationOptions uint
+// ValueTransformerName - Named value transformers defined by  .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUncaughtExceptionHandler
-// NSUncaughtExceptionHandler has base type: void (NSException *)
-type UncaughtExceptionHandler uintptr
-// UserActivityPersistentIdentifier - The type that defines a persistent identifier value for a user activity.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivityPersistentIdentifier
-// NSUserActivityPersistentIdentifier is a string typedef
-type UserActivityPersistentIdentifier = string
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValueTransformerName
+// NSValueTransformerName is a string typedef
+type ValueTransformerName = string
 // ProgressFileOperationKind - The kind of file operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/FileOperationKind-swift.struct
 // NSProgressFileOperationKind is a string typedef
 type ProgressFileOperationKind = string
-// SKIPPED: (^ - invalid Go identifier "(^"
-// Original type: void (^(^)(NSProgress *))(void) NSProgressPublishingHandler
-// ProgressKind - An object that represents the kind of progress.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProgressKind
-// NSProgressKind is a string typedef
-type ProgressKind = string
-// ProgressUserInfoKey - Keys for the user info dictionary that affect the autogenerated localized additional description string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProgressUserInfoKey
-// NSProgressUserInfoKey is a string typedef
-type ProgressUserInfoKey = string
 // PropertyListReadOptions - The only read options supported are described in  .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/ReadOptions
@@ -205,40 +142,25 @@ type PropertyListReadOptions uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/WriteOptions
 type PropertyListWriteOptions uint
-// SocketNativeHandle - Type for the platform-specific native socket handle.
+// RunLoopMode - Modes that a run loop operates in.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketNativeHandle
-type SocketNativeHandle int32
-// StreamPropertyKey -  defines these string constants as keys for accessing stream properties using   and setting properties with  :
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/PropertyKey
-// NSStreamPropertyKey is a string typedef
-type StreamPropertyKey = string
-// StreamNetworkServiceTypeValue -  defines these string constants for specifying the service type of a stream.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/StreamNetworkServiceTypeValue
-// NSStreamNetworkServiceTypeValue is a string typedef
-type StreamNetworkServiceTypeValue = string
-// StreamSOCKSProxyConfiguration type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/StreamSOCKSProxyConfiguration
-// NSStreamSOCKSProxyConfiguration is a string typedef
-type StreamSOCKSProxyConfiguration = string
-// StreamSOCKSProxyVersion type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/StreamSOCKSProxyVersion
-// NSStreamSOCKSProxyVersion is a string typedef
-type StreamSOCKSProxyVersion = string
-// StreamSocketSecurityLevel -  defines these string constants for specifying the secure-socket layer (SSL) security level.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/StreamSocketSecurityLevel
-// NSStreamSocketSecurityLevel is a string typedef
-type StreamSocketSecurityLevel = string
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/Mode
+// NSRunLoopMode is a string typedef
+type RunLoopMode = string
 // StringEncodingDetectionOptionsKey type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/StringEncodingDetectionOptionsKey
 // NSStringEncodingDetectionOptionsKey is a string typedef
 type StringEncodingDetectionOptionsKey = string
+// StringTransform - Constants representing an ICU string transform.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/StringTransform
+// NSStringTransform is a string typedef
+type StringTransform = string
+// TimeInterval - A number of seconds.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/TimeInterval
+type TimeInterval = float64
 // URLFileProtectionType - Protection-level values for a URL resource key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLFileProtection
@@ -274,14 +196,8 @@ type URLUbiquitousSharedItemPermissions = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLUbiquitousSharedItemRole
 // NSURLUbiquitousSharedItemRole is a string typedef
 type URLUbiquitousSharedItemRole = string
-// UndoManagerUserInfoKey - An extensible namespace for undo and redo user info keys.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/UserInfoKey
-// NSUndoManagerUserInfoKey is a string typedef
-type UndoManagerUserInfoKey = string
-// unichar - Type for UTF-16 code units.
+// Unichar - Type for UTF-16 code units.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/unichar
-// unichar has base type: unsigned short
-type unichar uintptr
+type Unichar uint16
 

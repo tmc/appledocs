@@ -48,18 +48,18 @@ type IXPCConnection interface {
 	SetRemoteObjectInterface(value IXPCInterface)
 	RemoteObjectProxy() objc.ID
 	ServiceName() IString
-	NSXPCConnectionCodeSigningRequirementFailure() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionCodeSigningRequirementFailure(value int /* primitive/slice/pointer. */)
-	NSXPCConnectionErrorMaximum() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionErrorMaximum(value int /* primitive/slice/pointer. */)
-	NSXPCConnectionErrorMinimum() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionErrorMinimum(value int /* primitive/slice/pointer. */)
-	NSXPCConnectionInterrupted() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionInterrupted(value int /* primitive/slice/pointer. */)
-	NSXPCConnectionInvalid() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionInvalid(value int /* primitive/slice/pointer. */)
-	NSXPCConnectionReplyInvalid() int /* primitive/slice/pointer. */
-	SetNSXPCConnectionReplyInvalid(value int /* primitive/slice/pointer. */)
+	NSXPCConnectionCodeSigningRequirementFailure() int
+	SetNSXPCConnectionCodeSigningRequirementFailure(value int)
+	NSXPCConnectionErrorMaximum() int
+	SetNSXPCConnectionErrorMaximum(value int)
+	NSXPCConnectionErrorMinimum() int
+	SetNSXPCConnectionErrorMinimum(value int)
+	NSXPCConnectionInterrupted() int
+	SetNSXPCConnectionInterrupted(value int)
+	NSXPCConnectionInvalid() int
+	SetNSXPCConnectionInvalid(value int)
+	NSXPCConnectionReplyInvalid() int
+	SetNSXPCConnectionReplyInvalid(value int)
 	// methods:
 	Activate()
 	Invalidate()
@@ -412,7 +412,7 @@ func (x_ XPCConnection) ServiceName() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
-func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionCodeSigningRequirementFailure"))
 	return rv
 }
@@ -422,7 +422,7 @@ func (x_ XPCConnection) NSXPCConnectionCodeSigningRequirementFailure() int /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionCodeSigningRequirementFailure:"), value)
 }
 
@@ -431,7 +431,7 @@ func (x_ XPCConnection) SetNSXPCConnectionCodeSigningRequirementFailure(value in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMaximum"))
 	return rv
 }
@@ -441,7 +441,7 @@ func (x_ XPCConnection) NSXPCConnectionErrorMaximum() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMaximum:"), value)
 }
 
@@ -450,7 +450,7 @@ func (x_ XPCConnection) SetNSXPCConnectionErrorMaximum(value int /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
-func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionErrorMinimum"))
 	return rv
 }
@@ -460,7 +460,7 @@ func (x_ XPCConnection) NSXPCConnectionErrorMinimum() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionErrorMinimum:"), value)
 }
 
@@ -469,7 +469,7 @@ func (x_ XPCConnection) SetNSXPCConnectionErrorMinimum(value int /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
-func (x_ XPCConnection) NSXPCConnectionInterrupted() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionInterrupted() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInterrupted"))
 	return rv
 }
@@ -479,7 +479,7 @@ func (x_ XPCConnection) NSXPCConnectionInterrupted() int /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInterrupted:"), value)
 }
 
@@ -488,7 +488,7 @@ func (x_ XPCConnection) SetNSXPCConnectionInterrupted(value int /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
-func (x_ XPCConnection) NSXPCConnectionInvalid() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionInvalid"))
 	return rv
 }
@@ -498,7 +498,7 @@ func (x_ XPCConnection) NSXPCConnectionInvalid() int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionInvalid:"), value)
 }
 
@@ -507,7 +507,7 @@ func (x_ XPCConnection) SetNSXPCConnectionInvalid(value int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int /* primitive/slice/pointer. */ {
+func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("NSXPCConnectionReplyInvalid"))
 	return rv
 }
@@ -517,7 +517,7 @@ func (x_ XPCConnection) NSXPCConnectionReplyInvalid() int /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-swift.var
-func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int /* primitive/slice/pointer. */) {
+func (x_ XPCConnection) SetNSXPCConnectionReplyInvalid(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNSXPCConnectionReplyInvalid:"), value)
 }
 

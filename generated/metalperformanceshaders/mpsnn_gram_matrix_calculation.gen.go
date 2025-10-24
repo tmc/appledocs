@@ -30,20 +30,26 @@ type _GramMatrixCalculationClass struct {
 
 // An interface definition for the [GramMatrixCalculation] class.
 type IGramMatrixCalculation interface {
-	objectivec.IObject
+	ICNNKernel
+	// properties:
 	Alpha() float32
 	SetAlpha(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculation
 type GramMatrixCalculation struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // GramMatrixCalculationFrom constructs a [GramMatrixCalculation] from an unsafe.Pointer.
 func GramMatrixCalculationFrom(ptr unsafe.Pointer) GramMatrixCalculation {
-	return GramMatrixCalculation{objectivec.Object{objc.ID(ptr)}}
+	return GramMatrixCalculation{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -78,9 +84,10 @@ func NewGramMatrixCalculation() GramMatrixCalculation {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculation/init(coder:device:)
-func NewGramMatrixCalculationWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) GramMatrixCalculation {
+func NewGramMatrixCalculationWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) GramMatrixCalculation {
 	instance := getGramMatrixCalculationClass().Alloc()
 	rv := objc.Send[GramMatrixCalculation](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -88,7 +95,8 @@ func NewGramMatrixCalculationWithCoderDevice(aDecoder foundation.ICoder, device 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
 func (g_ GramMatrixCalculation) Alpha() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
@@ -96,8 +104,7 @@ func (g_ GramMatrixCalculation) Alpha() float32 {
 }
 
 
-// SetAlpha sets the value of the alpha property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation/alpha
 func (g_ GramMatrixCalculation) SetAlpha(value float32) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)

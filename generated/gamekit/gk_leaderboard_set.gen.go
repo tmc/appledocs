@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _LeaderboardSetClass struct {
 type ILeaderboardSet interface {
 	objectivec.IObject
 	// properties:
-	GroupIdentifier() string /* primitive/slice/pointer. */
-	SetGroupIdentifier(value string /* primitive/slice/pointer. */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	GroupIdentifier() objc.IObject /* cross-framework: NSString */
+	SetGroupIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -106,8 +107,8 @@ func (lc _LeaderboardSetClass) LoadLeaderboardSetsWithCompletionHandler(completi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
-func (l_ LeaderboardSet) GroupIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
+func (l_ LeaderboardSet) GroupIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (l_ LeaderboardSet) GroupIdentifier() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/groupidentifier
-func (l_ LeaderboardSet) SetGroupIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+func (l_ LeaderboardSet) SetGroupIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
 
 
@@ -125,8 +126,8 @@ func (l_ LeaderboardSet) SetGroupIdentifier(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
-func (l_ LeaderboardSet) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
+func (l_ LeaderboardSet) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (l_ LeaderboardSet) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/identifier
-func (l_ LeaderboardSet) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (l_ LeaderboardSet) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -144,8 +145,8 @@ func (l_ LeaderboardSet) SetIdentifier(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
-func (l_ LeaderboardSet) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("title"))
+func (l_ LeaderboardSet) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -154,8 +155,8 @@ func (l_ LeaderboardSet) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardset/title
-func (l_ LeaderboardSet) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (l_ LeaderboardSet) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
 }
 
 

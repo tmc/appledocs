@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFActionResetForm] class.
@@ -29,16 +30,22 @@ type _PDFActionResetFormClass struct {
 // An interface definition for the [PDFActionResetForm] class.
 type IPDFActionResetForm interface {
 	IPDFAction
-	Fields() []string
-	SetFields(value []string)
+	// properties:
+	Fields() objc.IObject /* cross-framework: NSString */
+	SetFields(value objc.IObject /* cross-framework: NSString */)
 	FieldsIncludedAreCleared() bool
 	SetFieldsIncludedAreCleared(value bool)
+	// methods:
 }
 
 // , a subclass of , defines methods for getting and clearing fields in a PDF form.
 //
 // A object represents an action associated with a PDF form.
+
+
+// , a subclass of , defines methods for getting and clearing fields in a PDF form.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm
 type PDFActionResetForm struct {
 	PDFAction
@@ -88,48 +95,40 @@ func NewPDFActionResetForm() PDFActionResetForm {
 
 // Returns an array of fields associated with the reset action.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm/fields
-func (p_ PDFActionResetForm) Fields() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("fields"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionresetform/fields
+func (p_ PDFActionResetForm) Fields() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("fields"))
 	return rv
 }
 
 
-// SetFields sets the value of the fields property.
 // Returns an array of fields associated with the reset action.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm/fields
-func (p_ PDFActionResetForm) SetFields(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFields:"), nsArray)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionresetform/fields
+func (p_ PDFActionResetForm) SetFields(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFields:"), value)
 }
+
 
 // Sets whether the fields associated with the reset action are cleared when the action is performed.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm/fieldsIncludedAreCleared
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionresetform/fieldsincludedarecleared
 func (p_ PDFActionResetForm) FieldsIncludedAreCleared() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("fieldsIncludedAreCleared"))
 	return rv
 }
 
 
-// SetFieldsIncludedAreCleared sets the value of the fieldsIncludedAreCleared property.
 // Sets whether the fields associated with the reset action are cleared when the action is performed.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFActionResetForm/fieldsIncludedAreCleared
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionresetform/fieldsincludedarecleared
 func (p_ PDFActionResetForm) SetFieldsIncludedAreCleared(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFieldsIncludedAreCleared:"), value)
 }
+
 
 

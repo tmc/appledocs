@@ -29,18 +29,24 @@ type _CReductionLayerClass struct {
 // An interface definition for the [CReductionLayer] class.
 type ICReductionLayer interface {
 	ICLayer
+	// properties:
 	Dimension() int
 	SetDimension(value int)
 	Dimensions() int
 	SetDimensions(value int)
-	ReductionType() CReductionType
-	SetReductionType(value CReductionType)
+	ReductionType() CReductionType /* not a class type */
+	SetReductionType(value CReductionType /* not a class type */)
+	// methods:
 }
 
 // A layer that reduces tensor values across a specific dimension to a scalar value.
 //
 // Use this layer to perform reduction operations on a given dimension. The output of this layer is a tensor of the same shape as the source tensor, except the layer sets the dimension to .
+
+
+// A layer that reduces tensor values across a specific dimension to a scalar value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCReductionLayer
 type CReductionLayer struct {
 	CLayer
@@ -87,8 +93,10 @@ func NewCReductionLayer() CReductionLayer {
 }
 
 
+
 // The dimension to perform the reduction operation on.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimension
 func (c_ CReductionLayer) Dimension() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
@@ -96,17 +104,18 @@ func (c_ CReductionLayer) Dimension() int {
 }
 
 
-// SetDimension sets the value of the dimension property.
 // The dimension to perform the reduction operation on.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimension
 func (c_ CReductionLayer) SetDimension(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
 }
 
+
 // The dimensions to perform the reduction operation on.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimensions-9oph6
 func (c_ CReductionLayer) Dimensions() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimensions"))
@@ -114,30 +123,30 @@ func (c_ CReductionLayer) Dimensions() int {
 }
 
 
-// SetDimensions sets the value of the dimensions property.
 // The dimensions to perform the reduction operation on.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/dimensions-9oph6
 func (c_ CReductionLayer) SetDimensions(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimensions:"), value)
 }
 
+
 // The function reduction type the system uses for reduction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
-func (c_ CReductionLayer) ReductionType() CReductionType {
+func (c_ CReductionLayer) ReductionType() CReductionType /* not a class type */ {
 	rv := objc.Send[CReductionType](c_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
 
-// SetReductionType sets the value of the reductionType property.
 // The function reduction type the system uses for reduction.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
-func (c_ CReductionLayer) SetReductionType(value CReductionType) {
+func (c_ CReductionLayer) SetReductionType(value CReductionType /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
 }
 

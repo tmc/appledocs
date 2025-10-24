@@ -10,13 +10,9 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AffineTransform = _undefined // referenced in PDFKit
-	AnyHashable = _undefined // referenced in PDFKit
-	Bool = _undefined // referenced in PDFKit
 	ContextRef = _undefined // referenced in PDFKit
 	FindInteraction = _undefined // referenced in PDFKit
 	Image = _undefined // referenced in PDFKit
-	PDFBorderStyle = _undefined // referenced in PDFKit
-	PDFLineStyle = _undefined // referenced in PDFKit
 	PDFPageRef = _undefined // referenced in PDFKit
 	Range = _undefined // referenced in PDFKit
 	Rect = _undefined // referenced in PDFKit

@@ -32,18 +32,18 @@ type IColorPanel interface {
 	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	Alpha() float64 /* primitive/slice/pointer. */
-	SetAlpha(value float64 /* primitive/slice/pointer. */)
+	Alpha() float64
+	SetAlpha(value float64)
 	Color() IColor
 	SetColor(value IColor)
-	IsContinuous() bool /* primitive/slice/pointer. */
-	SetIsContinuous(value bool /* primitive/slice/pointer. */)
-	MaximumLinearExposure() float64 /* primitive/slice/pointer. */
-	SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */)
+	IsContinuous() bool
+	SetIsContinuous(value bool)
+	MaximumLinearExposure() float64
+	SetMaximumLinearExposure(value float64)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
-	ShowsAlpha() bool /* primitive/slice/pointer. */
-	SetShowsAlpha(value bool /* primitive/slice/pointer. */)
+	ShowsAlpha() bool
+	SetShowsAlpha(value bool)
 	// methods:
 }
 
@@ -125,7 +125,7 @@ func (c_ ColorPanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/alpha
-func (c_ ColorPanel) Alpha() float64 /* primitive/slice/pointer. */ {
+func (c_ ColorPanel) Alpha() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("alpha"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (c_ ColorPanel) Alpha() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/alpha
-func (c_ ColorPanel) SetAlpha(value float64 /* primitive/slice/pointer. */) {
+func (c_ ColorPanel) SetAlpha(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
 }
 
@@ -163,7 +163,7 @@ func (c_ ColorPanel) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
-func (c_ ColorPanel) IsContinuous() bool /* primitive/slice/pointer. */ {
+func (c_ ColorPanel) IsContinuous() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (c_ ColorPanel) IsContinuous() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/iscontinuous
-func (c_ ColorPanel) SetIsContinuous(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorPanel) SetIsContinuous(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
 }
 
@@ -182,7 +182,7 @@ func (c_ ColorPanel) SetIsContinuous(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/maximumlinearexposure
-func (c_ ColorPanel) MaximumLinearExposure() float64 /* primitive/slice/pointer. */ {
+func (c_ ColorPanel) MaximumLinearExposure() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (c_ ColorPanel) MaximumLinearExposure() float64 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/maximumlinearexposure
-func (c_ ColorPanel) SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */) {
+func (c_ ColorPanel) SetMaximumLinearExposure(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
 }
 
@@ -220,7 +220,7 @@ func (c_ ColorPanel) SetMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/showsalpha
-func (c_ ColorPanel) ShowsAlpha() bool /* primitive/slice/pointer. */ {
+func (c_ ColorPanel) ShowsAlpha() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
 	return rv
 }
@@ -230,7 +230,7 @@ func (c_ ColorPanel) ShowsAlpha() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/showsalpha
-func (c_ ColorPanel) SetShowsAlpha(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorPanel) SetShowsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
 

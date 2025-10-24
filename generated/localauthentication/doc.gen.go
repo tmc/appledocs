@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to LocalAuthentication without requiring cgo.
-
-// Authenticate users biometrically or with a passphrase they already know.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication
+// See: https://developer.apple.com/documentation/LocalAuthentication
 package localauthentication
 
 import (

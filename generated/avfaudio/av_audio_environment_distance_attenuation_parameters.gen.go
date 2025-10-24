@@ -33,12 +33,12 @@ type IAudioEnvironmentDistanceAttenuationParameters interface {
 	// properties:
 	DistanceAttenuationModel() AudioEnvironmentDistanceAttenuationModel /* not a class type */
 	SetDistanceAttenuationModel(value AudioEnvironmentDistanceAttenuationModel /* not a class type */)
-	MaximumDistance() float32 /* primitive/slice/pointer. */
-	SetMaximumDistance(value float32 /* primitive/slice/pointer. */)
-	ReferenceDistance() float32 /* primitive/slice/pointer. */
-	SetReferenceDistance(value float32 /* primitive/slice/pointer. */)
-	RolloffFactor() float32 /* primitive/slice/pointer. */
-	SetRolloffFactor(value float32 /* primitive/slice/pointer. */)
+	MaximumDistance() float32
+	SetMaximumDistance(value float32)
+	ReferenceDistance() float32
+	SetReferenceDistance(value float32)
+	RolloffFactor() float32
+	SetRolloffFactor(value float32)
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetDistanceAttenuationMo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/maximumdistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maximumDistance"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) MaximumDistance() float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/maximumdistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumDistance:"), value)
 }
 
@@ -135,7 +135,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetMaximumDistance(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/referencedistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("referenceDistance"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) ReferenceDistance() floa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/referencedistance
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReferenceDistance:"), value)
 }
 
@@ -154,7 +154,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) SetReferenceDistance(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rolloffFactor"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (a_ AudioEnvironmentDistanceAttenuationParameters) RolloffFactor() float32 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters/rollofffactor
-func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioEnvironmentDistanceAttenuationParameters) SetRolloffFactor(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 

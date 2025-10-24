@@ -2,12 +2,12 @@
 
 // Package mediaaccessibility provides Go bindings for the MediaAccessibility framework.
 //
-// Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content. [Full Topic]
+// Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MediaAccessibility without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility
+// See: https://developer.apple.com/documentation/MediaAccessibility
 package mediaaccessibility
 
 import (

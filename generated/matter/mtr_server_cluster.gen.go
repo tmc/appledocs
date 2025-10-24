@@ -31,17 +31,21 @@ type _MTRServerClusterClass struct {
 // An interface definition for the [MTRServerCluster] class.
 type IMTRServerCluster interface {
 	objectivec.IObject
-	AccessGrants() MTRAccessGrant
+	// properties:
+	AccessGrants() IMTRAccessGrant
 	SetAccessGrants(value IMTRAccessGrant)
-	Attributes() MTRServerAttribute
-	SetAttributes(value MTRServerAttribute)
-	ClusterID() foundation.Number
-	SetClusterID(value foundation.INumber)
-	ClusterRevision() foundation.Number
-	SetClusterRevision(value foundation.INumber)
+	Attributes() IMTRServerAttribute
+	SetAttributes(value IMTRServerAttribute)
+	ClusterID() objc.IObject /* cross-framework: NSNumber */
+	SetClusterID(value objc.IObject /* cross-framework: NSNumber */)
+	ClusterRevision() objc.IObject /* cross-framework: NSNumber */
+	SetClusterRevision(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServerCluster
 type MTRServerCluster struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRServerCluster() MTRServerCluster {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
-func (m_ MTRServerCluster) AccessGrants() MTRAccessGrant {
+func (m_ MTRServerCluster) AccessGrants() IMTRAccessGrant {
 	rv := objc.Send[MTRAccessGrant](m_.ID, objc.Sel("accessGrants"))
 	return rv
 }
 
 
-// SetAccessGrants sets the value of the accessGrants property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
 func (m_ MTRServerCluster) SetAccessGrants(value IMTRAccessGrant) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
-func (m_ MTRServerCluster) Attributes() MTRServerAttribute {
+func (m_ MTRServerCluster) Attributes() IMTRServerAttribute {
 	rv := objc.Send[MTRServerAttribute](m_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 
-// SetAttributes sets the value of the attributes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
-func (m_ MTRServerCluster) SetAttributes(value MTRServerAttribute) {
+func (m_ MTRServerCluster) SetAttributes(value IMTRServerAttribute) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterid
-func (m_ MTRServerCluster) ClusterID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("clusterID"))
+func (m_ MTRServerCluster) ClusterID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("clusterID"))
 	return rv
 }
 
 
-// SetClusterID sets the value of the clusterID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterid
-func (m_ MTRServerCluster) SetClusterID(value foundation.INumber) {
+func (m_ MTRServerCluster) SetClusterID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterrevision
-func (m_ MTRServerCluster) ClusterRevision() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("clusterRevision"))
+func (m_ MTRServerCluster) ClusterRevision() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("clusterRevision"))
 	return rv
 }
 
 
-// SetClusterRevision sets the value of the clusterRevision property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterrevision
-func (m_ MTRServerCluster) SetClusterRevision(value foundation.INumber) {
+func (m_ MTRServerCluster) SetClusterRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterRevision:"), value)
 }
 

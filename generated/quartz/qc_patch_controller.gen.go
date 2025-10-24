@@ -30,9 +30,13 @@ type _QCPatchControllerClass struct {
 // An interface definition for the [QCPatchController] class.
 type IQCPatchController interface {
 	appkit.IController
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPatchController
 type QCPatchController struct {
 	appkit.Controller

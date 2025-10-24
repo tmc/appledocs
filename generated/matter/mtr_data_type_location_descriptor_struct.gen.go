@@ -31,15 +31,19 @@ type _MTRDataTypeLocationDescriptorStructClass struct {
 // An interface definition for the [MTRDataTypeLocationDescriptorStruct] class.
 type IMTRDataTypeLocationDescriptorStruct interface {
 	objectivec.IObject
-	AreaType() foundation.Number
-	SetAreaType(value foundation.INumber)
-	FloorNumber() foundation.Number
-	SetFloorNumber(value foundation.INumber)
-	LocationName() string
-	SetLocationName(value string)
+	// properties:
+	AreaType() objc.IObject /* cross-framework: NSNumber */
+	SetAreaType(value objc.IObject /* cross-framework: NSNumber */)
+	FloorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetFloorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	LocationName() objc.IObject /* cross-framework: NSString */
+	SetLocationName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct
 type MTRDataTypeLocationDescriptorStruct struct {
 	objectivec.Object
@@ -82,49 +86,49 @@ func NewMTRDataTypeLocationDescriptorStruct() MTRDataTypeLocationDescriptorStruc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/areaType
-func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("areaType"))
+func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("areaType"))
 	return rv
 }
 
 
-// SetAreaType sets the value of the areaType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/areaType
-func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value foundation.INumber) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
-func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("floorNumber"))
+func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("floorNumber"))
 	return rv
 }
 
 
-// SetFloorNumber sets the value of the floorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
-func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value foundation.INumber) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFloorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("locationName"))
+func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("locationName"))
 	return rv
 }
 
 
-// SetLocationName sets the value of the locationName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), objc.String(value))
+func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), value)
 }
 
 

@@ -31,9 +31,9 @@ type _DCDeviceClass struct {
 type IDCDevice interface {
 	objectivec.IObject
 	// properties:
-	Supported() bool /* primitive/slice/pointer. */
-	IsSupported() bool /* primitive/slice/pointer. */
-	SetIsSupported(value bool /* primitive/slice/pointer. */)
+	Supported() bool
+	IsSupported() bool
+	SetIsSupported(value bool)
 	// methods:
 	GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 }
@@ -123,7 +123,7 @@ func (d_ DCDevice) CurrentDevice() IDCDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/isSupported
-func (d_ DCDevice) Supported() bool /* primitive/slice/pointer. */ {
+func (d_ DCDevice) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (d_ DCDevice) Supported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
-func (d_ DCDevice) IsSupported() bool /* primitive/slice/pointer. */ {
+func (d_ DCDevice) IsSupported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (d_ DCDevice) IsSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcdevice/issupported
-func (d_ DCDevice) SetIsSupported(value bool /* primitive/slice/pointer. */) {
+func (d_ DCDevice) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }
 

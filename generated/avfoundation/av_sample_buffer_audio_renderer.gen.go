@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,14 +39,14 @@ type ISampleBufferAudioRenderer interface {
 	SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */)
 	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
 	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
-	Error() Error
-	SetError(value Error)
-	IsMuted() bool /* primitive/slice/pointer. */
-	SetIsMuted(value bool /* primitive/slice/pointer. */)
+	Error() coretelephony.Error
+	SetError(value coretelephony.Error)
+	IsMuted() bool
+	SetIsMuted(value bool)
 	Status() QueuedSampleBufferRenderingStatus /* not a class type */
 	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
-	Volume() float32 /* primitive/slice/pointer. */
-	SetVolume(value float32 /* primitive/slice/pointer. */)
+	Volume() float32
+	SetVolume(value float32)
 	AVSampleBufferAudioRendererFlushTimeKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
@@ -164,8 +165,8 @@ func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value AudioTimePi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) Error() Error {
-	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
+func (s_ SampleBufferAudioRenderer) Error() coretelephony.Error {
+	rv := objc.Send[coretelephony.Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -174,7 +175,7 @@ func (s_ SampleBufferAudioRenderer) Error() Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) SetError(value Error) {
+func (s_ SampleBufferAudioRenderer) SetError(value coretelephony.Error) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -183,7 +184,7 @@ func (s_ SampleBufferAudioRenderer) SetError(value Error) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
-func (s_ SampleBufferAudioRenderer) IsMuted() bool /* primitive/slice/pointer. */ {
+func (s_ SampleBufferAudioRenderer) IsMuted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isMuted"))
 	return rv
 }
@@ -193,7 +194,7 @@ func (s_ SampleBufferAudioRenderer) IsMuted() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
-func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool /* primitive/slice/pointer. */) {
+func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsMuted:"), value)
 }
 
@@ -221,7 +222,7 @@ func (s_ SampleBufferAudioRenderer) SetStatus(value QueuedSampleBufferRenderingS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) Volume() float32 /* primitive/slice/pointer. */ {
+func (s_ SampleBufferAudioRenderer) Volume() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -231,7 +232,7 @@ func (s_ SampleBufferAudioRenderer) Volume() float32 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) SetVolume(value float32 /* primitive/slice/pointer. */) {
+func (s_ SampleBufferAudioRenderer) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 

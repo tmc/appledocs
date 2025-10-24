@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [CKLocationSortDescriptor] class.
@@ -29,7 +29,7 @@ type _CKLocationSortDescriptorClass struct {
 
 // An interface definition for the [CKLocationSortDescriptor] class.
 type ICKLocationSortDescriptor interface {
-	objectivec.IObject
+	ISortDescriptor
 	// properties:
 	RelativeLocation() objc.IObject /* cross-framework: Location */
 	SetRelativeLocation(value objc.IObject /* cross-framework: Location */)
@@ -46,14 +46,16 @@ type ICKLocationSortDescriptor interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor
 type CKLocationSortDescriptor struct {
-	objectivec.Object
+	SortDescriptor
 }
 
 // CKLocationSortDescriptorFrom constructs a [CKLocationSortDescriptor] from an unsafe.Pointer.
 //
 // An object for sorting records that contain location data.
 func CKLocationSortDescriptorFrom(ptr unsafe.Pointer) CKLocationSortDescriptor {
-	return CKLocationSortDescriptor{objectivec.Object{objc.ID(ptr)}}
+	return CKLocationSortDescriptor{
+		SortDescriptor: SortDescriptorFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -94,7 +96,7 @@ func NewCKLocationSortDescriptor() CKLocationSortDescriptor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor/relativelocation
 func (c_ CKLocationSortDescriptor) RelativeLocation() objc.IObject /* cross-framework: Location */ {
-	rv := objc.Send[Location](c_.ID, objc.Sel("relativeLocation"))
+	rv := objc.Send[corelocation.Location](c_.ID, objc.Sel("relativeLocation"))
 	return rv
 }
 

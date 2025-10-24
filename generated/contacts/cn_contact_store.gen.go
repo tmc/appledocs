@@ -32,19 +32,19 @@ type _CNContactStoreClass struct {
 type ICNContactStore interface {
 	objectivec.IObject
 	// properties:
-	CurrentHistoryToken() foundation.objc.IObject /* cross-framework: NSData */
+	CurrentHistoryToken() objc.IObject /* cross-framework: NSData */
 	// methods:
-	ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework Predicate */, error_ unsafe.Pointer) []CNContainer /* primitive/slice/pointer. */
+	ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNContainer
 	DefaultContainerIdentifier() objc.IObject /* cross-framework: String */
-	EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool /* primitive/slice/pointer. */
+	EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool
 	EnumeratorForChangeHistoryFetchRequestError(request ICNChangeHistoryFetchRequest, error_ unsafe.Pointer) unsafe.Pointer
 	EnumeratorForContactFetchRequestError(request ICNContactFetchRequest, error_ unsafe.Pointer) unsafe.Pointer
-	ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework Predicate */, error_ unsafe.Pointer) []CNGroup /* primitive/slice/pointer. */
+	ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool
+	GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNGroup
 	RequestAccessForEntityTypeCompletionHandler(entityType CNEntityType, completionHandler unsafe.Pointer)
-	UnifiedContactWithIdentifierKeysToFetchError(identifier string /* primitive/slice/pointer. */, keys []objc.ID /* already interface */, error_ unsafe.Pointer) ICNContact
-	UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework Predicate */, keys []objc.ID /* already interface */, error_ unsafe.Pointer) []CNContact /* primitive/slice/pointer. */
-	UnifiedMeContactWithKeysToFetchError(keys []objc.ID /* already interface */, error_ unsafe.Pointer) ICNContact
+	UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ unsafe.Pointer) ICNContact
+	UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework: Predicate */, keys []objc.ID, error_ unsafe.Pointer) []ICNContact
+	UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ unsafe.Pointer) ICNContact
 }
 
 // The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
@@ -114,7 +114,7 @@ func (cc _CNContactStoreClass) AuthorizationStatusForEntityType(entityType CNEnt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/containers(matching:)
-func (c_ CNContactStore) ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework Predicate */, error_ unsafe.Pointer) []CNContainer /* primitive/slice/pointer. */ {
+func (c_ CNContactStore) ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNContainer {
 	rv := objc.Send[[]CNContainer](c_.ID, objc.Sel("containersMatchingPredicate:error:"), predicate, error_)
 	return rv
 }
@@ -125,7 +125,7 @@ func (c_ CNContactStore) ContainersMatchingPredicateError(predicate objc.IObject
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/defaultContainerIdentifier()
 func (c_ CNContactStore) DefaultContainerIdentifier() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](c_.ID, objc.Sel("defaultContainerIdentifier"))
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("defaultContainerIdentifier"))
 	return rv
 }
 
@@ -134,7 +134,7 @@ func (c_ CNContactStore) DefaultContainerIdentifier() objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)
-func (c_ CNContactStore) EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (c_ CNContactStore) EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enumerateContactsWithFetchRequest:error:usingBlock:"), fetchRequest, error_, block)
 	return rv
 }
@@ -164,7 +164,7 @@ func (c_ CNContactStore) EnumeratorForContactFetchRequestError(request ICNContac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/execute(_:)
-func (c_ CNContactStore) ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (c_ CNContactStore) ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeSaveRequest:error:"), saveRequest, error_)
 	return rv
 }
@@ -174,7 +174,7 @@ func (c_ CNContactStore) ExecuteSaveRequestError(saveRequest ICNSaveRequest, err
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/groups(matching:)
-func (c_ CNContactStore) GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework Predicate */, error_ unsafe.Pointer) []CNGroup /* primitive/slice/pointer. */ {
+func (c_ CNContactStore) GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNGroup {
 	rv := objc.Send[[]CNGroup](c_.ID, objc.Sel("groupsMatchingPredicate:error:"), predicate, error_)
 	return rv
 }
@@ -193,8 +193,8 @@ func (c_ CNContactStore) RequestAccessForEntityTypeCompletionHandler(entityType 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)
-func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier string /* primitive/slice/pointer. */, keys []objc.ID /* already interface */, error_ unsafe.Pointer) ICNContact {
-	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), objc.String(identifier), keys, error_)
+func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ unsafe.Pointer) ICNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), identifier, keys, error_)
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)
-func (c_ CNContactStore) UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework Predicate */, keys []objc.ID /* already interface */, error_ unsafe.Pointer) []CNContact /* primitive/slice/pointer. */ {
+func (c_ CNContactStore) UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework: Predicate */, keys []objc.ID, error_ unsafe.Pointer) []ICNContact {
 	rv := objc.Send[[]CNContact](c_.ID, objc.Sel("unifiedContactsMatchingPredicate:keysToFetch:error:"), predicate, keys, error_)
 	return rv
 }
@@ -213,7 +213,7 @@ func (c_ CNContactStore) UnifiedContactsMatchingPredicateKeysToFetchError(predic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)
-func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID /* already interface */, error_ unsafe.Pointer) ICNContact {
+func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ unsafe.Pointer) ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedMeContactWithKeysToFetch:error:"), keys, error_)
 	return rv
 }
@@ -223,7 +223,7 @@ func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/currentHistoryToken
-func (c_ CNContactStore) CurrentHistoryToken() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CNContactStore) CurrentHistoryToken() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
 }

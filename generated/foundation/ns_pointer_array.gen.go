@@ -32,16 +32,16 @@ type IPointerArray interface {
 	objectivec.IObject
 	// properties:
 	AllObjects() IArray
-	Count() uint /* primitive/slice/pointer. */
-	SetCount(value uint /* primitive/slice/pointer. */)
+	Count() uint
+	SetCount(value uint)
 	PointerFunctions() IPointerFunctions
 	// methods:
 	AddPointer(pointer unsafe.Pointer)
 	Compact()
-	InsertPointerAtIndex(item unsafe.Pointer, index uint /* primitive/slice/pointer. */)
-	PointerAtIndex(index uint /* primitive/slice/pointer. */)
-	RemovePointerAtIndex(index uint /* primitive/slice/pointer. */)
-	ReplacePointerAtIndexWithPointer(index uint /* primitive/slice/pointer. */, item unsafe.Pointer)
+	InsertPointerAtIndex(item unsafe.Pointer, index uint)
+	PointerAtIndex(index uint)
+	RemovePointerAtIndex(index uint)
+	ReplacePointerAtIndexWithPointer(index uint, item unsafe.Pointer)
 }
 
 // A collection similar to an array, but with a broader range of available memory semantics.
@@ -204,7 +204,7 @@ func (p_ PointerArray) Compact() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/insertPointer(_:at:)
-func (p_ PointerArray) InsertPointerAtIndex(item unsafe.Pointer, index uint /* primitive/slice/pointer. */) {
+func (p_ PointerArray) InsertPointerAtIndex(item unsafe.Pointer, index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("insertPointer:atIndex:"), item, index)
 }
 
@@ -213,7 +213,7 @@ func (p_ PointerArray) InsertPointerAtIndex(item unsafe.Pointer, index uint /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointer(at:)
-func (p_ PointerArray) PointerAtIndex(index uint /* primitive/slice/pointer. */) {
+func (p_ PointerArray) PointerAtIndex(index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("pointerAtIndex:"), index)
 }
 
@@ -222,7 +222,7 @@ func (p_ PointerArray) PointerAtIndex(index uint /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/removePointer(at:)
-func (p_ PointerArray) RemovePointerAtIndex(index uint /* primitive/slice/pointer. */) {
+func (p_ PointerArray) RemovePointerAtIndex(index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removePointerAtIndex:"), index)
 }
 
@@ -231,7 +231,7 @@ func (p_ PointerArray) RemovePointerAtIndex(index uint /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/replacePointer(at:withPointer:)
-func (p_ PointerArray) ReplacePointerAtIndexWithPointer(index uint /* primitive/slice/pointer. */, item unsafe.Pointer) {
+func (p_ PointerArray) ReplacePointerAtIndexWithPointer(index uint, item unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("replacePointerAtIndex:withPointer:"), index, item)
 }
 
@@ -250,7 +250,7 @@ func (p_ PointerArray) AllObjects() IArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) Count() uint /* primitive/slice/pointer. */ {
+func (p_ PointerArray) Count() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
 	return rv
 }
@@ -260,7 +260,7 @@ func (p_ PointerArray) Count() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) SetCount(value uint /* primitive/slice/pointer. */) {
+func (p_ PointerArray) SetCount(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
 }
 

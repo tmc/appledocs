@@ -31,7 +31,13 @@ type _MethodSignatureClass struct {
 type IMethodSignature interface {
 	objectivec.IObject
 	// properties:
+	FrameLength() uint
+	MethodReturnLength() uint
+	MethodReturnType() unsafe.Pointer
+	NumberOfArguments() uint
 	// methods:
+	GetArgumentTypeAtIndex(idx uint) unsafe.Pointer
+	IsOneway() bool
 }
 
 // A record of the type information for the return value and parameters of a method.
@@ -85,6 +91,76 @@ func NewMethodSignature() MethodSignature {
 	return getMethodSignatureClass().New()
 }
 
+
+
+// Returns an object for the given Objective-C method type string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/signatureWithObjCTypes:
+func (mc _MethodSignatureClass) SignatureWithObjCTypes(types unsafe.Pointer) IMethodSignature {
+	rv := objc.Send[MethodSignature](objc.ID(mc.class), objc.Sel("signatureWithObjCTypes:"), types)
+	return rv
+}
+
+
+// Returns the type encoding for the argument at a given index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/getArgumentTypeAtIndex:
+func (m_ MethodSignature) GetArgumentTypeAtIndex(idx uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("getArgumentTypeAtIndex:"), idx)
+	return rv
+}
+
+
+// Whether the receiver is asynchronous when invoked through distributed objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/isOneway
+func (m_ MethodSignature) IsOneway() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isOneway"))
+	return rv
+}
+
+
+// The number of bytes that the arguments, taken together, occupy on the stack.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/frameLength
+func (m_ MethodSignature) FrameLength() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("frameLength"))
+	return rv
+}
+
+
+// The number of bytes required for the return value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/methodReturnLength
+func (m_ MethodSignature) MethodReturnLength() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("methodReturnLength"))
+	return rv
+}
+
+
+// A C string encoding the return type of the method in Objective-C type encoding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/methodReturnType
+func (m_ MethodSignature) MethodReturnType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("methodReturnType"))
+	return rv
+}
+
+
+// The number of arguments recorded in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMethodSignature/numberOfArguments
+func (m_ MethodSignature) NumberOfArguments() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("numberOfArguments"))
+	return rv
+}
 
 
 

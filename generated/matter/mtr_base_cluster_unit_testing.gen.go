@@ -29,9 +29,13 @@ type _MTRBaseClusterUnitTestingClass struct {
 // An interface definition for the [MTRBaseClusterUnitTesting] class.
 type IMTRBaseClusterUnitTesting interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterUnitTesting
 type MTRBaseClusterUnitTesting struct {
 	MTRGenericBaseCluster

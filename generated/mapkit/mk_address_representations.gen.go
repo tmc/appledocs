@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,14 +33,14 @@ type _MKAddressRepresentationsClass struct {
 type IMKAddressRepresentations interface {
 	objectivec.IObject
 	// properties:
-	CityName() string /* primitive/slice/pointer. */
-	SetCityName(value string /* primitive/slice/pointer. */)
-	CityWithContext() string /* primitive/slice/pointer. */
-	SetCityWithContext(value string /* primitive/slice/pointer. */)
-	Region() corelocation.objc.IObject /* cross-framework: Region */
-	SetRegion(value corelocation.objc.IObject /* cross-framework: Region */)
-	RegionName() string /* primitive/slice/pointer. */
-	SetRegionName(value string /* primitive/slice/pointer. */)
+	CityName() objc.IObject /* cross-framework: NSString */
+	SetCityName(value objc.IObject /* cross-framework: NSString */)
+	CityWithContext() objc.IObject /* cross-framework: NSString */
+	SetCityWithContext(value objc.IObject /* cross-framework: NSString */)
+	Region() objc.IObject /* cross-framework: Region */
+	SetRegion(value objc.IObject /* cross-framework: Region */)
+	RegionName() objc.IObject /* cross-framework: NSString */
+	SetRegionName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -100,8 +101,8 @@ func NewMKAddressRepresentations() MKAddressRepresentations {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/cityname
-func (m_ MKAddressRepresentations) CityName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("cityName"))
+func (m_ MKAddressRepresentations) CityName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("cityName"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (m_ MKAddressRepresentations) CityName() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/cityname
-func (m_ MKAddressRepresentations) SetCityName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCityName:"), objc.String(value))
+func (m_ MKAddressRepresentations) SetCityName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCityName:"), value)
 }
 
 
@@ -119,8 +120,8 @@ func (m_ MKAddressRepresentations) SetCityName(value string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext
-func (m_ MKAddressRepresentations) CityWithContext() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("cityWithContext"))
+func (m_ MKAddressRepresentations) CityWithContext() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("cityWithContext"))
 	return rv
 }
 
@@ -129,14 +130,14 @@ func (m_ MKAddressRepresentations) CityWithContext() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext
-func (m_ MKAddressRepresentations) SetCityWithContext(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCityWithContext:"), objc.String(value))
+func (m_ MKAddressRepresentations) SetCityWithContext(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCityWithContext:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/region
-func (m_ MKAddressRepresentations) Region() corelocation.objc.IObject /* cross-framework: Region */ {
+func (m_ MKAddressRepresentations) Region() objc.IObject /* cross-framework: Region */ {
 	rv := objc.Send[corelocation.Region](m_.ID, objc.Sel("region"))
 	return rv
 }
@@ -144,7 +145,7 @@ func (m_ MKAddressRepresentations) Region() corelocation.objc.IObject /* cross-f
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/region
-func (m_ MKAddressRepresentations) SetRegion(value corelocation.objc.IObject /* cross-framework: Region */) {
+func (m_ MKAddressRepresentations) SetRegion(value objc.IObject /* cross-framework: Region */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
 
@@ -153,8 +154,8 @@ func (m_ MKAddressRepresentations) SetRegion(value corelocation.objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/regionname
-func (m_ MKAddressRepresentations) RegionName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("regionName"))
+func (m_ MKAddressRepresentations) RegionName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("regionName"))
 	return rv
 }
 
@@ -163,8 +164,8 @@ func (m_ MKAddressRepresentations) RegionName() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/regionname
-func (m_ MKAddressRepresentations) SetRegionName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionName:"), objc.String(value))
+func (m_ MKAddressRepresentations) SetRegionName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRegionName:"), value)
 }
 
 

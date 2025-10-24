@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for Foundation. DO NOT EDIT.
 
 package foundation
+import (
+	"unsafe"
+)
 
 
 // C struct types
@@ -24,6 +27,31 @@ type EdgeInsets struct {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFastEnumerationState
 type FastEnumerationState struct {
+}// HashEnumerator - Allows successive elements of a hash table to be returned each time this structure is passed to 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashEnumerator
+type HashEnumerator struct {
+}// HashTableCallBacks - Defines a structure that contains the function pointers used to configure behavior of 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTableCallBacks
+type HashTableCallBacks struct {
+}// MapEnumerator - Allows successive elements of a map table to be returned each time this structure is passed to 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapEnumerator
+type MapEnumerator struct {
+}// MapTableKeyCallBacks - The function pointers used to configure behavior of 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTableKeyCallBacks
+type MapTableKeyCallBacks struct {
+}// MapTableValueCallBacks - The function pointers used to configure behavior of 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTableValueCallBacks
+type MapTableValueCallBacks struct {
 }// Range - A structure used to describe a portion of a series, such as characters in a string or objects in an array.
 //
 // [Full Topic]
@@ -31,16 +59,8 @@ type FastEnumerationState struct {
 type Range struct {
 	Length uint64
 	Location uint64
-}// SwappedDouble - Opaque structure containing endian-independent 
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSwappedDouble
-type SwappedDouble struct {
-}// SwappedFloat - Opaque type containing an endian-independent 
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSwappedFloat
-type SwappedFloat struct {
+	Length unsafe.Pointer // The number of items in the range.
+	Location unsafe.Pointer // The index of the first member of the range.
 }// OperatingSystemVersion - A structure that contains version information about the currently executing operating system, including major, minor, and patch version numbers.
 //
 // [Full Topic]

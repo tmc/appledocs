@@ -37,8 +37,8 @@ type ICaptureInputPort interface {
 	SetFormatDescription(value FormatDescription /* not a class type */)
 	Input() IAVCaptureInput
 	SetInput(value IAVCaptureInput)
-	IsEnabled() bool /* primitive/slice/pointer. */
-	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
 	MediaType() MediaType /* not a class type */
 	SetMediaType(value MediaType /* not a class type */)
 	SourceDevicePosition() unsafe.Pointer
@@ -164,7 +164,7 @@ func (c_ CaptureInputPort) SetInput(value IAVCaptureInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/isenabled
-func (c_ CaptureInputPort) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureInputPort) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (c_ CaptureInputPort) IsEnabled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/isenabled
-func (c_ CaptureInputPort) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureInputPort) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

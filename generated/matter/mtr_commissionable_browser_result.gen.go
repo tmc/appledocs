@@ -31,19 +31,23 @@ type _MTRCommissionableBrowserResultClass struct {
 // An interface definition for the [MTRCommissionableBrowserResult] class.
 type IMTRCommissionableBrowserResult interface {
 	objectivec.IObject
+	// properties:
 	CommissioningMode() bool
 	SetCommissioningMode(value bool)
-	Discriminator() foundation.Number
-	SetDiscriminator(value foundation.INumber)
-	InstanceName() string
-	SetInstanceName(value string)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	Discriminator() objc.IObject /* cross-framework: NSNumber */
+	SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */)
+	InstanceName() objc.IObject /* cross-framework: NSString */
+	SetInstanceName(value objc.IObject /* cross-framework: NSString */)
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionableBrowserResult
 type MTRCommissionableBrowserResult struct {
 	objectivec.Object
@@ -86,7 +90,8 @@ func NewMTRCommissionableBrowserResult() MTRCommissionableBrowserResult {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
 func (m_ MTRCommissionableBrowserResult) CommissioningMode() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("commissioningMode"))
@@ -94,70 +99,69 @@ func (m_ MTRCommissionableBrowserResult) CommissioningMode() bool {
 }
 
 
-// SetCommissioningMode sets the value of the commissioningMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
 func (m_ MTRCommissionableBrowserResult) SetCommissioningMode(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
-func (m_ MTRCommissionableBrowserResult) Discriminator() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("discriminator"))
+func (m_ MTRCommissionableBrowserResult) Discriminator() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("discriminator"))
 	return rv
 }
 
 
-// SetDiscriminator sets the value of the discriminator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
-func (m_ MTRCommissionableBrowserResult) SetDiscriminator(value foundation.INumber) {
+func (m_ MTRCommissionableBrowserResult) SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
-func (m_ MTRCommissionableBrowserResult) InstanceName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("instanceName"))
+func (m_ MTRCommissionableBrowserResult) InstanceName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("instanceName"))
 	return rv
 }
 
 
-// SetInstanceName sets the value of the instanceName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
-func (m_ MTRCommissionableBrowserResult) SetInstanceName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), objc.String(value))
+func (m_ MTRCommissionableBrowserResult) SetInstanceName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
-func (m_ MTRCommissionableBrowserResult) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRCommissionableBrowserResult) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
-func (m_ MTRCommissionableBrowserResult) SetProductID(value foundation.INumber) {
+func (m_ MTRCommissionableBrowserResult) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
-func (m_ MTRCommissionableBrowserResult) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRCommissionableBrowserResult) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
-func (m_ MTRCommissionableBrowserResult) SetVendorID(value foundation.INumber) {
+func (m_ MTRCommissionableBrowserResult) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

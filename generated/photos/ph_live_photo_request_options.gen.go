@@ -30,22 +30,26 @@ type _PHLivePhotoRequestOptionsClass struct {
 // An interface definition for the [PHLivePhotoRequestOptions] class.
 type IPHLivePhotoRequestOptions interface {
 	objectivec.IObject
-	DeliveryMode() PHImageRequestOptionsDeliveryMode
-	SetDeliveryMode(value PHImageRequestOptionsDeliveryMode)
-	NetworkAccessAllowed() bool
-	SetNetworkAccessAllowed(value bool)
-	ProgressHandler() unsafe.Pointer
-	SetProgressHandler(value unsafe.Pointer)
-	Version() PHImageRequestOptionsVersion
-	SetVersion(value IPHImageRequestOptionsVersion)
+	// properties:
+	DeliveryMode() unsafe.Pointer
+	SetDeliveryMode(value unsafe.Pointer)
 	IsNetworkAccessAllowed() bool
 	SetIsNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	Version() unsafe.Pointer
+	SetVersion(value unsafe.Pointer)
+	// methods:
 }
 
 // A set of options affecting the delivery of Live Photo assets you request from an image manager.
 //
 // A Live Photo is a picture that includes movement and sound from the moments just before and after its capture.
+
+
+// A set of options affecting the delivery of Live Photo assets you request from an image manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions
 type PHLivePhotoRequestOptions struct {
 	objectivec.Object
@@ -90,80 +94,29 @@ func NewPHLivePhotoRequestOptions() PHLivePhotoRequestOptions {
 }
 
 
+
 // The requested Live Photo quality and delivery priority.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/deliveryMode
-func (p_ PHLivePhotoRequestOptions) DeliveryMode() PHImageRequestOptionsDeliveryMode {
-	rv := objc.Send[PHImageRequestOptionsDeliveryMode](p_.ID, objc.Sel("deliveryMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/deliverymode
+func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deliveryMode"))
 	return rv
 }
 
 
-// SetDeliveryMode sets the value of the deliveryMode property.
 // The requested Live Photo quality and delivery priority.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/deliveryMode
-func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value PHImageRequestOptionsDeliveryMode) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/deliverymode
+func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
 
-// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/isNetworkAccessAllowed
-func (p_ PHLivePhotoRequestOptions) NetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("networkAccessAllowed"))
-	return rv
-}
-
-
-// SetNetworkAccessAllowed sets the value of the networkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/isNetworkAccessAllowed
-func (p_ PHLivePhotoRequestOptions) SetNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
-}
-
-// A block that Photos calls periodically while downloading the Live Photo.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/progressHandler
-func (p_ PHLivePhotoRequestOptions) ProgressHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
-	return rv
-}
-
-
-// SetProgressHandler sets the value of the progressHandler property.
-// A block that Photos calls periodically while downloading the Live Photo.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/progressHandler
-func (p_ PHLivePhotoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
-}
-
-// The version of the Live Photo to be requested.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
-func (p_ PHLivePhotoRequestOptions) Version() PHImageRequestOptionsVersion {
-	rv := objc.Send[PHImageRequestOptionsVersion](p_.ID, objc.Sel("version"))
-	return rv
-}
-
-
-// SetVersion sets the value of the version property.
-// The version of the Live Photo to be requested.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
-func (p_ PHLivePhotoRequestOptions) SetVersion(value IPHImageRequestOptionsVersion) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
-}
 
 // A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
 func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
@@ -171,13 +124,50 @@ func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
 }
 
 
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
 // A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/isnetworkaccessallowed
 func (p_ PHLivePhotoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+
+// A block that Photos calls periodically while downloading the Live Photo.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/progresshandler
+func (p_ PHLivePhotoRequestOptions) ProgressHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
+	return rv
+}
+
+
+// A block that Photos calls periodically while downloading the Live Photo.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/progresshandler
+func (p_ PHLivePhotoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
+}
+
+
+// The version of the Live Photo to be requested.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/version
+func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// The version of the Live Photo to be requested.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotorequestoptions/version
+func (p_ PHLivePhotoRequestOptions) SetVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
 
 

@@ -30,7 +30,7 @@ type _EnvironmentMechanismUserPasswordClass struct {
 type IEnvironmentMechanismUserPassword interface {
 	IEnvironmentMechanism
 	// properties:
-	IsSet() bool /* primitive/slice/pointer. */
+	IsSet() bool
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewEnvironmentMechanismUserPassword() EnvironmentMechanismUserPassword {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismUserPassword/isSet
-func (e_ EnvironmentMechanismUserPassword) IsSet() bool /* primitive/slice/pointer. */ {
+func (e_ EnvironmentMechanismUserPassword) IsSet() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isSet"))
 	return rv
 }

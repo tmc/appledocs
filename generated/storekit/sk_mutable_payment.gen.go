@@ -30,24 +30,30 @@ type _MutablePaymentClass struct {
 // An interface definition for the [MutablePayment] class.
 type IMutablePayment interface {
 	IPayment
-	ApplicationUsername() string
-	SetApplicationUsername(value string)
-	PaymentDiscount() SKPaymentDiscount
+	// properties:
+	ApplicationUsername() objc.IObject /* cross-framework: NSString */
+	SetApplicationUsername(value objc.IObject /* cross-framework: NSString */)
+	PaymentDiscount() ISKPaymentDiscount
 	SetPaymentDiscount(value ISKPaymentDiscount)
-	ProductIdentifier() string
-	SetProductIdentifier(value string)
+	ProductIdentifier() objc.IObject /* cross-framework: NSString */
+	SetProductIdentifier(value objc.IObject /* cross-framework: NSString */)
 	Quantity() int
 	SetQuantity(value int)
-	RequestData() foundation.NSData
-	SetRequestData(value foundation.IData)
+	RequestData() objc.IObject /* cross-framework: Data */
+	SetRequestData(value objc.IObject /* cross-framework: Data */)
 	SimulatesAskToBuyInSandbox() bool
 	SetSimulatesAskToBuyInSandbox(value bool)
+	// methods:
 }
 
 // A mutable request to the App Store to process payment for additional functionality that your app offers.
 //
 // A mutable payment object identifies a product and the quantity of that item the user would like to purchase. When a mutable payment is added to the payment queue, the payment queue copies the contents into an immutable request before queueing the request. Your app can safely change the contents of the mutable payment object.
+
+
+// A mutable request to the App Store to process payment for additional functionality that your app offers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment
 type MutablePayment struct {
 	Payment
@@ -94,110 +100,116 @@ func NewMutablePayment() MutablePayment {
 }
 
 
+
 // A string that associates the transaction with a user account on your service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) ApplicationUsername() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationUsername"))
+func (m_ MutablePayment) ApplicationUsername() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
 
-// SetApplicationUsername sets the value of the applicationUsername property.
 // A string that associates the transaction with a user account on your service.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) SetApplicationUsername(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), objc.String(value))
+func (m_ MutablePayment) SetApplicationUsername(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), value)
 }
+
 
 // The details of the discount offer to apply to the payment.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
-func (m_ MutablePayment) PaymentDiscount() SKPaymentDiscount {
-	rv := objc.Send[SKPaymentDiscount](m_.ID, objc.Sel("paymentDiscount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/paymentdiscount
+func (m_ MutablePayment) PaymentDiscount() ISKPaymentDiscount {
+	rv := objc.Send[PaymentDiscount](m_.ID, objc.Sel("paymentDiscount"))
 	return rv
 }
 
 
-// SetPaymentDiscount sets the value of the paymentDiscount property.
 // The details of the discount offer to apply to the payment.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/paymentdiscount
 func (m_ MutablePayment) SetPaymentDiscount(value ISKPaymentDiscount) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaymentDiscount:"), value)
 }
 
+
 // A string that identifies a product that can be purchased from within your app.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) ProductIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/productidentifier
+func (m_ MutablePayment) ProductIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
 
-// SetProductIdentifier sets the value of the productIdentifier property.
 // A string that identifies a product that can be purchased from within your app.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) SetProductIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/productidentifier
+func (m_ MutablePayment) SetProductIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), value)
 }
+
 
 // The number of items the user wants to purchase.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/quantity
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/quantity
 func (m_ MutablePayment) Quantity() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("quantity"))
 	return rv
 }
 
 
-// SetQuantity sets the value of the quantity property.
 // The number of items the user wants to purchase.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/quantity
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/quantity
 func (m_ MutablePayment) SetQuantity(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQuantity:"), value)
 }
 
+
 // Reserved for future use.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
-func (m_ MutablePayment) RequestData() foundation.NSData {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("requestData"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/requestdata
+func (m_ MutablePayment) RequestData() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("requestData"))
 	return rv
 }
 
 
-// SetRequestData sets the value of the requestData property.
 // Reserved for future use.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
-func (m_ MutablePayment) SetRequestData(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/requestdata
+func (m_ MutablePayment) SetRequestData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestData:"), value)
 }
 
+
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/simulatesAskToBuyInSandbox
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/simulatesasktobuyinsandbox
 func (m_ MutablePayment) SimulatesAskToBuyInSandbox() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("simulatesAskToBuyInSandbox"))
 	return rv
 }
 
 
-// SetSimulatesAskToBuyInSandbox sets the value of the simulatesAskToBuyInSandbox property.
 // A Boolean value that produces an “ask to buy” flow for this payment in the sandbox.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/simulatesAskToBuyInSandbox
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skmutablepayment/simulatesasktobuyinsandbox
 func (m_ MutablePayment) SetSimulatesAskToBuyInSandbox(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSimulatesAskToBuyInSandbox:"), value)
 }

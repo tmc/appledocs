@@ -29,16 +29,22 @@ type _DetectHumanRectanglesRequestClass struct {
 // An interface definition for the [DetectHumanRectanglesRequest] class.
 type IDetectHumanRectanglesRequest interface {
 	IImageBasedRequest
+	// properties:
+	Results() IVNHumanObservation
+	SetResults(value IVNHumanObservation)
 	UpperBodyOnly() bool
 	SetUpperBodyOnly(value bool)
-	Results() VNHumanObservation
-	SetResults(value IVNHumanObservation)
 	VNDetectHumanRectanglesRequestRevision1() int
 	VNDetectHumanRectanglesRequestRevision2() int
+	// methods:
 }
 
 // A request that finds rectangular regions that contain people in an image.
+
+
+// A request that finds rectangular regions that contain people in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest
 type DetectHumanRectanglesRequest struct {
 	ImageBasedRequest
@@ -85,52 +91,58 @@ func NewDetectHumanRectanglesRequest() DetectHumanRectanglesRequest {
 }
 
 
+
+// The results of the request to find rectangular regions that contain people in an image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
+func (d_ DetectHumanRectanglesRequest) Results() IVNHumanObservation {
+	rv := objc.Send[HumanObservation](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// The results of the request to find rectangular regions that contain people in an image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
+func (d_ DetectHumanRectanglesRequest) SetResults(value IVNHumanObservation) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+
 // A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/upperbodyonly
 func (d_ DetectHumanRectanglesRequest) UpperBodyOnly() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("upperBodyOnly"))
 	return rv
 }
 
 
-// SetUpperBodyOnly sets the value of the upperBodyOnly property.
 // A Boolean value that indicates whether the request requires detecting a full body or upper body only to produce a result.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectHumanRectanglesRequest/upperBodyOnly
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/upperbodyonly
 func (d_ DetectHumanRectanglesRequest) SetUpperBodyOnly(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUpperBodyOnly:"), value)
 }
 
-// The results of the request to find rectangular regions that contain people in an image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
-func (d_ DetectHumanRectanglesRequest) Results() VNHumanObservation {
-	rv := objc.Send[VNHumanObservation](d_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of the request to find rectangular regions that contain people in an image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
-func (d_ DetectHumanRectanglesRequest) SetResults(value IVNHumanObservation) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
-}
 
 // A constant for specifying revision 1 of the human rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1
 func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanRectanglesRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the human rectangles detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2
 func (d_ DetectHumanRectanglesRequest) VNDetectHumanRectanglesRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectHumanRectanglesRequestRevision2"))

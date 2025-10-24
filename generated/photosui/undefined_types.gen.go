@@ -9,13 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in PhotosUI
 	CreationSource = _undefined // referenced in PhotosUI
 	Identifier = _undefined // referenced in PhotosUI
-	PHLivePhotoViewContentMode = _undefined // referenced in PhotosUI
-	PHLivePhotoViewDelegate = _undefined // referenced in PhotosUI
-	PHProjectSectionContent = _undefined // referenced in PhotosUI
-	PHProjectType = _undefined // referenced in PhotosUI
 	Progress = _undefined // referenced in PhotosUI
 	SectionType = _undefined // referenced in PhotosUI
 )

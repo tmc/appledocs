@@ -29,9 +29,13 @@ type _MTRBaseClusterIlluminanceMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterIlluminanceMeasurement] class.
 type IMTRBaseClusterIlluminanceMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterIlluminanceMeasurement
 type MTRBaseClusterIlluminanceMeasurement struct {
 	MTRGenericBaseCluster

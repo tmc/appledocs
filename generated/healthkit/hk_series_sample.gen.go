@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKSeriesSample] class.
@@ -30,9 +31,9 @@ type _HKSeriesSampleClass struct {
 type IHKSeriesSample interface {
 	IHKSample
 	// properties:
-	Count() int /* primitive/slice/pointer. */
-	SetCount(value int /* primitive/slice/pointer. */)
-	HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */
+	Count() int
+	SetCount(value int)
+	HKWorkoutRouteTypeIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -95,7 +96,7 @@ func NewHKSeriesSample() HKSeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
-func (h_ HKSeriesSample) Count() int /* primitive/slice/pointer. */ {
+func (h_ HKSeriesSample) Count() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
 }
@@ -105,7 +106,7 @@ func (h_ HKSeriesSample) Count() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
-func (h_ HKSeriesSample) SetCount(value int /* primitive/slice/pointer. */) {
+func (h_ HKSeriesSample) SetCount(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -114,8 +115,8 @@ func (h_ HKSeriesSample) SetCount(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }
 

@@ -30,9 +30,13 @@ type _authenticationModuleEntriesClass struct {
 // An interface definition for the [authenticationModuleEntries] class.
 type IauthenticationModuleEntries interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/authenticationModuleEntries-c.ivar
 type authenticationModuleEntries struct {
 	objectivec.Object

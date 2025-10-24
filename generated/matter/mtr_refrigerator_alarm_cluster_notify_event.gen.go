@@ -31,17 +31,21 @@ type _MTRRefrigeratorAlarmClusterNotifyEventClass struct {
 // An interface definition for the [MTRRefrigeratorAlarmClusterNotifyEvent] class.
 type IMTRRefrigeratorAlarmClusterNotifyEvent interface {
 	objectivec.IObject
-	Active() foundation.Number
-	SetActive(value foundation.INumber)
-	Inactive() foundation.Number
-	SetInactive(value foundation.INumber)
-	Mask() foundation.Number
-	SetMask(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	Active() objc.IObject /* cross-framework: NSNumber */
+	SetActive(value objc.IObject /* cross-framework: NSNumber */)
+	Inactive() objc.IObject /* cross-framework: NSNumber */
+	SetInactive(value objc.IObject /* cross-framework: NSNumber */)
+	Mask() objc.IObject /* cross-framework: NSNumber */
+	SetMask(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent
 type MTRRefrigeratorAlarmClusterNotifyEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRRefrigeratorAlarmClusterNotifyEvent() MTRRefrigeratorAlarmClusterNoti
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/active
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Active() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("active"))
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Active() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("active"))
 	return rv
 }
 
 
-// SetActive sets the value of the active property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/active
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetActive(value foundation.INumber) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetActive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/inactive
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Inactive() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("inactive"))
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Inactive() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("inactive"))
 	return rv
 }
 
 
-// SetInactive sets the value of the inactive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/inactive
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetInactive(value foundation.INumber) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetInactive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/mask
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Mask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mask"))
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Mask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mask"))
 	return rv
 }
 
 
-// SetMask sets the value of the mask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/mask
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetMask(value foundation.INumber) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/state
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/state
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetState(value foundation.INumber) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

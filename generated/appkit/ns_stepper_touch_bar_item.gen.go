@@ -30,20 +30,22 @@ type _StepperTouchBarItemClass struct {
 // An interface definition for the [StepperTouchBarItem] class.
 type IStepperTouchBarItem interface {
 	ITouchBarItem
-	MaxValue() float64
-	SetMaxValue(value float64)
+	// properties:
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	Increment() float64
 	SetIncrement(value float64)
+	MaxValue() float64
+	SetMaxValue(value float64)
 	MinValue() float64
 	SetMinValue(value float64)
 	Target() unsafe.Pointer
 	SetTarget(value unsafe.Pointer)
 	Value() float64
 	SetValue(value float64)
+	// methods:
 }
 
 // A bar item that provides a stepper control for incrementing or decrementing a value.
@@ -100,38 +102,6 @@ func NewStepperTouchBarItem() StepperTouchBarItem {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func NewStepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter foundation.IFormatter) StepperTouchBarItem {
-	rv := objc.Send[StepperTouchBarItem](objc.ID(getStepperTouchBarItemClass().class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
-	return rv
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/init(identifier:formatter:)
-func (sc _StepperTouchBarItemClass) StepperTouchBarItemWithIdentifierFormatter(identifier ITouchBarItemIdentifier, formatter foundation.IFormatter) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stepperTouchBarItemWithIdentifier:formatter:"), identifier, formatter)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/maxValue
-func (s_ StepperTouchBarItem) MaxValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperTouchBarItem/maxValue
-func (s_ StepperTouchBarItem) SetMaxValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/action
 func (s_ StepperTouchBarItem) Action() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
@@ -148,16 +118,16 @@ func (s_ StepperTouchBarItem) SetAction(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/customizationlabel
-func (s_ StepperTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("customizationLabel"))
+func (s_ StepperTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/customizationlabel
-func (s_ StepperTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
+func (s_ StepperTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
 
 
@@ -173,6 +143,21 @@ func (s_ StepperTouchBarItem) Increment() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/increment
 func (s_ StepperTouchBarItem) SetIncrement(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/maxvalue
+func (s_ StepperTouchBarItem) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppertouchbaritem/maxvalue
+func (s_ StepperTouchBarItem) SetMaxValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 
@@ -219,5 +204,6 @@ func (s_ StepperTouchBarItem) Value() float64 {
 func (s_ StepperTouchBarItem) SetValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
+
 
 

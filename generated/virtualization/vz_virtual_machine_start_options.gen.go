@@ -30,10 +30,16 @@ type _VZVirtualMachineStartOptionsClass struct {
 // An interface definition for the [VZVirtualMachineStartOptions] class.
 type IVZVirtualMachineStartOptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract class for VM start options.
+
+
+// The abstract class for VM start options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineStartOptions
 type VZVirtualMachineStartOptions struct {
 	objectivec.Object

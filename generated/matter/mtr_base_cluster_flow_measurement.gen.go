@@ -29,9 +29,13 @@ type _MTRBaseClusterFlowMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterFlowMeasurement] class.
 type IMTRBaseClusterFlowMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterFlowMeasurement
 type MTRBaseClusterFlowMeasurement struct {
 	MTRGenericBaseCluster

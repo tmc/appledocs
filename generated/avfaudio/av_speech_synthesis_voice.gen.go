@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +32,21 @@ type _SpeechSynthesisVoiceClass struct {
 type ISpeechSynthesisVoice interface {
 	objectivec.IObject
 	// properties:
-	AudioFileSettings() string /* primitive/slice/pointer. */
-	SetAudioFileSettings(value string /* primitive/slice/pointer. */)
+	AudioFileSettings() objc.IObject /* cross-framework: NSString */
+	SetAudioFileSettings(value objc.IObject /* cross-framework: NSString */)
 	Gender() SpeechSynthesisVoiceGender /* not a class type */
 	SetGender(value SpeechSynthesisVoiceGender /* not a class type */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Language() string /* primitive/slice/pointer. */
-	SetLanguage(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Language() objc.IObject /* cross-framework: NSString */
+	SetLanguage(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	Quality() SpeechSynthesisVoiceQuality /* not a class type */
 	SetQuality(value SpeechSynthesisVoiceQuality /* not a class type */)
 	VoiceTraits() unsafe.Pointer
 	SetVoiceTraits(value unsafe.Pointer)
-	AVSpeechSynthesisVoiceIdentifierAlex() string /* primitive/slice/pointer. */
+	AVSpeechSynthesisVoiceIdentifierAlex() objc.IObject /* cross-framework: NSString */
 	Voice() IAVSpeechSynthesisVoice
 	SetVoice(value IAVSpeechSynthesisVoice)
 	// methods:
@@ -108,8 +109,8 @@ func NewSpeechSynthesisVoice() SpeechSynthesisVoice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-func (s_ SpeechSynthesisVoice) AudioFileSettings() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("audioFileSettings"))
+func (s_ SpeechSynthesisVoice) AudioFileSettings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("audioFileSettings"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (s_ SpeechSynthesisVoice) AudioFileSettings() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/audiofilesettings
-func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), objc.String(value))
+func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioFileSettings:"), value)
 }
 
 
@@ -146,8 +147,8 @@ func (s_ SpeechSynthesisVoice) SetGender(value SpeechSynthesisVoiceGender /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-func (s_ SpeechSynthesisVoice) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SpeechSynthesisVoice) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -156,8 +157,8 @@ func (s_ SpeechSynthesisVoice) Identifier() string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
-func (s_ SpeechSynthesisVoice) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ SpeechSynthesisVoice) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -165,8 +166,8 @@ func (s_ SpeechSynthesisVoice) SetIdentifier(value string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/language
-func (s_ SpeechSynthesisVoice) Language() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("language"))
+func (s_ SpeechSynthesisVoice) Language() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("language"))
 	return rv
 }
 
@@ -175,8 +176,8 @@ func (s_ SpeechSynthesisVoice) Language() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/language
-func (s_ SpeechSynthesisVoice) SetLanguage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLanguage:"), objc.String(value))
+func (s_ SpeechSynthesisVoice) SetLanguage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLanguage:"), value)
 }
 
 
@@ -184,8 +185,8 @@ func (s_ SpeechSynthesisVoice) SetLanguage(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-func (s_ SpeechSynthesisVoice) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("name"))
+func (s_ SpeechSynthesisVoice) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -194,8 +195,8 @@ func (s_ SpeechSynthesisVoice) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/name
-func (s_ SpeechSynthesisVoice) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
+func (s_ SpeechSynthesisVoice) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -241,8 +242,8 @@ func (s_ SpeechSynthesisVoice) SetVoiceTraits(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoiceidentifieralex
-func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
+func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("AVSpeechSynthesisVoiceIdentifierAlex"))
 	return rv
 }
 

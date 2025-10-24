@@ -29,36 +29,42 @@ type _CLSTMLayerClass struct {
 // An interface definition for the [CLSTMLayer] class.
 type ICLSTMLayer interface {
 	ICLayer
+	// properties:
 	LayerCount() int
 	SetLayerCount(value int)
-	Biases() MLCTensor
+	Biases() IMLCTensor
 	SetBiases(value IMLCTensor)
-	BiasesParameters() MLCTensorParameter
-	SetBiasesParameters(value IMLCTensorParameter)
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
-	GateActivations() unsafe.Pointer
-	SetGateActivations(value unsafe.Pointer)
-	HiddenWeights() MLCTensor
+	BiasesParameters() objc.IObject /* cross-framework: CTensorParameter */
+	SetBiasesParameters(value objc.IObject /* cross-framework: CTensorParameter */)
+	Descriptor() CLSTMDescriptor /* not a class type */
+	SetDescriptor(value CLSTMDescriptor /* not a class type */)
+	GateActivations() CActivationDescriptor /* not a class type */
+	SetGateActivations(value CActivationDescriptor /* not a class type */)
+	HiddenWeights() IMLCTensor
 	SetHiddenWeights(value IMLCTensor)
-	HiddenWeightsParameters() MLCTensorParameter
-	SetHiddenWeightsParameters(value IMLCTensorParameter)
-	InputWeights() MLCTensor
+	HiddenWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */
+	SetHiddenWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */)
+	InputWeights() IMLCTensor
 	SetInputWeights(value IMLCTensor)
-	InputWeightsParameters() MLCTensorParameter
-	SetInputWeightsParameters(value IMLCTensorParameter)
-	OutputResultActivation() unsafe.Pointer
-	SetOutputResultActivation(value unsafe.Pointer)
-	PeepholeWeights() MLCTensor
+	InputWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */
+	SetInputWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */)
+	OutputResultActivation() CActivationDescriptor /* not a class type */
+	SetOutputResultActivation(value CActivationDescriptor /* not a class type */)
+	PeepholeWeights() IMLCTensor
 	SetPeepholeWeights(value IMLCTensor)
-	PeepholeWeightsParameters() MLCTensorParameter
-	SetPeepholeWeightsParameters(value IMLCTensorParameter)
+	PeepholeWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */
+	SetPeepholeWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */)
+	// methods:
 }
 
 // A layer that represents long short-term memory (LSTM) networks.
 //
 // Use this class to create an LSTM layer with one of the following configurations:
+
+
+// A layer that represents long short-term memory (LSTM) networks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCLSTMLayer
 type CLSTMLayer struct {
 	CLayer
@@ -105,8 +111,10 @@ func NewCLSTMLayer() CLSTMLayer {
 }
 
 
+
 // The number of recurrent layers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmdescriptor/layercount
 func (s_ CLSTMLayer) LayerCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("layerCount"))
@@ -114,210 +122,220 @@ func (s_ CLSTMLayer) LayerCount() int {
 }
 
 
-// SetLayerCount sets the value of the layerCount property.
 // The number of recurrent layers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmdescriptor/layercount
 func (s_ CLSTMLayer) SetLayerCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLayerCount:"), value)
 }
 
+
 // The array of tensors that describe the bias terms you use for the input, hidden, cell, and output gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biases
-func (s_ CLSTMLayer) Biases() MLCTensor {
-	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("biases"))
+func (s_ CLSTMLayer) Biases() IMLCTensor {
+	rv := objc.Send[CTensor](s_.ID, objc.Sel("biases"))
 	return rv
 }
 
 
-// SetBiases sets the value of the biases property.
 // The array of tensors that describe the bias terms you use for the input, hidden, cell, and output gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biases
 func (s_ CLSTMLayer) SetBiases(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBiases:"), value)
 }
 
+
 // The biases tensor parameters you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biasesparameters
-func (s_ CLSTMLayer) BiasesParameters() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("biasesParameters"))
+func (s_ CLSTMLayer) BiasesParameters() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](s_.ID, objc.Sel("biasesParameters"))
 	return rv
 }
 
 
-// SetBiasesParameters sets the value of the biasesParameters property.
 // The biases tensor parameters you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biasesparameters
-func (s_ CLSTMLayer) SetBiasesParameters(value IMLCTensorParameter) {
+func (s_ CLSTMLayer) SetBiasesParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBiasesParameters:"), value)
 }
 
+
 // The configuration object you use to create the LSTM layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/descriptor
-func (s_ CLSTMLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("descriptor"))
+func (s_ CLSTMLayer) Descriptor() CLSTMDescriptor /* not a class type */ {
+	rv := objc.Send[STMDescriptor](s_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the LSTM layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/descriptor
-func (s_ CLSTMLayer) SetDescriptor(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetDescriptor(value CLSTMDescriptor /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDescriptor:"), value)
 }
 
+
 // The array of gate activations you use for input, hidden, cell, and output gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/gateactivations
-func (s_ CLSTMLayer) GateActivations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gateActivations"))
+func (s_ CLSTMLayer) GateActivations() CActivationDescriptor /* not a class type */ {
+	rv := objc.Send[CActivationDescriptor](s_.ID, objc.Sel("gateActivations"))
 	return rv
 }
 
 
-// SetGateActivations sets the value of the gateActivations property.
 // The array of gate activations you use for input, hidden, cell, and output gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/gateactivations
-func (s_ CLSTMLayer) SetGateActivations(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetGateActivations(value CActivationDescriptor /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setGateActivations:"), value)
 }
 
+
 // The array of tensors that describe the hidden weights you use for the input, hidden, cell, and output gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweights
-func (s_ CLSTMLayer) HiddenWeights() MLCTensor {
-	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("hiddenWeights"))
+func (s_ CLSTMLayer) HiddenWeights() IMLCTensor {
+	rv := objc.Send[CTensor](s_.ID, objc.Sel("hiddenWeights"))
 	return rv
 }
 
 
-// SetHiddenWeights sets the value of the hiddenWeights property.
 // The array of tensors that describe the hidden weights you use for the input, hidden, cell, and output gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweights
 func (s_ CLSTMLayer) SetHiddenWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHiddenWeights:"), value)
 }
 
+
 // The hidden weights tensor parameters you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweightsparameters
-func (s_ CLSTMLayer) HiddenWeightsParameters() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("hiddenWeightsParameters"))
+func (s_ CLSTMLayer) HiddenWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](s_.ID, objc.Sel("hiddenWeightsParameters"))
 	return rv
 }
 
 
-// SetHiddenWeightsParameters sets the value of the hiddenWeightsParameters property.
 // The hidden weights tensor parameters you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweightsparameters
-func (s_ CLSTMLayer) SetHiddenWeightsParameters(value IMLCTensorParameter) {
+func (s_ CLSTMLayer) SetHiddenWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHiddenWeightsParameters:"), value)
 }
 
+
 // The array of tensors that describe the input weights you use for the input, hidden, cell, and output gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweights
-func (s_ CLSTMLayer) InputWeights() MLCTensor {
-	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("inputWeights"))
+func (s_ CLSTMLayer) InputWeights() IMLCTensor {
+	rv := objc.Send[CTensor](s_.ID, objc.Sel("inputWeights"))
 	return rv
 }
 
 
-// SetInputWeights sets the value of the inputWeights property.
 // The array of tensors that describe the input weights you use for the input, hidden, cell, and output gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweights
 func (s_ CLSTMLayer) SetInputWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInputWeights:"), value)
 }
 
+
 // The input weights tensor parameters you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweightsparameters
-func (s_ CLSTMLayer) InputWeightsParameters() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("inputWeightsParameters"))
+func (s_ CLSTMLayer) InputWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](s_.ID, objc.Sel("inputWeightsParameters"))
 	return rv
 }
 
 
-// SetInputWeightsParameters sets the value of the inputWeightsParameters property.
 // The input weights tensor parameters you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweightsparameters
-func (s_ CLSTMLayer) SetInputWeightsParameters(value IMLCTensorParameter) {
+func (s_ CLSTMLayer) SetInputWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInputWeightsParameters:"), value)
 }
 
+
 // The output activation descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/outputresultactivation
-func (s_ CLSTMLayer) OutputResultActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("outputResultActivation"))
+func (s_ CLSTMLayer) OutputResultActivation() CActivationDescriptor /* not a class type */ {
+	rv := objc.Send[CActivationDescriptor](s_.ID, objc.Sel("outputResultActivation"))
 	return rv
 }
 
 
-// SetOutputResultActivation sets the value of the outputResultActivation property.
 // The output activation descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/outputresultactivation
-func (s_ CLSTMLayer) SetOutputResultActivation(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetOutputResultActivation(value CActivationDescriptor /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setOutputResultActivation:"), value)
 }
 
+
 // The array of tensors that describe the peephole weights you use for the input, hidden, cell, and output gates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweights
-func (s_ CLSTMLayer) PeepholeWeights() MLCTensor {
-	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("peepholeWeights"))
+func (s_ CLSTMLayer) PeepholeWeights() IMLCTensor {
+	rv := objc.Send[CTensor](s_.ID, objc.Sel("peepholeWeights"))
 	return rv
 }
 
 
-// SetPeepholeWeights sets the value of the peepholeWeights property.
 // The array of tensors that describe the peephole weights you use for the input, hidden, cell, and output gates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweights
 func (s_ CLSTMLayer) SetPeepholeWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPeepholeWeights:"), value)
 }
 
+
 // The peephole weights tensor parameters you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweightsparameters
-func (s_ CLSTMLayer) PeepholeWeightsParameters() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("peepholeWeightsParameters"))
+func (s_ CLSTMLayer) PeepholeWeightsParameters() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](s_.ID, objc.Sel("peepholeWeightsParameters"))
 	return rv
 }
 
 
-// SetPeepholeWeightsParameters sets the value of the peepholeWeightsParameters property.
 // The peephole weights tensor parameters you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweightsparameters
-func (s_ CLSTMLayer) SetPeepholeWeightsParameters(value IMLCTensorParameter) {
+func (s_ CLSTMLayer) SetPeepholeWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPeepholeWeightsParameters:"), value)
 }
 

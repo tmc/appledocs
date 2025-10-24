@@ -30,6 +30,7 @@ type _WebpagePreferencesClass struct {
 // An interface definition for the [WebpagePreferences] class.
 type IWebpagePreferences interface {
 	objectivec.IObject
+	// properties:
 	AllowsContentJavaScript() bool
 	SetAllowsContentJavaScript(value bool)
 	LockdownModeEnabled() bool
@@ -40,12 +41,17 @@ type IWebpagePreferences interface {
 	SetPreferredHTTPSNavigationPolicy(value WebpagePreferencesUpgradeToHTTPSPolicy)
 	IsLockdownModeEnabled() bool
 	SetIsLockdownModeEnabled(value bool)
+	// methods:
 }
 
 // An object that specifies the behaviors to use when loading and rendering page content.
 //
 // Create a object when you want to change the default rendering behavior of your web view. Typically, iOS devices render web content for a mobile experience, and Mac devices render content for a desktop experience.
+
+
+// An object that specifies the behaviors to use when loading and rendering page content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences
 type WebpagePreferences struct {
 	objectivec.Object
@@ -90,8 +96,10 @@ func NewWebpagePreferences() WebpagePreferences {
 }
 
 
+
 // A Boolean value that indicates whether JavaScript from web content is allowed to run.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/allowsContentJavaScript
 func (w_ WebpagePreferences) AllowsContentJavaScript() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("allowsContentJavaScript"))
@@ -99,17 +107,18 @@ func (w_ WebpagePreferences) AllowsContentJavaScript() bool {
 }
 
 
-// SetAllowsContentJavaScript sets the value of the allowsContentJavaScript property.
 // A Boolean value that indicates whether JavaScript from web content is allowed to run.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/allowsContentJavaScript
 func (w_ WebpagePreferences) SetAllowsContentJavaScript(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsContentJavaScript:"), value)
 }
 
+
 // A Boolean value that indicates whether to use Lockdown Mode in the web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/isLockdownModeEnabled
 func (w_ WebpagePreferences) LockdownModeEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("lockdownModeEnabled"))
@@ -117,17 +126,18 @@ func (w_ WebpagePreferences) LockdownModeEnabled() bool {
 }
 
 
-// SetLockdownModeEnabled sets the value of the lockdownModeEnabled property.
 // A Boolean value that indicates whether to use Lockdown Mode in the web view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/isLockdownModeEnabled
 func (w_ WebpagePreferences) SetLockdownModeEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setLockdownModeEnabled:"), value)
 }
 
+
 // The content mode for the web view to use when it loads and renders a webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredContentMode
 func (w_ WebpagePreferences) PreferredContentMode() ContentMode {
 	rv := objc.Send[ContentMode](w_.ID, objc.Sel("preferredContentMode"))
@@ -135,16 +145,16 @@ func (w_ WebpagePreferences) PreferredContentMode() ContentMode {
 }
 
 
-// SetPreferredContentMode sets the value of the preferredContentMode property.
 // The content mode for the web view to use when it loads and renders a webpage.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredContentMode
 func (w_ WebpagePreferences) SetPreferredContentMode(value ContentMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredContentMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredHTTPSNavigationPolicy
 func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() WebpagePreferencesUpgradeToHTTPSPolicy {
 	rv := objc.Send[WebpagePreferencesUpgradeToHTTPSPolicy](w_.ID, objc.Sel("preferredHTTPSNavigationPolicy"))
@@ -152,15 +162,16 @@ func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() WebpagePreferences
 }
 
 
-// SetPreferredHTTPSNavigationPolicy sets the value of the preferredHTTPSNavigationPolicy property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredHTTPSNavigationPolicy
 func (w_ WebpagePreferences) SetPreferredHTTPSNavigationPolicy(value WebpagePreferencesUpgradeToHTTPSPolicy) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredHTTPSNavigationPolicy:"), value)
 }
 
+
 // A Boolean value that indicates whether to use Lockdown Mode in the web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebpagepreferences/islockdownmodeenabled
 func (w_ WebpagePreferences) IsLockdownModeEnabled() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isLockdownModeEnabled"))
@@ -168,10 +179,9 @@ func (w_ WebpagePreferences) IsLockdownModeEnabled() bool {
 }
 
 
-// SetIsLockdownModeEnabled sets the value of the isLockdownModeEnabled property.
 // A Boolean value that indicates whether to use Lockdown Mode in the web view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebpagepreferences/islockdownmodeenabled
 func (w_ WebpagePreferences) SetIsLockdownModeEnabled(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsLockdownModeEnabled:"), value)

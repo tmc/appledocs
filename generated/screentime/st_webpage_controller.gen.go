@@ -31,21 +31,28 @@ type _STWebpageControllerClass struct {
 // An interface definition for the [STWebpageController] class.
 type ISTWebpageController interface {
 	appkit.IViewController
-	URL() foundation.URL
-	SetURL(value foundation.IURL)
-	URLIsBlocked() bool
-	URLIsPlayingVideo() bool
-	SetURLIsPlayingVideo(value bool)
+	// properties:
 	ProfileIdentifier() unsafe.Pointer
 	SetProfileIdentifier(value unsafe.Pointer)
 	SuppressUsageRecording() bool
 	SetSuppressUsageRecording(value bool)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	UrlIsBlocked() bool
+	SetUrlIsBlocked(value bool)
 	UrlIsPictureInPicture() bool
 	SetUrlIsPictureInPicture(value bool)
+	UrlIsPlayingVideo() bool
+	SetUrlIsPlayingVideo(value bool)
+	// methods:
 }
 
 // The controller you use to report web usage and block restricted webpages.
+
+
+// The controller you use to report web usage and block restricted webpages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController
 type STWebpageController struct {
 	appkit.ViewController
@@ -92,52 +99,10 @@ func NewSTWebpageController() STWebpageController {
 }
 
 
-// The URL for the webpage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("URL"))
-	return rv
-}
-
-
-// SetURL sets the value of the URL property.
-// The URL for the webpage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) SetURL(value foundation.IURL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
-}
-
-// A Boolean that indicates whether a parent or guardian has blocked the URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsBlocked
-func (s_ STWebpageController) URLIsBlocked() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsBlocked"))
-	return rv
-}
-
-// A Boolean that indicates whether there are one or more videos currently playing in the webpage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsPlayingVideo
-func (s_ STWebpageController) URLIsPlayingVideo() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsPlayingVideo"))
-	return rv
-}
-
-
-// SetURLIsPlayingVideo sets the value of the URLIsPlayingVideo property.
-// A Boolean that indicates whether there are one or more videos currently playing in the webpage.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsPlayingVideo
-func (s_ STWebpageController) SetURLIsPlayingVideo(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setURLIsPlayingVideo:"), value)
-}
 
 // An optional identifier for the current browsing profile.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
 func (s_ STWebpageController) ProfileIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("profileIdentifier"))
@@ -145,17 +110,18 @@ func (s_ STWebpageController) ProfileIdentifier() unsafe.Pointer {
 }
 
 
-// SetProfileIdentifier sets the value of the profileIdentifier property.
 // An optional identifier for the current browsing profile.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/profileidentifier
 func (s_ STWebpageController) SetProfileIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setProfileIdentifier:"), value)
 }
 
+
 // A Boolean that indicates whether the webpage controller is not recording web
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/suppressusagerecording
 func (s_ STWebpageController) SuppressUsageRecording() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("suppressUsageRecording"))
@@ -163,17 +129,56 @@ func (s_ STWebpageController) SuppressUsageRecording() bool {
 }
 
 
-// SetSuppressUsageRecording sets the value of the suppressUsageRecording property.
 // A Boolean that indicates whether the webpage controller is not recording web
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/suppressusagerecording
 func (s_ STWebpageController) SetSuppressUsageRecording(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuppressUsageRecording:"), value)
 }
 
+
+// The URL for the webpage.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/url
+func (s_ STWebpageController) Url() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL for the webpage.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/url
+func (s_ STWebpageController) SetUrl(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrl:"), value)
+}
+
+
+// A Boolean that indicates whether a parent or guardian has blocked the URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisblocked
+func (s_ STWebpageController) UrlIsBlocked() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsBlocked"))
+	return rv
+}
+
+
+// A Boolean that indicates whether a parent or guardian has blocked the URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisblocked
+func (s_ STWebpageController) SetUrlIsBlocked(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsBlocked:"), value)
+}
+
+
 // A Boolean that indicates whether the webpage is currently displaying a
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlispictureinpicture
 func (s_ STWebpageController) UrlIsPictureInPicture() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsPictureInPicture"))
@@ -181,13 +186,31 @@ func (s_ STWebpageController) UrlIsPictureInPicture() bool {
 }
 
 
-// SetUrlIsPictureInPicture sets the value of the urlIsPictureInPicture property.
 // A Boolean that indicates whether the webpage is currently displaying a
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlispictureinpicture
 func (s_ STWebpageController) SetUrlIsPictureInPicture(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPictureInPicture:"), value)
+}
+
+
+// A Boolean that indicates whether there are one or more videos currently
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
+func (s_ STWebpageController) UrlIsPlayingVideo() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsPlayingVideo"))
+	return rv
+}
+
+
+// A Boolean that indicates whether there are one or more videos currently
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
+func (s_ STWebpageController) SetUrlIsPlayingVideo(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPlayingVideo:"), value)
 }
 
 

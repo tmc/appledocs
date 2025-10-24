@@ -30,9 +30,13 @@ type _SFSafariViewControllerDataStoreClass struct {
 // An interface definition for the [SFSafariViewControllerDataStore] class.
 type ISFSafariViewControllerDataStore interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore
 type SFSafariViewControllerDataStore struct {
 	objectivec.Object
@@ -75,18 +79,11 @@ func NewSFSafariViewControllerDataStore() SFSafariViewControllerDataStore {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore/default
 func (sc _SFSafariViewControllerDataStoreClass) DefaultDataStore() SFSafariViewControllerDataStore {
 	rv := objc.Send[SFSafariViewControllerDataStore](objc.ID(sc.class), objc.Sel("defaultDataStore"))
 	return rv
 }
-//
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore/default
-func (s_ SFSafariViewControllerDataStore) DefaultDataStore() SFSafariViewControllerDataStore {
-	rv := objc.Send[SFSafariViewControllerDataStore](s_.ID, objc.Sel("defaultDataStore"))
-	return rv
-}
-
-
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,16 +31,22 @@ type _ImageNormalizedHistogramClass struct {
 // An interface definition for the [ImageNormalizedHistogram] class.
 type IImageNormalizedHistogram interface {
 	IKernel
-	ClipRectSource() corelocation.Region
-	SetClipRectSource(value corelocation.IRegion)
-	HistogramInfo() unsafe.Pointer
-	SetHistogramInfo(value unsafe.Pointer)
+	// properties:
+	ClipRectSource() objc.IObject /* cross-framework: MTLRegion */
+	SetClipRectSource(value objc.IObject /* cross-framework: MTLRegion */)
+	HistogramInfo() ImageHistogramInfo /* not a class type */
+	SetHistogramInfo(value ImageHistogramInfo /* not a class type */)
 	ZeroHistogram() bool
 	SetZeroHistogram(value bool)
+	// methods:
 }
 
 // A filter that computes the normalized histogram of an image.
+
+
+// A filter that computes the normalized histogram of an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageNormalizedHistogram
 type ImageNormalizedHistogram struct {
 	Kernel
@@ -88,9 +93,10 @@ func NewImageNormalizedHistogram() ImageNormalizedHistogram {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageNormalizedHistogram/init(coder:device:)
-func NewImageNormalizedHistogramWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ImageNormalizedHistogram {
+func NewImageNormalizedHistogramWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ImageNormalizedHistogram {
 	instance := getImageNormalizedHistogramClass().Alloc()
 	rv := objc.Send[ImageNormalizedHistogram](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -98,37 +104,38 @@ func NewImageNormalizedHistogramWithCoderDevice(aDecoder foundation.ICoder, devi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
-func (i_ ImageNormalizedHistogram) ClipRectSource() corelocation.Region {
-	rv := objc.Send[corelocation.Region](i_.ID, objc.Sel("clipRectSource"))
+func (i_ ImageNormalizedHistogram) ClipRectSource() objc.IObject /* cross-framework: MTLRegion */ {
+	rv := objc.Send[Region](i_.ID, objc.Sel("clipRectSource"))
 	return rv
 }
 
 
-// SetClipRectSource sets the value of the clipRectSource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
-func (i_ ImageNormalizedHistogram) SetClipRectSource(value corelocation.IRegion) {
+func (i_ ImageNormalizedHistogram) SetClipRectSource(value objc.IObject /* cross-framework: MTLRegion */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/histograminfo
-func (i_ ImageNormalizedHistogram) HistogramInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("histogramInfo"))
+func (i_ ImageNormalizedHistogram) HistogramInfo() ImageHistogramInfo /* not a class type */ {
+	rv := objc.Send[ImageHistogramInfo](i_.ID, objc.Sel("histogramInfo"))
 	return rv
 }
 
 
-// SetHistogramInfo sets the value of the histogramInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/histograminfo
-func (i_ ImageNormalizedHistogram) SetHistogramInfo(value unsafe.Pointer) {
+func (i_ ImageNormalizedHistogram) SetHistogramInfo(value ImageHistogramInfo /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHistogramInfo:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/zerohistogram
 func (i_ ImageNormalizedHistogram) ZeroHistogram() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("zeroHistogram"))
@@ -136,8 +143,7 @@ func (i_ ImageNormalizedHistogram) ZeroHistogram() bool {
 }
 
 
-// SetZeroHistogram sets the value of the zeroHistogram property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/zerohistogram
 func (i_ ImageNormalizedHistogram) SetZeroHistogram(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setZeroHistogram:"), value)

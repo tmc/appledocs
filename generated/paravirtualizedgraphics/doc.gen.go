@@ -2,12 +2,12 @@
 
 // Package paravirtualizedgraphics provides Go bindings for the ParavirtualizedGraphics framework.
 //
-// Add graphics acceleration to your guest driver stack. [Full Topic]
+// Add graphics acceleration to your guest driver stack.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ParavirtualizedGraphics without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics
+// See: https://developer.apple.com/documentation/ParavirtualizedGraphics
 package paravirtualizedgraphics
 
 import (

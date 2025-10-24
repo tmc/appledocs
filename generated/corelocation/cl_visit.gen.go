@@ -32,9 +32,9 @@ type _VisitClass struct {
 type IVisit interface {
 	objectivec.IObject
 	// properties:
-	ArrivalDate() foundation.objc.IObject /* cross-framework: NSDate */
-	Coordinate() LocationCoordinate2D /* not a class type */
-	DepartureDate() foundation.objc.IObject /* cross-framework: NSDate */
+	ArrivalDate() objc.IObject /* cross-framework: NSDate */
+	Coordinate() CLLocationCoordinate2D /* not a class type */
+	DepartureDate() objc.IObject /* cross-framework: NSDate */
 	HorizontalAccuracy() LocationAccuracy /* not a class type */
 	// methods:
 }
@@ -96,7 +96,7 @@ func NewVisit() Visit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/arrivalDate
-func (v_ Visit) ArrivalDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (v_ Visit) ArrivalDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("arrivalDate"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (v_ Visit) ArrivalDate() foundation.objc.IObject /* cross-framework: NSDate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/coordinate
-func (v_ Visit) Coordinate() LocationCoordinate2D /* not a class type */ {
+func (v_ Visit) Coordinate() CLLocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](v_.ID, objc.Sel("coordinate"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (v_ Visit) Coordinate() LocationCoordinate2D /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/departureDate
-func (v_ Visit) DepartureDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (v_ Visit) DepartureDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("departureDate"))
 	return rv
 }

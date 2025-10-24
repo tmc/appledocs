@@ -31,27 +31,31 @@ type _MTRMediaPlaybackClusterStateChangedEventClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterStateChangedEvent] class.
 type IMTRMediaPlaybackClusterStateChangedEvent interface {
 	objectivec.IObject
-	AudioAdvanceUnmuted() foundation.Number
-	SetAudioAdvanceUnmuted(value foundation.INumber)
-	CurrentState() foundation.Number
-	SetCurrentState(value foundation.INumber)
-	Data() foundation.NSData
-	SetData(value foundation.IData)
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	PlaybackSpeed() foundation.Number
-	SetPlaybackSpeed(value foundation.INumber)
-	SampledPosition() MTRMediaPlaybackClusterPlaybackPositionStruct
+	// properties:
+	AudioAdvanceUnmuted() objc.IObject /* cross-framework: NSNumber */
+	SetAudioAdvanceUnmuted(value objc.IObject /* cross-framework: NSNumber */)
+	CurrentState() objc.IObject /* cross-framework: NSNumber */
+	SetCurrentState(value objc.IObject /* cross-framework: NSNumber */)
+	Data() objc.IObject /* cross-framework: NSData */
+	SetData(value objc.IObject /* cross-framework: NSData */)
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	PlaybackSpeed() objc.IObject /* cross-framework: NSNumber */
+	SetPlaybackSpeed(value objc.IObject /* cross-framework: NSNumber */)
+	SampledPosition() IMTRMediaPlaybackClusterPlaybackPositionStruct
 	SetSampledPosition(value IMTRMediaPlaybackClusterPlaybackPositionStruct)
-	SeekRangeEnd() foundation.Number
-	SetSeekRangeEnd(value foundation.INumber)
-	SeekRangeStart() foundation.Number
-	SetSeekRangeStart(value foundation.INumber)
-	StartTime() foundation.Number
-	SetStartTime(value foundation.INumber)
+	SeekRangeEnd() objc.IObject /* cross-framework: NSNumber */
+	SetSeekRangeEnd(value objc.IObject /* cross-framework: NSNumber */)
+	SeekRangeStart() objc.IObject /* cross-framework: NSNumber */
+	SetSeekRangeStart(value objc.IObject /* cross-framework: NSNumber */)
+	StartTime() objc.IObject /* cross-framework: NSNumber */
+	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent
 type MTRMediaPlaybackClusterStateChangedEvent struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTRMediaPlaybackClusterStateChangedEvent() MTRMediaPlaybackClusterStateC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/audioAdvanceUnmuted
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("audioAdvanceUnmuted"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) AudioAdvanceUnmuted() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("audioAdvanceUnmuted"))
 	return rv
 }
 
 
-// SetAudioAdvanceUnmuted sets the value of the audioAdvanceUnmuted property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/audioAdvanceUnmuted
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetAudioAdvanceUnmuted(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetAudioAdvanceUnmuted(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/currentState
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentState"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) CurrentState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("currentState"))
 	return rv
 }
 
 
-// SetCurrentState sets the value of the currentState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/currentState
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetCurrentState(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetCurrentState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/data
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) Data() foundation.NSData {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/data
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetData(value foundation.IData) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/duration
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/duration
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetDuration(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/playbackSpeed
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("playbackSpeed"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) PlaybackSpeed() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("playbackSpeed"))
 	return rv
 }
 
 
-// SetPlaybackSpeed sets the value of the playbackSpeed property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/playbackSpeed
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetPlaybackSpeed(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetPlaybackSpeed(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlaybackSpeed:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/sampledPosition
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SampledPosition() MTRMediaPlaybackClusterPlaybackPositionStruct {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SampledPosition() IMTRMediaPlaybackClusterPlaybackPositionStruct {
 	rv := objc.Send[MTRMediaPlaybackClusterPlaybackPositionStruct](m_.ID, objc.Sel("sampledPosition"))
 	return rv
 }
 
 
-// SetSampledPosition sets the value of the sampledPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/sampledPosition
 func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSampledPosition(value IMTRMediaPlaybackClusterPlaybackPositionStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSampledPosition:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeEnd
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("seekRangeEnd"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeEnd() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("seekRangeEnd"))
 	return rv
 }
 
 
-// SetSeekRangeEnd sets the value of the seekRangeEnd property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeEnd
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeEnd(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeEnd(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeEnd:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeStart
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("seekRangeStart"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SeekRangeStart() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("seekRangeStart"))
 	return rv
 }
 
 
-// SetSeekRangeStart sets the value of the seekRangeStart property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/seekRangeStart
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeStart(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetSeekRangeStart(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeekRangeStart:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/startTime
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) StartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
 
-// SetStartTime sets the value of the startTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStateChangedEvent/startTime
-func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetStartTime(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterStateChangedEvent) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

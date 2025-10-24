@@ -32,36 +32,24 @@ type _AEAssessmentConfigurationClass struct {
 type IAEAssessmentConfiguration interface {
 	objectivec.IObject
 	// properties:
-	AllowsAccessibilitySpeech() bool /* primitive/slice/pointer. */
-	SetAllowsAccessibilitySpeech(value bool /* primitive/slice/pointer. */)
-	AllowsAccessibilityTypingFeedback() bool /* primitive/slice/pointer. */
-	SetAllowsAccessibilityTypingFeedback(value bool /* primitive/slice/pointer. */)
-	AllowsActivityContinuation() bool /* primitive/slice/pointer. */
-	SetAllowsActivityContinuation(value bool /* primitive/slice/pointer. */)
-	AllowsContinuousPathKeyboard() bool /* primitive/slice/pointer. */
-	SetAllowsContinuousPathKeyboard(value bool /* primitive/slice/pointer. */)
-	AllowsDictation() bool /* primitive/slice/pointer. */
-	SetAllowsDictation(value bool /* primitive/slice/pointer. */)
-	AllowsKeyboardShortcuts() bool /* primitive/slice/pointer. */
-	SetAllowsKeyboardShortcuts(value bool /* primitive/slice/pointer. */)
-	AllowsPasswordAutoFill() bool /* primitive/slice/pointer. */
-	SetAllowsPasswordAutoFill(value bool /* primitive/slice/pointer. */)
-	AllowsPredictiveKeyboard() bool /* primitive/slice/pointer. */
-	SetAllowsPredictiveKeyboard(value bool /* primitive/slice/pointer. */)
-	AllowsScreenshots() bool /* primitive/slice/pointer. */
-	SetAllowsScreenshots(value bool /* primitive/slice/pointer. */)
-	AllowsSpellCheck() bool /* primitive/slice/pointer. */
-	SetAllowsSpellCheck(value bool /* primitive/slice/pointer. */)
+	AllowsKeyboardShortcuts() bool
+	SetAllowsKeyboardShortcuts(value bool)
+	AllowsPredictiveKeyboard() bool
+	SetAllowsPredictiveKeyboard(value bool)
+	AllowsScreenshots() bool
+	SetAllowsScreenshots(value bool)
+	AllowsSpellCheck() bool
+	SetAllowsSpellCheck(value bool)
 	AutocorrectMode() AEAutocorrectMode
 	SetAutocorrectMode(value AEAutocorrectMode)
-	ConfigurationsByApplication() foundation.IDictionary /* already interface */
+	ConfigurationsByApplication() foundation.IDictionary
 	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
-	AllowsAccessibilityKeyboard() bool /* primitive/slice/pointer. */
-	SetAllowsAccessibilityKeyboard(value bool /* primitive/slice/pointer. */)
-	AllowsAccessibilityLiveCaptions() bool /* primitive/slice/pointer. */
-	SetAllowsAccessibilityLiveCaptions(value bool /* primitive/slice/pointer. */)
-	AllowsAccessibilityReader() bool /* primitive/slice/pointer. */
-	SetAllowsAccessibilityReader(value bool /* primitive/slice/pointer. */)
+	AllowsAccessibilityKeyboard() bool
+	SetAllowsAccessibilityKeyboard(value bool)
+	AllowsAccessibilityLiveCaptions() bool
+	SetAllowsAccessibilityLiveCaptions(value bool)
+	AllowsAccessibilityReader() bool
+	SetAllowsAccessibilityReader(value bool)
 	// methods:
 	RemoveApplication(application IAEAssessmentApplication)
 	SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication)
@@ -138,106 +126,11 @@ func (a_ AEAssessmentConfiguration) SetConfigurationForApplication(configuration
 }
 
 
-// A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech
-func (a_ AEAssessmentConfiguration) AllowsAccessibilitySpeech() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilitySpeech"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech
-func (a_ AEAssessmentConfiguration) SetAllowsAccessibilitySpeech(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilitySpeech:"), value)
-}
-
-
-// A Boolean value that indicates whether to allow accessibility typing feedback during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilityTypingFeedback
-func (a_ AEAssessmentConfiguration) AllowsAccessibilityTypingFeedback() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityTypingFeedback"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow accessibility typing feedback during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilityTypingFeedback
-func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityTypingFeedback(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityTypingFeedback:"), value)
-}
-
-
-// A Boolean value that indicates whether to allow Handoff during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation
-func (a_ AEAssessmentConfiguration) AllowsActivityContinuation() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsActivityContinuation"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow Handoff during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation
-func (a_ AEAssessmentConfiguration) SetAllowsActivityContinuation(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsActivityContinuation:"), value)
-}
-
-
-// A Boolean value that indicates whether to allow Slide to Type to operate during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard
-func (a_ AEAssessmentConfiguration) AllowsContinuousPathKeyboard() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsContinuousPathKeyboard"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow Slide to Type to operate during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard
-func (a_ AEAssessmentConfiguration) SetAllowsContinuousPathKeyboard(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsContinuousPathKeyboard:"), value)
-}
-
-
-// A Boolean value that indicates whether to allow the use of dictation during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation
-func (a_ AEAssessmentConfiguration) AllowsDictation() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsDictation"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow the use of dictation during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation
-func (a_ AEAssessmentConfiguration) SetAllowsDictation(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsDictation:"), value)
-}
-
-
 // A Boolean value that indicates whether to allow keyboard shortcuts during an assessment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts
-func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsKeyboardShortcuts"))
 	return rv
 }
@@ -247,27 +140,8 @@ func (a_ AEAssessmentConfiguration) AllowsKeyboardShortcuts() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts
-func (a_ AEAssessmentConfiguration) SetAllowsKeyboardShortcuts(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsKeyboardShortcuts(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsKeyboardShortcuts:"), value)
-}
-
-
-// A Boolean value that indicates whether to allow password autofill during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill
-func (a_ AEAssessmentConfiguration) AllowsPasswordAutoFill() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsPasswordAutoFill"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to allow password autofill during an assessment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill
-func (a_ AEAssessmentConfiguration) SetAllowsPasswordAutoFill(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPasswordAutoFill:"), value)
 }
 
 
@@ -275,7 +149,7 @@ func (a_ AEAssessmentConfiguration) SetAllowsPasswordAutoFill(value bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard
-func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsPredictiveKeyboard"))
 	return rv
 }
@@ -285,7 +159,7 @@ func (a_ AEAssessmentConfiguration) AllowsPredictiveKeyboard() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard
-func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsPredictiveKeyboard:"), value)
 }
 
@@ -294,7 +168,7 @@ func (a_ AEAssessmentConfiguration) SetAllowsPredictiveKeyboard(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsScreenshots
-func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsScreenshots"))
 	return rv
 }
@@ -304,7 +178,7 @@ func (a_ AEAssessmentConfiguration) AllowsScreenshots() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsScreenshots
-func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsScreenshots:"), value)
 }
 
@@ -313,7 +187,7 @@ func (a_ AEAssessmentConfiguration) SetAllowsScreenshots(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck
-func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsSpellCheck"))
 	return rv
 }
@@ -323,7 +197,7 @@ func (a_ AEAssessmentConfiguration) AllowsSpellCheck() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck
-func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsSpellCheck:"), value)
 }
 
@@ -351,7 +225,7 @@ func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value AEAutocorrectMode) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication
-func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() foundation.IDictionary /* already interface */ {
+func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
@@ -371,7 +245,7 @@ func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() IAEAssessment
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitykeyboard
-func (a_ AEAssessmentConfiguration) AllowsAccessibilityKeyboard() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityKeyboard() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityKeyboard"))
 	return rv
 }
@@ -381,7 +255,7 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilityKeyboard() bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitykeyboard
-func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityKeyboard(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityKeyboard(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityKeyboard:"), value)
 }
 
@@ -390,7 +264,7 @@ func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityKeyboard(value bool /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitylivecaptions
-func (a_ AEAssessmentConfiguration) AllowsAccessibilityLiveCaptions() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityLiveCaptions() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityLiveCaptions"))
 	return rv
 }
@@ -400,7 +274,7 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilityLiveCaptions() bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitylivecaptions
-func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityLiveCaptions(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityLiveCaptions(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityLiveCaptions:"), value)
 }
 
@@ -409,7 +283,7 @@ func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityLiveCaptions(value boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilityreader
-func (a_ AEAssessmentConfiguration) AllowsAccessibilityReader() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityReader() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityReader"))
 	return rv
 }
@@ -419,9 +293,8 @@ func (a_ AEAssessmentConfiguration) AllowsAccessibilityReader() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilityreader
-func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityReader(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityReader(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityReader:"), value)
 }
-
 
 

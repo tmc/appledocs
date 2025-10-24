@@ -29,13 +29,20 @@ type _TextObservationClass struct {
 // An interface definition for the [TextObservation] class.
 type ITextObservation interface {
 	IRectangleObservation
-	CharacterBoxes() []RectangleObservation
+	// properties:
+	CharacterBoxes() objc.IObject /* cross-framework: RectangleObservation */
+	SetCharacterBoxes(value objc.IObject /* cross-framework: RectangleObservation */)
+	// methods:
 }
 
 // Information about regions of text that an image-analysis request detects.
 //
 // This type of observation results from a . It expresses the location of each detected character by its bounding box.
+
+
+// Information about regions of text that an image-analysis request detects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTextObservation
 type TextObservation struct {
 	RectangleObservation
@@ -82,12 +89,23 @@ func NewTextObservation() TextObservation {
 }
 
 
+
 // An array of detected individual character bounding boxes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTextObservation/characterBoxes
-func (t_ TextObservation) CharacterBoxes() []RectangleObservation {
-	rv := objc.Send[[]RectangleObservation](t_.ID, objc.Sel("characterBoxes"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntextobservation/characterboxes
+func (t_ TextObservation) CharacterBoxes() objc.IObject /* cross-framework: RectangleObservation */ {
+	rv := objc.Send[RectangleObservation](t_.ID, objc.Sel("characterBoxes"))
 	return rv
+}
+
+
+// An array of detected individual character bounding boxes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntextobservation/characterboxes
+func (t_ TextObservation) SetCharacterBoxes(value objc.IObject /* cross-framework: RectangleObservation */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacterBoxes:"), value)
 }
 
 

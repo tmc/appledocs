@@ -30,9 +30,13 @@ type _MTRAsyncCallbackWorkQueueClass struct {
 // An interface definition for the [MTRAsyncCallbackWorkQueue] class.
 type IMTRAsyncCallbackWorkQueue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAsyncCallbackWorkQueue
 type MTRAsyncCallbackWorkQueue struct {
 	objectivec.Object

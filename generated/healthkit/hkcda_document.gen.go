@@ -32,16 +32,16 @@ type _HKCDADocumentClass struct {
 type IHKCDADocument interface {
 	objectivec.IObject
 	// properties:
-	AuthorName() string /* primitive/slice/pointer. */
-	SetAuthorName(value string /* primitive/slice/pointer. */)
-	CustodianName() string /* primitive/slice/pointer. */
-	SetCustodianName(value string /* primitive/slice/pointer. */)
-	DocumentData() foundation.objc.IObject /* cross-framework: Data */
-	SetDocumentData(value foundation.objc.IObject /* cross-framework: Data */)
-	PatientName() string /* primitive/slice/pointer. */
-	SetPatientName(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	AuthorName() objc.IObject /* cross-framework: NSString */
+	SetAuthorName(value objc.IObject /* cross-framework: NSString */)
+	CustodianName() objc.IObject /* cross-framework: NSString */
+	SetCustodianName(value objc.IObject /* cross-framework: NSString */)
+	DocumentData() objc.IObject /* cross-framework: Data */
+	SetDocumentData(value objc.IObject /* cross-framework: Data */)
+	PatientName() objc.IObject /* cross-framework: NSString */
+	SetPatientName(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	Document() IHKCDADocument
 	SetDocument(value IHKCDADocument)
 	// methods:
@@ -104,8 +104,8 @@ func NewHKCDADocument() HKCDADocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/authorname
-func (h_ HKCDADocument) AuthorName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("authorName"))
+func (h_ HKCDADocument) AuthorName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("authorName"))
 	return rv
 }
 
@@ -114,8 +114,8 @@ func (h_ HKCDADocument) AuthorName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/authorname
-func (h_ HKCDADocument) SetAuthorName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAuthorName:"), objc.String(value))
+func (h_ HKCDADocument) SetAuthorName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAuthorName:"), value)
 }
 
 
@@ -123,8 +123,8 @@ func (h_ HKCDADocument) SetAuthorName(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/custodianname
-func (h_ HKCDADocument) CustodianName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("custodianName"))
+func (h_ HKCDADocument) CustodianName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("custodianName"))
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (h_ HKCDADocument) CustodianName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/custodianname
-func (h_ HKCDADocument) SetCustodianName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setCustodianName:"), objc.String(value))
+func (h_ HKCDADocument) SetCustodianName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCustodianName:"), value)
 }
 
 
@@ -142,7 +142,7 @@ func (h_ HKCDADocument) SetCustodianName(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/documentdata
-func (h_ HKCDADocument) DocumentData() foundation.objc.IObject /* cross-framework: Data */ {
+func (h_ HKCDADocument) DocumentData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("documentData"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (h_ HKCDADocument) DocumentData() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/documentdata
-func (h_ HKCDADocument) SetDocumentData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (h_ HKCDADocument) SetDocumentData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDocumentData:"), value)
 }
 
@@ -161,8 +161,8 @@ func (h_ HKCDADocument) SetDocumentData(value foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/patientname
-func (h_ HKCDADocument) PatientName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("patientName"))
+func (h_ HKCDADocument) PatientName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("patientName"))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (h_ HKCDADocument) PatientName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/patientname
-func (h_ HKCDADocument) SetPatientName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setPatientName:"), objc.String(value))
+func (h_ HKCDADocument) SetPatientName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setPatientName:"), value)
 }
 
 
@@ -180,8 +180,8 @@ func (h_ HKCDADocument) SetPatientName(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/title
-func (h_ HKCDADocument) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("title"))
+func (h_ HKCDADocument) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -190,8 +190,8 @@ func (h_ HKCDADocument) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocument/title
-func (h_ HKCDADocument) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (h_ HKCDADocument) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setTitle:"), value)
 }
 
 

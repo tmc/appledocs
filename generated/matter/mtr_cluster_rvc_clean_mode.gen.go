@@ -29,9 +29,13 @@ type _MTRClusterRVCCleanModeClass struct {
 // An interface definition for the [MTRClusterRVCCleanMode] class.
 type IMTRClusterRVCCleanMode interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRVCCleanMode
 type MTRClusterRVCCleanMode struct {
 	MTRGenericCluster

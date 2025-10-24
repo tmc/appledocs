@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,11 +52,11 @@ type IHKActivitySummary interface {
 	SetAppleStandHoursGoal(value IHKQuantity)
 	ExerciseTimeGoal() IHKQuantity
 	SetExerciseTimeGoal(value IHKQuantity)
-	IsPaused() bool /* primitive/slice/pointer. */
-	SetIsPaused(value bool /* primitive/slice/pointer. */)
+	IsPaused() bool
+	SetIsPaused(value bool)
 	StandHoursGoal() IHKQuantity
 	SetStandHoursGoal(value IHKQuantity)
-	HKPredicateKeyPathDateComponents() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathDateComponents() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -304,7 +305,7 @@ func (h_ HKActivitySummary) SetExerciseTimeGoal(value IHKQuantity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) IsPaused() bool /* primitive/slice/pointer. */ {
+func (h_ HKActivitySummary) IsPaused() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -312,7 +313,7 @@ func (h_ HKActivitySummary) IsPaused() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) SetIsPaused(value bool /* primitive/slice/pointer. */) {
+func (h_ HKActivitySummary) SetIsPaused(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
 }
 
@@ -340,8 +341,8 @@ func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
-func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
+func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
 	return rv
 }
 

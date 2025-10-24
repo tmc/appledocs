@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -95,7 +96,7 @@ func NewAccessibilityElement() AccessibilityElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role AccessibilityRole /* not a class type */, frame objc.IObject /* cross-framework Rect */, label objc.IObject /* cross-framework NSString */, parent objectivec.IObject) objc.ID {
+func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role AccessibilityRole /* not a class type */, frame objc.IObject /* cross-framework: Rect */, label objc.IObject /* cross-framework: NSString */, parent objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, label, parent)
 	return rv
 }
@@ -115,7 +116,7 @@ func (a_ AccessibilityElement) AccessibilityAddChildElement(childElement IAccess
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityFrameInParentSpace
 func (a_ AccessibilityElement) AccessibilityFrameInParentSpace() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](a_.ID, objc.Sel("accessibilityFrameInParentSpace"))
+	rv := objc.Send[corefoundation.Rect](a_.ID, objc.Sel("accessibilityFrameInParentSpace"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,12 +35,12 @@ type ITouch interface {
 	Device() objc.ID
 	DeviceSize() objc.IObject /* cross-framework: Size */
 	Identity() objc.ID
-	Resting() bool /* primitive/slice/pointer. */
+	Resting() bool
 	NormalizedPosition() objc.IObject /* cross-framework: Point */
 	Phase() TouchPhase
 	Type() TouchType
-	IsResting() bool /* primitive/slice/pointer. */
-	SetIsResting(value bool /* primitive/slice/pointer. */)
+	IsResting() bool
+	SetIsResting(value bool)
 	// methods:
 	LocationInView(view IView) objc.IObject /* cross-framework: Point */
 	PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */
@@ -103,7 +104,7 @@ func NewTouch() Touch {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
 func (t_ Touch) LocationInView(view IView) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](t_.ID, objc.Sel("locationInView:"), view)
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("locationInView:"), view)
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (t_ Touch) LocationInView(view IView) objc.IObject /* cross-framework: Poin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
 func (t_ Touch) PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](t_.ID, objc.Sel("previousLocationInView:"), view)
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("previousLocationInView:"), view)
 	return rv
 }
 
@@ -133,7 +134,7 @@ func (t_ Touch) Device() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/deviceSize
 func (t_ Touch) DeviceSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](t_.ID, objc.Sel("deviceSize"))
+	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("deviceSize"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (t_ Touch) Identity() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/isResting
-func (t_ Touch) Resting() bool /* primitive/slice/pointer. */ {
+func (t_ Touch) Resting() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resting"))
 	return rv
 }
@@ -163,7 +164,7 @@ func (t_ Touch) Resting() bool /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/normalizedPosition
 func (t_ Touch) NormalizedPosition() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](t_.ID, objc.Sel("normalizedPosition"))
+	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("normalizedPosition"))
 	return rv
 }
 
@@ -192,7 +193,7 @@ func (t_ Touch) Type() TouchType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-func (t_ Touch) IsResting() bool /* primitive/slice/pointer. */ {
+func (t_ Touch) IsResting() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isResting"))
 	return rv
 }
@@ -202,7 +203,7 @@ func (t_ Touch) IsResting() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-func (t_ Touch) SetIsResting(value bool /* primitive/slice/pointer. */) {
+func (t_ Touch) SetIsResting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsResting:"), value)
 }
 

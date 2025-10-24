@@ -30,8 +30,8 @@ type _ISO8601DateFormatterClass struct {
 type IISO8601DateFormatter interface {
 	IFormatter
 	// properties:
-	FormatOptions() ISO8601DateFormatOptions /* already interface */
-	SetFormatOptions(value ISO8601DateFormatOptions /* already interface */)
+	FormatOptions() ISO8601DateFormatOptions
+	SetFormatOptions(value ISO8601DateFormatOptions)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	// methods:
@@ -99,7 +99,7 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions /* already interface */) IString {
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) IString {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
@@ -129,7 +129,7 @@ func (i_ ISO8601DateFormatter) StringFromDate(date IDate) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-func (i_ ISO8601DateFormatter) FormatOptions() ISO8601DateFormatOptions /* already interface */ {
+func (i_ ISO8601DateFormatter) FormatOptions() ISO8601DateFormatOptions {
 	rv := objc.Send[ISO8601DateFormatOptions](i_.ID, objc.Sel("formatOptions"))
 	return rv
 }
@@ -139,7 +139,7 @@ func (i_ ISO8601DateFormatter) FormatOptions() ISO8601DateFormatOptions /* alrea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/formatOptions
-func (i_ ISO8601DateFormatter) SetFormatOptions(value ISO8601DateFormatOptions /* already interface */) {
+func (i_ ISO8601DateFormatter) SetFormatOptions(value ISO8601DateFormatOptions) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFormatOptions:"), value)
 }
 

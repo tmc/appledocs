@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IAXBrailleTranslator interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	BackTranslateBraille(braille string /* primitive/slice/pointer. */) IAXBrailleTranslationResult
+	BackTranslateBraille(braille objc.IObject /* cross-framework: NSString */) IAXBrailleTranslationResult
 }
 
 // Translates print text to Braille and Braille to print text according to the given Braille table.
@@ -90,8 +91,8 @@ func NewAXBrailleTranslator() AXBrailleTranslator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslator/backTranslateBraille(_:)
-func (a_ AXBrailleTranslator) BackTranslateBraille(braille string /* primitive/slice/pointer. */) IAXBrailleTranslationResult {
-	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("backTranslateBraille:"), objc.String(braille))
+func (a_ AXBrailleTranslator) BackTranslateBraille(braille objc.IObject /* cross-framework: NSString */) IAXBrailleTranslationResult {
+	rv := objc.Send[AXBrailleTranslationResult](a_.ID, objc.Sel("backTranslateBraille:"), braille)
 	return rv
 }
 

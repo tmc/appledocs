@@ -31,15 +31,19 @@ type _MTRThermostatClusterSetActivePresetRequestParamsClass struct {
 // An interface definition for the [MTRThermostatClusterSetActivePresetRequestParams] class.
 type IMTRThermostatClusterSetActivePresetRequestParams interface {
 	objectivec.IObject
-	PresetHandle() foundation.NSData
-	SetPresetHandle(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	PresetHandle() objc.IObject /* cross-framework: NSData */
+	SetPresetHandle(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams
 type MTRThermostatClusterSetActivePresetRequestParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRThermostatClusterSetActivePresetRequestParams() MTRThermostatClusterS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/presetHandle
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() foundation.NSData {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
 
-// SetPresetHandle sets the value of the presetHandle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/presetHandle
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetPresetHandle(value foundation.IData) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetPresetHandle(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

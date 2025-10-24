@@ -2,12 +2,12 @@
 
 // Package photosui provides Go bindings for the PhotosUI framework.
 //
-// Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality. [Full Topic]
+// Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PhotosUI without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI
+// See: https://developer.apple.com/documentation/PhotosUI
 package photosui
 
 import (

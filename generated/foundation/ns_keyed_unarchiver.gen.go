@@ -34,18 +34,18 @@ type IKeyedUnarchiver interface {
 	SetDecodingFailurePolicy(value DecodingFailurePolicy)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	RequiresSecureCoding() bool /* primitive/slice/pointer. */
-	SetRequiresSecureCoding(value bool /* primitive/slice/pointer. */)
+	RequiresSecureCoding() bool
+	SetRequiresSecureCoding(value bool)
 	// methods:
 	ClassForClassName(codedName IString) objc.Class
-	ContainsValueForKey(key IString) bool /* primitive/slice/pointer. */
-	DecodeBoolForKey(key IString) bool /* primitive/slice/pointer. */
-	DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) unsafe.Pointer
-	DecodeDoubleForKey(key IString) float64 /* primitive/slice/pointer. */
-	DecodeFloatForKey(key IString) float32 /* primitive/slice/pointer. */
-	DecodeInt32ForKey(key IString) unsafe.Pointer
-	DecodeInt64ForKey(key IString) unsafe.Pointer
-	DecodeIntForKey(key IString) int /* primitive/slice/pointer. */
+	ContainsValueForKey(key IString) bool
+	DecodeBoolForKey(key IString) bool
+	DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */
+	DecodeDoubleForKey(key IString) float64
+	DecodeFloatForKey(key IString) float32
+	DecodeInt32ForKey(key IString) int32 /* not a class type */
+	DecodeInt64ForKey(key IString) int64
+	DecodeIntForKey(key IString) int
 	DecodeObjectForKey(key IString) objc.ID
 	FinishDecoding()
 	SetClassForClassName(cls objc.Class, codedName IString)
@@ -246,7 +246,7 @@ func (k_ KeyedUnarchiver) ClassForClassName(codedName IString) objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/containsValue(forKey:)
-func (k_ KeyedUnarchiver) ContainsValueForKey(key IString) bool /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) ContainsValueForKey(key IString) bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("containsValueForKey:"), key)
 	return rv
 }
@@ -256,7 +256,7 @@ func (k_ KeyedUnarchiver) ContainsValueForKey(key IString) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBool(forKey:)
-func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("decodeBoolForKey:"), key)
 	return rv
 }
@@ -266,8 +266,8 @@ func (k_ KeyedUnarchiver) DecodeBoolForKey(key IString) bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBytes(forKey:returnedLength:)
-func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
+func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp UInteger /* not a class type */) uint8 /* not a class type */ {
+	rv := objc.Send[uint8](k_.ID, objc.Sel("decodeBytesForKey:returnedLength:"), key, lengthp)
 	return rv
 }
 
@@ -276,7 +276,7 @@ func (k_ KeyedUnarchiver) DecodeBytesForKeyReturnedLength(key IString, lengthp U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeDouble(forKey:)
-func (k_ KeyedUnarchiver) DecodeDoubleForKey(key IString) float64 /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) DecodeDoubleForKey(key IString) float64 {
 	rv := objc.Send[float64](k_.ID, objc.Sel("decodeDoubleForKey:"), key)
 	return rv
 }
@@ -286,7 +286,7 @@ func (k_ KeyedUnarchiver) DecodeDoubleForKey(key IString) float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeFloat(forKey:)
-func (k_ KeyedUnarchiver) DecodeFloatForKey(key IString) float32 /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) DecodeFloatForKey(key IString) float32 {
 	rv := objc.Send[float32](k_.ID, objc.Sel("decodeFloatForKey:"), key)
 	return rv
 }
@@ -296,8 +296,8 @@ func (k_ KeyedUnarchiver) DecodeFloatForKey(key IString) float32 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeInt32(forKey:)
-func (k_ KeyedUnarchiver) DecodeInt32ForKey(key IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodeInt32ForKey:"), key)
+func (k_ KeyedUnarchiver) DecodeInt32ForKey(key IString) int32 /* not a class type */ {
+	rv := objc.Send[int32](k_.ID, objc.Sel("decodeInt32ForKey:"), key)
 	return rv
 }
 
@@ -306,8 +306,8 @@ func (k_ KeyedUnarchiver) DecodeInt32ForKey(key IString) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeInt64(forKey:)
-func (k_ KeyedUnarchiver) DecodeInt64ForKey(key IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodeInt64ForKey:"), key)
+func (k_ KeyedUnarchiver) DecodeInt64ForKey(key IString) int64 {
+	rv := objc.Send[int64](k_.ID, objc.Sel("decodeInt64ForKey:"), key)
 	return rv
 }
 
@@ -316,7 +316,7 @@ func (k_ KeyedUnarchiver) DecodeInt64ForKey(key IString) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeIntForKey:
-func (k_ KeyedUnarchiver) DecodeIntForKey(key IString) int /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) DecodeIntForKey(key IString) int {
 	rv := objc.Send[int](k_.ID, objc.Sel("decodeIntForKey:"), key)
 	return rv
 }
@@ -392,7 +392,7 @@ func (k_ KeyedUnarchiver) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/requiresSecureCoding
-func (k_ KeyedUnarchiver) RequiresSecureCoding() bool /* primitive/slice/pointer. */ {
+func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
 }
@@ -402,7 +402,7 @@ func (k_ KeyedUnarchiver) RequiresSecureCoding() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/requiresSecureCoding
-func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool /* primitive/slice/pointer. */) {
+func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 

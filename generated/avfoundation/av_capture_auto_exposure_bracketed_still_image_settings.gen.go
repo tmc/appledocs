@@ -30,8 +30,8 @@ type _CaptureAutoExposureBracketedStillImageSettingsClass struct {
 type ICaptureAutoExposureBracketedStillImageSettings interface {
 	ICaptureBracketedStillImageSettings
 	// properties:
-	ExposureTargetBias() float32 /* primitive/slice/pointer. */
-	SetExposureTargetBias(value float32 /* primitive/slice/pointer. */)
+	ExposureTargetBias() float32
+	SetExposureTargetBias(value float32)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCaptureAutoExposureBracketedStillImageSettings() CaptureAutoExposureBrac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
-func (c_ CaptureAutoExposureBracketedStillImageSettings) ExposureTargetBias() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureAutoExposureBracketedStillImageSettings) ExposureTargetBias() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("exposureTargetBias"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (c_ CaptureAutoExposureBracketedStillImageSettings) ExposureTargetBias() fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias
-func (c_ CaptureAutoExposureBracketedStillImageSettings) SetExposureTargetBias(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureAutoExposureBracketedStillImageSettings) SetExposureTargetBias(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExposureTargetBias:"), value)
 }
 

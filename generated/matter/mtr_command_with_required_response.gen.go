@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +31,22 @@ type _MTRCommandWithRequiredResponseClass struct {
 // An interface definition for the [MTRCommandWithRequiredResponse] class.
 type IMTRCommandWithRequiredResponse interface {
 	objectivec.IObject
-	CommandFields() unsafe.Pointer
-	SetCommandFields(value unsafe.Pointer)
-	Path() MTRCommandPath
+	// properties:
+	CommandFields() foundation.IDictionary
+	SetCommandFields(value foundation.IDictionary)
+	Path() IMTRCommandPath
 	SetPath(value IMTRCommandPath)
-	RequiredResponse() unsafe.Pointer
-	SetRequiredResponse(value unsafe.Pointer)
+	RequiredResponse() foundation.IDictionary
+	SetRequiredResponse(value foundation.IDictionary)
+	// methods:
 }
 
 // An object representing a single command to be invoked and the response required for the invoke to be considered successful.
+
+
+// An object representing a single command to be invoked and the response required for the invoke to be considered successful.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse
 type MTRCommandWithRequiredResponse struct {
 	objectivec.Object
@@ -84,9 +91,10 @@ func NewMTRCommandWithRequiredResponse() MTRCommandWithRequiredResponse {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/init(path:commandFields:requiredResponse:)
-func NewMTRCommandWithRequiredResponseWithPathCommandFieldsRequiredResponse(path IMTRCommandPath, commandFields unsafe.Pointer, requiredResponse unsafe.Pointer) MTRCommandWithRequiredResponse {
+func NewMTRCommandWithRequiredResponseWithPathCommandFieldsRequiredResponse(path IMTRCommandPath, commandFields foundation.IDictionary, requiredResponse foundation.IDictionary) MTRCommandWithRequiredResponse {
 	instance := getMTRCommandWithRequiredResponseClass().Alloc()
 	rv := objc.Send[MTRCommandWithRequiredResponse](instance.ID, objc.Sel("initWithPath:commandFields:requiredResponse:"), path, commandFields, requiredResponse)
 	rv.Autorelease()
@@ -94,57 +102,60 @@ func NewMTRCommandWithRequiredResponseWithPathCommandFieldsRequiredResponse(path
 }
 
 
+
 // The command fields to pass for the command invoke. nil if this command does not have any fields. If not nil, this should be a data-value dictionary of MTRStructureValueType.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/commandFields
-func (m_ MTRCommandWithRequiredResponse) CommandFields() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commandFields"))
+func (m_ MTRCommandWithRequiredResponse) CommandFields() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("commandFields"))
 	return rv
 }
 
 
-// SetCommandFields sets the value of the commandFields property.
 // The command fields to pass for the command invoke. nil if this command does not have any fields. If not nil, this should be a data-value dictionary of MTRStructureValueType.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/commandFields
-func (m_ MTRCommandWithRequiredResponse) SetCommandFields(value unsafe.Pointer) {
+func (m_ MTRCommandWithRequiredResponse) SetCommandFields(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandFields:"), value)
 }
 
+
 // The path of the command being invoked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/path
-func (m_ MTRCommandWithRequiredResponse) Path() MTRCommandPath {
+func (m_ MTRCommandWithRequiredResponse) Path() IMTRCommandPath {
 	rv := objc.Send[MTRCommandPath](m_.ID, objc.Sel("path"))
 	return rv
 }
 
 
-// SetPath sets the value of the path property.
 // The path of the command being invoked.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/path
 func (m_ MTRCommandWithRequiredResponse) SetPath(value IMTRCommandPath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 
+
 // The response that represents this command succeeding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/requiredResponse
-func (m_ MTRCommandWithRequiredResponse) RequiredResponse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredResponse"))
+func (m_ MTRCommandWithRequiredResponse) RequiredResponse() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("requiredResponse"))
 	return rv
 }
 
 
-// SetRequiredResponse sets the value of the requiredResponse property.
 // The response that represents this command succeeding.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/requiredResponse
-func (m_ MTRCommandWithRequiredResponse) SetRequiredResponse(value unsafe.Pointer) {
+func (m_ MTRCommandWithRequiredResponse) SetRequiredResponse(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredResponse:"), value)
 }
 

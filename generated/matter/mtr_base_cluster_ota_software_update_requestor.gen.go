@@ -29,9 +29,13 @@ type _MTRBaseClusterOtaSoftwareUpdateRequestorClass struct {
 // An interface definition for the [MTRBaseClusterOtaSoftwareUpdateRequestor] class.
 type IMTRBaseClusterOtaSoftwareUpdateRequestor interface {
 	IMTRBaseClusterOTASoftwareUpdateRequestor
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOtaSoftwareUpdateRequestor-35vsy
 type MTRBaseClusterOtaSoftwareUpdateRequestor struct {
 	MTRBaseClusterOTASoftwareUpdateRequestor

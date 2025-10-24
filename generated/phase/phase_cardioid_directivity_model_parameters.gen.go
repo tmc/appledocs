@@ -29,14 +29,20 @@ type _PHASECardioidDirectivityModelParametersClass struct {
 // An interface definition for the [PHASECardioidDirectivityModelParameters] class.
 type IPHASECardioidDirectivityModelParameters interface {
 	IPHASEDirectivityModelParameters
-	SubbandParameters() PHASECardioidDirectivityModelSubbandParameters
+	// properties:
+	SubbandParameters() IPHASECardioidDirectivityModelSubbandParameters
 	SetSubbandParameters(value IPHASECardioidDirectivityModelSubbandParameters)
+	// methods:
 }
 
 // An object that directs sound in a heart-shaped curve surrounding a sound source.
 //
 // This class configures a particular frequency range in the audio spectrum that emits sound in an area defined by a mathematical cardioid. PHASE refers to each frequency segment along the audio spectrum as a . This class contains an array of that each can direct sound in a unique cardioid shape. The framework outputs a blend of a frequency’s adjacent subbands for all frequencies that lie outside of those specified in the array.
+
+
+// An object that directs sound in a heart-shaped curve surrounding a sound source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASECardioidDirectivityModelParameters
 type PHASECardioidDirectivityModelParameters struct {
 	PHASEDirectivityModelParameters
@@ -83,19 +89,20 @@ func NewPHASECardioidDirectivityModelParameters() PHASECardioidDirectivityModelP
 }
 
 
+
 // An array of frequencies that describe varying sound emission across the spectrum.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters/subbandparameters
-func (p_ PHASECardioidDirectivityModelParameters) SubbandParameters() PHASECardioidDirectivityModelSubbandParameters {
+func (p_ PHASECardioidDirectivityModelParameters) SubbandParameters() IPHASECardioidDirectivityModelSubbandParameters {
 	rv := objc.Send[PHASECardioidDirectivityModelSubbandParameters](p_.ID, objc.Sel("subbandParameters"))
 	return rv
 }
 
 
-// SetSubbandParameters sets the value of the subbandParameters property.
 // An array of frequencies that describe varying sound emission across the spectrum.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters/subbandparameters
 func (p_ PHASECardioidDirectivityModelParameters) SetSubbandParameters(value IPHASECardioidDirectivityModelSubbandParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSubbandParameters:"), value)

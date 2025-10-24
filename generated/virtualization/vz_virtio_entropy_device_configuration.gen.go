@@ -29,8 +29,10 @@ type _VZVirtioEntropyDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioEntropyDeviceConfiguration] class.
 type IVZVirtioEntropyDeviceConfiguration interface {
 	IVZEntropyDeviceConfiguration
+	// properties:
 	EntropyDevices() IVZEntropyDeviceConfiguration
 	SetEntropyDevices(value IVZEntropyDeviceConfiguration)
+	// methods:
 }
 
 // A source of entropy for the guest’s random number generator.
@@ -88,6 +90,7 @@ func NewVZVirtioEntropyDeviceConfiguration() VZVirtioEntropyDeviceConfiguration 
 
 
 
+
 // The array of randomization devices that you expose to the guest operating system.
 //
 // [Full Topic]
@@ -105,6 +108,5 @@ func (v_ VZVirtioEntropyDeviceConfiguration) EntropyDevices() IVZEntropyDeviceCo
 func (v_ VZVirtioEntropyDeviceConfiguration) SetEntropyDevices(value IVZEntropyDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), value)
 }
-
 
 

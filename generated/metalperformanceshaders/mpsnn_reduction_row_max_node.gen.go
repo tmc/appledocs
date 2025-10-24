@@ -29,9 +29,13 @@ type _ReductionRowMaxNodeClass struct {
 // An interface definition for the [ReductionRowMaxNode] class.
 type IReductionRowMaxNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMaxNode
 type ReductionRowMaxNode struct {
 	UnaryReductionNode

@@ -29,12 +29,18 @@ type _CReshapeLayerClass struct {
 // An interface definition for the [CReshapeLayer] class.
 type ICReshapeLayer interface {
 	ICLayer
+	// properties:
 	Shape() int
 	SetShape(value int)
+	// methods:
 }
 
 // A layer that reshapes a tensor with the shape you specify.
+
+
+// A layer that reshapes a tensor with the shape you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCReshapeLayer
 type CReshapeLayer struct {
 	CLayer
@@ -81,8 +87,10 @@ func NewCReshapeLayer() CReshapeLayer {
 }
 
 
+
 // An array that contains the size of each dimension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreshapelayer/shape-8k50y
 func (c_ CReshapeLayer) Shape() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("shape"))
@@ -90,10 +98,9 @@ func (c_ CReshapeLayer) Shape() int {
 }
 
 
-// SetShape sets the value of the shape property.
 // An array that contains the size of each dimension.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreshapelayer/shape-8k50y
 func (c_ CReshapeLayer) SetShape(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShape:"), value)

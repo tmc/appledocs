@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExecutionPolicy without requiring cgo.
-
-// Provide functionality so developer tools can manage execution policy exceptions.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy
+// See: https://developer.apple.com/documentation/ExecutionPolicy
 package executionpolicy
 
 import (

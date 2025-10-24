@@ -31,14 +31,20 @@ type _UNNotificationClass struct {
 // An interface definition for the [UNNotification] class.
 type IUNNotification interface {
 	objectivec.IObject
-	Date() foundation.NSDate
-	Request() UNNotificationRequest
+	// properties:
+	Date() objc.IObject /* cross-framework: NSDate */
+	Request() IUNNotificationRequest
+	// methods:
 }
 
 // The data for a local or remote notification the system delivers to your app.
 //
 // A object contains the initial notification request, which contains the notification’s payload, and the date that the system delivered the notification. Don’t create notification objects directly. When handling notifications, the system delivers notification objects to your object. The object also maintains the list of notifications that the system delivers, and you use the method to retrieve those objects.
+
+
+// The data for a local or remote notification the system delivers to your app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotification
 type UNNotification struct {
 	objectivec.Object
@@ -83,18 +89,22 @@ func NewUNNotification() UNNotification {
 }
 
 
+
 // The delivery date of the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotification/date
-func (u_ UNNotification) Date() foundation.NSDate {
+func (u_ UNNotification) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](u_.ID, objc.Sel("date"))
 	return rv
 }
 
+
 // The notification request containing the payload and trigger condition for the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotification/request
-func (u_ UNNotification) Request() UNNotificationRequest {
+func (u_ UNNotification) Request() IUNNotificationRequest {
 	rv := objc.Send[UNNotificationRequest](u_.ID, objc.Sel("request"))
 	return rv
 }

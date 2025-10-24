@@ -8,7 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +33,18 @@ type _RPBroadcastActivityControllerClass struct {
 // An interface definition for the [RPBroadcastActivityController] class.
 type IRPBroadcastActivityController interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
 }
 
 // A controller object that presents the macOS broadcast picker.
+
+
+// A controller object that presents the macOS broadcast picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController
 type RPBroadcastActivityController struct {
 	objectivec.Object
@@ -82,15 +89,19 @@ func NewRPBroadcastActivityController() RPBroadcastActivityController {
 }
 
 
+
 // Presents a list of available broadcast services for the user to select.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController/showBroadcastPicker(at:from:preferredExtensionIdentifier:completionHandler:)
-func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point coregraphics.CGPoint, window appkit.IWindow, preferredExtension string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, objc.String(preferredExtension), handler)
+func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point objc.IObject /* cross-framework: Point */, window objc.IObject /* cross-framework: Window */, preferredExtension objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, preferredExtension, handler)
 }
+
 
 // The broadcast activity controller’s delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController/delegate
 func (r_ RPBroadcastActivityController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
@@ -98,10 +109,9 @@ func (r_ RPBroadcastActivityController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The broadcast activity controller’s delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController/delegate
 func (r_ RPBroadcastActivityController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)

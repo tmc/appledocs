@@ -30,11 +30,15 @@ type _MTRDescriptorClusterDeviceTypeClass struct {
 // An interface definition for the [MTRDescriptorClusterDeviceType] class.
 type IMTRDescriptorClusterDeviceType interface {
 	IMTRDescriptorClusterDeviceTypeStruct
-	Revision() foundation.Number
-	SetRevision(value foundation.INumber)
+	// properties:
+	Revision() objc.IObject /* cross-framework: NSNumber */
+	SetRevision(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDescriptorClusterDeviceType
 type MTRDescriptorClusterDeviceType struct {
 	MTRDescriptorClusterDeviceTypeStruct
@@ -79,18 +83,18 @@ func NewMTRDescriptorClusterDeviceType() MTRDescriptorClusterDeviceType {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
-func (m_ MTRDescriptorClusterDeviceType) Revision() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("revision"))
+func (m_ MTRDescriptorClusterDeviceType) Revision() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("revision"))
 	return rv
 }
 
 
-// SetRevision sets the value of the revision property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
-func (m_ MTRDescriptorClusterDeviceType) SetRevision(value foundation.INumber) {
+func (m_ MTRDescriptorClusterDeviceType) SetRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
 

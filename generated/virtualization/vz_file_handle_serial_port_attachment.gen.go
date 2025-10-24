@@ -30,14 +30,20 @@ type _VZFileHandleSerialPortAttachmentClass struct {
 // An interface definition for the [VZFileHandleSerialPortAttachment] class.
 type IVZFileHandleSerialPortAttachment interface {
 	IVZSerialPortAttachment
-	FileHandleForReading() foundation.FileHandle
-	FileHandleForWriting() foundation.FileHandle
+	// properties:
+	FileHandleForReading() objc.IObject /* cross-framework: FileHandle */
+	FileHandleForWriting() objc.IObject /* cross-framework: FileHandle */
+	// methods:
 }
 
 // An attachment point that allows bidirectional communication using file handles.
 //
 // Use a object to configure a serial port using separate file handles for reading and writing data. In your virtual machine, use the file handles in this object in the following way: To send data to the guest operating system, write data to the file handle in the property. To receive data from the guest operating system, read data from the file handle in the property.
+
+
+// An attachment point that allows bidirectional communication using file handles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment
 type VZFileHandleSerialPortAttachment struct {
 	VZSerialPortAttachment
@@ -85,11 +91,11 @@ func NewVZFileHandleSerialPortAttachment() VZFileHandleSerialPortAttachment {
 
 
 
-
 // Creates a serial port attachment object from the specified file handles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/init(fileHandleForReading:fileHandleForWriting:)
-func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting(fileHandleForReading foundation.IFileHandle, fileHandleForWriting foundation.IFileHandle) VZFileHandleSerialPortAttachment {
+func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting(fileHandleForReading objc.IObject /* cross-framework: FileHandle */, fileHandleForWriting objc.IObject /* cross-framework: FileHandle */) VZFileHandleSerialPortAttachment {
 	instance := getVZFileHandleSerialPortAttachmentClass().Alloc()
 	rv := objc.Send[VZFileHandleSerialPortAttachment](instance.ID, objc.Sel("initWithFileHandleForReading:fileHandleForWriting:"), fileHandleForReading, fileHandleForWriting)
 	rv.Autorelease()
@@ -97,18 +103,22 @@ func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWri
 }
 
 
+
 // The file handle that the guest operating system uses to read data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/fileHandleForReading
-func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() foundation.FileHandle {
+func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() objc.IObject /* cross-framework: FileHandle */ {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForReading"))
 	return rv
 }
 
+
 // The file handle that the guest operating system uses to write data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/fileHandleForWriting
-func (v_ VZFileHandleSerialPortAttachment) FileHandleForWriting() foundation.FileHandle {
+func (v_ VZFileHandleSerialPortAttachment) FileHandleForWriting() objc.IObject /* cross-framework: FileHandle */ {
 	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }

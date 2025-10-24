@@ -30,11 +30,15 @@ type _MTRDeviceControllerAbstractParametersClass struct {
 // An interface definition for the [MTRDeviceControllerAbstractParameters] class.
 type IMTRDeviceControllerAbstractParameters interface {
 	objectivec.IObject
+	// properties:
 	StartSuspended() bool
 	SetStartSuspended(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerAbstractParameters
 type MTRDeviceControllerAbstractParameters struct {
 	objectivec.Object
@@ -77,8 +81,10 @@ func NewMTRDeviceControllerAbstractParameters() MTRDeviceControllerAbstractParam
 }
 
 
+
 // Whether the controller should start out suspended.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
 func (m_ MTRDeviceControllerAbstractParameters) StartSuspended() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startSuspended"))
@@ -86,10 +92,9 @@ func (m_ MTRDeviceControllerAbstractParameters) StartSuspended() bool {
 }
 
 
-// SetStartSuspended sets the value of the startSuspended property.
 // Whether the controller should start out suspended.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
 func (m_ MTRDeviceControllerAbstractParameters) SetStartSuspended(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSuspended:"), value)

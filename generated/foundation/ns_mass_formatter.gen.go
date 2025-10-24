@@ -30,20 +30,20 @@ type _MassFormatterClass struct {
 type IMassFormatter interface {
 	IFormatter
 	// properties:
-	ForPersonMassUse() bool /* primitive/slice/pointer. */
-	SetForPersonMassUse(value bool /* primitive/slice/pointer. */)
+	ForPersonMassUse() bool
+	SetForPersonMassUse(value bool)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
 	UnitStyle() FormattingUnitStyle
 	SetUnitStyle(value FormattingUnitStyle)
-	IsForPersonMassUse() bool /* primitive/slice/pointer. */
-	SetIsForPersonMassUse(value bool /* primitive/slice/pointer. */)
+	IsForPersonMassUse() bool
+	SetIsForPersonMassUse(value bool)
 	// methods:
-	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */
-	StringFromKilograms(numberInKilograms float64 /* primitive/slice/pointer. */) IString
-	StringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit MassFormatterUnit) IString
-	UnitStringFromKilogramsUsedUnit(numberInKilograms float64 /* primitive/slice/pointer. */, unitp MassFormatterUnit) IString
-	UnitStringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit MassFormatterUnit) IString
+	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool
+	StringFromKilograms(numberInKilograms float64) IString
+	StringFromValueUnit(value float64, unit MassFormatterUnit) IString
+	UnitStringFromKilogramsUsedUnit(numberInKilograms float64, unitp MassFormatterUnit) IString
+	UnitStringFromValueUnit(value float64, unit MassFormatterUnit) IString
 }
 
 // A formatter that provides localized descriptions of mass and weight values.
@@ -103,7 +103,7 @@ func NewMassFormatter() MassFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/getObjectValue(_:for:errorDescription:)
-func (m_ MassFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */ {
+func (m_ MassFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, string_, error_)
 	return rv
 }
@@ -113,7 +113,7 @@ func (m_ MassFormatter) GetObjectValueForStringErrorDescription(obj unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/string(fromKilograms:)
-func (m_ MassFormatter) StringFromKilograms(numberInKilograms float64 /* primitive/slice/pointer. */) IString {
+func (m_ MassFormatter) StringFromKilograms(numberInKilograms float64) IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("stringFromKilograms:"), numberInKilograms)
 	return rv
 }
@@ -123,7 +123,7 @@ func (m_ MassFormatter) StringFromKilograms(numberInKilograms float64 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/string(fromValue:unit:)
-func (m_ MassFormatter) StringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit MassFormatterUnit) IString {
+func (m_ MassFormatter) StringFromValueUnit(value float64, unit MassFormatterUnit) IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("stringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -133,7 +133,7 @@ func (m_ MassFormatter) StringFromValueUnit(value float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitString(fromKilograms:usedUnit:)
-func (m_ MassFormatter) UnitStringFromKilogramsUsedUnit(numberInKilograms float64 /* primitive/slice/pointer. */, unitp MassFormatterUnit) IString {
+func (m_ MassFormatter) UnitStringFromKilogramsUsedUnit(numberInKilograms float64, unitp MassFormatterUnit) IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("unitStringFromKilograms:usedUnit:"), numberInKilograms, unitp)
 	return rv
 }
@@ -143,7 +143,7 @@ func (m_ MassFormatter) UnitStringFromKilogramsUsedUnit(numberInKilograms float6
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitString(fromValue:unit:)
-func (m_ MassFormatter) UnitStringFromValueUnit(value float64 /* primitive/slice/pointer. */, unit MassFormatterUnit) IString {
+func (m_ MassFormatter) UnitStringFromValueUnit(value float64, unit MassFormatterUnit) IString {
 	rv := objc.Send[String](m_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
@@ -153,7 +153,7 @@ func (m_ MassFormatter) UnitStringFromValueUnit(value float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/isForPersonMassUse
-func (m_ MassFormatter) ForPersonMassUse() bool /* primitive/slice/pointer. */ {
+func (m_ MassFormatter) ForPersonMassUse() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("forPersonMassUse"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (m_ MassFormatter) ForPersonMassUse() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/isForPersonMassUse
-func (m_ MassFormatter) SetForPersonMassUse(value bool /* primitive/slice/pointer. */) {
+func (m_ MassFormatter) SetForPersonMassUse(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForPersonMassUse:"), value)
 }
 
@@ -210,7 +210,7 @@ func (m_ MassFormatter) SetUnitStyle(value FormattingUnitStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer. */ {
+func (m_ MassFormatter) IsForPersonMassUse() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isForPersonMassUse"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) SetIsForPersonMassUse(value bool /* primitive/slice/pointer. */) {
+func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForPersonMassUse:"), value)
 }
 

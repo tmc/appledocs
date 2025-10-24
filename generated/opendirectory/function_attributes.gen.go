@@ -30,9 +30,13 @@ type _functionAttributesClass struct {
 // An interface definition for the [functionAttributes] class.
 type IfunctionAttributes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/functionAttributes-c.ivar
 type functionAttributes struct {
 	objectivec.Object

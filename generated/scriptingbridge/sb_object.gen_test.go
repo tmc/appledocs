@@ -15,4 +15,20 @@ func ExampleNewSBObject() {
 	_ = scriptingbridge.NewSBObject()
 	// Output:
 }
+// ExampleSBObject_Get demonstrates using Get on a SBObject instance.
+// Forces evaluation of the receiver, causing the real object to be returned   immediately.
+func ExampleSBObject_Get() {
+	obj := scriptingbridge.NewSBObject()
+	_ = obj.Get()
+	// Output:
+	}
+
+// ExampleSBObject_LastError demonstrates using LastError on a SBObject instance.
+// The error from the last event this object sent, or nil if it succeeded.
+func ExampleSBObject_LastError() {
+	obj := scriptingbridge.NewSBObject()
+	_ = obj.LastError()
+	// Output:
+	}
+
 

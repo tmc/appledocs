@@ -29,14 +29,21 @@ type _NEDNSProxyProviderClass struct {
 // An interface definition for the [NEDNSProxyProvider] class.
 type INEDNSProxyProvider interface {
 	INEProvider
-	SystemDNSSettings() NEDNSSettings
+	// properties:
+	SystemDNSSettings() INEDNSSettings
 	SetSystemDNSSettings(value INEDNSSettings)
+	// methods:
+	HandleNewUDPFlowInitialRemoteFlowEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint unsafe.Pointer) bool
 }
 
 // The principal class for a DNS proxy provider app extension.
 //
 // A DNS proxy allows your app to intercept all DNS traffic generated on a device. You can use this capability to provide services like DNS traffic encryption, typically by redirecting DNS traffic to your own server. You usually do this in the context of managed devices, such as those owned by a school or an enterprise. You create a DNS proxy as an app extension based on a custom subclass of the class. Once active, the proxy receives access to flows of DNS traffic in the form of instances. Each flow corresponds to a socket opened by an app to UDP port 53 or TCP port 53. Your DNS proxy provider acts as a transparent DNS proxy for the flows of network data that it receives. When you subclass , you must provide implementations for the following methods:
+
+
+// The principal class for a DNS proxy provider app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyProvider
 type NEDNSProxyProvider struct {
 	NEProvider
@@ -83,19 +90,28 @@ func NewNEDNSProxyProvider() NEDNSProxyProvider {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyProvider/handleNewUDPFlow:initialRemoteFlowEndpoint:
+func (n_ NEDNSProxyProvider) HandleNewUDPFlowInitialRemoteFlowEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint unsafe.Pointer) bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("handleNewUDPFlow:initialRemoteFlowEndpoint:"), flow, remoteEndpoint)
+	return rv
+}
+
+
 // The current system DNS settings.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyprovider/systemdnssettings
-func (n_ NEDNSProxyProvider) SystemDNSSettings() NEDNSSettings {
+func (n_ NEDNSProxyProvider) SystemDNSSettings() INEDNSSettings {
 	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("systemDNSSettings"))
 	return rv
 }
 
 
-// SetSystemDNSSettings sets the value of the systemDNSSettings property.
 // The current system DNS settings.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyprovider/systemdnssettings
 func (n_ NEDNSProxyProvider) SetSystemDNSSettings(value INEDNSSettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSystemDNSSettings:"), value)

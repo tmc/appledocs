@@ -31,13 +31,17 @@ type _PHASEStreamNodeClass struct {
 // An interface definition for the [PHASEStreamNode] class.
 type IPHASEStreamNode interface {
 	objectivec.IObject
-	Format() avfaudio.AudioFormat
-	GainMetaParameter() PHASENumberMetaParameter
-	Mixer() PHASEMixer
-	RateMetaParameter() PHASENumberMetaParameter
+	// properties:
+	Format() objc.IObject /* cross-framework: AudioFormat */
+	GainMetaParameter() IPHASENumberMetaParameter
+	Mixer() IPHASEMixer
+	RateMetaParameter() IPHASENumberMetaParameter
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode
 type PHASEStreamNode struct {
 	objectivec.Object
@@ -80,30 +84,34 @@ func NewPHASEStreamNode() PHASEStreamNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/format
-func (p_ PHASEStreamNode) Format() avfaudio.AudioFormat {
+func (p_ PHASEStreamNode) Format() objc.IObject /* cross-framework: AudioFormat */ {
 	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/gainMetaParameter
-func (p_ PHASEStreamNode) GainMetaParameter() PHASENumberMetaParameter {
+func (p_ PHASEStreamNode) GainMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/mixer
-func (p_ PHASEStreamNode) Mixer() PHASEMixer {
+func (p_ PHASEStreamNode) Mixer() IPHASEMixer {
 	rv := objc.Send[PHASEMixer](p_.ID, objc.Sel("mixer"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/rateMetaParameter
-func (p_ PHASEStreamNode) RateMetaParameter() PHASENumberMetaParameter {
+func (p_ PHASEStreamNode) RateMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("rateMetaParameter"))
 	return rv
 }

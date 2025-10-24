@@ -30,8 +30,6 @@ type _HeadTrackedSpatialAudioClass struct {
 type IHeadTrackedSpatialAudio interface {
 	ISpatialAudioExperience
 	// properties:
-	AnchoringStrategy() IAnchoringStrategy
-	SoundStageSize() SoundStageSize
 	// methods:
 }
 
@@ -99,25 +97,5 @@ func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSiz
 	return rv
 }
 
-
-
-// The experience’s anchoring strategy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/anchoringStrategy
-func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() IAnchoringStrategy {
-	rv := objc.Send[AnchoringStrategy](h_.ID, objc.Sel("anchoringStrategy"))
-	return rv
-}
-
-
-// The experience’s sound stage size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/soundStageSize
-func (h_ HeadTrackedSpatialAudio) SoundStageSize() SoundStageSize {
-	rv := objc.Send[SoundStageSize](h_.ID, objc.Sel("soundStageSize"))
-	return rv
-}
 
 

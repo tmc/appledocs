@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +33,9 @@ type IIdentifierManager interface {
 	objectivec.IObject
 	// properties:
 	AdvertisingIdentifier() objc.IObject /* cross-framework: UUID */
-	AdvertisingTrackingEnabled() bool /* primitive/slice/pointer. */
-	IsAdvertisingTrackingEnabled() bool /* primitive/slice/pointer. */
-	SetIsAdvertisingTrackingEnabled(value bool /* primitive/slice/pointer. */)
+	AdvertisingTrackingEnabled() bool
+	IsAdvertisingTrackingEnabled() bool
+	SetIsAdvertisingTrackingEnabled(value bool)
 	// methods:
 }
 
@@ -104,7 +105,7 @@ func (ic _IdentifierManagerClass) SharedManager() IIdentifierManager {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
 func (i_ IdentifierManager) AdvertisingIdentifier() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](i_.ID, objc.Sel("advertisingIdentifier"))
+	rv := objc.Send[foundation.UUID](i_.ID, objc.Sel("advertisingIdentifier"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ IdentifierManager) AdvertisingIdentifier() objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/isAdvertisingTrackingEnabled
-func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool /* primitive/slice/pointer. */ {
+func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("advertisingTrackingEnabled"))
 	return rv
 }
@@ -123,7 +124,7 @@ func (i_ IdentifierManager) AdvertisingTrackingEnabled() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
-func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool /* primitive/slice/pointer. */ {
+func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isAdvertisingTrackingEnabled"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (i_ IdentifierManager) IsAdvertisingTrackingEnabled() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/adsupport/asidentifiermanager/isadvertisingtrackingenabled
-func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool /* primitive/slice/pointer. */) {
+func (i_ IdentifierManager) SetIsAdvertisingTrackingEnabled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAdvertisingTrackingEnabled:"), value)
 }
 

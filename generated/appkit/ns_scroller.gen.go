@@ -38,8 +38,8 @@ type IScroller interface {
 	SetControlTint(value ControlTint)
 	HitPart() unsafe.Pointer
 	SetHitPart(value unsafe.Pointer)
-	KnobProportion() float64 /* primitive/slice/pointer. */
-	SetKnobProportion(value float64 /* primitive/slice/pointer. */)
+	KnobProportion() float64
+	SetKnobProportion(value float64)
 	KnobStyle() unsafe.Pointer
 	SetKnobStyle(value unsafe.Pointer)
 	ScrollerStyle() unsafe.Pointer
@@ -203,7 +203,7 @@ func (s_ Scroller) SetHitPart(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-func (s_ Scroller) KnobProportion() float64 /* primitive/slice/pointer. */ {
+func (s_ Scroller) KnobProportion() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobProportion"))
 	return rv
 }
@@ -213,7 +213,7 @@ func (s_ Scroller) KnobProportion() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-func (s_ Scroller) SetKnobProportion(value float64 /* primitive/slice/pointer. */) {
+func (s_ Scroller) SetKnobProportion(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobProportion:"), value)
 }
 

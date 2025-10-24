@@ -32,10 +32,10 @@ type ICWChannel interface {
 	objectivec.IObject
 	// properties:
 	ChannelBand() CWChannelBand
-	ChannelNumber() int /* primitive/slice/pointer. */
+	ChannelNumber() int
 	ChannelWidth() CWChannelWidth
 	// methods:
-	IsEqualToChannel(channel ICWChannel) bool /* primitive/slice/pointer. */
+	IsEqualToChannel(channel ICWChannel) bool
 }
 
 // Encapsulates an IEEE 802.11 channel.
@@ -93,7 +93,7 @@ func NewCWChannel() CWChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/isEqual(to:)
-func (c_ CWChannel) IsEqualToChannel(channel ICWChannel) bool /* primitive/slice/pointer. */ {
+func (c_ CWChannel) IsEqualToChannel(channel ICWChannel) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToChannel:"), channel)
 	return rv
 }
@@ -113,7 +113,7 @@ func (c_ CWChannel) ChannelBand() CWChannelBand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelNumber
-func (c_ CWChannel) ChannelNumber() int /* primitive/slice/pointer. */ {
+func (c_ CWChannel) ChannelNumber() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("channelNumber"))
 	return rv
 }

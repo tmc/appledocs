@@ -31,7 +31,7 @@ type _ModelStructureProgramArgumentClass struct {
 type IModelStructureProgramArgument interface {
 	objectivec.IObject
 	// properties:
-	Bindings() []ModelStructureProgramBinding /* primitive/slice/pointer. */
+	Bindings() []IModelStructureProgramBinding
 	// methods:
 }
 
@@ -90,7 +90,7 @@ func NewModelStructureProgramArgument() ModelStructureProgramArgument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument/bindings
-func (m_ ModelStructureProgramArgument) Bindings() []ModelStructureProgramBinding /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramArgument) Bindings() []IModelStructureProgramBinding {
 	rv := objc.Send[[]ModelStructureProgramBinding](m_.ID, objc.Sel("bindings"))
 	return rv
 }

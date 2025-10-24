@@ -31,15 +31,19 @@ type _MTREnergyEVSEClusterChargingTargetStructClass struct {
 // An interface definition for the [MTREnergyEVSEClusterChargingTargetStruct] class.
 type IMTREnergyEVSEClusterChargingTargetStruct interface {
 	objectivec.IObject
-	AddedEnergy() foundation.Number
-	SetAddedEnergy(value foundation.INumber)
-	TargetSoC() foundation.Number
-	SetTargetSoC(value foundation.INumber)
-	TargetTimeMinutesPastMidnight() foundation.Number
-	SetTargetTimeMinutesPastMidnight(value foundation.INumber)
+	// properties:
+	AddedEnergy() objc.IObject /* cross-framework: NSNumber */
+	SetAddedEnergy(value objc.IObject /* cross-framework: NSNumber */)
+	TargetSoC() objc.IObject /* cross-framework: NSNumber */
+	SetTargetSoC(value objc.IObject /* cross-framework: NSNumber */)
+	TargetTimeMinutesPastMidnight() objc.IObject /* cross-framework: NSNumber */
+	SetTargetTimeMinutesPastMidnight(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct
 type MTREnergyEVSEClusterChargingTargetStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTREnergyEVSEClusterChargingTargetStruct() MTREnergyEVSEClusterChargingT
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/addedEnergy
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("addedEnergy"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("addedEnergy"))
 	return rv
 }
 
 
-// SetAddedEnergy sets the value of the addedEnergy property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/addedEnergy
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddedEnergy:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetSoC"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetSoC"))
 	return rv
 }
 
 
-// SetTargetSoC sets the value of the targetSoC property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoC:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("targetTimeMinutesPastMidnight"))
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTimeMinutesPastMidnight"))
 	return rv
 }
 
 
-// SetTargetTimeMinutesPastMidnight sets the value of the targetTimeMinutesPastMidnight property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTimeMinutesPastMidnight:"), value)
 }
 

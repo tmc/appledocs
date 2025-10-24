@@ -30,9 +30,14 @@ type _MTL4PipelineDescriptorClass struct {
 // An interface definition for the [MTL4PipelineDescriptor] class.
 type IMTL4PipelineDescriptor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other Metal classes.
+
+
+// A parent class referenced by other Metal classes. [Full Topic]
 type MTL4PipelineDescriptor struct {
 	objectivec.Object
 }

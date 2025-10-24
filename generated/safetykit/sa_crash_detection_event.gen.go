@@ -32,15 +32,22 @@ type _SACrashDetectionEventClass struct {
 // An interface definition for the [SACrashDetectionEvent] class.
 type ISACrashDetectionEvent interface {
 	objectivec.IObject
-	Date() foundation.NSDate
-	Location() corelocation.Location
-	Response() SACrashDetectionEventResponse
+	// properties:
+	Date() objc.IObject /* cross-framework: NSDate */
+	Location() objc.IObject /* cross-framework: Location */
+	Response() unsafe.Pointer
+	SetResponse(value unsafe.Pointer)
+	// methods:
 }
 
 // Describes the information about a vehicular crash.
 //
 // When a vehicular crash occurs, SafetyKit calls your delegate’s method with an object. Inspect this object to determine information about the crash, including the date and time, location, and if the system attempted to contact emergency services.
+
+
+// Describes the information about a vehicular crash.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent
 type SACrashDetectionEvent struct {
 	objectivec.Object
@@ -85,28 +92,43 @@ func NewSACrashDetectionEvent() SACrashDetectionEvent {
 }
 
 
+
 // The date and time the crash occurred.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/date
-func (s_ SACrashDetectionEvent) Date() foundation.NSDate {
+func (s_ SACrashDetectionEvent) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("date"))
 	return rv
 }
 
+
 // The longitude and latitude where the crash detection occurred.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/location
-func (s_ SACrashDetectionEvent) Location() corelocation.Location {
+func (s_ SACrashDetectionEvent) Location() objc.IObject /* cross-framework: Location */ {
 	rv := objc.Send[corelocation.Location](s_.ID, objc.Sel("location"))
 	return rv
 }
 
+
 // An indication of whether the system attempted to call an Emergency SOS provider.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/response-swift.property
-func (s_ SACrashDetectionEvent) Response() SACrashDetectionEventResponse {
-	rv := objc.Send[SACrashDetectionEventResponse](s_.ID, objc.Sel("response"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.property
+func (s_ SACrashDetectionEvent) Response() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("response"))
 	return rv
+}
+
+
+// An indication of whether the system attempted to call an Emergency SOS provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.property
+func (s_ SACrashDetectionEvent) SetResponse(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResponse:"), value)
 }
 
 

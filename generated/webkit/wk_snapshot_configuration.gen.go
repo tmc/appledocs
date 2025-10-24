@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,18 +32,24 @@ type _SnapshotConfigurationClass struct {
 // An interface definition for the [SnapshotConfiguration] class.
 type ISnapshotConfiguration interface {
 	objectivec.IObject
-	Rect() coregraphics.CGRect
-	SetRect(value coregraphics.CGRect)
+	// properties:
+	Rect() objc.IObject /* cross-framework: Rect */
+	SetRect(value objc.IObject /* cross-framework: Rect */)
 	AfterScreenUpdates() bool
 	SetAfterScreenUpdates(value bool)
-	SnapshotWidth() foundation.Number
-	SetSnapshotWidth(value foundation.INumber)
+	SnapshotWidth() objc.IObject /* cross-framework: NSNumber */
+	SetSnapshotWidth(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The configuration data to use when generating an image from a web view’s contents.
 //
 // Create a object when you want to generate an image based on your web view’s content. Use this object to specify the portion of the web view to capture and the capture behavior. To generate the snapshot, pass the configuration object to the method of , which returns a platform-native image for you to use.
+
+
+// The configuration data to use when generating an image from a web view’s contents.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration
 type SnapshotConfiguration struct {
 	objectivec.Object
@@ -88,26 +94,29 @@ func NewSnapshotConfiguration() SnapshotConfiguration {
 }
 
 
+
 // The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
-func (s_ SnapshotConfiguration) Rect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rect"))
+func (s_ SnapshotConfiguration) Rect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("rect"))
 	return rv
 }
 
 
-// SetRect sets the value of the rect property.
 // The portion of your web view to capture, specified as a rectangle in the view’s coordinate system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSnapshotConfiguration/rect
-func (s_ SnapshotConfiguration) SetRect(value coregraphics.CGRect) {
+func (s_ SnapshotConfiguration) SetRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRect:"), value)
 }
 
+
 // A Boolean value that indicates whether to take the snapshot after incorporating any pending screen updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/afterscreenupdates
 func (s_ SnapshotConfiguration) AfterScreenUpdates() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("afterScreenUpdates"))
@@ -115,30 +124,30 @@ func (s_ SnapshotConfiguration) AfterScreenUpdates() bool {
 }
 
 
-// SetAfterScreenUpdates sets the value of the afterScreenUpdates property.
 // A Boolean value that indicates whether to take the snapshot after incorporating any pending screen updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/afterscreenupdates
 func (s_ SnapshotConfiguration) SetAfterScreenUpdates(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAfterScreenUpdates:"), value)
 }
 
+
 // The width of the captured image, in points.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
-func (s_ SnapshotConfiguration) SnapshotWidth() foundation.Number {
-	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("snapshotWidth"))
+func (s_ SnapshotConfiguration) SnapshotWidth() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](s_.ID, objc.Sel("snapshotWidth"))
 	return rv
 }
 
 
-// SetSnapshotWidth sets the value of the snapshotWidth property.
 // The width of the captured image, in points.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksnapshotconfiguration/snapshotwidth
-func (s_ SnapshotConfiguration) SetSnapshotWidth(value foundation.INumber) {
+func (s_ SnapshotConfiguration) SetSnapshotWidth(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSnapshotWidth:"), value)
 }
 

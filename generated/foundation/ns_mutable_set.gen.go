@@ -32,7 +32,7 @@ type IMutableSet interface {
 	// properties:
 	// methods:
 	AddObject(object unsafe.Pointer)
-	AddObjectsFromArray(array []objc.ID /* already interface */)
+	AddObjectsFromArray(array []objc.ID)
 	FilterUsingPredicate(predicate IPredicate)
 	IntersectSet(otherSet unsafe.Pointer)
 	MinusSet(otherSet unsafe.Pointer)
@@ -101,7 +101,7 @@ func NewMutableSet() MutableSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(capacity:)
-func NewMutableSetWithCapacity(numItems uint /* primitive/slice/pointer. */) MutableSet {
+func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
@@ -124,7 +124,7 @@ func NewMutableSetWithCoder(coder ICoder) MutableSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/setWithCapacity:
-func (mc _MutableSetClass) SetWithCapacity(numItems uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (mc _MutableSetClass) SetWithCapacity(numItems uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("setWithCapacity:"), numItems)
 	return rv
 }
@@ -143,7 +143,7 @@ func (m_ MutableSet) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/addObjects(from:)
-func (m_ MutableSet) AddObjectsFromArray(array []objc.ID /* already interface */) {
+func (m_ MutableSet) AddObjectsFromArray(array []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
 }
 

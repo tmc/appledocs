@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in IOUSBHost
 	MutableDictionaryRef = _undefined // referenced in IOUSBHost
 	String = _undefined // referenced in IOUSBHost
 	USBBOSDescriptor = _undefined // referenced in IOUSBHost

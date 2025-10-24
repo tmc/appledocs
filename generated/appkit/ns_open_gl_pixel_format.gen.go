@@ -31,7 +31,8 @@ type _OpenGLPixelFormatClass struct {
 type IOpenGLPixelFormat interface {
 	objectivec.IObject
 	// properties:
-	CGLPixelFormatObj() LPixelFormatObj /* not a class type */
+	CglPixelFormatObj() LPixelFormatObj /* not a class type */
+	SetCglPixelFormatObj(value LPixelFormatObj /* not a class type */)
 	NumberOfVirtualScreens() unsafe.Pointer
 	SetNumberOfVirtualScreens(value unsafe.Pointer)
 	// methods:
@@ -93,10 +94,19 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 // The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
-func (o_ OpenGLPixelFormat) CGLPixelFormatObj() LPixelFormatObj /* not a class type */ {
-	rv := objc.Send[LPixelFormatObj](o_.ID, objc.Sel("CGLPixelFormatObj"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/cglpixelformatobj
+func (o_ OpenGLPixelFormat) CglPixelFormatObj() LPixelFormatObj /* not a class type */ {
+	rv := objc.Send[LPixelFormatObj](o_.ID, objc.Sel("cglPixelFormatObj"))
 	return rv
+}
+
+
+// The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/cglpixelformatobj
+func (o_ OpenGLPixelFormat) SetCglPixelFormatObj(value LPixelFormatObj /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCglPixelFormatObj:"), value)
 }
 
 

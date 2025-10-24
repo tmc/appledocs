@@ -29,9 +29,13 @@ type _MTRClusterLevelControlClass struct {
 // An interface definition for the [MTRClusterLevelControl] class.
 type IMTRClusterLevelControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLevelControl
 type MTRClusterLevelControl struct {
 	MTRGenericCluster

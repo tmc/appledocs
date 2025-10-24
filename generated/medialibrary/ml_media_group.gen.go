@@ -32,28 +32,41 @@ type _MediaGroupClass struct {
 // An interface definition for the [MediaGroup] class.
 type IMediaGroup interface {
 	objectivec.IObject
-	ChildGroups() []MediaGroup
-	IconImage() appkit.Image
-	MediaLibrary() MLMediaLibrary
-	MediaObjects() []MediaObject
-	ModificationDate() foundation.NSDate
-	Parent() MLMediaGroup
-	TypeIdentifier() string
-	URL() foundation.URL
-	Attributes() string
-	SetAttributes(value string)
-	Identifier() string
-	SetIdentifier(value string)
-	MediaSourceIdentifier() string
-	SetMediaSourceIdentifier(value string)
-	Name() string
-	SetName(value string)
+	// properties:
+	Parent() IMLMediaGroup
+	Attributes() objc.IObject /* cross-framework: NSString */
+	SetAttributes(value objc.IObject /* cross-framework: NSString */)
+	ChildGroups() IMLMediaGroup
+	SetChildGroups(value IMLMediaGroup)
+	IconImage() objc.IObject /* cross-framework: Image */
+	SetIconImage(value objc.IObject /* cross-framework: Image */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	MediaLibrary() IMLMediaLibrary
+	SetMediaLibrary(value IMLMediaLibrary)
+	MediaObjects() IMLMediaObject
+	SetMediaObjects(value IMLMediaObject)
+	MediaSourceIdentifier() objc.IObject /* cross-framework: NSString */
+	SetMediaSourceIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ModificationDate() objc.IObject /* cross-framework: Date */
+	SetModificationDate(value objc.IObject /* cross-framework: Date */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	TypeIdentifier() objc.IObject /* cross-framework: NSString */
+	SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // The class provides groupings for media objects from a single source of media, such as iTunes or Aperture. The media objects—individual files containing a piece of media such as a photo, song, or movie—are referenced by one or more groups within each media source. These groupings serve as filters, providing hierarchical structure to the collection of objects in each source.
 //
 // The structure of the group hierarchy is specific to each media source, but all sources have certain commonalities. For example, every source has a single root media group, which contains all groups and objects within that source. It is the highest-level parent group in the hierarchy and each of its descendant groups contains its own subgroups and their objects. All groups have a reference to their parent within the hierarchy. A group with no descendants contains only its own objects. If a media group does not contain any objects, it is not visible in the hierarchy. A media group has an array of attributes which can change at any point. For example, a media group may have certain attributes that describe its objects, but these attributes appear only after the objects for that group have been loaded. When any media group attribute changes, observers are notified via KVO notification. For information about handling attributes that change, see . Every media group has a unique identifier as well as a type identifier. In certain cases, multiple groups within a source can have the same type identifier. For descriptions of group type identifiers, see . All properties are read-only, so this information can be accessed but not altered.
+
+
+// The class provides groupings for media objects from a single source of media, such as iTunes or Aperture. The media objects—individual files containing a piece of media such as a photo, song, or movie—are referenced by one or more groups within each media source. These groupings serve as filters, providing hierarchical structure to the collection of objects in each source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup
 type MediaGroup struct {
 	objectivec.Object
@@ -98,140 +111,223 @@ func NewMediaGroup() MediaGroup {
 }
 
 
-// A list of child groups contained in the media group.
+
+// The media group’s parent group.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/childGroups
-func (m_ MediaGroup) ChildGroups() []MediaGroup {
-	rv := objc.Send[[]MediaGroup](m_.ID, objc.Sel("childGroups"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/parent
+func (m_ MediaGroup) Parent() IMLMediaGroup {
+	rv := objc.Send[MediaGroup](m_.ID, objc.Sel("parent"))
 	return rv
 }
 
+
+// A dictionary of attributes describing the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
+func (m_ MediaGroup) Attributes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("attributes"))
+	return rv
+}
+
+
+// A dictionary of attributes describing the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
+func (m_ MediaGroup) SetAttributes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
+}
+
+
+// A list of child groups contained in the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/childgroups
+func (m_ MediaGroup) ChildGroups() IMLMediaGroup {
+	rv := objc.Send[MediaGroup](m_.ID, objc.Sel("childGroups"))
+	return rv
+}
+
+
+// A list of child groups contained in the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/childgroups
+func (m_ MediaGroup) SetChildGroups(value IMLMediaGroup) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setChildGroups:"), value)
+}
+
+
 // The media group’s icon.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/iconImage
-func (m_ MediaGroup) IconImage() appkit.Image {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/iconimage
+func (m_ MediaGroup) IconImage() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("iconImage"))
 	return rv
 }
 
-// A pointer to the media library instance that loaded the media group’s source.
+
+// The media group’s icon.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/mediaLibrary
-func (m_ MediaGroup) MediaLibrary() MLMediaLibrary {
-	rv := objc.Send[MLMediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/iconimage
+func (m_ MediaGroup) SetIconImage(value objc.IObject /* cross-framework: Image */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIconImage:"), value)
+}
+
+
+// An identifier for the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
+func (m_ MediaGroup) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("identifier"))
 	return rv
 }
+
+
+// An identifier for the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
+func (m_ MediaGroup) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+
+// A pointer to the media library instance that loaded the media group’s source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/medialibrary
+func (m_ MediaGroup) MediaLibrary() IMLMediaLibrary {
+	rv := objc.Send[MediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
+	return rv
+}
+
+
+// A pointer to the media library instance that loaded the media group’s source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/medialibrary
+func (m_ MediaGroup) SetMediaLibrary(value IMLMediaLibrary) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibrary:"), value)
+}
+
 
 // A list of media objects in the media group.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/mediaObjects
-func (m_ MediaGroup) MediaObjects() []MediaObject {
-	rv := objc.Send[[]MediaObject](m_.ID, objc.Sel("mediaObjects"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediaobjects
+func (m_ MediaGroup) MediaObjects() IMLMediaObject {
+	rv := objc.Send[MediaObject](m_.ID, objc.Sel("mediaObjects"))
 	return rv
 }
+
+
+// A list of media objects in the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediaobjects
+func (m_ MediaGroup) SetMediaObjects(value IMLMediaObject) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaObjects:"), value)
+}
+
+
+// An identifier for the source that loaded the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
+func (m_ MediaGroup) MediaSourceIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("mediaSourceIdentifier"))
+	return rv
+}
+
+
+// An identifier for the source that loaded the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
+func (m_ MediaGroup) SetMediaSourceIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), value)
+}
+
 
 // The date and time when the media group was last altered.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/modificationDate
-func (m_ MediaGroup) ModificationDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("modificationDate"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/modificationdate
+func (m_ MediaGroup) ModificationDate() objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
-// The media group’s parent group.
+
+// The date and time when the media group was last altered.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/parent
-func (m_ MediaGroup) Parent() MLMediaGroup {
-	rv := objc.Send[MLMediaGroup](m_.ID, objc.Sel("parent"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/modificationdate
+func (m_ MediaGroup) SetModificationDate(value objc.IObject /* cross-framework: Date */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModificationDate:"), value)
+}
+
+
+// The name of the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
+func (m_ MediaGroup) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
+
+
+// The name of the media group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
+func (m_ MediaGroup) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
+}
+
 
 // An identifier for the media group’s type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/typeIdentifier
-func (m_ MediaGroup) TypeIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("typeIdentifier"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/typeidentifier
+func (m_ MediaGroup) TypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
+
+
+// An identifier for the media group’s type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/typeidentifier
+func (m_ MediaGroup) SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTypeIdentifier:"), value)
+}
+
 
 // The location of the media group.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/url
-func (m_ MediaGroup) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URL"))
-	return rv
-}
-
-// A dictionary of attributes describing the media group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
-func (m_ MediaGroup) Attributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("attributes"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/url
+func (m_ MediaGroup) Url() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
 	return rv
 }
 
 
-// SetAttributes sets the value of the attributes property.
-// A dictionary of attributes describing the media group.
-
+// The location of the media group.
 //
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
-func (m_ MediaGroup) SetAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), objc.String(value))
-}
-
-// An identifier for the media group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
-func (m_ MediaGroup) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// SetIdentifier sets the value of the identifier property.
-// An identifier for the media group.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
-func (m_ MediaGroup) SetIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-// An identifier for the source that loaded the media group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
-func (m_ MediaGroup) MediaSourceIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
-	return rv
-}
-
-
-// SetMediaSourceIdentifier sets the value of the mediaSourceIdentifier property.
-// An identifier for the source that loaded the media group.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
-func (m_ MediaGroup) SetMediaSourceIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), objc.String(value))
-}
-
-// The name of the media group.
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
-func (m_ MediaGroup) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// SetName sets the value of the name property.
-// The name of the media group.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
-func (m_ MediaGroup) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/url
+func (m_ MediaGroup) SetUrl(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
 

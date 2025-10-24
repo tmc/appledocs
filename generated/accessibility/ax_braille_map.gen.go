@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +32,8 @@ type _AXBrailleMapClass struct {
 type IAXBrailleMap interface {
 	objectivec.IObject
 	// properties:
-	Dimensions() coregraphics.CGSize
-	SetDimensions(value coregraphics.CGSize)
+	Dimensions() objc.IObject /* cross-framework: Size */
+	SetDimensions(value objc.IObject /* cross-framework: Size */)
 	// methods:
 }
 
@@ -94,8 +94,8 @@ func NewAXBrailleMap() AXBrailleMap {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbraillemap/dimensions
-func (a_ AXBrailleMap) Dimensions() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](a_.ID, objc.Sel("dimensions"))
+func (a_ AXBrailleMap) Dimensions() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](a_.ID, objc.Sel("dimensions"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (a_ AXBrailleMap) Dimensions() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbraillemap/dimensions
-func (a_ AXBrailleMap) SetDimensions(value coregraphics.CGSize) {
+func (a_ AXBrailleMap) SetDimensions(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDimensions:"), value)
 }
 

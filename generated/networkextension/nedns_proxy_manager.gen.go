@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _NEDNSProxyManagerClass struct {
 // An interface definition for the [NEDNSProxyManager] class.
 type INEDNSProxyManager interface {
 	objectivec.IObject
-	NEDNSProxyErrorDomain() string
+	// properties:
+	NEDNSProxyErrorDomain() objc.IObject /* cross-framework: NSString */
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
-	ProviderProtocol() NEDNSProxyProviderProtocol
+	LocalizedDescription() objc.IObject /* cross-framework: NSString */
+	SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */)
+	ProviderProtocol() INEDNSProxyProviderProtocol
 	SetProviderProtocol(value INEDNSProxyProviderProtocol)
+	// methods:
 }
 
 // An object to create and manage an DNS proxy provider’s configuration.
 //
 // A DNS proxy allows your app to intercept all DNS traffic generated on a device. You can use this capability to provide services like DNS traffic encryption, typically by redirecting DNS traffic to your own server. You usually do this in the context of managed devices, such as those owned by a school or an enterprise. You create a DNS proxy as an app extension based on a custom subclass of the class. You enable and configure this proxy from within your app using the singleton proxy manager instance provided by the type method of the class. For example, for a proxy that performs a simple redirect, you can use the proxy manager to define and dynamically configure the destination IP address of the redirected traffic. Instances of the proxy manager are thread safe.
+
+
+// An object to create and manage an DNS proxy provider’s configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSProxyManager
 type NEDNSProxyManager struct {
 	objectivec.Object
@@ -87,16 +94,20 @@ func NewNEDNSProxyManager() NEDNSProxyManager {
 }
 
 
+
 // The DNS proxy error domain.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
-func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
+func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
 	return rv
 }
 
+
 // The status of a DNS proxy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
 func (n_ NEDNSProxyManager) IsEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
@@ -104,46 +115,47 @@ func (n_ NEDNSProxyManager) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // The status of a DNS proxy.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/isenabled
 func (n_ NEDNSProxyManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A description of the DNS proxy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEDNSProxyManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
 
-// SetLocalizedDescription sets the value of the localizedDescription property.
 // A description of the DNS proxy.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEDNSProxyManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
+
 
 // The provider-specific portion of the DNS proxy configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
-func (n_ NEDNSProxyManager) ProviderProtocol() NEDNSProxyProviderProtocol {
+func (n_ NEDNSProxyManager) ProviderProtocol() INEDNSProxyProviderProtocol {
 	rv := objc.Send[NEDNSProxyProviderProtocol](n_.ID, objc.Sel("providerProtocol"))
 	return rv
 }
 
 
-// SetProviderProtocol sets the value of the providerProtocol property.
 // The provider-specific portion of the DNS proxy configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
 func (n_ NEDNSProxyManager) SetProviderProtocol(value INEDNSProxyProviderProtocol) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderProtocol:"), value)

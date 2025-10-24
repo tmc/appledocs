@@ -85,23 +85,4 @@ func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 
 
 
-// The automatic scroll edge effect style.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
-func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() ScrollEdgeEffectStyle {
-	rv := objc.Send[ScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("automaticStyle"))
-	return rv
-}
-
-// The automatic scroll edge effect style.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
-func (s_ ScrollEdgeEffectStyle) AutomaticStyle() IScrollEdgeEffectStyle {
-	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("automaticStyle"))
-	return rv
-}
-
-
 

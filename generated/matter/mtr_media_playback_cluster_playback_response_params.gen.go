@@ -31,15 +31,19 @@ type _MTRMediaPlaybackClusterPlaybackResponseParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterPlaybackResponseParams] class.
 type IMTRMediaPlaybackClusterPlaybackResponseParams interface {
 	objectivec.IObject
-	Data() string
-	SetData(value string)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: NSString */
+	SetData(value objc.IObject /* cross-framework: NSString */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterPlaybackResponseParams
 type MTRMediaPlaybackClusterPlaybackResponseParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

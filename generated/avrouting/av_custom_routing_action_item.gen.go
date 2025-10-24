@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [CustomRoutingActionItem] class.
@@ -31,10 +33,6 @@ type _CustomRoutingActionItemClass struct {
 type ICustomRoutingActionItem interface {
 	objectivec.IObject
 	// properties:
-	OverrideTitle() string /* primitive/slice/pointer. */
-	SetOverrideTitle(value string /* primitive/slice/pointer. */)
-	Type() objectivec.IObject
-	SetType(value objectivec.IObject)
 	// methods:
 }
 
@@ -87,45 +85,6 @@ func (c_ CustomRoutingActionItem) Autorelease() CustomRoutingActionItem {
 // NewCustomRoutingActionItem creates a new CustomRoutingActionItem instance.
 func NewCustomRoutingActionItem() CustomRoutingActionItem {
 	return getCustomRoutingActionItemClass().New()
-}
-
-
-
-// A string to use to override the title of the item’s type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) OverrideTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
-	return rv
-}
-
-
-// A string to use to override the title of the item’s type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) SetOverrideTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
-}
-
-
-// A type with an identifier that matches a value in the app’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) Type() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// A type with an identifier that matches a value in the app’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) SetType(value objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 
 

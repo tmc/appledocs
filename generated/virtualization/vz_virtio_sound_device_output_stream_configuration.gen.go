@@ -29,14 +29,20 @@ type _VZVirtioSoundDeviceOutputStreamConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceOutputStreamConfiguration] class.
 type IVZVirtioSoundDeviceOutputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
-	Sink() VZAudioOutputStreamSink
+	// properties:
+	Sink() IVZAudioOutputStreamSink
 	SetSink(value IVZAudioOutputStreamSink)
+	// methods:
 }
 
 // An object that defines a Virtio sound device output stream configuration.
 //
 // A PCM stream of output audio data, such as to a speaker.
+
+
+// An object that defines a Virtio sound device output stream configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration
 type VZVirtioSoundDeviceOutputStreamConfiguration struct {
 	VZVirtioSoundDeviceStreamConfiguration
@@ -84,19 +90,20 @@ func NewVZVirtioSoundDeviceOutputStreamConfiguration() VZVirtioSoundDeviceOutput
 
 
 
+
 // An audio stream sink that defines how the host handles audio data produced by the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration/sink
-func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() VZAudioOutputStreamSink {
+func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() IVZAudioOutputStreamSink {
 	rv := objc.Send[VZAudioOutputStreamSink](v_.ID, objc.Sel("sink"))
 	return rv
 }
 
 
-// SetSink sets the value of the sink property.
 // An audio stream sink that defines how the host handles audio data produced by the guest.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration/sink
 func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) SetSink(value IVZAudioOutputStreamSink) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSink:"), value)

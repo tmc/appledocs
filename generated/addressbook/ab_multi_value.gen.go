@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,15 +33,15 @@ type IABMultiValue interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	Count() uint /* primitive/slice/pointer. */
-	IdentifierAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	IndexForIdentifier(identifier string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
-	LabelAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	LabelForIdentifier(identifier string /* primitive/slice/pointer. */) objc.ID
+	Count() uint
+	IdentifierAtIndex(index uint) objc.IObject /* cross-framework: String */
+	IndexForIdentifier(identifier objc.IObject /* cross-framework: NSString */) uint
+	LabelAtIndex(index uint) objc.IObject /* cross-framework: String */
+	LabelForIdentifier(identifier objc.IObject /* cross-framework: NSString */) objc.ID
 	PrimaryIdentifier() objc.IObject /* cross-framework: String */
 	PropertyType() ABPropertyType /* typedef */
-	ValueAtIndex(index uint /* primitive/slice/pointer. */) objc.ID
-	ValueForIdentifier(identifier string /* primitive/slice/pointer. */) objc.ID
+	ValueAtIndex(index uint) objc.ID
+	ValueForIdentifier(identifier objc.IObject /* cross-framework: NSString */) objc.ID
 }
 
 // An immutable representation of a property that might have multiple values.
@@ -100,7 +101,7 @@ func NewABMultiValue() ABMultiValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/count()
-func (a_ ABMultiValue) Count() uint /* primitive/slice/pointer. */ {
+func (a_ ABMultiValue) Count() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
 	return rv
 }
@@ -110,8 +111,8 @@ func (a_ ABMultiValue) Count() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/identifier(at:)
-func (a_ ABMultiValue) IdentifierAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("identifierAtIndex:"), index)
+func (a_ ABMultiValue) IdentifierAtIndex(index uint) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("identifierAtIndex:"), index)
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (a_ ABMultiValue) IdentifierAtIndex(index uint /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/index(forIdentifier:)
-func (a_ ABMultiValue) IndexForIdentifier(identifier string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](a_.ID, objc.Sel("indexForIdentifier:"), objc.String(identifier))
+func (a_ ABMultiValue) IndexForIdentifier(identifier objc.IObject /* cross-framework: NSString */) uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("indexForIdentifier:"), identifier)
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (a_ ABMultiValue) IndexForIdentifier(identifier string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(at:)
-func (a_ ABMultiValue) LabelAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("labelAtIndex:"), index)
+func (a_ ABMultiValue) LabelAtIndex(index uint) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("labelAtIndex:"), index)
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (a_ ABMultiValue) LabelAtIndex(index uint /* primitive/slice/pointer. */) o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/label(forIdentifier:)
-func (a_ ABMultiValue) LabelForIdentifier(identifier string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("labelForIdentifier:"), objc.String(identifier))
+func (a_ ABMultiValue) LabelForIdentifier(identifier objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("labelForIdentifier:"), identifier)
 	return rv
 }
 
@@ -151,7 +152,7 @@ func (a_ ABMultiValue) LabelForIdentifier(identifier string /* primitive/slice/p
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/primaryIdentifier()
 func (a_ ABMultiValue) PrimaryIdentifier() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](a_.ID, objc.Sel("primaryIdentifier"))
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("primaryIdentifier"))
 	return rv
 }
 
@@ -170,7 +171,7 @@ func (a_ ABMultiValue) PropertyType() ABPropertyType /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/value(at:)
-func (a_ ABMultiValue) ValueAtIndex(index uint /* primitive/slice/pointer. */) objc.ID {
+func (a_ ABMultiValue) ValueAtIndex(index uint) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }
@@ -180,8 +181,8 @@ func (a_ ABMultiValue) ValueAtIndex(index uint /* primitive/slice/pointer. */) o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue/value(forIdentifier:)
-func (a_ ABMultiValue) ValueForIdentifier(identifier string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForIdentifier:"), objc.String(identifier))
+func (a_ ABMultiValue) ValueForIdentifier(identifier objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForIdentifier:"), identifier)
 	return rv
 }
 

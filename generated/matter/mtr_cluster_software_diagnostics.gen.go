@@ -29,9 +29,13 @@ type _MTRClusterSoftwareDiagnosticsClass struct {
 // An interface definition for the [MTRClusterSoftwareDiagnostics] class.
 type IMTRClusterSoftwareDiagnostics interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterSoftwareDiagnostics
 type MTRClusterSoftwareDiagnostics struct {
 	MTRGenericCluster

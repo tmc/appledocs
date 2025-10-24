@@ -19,74 +19,74 @@ var (
 	_MIDIBluetoothDriverDisconnect func(unsafe.Pointer) unsafe.Pointer
 	_MIDIClientCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIClientCreateWithBlock func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIClientDispose func(unsafe.Pointer) unsafe.Pointer
-	_MIDIDestinationCreateWithProtocol func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceAddEntity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceDispose func(unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceGetEntity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceGetNumberOfEntities func(unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceListAddDevice func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceListDispose func(unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceListGetDevice func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceListGetNumberOfDevices func(unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceNewEntity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDeviceRemoveEntity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIDriverEnableMonitoring func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEndpointDispose func(unsafe.Pointer) unsafe.Pointer
-	_MIDIEndpointGetEntity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEndpointGetRefCons func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEndpointSetRefCons func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityAddOrRemoveEndpoints func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityGetDestination func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityGetDevice func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityGetNumberOfDestinations func(unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityGetNumberOfSources func(unsafe.Pointer) unsafe.Pointer
-	_MIDIEntityGetSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEventListAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEventListForEachEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_MIDIClientDispose func(MIDIClientRef) unsafe.Pointer
+	_MIDIDestinationCreateWithProtocol func(MIDIClientRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIDeviceAddEntity func(MIDIDeviceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIDeviceCreate func(MIDIDriverRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIDeviceDispose func(MIDIDeviceRef) unsafe.Pointer
+	_MIDIDeviceGetEntity func(MIDIDeviceRef, unsafe.Pointer) MIDIEntityRef
+	_MIDIDeviceGetNumberOfEntities func(MIDIDeviceRef) unsafe.Pointer
+	_MIDIDeviceListAddDevice func(MIDIDeviceListRef, MIDIDeviceRef) unsafe.Pointer
+	_MIDIDeviceListDispose func(MIDIDeviceListRef) unsafe.Pointer
+	_MIDIDeviceListGetDevice func(MIDIDeviceListRef, unsafe.Pointer) MIDIDeviceRef
+	_MIDIDeviceListGetNumberOfDevices func(MIDIDeviceListRef) unsafe.Pointer
+	_MIDIDeviceNewEntity func(MIDIDeviceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIDeviceRemoveEntity func(MIDIDeviceRef, MIDIEntityRef) unsafe.Pointer
+	_MIDIDriverEnableMonitoring func(MIDIDriverRef, unsafe.Pointer) unsafe.Pointer
+	_MIDIEndpointDispose func(MIDIEndpointRef) unsafe.Pointer
+	_MIDIEndpointGetEntity func(MIDIEndpointRef, unsafe.Pointer) unsafe.Pointer
+	_MIDIEndpointGetRefCons func(MIDIEndpointRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIEndpointSetRefCons func(MIDIEndpointRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIEntityAddOrRemoveEndpoints func(MIDIEntityRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIEntityGetDestination func(MIDIEntityRef, unsafe.Pointer) MIDIEndpointRef
+	_MIDIEntityGetDevice func(MIDIEntityRef, unsafe.Pointer) unsafe.Pointer
+	_MIDIEntityGetNumberOfDestinations func(MIDIEntityRef) unsafe.Pointer
+	_MIDIEntityGetNumberOfSources func(MIDIEntityRef) unsafe.Pointer
+	_MIDIEntityGetSource func(MIDIEntityRef, unsafe.Pointer) MIDIEndpointRef
+	_MIDIEventListAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, MIDITimeStamp, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIEventListForEachEvent func(unsafe.Pointer, MIDIEventVisitor, unsafe.Pointer)
 	_MIDIEventListInit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIExternalDeviceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIFlushOutput func(unsafe.Pointer) unsafe.Pointer
-	_MIDIGetDestination func(unsafe.Pointer) unsafe.Pointer
-	_MIDIGetDevice func(unsafe.Pointer) unsafe.Pointer
-	_MIDIGetDriverDeviceList func(unsafe.Pointer) unsafe.Pointer
+	_MIDIFlushOutput func(MIDIEndpointRef) unsafe.Pointer
+	_MIDIGetDestination func(unsafe.Pointer) MIDIEndpointRef
+	_MIDIGetDevice func(unsafe.Pointer) MIDIDeviceRef
+	_MIDIGetDriverDeviceList func(MIDIDriverRef) MIDIDeviceListRef
 	_MIDIGetDriverIORunLoop func() unsafe.Pointer
-	_MIDIGetExternalDevice func(unsafe.Pointer) unsafe.Pointer
+	_MIDIGetExternalDevice func(unsafe.Pointer) MIDIDeviceRef
 	_MIDIGetNumberOfDestinations func() unsafe.Pointer
 	_MIDIGetNumberOfDevices func() unsafe.Pointer
 	_MIDIGetNumberOfExternalDevices func() unsafe.Pointer
 	_MIDIGetNumberOfSources func() unsafe.Pointer
 	_MIDIGetSerialPortDrivers func(unsafe.Pointer) unsafe.Pointer
 	_MIDIGetSerialPortOwner func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIGetSource func(unsafe.Pointer) unsafe.Pointer
-	_MIDIInputPortCreateWithProtocol func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIGetSource func(unsafe.Pointer) MIDIEndpointRef
+	_MIDIInputPortCreateWithProtocol func(MIDIClientRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIObjectFindByUniqueID func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIOutputPortCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIPortConnectSource func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIPortDisconnectSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIPortDispose func(unsafe.Pointer) unsafe.Pointer
-	_MIDIReceivedEventList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIOutputPortCreate func(MIDIClientRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIPortConnectSource func(MIDIPortRef, MIDIEndpointRef, unsafe.Pointer) unsafe.Pointer
+	_MIDIPortDisconnectSource func(MIDIPortRef, MIDIEndpointRef) unsafe.Pointer
+	_MIDIPortDispose func(MIDIPortRef) unsafe.Pointer
+	_MIDIReceivedEventList func(MIDIEndpointRef, unsafe.Pointer) unsafe.Pointer
 	_MIDIRestart func() unsafe.Pointer
-	_MIDISendEventList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDISendEventList func(MIDIPortRef, MIDIEndpointRef, unsafe.Pointer) unsafe.Pointer
 	_MIDISetSerialPortOwner func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDISetupAddDevice func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupAddExternalDevice func(unsafe.Pointer) unsafe.Pointer
+	_MIDISetupAddDevice func(MIDIDeviceRef) unsafe.Pointer
+	_MIDISetupAddExternalDevice func(MIDIDeviceRef) unsafe.Pointer
 	_MIDISetupCreate func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupDispose func(unsafe.Pointer) unsafe.Pointer
+	_MIDISetupDispose func(MIDISetupRef) unsafe.Pointer
 	_MIDISetupFromData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDISetupGetCurrent func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupInstall func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupRemoveDevice func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupRemoveExternalDevice func(unsafe.Pointer) unsafe.Pointer
-	_MIDISetupToData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDISourceCreateWithProtocol func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDISetupInstall func(MIDISetupRef) unsafe.Pointer
+	_MIDISetupRemoveDevice func(MIDIDeviceRef) unsafe.Pointer
+	_MIDISetupRemoveExternalDevice func(MIDIDeviceRef) unsafe.Pointer
+	_MIDISetupToData func(MIDISetupRef, unsafe.Pointer) unsafe.Pointer
+	_MIDISourceCreateWithProtocol func(MIDIClientRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIThruConnectionDispose func(unsafe.Pointer) unsafe.Pointer
+	_MIDIThruConnectionDispose func(MIDIThruConnectionRef) unsafe.Pointer
 	_MIDIThruConnectionFind func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIThruConnectionGetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIThruConnectionGetParams func(MIDIThruConnectionRef, unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionParamsInitialize func(unsafe.Pointer)
-	_MIDIThruConnectionSetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIThruConnectionSetParams func(MIDIThruConnectionRef, unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -233,7 +233,7 @@ func MIDIClientCreateWithBlock(name unsafe.Pointer, outClient unsafe.Pointer, no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIClientDispose(_:)
-func MIDIClientDispose(client unsafe.Pointer) unsafe.Pointer {
+func MIDIClientDispose(client MIDIClientRef) unsafe.Pointer {
 	return _MIDIClientDispose(client)
 }
 
@@ -244,7 +244,7 @@ func MIDIClientDispose(client unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)
-func MIDIDestinationCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outDest unsafe.Pointer, readBlock unsafe.Pointer) unsafe.Pointer {
+func MIDIDestinationCreateWithProtocol(client MIDIClientRef, name unsafe.Pointer, protocol_ unsafe.Pointer, outDest unsafe.Pointer, readBlock unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDestinationCreateWithProtocol(client, name, protocol_, outDest, readBlock)
 }
 
@@ -257,7 +257,7 @@ func MIDIDestinationCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceAddEntity(_:_:_:_:_:_:)
-func MIDIDeviceAddEntity(device unsafe.Pointer, name unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceAddEntity(device MIDIDeviceRef, name unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceAddEntity(device, name, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
 }
 
@@ -268,7 +268,7 @@ func MIDIDeviceAddEntity(device unsafe.Pointer, name unsafe.Pointer, embedded un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceCreate(_:_:_:_:_:)
-func MIDIDeviceCreate(owner unsafe.Pointer, name unsafe.Pointer, manufacturer unsafe.Pointer, model unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceCreate(owner MIDIDriverRef, name unsafe.Pointer, manufacturer unsafe.Pointer, model unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceCreate(owner, name, manufacturer, model, outDevice)
 }
 
@@ -279,7 +279,7 @@ func MIDIDeviceCreate(owner unsafe.Pointer, name unsafe.Pointer, manufacturer un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceDispose(_:)
-func MIDIDeviceDispose(device unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceDispose(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDIDeviceDispose(device)
 }
 
@@ -290,7 +290,7 @@ func MIDIDeviceDispose(device unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)
-func MIDIDeviceGetEntity(device unsafe.Pointer, entityIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceGetEntity(device MIDIDeviceRef, entityIndex0 unsafe.Pointer) MIDIEntityRef {
 	return _MIDIDeviceGetEntity(device, entityIndex0)
 }
 
@@ -301,7 +301,7 @@ func MIDIDeviceGetEntity(device unsafe.Pointer, entityIndex0 unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)
-func MIDIDeviceGetNumberOfEntities(device unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceGetNumberOfEntities(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDIDeviceGetNumberOfEntities(device)
 }
 
@@ -312,7 +312,7 @@ func MIDIDeviceGetNumberOfEntities(device unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListAddDevice(_:_:)
-func MIDIDeviceListAddDevice(devList unsafe.Pointer, dev unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceListAddDevice(devList MIDIDeviceListRef, dev MIDIDeviceRef) unsafe.Pointer {
 	return _MIDIDeviceListAddDevice(devList, dev)
 }
 
@@ -323,7 +323,7 @@ func MIDIDeviceListAddDevice(devList unsafe.Pointer, dev unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListDispose(_:)
-func MIDIDeviceListDispose(devList unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceListDispose(devList MIDIDeviceListRef) unsafe.Pointer {
 	return _MIDIDeviceListDispose(devList)
 }
 
@@ -334,7 +334,7 @@ func MIDIDeviceListDispose(devList unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListGetDevice(_:_:)
-func MIDIDeviceListGetDevice(devList unsafe.Pointer, index0 unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceListGetDevice(devList MIDIDeviceListRef, index0 unsafe.Pointer) MIDIDeviceRef {
 	return _MIDIDeviceListGetDevice(devList, index0)
 }
 
@@ -345,7 +345,7 @@ func MIDIDeviceListGetDevice(devList unsafe.Pointer, index0 unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListGetNumberOfDevices(_:)
-func MIDIDeviceListGetNumberOfDevices(devList unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceListGetNumberOfDevices(devList MIDIDeviceListRef) unsafe.Pointer {
 	return _MIDIDeviceListGetNumberOfDevices(devList)
 }
 
@@ -356,7 +356,7 @@ func MIDIDeviceListGetNumberOfDevices(devList unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceNewEntity(_:_:_:_:_:_:_:)
-func MIDIDeviceNewEntity(device unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceNewEntity(device MIDIDeviceRef, name unsafe.Pointer, protocol_ unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceNewEntity(device, name, protocol_, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
 }
 
@@ -367,7 +367,7 @@ func MIDIDeviceNewEntity(device unsafe.Pointer, name unsafe.Pointer, protocol_ u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceRemoveEntity(_:_:)
-func MIDIDeviceRemoveEntity(device unsafe.Pointer, entity unsafe.Pointer) unsafe.Pointer {
+func MIDIDeviceRemoveEntity(device MIDIDeviceRef, entity MIDIEntityRef) unsafe.Pointer {
 	return _MIDIDeviceRemoveEntity(device, entity)
 }
 
@@ -378,7 +378,7 @@ func MIDIDeviceRemoveEntity(device unsafe.Pointer, entity unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDriverEnableMonitoring(_:_:)
-func MIDIDriverEnableMonitoring(driver unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
+func MIDIDriverEnableMonitoring(driver MIDIDriverRef, enabled unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDriverEnableMonitoring(driver, enabled)
 }
 
@@ -389,7 +389,7 @@ func MIDIDriverEnableMonitoring(driver unsafe.Pointer, enabled unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointDispose(_:)
-func MIDIEndpointDispose(endpt unsafe.Pointer) unsafe.Pointer {
+func MIDIEndpointDispose(endpt MIDIEndpointRef) unsafe.Pointer {
 	return _MIDIEndpointDispose(endpt)
 }
 
@@ -400,7 +400,7 @@ func MIDIEndpointDispose(endpt unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)
-func MIDIEndpointGetEntity(inEndpoint unsafe.Pointer, outEntity unsafe.Pointer) unsafe.Pointer {
+func MIDIEndpointGetEntity(inEndpoint MIDIEndpointRef, outEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointGetEntity(inEndpoint, outEntity)
 }
 
@@ -411,7 +411,7 @@ func MIDIEndpointGetEntity(inEndpoint unsafe.Pointer, outEntity unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)
-func MIDIEndpointGetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
+func MIDIEndpointGetRefCons(endpt MIDIEndpointRef, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointGetRefCons(endpt, ref1, ref2)
 }
 
@@ -422,7 +422,7 @@ func MIDIEndpointGetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)
-func MIDIEndpointSetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
+func MIDIEndpointSetRefCons(endpt MIDIEndpointRef, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointSetRefCons(endpt, ref1, ref2)
 }
 
@@ -433,7 +433,7 @@ func MIDIEndpointSetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityAddOrRemoveEndpoints(_:_:_:)
-func MIDIEntityAddOrRemoveEndpoints(entity unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityAddOrRemoveEndpoints(entity MIDIEntityRef, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityAddOrRemoveEndpoints(entity, numSourceEndpoints, numDestinationEndpoints)
 }
 
@@ -444,7 +444,7 @@ func MIDIEntityAddOrRemoveEndpoints(entity unsafe.Pointer, numSourceEndpoints un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)
-func MIDIEntityGetDestination(entity unsafe.Pointer, destIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityGetDestination(entity MIDIEntityRef, destIndex0 unsafe.Pointer) MIDIEndpointRef {
 	return _MIDIEntityGetDestination(entity, destIndex0)
 }
 
@@ -455,7 +455,7 @@ func MIDIEntityGetDestination(entity unsafe.Pointer, destIndex0 unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)
-func MIDIEntityGetDevice(inEntity unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityGetDevice(inEntity MIDIEntityRef, outDevice unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetDevice(inEntity, outDevice)
 }
 
@@ -466,7 +466,7 @@ func MIDIEntityGetDevice(inEntity unsafe.Pointer, outDevice unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)
-func MIDIEntityGetNumberOfDestinations(entity unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityGetNumberOfDestinations(entity MIDIEntityRef) unsafe.Pointer {
 	return _MIDIEntityGetNumberOfDestinations(entity)
 }
 
@@ -477,7 +477,7 @@ func MIDIEntityGetNumberOfDestinations(entity unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)
-func MIDIEntityGetNumberOfSources(entity unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityGetNumberOfSources(entity MIDIEntityRef) unsafe.Pointer {
 	return _MIDIEntityGetNumberOfSources(entity)
 }
 
@@ -488,7 +488,7 @@ func MIDIEntityGetNumberOfSources(entity unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)
-func MIDIEntityGetSource(entity unsafe.Pointer, sourceIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIEntityGetSource(entity MIDIEntityRef, sourceIndex0 unsafe.Pointer) MIDIEndpointRef {
 	return _MIDIEntityGetSource(entity, sourceIndex0)
 }
 
@@ -499,7 +499,7 @@ func MIDIEntityGetSource(entity unsafe.Pointer, sourceIndex0 unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)
-func MIDIEventListAdd(evtlist unsafe.Pointer, listSize unsafe.Pointer, curPacket unsafe.Pointer, time unsafe.Pointer, wordCount unsafe.Pointer, words unsafe.Pointer) unsafe.Pointer {
+func MIDIEventListAdd(evtlist unsafe.Pointer, listSize unsafe.Pointer, curPacket unsafe.Pointer, time MIDITimeStamp, wordCount unsafe.Pointer, words unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEventListAdd(evtlist, listSize, curPacket, time, wordCount, words)
 }
 
@@ -508,7 +508,7 @@ func MIDIEventListAdd(evtlist unsafe.Pointer, listSize unsafe.Pointer, curPacket
 // Added in macOS 12.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListForEachEvent(_:_:_:)
-func MIDIEventListForEachEvent(evtlist unsafe.Pointer, visitor unsafe.Pointer, visitorContext unsafe.Pointer) {
+func MIDIEventListForEachEvent(evtlist unsafe.Pointer, visitor MIDIEventVisitor, visitorContext unsafe.Pointer) {
 	_MIDIEventListForEachEvent(evtlist, visitor, visitorContext)
 }
 
@@ -541,7 +541,7 @@ func MIDIExternalDeviceCreate(name unsafe.Pointer, manufacturer unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIFlushOutput(_:)
-func MIDIFlushOutput(dest unsafe.Pointer) unsafe.Pointer {
+func MIDIFlushOutput(dest MIDIEndpointRef) unsafe.Pointer {
 	return _MIDIFlushOutput(dest)
 }
 
@@ -552,7 +552,7 @@ func MIDIFlushOutput(dest unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDestination(_:)
-func MIDIGetDestination(destIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIGetDestination(destIndex0 unsafe.Pointer) MIDIEndpointRef {
 	return _MIDIGetDestination(destIndex0)
 }
 
@@ -563,7 +563,7 @@ func MIDIGetDestination(destIndex0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDevice(_:)
-func MIDIGetDevice(deviceIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIGetDevice(deviceIndex0 unsafe.Pointer) MIDIDeviceRef {
 	return _MIDIGetDevice(deviceIndex0)
 }
 
@@ -574,7 +574,7 @@ func MIDIGetDevice(deviceIndex0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDriverDeviceList(_:)
-func MIDIGetDriverDeviceList(driver unsafe.Pointer) unsafe.Pointer {
+func MIDIGetDriverDeviceList(driver MIDIDriverRef) MIDIDeviceListRef {
 	return _MIDIGetDriverDeviceList(driver)
 }
 
@@ -596,7 +596,7 @@ func MIDIGetDriverIORunLoop() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetExternalDevice(_:)
-func MIDIGetExternalDevice(deviceIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIGetExternalDevice(deviceIndex0 unsafe.Pointer) MIDIDeviceRef {
 	return _MIDIGetExternalDevice(deviceIndex0)
 }
 
@@ -677,7 +677,7 @@ func MIDIGetSerialPortOwner(portName unsafe.Pointer, outDriverName unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetSource(_:)
-func MIDIGetSource(sourceIndex0 unsafe.Pointer) unsafe.Pointer {
+func MIDIGetSource(sourceIndex0 unsafe.Pointer) MIDIEndpointRef {
 	return _MIDIGetSource(sourceIndex0)
 }
 
@@ -688,7 +688,7 @@ func MIDIGetSource(sourceIndex0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)
-func MIDIInputPortCreateWithProtocol(client unsafe.Pointer, portName unsafe.Pointer, protocol_ unsafe.Pointer, outPort unsafe.Pointer, receiveBlock unsafe.Pointer) unsafe.Pointer {
+func MIDIInputPortCreateWithProtocol(client MIDIClientRef, portName unsafe.Pointer, protocol_ unsafe.Pointer, outPort unsafe.Pointer, receiveBlock unsafe.Pointer) unsafe.Pointer {
 	return _MIDIInputPortCreateWithProtocol(client, portName, protocol_, outPort, receiveBlock)
 }
 
@@ -710,7 +710,7 @@ func MIDIObjectFindByUniqueID(inUniqueID unsafe.Pointer, outObject unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)
-func MIDIOutputPortCreate(client unsafe.Pointer, portName unsafe.Pointer, outPort unsafe.Pointer) unsafe.Pointer {
+func MIDIOutputPortCreate(client MIDIClientRef, portName unsafe.Pointer, outPort unsafe.Pointer) unsafe.Pointer {
 	return _MIDIOutputPortCreate(client, portName, outPort)
 }
 
@@ -721,7 +721,7 @@ func MIDIOutputPortCreate(client unsafe.Pointer, portName unsafe.Pointer, outPor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)
-func MIDIPortConnectSource(port unsafe.Pointer, source unsafe.Pointer, connRefCon unsafe.Pointer) unsafe.Pointer {
+func MIDIPortConnectSource(port MIDIPortRef, source MIDIEndpointRef, connRefCon unsafe.Pointer) unsafe.Pointer {
 	return _MIDIPortConnectSource(port, source, connRefCon)
 }
 
@@ -732,7 +732,7 @@ func MIDIPortConnectSource(port unsafe.Pointer, source unsafe.Pointer, connRefCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)
-func MIDIPortDisconnectSource(port unsafe.Pointer, source unsafe.Pointer) unsafe.Pointer {
+func MIDIPortDisconnectSource(port MIDIPortRef, source MIDIEndpointRef) unsafe.Pointer {
 	return _MIDIPortDisconnectSource(port, source)
 }
 
@@ -743,7 +743,7 @@ func MIDIPortDisconnectSource(port unsafe.Pointer, source unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortDispose(_:)
-func MIDIPortDispose(port unsafe.Pointer) unsafe.Pointer {
+func MIDIPortDispose(port MIDIPortRef) unsafe.Pointer {
 	return _MIDIPortDispose(port)
 }
 
@@ -754,7 +754,7 @@ func MIDIPortDispose(port unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)
-func MIDIReceivedEventList(src unsafe.Pointer, evtlist unsafe.Pointer) unsafe.Pointer {
+func MIDIReceivedEventList(src MIDIEndpointRef, evtlist unsafe.Pointer) unsafe.Pointer {
 	return _MIDIReceivedEventList(src, evtlist)
 }
 
@@ -776,7 +776,7 @@ func MIDIRestart() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISendEventList(_:_:_:)
-func MIDISendEventList(port unsafe.Pointer, dest unsafe.Pointer, evtlist unsafe.Pointer) unsafe.Pointer {
+func MIDISendEventList(port MIDIPortRef, dest MIDIEndpointRef, evtlist unsafe.Pointer) unsafe.Pointer {
 	return _MIDISendEventList(port, dest, evtlist)
 }
 
@@ -800,7 +800,7 @@ func MIDISetSerialPortOwner(portName unsafe.Pointer, driverName unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupAddDevice(_:)
-func MIDISetupAddDevice(device unsafe.Pointer) unsafe.Pointer {
+func MIDISetupAddDevice(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDISetupAddDevice(device)
 }
 
@@ -811,7 +811,7 @@ func MIDISetupAddDevice(device unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupAddExternalDevice(_:)
-func MIDISetupAddExternalDevice(device unsafe.Pointer) unsafe.Pointer {
+func MIDISetupAddExternalDevice(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDISetupAddExternalDevice(device)
 }
 
@@ -837,7 +837,7 @@ func MIDISetupCreate(outSetup unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupDispose
-func MIDISetupDispose(setup unsafe.Pointer) unsafe.Pointer {
+func MIDISetupDispose(setup MIDISetupRef) unsafe.Pointer {
 	return _MIDISetupDispose(setup)
 }
 
@@ -876,7 +876,7 @@ func MIDISetupGetCurrent(outSetup unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupInstall
-func MIDISetupInstall(setup unsafe.Pointer) unsafe.Pointer {
+func MIDISetupInstall(setup MIDISetupRef) unsafe.Pointer {
 	return _MIDISetupInstall(setup)
 }
 
@@ -887,7 +887,7 @@ func MIDISetupInstall(setup unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupRemoveDevice(_:)
-func MIDISetupRemoveDevice(device unsafe.Pointer) unsafe.Pointer {
+func MIDISetupRemoveDevice(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDISetupRemoveDevice(device)
 }
 
@@ -898,7 +898,7 @@ func MIDISetupRemoveDevice(device unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupRemoveExternalDevice(_:)
-func MIDISetupRemoveExternalDevice(device unsafe.Pointer) unsafe.Pointer {
+func MIDISetupRemoveExternalDevice(device MIDIDeviceRef) unsafe.Pointer {
 	return _MIDISetupRemoveExternalDevice(device)
 }
 
@@ -911,7 +911,7 @@ func MIDISetupRemoveExternalDevice(device unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupToData
-func MIDISetupToData(setup unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
+func MIDISetupToData(setup MIDISetupRef, outData unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupToData(setup, outData)
 }
 
@@ -922,7 +922,7 @@ func MIDISetupToData(setup unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)
-func MIDISourceCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outSrc unsafe.Pointer) unsafe.Pointer {
+func MIDISourceCreateWithProtocol(client MIDIClientRef, name unsafe.Pointer, protocol_ unsafe.Pointer, outSrc unsafe.Pointer) unsafe.Pointer {
 	return _MIDISourceCreateWithProtocol(client, name, protocol_, outSrc)
 }
 
@@ -944,7 +944,7 @@ func MIDIThruConnectionCreate(inPersistentOwnerID unsafe.Pointer, inConnectionPa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)
-func MIDIThruConnectionDispose(connection unsafe.Pointer) unsafe.Pointer {
+func MIDIThruConnectionDispose(connection MIDIThruConnectionRef) unsafe.Pointer {
 	return _MIDIThruConnectionDispose(connection)
 }
 
@@ -966,7 +966,7 @@ func MIDIThruConnectionFind(inPersistentOwnerID unsafe.Pointer, outConnectionLis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)
-func MIDIThruConnectionGetParams(connection unsafe.Pointer, outConnectionParams unsafe.Pointer) unsafe.Pointer {
+func MIDIThruConnectionGetParams(connection MIDIThruConnectionRef, outConnectionParams unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionGetParams(connection, outConnectionParams)
 }
 
@@ -988,7 +988,7 @@ func MIDIThruConnectionParamsInitialize(inConnectionParams unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)
-func MIDIThruConnectionSetParams(connection unsafe.Pointer, inConnectionParams unsafe.Pointer) unsafe.Pointer {
+func MIDIThruConnectionSetParams(connection MIDIThruConnectionRef, inConnectionParams unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionSetParams(connection, inConnectionParams)
 }
 

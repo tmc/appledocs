@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [SplitView] class.
@@ -30,9 +31,9 @@ type _SplitViewClass struct {
 type ISplitView interface {
 	IView
 	// properties:
-	ArrangedSubviews() []View /* primitive/slice/pointer. */
-	ArrangesAllSubviews() bool /* primitive/slice/pointer. */
-	SetArrangesAllSubviews(value bool /* primitive/slice/pointer. */)
+	ArrangedSubviews() []IView
+	ArrangesAllSubviews() bool
+	SetArrangesAllSubviews(value bool)
 	AutosaveName() objc.IObject /* cross-framework: SplitViewAutosaveName */
 	SetAutosaveName(value objc.IObject /* cross-framework: SplitViewAutosaveName */)
 	Delegate() objc.ID
@@ -40,23 +41,23 @@ type ISplitView interface {
 	DividerColor() IColor
 	DividerStyle() SplitViewDividerStyle
 	SetDividerStyle(value SplitViewDividerStyle)
-	DividerThickness() float64 /* primitive/slice/pointer. */
-	Vertical() bool /* primitive/slice/pointer. */
-	SetVertical(value bool /* primitive/slice/pointer. */)
-	IsVertical() bool /* primitive/slice/pointer. */
-	SetIsVertical(value bool /* primitive/slice/pointer. */)
+	DividerThickness() float64
+	Vertical() bool
+	SetVertical(value bool)
+	IsVertical() bool
+	SetIsVertical(value bool)
 	// methods:
 	AddArrangedSubview(view IView)
 	AdjustSubviews()
-	DrawDividerInRect(rect objc.IObject /* cross-framework Rect */)
-	HoldingPriorityForSubviewAtIndex(subviewIndex int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: LayoutPriority */
-	InsertArrangedSubviewAtIndex(view IView, index int /* primitive/slice/pointer. */)
-	IsSubviewCollapsed(subview IView) bool /* primitive/slice/pointer. */
-	MaxPossiblePositionOfDividerAtIndex(dividerIndex int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
-	MinPossiblePositionOfDividerAtIndex(dividerIndex int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
+	DrawDividerInRect(rect objc.IObject /* cross-framework: Rect */)
+	HoldingPriorityForSubviewAtIndex(subviewIndex int) objc.IObject /* cross-framework: LayoutPriority */
+	InsertArrangedSubviewAtIndex(view IView, index int)
+	IsSubviewCollapsed(subview IView) bool
+	MaxPossiblePositionOfDividerAtIndex(dividerIndex int) float64
+	MinPossiblePositionOfDividerAtIndex(dividerIndex int) float64
 	RemoveArrangedSubview(view IView)
-	SetHoldingPriorityForSubviewAtIndex(priority objc.IObject /* cross-framework LayoutPriority */, subviewIndex int /* primitive/slice/pointer. */)
-	SetPositionOfDividerAtIndex(position float64 /* primitive/slice/pointer. */, dividerIndex int /* primitive/slice/pointer. */)
+	SetHoldingPriorityForSubviewAtIndex(priority objc.IObject /* cross-framework: LayoutPriority */, subviewIndex int)
+	SetPositionOfDividerAtIndex(position float64, dividerIndex int)
 }
 
 // A view that arranges two or more views in a linear stack running horizontally or vertically.
@@ -136,7 +137,7 @@ func (s_ SplitView) AdjustSubviews() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/drawDivider(in:)
-func (s_ SplitView) DrawDividerInRect(rect objc.IObject /* cross-framework Rect */) {
+func (s_ SplitView) DrawDividerInRect(rect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawDividerInRect:"), rect)
 }
 
@@ -145,7 +146,7 @@ func (s_ SplitView) DrawDividerInRect(rect objc.IObject /* cross-framework Rect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/holdingPriorityForSubview(at:)
-func (s_ SplitView) HoldingPriorityForSubviewAtIndex(subviewIndex int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: LayoutPriority */ {
+func (s_ SplitView) HoldingPriorityForSubviewAtIndex(subviewIndex int) objc.IObject /* cross-framework: LayoutPriority */ {
 	rv := objc.Send[LayoutPriority](s_.ID, objc.Sel("holdingPriorityForSubviewAtIndex:"), subviewIndex)
 	return rv
 }
@@ -155,7 +156,7 @@ func (s_ SplitView) HoldingPriorityForSubviewAtIndex(subviewIndex int /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/insertArrangedSubview(_:at:)
-func (s_ SplitView) InsertArrangedSubviewAtIndex(view IView, index int /* primitive/slice/pointer. */) {
+func (s_ SplitView) InsertArrangedSubviewAtIndex(view IView, index int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertArrangedSubview:atIndex:"), view, index)
 }
 
@@ -164,7 +165,7 @@ func (s_ SplitView) InsertArrangedSubviewAtIndex(view IView, index int /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/isSubviewCollapsed(_:)
-func (s_ SplitView) IsSubviewCollapsed(subview IView) bool /* primitive/slice/pointer. */ {
+func (s_ SplitView) IsSubviewCollapsed(subview IView) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSubviewCollapsed:"), subview)
 	return rv
 }
@@ -174,7 +175,7 @@ func (s_ SplitView) IsSubviewCollapsed(subview IView) bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/maxPossiblePositionOfDivider(at:)
-func (s_ SplitView) MaxPossiblePositionOfDividerAtIndex(dividerIndex int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */ {
+func (s_ SplitView) MaxPossiblePositionOfDividerAtIndex(dividerIndex int) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxPossiblePositionOfDividerAtIndex:"), dividerIndex)
 	return rv
 }
@@ -184,7 +185,7 @@ func (s_ SplitView) MaxPossiblePositionOfDividerAtIndex(dividerIndex int /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/minPossiblePositionOfDivider(at:)
-func (s_ SplitView) MinPossiblePositionOfDividerAtIndex(dividerIndex int /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */ {
+func (s_ SplitView) MinPossiblePositionOfDividerAtIndex(dividerIndex int) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minPossiblePositionOfDividerAtIndex:"), dividerIndex)
 	return rv
 }
@@ -203,7 +204,7 @@ func (s_ SplitView) RemoveArrangedSubview(view IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/setHoldingPriority(_:forSubviewAt:)
-func (s_ SplitView) SetHoldingPriorityForSubviewAtIndex(priority objc.IObject /* cross-framework LayoutPriority */, subviewIndex int /* primitive/slice/pointer. */) {
+func (s_ SplitView) SetHoldingPriorityForSubviewAtIndex(priority objc.IObject /* cross-framework: LayoutPriority */, subviewIndex int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHoldingPriority:forSubviewAtIndex:"), priority, subviewIndex)
 }
 
@@ -212,7 +213,7 @@ func (s_ SplitView) SetHoldingPriorityForSubviewAtIndex(priority objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/setPosition(_:ofDividerAt:)
-func (s_ SplitView) SetPositionOfDividerAtIndex(position float64 /* primitive/slice/pointer. */, dividerIndex int /* primitive/slice/pointer. */) {
+func (s_ SplitView) SetPositionOfDividerAtIndex(position float64, dividerIndex int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPosition:ofDividerAtIndex:"), position, dividerIndex)
 }
 
@@ -221,7 +222,7 @@ func (s_ SplitView) SetPositionOfDividerAtIndex(position float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangedSubviews
-func (s_ SplitView) ArrangedSubviews() []View /* primitive/slice/pointer. */ {
+func (s_ SplitView) ArrangedSubviews() []IView {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
 }
@@ -231,7 +232,7 @@ func (s_ SplitView) ArrangedSubviews() []View /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangesAllSubviews
-func (s_ SplitView) ArrangesAllSubviews() bool /* primitive/slice/pointer. */ {
+func (s_ SplitView) ArrangesAllSubviews() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("arrangesAllSubviews"))
 	return rv
 }
@@ -241,7 +242,7 @@ func (s_ SplitView) ArrangesAllSubviews() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangesAllSubviews
-func (s_ SplitView) SetArrangesAllSubviews(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitView) SetArrangesAllSubviews(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArrangesAllSubviews:"), value)
 }
 
@@ -317,7 +318,7 @@ func (s_ SplitView) SetDividerStyle(value SplitViewDividerStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/dividerThickness
-func (s_ SplitView) DividerThickness() float64 /* primitive/slice/pointer. */ {
+func (s_ SplitView) DividerThickness() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("dividerThickness"))
 	return rv
 }
@@ -327,7 +328,7 @@ func (s_ SplitView) DividerThickness() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/isVertical
-func (s_ SplitView) Vertical() bool /* primitive/slice/pointer. */ {
+func (s_ SplitView) Vertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
 	return rv
 }
@@ -337,7 +338,7 @@ func (s_ SplitView) Vertical() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/isVertical
-func (s_ SplitView) SetVertical(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitView) SetVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
 }
 
@@ -346,7 +347,7 @@ func (s_ SplitView) SetVertical(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-func (s_ SplitView) IsVertical() bool /* primitive/slice/pointer. */ {
+func (s_ SplitView) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
 }
@@ -356,7 +357,7 @@ func (s_ SplitView) IsVertical() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-func (s_ SplitView) SetIsVertical(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitView) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }
 

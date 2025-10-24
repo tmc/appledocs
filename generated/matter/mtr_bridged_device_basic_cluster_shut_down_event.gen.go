@@ -29,9 +29,13 @@ type _MTRBridgedDeviceBasicClusterShutDownEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicClusterShutDownEvent] class.
 type IMTRBridgedDeviceBasicClusterShutDownEvent interface {
 	IMTRBridgedDeviceBasicInformationClusterShutDownEvent
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterShutDownEvent
 type MTRBridgedDeviceBasicClusterShutDownEvent struct {
 	MTRBridgedDeviceBasicInformationClusterShutDownEvent

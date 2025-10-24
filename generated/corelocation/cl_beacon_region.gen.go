@@ -33,16 +33,16 @@ type IBeaconRegion interface {
 	// properties:
 	BeaconIdentityConstraint() ICLBeaconIdentityConstraint
 	SetBeaconIdentityConstraint(value ICLBeaconIdentityConstraint)
-	Major() foundation.objc.IObject /* cross-framework: Number */
-	SetMajor(value foundation.objc.IObject /* cross-framework: Number */)
-	Minor() foundation.objc.IObject /* cross-framework: Number */
-	SetMinor(value foundation.objc.IObject /* cross-framework: Number */)
-	NotifyEntryStateOnDisplay() bool /* primitive/slice/pointer. */
-	SetNotifyEntryStateOnDisplay(value bool /* primitive/slice/pointer. */)
-	ProximityUUID() foundation.objc.IObject /* cross-framework: UUID */
-	SetProximityUUID(value foundation.objc.IObject /* cross-framework: UUID */)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Major() objc.IObject /* cross-framework: NSNumber */
+	SetMajor(value objc.IObject /* cross-framework: NSNumber */)
+	Minor() objc.IObject /* cross-framework: NSNumber */
+	SetMinor(value objc.IObject /* cross-framework: NSNumber */)
+	NotifyEntryStateOnDisplay() bool
+	SetNotifyEntryStateOnDisplay(value bool)
+	ProximityUUID() objc.IObject /* cross-framework: UUID */
+	SetProximityUUID(value objc.IObject /* cross-framework: UUID */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -124,8 +124,8 @@ func (b_ BeaconRegion) SetBeaconIdentityConstraint(value ICLBeaconIdentityConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
-func (b_ BeaconRegion) Major() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+func (b_ BeaconRegion) Major() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
 
@@ -134,7 +134,7 @@ func (b_ BeaconRegion) Major() foundation.objc.IObject /* cross-framework: Numbe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
-func (b_ BeaconRegion) SetMajor(value foundation.objc.IObject /* cross-framework: Number */) {
+func (b_ BeaconRegion) SetMajor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
@@ -143,8 +143,8 @@ func (b_ BeaconRegion) SetMajor(value foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
-func (b_ BeaconRegion) Minor() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
+func (b_ BeaconRegion) Minor() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (b_ BeaconRegion) Minor() foundation.objc.IObject /* cross-framework: Numbe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
-func (b_ BeaconRegion) SetMinor(value foundation.objc.IObject /* cross-framework: Number */) {
+func (b_ BeaconRegion) SetMinor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
@@ -162,7 +162,7 @@ func (b_ BeaconRegion) SetMinor(value foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
-func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool /* primitive/slice/pointer. */ {
+func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("notifyEntryStateOnDisplay"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
-func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool /* primitive/slice/pointer. */) {
+func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNotifyEntryStateOnDisplay:"), value)
 }
 
@@ -181,7 +181,7 @@ func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
-func (b_ BeaconRegion) ProximityUUID() foundation.objc.IObject /* cross-framework: UUID */ {
+func (b_ BeaconRegion) ProximityUUID() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
@@ -191,7 +191,7 @@ func (b_ BeaconRegion) ProximityUUID() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
-func (b_ BeaconRegion) SetProximityUUID(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (b_ BeaconRegion) SetProximityUUID(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setProximityUUID:"), value)
 }
 
@@ -200,7 +200,7 @@ func (b_ BeaconRegion) SetProximityUUID(value foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
-func (b_ BeaconRegion) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (b_ BeaconRegion) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (b_ BeaconRegion) Uuid() foundation.objc.IObject /* cross-framework: UUID *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
-func (b_ BeaconRegion) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (b_ BeaconRegion) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
 

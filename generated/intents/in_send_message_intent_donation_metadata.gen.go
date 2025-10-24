@@ -30,16 +30,16 @@ type _INSendMessageIntentDonationMetadataClass struct {
 type IINSendMessageIntentDonationMetadata interface {
 	IINIntentDonationMetadata
 	// properties:
-	ReplyToCurrentUser() bool /* primitive/slice/pointer. */
-	SetReplyToCurrentUser(value bool /* primitive/slice/pointer. */)
-	MentionsCurrentUser() bool /* primitive/slice/pointer. */
-	SetMentionsCurrentUser(value bool /* primitive/slice/pointer. */)
-	NotifyRecipientAnyway() bool /* primitive/slice/pointer. */
-	SetNotifyRecipientAnyway(value bool /* primitive/slice/pointer. */)
-	RecipientCount() uint /* primitive/slice/pointer. */
-	SetRecipientCount(value uint /* primitive/slice/pointer. */)
-	IsReplyToCurrentUser() bool /* primitive/slice/pointer. */
-	SetIsReplyToCurrentUser(value bool /* primitive/slice/pointer. */)
+	ReplyToCurrentUser() bool
+	SetReplyToCurrentUser(value bool)
+	MentionsCurrentUser() bool
+	SetMentionsCurrentUser(value bool)
+	NotifyRecipientAnyway() bool
+	SetNotifyRecipientAnyway(value bool)
+	RecipientCount() uint
+	SetRecipientCount(value uint)
+	IsReplyToCurrentUser() bool
+	SetIsReplyToCurrentUser(value bool)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewINSendMessageIntentDonationMetadata() INSendMessageIntentDonationMetadat
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser
-func (i_ INSendMessageIntentDonationMetadata) ReplyToCurrentUser() bool /* primitive/slice/pointer. */ {
+func (i_ INSendMessageIntentDonationMetadata) ReplyToCurrentUser() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("replyToCurrentUser"))
 	return rv
 }
@@ -101,14 +101,14 @@ func (i_ INSendMessageIntentDonationMetadata) ReplyToCurrentUser() bool /* primi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser
-func (i_ INSendMessageIntentDonationMetadata) SetReplyToCurrentUser(value bool /* primitive/slice/pointer. */) {
+func (i_ INSendMessageIntentDonationMetadata) SetReplyToCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReplyToCurrentUser:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser
-func (i_ INSendMessageIntentDonationMetadata) MentionsCurrentUser() bool /* primitive/slice/pointer. */ {
+func (i_ INSendMessageIntentDonationMetadata) MentionsCurrentUser() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("mentionsCurrentUser"))
 	return rv
 }
@@ -116,14 +116,14 @@ func (i_ INSendMessageIntentDonationMetadata) MentionsCurrentUser() bool /* prim
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser
-func (i_ INSendMessageIntentDonationMetadata) SetMentionsCurrentUser(value bool /* primitive/slice/pointer. */) {
+func (i_ INSendMessageIntentDonationMetadata) SetMentionsCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMentionsCurrentUser:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway
-func (i_ INSendMessageIntentDonationMetadata) NotifyRecipientAnyway() bool /* primitive/slice/pointer. */ {
+func (i_ INSendMessageIntentDonationMetadata) NotifyRecipientAnyway() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("notifyRecipientAnyway"))
 	return rv
 }
@@ -131,14 +131,14 @@ func (i_ INSendMessageIntentDonationMetadata) NotifyRecipientAnyway() bool /* pr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway
-func (i_ INSendMessageIntentDonationMetadata) SetNotifyRecipientAnyway(value bool /* primitive/slice/pointer. */) {
+func (i_ INSendMessageIntentDonationMetadata) SetNotifyRecipientAnyway(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotifyRecipientAnyway:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount
-func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint /* primitive/slice/pointer. */ {
+func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("recipientCount"))
 	return rv
 }
@@ -146,14 +146,14 @@ func (i_ INSendMessageIntentDonationMetadata) RecipientCount() uint /* primitive
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount
-func (i_ INSendMessageIntentDonationMetadata) SetRecipientCount(value uint /* primitive/slice/pointer. */) {
+func (i_ INSendMessageIntentDonationMetadata) SetRecipientCount(value uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipientCount:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
-func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool /* primitive/slice/pointer. */ {
+func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isReplyToCurrentUser"))
 	return rv
 }
@@ -161,7 +161,7 @@ func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool /* pri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentdonationmetadata/isreplytocurrentuser
-func (i_ INSendMessageIntentDonationMetadata) SetIsReplyToCurrentUser(value bool /* primitive/slice/pointer. */) {
+func (i_ INSendMessageIntentDonationMetadata) SetIsReplyToCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReplyToCurrentUser:"), value)
 }
 

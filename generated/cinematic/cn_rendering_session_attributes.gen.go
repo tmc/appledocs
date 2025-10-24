@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _CNRenderingSessionAttributesClass struct {
 type ICNRenderingSessionAttributes interface {
 	objectivec.IObject
 	// properties:
-	RenderingVersion() int /* primitive/slice/pointer. */
+	RenderingVersion() int
 	// methods:
 }
 
@@ -92,7 +93,7 @@ func NewCNRenderingSessionAttributes() CNRenderingSessionAttributes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/loadFromAsset:completionHandler:
-func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset objc.IObject /* cross-framework Asset */, completionHandler unsafe.Pointer) {
+func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset objc.IObject /* cross-framework: Asset */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 
@@ -101,7 +102,7 @@ func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/renderingVersion
-func (c_ CNRenderingSessionAttributes) RenderingVersion() int /* primitive/slice/pointer. */ {
+func (c_ CNRenderingSessionAttributes) RenderingVersion() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("renderingVersion"))
 	return rv
 }

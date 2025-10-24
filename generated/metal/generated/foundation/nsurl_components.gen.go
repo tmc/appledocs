@@ -61,22 +61,22 @@ type IURLComponents interface {
 	SetQuery(value IString)
 	QueryItems() IURLQueryItem
 	SetQueryItems(value IURLQueryItem)
-	RangeOfFragment() NSRange /* not a class type */
-	SetRangeOfFragment(value NSRange /* not a class type */)
-	RangeOfHost() NSRange /* not a class type */
-	SetRangeOfHost(value NSRange /* not a class type */)
-	RangeOfPassword() NSRange /* not a class type */
-	SetRangeOfPassword(value NSRange /* not a class type */)
-	RangeOfPath() NSRange /* not a class type */
-	SetRangeOfPath(value NSRange /* not a class type */)
-	RangeOfPort() NSRange /* not a class type */
-	SetRangeOfPort(value NSRange /* not a class type */)
-	RangeOfQuery() NSRange /* not a class type */
-	SetRangeOfQuery(value NSRange /* not a class type */)
-	RangeOfScheme() NSRange /* not a class type */
-	SetRangeOfScheme(value NSRange /* not a class type */)
-	RangeOfUser() NSRange /* not a class type */
-	SetRangeOfUser(value NSRange /* not a class type */)
+	RangeOfFragment() objc.IObject /* cross-framework: Range */
+	SetRangeOfFragment(value objc.IObject /* cross-framework: Range */)
+	RangeOfHost() objc.IObject /* cross-framework: Range */
+	SetRangeOfHost(value objc.IObject /* cross-framework: Range */)
+	RangeOfPassword() objc.IObject /* cross-framework: Range */
+	SetRangeOfPassword(value objc.IObject /* cross-framework: Range */)
+	RangeOfPath() objc.IObject /* cross-framework: Range */
+	SetRangeOfPath(value objc.IObject /* cross-framework: Range */)
+	RangeOfPort() objc.IObject /* cross-framework: Range */
+	SetRangeOfPort(value objc.IObject /* cross-framework: Range */)
+	RangeOfQuery() objc.IObject /* cross-framework: Range */
+	SetRangeOfQuery(value objc.IObject /* cross-framework: Range */)
+	RangeOfScheme() objc.IObject /* cross-framework: Range */
+	SetRangeOfScheme(value objc.IObject /* cross-framework: Range */)
+	RangeOfUser() objc.IObject /* cross-framework: Range */
+	SetRangeOfUser(value objc.IObject /* cross-framework: Range */)
 	Scheme() IString
 	SetScheme(value IString)
 	String() IString
@@ -426,7 +426,7 @@ func (u_ URLComponents) SetQueryItems(value IURLQueryItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-func (u_ URLComponents) RangeOfFragment() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfFragment() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfFragment"))
 	return rv
 }
@@ -436,7 +436,7 @@ func (u_ URLComponents) RangeOfFragment() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeoffragment
-func (u_ URLComponents) SetRangeOfFragment(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfFragment(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfFragment:"), value)
 }
 
@@ -445,7 +445,7 @@ func (u_ URLComponents) SetRangeOfFragment(value NSRange /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofhost
-func (u_ URLComponents) RangeOfHost() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfHost() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfHost"))
 	return rv
 }
@@ -455,7 +455,7 @@ func (u_ URLComponents) RangeOfHost() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofhost
-func (u_ URLComponents) SetRangeOfHost(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfHost(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfHost:"), value)
 }
 
@@ -464,7 +464,7 @@ func (u_ URLComponents) SetRangeOfHost(value NSRange /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-func (u_ URLComponents) RangeOfPassword() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfPassword() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPassword"))
 	return rv
 }
@@ -474,7 +474,7 @@ func (u_ URLComponents) RangeOfPassword() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpassword
-func (u_ URLComponents) SetRangeOfPassword(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfPassword(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPassword:"), value)
 }
 
@@ -483,7 +483,7 @@ func (u_ URLComponents) SetRangeOfPassword(value NSRange /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
-func (u_ URLComponents) RangeOfPath() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfPath() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPath"))
 	return rv
 }
@@ -493,7 +493,7 @@ func (u_ URLComponents) RangeOfPath() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofpath
-func (u_ URLComponents) SetRangeOfPath(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfPath(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPath:"), value)
 }
 
@@ -502,7 +502,7 @@ func (u_ URLComponents) SetRangeOfPath(value NSRange /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-func (u_ URLComponents) RangeOfPort() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfPort() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfPort"))
 	return rv
 }
@@ -512,7 +512,7 @@ func (u_ URLComponents) RangeOfPort() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofport
-func (u_ URLComponents) SetRangeOfPort(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfPort(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfPort:"), value)
 }
 
@@ -521,7 +521,7 @@ func (u_ URLComponents) SetRangeOfPort(value NSRange /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-func (u_ URLComponents) RangeOfQuery() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfQuery() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfQuery"))
 	return rv
 }
@@ -531,7 +531,7 @@ func (u_ URLComponents) RangeOfQuery() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofquery
-func (u_ URLComponents) SetRangeOfQuery(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfQuery(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfQuery:"), value)
 }
 
@@ -540,7 +540,7 @@ func (u_ URLComponents) SetRangeOfQuery(value NSRange /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-func (u_ URLComponents) RangeOfScheme() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfScheme() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfScheme"))
 	return rv
 }
@@ -550,7 +550,7 @@ func (u_ URLComponents) RangeOfScheme() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofscheme
-func (u_ URLComponents) SetRangeOfScheme(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfScheme(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfScheme:"), value)
 }
 
@@ -559,7 +559,7 @@ func (u_ URLComponents) SetRangeOfScheme(value NSRange /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
-func (u_ URLComponents) RangeOfUser() NSRange /* not a class type */ {
+func (u_ URLComponents) RangeOfUser() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](u_.ID, objc.Sel("rangeOfUser"))
 	return rv
 }
@@ -569,7 +569,7 @@ func (u_ URLComponents) RangeOfUser() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/rangeofuser
-func (u_ URLComponents) SetRangeOfUser(value NSRange /* not a class type */) {
+func (u_ URLComponents) SetRangeOfUser(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRangeOfUser:"), value)
 }
 

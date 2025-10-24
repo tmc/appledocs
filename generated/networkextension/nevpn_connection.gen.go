@@ -31,22 +31,27 @@ type _NEVPNConnectionClass struct {
 // An interface definition for the [NEVPNConnection] class.
 type INEVPNConnection interface {
 	objectivec.IObject
-	FetchLastDisconnectErrorWithCompletionHandler(handler unsafe.Pointer)
-	StartVPNTunnelAndReturnError(error_ unsafe.Pointer) bool
-	StartVPNTunnelWithOptionsAndReturnError(options unsafe.Pointer, error_ unsafe.Pointer) bool
-	StopVPNTunnel()
-	ConnectedDate() foundation.NSDate
-	Manager() NEVPNManager
+	// properties:
+	ConnectedDate() objc.IObject /* cross-framework: Date */
+	SetConnectedDate(value objc.IObject /* cross-framework: Date */)
+	Manager() INEVPNManager
+	SetManager(value INEVPNManager)
 	Status() NEVPNStatus
-	NEVPNConnectionErrorDomain() string
-	NEVPNConnectionStartOptionPassword() string
-	NEVPNConnectionStartOptionUsername() string
+	SetStatus(value NEVPNStatus)
+	NEVPNConnectionErrorDomain() objc.IObject /* cross-framework: NSString */
+	NEVPNConnectionStartOptionPassword() objc.IObject /* cross-framework: NSString */
+	NEVPNConnectionStartOptionUsername() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // An object to start and stop a Personal VPN connection and get its status.
 //
 // objects are not instantiated directly. Instead, each object has an associated object as a read-only property. The class provides methods for starting and stopping the VPN programmatically. The other way that the VPN can be started and stopped is through VPN On Demand. See the property in and . Instances of this class are thread safe.
+
+
+// An object to start and stop a Personal VPN connection and get its status.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection
 type NEVPNConnection struct {
 	objectivec.Object
@@ -91,78 +96,82 @@ func NewNEVPNConnection() NEVPNConnection {
 }
 
 
-// Retrives the most recent error that caused the VPN to disconnect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/fetchLastDisconnectError(completionHandler:)
-func (n_ NEVPNConnection) FetchLastDisconnectErrorWithCompletionHandler(handler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("fetchLastDisconnectErrorWithCompletionHandler:"), handler)
-}
 
-// Start the process of connecting the VPN.
+// The date and time when the connection status changed to
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/startVPNTunnel()
-func (n_ NEVPNConnection) StartVPNTunnelAndReturnError(error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("startVPNTunnelAndReturnError:"), error_)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/connecteddate
+func (n_ NEVPNConnection) ConnectedDate() objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[foundation.Date](n_.ID, objc.Sel("connectedDate"))
 	return rv
 }
 
-// Start the process of connecting the VPN.
+
+// The date and time when the connection status changed to
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/startVPNTunnel(options:)
-func (n_ NEVPNConnection) StartVPNTunnelWithOptionsAndReturnError(options unsafe.Pointer, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("startVPNTunnelWithOptions:andReturnError:"), options, error_)
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/connecteddate
+func (n_ NEVPNConnection) SetConnectedDate(value objc.IObject /* cross-framework: Date */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectedDate:"), value)
 }
 
-// Start the process of disconnecting the VPN.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/stopVPNTunnel()
-func (n_ NEVPNConnection) StopVPNTunnel() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("stopVPNTunnel"))
-}
 
-// The date and time when the connection status changed to .
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/connectedDate
-func (n_ NEVPNConnection) ConnectedDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](n_.ID, objc.Sel("connectedDate"))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/manager
-func (n_ NEVPNConnection) Manager() NEVPNManager {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/manager
+func (n_ NEVPNConnection) Manager() INEVPNManager {
 	rv := objc.Send[NEVPNManager](n_.ID, objc.Sel("manager"))
 	return rv
 }
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/manager
+func (n_ NEVPNConnection) SetManager(value INEVPNManager) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setManager:"), value)
+}
+
+
 // The current status of the VPN connection.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNConnection/status
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/status
 func (n_ NEVPNConnection) Status() NEVPNStatus {
 	rv := objc.Send[NEVPNStatus](n_.ID, objc.Sel("status"))
 	return rv
 }
 
+
+// The current status of the VPN connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnection/status
+func (n_ NEVPNConnection) SetStatus(value NEVPNStatus) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setStatus:"), value)
+}
+
+
 // The domain for errors resulting from VPN connection calls.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain
-func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
+func (n_ NEVPNConnection) NEVPNConnectionErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEVPNConnectionErrorDomain"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionPassword() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEVPNConnectionStartOptionPassword"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername
-func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
+func (n_ NEVPNConnection) NEVPNConnectionStartOptionUsername() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEVPNConnectionStartOptionUsername"))
 	return rv
 }
 

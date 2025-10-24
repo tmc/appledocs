@@ -32,9 +32,6 @@ type _ModelCollectionClass struct {
 type IModelCollection interface {
 	objectivec.IObject
 	// properties:
-	DeploymentID() string /* primitive/slice/pointer. */
-	Entries() foundation.IDictionary /* already interface */
-	Identifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -95,8 +92,8 @@ func NewModelCollection() ModelCollection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:
-func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) Progress /* not a class type */ {
-	rv := objc.Send[Progress](objc.ID(mc.class), objc.Sel("beginAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) objc.IObject /* cross-framework: Progress */ {
+	rv := objc.Send[foundation.Progress](objc.ID(mc.class), objc.Sel("beginAccessingModelCollectionWithIdentifier:completionHandler:"), identifier, completionHandler)
 	return rv
 }
 
@@ -105,39 +102,8 @@ func (mc _ModelCollectionClass) BeginAccessingModelCollectionWithIdentifierCompl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/endAccessing(identifier:)
-func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("endAccessingModelCollectionWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (mc _ModelCollectionClass) EndAccessingModelCollectionWithIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("endAccessingModelCollectionWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
-
-
-// The unique identifier of the model collection’s deployment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/deploymentID
-func (m_ ModelCollection) DeploymentID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("deploymentID"))
-	return rv
-}
-
-
-// A dictionary of model entries keyed to the models’ identifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/entries
-func (m_ ModelCollection) Entries() foundation.IDictionary /* already interface */ {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("entries"))
-	return rv
-}
-
-
-// The name of the model collection, unique to the development team.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/identifier
-func (m_ ModelCollection) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
-	return rv
-}
-
 
 

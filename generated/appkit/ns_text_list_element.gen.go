@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextListElement] class.
@@ -31,18 +29,8 @@ type _TextListElementClass struct {
 // An interface definition for the [TextListElement] class.
 type ITextListElement interface {
 	ITextParagraph
-	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.IAttributedString)
-	ChildElements() NSTextListElement
-	SetChildElements(value ITextListElement)
-	Contents() foundation.AttributedString
-	SetContents(value foundation.IAttributedString)
-	MarkerAttributes() coreml.Key
-	SetMarkerAttributes(value coreml.IKey)
-	Parent() NSTextListElement
-	SetParent(value ITextListElement)
-	TextList() NSTextList
-	SetTextList(value ITextList)
+	// properties:
+	// methods:
 }
 
 // A class that represents a text list node.
@@ -96,120 +84,6 @@ func NewTextListElement() TextListElement {
 	return getTextListElementClass().New()
 }
 
-
-
-// An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) AttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
-	return rv
-}
-
-
-// An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/attributedstring
-func (t_ TextListElement) SetAttributedString(value foundation.IAttributedString) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
-}
-
-
-// An array that contains child text elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-func (t_ TextListElement) ChildElements() NSTextListElement {
-	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("childElements"))
-	return rv
-}
-
-
-// An array that contains child text elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/childelements
-func (t_ TextListElement) SetChildElements(value ITextListElement) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setChildElements:"), value)
-}
-
-
-// The text list element contents without markers and formatting.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) Contents() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("contents"))
-	return rv
-}
-
-
-// The text list element contents without markers and formatting.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/contents
-func (t_ TextListElement) SetContents(value foundation.IAttributedString) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
-}
-
-
-// A dictionary of attributed string keys and IDs that represent the list’s marker attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-func (t_ TextListElement) MarkerAttributes() coreml.Key {
-	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markerAttributes"))
-	return rv
-}
-
-
-// A dictionary of attributed string keys and IDs that represent the list’s marker attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/markerattributes
-func (t_ TextListElement) SetMarkerAttributes(value coreml.IKey) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkerAttributes:"), value)
-}
-
-
-// A text list element that refers to the enclosing text list element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-func (t_ TextListElement) Parent() NSTextListElement {
-	rv := objc.Send[NSTextListElement](t_.ID, objc.Sel("parent"))
-	return rv
-}
-
-
-// A text list element that refers to the enclosing text list element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/parent
-func (t_ TextListElement) SetParent(value ITextListElement) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setParent:"), value)
-}
-
-
-// The value that represents the text list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-func (t_ TextListElement) TextList() NSTextList {
-	rv := objc.Send[NSTextList](t_.ID, objc.Sel("textList"))
-	return rv
-}
-
-
-// The value that represents the text list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlistelement/textlist
-func (t_ TextListElement) SetTextList(value ITextList) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextList:"), value)
-}
 
 
 

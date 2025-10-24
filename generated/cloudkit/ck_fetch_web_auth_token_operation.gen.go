@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKFetchWebAuthTokenOperation] class.
@@ -30,8 +31,8 @@ type _CKFetchWebAuthTokenOperationClass struct {
 type ICKFetchWebAuthTokenOperation interface {
 	ICKDatabaseOperation
 	// properties:
-	APIToken() string /* primitive/slice/pointer. */
-	SetAPIToken(value string /* primitive/slice/pointer. */)
+	APIToken() objc.IObject /* cross-framework: NSString */
+	SetAPIToken(value objc.IObject /* cross-framework: NSString */)
 	FetchWebAuthTokenCompletionBlock() unsafe.Pointer
 	SetFetchWebAuthTokenCompletionBlock(value unsafe.Pointer)
 	FetchWebAuthTokenResultBlock() unsafe.Pointer
@@ -102,9 +103,9 @@ func NewCKFetchWebAuthTokenOperation() CKFetchWebAuthTokenOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/init(apiToken:)
-func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string /* primitive/slice/pointer. */) CKFetchWebAuthTokenOperation {
+func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken objc.IObject /* cross-framework: NSString */) CKFetchWebAuthTokenOperation {
 	instance := getCKFetchWebAuthTokenOperationClass().Alloc()
-	rv := objc.Send[CKFetchWebAuthTokenOperation](instance.ID, objc.Sel("initWithAPIToken:"), objc.String(APIToken))
+	rv := objc.Send[CKFetchWebAuthTokenOperation](instance.ID, objc.Sel("initWithAPIToken:"), APIToken)
 	rv.Autorelease()
 	return rv
 }
@@ -115,8 +116,8 @@ func NewCKFetchWebAuthTokenOperationWithAPIToken(APIToken string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-func (c_ CKFetchWebAuthTokenOperation) APIToken() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("APIToken"))
+func (c_ CKFetchWebAuthTokenOperation) APIToken() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("APIToken"))
 	return rv
 }
 
@@ -125,8 +126,8 @@ func (c_ CKFetchWebAuthTokenOperation) APIToken() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/apiToken
-func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), objc.String(value))
+func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), value)
 }
 
 

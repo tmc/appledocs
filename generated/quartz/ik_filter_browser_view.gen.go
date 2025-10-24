@@ -30,10 +30,16 @@ type _IKFilterBrowserViewClass struct {
 // An interface definition for the [IKFilterBrowserView] class.
 type IIKFilterBrowserView interface {
 	appkit.IView
+	// properties:
+	// methods:
 }
 
 // The class is used as a container for the elements of an object.
+
+
+// The class is used as a container for the elements of an object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKFilterBrowserView
 type IKFilterBrowserView struct {
 	appkit.View

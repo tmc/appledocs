@@ -6,28 +6,27 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
+	corefoundation "github.com/tmc/appledocs/generated/corefoundation"
 )
 
 
-// Vision Functions (12 total)
+// Vision Functions (11 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_VNElementTypeSize func(unsafe.Pointer) unsafe.Pointer
-	_VNImagePointForFaceLandmarkPoint func(unsafe.Pointer, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGPoint
-	_VNImagePointForNormalizedPoint func(coregraphics.CGPoint, unsafe.Pointer, unsafe.Pointer) coregraphics.CGPoint
-	_VNImagePointForNormalizedPointUsingRegionOfInterest func(coregraphics.CGPoint, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGPoint
-	_VNImageRectForNormalizedRect func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_VNImageRectForNormalizedRectUsingRegionOfInterest func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGRect
-	_VNNormalizedFaceBoundingBoxPointForLandmarkPoint func(unsafe.Pointer, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGPoint
-	_VNNormalizedPointForImagePoint func(coregraphics.CGPoint, unsafe.Pointer, unsafe.Pointer) coregraphics.CGPoint
-	_VNNormalizedPointForImagePointUsingRegionOfInterest func(coregraphics.CGPoint, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGPoint
-	_VNNormalizedRectForImageRect func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
-	_VNNormalizedRectForImageRectUsingRegionOfInterest func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, coregraphics.CGRect) coregraphics.CGRect
-	_VNNormalizedRectIsIdentityRect func(coregraphics.CGRect) bool
+	_VNImagePointForFaceLandmarkPoint func(unsafe.Pointer, corefoundation.Rect, uintptr, uintptr) Point
+	_VNImagePointForNormalizedPoint func(Point, uintptr, uintptr) Point
+	_VNImagePointForNormalizedPointUsingRegionOfInterest func(Point, uintptr, uintptr, corefoundation.Rect) Point
+	_VNImageRectForNormalizedRect func(corefoundation.Rect, uintptr, uintptr) corefoundation.Rect
+	_VNImageRectForNormalizedRectUsingRegionOfInterest func(corefoundation.Rect, uintptr, uintptr, corefoundation.Rect) corefoundation.Rect
+	_VNNormalizedFaceBoundingBoxPointForLandmarkPoint func(unsafe.Pointer, corefoundation.Rect, uintptr, uintptr) Point
+	_VNNormalizedPointForImagePoint func(Point, uintptr, uintptr) Point
+	_VNNormalizedPointForImagePointUsingRegionOfInterest func(Point, uintptr, uintptr, corefoundation.Rect) Point
+	_VNNormalizedRectForImageRect func(corefoundation.Rect, uintptr, uintptr) corefoundation.Rect
+	_VNNormalizedRectForImageRectUsingRegionOfInterest func(corefoundation.Rect, uintptr, uintptr, corefoundation.Rect) corefoundation.Rect
+	_VNNormalizedRectIsIdentityRect func(corefoundation.Rect) bool
 )
 
 func init() {
@@ -35,7 +34,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_VNElementTypeSize, lib, "VNElementTypeSize")
 	tryRegister(&_VNImagePointForFaceLandmarkPoint, lib, "VNImagePointForFaceLandmarkPoint")
 	tryRegister(&_VNImagePointForNormalizedPoint, lib, "VNImagePointForNormalizedPoint")
 	tryRegister(&_VNImagePointForNormalizedPointUsingRegionOfInterest, lib, "VNImagePointForNormalizedPointUsingRegionOfInterest")
@@ -63,125 +61,126 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Returns the size of a feature print element. [Full Topic]
-//
-// Added in macOS 10.15.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNElementTypeSize(_:)
-func VNElementTypeSize(elementType unsafe.Pointer) unsafe.Pointer {
-	return _VNElementTypeSize(elementType)
-	}
-
-
-// Returns the image coordinates of a specified face landmark point. [Full Topic]
+// Returns the image coordinates of a specified face landmark point.
 //
 // Added in macOS 10.13.
+// Returns the image coordinates of a specified face landmark point.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForFaceLandmarkPoint(_:_:_:_:)
-func VNImagePointForFaceLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGPoint {
+func VNImagePointForFaceLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox corefoundation.Rect, imageWidth uintptr, imageHeight uintptr) Point {
 	return _VNImagePointForFaceLandmarkPoint(faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a point in normalized coordinates into image coordinates. [Full Topic]
+// Projects a point in normalized coordinates into image coordinates.
 //
 // Added in macOS 10.13.
+// Projects a point in normalized coordinates into image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForNormalizedPoint(_:_:_:)
-func VNImagePointForNormalizedPoint(normalizedPoint coregraphics.CGPoint, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGPoint {
+func VNImagePointForNormalizedPoint(normalizedPoint Point, imageWidth uintptr, imageHeight uintptr) Point {
 	return _VNImagePointForNormalizedPoint(normalizedPoint, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a point from a region of interest within the normalized coordinates into image coordinates. [Full Topic]
+// Projects a point from a region of interest within the normalized coordinates into image coordinates.
 //
 // Added in macOS 12.0.
+// Projects a point from a region of interest within the normalized coordinates into image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImagePointForNormalizedPointUsingRegionOfInterest(_:_:_:_:)
-func VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint coregraphics.CGPoint, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer, roi coregraphics.CGRect) coregraphics.CGPoint {
+func VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint Point, imageWidth uintptr, imageHeight uintptr, roi corefoundation.Rect) Point {
 	return _VNImagePointForNormalizedPointUsingRegionOfInterest(normalizedPoint, imageWidth, imageHeight, roi)
-	}
+}
 
-
-// Projects a rectangle from normalized coordinates into image coordinates. [Full Topic]
+// Projects a rectangle from normalized coordinates into image coordinates.
 //
 // Added in macOS 10.13.
+// Projects a rectangle from normalized coordinates into image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRectForNormalizedRect(_:_:_:)
-func VNImageRectForNormalizedRect(normalizedRect coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGRect {
+func VNImageRectForNormalizedRect(normalizedRect corefoundation.Rect, imageWidth uintptr, imageHeight uintptr) corefoundation.Rect {
 	return _VNImageRectForNormalizedRect(normalizedRect, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a rectangle from a region of interest within the normalized coordinates into image coordinates. [Full Topic]
+// Projects a rectangle from a region of interest within the normalized coordinates into image coordinates.
 //
 // Added in macOS 12.0.
+// Projects a rectangle from a region of interest within the normalized coordinates into image coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRectForNormalizedRectUsingRegionOfInterest(_:_:_:_:)
-func VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer, roi coregraphics.CGRect) coregraphics.CGRect {
+func VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect corefoundation.Rect, imageWidth uintptr, imageHeight uintptr, roi corefoundation.Rect) corefoundation.Rect {
 	return _VNImageRectForNormalizedRectUsingRegionOfInterest(normalizedRect, imageWidth, imageHeight, roi)
-	}
+}
 
-
-// Returns the coordinates of a specified face landmark point, in bounding box coordinates. [Full Topic]
+// Returns the coordinates of a specified face landmark point, in bounding box coordinates.
 //
 // Added in macOS 10.13.
+// Returns the coordinates of a specified face landmark point, in bounding box coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedFaceBoundingBoxPointForLandmarkPoint(_:_:_:_:)
-func VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGPoint {
+func VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint unsafe.Pointer, faceBoundingBox corefoundation.Rect, imageWidth uintptr, imageHeight uintptr) Point {
 	return _VNNormalizedFaceBoundingBoxPointForLandmarkPoint(faceLandmarkPoint, faceBoundingBox, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a point from image coordinates into normalized coordinates. [Full Topic]
+// Projects a point from image coordinates into normalized coordinates.
 //
 // Added in macOS 11.0.
+// Projects a point from image coordinates into normalized coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedPointForImagePoint(_:_:_:)
-func VNNormalizedPointForImagePoint(imagePoint coregraphics.CGPoint, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGPoint {
+func VNNormalizedPointForImagePoint(imagePoint Point, imageWidth uintptr, imageHeight uintptr) Point {
 	return _VNNormalizedPointForImagePoint(imagePoint, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a point from a region of interest within the image coordinates into normalized coordinates. [Full Topic]
+// Projects a point from a region of interest within the image coordinates into normalized coordinates.
 //
 // Added in macOS 12.0.
+// Projects a point from a region of interest within the image coordinates into normalized coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedPointForImagePointUsingRegionOfInterest(_:_:_:_:)
-func VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint coregraphics.CGPoint, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer, roi coregraphics.CGRect) coregraphics.CGPoint {
+func VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint Point, imageWidth uintptr, imageHeight uintptr, roi corefoundation.Rect) Point {
 	return _VNNormalizedPointForImagePointUsingRegionOfInterest(imagePoint, imageWidth, imageHeight, roi)
-	}
+}
 
-
-// Projects a rectangle from image coordinates into normalized coordinates. [Full Topic]
+// Projects a rectangle from image coordinates into normalized coordinates.
 //
 // Added in macOS 10.13.
+// Projects a rectangle from image coordinates into normalized coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectForImageRect(_:_:_:)
-func VNNormalizedRectForImageRect(imageRect coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer) coregraphics.CGRect {
+func VNNormalizedRectForImageRect(imageRect corefoundation.Rect, imageWidth uintptr, imageHeight uintptr) corefoundation.Rect {
 	return _VNNormalizedRectForImageRect(imageRect, imageWidth, imageHeight)
-	}
+}
 
-
-// Projects a rectangle from a region of interest within the image coordinates space into normalized coordinates. [Full Topic]
+// Projects a rectangle from a region of interest within the image coordinates space into normalized coordinates.
 //
 // Added in macOS 12.0.
+// Projects a rectangle from a region of interest within the image coordinates space into normalized coordinates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectForImageRectUsingRegionOfInterest(_:_:_:_:)
-func VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect coregraphics.CGRect, imageWidth unsafe.Pointer, imageHeight unsafe.Pointer, roi coregraphics.CGRect) coregraphics.CGRect {
+func VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect corefoundation.Rect, imageWidth uintptr, imageHeight uintptr, roi corefoundation.Rect) corefoundation.Rect {
 	return _VNNormalizedRectForImageRectUsingRegionOfInterest(imageRect, imageWidth, imageHeight, roi)
-	}
+}
 
-
-// Returns a Boolean value that indicates whether the rectangle has an origin of zero and unit length and width. [Full Topic]
+// Returns a Boolean value that indicates whether the rectangle has an origin of zero and unit length and width.
 //
 // Added in macOS 10.13.
+// Returns a Boolean value that indicates whether the rectangle has an origin of zero and unit length and width.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNNormalizedRectIsIdentityRect(_:)
-func VNNormalizedRectIsIdentityRect(normalizedRect coregraphics.CGRect) bool {
+func VNNormalizedRectIsIdentityRect(normalizedRect corefoundation.Rect) bool {
 	return _VNNormalizedRectIsIdentityRect(normalizedRect)
-	}
-
+}
 
 
 

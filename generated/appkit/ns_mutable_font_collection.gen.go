@@ -30,12 +30,12 @@ type _MutableFontCollectionClass struct {
 type IMutableFontCollection interface {
 	IFontCollection
 	// properties:
-	ExclusionDescriptors() []FontDescriptor /* primitive/slice/pointer. */
-	SetExclusionDescriptors(value []FontDescriptor /* primitive/slice/pointer. */)
-	QueryDescriptors() []FontDescriptor /* primitive/slice/pointer. */
-	SetQueryDescriptors(value []FontDescriptor /* primitive/slice/pointer. */)
+	ExclusionDescriptors() []IFontDescriptor
+	SetExclusionDescriptors(value []IFontDescriptor)
+	QueryDescriptors() []IFontDescriptor
+	SetQueryDescriptors(value []IFontDescriptor)
 	// methods:
-	RemoveQueryForDescriptors(descriptors []FontDescriptor /* primitive/slice/pointer. */)
+	RemoveQueryForDescriptors(descriptors []IFontDescriptor)
 }
 
 // A mutable collection of font descriptors taken together as a single object.
@@ -147,7 +147,7 @@ func (mc _MutableFontCollectionClass) FontCollectionWithAllAvailableDescriptors(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/removeQuery(for:)
-func (m_ MutableFontCollection) RemoveQueryForDescriptors(descriptors []FontDescriptor /* primitive/slice/pointer. */) {
+func (m_ MutableFontCollection) RemoveQueryForDescriptors(descriptors []IFontDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeQueryForDescriptors:"), descriptors)
 }
 
@@ -156,7 +156,7 @@ func (m_ MutableFontCollection) RemoveQueryForDescriptors(descriptors []FontDesc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/exclusionDescriptors
-func (m_ MutableFontCollection) ExclusionDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+func (m_ MutableFontCollection) ExclusionDescriptors() []IFontDescriptor {
 	rv := objc.Send[[]FontDescriptor](m_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (m_ MutableFontCollection) ExclusionDescriptors() []FontDescriptor /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/exclusionDescriptors
-func (m_ MutableFontCollection) SetExclusionDescriptors(value []FontDescriptor /* primitive/slice/pointer. */) {
+func (m_ MutableFontCollection) SetExclusionDescriptors(value []IFontDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -185,7 +185,7 @@ func (m_ MutableFontCollection) SetExclusionDescriptors(value []FontDescriptor /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/queryDescriptors
-func (m_ MutableFontCollection) QueryDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+func (m_ MutableFontCollection) QueryDescriptors() []IFontDescriptor {
 	rv := objc.Send[[]FontDescriptor](m_.ID, objc.Sel("queryDescriptors"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (m_ MutableFontCollection) QueryDescriptors() []FontDescriptor /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/queryDescriptors
-func (m_ MutableFontCollection) SetQueryDescriptors(value []FontDescriptor /* primitive/slice/pointer. */) {
+func (m_ MutableFontCollection) SetQueryDescriptors(value []IFontDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

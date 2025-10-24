@@ -30,12 +30,18 @@ type _VZLinuxRosettaCachingOptionsClass struct {
 // An interface definition for the [VZLinuxRosettaCachingOptions] class.
 type IVZLinuxRosettaCachingOptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract class that defines UNIX socket-based caching options for Rosetta.
 //
 // define the communication mechanism between the Rosetta daemon and the Rosetta runtime. Don’t instantiate directly. Use one of its subclasses, such as or instead.
+
+
+// An abstract class that defines UNIX socket-based caching options for Rosetta.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaCachingOptions
 type VZLinuxRosettaCachingOptions struct {
 	objectivec.Object

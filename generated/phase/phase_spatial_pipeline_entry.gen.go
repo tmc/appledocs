@@ -30,20 +30,26 @@ type _PHASESpatialPipelineEntryClass struct {
 // An interface definition for the [PHASESpatialPipelineEntry] class.
 type IPHASESpatialPipelineEntry interface {
 	objectivec.IObject
-	SendLevelMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	// properties:
+	SendLevelMetaParameterDefinition() IPHASENumberMetaParameterDefinition
 	SetSendLevelMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
-	SpatialPipeline() PHASESpatialPipeline
+	SpatialPipeline() IPHASESpatialPipeline
 	SetSpatialPipeline(value IPHASESpatialPipeline)
-	Entries() PHASESpatialPipelineEntry
+	Entries() IPHASESpatialPipelineEntry
 	SetEntries(value IPHASESpatialPipelineEntry)
 	SendLevel() float64
 	SetSendLevel(value float64)
+	// methods:
 }
 
 // An audio layer with an adjustable volume for a spatial mixer’s output.
 //
 // This property adjusts the amount of audio that passes through a spatial mixer’s pipeline ( ) to the output. The pipeline’s contains an instance of this class for each type of audio layer that defines. Depending on the layer’s type, the audio may sound like spatial relections, environmental reverb, or the unfiltered signal. An app adjusts the layer’s presence in the mixer’s output by: Defining an initial volume using Adjusting the audio’s volume dynamically, for example, by fading it over a duration using
+
+
+// An audio layer with an adjustable volume for a spatial mixer’s output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry
 type PHASESpatialPipelineEntry struct {
 	objectivec.Object
@@ -88,62 +94,67 @@ func NewPHASESpatialPipelineEntry() PHASESpatialPipelineEntry {
 }
 
 
+
 // A parameter that gradually updates the amount of audio signal that passes through to the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
-func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() IPHASENumberMetaParameterDefinition {
 	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("sendLevelMetaParameterDefinition"))
 	return rv
 }
 
 
-// SetSendLevelMetaParameterDefinition sets the value of the sendLevelMetaParameterDefinition property.
 // A parameter that gradually updates the amount of audio signal that passes through to the output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
 func (p_ PHASESpatialPipelineEntry) SetSendLevelMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevelMetaParameterDefinition:"), value)
 }
 
+
 // An object that adds sound layers for environmental effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
-func (p_ PHASESpatialPipelineEntry) SpatialPipeline() PHASESpatialPipeline {
+func (p_ PHASESpatialPipelineEntry) SpatialPipeline() IPHASESpatialPipeline {
 	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
 	return rv
 }
 
 
-// SetSpatialPipeline sets the value of the spatialPipeline property.
 // An object that adds sound layers for environmental effects.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
 func (p_ PHASESpatialPipelineEntry) SetSpatialPipeline(value IPHASESpatialPipeline) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
 }
 
+
 // Audio layers for environmental effects to add to the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
-func (p_ PHASESpatialPipelineEntry) Entries() PHASESpatialPipelineEntry {
+func (p_ PHASESpatialPipelineEntry) Entries() IPHASESpatialPipelineEntry {
 	rv := objc.Send[PHASESpatialPipelineEntry](p_.ID, objc.Sel("entries"))
 	return rv
 }
 
 
-// SetEntries sets the value of the entries property.
 // Audio layers for environmental effects to add to the output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
 func (p_ PHASESpatialPipelineEntry) SetEntries(value IPHASESpatialPipelineEntry) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEntries:"), value)
 }
 
+
 // The amount of audio signal to add to the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
 func (p_ PHASESpatialPipelineEntry) SendLevel() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("sendLevel"))
@@ -151,10 +162,9 @@ func (p_ PHASESpatialPipelineEntry) SendLevel() float64 {
 }
 
 
-// SetSendLevel sets the value of the sendLevel property.
 // The amount of audio signal to add to the output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
 func (p_ PHASESpatialPipelineEntry) SetSendLevel(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)

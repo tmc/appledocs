@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,18 @@ type _SFContentBlockerManagerClass struct {
 // An interface definition for the [SFContentBlockerManager] class.
 type ISFContentBlockerManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class that your app uses to interact with a content blocker extension.
 //
 // Use this class to determine the state of your content blocker and reload the content-blocking rules used by Safari.
+
+
+// A class that your app uses to interact with a content blocker extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerManager
 type SFContentBlockerManager struct {
 	objectivec.Object
@@ -80,18 +87,22 @@ func NewSFContentBlockerManager() SFContentBlockerManager {
 }
 
 
+
 // Determines the state of your content blocker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerManager/getStateOfContentBlocker(withIdentifier:completionHandler:)
-func (sc _SFContentBlockerManagerClass) GetStateOfContentBlockerWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (sc _SFContentBlockerManagerClass) GetStateOfContentBlockerWithIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfContentBlockerWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
+
 
 // Tells Safari to reload the specified extension’s content-blocking rules.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerManager/reloadContentBlocker(withIdentifier:completionHandler:)
-func (sc _SFContentBlockerManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (sc _SFContentBlockerManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
 
 

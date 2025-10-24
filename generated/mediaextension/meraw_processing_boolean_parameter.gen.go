@@ -29,6 +29,7 @@ type _MERAWProcessingBooleanParameterClass struct {
 // An interface definition for the [MERAWProcessingBooleanParameter] class.
 type IMERAWProcessingBooleanParameter interface {
 	IMERAWProcessingParameter
+	// properties:
 	CameraValue() bool
 	SetCameraValue(value bool)
 	CurrentValue() bool
@@ -37,10 +38,15 @@ type IMERAWProcessingBooleanParameter interface {
 	SetInitialValue(value bool)
 	NeutralValue() bool
 	SetNeutralValue(value bool)
+	// methods:
 }
 
 // An object that describes a Boolean parameter of a RAW processor.
+
+
+// An object that describes a Boolean parameter of a RAW processor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MERAWProcessingParameter/Boolean
 type MERAWProcessingBooleanParameter struct {
 	MERAWProcessingParameter
@@ -87,7 +93,8 @@ func NewMERAWProcessingBooleanParameter() MERAWProcessingBooleanParameter {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/cameravalue
 func (m_ MERAWProcessingBooleanParameter) CameraValue() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("cameraValue"))
@@ -95,15 +102,16 @@ func (m_ MERAWProcessingBooleanParameter) CameraValue() bool {
 }
 
 
-// SetCameraValue sets the value of the cameraValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/cameravalue
 func (m_ MERAWProcessingBooleanParameter) SetCameraValue(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraValue:"), value)
 }
 
+
 // Get or set the current value for this parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/currentvalue
 func (m_ MERAWProcessingBooleanParameter) CurrentValue() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("currentValue"))
@@ -111,17 +119,18 @@ func (m_ MERAWProcessingBooleanParameter) CurrentValue() bool {
 }
 
 
-// SetCurrentValue sets the value of the currentValue property.
 // Get or set the current value for this parameter.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/currentvalue
 func (m_ MERAWProcessingBooleanParameter) SetCurrentValue(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentValue:"), value)
 }
 
+
 // The initial value for this parameter as defined in the sequence metadata.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/initialvalue
 func (m_ MERAWProcessingBooleanParameter) InitialValue() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("initialValue"))
@@ -129,16 +138,16 @@ func (m_ MERAWProcessingBooleanParameter) InitialValue() bool {
 }
 
 
-// SetInitialValue sets the value of the initialValue property.
 // The initial value for this parameter as defined in the sequence metadata.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/initialvalue
 func (m_ MERAWProcessingBooleanParameter) SetInitialValue(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInitialValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/neutralvalue
 func (m_ MERAWProcessingBooleanParameter) NeutralValue() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("neutralValue"))
@@ -146,8 +155,7 @@ func (m_ MERAWProcessingBooleanParameter) NeutralValue() bool {
 }
 
 
-// SetNeutralValue sets the value of the neutralValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean/neutralvalue
 func (m_ MERAWProcessingBooleanParameter) SetNeutralValue(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeutralValue:"), value)

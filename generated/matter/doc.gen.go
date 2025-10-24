@@ -2,12 +2,12 @@
 
 // Package matter provides Go bindings for the Matter framework.
 //
-// Communicate with and control smart home devices from a variety of manufacturers. [Full Topic]
+// Communicate with and control smart home devices from a variety of manufacturers.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Matter without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Matter
+// See: https://developer.apple.com/documentation/Matter
 package matter
 
 import (

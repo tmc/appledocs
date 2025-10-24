@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,17 +32,16 @@ type _EAWiFiUnconfiguredAccessoryClass struct {
 type IEAWiFiUnconfiguredAccessory interface {
 	objectivec.IObject
 	// properties:
-	Manufacturer() string /* primitive/slice/pointer. */
-	MacAddress() string /* primitive/slice/pointer. */
-	SetMacAddress(value string /* primitive/slice/pointer. */)
-	Model() string /* primitive/slice/pointer. */
-	SetModel(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	MacAddress() objc.IObject /* cross-framework: NSString */
+	SetMacAddress(value objc.IObject /* cross-framework: NSString */)
+	Model() objc.IObject /* cross-framework: NSString */
+	SetModel(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	Properties() EAWiFiUnconfiguredAccessoryProperties
 	SetProperties(value EAWiFiUnconfiguredAccessoryProperties)
-	Ssid() string /* primitive/slice/pointer. */
-	SetSsid(value string /* primitive/slice/pointer. */)
+	Ssid() objc.IObject /* cross-framework: NSString */
+	SetSsid(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -96,12 +96,12 @@ func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 
 
 
-// The name of the accessory’s manufacturer.
+// The primary MAC address of the accessory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/manufacturer
-func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
+func (e_ EAWiFiUnconfiguredAccessory) MacAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("macAddress"))
 	return rv
 }
 
@@ -110,18 +110,8 @@ func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
-	return rv
-}
-
-
-// The primary MAC address of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMacAddress:"), objc.String(value))
+func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMacAddress:"), value)
 }
 
 
@@ -129,8 +119,8 @@ func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) Model() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("model"))
+func (e_ EAWiFiUnconfiguredAccessory) Model() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -139,8 +129,8 @@ func (e_ EAWiFiUnconfiguredAccessory) Model() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setModel:"), objc.String(value))
+func (e_ EAWiFiUnconfiguredAccessory) SetModel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setModel:"), value)
 }
 
 
@@ -148,8 +138,8 @@ func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EAWiFiUnconfiguredAccessory) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -158,8 +148,8 @@ func (e_ EAWiFiUnconfiguredAccessory) Name() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+func (e_ EAWiFiUnconfiguredAccessory) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -186,8 +176,8 @@ func (e_ EAWiFiUnconfiguredAccessory) SetProperties(value EAWiFiUnconfiguredAcce
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) Ssid() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
+func (e_ EAWiFiUnconfiguredAccessory) Ssid() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -196,9 +186,8 @@ func (e_ EAWiFiUnconfiguredAccessory) Ssid() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSsid:"), objc.String(value))
+func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSsid:"), value)
 }
-
 
 

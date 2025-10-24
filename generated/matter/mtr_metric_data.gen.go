@@ -31,15 +31,19 @@ type _MTRMetricDataClass struct {
 // An interface definition for the [MTRMetricData] class.
 type IMTRMetricData interface {
 	objectivec.IObject
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	ErrorCode() foundation.Number
-	SetErrorCode(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	ErrorCode() objc.IObject /* cross-framework: NSNumber */
+	SetErrorCode(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMetricData
 type MTRMetricData struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRMetricData() MTRMetricData {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/duration
-func (m_ MTRMetricData) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRMetricData) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/duration
-func (m_ MTRMetricData) SetDuration(value foundation.INumber) {
+func (m_ MTRMetricData) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
-func (m_ MTRMetricData) ErrorCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorCode"))
+func (m_ MTRMetricData) ErrorCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("errorCode"))
 	return rv
 }
 
 
-// SetErrorCode sets the value of the errorCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
-func (m_ MTRMetricData) SetErrorCode(value foundation.INumber) {
+func (m_ MTRMetricData) SetErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
-func (m_ MTRMetricData) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRMetricData) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
-func (m_ MTRMetricData) SetValue(value foundation.INumber) {
+func (m_ MTRMetricData) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

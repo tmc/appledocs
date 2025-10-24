@@ -31,8 +31,8 @@ type IMoveCommand interface {
 	IScriptCommand
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	SetKeySpecifier(value IScriptObjectSpecifier)
 	// methods:
-	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 
 // A command that moves one or more scriptable objects.
@@ -90,22 +90,22 @@ func NewMoveCommand() MoveCommand {
 
 
 
-// Sets the receiver’s object specifier.
+// Returns a specifier for the object or objects to be moved.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/setReceiversSpecifier(_:)
-func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmovecommand/keyspecifier
+func (m_ MoveCommand) KeySpecifier() IScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
+	return rv
 }
 
 
 // Returns a specifier for the object or objects to be moved.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/keySpecifier
-func (m_ MoveCommand) KeySpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmovecommand/keyspecifier
+func (m_ MoveCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeySpecifier:"), value)
 }
 
 

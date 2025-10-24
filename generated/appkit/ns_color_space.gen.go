@@ -41,8 +41,8 @@ type IColorSpace interface {
 	SetIccProfileData(value objc.IObject /* cross-framework: Data */)
 	LocalizedName() objc.IObject /* cross-framework: NSString */
 	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
-	NumberOfColorComponents() int /* primitive/slice/pointer. */
-	SetNumberOfColorComponents(value int /* primitive/slice/pointer. */)
+	NumberOfColorComponents() int
+	SetNumberOfColorComponents(value int)
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func NewColorSpaceWithCGColorSpace(cgColorSpace ColorSpaceRef /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpace/availableColorSpaces(with:)
-func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model ColorSpaceModel /* not a class type */) []ColorSpace /* primitive/slice/pointer. */ {
+func (cc _ColorSpaceClass) AvailableColorSpacesWithModel(model ColorSpaceModel /* not a class type */) []IColorSpace {
 	rv := objc.Send[[]ColorSpace](objc.ID(cc.class), objc.Sel("availableColorSpacesWithModel:"), model)
 	return rv
 }
@@ -260,7 +260,7 @@ func (c_ ColorSpace) SetLocalizedName(value objc.IObject /* cross-framework: NSS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
-func (c_ ColorSpace) NumberOfColorComponents() int /* primitive/slice/pointer. */ {
+func (c_ ColorSpace) NumberOfColorComponents() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfColorComponents"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (c_ ColorSpace) NumberOfColorComponents() int /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorspace/numberofcolorcomponents
-func (c_ ColorSpace) SetNumberOfColorComponents(value int /* primitive/slice/pointer. */) {
+func (c_ ColorSpace) SetNumberOfColorComponents(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfColorComponents:"), value)
 }
 

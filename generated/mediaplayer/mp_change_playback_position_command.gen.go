@@ -29,10 +29,16 @@ type _ChangePlaybackPositionCommandClass struct {
 // An interface definition for the [ChangePlaybackPositionCommand] class.
 type IChangePlaybackPositionCommand interface {
 	IRemoteCommand
+	// properties:
+	// methods:
 }
 
 // An object that responds to requests to change the current playback position of the playing item.
+
+
+// An object that responds to requests to change the current playback position of the playing item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackPositionCommand
 type ChangePlaybackPositionCommand struct {
 	RemoteCommand

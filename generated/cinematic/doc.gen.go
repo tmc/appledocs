@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Cinematic without requiring cgo.
-
-// Integrate playback and editing of assets captured in Cinematic mode into your app.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic
+// See: https://developer.apple.com/documentation/Cinematic
 package cinematic
 
 import (

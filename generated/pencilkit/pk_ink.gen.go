@@ -31,13 +31,19 @@ type _InkClass struct {
 // An interface definition for the [Ink] class.
 type IInk interface {
 	objectivec.IObject
-	Color() appkit.Color
-	InkType() unsafe.Pointer
+	// properties:
+	Color() objc.IObject /* cross-framework: Color */
+	InkType() InkType /* not a class type */
 	RequiredContentVersion() ContentVersion
+	// methods:
 }
 
 // Provides a description of the creation and rendering of marks on a canvas.
+
+
+// Provides a description of the creation and rendering of marks on a canvas.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference
 type Ink struct {
 	objectivec.Object
@@ -83,11 +89,11 @@ func NewInk() Ink {
 
 
 
-
 // Create a new ink, specifying its type, color.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/init(inkType:color:)
-func NewInkWithInkTypeColor(type_ unsafe.Pointer, color appkit.IColor) Ink {
+func NewInkWithInkTypeColor(type_ InkType /* not a class type */, color objc.IObject /* cross-framework: Color */) Ink {
 	instance := getInkClass().Alloc()
 	rv := objc.Send[Ink](instance.ID, objc.Sel("initWithInkType:color:"), type_, color)
 	rv.Autorelease()
@@ -95,24 +101,30 @@ func NewInkWithInkTypeColor(type_ unsafe.Pointer, color appkit.IColor) Ink {
 }
 
 
+
 // The base color for this ink.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/color
-func (i_ Ink) Color() appkit.Color {
+func (i_ Ink) Color() objc.IObject /* cross-framework: Color */ {
 	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("color"))
 	return rv
 }
 
+
 // The type of ink, such as pen or pencil, as defined in the enumeration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/inkType
-func (i_ Ink) InkType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("inkType"))
+func (i_ Ink) InkType() InkType /* not a class type */ {
+	rv := objc.Send[InkType](i_.ID, objc.Sel("inkType"))
 	return rv
 }
 
+
 // The version of PencilKit necessary to use the ink.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/requiredContentVersion
 func (i_ Ink) RequiredContentVersion() ContentVersion {
 	rv := objc.Send[ContentVersion](i_.ID, objc.Sel("requiredContentVersion"))

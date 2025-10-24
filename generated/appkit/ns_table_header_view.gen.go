@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [TableHeaderView] class.
@@ -30,14 +31,14 @@ type _TableHeaderViewClass struct {
 type ITableHeaderView interface {
 	IView
 	// properties:
-	DraggedColumn() int /* primitive/slice/pointer. */
-	DraggedDistance() float64 /* primitive/slice/pointer. */
-	ResizedColumn() int /* primitive/slice/pointer. */
+	DraggedColumn() int
+	DraggedDistance() float64
+	ResizedColumn() int
 	TableView() objc.IObject /* cross-framework: TableView */
 	SetTableView(value objc.IObject /* cross-framework: TableView */)
 	// methods:
-	ColumnAtPoint(point objc.IObject /* cross-framework Point */) int /* primitive/slice/pointer. */
-	HeaderRectOfColumn(column int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */
+	ColumnAtPoint(point objc.IObject /* cross-framework: Point */) int
+	HeaderRectOfColumn(column int) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that draws headers over a table view’s columns and handles mouse events in those headers.
@@ -99,7 +100,7 @@ func NewTableHeaderView() TableHeaderView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/column(at:)
-func (t_ TableHeaderView) ColumnAtPoint(point objc.IObject /* cross-framework Point */) int /* primitive/slice/pointer. */ {
+func (t_ TableHeaderView) ColumnAtPoint(point objc.IObject /* cross-framework: Point */) int {
 	rv := objc.Send[int](t_.ID, objc.Sel("columnAtPoint:"), point)
 	return rv
 }
@@ -109,8 +110,8 @@ func (t_ TableHeaderView) ColumnAtPoint(point objc.IObject /* cross-framework Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/headerRect(ofColumn:)
-func (t_ TableHeaderView) HeaderRectOfColumn(column int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
+func (t_ TableHeaderView) HeaderRectOfColumn(column int) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("headerRectOfColumn:"), column)
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (t_ TableHeaderView) HeaderRectOfColumn(column int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedColumn
-func (t_ TableHeaderView) DraggedColumn() int /* primitive/slice/pointer. */ {
+func (t_ TableHeaderView) DraggedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("draggedColumn"))
 	return rv
 }
@@ -129,7 +130,7 @@ func (t_ TableHeaderView) DraggedColumn() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/draggedDistance
-func (t_ TableHeaderView) DraggedDistance() float64 /* primitive/slice/pointer. */ {
+func (t_ TableHeaderView) DraggedDistance() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("draggedDistance"))
 	return rv
 }
@@ -139,7 +140,7 @@ func (t_ TableHeaderView) DraggedDistance() float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/resizedColumn
-func (t_ TableHeaderView) ResizedColumn() int /* primitive/slice/pointer. */ {
+func (t_ TableHeaderView) ResizedColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("resizedColumn"))
 	return rv
 }

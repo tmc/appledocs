@@ -31,17 +31,21 @@ type _MTROperationalCredentialsClusterNOCResponseParamsClass struct {
 // An interface definition for the [MTROperationalCredentialsClusterNOCResponseParams] class.
 type IMTROperationalCredentialsClusterNOCResponseParams interface {
 	objectivec.IObject
-	DebugText() string
-	SetDebugText(value string)
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
-	StatusCode() foundation.Number
-	SetStatusCode(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DebugText() objc.IObject /* cross-framework: NSString */
+	SetDebugText(value objc.IObject /* cross-framework: NSString */)
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	StatusCode() objc.IObject /* cross-framework: NSNumber */
+	SetStatusCode(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterNOCResponseParams
 type MTROperationalCredentialsClusterNOCResponseParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROperationalCredentialsClusterNOCResponseParams() MTROperationalCreden
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/debugtext
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
 
-// SetDebugText sets the value of the debugText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/debugtext
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/fabricindex
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetFabricIndex(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/statuscode
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) StatusCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("statusCode"))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) StatusCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("statusCode"))
 	return rv
 }
 
 
-// SetStatusCode sets the value of the statusCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/statuscode
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetStatusCode(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetStatusCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusternocresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterNOCResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

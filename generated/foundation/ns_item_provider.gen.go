@@ -41,10 +41,10 @@ type IItemProvider interface {
 	SetPreferredPresentationStyle(value unsafe.Pointer)
 	PreviewImageHandler() unsafe.Pointer
 	SetPreviewImageHandler(value unsafe.Pointer)
-	RegisteredContentTypes() objc.IObject /* cross-framework: UTType */
-	SetRegisteredContentTypes(value objc.IObject /* cross-framework: UTType */)
-	RegisteredContentTypesForOpenInPlace() objc.IObject /* cross-framework: UTType */
-	SetRegisteredContentTypesForOpenInPlace(value objc.IObject /* cross-framework: UTType */)
+	RegisteredContentTypes() objectivec.IObject
+	SetRegisteredContentTypes(value objectivec.IObject)
+	RegisteredContentTypesForOpenInPlace() objectivec.IObject
+	SetRegisteredContentTypesForOpenInPlace(value objectivec.IObject)
 	RegisteredTypeIdentifiers() IString
 	SetRegisteredTypeIdentifiers(value IString)
 	SourceFrame() objc.IObject /* cross-framework: Rect */
@@ -133,7 +133,7 @@ func (i_ ItemProvider) SetAttachments(value IItemProvider) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/containerframe
 func (i_ ItemProvider) ContainerFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](i_.ID, objc.Sel("containerFrame"))
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("containerFrame"))
 	return rv
 }
 
@@ -152,7 +152,7 @@ func (i_ ItemProvider) SetContainerFrame(value objc.IObject /* cross-framework: 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
 func (i_ ItemProvider) PreferredPresentationSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](i_.ID, objc.Sel("preferredPresentationSize"))
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("preferredPresentationSize"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
-func (i_ ItemProvider) RegisteredContentTypes() objc.IObject /* cross-framework: UTType */ {
+func (i_ ItemProvider) RegisteredContentTypes() objectivec.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypes"))
 	return rv
 }
@@ -218,7 +218,7 @@ func (i_ ItemProvider) RegisteredContentTypes() objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
-func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject /* cross-framework: UTType */) {
+func (i_ ItemProvider) SetRegisteredContentTypes(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypes:"), value)
 }
 
@@ -227,7 +227,7 @@ func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject /* cross-framework: UTType */ {
+func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objectivec.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
 	return rv
 }
@@ -237,7 +237,7 @@ func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
-func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objc.IObject /* cross-framework: UTType */) {
+func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypesForOpenInPlace:"), value)
 }
 
@@ -266,7 +266,7 @@ func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value IString) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/sourceframe
 func (i_ ItemProvider) SourceFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](i_.ID, objc.Sel("sourceFrame"))
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("sourceFrame"))
 	return rv
 }
 

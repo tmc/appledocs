@@ -30,20 +30,28 @@ type _NETunnelProviderClass struct {
 // An interface definition for the [NETunnelProvider] class.
 type INETunnelProvider interface {
 	INEProvider
-	HandleAppMessageCompletionHandler(messageData foundation.IData, completionHandler unsafe.Pointer)
-	SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings INETunnelNetworkSettings, completionHandler unsafe.Pointer)
-	AppRules() []NEAppRule
-	ProtocolConfiguration() NEVPNProtocol
+	// properties:
+	AppRules() INEAppRule
+	SetAppRules(value INEAppRule)
+	ProtocolConfiguration() INEVPNProtocol
+	SetProtocolConfiguration(value INEVPNProtocol)
 	Reasserting() bool
 	SetReasserting(value bool)
-	RoutingMethod() NETunnelProviderRoutingMethod
-	NETunnelProviderErrorDomain() string
+	RoutingMethod() unsafe.Pointer
+	SetRoutingMethod(value unsafe.Pointer)
+	NETunnelProviderErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
+	SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings INETunnelNetworkSettings, completionHandler unsafe.Pointer)
 }
 
 // An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
 //
 // Each instance corresponds to a single tunneling session, with a single associated configuration.
+
+
+// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider
 type NETunnelProvider struct {
 	NEProvider
@@ -90,67 +98,98 @@ func NewNETunnelProvider() NETunnelProvider {
 }
 
 
-// Handle messages sent by the tunnel provider extension’s containing app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/handleAppMessage(_:completionHandler:)
-func (n_ NETunnelProvider) HandleAppMessageCompletionHandler(messageData foundation.IData, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("handleAppMessage:completionHandler:"), messageData, completionHandler)
-}
 
 // Specify the network settings for the current tunneling session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)
 func (n_ NETunnelProvider) SetTunnelNetworkSettingsCompletionHandler(tunnelNetworkSettings INETunnelNetworkSettings, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelNetworkSettings:completionHandler:"), tunnelNetworkSettings, completionHandler)
 }
 
+
 // The app rules dictating which apps use the current tunneling session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/appRules
-func (n_ NETunnelProvider) AppRules() []NEAppRule {
-	rv := objc.Send[[]NEAppRule](n_.ID, objc.Sel("appRules"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/apprules
+func (n_ NETunnelProvider) AppRules() INEAppRule {
+	rv := objc.Send[NEAppRule](n_.ID, objc.Sel("appRules"))
 	return rv
 }
 
+
+// The app rules dictating which apps use the current tunneling session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/apprules
+func (n_ NETunnelProvider) SetAppRules(value INEAppRule) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setAppRules:"), value)
+}
+
+
 // The configuration of the current tunneling session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/protocolConfiguration
-func (n_ NETunnelProvider) ProtocolConfiguration() NEVPNProtocol {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/protocolconfiguration
+func (n_ NETunnelProvider) ProtocolConfiguration() INEVPNProtocol {
 	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocolConfiguration"))
 	return rv
 }
 
+
+// The configuration of the current tunneling session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/protocolconfiguration
+func (n_ NETunnelProvider) SetProtocolConfiguration(value INEVPNProtocol) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
+}
+
+
 // Indicate to the system that the tunnel is being re-established.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/reasserting
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/reasserting
 func (n_ NETunnelProvider) Reasserting() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("reasserting"))
 	return rv
 }
 
 
-// SetReasserting sets the value of the reasserting property.
 // Indicate to the system that the tunnel is being re-established.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/reasserting
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/reasserting
 func (n_ NETunnelProvider) SetReasserting(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setReasserting:"), value)
 }
 
+
 // The method by which network traffic is routed to the tunnel.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProvider/routingMethod
-func (n_ NETunnelProvider) RoutingMethod() NETunnelProviderRoutingMethod {
-	rv := objc.Send[NETunnelProviderRoutingMethod](n_.ID, objc.Sel("routingMethod"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
+func (n_ NETunnelProvider) RoutingMethod() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("routingMethod"))
 	return rv
 }
 
+
+// The method by which network traffic is routed to the tunnel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
+func (n_ NETunnelProvider) SetRoutingMethod(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRoutingMethod:"), value)
+}
+
+
 // The domain used for Tunnel Provider errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain
-func (n_ NETunnelProvider) NETunnelProviderErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
+func (n_ NETunnelProvider) NETunnelProviderErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NETunnelProviderErrorDomain"))
 	return rv
 }
 

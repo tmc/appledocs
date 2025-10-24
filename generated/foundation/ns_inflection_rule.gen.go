@@ -91,7 +91,7 @@ func NewInflectionRule() InflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectLanguage:
-func (ic _InflectionRuleClass) CanInflectLanguage(language IString) bool /* primitive/slice/pointer. */ {
+func (ic _InflectionRuleClass) CanInflectLanguage(language IString) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectLanguage:"), language)
 	return rv
 }
@@ -110,7 +110,7 @@ func (ic _InflectionRuleClass) AutomaticRule() InflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
-func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool /* primitive/slice/pointer. */ {
+func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (i_ InflectionRule) AutomaticRule() IInflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
-func (i_ InflectionRule) CanInflectPreferredLocalization() bool /* primitive/slice/pointer. */ {
+func (i_ InflectionRule) CanInflectPreferredLocalization() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }

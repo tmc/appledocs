@@ -29,9 +29,13 @@ type _MTRClusterEthernetNetworkDiagnosticsClass struct {
 // An interface definition for the [MTRClusterEthernetNetworkDiagnostics] class.
 type IMTRClusterEthernetNetworkDiagnostics interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEthernetNetworkDiagnostics
 type MTRClusterEthernetNetworkDiagnostics struct {
 	MTRGenericCluster

@@ -31,12 +31,12 @@ type _BeaconIdentityConstraintClass struct {
 type IBeaconIdentityConstraint interface {
 	IBeaconIdentityCondition
 	// properties:
-	Major() foundation.objc.IObject /* cross-framework: Number */
-	SetMajor(value foundation.objc.IObject /* cross-framework: Number */)
-	Minor() foundation.objc.IObject /* cross-framework: Number */
-	SetMinor(value foundation.objc.IObject /* cross-framework: Number */)
-	Uuid() foundation.objc.IObject /* cross-framework: UUID */
-	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	Major() objc.IObject /* cross-framework: NSNumber */
+	SetMajor(value objc.IObject /* cross-framework: NSNumber */)
+	Minor() objc.IObject /* cross-framework: NSNumber */
+	SetMinor(value objc.IObject /* cross-framework: NSNumber */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -99,8 +99,8 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) Major() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+func (b_ BeaconIdentityConstraint) Major() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("major"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (b_ BeaconIdentityConstraint) Major() foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) SetMajor(value foundation.objc.IObject /* cross-framework: Number */) {
+func (b_ BeaconIdentityConstraint) SetMajor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
@@ -118,8 +118,8 @@ func (b_ BeaconIdentityConstraint) SetMajor(value foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) Minor() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
+func (b_ BeaconIdentityConstraint) Minor() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
@@ -128,7 +128,7 @@ func (b_ BeaconIdentityConstraint) Minor() foundation.objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) SetMinor(value foundation.objc.IObject /* cross-framework: Number */) {
+func (b_ BeaconIdentityConstraint) SetMinor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
@@ -137,7 +137,7 @@ func (b_ BeaconIdentityConstraint) SetMinor(value foundation.objc.IObject /* cro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
+func (b_ BeaconIdentityConstraint) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (b_ BeaconIdentityConstraint) Uuid() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
+func (b_ BeaconIdentityConstraint) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
 

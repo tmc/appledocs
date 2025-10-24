@@ -31,15 +31,19 @@ type _MTRThermostatClusterWeeklyScheduleTransitionStructClass struct {
 // An interface definition for the [MTRThermostatClusterWeeklyScheduleTransitionStruct] class.
 type IMTRThermostatClusterWeeklyScheduleTransitionStruct interface {
 	objectivec.IObject
-	CoolSetpoint() foundation.Number
-	SetCoolSetpoint(value foundation.INumber)
-	HeatSetpoint() foundation.Number
-	SetHeatSetpoint(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	CoolSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	HeatSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterWeeklyScheduleTransitionStruct
 type MTRThermostatClusterWeeklyScheduleTransitionStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRThermostatClusterWeeklyScheduleTransitionStruct() MTRThermostatCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) CoolSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolSetpoint"))
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) CoolSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("coolSetpoint"))
 	return rv
 }
 
 
-// SetCoolSetpoint sets the value of the coolSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) HeatSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatSetpoint"))
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) HeatSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("heatSetpoint"))
 	return rv
 }
 
 
-// SetHeatSetpoint sets the value of the heatSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

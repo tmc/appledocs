@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,31 +31,25 @@ type _PaymentQueueClass struct {
 // An interface definition for the [PaymentQueue] class.
 type IPaymentQueue interface {
 	objectivec.IObject
-	AddPayment(payment ISKPayment)
-	AddTransactionObserver(observer objectivec.IObject)
-	CancelDownloads(downloads []Download)
-	FinishTransaction(transaction ISKPaymentTransaction)
-	PauseDownloads(downloads []Download)
-	PresentCodeRedemptionSheet()
-	RemoveTransactionObserver(observer objectivec.IObject)
-	RestoreCompletedTransactions()
-	RestoreCompletedTransactionsWithApplicationUsername(username string)
-	ResumeDownloads(downloads []Download)
-	ShowPriceConsentIfNeeded()
-	StartDownloads(downloads []Download)
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Transactions() []PaymentTransaction
-	Storefront() SKStorefront
-	SetStorefront(value ISKStorefront)
-	TransactionObservers() unsafe.Pointer
-	SetTransactionObservers(value unsafe.Pointer)
+	Transactions() []IPaymentTransaction
+	Storefront() objc.IObject /* cross-framework: Storefront */
+	SetStorefront(value objc.IObject /* cross-framework: Storefront */)
+	TransactionObservers() PaymentTransactionObserver /* not a class type */
+	SetTransactionObservers(value PaymentTransactionObserver /* not a class type */)
+	// methods:
 }
 
 // A queue of payment transactions for the App Store to process.
 //
 // The payment queue communicates with the App Store and presents a user interface so that the user can authorize payment. The contents of the queue are persistent between launches of your app. To process a payment, first add at least one observer object ( ) to the queue (see ). Then, add a payment object ( ) for the item the user wants to purchase. Each time you add a payment object, the queue creates a transaction object ( ) to process that payment and enqueues it to be processed. After payment is fulfilled, the queue updates the transaction object and then calls any observer objects to provide them the updated transaction. Your observer should process the transaction and then remove it from the queue. The exact mechanism you use to process a processed transaction depends on the design of your app and the product being purchased. Here are a few common examples: If the product is a feature already built into your app, your app enables the feature to process the transaction. If the product includes downloadable content provided by the App Store, your app retrieves the objects from the transaction and ask the payment queue to download them. You provide the actual content files to be served by the App Store to App Store Connect when you create the product information. If the product represents downloadable content provided by your own server, your app might open a network connection to your server and download the content from there. For more information on designing the payment processing portion of your app, see .
+
+
+// A queue of payment transactions for the App Store to process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue
 type PaymentQueue struct {
 	objectivec.Object
@@ -99,92 +94,10 @@ func NewPaymentQueue() PaymentQueue {
 }
 
 
-// Adds a payment request to the queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/add(_:)-4vct1
-func (p_ PaymentQueue) AddPayment(payment ISKPayment) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addPayment:"), payment)
-}
-
-// Adds an observer to the payment queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2
-func (p_ PaymentQueue) AddTransactionObserver(observer objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addTransactionObserver:"), observer)
-}
-
-// Removes a set of downloads from the download list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/cancel(_:)
-func (p_ PaymentQueue) CancelDownloads(downloads []Download) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("cancelDownloads:"), downloads)
-}
-
-// Notifies the App Store that the app finished processing the transaction.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)
-func (p_ PaymentQueue) FinishTransaction(transaction ISKPaymentTransaction) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("finishTransaction:"), transaction)
-}
-
-// Pauses a set of downloads.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/pause(_:)
-func (p_ PaymentQueue) PauseDownloads(downloads []Download) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("pauseDownloads:"), downloads)
-}
-
-// Displays a sheet that enables customers to redeem subscription offer codes that you configure in App Store Connect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/presentCodeRedemptionSheet()
-func (p_ PaymentQueue) PresentCodeRedemptionSheet() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("presentCodeRedemptionSheet"))
-}
-
-// Removes an observer from the payment queue.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/remove(_:)
-func (p_ PaymentQueue) RemoveTransactionObserver(observer objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("removeTransactionObserver:"), observer)
-}
-
-// Asks the payment queue to restore previously completed purchases.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()
-func (p_ PaymentQueue) RestoreCompletedTransactions() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactions"))
-}
-
-// Asks the payment queue to restore previously completed purchases, providing an opaque identifier for the user’s account.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)
-func (p_ PaymentQueue) RestoreCompletedTransactionsWithApplicationUsername(username string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactionsWithApplicationUsername:"), objc.String(username))
-}
-
-// Resumes a set of downloads.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/resume(_:)
-func (p_ PaymentQueue) ResumeDownloads(downloads []Download) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("resumeDownloads:"), downloads)
-}
-
-// Asks the system to display the price consent sheet if the user hasn’t yet responded to a subscription price increase.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/showPriceConsentIfNeeded()
-func (p_ PaymentQueue) ShowPriceConsentIfNeeded() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("showPriceConsentIfNeeded"))
-}
-
-// Adds a set of downloads to the download list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/start(_:)
-func (p_ PaymentQueue) StartDownloads(downloads []Download) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("startDownloads:"), downloads)
-}
 
 // A delegate that provides information needed to complete transactions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/delegate
 func (p_ PaymentQueue) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
@@ -192,58 +105,60 @@ func (p_ PaymentQueue) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate that provides information needed to complete transactions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/delegate
 func (p_ PaymentQueue) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Returns an array of pending transactions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/transactions
-func (p_ PaymentQueue) Transactions() []PaymentTransaction {
+func (p_ PaymentQueue) Transactions() []IPaymentTransaction {
 	rv := objc.Send[[]PaymentTransaction](p_.ID, objc.Sel("transactions"))
 	return rv
 }
 
+
 // The App Store storefront of the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) Storefront() SKStorefront {
-	rv := objc.Send[SKStorefront](p_.ID, objc.Sel("storefront"))
+func (p_ PaymentQueue) Storefront() objc.IObject /* cross-framework: Storefront */ {
+	rv := objc.Send[Storefront](p_.ID, objc.Sel("storefront"))
 	return rv
 }
 
 
-// SetStorefront sets the value of the storefront property.
 // The App Store storefront of the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) SetStorefront(value ISKStorefront) {
+func (p_ PaymentQueue) SetStorefront(value objc.IObject /* cross-framework: Storefront */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStorefront:"), value)
 }
 
+
 // An array of all active payment queue observers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
-func (p_ PaymentQueue) TransactionObservers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionObservers"))
+func (p_ PaymentQueue) TransactionObservers() PaymentTransactionObserver /* not a class type */ {
+	rv := objc.Send[PaymentTransactionObserver](p_.ID, objc.Sel("transactionObservers"))
 	return rv
 }
 
 
-// SetTransactionObservers sets the value of the transactionObservers property.
 // An array of all active payment queue observers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/transactionobservers
-func (p_ PaymentQueue) SetTransactionObservers(value unsafe.Pointer) {
+func (p_ PaymentQueue) SetTransactionObservers(value PaymentTransactionObserver /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransactionObservers:"), value)
 }
-
 
 

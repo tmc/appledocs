@@ -29,9 +29,13 @@ type _MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurementClass s
 // An interface definition for the [MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement] class.
 type IMTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement
 type MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement struct {
 	MTRGenericBaseCluster

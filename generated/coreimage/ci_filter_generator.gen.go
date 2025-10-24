@@ -32,18 +32,18 @@ type _FilterGeneratorClass struct {
 type IFilterGenerator interface {
 	objectivec.IObject
 	// properties:
-	ClassAttributes() objc.ID
-	SetClassAttributes(value objc.ID)
-	ExportedKeys() objc.ID
+	ClassAttributes() objc.IObject /* cross-framework: NSDictionary */
+	SetClassAttributes(value objc.IObject /* cross-framework: NSDictionary */)
+	ExportedKeys() objc.IObject /* cross-framework: NSDictionary */
 	// methods:
-	ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string /* primitive/slice/pointer. */, targetObject objectivec.IObject, targetKey string /* primitive/slice/pointer. */)
-	DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string /* primitive/slice/pointer. */, targetObject objectivec.IObject, targetKey string /* primitive/slice/pointer. */)
-	ExportKeyFromObjectWithName(key string /* primitive/slice/pointer. */, targetObject objectivec.IObject, exportedKeyName string /* primitive/slice/pointer. */)
+	ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, targetKey objc.IObject /* cross-framework: NSString */)
+	DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, targetKey objc.IObject /* cross-framework: NSString */)
+	ExportKeyFromObjectWithName(key objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, exportedKeyName objc.IObject /* cross-framework: NSString */)
 	Filter() IFilter
-	RegisterFilterName(name string /* primitive/slice/pointer. */)
-	RemoveExportedKey(exportedKeyName string /* primitive/slice/pointer. */)
-	SetAttributesForExportedKey(attributes objectivec.IObject, key string /* primitive/slice/pointer. */)
-	WriteToURLAtomically(aURL foundation.objc.IObject /* cross-framework URL */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	RegisterFilterName(name objc.IObject /* cross-framework: NSString */)
+	RemoveExportedKey(exportedKeyName objc.IObject /* cross-framework: NSString */)
+	SetAttributesForExportedKey(attributes objc.IObject /* cross-framework: NSDictionary */, key objc.IObject /* cross-framework: NSString */)
+	WriteToURLAtomically(aURL objc.IObject /* cross-framework: NSURL */, flag bool) bool
 }
 
 // An object that creates and configures chains of individual image filters.
@@ -103,7 +103,7 @@ func NewFilterGenerator() FilterGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
-func NewFilterGeneratorWithContentsOfURL(aURL foundation.objc.IObject /* cross-framework URL */) FilterGenerator {
+func NewFilterGeneratorWithContentsOfURL(aURL objc.IObject /* cross-framework: NSURL */) FilterGenerator {
 	instance := getFilterGeneratorClass().Alloc()
 	rv := objc.Send[FilterGenerator](instance.ID, objc.Sel("initWithContentsOfURL:"), aURL)
 	rv.Autorelease()
@@ -126,7 +126,7 @@ func (fc _FilterGeneratorClass) FilterGenerator() IFilterGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGeneratorWithContentsOfURL:
-func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.objc.IObject /* cross-framework URL */) IFilterGenerator {
+func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL objc.IObject /* cross-framework: NSURL */) IFilterGenerator {
 	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("filterGeneratorWithContentsOfURL:"), aURL)
 	return rv
 }
@@ -136,8 +136,8 @@ func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/connect(_:withKey:to:withKey:)
-func (f_ FilterGenerator) ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string /* primitive/slice/pointer. */, targetObject objectivec.IObject, targetKey string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("connectObject:withKey:toObject:withKey:"), sourceObject, objc.String(sourceKey), targetObject, objc.String(targetKey))
+func (f_ FilterGenerator) ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, targetKey objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("connectObject:withKey:toObject:withKey:"), sourceObject, sourceKey, targetObject, targetKey)
 }
 
 
@@ -145,8 +145,8 @@ func (f_ FilterGenerator) ConnectObjectWithKeyToObjectWithKey(sourceObject objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/disconnectObject(_:withKey:to:withKey:)
-func (f_ FilterGenerator) DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string /* primitive/slice/pointer. */, targetObject objectivec.IObject, targetKey string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectObject:withKey:toObject:withKey:"), sourceObject, objc.String(sourceKey), targetObject, objc.String(targetKey))
+func (f_ FilterGenerator) DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, targetKey objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectObject:withKey:toObject:withKey:"), sourceObject, sourceKey, targetObject, targetKey)
 }
 
 
@@ -154,8 +154,8 @@ func (f_ FilterGenerator) DisconnectObjectWithKeyToObjectWithKey(sourceObject ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/exportKey(_:from:withName:)
-func (f_ FilterGenerator) ExportKeyFromObjectWithName(key string /* primitive/slice/pointer. */, targetObject objectivec.IObject, exportedKeyName string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("exportKey:fromObject:withName:"), objc.String(key), targetObject, objc.String(exportedKeyName))
+func (f_ FilterGenerator) ExportKeyFromObjectWithName(key objc.IObject /* cross-framework: NSString */, targetObject objectivec.IObject, exportedKeyName objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("exportKey:fromObject:withName:"), key, targetObject, exportedKeyName)
 }
 
 
@@ -173,8 +173,8 @@ func (f_ FilterGenerator) Filter() IFilter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/registerFilterName(_:)
-func (f_ FilterGenerator) RegisterFilterName(name string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("registerFilterName:"), objc.String(name))
+func (f_ FilterGenerator) RegisterFilterName(name objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("registerFilterName:"), name)
 }
 
 
@@ -182,8 +182,8 @@ func (f_ FilterGenerator) RegisterFilterName(name string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/removeExportedKey(_:)
-func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("removeExportedKey:"), objc.String(exportedKeyName))
+func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("removeExportedKey:"), exportedKeyName)
 }
 
 
@@ -191,8 +191,8 @@ func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/setAttributes(_:forExportedKey:)
-func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objectivec.IObject, key string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:forExportedKey:"), attributes, objc.String(key))
+func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objc.IObject /* cross-framework: NSDictionary */, key objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:forExportedKey:"), attributes, key)
 }
 
 
@@ -200,7 +200,7 @@ func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/write(to:atomically:)
-func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.objc.IObject /* cross-framework URL */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (f_ FilterGenerator) WriteToURLAtomically(aURL objc.IObject /* cross-framework: NSURL */, flag bool) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:atomically:"), aURL, flag)
 	return rv
 }
@@ -210,8 +210,8 @@ func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/classAttributes
-func (f_ FilterGenerator) ClassAttributes() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("classAttributes"))
+func (f_ FilterGenerator) ClassAttributes() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](f_.ID, objc.Sel("classAttributes"))
 	return rv
 }
 
@@ -220,7 +220,7 @@ func (f_ FilterGenerator) ClassAttributes() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/classAttributes
-func (f_ FilterGenerator) SetClassAttributes(value objc.ID) {
+func (f_ FilterGenerator) SetClassAttributes(value objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setClassAttributes:"), value)
 }
 
@@ -229,8 +229,8 @@ func (f_ FilterGenerator) SetClassAttributes(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/exportedKeys
-func (f_ FilterGenerator) ExportedKeys() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("exportedKeys"))
+func (f_ FilterGenerator) ExportedKeys() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](f_.ID, objc.Sel("exportedKeys"))
 	return rv
 }
 

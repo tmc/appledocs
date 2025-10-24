@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _DDMatchClass struct {
 type IDDMatch interface {
 	objectivec.IObject
 	// properties:
-	MatchedString() string /* primitive/slice/pointer. */
+	MatchedString() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -92,8 +93,8 @@ func NewDDMatch() DDMatch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
-func (d_ DDMatch) MatchedString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
+func (d_ DDMatch) MatchedString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("matchedString"))
 	return rv
 }
 

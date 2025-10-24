@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IState interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	GetMultiArrayForStateNamedHandler(stateName string /* primitive/slice/pointer. */, handler unsafe.Pointer)
+	GetMultiArrayForStateNamedHandler(stateName objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer)
 }
 
 // Handle to the state buffers.
@@ -92,8 +93,8 @@ func NewState() State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLState/getMultiArrayForStateNamed:handler:
-func (s_ State) GetMultiArrayForStateNamedHandler(stateName string /* primitive/slice/pointer. */, handler unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), objc.String(stateName), handler)
+func (s_ State) GetMultiArrayForStateNamedHandler(stateName objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("getMultiArrayForStateNamed:handler:"), stateName, handler)
 }
 
 

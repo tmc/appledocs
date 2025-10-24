@@ -30,9 +30,13 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustStartEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustStartEvent] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustStartEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStartEvent
 type MTRDeviceEnergyManagementClusterPowerAdjustStartEvent struct {
 	objectivec.Object

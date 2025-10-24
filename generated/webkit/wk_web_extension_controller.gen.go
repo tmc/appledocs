@@ -30,23 +30,29 @@ type _WebExtensionControllerClass struct {
 // An interface definition for the [WebExtensionController] class.
 type IWebExtensionController interface {
 	objectivec.IObject
-	UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool
-	Configuration() unsafe.Pointer
-	SetConfiguration(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	ExtensionContexts() WKWebExtensionContext
+	// properties:
+	Configuration() WebExtensionControllerConfiguration /* not a class type */
+	SetConfiguration(value WebExtensionControllerConfiguration /* not a class type */)
+	Delegate() WebExtensionControllerDelegate /* not a class type */
+	SetDelegate(value WebExtensionControllerDelegate /* not a class type */)
+	ExtensionContexts() IWKWebExtensionContext
 	SetExtensionContexts(value IWKWebExtensionContext)
-	Extensions() WKWebExtension
+	Extensions() IWKWebExtension
 	SetExtensions(value IWKWebExtension)
-	WebExtensionController() WKWebExtensionController
+	WebExtensionController() IWKWebExtensionController
 	SetWebExtensionController(value IWKWebExtensionController)
+	// methods:
+	UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool
 }
 
 // An object that manages a set of loaded extension contexts.
 //
 // You can have one or more extension controller instances, allowing different parts of the app to use different sets of extensions. You can associate a controller with using the property on .
+
+
+// An object that manages a set of loaded extension contexts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionController
 type WebExtensionController struct {
 	objectivec.Object
@@ -91,96 +97,102 @@ func NewWebExtensionController() WebExtensionController {
 }
 
 
+
 // Unloads the specified extension context.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionController/unload(_:)
 func (w_ WebExtensionController) UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("unloadExtensionContext:error:"), extensionContext, error_)
 	return rv
 }
 
+
 // A copy of the configuration with which the web extension controller was initialized.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/configuration-swift.property
-func (w_ WebExtensionController) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("configuration"))
+func (w_ WebExtensionController) Configuration() WebExtensionControllerConfiguration /* not a class type */ {
+	rv := objc.Send[WebExtensionControllerConfiguration](w_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
 // A copy of the configuration with which the web extension controller was initialized.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/configuration-swift.property
-func (w_ WebExtensionController) SetConfiguration(value unsafe.Pointer) {
+func (w_ WebExtensionController) SetConfiguration(value WebExtensionControllerConfiguration /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setConfiguration:"), value)
 }
 
+
 // The extension controller delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/delegate
-func (w_ WebExtensionController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("delegate"))
+func (w_ WebExtensionController) Delegate() WebExtensionControllerDelegate /* not a class type */ {
+	rv := objc.Send[WebExtensionControllerDelegate](w_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The extension controller delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/delegate
-func (w_ WebExtensionController) SetDelegate(value unsafe.Pointer) {
+func (w_ WebExtensionController) SetDelegate(value WebExtensionControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A set of all the currently loaded extension contexts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensioncontexts
-func (w_ WebExtensionController) ExtensionContexts() WKWebExtensionContext {
-	rv := objc.Send[WKWebExtensionContext](w_.ID, objc.Sel("extensionContexts"))
+func (w_ WebExtensionController) ExtensionContexts() IWKWebExtensionContext {
+	rv := objc.Send[WebExtensionContext](w_.ID, objc.Sel("extensionContexts"))
 	return rv
 }
 
 
-// SetExtensionContexts sets the value of the extensionContexts property.
 // A set of all the currently loaded extension contexts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensioncontexts
 func (w_ WebExtensionController) SetExtensionContexts(value IWKWebExtensionContext) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExtensionContexts:"), value)
 }
 
+
 // A set of all the currently loaded extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensions
-func (w_ WebExtensionController) Extensions() WKWebExtension {
-	rv := objc.Send[WKWebExtension](w_.ID, objc.Sel("extensions"))
+func (w_ WebExtensionController) Extensions() IWKWebExtension {
+	rv := objc.Send[WebExtension](w_.ID, objc.Sel("extensions"))
 	return rv
 }
 
 
-// SetExtensions sets the value of the extensions property.
 // A set of all the currently loaded extensions.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensions
 func (w_ WebExtensionController) SetExtensions(value IWKWebExtension) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExtensions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebExtensionController) WebExtensionController() WKWebExtensionController {
-	rv := objc.Send[WKWebExtensionController](w_.ID, objc.Sel("webExtensionController"))
+func (w_ WebExtensionController) WebExtensionController() IWKWebExtensionController {
+	rv := objc.Send[WebExtensionController](w_.ID, objc.Sel("webExtensionController"))
 	return rv
 }
 
 
-// SetWebExtensionController sets the value of the webExtensionController property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
 func (w_ WebExtensionController) SetWebExtensionController(value IWKWebExtensionController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)

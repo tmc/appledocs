@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _PropertyMappingClass struct {
 type IPropertyMapping interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
 	ValueExpression() objc.IObject /* cross-framework: Expression */
@@ -95,8 +96,8 @@ func NewPropertyMapping() PropertyMapping {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PropertyMapping) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (p_ PropertyMapping) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+func (p_ PropertyMapping) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
 
 

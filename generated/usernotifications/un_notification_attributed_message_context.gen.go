@@ -32,9 +32,13 @@ type _UNNotificationAttributedMessageContextClass struct {
 // An interface definition for the [UNNotificationAttributedMessageContext] class.
 type IUNNotificationAttributedMessageContext interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttributedMessageContext
 type UNNotificationAttributedMessageContext struct {
 	objectivec.Object
@@ -77,17 +81,19 @@ func NewUNNotificationAttributedMessageContext() UNNotificationAttributedMessage
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttributedMessageContext/init(sendMessageIntent:attributedContent:)
-func NewUNNotificationAttributedMessageContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent foundation.IAttributedString) UNNotificationAttributedMessageContext {
+func NewUNNotificationAttributedMessageContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent objc.IObject /* cross-framework: AttributedString */) UNNotificationAttributedMessageContext {
 	rv := objc.Send[UNNotificationAttributedMessageContext](objc.ID(getUNNotificationAttributedMessageContextClass().class), objc.Sel("contextWithSendMessageIntent:attributedContent:"), sendMessageIntent, attributedContent)
 	return rv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttributedMessageContext/init(sendMessageIntent:attributedContent:)
-func (uc _UNNotificationAttributedMessageContextClass) ContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent foundation.IAttributedString) unsafe.Pointer {
+func (uc _UNNotificationAttributedMessageContextClass) ContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent objc.IObject /* cross-framework: AttributedString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("contextWithSendMessageIntent:attributedContent:"), sendMessageIntent, attributedContent)
 	return rv
 }

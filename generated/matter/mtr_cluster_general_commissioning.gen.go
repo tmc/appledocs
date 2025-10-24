@@ -29,9 +29,13 @@ type _MTRClusterGeneralCommissioningClass struct {
 // An interface definition for the [MTRClusterGeneralCommissioning] class.
 type IMTRClusterGeneralCommissioning interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterGeneralCommissioning
 type MTRClusterGeneralCommissioning struct {
 	MTRGenericCluster

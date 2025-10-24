@@ -31,14 +31,14 @@ type _AMWorkflowViewClass struct {
 type IAMWorkflowView interface {
 	appkit.IView
 	// properties:
-	Editable() bool /* primitive/slice/pointer. */
-	SetEditable(value bool /* primitive/slice/pointer. */)
+	Editable() bool
+	SetEditable(value bool)
 	WorkflowController() IAMWorkflowController
 	SetWorkflowController(value IAMWorkflowController)
 	WorkflowView() IAMWorkflowView
 	SetWorkflowView(value IAMWorkflowView)
-	IsEditable() bool /* primitive/slice/pointer. */
-	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func NewAMWorkflowView() AMWorkflowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-func (a_ AMWorkflowView) Editable() bool /* primitive/slice/pointer. */ {
+func (a_ AMWorkflowView) Editable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editable"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (a_ AMWorkflowView) Editable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-func (a_ AMWorkflowView) SetEditable(value bool /* primitive/slice/pointer. */) {
+func (a_ AMWorkflowView) SetEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditable:"), value)
 }
 
@@ -158,7 +158,7 @@ func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) IsEditable() bool /* primitive/slice/pointer. */ {
+func (a_ AMWorkflowView) IsEditable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (a_ AMWorkflowView) IsEditable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) SetIsEditable(value bool /* primitive/slice/pointer. */) {
+func (a_ AMWorkflowView) SetIsEditable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
 }
 

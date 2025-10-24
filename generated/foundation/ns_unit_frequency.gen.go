@@ -88,4 +88,23 @@ func NewUnitFrequency() UnitFrequency {
 
 
 
+// The gigahertz unit of frequency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/gigahertz
+func (uc _UnitFrequencyClass) Gigahertz() UnitFrequency {
+	rv := objc.Send[UnitFrequency](objc.ID(uc.class), objc.Sel("gigahertz"))
+	return rv
+}
+
+// The gigahertz unit of frequency.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitFrequency/gigahertz
+func (u_ UnitFrequency) Gigahertz() IUnitFrequency {
+	rv := objc.Send[UnitFrequency](u_.ID, objc.Sel("gigahertz"))
+	return rv
+}
+
+
 

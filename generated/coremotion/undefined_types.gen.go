@@ -10,11 +10,8 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AbsoluteAltitudeHandler = _undefined // referenced in CoreMotion
-	Acceleration = _undefined // referenced in CoreMotion
 	AccelerometerHandler = _undefined // referenced in CoreMotion
 	AltitudeHandler = _undefined // referenced in CoreMotion
-	Bool = _undefined // referenced in CoreMotion
-	CalibratedMagneticField = _undefined // referenced in CoreMotion
 	Date = _undefined // referenced in CoreMotion
 	DeviceMotionHandler = _undefined // referenced in CoreMotion
 	DyskineticSymptomResultHandler = _undefined // referenced in CoreMotion
@@ -26,18 +23,11 @@ type (
 	LocationDistance = _undefined // referenced in CoreMotion
 	LocationSpeed = _undefined // referenced in CoreMotion
 	LocationSpeedAccuracy = _undefined // referenced in CoreMotion
-	MagneticField = _undefined // referenced in CoreMotion
 	MagnetometerHandler = _undefined // referenced in CoreMotion
 	MotionActivityHandler = _undefined // referenced in CoreMotion
 	MotionActivityQueryHandler = _undefined // referenced in CoreMotion
-	OperationQueue = _undefined // referenced in CoreMotion
 	PedometerEventHandler = _undefined // referenced in CoreMotion
 	PedometerHandler = _undefined // referenced in CoreMotion
-	Quaternion = _undefined // referenced in CoreMotion
-	RotationMatrix = _undefined // referenced in CoreMotion
-	RotationRate = _undefined // referenced in CoreMotion
-	StepQueryHandler = _undefined // referenced in CoreMotion
-	StepUpdateHandler = _undefined // referenced in CoreMotion
 	String = _undefined // referenced in CoreMotion
 	TremorResultHandler = _undefined // referenced in CoreMotion
 )

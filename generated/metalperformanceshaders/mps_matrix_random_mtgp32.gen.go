@@ -30,9 +30,13 @@ type _MatrixRandomMTGP32Class struct {
 // An interface definition for the [MatrixRandomMTGP32] class.
 type IMatrixRandomMTGP32 interface {
 	IMatrixRandom
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomMTGP32
 type MatrixRandomMTGP32 struct {
 	MatrixRandom
@@ -77,9 +81,10 @@ func NewMatrixRandomMTGP32() MatrixRandomMTGP32 {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomMTGP32/init(device:destinationDataType:seed:)
-func NewMatrixRandomMTGP32WithDeviceDestinationDataTypeSeed(device objectivec.IObject, destinationDataType unsafe.Pointer, seed uint) MatrixRandomMTGP32 {
+func NewMatrixRandomMTGP32WithDeviceDestinationDataTypeSeed(device objectivec.IObject, destinationDataType DataType /* not a class type */, seed uint) MatrixRandomMTGP32 {
 	instance := getMatrixRandomMTGP32Class().Alloc()
 	rv := objc.Send[MatrixRandomMTGP32](instance.ID, objc.Sel("initWithDevice:destinationDataType:seed:"), device, destinationDataType, seed)
 	rv.Autorelease()

@@ -30,10 +30,9 @@ type _UnitConverterLinearClass struct {
 type IUnitConverterLinear interface {
 	IUnitConverter
 	// properties:
-	Coefficient() float64 /* primitive/slice/pointer. */
-	SetCoefficient(value float64 /* primitive/slice/pointer. */)
-	Constant() float64 /* primitive/slice/pointer. */
-	SetConstant(value float64 /* primitive/slice/pointer. */)
+	Constant() float64
+	Coefficient() float64
+	SetCoefficient(value float64)
 	// methods:
 }
 
@@ -92,11 +91,21 @@ func NewUnitConverterLinear() UnitConverterLinear {
 
 
 
+// The constant to use in the linear unit conversion calculation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/constant
+func (u_ UnitConverterLinear) Constant() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
+	return rv
+}
+
+
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (u_ UnitConverterLinear) Coefficient() float64 /* primitive/slice/pointer. */ {
+func (u_ UnitConverterLinear) Coefficient() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
 }
@@ -106,27 +115,8 @@ func (u_ UnitConverterLinear) Coefficient() float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (u_ UnitConverterLinear) SetCoefficient(value float64 /* primitive/slice/pointer. */) {
+func (u_ UnitConverterLinear) SetCoefficient(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCoefficient:"), value)
-}
-
-
-// The constant to use in the linear unit conversion calculation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) Constant() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
-	return rv
-}
-
-
-// The constant to use in the linear unit conversion calculation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) SetConstant(value float64 /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
 }
 
 

@@ -31,19 +31,16 @@ type _StreamClass struct {
 type IStream interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	StreamError() IError
-	StreamStatus() StreamStatus
 	NSStreamSOCKSErrorDomain() IString
 	NSStreamSocketSSLErrorDomain() IString
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	StreamError() objectivec.IObject
+	SetStreamError(value objectivec.IObject)
+	StreamStatus() unsafe.Pointer
+	SetStreamStatus(value unsafe.Pointer)
 	// methods:
-	Close()
 	Open()
-	PropertyForKey(key objc.IObject /* cross-framework StreamPropertyKey */) objc.ID
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */)
-	SetPropertyForKey(property objectivec.IObject, key objc.IObject /* cross-framework StreamPropertyKey */) bool /* primitive/slice/pointer. */
 }
 
 // An abstract class representing a stream.
@@ -99,123 +96,12 @@ func NewStream() Stream {
 
 
 
-// Creates and returns by reference a bound pair of input and output streams.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getBoundStreams(withBufferSize:inputStream:outputStream:)
-func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(bufferSize uint /* primitive/slice/pointer. */, inputStream IInputStream, outputStream IOutputStream) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getBoundStreamsWithBufferSize:inputStream:outputStream:"), bufferSize, inputStream, outputStream)
-}
-
-
-// Creates and returns by reference an object and object for a socket connection with a given host on a given port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsTo(_:port:inputStream:outputStream:)
-func (sc _StreamClass) GetStreamsToHostPortInputStreamOutputStream(host IHost, port int /* primitive/slice/pointer. */, inputStream IInputStream, outputStream IOutputStream) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHost:port:inputStream:outputStream:"), host, port, inputStream, outputStream)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
-func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname IString, port int /* primitive/slice/pointer. */, inputStream IInputStream, outputStream IOutputStream) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), hostname, port, inputStream, outputStream)
-}
-
-
-// Closes the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/close()
-func (s_ Stream) Close() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("close"))
-}
-
-
 // Opens the receiving stream.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/open()
 func (s_ Stream) Open() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("open"))
-}
-
-
-// Returns the receiver’s property for a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/property(forKey:)
-func (s_ Stream) PropertyForKey(key objc.IObject /* cross-framework StreamPropertyKey */) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("propertyForKey:"), key)
-	return rv
-}
-
-
-// Removes the receiver from a given run loop running in a given mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/remove(from:forMode:)
-func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Schedules the receiver on a given run loop in a given mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/schedule(in:forMode:)
-func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Attempts to set the value of a given property of the receiver and returns a Boolean value that indicates whether the value is accepted by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/setProperty(_:forKey:)
-func (s_ Stream) SetPropertyForKey(property objectivec.IObject, key objc.IObject /* cross-framework StreamPropertyKey */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("setProperty:forKey:"), property, key)
-	return rv
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/delegate
-func (s_ Stream) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/delegate
-func (s_ Stream) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// Returns an object representing the stream error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError
-func (s_ Stream) StreamError() IError {
-	rv := objc.Send[Error](s_.ID, objc.Sel("streamError"))
-	return rv
-}
-
-
-// Returns the receiver’s status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamStatus
-func (s_ Stream) StreamStatus() StreamStatus {
-	rv := objc.Send[StreamStatus](s_.ID, objc.Sel("streamStatus"))
-	return rv
 }
 
 
@@ -236,6 +122,63 @@ func (s_ Stream) NSStreamSOCKSErrorDomain() IString {
 func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
+func (s_ Stream) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
+func (s_ Stream) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// Returns an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
+func (s_ Stream) StreamError() objectivec.IObject {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("streamError"))
+	return rv
+}
+
+
+// Returns an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
+func (s_ Stream) SetStreamError(value objectivec.IObject) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamError:"), value)
+}
+
+
+// Returns the receiver’s status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamstatus
+func (s_ Stream) StreamStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
+	return rv
+}
+
+
+// Returns the receiver’s status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamstatus
+func (s_ Stream) SetStreamStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamStatus:"), value)
 }
 
 

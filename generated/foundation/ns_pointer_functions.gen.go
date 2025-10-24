@@ -31,24 +31,12 @@ type _PointerFunctionsClass struct {
 type IPointerFunctions interface {
 	objectivec.IObject
 	// properties:
+	UsesStrongWriteBarrier() bool
+	SetUsesStrongWriteBarrier(value bool)
+	UsesWeakReadAndWriteBarriers() bool
+	SetUsesWeakReadAndWriteBarriers(value bool)
 	PointerFunctions() IPointerFunctions
 	SetPointerFunctions(value IPointerFunctions)
-	AcquireFunction() unsafe.Pointer
-	SetAcquireFunction(value unsafe.Pointer)
-	DescriptionFunction() IString
-	SetDescriptionFunction(value IString)
-	HashFunction() int /* primitive/slice/pointer. */
-	SetHashFunction(value int /* primitive/slice/pointer. */)
-	IsEqualFunction() unsafe.Pointer
-	SetIsEqualFunction(value unsafe.Pointer)
-	RelinquishFunction() unsafe.Pointer
-	SetRelinquishFunction(value unsafe.Pointer)
-	SizeFunction() int /* primitive/slice/pointer. */
-	SetSizeFunction(value int /* primitive/slice/pointer. */)
-	UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */
-	SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */)
-	UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */
-	SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -105,6 +93,67 @@ func NewPointerFunctions() PointerFunctions {
 
 
 
+// Returns an object initialized with the given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/init(options:)
+func NewPointerFunctionsWithOptions(options PointerFunctionsOptions) PointerFunctions {
+	instance := getPointerFunctionsClass().Alloc()
+	rv := objc.Send[PointerFunctions](instance.ID, objc.Sel("initWithOptions:"), options)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a new object initialized with the given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/pointerFunctionsWithOptions:
+func (pc _PointerFunctionsClass) PointerFunctionsWithOptions(options PointerFunctionsOptions) IPointerFunctions {
+	rv := objc.Send[PointerFunctions](objc.ID(pc.class), objc.Sel("pointerFunctionsWithOptions:"), options)
+	return rv
+}
+
+
+// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesStrongWriteBarrier
+func (p_ PointerFunctions) UsesStrongWriteBarrier() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
+	return rv
+}
+
+
+// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesStrongWriteBarrier
+func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
+}
+
+
+// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesWeakReadAndWriteBarriers
+func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
+	return rv
+}
+
+
+// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesWeakReadAndWriteBarriers
+func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
+}
+
+
 // The pointer functions for the hash table.
 //
 // [Full Topic]
@@ -122,158 +171,5 @@ func (p_ PointerFunctions) PointerFunctions() IPointerFunctions {
 func (p_ PointerFunctions) SetPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
 }
-
-
-// The function used to acquire memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/acquirefunction
-func (p_ PointerFunctions) AcquireFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("acquireFunction"))
-	return rv
-}
-
-
-// The function used to acquire memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/acquirefunction
-func (p_ PointerFunctions) SetAcquireFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAcquireFunction:"), value)
-}
-
-
-// The function used to describe elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) DescriptionFunction() IString {
-	rv := objc.Send[String](p_.ID, objc.Sel("descriptionFunction"))
-	return rv
-}
-
-
-// The function used to describe elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) SetDescriptionFunction(value IString) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), value)
-}
-
-
-// The hash function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) HashFunction() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("hashFunction"))
-	return rv
-}
-
-
-// The hash function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) SetHashFunction(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHashFunction:"), value)
-}
-
-
-// The function used to compare pointers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
-func (p_ PointerFunctions) IsEqualFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("isEqualFunction"))
-	return rv
-}
-
-
-// The function used to compare pointers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/isequalfunction
-func (p_ PointerFunctions) SetIsEqualFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEqualFunction:"), value)
-}
-
-
-// The function used to relinquish memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/relinquishfunction
-func (p_ PointerFunctions) RelinquishFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("relinquishFunction"))
-	return rv
-}
-
-
-// The function used to relinquish memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/relinquishfunction
-func (p_ PointerFunctions) SetRelinquishFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRelinquishFunction:"), value)
-}
-
-
-// The function used to determine the size of pointers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/sizefunction
-func (p_ PointerFunctions) SizeFunction() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](p_.ID, objc.Sel("sizeFunction"))
-	return rv
-}
-
-
-// The function used to determine the size of pointers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/sizefunction
-func (p_ PointerFunctions) SetSizeFunction(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSizeFunction:"), value)
-}
-
-
-// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
-	return rv
-}
-
-
-// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesstrongwritebarrier
-func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
-}
-
-
-// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
-	return rv
-}
-
-
-// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/usesweakreadandwritebarriers
-func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
-}
-
 
 

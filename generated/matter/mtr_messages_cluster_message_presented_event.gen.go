@@ -31,11 +31,15 @@ type _MTRMessagesClusterMessagePresentedEventClass struct {
 // An interface definition for the [MTRMessagesClusterMessagePresentedEvent] class.
 type IMTRMessagesClusterMessagePresentedEvent interface {
 	objectivec.IObject
-	MessageID() foundation.NSData
-	SetMessageID(value foundation.IData)
+	// properties:
+	MessageID() objc.IObject /* cross-framework: NSData */
+	SetMessageID(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessagePresentedEvent
 type MTRMessagesClusterMessagePresentedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRMessagesClusterMessagePresentedEvent() MTRMessagesClusterMessagePrese
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessagePresentedEvent/messageID
-func (m_ MTRMessagesClusterMessagePresentedEvent) MessageID() foundation.NSData {
+func (m_ MTRMessagesClusterMessagePresentedEvent) MessageID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
 	return rv
 }
 
 
-// SetMessageID sets the value of the messageID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessagePresentedEvent/messageID
-func (m_ MTRMessagesClusterMessagePresentedEvent) SetMessageID(value foundation.IData) {
+func (m_ MTRMessagesClusterMessagePresentedEvent) SetMessageID(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
 

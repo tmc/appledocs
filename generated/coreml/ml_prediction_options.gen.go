@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _PredictionOptionsClass struct {
 type IPredictionOptions interface {
 	objectivec.IObject
 	// properties:
-	OutputBackings() string /* primitive/slice/pointer. */
-	SetOutputBackings(value string /* primitive/slice/pointer. */)
-	UsesCPUOnly() bool /* primitive/slice/pointer. */
-	SetUsesCPUOnly(value bool /* primitive/slice/pointer. */)
+	OutputBackings() objc.IObject /* cross-framework: NSString */
+	SetOutputBackings(value objc.IObject /* cross-framework: NSString */)
+	UsesCPUOnly() bool
+	SetUsesCPUOnly(value bool)
 	// methods:
 }
 
@@ -93,8 +94,8 @@ func NewPredictionOptions() PredictionOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) OutputBackings() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("outputBackings"))
+func (p_ PredictionOptions) OutputBackings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("outputBackings"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (p_ PredictionOptions) OutputBackings() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) SetOutputBackings(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), objc.String(value))
+func (p_ PredictionOptions) SetOutputBackings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), value)
 }
 
 
@@ -112,7 +113,7 @@ func (p_ PredictionOptions) SetOutputBackings(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-func (p_ PredictionOptions) UsesCPUOnly() bool /* primitive/slice/pointer. */ {
+func (p_ PredictionOptions) UsesCPUOnly() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesCPUOnly"))
 	return rv
 }
@@ -122,7 +123,7 @@ func (p_ PredictionOptions) UsesCPUOnly() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-func (p_ PredictionOptions) SetUsesCPUOnly(value bool /* primitive/slice/pointer. */) {
+func (p_ PredictionOptions) SetUsesCPUOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesCPUOnly:"), value)
 }
 

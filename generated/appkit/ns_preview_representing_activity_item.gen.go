@@ -92,7 +92,7 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IObject, title objc.IObject /* cross-framework NSString */, image IImage, icon IImage) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IObject, title objc.IObject /* cross-framework: NSString */, image IImage, icon IImage) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:image:icon:"), item, title, image, icon)
 	rv.Autorelease()
@@ -104,7 +104,7 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title objc.IObject /* cross-framework NSString */, imageProvider objc.IObject /* cross-framework ItemProvider */, iconProvider objc.IObject /* cross-framework ItemProvider */) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title objc.IObject /* cross-framework: NSString */, imageProvider objc.IObject /* cross-framework: ItemProvider */, iconProvider objc.IObject /* cross-framework: ItemProvider */) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, title, imageProvider, iconProvider)
 	rv.Autorelease()

@@ -31,13 +31,19 @@ type _HTTPCookieStoreClass struct {
 // An interface definition for the [HTTPCookieStore] class.
 type IHTTPCookieStore interface {
 	objectivec.IObject
-	SetCookieCompletionHandler(cookie foundation.IHTTPCookie, completionHandler Ifunc())
+	// properties:
+	// methods:
+	SetCookieCompletionHandler(cookie objc.IObject /* cross-framework: HTTPCookie */, completionHandler func())
 }
 
 // An object that manages the HTTP cookies associated with a particular web view.
 //
 // Use a to specify the initial cookies for your webpages, and to manage cookies for your web content. For example, you might use this object to delete the cookie for the current session when the user logs out. To detect when the webpage changes a cookie, install a cookie observer using the method. You don’t create a object directly. Instead, retrieve this object from the object in your web view’s configuration object.
+
+
+// An object that manages the HTTP cookies associated with a particular web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKHTTPCookieStore
 type HTTPCookieStore struct {
 	objectivec.Object
@@ -82,10 +88,12 @@ func NewHTTPCookieStore() HTTPCookieStore {
 }
 
 
+
 // Adds a cookie to the cookie store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKHTTPCookieStore/setCookie(_:completionHandler:)
-func (h_ HTTPCookieStore) SetCookieCompletionHandler(cookie foundation.IHTTPCookie, completionHandler Ifunc()) {
+func (h_ HTTPCookieStore) SetCookieCompletionHandler(cookie objc.IObject /* cross-framework: HTTPCookie */, completionHandler func()) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCookie:completionHandler:"), cookie, completionHandler)
 }
 

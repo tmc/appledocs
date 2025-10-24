@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,26 @@ type _SFTranscriptionClass struct {
 // An interface definition for the [SFTranscription] class.
 type ISFTranscription interface {
 	objectivec.IObject
-	AveragePauseDuration() unsafe.Pointer
-	SetAveragePauseDuration(value unsafe.Pointer)
-	FormattedString() string
-	SetFormattedString(value string)
-	Segments() SFTranscriptionSegment
+	// properties:
+	AveragePauseDuration() float64
+	SetAveragePauseDuration(value float64)
+	FormattedString() objc.IObject /* cross-framework: NSString */
+	SetFormattedString(value objc.IObject /* cross-framework: NSString */)
+	Segments() ISFTranscriptionSegment
 	SetSegments(value ISFTranscriptionSegment)
 	SpeakingRate() float64
 	SetSpeakingRate(value float64)
+	// methods:
 }
 
 // A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.
 //
 // Use to obtain all the recognized utterances from your audio content. An is a vocalized word or group of words that represent a single meaning to the speech recognizer ( ). Use the property to retrieve the entire transcription of utterances, or use the property to retrieve an individual utterance ( ). You don’t create an directly. Instead, you retrieve it from an instance. The speech recognizer sends a speech recognition result to your app in one of two ways, depending on how your app started a speech recognition task. You can start a speech recognition task by using the speech recognizer’s method. When the task is complete, the speech recognizer sends an instance to your closure. Alternatively, you can use the speech recognizer’s method to start a speech recognition task. When the task is complete, the speech recognizer uses your to send an by using the delegate’s method. An represents only a potential version of the speech. It might not be an accurate representation of the utterances.
+
+
+// A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFTranscription
 type SFTranscription struct {
 	objectivec.Object
@@ -88,62 +95,67 @@ func NewSFTranscription() SFTranscription {
 }
 
 
+
 // The average pause duration between words, measured in seconds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
-func (s_ SFTranscription) AveragePauseDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("averagePauseDuration"))
+func (s_ SFTranscription) AveragePauseDuration() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("averagePauseDuration"))
 	return rv
 }
 
 
-// SetAveragePauseDuration sets the value of the averagePauseDuration property.
 // The average pause duration between words, measured in seconds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/averagepauseduration
-func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
+func (s_ SFTranscription) SetAveragePauseDuration(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
 }
 
+
 // The entire transcription of utterances, formatted into a single, user-displayable string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) FormattedString() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
+func (s_ SFTranscription) FormattedString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("formattedString"))
 	return rv
 }
 
 
-// SetFormattedString sets the value of the formattedString property.
 // The entire transcription of utterances, formatted into a single, user-displayable string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) SetFormattedString(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
+func (s_ SFTranscription) SetFormattedString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), value)
 }
+
 
 // An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscription) Segments() SFTranscriptionSegment {
+func (s_ SFTranscription) Segments() ISFTranscriptionSegment {
 	rv := objc.Send[SFTranscriptionSegment](s_.ID, objc.Sel("segments"))
 	return rv
 }
 
 
-// SetSegments sets the value of the segments property.
 // An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
 func (s_ SFTranscription) SetSegments(value ISFTranscriptionSegment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
 }
 
+
 // The number of words spoken per minute.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
 func (s_ SFTranscription) SpeakingRate() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("speakingRate"))
@@ -151,10 +163,9 @@ func (s_ SFTranscription) SpeakingRate() float64 {
 }
 
 
-// SetSpeakingRate sets the value of the speakingRate property.
 // The number of words spoken per minute.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/speakingrate
 func (s_ SFTranscription) SetSpeakingRate(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)

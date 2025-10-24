@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Accounts without requiring cgo.
-
-// Help users access and manage their external accounts from within your app, without requiring them to enter login credentials.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts
+// See: https://developer.apple.com/documentation/Accounts
 package accounts
 
 import (

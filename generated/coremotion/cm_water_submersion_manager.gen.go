@@ -31,9 +31,6 @@ type _WaterSubmersionManagerClass struct {
 type IWaterSubmersionManager interface {
 	objectivec.IObject
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	MaximumDepth() unsafe.Pointer
 	// methods:
 }
 
@@ -103,58 +100,8 @@ func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool /* primitive/slice/pointer. */ {
+func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("waterSubmersionAvailable"))
 	return rv
 }
-
-// A value indicating whether the app has user authorization to receive submersion data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
-	return rv
-}
-
-
-// The object that receives updates about submersion data and events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/delegate
-func (w_ WaterSubmersionManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](w_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The object that receives updates about submersion data and events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/delegate
-func (w_ WaterSubmersionManager) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The maximum depth supported by the water submersion manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/maximumDepth
-func (w_ WaterSubmersionManager) MaximumDepth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("maximumDepth"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the current device supports the submersion manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-func (w_ WaterSubmersionManager) WaterSubmersionAvailable() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](w_.ID, objc.Sel("waterSubmersionAvailable"))
-	return rv
-}
-
-
 

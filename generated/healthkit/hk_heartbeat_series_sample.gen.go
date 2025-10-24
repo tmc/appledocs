@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKHeartbeatSeriesSample] class.
@@ -30,7 +31,7 @@ type _HKHeartbeatSeriesSampleClass struct {
 type IHKHeartbeatSeriesSample interface {
 	IHKSeriesSample
 	// properties:
-	HKMetadataKeyAlgorithmVersion() string /* primitive/slice/pointer. */
+	HKMetadataKeyAlgorithmVersion() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -93,8 +94,8 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
-func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
+func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
 	return rv
 }
 

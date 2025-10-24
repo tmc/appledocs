@@ -30,21 +30,25 @@ type _MTRTestClusterClusterTestEventEventClass struct {
 // An interface definition for the [MTRTestClusterClusterTestEventEvent] class.
 type IMTRTestClusterClusterTestEventEvent interface {
 	IMTRUnitTestingClusterTestEventEvent
-	Arg1() foundation.Number
-	SetArg1(value foundation.INumber)
-	Arg2() foundation.Number
-	SetArg2(value foundation.INumber)
-	Arg3() foundation.Number
-	SetArg3(value foundation.INumber)
-	Arg4() MTRTestClusterClusterSimpleStruct
+	// properties:
+	Arg1() objc.IObject /* cross-framework: NSNumber */
+	SetArg1(value objc.IObject /* cross-framework: NSNumber */)
+	Arg2() objc.IObject /* cross-framework: NSNumber */
+	SetArg2(value objc.IObject /* cross-framework: NSNumber */)
+	Arg3() objc.IObject /* cross-framework: NSNumber */
+	SetArg3(value objc.IObject /* cross-framework: NSNumber */)
+	Arg4() IMTRTestClusterClusterSimpleStruct
 	SetArg4(value IMTRTestClusterClusterSimpleStruct)
 	Arg5() unsafe.Pointer
 	SetArg5(value unsafe.Pointer)
 	Arg6() unsafe.Pointer
 	SetArg6(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestEventEvent
 type MTRTestClusterClusterTestEventEvent struct {
 	MTRUnitTestingClusterTestEventEvent
@@ -89,67 +93,68 @@ func NewMTRTestClusterClusterTestEventEvent() MTRTestClusterClusterTestEventEven
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg1
-func (m_ MTRTestClusterClusterTestEventEvent) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+func (m_ MTRTestClusterClusterTestEventEvent) Arg1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg1
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg1(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg2
-func (m_ MTRTestClusterClusterTestEventEvent) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+func (m_ MTRTestClusterClusterTestEventEvent) Arg2() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg2"))
 	return rv
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg2
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg2(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg3
-func (m_ MTRTestClusterClusterTestEventEvent) Arg3() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg3"))
+func (m_ MTRTestClusterClusterTestEventEvent) Arg3() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg3"))
 	return rv
 }
 
 
-// SetArg3 sets the value of the arg3 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg3
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg3(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg3(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg4
-func (m_ MTRTestClusterClusterTestEventEvent) Arg4() MTRTestClusterClusterSimpleStruct {
+func (m_ MTRTestClusterClusterTestEventEvent) Arg4() IMTRTestClusterClusterSimpleStruct {
 	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("arg4"))
 	return rv
 }
 
 
-// SetArg4 sets the value of the arg4 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg4
 func (m_ MTRTestClusterClusterTestEventEvent) SetArg4(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg5
 func (m_ MTRTestClusterClusterTestEventEvent) Arg5() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg5"))
@@ -157,14 +162,14 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg5() unsafe.Pointer {
 }
 
 
-// SetArg5 sets the value of the arg5 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg5
 func (m_ MTRTestClusterClusterTestEventEvent) SetArg5(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg6
 func (m_ MTRTestClusterClusterTestEventEvent) Arg6() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg6"))
@@ -172,8 +177,7 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg6() unsafe.Pointer {
 }
 
 
-// SetArg6 sets the value of the arg6 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg6
 func (m_ MTRTestClusterClusterTestEventEvent) SetArg6(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)

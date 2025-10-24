@@ -30,23 +30,27 @@ type _PolygonBufferClass struct {
 // An interface definition for the [PolygonBuffer] class.
 type IPolygonBuffer interface {
 	objectivec.IObject
+	// properties:
 	IndexBufferOffset() uint
 	SetIndexBufferOffset(value uint)
-	IndexBuffer() unsafe.Pointer
-	SetIndexBuffer(value unsafe.Pointer)
-	MaskBuffer() unsafe.Pointer
-	SetMaskBuffer(value unsafe.Pointer)
+	IndexBuffer() Buffer /* not a class type */
+	SetIndexBuffer(value Buffer /* not a class type */)
+	MaskBuffer() Buffer /* not a class type */
+	SetMaskBuffer(value Buffer /* not a class type */)
 	MaskBufferOffset() int
 	SetMaskBufferOffset(value int)
 	PolygonCount() int
 	SetPolygonCount(value int)
-	VertexBuffer() unsafe.Pointer
-	SetVertexBuffer(value unsafe.Pointer)
+	VertexBuffer() Buffer /* not a class type */
+	SetVertexBuffer(value Buffer /* not a class type */)
 	VertexBufferOffset() int
 	SetVertexBufferOffset(value int)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer
 type PolygonBuffer struct {
 	objectivec.Object
@@ -89,7 +93,8 @@ func NewPolygonBuffer() PolygonBuffer {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer/indexBufferOffset
 func (p_ PolygonBuffer) IndexBufferOffset() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("indexBufferOffset"))
@@ -97,44 +102,44 @@ func (p_ PolygonBuffer) IndexBufferOffset() uint {
 }
 
 
-// SetIndexBufferOffset sets the value of the indexBufferOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPolygonBuffer/indexBufferOffset
 func (p_ PolygonBuffer) SetIndexBufferOffset(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexBufferOffset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/indexbuffer
-func (p_ PolygonBuffer) IndexBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("indexBuffer"))
+func (p_ PolygonBuffer) IndexBuffer() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](p_.ID, objc.Sel("indexBuffer"))
 	return rv
 }
 
 
-// SetIndexBuffer sets the value of the indexBuffer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/indexbuffer
-func (p_ PolygonBuffer) SetIndexBuffer(value unsafe.Pointer) {
+func (p_ PolygonBuffer) SetIndexBuffer(value Buffer /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexBuffer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbuffer
-func (p_ PolygonBuffer) MaskBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maskBuffer"))
+func (p_ PolygonBuffer) MaskBuffer() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](p_.ID, objc.Sel("maskBuffer"))
 	return rv
 }
 
 
-// SetMaskBuffer sets the value of the maskBuffer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbuffer
-func (p_ PolygonBuffer) SetMaskBuffer(value unsafe.Pointer) {
+func (p_ PolygonBuffer) SetMaskBuffer(value Buffer /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaskBuffer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbufferoffset
 func (p_ PolygonBuffer) MaskBufferOffset() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("maskBufferOffset"))
@@ -142,14 +147,14 @@ func (p_ PolygonBuffer) MaskBufferOffset() int {
 }
 
 
-// SetMaskBufferOffset sets the value of the maskBufferOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/maskbufferoffset
 func (p_ PolygonBuffer) SetMaskBufferOffset(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaskBufferOffset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/polygoncount
 func (p_ PolygonBuffer) PolygonCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("polygonCount"))
@@ -157,29 +162,29 @@ func (p_ PolygonBuffer) PolygonCount() int {
 }
 
 
-// SetPolygonCount sets the value of the polygonCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/polygoncount
 func (p_ PolygonBuffer) SetPolygonCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPolygonCount:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbuffer
-func (p_ PolygonBuffer) VertexBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("vertexBuffer"))
+func (p_ PolygonBuffer) VertexBuffer() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](p_.ID, objc.Sel("vertexBuffer"))
 	return rv
 }
 
 
-// SetVertexBuffer sets the value of the vertexBuffer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbuffer
-func (p_ PolygonBuffer) SetVertexBuffer(value unsafe.Pointer) {
+func (p_ PolygonBuffer) SetVertexBuffer(value Buffer /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVertexBuffer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbufferoffset
 func (p_ PolygonBuffer) VertexBufferOffset() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("vertexBufferOffset"))
@@ -187,8 +192,7 @@ func (p_ PolygonBuffer) VertexBufferOffset() int {
 }
 
 
-// SetVertexBufferOffset sets the value of the vertexBufferOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer/vertexbufferoffset
 func (p_ PolygonBuffer) SetVertexBufferOffset(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVertexBufferOffset:"), value)

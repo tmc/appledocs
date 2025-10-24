@@ -31,17 +31,21 @@ type _MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams] class.
 type IMTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	OperationalDataset() foundation.Data
-	SetOperationalDataset(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	OperationalDataset() objc.IObject /* cross-framework: Data */
+	SetOperationalDataset(value objc.IObject /* cross-framework: Data */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams
 type MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams() MTRNetwor
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
 
-// SetOperationalDataset sets the value of the operationalDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

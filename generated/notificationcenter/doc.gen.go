@@ -2,12 +2,12 @@
 
 // Package notificationcenter provides Go bindings for the NotificationCenter framework.
 //
-// Create and manage widgets for the Today view. [Full Topic]
+// Create and manage widgets for the Today view.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to NotificationCenter without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter
+// See: https://developer.apple.com/documentation/NotificationCenter
 package notificationcenter
 
 import (

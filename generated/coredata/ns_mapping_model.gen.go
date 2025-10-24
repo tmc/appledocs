@@ -94,7 +94,7 @@ func NewMappingModel() MappingModel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
-func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.objc.IObject /* cross-framework Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
+func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []objc.IObject /* cross-framework: Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
@@ -115,7 +115,7 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
-func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.objc.IObject /* cross-framework Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) IMappingModel {
+func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles []objc.IObject /* cross-framework: Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) IMappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }

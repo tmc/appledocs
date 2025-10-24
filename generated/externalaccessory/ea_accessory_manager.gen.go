@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _EAAccessoryManagerClass struct {
 type IEAAccessoryManager interface {
 	objectivec.IObject
 	// properties:
-	EAAccessoryKey() string /* primitive/slice/pointer. */
+	EAAccessoryKey() objc.IObject /* cross-framework: NSString */
 	ConnectedAccessories() IEAAccessory
 	SetConnectedAccessories(value IEAAccessory)
-	EAAccessorySelectedKey() string /* primitive/slice/pointer. */
-	EABluetoothAccessoryPickerErrorDomain() string /* primitive/slice/pointer. */
+	EAAccessorySelectedKey() objc.IObject /* cross-framework: NSString */
+	EABluetoothAccessoryPickerErrorDomain() objc.IObject /* cross-framework: NSString */
 	// methods:
 	RegisterForLocalNotifications()
 	UnregisterForLocalNotifications()
@@ -116,8 +117,8 @@ func (e_ EAAccessoryManager) UnregisterForLocalNotifications() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
-func (e_ EAAccessoryManager) EAAccessoryKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
+func (e_ EAAccessoryManager) EAAccessoryKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
-func (e_ EAAccessoryManager) EAAccessorySelectedKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
+func (e_ EAAccessoryManager) EAAccessorySelectedKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (e_ EAAccessoryManager) EAAccessorySelectedKey() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
-func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
+func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv
 }
 

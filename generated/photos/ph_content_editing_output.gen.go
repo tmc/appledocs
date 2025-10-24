@@ -32,21 +32,28 @@ type _PHContentEditingOutputClass struct {
 // An interface definition for the [PHContentEditingOutput] class.
 type IPHContentEditingOutput interface {
 	objectivec.IObject
-	AdjustmentData() PHAdjustmentData
-	SetAdjustmentData(value IPHAdjustmentData)
-	RenderedContentURL() foundation.URL
-	ContentEditingOutput() PHContentEditingOutput
+	// properties:
+	ContentEditingOutput() IPHContentEditingOutput
 	SetContentEditingOutput(value IPHContentEditingOutput)
-	DefaultRenderedContentType() uniformtypeidentifiers.UTType
-	SetDefaultRenderedContentType(value uniformtypeidentifiers.UTType)
-	SupportedRenderedContentTypes() uniformtypeidentifiers.UTType
-	SetSupportedRenderedContentTypes(value uniformtypeidentifiers.UTType)
+	AdjustmentData() IPHAdjustmentData
+	SetAdjustmentData(value IPHAdjustmentData)
+	DefaultRenderedContentType() objc.IObject /* cross-framework: UTType */
+	SetDefaultRenderedContentType(value objc.IObject /* cross-framework: UTType */)
+	RenderedContentURL() objc.IObject /* cross-framework: URL */
+	SetRenderedContentURL(value objc.IObject /* cross-framework: URL */)
+	SupportedRenderedContentTypes() objc.IObject /* cross-framework: UTType */
+	SetSupportedRenderedContentTypes(value objc.IObject /* cross-framework: UTType */)
+	// methods:
 }
 
 // A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.
 //
 // To edit an asset’s photo or video content: Fetch a object that represents the photo or video to be edited. Call the asset’s method to retrieve a object. This object provides information about the asset, the asset data to be edited, and a preview image for display. Apply your edits to the asset. To allow a user to continue working with the edit later (for example, to adjust the parameters of a photo filter), create a object describing the changes. Initialize a object. For photo- or video-only assets, provide the edited content with the property. For Live Photo assets, create a object to edit the Live Photo content and pass your content editing output to the method. For all asset types, provide your adjustment data with the property of the content editing output. 5. Use a photo library change block to commit the edit. (For details, see .) In the block, create a object and set its property to the editing output that you created. Each call prompts the user for permission to edit the contents of the photo library—to edit multiple assets in one batch, create multiple objects within the same change block, each with its own corresponding object. You can also edit assets from photo editing extensions. In this case, instead of working with a object, you implement methods in the protocol. Photos provides a object when your extension begins editing. When editing is complete, Photos requests a object that contains the edited asset content.
+
+
+// A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput
 type PHContentEditingOutput struct {
 	objectivec.Object
@@ -91,77 +98,90 @@ func NewPHContentEditingOutput() PHContentEditingOutput {
 }
 
 
-// An object describing the changes made to the asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/adjustmentData
-func (p_ PHContentEditingOutput) AdjustmentData() PHAdjustmentData {
-	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
-	return rv
-}
-
-
-// SetAdjustmentData sets the value of the adjustmentData property.
-// An object describing the changes made to the asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/adjustmentData
-func (p_ PHContentEditingOutput) SetAdjustmentData(value IPHAdjustmentData) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
-}
-
-// The URL at which to write a file containing edited asset content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/renderedContentURL
-func (p_ PHContentEditingOutput) RenderedContentURL() foundation.URL {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("renderedContentURL"))
-	return rv
-}
 
 // The output of an asset content editing session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingOutput) ContentEditingOutput() PHContentEditingOutput {
+func (p_ PHContentEditingOutput) ContentEditingOutput() IPHContentEditingOutput {
 	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
 
-// SetContentEditingOutput sets the value of the contentEditingOutput property.
 // The output of an asset content editing session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
 func (p_ PHContentEditingOutput) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
+
+// An object describing the changes made to the asset.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
+func (p_ PHContentEditingOutput) AdjustmentData() IPHAdjustmentData {
+	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
+	return rv
+}
+
+
+// An object describing the changes made to the asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
+func (p_ PHContentEditingOutput) SetAdjustmentData(value IPHAdjustmentData) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
-func (p_ PHContentEditingOutput) DefaultRenderedContentType() uniformtypeidentifiers.UTType {
+func (p_ PHContentEditingOutput) DefaultRenderedContentType() objc.IObject /* cross-framework: UTType */ {
 	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("defaultRenderedContentType"))
 	return rv
 }
 
 
-// SetDefaultRenderedContentType sets the value of the defaultRenderedContentType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
-func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value uniformtypeidentifiers.UTType) {
+func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRenderedContentType:"), value)
 }
 
+
+// The URL at which to write a file containing edited asset content.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/renderedcontenturl
+func (p_ PHContentEditingOutput) RenderedContentURL() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("renderedContentURL"))
+	return rv
+}
+
+
+// The URL at which to write a file containing edited asset content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/renderedcontenturl
+func (p_ PHContentEditingOutput) SetRenderedContentURL(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderedContentURL:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
-func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() uniformtypeidentifiers.UTType {
+func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() objc.IObject /* cross-framework: UTType */ {
 	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("supportedRenderedContentTypes"))
 	return rv
 }
 
 
-// SetSupportedRenderedContentTypes sets the value of the supportedRenderedContentTypes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
-func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value uniformtypeidentifiers.UTType) {
+func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSupportedRenderedContentTypes:"), value)
 }
 

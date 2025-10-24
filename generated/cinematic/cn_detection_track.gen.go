@@ -32,7 +32,7 @@ type ICNDetectionTrack interface {
 	objectivec.IObject
 	// properties:
 	DetectionID() CNDetectionID /* typedef */
-	UserCreated() bool /* primitive/slice/pointer. */
+	UserCreated() bool
 	// methods:
 	DetectionNearestTime(time Time /* not a class type */) ICNDetection
 }
@@ -112,7 +112,7 @@ func (c_ CNDetectionTrack) DetectionID() CNDetectionID /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/userCreated
-func (c_ CNDetectionTrack) UserCreated() bool /* primitive/slice/pointer. */ {
+func (c_ CNDetectionTrack) UserCreated() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("userCreated"))
 	return rv
 }

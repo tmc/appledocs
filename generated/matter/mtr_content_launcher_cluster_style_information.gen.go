@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRContentLauncherClusterStyleInformation] class.
@@ -29,13 +30,17 @@ type _MTRContentLauncherClusterStyleInformationClass struct {
 // An interface definition for the [MTRContentLauncherClusterStyleInformation] class.
 type IMTRContentLauncherClusterStyleInformation interface {
 	IMTRContentLauncherClusterStyleInformationStruct
-	Color() string
-	SetColor(value string)
-	Size() MTRContentLauncherClusterDimensionStruct
+	// properties:
+	Color() objc.IObject /* cross-framework: NSString */
+	SetColor(value objc.IObject /* cross-framework: NSString */)
+	Size() IMTRContentLauncherClusterDimensionStruct
 	SetSize(value IMTRContentLauncherClusterDimensionStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterStyleInformation
 type MTRContentLauncherClusterStyleInformation struct {
 	MTRContentLauncherClusterStyleInformationStruct
@@ -80,31 +85,31 @@ func NewMTRContentLauncherClusterStyleInformation() MTRContentLauncherClusterSty
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
-func (m_ MTRContentLauncherClusterStyleInformation) Color() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("color"))
+func (m_ MTRContentLauncherClusterStyleInformation) Color() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("color"))
 	return rv
 }
 
 
-// SetColor sets the value of the color property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
-func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), objc.String(value))
+func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
-func (m_ MTRContentLauncherClusterStyleInformation) Size() MTRContentLauncherClusterDimensionStruct {
+func (m_ MTRContentLauncherClusterStyleInformation) Size() IMTRContentLauncherClusterDimensionStruct {
 	rv := objc.Send[MTRContentLauncherClusterDimensionStruct](m_.ID, objc.Sel("size"))
 	return rv
 }
 
 
-// SetSize sets the value of the size property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
 func (m_ MTRContentLauncherClusterStyleInformation) SetSize(value IMTRContentLauncherClusterDimensionStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)

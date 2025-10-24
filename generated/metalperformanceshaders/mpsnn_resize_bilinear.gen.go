@@ -30,24 +30,32 @@ type _ResizeBilinearClass struct {
 
 // An interface definition for the [ResizeBilinear] class.
 type IResizeBilinear interface {
-	objectivec.IObject
+	ICNNKernel
+	// properties:
 	AlignCorners() bool
 	ResizeHeight() uint
 	ResizeWidth() uint
+	// methods:
 }
 
 // A bilinear resizing filter.
+
+
+// A bilinear resizing filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear
 type ResizeBilinear struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // ResizeBilinearFrom constructs a [ResizeBilinear] from an unsafe.Pointer.
 //
 // A bilinear resizing filter.
 func ResizeBilinearFrom(ptr unsafe.Pointer) ResizeBilinear {
-	return ResizeBilinear{objectivec.Object{objc.ID(ptr)}}
+	return ResizeBilinear{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -82,9 +90,10 @@ func NewResizeBilinear() ResizeBilinear {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/init(coder:device:)
-func NewResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ResizeBilinear {
+func NewResizeBilinearWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ResizeBilinear {
 	instance := getResizeBilinearClass().Alloc()
 	rv := objc.Send[ResizeBilinear](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -92,21 +101,24 @@ func NewResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device objecti
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/alignCorners
 func (r_ ResizeBilinear) AlignCorners() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("alignCorners"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/resizeHeight
 func (r_ ResizeBilinear) ResizeHeight() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("resizeHeight"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/resizeWidth
 func (r_ ResizeBilinear) ResizeWidth() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("resizeWidth"))

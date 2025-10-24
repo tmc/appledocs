@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _RTreeClass struct {
 type IRTree interface {
 	objectivec.IObject
 	// properties:
-	QueryReserve() uint /* primitive/slice/pointer. */
-	SetQueryReserve(value uint /* primitive/slice/pointer. */)
+	QueryReserve() uint
+	SetQueryReserve(value uint)
 	// methods:
 	AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy RTreeSplitStrategy)
-	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []objectivec.IObject /* already interface */
+	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []objc.IObject /* cross-framework: Object */
 	RemoveElementBoundingRectMinBoundingRectMax(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer)
 }
 
@@ -96,7 +97,7 @@ func NewRTree() RTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/init(maxNumberOfChildren:)
-func NewRTreeWithMaxNumberOfChildren(maxNumberOfChildren uint /* primitive/slice/pointer. */) RTree {
+func NewRTreeWithMaxNumberOfChildren(maxNumberOfChildren uint) RTree {
 	instance := getRTreeClass().Alloc()
 	rv := objc.Send[RTree](instance.ID, objc.Sel("initWithMaxNumberOfChildren:"), maxNumberOfChildren)
 	rv.Autorelease()
@@ -109,7 +110,7 @@ func NewRTreeWithMaxNumberOfChildren(maxNumberOfChildren uint /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/treeWithMaxNumberOfChildren:
-func (rc _RTreeClass) TreeWithMaxNumberOfChildren(maxNumberOfChildren uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (rc _RTreeClass) TreeWithMaxNumberOfChildren(maxNumberOfChildren uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("treeWithMaxNumberOfChildren:"), maxNumberOfChildren)
 	return rv
 }
@@ -128,8 +129,8 @@ func (r_ RTree) AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/elements(inBoundingRectMin:rectMax:)
-func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
+func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []objc.IObject /* cross-framework: Object */ {
+	rv := objc.Send[[]foundation.Object](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (r_ RTree) RemoveElementBoundingRectMinBoundingRectMax(element unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/queryReserve
-func (r_ RTree) QueryReserve() uint /* primitive/slice/pointer. */ {
+func (r_ RTree) QueryReserve() uint {
 	rv := objc.Send[uint](r_.ID, objc.Sel("queryReserve"))
 	return rv
 }
@@ -157,7 +158,7 @@ func (r_ RTree) QueryReserve() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/queryReserve
-func (r_ RTree) SetQueryReserve(value uint /* primitive/slice/pointer. */) {
+func (r_ RTree) SetQueryReserve(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setQueryReserve:"), value)
 }
 

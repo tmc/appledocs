@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,27 +32,33 @@ type _WindowClass struct {
 // An interface definition for the [Window] class.
 type IWindow interface {
 	objectivec.IObject
-	Active() bool
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
+	// properties:
+	OnScreen() bool
+	Frame() objc.IObject /* cross-framework: Rect */
+	SetFrame(value objc.IObject /* cross-framework: Rect */)
 	IsActive() bool
 	SetIsActive(value bool)
 	IsOnScreen() bool
 	SetIsOnScreen(value bool)
-	OwningApplication() SCRunningApplication
+	OwningApplication() ISCRunningApplication
 	SetOwningApplication(value ISCRunningApplication)
-	Title() string
-	SetTitle(value string)
-	WindowID() unsafe.Pointer
-	SetWindowID(value unsafe.Pointer)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	WindowID() WindowID /* not a class type */
+	SetWindowID(value WindowID /* not a class type */)
 	WindowLayer() int
 	SetWindowLayer(value int)
+	// methods:
 }
 
 // An instance that represents an onscreen window.
 //
 // Retrieve the available windows from an instance of . Select one or more windows to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+
+
+// An instance that represents an onscreen window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow
 type Window struct {
 	objectivec.Object
@@ -96,34 +103,39 @@ func NewWindow() Window {
 }
 
 
-// A Boolean value that indicates if the window is currently streaming.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow/isActive
-func (w_ Window) Active() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("active"))
-	return rv
-}
 
-// A rectangle the represents the frame of the window within a display.
+// A Boolean value that indicates whether the window is on screen.
 //
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/frame
-func (w_ Window) Frame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("frame"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCWindow/isOnScreen
+func (w_ Window) OnScreen() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("onScreen"))
 	return rv
 }
 
 
-// SetFrame sets the value of the frame property.
 // A rectangle the represents the frame of the window within a display.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/frame
-func (w_ Window) SetFrame(value coregraphics.CGRect) {
+func (w_ Window) Frame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](w_.ID, objc.Sel("frame"))
+	return rv
+}
+
+
+// A rectangle the represents the frame of the window within a display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/frame
+func (w_ Window) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrame:"), value)
 }
 
+
 // A Boolean value that indicates if the window is currently streaming.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
 func (w_ Window) IsActive() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isActive"))
@@ -131,17 +143,18 @@ func (w_ Window) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates if the window is currently streaming.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isactive
 func (w_ Window) SetIsActive(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // A Boolean value that indicates whether the window is on screen.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isonscreen
 func (w_ Window) IsOnScreen() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isOnScreen"))
@@ -149,71 +162,75 @@ func (w_ Window) IsOnScreen() bool {
 }
 
 
-// SetIsOnScreen sets the value of the isOnScreen property.
 // A Boolean value that indicates whether the window is on screen.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/isonscreen
 func (w_ Window) SetIsOnScreen(value bool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsOnScreen:"), value)
 }
 
+
 // The app that owns the window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
-func (w_ Window) OwningApplication() SCRunningApplication {
-	rv := objc.Send[SCRunningApplication](w_.ID, objc.Sel("owningApplication"))
+func (w_ Window) OwningApplication() ISCRunningApplication {
+	rv := objc.Send[RunningApplication](w_.ID, objc.Sel("owningApplication"))
 	return rv
 }
 
 
-// SetOwningApplication sets the value of the owningApplication property.
 // The app that owns the window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
 func (w_ Window) SetOwningApplication(value ISCRunningApplication) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOwningApplication:"), value)
 }
 
+
 // The string that displays in a window’s title bar.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) Title() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+func (w_ Window) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The string that displays in a window’s title bar.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) SetTitle(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (w_ Window) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
 }
+
 
 // The Core Graphics window identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
-func (w_ Window) WindowID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("windowID"))
+func (w_ Window) WindowID() WindowID /* not a class type */ {
+	rv := objc.Send[WindowID](w_.ID, objc.Sel("windowID"))
 	return rv
 }
 
 
-// SetWindowID sets the value of the windowID property.
 // The Core Graphics window identifier.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowid
-func (w_ Window) SetWindowID(value unsafe.Pointer) {
+func (w_ Window) SetWindowID(value WindowID /* not a class type */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowID:"), value)
 }
 
+
 // The layer of the window relative to other windows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowlayer
 func (w_ Window) WindowLayer() int {
 	rv := objc.Send[int](w_.ID, objc.Sel("windowLayer"))
@@ -221,10 +238,9 @@ func (w_ Window) WindowLayer() int {
 }
 
 
-// SetWindowLayer sets the value of the windowLayer property.
 // The layer of the window relative to other windows.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/windowlayer
 func (w_ Window) SetWindowLayer(value int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowLayer:"), value)

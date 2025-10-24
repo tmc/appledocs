@@ -30,12 +30,18 @@ type _IKFilterUIViewClass struct {
 // An interface definition for the [IKFilterUIView] class.
 type IIKFilterUIView interface {
 	appkit.IView
+	// properties:
+	// methods:
 }
 
 // Input parameters for filtering core image filters.
 //
 // The class provides a view that contains input parameter controls for a Core Image filter ( ). You need to use this class when providing a user interface for a custom filter. The class creates a view that has an object controller for the given filter. It also retains the filter.
+
+
+// Input parameters for filtering core image filters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKFilterUIView
 type IKFilterUIView struct {
 	appkit.View

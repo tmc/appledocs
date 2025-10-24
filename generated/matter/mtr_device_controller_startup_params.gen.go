@@ -31,39 +31,43 @@ type _MTRDeviceControllerStartupParamsClass struct {
 // An interface definition for the [MTRDeviceControllerStartupParams] class.
 type IMTRDeviceControllerStartupParams interface {
 	objectivec.IObject
-	CaseAuthenticatedTags() foundation.Number
-	SetCaseAuthenticatedTags(value foundation.INumber)
-	FabricID() foundation.Number
-	SetFabricID(value foundation.INumber)
+	// properties:
+	CaseAuthenticatedTags() objc.IObject /* cross-framework: NSNumber */
+	SetCaseAuthenticatedTags(value objc.IObject /* cross-framework: NSNumber */)
+	FabricID() objc.IObject /* cross-framework: NSNumber */
+	SetFabricID(value objc.IObject /* cross-framework: NSNumber */)
 	FabricId() uint64
 	SetFabricId(value uint64)
-	IntermediateCertificate() foundation.Data
-	SetIntermediateCertificate(value foundation.IData)
-	Ipk() foundation.Data
-	SetIpk(value foundation.IData)
+	IntermediateCertificate() objc.IObject /* cross-framework: Data */
+	SetIntermediateCertificate(value objc.IObject /* cross-framework: Data */)
+	Ipk() objc.IObject /* cross-framework: Data */
+	SetIpk(value objc.IObject /* cross-framework: Data */)
 	NocSigner() unsafe.Pointer
 	SetNocSigner(value unsafe.Pointer)
-	NodeID() foundation.Number
-	SetNodeID(value foundation.INumber)
-	NodeId() foundation.Number
-	SetNodeId(value foundation.INumber)
-	OperationalCertificate() foundation.Data
-	SetOperationalCertificate(value foundation.IData)
+	NodeID() objc.IObject /* cross-framework: NSNumber */
+	SetNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	NodeId() objc.IObject /* cross-framework: NSNumber */
+	SetNodeId(value objc.IObject /* cross-framework: NSNumber */)
+	OperationalCertificate() objc.IObject /* cross-framework: Data */
+	SetOperationalCertificate(value objc.IObject /* cross-framework: Data */)
 	OperationalCertificateIssuer() unsafe.Pointer
 	SetOperationalCertificateIssuer(value unsafe.Pointer)
 	OperationalCertificateIssuerQueue() unsafe.Pointer
 	SetOperationalCertificateIssuerQueue(value unsafe.Pointer)
 	OperationalKeypair() unsafe.Pointer
 	SetOperationalKeypair(value unsafe.Pointer)
-	RootCertificate() foundation.Data
-	SetRootCertificate(value foundation.IData)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
-	VendorId() foundation.Number
-	SetVendorId(value foundation.INumber)
+	RootCertificate() objc.IObject /* cross-framework: Data */
+	SetRootCertificate(value objc.IObject /* cross-framework: Data */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	VendorId() objc.IObject /* cross-framework: NSNumber */
+	SetVendorId(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerStartupParams
 type MTRDeviceControllerStartupParams struct {
 	objectivec.Object
@@ -106,37 +110,38 @@ func NewMTRDeviceControllerStartupParams() MTRDeviceControllerStartupParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
-func (m_ MTRDeviceControllerStartupParams) CaseAuthenticatedTags() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("caseAuthenticatedTags"))
+func (m_ MTRDeviceControllerStartupParams) CaseAuthenticatedTags() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("caseAuthenticatedTags"))
 	return rv
 }
 
 
-// SetCaseAuthenticatedTags sets the value of the caseAuthenticatedTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/caseauthenticatedtags
-func (m_ MTRDeviceControllerStartupParams) SetCaseAuthenticatedTags(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetCaseAuthenticatedTags(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAuthenticatedTags:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm6z
-func (m_ MTRDeviceControllerStartupParams) FabricID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricID"))
+func (m_ MTRDeviceControllerStartupParams) FabricID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricID"))
 	return rv
 }
 
 
-// SetFabricID sets the value of the fabricID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm6z
-func (m_ MTRDeviceControllerStartupParams) SetFabricID(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetFabricID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
 func (m_ MTRDeviceControllerStartupParams) FabricId() uint64 {
 	rv := objc.Send[uint64](m_.ID, objc.Sel("fabricId"))
@@ -144,44 +149,44 @@ func (m_ MTRDeviceControllerStartupParams) FabricId() uint64 {
 }
 
 
-// SetFabricId sets the value of the fabricId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/fabricid-1cm7v
 func (m_ MTRDeviceControllerStartupParams) SetFabricId(value uint64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/intermediatecertificate
-func (m_ MTRDeviceControllerStartupParams) IntermediateCertificate() foundation.Data {
+func (m_ MTRDeviceControllerStartupParams) IntermediateCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificate"))
 	return rv
 }
 
 
-// SetIntermediateCertificate sets the value of the intermediateCertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/intermediatecertificate
-func (m_ MTRDeviceControllerStartupParams) SetIntermediateCertificate(value foundation.IData) {
+func (m_ MTRDeviceControllerStartupParams) SetIntermediateCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/ipk
-func (m_ MTRDeviceControllerStartupParams) Ipk() foundation.Data {
+func (m_ MTRDeviceControllerStartupParams) Ipk() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("ipk"))
 	return rv
 }
 
 
-// SetIpk sets the value of the ipk property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/ipk
-func (m_ MTRDeviceControllerStartupParams) SetIpk(value foundation.IData) {
+func (m_ MTRDeviceControllerStartupParams) SetIpk(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIpk:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
 func (m_ MTRDeviceControllerStartupParams) NocSigner() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocSigner"))
@@ -189,62 +194,63 @@ func (m_ MTRDeviceControllerStartupParams) NocSigner() unsafe.Pointer {
 }
 
 
-// SetNocSigner sets the value of the nocSigner property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nocsigner
 func (m_ MTRDeviceControllerStartupParams) SetNocSigner(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNocSigner:"), value)
 }
 
+
 // Node id for this controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
-func (m_ MTRDeviceControllerStartupParams) NodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeID"))
+func (m_ MTRDeviceControllerStartupParams) NodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeID"))
 	return rv
 }
 
 
-// SetNodeID sets the value of the nodeID property.
 // Node id for this controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwwv
-func (m_ MTRDeviceControllerStartupParams) SetNodeID(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
-func (m_ MTRDeviceControllerStartupParams) NodeId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodeId"))
+func (m_ MTRDeviceControllerStartupParams) NodeId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeId"))
 	return rv
 }
 
 
-// SetNodeId sets the value of the nodeId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/nodeid-9iwxr
-func (m_ MTRDeviceControllerStartupParams) SetNodeId(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetNodeId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificate
-func (m_ MTRDeviceControllerStartupParams) OperationalCertificate() foundation.Data {
+func (m_ MTRDeviceControllerStartupParams) OperationalCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificate"))
 	return rv
 }
 
 
-// SetOperationalCertificate sets the value of the operationalCertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificate
-func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificate(value foundation.IData) {
+func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
 func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuer"))
@@ -252,14 +258,14 @@ func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuer() unsafe
 }
 
 
-// SetOperationalCertificateIssuer sets the value of the operationalCertificateIssuer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuer
 func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuer(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
 func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuerQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateIssuerQueue"))
@@ -267,14 +273,14 @@ func (m_ MTRDeviceControllerStartupParams) OperationalCertificateIssuerQueue() u
 }
 
 
-// SetOperationalCertificateIssuerQueue sets the value of the operationalCertificateIssuerQueue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalcertificateissuerqueue
 func (m_ MTRDeviceControllerStartupParams) SetOperationalCertificateIssuerQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateIssuerQueue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
 func (m_ MTRDeviceControllerStartupParams) OperationalKeypair() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalKeypair"))
@@ -282,55 +288,54 @@ func (m_ MTRDeviceControllerStartupParams) OperationalKeypair() unsafe.Pointer {
 }
 
 
-// SetOperationalKeypair sets the value of the operationalKeypair property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/operationalkeypair
 func (m_ MTRDeviceControllerStartupParams) SetOperationalKeypair(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalKeypair:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
-func (m_ MTRDeviceControllerStartupParams) RootCertificate() foundation.Data {
+func (m_ MTRDeviceControllerStartupParams) RootCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
 
-// SetRootCertificate sets the value of the rootCertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/rootcertificate
-func (m_ MTRDeviceControllerStartupParams) SetRootCertificate(value foundation.IData) {
+func (m_ MTRDeviceControllerStartupParams) SetRootCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
-func (m_ MTRDeviceControllerStartupParams) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRDeviceControllerStartupParams) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru1s
-func (m_ MTRDeviceControllerStartupParams) SetVendorID(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
-func (m_ MTRDeviceControllerStartupParams) VendorId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorId"))
+func (m_ MTRDeviceControllerStartupParams) VendorId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorId"))
 	return rv
 }
 
 
-// SetVendorId sets the value of the vendorId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerstartupparams/vendorid-8ru0w
-func (m_ MTRDeviceControllerStartupParams) SetVendorId(value foundation.INumber) {
+func (m_ MTRDeviceControllerStartupParams) SetVendorId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
 }
 

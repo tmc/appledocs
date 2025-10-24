@@ -31,13 +31,17 @@ type _MTROTASoftwareUpdateRequestorClusterVersionAppliedEventClass struct {
 // An interface definition for the [MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent] class.
 type IMTROTASoftwareUpdateRequestorClusterVersionAppliedEvent interface {
 	objectivec.IObject
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
+	// properties:
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent-94prr
 type MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTROTASoftwareUpdateRequestorClusterVersionAppliedEvent() MTROTASoftware
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/productid
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-94prr/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

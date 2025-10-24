@@ -30,7 +30,8 @@ type _LocalCorrelationClass struct {
 
 // An interface definition for the [LocalCorrelation] class.
 type ILocalCorrelation interface {
-	objectivec.IObject
+	IReduceBinary
+	// properties:
 	StrideInY() uint
 	SetStrideInY(value uint)
 	StrideInX() int
@@ -39,17 +40,22 @@ type ILocalCorrelation interface {
 	SetWindowInX(value int)
 	WindowInY() int
 	SetWindowInY(value int)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation
 type LocalCorrelation struct {
-	objectivec.Object
+	ReduceBinary
 }
 
 // LocalCorrelationFrom constructs a [LocalCorrelation] from an unsafe.Pointer.
 func LocalCorrelationFrom(ptr unsafe.Pointer) LocalCorrelation {
-	return LocalCorrelation{objectivec.Object{objc.ID(ptr)}}
+	return LocalCorrelation{
+		ReduceBinary: ReduceBinaryFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -84,9 +90,10 @@ func NewLocalCorrelation() LocalCorrelation {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/init(coder:device:)
-func NewLocalCorrelationWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) LocalCorrelation {
+func NewLocalCorrelationWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) LocalCorrelation {
 	instance := getLocalCorrelationClass().Alloc()
 	rv := objc.Send[LocalCorrelation](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -94,7 +101,8 @@ func NewLocalCorrelationWithCoderDevice(aDecoder foundation.ICoder, device objec
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
 func (l_ LocalCorrelation) StrideInY() uint {
 	rv := objc.Send[uint](l_.ID, objc.Sel("strideInY"))
@@ -102,14 +110,14 @@ func (l_ LocalCorrelation) StrideInY() uint {
 }
 
 
-// SetStrideInY sets the value of the strideInY property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/strideInY
 func (l_ LocalCorrelation) SetStrideInY(value uint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInY:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/strideinx
 func (l_ LocalCorrelation) StrideInX() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("strideInX"))
@@ -117,14 +125,14 @@ func (l_ LocalCorrelation) StrideInX() int {
 }
 
 
-// SetStrideInX sets the value of the strideInX property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/strideinx
 func (l_ LocalCorrelation) SetStrideInX(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStrideInX:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowinx
 func (l_ LocalCorrelation) WindowInX() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("windowInX"))
@@ -132,14 +140,14 @@ func (l_ LocalCorrelation) WindowInX() int {
 }
 
 
-// SetWindowInX sets the value of the windowInX property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowinx
 func (l_ LocalCorrelation) SetWindowInX(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWindowInX:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowiny
 func (l_ LocalCorrelation) WindowInY() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("windowInY"))
@@ -147,8 +155,7 @@ func (l_ LocalCorrelation) WindowInY() int {
 }
 
 
-// SetWindowInY sets the value of the windowInY property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation/windowiny
 func (l_ LocalCorrelation) SetWindowInY(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWindowInY:"), value)

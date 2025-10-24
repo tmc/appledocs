@@ -31,19 +31,23 @@ type _MTRAccountLoginClusterLoginParamsClass struct {
 // An interface definition for the [MTRAccountLoginClusterLoginParams] class.
 type IMTRAccountLoginClusterLoginParams interface {
 	objectivec.IObject
-	Node() foundation.Number
-	SetNode(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	SetupPIN() string
-	SetSetupPIN(value string)
-	TempAccountIdentifier() string
-	SetTempAccountIdentifier(value string)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Node() objc.IObject /* cross-framework: NSNumber */
+	SetNode(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	SetupPIN() objc.IObject /* cross-framework: NSString */
+	SetSetupPIN(value objc.IObject /* cross-framework: NSString */)
+	TempAccountIdentifier() objc.IObject /* cross-framework: NSString */
+	SetTempAccountIdentifier(value objc.IObject /* cross-framework: NSString */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoginParams
 type MTRAccountLoginClusterLoginParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRAccountLoginClusterLoginParams() MTRAccountLoginClusterLoginParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/node
-func (m_ MTRAccountLoginClusterLoginParams) Node() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
+func (m_ MTRAccountLoginClusterLoginParams) Node() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("node"))
 	return rv
 }
 
 
-// SetNode sets the value of the node property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/node
-func (m_ MTRAccountLoginClusterLoginParams) SetNode(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLoginParams) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLoginParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRAccountLoginClusterLoginParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLoginParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLoginParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
-func (m_ MTRAccountLoginClusterLoginParams) SetupPIN() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("setupPIN"))
+func (m_ MTRAccountLoginClusterLoginParams) SetupPIN() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("setupPIN"))
 	return rv
 }
 
 
-// SetSetupPIN sets the value of the setupPIN property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
-func (m_ MTRAccountLoginClusterLoginParams) SetSetupPIN(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPIN:"), objc.String(value))
+func (m_ MTRAccountLoginClusterLoginParams) SetSetupPIN(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPIN:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterLoginParams) TempAccountIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("tempAccountIdentifier"))
+func (m_ MTRAccountLoginClusterLoginParams) TempAccountIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("tempAccountIdentifier"))
 	return rv
 }
 
 
-// SetTempAccountIdentifier sets the value of the tempAccountIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
-func (m_ MTRAccountLoginClusterLoginParams) SetTempAccountIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), objc.String(value))
+func (m_ MTRAccountLoginClusterLoginParams) SetTempAccountIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/timedinvoketimeoutms
-func (m_ MTRAccountLoginClusterLoginParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRAccountLoginClusterLoginParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/timedinvoketimeoutms
-func (m_ MTRAccountLoginClusterLoginParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLoginParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

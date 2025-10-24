@@ -33,8 +33,8 @@ type ICaptureAudioPreviewOutput interface {
 	// properties:
 	OutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */
 	SetOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */)
-	Volume() float32 /* primitive/slice/pointer. */
-	SetVolume(value float32 /* primitive/slice/pointer. */)
+	Volume() float32
+	SetVolume(value float32)
 	// methods:
 }
 
@@ -114,7 +114,7 @@ func (c_ CaptureAudioPreviewOutput) SetOutputDeviceUniqueID(value objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiopreviewoutput/volume
-func (c_ CaptureAudioPreviewOutput) Volume() float32 /* primitive/slice/pointer. */ {
+func (c_ CaptureAudioPreviewOutput) Volume() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (c_ CaptureAudioPreviewOutput) Volume() float32 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiopreviewoutput/volume
-func (c_ CaptureAudioPreviewOutput) SetVolume(value float32 /* primitive/slice/pointer. */) {
+func (c_ CaptureAudioPreviewOutput) SetVolume(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVolume:"), value)
 }
 

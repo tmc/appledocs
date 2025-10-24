@@ -31,33 +31,35 @@ type _PDFViewClass struct {
 // An interface definition for the [PDFView] class.
 type IPDFView interface {
 	appkit.IView
-	TakePasswordFrom(sender objectivec.IObject)
-	CurrentDestination() PDFDestination
-	CurrentPage() PDFPage
+	// properties:
+	CurrentDestination() IPDFDestination
+	CurrentPage() IPDFPage
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Document() PDFDocument
+	Document() IPDFDocument
 	SetDocument(value IPDFDocument)
-	FindInteraction() unsafe.Pointer
-	FindInteractionEnabled() bool
-	SetFindInteractionEnabled(value bool)
 	InMarkupMode() bool
 	SetInMarkupMode(value bool)
 	PageOverlayViewProvider() objc.ID
 	SetPageOverlayViewProvider(value objc.ID)
 	PageShadowsEnabled() bool
 	SetPageShadowsEnabled(value bool)
-	VisiblePages() []PDFPage
+	VisiblePages() []IPDFPage
 	IsFindInteractionEnabled() bool
 	SetIsFindInteractionEnabled(value bool)
 	IsInMarkupMode() bool
 	SetIsInMarkupMode(value bool)
+	// methods:
 }
 
 // An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.
 //
 // may be the only class you need to deal with for adding PDF functionality to your application. It lets you display PDF data and allows users to select content, navigate through a document, set zoom level, and copy textual content to the Pasteboard. also keeps track of page history. You can subclass to create a custom PDF viewer. You can also create a custom PDF viewer by using the PDF Kit utility classes directly and not using at all.
+
+
+// An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView
 type PDFView struct {
 	appkit.View
@@ -104,31 +106,30 @@ func NewPDFView() PDFView {
 }
 
 
-// Unlocks with the password from the specified sender.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/takePasswordFrom(_:)
-func (p_ PDFView) TakePasswordFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("takePasswordFrom:"), sender)
-}
 
 // Returns a object representing the current page and the current point in the view specified in page space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/currentDestination
-func (p_ PDFView) CurrentDestination() PDFDestination {
+func (p_ PDFView) CurrentDestination() IPDFDestination {
 	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("currentDestination"))
 	return rv
 }
 
+
 // Returns the current page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/currentPage
-func (p_ PDFView) CurrentPage() PDFPage {
+func (p_ PDFView) CurrentPage() IPDFPage {
 	rv := objc.Send[PDFPage](p_.ID, objc.Sel("currentPage"))
 	return rv
 }
 
+
 // Returns the view’s delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/delegate
 func (p_ PDFView) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
@@ -136,56 +137,35 @@ func (p_ PDFView) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Returns the view’s delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/delegate
 func (p_ PDFView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Returns the document associated with a object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/document
-func (p_ PDFView) Document() PDFDocument {
+func (p_ PDFView) Document() IPDFDocument {
 	rv := objc.Send[PDFDocument](p_.ID, objc.Sel("document"))
 	return rv
 }
 
 
-// SetDocument sets the value of the document property.
 // Returns the document associated with a object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/document
 func (p_ PDFView) SetDocument(value IPDFDocument) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDocument:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/findInteraction
-func (p_ PDFView) FindInteraction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("findInteraction"))
-	return rv
-}
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/isFindInteractionEnabled
-func (p_ PDFView) FindInteractionEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("findInteractionEnabled"))
-	return rv
-}
-
-
-// SetFindInteractionEnabled sets the value of the findInteractionEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/isFindInteractionEnabled
-func (p_ PDFView) SetFindInteractionEnabled(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFindInteractionEnabled:"), value)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/isInMarkupMode
 func (p_ PDFView) InMarkupMode() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("inMarkupMode"))
@@ -193,14 +173,14 @@ func (p_ PDFView) InMarkupMode() bool {
 }
 
 
-// SetInMarkupMode sets the value of the inMarkupMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/isInMarkupMode
 func (p_ PDFView) SetInMarkupMode(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInMarkupMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageOverlayViewProvider
 func (p_ PDFView) PageOverlayViewProvider() objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("pageOverlayViewProvider"))
@@ -208,14 +188,14 @@ func (p_ PDFView) PageOverlayViewProvider() objc.ID {
 }
 
 
-// SetPageOverlayViewProvider sets the value of the pageOverlayViewProvider property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageOverlayViewProvider
 func (p_ PDFView) SetPageOverlayViewProvider(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageOverlayViewProvider:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageShadowsEnabled
 func (p_ PDFView) PageShadowsEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pageShadowsEnabled"))
@@ -223,22 +203,24 @@ func (p_ PDFView) PageShadowsEnabled() bool {
 }
 
 
-// SetPageShadowsEnabled sets the value of the pageShadowsEnabled property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/pageShadowsEnabled
 func (p_ PDFView) SetPageShadowsEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageShadowsEnabled:"), value)
 }
 
+
 // Returns an array of objects that represent the currently visible pages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/visiblePages
-func (p_ PDFView) VisiblePages() []PDFPage {
+func (p_ PDFView) VisiblePages() []IPDFPage {
 	rv := objc.Send[[]PDFPage](p_.ID, objc.Sel("visiblePages"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
 func (p_ PDFView) IsFindInteractionEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFindInteractionEnabled"))
@@ -246,14 +228,14 @@ func (p_ PDFView) IsFindInteractionEnabled() bool {
 }
 
 
-// SetIsFindInteractionEnabled sets the value of the isFindInteractionEnabled property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isfindinteractionenabled
 func (p_ PDFView) SetIsFindInteractionEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFindInteractionEnabled:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
 func (p_ PDFView) IsInMarkupMode() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isInMarkupMode"))
@@ -261,13 +243,10 @@ func (p_ PDFView) IsInMarkupMode() bool {
 }
 
 
-// SetIsInMarkupMode sets the value of the isInMarkupMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/isinmarkupmode
 func (p_ PDFView) SetIsInMarkupMode(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsInMarkupMode:"), value)
 }
-
-
 
 

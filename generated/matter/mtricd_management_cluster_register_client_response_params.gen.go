@@ -31,11 +31,15 @@ type _MTRICDManagementClusterRegisterClientResponseParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterRegisterClientResponseParams] class.
 type IMTRICDManagementClusterRegisterClientResponseParams interface {
 	objectivec.IObject
-	IcdCounter() foundation.Number
-	SetIcdCounter(value foundation.INumber)
+	// properties:
+	IcdCounter() objc.IObject /* cross-framework: NSNumber */
+	SetIcdCounter(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams
 type MTRICDManagementClusterRegisterClientResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRICDManagementClusterRegisterClientResponseParams() MTRICDManagementCl
 
 
 
-
 // Initialize an MTRICDManagementClusterRegisterClientResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/init(responseValue:)
-func NewMTRICDManagementClusterRegisterClientResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRICDManagementClusterRegisterClientResponseParams {
+func NewMTRICDManagementClusterRegisterClientResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRICDManagementClusterRegisterClientResponseParams {
 	instance := getMTRICDManagementClusterRegisterClientResponseParamsClass().Alloc()
 	rv := objc.Send[MTRICDManagementClusterRegisterClientResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRICDManagementClusterRegisterClientResponseParamsWithResponseValueErro
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/icdCounter
-func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("icdCounter"))
+func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("icdCounter"))
 	return rv
 }
 
 
-// SetIcdCounter sets the value of the icdCounter property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/icdCounter
-func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value foundation.INumber) {
+func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIcdCounter:"), value)
 }
 

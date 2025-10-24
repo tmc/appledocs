@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,17 +31,24 @@ type _GraphTensorDataClass struct {
 // An interface definition for the [GraphTensorData] class.
 type IGraphTensorData interface {
 	IGraphObject
-	DataType() unsafe.Pointer
-	Device() MPSGraphDevice
+	// properties:
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
+	Device() IMPSGraphDevice
 	SetDevice(value IMPSGraphDevice)
-	Shape() foundation.Number
-	SetShape(value foundation.INumber)
+	Shape() objc.IObject /* cross-framework: NSNumber */
+	SetShape(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The representation of a compute data type.
 //
 // Pass data to a graph using a tensor data, a reference will be taken to your data and used just in time when the graph is run.
+
+
+// The representation of a compute data type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData
 type GraphTensorData struct {
 	GraphObject
@@ -89,11 +96,11 @@ func NewGraphTensorData() GraphTensorData {
 
 
 
-
 // Initializes a tensor data with an MPS vector enforcing rank of the result.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData/init(_:rank:)-1e4ks
-func NewGraphTensorDataWithMPSVectorRank(vector coregraphics.IVector, rank uint) GraphTensorData {
+func NewGraphTensorDataWithMPSVectorRank(vector objc.IObject /* cross-framework: Vector */, rank uint) GraphTensorData {
 	instance := getGraphTensorDataClass().Alloc()
 	rv := objc.Send[GraphTensorData](instance.ID, objc.Sel("initWithMPSVector:rank:"), vector, rank)
 	rv.Autorelease()
@@ -101,47 +108,60 @@ func NewGraphTensorDataWithMPSVectorRank(vector coregraphics.IVector, rank uint)
 }
 
 
+
 // The data type of the tensor data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData/dataType
-func (g_ GraphTensorData) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/datatype
+func (g_ GraphTensorData) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
 	return rv
 }
 
+
+// The data type of the tensor data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/datatype
+func (g_ GraphTensorData) SetDataType(value DataType /* not a class type */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
+}
+
+
 // The device of the tensor data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/device
-func (g_ GraphTensorData) Device() MPSGraphDevice {
-	rv := objc.Send[MPSGraphDevice](g_.ID, objc.Sel("device"))
+func (g_ GraphTensorData) Device() IMPSGraphDevice {
+	rv := objc.Send[GraphDevice](g_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
 // The device of the tensor data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/device
 func (g_ GraphTensorData) SetDevice(value IMPSGraphDevice) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDevice:"), value)
 }
 
+
 // The shape of the tensor data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
-func (g_ GraphTensorData) Shape() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("shape"))
+func (g_ GraphTensorData) Shape() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("shape"))
 	return rv
 }
 
 
-// SetShape sets the value of the shape property.
 // The shape of the tensor data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
-func (g_ GraphTensorData) SetShape(value foundation.INumber) {
+func (g_ GraphTensorData) SetShape(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
 

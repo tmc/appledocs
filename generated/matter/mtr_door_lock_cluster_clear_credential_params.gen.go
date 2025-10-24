@@ -31,15 +31,19 @@ type _MTRDoorLockClusterClearCredentialParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterClearCredentialParams] class.
 type IMTRDoorLockClusterClearCredentialParams interface {
 	objectivec.IObject
-	Credential() MTRDoorLockClusterCredentialStruct
+	// properties:
+	Credential() IMTRDoorLockClusterCredentialStruct
 	SetCredential(value IMTRDoorLockClusterCredentialStruct)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterClearCredentialParams
 type MTRDoorLockClusterClearCredentialParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDoorLockClusterClearCredentialParams() MTRDoorLockClusterClearCredent
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/credential
-func (m_ MTRDoorLockClusterClearCredentialParams) Credential() MTRDoorLockClusterCredentialStruct {
+func (m_ MTRDoorLockClusterClearCredentialParams) Credential() IMTRDoorLockClusterCredentialStruct {
 	rv := objc.Send[MTRDoorLockClusterCredentialStruct](m_.ID, objc.Sel("credential"))
 	return rv
 }
 
 
-// SetCredential sets the value of the credential property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/credential
 func (m_ MTRDoorLockClusterClearCredentialParams) SetCredential(value IMTRDoorLockClusterCredentialStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredential:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearCredentialParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterClearCredentialParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearCredentialParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearCredentialParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearCredentialParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterClearCredentialParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearCredentialParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterClearCredentialParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

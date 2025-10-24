@@ -31,21 +31,28 @@ type _PDFActionClass struct {
 // An interface definition for the [PDFAction] class.
 type IPDFAction interface {
 	objectivec.IObject
-	Type() string
-	Action() PDFAction
+	// properties:
+	Type() objc.IObject /* cross-framework: NSString */
+	SetType(value objc.IObject /* cross-framework: NSString */)
+	Action() IPDFAction
 	SetAction(value IPDFAction)
-	ModificationDate() foundation.Date
-	SetModificationDate(value foundation.IDate)
-	Page() PDFPage
+	ModificationDate() objc.IObject /* cross-framework: Date */
+	SetModificationDate(value objc.IObject /* cross-framework: Date */)
+	Page() IPDFPage
 	SetPage(value IPDFPage)
-	UserName() string
-	SetUserName(value string)
+	UserName() objc.IObject /* cross-framework: NSString */
+	SetUserName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An action that is performed when, for example, a PDF annotation is activated or an outline item is clicked.
 //
 // A object represents an action associated with a PDF element, such as an annotation or a link, that the viewer application can perform. See the Adobe PDF Specification for more about actions and action types. is an abstract superclass of the following concrete classes:
+
+
+// An action that is performed when, for example, a PDF annotation is activated or an outline item is clicked.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction
 type PDFAction struct {
 	objectivec.Object
@@ -90,84 +97,99 @@ func NewPDFAction() PDFAction {
 }
 
 
+
 // Returns the type of the action.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAction/type
-func (p_ PDFAction) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfaction/type
+func (p_ PDFAction) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("type"))
 	return rv
 }
 
+
+// Returns the type of the action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfaction/type
+func (p_ PDFAction) SetType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+}
+
+
 // An object that represents an action for a PDF element, such as a link annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFAction) Action() PDFAction {
+func (p_ PDFAction) Action() IPDFAction {
 	rv := objc.Send[PDFAction](p_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
 // An object that represents an action for a PDF element, such as a link annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
 func (p_ PDFAction) SetAction(value IPDFAction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
+
 // Returns the modification date of the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFAction) ModificationDate() foundation.Date {
+func (p_ PDFAction) ModificationDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
 
-// SetModificationDate sets the value of the modificationDate property.
 // Returns the modification date of the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFAction) SetModificationDate(value foundation.IDate) {
+func (p_ PDFAction) SetModificationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
 }
 
+
 // Returns the page that the annotation is associated with.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
-func (p_ PDFAction) Page() PDFPage {
+func (p_ PDFAction) Page() IPDFPage {
 	rv := objc.Send[PDFPage](p_.ID, objc.Sel("page"))
 	return rv
 }
 
 
-// SetPage sets the value of the page property.
 // Returns the page that the annotation is associated with.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/page
 func (p_ PDFAction) SetPage(value IPDFPage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPage:"), value)
 }
 
+
 // Returns the name of the user who created the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) UserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
+func (p_ PDFAction) UserName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
 
-// SetUserName sets the value of the userName property.
 // Returns the name of the user who created the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFAction) SetUserName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
+func (p_ PDFAction) SetUserName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
 }
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Number] class.
@@ -31,23 +30,14 @@ type _NumberClass struct {
 type INumber interface {
 	IValue
 	// properties:
-	BoolValue() bool /* primitive/slice/pointer. */
-	DecimalValue() NSDecimal /* not a class type */
-	DoubleValue() float64 /* primitive/slice/pointer. */
-	FloatValue() float32 /* primitive/slice/pointer. */
-	ShortValue() unsafe.Pointer
-	IntValue() int /* primitive/slice/pointer. */
-	LongLongValue() unsafe.Pointer
-	CharValue() unsafe.Pointer
-	IntegerValue() int /* primitive/slice/pointer. */
-	LongValue() unsafe.Pointer
-	StringValue() IString
-	UnsignedShortValue() unsafe.Pointer
-	UnsignedIntValue() unsafe.Pointer
-	UnsignedLongLongValue() uint64 /* primitive/slice/pointer. */
-	UnsignedCharValue() unsafe.Pointer
-	UnsignedIntegerValue() uint /* primitive/slice/pointer. */
-	UnsignedLongValue() unsafe.Pointer
+	BoolValue() bool
+	SetBoolValue(value bool)
+	DecimalValue() objc.IObject /* cross-framework: Decimal */
+	SetDecimalValue(value objc.IObject /* cross-framework: Decimal */)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
+	FloatValue() float32
+	SetFloatValue(value float32)
 	Int16Value() unsafe.Pointer
 	SetInt16Value(value unsafe.Pointer)
 	Int32Value() unsafe.Pointer
@@ -56,22 +46,23 @@ type INumber interface {
 	SetInt64Value(value unsafe.Pointer)
 	Int8Value() unsafe.Pointer
 	SetInt8Value(value unsafe.Pointer)
+	IntValue() int
+	SetIntValue(value int)
+	StringValue() IString
+	SetStringValue(value IString)
 	Uint16Value() unsafe.Pointer
 	SetUint16Value(value unsafe.Pointer)
 	Uint32Value() unsafe.Pointer
 	SetUint32Value(value unsafe.Pointer)
-	Uint64Value() uint64 /* primitive/slice/pointer. */
-	SetUint64Value(value uint64 /* primitive/slice/pointer. */)
+	Uint64Value() uint64
+	SetUint64Value(value uint64)
 	Uint8Value() unsafe.Pointer
 	SetUint8Value(value unsafe.Pointer)
-	UintValue() uint /* primitive/slice/pointer. */
-	SetUintValue(value uint /* primitive/slice/pointer. */)
+	UintValue() uint
+	SetUintValue(value uint)
 	ObjCType() unsafe.Pointer
 	SetObjCType(value unsafe.Pointer)
 	// methods:
-	Compare(otherNumber INumber) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
-	IsEqualToNumber(number INumber) bool /* primitive/slice/pointer. */
 }
 
 // An object wrapper for primitive scalar numeric values.
@@ -129,373 +120,12 @@ func NewNumber() Number {
 
 
 
-// Returns an object initialized to contain a given value, treated as a .
+// The number object’s value expressed as a Boolean value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-1ojz2
-func NewNumberWithBool(value bool /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithBool:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8krjs
-func NewNumberWithChar(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithChar:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
-func NewNumberWithCoder(coder ICoder) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain , treated as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-15chk
-func NewNumberWithDouble(value float64 /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithDouble:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-2vlwk
-func NewNumberWithFloat(value float32 /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithFloat:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-7jvmg
-func NewNumberWithInt(value int /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithInt:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-5jcjl
-func NewNumberWithInteger(value int /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithInteger:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithLong:
-func NewNumberWithLong(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLong:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain , treated as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-40ad0
-func NewNumberWithLongLong(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLongLong:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-16drx
-func NewNumberWithShort(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithShort:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8se67
-func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedChar:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-47coa
-func NewNumberWithUnsignedInt(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInt:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-3l4ek
-func NewNumberWithUnsignedInteger(value uint /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInteger:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithUnsignedLong:
-func NewNumberWithUnsignedLong(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLong:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-43lc7
-func NewNumberWithUnsignedLongLong(value uint64 /* primitive/slice/pointer. */) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLongLong:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-87y9m
-func NewNumberWithUnsignedShort(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedShort:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns an object containing a given value, treating it as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithBool:
-func (nc _NumberClass) NumberWithBool(value bool /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithBool:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithChar:
-func (nc _NumberClass) NumberWithChar(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithChar:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithDouble:
-func (nc _NumberClass) NumberWithDouble(value float64 /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithDouble:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithFloat:
-func (nc _NumberClass) NumberWithFloat(value float32 /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithFloat:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithInt:
-func (nc _NumberClass) NumberWithInt(value int /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithInt:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithInteger:
-func (nc _NumberClass) NumberWithInteger(value int /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithInteger:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithLong:
-func (nc _NumberClass) NumberWithLong(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithLong:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithLongLong:
-func (nc _NumberClass) NumberWithLongLong(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithLongLong:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing , treating it as a signed .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithShort:
-func (nc _NumberClass) NumberWithShort(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithShort:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedChar:
-func (nc _NumberClass) NumberWithUnsignedChar(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedChar:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedInt:
-func (nc _NumberClass) NumberWithUnsignedInt(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedInt:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedInteger:
-func (nc _NumberClass) NumberWithUnsignedInteger(value uint /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedInteger:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedLong:
-func (nc _NumberClass) NumberWithUnsignedLong(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedLong:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedLongLong:
-func (nc _NumberClass) NumberWithUnsignedLongLong(value uint64 /* primitive/slice/pointer. */) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedLongLong:"), value)
-	return rv
-}
-
-
-// Creates and returns an object containing a given value, treating it as an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/numberWithUnsignedShort:
-func (nc _NumberClass) NumberWithUnsignedShort(value unsafe.Pointer) INumber {
-	rv := objc.Send[Number](objc.ID(nc.class), objc.Sel("numberWithUnsignedShort:"), value)
-	return rv
-}
-
-
-// Returns an value that indicates whether the number object’s value is greater than, equal to, or less than a given number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/compare(_:)
-func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
-	rv := objc.Send[ComparisonResult](n_.ID, objc.Sel("compare:"), otherNumber)
-	return rv
-}
-
-
-// Returns a string that represents the contents of the number object for a given locale.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
-func (n_ Number) DescriptionWithLocale(locale objectivec.IObject) IString {
-	rv := objc.Send[String](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the number object’s value and a given number are equal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/isEqual(to:)
-func (n_ Number) IsEqualToNumber(number INumber) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isEqualToNumber:"), number)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/boolvalue
+func (n_ Number) BoolValue() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
 	return rv
 }
 
@@ -503,170 +133,66 @@ func (n_ Number) IsEqualToNumber(number INumber) bool /* primitive/slice/pointer
 // The number object’s value expressed as a Boolean value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/boolValue
-func (n_ Number) BoolValue() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](n_.ID, objc.Sel("boolValue"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/boolvalue
+func (n_ Number) SetBoolValue(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setBoolValue:"), value)
 }
 
 
-// The number object’s value expressed as an structure.
+// The number object’s value expressed as an
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/decimalValue
-func (n_ Number) DecimalValue() NSDecimal /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/decimalvalue
+func (n_ Number) DecimalValue() objc.IObject /* cross-framework: Decimal */ {
 	rv := objc.Send[Decimal](n_.ID, objc.Sel("decimalValue"))
 	return rv
 }
 
 
-// The number object’s value expressed as a , converted as necessary.
+// The number object’s value expressed as an
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/doubleValue
-func (n_ Number) DoubleValue() float64 /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/decimalvalue
+func (n_ Number) SetDecimalValue(value objc.IObject /* cross-framework: Decimal */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDecimalValue:"), value)
+}
+
+
+// The number object’s value expressed as a
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/doublevalue
+func (n_ Number) DoubleValue() float64 {
 	rv := objc.Send[float64](n_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
 
-// The number object’s value expressed as a , converted as necessary.
+// The number object’s value expressed as a
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/floatValue
-func (n_ Number) FloatValue() float32 /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/doublevalue
+func (n_ Number) SetDoubleValue(value float64) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDoubleValue:"), value)
+}
+
+
+// The number object’s value expressed as a
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/floatvalue
+func (n_ Number) FloatValue() float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
 
-// The number object’s value expressed as a , converted as necessary.
+// The number object’s value expressed as a
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int16Value
-func (n_ Number) ShortValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("shortValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int32Value
-func (n_ Number) IntValue() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](n_.ID, objc.Sel("intValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int64Value
-func (n_ Number) LongLongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longLongValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/int8Value
-func (n_ Number) CharValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("charValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an object, converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/intValue-95zzp
-func (n_ Number) IntegerValue() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](n_.ID, objc.Sel("integerValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as a , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/longValue
-func (n_ Number) LongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("longValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as a human-readable string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
-func (n_ Number) StringValue() IString {
-	rv := objc.Send[String](n_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint16Value
-func (n_ Number) UnsignedShortValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedShortValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint32Value
-func (n_ Number) UnsignedIntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedIntValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint64Value
-func (n_ Number) UnsignedLongLongValue() uint64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint64](n_.ID, objc.Sel("unsignedLongLongValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uint8Value
-func (n_ Number) UnsignedCharValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedCharValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an object, converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/uintValue
-func (n_ Number) UnsignedIntegerValue() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](n_.ID, objc.Sel("unsignedIntegerValue"))
-	return rv
-}
-
-
-// The number object’s value expressed as an unsigned , converted as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/unsignedLongValue
-func (n_ Number) UnsignedLongValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedLongValue"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/floatvalue
+func (n_ Number) SetFloatValue(value float32) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFloatValue:"), value)
 }
 
 
@@ -746,6 +272,44 @@ func (n_ Number) SetInt8Value(value unsafe.Pointer) {
 }
 
 
+// The number object’s value expressed as an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/intvalue-95zzp
+func (n_ Number) IntValue() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("intValue"))
+	return rv
+}
+
+
+// The number object’s value expressed as an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/intvalue-95zzp
+func (n_ Number) SetIntValue(value int) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIntValue:"), value)
+}
+
+
+// The number object’s value expressed as a human-readable string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/stringvalue
+func (n_ Number) StringValue() IString {
+	rv := objc.Send[String](n_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// The number object’s value expressed as a human-readable string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/stringvalue
+func (n_ Number) SetStringValue(value IString) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setStringValue:"), value)
+}
+
+
 // The number object’s value expressed as an unsigned
 //
 // [Full Topic]
@@ -788,7 +352,7 @@ func (n_ Number) SetUint32Value(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
-func (n_ Number) Uint64Value() uint64 /* primitive/slice/pointer. */ {
+func (n_ Number) Uint64Value() uint64 {
 	rv := objc.Send[uint64](n_.ID, objc.Sel("uint64Value"))
 	return rv
 }
@@ -798,7 +362,7 @@ func (n_ Number) Uint64Value() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uint64value
-func (n_ Number) SetUint64Value(value uint64 /* primitive/slice/pointer. */) {
+func (n_ Number) SetUint64Value(value uint64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUint64Value:"), value)
 }
 
@@ -826,7 +390,7 @@ func (n_ Number) SetUint8Value(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
-func (n_ Number) UintValue() uint /* primitive/slice/pointer. */ {
+func (n_ Number) UintValue() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("uintValue"))
 	return rv
 }
@@ -836,7 +400,7 @@ func (n_ Number) UintValue() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnumber/uintvalue
-func (n_ Number) SetUintValue(value uint /* primitive/slice/pointer. */) {
+func (n_ Number) SetUintValue(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUintValue:"), value)
 }
 
@@ -858,5 +422,6 @@ func (n_ Number) ObjCType() unsafe.Pointer {
 func (n_ Number) SetObjCType(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setObjCType:"), value)
 }
+
 
 

@@ -9,14 +9,13 @@ import (
 )
 
 
-// MLCompute Functions (2 total)
+// MLCompute Functions (1 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
 	_MLCPaddingPolicyDebugDescription func(unsafe.Pointer) unsafe.Pointer
-	_MLCSoftmaxOperationDebugDescription func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -25,7 +24,6 @@ func init() {
 		panic(err)
 	}
 	tryRegister(&_MLCPaddingPolicyDebugDescription, lib, "MLCPaddingPolicyDebugDescription")
-	tryRegister(&_MLCSoftmaxOperationDebugDescription, lib, "MLCSoftmaxOperationDebugDescription")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -42,25 +40,16 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// A textual description of the padding policy, suitable for debugging. [Full Topic]
+// A textual description of the padding policy, suitable for debugging.
 //
 // Added in macOS 11.0.
+// A textual description of the padding policy, suitable for debugging.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingPolicyDebugDescription
 func MLCPaddingPolicyDebugDescription(paddingPolicy unsafe.Pointer) unsafe.Pointer {
 	return _MLCPaddingPolicyDebugDescription(paddingPolicy)
-	}
-
-
-// A textual description of the softmax operation, suitable for debugging. [Full Topic]
-//
-// Added in macOS 11.0.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSoftmaxOperation/debugDescription
-func MLCSoftmaxOperationDebugDescription(operation unsafe.Pointer) unsafe.Pointer {
-	return _MLCSoftmaxOperationDebugDescription(operation)
-	}
-
+}
 
 
 

@@ -31,23 +31,27 @@ type _MTRDiagnosticLogsClusterRetrieveLogsResponseParamsClass struct {
 // An interface definition for the [MTRDiagnosticLogsClusterRetrieveLogsResponseParams] class.
 type IMTRDiagnosticLogsClusterRetrieveLogsResponseParams interface {
 	objectivec.IObject
-	Content() foundation.Data
-	SetContent(value foundation.IData)
-	LogContent() foundation.Data
-	SetLogContent(value foundation.IData)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimeSinceBoot() foundation.Number
-	SetTimeSinceBoot(value foundation.INumber)
-	TimeStamp() foundation.Number
-	SetTimeStamp(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UtcTimeStamp() foundation.Number
-	SetUtcTimeStamp(value foundation.INumber)
+	// properties:
+	Content() objc.IObject /* cross-framework: Data */
+	SetContent(value objc.IObject /* cross-framework: Data */)
+	LogContent() objc.IObject /* cross-framework: Data */
+	SetLogContent(value objc.IObject /* cross-framework: Data */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimeSinceBoot() objc.IObject /* cross-framework: NSNumber */
+	SetTimeSinceBoot(value objc.IObject /* cross-framework: NSNumber */)
+	TimeStamp() objc.IObject /* cross-framework: NSNumber */
+	SetTimeStamp(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UtcTimeStamp() objc.IObject /* cross-framework: NSNumber */
+	SetUtcTimeStamp(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDiagnosticLogsClusterRetrieveLogsResponseParams
 type MTRDiagnosticLogsClusterRetrieveLogsResponseParams struct {
 	objectivec.Object
@@ -90,108 +94,108 @@ func NewMTRDiagnosticLogsClusterRetrieveLogsResponseParams() MTRDiagnosticLogsCl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() foundation.Data {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("content"))
 	return rv
 }
 
 
-// SetContent sets the value of the content property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetContent(value foundation.IData) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetContent(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() foundation.Data {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("logContent"))
 	return rv
 }
 
 
-// SetLogContent sets the value of the logContent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetLogContent(value foundation.IData) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetLogContent(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLogContent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/status
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/status
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timesinceboot
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeSinceBoot() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeSinceBoot"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeSinceBoot() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timeSinceBoot"))
 	return rv
 }
 
 
-// SetTimeSinceBoot sets the value of the timeSinceBoot property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timesinceboot
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeSinceBoot(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeSinceBoot(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeSinceBoot:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeStamp() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timeStamp"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeStamp() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timeStamp"))
 	return rv
 }
 
 
-// SetTimeStamp sets the value of the timeStamp property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeStamp(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeStamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeStamp:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/utctimestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) UtcTimeStamp() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("utcTimeStamp"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) UtcTimeStamp() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("utcTimeStamp"))
 	return rv
 }
 
 
-// SetUtcTimeStamp sets the value of the utcTimeStamp property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/utctimestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetUtcTimeStamp(value foundation.INumber) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetUtcTimeStamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUtcTimeStamp:"), value)
 }
 

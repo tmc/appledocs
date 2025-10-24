@@ -29,14 +29,20 @@ type _VZVirtioConsoleDeviceSerialPortConfigurationClass struct {
 // An interface definition for the [VZVirtioConsoleDeviceSerialPortConfiguration] class.
 type IVZVirtioConsoleDeviceSerialPortConfiguration interface {
 	IVZSerialPortConfiguration
-	Attachment() VZSerialPortAttachment
+	// properties:
+	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
+	// methods:
 }
 
 // A configuration object that requests the creation of a console device to communicate with the guest system.
 //
 // A object enables serial communication between the guest operating system and host computer through the Virtio interface. After you create this configuration object, configure its inherited property with an object that defines the type of serial communication you want to enable. Use a object to enable two-way communication between the guest and host, and use a object to enable one-way communication from the guest to the file you designate.
+
+
+// A configuration object that requests the creation of a console device to communicate with the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDeviceSerialPortConfiguration
 type VZVirtioConsoleDeviceSerialPortConfiguration struct {
 	VZSerialPortConfiguration
@@ -84,19 +90,20 @@ func NewVZVirtioConsoleDeviceSerialPortConfiguration() VZVirtioConsoleDeviceSeri
 
 
 
+
 // The object that defines how the configuration of the virtual machine’s serial port interfaces.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment
-func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Attachment() VZSerialPortAttachment {
+func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) Attachment() IVZSerialPortAttachment {
 	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
 
-// SetAttachment sets the value of the attachment property.
 // The object that defines how the configuration of the virtual machine’s serial port interfaces.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment
 func (v_ VZVirtioConsoleDeviceSerialPortConfiguration) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)

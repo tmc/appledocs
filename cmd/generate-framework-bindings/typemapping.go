@@ -17,12 +17,54 @@ type TypeMapping struct {
 }
 
 // typeRegistry contains all known Objective-C to Go type mappings
+// It gets populated at runtime by buildTypeRegistryFromParsedData
 var typeRegistry = []TypeMapping{}
+
+// staticTypeRegistry contains framework-specific type mappings that should
+// always take precedence over dynamically discovered types
+var staticTypeRegistry = []TypeMapping{
+	// Foundation scalar types
+	{ObjCType: "NSInteger", GoType: "int", Framework: ""},
+	{ObjCType: "NSUInteger", GoType: "uint", Framework: ""},
+
+	// CoreGraphics geometry types (manually defined in rect_types.go)
+	// These types are used across many frameworks but should map to coregraphics when cross-referenced
+	{ObjCType: "CGPoint", GoType: "coregraphics.Point", Framework: ""},
+	{ObjCType: "CGSize", GoType: "coregraphics.Size", Framework: ""},
+	{ObjCType: "CGRect", GoType: "coregraphics.Rect", Framework: ""},
+	{ObjCType: "CGAffineTransform", GoType: "coregraphics.AffineTransform", Framework: ""},
+	{ObjCType: "CGFloat", GoType: "coregraphics.Float", Framework: ""},
+
+	// When IN CoreGraphics, use unqualified names
+	{ObjCType: "CGPoint", GoType: "Point", Framework: "CoreGraphics"},
+	{ObjCType: "CGSize", GoType: "Size", Framework: "CoreGraphics"},
+	{ObjCType: "CGRect", GoType: "Rect", Framework: "CoreGraphics"},
+	{ObjCType: "CGAffineTransform", GoType: "AffineTransform", Framework: "CoreGraphics"},
+	{ObjCType: "CGFloat", GoType: "Float", Framework: "CoreGraphics"},
+
+	// Foundation time types
+	// NSTimeInterval is a typedef for double (seconds since reference date)
+	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: ""},
+	{ObjCType: "TimeInterval", GoType: "float64", Framework: "Foundation"},
+}
+
+// manualFrameworkTypes maps framework names to types that are manually defined
+// (e.g., in custom files like rect_types.go) and should be registered in currentFrameworkStructs
+var manualFrameworkTypes = map[string][]string{
+	"coregraphics": {"Point", "Size", "Rect", "AffineTransform", "Float"},
+}
 
 // lookupTypeMapping finds a type mapping for the given Objective-C type.
 // Returns the Go type and whether a mapping was found.
 func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
+
+	// Check static type registry first (framework-specific overrides)
+	for _, mapping := range staticTypeRegistry {
+		if mapping.ObjCType == objcType && strings.EqualFold(mapping.Framework, framework) {
+			return mapping.GoType, true
+		}
+	}
 
 	// Direct lookup - try framework-specific first
 	for _, mapping := range typeRegistry {

@@ -30,10 +30,10 @@ type _ImageViewClass struct {
 type IImageView interface {
 	IControl
 	// properties:
-	AllowsCutCopyPaste() bool /* primitive/slice/pointer. */
-	SetAllowsCutCopyPaste(value bool /* primitive/slice/pointer. */)
-	Animates() bool /* primitive/slice/pointer. */
-	SetAnimates(value bool /* primitive/slice/pointer. */)
+	AllowsCutCopyPaste() bool
+	SetAllowsCutCopyPaste(value bool)
+	Animates() bool
+	SetAnimates(value bool)
 	ContentTintColor() IColor
 	SetContentTintColor(value IColor)
 	Image() IImage
@@ -45,24 +45,24 @@ type IImageView interface {
 	SetImageFrameStyle(value ImageFrameStyle /* not a class type */)
 	ImageScaling() ImageScaling
 	SetImageScaling(value ImageScaling)
-	Editable() bool /* primitive/slice/pointer. */
-	SetEditable(value bool /* primitive/slice/pointer. */)
+	Editable() bool
+	SetEditable(value bool)
 	PreferredImageDynamicRange() ImageDynamicRange
 	SetPreferredImageDynamicRange(value ImageDynamicRange)
 	SymbolConfiguration() IImageSymbolConfiguration
 	SetSymbolConfiguration(value IImageSymbolConfiguration)
-	IsEditable() bool /* primitive/slice/pointer. */
-	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	// methods:
 	AddSymbolEffect(symbolEffect SymbolEffect /* not a class type */)
 	AddSymbolEffectOptions(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */)
-	AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */)
+	AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool)
 	RemoveAllSymbolEffects()
 	RemoveAllSymbolEffectsWithOptions(options SymbolEffectOptions /* not a class type */)
-	RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */)
+	RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffectOptions /* not a class type */, animated bool)
 	RemoveSymbolEffectOfType(symbolEffect SymbolEffect /* not a class type */)
 	RemoveSymbolEffectOfTypeOptions(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */)
-	RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */)
+	RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool)
 	SetSymbolImageWithContentTransition(symbolImage IImage, transition SymbolContentTransition /* not a class type */)
 	SetSymbolImageWithContentTransitionOptions(symbolImage IImage, transition SymbolContentTransition /* not a class type */, options SymbolEffectOptions /* not a class type */)
 }
@@ -170,7 +170,7 @@ func (i_ ImageView) AddSymbolEffectOptions(symbolEffect SymbolEffect /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/addSymbolEffect:options:animated:
-func (i_ ImageView) AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) AddSymbolEffectOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("addSymbolEffect:options:animated:"), symbolEffect, options, animated)
 }
 
@@ -197,7 +197,7 @@ func (i_ ImageView) RemoveAllSymbolEffectsWithOptions(options SymbolEffectOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeAllSymbolEffectsWithOptions:animated:
-func (i_ ImageView) RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) RemoveAllSymbolEffectsWithOptionsAnimated(options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeAllSymbolEffectsWithOptions:animated:"), options, animated)
 }
 
@@ -224,7 +224,7 @@ func (i_ ImageView) RemoveSymbolEffectOfTypeOptions(symbolEffect SymbolEffect /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/removeSymbolEffectOfType:options:animated:
-func (i_ ImageView) RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect SymbolEffect /* not a class type */, options SymbolEffectOptions /* not a class type */, animated bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("removeSymbolEffectOfType:options:animated:"), symbolEffect, options, animated)
 }
 
@@ -251,7 +251,7 @@ func (i_ ImageView) SetSymbolImageWithContentTransitionOptions(symbolImage IImag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/allowsCutCopyPaste
-func (i_ ImageView) AllowsCutCopyPaste() bool /* primitive/slice/pointer. */ {
+func (i_ ImageView) AllowsCutCopyPaste() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("allowsCutCopyPaste"))
 	return rv
 }
@@ -261,7 +261,7 @@ func (i_ ImageView) AllowsCutCopyPaste() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/allowsCutCopyPaste
-func (i_ ImageView) SetAllowsCutCopyPaste(value bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) SetAllowsCutCopyPaste(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAllowsCutCopyPaste:"), value)
 }
 
@@ -270,7 +270,7 @@ func (i_ ImageView) SetAllowsCutCopyPaste(value bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/animates
-func (i_ ImageView) Animates() bool /* primitive/slice/pointer. */ {
+func (i_ ImageView) Animates() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("animates"))
 	return rv
 }
@@ -280,7 +280,7 @@ func (i_ ImageView) Animates() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/animates
-func (i_ ImageView) SetAnimates(value bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) SetAnimates(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAnimates:"), value)
 }
 
@@ -409,7 +409,7 @@ func (i_ ImageView) SetImageScaling(value ImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/isEditable
-func (i_ ImageView) Editable() bool /* primitive/slice/pointer. */ {
+func (i_ ImageView) Editable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("editable"))
 	return rv
 }
@@ -419,7 +419,7 @@ func (i_ ImageView) Editable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/isEditable
-func (i_ ImageView) SetEditable(value bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) SetEditable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEditable:"), value)
 }
 
@@ -462,7 +462,7 @@ func (i_ ImageView) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/iseditable
-func (i_ ImageView) IsEditable() bool /* primitive/slice/pointer. */ {
+func (i_ ImageView) IsEditable() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -472,7 +472,7 @@ func (i_ ImageView) IsEditable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimageview/iseditable
-func (i_ ImageView) SetIsEditable(value bool /* primitive/slice/pointer. */) {
+func (i_ ImageView) SetIsEditable(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEditable:"), value)
 }
 

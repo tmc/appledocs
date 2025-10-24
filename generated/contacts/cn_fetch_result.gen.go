@@ -33,8 +33,8 @@ type ICNFetchResult interface {
 	objectivec.IObject
 	// properties:
 	Value() unsafe.Pointer
-	CurrentHistoryToken() foundation.objc.IObject /* cross-framework: Data */
-	SetCurrentHistoryToken(value foundation.objc.IObject /* cross-framework: Data */)
+	CurrentHistoryToken() objc.IObject /* cross-framework: Data */
+	SetCurrentHistoryToken(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -103,7 +103,7 @@ func (c_ CNFetchResult) Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) CurrentHistoryToken() foundation.objc.IObject /* cross-framework: Data */ {
+func (c_ CNFetchResult) CurrentHistoryToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (c_ CNFetchResult) CurrentHistoryToken() foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) SetCurrentHistoryToken(value foundation.objc.IObject /* cross-framework: Data */) {
+func (c_ CNFetchResult) SetCurrentHistoryToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentHistoryToken:"), value)
 }
 

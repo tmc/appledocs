@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXCallAction] class.
@@ -30,7 +31,6 @@ type _CXCallActionClass struct {
 type ICXCallAction interface {
 	ICXAction
 	// properties:
-	CallUUID() objc.IObject /* cross-framework: UUID */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewCXCallAction() CXCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(call:)
-func NewCXCallActionWithCallUUID(callUUID objc.IObject /* cross-framework UUID */) CXCallAction {
+func NewCXCallActionWithCallUUID(callUUID objc.IObject /* cross-framework: UUID */) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCallUUID:"), callUUID)
 	rv.Autorelease()
@@ -105,22 +105,12 @@ func NewCXCallActionWithCallUUID(callUUID objc.IObject /* cross-framework UUID *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(coder:)
-func NewCXCallActionWithCoder(aDecoder Coder /* not a class type */) CXCallAction {
+func NewCXCallActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// The unique identifier for the call associated with the action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/callUUID
-func (c_ CXCallAction) CallUUID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](c_.ID, objc.Sel("callUUID"))
-	return rv
-}
 
 

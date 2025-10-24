@@ -30,11 +30,15 @@ type _MTRAttributePathClass struct {
 // An interface definition for the [MTRAttributePath] class.
 type IMTRAttributePath interface {
 	IMTRClusterPath
-	Attribute() foundation.Number
-	SetAttribute(value foundation.INumber)
+	// properties:
+	Attribute() objc.IObject /* cross-framework: NSNumber */
+	SetAttribute(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributePath
 type MTRAttributePath struct {
 	MTRClusterPath
@@ -79,18 +83,18 @@ func NewMTRAttributePath() MTRAttributePath {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributepath/attribute
-func (m_ MTRAttributePath) Attribute() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("attribute"))
+func (m_ MTRAttributePath) Attribute() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("attribute"))
 	return rv
 }
 
 
-// SetAttribute sets the value of the attribute property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributepath/attribute
-func (m_ MTRAttributePath) SetAttribute(value foundation.INumber) {
+func (m_ MTRAttributePath) SetAttribute(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
 }
 

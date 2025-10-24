@@ -33,8 +33,8 @@ type IFragmentedAssetMinder interface {
 	// properties:
 	Assets() FragmentMinding /* not a class type */
 	SetAssets(value FragmentMinding /* not a class type */)
-	MindingInterval() unsafe.Pointer
-	SetMindingInterval(value unsafe.Pointer)
+	MindingInterval() float64
+	SetMindingInterval(value float64)
 	// methods:
 }
 
@@ -112,8 +112,8 @@ func (f_ FragmentedAssetMinder) SetAssets(value FragmentMinding /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder/mindinginterval
-func (f_ FragmentedAssetMinder) MindingInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mindingInterval"))
+func (f_ FragmentedAssetMinder) MindingInterval() float64 {
+	rv := objc.Send[float64](f_.ID, objc.Sel("mindingInterval"))
 	return rv
 }
 
@@ -122,7 +122,7 @@ func (f_ FragmentedAssetMinder) MindingInterval() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder/mindinginterval
-func (f_ FragmentedAssetMinder) SetMindingInterval(value unsafe.Pointer) {
+func (f_ FragmentedAssetMinder) SetMindingInterval(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMindingInterval:"), value)
 }
 

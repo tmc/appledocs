@@ -2,12 +2,12 @@
 
 // Package quicklookui provides Go bindings for the QuickLookUI framework.
 //
-// Create previews of files to use inside your macOS app. [Full Topic]
+// Create previews of files to use inside your macOS app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to QuickLookUI without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI
+// See: https://developer.apple.com/documentation/QuickLookUI
 package quicklookui
 
 import (

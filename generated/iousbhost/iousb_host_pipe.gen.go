@@ -31,16 +31,16 @@ type _USBHostPipeClass struct {
 type IUSBHostPipe interface {
 	IUSBHostIOSource
 	// properties:
-	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
+	IOUSBHostDefaultControlCompletionTimeout() float64
 	Descriptors() USBHostIOSourceDescriptors /* not a class type */
 	SetDescriptors(value USBHostIOSourceDescriptors /* not a class type */)
-	IdleTimeout() unsafe.Pointer
-	SetIdleTimeout(value unsafe.Pointer)
+	IdleTimeout() float64
+	SetIdleTimeout(value float64)
 	OriginalDescriptors() USBHostIOSourceDescriptors /* not a class type */
 	SetOriginalDescriptors(value USBHostIOSourceDescriptors /* not a class type */)
 	// methods:
-	CopyStreamWithStreamIDError(streamID uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) IUSBHostStream
-	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */
+	CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) IUSBHostStream
+	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, completionTimeout float64, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool
 }
 
 // The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.
@@ -102,7 +102,7 @@ func NewUSBHostPipe() USBHostPipe {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/copyStream(withStreamID:)
-func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) IUSBHostStream {
+func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) IUSBHostStream {
 	rv := objc.Send[USBHostStream](u_.ID, objc.Sel("copyStreamWithStreamID:error:"), streamID, error_)
 	return rv
 }
@@ -112,7 +112,7 @@ func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/enqueueControlRequest:data:completionTimeout:error:completionHandler:
-func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, completionTimeout float64, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueControlRequest:data:completionTimeout:error:completionHandler:"), request, data, completionTimeout, error_, completionHandler)
 	return rv
 }
@@ -122,8 +122,8 @@ func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionH
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
-func (u_ USBHostPipe) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
+func (u_ USBHostPipe) IOUSBHostDefaultControlCompletionTimeout() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
 	return rv
 }
 
@@ -151,8 +151,8 @@ func (u_ USBHostPipe) SetDescriptors(value USBHostIOSourceDescriptors /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
-func (u_ USBHostPipe) IdleTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("idleTimeout"))
+func (u_ USBHostPipe) IdleTimeout() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("idleTimeout"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (u_ USBHostPipe) IdleTimeout() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/idletimeout
-func (u_ USBHostPipe) SetIdleTimeout(value unsafe.Pointer) {
+func (u_ USBHostPipe) SetIdleTimeout(value float64) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
 }
 

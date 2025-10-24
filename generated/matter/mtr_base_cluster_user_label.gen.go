@@ -29,9 +29,13 @@ type _MTRBaseClusterUserLabelClass struct {
 // An interface definition for the [MTRBaseClusterUserLabel] class.
 type IMTRBaseClusterUserLabel interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterUserLabel
 type MTRBaseClusterUserLabel struct {
 	MTRGenericBaseCluster

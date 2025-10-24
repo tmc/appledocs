@@ -32,18 +32,18 @@ type _AXBrailleTableClass struct {
 type IAXBrailleTable interface {
 	objectivec.IObject
 	// properties:
-	LocalizedProviderName() string /* primitive/slice/pointer. */
-	ProviderIdentifier() string /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	IsEightDot() bool /* primitive/slice/pointer. */
-	SetIsEightDot(value bool /* primitive/slice/pointer. */)
+	LocalizedProviderName() objc.IObject /* cross-framework: NSString */
+	ProviderIdentifier() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	IsEightDot() bool
+	SetIsEightDot(value bool)
 	Language() unsafe.Pointer
 	SetLanguage(value unsafe.Pointer)
-	Locales() foundation.objc.IObject /* cross-framework: Locale */
-	SetLocales(value foundation.objc.IObject /* cross-framework: Locale */)
-	LocalizedName() string /* primitive/slice/pointer. */
-	SetLocalizedName(value string /* primitive/slice/pointer. */)
+	Locales() objc.IObject /* cross-framework: Locale */
+	SetLocales(value objc.IObject /* cross-framework: Locale */)
+	LocalizedName() objc.IObject /* cross-framework: NSString */
+	SetLocalizedName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -102,7 +102,7 @@ func NewAXBrailleTable() AXBrailleTable {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/defaultTable(for:)
-func (ac _AXBrailleTableClass) DefaultTableForLocale(locale objc.IObject /* cross-framework Locale */) AXBrailleTable {
+func (ac _AXBrailleTableClass) DefaultTableForLocale(locale objc.IObject /* cross-framework: Locale */) AXBrailleTable {
 	rv := objc.Send[AXBrailleTable](objc.ID(ac.class), objc.Sel("defaultTableForLocale:"), locale)
 	return rv
 }
@@ -112,8 +112,8 @@ func (ac _AXBrailleTableClass) DefaultTableForLocale(locale objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/localizedProviderName
-func (a_ AXBrailleTable) LocalizedProviderName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("localizedProviderName"))
+func (a_ AXBrailleTable) LocalizedProviderName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("localizedProviderName"))
 	return rv
 }
 
@@ -122,8 +122,8 @@ func (a_ AXBrailleTable) LocalizedProviderName() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTable/providerIdentifier
-func (a_ AXBrailleTable) ProviderIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("providerIdentifier"))
+func (a_ AXBrailleTable) ProviderIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (a_ AXBrailleTable) ProviderIdentifier() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/identifier
-func (a_ AXBrailleTable) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+func (a_ AXBrailleTable) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -142,8 +142,8 @@ func (a_ AXBrailleTable) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/identifier
-func (a_ AXBrailleTable) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (a_ AXBrailleTable) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -151,7 +151,7 @@ func (a_ AXBrailleTable) SetIdentifier(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/iseightdot
-func (a_ AXBrailleTable) IsEightDot() bool /* primitive/slice/pointer. */ {
+func (a_ AXBrailleTable) IsEightDot() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEightDot"))
 	return rv
 }
@@ -161,7 +161,7 @@ func (a_ AXBrailleTable) IsEightDot() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/iseightdot
-func (a_ AXBrailleTable) SetIsEightDot(value bool /* primitive/slice/pointer. */) {
+func (a_ AXBrailleTable) SetIsEightDot(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEightDot:"), value)
 }
 
@@ -185,7 +185,7 @@ func (a_ AXBrailleTable) SetLanguage(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/locales
-func (a_ AXBrailleTable) Locales() foundation.objc.IObject /* cross-framework: Locale */ {
+func (a_ AXBrailleTable) Locales() objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](a_.ID, objc.Sel("locales"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (a_ AXBrailleTable) Locales() foundation.objc.IObject /* cross-framework: L
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/locales
-func (a_ AXBrailleTable) SetLocales(value foundation.objc.IObject /* cross-framework: Locale */) {
+func (a_ AXBrailleTable) SetLocales(value objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocales:"), value)
 }
 
@@ -204,8 +204,8 @@ func (a_ AXBrailleTable) SetLocales(value foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/localizedname
-func (a_ AXBrailleTable) LocalizedName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("localizedName"))
+func (a_ AXBrailleTable) LocalizedName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -214,8 +214,8 @@ func (a_ AXBrailleTable) LocalizedName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axbrailletable/localizedname
-func (a_ AXBrailleTable) SetLocalizedName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (a_ AXBrailleTable) SetLocalizedName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 

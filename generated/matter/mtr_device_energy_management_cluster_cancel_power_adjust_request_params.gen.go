@@ -31,13 +31,17 @@ type _MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParamsClass struct
 // An interface definition for the [MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams] class.
 type IMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams
 type MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams struct {
 	objectivec.Object
@@ -80,39 +84,41 @@ func NewMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams() MTRDevi
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

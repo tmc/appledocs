@@ -6,37 +6,25 @@ import (
 )
 
 
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
-
-type Coder = int
-
-type ComponentType = int
-
-type ElementType = int
-
-type Error = int
-
-type GKBox = int
-
-type GameModel = int
-
-type MutableDictionary = int
-
-type NNode = int
-
-type Node = int
-
-type NodeType = int
-
-type Quad = int
-
-type Random = int
-
-type Triangle = int
+// C struct types
+// GKBox - The definition of an axis-aligned rectangular bounding volume addressed by the tree.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBox
+type GKBox struct {
+}// GKQuad - The definition of an axis-aligned rectangle addressed by the tree.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuad
+type GKQuad struct {
+	QuadMax unsafe.Pointer // The corner of the rectangle with the highest coordinate values (in most coordinate systems, the upper-right corner).
+	QuadMin unsafe.Pointer // The corner of the rectangle with the lowest coordinate values (in most coordinate systems, the lower-left corner).
+}// GKTriangle - The definition of a triangle in the mesh, available with the 
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKTriangle
+type GKTriangle struct {
+}
 
 
 

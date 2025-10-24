@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NEPacketTunnelProvider] class.
@@ -31,19 +29,22 @@ type _NEPacketTunnelProviderClass struct {
 // An interface definition for the [NEPacketTunnelProvider] class.
 type INEPacketTunnelProvider interface {
 	INETunnelProvider
-	CancelTunnelWithError(error_ foundation.IError)
-	CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection
-	CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
-	StartTunnelWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
-	StopTunnelWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer)
-	PacketFlow() NEPacketTunnelFlow
+	// properties:
+	PacketFlow() INEPacketTunnelFlow
+	SetPacketFlow(value INEPacketTunnelFlow)
 	VirtualInterface() unsafe.Pointer
+	SetVirtualInterface(value unsafe.Pointer)
+	// methods:
 }
 
 // The principal class for a packet tunnel provider app extension.
 //
 // The class gives its subclasses access to a virtual network interface via the property. Use the method in the Packet Tunnel Provider to specify that the following network settings be associated with the virtual interface: Virtual IP address DNS resolver configuration HTTP proxy configuration IP destination networks to be routed through the tunnel IP destination networks to be routed outside the tunnel Interface MTU By specifying IP destination networks, the Packet Tunnel Provider can dictate what IP destinations will be routed to the virtual interface. IP packets with matching destination addresses will then be diverted to Packet Tunnel Provider and can be read using the property. The Packet Tunnel Provider can then encapsulate the IP packets per a custom tunneling protocol and send them to a tunnel server. When the Packet Tunnel Provider decapsulates IP packets received from the tunnel server, it can use the property to inject the packets into the networking stack.
+
+
+// The principal class for a packet tunnel provider app extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider
 type NEPacketTunnelProvider struct {
 	NETunnelProvider
@@ -90,56 +91,38 @@ func NewNEPacketTunnelProvider() NEPacketTunnelProvider {
 }
 
 
-// Stop the network tunnel from the Packet Tunnel Provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/cancelTunnelWithError(_:)
-func (n_ NEPacketTunnelProvider) CancelTunnelWithError(error_ foundation.IError) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("cancelTunnelWithError:"), error_)
-}
 
-// Create a TCP connection through the current tunnel.
+// A
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/createTCPConnectionThroughTunnel(to:enableTLS:tlsParameters:delegate:)
-func (n_ NEPacketTunnelProvider) CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection {
-	rv := objc.Send[NWTCPConnection](n_.ID, objc.Sel("createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
-	return rv
-}
-
-// Creates a UDP session through the current tunnel.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/createUDPSessionThroughTunnel(to:from:)
-func (n_ NEPacketTunnelProvider) CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession {
-	rv := objc.Send[NWUDPSession](n_.ID, objc.Sel("createUDPSessionThroughTunnelToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
-	return rv
-}
-
-// Start the network tunnel.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/startTunnel(options:completionHandler:)
-func (n_ NEPacketTunnelProvider) StartTunnelWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("startTunnelWithOptions:completionHandler:"), options, completionHandler)
-}
-
-// Stop the network tunnel.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/stopTunnel(with:completionHandler:)
-func (n_ NEPacketTunnelProvider) StopTunnelWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("stopTunnelWithReason:completionHandler:"), reason, completionHandler)
-}
-
-// A object which is used to receive IP packets routed to the tunnel’s virtual interface and inject IP packets into the networking stack via the tunnel’s virtual interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/packetFlow
-func (n_ NEPacketTunnelProvider) PacketFlow() NEPacketTunnelFlow {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/packetflow
+func (n_ NEPacketTunnelProvider) PacketFlow() INEPacketTunnelFlow {
 	rv := objc.Send[NEPacketTunnelFlow](n_.ID, objc.Sel("packetFlow"))
 	return rv
 }
 
+
+// A
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/virtualInterface-9fpgd
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/packetflow
+func (n_ NEPacketTunnelProvider) SetPacketFlow(value INEPacketTunnelFlow) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPacketFlow:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/virtualinterface-7l3ol
 func (n_ NEPacketTunnelProvider) VirtualInterface() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("virtualInterface"))
 	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/virtualinterface-7l3ol
+func (n_ NEPacketTunnelProvider) SetVirtualInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setVirtualInterface:"), value)
 }
 
 

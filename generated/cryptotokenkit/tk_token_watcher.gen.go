@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _TKTokenWatcherClass struct {
 type ITKTokenWatcher interface {
 	objectivec.IObject
 	// properties:
-	TokenIDs() string /* primitive/slice/pointer. */
-	SetTokenIDs(value string /* primitive/slice/pointer. */)
+	TokenIDs() objc.IObject /* cross-framework: NSString */
+	SetTokenIDs(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 	SetInsertionHandler(insertionHandler unsafe.Pointer)
-	TokenInfoForTokenID(tokenID string /* primitive/slice/pointer. */) ITKTokenWatcherTokenInfo
+	TokenInfoForTokenID(tokenID objc.IObject /* cross-framework: NSString */) ITKTokenWatcherTokenInfo
 }
 
 // An object that tracks the tokens available in the system.
@@ -103,8 +104,8 @@ func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/tokenInfo(forTokenID:)
-func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string /* primitive/slice/pointer. */) ITKTokenWatcherTokenInfo {
-	rv := objc.Send[TKTokenWatcherTokenInfo](t_.ID, objc.Sel("tokenInfoForTokenID:"), objc.String(tokenID))
+func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID objc.IObject /* cross-framework: NSString */) ITKTokenWatcherTokenInfo {
+	rv := objc.Send[TKTokenWatcherTokenInfo](t_.ID, objc.Sel("tokenInfoForTokenID:"), tokenID)
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-func (t_ TKTokenWatcher) TokenIDs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("tokenIDs"))
+func (t_ TKTokenWatcher) TokenIDs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("tokenIDs"))
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (t_ TKTokenWatcher) TokenIDs() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-func (t_ TKTokenWatcher) SetTokenIDs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenIDs:"), objc.String(value))
+func (t_ TKTokenWatcher) SetTokenIDs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenIDs:"), value)
 }
 
 

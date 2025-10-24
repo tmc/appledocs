@@ -31,13 +31,17 @@ type _MTRBooleanStateConfigurationClusterAlarmsStateChangedEventClass struct {
 // An interface definition for the [MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent] class.
 type IMTRBooleanStateConfigurationClusterAlarmsStateChangedEvent interface {
 	objectivec.IObject
-	AlarmsActive() foundation.Number
-	SetAlarmsActive(value foundation.INumber)
-	AlarmsSuppressed() foundation.Number
-	SetAlarmsSuppressed(value foundation.INumber)
+	// properties:
+	AlarmsActive() objc.IObject /* cross-framework: NSNumber */
+	SetAlarmsActive(value objc.IObject /* cross-framework: NSNumber */)
+	AlarmsSuppressed() objc.IObject /* cross-framework: NSNumber */
+	SetAlarmsSuppressed(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent
 type MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRBooleanStateConfigurationClusterAlarmsStateChangedEvent() MTRBooleanS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmsactive
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsActive() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsActive"))
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsActive() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarmsActive"))
 	return rv
 }
 
 
-// SetAlarmsActive sets the value of the alarmsActive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmsactive
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsActive(value foundation.INumber) {
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsActive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsActive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmssuppressed
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsSuppressed() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmsSuppressed"))
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsSuppressed() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarmsSuppressed"))
 	return rv
 }
 
 
-// SetAlarmsSuppressed sets the value of the alarmsSuppressed property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmssuppressed
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsSuppressed(value foundation.INumber) {
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsSuppressed(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsSuppressed:"), value)
 }
 

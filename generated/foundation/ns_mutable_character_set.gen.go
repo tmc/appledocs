@@ -31,12 +31,12 @@ type IMutableCharacterSet interface {
 	ICharacterSet
 	// properties:
 	// methods:
-	AddCharactersInRange(aRange objc.IObject /* cross-framework Range */)
+	AddCharactersInRange(aRange objc.IObject /* cross-framework: Range */)
 	AddCharactersInString(aString IString)
 	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
 	FormUnionWithCharacterSet(otherSet ICharacterSet)
 	Invert()
-	RemoveCharactersInRange(aRange objc.IObject /* cross-framework Range */)
+	RemoveCharactersInRange(aRange objc.IObject /* cross-framework: Range */)
 	RemoveCharactersInString(aString IString)
 }
 
@@ -129,7 +129,7 @@ func NewMutableCharacterSetWithContentsOfFile(fName IString) MutableCharacterSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func NewMutableCharacterSetWithRange(aRange objc.IObject /* cross-framework Range */) MutableCharacterSet {
+func NewMutableCharacterSetWithRange(aRange objc.IObject /* cross-framework: Range */) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -230,7 +230,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName IString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange objc.IObject /* cross-framework Range */) IMutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange objc.IObject /* cross-framework: Range */) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -330,7 +330,7 @@ func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() IMutableC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
-func (m_ MutableCharacterSet) AddCharactersInRange(aRange objc.IObject /* cross-framework Range */) {
+func (m_ MutableCharacterSet) AddCharactersInRange(aRange objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
 
@@ -375,7 +375,7 @@ func (m_ MutableCharacterSet) Invert() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-70nqp
-func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange objc.IObject /* cross-framework Range */) {
+func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInRange:"), aRange)
 }
 

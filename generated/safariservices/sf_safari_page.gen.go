@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,9 @@ type _SFSafariPageClass struct {
 // An interface definition for the [SFSafariPage] class.
 type ISFSafariPage interface {
 	objectivec.IObject
-	DispatchMessageToScriptWithNameUserInfo(messageName string, userInfo unsafe.Pointer)
+	// properties:
+	// methods:
+	DispatchMessageToScriptWithNameUserInfo(messageName objc.IObject /* cross-framework: NSString */, userInfo foundation.IDictionary)
 	GetContainingTabWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetPagePropertiesWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetScreenshotOfVisibleAreaWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -40,7 +43,11 @@ type ISFSafariPage interface {
 // A proxy for a Safari webpage.
 //
 // Use an object in your Safari app extension to send messages to injected content scripts, access page properties, and reload the page.
+
+
+// A proxy for a Safari webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage
 type SFSafariPage struct {
 	objectivec.Object
@@ -85,34 +92,42 @@ func NewSFSafariPage() SFSafariPage {
 }
 
 
+
 // Dispatches a message from the app extension to the content script injected in this page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)
-func (s_ SFSafariPage) DispatchMessageToScriptWithNameUserInfo(messageName string, userInfo unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("dispatchMessageToScriptWithName:userInfo:"), objc.String(messageName), userInfo)
+func (s_ SFSafariPage) DispatchMessageToScriptWithNameUserInfo(messageName objc.IObject /* cross-framework: NSString */, userInfo foundation.IDictionary) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("dispatchMessageToScriptWithName:userInfo:"), messageName, userInfo)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/getContainingTab(completionHandler:)
 func (s_ SFSafariPage) GetContainingTabWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getContainingTabWithCompletionHandler:"), completionHandler)
 }
 
+
 // Retrieves the properties of the webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/getPropertiesWithCompletionHandler(_:)
 func (s_ SFSafariPage) GetPagePropertiesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getPagePropertiesWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/getScreenshotOfVisibleArea(completionHandler:)
 func (s_ SFSafariPage) GetScreenshotOfVisibleAreaWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getScreenshotOfVisibleAreaWithCompletionHandler:"), completionHandler)
 }
 
+
 // Tells Safari to reload the webpage.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPage/reload()
 func (s_ SFSafariPage) Reload() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("reload"))

@@ -32,8 +32,8 @@ type IToolbarItemGroup interface {
 	// properties:
 	ControlRepresentation() unsafe.Pointer
 	SetControlRepresentation(value unsafe.Pointer)
-	SelectedIndex() int /* primitive/slice/pointer. */
-	SetSelectedIndex(value int /* primitive/slice/pointer. */)
+	SelectedIndex() int
+	SetSelectedIndex(value int)
 	SelectionMode() unsafe.Pointer
 	SetSelectionMode(value unsafe.Pointer)
 	Subitems() IToolbarItem
@@ -119,7 +119,7 @@ func (t_ ToolbarItemGroup) SetControlRepresentation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectedindex
-func (t_ ToolbarItemGroup) SelectedIndex() int /* primitive/slice/pointer. */ {
+func (t_ ToolbarItemGroup) SelectedIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (t_ ToolbarItemGroup) SelectedIndex() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectedindex
-func (t_ ToolbarItemGroup) SetSelectedIndex(value int /* primitive/slice/pointer. */) {
+func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
 }
 

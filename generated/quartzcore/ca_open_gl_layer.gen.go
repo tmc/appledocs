@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corevideo"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [OpenGLLayer] class.
@@ -30,26 +31,24 @@ type _OpenGLLayerClass struct {
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
 	ILayer
-	CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) bool
-	CopyCGLContextForPixelFormat(pf unsafe.Pointer) unsafe.Pointer
-	CopyCGLPixelFormatForDisplayMask(mask Iuint32) unsafe.Pointer
-	DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer)
-	ReleaseCGLContext(ctx unsafe.Pointer)
-	ReleaseCGLPixelFormat(pf unsafe.Pointer)
-	Colorspace() coregraphics.CGColorSpaceRef
-	SetColorspace(value coregraphics.CGColorSpaceRef)
-	Asynchronous() bool
-	SetAsynchronous(value bool)
-	WantsExtendedDynamicRangeContent() bool
-	SetWantsExtendedDynamicRangeContent(value bool)
+	// properties:
+	Colorspace() objectivec.IObject
+	SetColorspace(value objectivec.IObject)
 	IsAsynchronous() bool
 	SetIsAsynchronous(value bool)
+	WantsExtendedDynamicRangeContent() bool
+	SetWantsExtendedDynamicRangeContent(value bool)
+	// methods:
 }
 
 // A layer that provides a layer suitable for rendering OpenGL content.
 //
 // To provide OpenGL content you subclass and override . You can specify that the OpenGL content is static by setting the property to .
+
+
+// A layer that provides a layer suitable for rendering OpenGL content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer
 type OpenGLLayer struct {
 	Layer
@@ -96,107 +95,29 @@ func NewOpenGLLayer() OpenGLLayer {
 }
 
 
-// Returns whether the receiver should draw OpenGL content for the specified time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/canDraw(inCGLContext:pixelFormat:forLayerTime:displayTime:)
-func (o_ OpenGLLayer) CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:"), ctx, pf, t, ts)
-	return rv
-}
-
-// Returns the rendering context the receiver requires for the specified pixel format.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/copyCGLContext(forPixelFormat:)
-func (o_ OpenGLLayer) CopyCGLContextForPixelFormat(pf unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("copyCGLContextForPixelFormat:"), pf)
-	return rv
-}
-
-// Returns the OpenGL pixel format suitable for rendering to the set of displays specified by the display mask.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/copyCGLPixelFormat(forDisplayMask:)
-func (o_ OpenGLLayer) CopyCGLPixelFormatForDisplayMask(mask Iuint32) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("copyCGLPixelFormatForDisplayMask:"), mask)
-	return rv
-}
-
-// Draws the OpenGL content for the specified time.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/draw(inCGLContext:pixelFormat:forLayerTime:displayTime:)
-func (o_ OpenGLLayer) DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("drawInCGLContext:pixelFormat:forLayerTime:displayTime:"), ctx, pf, t, ts)
-}
-
-// Releases the specified rendering context.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/releaseCGLContext(_:)
-func (o_ OpenGLLayer) ReleaseCGLContext(ctx unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("releaseCGLContext:"), ctx)
-}
-
-// Releases the specified OpenGL pixel format object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/releaseCGLPixelFormat(_:)
-func (o_ OpenGLLayer) ReleaseCGLPixelFormat(pf unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("releaseCGLPixelFormat:"), pf)
-}
 
 // The layer’s colorspace in Core Graphics.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/colorspace
-func (o_ OpenGLLayer) Colorspace() coregraphics.CGColorSpaceRef {
-	rv := objc.Send[coregraphics.CGColorSpaceRef](o_.ID, objc.Sel("colorspace"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/colorspace
+func (o_ OpenGLLayer) Colorspace() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](o_.ID, objc.Sel("colorspace"))
 	return rv
 }
 
 
-// SetColorspace sets the value of the colorspace property.
 // The layer’s colorspace in Core Graphics.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/colorspace
-func (o_ OpenGLLayer) SetColorspace(value coregraphics.CGColorSpaceRef) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/colorspace
+func (o_ OpenGLLayer) SetColorspace(value objectivec.IObject) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setColorspace:"), value)
 }
 
-// Determines when the contents of the layer are updated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/isAsynchronous
-func (o_ OpenGLLayer) Asynchronous() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("asynchronous"))
-	return rv
-}
-
-
-// SetAsynchronous sets the value of the asynchronous property.
-// Determines when the contents of the layer are updated.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/isAsynchronous
-func (o_ OpenGLLayer) SetAsynchronous(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAsynchronous:"), value)
-}
-
-// Tells whether or not the layer supports content with extended dynamic range.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/wantsExtendedDynamicRangeContent
-func (o_ OpenGLLayer) WantsExtendedDynamicRangeContent() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeContent"))
-	return rv
-}
-
-
-// SetWantsExtendedDynamicRangeContent sets the value of the wantsExtendedDynamicRangeContent property.
-// Tells whether or not the layer supports content with extended dynamic range.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/wantsExtendedDynamicRangeContent
-func (o_ OpenGLLayer) SetWantsExtendedDynamicRangeContent(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
-}
 
 // Determines when the contents of the layer are updated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/isasynchronous
 func (o_ OpenGLLayer) IsAsynchronous() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAsynchronous"))
@@ -204,13 +125,31 @@ func (o_ OpenGLLayer) IsAsynchronous() bool {
 }
 
 
-// SetIsAsynchronous sets the value of the isAsynchronous property.
 // Determines when the contents of the layer are updated.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/isasynchronous
 func (o_ OpenGLLayer) SetIsAsynchronous(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAsynchronous:"), value)
+}
+
+
+// Tells whether or not the layer supports content with extended dynamic range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/wantsextendeddynamicrangecontent
+func (o_ OpenGLLayer) WantsExtendedDynamicRangeContent() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeContent"))
+	return rv
+}
+
+
+// Tells whether or not the layer supports content with extended dynamic range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/caopengllayer/wantsextendeddynamicrangecontent
+func (o_ OpenGLLayer) SetWantsExtendedDynamicRangeContent(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeContent:"), value)
 }
 
 

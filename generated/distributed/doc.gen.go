@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Distributed without requiring cgo.
-
-// Build systems that run distributed code across multiple processes and devices.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Distributed
+// See: https://developer.apple.com/documentation/Distributed
 package distributed
 
 import (

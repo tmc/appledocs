@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,7 +91,7 @@ func NewAAAttribution() AAAttribution {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttribution/attributionToken()
 func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
+	rv := objc.Send[foundation.String](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
 	return rv
 }
 

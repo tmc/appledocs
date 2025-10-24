@@ -39,34 +39,34 @@ type IDatePicker interface {
 	SetDateValue(value objc.IObject /* cross-framework: NSDate */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Bezeled() bool /* primitive/slice/pointer. */
-	SetBezeled(value bool /* primitive/slice/pointer. */)
-	Bordered() bool /* primitive/slice/pointer. */
-	SetBordered(value bool /* primitive/slice/pointer. */)
+	Bezeled() bool
+	SetBezeled(value bool)
+	Bordered() bool
+	SetBordered(value bool)
 	Locale() objc.IObject /* cross-framework: Locale */
 	SetLocale(value objc.IObject /* cross-framework: Locale */)
 	MaxDate() objc.IObject /* cross-framework: NSDate */
 	SetMaxDate(value objc.IObject /* cross-framework: NSDate */)
 	MinDate() objc.IObject /* cross-framework: NSDate */
 	SetMinDate(value objc.IObject /* cross-framework: NSDate */)
-	PresentsCalendarOverlay() bool /* primitive/slice/pointer. */
-	SetPresentsCalendarOverlay(value bool /* primitive/slice/pointer. */)
+	PresentsCalendarOverlay() bool
+	SetPresentsCalendarOverlay(value bool)
 	TextColor() IColor
 	SetTextColor(value IColor)
-	TimeInterval() TimeInterval /* not a class type */
-	SetTimeInterval(value TimeInterval /* not a class type */)
+	TimeInterval() float64
+	SetTimeInterval(value float64)
 	Calendar() objc.IObject /* cross-framework: Calendar */
 	SetCalendar(value objc.IObject /* cross-framework: Calendar */)
 	DatePickerElements() unsafe.Pointer
 	SetDatePickerElements(value unsafe.Pointer)
 	DatePickerStyle() unsafe.Pointer
 	SetDatePickerStyle(value unsafe.Pointer)
-	DrawsBackground() bool /* primitive/slice/pointer. */
-	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
-	IsBezeled() bool /* primitive/slice/pointer. */
-	SetIsBezeled(value bool /* primitive/slice/pointer. */)
-	IsBordered() bool /* primitive/slice/pointer. */
-	SetIsBordered(value bool /* primitive/slice/pointer. */)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
+	IsBezeled() bool
+	SetIsBezeled(value bool)
+	IsBordered() bool
+	SetIsBordered(value bool)
 	TimeZone() objc.IObject /* cross-framework: TimeZone */
 	SetTimeZone(value objc.IObject /* cross-framework: TimeZone */)
 	// methods:
@@ -207,7 +207,7 @@ func (d_ DatePicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/isBezeled
-func (d_ DatePicker) Bezeled() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) Bezeled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("bezeled"))
 	return rv
 }
@@ -217,7 +217,7 @@ func (d_ DatePicker) Bezeled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/isBezeled
-func (d_ DatePicker) SetBezeled(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetBezeled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBezeled:"), value)
 }
 
@@ -226,7 +226,7 @@ func (d_ DatePicker) SetBezeled(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/isBordered
-func (d_ DatePicker) Bordered() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) Bordered() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -236,7 +236,7 @@ func (d_ DatePicker) Bordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/isBordered
-func (d_ DatePicker) SetBordered(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetBordered(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -246,7 +246,7 @@ func (d_ DatePicker) SetBordered(value bool /* primitive/slice/pointer. */) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/locale
 func (d_ DatePicker) Locale() objc.IObject /* cross-framework: Locale */ {
-	rv := objc.Send[Locale](d_.ID, objc.Sel("locale"))
+	rv := objc.Send[foundation.Locale](d_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -302,7 +302,7 @@ func (d_ DatePicker) SetMinDate(value objc.IObject /* cross-framework: NSDate */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/presentsCalendarOverlay
-func (d_ DatePicker) PresentsCalendarOverlay() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) PresentsCalendarOverlay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("presentsCalendarOverlay"))
 	return rv
 }
@@ -312,7 +312,7 @@ func (d_ DatePicker) PresentsCalendarOverlay() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/presentsCalendarOverlay
-func (d_ DatePicker) SetPresentsCalendarOverlay(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetPresentsCalendarOverlay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPresentsCalendarOverlay:"), value)
 }
 
@@ -340,7 +340,7 @@ func (d_ DatePicker) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/timeInterval
-func (d_ DatePicker) TimeInterval() TimeInterval /* not a class type */ {
+func (d_ DatePicker) TimeInterval() float64 {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeInterval"))
 	return rv
 }
@@ -350,7 +350,7 @@ func (d_ DatePicker) TimeInterval() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/timeInterval
-func (d_ DatePicker) SetTimeInterval(value TimeInterval /* not a class type */) {
+func (d_ DatePicker) SetTimeInterval(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeInterval:"), value)
 }
 
@@ -416,7 +416,7 @@ func (d_ DatePicker) SetDatePickerStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/drawsbackground
-func (d_ DatePicker) DrawsBackground() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) DrawsBackground() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -426,7 +426,7 @@ func (d_ DatePicker) DrawsBackground() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/drawsbackground
-func (d_ DatePicker) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -435,7 +435,7 @@ func (d_ DatePicker) SetDrawsBackground(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/isbezeled
-func (d_ DatePicker) IsBezeled() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) IsBezeled() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isBezeled"))
 	return rv
 }
@@ -445,7 +445,7 @@ func (d_ DatePicker) IsBezeled() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/isbezeled
-func (d_ DatePicker) SetIsBezeled(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetIsBezeled(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsBezeled:"), value)
 }
 
@@ -454,7 +454,7 @@ func (d_ DatePicker) SetIsBezeled(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/isbordered
-func (d_ DatePicker) IsBordered() bool /* primitive/slice/pointer. */ {
+func (d_ DatePicker) IsBordered() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -464,7 +464,7 @@ func (d_ DatePicker) IsBordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/isbordered
-func (d_ DatePicker) SetIsBordered(value bool /* primitive/slice/pointer. */) {
+func (d_ DatePicker) SetIsBordered(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsBordered:"), value)
 }
 

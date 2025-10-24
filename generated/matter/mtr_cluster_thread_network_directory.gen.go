@@ -30,23 +30,29 @@ type _MTRClusterThreadNetworkDirectoryClass struct {
 // An interface definition for the [MTRClusterThreadNetworkDirectory] class.
 type IMTRClusterThreadNetworkDirectory interface {
 	IMTRGenericCluster
-	AddNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterAddNetworkParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	GetOperationalDatasetWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributePreferredExtendedPanIDWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeThreadNetworkTableSizeWithParams(params IMTRReadParams) unsafe.Pointer
-	ReadAttributeThreadNetworksWithParams(params IMTRReadParams) unsafe.Pointer
-	RemoveNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterRemoveNetworkParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
-	WriteAttributePreferredExtendedPanIDWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber)
-	WriteAttributePreferredExtendedPanIDWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber, params IMTRWriteParams)
+	// properties:
+	// methods:
+	AddNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterAddNetworkParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	GetOperationalDatasetWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributePreferredExtendedPanIDWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeThreadNetworkTableSizeWithParams(params IMTRReadParams) foundation.IDictionary
+	ReadAttributeThreadNetworksWithParams(params IMTRReadParams) foundation.IDictionary
+	RemoveNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterRemoveNetworkParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+	WriteAttributePreferredExtendedPanIDWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */)
+	WriteAttributePreferredExtendedPanIDWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams)
 }
 
 // Cluster Thread Network Directory Manages the names and credentials of Thread networks visible to the user.
+
+
+// Cluster Thread Network Directory Manages the names and credentials of Thread networks visible to the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory
 type MTRClusterThreadNetworkDirectory struct {
 	MTRGenericCluster
@@ -94,11 +100,11 @@ func NewMTRClusterThreadNetworkDirectory() MTRClusterThreadNetworkDirectory {
 
 
 
-
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/init(device:endpointID:queue:)
-func NewMTRClusterThreadNetworkDirectoryWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterThreadNetworkDirectory {
+func NewMTRClusterThreadNetworkDirectoryWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterThreadNetworkDirectory {
 	instance := getMTRClusterThreadNetworkDirectoryClass().Alloc()
 	rv := objc.Send[MTRClusterThreadNetworkDirectory](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -106,89 +112,102 @@ func NewMTRClusterThreadNetworkDirectoryWithDeviceEndpointIDQueue(device IMTRDev
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/addNetwork(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadNetworkDirectory) AddNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterAddNetworkParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadNetworkDirectory) AddNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterAddNetworkParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addNetworkWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/getOperationalDataset(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadNetworkDirectory) GetOperationalDatasetWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadNetworkDirectory) GetOperationalDatasetWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getOperationalDatasetWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeAttributeList(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeClusterRevision(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeFeatureMap(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributePreferredExtendedPanID(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributePreferredExtendedPanIDWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributePreferredExtendedPanIDWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributePreferredExtendedPanIDWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePreferredExtendedPanIDWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeThreadNetworkTableSize(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeThreadNetworkTableSizeWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeThreadNetworkTableSizeWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeThreadNetworkTableSizeWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeThreadNetworkTableSizeWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/readAttributeThreadNetworks(with:)
-func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeThreadNetworksWithParams(params IMTRReadParams) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeThreadNetworksWithParams:"), params)
+func (m_ MTRClusterThreadNetworkDirectory) ReadAttributeThreadNetworksWithParams(params IMTRReadParams) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeThreadNetworksWithParams:"), params)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/removeNetwork(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadNetworkDirectory) RemoveNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterRemoveNetworkParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadNetworkDirectory) RemoveNetworkWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadNetworkDirectoryClusterRemoveNetworkParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeNetworkWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/writeAttributePreferredExtendedPanID(withValue:expectedValueInterval:)
-func (m_ MTRClusterThreadNetworkDirectory) WriteAttributePreferredExtendedPanIDWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber) {
+func (m_ MTRClusterThreadNetworkDirectory) WriteAttributePreferredExtendedPanIDWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributePreferredExtendedPanIDWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadNetworkDirectory/writeAttributePreferredExtendedPanID(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterThreadNetworkDirectory) WriteAttributePreferredExtendedPanIDWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber, params IMTRWriteParams) {
+func (m_ MTRClusterThreadNetworkDirectory) WriteAttributePreferredExtendedPanIDWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributePreferredExtendedPanIDWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 

@@ -34,63 +34,63 @@ type IManagedObjectContext interface {
 	// properties:
 	DeletedObjects() unsafe.Pointer
 	InsertedObjects() unsafe.Pointer
-	ShouldDeleteInaccessibleFaults() bool /* primitive/slice/pointer. */
-	SetShouldDeleteInaccessibleFaults(value bool /* primitive/slice/pointer. */)
-	StalenessInterval() foundation.TimeInterval /* not a class type */
-	SetStalenessInterval(value foundation.TimeInterval /* not a class type */)
-	UndoManager() UndoManager /* not a class type */
-	SetUndoManager(value UndoManager /* not a class type */)
+	ShouldDeleteInaccessibleFaults() bool
+	SetShouldDeleteInaccessibleFaults(value bool)
+	StalenessInterval() float64
+	SetStalenessInterval(value float64)
+	UndoManager() objc.IObject /* cross-framework: UndoManager */
+	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
 	UpdatedObjects() unsafe.Pointer
-	NSDeletedObjectsKey() string /* primitive/slice/pointer. */
-	NSInsertedObjectsKey() string /* primitive/slice/pointer. */
-	NSInvalidatedAllObjectsKey() string /* primitive/slice/pointer. */
-	NSInvalidatedObjectsKey() string /* primitive/slice/pointer. */
-	AutomaticallyMergesChangesFromParent() bool /* primitive/slice/pointer. */
-	SetAutomaticallyMergesChangesFromParent(value bool /* primitive/slice/pointer. */)
+	NSDeletedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSInsertedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSInvalidatedAllObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSInvalidatedObjectsKey() objc.IObject /* cross-framework: NSString */
+	AutomaticallyMergesChangesFromParent() bool
+	SetAutomaticallyMergesChangesFromParent(value bool)
 	ConcurrencyType() ManagedObjectContextConcurrencyType /* not a class type */
 	SetConcurrencyType(value ManagedObjectContextConcurrencyType /* not a class type */)
-	HasChanges() bool /* primitive/slice/pointer. */
-	SetHasChanges(value bool /* primitive/slice/pointer. */)
+	HasChanges() bool
+	SetHasChanges(value bool)
 	MergePolicy() unsafe.Pointer
 	SetMergePolicy(value unsafe.Pointer)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	Parent() IManagedObjectContext
 	SetParent(value IManagedObjectContext)
 	PersistentStoreCoordinator() IPersistentStoreCoordinator
 	SetPersistentStoreCoordinator(value IPersistentStoreCoordinator)
-	PropagatesDeletesAtEndOfEvent() bool /* primitive/slice/pointer. */
-	SetPropagatesDeletesAtEndOfEvent(value bool /* primitive/slice/pointer. */)
+	PropagatesDeletesAtEndOfEvent() bool
+	SetPropagatesDeletesAtEndOfEvent(value bool)
 	QueryGenerationToken() IQueryGenerationToken
 	SetQueryGenerationToken(value IQueryGenerationToken)
 	RegisteredObjects() IManagedObject
 	SetRegisteredObjects(value IManagedObject)
-	RetainsRegisteredObjects() bool /* primitive/slice/pointer. */
-	SetRetainsRegisteredObjects(value bool /* primitive/slice/pointer. */)
-	TransactionAuthor() string /* primitive/slice/pointer. */
-	SetTransactionAuthor(value string /* primitive/slice/pointer. */)
-	UserInfo() MutableDictionary /* not a class type */
-	SetUserInfo(value MutableDictionary /* not a class type */)
-	NSManagedObjectContextQueryGenerationKey() string /* primitive/slice/pointer. */
-	NSRefreshedObjectsKey() string /* primitive/slice/pointer. */
-	NSUpdatedObjectsKey() string /* primitive/slice/pointer. */
+	RetainsRegisteredObjects() bool
+	SetRetainsRegisteredObjects(value bool)
+	TransactionAuthor() objc.IObject /* cross-framework: NSString */
+	SetTransactionAuthor(value objc.IObject /* cross-framework: NSString */)
+	UserInfo() objc.IObject /* cross-framework: MutableDictionary */
+	SetUserInfo(value objc.IObject /* cross-framework: MutableDictionary */)
+	NSManagedObjectContextQueryGenerationKey() objc.IObject /* cross-framework: NSString */
+	NSRefreshedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSUpdatedObjectsKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 	AssignObjectToPersistentStore(object objectivec.IObject, store IPersistentStore)
 	DeleteObject(object IManagedObject)
 	DetectConflictsForObject(object IManagedObject)
 	ExecuteFetchRequestError(request IFetchRequest, error_ unsafe.Pointer) objc.IObject /* cross-framework: Array */
 	InsertObject(object IManagedObject)
-	MergeChangesFromContextDidSaveNotification(notification Notification /* not a class type */)
+	MergeChangesFromContextDidSaveNotification(notification objc.IObject /* cross-framework: Notification */)
 	ObjectWithID(objectID IManagedObjectID) IManagedObject
-	ObtainPermanentIDsForObjectsError(objects []ManagedObject /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ObtainPermanentIDsForObjectsError(objects []IManagedObject, error_ unsafe.Pointer) bool
 	PerformBlock(block unsafe.Pointer)
 	ProcessPendingChanges()
 	Redo()
-	RefreshObjectMergeChanges(object IManagedObject, flag bool /* primitive/slice/pointer. */)
+	RefreshObjectMergeChanges(object IManagedObject, flag bool)
 	Reset()
 	Rollback()
-	Save(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault IManagedObject, oid IManagedObjectID, property IPropertyDescription) bool /* primitive/slice/pointer. */
+	Save(error_ unsafe.Pointer) bool
+	ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault IManagedObject, oid IManagedObjectID, property IPropertyDescription) bool
 	Undo()
 }
 
@@ -179,7 +179,7 @@ func (m_ ManagedObjectContext) DetectConflictsForObject(object IManagedObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/executeFetchRequest:error:
 func (m_ ManagedObjectContext) ExecuteFetchRequestError(request IFetchRequest, error_ unsafe.Pointer) objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](m_.ID, objc.Sel("executeFetchRequest:error:"), request, error_)
+	rv := objc.Send[foundation.Array](m_.ID, objc.Sel("executeFetchRequest:error:"), request, error_)
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (m_ ManagedObjectContext) InsertObject(object IManagedObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)
-func (m_ ManagedObjectContext) MergeChangesFromContextDidSaveNotification(notification Notification /* not a class type */) {
+func (m_ ManagedObjectContext) MergeChangesFromContextDidSaveNotification(notification objc.IObject /* cross-framework: Notification */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("mergeChangesFromContextDidSaveNotification:"), notification)
 }
 
@@ -216,8 +216,8 @@ func (m_ ManagedObjectContext) ObjectWithID(objectID IManagedObjectID) IManagedO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/observeValue(forKeyPath:of:change:context:)
-func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath string /* primitive/slice/pointer. */, object objectivec.IObject, change foundation.IDictionary /* already interface */, context unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), objc.String(keyPath), object, change, context)
+func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath objc.IObject /* cross-framework: NSString */, object objectivec.IObject, change foundation.IDictionary, context unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
 }
 
 
@@ -225,7 +225,7 @@ func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/obtainPermanentIDs(for:)
-func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects []ManagedObject /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects []IManagedObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("obtainPermanentIDsForObjects:error:"), objects, error_)
 	return rv
 }
@@ -262,7 +262,7 @@ func (m_ ManagedObjectContext) Redo() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/refresh(_:mergeChanges:)
-func (m_ ManagedObjectContext) RefreshObjectMergeChanges(object IManagedObject, flag bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) RefreshObjectMergeChanges(object IManagedObject, flag bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("refreshObject:mergeChanges:"), object, flag)
 }
 
@@ -289,7 +289,7 @@ func (m_ ManagedObjectContext) Rollback() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/save()
-func (m_ ManagedObjectContext) Save(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) Save(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("save:"), error_)
 	return rv
 }
@@ -299,7 +299,7 @@ func (m_ ManagedObjectContext) Save(error_ unsafe.Pointer) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldHandleInaccessibleFault(_:for:triggeredByProperty:)
-func (m_ ManagedObjectContext) ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault IManagedObject, oid IManagedObjectID, property IPropertyDescription) bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) ShouldHandleInaccessibleFaultForObjectIDTriggeredByProperty(fault IManagedObject, oid IManagedObjectID, property IPropertyDescription) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:"), fault, oid, property)
 	return rv
 }
@@ -338,7 +338,7 @@ func (m_ ManagedObjectContext) InsertedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldDeleteInaccessibleFaults
-func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldDeleteInaccessibleFaults"))
 	return rv
 }
@@ -348,7 +348,7 @@ func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/shouldDeleteInaccessibleFaults
-func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldDeleteInaccessibleFaults:"), value)
 }
 
@@ -357,8 +357,8 @@ func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/stalenessInterval
-func (m_ ManagedObjectContext) StalenessInterval() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("stalenessInterval"))
+func (m_ ManagedObjectContext) StalenessInterval() float64 {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("stalenessInterval"))
 	return rv
 }
 
@@ -367,7 +367,7 @@ func (m_ ManagedObjectContext) StalenessInterval() foundation.TimeInterval /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/stalenessInterval
-func (m_ ManagedObjectContext) SetStalenessInterval(value foundation.TimeInterval /* not a class type */) {
+func (m_ ManagedObjectContext) SetStalenessInterval(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStalenessInterval:"), value)
 }
 
@@ -376,8 +376,8 @@ func (m_ ManagedObjectContext) SetStalenessInterval(value foundation.TimeInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/undoManager
-func (m_ ManagedObjectContext) UndoManager() UndoManager /* not a class type */ {
-	rv := objc.Send[UndoManager](m_.ID, objc.Sel("undoManager"))
+func (m_ ManagedObjectContext) UndoManager() objc.IObject /* cross-framework: UndoManager */ {
+	rv := objc.Send[foundation.UndoManager](m_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -386,7 +386,7 @@ func (m_ ManagedObjectContext) UndoManager() UndoManager /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectContext/undoManager
-func (m_ ManagedObjectContext) SetUndoManager(value UndoManager /* not a class type */) {
+func (m_ ManagedObjectContext) SetUndoManager(value objc.IObject /* cross-framework: UndoManager */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUndoManager:"), value)
 }
 
@@ -405,8 +405,8 @@ func (m_ ManagedObjectContext) UpdatedObjects() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsdeletedobjectskey
-func (m_ ManagedObjectContext) NSDeletedObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSDeletedObjectsKey"))
+func (m_ ManagedObjectContext) NSDeletedObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSDeletedObjectsKey"))
 	return rv
 }
 
@@ -415,8 +415,8 @@ func (m_ ManagedObjectContext) NSDeletedObjectsKey() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinsertedobjectskey
-func (m_ ManagedObjectContext) NSInsertedObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInsertedObjectsKey"))
+func (m_ ManagedObjectContext) NSInsertedObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSInsertedObjectsKey"))
 	return rv
 }
 
@@ -425,8 +425,8 @@ func (m_ ManagedObjectContext) NSInsertedObjectsKey() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
+func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
 	return rv
 }
 
@@ -435,8 +435,8 @@ func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey
-func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
+func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSInvalidatedObjectsKey"))
 	return rv
 }
 
@@ -445,7 +445,7 @@ func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/automaticallymergeschangesfromparent
-func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyMergesChangesFromParent"))
 	return rv
 }
@@ -455,7 +455,7 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/automaticallymergeschangesfromparent
-func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyMergesChangesFromParent:"), value)
 }
 
@@ -483,7 +483,7 @@ func (m_ ManagedObjectContext) SetConcurrencyType(value ManagedObjectContextConc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/haschanges
-func (m_ ManagedObjectContext) HasChanges() bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) HasChanges() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
 	return rv
 }
@@ -493,7 +493,7 @@ func (m_ ManagedObjectContext) HasChanges() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/haschanges
-func (m_ ManagedObjectContext) SetHasChanges(value bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) SetHasChanges(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasChanges:"), value)
 }
 
@@ -521,8 +521,8 @@ func (m_ ManagedObjectContext) SetMergePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/name
-func (m_ ManagedObjectContext) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ManagedObjectContext) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -531,8 +531,8 @@ func (m_ ManagedObjectContext) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/name
-func (m_ ManagedObjectContext) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ ManagedObjectContext) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -578,7 +578,7 @@ func (m_ ManagedObjectContext) SetPersistentStoreCoordinator(value IPersistentSt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/propagatesdeletesatendofevent
-func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("propagatesDeletesAtEndOfEvent"))
 	return rv
 }
@@ -588,7 +588,7 @@ func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/propagatesdeletesatendofevent
-func (m_ ManagedObjectContext) SetPropagatesDeletesAtEndOfEvent(value bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) SetPropagatesDeletesAtEndOfEvent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPropagatesDeletesAtEndOfEvent:"), value)
 }
 
@@ -635,7 +635,7 @@ func (m_ ManagedObjectContext) SetRegisteredObjects(value IManagedObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/retainsregisteredobjects
-func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool /* primitive/slice/pointer. */ {
+func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("retainsRegisteredObjects"))
 	return rv
 }
@@ -645,7 +645,7 @@ func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/retainsregisteredobjects
-func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool /* primitive/slice/pointer. */) {
+func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRetainsRegisteredObjects:"), value)
 }
 
@@ -654,8 +654,8 @@ func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/transactionauthor
-func (m_ ManagedObjectContext) TransactionAuthor() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("transactionAuthor"))
+func (m_ ManagedObjectContext) TransactionAuthor() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -664,8 +664,8 @@ func (m_ ManagedObjectContext) TransactionAuthor() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/transactionauthor
-func (m_ ManagedObjectContext) SetTransactionAuthor(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
+func (m_ ManagedObjectContext) SetTransactionAuthor(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
 
 
@@ -673,8 +673,8 @@ func (m_ ManagedObjectContext) SetTransactionAuthor(value string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/userinfo
-func (m_ ManagedObjectContext) UserInfo() MutableDictionary /* not a class type */ {
-	rv := objc.Send[MutableDictionary](m_.ID, objc.Sel("userInfo"))
+func (m_ ManagedObjectContext) UserInfo() objc.IObject /* cross-framework: MutableDictionary */ {
+	rv := objc.Send[foundation.MutableDictionary](m_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -683,7 +683,7 @@ func (m_ ManagedObjectContext) UserInfo() MutableDictionary /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/userinfo
-func (m_ ManagedObjectContext) SetUserInfo(value MutableDictionary /* not a class type */) {
+func (m_ ManagedObjectContext) SetUserInfo(value objc.IObject /* cross-framework: MutableDictionary */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInfo:"), value)
 }
 
@@ -692,8 +692,8 @@ func (m_ ManagedObjectContext) SetUserInfo(value MutableDictionary /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey
-func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
+func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSManagedObjectContextQueryGenerationKey"))
 	return rv
 }
 
@@ -702,8 +702,8 @@ func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey
-func (m_ ManagedObjectContext) NSRefreshedObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
+func (m_ ManagedObjectContext) NSRefreshedObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSRefreshedObjectsKey"))
 	return rv
 }
 
@@ -712,8 +712,8 @@ func (m_ ManagedObjectContext) NSRefreshedObjectsKey() string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsupdatedobjectskey
-func (m_ ManagedObjectContext) NSUpdatedObjectsKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
+func (m_ ManagedObjectContext) NSUpdatedObjectsKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
 	return rv
 }
 

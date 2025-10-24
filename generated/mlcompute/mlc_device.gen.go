@@ -30,13 +30,22 @@ type _CDeviceClass struct {
 // An interface definition for the [CDevice] class.
 type ICDevice interface {
 	objectivec.IObject
-	ActualDeviceType() CDeviceType
-	GpuDevices() []objc.ID
-	Type() CDeviceType
+	// properties:
+	ActualDeviceType() CDeviceType /* not a class type */
+	SetActualDeviceType(value CDeviceType /* not a class type */)
+	GpuDevices() Device /* not a class type */
+	SetGpuDevices(value Device /* not a class type */)
+	Type() CDeviceType /* not a class type */
+	SetType(value CDeviceType /* not a class type */)
+	// methods:
 }
 
 // An object that represents the CPU or one or more GPUs the framework uses to execute a neural network.
+
+
+// An object that represents the CPU or one or more GPUs the framework uses to execute a neural network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice
 type CDevice struct {
 	objectivec.Object
@@ -82,106 +91,61 @@ func NewCDevice() CDevice {
 
 
 
-
-// Creates a device using the GPUs you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(gpuDevices:)
-func NewCDeviceWithGPUDevices(gpus []objc.ID) CDevice {
-	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithGPUDevices:"), gpus)
-	return rv
-}
-
-
-
-// Creates a device of the type you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:)
-func NewCDeviceWithType(type_ CDeviceType) CDevice {
-	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:"), type_)
-	return rv
-}
-
-
-
-// Creates a device that you can configure to use multiple compute devices.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
-func NewCDeviceWithTypeSelectsMultipleComputeDevices(type_ CDeviceType, selectsMultipleComputeDevices bool) CDevice {
-	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
-	return rv
-}
-
-
-// Creates a device that uses the Apple Neural Engine, if one exists.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/ane()
-func (cc _CDeviceClass) AneDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("aneDevice"))
-	return rv
-}
-
-// Creates a device that uses the CPU.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/cpu()
-func (cc _CDeviceClass) CpuDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cpuDevice"))
-	return rv
-}
-
-// Creates a device that uses a GPU, if one exists.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/gpu()
-func (cc _CDeviceClass) GpuDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("gpuDevice"))
-	return rv
-}
-
-// Creates a device using the GPUs you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(gpuDevices:)
-func (cc _CDeviceClass) DeviceWithGPUDevices(gpus []objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithGPUDevices:"), gpus)
-	return rv
-}
-
-// Creates a device of the type you specify.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:)
-func (cc _CDeviceClass) DeviceWithType(type_ CDeviceType) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithType:"), type_)
-	return rv
-}
-
-// Creates a device that you can configure to use multiple compute devices.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
-func (cc _CDeviceClass) DeviceWithTypeSelectsMultipleComputeDevices(type_ CDeviceType, selectsMultipleComputeDevices bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
-	return rv
-}
-
 // The active device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/actualDeviceType
-func (c_ CDevice) ActualDeviceType() CDeviceType {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/actualdevicetype
+func (c_ CDevice) ActualDeviceType() CDeviceType /* not a class type */ {
 	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("actualDeviceType"))
 	return rv
 }
 
+
+// The active device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/actualdevicetype
+func (c_ CDevice) SetActualDeviceType(value CDeviceType /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setActualDeviceType:"), value)
+}
+
+
 // An array that contains the specific Metal devices you use to execute neural networks.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/gpuDevices
-func (c_ CDevice) GpuDevices() []objc.ID {
-	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("gpuDevices"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/gpudevices
+func (c_ CDevice) GpuDevices() Device /* not a class type */ {
+	rv := objc.Send[Device](c_.ID, objc.Sel("gpuDevices"))
 	return rv
 }
 
+
+// An array that contains the specific Metal devices you use to execute neural networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/gpudevices
+func (c_ CDevice) SetGpuDevices(value Device /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGpuDevices:"), value)
+}
+
+
 // The type you specify when creating the device.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/type
-func (c_ CDevice) Type() CDeviceType {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/type
+func (c_ CDevice) Type() CDeviceType /* not a class type */ {
 	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("type"))
 	return rv
 }
+
+
+// The type you specify when creating the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcdevice/type
+func (c_ CDevice) SetType(value CDeviceType /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
+}
+
 
 

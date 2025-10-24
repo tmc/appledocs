@@ -31,13 +31,17 @@ type _MTRServiceAreaClusterLandmarkInfoStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterLandmarkInfoStruct] class.
 type IMTRServiceAreaClusterLandmarkInfoStruct interface {
 	objectivec.IObject
-	LandmarkTag() foundation.Number
-	SetLandmarkTag(value foundation.INumber)
-	RelativePositionTag() foundation.Number
-	SetRelativePositionTag(value foundation.INumber)
+	// properties:
+	LandmarkTag() objc.IObject /* cross-framework: NSNumber */
+	SetLandmarkTag(value objc.IObject /* cross-framework: NSNumber */)
+	RelativePositionTag() objc.IObject /* cross-framework: NSNumber */
+	SetRelativePositionTag(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct
 type MTRServiceAreaClusterLandmarkInfoStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRServiceAreaClusterLandmarkInfoStruct() MTRServiceAreaClusterLandmarkI
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/landmarkTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("landmarkTag"))
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("landmarkTag"))
 	return rv
 }
 
 
-// SetLandmarkTag sets the value of the landmarkTag property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/landmarkTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkTag:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("relativePositionTag"))
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("relativePositionTag"))
 	return rv
 }
 
 
-// SetRelativePositionTag sets the value of the relativePositionTag property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRelativePositionTag:"), value)
 }
 

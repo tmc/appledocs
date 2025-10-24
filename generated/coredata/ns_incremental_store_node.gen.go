@@ -32,8 +32,8 @@ type IIncrementalStoreNode interface {
 	objectivec.IObject
 	// properties:
 	ObjectID() IManagedObjectID
-	Version() uint64 /* primitive/slice/pointer. */
-	SetVersion(value uint64 /* primitive/slice/pointer. */)
+	Version() uint64
+	SetVersion(value uint64)
 	// methods:
 }
 
@@ -104,7 +104,7 @@ func (i_ IncrementalStoreNode) ObjectID() IManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-func (i_ IncrementalStoreNode) Version() uint64 /* primitive/slice/pointer. */ {
+func (i_ IncrementalStoreNode) Version() uint64 {
 	rv := objc.Send[uint64](i_.ID, objc.Sel("version"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (i_ IncrementalStoreNode) Version() uint64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-func (i_ IncrementalStoreNode) SetVersion(value uint64 /* primitive/slice/pointer. */) {
+func (i_ IncrementalStoreNode) SetVersion(value uint64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
 }
 

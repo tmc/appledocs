@@ -32,7 +32,7 @@ type _ModelStructureProgramClass struct {
 type IModelStructureProgram interface {
 	objectivec.IObject
 	// properties:
-	Functions() foundation.IDictionary /* already interface */
+	Functions() foundation.IDictionary
 	// methods:
 }
 
@@ -91,7 +91,7 @@ func NewModelStructureProgram() ModelStructureProgram {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram/functions
-func (m_ ModelStructureProgram) Functions() foundation.IDictionary /* already interface */ {
+func (m_ ModelStructureProgram) Functions() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("functions"))
 	return rv
 }

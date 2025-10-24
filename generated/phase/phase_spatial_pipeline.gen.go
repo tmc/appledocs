@@ -30,18 +30,26 @@ type _PHASESpatialPipelineClass struct {
 // An interface definition for the [PHASESpatialPipeline] class.
 type IPHASESpatialPipeline interface {
 	objectivec.IObject
-	Entries() unsafe.Pointer
-	Flags() PHASESpatialPipelineFlags
-	SpatialPipeline() PHASESpatialPipeline
+	// properties:
+	SpatialPipeline() IPHASESpatialPipeline
 	SetSpatialPipeline(value IPHASESpatialPipeline)
+	Entries() IPHASESpatialPipelineEntry
+	SetEntries(value IPHASESpatialPipelineEntry)
+	Flags() unsafe.Pointer
+	SetFlags(value unsafe.Pointer)
 	SendLevel() float64
 	SetSendLevel(value float64)
+	// methods:
 }
 
 // An object that specifies the volume of optional environmental effects.
 //
 // The class contains an instance of this class, , to add optional sound layers to the output. On top of the original audio signal designated by , this class optionally includes audio layers for environmental effects, such as or , in the output. To control the amount of volume that either audio layer possesses in the mixer’s output, adjust the for the layer’s respective member in the dictionary.
+
+
+// An object that specifies the volume of optional environmental effects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline
 type PHASESpatialPipeline struct {
 	objectivec.Object
@@ -87,54 +95,66 @@ func NewPHASESpatialPipeline() PHASESpatialPipeline {
 
 
 
-
-// Creates a spatial pipeline with the specified flags.
+// An object that adds sound layers for environmental effects.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/init(flags:)
-func NewPHASESpatialPipelineWithFlags(flags PHASESpatialPipelineFlags) PHASESpatialPipeline {
-	instance := getPHASESpatialPipelineClass().Alloc()
-	rv := objc.Send[PHASESpatialPipeline](instance.ID, objc.Sel("initWithFlags:"), flags)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialPipeline) SpatialPipeline() IPHASESpatialPipeline {
+	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
+	return rv
+}
+
+
+// An object that adds sound layers for environmental effects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialPipeline) SetSpatialPipeline(value IPHASESpatialPipeline) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
+}
+
+
+// Audio layers for environmental effects to add to the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
+func (p_ PHASESpatialPipeline) Entries() IPHASESpatialPipelineEntry {
+	rv := objc.Send[PHASESpatialPipelineEntry](p_.ID, objc.Sel("entries"))
 	return rv
 }
 
 
 // Audio layers for environmental effects to add to the output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/entries
-func (p_ PHASESpatialPipeline) Entries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entries"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
+func (p_ PHASESpatialPipeline) SetEntries(value IPHASESpatialPipelineEntry) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEntries:"), value)
 }
+
 
 // A collection of environmental effects to include in the output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipeline/flags-swift.property
-func (p_ PHASESpatialPipeline) Flags() PHASESpatialPipelineFlags {
-	rv := objc.Send[PHASESpatialPipelineFlags](p_.ID, objc.Sel("flags"))
-	return rv
-}
-
-// An object that adds sound layers for environmental effects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
-func (p_ PHASESpatialPipeline) SpatialPipeline() PHASESpatialPipeline {
-	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.property
+func (p_ PHASESpatialPipeline) Flags() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("flags"))
 	return rv
 }
 
 
-// SetSpatialPipeline sets the value of the spatialPipeline property.
-// An object that adds sound layers for environmental effects.
-
+// A collection of environmental effects to include in the output.
 //
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
-func (p_ PHASESpatialPipeline) SetSpatialPipeline(value IPHASESpatialPipeline) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.property
+func (p_ PHASESpatialPipeline) SetFlags(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFlags:"), value)
 }
+
 
 // The amount of audio signal to add to the output.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
 func (p_ PHASESpatialPipeline) SendLevel() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("sendLevel"))
@@ -142,13 +162,13 @@ func (p_ PHASESpatialPipeline) SendLevel() float64 {
 }
 
 
-// SetSendLevel sets the value of the sendLevel property.
 // The amount of audio signal to add to the output.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel
 func (p_ PHASESpatialPipeline) SetSendLevel(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevel:"), value)
 }
+
 
 

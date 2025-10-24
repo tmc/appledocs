@@ -31,8 +31,8 @@ type IAudioMixerNode interface {
 	IAudioNode
 	// properties:
 	NextAvailableInputBus() AudioNodeBus /* not a class type */
-	OutputVolume() float32 /* primitive/slice/pointer. */
-	SetOutputVolume(value float32 /* primitive/slice/pointer. */)
+	OutputVolume() float32
+	SetOutputVolume(value float32)
 	// methods:
 }
 
@@ -106,7 +106,7 @@ func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) OutputVolume() float32 /* primitive/slice/pointer. */ {
+func (a_ AudioMixerNode) OutputVolume() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (a_ AudioMixerNode) OutputVolume() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) SetOutputVolume(value float32 /* primitive/slice/pointer. */) {
+func (a_ AudioMixerNode) SetOutputVolume(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 

@@ -97,7 +97,7 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)
-func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType IHKCorrelationType, predicate objc.IObject /* cross-framework Predicate */, samplePredicates foundation.IDictionary /* already interface */, completion unsafe.Pointer) HKCorrelationQuery {
+func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType IHKCorrelationType, predicate objc.IObject /* cross-framework: Predicate */, samplePredicates foundation.IDictionary, completion unsafe.Pointer) HKCorrelationQuery {
 	instance := getHKCorrelationQueryClass().Alloc()
 	rv := objc.Send[HKCorrelationQuery](instance.ID, objc.Sel("initWithType:predicate:samplePredicates:completion:"), correlationType, predicate, samplePredicates, completion)
 	rv.Autorelease()
@@ -130,7 +130,7 @@ func (h_ HKCorrelationQuery) SetCorrelationType(value IHKCorrelationType) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/samplepredicates
 func (h_ HKCorrelationQuery) SamplePredicates() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](h_.ID, objc.Sel("samplePredicates"))
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("samplePredicates"))
 	return rv
 }
 

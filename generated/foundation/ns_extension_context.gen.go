@@ -33,8 +33,6 @@ type IExtensionContext interface {
 	// properties:
 	HostedViewMaximumAllowedSize() objc.IObject /* cross-framework: Size */
 	SetHostedViewMaximumAllowedSize(value objc.IObject /* cross-framework: Size */)
-	HostedViewMinimumAllowedSize() objc.IObject /* cross-framework: Size */
-	SetHostedViewMinimumAllowedSize(value objc.IObject /* cross-framework: Size */)
 	InputItems() unsafe.Pointer
 	SetInputItems(value unsafe.Pointer)
 	WidgetActiveDisplayMode() unsafe.Pointer
@@ -103,7 +101,7 @@ func NewExtensionContext() ExtensionContext {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewmaximumallowedsize
 func (e_ ExtensionContext) HostedViewMaximumAllowedSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](e_.ID, objc.Sel("hostedViewMaximumAllowedSize"))
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("hostedViewMaximumAllowedSize"))
 	return rv
 }
 
@@ -114,25 +112,6 @@ func (e_ ExtensionContext) HostedViewMaximumAllowedSize() objc.IObject /* cross-
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewmaximumallowedsize
 func (e_ ExtensionContext) SetHostedViewMaximumAllowedSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setHostedViewMaximumAllowedSize:"), value)
-}
-
-
-// The minimum size for a Siri hosted view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewminimumallowedsize
-func (e_ ExtensionContext) HostedViewMinimumAllowedSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](e_.ID, objc.Sel("hostedViewMinimumAllowedSize"))
-	return rv
-}
-
-
-// The minimum size for a Siri hosted view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewminimumallowedsize
-func (e_ ExtensionContext) SetHostedViewMinimumAllowedSize(value objc.IObject /* cross-framework: Size */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setHostedViewMinimumAllowedSize:"), value)
 }
 
 
@@ -201,6 +180,5 @@ func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
 }
-
 
 

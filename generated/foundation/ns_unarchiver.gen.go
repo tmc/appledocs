@@ -31,10 +31,10 @@ type _UnarchiverClass struct {
 type IUnarchiver interface {
 	ICoder
 	// properties:
-	AtEnd() bool /* primitive/slice/pointer. */
+	AtEnd() bool
 	SystemVersion() unsafe.Pointer
-	IsAtEnd() bool /* primitive/slice/pointer. */
-	SetIsAtEnd(value bool /* primitive/slice/pointer. */)
+	IsAtEnd() bool
+	SetIsAtEnd(value bool)
 	// methods:
 }
 
@@ -149,7 +149,7 @@ func (uc _UnarchiverClass) UnarchiveObjectWithFile(path IString) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/isAtEnd
-func (u_ Unarchiver) AtEnd() bool /* primitive/slice/pointer. */ {
+func (u_ Unarchiver) AtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("atEnd"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (u_ Unarchiver) SystemVersion() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) IsAtEnd() bool /* primitive/slice/pointer. */ {
+func (u_ Unarchiver) IsAtEnd() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (u_ Unarchiver) IsAtEnd() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) SetIsAtEnd(value bool /* primitive/slice/pointer. */) {
+func (u_ Unarchiver) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
 }
 

@@ -32,16 +32,16 @@ type _HKFHIRResourceClass struct {
 type IHKFHIRResource interface {
 	objectivec.IObject
 	// properties:
-	Data() foundation.objc.IObject /* cross-framework: Data */
-	SetData(value foundation.objc.IObject /* cross-framework: Data */)
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
 	FhirVersion() objc.IObject /* cross-framework: HKFHIRVersion */
 	SetFhirVersion(value objc.IObject /* cross-framework: HKFHIRVersion */)
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	ResourceType() unsafe.Pointer
 	SetResourceType(value unsafe.Pointer)
-	SourceURL() foundation.objc.IObject /* cross-framework: URL */
-	SetSourceURL(value foundation.objc.IObject /* cross-framework: URL */)
+	SourceURL() objc.IObject /* cross-framework: URL */
+	SetSourceURL(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -100,7 +100,7 @@ func NewHKFHIRResource() HKFHIRResource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRResource) Data() foundation.objc.IObject /* cross-framework: Data */ {
+func (h_ HKFHIRResource) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("data"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (h_ HKFHIRResource) Data() foundation.objc.IObject /* cross-framework: Data
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRResource) SetData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (h_ HKFHIRResource) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setData:"), value)
 }
 
@@ -138,8 +138,8 @@ func (h_ HKFHIRResource) SetFhirVersion(value objc.IObject /* cross-framework: H
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRResource) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRResource) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (h_ HKFHIRResource) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRResource) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (h_ HKFHIRResource) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -176,7 +176,7 @@ func (h_ HKFHIRResource) SetResourceType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-func (h_ HKFHIRResource) SourceURL() foundation.objc.IObject /* cross-framework: URL */ {
+func (h_ HKFHIRResource) SourceURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (h_ HKFHIRResource) SourceURL() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-func (h_ HKFHIRResource) SetSourceURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (h_ HKFHIRResource) SetSourceURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceURL:"), value)
 }
 

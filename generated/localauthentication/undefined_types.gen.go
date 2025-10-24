@@ -11,8 +11,6 @@ type _undefined = int
 type (
 	Data = _undefined // referenced in LocalAuthentication
 	PresentationContext = _undefined // referenced in LocalAuthentication
-	SecAccessControlRef = _undefined // referenced in LocalAuthentication
-	SecKeyAlgorithm = _undefined // referenced in LocalAuthentication
 )
 
 

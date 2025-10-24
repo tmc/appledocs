@@ -33,11 +33,6 @@ type IMovementDisorderManager interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	LastProcessedDate() objc.IObject /* cross-framework: Date */
-	MonitorKinesiasForDuration(duration foundation.TimeInterval /* not a class type */)
-	MonitorKinesiasExpirationDate() objc.IObject /* cross-framework: Date */
-	QueryDyskineticSymptomFromDateToDateWithHandler(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */, handler DyskineticSymptomResultHandler /* not a class type */)
-	QueryTremorFromDateToDateWithHandler(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */, handler TremorResultHandler /* not a class type */)
 }
 
 // A manager for recording and querying movement disorder data.
@@ -107,7 +102,7 @@ func (mc _MovementDisorderManagerClass) AuthorizationStatus() AuthorizationStatu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()
-func (mc _MovementDisorderManagerClass) IsAvailable() bool /* primitive/slice/pointer. */ {
+func (mc _MovementDisorderManagerClass) IsAvailable() bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("isAvailable"))
 	return rv
 }
@@ -118,56 +113,8 @@ func (mc _MovementDisorderManagerClass) IsAvailable() bool /* primitive/slice/po
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/version()
 func (mc _MovementDisorderManagerClass) Version() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(mc.class), objc.Sel("version"))
+	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("version"))
 	return rv
 }
-
-
-// Returns the date of the most recently calculated results.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/lastProcessedDate()
-func (m_ MovementDisorderManager) LastProcessedDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[Date](m_.ID, objc.Sel("lastProcessedDate"))
-	return rv
-}
-
-
-// Calculate and store tremor and dyskinetic symptom results for the duration of the specified time interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)
-func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration foundation.TimeInterval /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("monitorKinesiasForDuration:"), duration)
-}
-
-
-// Returns the expiration date for the most recent monitoring period.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()
-func (m_ MovementDisorderManager) MonitorKinesiasExpirationDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[Date](m_.ID, objc.Sel("monitorKinesiasExpirationDate"))
-	return rv
-}
-
-
-// Query for dyskinetic symptoms from the provided time interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/queryDyskineticSymptom(from:to:withHandler:)
-func (m_ MovementDisorderManager) QueryDyskineticSymptomFromDateToDateWithHandler(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */, handler DyskineticSymptomResultHandler /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("queryDyskineticSymptomFromDate:toDate:withHandler:"), fromDate, toDate, handler)
-}
-
-
-// Query for tremor results from the provided time interval.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/queryTremor(from:to:withHandler:)
-func (m_ MovementDisorderManager) QueryTremorFromDateToDateWithHandler(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */, handler TremorResultHandler /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("queryTremorFromDate:toDate:withHandler:"), fromDate, toDate, handler)
-}
-
 
 

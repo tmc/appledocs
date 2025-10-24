@@ -2,12 +2,12 @@
 
 // Package security provides Go bindings for the Security framework.
 //
-// Secure the data your app manages, and control access to your app. [Full Topic]
+// Secure the data your app manages, and control access to your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Security without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security
+// See: https://developer.apple.com/documentation/Security
 package security
 
 import (

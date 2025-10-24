@@ -31,17 +31,21 @@ type _MTRNetworkCommissioningClusterConnectNetworkParamsClass struct {
 // An interface definition for the [MTRNetworkCommissioningClusterConnectNetworkParams] class.
 type IMTRNetworkCommissioningClusterConnectNetworkParams interface {
 	objectivec.IObject
-	Breadcrumb() foundation.Number
-	SetBreadcrumb(value foundation.INumber)
-	NetworkID() foundation.Data
-	SetNetworkID(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Breadcrumb() objc.IObject /* cross-framework: NSNumber */
+	SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */)
+	NetworkID() objc.IObject /* cross-framework: Data */
+	SetNetworkID(value objc.IObject /* cross-framework: Data */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterConnectNetworkParams
 type MTRNetworkCommissioningClusterConnectNetworkParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRNetworkCommissioningClusterConnectNetworkParams() MTRNetworkCommissio
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) Breadcrumb() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("breadcrumb"))
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("breadcrumb"))
 	return rv
 }
 
 
-// SetBreadcrumb sets the value of the breadcrumb property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetBreadcrumb(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() foundation.Data {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("networkID"))
 	return rv
 }
 
 
-// SetNetworkID sets the value of the networkID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetNetworkID(value foundation.IData) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

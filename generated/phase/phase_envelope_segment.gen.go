@@ -30,16 +30,22 @@ type _PHASEEnvelopeSegmentClass struct {
 // An interface definition for the [PHASEEnvelopeSegment] class.
 type IPHASEEnvelopeSegment interface {
 	objectivec.IObject
+	// properties:
 	CurveType() PHASECurveType
 	SetCurveType(value PHASECurveType)
 	EndPoint() unsafe.Pointer
 	SetEndPoint(value unsafe.Pointer)
+	// methods:
 }
 
 // A curved portion of an envelope.
 //
 // This class specifies a curve that determines the _y-_value rate of change over a particular portion of an envelope’s graph. For example, the difference between a segment and an segment is that they share opposite rates of change; where the cubed curve’s value changes fastest in the segment’s domain, the inverse-cubed curve changes slowest, and vice versa.
+
+
+// A curved portion of an envelope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment
 type PHASEEnvelopeSegment struct {
 	objectivec.Object
@@ -85,9 +91,9 @@ func NewPHASEEnvelopeSegment() PHASEEnvelopeSegment {
 
 
 
-
 // Creates a curved portion of an envelope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/init(endPoint:curveType:)
 func NewPHASEEnvelopeSegmentWithEndPointCurveType(endPoint unsafe.Pointer, curveType PHASECurveType) PHASEEnvelopeSegment {
 	instance := getPHASEEnvelopeSegmentClass().Alloc()
@@ -97,8 +103,10 @@ func NewPHASEEnvelopeSegmentWithEndPointCurveType(endPoint unsafe.Pointer, curve
 }
 
 
+
 // A curve along the envelope that shapes the segment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/curveType
 func (p_ PHASEEnvelopeSegment) CurveType() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("curveType"))
@@ -106,17 +114,18 @@ func (p_ PHASEEnvelopeSegment) CurveType() PHASECurveType {
 }
 
 
-// SetCurveType sets the value of the curveType property.
 // A curve along the envelope that shapes the segment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/curveType
 func (p_ PHASEEnvelopeSegment) SetCurveType(value PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurveType:"), value)
 }
 
+
 // A point that identifies the end of the segment along the envelope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/endPoint
 func (p_ PHASEEnvelopeSegment) EndPoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endPoint"))
@@ -124,10 +133,9 @@ func (p_ PHASEEnvelopeSegment) EndPoint() unsafe.Pointer {
 }
 
 
-// SetEndPoint sets the value of the endPoint property.
 // A point that identifies the end of the segment along the envelope.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/endPoint
 func (p_ PHASEEnvelopeSegment) SetEndPoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndPoint:"), value)

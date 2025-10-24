@@ -31,15 +31,19 @@ type _MTRTargetNavigatorClusterTargetUpdatedEventClass struct {
 // An interface definition for the [MTRTargetNavigatorClusterTargetUpdatedEvent] class.
 type IMTRTargetNavigatorClusterTargetUpdatedEvent interface {
 	objectivec.IObject
-	CurrentTarget() foundation.Number
-	SetCurrentTarget(value foundation.INumber)
-	Data() foundation.NSData
-	SetData(value foundation.IData)
-	TargetList() objc.ID
-	SetTargetList(value objc.ID)
+	// properties:
+	CurrentTarget() objc.IObject /* cross-framework: NSNumber */
+	SetCurrentTarget(value objc.IObject /* cross-framework: NSNumber */)
+	Data() objc.IObject /* cross-framework: NSData */
+	SetData(value objc.IObject /* cross-framework: NSData */)
+	TargetList() objc.IObject /* cross-framework: NSArray */
+	SetTargetList(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent
 type MTRTargetNavigatorClusterTargetUpdatedEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRTargetNavigatorClusterTargetUpdatedEvent() MTRTargetNavigatorClusterT
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/currentTarget
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("currentTarget"))
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("currentTarget"))
 	return rv
 }
 
 
-// SetCurrentTarget sets the value of the currentTarget property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/currentTarget
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value foundation.INumber) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentTarget:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/data
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() foundation.NSData {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/data
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetData(value foundation.IData) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/targetList
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("targetList"))
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("targetList"))
 	return rv
 }
 
 
-// SetTargetList sets the value of the targetList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/targetList
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetTargetList(value objc.ID) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetTargetList(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetList:"), value)
 }
 

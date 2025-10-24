@@ -30,12 +30,18 @@ type _VZDirectorySharingDeviceClass struct {
 // An interface definition for the [VZDirectorySharingDevice] class.
 type IVZDirectorySharingDevice interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class that represents a directory sharing device in a VM.
 //
 // Don’t instantiate directly; configure a directory sharing device first by using through a subclass of . When you create a from the configuration, the directory sharing devices are available through the property. The real type of corresponds to the type used by the configuration. For example, a leads to a device of type .
+
+
+// The base class that represents a directory sharing device in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDirectorySharingDevice
 type VZDirectorySharingDevice struct {
 	objectivec.Object

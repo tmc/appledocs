@@ -29,9 +29,13 @@ type _MTRClusterAudioOutputClass struct {
 // An interface definition for the [MTRClusterAudioOutput] class.
 type IMTRClusterAudioOutput interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterAudioOutput
 type MTRClusterAudioOutput struct {
 	MTRGenericCluster

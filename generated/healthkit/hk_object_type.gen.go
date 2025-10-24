@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _HKObjectTypeClass struct {
 type IHKObjectType interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -121,8 +122,8 @@ func (hc _HKObjectTypeClass) StateOfMindType() IHKStateOfMindType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjecttype/identifier
-func (h_ HKObjectType) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
+func (h_ HKObjectType) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (h_ HKObjectType) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjecttype/identifier
-func (h_ HKObjectType) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (h_ HKObjectType) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

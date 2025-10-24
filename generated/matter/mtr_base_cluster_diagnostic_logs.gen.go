@@ -29,9 +29,13 @@ type _MTRBaseClusterDiagnosticLogsClass struct {
 // An interface definition for the [MTRBaseClusterDiagnosticLogs] class.
 type IMTRBaseClusterDiagnosticLogs interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDiagnosticLogs
 type MTRBaseClusterDiagnosticLogs struct {
 	MTRGenericBaseCluster

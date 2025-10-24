@@ -30,14 +30,20 @@ type _UNTimeIntervalNotificationTriggerClass struct {
 // An interface definition for the [UNTimeIntervalNotificationTrigger] class.
 type IUNTimeIntervalNotificationTrigger interface {
 	IUNNotificationTrigger
-	NextTriggerDate() foundation.Date
-	TimeInterval() foundation.TimeInterval
+	// properties:
+	TimeInterval() float64
+	// methods:
+	NextTriggerDate() objc.IObject /* cross-framework: Date */
 }
 
 // A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.
 //
 // Create a object when you want to schedule the delivery of a local notification after the number of seconds you specify elapses. You use this type of trigger to implement timers. Listing 1 creates a trigger that delivers its notification one time after 30 minutes have elapsed. Listing 1. Creating a trigger that fires in 30 minutes
+
+
+// A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger
 type UNTimeIntervalNotificationTrigger struct {
 	UNNotificationTrigger
@@ -85,37 +91,43 @@ func NewUNTimeIntervalNotificationTrigger() UNTimeIntervalNotificationTrigger {
 
 
 
-
 // Creates a time interval trigger using the time value parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval foundation.ITimeInterval, repeats bool) UNTimeIntervalNotificationTrigger {
+func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval float64, repeats bool) UNTimeIntervalNotificationTrigger {
 	rv := objc.Send[UNTimeIntervalNotificationTrigger](objc.ID(getUNTimeIntervalNotificationTriggerClass().class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
 
 
+
 // Creates a time interval trigger using the time value parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval foundation.ITimeInterval, repeats bool) unsafe.Pointer {
+func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval float64, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
 
+
 // The next date at which the trigger conditions are met.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/nextTriggerDate()
-func (u_ UNTimeIntervalNotificationTrigger) NextTriggerDate() foundation.Date {
+func (u_ UNTimeIntervalNotificationTrigger) NextTriggerDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](u_.ID, objc.Sel("nextTriggerDate"))
 	return rv
 }
 
+
 // The time interval to create the trigger.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/timeInterval
-func (u_ UNTimeIntervalNotificationTrigger) TimeInterval() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](u_.ID, objc.Sel("timeInterval"))
+func (u_ UNTimeIntervalNotificationTrigger) TimeInterval() float64 {
+	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeInterval"))
 	return rv
 }
 

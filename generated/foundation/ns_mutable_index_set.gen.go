@@ -31,14 +31,14 @@ type IMutableIndexSet interface {
 	IIndexSet
 	// properties:
 	// methods:
-	AddIndex(value uint /* primitive/slice/pointer. */)
+	AddIndex(value uint)
 	AddIndexes(indexSet IIndexSet)
-	AddIndexesInRange(range_ objc.IObject /* cross-framework Range */)
+	AddIndexesInRange(range_ objc.IObject /* cross-framework: Range */)
 	RemoveIndexes(indexSet IIndexSet)
-	RemoveIndex(value uint /* primitive/slice/pointer. */)
-	RemoveIndexesInRange(range_ objc.IObject /* cross-framework Range */)
+	RemoveIndex(value uint)
+	RemoveIndexesInRange(range_ objc.IObject /* cross-framework: Range */)
 	RemoveAllIndexes()
-	ShiftIndexesStartingAtIndexBy(index uint /* primitive/slice/pointer. */, delta int /* primitive/slice/pointer. */)
+	ShiftIndexesStartingAtIndexBy(index uint, delta int)
 }
 
 // A mutable collection of unique integer values that represent indexes in another collection.
@@ -100,7 +100,7 @@ func NewMutableIndexSet() MutableIndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(_:)-6dtkj
-func (m_ MutableIndexSet) AddIndex(value uint /* primitive/slice/pointer. */) {
+func (m_ MutableIndexSet) AddIndex(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addIndex:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MutableIndexSet) AddIndexes(indexSet IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/add(in:)
-func (m_ MutableIndexSet) AddIndexesInRange(range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableIndexSet) AddIndexesInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addIndexesInRange:"), range_)
 }
 
@@ -136,7 +136,7 @@ func (m_ MutableIndexSet) RemoveIndexes(indexSet IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-5li0r
-func (m_ MutableIndexSet) RemoveIndex(value uint /* primitive/slice/pointer. */) {
+func (m_ MutableIndexSet) RemoveIndex(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndex:"), value)
 }
 
@@ -145,7 +145,7 @@ func (m_ MutableIndexSet) RemoveIndex(value uint /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(in:)
-func (m_ MutableIndexSet) RemoveIndexesInRange(range_ objc.IObject /* cross-framework Range */) {
+func (m_ MutableIndexSet) RemoveIndexesInRange(range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
 }
 
@@ -163,7 +163,7 @@ func (m_ MutableIndexSet) RemoveAllIndexes() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/shiftIndexesStarting(at:by:)
-func (m_ MutableIndexSet) ShiftIndexesStartingAtIndexBy(index uint /* primitive/slice/pointer. */, delta int /* primitive/slice/pointer. */) {
+func (m_ MutableIndexSet) ShiftIndexesStartingAtIndexBy(index uint, delta int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("shiftIndexesStartingAtIndex:by:"), index, delta)
 }
 

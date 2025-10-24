@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,10 +37,10 @@ type IFeatureDescription interface {
 	SetDictionaryConstraint(value objc.IObject /* cross-framework: DictionaryConstraint */)
 	ImageConstraint() IMLImageConstraint
 	SetImageConstraint(value IMLImageConstraint)
-	IsOptional() bool /* primitive/slice/pointer. */
-	SetIsOptional(value bool /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	IsOptional() bool
+	SetIsOptional(value bool)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	SequenceConstraint() objc.IObject /* cross-framework: SequenceConstraint */
 	SetSequenceConstraint(value objc.IObject /* cross-framework: SequenceConstraint */)
 	StateConstraint() IMLStateConstraint
@@ -160,7 +161,7 @@ func (f_ FeatureDescription) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) IsOptional() bool /* primitive/slice/pointer. */ {
+func (f_ FeatureDescription) IsOptional() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isOptional"))
 	return rv
 }
@@ -170,7 +171,7 @@ func (f_ FeatureDescription) IsOptional() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) SetIsOptional(value bool /* primitive/slice/pointer. */) {
+func (f_ FeatureDescription) SetIsOptional(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsOptional:"), value)
 }
 
@@ -179,8 +180,8 @@ func (f_ FeatureDescription) SetIsOptional(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/name
-func (f_ FeatureDescription) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("name"))
+func (f_ FeatureDescription) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -189,8 +190,8 @@ func (f_ FeatureDescription) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/name
-func (f_ FeatureDescription) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
+func (f_ FeatureDescription) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
 
 

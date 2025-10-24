@@ -30,13 +30,18 @@ type _CloudServiceControllerClass struct {
 // An interface definition for the [CloudServiceController] class.
 type ICloudServiceController interface {
 	objectivec.IObject
-	RequestStorefrontCountryCodeWithCompletionHandler(completionHandler unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // An object that determines the current capabilities of a person’s Music library.
 //
 // Use an object to determine the current capabilities of a customer’s Music library, like whether the device allows playback of Apple Music catalog tracks and the addition of tracks to the library.
+
+
+// An object that determines the current capabilities of a person’s Music library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceController
 type CloudServiceController struct {
 	objectivec.Object
@@ -81,26 +86,14 @@ func NewCloudServiceController() CloudServiceController {
 }
 
 
+
 // Returns the type of authorization the customer has for accessing the Music library on the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceController/authorizationStatus()
-func (cc _CloudServiceControllerClass) AuthorizationStatus() CloudServiceAuthorizationStatus {
+func (cc _CloudServiceControllerClass) AuthorizationStatus() CloudServiceAuthorizationStatus /* not a class type */ {
 	rv := objc.Send[CloudServiceAuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatus"))
 	return rv
-}
-
-// Asks the customer for permission to access the Music library on the device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)
-func (cc _CloudServiceControllerClass) RequestAuthorization(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("requestAuthorization:"), completionHandler)
-}
-
-// Gets the country code for the storefront associated with a customer’s iTunes account.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceController/requestStorefrontCountryCode(completionHandler:)
-func (c_ CloudServiceController) RequestStorefrontCountryCodeWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("requestStorefrontCountryCodeWithCompletionHandler:"), completionHandler)
 }
 
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +34,13 @@ type IWritingToolsCoordinatorContext interface {
 	objectivec.IObject
 	// properties:
 	AttributedString() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
 	Identifier() objc.IObject /* cross-framework: UUID */
+	SetIdentifier(value objc.IObject /* cross-framework: UUID */)
 	Range() objc.IObject /* cross-framework: Range */
+	SetRange(value objc.IObject /* cross-framework: Range */)
 	ResolvedRange() objc.IObject /* cross-framework: Range */
+	SetResolvedRange(value objc.IObject /* cross-framework: Range */)
 	// methods:
 }
 
@@ -91,35 +97,31 @@ func NewWritingToolsCoordinatorContext() WritingToolsCoordinatorContext {
 
 
 
-// Creates a context object with the specified attributed string and range information.
+// The portion of your view’s text to evaluate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/init(attributedString:range:)
-func NewWritingToolsCoordinatorContextWithAttributedStringRange(attributedString objc.IObject /* cross-framework AttributedString */, range_ objc.IObject /* cross-framework Range */) WritingToolsCoordinatorContext {
-	instance := getWritingToolsCoordinatorContextClass().Alloc()
-	rv := objc.Send[WritingToolsCoordinatorContext](instance.ID, objc.Sel("initWithAttributedString:range:"), attributedString, range_)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
+func (w_ WritingToolsCoordinatorContext) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedString"))
 	return rv
 }
-
 
 
 // The portion of your view’s text to evaluate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/attributedString
-func (w_ WritingToolsCoordinatorContext) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedString"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
+func (w_ WritingToolsCoordinatorContext) SetAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
 }
 
 
 // The unique identifier of the context object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/identifier
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
 func (w_ WritingToolsCoordinatorContext) Identifier() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](w_.ID, objc.Sel("identifier"))
+	rv := objc.Send[foundation.UUID](w_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -127,20 +129,49 @@ func (w_ WritingToolsCoordinatorContext) Identifier() objc.IObject /* cross-fram
 // The unique identifier of the context object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/range
-func (w_ WritingToolsCoordinatorContext) Range() objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](w_.ID, objc.Sel("range"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
+func (w_ WritingToolsCoordinatorContext) SetIdentifier(value objc.IObject /* cross-framework: UUID */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
-// The actual range of text that Writing Tools might change, which can be different than the range of text you supplied.
+// The unique identifier of the context object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/Context/resolvedRange
-func (w_ WritingToolsCoordinatorContext) ResolvedRange() objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](w_.ID, objc.Sel("resolvedRange"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/range
+func (w_ WritingToolsCoordinatorContext) Range() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[corefoundation.Range](w_.ID, objc.Sel("range"))
 	return rv
 }
+
+
+// The unique identifier of the context object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/range
+func (w_ WritingToolsCoordinatorContext) SetRange(value objc.IObject /* cross-framework: Range */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setRange:"), value)
+}
+
+
+// The actual range of text that Writing Tools might change, which can
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
+func (w_ WritingToolsCoordinatorContext) ResolvedRange() objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[corefoundation.Range](w_.ID, objc.Sel("resolvedRange"))
+	return rv
+}
+
+
+// The actual range of text that Writing Tools might change, which can
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/resolvedrange
+func (w_ WritingToolsCoordinatorContext) SetResolvedRange(value objc.IObject /* cross-framework: Range */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setResolvedRange:"), value)
+}
+
+
 
 

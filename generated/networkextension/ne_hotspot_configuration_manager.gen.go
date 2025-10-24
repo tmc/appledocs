@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,19 @@ type _NEHotspotConfigurationManagerClass struct {
 // An interface definition for the [NEHotspotConfigurationManager] class.
 type INEHotspotConfigurationManager interface {
 	objectivec.IObject
-	NEHotspotConfigurationErrorDomain() string
+	// properties:
+	NEHotspotConfigurationErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A manager that applies and removes hotspot configurations of Wi-Fi networks.
 //
 // When your app creates a new hotspot configuration using and applies it to a Wi-Fi network or attempts to update a previously configured network, the device prompts the user for approval. Without explicit user consent, your app can’t make configuration changes. Your app can use or to delete a configuration that it has added, but not a configuration added by another app or user. The user can also delete configured networks using Settings > Wi-Fi. When your app is uninstalled, iOS removes the configurations of all networks your app has configured, including their keychain entries. Hotspot Configuration Manager errors are listed in .
+
+
+// A manager that applies and removes hotspot configurations of Wi-Fi networks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotConfigurationManager
 type NEHotspotConfigurationManager struct {
 	objectivec.Object
@@ -81,13 +88,14 @@ func NewNEHotspotConfigurationManager() NEHotspotConfigurationManager {
 }
 
 
+
 // The domain string for errors involving hotspot configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain
-func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
+func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
 	return rv
 }
-
 
 

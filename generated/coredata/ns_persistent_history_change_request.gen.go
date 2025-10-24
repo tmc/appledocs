@@ -117,7 +117,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.objc.IObject /* cross-framework NSDate */) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date objc.IObject /* cross-framework: NSDate */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }

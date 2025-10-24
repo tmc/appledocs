@@ -34,10 +34,10 @@ type IDirectoryEnumerator interface {
 	SetDirectoryAttributes(value objc.IObject /* cross-framework: FileAttributeKey */)
 	FileAttributes() objc.IObject /* cross-framework: FileAttributeKey */
 	SetFileAttributes(value objc.IObject /* cross-framework: FileAttributeKey */)
-	IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */
-	SetIsEnumeratingDirectoryPostOrder(value bool /* primitive/slice/pointer. */)
-	Level() int /* primitive/slice/pointer. */
-	SetLevel(value int /* primitive/slice/pointer. */)
+	IsEnumeratingDirectoryPostOrder() bool
+	SetIsEnumeratingDirectoryPostOrder(value bool)
+	Level() int
+	SetLevel(value int)
 	// methods:
 }
 
@@ -136,7 +136,7 @@ func (d_ DirectoryEnumerator) SetFileAttributes(value objc.IObject /* cross-fram
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
-func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */ {
+func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEnumeratingDirectoryPostOrder"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitiv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/isenumeratingdirectorypostorder
-func (d_ DirectoryEnumerator) SetIsEnumeratingDirectoryPostOrder(value bool /* primitive/slice/pointer. */) {
+func (d_ DirectoryEnumerator) SetIsEnumeratingDirectoryPostOrder(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsEnumeratingDirectoryPostOrder:"), value)
 }
 
@@ -153,7 +153,7 @@ func (d_ DirectoryEnumerator) SetIsEnumeratingDirectoryPostOrder(value bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
-func (d_ DirectoryEnumerator) Level() int /* primitive/slice/pointer. */ {
+func (d_ DirectoryEnumerator) Level() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("level"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (d_ DirectoryEnumerator) Level() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/level
-func (d_ DirectoryEnumerator) SetLevel(value int /* primitive/slice/pointer. */) {
+func (d_ DirectoryEnumerator) SetLevel(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLevel:"), value)
 }
 

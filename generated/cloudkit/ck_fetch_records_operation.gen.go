@@ -30,8 +30,8 @@ type _CKFetchRecordsOperationClass struct {
 type ICKFetchRecordsOperation interface {
 	ICKDatabaseOperation
 	// properties:
-	RecordIDs() []CKRecordID /* primitive/slice/pointer. */
-	SetRecordIDs(value []CKRecordID /* primitive/slice/pointer. */)
+	RecordIDs() []objc.IObject /* cross-framework: CKRecordID */
+	SetRecordIDs(value []objc.IObject /* cross-framework: CKRecordID */)
 	DesiredKeys() unsafe.Pointer
 	SetDesiredKeys(value unsafe.Pointer)
 	FetchRecordsCompletionBlock() unsafe.Pointer
@@ -108,7 +108,7 @@ func NewCKFetchRecordsOperation() CKFetchRecordsOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID /* primitive/slice/pointer. */ {
+func (c_ CKFetchRecordsOperation) RecordIDs() []objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[[]CKRecordID](c_.ID, objc.Sel("recordIDs"))
 	return rv
 }
@@ -118,7 +118,7 @@ func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID /* primitive/slice/pointer. */) {
+func (c_ CKFetchRecordsOperation) SetRecordIDs(value []objc.IObject /* cross-framework: CKRecordID */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

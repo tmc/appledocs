@@ -31,13 +31,19 @@ type _ContentRuleListStoreClass struct {
 // An interface definition for the [ContentRuleListStore] class.
 type IContentRuleListStore interface {
 	objectivec.IObject
-	RemoveContentRuleListForIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer)
+	// properties:
+	// methods:
+	RemoveContentRuleListForIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
 }
 
 // An object that contains the rules for how to load and filter content in the web view.
 //
 // Use a to compile and manage rules for filtering content in a web view. Rule lists act as content blockers inside your app. You use them to prevent the web view from loading specific content, either based on the original location of that content or other criteria you specify. For example, a corporate app might use rules to prevent the web view from loading content that originates from outside the corporate network. Fetch the default object or create a custom store object and use it to compile or access the available rules. Each store object stores its existing rules persistently in the file system and loads those rules at creation time. A store object doesn’t automatically apply any of its rules to a particular web view. To apply a rule to a web view, add it to the object of the web view’s configuration object.
+
+
+// An object that contains the rules for how to load and filter content in the web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore
 type ContentRuleListStore struct {
 	objectivec.Object
@@ -83,29 +89,13 @@ func NewContentRuleListStore() ContentRuleListStore {
 
 
 
-
-// Creates a new content rule list store in the specified directory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func NewContentRuleListStoreWithURL(url foundation.IURL) ContentRuleListStore {
-	rv := objc.Send[ContentRuleListStore](objc.ID(getContentRuleListStoreClass().class), objc.Sel("storeWithURL:"), url)
-	return rv
-}
-
-
-// Creates a new content rule list store in the specified directory.
-//
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func (cc _ContentRuleListStoreClass) StoreWithURL(url foundation.IURL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("storeWithURL:"), url)
-	return rv
-}
-
 // Removes a rule list from the current data store asynchronously.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/removeContentRuleList(forIdentifier:completionHandler:)
-func (c_ ContentRuleListStore) RemoveContentRuleListForIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeContentRuleListForIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (c_ ContentRuleListStore) RemoveContentRuleListForIdentifierCompletionHandler(identifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("removeContentRuleListForIdentifier:completionHandler:"), identifier, completionHandler)
 }
+
 
 

@@ -30,8 +30,10 @@ type _VZUSBControllerConfigurationClass struct {
 // An interface definition for the [VZUSBControllerConfiguration] class.
 type IVZUSBControllerConfiguration interface {
 	objectivec.IObject
+	// properties:
 	UsbDevices() []objc.ID
 	SetUsbDevices(value []objc.ID)
+	// methods:
 }
 
 // The base class for a USB controller configuration.

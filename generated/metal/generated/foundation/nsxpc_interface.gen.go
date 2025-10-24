@@ -34,12 +34,12 @@ type IXPCInterface interface {
 	Protocol() unsafe.Pointer
 	SetProtocol(value unsafe.Pointer)
 	// methods:
-	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) unsafe.Pointer
-	InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) IXPCInterface
-	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */)
-	SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */)
-	SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */)
-	XPCTypeForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) unsafe.Pointer
+	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
+	InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) IXPCInterface
+	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
+	SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool)
+	SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
+	XPCTypeForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
 }
 
 // An interface that may be sent to an exported object or remote object proxy.
@@ -120,7 +120,7 @@ func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol_ unsafe.Pointer) IXP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/classes(for:argumentIndex:ofReply:)
-func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("classesForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }
@@ -130,7 +130,7 @@ func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/forSelector(_:argumentIndex:ofReply:)
-func (x_ XPCInterface) InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) IXPCInterface {
+func (x_ XPCInterface) InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) IXPCInterface {
 	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("interfaceForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }
@@ -140,7 +140,7 @@ func (x_ XPCInterface) InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, ar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setClasses(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) {
+func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setClasses:forSelector:argumentIndex:ofReply:"), classes, sel, arg, ofReply)
 }
 
@@ -149,21 +149,21 @@ func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setInterface(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) {
+func (x_ XPCInterface) SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setInterface:forSelector:argumentIndex:ofReply:"), ifc, sel, arg, ofReply)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setXPCType(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) {
+func (x_ XPCInterface) SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXPCType:forSelector:argumentIndex:ofReply:"), type_, sel, arg, ofReply)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/xpcType(for:argumentIndex:ofReply:)
-func (x_ XPCInterface) XPCTypeForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer. */, ofReply bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (x_ XPCInterface) XPCTypeForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("XPCTypeForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }

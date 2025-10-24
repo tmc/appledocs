@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INListRideOptionsIntent] class.
@@ -97,7 +98,7 @@ func NewINListRideOptionsIntent() INListRideOptionsIntent {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
 func (i_ INListRideOptionsIntent) DropOffLocation() objc.IObject /* cross-framework: Placemark */ {
-	rv := objc.Send[Placemark](i_.ID, objc.Sel("dropOffLocation"))
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (i_ INListRideOptionsIntent) SetDropOffLocation(value objc.IObject /* cross
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
 func (i_ INListRideOptionsIntent) PickupLocation() objc.IObject /* cross-framework: Placemark */ {
-	rv := objc.Send[Placemark](i_.ID, objc.Sel("pickupLocation"))
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
 

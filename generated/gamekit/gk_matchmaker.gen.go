@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _MatchmakerClass struct {
 type IMatchmaker interface {
 	objectivec.IObject
 	// properties:
-	ExpectedPlayerCount() int /* primitive/slice/pointer. */
-	SetExpectedPlayerCount(value int /* primitive/slice/pointer. */)
+	ExpectedPlayerCount() int
+	SetExpectedPlayerCount(value int)
 	// methods:
 	AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer)
 }
@@ -103,7 +104,7 @@ func (m_ Matchmaker) AddPlayersToMatchMatchRequestCompletionHandler(match IGKMat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-func (m_ Matchmaker) ExpectedPlayerCount() int /* primitive/slice/pointer. */ {
+func (m_ Matchmaker) ExpectedPlayerCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
 	return rv
 }
@@ -113,7 +114,7 @@ func (m_ Matchmaker) ExpectedPlayerCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-func (m_ Matchmaker) SetExpectedPlayerCount(value int /* primitive/slice/pointer. */) {
+func (m_ Matchmaker) SetExpectedPlayerCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
 }
 

@@ -31,18 +31,18 @@ type _EKRecurrenceRuleClass struct {
 type IEKRecurrenceRule interface {
 	IEKObject
 	// properties:
-	CalendarIdentifier() string /* primitive/slice/pointer. */
-	DaysOfTheMonth() []foundation.objc.IObject /* cross-framework: Number */
-	DaysOfTheWeek() []EKRecurrenceDayOfWeek /* primitive/slice/pointer. */
-	DaysOfTheYear() []foundation.objc.IObject /* cross-framework: Number */
-	FirstDayOfTheWeek() int /* primitive/slice/pointer. */
+	CalendarIdentifier() objc.IObject /* cross-framework: NSString */
+	DaysOfTheMonth() []objc.IObject /* cross-framework: Number */
+	DaysOfTheWeek() []IEKRecurrenceDayOfWeek
+	DaysOfTheYear() []objc.IObject /* cross-framework: Number */
+	FirstDayOfTheWeek() int
 	Frequency() EKRecurrenceFrequency
-	Interval() int /* primitive/slice/pointer. */
-	MonthsOfTheYear() []foundation.objc.IObject /* cross-framework: Number */
+	Interval() int
+	MonthsOfTheYear() []objc.IObject /* cross-framework: Number */
 	RecurrenceEnd() IEKRecurrenceEnd
 	SetRecurrenceEnd(value IEKRecurrenceEnd)
-	SetPositions() []foundation.objc.IObject /* cross-framework: Number */
-	WeeksOfTheYear() []foundation.objc.IObject /* cross-framework: Number */
+	SetPositions() []objc.IObject /* cross-framework: Number */
+	WeeksOfTheYear() []objc.IObject /* cross-framework: Number */
 	// methods:
 }
 
@@ -105,7 +105,7 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ EKRecurrenceFrequency, interval int /* primitive/slice/pointer. */, days []EKRecurrenceDayOfWeek /* primitive/slice/pointer. */, monthDays []foundation.objc.IObject /* cross-framework Number */, months []foundation.objc.IObject /* cross-framework Number */, weeksOfTheYear []foundation.objc.IObject /* cross-framework Number */, daysOfTheYear []foundation.objc.IObject /* cross-framework Number */, setPositions []foundation.objc.IObject /* cross-framework Number */, end IEKRecurrenceEnd) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ EKRecurrenceFrequency, interval int, days []IEKRecurrenceDayOfWeek, monthDays []objc.IObject /* cross-framework: Number */, months []objc.IObject /* cross-framework: Number */, weeksOfTheYear []objc.IObject /* cross-framework: Number */, daysOfTheYear []objc.IObject /* cross-framework: Number */, setPositions []objc.IObject /* cross-framework: Number */, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"), type_, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)
 	rv.Autorelease()
@@ -117,7 +117,7 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ EKRecurrenceFrequency, interval int /* primitive/slice/pointer. */, end IEKRecurrenceEnd) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ EKRecurrenceFrequency, interval int, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
 	rv.Autorelease()
@@ -130,8 +130,8 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ EKRecurrenceFre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/calendarIdentifier
-func (e_ EKRecurrenceRule) CalendarIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKRecurrenceRule) CalendarIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -140,7 +140,7 @@ func (e_ EKRecurrenceRule) CalendarIdentifier() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheMonth
-func (e_ EKRecurrenceRule) DaysOfTheMonth() []foundation.objc.IObject /* cross-framework: Number */ {
+func (e_ EKRecurrenceRule) DaysOfTheMonth() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("daysOfTheMonth"))
 	return rv
 }
@@ -150,7 +150,7 @@ func (e_ EKRecurrenceRule) DaysOfTheMonth() []foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheWeek
-func (e_ EKRecurrenceRule) DaysOfTheWeek() []EKRecurrenceDayOfWeek /* primitive/slice/pointer. */ {
+func (e_ EKRecurrenceRule) DaysOfTheWeek() []IEKRecurrenceDayOfWeek {
 	rv := objc.Send[[]EKRecurrenceDayOfWeek](e_.ID, objc.Sel("daysOfTheWeek"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (e_ EKRecurrenceRule) DaysOfTheWeek() []EKRecurrenceDayOfWeek /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/daysOfTheYear
-func (e_ EKRecurrenceRule) DaysOfTheYear() []foundation.objc.IObject /* cross-framework: Number */ {
+func (e_ EKRecurrenceRule) DaysOfTheYear() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("daysOfTheYear"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (e_ EKRecurrenceRule) DaysOfTheYear() []foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/firstDayOfTheWeek
-func (e_ EKRecurrenceRule) FirstDayOfTheWeek() int /* primitive/slice/pointer. */ {
+func (e_ EKRecurrenceRule) FirstDayOfTheWeek() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("firstDayOfTheWeek"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (e_ EKRecurrenceRule) Frequency() EKRecurrenceFrequency {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/interval
-func (e_ EKRecurrenceRule) Interval() int /* primitive/slice/pointer. */ {
+func (e_ EKRecurrenceRule) Interval() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("interval"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (e_ EKRecurrenceRule) Interval() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/monthsOfTheYear
-func (e_ EKRecurrenceRule) MonthsOfTheYear() []foundation.objc.IObject /* cross-framework: Number */ {
+func (e_ EKRecurrenceRule) MonthsOfTheYear() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("monthsOfTheYear"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (e_ EKRecurrenceRule) SetRecurrenceEnd(value IEKRecurrenceEnd) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/setPositions
-func (e_ EKRecurrenceRule) SetPositions() []foundation.objc.IObject /* cross-framework: Number */ {
+func (e_ EKRecurrenceRule) SetPositions() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("setPositions"))
 	return rv
 }
@@ -239,7 +239,7 @@ func (e_ EKRecurrenceRule) SetPositions() []foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/weeksOfTheYear
-func (e_ EKRecurrenceRule) WeeksOfTheYear() []foundation.objc.IObject /* cross-framework: Number */ {
+func (e_ EKRecurrenceRule) WeeksOfTheYear() []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("weeksOfTheYear"))
 	return rv
 }

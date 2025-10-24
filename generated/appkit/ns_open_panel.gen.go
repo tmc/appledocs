@@ -31,20 +31,20 @@ type _OpenPanelClass struct {
 type IOpenPanel interface {
 	ISavePanel
 	// properties:
-	CanChooseFiles() bool /* primitive/slice/pointer. */
-	SetCanChooseFiles(value bool /* primitive/slice/pointer. */)
-	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
-	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
-	CanChooseDirectories() bool /* primitive/slice/pointer. */
-	SetCanChooseDirectories(value bool /* primitive/slice/pointer. */)
-	CanDownloadUbiquitousContents() bool /* primitive/slice/pointer. */
-	SetCanDownloadUbiquitousContents(value bool /* primitive/slice/pointer. */)
-	CanResolveUbiquitousConflicts() bool /* primitive/slice/pointer. */
-	SetCanResolveUbiquitousConflicts(value bool /* primitive/slice/pointer. */)
-	IsAccessoryViewDisclosed() bool /* primitive/slice/pointer. */
-	SetIsAccessoryViewDisclosed(value bool /* primitive/slice/pointer. */)
-	ResolvesAliases() bool /* primitive/slice/pointer. */
-	SetResolvesAliases(value bool /* primitive/slice/pointer. */)
+	CanChooseFiles() bool
+	SetCanChooseFiles(value bool)
+	AllowsMultipleSelection() bool
+	SetAllowsMultipleSelection(value bool)
+	CanChooseDirectories() bool
+	SetCanChooseDirectories(value bool)
+	CanDownloadUbiquitousContents() bool
+	SetCanDownloadUbiquitousContents(value bool)
+	CanResolveUbiquitousConflicts() bool
+	SetCanResolveUbiquitousConflicts(value bool)
+	IsAccessoryViewDisclosed() bool
+	SetIsAccessoryViewDisclosed(value bool)
+	ResolvesAliases() bool
+	SetResolvesAliases(value bool)
 	Urls() objc.IObject /* cross-framework: URL */
 	SetUrls(value objc.IObject /* cross-framework: URL */)
 	// methods:
@@ -109,7 +109,7 @@ func NewOpenPanel() OpenPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
-func (o_ OpenPanel) CanChooseFiles() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) CanChooseFiles() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseFiles"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (o_ OpenPanel) CanChooseFiles() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseFiles
-func (o_ OpenPanel) SetCanChooseFiles(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetCanChooseFiles(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseFiles:"), value)
 }
 
@@ -128,7 +128,7 @@ func (o_ OpenPanel) SetCanChooseFiles(value bool /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-func (o_ OpenPanel) AllowsMultipleSelection() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (o_ OpenPanel) AllowsMultipleSelection() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-func (o_ OpenPanel) SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
@@ -147,7 +147,7 @@ func (o_ OpenPanel) SetAllowsMultipleSelection(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-func (o_ OpenPanel) CanChooseDirectories() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) CanChooseDirectories() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseDirectories"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (o_ OpenPanel) CanChooseDirectories() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-func (o_ OpenPanel) SetCanChooseDirectories(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetCanChooseDirectories(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseDirectories:"), value)
 }
 
@@ -166,7 +166,7 @@ func (o_ OpenPanel) SetCanChooseDirectories(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/candownloadubiquitouscontents
-func (o_ OpenPanel) CanDownloadUbiquitousContents() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) CanDownloadUbiquitousContents() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canDownloadUbiquitousContents"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (o_ OpenPanel) CanDownloadUbiquitousContents() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/candownloadubiquitouscontents
-func (o_ OpenPanel) SetCanDownloadUbiquitousContents(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetCanDownloadUbiquitousContents(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanDownloadUbiquitousContents:"), value)
 }
 
@@ -185,7 +185,7 @@ func (o_ OpenPanel) SetCanDownloadUbiquitousContents(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canresolveubiquitousconflicts
-func (o_ OpenPanel) CanResolveUbiquitousConflicts() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) CanResolveUbiquitousConflicts() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canResolveUbiquitousConflicts"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (o_ OpenPanel) CanResolveUbiquitousConflicts() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canresolveubiquitousconflicts
-func (o_ OpenPanel) SetCanResolveUbiquitousConflicts(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetCanResolveUbiquitousConflicts(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanResolveUbiquitousConflicts:"), value)
 }
 
@@ -204,7 +204,7 @@ func (o_ OpenPanel) SetCanResolveUbiquitousConflicts(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/isaccessoryviewdisclosed
-func (o_ OpenPanel) IsAccessoryViewDisclosed() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) IsAccessoryViewDisclosed() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAccessoryViewDisclosed"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (o_ OpenPanel) IsAccessoryViewDisclosed() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/isaccessoryviewdisclosed
-func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAccessoryViewDisclosed:"), value)
 }
 
@@ -223,7 +223,7 @@ func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-func (o_ OpenPanel) ResolvesAliases() bool /* primitive/slice/pointer. */ {
+func (o_ OpenPanel) ResolvesAliases() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("resolvesAliases"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (o_ OpenPanel) ResolvesAliases() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-func (o_ OpenPanel) SetResolvesAliases(value bool /* primitive/slice/pointer. */) {
+func (o_ OpenPanel) SetResolvesAliases(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setResolvesAliases:"), value)
 }
 

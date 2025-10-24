@@ -29,9 +29,13 @@ type _MTRBaseClusterWiFiNetworkDiagnosticsClass struct {
 // An interface definition for the [MTRBaseClusterWiFiNetworkDiagnostics] class.
 type IMTRBaseClusterWiFiNetworkDiagnostics interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWiFiNetworkDiagnostics
 type MTRBaseClusterWiFiNetworkDiagnostics struct {
 	MTRGenericBaseCluster

@@ -103,7 +103,7 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(ev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-5izg7
-func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date foundation.objc.IObject /* cross-framework NSDate */) unsafe.Pointer {
+func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date objc.IObject /* cross-framework: NSDate */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterDate:"), date)
 	return rv
 }

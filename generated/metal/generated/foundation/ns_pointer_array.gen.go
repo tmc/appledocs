@@ -31,17 +31,13 @@ type _PointerArrayClass struct {
 type IPointerArray interface {
 	objectivec.IObject
 	// properties:
-	AllObjects() IArray
-	Count() uint /* primitive/slice/pointer. */
-	SetCount(value uint /* primitive/slice/pointer. */)
-	PointerFunctions() IPointerFunctions
+	AllObjects() unsafe.Pointer
+	SetAllObjects(value unsafe.Pointer)
+	Count() int
+	SetCount(value int)
+	PointerFunctions() objc.IObject /* cross-framework: PointerFunctions */
+	SetPointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */)
 	// methods:
-	AddPointer(pointer unsafe.Pointer)
-	Compact()
-	InsertPointerAtIndex(item unsafe.Pointer, index uint /* primitive/slice/pointer. */)
-	PointerAtIndex(index uint /* primitive/slice/pointer. */)
-	RemovePointerAtIndex(index uint /* primitive/slice/pointer. */)
-	ReplacePointerAtIndexWithPointer(index uint /* primitive/slice/pointer. */, item unsafe.Pointer)
 }
 
 // A collection similar to an array, but with a broader range of available memory semantics.
@@ -97,151 +93,31 @@ func NewPointerArray() PointerArray {
 
 
 
-// Initializes the receiver to use the given options.
+// All the objects in the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/init(options:)
-func NewPointerArrayWithOptions(options PointerFunctionsOptions) PointerArray {
-	instance := getPointerArrayClass().Alloc()
-	rv := objc.Send[PointerArray](instance.ID, objc.Sel("initWithOptions:"), options)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/allobjects
+func (p_ PointerArray) AllObjects() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("allObjects"))
 	return rv
-}
-
-
-// Initializes the receiver to use the given functions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/init(pointerFunctions:)
-func NewPointerArrayWithPointerFunctions(functions IPointerFunctions) PointerArray {
-	instance := getPointerArrayClass().Alloc()
-	rv := objc.Send[PointerArray](instance.ID, objc.Sel("initWithPointerFunctions:"), functions)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a new pointer array initialized to use the given options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithOptions:
-func (pc _PointerArrayClass) PointerArrayWithOptions(options PointerFunctionsOptions) IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithOptions:"), options)
-	return rv
-}
-
-
-// A new pointer array initialized to use the given functions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithPointerFunctions:
-func (pc _PointerArrayClass) PointerArrayWithPointerFunctions(functions IPointerFunctions) IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("pointerArrayWithPointerFunctions:"), functions)
-	return rv
-}
-
-
-// Returns a new pointer array that maintains strong references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithStrongObjects
-func (pc _PointerArrayClass) PointerArrayWithStrongObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("pointerArrayWithStrongObjects"))
-	return rv
-}
-
-
-// Returns a new pointer array that maintains weak references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithWeakObjects
-func (pc _PointerArrayClass) PointerArrayWithWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("pointerArrayWithWeakObjects"))
-	return rv
-}
-
-
-// Returns a new pointer array that maintains strong references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/strongObjects()
-func (pc _PointerArrayClass) StrongObjectsPointerArray() IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("strongObjectsPointerArray"))
-	return rv
-}
-
-
-// Returns a new pointer array that maintains weak references to its elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/weakObjects()
-func (pc _PointerArrayClass) WeakObjectsPointerArray() IPointerArray {
-	rv := objc.Send[PointerArray](objc.ID(pc.class), objc.Sel("weakObjectsPointerArray"))
-	return rv
-}
-
-
-// Adds a given pointer to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/addPointer(_:)
-func (p_ PointerArray) AddPointer(pointer unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addPointer:"), pointer)
-}
-
-
-// Removes values from the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/compact()
-func (p_ PointerArray) Compact() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("compact"))
-}
-
-
-// Inserts a pointer at a given index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/insertPointer(_:at:)
-func (p_ PointerArray) InsertPointerAtIndex(item unsafe.Pointer, index uint /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("insertPointer:atIndex:"), item, index)
-}
-
-
-// Returns the pointer at a given index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointer(at:)
-func (p_ PointerArray) PointerAtIndex(index uint /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("pointerAtIndex:"), index)
-}
-
-
-// Removes the pointer at a given index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/removePointer(at:)
-func (p_ PointerArray) RemovePointerAtIndex(index uint /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("removePointerAtIndex:"), index)
-}
-
-
-// Replaces the pointer at a given index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/replacePointer(at:withPointer:)
-func (p_ PointerArray) ReplacePointerAtIndexWithPointer(index uint /* primitive/slice/pointer. */, item unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("replacePointerAtIndex:withPointer:"), index, item)
 }
 
 
 // All the objects in the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/allObjects
-func (p_ PointerArray) AllObjects() IArray {
-	rv := objc.Send[Array](p_.ID, objc.Sel("allObjects"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/allobjects
+func (p_ PointerArray) SetAllObjects(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllObjects:"), value)
+}
+
+
+// The number of elements in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/count
+func (p_ PointerArray) Count() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("count"))
 	return rv
 }
 
@@ -249,18 +125,8 @@ func (p_ PointerArray) AllObjects() IArray {
 // The number of elements in the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) Count() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](p_.ID, objc.Sel("count"))
-	return rv
-}
-
-
-// The number of elements in the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/count
-func (p_ PointerArray) SetCount(value uint /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/count
+func (p_ PointerArray) SetCount(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -268,10 +134,20 @@ func (p_ PointerArray) SetCount(value uint /* primitive/slice/pointer. */) {
 // The functions in use by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerFunctions
-func (p_ PointerArray) PointerFunctions() IPointerFunctions {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+func (p_ PointerArray) PointerFunctions() objc.IObject /* cross-framework: PointerFunctions */ {
 	rv := objc.Send[PointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
+
+
+// The functions in use by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerarray/pointerfunctions
+func (p_ PointerArray) SetPointerFunctions(value objc.IObject /* cross-framework: PointerFunctions */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
+}
+
 
 

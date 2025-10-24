@@ -31,25 +31,28 @@ type _NEAppProxyFlowClass struct {
 // An interface definition for the [NEAppProxyFlow] class.
 type INEAppProxyFlow interface {
 	objectivec.IObject
-	CloseReadWithError(error_ foundation.IError)
-	CloseWriteWithError(error_ foundation.IError)
-	OpenWithLocalEndpointCompletionHandler(localEndpoint INWHostEndpoint, completionHandler unsafe.Pointer)
-	OpenWithLocalFlowEndpointCompletionHandler(localEndpoint unsafe.Pointer, completionHandler unsafe.Pointer)
-	SetMetadata(parameters unsafe.Pointer)
-	IsBound() bool
-	MetaData() NEFlowMetaData
-	NetworkInterface() unsafe.Pointer
-	SetNetworkInterface(value unsafe.Pointer)
-	RemoteHostname() string
-	NEAppProxyErrorDomain() string
+	// properties:
+	RemoteHostname() objc.IObject /* cross-framework: NSString */
+	NEAppProxyErrorDomain() objc.IObject /* cross-framework: NSString */
 	Interface() unsafe.Pointer
 	SetInterface(value unsafe.Pointer)
+	IsBound() bool
+	SetIsBound(value bool)
+	MetaData() objc.IObject /* cross-framework: NEFlowMetaData */
+	SetMetaData(value objc.IObject /* cross-framework: NEFlowMetaData */)
+	NetworkInterface() unsafe.Pointer
+	SetNetworkInterface(value unsafe.Pointer)
+	// methods:
 }
 
 // An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.
 //
 // App Proxy Providers receive network connections to be proxied in the form of objects, which are passed to the App Proxy Provider via the method. objects are initially in an unopened state. Before they can be used to transmit network data, they must be opened using the method. When you are finished with a flow, you should call and , and then release the object.
+
+
+// An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow
 type NEAppProxyFlow struct {
 	objectivec.Object
@@ -94,91 +97,28 @@ func NewNEAppProxyFlow() NEAppProxyFlow {
 }
 
 
-// Close the flow for further read operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/closeReadWithError(_:)
-func (n_ NEAppProxyFlow) CloseReadWithError(error_ foundation.IError) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("closeReadWithError:"), error_)
-}
-
-// Close the flow for further write operations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/closeWriteWithError(_:)
-func (n_ NEAppProxyFlow) CloseWriteWithError(error_ foundation.IError) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("closeWriteWithError:"), error_)
-}
-
-// Opens the flow, indicating to the system that the caller is ready to start receiving and sending data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/open(withLocalEndpoint:completionHandler:)
-func (n_ NEAppProxyFlow) OpenWithLocalEndpointCompletionHandler(localEndpoint INWHostEndpoint, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("openWithLocalEndpoint:completionHandler:"), localEndpoint, completionHandler)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/openWithLocalFlowEndpoint:completionHandler:
-func (n_ NEAppProxyFlow) OpenWithLocalFlowEndpointCompletionHandler(localEndpoint unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("openWithLocalFlowEndpoint:completionHandler:"), localEndpoint, completionHandler)
-}
-
-// Sets the flow’s metadata for use by proxy providers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/setMetadata(_:)
-func (n_ NEAppProxyFlow) SetMetadata(parameters unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMetadata:"), parameters)
-}
-
-// A Boolean value that indicates whether the flow has a binding to a specific interface.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/isBound
-func (n_ NEAppProxyFlow) IsBound() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("isBound"))
-	return rv
-}
-
-// A metadata object containing information about the source app of the flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/metaData
-func (n_ NEAppProxyFlow) MetaData() NEFlowMetaData {
-	rv := objc.Send[NEFlowMetaData](n_.ID, objc.Sel("metaData"))
-	return rv
-}
-
-// The network interface, if any, used by this flow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/networkInterface
-func (n_ NEAppProxyFlow) NetworkInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("networkInterface"))
-	return rv
-}
-
-
-// SetNetworkInterface sets the value of the networkInterface property.
-// The network interface, if any, used by this flow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/networkInterface
-func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkInterface:"), value)
-}
 
 // The remote host name for flows created from a hostname.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyFlow/remoteHostname
-func (n_ NEAppProxyFlow) RemoteHostname() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
+func (n_ NEAppProxyFlow) RemoteHostname() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("remoteHostname"))
 	return rv
 }
+
 
 // The domain used for app proxy errors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyerrordomain
-func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
+func (n_ NEAppProxyFlow) NEAppProxyErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEAppProxyErrorDomain"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
 func (n_ NEAppProxyFlow) Interface() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
@@ -186,11 +126,67 @@ func (n_ NEAppProxyFlow) Interface() unsafe.Pointer {
 }
 
 
-// SetInterface sets the value of the interface property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/interface
 func (n_ NEAppProxyFlow) SetInterface(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
+}
+
+
+// A Boolean value that indicates whether the flow has a binding to a specific interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/isbound
+func (n_ NEAppProxyFlow) IsBound() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("isBound"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the flow has a binding to a specific interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/isbound
+func (n_ NEAppProxyFlow) SetIsBound(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIsBound:"), value)
+}
+
+
+// A metadata object containing information about the source app of the flow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/metadata
+func (n_ NEAppProxyFlow) MetaData() objc.IObject /* cross-framework: NEFlowMetaData */ {
+	rv := objc.Send[NEFlowMetaData](n_.ID, objc.Sel("metaData"))
+	return rv
+}
+
+
+// A metadata object containing information about the source app of the flow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/metadata
+func (n_ NEAppProxyFlow) SetMetaData(value objc.IObject /* cross-framework: NEFlowMetaData */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMetaData:"), value)
+}
+
+
+// The network interface, if any, used by this flow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/networkinterface
+func (n_ NEAppProxyFlow) NetworkInterface() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("networkInterface"))
+	return rv
+}
+
+
+// The network interface, if any, used by this flow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neappproxyflow/networkinterface
+func (n_ NEAppProxyFlow) SetNetworkInterface(value unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkInterface:"), value)
 }
 
 

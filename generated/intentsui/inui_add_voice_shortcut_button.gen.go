@@ -32,12 +32,12 @@ type _INUIAddVoiceShortcutButtonClass struct {
 type IINUIAddVoiceShortcutButton interface {
 	appkit.IButton
 	// properties:
-	CornerRadius() float64 /* primitive/slice/pointer. */
-	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
+	CornerRadius() float64
+	SetCornerRadius(value float64)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	Shortcut() intents.INShortcut /* already interface */
-	SetShortcut(value intents.INShortcut /* already interface */)
+	Shortcut() intents.INShortcut
+	SetShortcut(value intents.INShortcut)
 	Style() unsafe.Pointer
 	SetStyle(value unsafe.Pointer)
 	// methods:
@@ -100,7 +100,7 @@ func NewINUIAddVoiceShortcutButton() INUIAddVoiceShortcutButton {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/cornerradius
-func (i_ INUIAddVoiceShortcutButton) CornerRadius() float64 /* primitive/slice/pointer. */ {
+func (i_ INUIAddVoiceShortcutButton) CornerRadius() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (i_ INUIAddVoiceShortcutButton) CornerRadius() float64 /* primitive/slice/p
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/cornerradius
-func (i_ INUIAddVoiceShortcutButton) SetCornerRadius(value float64 /* primitive/slice/pointer. */) {
+func (i_ INUIAddVoiceShortcutButton) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCornerRadius:"), value)
 }
 
@@ -136,7 +136,7 @@ func (i_ INUIAddVoiceShortcutButton) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/shortcut
-func (i_ INUIAddVoiceShortcutButton) Shortcut() intents.INShortcut /* already interface */ {
+func (i_ INUIAddVoiceShortcutButton) Shortcut() intents.INShortcut {
 	rv := objc.Send[intents.INShortcut](i_.ID, objc.Sel("shortcut"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ INUIAddVoiceShortcutButton) Shortcut() intents.INShortcut /* already in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/shortcut
-func (i_ INUIAddVoiceShortcutButton) SetShortcut(value intents.INShortcut /* already interface */) {
+func (i_ INUIAddVoiceShortcutButton) SetShortcut(value intents.INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcut:"), value)
 }
 

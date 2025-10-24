@@ -32,11 +32,11 @@ type _FSFileNameClass struct {
 type IFSFileName interface {
 	objectivec.IObject
 	// properties:
-	Data() foundation.objc.IObject /* cross-framework: NSData */
-	DebugDescription() string /* primitive/slice/pointer. */
-	SetDebugDescription(value string /* primitive/slice/pointer. */)
-	String() string /* primitive/slice/pointer. */
-	SetString(value string /* primitive/slice/pointer. */)
+	Data() objc.IObject /* cross-framework: NSData */
+	DebugDescription() objc.IObject /* cross-framework: NSString */
+	SetDebugDescription(value objc.IObject /* cross-framework: NSString */)
+	String() objc.IObject /* cross-framework: NSString */
+	SetString(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewFSFileName() FSFileName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/data
-func (f_ FSFileName) Data() foundation.objc.IObject /* cross-framework: NSData */ {
+func (f_ FSFileName) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("data"))
 	return rv
 }
@@ -107,8 +107,8 @@ func (f_ FSFileName) Data() foundation.objc.IObject /* cross-framework: NSData *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/debugdescription
-func (f_ FSFileName) DebugDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("debugDescription"))
+func (f_ FSFileName) DebugDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("debugDescription"))
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (f_ FSFileName) DebugDescription() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/debugdescription
-func (f_ FSFileName) SetDebugDescription(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDebugDescription:"), objc.String(value))
+func (f_ FSFileName) SetDebugDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDebugDescription:"), value)
 }
 
 
@@ -126,8 +126,8 @@ func (f_ FSFileName) SetDebugDescription(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/string
-func (f_ FSFileName) String() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("string"))
+func (f_ FSFileName) String() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -136,8 +136,8 @@ func (f_ FSFileName) String() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/string
-func (f_ FSFileName) SetString(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setString:"), objc.String(value))
+func (f_ FSFileName) SetString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setString:"), value)
 }
 
 

@@ -33,10 +33,10 @@ type IPathCell interface {
 	// properties:
 	ControlSize() ControlSize
 	SetControlSize(value ControlSize)
-	IsEditable() bool /* primitive/slice/pointer. */
-	SetIsEditable(value bool /* primitive/slice/pointer. */)
-	IsSelectable() bool /* primitive/slice/pointer. */
-	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	IsSelectable() bool
+	SetIsSelectable(value bool)
 	AllowedTypes() objc.IObject /* cross-framework: NSString */
 	SetAllowedTypes(value objc.IObject /* cross-framework: NSString */)
 	BackgroundColor() IColor
@@ -138,7 +138,7 @@ func (p_ PathCell) SetControlSize(value ControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (p_ PathCell) IsEditable() bool /* primitive/slice/pointer. */ {
+func (p_ PathCell) IsEditable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (p_ PathCell) IsEditable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (p_ PathCell) SetIsEditable(value bool /* primitive/slice/pointer. */) {
+func (p_ PathCell) SetIsEditable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -157,7 +157,7 @@ func (p_ PathCell) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (p_ PathCell) IsSelectable() bool /* primitive/slice/pointer. */ {
+func (p_ PathCell) IsSelectable() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isSelectable"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (p_ PathCell) IsSelectable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (p_ PathCell) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
+func (p_ PathCell) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelectable:"), value)
 }
 
@@ -310,7 +310,7 @@ func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
 func (p_ PathCell) PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 

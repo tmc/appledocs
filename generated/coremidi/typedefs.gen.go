@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for CoreMIDI. DO NOT EDIT.
 
 package coremidi
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // MIDICIDeviceID type alias
@@ -61,8 +64,9 @@ type MIDIEntityRef uintptr
 // MIDIEventVisitor type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventVisitor
-// MIDIEventVisitor has base type: void (*)(void *, unsigned long long, struct MIDIUniversalMessage)
-type MIDIEventVisitor uintptr
+// MIDIEventVisitor is a callback function
+// C type: void (*)(void *, unsigned long long, struct MIDIUniversalMessage)
+type MIDIEventVisitor = func(unsafe.Pointer, uint64, MIDIUniversalMessage)
 // MIDIMessage_32 - A 32-bit MIDI message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessage_32

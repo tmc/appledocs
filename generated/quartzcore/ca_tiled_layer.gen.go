@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [TiledLayer] class.
@@ -30,20 +30,26 @@ type _TiledLayerClass struct {
 // An interface definition for the [TiledLayer] class.
 type ITiledLayer interface {
 	ILayer
-	LevelsOfDetail() uintptr
-	SetLevelsOfDetail(value Iuintptr)
-	LevelsOfDetailBias() uintptr
-	SetLevelsOfDetailBias(value Iuintptr)
-	TileSize() coregraphics.CGSize
-	SetTileSize(value coregraphics.CGSize)
+	// properties:
+	TileSize() objc.IObject /* cross-framework: Size */
+	SetTileSize(value objc.IObject /* cross-framework: Size */)
 	Contents() unsafe.Pointer
 	SetContents(value unsafe.Pointer)
+	LevelsOfDetail() int
+	SetLevelsOfDetail(value int)
+	LevelsOfDetailBias() int
+	SetLevelsOfDetailBias(value int)
+	// methods:
 }
 
 // A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
 //
 // As more data is required by the renderer, the layer’s method is called on one or more background threads to supply the drawing operations to fill in one tile of data. The clip bounds and current transformation matrix (CTM) of the drawing context can be used to determine the bounds and resolution of the tile being requested. Regions of the layer may be invalidated using the method however the update will be asynchronous. While the next display update will most likely not contain the updated content, a future update will.
+
+
+// A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer
 type TiledLayer struct {
 	Layer
@@ -90,70 +96,39 @@ func NewTiledLayer() TiledLayer {
 }
 
 
+
 // The time, in seconds, that newly added images take to “fade-in” to the rendered representation of the tiled layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/fadeDuration()
-func (tc _TiledLayerClass) FadeDuration() TimeInterval {
+func (tc _TiledLayerClass) FadeDuration() float64 {
 	rv := objc.Send[TimeInterval](objc.ID(tc.class), objc.Sel("fadeDuration"))
 	return rv
 }
 
-// The number of levels of detail maintained by this layer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) LevelsOfDetail() uintptr {
-	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetail"))
-	return rv
-}
-
-
-// SetLevelsOfDetail sets the value of the levelsOfDetail property.
-// The number of levels of detail maintained by this layer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetail
-func (t_ TiledLayer) SetLevelsOfDetail(value Iuintptr) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetail:"), value)
-}
-
-// The number of magnified levels of detail for this layer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) LevelsOfDetailBias() uintptr {
-	rv := objc.Send[uintptr](t_.ID, objc.Sel("levelsOfDetailBias"))
-	return rv
-}
-
-
-// SetLevelsOfDetailBias sets the value of the levelsOfDetailBias property.
-// The number of magnified levels of detail for this layer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/levelsOfDetailBias
-func (t_ TiledLayer) SetLevelsOfDetailBias(value Iuintptr) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetailBias:"), value)
-}
 
 // The maximum size of each tile used to create the layer’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/tileSize
-func (t_ TiledLayer) TileSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("tileSize"))
+func (t_ TiledLayer) TileSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("tileSize"))
 	return rv
 }
 
 
-// SetTileSize sets the value of the tileSize property.
 // The maximum size of each tile used to create the layer’s content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/tileSize
-func (t_ TiledLayer) SetTileSize(value coregraphics.CGSize) {
+func (t_ TiledLayer) SetTileSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTileSize:"), value)
 }
 
+
 // An object that provides the contents of the layer. Animatable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/contents
 func (t_ TiledLayer) Contents() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("contents"))
@@ -161,13 +136,50 @@ func (t_ TiledLayer) Contents() unsafe.Pointer {
 }
 
 
-// SetContents sets the value of the contents property.
 // An object that provides the contents of the layer. Animatable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/contents
 func (t_ TiledLayer) SetContents(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
+}
+
+
+// The number of levels of detail maintained by this layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catiledlayer/levelsofdetail
+func (t_ TiledLayer) LevelsOfDetail() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("levelsOfDetail"))
+	return rv
+}
+
+
+// The number of levels of detail maintained by this layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catiledlayer/levelsofdetail
+func (t_ TiledLayer) SetLevelsOfDetail(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetail:"), value)
+}
+
+
+// The number of magnified levels of detail for this layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catiledlayer/levelsofdetailbias
+func (t_ TiledLayer) LevelsOfDetailBias() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("levelsOfDetailBias"))
+	return rv
+}
+
+
+// The number of magnified levels of detail for this layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/catiledlayer/levelsofdetailbias
+func (t_ TiledLayer) SetLevelsOfDetailBias(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLevelsOfDetailBias:"), value)
 }
 
 

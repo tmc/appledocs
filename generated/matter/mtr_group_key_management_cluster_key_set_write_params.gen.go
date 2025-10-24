@@ -31,15 +31,19 @@ type _MTRGroupKeyManagementClusterKeySetWriteParamsClass struct {
 // An interface definition for the [MTRGroupKeyManagementClusterKeySetWriteParams] class.
 type IMTRGroupKeyManagementClusterKeySetWriteParams interface {
 	objectivec.IObject
-	GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct
+	// properties:
+	GroupKeySet() IMTRGroupKeyManagementClusterGroupKeySetStruct
 	SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterKeySetWriteParams
 type MTRGroupKeyManagementClusterKeySetWriteParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRGroupKeyManagementClusterKeySetWriteParams() MTRGroupKeyManagementClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) GroupKeySet() MTRGroupKeyManagementClusterGroupKeySetStruct {
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) GroupKeySet() IMTRGroupKeyManagementClusterGroupKeySetStruct {
 	rv := objc.Send[MTRGroupKeyManagementClusterGroupKeySetStruct](m_.ID, objc.Sel("groupKeySet"))
 	return rv
 }
 
 
-// SetGroupKeySet sets the value of the groupKeySet property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/groupkeyset
 func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetGroupKeySet(value IMTRGroupKeyManagementClusterGroupKeySetStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySet:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetwriteparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupKeyManagementClusterKeySetWriteParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

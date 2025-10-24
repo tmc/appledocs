@@ -9,8 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in NaturalLanguage
-	Dictionary = _undefined // referenced in NaturalLanguage
 	IndexSet = _undefined // referenced in NaturalLanguage
 	Number = _undefined // referenced in NaturalLanguage
 	Range = _undefined // referenced in NaturalLanguage

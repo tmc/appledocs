@@ -31,17 +31,24 @@ type _VZGenericMachineIdentifierClass struct {
 // An interface definition for the [VZGenericMachineIdentifier] class.
 type IVZGenericMachineIdentifier interface {
 	objectivec.IObject
-	DataRepresentation() foundation.NSData
+	// properties:
+	DataRepresentation() objc.IObject /* cross-framework: Data */
+	SetDataRepresentation(value objc.IObject /* cross-framework: Data */)
 	IsNestedVirtualizationEnabled() bool
 	SetIsNestedVirtualizationEnabled(value bool)
-	MachineIdentifier() VZGenericMachineIdentifier
+	MachineIdentifier() IVZGenericMachineIdentifier
 	SetMachineIdentifier(value IVZGenericMachineIdentifier)
+	// methods:
 }
 
 // An object that represents a unique identifier for a virtual machine.
 //
 // Use the data representation in to save the VM’s identifier. To restore a previously saved identifier use .
+
+
+// An object that represents a unique identifier for a virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier
 type VZGenericMachineIdentifier struct {
 	objectivec.Object
@@ -87,28 +94,28 @@ func NewVZGenericMachineIdentifier() VZGenericMachineIdentifier {
 
 
 
-
-// Creates a new unique identifier for a VM with the provided data.
+// An opaque data representation of the VM’s identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/init(dataRepresentation:)
-func NewVZGenericMachineIdentifierWithDataRepresentation(dataRepresentation foundation.IData) VZGenericMachineIdentifier {
-	instance := getVZGenericMachineIdentifierClass().Alloc()
-	rv := objc.Send[VZGenericMachineIdentifier](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier/datarepresentation
+func (v_ VZGenericMachineIdentifier) DataRepresentation() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
 
 // An opaque data representation of the VM’s identifier.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/dataRepresentation
-func (v_ VZGenericMachineIdentifier) DataRepresentation() foundation.NSData {
-	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier/datarepresentation
+func (v_ VZGenericMachineIdentifier) SetDataRepresentation(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDataRepresentation:"), value)
 }
+
 
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
 func (v_ VZGenericMachineIdentifier) IsNestedVirtualizationEnabled() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isNestedVirtualizationEnabled"))
@@ -116,31 +123,32 @@ func (v_ VZGenericMachineIdentifier) IsNestedVirtualizationEnabled() bool {
 }
 
 
-// SetIsNestedVirtualizationEnabled sets the value of the isNestedVirtualizationEnabled property.
 // A Boolean value that indicates whether nested virtualization is in an enabled state.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/isnestedvirtualizationenabled
 func (v_ VZGenericMachineIdentifier) SetIsNestedVirtualizationEnabled(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsNestedVirtualizationEnabled:"), value)
 }
 
+
 // A value that represents a unique identifier for the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
-func (v_ VZGenericMachineIdentifier) MachineIdentifier() VZGenericMachineIdentifier {
+func (v_ VZGenericMachineIdentifier) MachineIdentifier() IVZGenericMachineIdentifier {
 	rv := objc.Send[VZGenericMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
 	return rv
 }
 
 
-// SetMachineIdentifier sets the value of the machineIdentifier property.
 // A value that represents a unique identifier for the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
 func (v_ VZGenericMachineIdentifier) SetMachineIdentifier(value IVZGenericMachineIdentifier) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
+
 
 

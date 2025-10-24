@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _RegionClass struct {
 type IRegion interface {
 	objectivec.IObject
 	// properties:
-	Center() LocationCoordinate2D /* not a class type */
-	Identifier() string /* primitive/slice/pointer. */
-	NotifyOnEntry() bool /* primitive/slice/pointer. */
-	SetNotifyOnEntry(value bool /* primitive/slice/pointer. */)
-	NotifyOnExit() bool /* primitive/slice/pointer. */
-	SetNotifyOnExit(value bool /* primitive/slice/pointer. */)
+	Center() CLLocationCoordinate2D /* not a class type */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	NotifyOnEntry() bool
+	SetNotifyOnEntry(value bool)
+	NotifyOnExit() bool
+	SetNotifyOnExit(value bool)
 	Radius() LocationDistance /* not a class type */
 	// methods:
 }
@@ -98,9 +99,9 @@ func NewRegion() Region {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
-func NewRegionCircularRegionWithCenterRadiusIdentifier(center LocationCoordinate2D /* not a class type */, radius LocationDistance /* not a class type */, identifier string /* primitive/slice/pointer. */) Region {
+func NewRegionCircularRegionWithCenterRadiusIdentifier(center LocationCoordinate2D /* not a class type */, radius LocationDistance /* not a class type */, identifier objc.IObject /* cross-framework: NSString */) Region {
 	instance := getRegionClass().Alloc()
-	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
+	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -111,7 +112,7 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center LocationCoordinate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/center
-func (r_ Region) Center() LocationCoordinate2D /* not a class type */ {
+func (r_ Region) Center() CLLocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](r_.ID, objc.Sel("center"))
 	return rv
 }
@@ -121,8 +122,8 @@ func (r_ Region) Center() LocationCoordinate2D /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
-func (r_ Region) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
+func (r_ Region) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (r_ Region) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-func (r_ Region) NotifyOnEntry() bool /* primitive/slice/pointer. */ {
+func (r_ Region) NotifyOnEntry() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnEntry"))
 	return rv
 }
@@ -141,7 +142,7 @@ func (r_ Region) NotifyOnEntry() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-func (r_ Region) SetNotifyOnEntry(value bool /* primitive/slice/pointer. */) {
+func (r_ Region) SetNotifyOnEntry(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
 
@@ -150,7 +151,7 @@ func (r_ Region) SetNotifyOnEntry(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-func (r_ Region) NotifyOnExit() bool /* primitive/slice/pointer. */ {
+func (r_ Region) NotifyOnExit() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnExit"))
 	return rv
 }
@@ -160,7 +161,7 @@ func (r_ Region) NotifyOnExit() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-func (r_ Region) SetNotifyOnExit(value bool /* primitive/slice/pointer. */) {
+func (r_ Region) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
 

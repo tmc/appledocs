@@ -29,13 +29,19 @@ type _GenerateForegroundInstanceMaskRequestClass struct {
 // An interface definition for the [GenerateForegroundInstanceMaskRequest] class.
 type IGenerateForegroundInstanceMaskRequest interface {
 	IImageBasedRequest
-	Results() VNInstanceMaskObservation
+	// properties:
+	Results() IVNInstanceMaskObservation
 	SetResults(value IVNInstanceMaskObservation)
 	VNGenerateForegroundInstanceMaskRequestRevision1() int
+	// methods:
 }
 
 // A request that generates an instance mask of noticable objects to separate from the background.
+
+
+// A request that generates an instance mask of noticable objects to separate from the background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateForegroundInstanceMaskRequest
 type GenerateForegroundInstanceMaskRequest struct {
 	ImageBasedRequest
@@ -82,26 +88,29 @@ func NewGenerateForegroundInstanceMaskRequest() GenerateForegroundInstanceMaskRe
 }
 
 
+
 // The instance masks the request observes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
-func (g_ GenerateForegroundInstanceMaskRequest) Results() VNInstanceMaskObservation {
-	rv := objc.Send[VNInstanceMaskObservation](g_.ID, objc.Sel("results"))
+func (g_ GenerateForegroundInstanceMaskRequest) Results() IVNInstanceMaskObservation {
+	rv := objc.Send[InstanceMaskObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The instance masks the request observes.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
 func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value IVNInstanceMaskObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying the first revision of the foreground instance mask request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1
 func (g_ GenerateForegroundInstanceMaskRequest) VNGenerateForegroundInstanceMaskRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateForegroundInstanceMaskRequestRevision1"))

@@ -32,8 +32,8 @@ type IAssertionHandler interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int /* primitive/slice/pointer. */, format IString)
-	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int /* primitive/slice/pointer. */, format IString)
+	HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int, format IString)
+	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int, format IString)
 }
 
 // An object that logs an assertion to the console.
@@ -100,14 +100,14 @@ func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int /* primitive/slice/pointer. */, format IString) {
+func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int, format IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), functionName, fileName, line, format)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int /* primitive/slice/pointer. */, format IString) {
+func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int, format IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, fileName, line, format)
 }
 

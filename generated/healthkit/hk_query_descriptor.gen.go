@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -96,7 +97,7 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
 func (h_ HKQueryDescriptor) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](h_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 

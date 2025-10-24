@@ -31,8 +31,8 @@ type _AuthorizationAppleIDButtonClass struct {
 type IAuthorizationAppleIDButton interface {
 	appkit.IControl
 	// properties:
-	CornerRadius() float64 /* primitive/slice/pointer. */
-	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
+	CornerRadius() float64
+	SetCornerRadius(value float64)
 	// methods:
 }
 
@@ -128,7 +128,7 @@ func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ Authorizati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
-func (a_ AuthorizationAppleIDButton) CornerRadius() float64 /* primitive/slice/pointer. */ {
+func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (a_ AuthorizationAppleIDButton) CornerRadius() float64 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
-func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64 /* primitive/slice/pointer. */) {
+func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCornerRadius:"), value)
 }
 

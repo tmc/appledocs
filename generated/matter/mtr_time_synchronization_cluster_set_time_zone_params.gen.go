@@ -31,15 +31,19 @@ type _MTRTimeSynchronizationClusterSetTimeZoneParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTimeZoneParams] class.
 type IMTRTimeSynchronizationClusterSetTimeZoneParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimeZone() objc.ID
-	SetTimeZone(value objc.ID)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimeZone() objc.IObject /* cross-framework: NSArray */
+	SetTimeZone(value objc.IObject /* cross-framework: NSArray */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams
 type MTRTimeSynchronizationClusterSetTimeZoneParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneParams() MTRTimeSynchronizationC
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timeZone
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("timeZone"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
 
-// SetTimeZone sets the value of the timeZone property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timeZone
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value objc.ID) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

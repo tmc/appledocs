@@ -31,12 +31,12 @@ type IDeviceMotion interface {
 	ILogItem
 	// properties:
 	Attitude() ICMAttitude
-	Gravity() Acceleration /* not a class type */
-	Heading() float64 /* primitive/slice/pointer. */
-	MagneticField() CalibratedMagneticField /* not a class type */
-	RotationRate() RotationRate /* not a class type */
+	Gravity() CMAcceleration /* not a class type */
+	Heading() float64
+	MagneticField() CMCalibratedMagneticField /* not a class type */
+	RotationRate() CMRotationRate /* not a class type */
 	SensorLocation() DeviceMotionSensorLocation
-	UserAcceleration() Acceleration /* not a class type */
+	UserAcceleration() CMAcceleration /* not a class type */
 	// methods:
 }
 
@@ -109,7 +109,7 @@ func (d_ DeviceMotion) Attitude() ICMAttitude {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/gravity
-func (d_ DeviceMotion) Gravity() Acceleration /* not a class type */ {
+func (d_ DeviceMotion) Gravity() CMAcceleration /* not a class type */ {
 	rv := objc.Send[Acceleration](d_.ID, objc.Sel("gravity"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (d_ DeviceMotion) Gravity() Acceleration /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/heading
-func (d_ DeviceMotion) Heading() float64 /* primitive/slice/pointer. */ {
+func (d_ DeviceMotion) Heading() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("heading"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (d_ DeviceMotion) Heading() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/magneticField
-func (d_ DeviceMotion) MagneticField() CalibratedMagneticField /* not a class type */ {
+func (d_ DeviceMotion) MagneticField() CMCalibratedMagneticField /* not a class type */ {
 	rv := objc.Send[CalibratedMagneticField](d_.ID, objc.Sel("magneticField"))
 	return rv
 }
@@ -139,7 +139,7 @@ func (d_ DeviceMotion) MagneticField() CalibratedMagneticField /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/rotationRate
-func (d_ DeviceMotion) RotationRate() RotationRate /* not a class type */ {
+func (d_ DeviceMotion) RotationRate() CMRotationRate /* not a class type */ {
 	rv := objc.Send[RotationRate](d_.ID, objc.Sel("rotationRate"))
 	return rv
 }
@@ -159,7 +159,7 @@ func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/userAcceleration
-func (d_ DeviceMotion) UserAcceleration() Acceleration /* not a class type */ {
+func (d_ DeviceMotion) UserAcceleration() CMAcceleration /* not a class type */ {
 	rv := objc.Send[Acceleration](d_.ID, objc.Sel("userAcceleration"))
 	return rv
 }

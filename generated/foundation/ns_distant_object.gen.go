@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [DistantObject] class.
@@ -30,6 +31,7 @@ type _DistantObjectClass struct {
 type IDistantObject interface {
 	IProxy
 	// properties:
+	ConnectionForProxy() IConnection
 	// methods:
 }
 
@@ -87,5 +89,69 @@ func NewDistantObject() DistantObject {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
+func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
+	instance := getDistantObjectClass().Alloc()
+	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithCoder:"), inCoder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an object as a local proxy for a given object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithLocal:connection:
+func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection IConnection) DistantObject {
+	instance := getDistantObjectClass().Alloc()
+	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithLocal:connection:"), target, connection)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a newly allocated NSDistantObject as a remote proxy for , which is an id in another thread or another application’s address space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithTarget:connection:
+func NewDistantObjectWithTargetConnection(target objectivec.IObject, connection IConnection) DistantObject {
+	instance := getDistantObjectClass().Alloc()
+	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithTarget:connection:"), target, connection)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a local proxy for a given object and connection, creating the proxy if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithLocal:connection:
+func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject, connection IConnection) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithLocal:connection:"), target, connection)
+	return rv
+}
+
+
+// Returns a remote proxy for a given object and connection, creating the proxy if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithTarget:connection:
+func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObject, connection IConnection) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithTarget:connection:"), target, connection)
+	return rv
+}
+
+
+// Returns the connection used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/connectionForProxy
+func (d_ DistantObject) ConnectionForProxy() IConnection {
+	rv := objc.Send[Connection](d_.ID, objc.Sel("connectionForProxy"))
+	return rv
+}
 
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImageIO without requiring cgo.
-
-// Read and write most image file formats, and access an image’s metadata.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageIO
+// See: https://developer.apple.com/documentation/ImageIO
 package imageio
 
 import (

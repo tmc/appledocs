@@ -30,14 +30,20 @@ type _CTensorDataClass struct {
 // An interface definition for the [CTensorData] class.
 type ICTensorData interface {
 	objectivec.IObject
+	// properties:
 	Bytes() unsafe.Pointer
 	SetBytes(value unsafe.Pointer)
 	Length() int
 	SetLength(value int)
+	// methods:
 }
 
 // An encapsulation of the memory that tensor data uses.
+
+
+// An encapsulation of the memory that tensor data uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensorData
 type CTensorData struct {
 	objectivec.Object
@@ -82,8 +88,10 @@ func NewCTensorData() CTensorData {
 }
 
 
+
 // A buffer that conains data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/bytes
 func (c_ CTensorData) Bytes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bytes"))
@@ -91,17 +99,18 @@ func (c_ CTensorData) Bytes() unsafe.Pointer {
 }
 
 
-// SetBytes sets the value of the bytes property.
 // A buffer that conains data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/bytes
 func (c_ CTensorData) SetBytes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBytes:"), value)
 }
 
+
 // The number of bytes you choose to hold for this tensor data instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/length
 func (c_ CTensorData) Length() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("length"))
@@ -109,10 +118,9 @@ func (c_ CTensorData) Length() int {
 }
 
 
-// SetLength sets the value of the length property.
 // The number of bytes you choose to hold for this tensor data instance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordata/length
 func (c_ CTensorData) SetLength(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLength:"), value)

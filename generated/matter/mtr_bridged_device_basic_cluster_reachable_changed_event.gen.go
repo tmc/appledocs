@@ -30,11 +30,15 @@ type _MTRBridgedDeviceBasicClusterReachableChangedEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicClusterReachableChangedEvent] class.
 type IMTRBridgedDeviceBasicClusterReachableChangedEvent interface {
 	IMTRBridgedDeviceBasicInformationClusterReachableChangedEvent
-	ReachableNewValue() foundation.Number
-	SetReachableNewValue(value foundation.INumber)
+	// properties:
+	ReachableNewValue() objc.IObject /* cross-framework: NSNumber */
+	SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterReachableChangedEvent
 type MTRBridgedDeviceBasicClusterReachableChangedEvent struct {
 	MTRBridgedDeviceBasicInformationClusterReachableChangedEvent
@@ -79,18 +83,18 @@ func NewMTRBridgedDeviceBasicClusterReachableChangedEvent() MTRBridgedDeviceBasi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) ReachableNewValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("reachableNewValue"))
+func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) ReachableNewValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("reachableNewValue"))
 	return rv
 }
 
 
-// SetReachableNewValue sets the value of the reachableNewValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) SetReachableNewValue(value foundation.INumber) {
+func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
 

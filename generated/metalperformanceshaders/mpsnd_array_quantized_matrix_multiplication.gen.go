@@ -30,9 +30,13 @@ type _NDArrayQuantizedMatrixMultiplicationClass struct {
 // An interface definition for the [NDArrayQuantizedMatrixMultiplication] class.
 type INDArrayQuantizedMatrixMultiplication interface {
 	INDArrayMatrixMultiplication
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizedMatrixMultiplication
 type NDArrayQuantizedMatrixMultiplication struct {
 	NDArrayMatrixMultiplication
@@ -77,7 +81,8 @@ func NewNDArrayQuantizedMatrixMultiplication() NDArrayQuantizedMatrixMultiplicat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizedMatrixMultiplication/init(device:leftQuantizationDescriptor:rightQuantizationDescriptor:)
 func NewNDArrayQuantizedMatrixMultiplicationWithDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device objectivec.IObject, leftQuantizationDescriptor IMPSNDArrayQuantizationDescriptor, rightQuantizationDescriptor IMPSNDArrayQuantizationDescriptor) NDArrayQuantizedMatrixMultiplication {
 	instance := getNDArrayQuantizedMatrixMultiplicationClass().Alloc()

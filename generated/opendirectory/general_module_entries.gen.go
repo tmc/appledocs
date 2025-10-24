@@ -30,9 +30,13 @@ type _generalModuleEntriesClass struct {
 // An interface definition for the [generalModuleEntries] class.
 type IgeneralModuleEntries interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/generalModuleEntries-c.ivar
 type generalModuleEntries struct {
 	objectivec.Object

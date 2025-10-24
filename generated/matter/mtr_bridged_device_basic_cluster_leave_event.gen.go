@@ -29,9 +29,13 @@ type _MTRBridgedDeviceBasicClusterLeaveEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicClusterLeaveEvent] class.
 type IMTRBridgedDeviceBasicClusterLeaveEvent interface {
 	IMTRBridgedDeviceBasicInformationClusterLeaveEvent
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterLeaveEvent
 type MTRBridgedDeviceBasicClusterLeaveEvent struct {
 	MTRBridgedDeviceBasicInformationClusterLeaveEvent

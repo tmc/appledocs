@@ -31,10 +31,22 @@ type _RunLoopClass struct {
 type IRunLoop interface {
 	objectivec.IObject
 	// properties:
-	CurrentMode() unsafe.Pointer
-	SetCurrentMode(value unsafe.Pointer)
+	CurrentMode() objc.IObject /* cross-framework: RunLoopMode */
 	// methods:
-	AddTimerForMode(timer ITimer, mode RunLoopMode /* not a class type */)
+	AcceptInputForModeBeforeDate(mode objc.IObject /* cross-framework: RunLoopMode */, limitDate IDate)
+	AddTimerForMode(timer ITimer, mode objc.IObject /* cross-framework: RunLoopMode */)
+	AddPortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */)
+	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject)
+	CancelPerformSelectorsWithTarget(target objectivec.IObject)
+	GetCFRunLoop() RunLoopRef /* not a class type */
+	LimitDateForMode(mode objc.IObject /* cross-framework: RunLoopMode */) IDate
+	PerformBlock(block unsafe.Pointer)
+	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string)
+	PerformInModesBlock(modes []string, block unsafe.Pointer)
+	RemovePortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */)
+	Run()
+	RunModeBeforeDate(mode objc.IObject /* cross-framework: RunLoopMode */, limitDate IDate) bool
+	RunUntilDate(limitDate IDate)
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -90,21 +102,159 @@ func NewRunLoop() RunLoop {
 
 
 
+// Returns the run loop for the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
+func (rc _RunLoopClass) CurrentRunLoop() RunLoop {
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("currentRunLoop"))
+	return rv
+}
+
+// Returns the run loop of the main thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
+func (rc _RunLoopClass) MainRunLoop() RunLoop {
+	rv := objc.Send[RunLoop](objc.ID(rc.class), objc.Sel("mainRunLoop"))
+	return rv
+}
+
+// Runs the loop once or until the specified date, accepting input only for the specified mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/acceptInput(forMode:before:)
+func (r_ RunLoop) AcceptInputForModeBeforeDate(mode objc.IObject /* cross-framework: RunLoopMode */, limitDate IDate) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("acceptInputForMode:beforeDate:"), mode, limitDate)
+}
+
+
 // Registers a given timer with a given input mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
-func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode /* not a class type */) {
+func (r_ RunLoop) AddTimerForMode(timer ITimer, mode objc.IObject /* cross-framework: RunLoopMode */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
 
 
-// The receiver’s current input mode.
+// Adds a port as an input source to the specified mode of the run loop.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/runloop/currentmode
-func (r_ RunLoop) CurrentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("currentMode"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-6z982
+func (r_ RunLoop) AddPortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("addPort:forMode:"), aPort, mode)
+}
+
+
+// Cancels the sending of a previously scheduled message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/cancelPerform(_:target:argument:)
+func (r_ RunLoop) CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("cancelPerformSelector:target:argument:"), aSelector, target, arg)
+}
+
+
+// Cancels all outstanding ordered performs scheduled with a given target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/cancelPerformSelectors(withTarget:)
+func (r_ RunLoop) CancelPerformSelectorsWithTarget(target objectivec.IObject) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("cancelPerformSelectorsWithTarget:"), target)
+}
+
+
+// Returns the receiver’s underlying run loop object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
+func (r_ RunLoop) GetCFRunLoop() RunLoopRef /* not a class type */ {
+	rv := objc.Send[RunLoopRef](r_.ID, objc.Sel("getCFRunLoop"))
+	return rv
+}
+
+
+// Performs one pass through the run loop in the specified mode and returns the date at which the next timer is scheduled to fire.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
+func (r_ RunLoop) LimitDateForMode(mode objc.IObject /* cross-framework: RunLoopMode */) IDate {
+	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
+	return rv
+}
+
+
+// Schedules a block that the run loop invokes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(_:)
+func (r_ RunLoop) PerformBlock(block unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("performBlock:"), block)
+}
+
+
+// Schedules the sending of a message on the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(_:target:argument:order:modes:)
+func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("performSelector:target:argument:order:modes:"), aSelector, target, arg, order, modes)
+}
+
+
+// Schedules a block that the run loop invokes when it’s running in any of the specified modes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(inModes:block:)
+func (r_ RunLoop) PerformInModesBlock(modes []string, block unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("performInModes:block:"), modes, block)
+}
+
+
+// Removes a port from the specified input mode of the run loop.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/remove(_:forMode:)
+func (r_ RunLoop) RemovePortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("removePort:forMode:"), aPort, mode)
+}
+
+
+// Puts the receiver into a permanent loop, during which time it processes data from all attached input sources.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run()
+func (r_ RunLoop) Run() {
+	objc.Send[objc.ID](r_.ID, objc.Sel("run"))
+}
+
+
+// Runs the loop once, blocking for input in the specified mode until a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(mode:before:)
+func (r_ RunLoop) RunModeBeforeDate(mode objc.IObject /* cross-framework: RunLoopMode */, limitDate IDate) bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("runMode:beforeDate:"), mode, limitDate)
+	return rv
+}
+
+
+// Runs the loop until the specified date, during which time it processes data from all attached input sources.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(until:)
+func (r_ RunLoop) RunUntilDate(limitDate IDate) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("runUntilDate:"), limitDate)
+}
+
+
+// Returns the run loop for the current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
+func (r_ RunLoop) CurrentRunLoop() IRunLoop {
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("currentRunLoop"))
 	return rv
 }
 
@@ -112,9 +262,20 @@ func (r_ RunLoop) CurrentMode() unsafe.Pointer {
 // The receiver’s current input mode.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/runloop/currentmode
-func (r_ RunLoop) SetCurrentMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setCurrentMode:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/currentMode
+func (r_ RunLoop) CurrentMode() objc.IObject /* cross-framework: RunLoopMode */ {
+	rv := objc.Send[objc.ID](r_.ID, objc.Sel("currentMode"))
+	return rv
+}
+
+
+// Returns the run loop of the main thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
+func (r_ RunLoop) MainRunLoop() IRunLoop {
+	rv := objc.Send[RunLoop](r_.ID, objc.Sel("mainRunLoop"))
+	return rv
 }
 
 

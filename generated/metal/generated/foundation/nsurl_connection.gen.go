@@ -31,10 +31,10 @@ type _URLConnectionClass struct {
 type IURLConnection interface {
 	objectivec.IObject
 	// properties:
-	CurrentRequest() unsafe.Pointer
-	SetCurrentRequest(value unsafe.Pointer)
-	OriginalRequest() unsafe.Pointer
-	SetOriginalRequest(value unsafe.Pointer)
+	CurrentRequest() objc.IObject /* cross-framework: URLRequest */
+	SetCurrentRequest(value objc.IObject /* cross-framework: URLRequest */)
+	OriginalRequest() objc.IObject /* cross-framework: URLRequest */
+	SetOriginalRequest(value objc.IObject /* cross-framework: URLRequest */)
 	// methods:
 }
 
@@ -95,8 +95,8 @@ func NewURLConnection() URLConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlconnection/currentrequest
-func (u_ URLConnection) CurrentRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("currentRequest"))
+func (u_ URLConnection) CurrentRequest() objc.IObject /* cross-framework: URLRequest */ {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (u_ URLConnection) CurrentRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlconnection/currentrequest
-func (u_ URLConnection) SetCurrentRequest(value unsafe.Pointer) {
+func (u_ URLConnection) SetCurrentRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentRequest:"), value)
 }
 
@@ -114,8 +114,8 @@ func (u_ URLConnection) SetCurrentRequest(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlconnection/originalrequest
-func (u_ URLConnection) OriginalRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalRequest"))
+func (u_ URLConnection) OriginalRequest() objc.IObject /* cross-framework: URLRequest */ {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (u_ URLConnection) OriginalRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlconnection/originalrequest
-func (u_ URLConnection) SetOriginalRequest(value unsafe.Pointer) {
+func (u_ URLConnection) SetOriginalRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalRequest:"), value)
 }
 

@@ -31,19 +31,25 @@ type _MXHistogramClass struct {
 // An interface definition for the [MXHistogram] class.
 type IMXHistogram interface {
 	objectivec.IObject
+	// properties:
 	BucketEnumerator() unsafe.Pointer
 	TotalBucketCount() uint
-	MXErrorDomain() string
-	BucketEnd() foundation.Measurement
-	SetBucketEnd(value foundation.IMeasurement)
-	BucketStart() foundation.Measurement
-	SetBucketStart(value foundation.IMeasurement)
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	BucketEnd() objc.IObject /* cross-framework: Measurement */
+	SetBucketEnd(value objc.IObject /* cross-framework: Measurement */)
+	BucketStart() objc.IObject /* cross-framework: Measurement */
+	SetBucketStart(value objc.IObject /* cross-framework: Measurement */)
+	// methods:
 }
 
 // An object representing a histogram of data values of the same type of unit.
 //
 // A measures the number of times a data point for a variable falls into a specific range of possible values within a set of data. Usually, histograms are depicted as bar charts, in which each bar represents a range of values, and the height of each bar represents the number of times the value of the variable falls within a particular range. In this class, each bar is represented by a . A bucket holds the results for a series of measured values, such as all the events occurring between 3 and 5 seconds. MetricKit uses fixed-width buckets that are device-independent with intervals that are based on the type of metric. Use the and properties to find the start and end of an interval. The returned results contain only buckets with at least one item so may not return all intervals. For example, if the fixed width for the time to resume the app is 10 ms, then the sequence of buckets is: 0…9 ms, 10…19 ms, 20…29 ms, etc. If there’s data only in the 0…9 ms and 20…29 ms buckets, then the report skips the 10…19 ms bucket.
+
+
+// An object representing a histogram of data values of the same type of unit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram
 type MXHistogram struct {
 	objectivec.Object
@@ -88,63 +94,71 @@ func NewMXHistogram() MXHistogram {
 }
 
 
+
 // An enumerator for the buckets containing the data in the histogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/bucketEnumerator
 func (m_ MXHistogram) BucketEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnumerator"))
 	return rv
 }
 
+
 // The total number of buckets in the histogram.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogram/totalBucketCount
 func (m_ MXHistogram) TotalBucketCount() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("totalBucketCount"))
 	return rv
 }
 
+
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXHistogram) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXHistogram) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 
+
 // The value of the ending measurement for the bucket.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
-func (m_ MXHistogram) BucketEnd() foundation.Measurement {
+func (m_ MXHistogram) BucketEnd() objc.IObject /* cross-framework: Measurement */ {
 	rv := objc.Send[foundation.Measurement](m_.ID, objc.Sel("bucketEnd"))
 	return rv
 }
 
 
-// SetBucketEnd sets the value of the bucketEnd property.
 // The value of the ending measurement for the bucket.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
-func (m_ MXHistogram) SetBucketEnd(value foundation.IMeasurement) {
+func (m_ MXHistogram) SetBucketEnd(value objc.IObject /* cross-framework: Measurement */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnd:"), value)
 }
 
+
 // The value of the starting measurement for the bucket.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) BucketStart() foundation.Measurement {
+func (m_ MXHistogram) BucketStart() objc.IObject /* cross-framework: Measurement */ {
 	rv := objc.Send[foundation.Measurement](m_.ID, objc.Sel("bucketStart"))
 	return rv
 }
 
 
-// SetBucketStart sets the value of the bucketStart property.
 // The value of the starting measurement for the bucket.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) SetBucketStart(value foundation.IMeasurement) {
+func (m_ MXHistogram) SetBucketStart(value objc.IObject /* cross-framework: Measurement */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketStart:"), value)
 }
 

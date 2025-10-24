@@ -29,10 +29,16 @@ type _PDFAnnotationPopupClass struct {
 // An interface definition for the [PDFAnnotationPopup] class.
 type IPDFAnnotationPopup interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object provides user interactivity on a PDF page in the form of a pop-up menu.
+
+
+// A object provides user interactivity on a PDF page in the form of a pop-up menu.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationPopup
 type PDFAnnotationPopup struct {
 	PDFAnnotation

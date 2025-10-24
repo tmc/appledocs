@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeviceDiscoveryExtension without requiring cgo.
-
-// Stream media to a third-party device that a user selects in a system menu.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension
+// See: https://developer.apple.com/documentation/DeviceDiscoveryExtension
 package devicediscoveryextension
 
 import (

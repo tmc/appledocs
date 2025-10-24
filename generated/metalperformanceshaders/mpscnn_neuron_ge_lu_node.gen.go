@@ -29,9 +29,13 @@ type _CNNNeuronGeLUNodeClass struct {
 // An interface definition for the [CNNNeuronGeLUNode] class.
 type ICNNNeuronGeLUNode interface {
 	ICNNNeuronNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode
 type CNNNeuronGeLUNode struct {
 	CNNNeuronNode
@@ -76,7 +80,8 @@ func NewCNNNeuronGeLUNode() CNNNeuronGeLUNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/init(source:)
 func NewCNNNeuronGeLUNodeWithSource(sourceNode IMPSNNImageNode) CNNNeuronGeLUNode {
 	instance := getCNNNeuronGeLUNodeClass().Alloc()
@@ -86,7 +91,8 @@ func NewCNNNeuronGeLUNodeWithSource(sourceNode IMPSNNImageNode) CNNNeuronGeLUNod
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/nodeWithSource:
 func (cc _CNNNeuronGeLUNodeClass) NodeWithSource(sourceNode IMPSNNImageNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSource:"), sourceNode)

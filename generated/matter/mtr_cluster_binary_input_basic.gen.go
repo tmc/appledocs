@@ -29,9 +29,13 @@ type _MTRClusterBinaryInputBasicClass struct {
 // An interface definition for the [MTRClusterBinaryInputBasic] class.
 type IMTRClusterBinaryInputBasic interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBinaryInputBasic
 type MTRClusterBinaryInputBasic struct {
 	MTRGenericCluster

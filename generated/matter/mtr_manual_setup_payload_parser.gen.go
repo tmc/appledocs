@@ -30,9 +30,13 @@ type _MTRManualSetupPayloadParserClass struct {
 // An interface definition for the [MTRManualSetupPayloadParser] class.
 type IMTRManualSetupPayloadParser interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRManualSetupPayloadParser
 type MTRManualSetupPayloadParser struct {
 	objectivec.Object

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +31,7 @@ type _LogItemClass struct {
 type ILogItem interface {
 	objectivec.IObject
 	// properties:
-	Timestamp() foundation.TimeInterval /* not a class type */
+	Timestamp() float64
 	// methods:
 }
 
@@ -93,8 +92,8 @@ func NewLogItem() LogItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem/timestamp
-func (l_ LogItem) Timestamp() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timestamp"))
+func (l_ LogItem) Timestamp() float64 {
+	rv := objc.Send[TimeInterval](l_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for IOBluetooth. DO NOT EDIT.
 
 package iobluetooth
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // BluetoothAFHMode type alias
@@ -736,13 +739,15 @@ type BluetoothDeviceSearchTypes uintptr
 // BluetoothL2CAPChannelIncomingDataListener type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelIncomingDataListener
-// IOBluetoothL2CAPChannelIncomingDataListener has base type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, unsigned short, void *)
-type BluetoothL2CAPChannelIncomingDataListener uintptr
+// IOBluetoothL2CAPChannelIncomingDataListener is a callback function
+// C type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, unsigned short, void *)
+type BluetoothL2CAPChannelIncomingDataListener = func(unsafe.Pointer, unsafe.Pointer, uint16, unsafe.Pointer)
 // BluetoothL2CAPChannelIncomingEventListener type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelIncomingEventListener
-// IOBluetoothL2CAPChannelIncomingEventListener has base type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, struct IOBluetoothL2CAPChannelEvent *)
-type BluetoothL2CAPChannelIncomingEventListener uintptr
+// IOBluetoothL2CAPChannelIncomingEventListener is a callback function
+// C type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, struct IOBluetoothL2CAPChannelEvent *)
+type BluetoothL2CAPChannelIncomingEventListener = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // BluetoothL2CAPChannelRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef
@@ -751,8 +756,9 @@ type BluetoothL2CAPChannelRef uintptr
 // BluetoothOBEXSessionOpenConnectionCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionOpenConnectionCallback
-// IOBluetoothOBEXSessionOpenConnectionCallback has base type: void (*)(struct OpaqueOBEXSessionRef *, int, void *)
-type BluetoothOBEXSessionOpenConnectionCallback uintptr
+// IOBluetoothOBEXSessionOpenConnectionCallback is a callback function
+// C type: void (*)(struct OpaqueOBEXSessionRef *, int, void *)
+type BluetoothOBEXSessionOpenConnectionCallback = func(unsafe.Pointer, int32, unsafe.Pointer)
 // BluetoothObjectID type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectID
@@ -786,8 +792,9 @@ type BluetoothSDPUUIDRef uintptr
 // BluetoothUserNotificationCallback - Callback function definition for user notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationCallback
-// IOBluetoothUserNotificationCallback has base type: void (*)(void *, struct OpaqueIOBluetoothObjectRef *, struct OpaqueIOBluetoothObjectRef *)
-type BluetoothUserNotificationCallback uintptr
+// IOBluetoothUserNotificationCallback is a callback function
+// C type: void (*)(void *, struct OpaqueIOBluetoothObjectRef *, struct OpaqueIOBluetoothObjectRef *)
+type BluetoothUserNotificationCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // BluetoothUserNotificationRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationRef
@@ -826,8 +833,9 @@ type OBEXOpCode uintptr
 // OBEXSessionEventCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionEventCallback
-// OBEXSessionEventCallback has base type: void (*)(const struct OBEXSessionEvent *)
-type OBEXSessionEventCallback uintptr
+// OBEXSessionEventCallback is a callback function
+// C type: void (*)(const struct OBEXSessionEvent *)
+type OBEXSessionEventCallback = func(unsafe.Pointer)
 // OBEXSessionEventType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionEventType

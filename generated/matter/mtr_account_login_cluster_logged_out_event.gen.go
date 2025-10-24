@@ -31,11 +31,15 @@ type _MTRAccountLoginClusterLoggedOutEventClass struct {
 // An interface definition for the [MTRAccountLoginClusterLoggedOutEvent] class.
 type IMTRAccountLoginClusterLoggedOutEvent interface {
 	objectivec.IObject
-	Node() foundation.Number
-	SetNode(value foundation.INumber)
+	// properties:
+	Node() objc.IObject /* cross-framework: NSNumber */
+	SetNode(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent
 type MTRAccountLoginClusterLoggedOutEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRAccountLoginClusterLoggedOutEvent() MTRAccountLoginClusterLoggedOutEv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent/node
-func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("node"))
+func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("node"))
 	return rv
 }
 
 
-// SetNode sets the value of the node property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent/node
-func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value foundation.INumber) {
+func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 

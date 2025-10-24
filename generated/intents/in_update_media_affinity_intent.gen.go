@@ -32,10 +32,10 @@ type IINUpdateMediaAffinityIntent interface {
 	// properties:
 	AffinityType() unsafe.Pointer
 	SetAffinityType(value unsafe.Pointer)
-	MediaItems() INMediaItem /* already interface */
-	SetMediaItems(value INMediaItem /* already interface */)
-	MediaSearch() INMediaSearch /* already interface */
-	SetMediaSearch(value INMediaSearch /* already interface */)
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 	// methods:
 }
 
@@ -117,7 +117,7 @@ func (i_ INUpdateMediaAffinityIntent) SetAffinityType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediaitems
-func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem /* already interface */ {
+func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediaitems
-func (i_ INUpdateMediaAffinityIntent) SetMediaItems(value INMediaItem /* already interface */) {
+func (i_ INUpdateMediaAffinityIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
@@ -136,7 +136,7 @@ func (i_ INUpdateMediaAffinityIntent) SetMediaItems(value INMediaItem /* already
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
-func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch /* already interface */ {
+func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch /* already int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
-func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value INMediaSearch /* already interface */) {
+func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 

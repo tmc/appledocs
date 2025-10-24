@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImmersiveMediaSupport without requiring cgo.
-
-// Read and write essential Apple Immersive Video metadata.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImmersiveMediaSupport
+// See: https://developer.apple.com/documentation/ImmersiveMediaSupport
 package immersivemediasupport
 
 import (

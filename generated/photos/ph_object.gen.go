@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,21 @@ type _PHObjectClass struct {
 // An interface definition for the [PHObject] class.
 type IPHObject interface {
 	objectivec.IObject
-	LocalIdentifier() string
+	// properties:
+	LocalIdentifier() objc.IObject /* cross-framework: NSString */
 	Hash() int
 	SetHash(value int)
+	// methods:
 }
 
 // The abstract superclass for Photos model objects (assets and collections).
 //
 // You do not create or use instances of this class directly. Instead, work with instances of its concrete subclasses— , , , and . Because the class implements the and methods in terms of its property, you can use techniques that depend on these methods to keep track of asset and collection objects.
+
+
+// The abstract superclass for Photos model objects (assets and collections).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject
 type PHObject struct {
 	objectivec.Object
@@ -83,16 +90,20 @@ func NewPHObject() PHObject {
 }
 
 
+
 // A unique string that persistently identifies the object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHObject/localIdentifier
-func (p_ PHObject) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObject) LocalIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
+
 // Returns an integer that can be used as a table address in a hash table structure.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (p_ PHObject) Hash() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("hash"))
@@ -100,10 +111,9 @@ func (p_ PHObject) Hash() int {
 }
 
 
-// SetHash sets the value of the hash property.
 // Returns an integer that can be used as a table address in a hash table structure.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (p_ PHObject) SetHash(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)

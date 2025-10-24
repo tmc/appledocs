@@ -31,8 +31,8 @@ type _ValueClass struct {
 type IValue interface {
 	objectivec.IObject
 	// properties:
-	Hash() int /* primitive/slice/pointer. */
-	SetHash(value int /* primitive/slice/pointer. */)
+	Hash() int
+	SetHash(value int)
 	CaTransform3DValue() Transform3D /* not a class type */
 	SetCaTransform3DValue(value Transform3D /* not a class type */)
 	CgAffineTransformValue() IAffineTransform
@@ -47,8 +47,8 @@ type IValue interface {
 	SetCgVectorValue(value Vector /* not a class type */)
 	DirectionalEdgeInsetsValue() DirectionalEdgeInsets /* not a class type */
 	SetDirectionalEdgeInsetsValue(value DirectionalEdgeInsets /* not a class type */)
-	EdgeInsetsValue() NSEdgeInsets /* not a class type */
-	SetEdgeInsetsValue(value NSEdgeInsets /* not a class type */)
+	EdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */
+	SetEdgeInsetsValue(value objc.IObject /* cross-framework: EdgeInsets */)
 	GcPoint2Value() unsafe.Pointer
 	SetGcPoint2Value(value unsafe.Pointer)
 	MkCoordinateSpanValue() unsafe.Pointer
@@ -63,8 +63,8 @@ type IValue interface {
 	SetPointValue(value objc.IObject /* cross-framework: Point */)
 	PointerValue() unsafe.Pointer
 	SetPointerValue(value unsafe.Pointer)
-	RangeValue() NSRange /* not a class type */
-	SetRangeValue(value NSRange /* not a class type */)
+	RangeValue() objc.IObject /* cross-framework: Range */
+	SetRangeValue(value objc.IObject /* cross-framework: Range */)
 	RectValue() objc.IObject /* cross-framework: Rect */
 	SetRectValue(value objc.IObject /* cross-framework: Rect */)
 	ScnMatrix4Value() NMatrix4 /* not a class type */
@@ -83,8 +83,8 @@ type IValue interface {
 	SetTimeValue(value Time /* not a class type */)
 	UiEdgeInsetsValue() UIEdgeInsets /* not a class type */
 	SetUiEdgeInsetsValue(value UIEdgeInsets /* not a class type */)
-	UiOffsetValue() Offset /* not a class type */
-	SetUiOffsetValue(value Offset /* not a class type */)
+	UiOffsetValue() objectivec.IObject
+	SetUiOffsetValue(value objectivec.IObject)
 	VideoDimensionsValue() VideoDimensions /* not a class type */
 	SetVideoDimensionsValue(value VideoDimensions /* not a class type */)
 	// methods:
@@ -147,7 +147,7 @@ func NewValue() Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) Hash() int /* primitive/slice/pointer. */ {
+func (v_ Value) Hash() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("hash"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (v_ Value) Hash() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) SetHash(value int /* primitive/slice/pointer. */) {
+func (v_ Value) SetHash(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHash:"), value)
 }
 
@@ -293,7 +293,7 @@ func (v_ Value) SetDirectionalEdgeInsetsValue(value DirectionalEdgeInsets /* not
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/edgeinsetsvalue
-func (v_ Value) EdgeInsetsValue() NSEdgeInsets /* not a class type */ {
+func (v_ Value) EdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("edgeInsetsValue"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (v_ Value) EdgeInsetsValue() NSEdgeInsets /* not a class type */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/edgeinsetsvalue
-func (v_ Value) SetEdgeInsetsValue(value NSEdgeInsets /* not a class type */) {
+func (v_ Value) SetEdgeInsetsValue(value objc.IObject /* cross-framework: EdgeInsets */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEdgeInsetsValue:"), value)
 }
 
@@ -439,7 +439,7 @@ func (v_ Value) SetPointerValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rangevalue
-func (v_ Value) RangeValue() NSRange /* not a class type */ {
+func (v_ Value) RangeValue() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[Range](v_.ID, objc.Sel("rangeValue"))
 	return rv
 }
@@ -449,7 +449,7 @@ func (v_ Value) RangeValue() NSRange /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rangevalue
-func (v_ Value) SetRangeValue(value NSRange /* not a class type */) {
+func (v_ Value) SetRangeValue(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRangeValue:"), value)
 }
 
@@ -629,8 +629,8 @@ func (v_ Value) SetUiEdgeInsetsValue(value UIEdgeInsets /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uioffsetvalue
-func (v_ Value) UiOffsetValue() Offset /* not a class type */ {
-	rv := objc.Send[Offset](v_.ID, objc.Sel("uiOffsetValue"))
+func (v_ Value) UiOffsetValue() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("uiOffsetValue"))
 	return rv
 }
 
@@ -639,7 +639,7 @@ func (v_ Value) UiOffsetValue() Offset /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uioffsetvalue
-func (v_ Value) SetUiOffsetValue(value Offset /* not a class type */) {
+func (v_ Value) SetUiOffsetValue(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUiOffsetValue:"), value)
 }
 

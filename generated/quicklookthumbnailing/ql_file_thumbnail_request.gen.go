@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,17 +32,23 @@ type _FileThumbnailRequestClass struct {
 // An interface definition for the [FileThumbnailRequest] class.
 type IFileThumbnailRequest interface {
 	objectivec.IObject
-	MaximumSize() coregraphics.CGSize
-	FileURL() foundation.URL
-	SetFileURL(value foundation.IURL)
-	MinimumSize() coregraphics.CGSize
-	SetMinimumSize(value coregraphics.CGSize)
+	// properties:
+	MaximumSize() objc.IObject /* cross-framework: Size */
+	FileURL() objc.IObject /* cross-framework: URL */
+	SetFileURL(value objc.IObject /* cross-framework: URL */)
+	MinimumSize() objc.IObject /* cross-framework: Size */
+	SetMinimumSize(value objc.IObject /* cross-framework: Size */)
 	Scale() float64
 	SetScale(value float64)
+	// methods:
 }
 
 // A request to generate a thumbnail for a custom file type.
+
+
+// A request to generate a thumbnail for a custom file type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLFileThumbnailRequest
 type FileThumbnailRequest struct {
 	objectivec.Object
@@ -87,52 +93,58 @@ func NewFileThumbnailRequest() FileThumbnailRequest {
 }
 
 
+
 // The maximum accepted size of a thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLFileThumbnailRequest/maximumSize
-func (f_ FileThumbnailRequest) MaximumSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](f_.ID, objc.Sel("maximumSize"))
+func (f_ FileThumbnailRequest) MaximumSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](f_.ID, objc.Sel("maximumSize"))
 	return rv
 }
 
+
 // The URL of the image file to use for the thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
-func (f_ FileThumbnailRequest) FileURL() foundation.URL {
+func (f_ FileThumbnailRequest) FileURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
 	return rv
 }
 
 
-// SetFileURL sets the value of the fileURL property.
 // The URL of the image file to use for the thumbnail.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
-func (f_ FileThumbnailRequest) SetFileURL(value foundation.IURL) {
+func (f_ FileThumbnailRequest) SetFileURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
 }
 
+
 // The minimum accepted size of a thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/minimumsize
-func (f_ FileThumbnailRequest) MinimumSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](f_.ID, objc.Sel("minimumSize"))
+func (f_ FileThumbnailRequest) MinimumSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](f_.ID, objc.Sel("minimumSize"))
 	return rv
 }
 
 
-// SetMinimumSize sets the value of the minimumSize property.
 // The minimum accepted size of a thumbnail.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/minimumsize
-func (f_ FileThumbnailRequest) SetMinimumSize(value coregraphics.CGSize) {
+func (f_ FileThumbnailRequest) SetMinimumSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMinimumSize:"), value)
 }
 
+
 // The scale of the requested thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/scale
 func (f_ FileThumbnailRequest) Scale() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("scale"))
@@ -140,10 +152,9 @@ func (f_ FileThumbnailRequest) Scale() float64 {
 }
 
 
-// SetScale sets the value of the scale property.
 // The scale of the requested thumbnail.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/scale
 func (f_ FileThumbnailRequest) SetScale(value float64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setScale:"), value)

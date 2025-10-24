@@ -34,8 +34,8 @@ type IMenuItemBadge interface {
 	// properties:
 	Badge() IMenuItemBadge
 	SetBadge(value IMenuItemBadge)
-	ItemCount() int /* primitive/slice/pointer. */
-	SetItemCount(value int /* primitive/slice/pointer. */)
+	ItemCount() int
+	SetItemCount(value int)
 	StringValue() objc.IObject /* cross-framework: NSString */
 	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	Type() unsafe.Pointer
@@ -115,7 +115,7 @@ func (m_ MenuItemBadge) SetBadge(value IMenuItemBadge) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
-func (m_ MenuItemBadge) ItemCount() int /* primitive/slice/pointer. */ {
+func (m_ MenuItemBadge) ItemCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (m_ MenuItemBadge) ItemCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
-func (m_ MenuItemBadge) SetItemCount(value int /* primitive/slice/pointer. */) {
+func (m_ MenuItemBadge) SetItemCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemCount:"), value)
 }
 

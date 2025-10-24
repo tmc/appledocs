@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,15 +32,21 @@ type _ContextualEmbeddingResultClass struct {
 // An interface definition for the [ContextualEmbeddingResult] class.
 type IContextualEmbeddingResult interface {
 	objectivec.IObject
-	EnumerateTokenVectorsInRangeUsingBlock(range_ foundation.IRange, block unsafe.Pointer)
-	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []foundation.Number
-	Language() Language
+	// properties:
+	Language() objc.IObject /* cross-framework: Language */
 	SequenceLength() uint
-	String() string
+	String() objc.IObject /* cross-framework: NSString */
+	// methods:
+	EnumerateTokenVectorsInRangeUsingBlock(range_ objc.IObject /* cross-framework: Range */, block bool)
+	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange RangePointer /* not a class type */) []objc.IObject /* cross-framework: Number */
 }
 
 // An object that represents the embedding vector result from applying a contextual embedding to a string.
+
+
+// An object that represents the embedding vector result from applying a contextual embedding to a string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult
 type ContextualEmbeddingResult struct {
 	objectivec.Object
@@ -84,42 +91,52 @@ func NewContextualEmbeddingResult() ContextualEmbeddingResult {
 }
 
 
+
 // Iterates over the embedding vectors for the range you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/enumerateTokenVectorsInRange:usingBlock:
-func (c_ ContextualEmbeddingResult) EnumerateTokenVectorsInRangeUsingBlock(range_ foundation.IRange, block unsafe.Pointer) {
+func (c_ ContextualEmbeddingResult) EnumerateTokenVectorsInRangeUsingBlock(range_ objc.IObject /* cross-framework: Range */, block bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateTokenVectorsInRange:usingBlock:"), range_, block)
 }
 
+
 // Gets a token vector at the index you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/tokenVectorAtIndex:tokenRange:
-func (c_ ContextualEmbeddingResult) TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []foundation.Number {
+func (c_ ContextualEmbeddingResult) TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange RangePointer /* not a class type */) []objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("tokenVectorAtIndex:tokenRange:"), characterIndex, tokenRange)
 	return rv
 }
 
+
 // The resulting language.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/language
-func (c_ ContextualEmbeddingResult) Language() Language {
+func (c_ ContextualEmbeddingResult) Language() objc.IObject /* cross-framework: Language */ {
 	rv := objc.Send[Language](c_.ID, objc.Sel("language"))
 	return rv
 }
 
+
 // The number of embedding vectors the request generates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/sequenceLength
 func (c_ ContextualEmbeddingResult) SequenceLength() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("sequenceLength"))
 	return rv
 }
 
+
 // The string value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/string
-func (c_ ContextualEmbeddingResult) String() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("string"))
+func (c_ ContextualEmbeddingResult) String() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("string"))
 	return rv
 }
 

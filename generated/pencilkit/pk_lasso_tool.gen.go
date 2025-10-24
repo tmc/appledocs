@@ -29,12 +29,18 @@ type _LassoToolClass struct {
 // An interface definition for the [LassoTool] class.
 type ILassoTool interface {
 	ITool
+	// properties:
+	// methods:
 }
 
 // A tool for selecting stroked lines and shapes in a canvas view.
 //
 // A object supports the selection of content on a . When active, the canvas uses incoming touch events to determine what content to add to the selection. Create a lasso tool programmatically or display a object from which the user selects the tool. Assign the resulting object to the property of your object. The canvas uses any subsequent touch sequences to select content on the canvas.
+
+
+// A tool for selecting stroked lines and shapes in a canvas view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKLassoToolReference
 type LassoTool struct {
 	Tool

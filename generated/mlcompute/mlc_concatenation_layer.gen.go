@@ -29,12 +29,18 @@ type _CConcatenationLayerClass struct {
 // An interface definition for the [CConcatenationLayer] class.
 type ICConcatenationLayer interface {
 	ICLayer
+	// properties:
 	Dimension() int
 	SetDimension(value int)
+	// methods:
 }
 
 // A layer that combines tensors into a single tensor.
+
+
+// A layer that combines tensors into a single tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConcatenationLayer
 type CConcatenationLayer struct {
 	CLayer
@@ -81,8 +87,10 @@ func NewCConcatenationLayer() CConcatenationLayer {
 }
 
 
+
 // The dimension, or axis, along which you concatenate tensors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconcatenationlayer/dimension
 func (c_ CConcatenationLayer) Dimension() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
@@ -90,10 +98,9 @@ func (c_ CConcatenationLayer) Dimension() int {
 }
 
 
-// SetDimension sets the value of the dimension property.
 // The dimension, or axis, along which you concatenate tensors.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconcatenationlayer/dimension
 func (c_ CConcatenationLayer) SetDimension(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)

@@ -30,30 +30,36 @@ type _GraphPooling4DOpDescriptorClass struct {
 // An interface definition for the [GraphPooling4DOpDescriptor] class.
 type IGraphPooling4DOpDescriptor interface {
 	IGraphObject
+	// properties:
 	CeilMode() bool
 	SetCeilMode(value bool)
-	PaddingStyle() GraphPaddingStyle
-	SetPaddingStyle(value GraphPaddingStyle)
-	DilationRates() foundation.Number
-	SetDilationRates(value foundation.INumber)
+	DilationRates() objc.IObject /* cross-framework: NSNumber */
+	SetDilationRates(value objc.IObject /* cross-framework: NSNumber */)
 	IncludeZeroPadToAverage() bool
 	SetIncludeZeroPadToAverage(value bool)
-	KernelSizes() foundation.Number
-	SetKernelSizes(value foundation.INumber)
-	PaddingValues() foundation.Number
-	SetPaddingValues(value foundation.INumber)
-	ReturnIndicesDataType() unsafe.Pointer
-	SetReturnIndicesDataType(value unsafe.Pointer)
+	KernelSizes() objc.IObject /* cross-framework: NSNumber */
+	SetKernelSizes(value objc.IObject /* cross-framework: NSNumber */)
+	PaddingStyle() GraphPaddingStyle
+	SetPaddingStyle(value GraphPaddingStyle)
+	PaddingValues() objc.IObject /* cross-framework: NSNumber */
+	SetPaddingValues(value objc.IObject /* cross-framework: NSNumber */)
+	ReturnIndicesDataType() DataType /* not a class type */
+	SetReturnIndicesDataType(value DataType /* not a class type */)
 	ReturnIndicesMode() GraphPoolingReturnIndicesMode
 	SetReturnIndicesMode(value GraphPoolingReturnIndicesMode)
-	Strides() foundation.Number
-	SetStrides(value foundation.INumber)
+	Strides() objc.IObject /* cross-framework: NSNumber */
+	SetStrides(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The class that defines the parameters for a 4D pooling operation.
 //
 // Use this descriptor with the following methods:
+
+
+// The class that defines the parameters for a 4D pooling operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor
 type GraphPooling4DOpDescriptor struct {
 	GraphObject
@@ -100,62 +106,48 @@ func NewGraphPooling4DOpDescriptor() GraphPooling4DOpDescriptor {
 }
 
 
-// Affects how MPSGraph computes the output size: if set to then output size is computed by rounding up instead of down when dividing input size by stride.
+
+// Affects how MPSGraph computes the output size: if set to
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/ceilMode
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/ceilmode
 func (g_ GraphPooling4DOpDescriptor) CeilMode() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("ceilMode"))
 	return rv
 }
 
 
-// SetCeilMode sets the value of the ceilMode property.
-// Affects how MPSGraph computes the output size: if set to then output size is computed by rounding up instead of down when dividing input size by stride.
-
+// Affects how MPSGraph computes the output size: if set to
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/ceilMode
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/ceilmode
 func (g_ GraphPooling4DOpDescriptor) SetCeilMode(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCeilMode:"), value)
 }
 
-// Defines what kind of padding graph applies to the operation.
+
+// Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
-func (g_ GraphPooling4DOpDescriptor) PaddingStyle() GraphPaddingStyle {
-	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/dilationrates
+func (g_ GraphPooling4DOpDescriptor) DilationRates() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("dilationRates"))
 	return rv
 }
 
 
-// SetPaddingStyle sets the value of the paddingStyle property.
-// Defines what kind of padding graph applies to the operation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
-func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
-}
-
 // Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/dilationrates
-func (g_ GraphPooling4DOpDescriptor) DilationRates() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("dilationRates"))
-	return rv
-}
-
-
-// SetDilationRates sets the value of the dilationRates property.
-// Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/dilationrates
-func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value foundation.INumber) {
+func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }
 
+
 // Defines a mode for average pooling, where samples outside the input tensor count as
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/includezeropadtoaverage
 func (g_ GraphPooling4DOpDescriptor) IncludeZeroPadToAverage() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("includeZeroPadToAverage"))
@@ -163,71 +155,94 @@ func (g_ GraphPooling4DOpDescriptor) IncludeZeroPadToAverage() bool {
 }
 
 
-// SetIncludeZeroPadToAverage sets the value of the includeZeroPadToAverage property.
 // Defines a mode for average pooling, where samples outside the input tensor count as
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/includezeropadtoaverage
 func (g_ GraphPooling4DOpDescriptor) SetIncludeZeroPadToAverage(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIncludeZeroPadToAverage:"), value)
 }
 
+
 // Defines the pooling window size.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/kernelsizes
-func (g_ GraphPooling4DOpDescriptor) KernelSizes() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("kernelSizes"))
+func (g_ GraphPooling4DOpDescriptor) KernelSizes() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("kernelSizes"))
 	return rv
 }
 
 
-// SetKernelSizes sets the value of the kernelSizes property.
 // Defines the pooling window size.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/kernelsizes
-func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value foundation.INumber) {
+func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelSizes:"), value)
 }
 
-// Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
+
+// Defines what kind of padding graph applies to the operation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingvalues
-func (g_ GraphPooling4DOpDescriptor) PaddingValues() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("paddingValues"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingstyle
+func (g_ GraphPooling4DOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
 
-// SetPaddingValues sets the value of the paddingValues property.
-// Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
-
+// Defines what kind of padding graph applies to the operation.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingstyle
+func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
+}
+
+
+// Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingvalues
-func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value foundation.INumber) {
+func (g_ GraphPooling4DOpDescriptor) PaddingValues() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("paddingValues"))
+	return rv
+}
+
+
+// Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingvalues
+func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingValues:"), value)
 }
 
+
 // Defines the data type for returned indices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesdatatype
-func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesDataType"))
+func (g_ GraphPooling4DOpDescriptor) ReturnIndicesDataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("returnIndicesDataType"))
 	return rv
 }
 
 
-// SetReturnIndicesDataType sets the value of the returnIndicesDataType property.
 // Defines the data type for returned indices.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesdatatype
-func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value unsafe.Pointer) {
+func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesDataType:"), value)
 }
 
+
 // Defines the mode for returned indices of maximum values within each pooling window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesmode
 func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() GraphPoolingReturnIndicesMode {
 	rv := objc.Send[GraphPoolingReturnIndicesMode](g_.ID, objc.Sel("returnIndicesMode"))
@@ -235,30 +250,30 @@ func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() GraphPoolingReturnIndic
 }
 
 
-// SetReturnIndicesMode sets the value of the returnIndicesMode property.
 // Defines the mode for returned indices of maximum values within each pooling window.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesmode
 func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesMode(value GraphPoolingReturnIndicesMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesMode:"), value)
 }
 
+
 // Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/strides
-func (g_ GraphPooling4DOpDescriptor) Strides() foundation.Number {
-	rv := objc.Send[foundation.Number](g_.ID, objc.Sel("strides"))
+func (g_ GraphPooling4DOpDescriptor) Strides() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("strides"))
 	return rv
 }
 
 
-// SetStrides sets the value of the strides property.
 // Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/strides
-func (g_ GraphPooling4DOpDescriptor) SetStrides(value foundation.INumber) {
+func (g_ GraphPooling4DOpDescriptor) SetStrides(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }
 

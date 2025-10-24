@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GroupTouchBarItem] class.
@@ -29,20 +30,22 @@ type _GroupTouchBarItemClass struct {
 // An interface definition for the [GroupTouchBarItem] class.
 type IGroupTouchBarItem interface {
 	ITouchBarItem
-	GroupTouchBar() NSTouchBar
+	// properties:
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
+	EffectiveCompressionOptions() IUserInterfaceCompressionOptions
+	SetEffectiveCompressionOptions(value IUserInterfaceCompressionOptions)
+	GroupTouchBar() ITouchBar
 	SetGroupTouchBar(value ITouchBar)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
-	EffectiveCompressionOptions() NSUserInterfaceCompressionOptions
-	SetEffectiveCompressionOptions(value NSUserInterfaceCompressionOptions)
-	GroupUserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetGroupUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
+	GroupUserInterfaceLayoutDirection() UserInterfaceLayoutDirection /* not a class type */
+	SetGroupUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection /* not a class type */)
 	PreferredItemWidth() float64
 	SetPreferredItemWidth(value float64)
 	PrefersEqualWidths() bool
 	SetPrefersEqualWidths(value bool)
-	PrioritizedCompressionOptions() NSUserInterfaceCompressionOptions
-	SetPrioritizedCompressionOptions(value NSUserInterfaceCompressionOptions)
+	PrioritizedCompressionOptions() IUserInterfaceCompressionOptions
+	SetPrioritizedCompressionOptions(value IUserInterfaceCompressionOptions)
+	// methods:
 }
 
 // A bar item that provides a bar to contain other items.
@@ -98,43 +101,50 @@ func NewGroupTouchBarItem() GroupTouchBarItem {
 
 
 
-// Initializes and returns a group item whose bar is constructed from the supplied items.
+// The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:)
-func NewGroupTouchBarItemGroupItemWithIdentifierItems(identifier ITouchBarItemIdentifier, items []TouchBarItem) GroupTouchBarItem {
-	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:"), identifier, items)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/customizationlabel
+func (g_ GroupTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
 
-// Initializes and returns a group item whose bar is constructed from the supplied items, and with the specified compression options.
+// The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:allowedCompressionOptions:)
-func NewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions(identifier ITouchBarItemIdentifier, items []TouchBarItem, allowedCompressionOptions NSUserInterfaceCompressionOptions) GroupTouchBarItem {
-	rv := objc.Send[GroupTouchBarItem](objc.ID(getGroupTouchBarItemClass().class), objc.Sel("groupItemWithIdentifier:items:allowedCompressionOptions:"), identifier, items, allowedCompressionOptions)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/customizationlabel
+func (g_ GroupTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCustomizationLabel:"), value)
+}
+
+
+// The compression options that are currently active on the group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/effectivecompressionoptions
+func (g_ GroupTouchBarItem) EffectiveCompressionOptions() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](g_.ID, objc.Sel("effectiveCompressionOptions"))
 	return rv
 }
 
 
-
-// Initializes and returns a group item whose bar is constructed from the supplied items.
+// The compression options that are currently active on the group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:)
-func (gc _GroupTouchBarItemClass) GroupItemWithIdentifierItems(identifier ITouchBarItemIdentifier, items []TouchBarItem) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("groupItemWithIdentifier:items:"), identifier, items)
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/effectivecompressionoptions
+func (g_ GroupTouchBarItem) SetEffectiveCompressionOptions(value IUserInterfaceCompressionOptions) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setEffectiveCompressionOptions:"), value)
 }
 
 
-// Initializes and returns a group item whose bar is constructed from the supplied items, and with the specified compression options.
+// A bar that holds this group’s items.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/init(identifier:items:allowedCompressionOptions:)
-func (gc _GroupTouchBarItemClass) GroupItemWithIdentifierItemsAllowedCompressionOptions(identifier ITouchBarItemIdentifier, items []TouchBarItem, allowedCompressionOptions NSUserInterfaceCompressionOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("groupItemWithIdentifier:items:allowedCompressionOptions:"), identifier, items, allowedCompressionOptions)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
+func (g_ GroupTouchBarItem) GroupTouchBar() ITouchBar {
+	rv := objc.Send[TouchBar](g_.ID, objc.Sel("groupTouchBar"))
 	return rv
 }
 
@@ -142,57 +152,9 @@ func (gc _GroupTouchBarItemClass) GroupItemWithIdentifierItemsAllowedCompression
 // A bar that holds this group’s items.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/groupTouchBar
-func (g_ GroupTouchBarItem) GroupTouchBar() NSTouchBar {
-	rv := objc.Send[NSTouchBar](g_.ID, objc.Sel("groupTouchBar"))
-	return rv
-}
-
-
-// A bar that holds this group’s items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGroupTouchBarItem/groupTouchBar
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
 func (g_ GroupTouchBarItem) SetGroupTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGroupTouchBar:"), value)
-}
-
-
-// The user-visible string identifying this item during bar customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/customizationlabel
-func (g_ GroupTouchBarItem) CustomizationLabel() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("customizationLabel"))
-	return rv
-}
-
-
-// The user-visible string identifying this item during bar customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/customizationlabel
-func (g_ GroupTouchBarItem) SetCustomizationLabel(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
-}
-
-
-// The compression options that are currently active on the group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/effectivecompressionoptions
-func (g_ GroupTouchBarItem) EffectiveCompressionOptions() NSUserInterfaceCompressionOptions {
-	rv := objc.Send[NSUserInterfaceCompressionOptions](g_.ID, objc.Sel("effectiveCompressionOptions"))
-	return rv
-}
-
-
-// The compression options that are currently active on the group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/effectivecompressionoptions
-func (g_ GroupTouchBarItem) SetEffectiveCompressionOptions(value NSUserInterfaceCompressionOptions) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setEffectiveCompressionOptions:"), value)
 }
 
 
@@ -200,7 +162,7 @@ func (g_ GroupTouchBarItem) SetEffectiveCompressionOptions(value NSUserInterface
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/groupuserinterfacelayoutdirection
-func (g_ GroupTouchBarItem) GroupUserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+func (g_ GroupTouchBarItem) GroupUserInterfaceLayoutDirection() UserInterfaceLayoutDirection /* not a class type */ {
 	rv := objc.Send[UserInterfaceLayoutDirection](g_.ID, objc.Sel("groupUserInterfaceLayoutDirection"))
 	return rv
 }
@@ -210,7 +172,7 @@ func (g_ GroupTouchBarItem) GroupUserInterfaceLayoutDirection() UserInterfaceLay
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/groupuserinterfacelayoutdirection
-func (g_ GroupTouchBarItem) SetGroupUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
+func (g_ GroupTouchBarItem) SetGroupUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGroupUserInterfaceLayoutDirection:"), value)
 }
 
@@ -257,8 +219,8 @@ func (g_ GroupTouchBarItem) SetPrefersEqualWidths(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/prioritizedcompressionoptions
-func (g_ GroupTouchBarItem) PrioritizedCompressionOptions() NSUserInterfaceCompressionOptions {
-	rv := objc.Send[NSUserInterfaceCompressionOptions](g_.ID, objc.Sel("prioritizedCompressionOptions"))
+func (g_ GroupTouchBarItem) PrioritizedCompressionOptions() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](g_.ID, objc.Sel("prioritizedCompressionOptions"))
 	return rv
 }
 
@@ -267,8 +229,9 @@ func (g_ GroupTouchBarItem) PrioritizedCompressionOptions() NSUserInterfaceCompr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/prioritizedcompressionoptions
-func (g_ GroupTouchBarItem) SetPrioritizedCompressionOptions(value NSUserInterfaceCompressionOptions) {
+func (g_ GroupTouchBarItem) SetPrioritizedCompressionOptions(value IUserInterfaceCompressionOptions) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPrioritizedCompressionOptions:"), value)
 }
+
 
 

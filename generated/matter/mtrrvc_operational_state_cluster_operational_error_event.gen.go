@@ -30,11 +30,15 @@ type _MTRRVCOperationalStateClusterOperationalErrorEventClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterOperationalErrorEvent] class.
 type IMTRRVCOperationalStateClusterOperationalErrorEvent interface {
 	objectivec.IObject
-	ErrorState() MTRRVCOperationalStateClusterErrorStateStruct
+	// properties:
+	ErrorState() IMTRRVCOperationalStateClusterErrorStateStruct
 	SetErrorState(value IMTRRVCOperationalStateClusterErrorStateStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterOperationalErrorEvent
 type MTRRVCOperationalStateClusterOperationalErrorEvent struct {
 	objectivec.Object
@@ -77,16 +81,16 @@ func NewMTRRVCOperationalStateClusterOperationalErrorEvent() MTRRVCOperationalSt
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalerrorevent/errorstate
-func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) ErrorState() MTRRVCOperationalStateClusterErrorStateStruct {
+func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) ErrorState() IMTRRVCOperationalStateClusterErrorStateStruct {
 	rv := objc.Send[MTRRVCOperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("errorState"))
 	return rv
 }
 
 
-// SetErrorState sets the value of the errorState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalerrorevent/errorstate
 func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) SetErrorState(value IMTRRVCOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorState:"), value)

@@ -31,11 +31,15 @@ type _MTRSwitchClusterLongPressEventClass struct {
 // An interface definition for the [MTRSwitchClusterLongPressEvent] class.
 type IMTRSwitchClusterLongPressEvent interface {
 	objectivec.IObject
-	NewPosition() foundation.Number
-	SetNewPosition(value foundation.INumber)
+	// properties:
+	NewPosition() objc.IObject /* cross-framework: NSNumber */
+	SetNewPosition(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSwitchClusterLongPressEvent
 type MTRSwitchClusterLongPressEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSwitchClusterLongPressEvent() MTRSwitchClusterLongPressEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongpressevent/newposition
-func (m_ MTRSwitchClusterLongPressEvent) NewPosition() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newPosition"))
+func (m_ MTRSwitchClusterLongPressEvent) NewPosition() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newPosition"))
 	return rv
 }
 
 
-// SetNewPosition sets the value of the newPosition property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongpressevent/newposition
-func (m_ MTRSwitchClusterLongPressEvent) SetNewPosition(value foundation.INumber) {
+func (m_ MTRSwitchClusterLongPressEvent) SetNewPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 

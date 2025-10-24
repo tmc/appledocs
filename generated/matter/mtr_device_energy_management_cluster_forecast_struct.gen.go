@@ -31,27 +31,31 @@ type _MTRDeviceEnergyManagementClusterForecastStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterForecastStruct] class.
 type IMTRDeviceEnergyManagementClusterForecastStruct interface {
 	objectivec.IObject
-	ActiveSlotNumber() foundation.Number
-	SetActiveSlotNumber(value foundation.INumber)
-	EarliestStartTime() foundation.Number
-	SetEarliestStartTime(value foundation.INumber)
-	EndTime() foundation.Number
-	SetEndTime(value foundation.INumber)
-	ForecastID() foundation.Number
-	SetForecastID(value foundation.INumber)
-	ForecastUpdateReason() foundation.Number
-	SetForecastUpdateReason(value foundation.INumber)
-	IsPausable() foundation.Number
-	SetIsPausable(value foundation.INumber)
-	LatestEndTime() foundation.Number
-	SetLatestEndTime(value foundation.INumber)
-	Slots() objc.ID
-	SetSlots(value objc.ID)
-	StartTime() foundation.Number
-	SetStartTime(value foundation.INumber)
+	// properties:
+	ActiveSlotNumber() objc.IObject /* cross-framework: NSNumber */
+	SetActiveSlotNumber(value objc.IObject /* cross-framework: NSNumber */)
+	EarliestStartTime() objc.IObject /* cross-framework: NSNumber */
+	SetEarliestStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	EndTime() objc.IObject /* cross-framework: NSNumber */
+	SetEndTime(value objc.IObject /* cross-framework: NSNumber */)
+	ForecastID() objc.IObject /* cross-framework: NSNumber */
+	SetForecastID(value objc.IObject /* cross-framework: NSNumber */)
+	ForecastUpdateReason() objc.IObject /* cross-framework: NSNumber */
+	SetForecastUpdateReason(value objc.IObject /* cross-framework: NSNumber */)
+	IsPausable() objc.IObject /* cross-framework: NSNumber */
+	SetIsPausable(value objc.IObject /* cross-framework: NSNumber */)
+	LatestEndTime() objc.IObject /* cross-framework: NSNumber */
+	SetLatestEndTime(value objc.IObject /* cross-framework: NSNumber */)
+	Slots() objc.IObject /* cross-framework: NSArray */
+	SetSlots(value objc.IObject /* cross-framework: NSArray */)
+	StartTime() objc.IObject /* cross-framework: NSNumber */
+	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct
 type MTRDeviceEnergyManagementClusterForecastStruct struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTRDeviceEnergyManagementClusterForecastStruct() MTRDeviceEnergyManageme
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/activeSlotNumber
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("activeSlotNumber"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ActiveSlotNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("activeSlotNumber"))
 	return rv
 }
 
 
-// SetActiveSlotNumber sets the value of the activeSlotNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/activeSlotNumber
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetActiveSlotNumber(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetActiveSlotNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveSlotNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/earliestStartTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("earliestStartTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EarliestStartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("earliestStartTime"))
 	return rv
 }
 
 
-// SetEarliestStartTime sets the value of the earliestStartTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/earliestStartTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEarliestStartTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEarliestStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEarliestStartTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/endTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) EndTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endTime"))
 	return rv
 }
 
 
-// SetEndTime sets the value of the endTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/endTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEndTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetEndTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastID
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastID"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("forecastID"))
 	return rv
 }
 
 
-// SetForecastID sets the value of the forecastID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastID
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastID(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastUpdateReason
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastUpdateReason"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) ForecastUpdateReason() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("forecastUpdateReason"))
 	return rv
 }
 
 
-// SetForecastUpdateReason sets the value of the forecastUpdateReason property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/forecastUpdateReason
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastUpdateReason(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetForecastUpdateReason(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastUpdateReason:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/isPausable
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("isPausable"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) IsPausable() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("isPausable"))
 	return rv
 }
 
 
-// SetIsPausable sets the value of the isPausable property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/isPausable
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetIsPausable(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetIsPausable(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPausable:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/latestEndTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("latestEndTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) LatestEndTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("latestEndTime"))
 	return rv
 }
 
 
-// SetLatestEndTime sets the value of the latestEndTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/latestEndTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetLatestEndTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetLatestEndTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestEndTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/slots
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) Slots() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("slots"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) Slots() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("slots"))
 	return rv
 }
 
 
-// SetSlots sets the value of the slots property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/slots
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetSlots(value objc.ID) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetSlots(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlots:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) StartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
 
-// SetStartTime sets the value of the startTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterForecastStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetStartTime(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterForecastStruct) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

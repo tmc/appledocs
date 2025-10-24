@@ -31,14 +31,12 @@ type _INStartWorkoutIntentClass struct {
 type IINStartWorkoutIntent interface {
 	IINIntent
 	// properties:
-	GoalValue() foundation.objc.IObject /* cross-framework: Number */
-	WorkoutGoalUnitType() unsafe.Pointer
-	IsOpenEnded() bool /* primitive/slice/pointer. */
-	SetIsOpenEnded(value bool /* primitive/slice/pointer. */)
+	IsOpenEnded() bool
+	SetIsOpenEnded(value bool)
 	WorkoutLocationType() unsafe.Pointer
 	SetWorkoutLocationType(value unsafe.Pointer)
-	WorkoutName() INSpeakableString /* already interface */
-	SetWorkoutName(value INSpeakableString /* already interface */)
+	WorkoutName() INSpeakableString
+	SetWorkoutName(value INSpeakableString)
 	// methods:
 }
 
@@ -97,31 +95,11 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 
 
 
-// The numerical goal of the workout.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/goalValue-1dzvb
-func (i_ INStartWorkoutIntent) GoalValue() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("goalValue"))
-	return rv
-}
-
-
-// The units associated with the workout goal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/workoutGoalUnitType
-func (i_ INStartWorkoutIntent) WorkoutGoalUnitType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutGoalUnitType"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the workout is open ended.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/isopenended-8hecn
-func (i_ INStartWorkoutIntent) IsOpenEnded() bool /* primitive/slice/pointer. */ {
+func (i_ INStartWorkoutIntent) IsOpenEnded() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isOpenEnded"))
 	return rv
 }
@@ -131,7 +109,7 @@ func (i_ INStartWorkoutIntent) IsOpenEnded() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/isopenended-8hecn
-func (i_ INStartWorkoutIntent) SetIsOpenEnded(value bool /* primitive/slice/pointer. */) {
+func (i_ INStartWorkoutIntent) SetIsOpenEnded(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpenEnded:"), value)
 }
 
@@ -159,7 +137,7 @@ func (i_ INStartWorkoutIntent) SetWorkoutLocationType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutname
-func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString /* already interface */ {
+func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
 	return rv
 }
@@ -169,9 +147,8 @@ func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutname
-func (i_ INStartWorkoutIntent) SetWorkoutName(value INSpeakableString /* already interface */) {
+func (i_ INStartWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
-
 
 

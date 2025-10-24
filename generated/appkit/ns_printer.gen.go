@@ -32,10 +32,10 @@ type _PrinterClass struct {
 type IPrinter interface {
 	objectivec.IObject
 	// properties:
-	DeviceDescription() objc.IObject /* cross-framework: DeviceDescriptionKey */
-	SetDeviceDescription(value objc.IObject /* cross-framework: DeviceDescriptionKey */)
-	LanguageLevel() int /* primitive/slice/pointer. */
-	SetLanguageLevel(value int /* primitive/slice/pointer. */)
+	DeviceDescription() DeviceDescriptionKey /* not a class type */
+	SetDeviceDescription(value DeviceDescriptionKey /* not a class type */)
+	LanguageLevel() int
+	SetLanguageLevel(value int)
 	Name() objc.IObject /* cross-framework: NSString */
 	SetName(value objc.IObject /* cross-framework: NSString */)
 	Type() unsafe.Pointer
@@ -100,7 +100,7 @@ func NewPrinter() Printer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/devicedescription
-func (p_ Printer) DeviceDescription() objc.IObject /* cross-framework: DeviceDescriptionKey */ {
+func (p_ Printer) DeviceDescription() DeviceDescriptionKey /* not a class type */ {
 	rv := objc.Send[DeviceDescriptionKey](p_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (p_ Printer) DeviceDescription() objc.IObject /* cross-framework: DeviceDes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/devicedescription
-func (p_ Printer) SetDeviceDescription(value objc.IObject /* cross-framework: DeviceDescriptionKey */) {
+func (p_ Printer) SetDeviceDescription(value DeviceDescriptionKey /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeviceDescription:"), value)
 }
 
@@ -119,7 +119,7 @@ func (p_ Printer) SetDeviceDescription(value objc.IObject /* cross-framework: De
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/languagelevel
-func (p_ Printer) LanguageLevel() int /* primitive/slice/pointer. */ {
+func (p_ Printer) LanguageLevel() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("languageLevel"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (p_ Printer) LanguageLevel() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/languagelevel
-func (p_ Printer) SetLanguageLevel(value int /* primitive/slice/pointer. */) {
+func (p_ Printer) SetLanguageLevel(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLanguageLevel:"), value)
 }
 

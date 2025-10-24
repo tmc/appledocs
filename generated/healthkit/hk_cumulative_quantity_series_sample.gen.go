@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKCumulativeQuantitySeriesSample] class.
@@ -32,7 +33,7 @@ type IHKCumulativeQuantitySeriesSample interface {
 	// properties:
 	Sum() IHKQuantity
 	SetSum(value IHKQuantity)
-	HKPredicateKeyPathSum() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathSum() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -112,8 +113,8 @@ func (h_ HKCumulativeQuantitySeriesSample) SetSum(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum
-func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
+func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
 	return rv
 }
 

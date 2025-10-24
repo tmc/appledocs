@@ -30,9 +30,13 @@ type _MTRSmokeCOAlarmClusterEndOfServiceEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterEndOfServiceEvent] class.
 type IMTRSmokeCOAlarmClusterEndOfServiceEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterEndOfServiceEvent
 type MTRSmokeCOAlarmClusterEndOfServiceEvent struct {
 	objectivec.Object

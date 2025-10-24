@@ -31,8 +31,6 @@ type _AudioSessionPortExtensionBluetoothMicrophoneClass struct {
 type IAudioSessionPortExtensionBluetoothMicrophone interface {
 	objectivec.IObject
 	// properties:
-	FarFieldCapture() IAVAudioSessionCapability
-	HighQualityRecording() IAVAudioSessionCapability
 	// methods:
 }
 
@@ -83,27 +81,6 @@ func (a_ AudioSessionPortExtensionBluetoothMicrophone) Autorelease() AudioSessio
 // NewAudioSessionPortExtensionBluetoothMicrophone creates a new AudioSessionPortExtensionBluetoothMicrophone instance.
 func NewAudioSessionPortExtensionBluetoothMicrophone() AudioSessionPortExtensionBluetoothMicrophone {
 	return getAudioSessionPortExtensionBluetoothMicrophoneClass().New()
-}
-
-
-
-// Describes whether this port supports far-field input capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/farFieldCapture
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() IAVAudioSessionCapability {
-	rv := objc.Send[AudioSessionCapability](a_.ID, objc.Sel("farFieldCapture"))
-	return rv
-}
-
-
-// Describes whether this port supports Bluetooth high-quality recording.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/highQualityRecording
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() IAVAudioSessionCapability {
-	rv := objc.Send[AudioSessionCapability](a_.ID, objc.Sel("highQualityRecording"))
-	return rv
 }
 
 

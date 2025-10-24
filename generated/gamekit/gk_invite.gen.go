@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +32,13 @@ type _InviteClass struct {
 type IInvite interface {
 	objectivec.IObject
 	// properties:
-	Hosted() bool /* primitive/slice/pointer. */
+	Hosted() bool
 	PlayerAttributes() uint32 /* not a class type */
-	PlayerGroup() uint /* primitive/slice/pointer. */
-	Inviter() string /* primitive/slice/pointer. */
-	SetInviter(value string /* primitive/slice/pointer. */)
-	IsHosted() bool /* primitive/slice/pointer. */
-	SetIsHosted(value bool /* primitive/slice/pointer. */)
+	PlayerGroup() uint
+	Inviter() objc.IObject /* cross-framework: NSString */
+	SetInviter(value objc.IObject /* cross-framework: NSString */)
+	IsHosted() bool
+	SetIsHosted(value bool)
 	Sender() IGKPlayer
 	SetSender(value IGKPlayer)
 	// methods:
@@ -100,7 +101,7 @@ func NewInvite() Invite {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/isHosted
-func (i_ Invite) Hosted() bool /* primitive/slice/pointer. */ {
+func (i_ Invite) Hosted() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hosted"))
 	return rv
 }
@@ -120,7 +121,7 @@ func (i_ Invite) PlayerAttributes() uint32 /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/playerGroup
-func (i_ Invite) PlayerGroup() uint /* primitive/slice/pointer. */ {
+func (i_ Invite) PlayerGroup() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("playerGroup"))
 	return rv
 }
@@ -130,8 +131,8 @@ func (i_ Invite) PlayerGroup() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) Inviter() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
+func (i_ Invite) Inviter() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("inviter"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (i_ Invite) Inviter() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) SetInviter(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
+func (i_ Invite) SetInviter(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), value)
 }
 
 
@@ -149,7 +150,7 @@ func (i_ Invite) SetInviter(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-func (i_ Invite) IsHosted() bool /* primitive/slice/pointer. */ {
+func (i_ Invite) IsHosted() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHosted"))
 	return rv
 }
@@ -159,7 +160,7 @@ func (i_ Invite) IsHosted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-func (i_ Invite) SetIsHosted(value bool /* primitive/slice/pointer. */) {
+func (i_ Invite) SetIsHosted(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHosted:"), value)
 }
 

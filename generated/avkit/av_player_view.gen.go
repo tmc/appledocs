@@ -8,7 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -35,21 +36,21 @@ type IPlayerView interface {
 	// properties:
 	ActionPopUpButtonMenu() objc.IObject /* cross-framework: Menu */
 	SetActionPopUpButtonMenu(value objc.IObject /* cross-framework: Menu */)
-	AllowsMagnification() bool /* primitive/slice/pointer. */
-	SetAllowsMagnification(value bool /* primitive/slice/pointer. */)
-	AllowsPictureInPicturePlayback() bool /* primitive/slice/pointer. */
-	SetAllowsPictureInPicturePlayback(value bool /* primitive/slice/pointer. */)
-	AllowsVideoFrameAnalysis() bool /* primitive/slice/pointer. */
-	SetAllowsVideoFrameAnalysis(value bool /* primitive/slice/pointer. */)
-	CanBeginTrimming() bool /* primitive/slice/pointer. */
+	AllowsMagnification() bool
+	SetAllowsMagnification(value bool)
+	AllowsPictureInPicturePlayback() bool
+	SetAllowsPictureInPicturePlayback(value bool)
+	AllowsVideoFrameAnalysis() bool
+	SetAllowsVideoFrameAnalysis(value bool)
+	CanBeginTrimming() bool
 	ContentOverlayView() objc.IObject /* cross-framework: View */
 	ControlsStyle() PlayerViewControlsStyle
 	SetControlsStyle(value PlayerViewControlsStyle)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	ReadyForDisplay() bool /* primitive/slice/pointer. */
-	Magnification() float64 /* primitive/slice/pointer. */
-	SetMagnification(value float64 /* primitive/slice/pointer. */)
+	ReadyForDisplay() bool
+	Magnification() float64
+	SetMagnification(value float64)
 	PictureInPictureDelegate() objc.ID
 	SetPictureInPictureDelegate(value objc.ID)
 	Player() objc.IObject /* cross-framework: Player */
@@ -57,30 +58,30 @@ type IPlayerView interface {
 	PreferredDisplayDynamicRange() DisplayDynamicRange
 	SetPreferredDisplayDynamicRange(value DisplayDynamicRange)
 	SelectedSpeed() IAVPlaybackSpeed
-	ShowsFrameSteppingButtons() bool /* primitive/slice/pointer. */
-	SetShowsFrameSteppingButtons(value bool /* primitive/slice/pointer. */)
-	ShowsFullScreenToggleButton() bool /* primitive/slice/pointer. */
-	SetShowsFullScreenToggleButton(value bool /* primitive/slice/pointer. */)
-	ShowsSharingServiceButton() bool /* primitive/slice/pointer. */
-	SetShowsSharingServiceButton(value bool /* primitive/slice/pointer. */)
-	ShowsTimecodes() bool /* primitive/slice/pointer. */
-	SetShowsTimecodes(value bool /* primitive/slice/pointer. */)
-	Speeds() []PlaybackSpeed /* primitive/slice/pointer. */
-	SetSpeeds(value []PlaybackSpeed /* primitive/slice/pointer. */)
-	UpdatesNowPlayingInfoCenter() bool /* primitive/slice/pointer. */
-	SetUpdatesNowPlayingInfoCenter(value bool /* primitive/slice/pointer. */)
-	VideoBounds() foundation.objc.IObject /* cross-framework: Rect */
+	ShowsFrameSteppingButtons() bool
+	SetShowsFrameSteppingButtons(value bool)
+	ShowsFullScreenToggleButton() bool
+	SetShowsFullScreenToggleButton(value bool)
+	ShowsSharingServiceButton() bool
+	SetShowsSharingServiceButton(value bool)
+	ShowsTimecodes() bool
+	SetShowsTimecodes(value bool)
+	Speeds() []IPlaybackSpeed
+	SetSpeeds(value []IPlaybackSpeed)
+	UpdatesNowPlayingInfoCenter() bool
+	SetUpdatesNowPlayingInfoCenter(value bool)
+	VideoBounds() objc.IObject /* cross-framework: Rect */
 	VideoFrameAnalysisTypes() VideoFrameAnalysisType
 	SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType)
 	VideoGravity() LayerVideoGravity /* not a class type */
 	SetVideoGravity(value LayerVideoGravity /* not a class type */)
-	IsReadyForDisplay() bool /* primitive/slice/pointer. */
-	SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
 	// methods:
 	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
-	FlashChapterNumberChapterTitle(chapterNumber uint /* primitive/slice/pointer. */, chapterTitle string /* primitive/slice/pointer. */)
+	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle objc.IObject /* cross-framework: NSString */)
 	SelectSpeed(speed IAVPlaybackSpeed)
-	SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point coregraphics.CGPoint)
+	SetMagnificationCenteredAtPoint(magnification float64, point objc.IObject /* cross-framework: Point */)
 }
 
 // A view that displays content from a player and presents a native user interface to control playback.
@@ -151,8 +152,8 @@ func (p_ PlayerView) BeginTrimmingWithCompletionHandler(handler unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/flashChapterNumber(_:chapterTitle:)
-func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint /* primitive/slice/pointer. */, chapterTitle string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, objc.String(chapterTitle))
+func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, chapterTitle)
 }
 
 
@@ -169,7 +170,7 @@ func (p_ PlayerView) SelectSpeed(speed IAVPlaybackSpeed) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/setMagnification(_:centeredAt:)
-func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64 /* primitive/slice/pointer. */, point coregraphics.CGPoint) {
+func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64, point objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:centeredAtPoint:"), magnification, point)
 }
 
@@ -179,7 +180,7 @@ func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64 /* pr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
 func (p_ PlayerView) ActionPopUpButtonMenu() objc.IObject /* cross-framework: Menu */ {
-	rv := objc.Send[Menu](p_.ID, objc.Sel("actionPopUpButtonMenu"))
+	rv := objc.Send[appkit.Menu](p_.ID, objc.Sel("actionPopUpButtonMenu"))
 	return rv
 }
 
@@ -197,7 +198,7 @@ func (p_ PlayerView) SetActionPopUpButtonMenu(value objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsMagnification
-func (p_ PlayerView) AllowsMagnification() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) AllowsMagnification() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsMagnification"))
 	return rv
 }
@@ -207,7 +208,7 @@ func (p_ PlayerView) AllowsMagnification() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsMagnification
-func (p_ PlayerView) SetAllowsMagnification(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetAllowsMagnification(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsMagnification:"), value)
 }
 
@@ -216,7 +217,7 @@ func (p_ PlayerView) SetAllowsMagnification(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsPictureInPicturePlayback
-func (p_ PlayerView) AllowsPictureInPicturePlayback() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) AllowsPictureInPicturePlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsPictureInPicturePlayback"))
 	return rv
 }
@@ -226,7 +227,7 @@ func (p_ PlayerView) AllowsPictureInPicturePlayback() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsPictureInPicturePlayback
-func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsPictureInPicturePlayback:"), value)
 }
 
@@ -235,7 +236,7 @@ func (p_ PlayerView) SetAllowsPictureInPicturePlayback(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsVideoFrameAnalysis
-func (p_ PlayerView) AllowsVideoFrameAnalysis() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) AllowsVideoFrameAnalysis() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsVideoFrameAnalysis"))
 	return rv
 }
@@ -245,7 +246,7 @@ func (p_ PlayerView) AllowsVideoFrameAnalysis() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/allowsVideoFrameAnalysis
-func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsVideoFrameAnalysis:"), value)
 }
 
@@ -254,7 +255,7 @@ func (p_ PlayerView) SetAllowsVideoFrameAnalysis(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/canBeginTrimming
-func (p_ PlayerView) CanBeginTrimming() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) CanBeginTrimming() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canBeginTrimming"))
 	return rv
 }
@@ -265,7 +266,7 @@ func (p_ PlayerView) CanBeginTrimming() bool /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/contentOverlayView
 func (p_ PlayerView) ContentOverlayView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[View](p_.ID, objc.Sel("contentOverlayView"))
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 
@@ -312,7 +313,7 @@ func (p_ PlayerView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/isReadyForDisplay
-func (p_ PlayerView) ReadyForDisplay() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) ReadyForDisplay() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("readyForDisplay"))
 	return rv
 }
@@ -322,7 +323,7 @@ func (p_ PlayerView) ReadyForDisplay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/magnification
-func (p_ PlayerView) Magnification() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerView) Magnification() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("magnification"))
 	return rv
 }
@@ -332,7 +333,7 @@ func (p_ PlayerView) Magnification() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/magnification
-func (p_ PlayerView) SetMagnification(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetMagnification(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMagnification:"), value)
 }
 
@@ -361,7 +362,7 @@ func (p_ PlayerView) SetPictureInPictureDelegate(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
 func (p_ PlayerView) Player() objc.IObject /* cross-framework: Player */ {
-	rv := objc.Send[Player](p_.ID, objc.Sel("player"))
+	rv := objc.Send[avfoundation.Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -408,7 +409,7 @@ func (p_ PlayerView) SelectedSpeed() IAVPlaybackSpeed {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFrameSteppingButtons
-func (p_ PlayerView) ShowsFrameSteppingButtons() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) ShowsFrameSteppingButtons() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsFrameSteppingButtons"))
 	return rv
 }
@@ -418,7 +419,7 @@ func (p_ PlayerView) ShowsFrameSteppingButtons() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFrameSteppingButtons
-func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFrameSteppingButtons:"), value)
 }
 
@@ -427,7 +428,7 @@ func (p_ PlayerView) SetShowsFrameSteppingButtons(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFullScreenToggleButton
-func (p_ PlayerView) ShowsFullScreenToggleButton() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) ShowsFullScreenToggleButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsFullScreenToggleButton"))
 	return rv
 }
@@ -437,7 +438,7 @@ func (p_ PlayerView) ShowsFullScreenToggleButton() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsFullScreenToggleButton
-func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsFullScreenToggleButton:"), value)
 }
 
@@ -446,7 +447,7 @@ func (p_ PlayerView) SetShowsFullScreenToggleButton(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsSharingServiceButton
-func (p_ PlayerView) ShowsSharingServiceButton() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) ShowsSharingServiceButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsSharingServiceButton"))
 	return rv
 }
@@ -456,7 +457,7 @@ func (p_ PlayerView) ShowsSharingServiceButton() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsSharingServiceButton
-func (p_ PlayerView) SetShowsSharingServiceButton(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetShowsSharingServiceButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsSharingServiceButton:"), value)
 }
 
@@ -465,7 +466,7 @@ func (p_ PlayerView) SetShowsSharingServiceButton(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsTimecodes
-func (p_ PlayerView) ShowsTimecodes() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) ShowsTimecodes() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsTimecodes"))
 	return rv
 }
@@ -475,7 +476,7 @@ func (p_ PlayerView) ShowsTimecodes() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/showsTimecodes
-func (p_ PlayerView) SetShowsTimecodes(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetShowsTimecodes(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsTimecodes:"), value)
 }
 
@@ -484,7 +485,7 @@ func (p_ PlayerView) SetShowsTimecodes(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
-func (p_ PlayerView) Speeds() []PlaybackSpeed /* primitive/slice/pointer. */ {
+func (p_ PlayerView) Speeds() []IPlaybackSpeed {
 	rv := objc.Send[[]PlaybackSpeed](p_.ID, objc.Sel("speeds"))
 	return rv
 }
@@ -494,7 +495,7 @@ func (p_ PlayerView) Speeds() []PlaybackSpeed /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/speeds
-func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetSpeeds(value []IPlaybackSpeed) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -513,7 +514,7 @@ func (p_ PlayerView) SetSpeeds(value []PlaybackSpeed /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/updatesNowPlayingInfoCenter
-func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("updatesNowPlayingInfoCenter"))
 	return rv
 }
@@ -523,7 +524,7 @@ func (p_ PlayerView) UpdatesNowPlayingInfoCenter() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/updatesNowPlayingInfoCenter
-func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUpdatesNowPlayingInfoCenter:"), value)
 }
 
@@ -532,8 +533,8 @@ func (p_ PlayerView) SetUpdatesNowPlayingInfoCenter(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoBounds
-func (p_ PlayerView) VideoBounds() foundation.objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[foundation.Rect](p_.ID, objc.Sel("videoBounds"))
+func (p_ PlayerView) VideoBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("videoBounds"))
 	return rv
 }
 
@@ -576,7 +577,7 @@ func (p_ PlayerView) SetVideoGravity(value LayerVideoGravity /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-func (p_ PlayerView) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerView) IsReadyForDisplay() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
@@ -586,7 +587,7 @@ func (p_ PlayerView) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/isreadyfordisplay
-func (p_ PlayerView) SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerView) SetIsReadyForDisplay(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 

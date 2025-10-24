@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,11 @@ type _CKRecordZoneIDClass struct {
 type ICKRecordZoneID interface {
 	objectivec.IObject
 	// properties:
-	CKCurrentUserDefaultName() string /* primitive/slice/pointer. */
-	OwnerName() string /* primitive/slice/pointer. */
-	SetOwnerName(value string /* primitive/slice/pointer. */)
-	ZoneName() string /* primitive/slice/pointer. */
-	SetZoneName(value string /* primitive/slice/pointer. */)
+	CKCurrentUserDefaultName() objc.IObject /* cross-framework: NSString */
+	OwnerName() objc.IObject /* cross-framework: NSString */
+	SetOwnerName(value objc.IObject /* cross-framework: NSString */)
+	ZoneName() objc.IObject /* cross-framework: NSString */
+	SetZoneName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -96,8 +97,8 @@ func NewCKRecordZoneID() CKRecordZoneID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
-func (c_ CKRecordZoneID) CKCurrentUserDefaultName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
+func (c_ CKRecordZoneID) CKCurrentUserDefaultName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
 	return rv
 }
 
@@ -106,8 +107,8 @@ func (c_ CKRecordZoneID) CKCurrentUserDefaultName() string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/ownername
-func (c_ CKRecordZoneID) OwnerName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("ownerName"))
+func (c_ CKRecordZoneID) OwnerName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("ownerName"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (c_ CKRecordZoneID) OwnerName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/ownername
-func (c_ CKRecordZoneID) SetOwnerName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOwnerName:"), objc.String(value))
+func (c_ CKRecordZoneID) SetOwnerName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOwnerName:"), value)
 }
 
 
@@ -125,8 +126,8 @@ func (c_ CKRecordZoneID) SetOwnerName(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/zonename
-func (c_ CKRecordZoneID) ZoneName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("zoneName"))
+func (c_ CKRecordZoneID) ZoneName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("zoneName"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (c_ CKRecordZoneID) ZoneName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/zonename
-func (c_ CKRecordZoneID) SetZoneName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneName:"), objc.String(value))
+func (c_ CKRecordZoneID) SetZoneName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneName:"), value)
 }
 
 

@@ -34,8 +34,8 @@ type ISpellServer interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	// methods:
-	IsWordInUserDictionariesCaseSensitive(word IString, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	RegisterLanguageByVendor(language IString, vendor IString) bool /* primitive/slice/pointer. */
+	IsWordInUserDictionariesCaseSensitive(word IString, flag bool) bool
+	RegisterLanguageByVendor(language IString, vendor IString) bool
 	Run()
 }
 
@@ -96,7 +96,7 @@ func NewSpellServer() SpellServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
-func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word IString, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word IString, flag bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), word, flag)
 	return rv
 }
@@ -106,7 +106,7 @@ func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word IString, flag b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/registerLanguage(_:byVendor:)
-func (s_ SpellServer) RegisterLanguageByVendor(language IString, vendor IString) bool /* primitive/slice/pointer. */ {
+func (s_ SpellServer) RegisterLanguageByVendor(language IString, vendor IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerLanguage:byVendor:"), language, vendor)
 	return rv
 }

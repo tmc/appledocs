@@ -36,8 +36,8 @@ type IXMLDocument interface {
 	SetDocumentContentKind(value unsafe.Pointer)
 	Dtd() IXMLDTD
 	SetDtd(value IXMLDTD)
-	IsStandalone() bool /* primitive/slice/pointer. */
-	SetIsStandalone(value bool /* primitive/slice/pointer. */)
+	IsStandalone() bool
+	SetIsStandalone(value bool)
 	MimeType() IString
 	SetMimeType(value IString)
 	Version() IString
@@ -98,6 +98,19 @@ func (x_ XMLDocument) Autorelease() XMLDocument {
 // NewXMLDocument creates a new XMLDocument instance.
 func NewXMLDocument() XMLDocument {
 	return getXMLDocumentClass().New()
+}
+
+
+
+// Initializes and returns an object created from an object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
+func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDocument {
+	instance := getXMLDocumentClass().Alloc()
+	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
+	rv.Autorelease()
+	return rv
 }
 
 
@@ -163,7 +176,7 @@ func (x_ XMLDocument) SetDtd(value IXMLDTD) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer. */ {
+func (x_ XMLDocument) IsStandalone() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
 	return rv
 }
@@ -173,7 +186,7 @@ func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLDocument) SetIsStandalone(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
 }
 
@@ -233,6 +246,5 @@ func (x_ XMLDocument) XmlData() IData {
 func (x_ XMLDocument) SetXmlData(value IData) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setXmlData:"), value)
 }
-
 
 

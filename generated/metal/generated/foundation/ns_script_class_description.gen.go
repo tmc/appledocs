@@ -30,27 +30,19 @@ type _ScriptClassDescriptionClass struct {
 type IScriptClassDescription interface {
 	IClassDescription
 	// properties:
-	AppleEventCode() unsafe.Pointer
+	AppleEventCode() uint32 /* not a class type */
+	SetAppleEventCode(value uint32 /* not a class type */)
 	ClassName() IString
+	SetClassName(value IString)
 	DefaultSubcontainerAttributeKey() IString
+	SetDefaultSubcontainerAttributeKey(value IString)
 	ImplementationClassName() IString
+	SetImplementationClassName(value IString)
 	SuiteName() IString
-	SuperclassDescription() IScriptClassDescription
+	SetSuiteName(value IString)
 	Superclass() IScriptClassDescription
 	SetSuperclass(value IScriptClassDescription)
 	// methods:
-	AppleEventCodeForKey(key IString) unsafe.Pointer
-	ClassDescriptionForKey(key IString) IScriptClassDescription
-	HasOrderedToManyRelationshipForKey(key IString) bool /* primitive/slice/pointer. */
-	HasPropertyForKey(key IString) bool /* primitive/slice/pointer. */
-	HasReadablePropertyForKey(key IString) bool /* primitive/slice/pointer. */
-	HasWritablePropertyForKey(key IString) bool /* primitive/slice/pointer. */
-	IsLocationRequiredToCreateForKey(toManyRelationshipKey IString) bool /* primitive/slice/pointer. */
-	KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString
-	MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL
-	SupportsCommand(commandDescription IScriptCommandDescription) bool /* primitive/slice/pointer. */
-	TypeForKey(key IString) IString
 }
 
 // A scriptable class that a macOS app supports.
@@ -108,155 +100,12 @@ func NewScriptClassDescription() ScriptClassDescription {
 
 
 
-// Returns the class description for the specified class or, if it is not scriptable, for the first superclass that is.
+// Returns the Apple event code associated with the receiver’s class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(for:)
-func NewScriptClassDescriptionForClass(aClass objc.Class) ScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](objc.ID(getScriptClassDescriptionClass().class), objc.Sel("classDescriptionForClass:"), aClass)
-	return rv
-}
-
-
-// Initializes and returns a newly allocated instance of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(suiteName:className:dictionary:)
-func NewScriptClassDescriptionWithSuiteNameClassNameDictionary(suiteName IString, className IString, classDeclaration IDictionary) ScriptClassDescription {
-	instance := getScriptClassDescriptionClass().Alloc()
-	rv := objc.Send[ScriptClassDescription](instance.ID, objc.Sel("initWithSuiteName:className:dictionary:"), suiteName, className, classDeclaration)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the class description for the specified class or, if it is not scriptable, for the first superclass that is.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(for:)
-func (sc _ScriptClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](objc.ID(sc.class), objc.Sel("classDescriptionForClass:"), aClass)
-	return rv
-}
-
-
-// Returns the Apple event code for the specified attribute or relationship in the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/appleEventCode(forKey:)
-func (s_ ScriptClassDescription) AppleEventCodeForKey(key IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForKey:"), key)
-	return rv
-}
-
-
-// Returns the class description instance for the class type of the specified attribute or relationship.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/forKey(_:)
-func (s_ ScriptClassDescription) ClassDescriptionForKey(key IString) IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("classDescriptionForKey:"), key)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the described class has an ordered to-many relationship identified by the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasOrderedToManyRelationship(forKey:)
-func (s_ ScriptClassDescription) HasOrderedToManyRelationshipForKey(key IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasOrderedToManyRelationshipForKey:"), key)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the described class has a property identified by the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasProperty(forKey:)
-func (s_ ScriptClassDescription) HasPropertyForKey(key IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasPropertyForKey:"), key)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the described class has a readable property identified by the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasReadableProperty(forKey:)
-func (s_ ScriptClassDescription) HasReadablePropertyForKey(key IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasReadablePropertyForKey:"), key)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the described class has a writable property identified by the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasWritableProperty(forKey:)
-func (s_ ScriptClassDescription) HasWritablePropertyForKey(key IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasWritablePropertyForKey:"), key)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether an insertion location must be specified when creating a new object in the specified to-many relationship of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/isLocationRequiredToCreate(forKey:)
-func (s_ ScriptClassDescription) IsLocationRequiredToCreateForKey(toManyRelationshipKey IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isLocationRequiredToCreateForKey:"), toManyRelationshipKey)
-	return rv
-}
-
-
-// Given an Apple event code that identifies a property or element class, returns the key for the corresponding attribute, one-to-one relationship, or one-to-many relationship.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/key(withAppleEventCode:)
-func (s_ ScriptClassDescription) KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("keyWithAppleEventCode:"), appleEventCode)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether a primary or secondary Apple event code in the receiver matches the passed code.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/matchesAppleEventCode(_:)
-func (s_ ScriptClassDescription) MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("matchesAppleEventCode:"), appleEventCode)
-	return rv
-}
-
-
-// Returns the selector associated with the receiver for the specified command description.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/selector(forCommand:)
-func (s_ ScriptClassDescription) SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL {
-	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("selectorForCommand:"), commandDescription)
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the receiver or any superclass supports the specified command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/supportsCommand(_:)
-func (s_ ScriptClassDescription) SupportsCommand(commandDescription IScriptCommandDescription) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("supportsCommand:"), commandDescription)
-	return rv
-}
-
-
-// Returns the name of the declared type of the attribute or relationship identified by the passed key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-func (s_ ScriptClassDescription) TypeForKey(key IString) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("typeForKey:"), key)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
+func (s_ ScriptClassDescription) AppleEventCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("appleEventCode"))
 	return rv
 }
 
@@ -264,9 +113,18 @@ func (s_ ScriptClassDescription) TypeForKey(key IString) IString {
 // Returns the Apple event code associated with the receiver’s class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/appleEventCode
-func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
+func (s_ ScriptClassDescription) SetAppleEventCode(value uint32 /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+}
+
+
+// Returns the name of the class the receiver describes, as provided at initialization time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
+func (s_ ScriptClassDescription) ClassName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("className"))
 	return rv
 }
 
@@ -274,19 +132,37 @@ func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
 // Returns the name of the class the receiver describes, as provided at initialization time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/className
-func (s_ ScriptClassDescription) ClassName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("className"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
+func (s_ ScriptClassDescription) SetClassName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), value)
+}
+
+
+// Returns the value of the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
+func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
 }
 
 
-// Returns the value of the entry of the class dictionary from which the receiver was instantiated.
+// Returns the value of the
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/defaultSubcontainerAttributeKey
-func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
+func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), value)
+}
+
+
+// Returns the name of the Objective-C class instantiated to implement the scripting class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
+func (s_ ScriptClassDescription) ImplementationClassName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("implementationClassName"))
 	return rv
 }
 
@@ -294,9 +170,18 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() IString {
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/implementationClassName
-func (s_ ScriptClassDescription) ImplementationClassName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("implementationClassName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
+func (s_ ScriptClassDescription) SetImplementationClassName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), value)
+}
+
+
+// Returns the name of the receiver’s suite.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
+func (s_ ScriptClassDescription) SuiteName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("suiteName"))
 	return rv
 }
 
@@ -304,20 +189,9 @@ func (s_ ScriptClassDescription) ImplementationClassName() IString {
 // Returns the name of the receiver’s suite.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/suiteName
-func (s_ ScriptClassDescription) SuiteName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("suiteName"))
-	return rv
-}
-
-
-// Returns the class description instance for the superclass of the receiver’s class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/superclass
-func (s_ ScriptClassDescription) SuperclassDescription() IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("superclassDescription"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
+func (s_ ScriptClassDescription) SetSuiteName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), value)
 }
 
 
@@ -338,5 +212,6 @@ func (s_ ScriptClassDescription) Superclass() IScriptClassDescription {
 func (s_ ScriptClassDescription) SetSuperclass(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
+
 
 

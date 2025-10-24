@@ -29,9 +29,13 @@ type _MTRBaseClusterActionsClass struct {
 // An interface definition for the [MTRBaseClusterActions] class.
 type IMTRBaseClusterActions interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterActions
 type MTRBaseClusterActions struct {
 	MTRGenericBaseCluster

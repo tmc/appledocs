@@ -2,12 +2,12 @@
 
 // Package permissionkit provides Go bindings for the PermissionKit framework.
 //
-// Create communication experiences between a child and their parent or guardian. [Full Topic]
+// Create communication experiences between a child and their parent or guardian.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PermissionKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PermissionKit
+// See: https://developer.apple.com/documentation/PermissionKit
 package permissionkit
 
 import (

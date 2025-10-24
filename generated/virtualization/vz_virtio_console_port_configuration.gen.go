@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZVirtioConsolePortConfiguration] class.
@@ -29,18 +30,24 @@ type _VZVirtioConsolePortConfigurationClass struct {
 // An interface definition for the [VZVirtioConsolePortConfiguration] class.
 type IVZVirtioConsolePortConfiguration interface {
 	IVZConsolePortConfiguration
+	// properties:
 	IsConsole() bool
 	SetIsConsole(value bool)
-	Name() string
-	SetName(value string)
-	ConsoleDevices() VZConsoleDeviceConfiguration
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	ConsoleDevices() IVZConsoleDeviceConfiguration
 	SetConsoleDevices(value IVZConsoleDeviceConfiguration)
+	// methods:
 }
 
 // A class that represents the configuration options you can set on a Virtio console port.
 //
 // A console port is a two-way communication channel between a host and a VM console port. A Virtio device can have one or more attached console devices. Optionally, you can set a name for a console port and also configure a console port that the guest can use as the system console.
+
+
+// A class that represents the configuration options you can set on a Virtio console port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration
 type VZVirtioConsolePortConfiguration struct {
 	VZConsolePortConfiguration
@@ -88,8 +95,10 @@ func NewVZVirtioConsolePortConfiguration() VZVirtioConsolePortConfiguration {
 
 
 
+
 // A Boolean value that indicates whether this port is a console.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/isConsole
 func (v_ VZVirtioConsolePortConfiguration) IsConsole() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isConsole"))
@@ -97,46 +106,47 @@ func (v_ VZVirtioConsolePortConfiguration) IsConsole() bool {
 }
 
 
-// SetIsConsole sets the value of the isConsole property.
 // A Boolean value that indicates whether this port is a console.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/isConsole
 func (v_ VZVirtioConsolePortConfiguration) SetIsConsole(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsConsole:"), value)
 }
 
+
 // The name of the port.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePortConfiguration) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of the port.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) SetName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
+func (v_ VZVirtioConsolePortConfiguration) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
 }
+
 
 // The array of console devices that you expose to the guest operating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
-func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() VZConsoleDeviceConfiguration {
+func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() IVZConsoleDeviceConfiguration {
 	rv := objc.Send[VZConsoleDeviceConfiguration](v_.ID, objc.Sel("consoleDevices"))
 	return rv
 }
 
 
-// SetConsoleDevices sets the value of the consoleDevices property.
 // The array of console devices that you expose to the guest operating system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
 func (v_ VZVirtioConsolePortConfiguration) SetConsoleDevices(value IVZConsoleDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)

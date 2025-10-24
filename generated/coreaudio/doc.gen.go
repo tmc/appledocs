@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreAudio without requiring cgo.
-
-// Use the Core Audio framework to interact with device’s audio hardware.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudio
+// See: https://developer.apple.com/documentation/CoreAudio
 package coreaudio
 
 import (

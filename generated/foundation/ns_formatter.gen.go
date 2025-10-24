@@ -32,11 +32,11 @@ type IFormatter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary /* already interface */) IAttributedString
+	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) IAttributedString
 	EditingStringForObjectValue(obj objectivec.IObject) IString
-	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */
-	IsPartialStringValidNewEditingStringErrorDescription(partialString IString, newString IString, error_ IString) bool /* primitive/slice/pointer. */
-	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr IString, proposedSelRangePtr objc.IObject /* cross-framework RangePointer */, origString IString, origSelRange objc.IObject /* cross-framework Range */, error_ IString) bool /* primitive/slice/pointer. */
+	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool
+	IsPartialStringValidNewEditingStringErrorDescription(partialString IString, newString IString, error_ IString) bool
+	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr IString, proposedSelRangePtr objc.IObject /* cross-framework: RangePointer */, origString IString, origSelRange objc.IObject /* cross-framework: Range */, error_ IString) bool
 	StringForObjectValue(obj objectivec.IObject) IString
 }
 
@@ -97,7 +97,7 @@ func NewFormatter() Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
-func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary /* already interface */) IAttributedString {
+func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) IAttributedString {
 	rv := objc.Send[AttributedString](f_.ID, objc.Sel("attributedStringForObjectValue:withDefaultAttributes:"), obj, attrs)
 	return rv
 }
@@ -117,7 +117,7 @@ func (f_ Formatter) EditingStringForObjectValue(obj objectivec.IObject) IString 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/getObjectValue(_:for:errorDescription:)
-func (f_ Formatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool /* primitive/slice/pointer. */ {
+func (f_ Formatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, string_, error_)
 	return rv
 }
@@ -127,7 +127,7 @@ func (f_ Formatter) GetObjectValueForStringErrorDescription(obj unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:newEditingString:errorDescription:)
-func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString IString, newString IString, error_ IString) bool /* primitive/slice/pointer. */ {
+func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString IString, newString IString, error_ IString) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:newEditingString:errorDescription:"), partialString, newString, error_)
 	return rv
 }
@@ -137,7 +137,7 @@ func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partial
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)
-func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr IString, proposedSelRangePtr objc.IObject /* cross-framework RangePointer */, origString IString, origSelRange objc.IObject /* cross-framework Range */, error_ IString) bool /* primitive/slice/pointer. */ {
+func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr IString, proposedSelRangePtr objc.IObject /* cross-framework: RangePointer */, origString IString, origSelRange objc.IObject /* cross-framework: Range */, error_ IString) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:"), partialStringPtr, proposedSelRangePtr, origString, origSelRange, error_)
 	return rv
 }

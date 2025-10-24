@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,20 @@ type _ContentWorldClass struct {
 // An interface definition for the [ContentWorld] class.
 type IContentWorld interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // An object that defines a scope of execution for JavaScript code, and which you use to prevent conflicts between different scripts.
 //
 // Use a object as a namespace to separate your app’s web environment from the environment of individual webpages or scripts you execute. Content worlds help prevent issues that occur when two scripts modify environment variables in conflicting ways. Executing a script in its own content world effectively gives it a separate copy of the environment variables to modify. You might use this support in the following scenarios: You have complex script logic to bridge your web content to your app, but your web content has complex script libraries of its own. In that scenario, use one content world for your app-specific scripts and a separate content world for your content-specific scripts. You implement a web browser that supports JavaScript extensions. In that scenario, create a unique content world for each extension to prevent conflicts between the extensions. A object is a namespace and doesn’t persist data outside of the current web view or webpage. If you use the same content world in two objects, variables in one web view’s content world don’t appear in the other web view. Similarly, when the user or your app navigates to a new webpage, variables from the previous page are gone, even if both pages share the same content world. Use the methods and properties of this class to fetch the content world you need. provides a default content world for your app and a content world for the current web page. You can also create new content worlds. For example, you might create a custom content world for each JavaScript extension you manage. Specify the content world object when configuring or executing scripts associated with your content.
+
+
+// An object that defines a scope of execution for JavaScript code, and which you use to prevent conflicts between different scripts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld
 type ContentWorld struct {
 	objectivec.Object
@@ -82,37 +89,42 @@ func NewContentWorld() ContentWorld {
 }
 
 
+
 // The content world for the current webpage’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
 func (cc _ContentWorldClass) PageWorld() ContentWorld {
-	rv := objc.Send[WKContentWorld](objc.ID(cc.class), objc.Sel("pageWorld"))
+	rv := objc.Send[ContentWorld](objc.ID(cc.class), objc.Sel("pageWorld"))
 	return rv
 }
+
 // The content world for the current webpage’s content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
-func (c_ ContentWorld) PageWorld() WKContentWorld {
-	rv := objc.Send[WKContentWorld](c_.ID, objc.Sel("pageWorld"))
-	return rv
-}
-
-// The name of a custom content world.
-//
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ ContentWorld) PageWorld() IWKContentWorld {
+	rv := objc.Send[ContentWorld](c_.ID, objc.Sel("pageWorld"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
 // The name of a custom content world.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ ContentWorld) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The name of a custom content world.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
+func (c_ ContentWorld) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 

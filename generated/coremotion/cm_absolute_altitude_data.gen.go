@@ -30,9 +30,6 @@ type _AbsoluteAltitudeDataClass struct {
 type IAbsoluteAltitudeData interface {
 	ILogItem
 	// properties:
-	Accuracy() float64 /* primitive/slice/pointer. */
-	Altitude() float64 /* primitive/slice/pointer. */
-	Precision() float64 /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -87,37 +84,6 @@ func (a_ AbsoluteAltitudeData) Autorelease() AbsoluteAltitudeData {
 // NewAbsoluteAltitudeData creates a new AbsoluteAltitudeData instance.
 func NewAbsoluteAltitudeData() AbsoluteAltitudeData {
 	return getAbsoluteAltitudeDataClass().New()
-}
-
-
-
-// The estimated uncertainty of the altimeter in meters, based on one standard deviation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/accuracy
-func (a_ AbsoluteAltitudeData) Accuracy() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](a_.ID, objc.Sel("accuracy"))
-	return rv
-}
-
-
-// The absolute altitude of the device relative to sea level, measured in meters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/altitude
-func (a_ AbsoluteAltitudeData) Altitude() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](a_.ID, objc.Sel("altitude"))
-	return rv
-}
-
-
-// The recommended resolution for the altitude, in meters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/precision
-func (a_ AbsoluteAltitudeData) Precision() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](a_.ID, objc.Sel("precision"))
-	return rv
 }
 
 

@@ -32,8 +32,8 @@ type _LayoutConstraintClass struct {
 type ILayoutConstraint interface {
 	objectivec.IObject
 	// properties:
-	Constant() float64 /* primitive/slice/pointer. */
-	SetConstant(value float64 /* primitive/slice/pointer. */)
+	Constant() float64
+	SetConstant(value float64)
 	FirstAnchor() objc.IObject /* cross-framework: LayoutAnchor */
 	SetFirstAnchor(value objc.IObject /* cross-framework: LayoutAnchor */)
 	FirstAttribute() unsafe.Pointer
@@ -42,10 +42,10 @@ type ILayoutConstraint interface {
 	SetFirstItem(value unsafe.Pointer)
 	Identifier() objc.IObject /* cross-framework: NSString */
 	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	Multiplier() float64 /* primitive/slice/pointer. */
-	SetMultiplier(value float64 /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
+	Multiplier() float64
+	SetMultiplier(value float64)
 	Priority() unsafe.Pointer
 	SetPriority(value unsafe.Pointer)
 	Relation() unsafe.Pointer
@@ -56,8 +56,8 @@ type ILayoutConstraint interface {
 	SetSecondAttribute(value unsafe.Pointer)
 	SecondItem() unsafe.Pointer
 	SetSecondItem(value unsafe.Pointer)
-	ShouldBeArchived() bool /* primitive/slice/pointer. */
-	SetShouldBeArchived(value bool /* primitive/slice/pointer. */)
+	ShouldBeArchived() bool
+	SetShouldBeArchived(value bool)
 	// methods:
 }
 
@@ -118,7 +118,7 @@ func NewLayoutConstraint() LayoutConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/constant
-func (l_ LayoutConstraint) Constant() float64 /* primitive/slice/pointer. */ {
+func (l_ LayoutConstraint) Constant() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("constant"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (l_ LayoutConstraint) Constant() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/constant
-func (l_ LayoutConstraint) SetConstant(value float64 /* primitive/slice/pointer. */) {
+func (l_ LayoutConstraint) SetConstant(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstant:"), value)
 }
 
@@ -213,7 +213,7 @@ func (l_ LayoutConstraint) SetIdentifier(value objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/isactive
-func (l_ LayoutConstraint) IsActive() bool /* primitive/slice/pointer. */ {
+func (l_ LayoutConstraint) IsActive() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -223,7 +223,7 @@ func (l_ LayoutConstraint) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/isactive
-func (l_ LayoutConstraint) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (l_ LayoutConstraint) SetIsActive(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -232,7 +232,7 @@ func (l_ LayoutConstraint) SetIsActive(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/multiplier
-func (l_ LayoutConstraint) Multiplier() float64 /* primitive/slice/pointer. */ {
+func (l_ LayoutConstraint) Multiplier() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("multiplier"))
 	return rv
 }
@@ -242,7 +242,7 @@ func (l_ LayoutConstraint) Multiplier() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/multiplier
-func (l_ LayoutConstraint) SetMultiplier(value float64 /* primitive/slice/pointer. */) {
+func (l_ LayoutConstraint) SetMultiplier(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMultiplier:"), value)
 }
 
@@ -346,7 +346,7 @@ func (l_ LayoutConstraint) SetSecondItem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/shouldbearchived
-func (l_ LayoutConstraint) ShouldBeArchived() bool /* primitive/slice/pointer. */ {
+func (l_ LayoutConstraint) ShouldBeArchived() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("shouldBeArchived"))
 	return rv
 }
@@ -356,7 +356,7 @@ func (l_ LayoutConstraint) ShouldBeArchived() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/shouldbearchived
-func (l_ LayoutConstraint) SetShouldBeArchived(value bool /* primitive/slice/pointer. */) {
+func (l_ LayoutConstraint) SetShouldBeArchived(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldBeArchived:"), value)
 }
 

@@ -29,12 +29,18 @@ type _PDFAnnotationTextClass struct {
 // An interface definition for the [PDFAnnotationText] class.
 type IPDFAnnotationText interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object displays as an icon (such as a “sticky note”) attached to a specified point in the PDF document.
 //
 // Each object has a object associated with it. In its closed state, the annotation appears as an icon. In its open state, it displays as a pop-up window containing the text of the note. Note that your application must do the work to put up a window containing the text in response to a . Currently, text annotations do not scale and rotate with the page.
+
+
+// A object displays as an icon (such as a “sticky note”) attached to a specified point in the PDF document.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationText
 type PDFAnnotationText struct {
 	PDFAnnotation

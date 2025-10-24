@@ -4,7 +4,7 @@ package metal
 
 import "github.com/ebitengine/purego/objc"
 
-// blitCommandEncoderProtocol is the blitCommandEncoder protocol.
+// BlitCommandEncoderProtocol is the MTLBlitCommandEncoder protocol.
 //
 // Availability:
 //   - Mac Catalyst 13.1+
@@ -13,9 +13,9 @@ import "github.com/ebitengine/purego/objc"
 //   - macOS 10.11+
 //   - visionOS 1.0+
 //
-// Use this protocol when registering custom classes that conform to blitCommandEncoder.
-var blitCommandEncoderProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to MTLBlitCommandEncoder.
+var BlitCommandEncoderProtocol *objc.Protocol
 
 func init() {
-	blitCommandEncoderProtocol = objc.GetProtocol("blitCommandEncoder")
+	BlitCommandEncoderProtocol = objc.GetProtocol("MTLBlitCommandEncoder")
 }

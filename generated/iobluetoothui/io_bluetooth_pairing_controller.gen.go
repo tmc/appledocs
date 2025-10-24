@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothPairingController] class.
@@ -95,7 +96,7 @@ func NewBluetoothPairingController() BluetoothPairingController {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getPrompt()
 func (b_ BluetoothPairingController) GetPrompt() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](b_.ID, objc.Sel("getPrompt"))
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 

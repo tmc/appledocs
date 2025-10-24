@@ -31,6 +31,7 @@ type _TextSelectionClass struct {
 // An interface definition for the [TextSelection] class.
 type ITextSelection interface {
 	objectivec.IObject
+	// properties:
 	Affinity() unsafe.Pointer
 	SetAffinity(value unsafe.Pointer)
 	AnchorPositionOffset() float64
@@ -41,12 +42,13 @@ type ITextSelection interface {
 	SetIsLogical(value bool)
 	IsTransient() bool
 	SetIsTransient(value bool)
-	SecondarySelectionLocation() unsafe.Pointer
-	SetSecondarySelectionLocation(value unsafe.Pointer)
-	TextRanges() NSTextRange
-	SetTextRanges(value ITextRange)
-	TypingAttributes() coreml.Key
-	SetTypingAttributes(value coreml.IKey)
+	SecondarySelectionLocation() TextLocation /* not a class type */
+	SetSecondarySelectionLocation(value TextLocation /* not a class type */)
+	TextRanges() objc.IObject /* cross-framework: TextRange */
+	SetTextRanges(value objc.IObject /* cross-framework: TextRange */)
+	TypingAttributes() objc.IObject /* cross-framework: Key */
+	SetTypingAttributes(value objc.IObject /* cross-framework: Key */)
+	// methods:
 }
 
 // A class that represents a single logical selection context that corresponds to an insertion point.
@@ -199,8 +201,8 @@ func (t_ TextSelection) SetIsTransient(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-func (t_ TextSelection) SecondarySelectionLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("secondarySelectionLocation"))
+func (t_ TextSelection) SecondarySelectionLocation() TextLocation /* not a class type */ {
+	rv := objc.Send[TextLocation](t_.ID, objc.Sel("secondarySelectionLocation"))
 	return rv
 }
 
@@ -209,7 +211,7 @@ func (t_ TextSelection) SecondarySelectionLocation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-func (t_ TextSelection) SetSecondarySelectionLocation(value unsafe.Pointer) {
+func (t_ TextSelection) SetSecondarySelectionLocation(value TextLocation /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondarySelectionLocation:"), value)
 }
 
@@ -218,8 +220,8 @@ func (t_ TextSelection) SetSecondarySelectionLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) TextRanges() NSTextRange {
-	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("textRanges"))
+func (t_ TextSelection) TextRanges() objc.IObject /* cross-framework: TextRange */ {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("textRanges"))
 	return rv
 }
 
@@ -228,7 +230,7 @@ func (t_ TextSelection) TextRanges() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) SetTextRanges(value ITextRange) {
+func (t_ TextSelection) SetTextRanges(value objc.IObject /* cross-framework: TextRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextRanges:"), value)
 }
 
@@ -237,7 +239,7 @@ func (t_ TextSelection) SetTextRanges(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) TypingAttributes() coreml.Key {
+func (t_ TextSelection) TypingAttributes() objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
 	return rv
 }
@@ -247,7 +249,7 @@ func (t_ TextSelection) TypingAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) SetTypingAttributes(value coreml.IKey) {
+func (t_ TextSelection) SetTypingAttributes(value objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 

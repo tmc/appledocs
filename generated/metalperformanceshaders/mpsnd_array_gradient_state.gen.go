@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [NDArrayGradientState] class.
@@ -29,18 +30,22 @@ type _NDArrayGradientStateClass struct {
 // An interface definition for the [NDArrayGradientState] class.
 type INDArrayGradientState interface {
 	IState
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGradientState
 type NDArrayGradientState struct {
-	State
+	coreml.State
 }
 
 // NDArrayGradientStateFrom constructs a [NDArrayGradientState] from an unsafe.Pointer.
 func NDArrayGradientStateFrom(ptr unsafe.Pointer) NDArrayGradientState {
 	return NDArrayGradientState{
-		State: StateFrom(ptr),
+		State: coreml.StateFrom(ptr),
 	}
 }
 

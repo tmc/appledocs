@@ -32,6 +32,7 @@ type IUnitConverter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	BaseUnitValueFromValue(value float64) float64
 }
 
 // An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
@@ -85,6 +86,16 @@ func NewUnitConverter() UnitConverter {
 	return getUnitConverterClass().New()
 }
 
+
+
+// For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/baseUnitValue(fromValue:)
+func (u_ UnitConverter) BaseUnitValueFromValue(value float64) float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
+	return rv
+}
 
 
 

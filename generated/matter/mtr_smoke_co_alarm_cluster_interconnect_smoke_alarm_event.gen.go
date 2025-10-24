@@ -31,11 +31,15 @@ type _MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent] class.
 type IMTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent interface {
 	objectivec.IObject
-	AlarmSeverityLevel() foundation.Number
-	SetAlarmSeverityLevel(value foundation.INumber)
+	// properties:
+	AlarmSeverityLevel() objc.IObject /* cross-framework: NSNumber */
+	SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent
 type MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent() MTRSmokeCOAlarmClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterinterconnectsmokealarmevent/alarmseveritylevel
-func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) AlarmSeverityLevel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarmSeverityLevel"))
+func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) AlarmSeverityLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarmSeverityLevel"))
 	return rv
 }
 
 
-// SetAlarmSeverityLevel sets the value of the alarmSeverityLevel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterinterconnectsmokealarmevent/alarmseveritylevel
-func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) SetAlarmSeverityLevel(value foundation.INumber) {
+func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmSeverityLevel:"), value)
 }
 

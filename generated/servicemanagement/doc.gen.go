@@ -2,12 +2,12 @@
 
 // Package servicemanagement provides Go bindings for the ServiceManagement framework.
 //
-// Manage startup items, launch agents, and launch daemons from within an app. [Full Topic]
+// Manage startup items, launch agents, and launch daemons from within an app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ServiceManagement without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement
+// See: https://developer.apple.com/documentation/ServiceManagement
 package servicemanagement
 
 import (

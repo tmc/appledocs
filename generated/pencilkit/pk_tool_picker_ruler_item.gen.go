@@ -29,10 +29,16 @@ type _ToolPickerRulerItemClass struct {
 // An interface definition for the [ToolPickerRulerItem] class.
 type IToolPickerRulerItem interface {
 	IToolPickerItem
+	// properties:
+	// methods:
 }
 
 // An item that represents a ruler tool in the tool picker.
+
+
+// An item that represents a ruler tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerRulerItem
 type ToolPickerRulerItem struct {
 	ToolPickerItem

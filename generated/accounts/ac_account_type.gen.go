@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _ACAccountTypeClass struct {
 type IACAccountType interface {
 	objectivec.IObject
 	// properties:
-	AccessGranted() bool /* primitive/slice/pointer. */
-	AccountTypeDescription() string /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
+	AccessGranted() bool
+	AccountTypeDescription() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
 	AccountType() IACAccountType
 	SetAccountType(value IACAccountType)
 	// methods:
@@ -96,7 +97,7 @@ func NewACAccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accessGranted
-func (a_ ACAccountType) AccessGranted() bool /* primitive/slice/pointer. */ {
+func (a_ ACAccountType) AccessGranted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("accessGranted"))
 	return rv
 }
@@ -106,8 +107,8 @@ func (a_ ACAccountType) AccessGranted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-func (a_ ACAccountType) AccountTypeDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
+func (a_ ACAccountType) AccountTypeDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (a_ ACAccountType) AccountTypeDescription() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-func (a_ ACAccountType) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccountType) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _OneTimeCodeCredentialIdentityClass struct {
 type IOneTimeCodeCredentialIdentity interface {
 	objectivec.IObject
 	// properties:
-	Label() string /* primitive/slice/pointer. */
+	Label() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -83,8 +84,8 @@ func NewOneTimeCodeCredentialIdentity() OneTimeCodeCredentialIdentity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialIdentity/label
-func (o_ OneTimeCodeCredentialIdentity) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](o_.ID, objc.Sel("label"))
+func (o_ OneTimeCodeCredentialIdentity) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("label"))
 	return rv
 }
 

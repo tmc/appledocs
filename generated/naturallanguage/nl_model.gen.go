@@ -31,17 +31,23 @@ type _ModelClass struct {
 // An interface definition for the [Model] class.
 type IModel interface {
 	objectivec.IObject
-	PredictedLabelForString(string_ string) foundation.String
-	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
-	PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) []foundation.Dictionary
+	// properties:
+	Configuration() INLModelConfiguration
+	// methods:
+	PredictedLabelForString(string_ objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
+	PredictedLabelHypothesesForStringMaximumCount(string_ objc.IObject /* cross-framework: NSString */, maximumCount uint) foundation.IDictionary
+	PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) foundation.IDictionary
 	PredictedLabelsForTokens(tokens []string) []string
-	Configuration() NLModelConfiguration
 }
 
 // A custom model trained to classify or tag natural language text.
 //
 // With , you can create text classifier ( ) or word tagger ( ) models. Use to integrate those models into your app. This integration ensures that your tokenization and tagger configurations are identical when you train your model and use it in your app. If you create a text classifier as described in doc:creating-a-text-classifier-model , you can integrate that model into your app and use it to make predictions like this: If you create a custom word tagger as described in , you can integrate that model into your app and generate tags for new text input like this:
+
+
+// A custom model trained to classify or tag natural language text.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel
 type Model struct {
 	objectivec.Object
@@ -87,19 +93,19 @@ func NewModel() Model {
 
 
 
-
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
 
-
 // Creates a new natural language model based on the given Core ML model instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(mlModel:)
 func NewModelWithMLModelError(mlModel IModel, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithMLModel:error:"), mlModel, error_)
@@ -107,59 +113,73 @@ func NewModelWithMLModelError(mlModel IModel, error_ unsafe.Pointer) Model {
 }
 
 
+
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
 
+
 // Creates a new natural language model based on the given Core ML model instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(mlModel:)
 func (mc _ModelClass) ModelWithMLModelError(mlModel IModel, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithMLModel:error:"), mlModel, error_)
 	return rv
 }
 
+
 // Predicts a label for the given input string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabel(for:)
-func (m_ Model) PredictedLabelForString(string_ string) foundation.String {
-	rv := objc.Send[foundation.String](m_.ID, objc.Sel("predictedLabelForString:"), objc.String(string_))
+func (m_ Model) PredictedLabelForString(string_ objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](m_.ID, objc.Sel("predictedLabelForString:"), string_)
 	return rv
 }
+
 
 // Predicts multiple possible labels for the given input string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), objc.String(string_), maximumCount)
+func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ objc.IObject /* cross-framework: NSString */, maximumCount uint) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), string_, maximumCount)
 	return rv
 }
+
 
 // Predicts multiple possible labels for each string in the given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) []foundation.Dictionary {
-	rv := objc.Send[[]foundation.Dictionary](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
+func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
 	return rv
 }
 
+
 // Predicts a label for each string in the given array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)
 func (m_ Model) PredictedLabelsForTokens(tokens []string) []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("predictedLabelsForTokens:"), tokens)
 	return rv
 }
 
+
 // A configuration describing the natural language model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/configuration
-func (m_ Model) Configuration() NLModelConfiguration {
-	rv := objc.Send[NLModelConfiguration](m_.ID, objc.Sel("configuration"))
+func (m_ Model) Configuration() INLModelConfiguration {
+	rv := objc.Send[ModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
 }
 

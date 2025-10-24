@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,11 +34,11 @@ type IOctree interface {
 	// properties:
 	// methods:
 	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IOctreeNode
-	AddElementWithBox(element unsafe.Pointer, box objc.IObject /* cross-framework Box */) IOctreeNode
-	ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject /* already interface */
-	ElementsInBox(box objc.IObject /* cross-framework Box */) []objectivec.IObject /* already interface */
-	RemoveElement(element unsafe.Pointer) bool /* primitive/slice/pointer. */
-	RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool /* primitive/slice/pointer. */
+	AddElementWithBox(element unsafe.Pointer, box Box /* not a class type */) IOctreeNode
+	ElementsAtPoint(point unsafe.Pointer) []objc.IObject /* cross-framework: Object */
+	ElementsInBox(box Box /* not a class type */) []objc.IObject /* cross-framework: Object */
+	RemoveElement(element unsafe.Pointer) bool
+	RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool
 }
 
 // A data structure for organizing objects based on their locations in a three-dimensional space.
@@ -97,7 +98,7 @@ func NewOctree() Octree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/init(boundingBox:minimumCellSize:)
-func NewOctreeWithBoundingBoxMinimumCellSize(box objc.IObject /* cross-framework Box */, minCellSize float32 /* primitive/slice/pointer. */) Octree {
+func NewOctreeWithBoundingBoxMinimumCellSize(box Box /* not a class type */, minCellSize float32) Octree {
 	instance := getOctreeClass().Alloc()
 	rv := objc.Send[Octree](instance.ID, objc.Sel("initWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	rv.Autorelease()
@@ -110,7 +111,7 @@ func NewOctreeWithBoundingBoxMinimumCellSize(box objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/octreeWithBoundingBox:minimumCellSize:
-func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box objc.IObject /* cross-framework Box */, minCellSize float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box Box /* not a class type */, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("octreeWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	return rv
 }
@@ -130,7 +131,7 @@ func (o_ Octree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/add(_:in:)
-func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box objc.IObject /* cross-framework Box */) IOctreeNode {
+func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box Box /* not a class type */) IOctreeNode {
 	rv := objc.Send[OctreeNode](o_.ID, objc.Sel("addElement:withBox:"), element, box)
 	return rv
 }
@@ -140,8 +141,8 @@ func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(at:)
-func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](o_.ID, objc.Sel("elementsAtPoint:"), point)
+func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []objc.IObject /* cross-framework: Object */ {
+	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
@@ -150,8 +151,8 @@ func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject /* a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(in:)
-func (o_ Octree) ElementsInBox(box objc.IObject /* cross-framework Box */) []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](o_.ID, objc.Sel("elementsInBox:"), box)
+func (o_ Octree) ElementsInBox(box Box /* not a class type */) []objc.IObject /* cross-framework: Object */ {
+	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsInBox:"), box)
 	return rv
 }
 
@@ -160,7 +161,7 @@ func (o_ Octree) ElementsInBox(box objc.IObject /* cross-framework Box */) []obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/remove(_:)
-func (o_ Octree) RemoveElement(element unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (o_ Octree) RemoveElement(element unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeElement:"), element)
 	return rv
 }
@@ -170,7 +171,7 @@ func (o_ Octree) RemoveElement(element unsafe.Pointer) bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/remove(_:using:)
-func (o_ Octree) RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool /* primitive/slice/pointer. */ {
+func (o_ Octree) RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeElement:withNode:"), element, node)
 	return rv
 }

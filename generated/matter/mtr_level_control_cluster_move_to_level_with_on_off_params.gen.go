@@ -31,21 +31,25 @@ type _MTRLevelControlClusterMoveToLevelWithOnOffParamsClass struct {
 // An interface definition for the [MTRLevelControlClusterMoveToLevelWithOnOffParams] class.
 type IMTRLevelControlClusterMoveToLevelWithOnOffParams interface {
 	objectivec.IObject
-	Level() foundation.Number
-	SetLevel(value foundation.INumber)
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	Level() objc.IObject /* cross-framework: NSNumber */
+	SetLevel(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLevelControlClusterMoveToLevelWithOnOffParams
 type MTRLevelControlClusterMoveToLevelWithOnOffParams struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRLevelControlClusterMoveToLevelWithOnOffParams() MTRLevelControlCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/level
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) Level() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("level"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) Level() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("level"))
 	return rv
 }
 
 
-// SetLevel sets the value of the level property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/level
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetLevel(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLevel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/optionsoverride
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelwithonoffparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRLevelControlClusterMoveToLevelWithOnOffParams) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

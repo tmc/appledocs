@@ -29,9 +29,13 @@ type _MTRClusterPressureMeasurementClass struct {
 // An interface definition for the [MTRClusterPressureMeasurement] class.
 type IMTRClusterPressureMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPressureMeasurement
 type MTRClusterPressureMeasurement struct {
 	MTRGenericCluster

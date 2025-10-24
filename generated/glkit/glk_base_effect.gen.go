@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +37,8 @@ type IGLKBaseEffect interface {
 	ConstantColor() GLKVector4 /* typedef */
 	SetConstantColor(value GLKVector4 /* typedef */)
 	Fog() IGLKEffectPropertyFog
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	Light0() IGLKEffectPropertyLight
 	Light1() IGLKEffectPropertyLight
 	Light2() IGLKEffectPropertyLight
@@ -50,8 +51,8 @@ type IGLKBaseEffect interface {
 	Material() IGLKEffectPropertyMaterial
 	Texture2d0() IGLKEffectPropertyTexture
 	Texture2d1() IGLKEffectPropertyTexture
-	TextureOrder() []GLKEffectPropertyTexture /* primitive/slice/pointer. */
-	SetTextureOrder(value []GLKEffectPropertyTexture /* primitive/slice/pointer. */)
+	TextureOrder() []IGLKEffectPropertyTexture
+	SetTextureOrder(value []IGLKEffectPropertyTexture)
 	Transform() IGLKEffectPropertyTransform
 	UseConstantColor() unsafe.Pointer
 	SetUseConstantColor(value unsafe.Pointer)
@@ -163,8 +164,8 @@ func (g_ GLKBaseEffect) Fog() IGLKEffectPropertyFog {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("label"))
+func (g_ GLKBaseEffect) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -173,8 +174,8 @@ func (g_ GLKBaseEffect) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (g_ GLKBaseEffect) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
 }
 
 
@@ -299,7 +300,7 @@ func (g_ GLKBaseEffect) Texture2d1() IGLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/textureOrder
-func (g_ GLKBaseEffect) TextureOrder() []GLKEffectPropertyTexture /* primitive/slice/pointer. */ {
+func (g_ GLKBaseEffect) TextureOrder() []IGLKEffectPropertyTexture {
 	rv := objc.Send[[]GLKEffectPropertyTexture](g_.ID, objc.Sel("textureOrder"))
 	return rv
 }
@@ -309,7 +310,7 @@ func (g_ GLKBaseEffect) TextureOrder() []GLKEffectPropertyTexture /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/textureOrder
-func (g_ GLKBaseEffect) SetTextureOrder(value []GLKEffectPropertyTexture /* primitive/slice/pointer. */) {
+func (g_ GLKBaseEffect) SetTextureOrder(value []IGLKEffectPropertyTexture) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

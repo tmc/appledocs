@@ -29,9 +29,13 @@ type _MTRClusterOzoneConcentrationMeasurementClass struct {
 // An interface definition for the [MTRClusterOzoneConcentrationMeasurement] class.
 type IMTRClusterOzoneConcentrationMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOzoneConcentrationMeasurement
 type MTRClusterOzoneConcentrationMeasurement struct {
 	MTRGenericCluster

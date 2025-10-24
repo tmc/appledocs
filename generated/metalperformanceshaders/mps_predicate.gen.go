@@ -30,13 +30,17 @@ type _PredicateClass struct {
 // An interface definition for the [Predicate] class.
 type IPredicate interface {
 	objectivec.IObject
-	PredicateBuffer() unsafe.Pointer
-	SetPredicateBuffer(value unsafe.Pointer)
+	// properties:
+	PredicateBuffer() Buffer /* not a class type */
+	SetPredicateBuffer(value Buffer /* not a class type */)
 	PredicateOffset() int
 	SetPredicateOffset(value int)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate
 type Predicate struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewPredicate() Predicate {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate/init(device:)
 func NewPredicateWithDevice(device objectivec.IObject) Predicate {
 	instance := getPredicateClass().Alloc()
@@ -89,22 +94,23 @@ func NewPredicateWithDevice(device objectivec.IObject) Predicate {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
-func (p_ Predicate) PredicateBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateBuffer"))
+func (p_ Predicate) PredicateBuffer() Buffer /* not a class type */ {
+	rv := objc.Send[Buffer](p_.ID, objc.Sel("predicateBuffer"))
 	return rv
 }
 
 
-// SetPredicateBuffer sets the value of the predicateBuffer property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
-func (p_ Predicate) SetPredicateBuffer(value unsafe.Pointer) {
+func (p_ Predicate) SetPredicateBuffer(value Buffer /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateBuffer:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
 func (p_ Predicate) PredicateOffset() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("predicateOffset"))
@@ -112,8 +118,7 @@ func (p_ Predicate) PredicateOffset() int {
 }
 
 
-// SetPredicateOffset sets the value of the predicateOffset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
 func (p_ Predicate) SetPredicateOffset(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateOffset:"), value)

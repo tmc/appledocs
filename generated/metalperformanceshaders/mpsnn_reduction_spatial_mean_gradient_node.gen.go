@@ -29,9 +29,13 @@ type _ReductionSpatialMeanGradientNodeClass struct {
 // An interface definition for the [ReductionSpatialMeanGradientNode] class.
 type IReductionSpatialMeanGradientNode interface {
 	IGradientFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionSpatialMeanGradientNode
 type ReductionSpatialMeanGradientNode struct {
 	GradientFilterNode
@@ -76,9 +80,10 @@ func NewReductionSpatialMeanGradientNode() ReductionSpatialMeanGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionSpatialMeanGradientNode/nodeWithSourceGradient:sourceImage:gradientState:
-func (rc _ReductionSpatialMeanGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) unsafe.Pointer {
+func (rc _ReductionSpatialMeanGradientNodeClass) NodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState GradientStateNode /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("nodeWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	return rv
 }

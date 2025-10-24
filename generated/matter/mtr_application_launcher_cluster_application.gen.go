@@ -29,9 +29,13 @@ type _MTRApplicationLauncherClusterApplicationClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterApplication] class.
 type IMTRApplicationLauncherClusterApplication interface {
 	IMTRApplicationLauncherClusterApplicationStruct
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterApplication
 type MTRApplicationLauncherClusterApplication struct {
 	MTRApplicationLauncherClusterApplicationStruct

@@ -35,8 +35,8 @@ type IFileProviderKnownFolderLocations interface {
 	SetDesktopLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */)
 	DocumentsLocation() objc.IObject /* cross-framework: FileProviderKnownFolderLocation */
 	SetDocumentsLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */)
-	ShouldCreateBinaryCompatibilitySymlink() bool /* primitive/slice/pointer. */
-	SetShouldCreateBinaryCompatibilitySymlink(value bool /* primitive/slice/pointer. */)
+	ShouldCreateBinaryCompatibilitySymlink() bool
+	SetShouldCreateBinaryCompatibilitySymlink(value bool)
 	// methods:
 }
 
@@ -123,7 +123,7 @@ func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value objc.IObje
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
-func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlink() bool /* primitive/slice/pointer. */ {
+func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlink() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("shouldCreateBinaryCompatibilitySymlink"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
-func (f_ FileProviderKnownFolderLocations) SetShouldCreateBinaryCompatibilitySymlink(value bool /* primitive/slice/pointer. */) {
+func (f_ FileProviderKnownFolderLocations) SetShouldCreateBinaryCompatibilitySymlink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldCreateBinaryCompatibilitySymlink:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _FontAssetRequestClass struct {
 type IFontAssetRequest interface {
 	objectivec.IObject
 	// properties:
-	DownloadedFontDescriptors() []FontDescriptor /* primitive/slice/pointer. */
+	DownloadedFontDescriptors() []IFontDescriptor
 	Progress() objc.IObject /* cross-framework: Progress */
 	// methods:
 	DownloadFontAssetsWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -85,7 +86,7 @@ func NewFontAssetRequest() FontAssetRequest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/init(fontDescriptors:options:)
-func NewFontAssetRequestWithFontDescriptorsOptions(fontDescriptors []FontDescriptor /* primitive/slice/pointer. */, options FontAssetRequestOptions) FontAssetRequest {
+func NewFontAssetRequestWithFontDescriptorsOptions(fontDescriptors []IFontDescriptor, options FontAssetRequestOptions) FontAssetRequest {
 	instance := getFontAssetRequestClass().Alloc()
 	rv := objc.Send[FontAssetRequest](instance.ID, objc.Sel("initWithFontDescriptors:options:"), fontDescriptors, options)
 	rv.Autorelease()
@@ -103,7 +104,7 @@ func (f_ FontAssetRequest) DownloadFontAssetsWithCompletionHandler(completionHan
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/downloadedFontDescriptors
-func (f_ FontAssetRequest) DownloadedFontDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+func (f_ FontAssetRequest) DownloadedFontDescriptors() []IFontDescriptor {
 	rv := objc.Send[[]FontDescriptor](f_.ID, objc.Sel("downloadedFontDescriptors"))
 	return rv
 }
@@ -112,7 +113,7 @@ func (f_ FontAssetRequest) DownloadedFontDescriptors() []FontDescriptor /* primi
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/progress
 func (f_ FontAssetRequest) Progress() objc.IObject /* cross-framework: Progress */ {
-	rv := objc.Send[Progress](f_.ID, objc.Sel("progress"))
+	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("progress"))
 	return rv
 }
 

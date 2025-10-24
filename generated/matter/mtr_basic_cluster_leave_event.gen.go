@@ -30,11 +30,15 @@ type _MTRBasicClusterLeaveEventClass struct {
 // An interface definition for the [MTRBasicClusterLeaveEvent] class.
 type IMTRBasicClusterLeaveEvent interface {
 	IMTRBasicInformationClusterLeaveEvent
-	FabricIndex() foundation.Number
-	SetFabricIndex(value foundation.INumber)
+	// properties:
+	FabricIndex() objc.IObject /* cross-framework: NSNumber */
+	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterLeaveEvent
 type MTRBasicClusterLeaveEvent struct {
 	MTRBasicInformationClusterLeaveEvent
@@ -79,18 +83,18 @@ func NewMTRBasicClusterLeaveEvent() MTRBasicClusterLeaveEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
-func (m_ MTRBasicClusterLeaveEvent) FabricIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("fabricIndex"))
+func (m_ MTRBasicClusterLeaveEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
 }
 
 
-// SetFabricIndex sets the value of the fabricIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
-func (m_ MTRBasicClusterLeaveEvent) SetFabricIndex(value foundation.INumber) {
+func (m_ MTRBasicClusterLeaveEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

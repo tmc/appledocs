@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,8 +33,8 @@ type _TextAttachmentViewProviderClass struct {
 type ITextAttachmentViewProvider interface {
 	objectivec.IObject
 	// properties:
-	TracksTextAttachmentViewBounds() bool /* primitive/slice/pointer. */
-	SetTracksTextAttachmentViewBounds(value bool /* primitive/slice/pointer. */)
+	TracksTextAttachmentViewBounds() bool
+	SetTracksTextAttachmentViewBounds(value bool)
 	View() IView
 	SetView(value IView)
 	Location() TextLocation /* not a class type */
@@ -43,7 +44,7 @@ type ITextAttachmentViewProvider interface {
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
 	// methods:
-	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework Rect */, position objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Rect */
+	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework: Rect */, position objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Rect */
 	LoadView()
 }
 
@@ -104,8 +105,8 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)
-func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework Rect */, position objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
+func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment objc.IObject /* cross-framework: Rect */, position objc.IObject /* cross-framework: Point */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
 	return rv
 }
 
@@ -123,7 +124,7 @@ func (t_ TextAttachmentViewProvider) LoadView() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/tracksTextAttachmentViewBounds
-func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool /* primitive/slice/pointer. */ {
+func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("tracksTextAttachmentViewBounds"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/tracksTextAttachmentViewBounds
-func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool /* primitive/slice/pointer. */) {
+func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTracksTextAttachmentViewBounds:"), value)
 }
 

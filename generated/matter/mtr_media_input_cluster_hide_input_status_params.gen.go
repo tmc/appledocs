@@ -31,13 +31,17 @@ type _MTRMediaInputClusterHideInputStatusParamsClass struct {
 // An interface definition for the [MTRMediaInputClusterHideInputStatusParams] class.
 type IMTRMediaInputClusterHideInputStatusParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaInputClusterHideInputStatusParams
 type MTRMediaInputClusterHideInputStatusParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRMediaInputClusterHideInputStatusParams() MTRMediaInputClusterHideInpu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterHideInputStatusParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaInputClusterHideInputStatusParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterHideInputStatusParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaInputClusterHideInputStatusParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterHideInputStatusParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaInputClusterHideInputStatusParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

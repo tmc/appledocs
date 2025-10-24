@@ -31,12 +31,12 @@ type _UserDefaultsControllerClass struct {
 type IUserDefaultsController interface {
 	IController
 	// properties:
-	AppliesImmediately() bool /* primitive/slice/pointer. */
-	SetAppliesImmediately(value bool /* primitive/slice/pointer. */)
+	AppliesImmediately() bool
+	SetAppliesImmediately(value bool)
 	Defaults() objc.IObject /* cross-framework: UserDefaults */
 	SetDefaults(value objc.IObject /* cross-framework: UserDefaults */)
-	HasUnappliedChanges() bool /* primitive/slice/pointer. */
-	SetHasUnappliedChanges(value bool /* primitive/slice/pointer. */)
+	HasUnappliedChanges() bool
+	SetHasUnappliedChanges(value bool)
 	InitialValues() objc.IObject /* cross-framework: NSString */
 	SetInitialValues(value objc.IObject /* cross-framework: NSString */)
 	Values() unsafe.Pointer
@@ -103,7 +103,7 @@ func NewUserDefaultsController() UserDefaultsController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
-func (u_ UserDefaultsController) AppliesImmediately() bool /* primitive/slice/pointer. */ {
+func (u_ UserDefaultsController) AppliesImmediately() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("appliesImmediately"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (u_ UserDefaultsController) AppliesImmediately() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/appliesimmediately
-func (u_ UserDefaultsController) SetAppliesImmediately(value bool /* primitive/slice/pointer. */) {
+func (u_ UserDefaultsController) SetAppliesImmediately(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAppliesImmediately:"), value)
 }
 
@@ -123,7 +123,7 @@ func (u_ UserDefaultsController) SetAppliesImmediately(value bool /* primitive/s
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/defaults
 func (u_ UserDefaultsController) Defaults() objc.IObject /* cross-framework: UserDefaults */ {
-	rv := objc.Send[UserDefaults](u_.ID, objc.Sel("defaults"))
+	rv := objc.Send[foundation.UserDefaults](u_.ID, objc.Sel("defaults"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (u_ UserDefaultsController) SetDefaults(value objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
-func (u_ UserDefaultsController) HasUnappliedChanges() bool /* primitive/slice/pointer. */ {
+func (u_ UserDefaultsController) HasUnappliedChanges() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasUnappliedChanges"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (u_ UserDefaultsController) HasUnappliedChanges() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller/hasunappliedchanges
-func (u_ UserDefaultsController) SetHasUnappliedChanges(value bool /* primitive/slice/pointer. */) {
+func (u_ UserDefaultsController) SetHasUnappliedChanges(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHasUnappliedChanges:"), value)
 }
 

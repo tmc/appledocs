@@ -9,14 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in CryptoTokenKit
 	Configuration = _undefined // referenced in CryptoTokenKit
-	TKSmartCardATR = _undefined // referenced in CryptoTokenKit
-	TKSmartCardProtocol = _undefined // referenced in CryptoTokenKit
-	TKTokenDelegate = _undefined // referenced in CryptoTokenKit
-	TKTokenInstanceID = _undefined // referenced in CryptoTokenKit
-	TKTokenKeychainItem = _undefined // referenced in CryptoTokenKit
-	UInt8 = _undefined // referenced in CryptoTokenKit
 )
 
 

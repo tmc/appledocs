@@ -30,6 +30,8 @@ type _VZDirectorySharingDeviceConfigurationClass struct {
 // An interface definition for the [VZDirectorySharingDeviceConfiguration] class.
 type IVZDirectorySharingDeviceConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a directory sharing device configuration.

@@ -9,8 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CNKeyDescriptor = _undefined // referenced in ContactsUI
-	Predicate = _undefined // referenced in ContactsUI
 	RectEdge = _undefined // referenced in ContactsUI
 )
 

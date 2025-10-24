@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Compression without requiring cgo.
-
-// Leverage common compression algorithms for lossless data compression.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Compression
+// See: https://developer.apple.com/documentation/Compression
 package compression
 
 import (

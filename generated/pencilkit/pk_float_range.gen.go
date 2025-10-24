@@ -30,12 +30,18 @@ type _FloatRangeClass struct {
 // An interface definition for the [FloatRange] class.
 type IFloatRange interface {
 	objectivec.IObject
+	// properties:
 	LowerBound() float64
 	UpperBound() float64
+	// methods:
 }
 
 // A utility class that represents range components of a stroke.
+
+
+// A utility class that represents range components of a stroke.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKFloatRange
 type FloatRange struct {
 	objectivec.Object
@@ -81,9 +87,9 @@ func NewFloatRange() FloatRange {
 
 
 
-
 // A utility class used to contain ranges returned by the PKStroke API.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKFloatRange/initWithLowerBound:upperBound:
 func NewFloatRangeWithLowerBoundUpperBound(lowerBound float64, upperBound float64) FloatRange {
 	instance := getFloatRangeClass().Alloc()
@@ -93,16 +99,20 @@ func NewFloatRangeWithLowerBoundUpperBound(lowerBound float64, upperBound float6
 }
 
 
+
 // A floating point value that represents the lower bound of the range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKFloatRange/lowerBound
 func (f_ FloatRange) LowerBound() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("lowerBound"))
 	return rv
 }
 
+
 // A floating point value that represents the upper bound of the range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKFloatRange/upperBound
 func (f_ FloatRange) UpperBound() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("upperBound"))

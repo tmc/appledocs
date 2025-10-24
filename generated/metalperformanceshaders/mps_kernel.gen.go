@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,24 @@ type _KernelClass struct {
 // An interface definition for the [Kernel] class.
 type IKernel interface {
 	objectivec.IObject
-	Device() unsafe.Pointer
-	SetDevice(value unsafe.Pointer)
-	Label() string
-	SetLabel(value string)
-	Options() unsafe.Pointer
-	SetOptions(value unsafe.Pointer)
+	// properties:
+	Device() Device /* not a class type */
+	SetDevice(value Device /* not a class type */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Options() KernelOptions /* not a class type */
+	SetOptions(value KernelOptions /* not a class type */)
+	// methods:
 }
 
 // A standard interface for Metal Performance Shaders kernels.
 //
 // You should not use the class directly. Instead, a number of subclasses are available that define specific high-performance data-parallel operations. The basic sequence for applying a kernel to an image is as follows: Initialize a kernel corresponding to the operation you wish to perform: Encode the kernel into a command buffer. Encoding the kernel merely encodes the operation into a command buffer. It does not modify any pixels, yet. All kernel state has been copied to the command buffer. Kernels may be reused. If the texture was previously operated on by another command encoder (e.g. a render command encoder), you should call the method on the other encoder before encoding the filter. Some kernels work in place, even in situations where Metal might not normally allow in-place operation on textures. If in-place operation is desired, you may attempt to call the method. If the operation cannot be completed in place, then will be returned and you will have to create a new result texture and try again. To make an in-place image filter reliable, pass a fallback block to the method to create a new texture to write to in the event that a filter cannot operate in place. You may repeat step 2 to encode more kernels, as desired. 3. After encoding any additional work to the command buffer using other encoders, submit the command buffer to your command queue, using:
+
+
+// A standard interface for Metal Performance Shaders kernels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSKernel
 type Kernel struct {
 	objectivec.Object
@@ -86,57 +93,60 @@ func NewKernel() Kernel {
 }
 
 
+
 // The device on which the kernel will be used.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
-func (k_ Kernel) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("device"))
+func (k_ Kernel) Device() Device /* not a class type */ {
+	rv := objc.Send[Device](k_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
 // The device on which the kernel will be used.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/device
-func (k_ Kernel) SetDevice(value unsafe.Pointer) {
+func (k_ Kernel) SetDevice(value Device /* not a class type */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDevice:"), value)
 }
 
+
 // The string that identifies the kernel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/label
-func (k_ Kernel) Label() string {
-	rv := objc.Send[string](k_.ID, objc.Sel("label"))
+func (k_ Kernel) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](k_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
 // The string that identifies the kernel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/label
-func (k_ Kernel) SetLabel(value string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (k_ Kernel) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setLabel:"), value)
 }
+
 
 // The set of options used to run the kernel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
-func (k_ Kernel) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("options"))
+func (k_ Kernel) Options() KernelOptions /* not a class type */ {
+	rv := objc.Send[KernelOptions](k_.ID, objc.Sel("options"))
 	return rv
 }
 
 
-// SetOptions sets the value of the options property.
 // The set of options used to run the kernel.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpskernel/options
-func (k_ Kernel) SetOptions(value unsafe.Pointer) {
+func (k_ Kernel) SetOptions(value KernelOptions /* not a class type */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setOptions:"), value)
 }
 

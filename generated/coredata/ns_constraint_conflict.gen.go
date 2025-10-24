@@ -32,15 +32,15 @@ type _ConstraintConflictClass struct {
 type IConstraintConflict interface {
 	objectivec.IObject
 	// properties:
-	DatabaseSnapshot() foundation.IDictionary /* already interface */
+	DatabaseSnapshot() foundation.IDictionary
 	ConflictingObjects() IManagedObject
 	SetConflictingObjects(value IManagedObject)
 	ConflictingSnapshots() unsafe.Pointer
 	SetConflictingSnapshots(value unsafe.Pointer)
-	Constraint() string /* primitive/slice/pointer. */
-	SetConstraint(value string /* primitive/slice/pointer. */)
-	ConstraintValues() string /* primitive/slice/pointer. */
-	SetConstraintValues(value string /* primitive/slice/pointer. */)
+	Constraint() objc.IObject /* cross-framework: NSString */
+	SetConstraint(value objc.IObject /* cross-framework: NSString */)
+	ConstraintValues() objc.IObject /* cross-framework: NSString */
+	SetConstraintValues(value objc.IObject /* cross-framework: NSString */)
 	DatabaseObject() IManagedObject
 	SetDatabaseObject(value IManagedObject)
 	// methods:
@@ -103,7 +103,7 @@ func NewConstraintConflict() ConstraintConflict {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/databaseSnapshot
-func (c_ ConstraintConflict) DatabaseSnapshot() foundation.IDictionary /* already interface */ {
+func (c_ ConstraintConflict) DatabaseSnapshot() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("databaseSnapshot"))
 	return rv
 }
@@ -151,8 +151,8 @@ func (c_ ConstraintConflict) SetConflictingSnapshots(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsconstraintconflict/constraint
-func (c_ ConstraintConflict) Constraint() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("constraint"))
+func (c_ ConstraintConflict) Constraint() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("constraint"))
 	return rv
 }
 
@@ -161,8 +161,8 @@ func (c_ ConstraintConflict) Constraint() string /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsconstraintconflict/constraint
-func (c_ ConstraintConflict) SetConstraint(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraint:"), objc.String(value))
+func (c_ ConstraintConflict) SetConstraint(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraint:"), value)
 }
 
 
@@ -170,8 +170,8 @@ func (c_ ConstraintConflict) SetConstraint(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsconstraintconflict/constraintvalues
-func (c_ ConstraintConflict) ConstraintValues() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("constraintValues"))
+func (c_ ConstraintConflict) ConstraintValues() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("constraintValues"))
 	return rv
 }
 
@@ -180,8 +180,8 @@ func (c_ ConstraintConflict) ConstraintValues() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsconstraintconflict/constraintvalues
-func (c_ ConstraintConflict) SetConstraintValues(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraintValues:"), objc.String(value))
+func (c_ ConstraintConflict) SetConstraintValues(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraintValues:"), value)
 }
 
 

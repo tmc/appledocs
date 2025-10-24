@@ -30,10 +30,10 @@ type _SearchToolbarItemClass struct {
 type ISearchToolbarItem interface {
 	IToolbarItem
 	// properties:
-	PreferredWidthForSearchField() float64 /* primitive/slice/pointer. */
-	SetPreferredWidthForSearchField(value float64 /* primitive/slice/pointer. */)
-	ResignsFirstResponderWithCancel() bool /* primitive/slice/pointer. */
-	SetResignsFirstResponderWithCancel(value bool /* primitive/slice/pointer. */)
+	PreferredWidthForSearchField() float64
+	SetPreferredWidthForSearchField(value float64)
+	ResignsFirstResponderWithCancel() bool
+	SetResignsFirstResponderWithCancel(value bool)
 	SearchField() objc.IObject /* cross-framework: SearchField */
 	SetSearchField(value objc.IObject /* cross-framework: SearchField */)
 	// methods:
@@ -108,7 +108,7 @@ func (s_ SearchToolbarItem) BeginSearchInteraction() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
-func (s_ SearchToolbarItem) PreferredWidthForSearchField() float64 /* primitive/slice/pointer. */ {
+func (s_ SearchToolbarItem) PreferredWidthForSearchField() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("preferredWidthForSearchField"))
 	return rv
 }
@@ -118,7 +118,7 @@ func (s_ SearchToolbarItem) PreferredWidthForSearchField() float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/preferredwidthforsearchfield
-func (s_ SearchToolbarItem) SetPreferredWidthForSearchField(value float64 /* primitive/slice/pointer. */) {
+func (s_ SearchToolbarItem) SetPreferredWidthForSearchField(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredWidthForSearchField:"), value)
 }
 
@@ -127,7 +127,7 @@ func (s_ SearchToolbarItem) SetPreferredWidthForSearchField(value float64 /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
-func (s_ SearchToolbarItem) ResignsFirstResponderWithCancel() bool /* primitive/slice/pointer. */ {
+func (s_ SearchToolbarItem) ResignsFirstResponderWithCancel() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("resignsFirstResponderWithCancel"))
 	return rv
 }
@@ -137,7 +137,7 @@ func (s_ SearchToolbarItem) ResignsFirstResponderWithCancel() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/resignsfirstresponderwithcancel
-func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool /* primitive/slice/pointer. */) {
+func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResignsFirstResponderWithCancel:"), value)
 }
 

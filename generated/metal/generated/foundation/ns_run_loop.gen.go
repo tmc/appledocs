@@ -34,7 +34,6 @@ type IRunLoop interface {
 	CurrentMode() unsafe.Pointer
 	SetCurrentMode(value unsafe.Pointer)
 	// methods:
-	AddTimerForMode(timer ITimer, mode RunLoopMode /* not a class type */)
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -88,15 +87,6 @@ func NewRunLoop() RunLoop {
 	return getRunLoopClass().New()
 }
 
-
-
-// Registers a given timer with a given input mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
-func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode /* not a class type */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
-}
 
 
 // The receiver’s current input mode.

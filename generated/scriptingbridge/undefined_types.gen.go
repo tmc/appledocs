@@ -9,17 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AEEventClass = _undefined // referenced in ScriptingBridge
-	AEEventID = _undefined // referenced in ScriptingBridge
-	AEKeyword = _undefined // referenced in ScriptingBridge
-	AESendMode = _undefined // referenced in ScriptingBridge
-	Array = _undefined // referenced in ScriptingBridge
-	Bool = _undefined // referenced in ScriptingBridge
 	Class = _undefined // referenced in ScriptingBridge
-	DescType = _undefined // referenced in ScriptingBridge
 	Error = _undefined // referenced in ScriptingBridge
-	LSLaunchFlags = _undefined // referenced in ScriptingBridge
-	ObjectType = _undefined // referenced in ScriptingBridge
 )
 
 

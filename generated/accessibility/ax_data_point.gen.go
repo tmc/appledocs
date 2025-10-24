@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IAXDataPoint interface {
 	// properties:
 	AttributedLabel() objc.IObject /* cross-framework: AttributedString */
 	SetAttributedLabel(value objc.IObject /* cross-framework: AttributedString */)
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	XValue() objc.IObject /* cross-framework: AXDataPointValue */
 	SetXValue(value objc.IObject /* cross-framework: AXDataPointValue */)
 	YValue() objc.IObject /* cross-framework: AXDataPointValue */
@@ -98,7 +99,7 @@ func NewAXDataPoint() AXDataPoint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/attributedlabel
 func (a_ AXDataPoint) AttributedLabel() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedLabel"))
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (a_ AXDataPoint) SetAttributedLabel(value objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/label
-func (a_ AXDataPoint) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("label"))
+func (a_ AXDataPoint) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (a_ AXDataPoint) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/label
-func (a_ AXDataPoint) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (a_ AXDataPoint) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
 }
 
 

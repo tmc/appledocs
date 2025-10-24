@@ -30,13 +30,17 @@ type _MTRMediaPlaybackClusterPlaybackPositionClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterPlaybackPosition] class.
 type IMTRMediaPlaybackClusterPlaybackPosition interface {
 	IMTRMediaPlaybackClusterPlaybackPositionStruct
-	Position() foundation.Number
-	SetPosition(value foundation.INumber)
-	UpdatedAt() foundation.Number
-	SetUpdatedAt(value foundation.INumber)
+	// properties:
+	Position() objc.IObject /* cross-framework: NSNumber */
+	SetPosition(value objc.IObject /* cross-framework: NSNumber */)
+	UpdatedAt() objc.IObject /* cross-framework: NSNumber */
+	SetUpdatedAt(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterPlaybackPosition
 type MTRMediaPlaybackClusterPlaybackPosition struct {
 	MTRMediaPlaybackClusterPlaybackPositionStruct
@@ -81,33 +85,33 @@ func NewMTRMediaPlaybackClusterPlaybackPosition() MTRMediaPlaybackClusterPlaybac
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/position
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) Position() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("position"))
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) Position() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("position"))
 	return rv
 }
 
 
-// SetPosition sets the value of the position property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/position
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetPosition(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) UpdatedAt() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("updatedAt"))
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) UpdatedAt() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("updatedAt"))
 	return rv
 }
 
 
-// SetUpdatedAt sets the value of the updatedAt property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
 }
 

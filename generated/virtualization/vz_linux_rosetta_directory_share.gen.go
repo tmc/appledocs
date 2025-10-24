@@ -29,10 +29,12 @@ type _VZLinuxRosettaDirectoryShareClass struct {
 // An interface definition for the [VZLinuxRosettaDirectoryShare] class.
 type IVZLinuxRosettaDirectoryShare interface {
 	IVZDirectoryShare
-	Options() VZLinuxRosettaCachingOptions
-	SetOptions(value VZLinuxRosettaCachingOptions)
+	// properties:
+	Options() IVZLinuxRosettaCachingOptions
+	SetOptions(value IVZLinuxRosettaCachingOptions)
 	CachingOptions() unsafe.Pointer
 	SetCachingOptions(value unsafe.Pointer)
+	// methods:
 }
 
 // The Linux directory share for Rosetta.
@@ -90,11 +92,52 @@ func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
 
 
 
+// Creates a new Rosetta directory share, or returns an error if Rosetta isn’t installed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/init()
+func NewVZLinuxRosettaDirectoryShareWithError(error_ unsafe.Pointer) VZLinuxRosettaDirectoryShare {
+	instance := getVZLinuxRosettaDirectoryShareClass().Alloc()
+	rv := objc.Send[VZLinuxRosettaDirectoryShare](instance.ID, objc.Sel("initWithError:"), error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Starts the installation of Rosetta.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/installRosetta(completionHandler:)
+func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("installRosettaWithCompletionHandler:"), completionHandler)
+}
+
+
+// A value that indicates the current state of Rosetta’s availability.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
+func (vc _VZLinuxRosettaDirectoryShareClass) Availability() VZLinuxRosettaAvailability {
+	rv := objc.Send[VZLinuxRosettaAvailability](objc.ID(vc.class), objc.Sel("availability"))
+	return rv
+}
+
+// A value that indicates the current state of Rosetta’s availability.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
+func (v_ VZLinuxRosettaDirectoryShare) Availability() VZLinuxRosettaAvailability {
+	rv := objc.Send[VZLinuxRosettaAvailability](v_.ID, objc.Sel("availability"))
+	return rv
+}
+
+
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
-func (v_ VZLinuxRosettaDirectoryShare) Options() VZLinuxRosettaCachingOptions {
+func (v_ VZLinuxRosettaDirectoryShare) Options() IVZLinuxRosettaCachingOptions {
 	rv := objc.Send[VZLinuxRosettaCachingOptions](v_.ID, objc.Sel("options"))
 	return rv
 }
@@ -104,7 +147,7 @@ func (v_ VZLinuxRosettaDirectoryShare) Options() VZLinuxRosettaCachingOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
-func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value VZLinuxRosettaCachingOptions) {
+func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value IVZLinuxRosettaCachingOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
 }
 
@@ -126,6 +169,5 @@ func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() unsafe.Pointer {
 func (v_ VZLinuxRosettaDirectoryShare) SetCachingOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingOptions:"), value)
 }
-
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IGLKSkyboxEffect interface {
 	// properties:
 	Center() GLKVector3 /* typedef */
 	SetCenter(value GLKVector3 /* typedef */)
-	Label() string /* primitive/slice/pointer. */
-	SetLabel(value string /* primitive/slice/pointer. */)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	TextureCubeMap() IGLKEffectPropertyTexture
 	Transform() IGLKEffectPropertyTransform
 	XSize() unsafe.Pointer
@@ -122,8 +123,8 @@ func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3 /* typedef */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("label"))
+func (g_ GLKSkyboxEffect) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (g_ GLKSkyboxEffect) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) SetLabel(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (g_ GLKSkyboxEffect) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
 }
 
 

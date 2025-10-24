@@ -227,6 +227,11 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		return goType
 	}
 
+	// Strip inline comments (e.g., "objc.IObject /* cross-framework: Integer */")
+	if idx := strings.Index(goType, "/*"); idx >= 0 {
+		goType = strings.TrimSpace(goType[:idx])
+	}
+
 	// Handle slices - preserve brackets and recurse on element type
 	if strings.HasPrefix(goType, "[]") {
 		elementType := strings.TrimPrefix(goType, "[]")
@@ -249,6 +254,10 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 
 	// Handle qualified types from standard packages (objc., unsafe., etc.)
 	if strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
+		// Map objc.IObject to objc.ID for Send calls (IObject is interface, ID is concrete)
+		if goType == "objc.IObject" {
+			return "objc.ID"
+		}
 		return goType
 	}
 
@@ -309,6 +318,23 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 			// It's an enum that had its prefix stripped - restore it
 			return withNS
 		}
+	}
+
+	// Not an enum - check if the type exists in this framework
+	// Check if it's a known class or typedef
+	strippedForLookup := stripObjCPrefix(goType)
+	_, isClass := gf.classIndex[goType]
+	_, isClassStripped := gf.classIndex[strippedForLookup]
+	_, isTypedef := gf.typedefIndex[goType]
+	_, isTypedefStripped := gf.typedefIndex[strippedForLookup]
+	_, isUndefined := gf.undefinedTypes[goType]
+
+	// If the type doesn't exist as a class or typedef in this framework,
+	// and it's not an undefined type we're tracking, fall back to objc.ID
+	if !isClass && !isClassStripped && !isTypedef && !isTypedefStripped && !isUndefined {
+		// This type doesn't exist in the current framework - likely a cross-framework
+		// reference that couldn't be resolved. Use objc.ID to avoid compilation errors.
+		return "objc.ID"
 	}
 
 	// Not an enum - apply class name stripping

@@ -31,31 +31,35 @@ type _MTRCommissioningParametersClass struct {
 // An interface definition for the [MTRCommissioningParameters] class.
 type IMTRCommissioningParameters interface {
 	objectivec.IObject
-	AttestationNonce() foundation.Data
-	SetAttestationNonce(value foundation.IData)
-	CountryCode() string
-	SetCountryCode(value string)
-	CsrNonce() foundation.Data
-	SetCsrNonce(value foundation.IData)
+	// properties:
+	AttestationNonce() objc.IObject /* cross-framework: Data */
+	SetAttestationNonce(value objc.IObject /* cross-framework: Data */)
+	CountryCode() objc.IObject /* cross-framework: NSString */
+	SetCountryCode(value objc.IObject /* cross-framework: NSString */)
+	CsrNonce() objc.IObject /* cross-framework: Data */
+	SetCsrNonce(value objc.IObject /* cross-framework: Data */)
 	DeviceAttestationDelegate() unsafe.Pointer
 	SetDeviceAttestationDelegate(value unsafe.Pointer)
-	FailSafeExpiryTimeoutSecs() foundation.Number
-	SetFailSafeExpiryTimeoutSecs(value foundation.INumber)
-	FailSafeTimeout() foundation.Number
-	SetFailSafeTimeout(value foundation.INumber)
+	FailSafeExpiryTimeoutSecs() objc.IObject /* cross-framework: NSNumber */
+	SetFailSafeExpiryTimeoutSecs(value objc.IObject /* cross-framework: NSNumber */)
+	FailSafeTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetFailSafeTimeout(value objc.IObject /* cross-framework: NSNumber */)
 	ReadEndpointInformation() bool
 	SetReadEndpointInformation(value bool)
 	SkipCommissioningComplete() bool
 	SetSkipCommissioningComplete(value bool)
-	ThreadOperationalDataset() foundation.Data
-	SetThreadOperationalDataset(value foundation.IData)
-	WifiCredentials() foundation.Data
-	SetWifiCredentials(value foundation.IData)
-	WifiSSID() foundation.Data
-	SetWifiSSID(value foundation.IData)
+	ThreadOperationalDataset() objc.IObject /* cross-framework: Data */
+	SetThreadOperationalDataset(value objc.IObject /* cross-framework: Data */)
+	WifiCredentials() objc.IObject /* cross-framework: Data */
+	SetWifiCredentials(value objc.IObject /* cross-framework: Data */)
+	WifiSSID() objc.IObject /* cross-framework: Data */
+	SetWifiSSID(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioningParameters
 type MTRCommissioningParameters struct {
 	objectivec.Object
@@ -98,52 +102,53 @@ func NewMTRCommissioningParameters() MTRCommissioningParameters {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
-func (m_ MTRCommissioningParameters) AttestationNonce() foundation.Data {
+func (m_ MTRCommissioningParameters) AttestationNonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationNonce"))
 	return rv
 }
 
 
-// SetAttestationNonce sets the value of the attestationNonce property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
-func (m_ MTRCommissioningParameters) SetAttestationNonce(value foundation.IData) {
+func (m_ MTRCommissioningParameters) SetAttestationNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationNonce:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRCommissioningParameters) CountryCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
 
-// SetCountryCode sets the value of the countryCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+func (m_ MTRCommissioningParameters) SetCountryCode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) CsrNonce() foundation.Data {
+func (m_ MTRCommissioningParameters) CsrNonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrNonce"))
 	return rv
 }
 
 
-// SetCsrNonce sets the value of the csrNonce property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) SetCsrNonce(value foundation.IData) {
+func (m_ MTRCommissioningParameters) SetCsrNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
 func (m_ MTRCommissioningParameters) DeviceAttestationDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationDelegate"))
@@ -151,45 +156,46 @@ func (m_ MTRCommissioningParameters) DeviceAttestationDelegate() unsafe.Pointer 
 }
 
 
-// SetDeviceAttestationDelegate sets the value of the deviceAttestationDelegate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/deviceattestationdelegate
 func (m_ MTRCommissioningParameters) SetDeviceAttestationDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationDelegate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafeexpirytimeoutsecs
-func (m_ MTRCommissioningParameters) FailSafeExpiryTimeoutSecs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("failSafeExpiryTimeoutSecs"))
+func (m_ MTRCommissioningParameters) FailSafeExpiryTimeoutSecs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("failSafeExpiryTimeoutSecs"))
 	return rv
 }
 
 
-// SetFailSafeExpiryTimeoutSecs sets the value of the failSafeExpiryTimeoutSecs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafeexpirytimeoutsecs
-func (m_ MTRCommissioningParameters) SetFailSafeExpiryTimeoutSecs(value foundation.INumber) {
+func (m_ MTRCommissioningParameters) SetFailSafeExpiryTimeoutSecs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeExpiryTimeoutSecs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafetimeout
-func (m_ MTRCommissioningParameters) FailSafeTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("failSafeTimeout"))
+func (m_ MTRCommissioningParameters) FailSafeTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("failSafeTimeout"))
 	return rv
 }
 
 
-// SetFailSafeTimeout sets the value of the failSafeTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafetimeout
-func (m_ MTRCommissioningParameters) SetFailSafeTimeout(value foundation.INumber) {
+func (m_ MTRCommissioningParameters) SetFailSafeTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeTimeout:"), value)
 }
 
+
 // Read device type information from all endpoints during commissioning.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
 func (m_ MTRCommissioningParameters) ReadEndpointInformation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("readEndpointInformation"))
@@ -197,16 +203,16 @@ func (m_ MTRCommissioningParameters) ReadEndpointInformation() bool {
 }
 
 
-// SetReadEndpointInformation sets the value of the readEndpointInformation property.
 // Read device type information from all endpoints during commissioning.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/readendpointinformation
 func (m_ MTRCommissioningParameters) SetReadEndpointInformation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReadEndpointInformation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
 func (m_ MTRCommissioningParameters) SkipCommissioningComplete() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("skipCommissioningComplete"))
@@ -214,55 +220,54 @@ func (m_ MTRCommissioningParameters) SkipCommissioningComplete() bool {
 }
 
 
-// SetSkipCommissioningComplete sets the value of the skipCommissioningComplete property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/skipcommissioningcomplete
 func (m_ MTRCommissioningParameters) SetSkipCommissioningComplete(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSkipCommissioningComplete:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) ThreadOperationalDataset() foundation.Data {
+func (m_ MTRCommissioningParameters) ThreadOperationalDataset() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("threadOperationalDataset"))
 	return rv
 }
 
 
-// SetThreadOperationalDataset sets the value of the threadOperationalDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value foundation.IData) {
+func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadOperationalDataset:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wificredentials
-func (m_ MTRCommissioningParameters) WifiCredentials() foundation.Data {
+func (m_ MTRCommissioningParameters) WifiCredentials() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("wifiCredentials"))
 	return rv
 }
 
 
-// SetWifiCredentials sets the value of the wifiCredentials property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wificredentials
-func (m_ MTRCommissioningParameters) SetWifiCredentials(value foundation.IData) {
+func (m_ MTRCommissioningParameters) SetWifiCredentials(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWifiCredentials:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wifissid
-func (m_ MTRCommissioningParameters) WifiSSID() foundation.Data {
+func (m_ MTRCommissioningParameters) WifiSSID() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("wifiSSID"))
 	return rv
 }
 
 
-// SetWifiSSID sets the value of the wifiSSID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wifissid
-func (m_ MTRCommissioningParameters) SetWifiSSID(value foundation.IData) {
+func (m_ MTRCommissioningParameters) SetWifiSSID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWifiSSID:"), value)
 }
 

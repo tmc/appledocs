@@ -30,10 +30,16 @@ type _MusicPlayerQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerQueueDescriptor] class.
 type IMusicPlayerQueueDescriptor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract base class for audio media item and store queue descriptors.
+
+
+// The abstract base class for audio media item and store queue descriptors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerQueueDescriptor
 type MusicPlayerQueueDescriptor struct {
 	objectivec.Object

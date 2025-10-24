@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = opendirectory.NewODQuery
 
+// ExampleODQuery_Synchronize demonstrates using Synchronize on a ODQuery instance.
+// Restarts a query, disposing of any results it has obtained.
+func ExampleODQuery_Synchronize() {
+	obj := opendirectory.NewODQuery()
+	obj.Synchronize()
+	// Output:
+	}
+

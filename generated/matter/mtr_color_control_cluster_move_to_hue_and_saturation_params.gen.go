@@ -31,23 +31,27 @@ type _MTRColorControlClusterMoveToHueAndSaturationParamsClass struct {
 // An interface definition for the [MTRColorControlClusterMoveToHueAndSaturationParams] class.
 type IMTRColorControlClusterMoveToHueAndSaturationParams interface {
 	objectivec.IObject
-	Hue() foundation.Number
-	SetHue(value foundation.INumber)
-	OptionsMask() foundation.Number
-	SetOptionsMask(value foundation.INumber)
-	OptionsOverride() foundation.Number
-	SetOptionsOverride(value foundation.INumber)
-	Saturation() foundation.Number
-	SetSaturation(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	Hue() objc.IObject /* cross-framework: NSNumber */
+	SetHue(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsMask() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */)
+	OptionsOverride() objc.IObject /* cross-framework: NSNumber */
+	SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */)
+	Saturation() objc.IObject /* cross-framework: NSNumber */
+	SetSaturation(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueAndSaturationParams
 type MTRColorControlClusterMoveToHueAndSaturationParams struct {
 	objectivec.Object
@@ -90,108 +94,108 @@ func NewMTRColorControlClusterMoveToHueAndSaturationParams() MTRColorControlClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/hue
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Hue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("hue"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Hue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("hue"))
 	return rv
 }
 
 
-// SetHue sets the value of the hue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/hue
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetHue(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetHue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsmask
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsMask"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
 }
 
 
-// SetOptionsMask sets the value of the optionsMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsmask
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsMask(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsOverride() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionsOverride"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
 }
 
 
-// SetOptionsOverride sets the value of the optionsOverride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/saturation
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Saturation() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("saturation"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Saturation() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("saturation"))
 	return rv
 }
 
 
-// SetSaturation sets the value of the saturation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/saturation
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetSaturation(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetSaturation(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSaturation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/transitiontime
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/transitiontime
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

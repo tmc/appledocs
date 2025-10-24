@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ACAccountStoreClass struct {
 type IACAccountStore interface {
 	objectivec.IObject
 	// properties:
-	Accounts() objc.ID
+	Accounts() objc.IObject /* cross-framework: NSArray */
 	// methods:
 }
 
@@ -92,10 +93,9 @@ func NewACAccountStore() ACAccountStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accounts
-func (a_ ACAccountStore) Accounts() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("accounts"))
+func (a_ ACAccountStore) Accounts() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("accounts"))
 	return rv
 }
-
 
 

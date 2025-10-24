@@ -30,12 +30,16 @@ type _NDArrayMultiaryBaseClass struct {
 // An interface definition for the [NDArrayMultiaryBase] class.
 type INDArrayMultiaryBase interface {
 	IKernel
-	CopyWithZoneDevice(zone unsafe.Pointer, device objectivec.IObject) unsafe.Pointer
-	DestinationArrayAllocator() unsafe.Pointer
-	SetDestinationArrayAllocator(value unsafe.Pointer)
+	// properties:
+	DestinationArrayAllocator() NDArrayAllocator /* not a class type */
+	SetDestinationArrayAllocator(value NDArrayAllocator /* not a class type */)
+	// methods:
+	CopyWithZoneDevice(zone Zone /* not a class type */, device objectivec.IObject) unsafe.Pointer
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryBase
 type NDArrayMultiaryBase struct {
 	Kernel
@@ -80,25 +84,26 @@ func NewNDArrayMultiaryBase() NDArrayMultiaryBase {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryBase/copy(with:device:)
-func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone unsafe.Pointer, device objectivec.IObject) unsafe.Pointer {
+func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone Zone /* not a class type */, device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("copyWithZone:device:"), zone, device)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase/destinationarrayallocator
-func (n_ NDArrayMultiaryBase) DestinationArrayAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("destinationArrayAllocator"))
+func (n_ NDArrayMultiaryBase) DestinationArrayAllocator() NDArrayAllocator /* not a class type */ {
+	rv := objc.Send[NDArrayAllocator](n_.ID, objc.Sel("destinationArrayAllocator"))
 	return rv
 }
 
 
-// SetDestinationArrayAllocator sets the value of the destinationArrayAllocator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase/destinationarrayallocator
-func (n_ NDArrayMultiaryBase) SetDestinationArrayAllocator(value unsafe.Pointer) {
+func (n_ NDArrayMultiaryBase) SetDestinationArrayAllocator(value NDArrayAllocator /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationArrayAllocator:"), value)
 }
 

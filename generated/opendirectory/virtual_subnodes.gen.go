@@ -30,9 +30,13 @@ type _virtualSubnodesClass struct {
 // An interface definition for the [virtualSubnodes] class.
 type IvirtualSubnodes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/virtualSubnodes-c.ivar
 type virtualSubnodes struct {
 	objectivec.Object

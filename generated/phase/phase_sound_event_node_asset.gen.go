@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHASESoundEventNodeAsset] class.
@@ -29,14 +30,20 @@ type _PHASESoundEventNodeAssetClass struct {
 // An interface definition for the [PHASESoundEventNodeAsset] class.
 type IPHASESoundEventNodeAsset interface {
 	IPHASEAsset
-	Identifier() string
-	SetIdentifier(value string)
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A template object for sounds that can play in reaction to environmental state.
 //
 // This object refers by name to a collection of sound event nodes that connect to form a tree, or hierarchy. To retrieve an instance of this class, add a sound-event node definition to the asset registry using . Choose the argument from the subclasses in based on the playback features your app requires. To play a single audio asset, register a with only one audio-providing node. Alternatively, to create a sound event that can change its audio based on your app’s current state, register a that contains children. By adding multiple nodes that play varying audio as children to a control node, PHASE plays the right audio for the moment based on control logic that you define. To create a playable sound event from this class, pass to the parameter of the sound event intializer, . Then, invoke the sound event by calling . As an opaque derived object, this class adds no properties to its base class.
+
+
+// A template object for sounds that can play in reaction to environmental state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEventNodeAsset
 type PHASESoundEventNodeAsset struct {
 	PHASEAsset
@@ -83,22 +90,23 @@ func NewPHASESoundEventNodeAsset() PHASESoundEventNodeAsset {
 }
 
 
+
 // A unique name for the asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASESoundEventNodeAsset) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASESoundEventNodeAsset) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
 // A unique name for the asset.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASESoundEventNodeAsset) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PHASESoundEventNodeAsset) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

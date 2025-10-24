@@ -31,9 +31,8 @@ type IDimension interface {
 	IUnit
 	// properties:
 	Converter() IUnitConverter
-	SetConverter(value IUnitConverter)
-	Coefficient() float64 /* primitive/slice/pointer. */
-	SetCoefficient(value float64 /* primitive/slice/pointer. */)
+	Coefficient() float64
+	SetCoefficient(value float64)
 	// methods:
 }
 
@@ -92,12 +91,12 @@ func NewDimension() Dimension {
 
 
 
-// The unit converter that represents the unit in terms of the dimension’s base unit.
+// Returns the base unit.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dimension/converter
-func (d_ Dimension) Converter() IUnitConverter {
-	rv := objc.Send[UnitConverter](d_.ID, objc.Sel("converter"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/baseUnit()
+func (dc _DimensionClass) BaseUnit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("baseUnit"))
 	return rv
 }
 
@@ -105,9 +104,10 @@ func (d_ Dimension) Converter() IUnitConverter {
 // The unit converter that represents the unit in terms of the dimension’s base unit.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/dimension/converter
-func (d_ Dimension) SetConverter(value IUnitConverter) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setConverter:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/converter
+func (d_ Dimension) Converter() IUnitConverter {
+	rv := objc.Send[UnitConverter](d_.ID, objc.Sel("converter"))
+	return rv
 }
 
 
@@ -115,7 +115,7 @@ func (d_ Dimension) SetConverter(value IUnitConverter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) Coefficient() float64 /* primitive/slice/pointer. */ {
+func (d_ Dimension) Coefficient() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("coefficient"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (d_ Dimension) Coefficient() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) SetCoefficient(value float64 /* primitive/slice/pointer. */) {
+func (d_ Dimension) SetCoefficient(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }
 

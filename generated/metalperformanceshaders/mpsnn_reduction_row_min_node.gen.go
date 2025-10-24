@@ -29,9 +29,13 @@ type _ReductionRowMinNodeClass struct {
 // An interface definition for the [ReductionRowMinNode] class.
 type IReductionRowMinNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMinNode
 type ReductionRowMinNode struct {
 	UnaryReductionNode

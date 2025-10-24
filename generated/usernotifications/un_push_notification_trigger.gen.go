@@ -29,14 +29,20 @@ type _UNPushNotificationTriggerClass struct {
 // An interface definition for the [UNPushNotificationTrigger] class.
 type IUNPushNotificationTrigger interface {
 	IUNNotificationTrigger
-	Trigger() UNNotificationTrigger
+	// properties:
+	Trigger() IUNNotificationTrigger
 	SetTrigger(value IUNNotificationTrigger)
+	// methods:
 }
 
 // A trigger condition that indicates Apple Push Notification Service (APNs) has sent the notification.
 //
 // You don’t create instances of this class yourself. The system creates objects and associates them with requests that originated from Apple Push Notification service. You encounter instances of this class when managing your app’s delivered notification requests, which store an object of this type in their property.
+
+
+// A trigger condition that indicates Apple Push Notification Service (APNs) has sent the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNPushNotificationTrigger
 type UNPushNotificationTrigger struct {
 	UNNotificationTrigger
@@ -83,19 +89,20 @@ func NewUNPushNotificationTrigger() UNPushNotificationTrigger {
 }
 
 
+
 // The conditions that trigger the delivery of the notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationrequest/trigger
-func (u_ UNPushNotificationTrigger) Trigger() UNNotificationTrigger {
+func (u_ UNPushNotificationTrigger) Trigger() IUNNotificationTrigger {
 	rv := objc.Send[UNNotificationTrigger](u_.ID, objc.Sel("trigger"))
 	return rv
 }
 
 
-// SetTrigger sets the value of the trigger property.
 // The conditions that trigger the delivery of the notification.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationrequest/trigger
 func (u_ UNPushNotificationTrigger) SetTrigger(value IUNNotificationTrigger) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTrigger:"), value)

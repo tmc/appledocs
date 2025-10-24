@@ -29,11 +29,15 @@ type _MTRContentLauncherClusterContentSearchClass struct {
 // An interface definition for the [MTRContentLauncherClusterContentSearch] class.
 type IMTRContentLauncherClusterContentSearch interface {
 	IMTRContentLauncherClusterContentSearchStruct
+	// properties:
 	ParameterList() unsafe.Pointer
 	SetParameterList(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterContentSearch
 type MTRContentLauncherClusterContentSearch struct {
 	MTRContentLauncherClusterContentSearchStruct
@@ -78,7 +82,8 @@ func NewMTRContentLauncherClusterContentSearch() MTRContentLauncherClusterConten
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearch/parameterlist
 func (m_ MTRContentLauncherClusterContentSearch) ParameterList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameterList"))
@@ -86,8 +91,7 @@ func (m_ MTRContentLauncherClusterContentSearch) ParameterList() unsafe.Pointer 
 }
 
 
-// SetParameterList sets the value of the parameterList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearch/parameterlist
 func (m_ MTRContentLauncherClusterContentSearch) SetParameterList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParameterList:"), value)

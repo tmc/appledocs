@@ -31,19 +31,23 @@ type _MTRActionsClusterEnableActionWithDurationParamsClass struct {
 // An interface definition for the [MTRActionsClusterEnableActionWithDurationParams] class.
 type IMTRActionsClusterEnableActionWithDurationParams interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	InvokeID() foundation.Number
-	SetInvokeID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	InvokeID() objc.IObject /* cross-framework: NSNumber */
+	SetInvokeID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterEnableActionWithDurationParams
 type MTRActionsClusterEnableActionWithDurationParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRActionsClusterEnableActionWithDurationParams() MTRActionsClusterEnabl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/actionid
-func (m_ MTRActionsClusterEnableActionWithDurationParams) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterEnableActionWithDurationParams) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/actionid
-func (m_ MTRActionsClusterEnableActionWithDurationParams) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterEnableActionWithDurationParams) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/duration
-func (m_ MTRActionsClusterEnableActionWithDurationParams) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRActionsClusterEnableActionWithDurationParams) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/duration
-func (m_ MTRActionsClusterEnableActionWithDurationParams) SetDuration(value foundation.INumber) {
+func (m_ MTRActionsClusterEnableActionWithDurationParams) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/invokeid
-func (m_ MTRActionsClusterEnableActionWithDurationParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+func (m_ MTRActionsClusterEnableActionWithDurationParams) InvokeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("invokeID"))
 	return rv
 }
 
 
-// SetInvokeID sets the value of the invokeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/invokeid
-func (m_ MTRActionsClusterEnableActionWithDurationParams) SetInvokeID(value foundation.INumber) {
+func (m_ MTRActionsClusterEnableActionWithDurationParams) SetInvokeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterEnableActionWithDurationParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRActionsClusterEnableActionWithDurationParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterEnableActionWithDurationParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRActionsClusterEnableActionWithDurationParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterEnableActionWithDurationParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRActionsClusterEnableActionWithDurationParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterenableactionwithdurationparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterEnableActionWithDurationParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRActionsClusterEnableActionWithDurationParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

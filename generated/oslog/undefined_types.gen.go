@@ -11,9 +11,6 @@ type _undefined = int
 type (
 	Argument = _undefined // referenced in OSLog
 	ArgumentCategory = _undefined // referenced in OSLog
-	Int64 = _undefined // referenced in OSLog
-	OSLogEntryLogLevel = _undefined // referenced in OSLog
-	OSLogEntrySignpostType = _undefined // referenced in OSLog
 	StoreCategory = _undefined // referenced in OSLog
 )
 

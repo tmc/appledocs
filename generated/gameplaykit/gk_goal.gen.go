@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -94,7 +93,7 @@ func NewGoal() Goal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAlignWith:maxDistance:maxAngle:)
-func NewGoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) Goal {
+func NewGoalToAlignWithAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAlignWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -104,7 +103,7 @@ func NewGoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-96a0i
-func NewGoalToAvoidAgentsMaxPredictionTime(agents []Agent /* primitive/slice/pointer. */, maxPredictionTime foundation.TimeInterval /* not a class type */) Goal {
+func NewGoalToAvoidAgentsMaxPredictionTime(agents []IAgent, maxPredictionTime float64) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAvoidAgents:maxPredictionTime:"), agents, maxPredictionTime)
 	return rv
 }
@@ -114,7 +113,7 @@ func NewGoalToAvoidAgentsMaxPredictionTime(agents []Agent /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-7oslq
-func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle /* primitive/slice/pointer. */, maxPredictionTime foundation.TimeInterval /* not a class type */) Goal {
+func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []IObstacle, maxPredictionTime float64) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToAvoidObstacles:maxPredictionTime:"), obstacles, maxPredictionTime)
 	return rv
 }
@@ -124,7 +123,7 @@ func NewGoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toCohereWith:maxDistance:maxAngle:)
-func NewGoalToCohereWithAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) Goal {
+func NewGoalToCohereWithAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToCohereWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -144,7 +143,7 @@ func NewGoalToFleeAgent(agent IGKAgent) Goal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFollow:maxPredictionTime:forward:)
-func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.TimeInterval /* not a class type */, forward bool /* primitive/slice/pointer. */) Goal {
+func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime float64, forward bool) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToFollowPath:maxPredictionTime:forward:"), path, maxPredictionTime, forward)
 	return rv
 }
@@ -154,7 +153,7 @@ func NewGoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toInterceptAgent:maxPredictionTime:)
-func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.TimeInterval /* not a class type */) Goal {
+func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime float64) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToInterceptAgent:maxPredictionTime:"), target, maxPredictionTime)
 	return rv
 }
@@ -164,7 +163,7 @@ func NewGoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toReachTargetSpeed:)
-func NewGoalToReachTargetSpeed(targetSpeed float32 /* primitive/slice/pointer. */) Goal {
+func NewGoalToReachTargetSpeed(targetSpeed float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToReachTargetSpeed:"), targetSpeed)
 	return rv
 }
@@ -184,7 +183,7 @@ func NewGoalToSeekAgent(agent IGKAgent) Goal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeparateFrom:maxDistance:maxAngle:)
-func NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) Goal {
+func NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToSeparateFromAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -194,7 +193,7 @@ func NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toStayOn:maxPredictionTime:)
-func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.TimeInterval /* not a class type */) Goal {
+func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime float64) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToStayOnPath:maxPredictionTime:"), path, maxPredictionTime)
 	return rv
 }
@@ -204,7 +203,7 @@ func NewGoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toWander:)
-func NewGoalToWander(speed float32 /* primitive/slice/pointer. */) Goal {
+func NewGoalToWander(speed float32) Goal {
 	rv := objc.Send[Goal](objc.ID(getGoalClass().class), objc.Sel("goalToWander:"), speed)
 	return rv
 }
@@ -215,7 +214,7 @@ func NewGoalToWander(speed float32 /* primitive/slice/pointer. */) Goal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAlignWith:maxDistance:maxAngle:)
-func (gc _GoalClass) GoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToAlignWithAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAlignWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -225,7 +224,7 @@ func (gc _GoalClass) GoalToAlignWithAgentsMaxDistanceMaxAngle(agents []Agent /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-7oslq
-func (gc _GoalClass) GoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle /* primitive/slice/pointer. */, maxPredictionTime foundation.TimeInterval /* not a class type */) unsafe.Pointer {
+func (gc _GoalClass) GoalToAvoidObstaclesMaxPredictionTime(obstacles []IObstacle, maxPredictionTime float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAvoidObstacles:maxPredictionTime:"), obstacles, maxPredictionTime)
 	return rv
 }
@@ -235,7 +234,7 @@ func (gc _GoalClass) GoalToAvoidObstaclesMaxPredictionTime(obstacles []Obstacle 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toAvoid:maxPredictionTime:)-96a0i
-func (gc _GoalClass) GoalToAvoidAgentsMaxPredictionTime(agents []Agent /* primitive/slice/pointer. */, maxPredictionTime foundation.TimeInterval /* not a class type */) unsafe.Pointer {
+func (gc _GoalClass) GoalToAvoidAgentsMaxPredictionTime(agents []IAgent, maxPredictionTime float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToAvoidAgents:maxPredictionTime:"), agents, maxPredictionTime)
 	return rv
 }
@@ -245,7 +244,7 @@ func (gc _GoalClass) GoalToAvoidAgentsMaxPredictionTime(agents []Agent /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toCohereWith:maxDistance:maxAngle:)
-func (gc _GoalClass) GoalToCohereWithAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToCohereWithAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToCohereWithAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -265,7 +264,7 @@ func (gc _GoalClass) GoalToFleeAgent(agent IGKAgent) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toFollow:maxPredictionTime:forward:)
-func (gc _GoalClass) GoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime foundation.TimeInterval /* not a class type */, forward bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxPredictionTime float64, forward bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToFollowPath:maxPredictionTime:forward:"), path, maxPredictionTime, forward)
 	return rv
 }
@@ -275,7 +274,7 @@ func (gc _GoalClass) GoalToFollowPathMaxPredictionTimeForward(path IGKPath, maxP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toInterceptAgent:maxPredictionTime:)
-func (gc _GoalClass) GoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime foundation.TimeInterval /* not a class type */) unsafe.Pointer {
+func (gc _GoalClass) GoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxPredictionTime float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToInterceptAgent:maxPredictionTime:"), target, maxPredictionTime)
 	return rv
 }
@@ -285,7 +284,7 @@ func (gc _GoalClass) GoalToInterceptAgentMaxPredictionTime(target IGKAgent, maxP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toReachTargetSpeed:)
-func (gc _GoalClass) GoalToReachTargetSpeed(targetSpeed float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToReachTargetSpeed(targetSpeed float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToReachTargetSpeed:"), targetSpeed)
 	return rv
 }
@@ -305,7 +304,7 @@ func (gc _GoalClass) GoalToSeekAgent(agent IGKAgent) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toSeparateFrom:maxDistance:maxAngle:)
-func (gc _GoalClass) GoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent /* primitive/slice/pointer. */, maxDistance float32 /* primitive/slice/pointer. */, maxAngle float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []IAgent, maxDistance float32, maxAngle float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToSeparateFromAgents:maxDistance:maxAngle:"), agents, maxDistance, maxAngle)
 	return rv
 }
@@ -315,7 +314,7 @@ func (gc _GoalClass) GoalToSeparateFromAgentsMaxDistanceMaxAngle(agents []Agent 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toStayOn:maxPredictionTime:)
-func (gc _GoalClass) GoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime foundation.TimeInterval /* not a class type */) unsafe.Pointer {
+func (gc _GoalClass) GoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredictionTime float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToStayOnPath:maxPredictionTime:"), path, maxPredictionTime)
 	return rv
 }
@@ -325,7 +324,7 @@ func (gc _GoalClass) GoalToStayOnPathMaxPredictionTime(path IGKPath, maxPredicti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGoal/init(toWander:)
-func (gc _GoalClass) GoalToWander(speed float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (gc _GoalClass) GoalToWander(speed float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("goalToWander:"), speed)
 	return rv
 }

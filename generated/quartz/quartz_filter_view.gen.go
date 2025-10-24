@@ -30,10 +30,13 @@ type _QuartzFilterViewClass struct {
 // An interface definition for the [QuartzFilterView] class.
 type IQuartzFilterView interface {
 	appkit.IView
-	SizeToFit()
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterView
 type QuartzFilterView struct {
 	appkit.View
@@ -77,12 +80,6 @@ func NewQuartzFilterView() QuartzFilterView {
 	return getQuartzFilterViewClass().New()
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterView/sizeToFit()
-func (q_ QuartzFilterView) SizeToFit() {
-	objc.Send[objc.ID](q_.ID, objc.Sel("sizeToFit"))
-}
 
 
 

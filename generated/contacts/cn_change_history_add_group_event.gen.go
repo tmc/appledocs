@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNChangeHistoryAddGroupEvent] class.
@@ -30,7 +31,7 @@ type _CNChangeHistoryAddGroupEventClass struct {
 type ICNChangeHistoryAddGroupEvent interface {
 	ICNChangeHistoryEvent
 	// properties:
-	ContainerIdentifier() string /* primitive/slice/pointer. */
+	ContainerIdentifier() objc.IObject /* cross-framework: NSString */
 	Group() ICNGroup
 	// methods:
 }
@@ -92,8 +93,8 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
-func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

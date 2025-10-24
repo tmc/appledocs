@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _CBL2CAPChannelClass struct {
 type ICBL2CAPChannel interface {
 	objectivec.IObject
 	// properties:
-	InputStream() InputStream /* not a class type */
-	SetInputStream(value InputStream /* not a class type */)
+	InputStream() objc.IObject /* cross-framework: InputStream */
+	SetInputStream(value objc.IObject /* cross-framework: InputStream */)
 	OutputStream() objc.IObject /* cross-framework: OutputStream */
 	SetOutputStream(value objc.IObject /* cross-framework: OutputStream */)
 	Peer() ICBPeer
@@ -97,8 +98,8 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) InputStream() InputStream /* not a class type */ {
-	rv := objc.Send[InputStream](c_.ID, objc.Sel("inputStream"))
+func (c_ CBL2CAPChannel) InputStream() objc.IObject /* cross-framework: InputStream */ {
+	rv := objc.Send[foundation.InputStream](c_.ID, objc.Sel("inputStream"))
 	return rv
 }
 
@@ -107,7 +108,7 @@ func (c_ CBL2CAPChannel) InputStream() InputStream /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) SetInputStream(value InputStream /* not a class type */) {
+func (c_ CBL2CAPChannel) SetInputStream(value objc.IObject /* cross-framework: InputStream */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
 
@@ -117,7 +118,7 @@ func (c_ CBL2CAPChannel) SetInputStream(value InputStream /* not a class type */
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
 func (c_ CBL2CAPChannel) OutputStream() objc.IObject /* cross-framework: OutputStream */ {
-	rv := objc.Send[OutputStream](c_.ID, objc.Sel("outputStream"))
+	rv := objc.Send[foundation.OutputStream](c_.ID, objc.Sel("outputStream"))
 	return rv
 }
 

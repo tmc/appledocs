@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AudioToolbox without requiring cgo.
-
-// Record or play audio, convert formats, parse audio streams, and configure your audio session.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox
+// See: https://developer.apple.com/documentation/AudioToolbox
 package audiotoolbox
 
 import (

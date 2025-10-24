@@ -31,8 +31,8 @@ type _HKMedicationDoseEventClass struct {
 type IHKMedicationDoseEvent interface {
 	IHKSample
 	// properties:
-	DoseQuantity() float64 /* primitive/slice/pointer. */
-	SetDoseQuantity(value float64 /* primitive/slice/pointer. */)
+	DoseQuantity() float64
+	SetDoseQuantity(value float64)
 	LogStatus() unsafe.Pointer
 	SetLogStatus(value unsafe.Pointer)
 	MedicationConceptIdentifier() IHKHealthConceptIdentifier
@@ -41,10 +41,10 @@ type IHKMedicationDoseEvent interface {
 	SetMedicationDoseEventType(value IHKMedicationDoseEventType)
 	ScheduleType() unsafe.Pointer
 	SetScheduleType(value unsafe.Pointer)
-	ScheduledDate() foundation.objc.IObject /* cross-framework: Date */
-	SetScheduledDate(value foundation.objc.IObject /* cross-framework: Date */)
-	ScheduledDoseQuantity() float64 /* primitive/slice/pointer. */
-	SetScheduledDoseQuantity(value float64 /* primitive/slice/pointer. */)
+	ScheduledDate() objc.IObject /* cross-framework: Date */
+	SetScheduledDate(value objc.IObject /* cross-framework: Date */)
+	ScheduledDoseQuantity() float64
+	SetScheduledDoseQuantity(value float64)
 	Unit() IHKUnit
 	SetUnit(value IHKUnit)
 	// methods:
@@ -102,7 +102,7 @@ func NewHKMedicationDoseEvent() HKMedicationDoseEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
-func (h_ HKMedicationDoseEvent) DoseQuantity() float64 /* primitive/slice/pointer. */ {
+func (h_ HKMedicationDoseEvent) DoseQuantity() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("doseQuantity"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (h_ HKMedicationDoseEvent) DoseQuantity() float64 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
-func (h_ HKMedicationDoseEvent) SetDoseQuantity(value float64 /* primitive/slice/pointer. */) {
+func (h_ HKMedicationDoseEvent) SetDoseQuantity(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDoseQuantity:"), value)
 }
 
@@ -197,7 +197,7 @@ func (h_ HKMedicationDoseEvent) SetScheduleType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
-func (h_ HKMedicationDoseEvent) ScheduledDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKMedicationDoseEvent) ScheduledDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("scheduledDate"))
 	return rv
 }
@@ -207,7 +207,7 @@ func (h_ HKMedicationDoseEvent) ScheduledDate() foundation.objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
-func (h_ HKMedicationDoseEvent) SetScheduledDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKMedicationDoseEvent) SetScheduledDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDate:"), value)
 }
 
@@ -216,7 +216,7 @@ func (h_ HKMedicationDoseEvent) SetScheduledDate(value foundation.objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
-func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() float64 /* primitive/slice/pointer. */ {
+func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("scheduledDoseQuantity"))
 	return rv
 }
@@ -226,7 +226,7 @@ func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() float64 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
-func (h_ HKMedicationDoseEvent) SetScheduledDoseQuantity(value float64 /* primitive/slice/pointer. */) {
+func (h_ HKMedicationDoseEvent) SetScheduledDoseQuantity(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDoseQuantity:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [PHCachingImageManager] class.
@@ -30,17 +29,20 @@ type _PHCachingImageManagerClass struct {
 // An interface definition for the [PHCachingImageManager] class.
 type IPHCachingImageManager interface {
 	IPHImageManager
-	StartCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
-	StopCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
-	StopCachingImagesForAllAssets()
+	// properties:
 	AllowsCachingHighQualityImages() bool
 	SetAllowsCachingHighQualityImages(value bool)
+	// methods:
 }
 
 // An object that facilitates retrieving or generating preview thumbnails, optimized for batch preloading large numbers of assets.
 //
 // For quick performance when you are working with many assets, a caching image manager can prepare asset images in the background in order to eliminate delays when you later request individual images. For example, use a caching image manager when you want to populate a collection view or similar UI with thumbnails of photo or video assets. Much of the key functionality of the class is defined by its superclass, . For details, see . To use a caching image manager: Create a instance. (This step replaces using the shared instance.) Use class methods to fetch the assets you’re interested in. To prepare images for those assets, call the method with the target size, content mode, and options you plan to use when later requesting images for each individual asset. When you need an image for an individual asset, call the method, and pass the same parameters you used when preparing that asset. If the image you request is among those already prepared, the object immediately returns that image. Otherwise, Photos prepares the image on demand and caches it for later use.
+
+
+// An object that facilitates retrieving or generating preview thumbnails, optimized for batch preloading large numbers of assets.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager
 type PHCachingImageManager struct {
 	PHImageManager
@@ -87,41 +89,21 @@ func NewPHCachingImageManager() PHCachingImageManager {
 }
 
 
-// Prepares image representations of the specified assets for later use.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/startCachingImages(for:targetSize:contentMode:options:)
-func (p_ PHCachingImageManager) StartCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("startCachingImagesForAssets:targetSize:contentMode:options:"), assets, targetSize, contentMode, options)
-}
-
-// Cancels image preparation for the specified assets and options.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/stopCachingImages(for:targetSize:contentMode:options:)
-func (p_ PHCachingImageManager) StopCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("stopCachingImagesForAssets:targetSize:contentMode:options:"), assets, targetSize, contentMode, options)
-}
-
-// Cancels all image preparation that is currently in progress.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/stopCachingImagesForAllAssets()
-func (p_ PHCachingImageManager) StopCachingImagesForAllAssets() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("stopCachingImagesForAllAssets"))
-}
 
 // A Boolean value that determines whether the image manager prepares high-quality images.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/allowsCachingHighQualityImages
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcachingimagemanager/allowscachinghighqualityimages
 func (p_ PHCachingImageManager) AllowsCachingHighQualityImages() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsCachingHighQualityImages"))
 	return rv
 }
 
 
-// SetAllowsCachingHighQualityImages sets the value of the allowsCachingHighQualityImages property.
 // A Boolean value that determines whether the image manager prepares high-quality images.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/allowsCachingHighQualityImages
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcachingimagemanager/allowscachinghighqualityimages
 func (p_ PHCachingImageManager) SetAllowsCachingHighQualityImages(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsCachingHighQualityImages:"), value)
 }

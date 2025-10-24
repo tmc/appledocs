@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,20 @@ type _PHASEMixerParametersClass struct {
 // An interface definition for the [PHASEMixerParameters] class.
 type IPHASEMixerParameters interface {
 	objectivec.IObject
-	AddAmbientMixerParametersWithIdentifierListener(identifier string, listener IPHASEListener)
-	AddSpatialMixerParametersWithIdentifierSourceListener(identifier string, source IPHASESource, listener IPHASEListener)
+	// properties:
+	// methods:
+	AddAmbientMixerParametersWithIdentifierListener(identifier objc.IObject /* cross-framework: NSString */, listener IPHASEListener)
+	AddSpatialMixerParametersWithIdentifierSourceListener(identifier objc.IObject /* cross-framework: NSString */, source IPHASESource, listener IPHASEListener)
 }
 
 // An object that specifies a mixer for sound events and orients them in 3D space.
 //
 // This class orients a sound event in 3D space relative to a listener. When you configure an ambient mixer’s orientation and a listener’s orientation, PHASE lowers the volume of the sound event if the two orientations point away from each other, and plays the sound at full volume if they point at each other. To add an instance of this class to a sound event, use the argument of a sound event’s initializer. Alternatively, PHASE can adjust a sound event’s loudness based on its distance from the listener in 3D space. By calling this class’s function, you supply a sound source that defines the location. For more information, see . Ambient sound events define only a listener and play with a consistent loudness, regardless of the listener’s position in the scene. To define a listener and select a particular ambient mixer that outputs the sound, call this class’s function.
+
+
+// An object that specifies a mixer for sound events and orients them in 3D space.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerParameters
 type PHASEMixerParameters struct {
 	objectivec.Object
@@ -82,18 +89,22 @@ func NewPHASEMixerParameters() PHASEMixerParameters {
 }
 
 
+
 // Adds runtime parameters for an ambient mixer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerParameters/addAmbientMixerParameters(identifier:listener:)
-func (p_ PHASEMixerParameters) AddAmbientMixerParametersWithIdentifierListener(identifier string, listener IPHASEListener) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addAmbientMixerParametersWithIdentifier:listener:"), objc.String(identifier), listener)
+func (p_ PHASEMixerParameters) AddAmbientMixerParametersWithIdentifierListener(identifier objc.IObject /* cross-framework: NSString */, listener IPHASEListener) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addAmbientMixerParametersWithIdentifier:listener:"), identifier, listener)
 }
+
 
 // Adds runtime parameters for a spatial mixer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixerParameters/addSpatialMixerParameters(identifier:source:listener:)
-func (p_ PHASEMixerParameters) AddSpatialMixerParametersWithIdentifierSourceListener(identifier string, source IPHASESource, listener IPHASEListener) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("addSpatialMixerParametersWithIdentifier:source:listener:"), objc.String(identifier), source, listener)
+func (p_ PHASEMixerParameters) AddSpatialMixerParametersWithIdentifierSourceListener(identifier objc.IObject /* cross-framework: NSString */, source IPHASESource, listener IPHASEListener) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("addSpatialMixerParametersWithIdentifier:source:listener:"), identifier, source, listener)
 }
 
 

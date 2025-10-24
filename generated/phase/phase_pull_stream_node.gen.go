@@ -29,13 +29,17 @@ type _PHASEPullStreamNodeClass struct {
 // An interface definition for the [PHASEPullStreamNode] class.
 type IPHASEPullStreamNode interface {
 	IPHASEStreamNode
+	// properties:
 	RenderBlock() unsafe.Pointer
 	SetRenderBlock(value unsafe.Pointer)
 	RenderHandler() unsafe.Pointer
 	SetRenderHandler(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNode
 type PHASEPullStreamNode struct {
 	PHASEStreamNode
@@ -80,7 +84,8 @@ func NewPHASEPullStreamNode() PHASEPullStreamNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNode/renderHandler
 func (p_ PHASEPullStreamNode) RenderBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderBlock"))
@@ -88,14 +93,14 @@ func (p_ PHASEPullStreamNode) RenderBlock() unsafe.Pointer {
 }
 
 
-// SetRenderBlock sets the value of the renderBlock property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNode/renderHandler
 func (p_ PHASEPullStreamNode) SetRenderBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderBlock:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
 func (p_ PHASEPullStreamNode) RenderHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderHandler"))
@@ -103,8 +108,7 @@ func (p_ PHASEPullStreamNode) RenderHandler() unsafe.Pointer {
 }
 
 
-// SetRenderHandler sets the value of the renderHandler property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasepullstreamnode/renderhandler
 func (p_ PHASEPullStreamNode) SetRenderHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderHandler:"), value)

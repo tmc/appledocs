@@ -31,16 +31,11 @@ type _CustomRoutingControllerClass struct {
 type ICustomRoutingController interface {
 	objectivec.IObject
 	// properties:
-	CustomActionItems() []CustomRoutingActionItem /* primitive/slice/pointer. */
-	SetCustomActionItems(value []CustomRoutingActionItem /* primitive/slice/pointer. */)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	AuthorizedRoutes() IAVCustomDeviceRoute
 	SetAuthorizedRoutes(value IAVCustomDeviceRoute)
 	KnownRouteIPs() objc.IObject /* cross-framework: CustomRoutingPartialIP */
 	SetKnownRouteIPs(value objc.IObject /* cross-framework: CustomRoutingPartialIP */)
 	// methods:
-	SetActiveForRoute(active bool /* primitive/slice/pointer. */, route IAVCustomDeviceRoute)
 }
 
 // An object that manages the connection from a device to a destination.
@@ -96,63 +91,6 @@ func NewCustomRoutingController() CustomRoutingController {
 
 
 
-// Sets the active state of a route.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/setActive(_:for:)
-func (c_ CustomRoutingController) SetActiveForRoute(active bool /* primitive/slice/pointer. */, route IAVCustomDeviceRoute) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setActive:forRoute:"), active, route)
-}
-
-
-// An array of custom action items to add to a route picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/customActionItems
-func (c_ CustomRoutingController) CustomActionItems() []CustomRoutingActionItem /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CustomRoutingActionItem](c_.ID, objc.Sel("customActionItems"))
-	return rv
-}
-
-
-// An array of custom action items to add to a route picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/customActionItems
-func (c_ CustomRoutingController) SetCustomActionItems(value []CustomRoutingActionItem /* primitive/slice/pointer. */) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomActionItems:"), nsArray)
-}
-
-
-// A delegate object for a routing controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
-func (c_ CustomRoutingController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate object for a routing controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/delegate
-func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
 // A list of authorized routes.
 //
 // [Full Topic]
@@ -189,6 +127,5 @@ func (c_ CustomRoutingController) KnownRouteIPs() objc.IObject /* cross-framewor
 func (c_ CustomRoutingController) SetKnownRouteIPs(value objc.IObject /* cross-framework: CustomRoutingPartialIP */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
 }
-
 
 

@@ -2,12 +2,12 @@
 
 // Package pushkit provides Go bindings for the PushKit framework.
 //
-// Respond to push notifications related to your app’s complications, file providers, and VoIP services. [Full Topic]
+// Respond to push notifications related to your app’s complications, file providers, and VoIP services.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PushKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PushKit
+// See: https://developer.apple.com/documentation/PushKit
 package pushkit
 
 import (

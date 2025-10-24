@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,15 +32,24 @@ type _ObservationClass struct {
 // An interface definition for the [Observation] class.
 type IObservation interface {
 	objectivec.IObject
-	Confidence() Confidence
-	TimeRange() unsafe.Pointer
-	Uuid() foundation.UUID
+	// properties:
+	Confidence() Confidence /* not a class type */
+	SetConfidence(value Confidence /* not a class type */)
+	TimeRange() objc.IObject /* cross-framework: TimeRange */
+	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
+	Uuid() objc.IObject /* cross-framework: UUID */
+	SetUuid(value objc.IObject /* cross-framework: UUID */)
+	// methods:
 }
 
 // The abstract superclass for analysis results.
 //
 // Observations resulting from Vision image analysis requests inherit from this abstract base class. Don’t use this abstract superclass directly.
+
+
+// The abstract superclass for analysis results.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation
 type Observation struct {
 	objectivec.Object
@@ -84,28 +94,61 @@ func NewObservation() Observation {
 }
 
 
+
 // The level of confidence in the observation’s accuracy.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/confidence
-func (o_ Observation) Confidence() Confidence {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
+func (o_ Observation) Confidence() Confidence /* not a class type */ {
 	rv := objc.Send[Confidence](o_.ID, objc.Sel("confidence"))
 	return rv
 }
 
+
+// The level of confidence in the observation’s accuracy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
+func (o_ Observation) SetConfidence(value Confidence /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setConfidence:"), value)
+}
+
+
 // The time range of the reported observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/timeRange
-func (o_ Observation) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("timeRange"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/timerange
+func (o_ Observation) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
+	rv := objc.Send[coremedia.TimeRange](o_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
+
+// The time range of the reported observation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/timerange
+func (o_ Observation) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setTimeRange:"), value)
+}
+
+
 // A unique identifier assigned to the Vision observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/uuid
-func (o_ Observation) Uuid() foundation.UUID {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/uuid
+func (o_ Observation) Uuid() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](o_.ID, objc.Sel("uuid"))
 	return rv
+}
+
+
+// A unique identifier assigned to the Vision observation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/uuid
+func (o_ Observation) SetUuid(value objc.IObject /* cross-framework: UUID */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUuid:"), value)
 }
 
 

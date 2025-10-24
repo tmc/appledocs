@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,17 @@ type _MTRChannelClusterProgramGuideResponseParamsClass struct {
 // An interface definition for the [MTRChannelClusterProgramGuideResponseParams] class.
 type IMTRChannelClusterProgramGuideResponseParams interface {
 	objectivec.IObject
-	Paging() MTRChannelClusterChannelPagingStruct
+	// properties:
+	Paging() IMTRChannelClusterChannelPagingStruct
 	SetPaging(value IMTRChannelClusterChannelPagingStruct)
-	ProgramList() objc.ID
-	SetProgramList(value objc.ID)
+	ProgramList() objc.IObject /* cross-framework: NSArray */
+	SetProgramList(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams
 type MTRChannelClusterProgramGuideResponseParams struct {
 	objectivec.Object
@@ -80,11 +85,11 @@ func NewMTRChannelClusterProgramGuideResponseParams() MTRChannelClusterProgramGu
 
 
 
-
 // Initialize an MTRChannelClusterProgramGuideResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/init(responseValue:)
-func NewMTRChannelClusterProgramGuideResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRChannelClusterProgramGuideResponseParams {
+func NewMTRChannelClusterProgramGuideResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRChannelClusterProgramGuideResponseParams {
 	instance := getMTRChannelClusterProgramGuideResponseParamsClass().Alloc()
 	rv := objc.Send[MTRChannelClusterProgramGuideResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -92,33 +97,33 @@ func NewMTRChannelClusterProgramGuideResponseParamsWithResponseValueError(respon
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/paging
-func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() MTRChannelClusterChannelPagingStruct {
+func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() IMTRChannelClusterChannelPagingStruct {
 	rv := objc.Send[MTRChannelClusterChannelPagingStruct](m_.ID, objc.Sel("paging"))
 	return rv
 }
 
 
-// SetPaging sets the value of the paging property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/paging
 func (m_ MTRChannelClusterProgramGuideResponseParams) SetPaging(value IMTRChannelClusterChannelPagingStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaging:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/programList
-func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("programList"))
+func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("programList"))
 	return rv
 }
 
 
-// SetProgramList sets the value of the programList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/programList
-func (m_ MTRChannelClusterProgramGuideResponseParams) SetProgramList(value objc.ID) {
+func (m_ MTRChannelClusterProgramGuideResponseParams) SetProgramList(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramList:"), value)
 }
 

@@ -30,18 +30,24 @@ type _ReshapeGradientClass struct {
 
 // An interface definition for the [ReshapeGradient] class.
 type IReshapeGradient interface {
-	objectivec.IObject
+	ICNNGradientKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient
 type ReshapeGradient struct {
-	objectivec.Object
+	CNNGradientKernel
 }
 
 // ReshapeGradientFrom constructs a [ReshapeGradient] from an unsafe.Pointer.
 func ReshapeGradientFrom(ptr unsafe.Pointer) ReshapeGradient {
-	return ReshapeGradient{objectivec.Object{objc.ID(ptr)}}
+	return ReshapeGradient{
+		CNNGradientKernel: CNNGradientKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -76,16 +82,18 @@ func NewReshapeGradient() ReshapeGradient {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient/init(coder:device:)
-func NewReshapeGradientWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ReshapeGradient {
+func NewReshapeGradientWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) ReshapeGradient {
 	instance := getReshapeGradientClass().Alloc()
 	rv := objc.Send[ReshapeGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient/init(device:)
 func NewReshapeGradientWithDevice(device objectivec.IObject) ReshapeGradient {
 	instance := getReshapeGradientClass().Alloc()

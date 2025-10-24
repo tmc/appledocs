@@ -31,19 +31,23 @@ type _MTROnOffClusterOnWithTimedOffParamsClass struct {
 // An interface definition for the [MTROnOffClusterOnWithTimedOffParams] class.
 type IMTROnOffClusterOnWithTimedOffParams interface {
 	objectivec.IObject
-	OffWaitTime() foundation.Number
-	SetOffWaitTime(value foundation.INumber)
-	OnOffControl() foundation.Number
-	SetOnOffControl(value foundation.INumber)
-	OnTime() foundation.Number
-	SetOnTime(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	OffWaitTime() objc.IObject /* cross-framework: NSNumber */
+	SetOffWaitTime(value objc.IObject /* cross-framework: NSNumber */)
+	OnOffControl() objc.IObject /* cross-framework: NSNumber */
+	SetOnOffControl(value objc.IObject /* cross-framework: NSNumber */)
+	OnTime() objc.IObject /* cross-framework: NSNumber */
+	SetOnTime(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROnOffClusterOnWithTimedOffParams
 type MTROnOffClusterOnWithTimedOffParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTROnOffClusterOnWithTimedOffParams() MTROnOffClusterOnWithTimedOffParam
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/offwaittime
-func (m_ MTROnOffClusterOnWithTimedOffParams) OffWaitTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offWaitTime"))
+func (m_ MTROnOffClusterOnWithTimedOffParams) OffWaitTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offWaitTime"))
 	return rv
 }
 
 
-// SetOffWaitTime sets the value of the offWaitTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/offwaittime
-func (m_ MTROnOffClusterOnWithTimedOffParams) SetOffWaitTime(value foundation.INumber) {
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOffWaitTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffWaitTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/onoffcontrol
-func (m_ MTROnOffClusterOnWithTimedOffParams) OnOffControl() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("onOffControl"))
+func (m_ MTROnOffClusterOnWithTimedOffParams) OnOffControl() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("onOffControl"))
 	return rv
 }
 
 
-// SetOnOffControl sets the value of the onOffControl property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/onoffcontrol
-func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnOffControl(value foundation.INumber) {
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnOffControl(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOnOffControl:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/ontime
-func (m_ MTROnOffClusterOnWithTimedOffParams) OnTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("onTime"))
+func (m_ MTROnOffClusterOnWithTimedOffParams) OnTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("onTime"))
 	return rv
 }
 
 
-// SetOnTime sets the value of the onTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/ontime
-func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnTime(value foundation.INumber) {
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetOnTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOnTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterOnWithTimedOffParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROnOffClusterOnWithTimedOffParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterOnWithTimedOffParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOnWithTimedOffParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROnOffClusterOnWithTimedOffParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithtimedoffparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOnWithTimedOffParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROnOffClusterOnWithTimedOffParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

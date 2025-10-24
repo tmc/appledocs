@@ -209,17 +209,17 @@ const (
 // CMSCertificateChainMode - Constants that can be set to specify what certificates to include in a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSCertificateChainMode
-type SCertificateChainMode uint
+type CMSCertificateChainMode uint
 
 // CMSSignedAttributes - Optional attributes you can add to a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSSignedAttributes
-type SSignedAttributes uint
+type CMSSignedAttributes uint
 
 // CMSSignerStatus - The constants that indicate the status of the signature and signer information in a signed message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSSignerStatus
-type SSignerStatus uint
+type CMSSignerStatus uint
 
 // SSLAuthenticate - The flags that represent the requirements for client-side authentication.
 //
@@ -261,6 +261,16 @@ type SSLSessionOption uint
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLSessionState
 type SSLSessionState uint
 
+// SecAccessControlCreateFlags - Access control constants that dictate how a keychain item may be used.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessControlCreateFlags
+type SecAccessControlCreateFlags uint
+
+// SecAuthenticationType - The authentication type to use for an Internet password.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAuthenticationType
+type SecAuthenticationType uint
+
 // SecCSDigestAlgorithm - The list of digest algorithms available for code signatures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCSDigestAlgorithm
@@ -288,10 +298,51 @@ type SecCodeSignatureFlags uint
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCodeStatus
 type SecCodeStatus uint
 
-// SecKeychainPromptSelector - Bits that define when a keychain should require a passphrase.
+// SecExternalFormat - The external format of a keychain item.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainPromptSelector
-type SecKeychainPromptSelector uint
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecExternalFormat
+type SecExternalFormat uint
+
+// SecExternalItemType - The import item type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecExternalItemType
+type SecExternalItemType uint
+
+// SecItemAttr - Specifies a keychain item’s attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemAttr
+type SecItemAttr uint
+
+// SecItemClass - Specifies a keychain item’s class code.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemClass
+type SecItemClass uint
+
+const (
+	// kSecGenericPasswordItemClass - Indicates that the item is a generic password.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemClass/genericPasswordItemClass
+	kSecGenericPasswordItemClass SecItemClass = 0
+	// kSecInternetPasswordItemClass - Indicates that the item is an Internet password.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemClass/internetPasswordItemClass
+	kSecInternetPasswordItemClass SecItemClass = 0
+)
+
+// SecItemImportExportFlags - The import and export function flags.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecItemImportExportFlags
+type SecItemImportExportFlags uint
+
+// SecKeyImportExportFlags - The import/export parameter structure flags.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyImportExportFlags
+type SecKeyImportExportFlags uint
+
+// SecProtocolType - The protocol type associated with an Internet password.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecProtocolType
+type SecProtocolType uint
 
 // SecRequirementType - An enumeration indicating different types of internal requirements for code.
 //
@@ -322,6 +373,13 @@ type SessionAttributeBits uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SessionCreationFlags
 type SessionCreationFlags uint
+
+const (
+	// sessionKeepCurrentBootstrap - The caller has allocated sub-bootstrap.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Security/SessionCreationFlags/sessionKeepCurrentBootstrap
+	sessionKeepCurrentBootstrap SessionCreationFlags = 0
+)
 
 // cssm_appledl_open_parameters_mask enum type
 //
@@ -365,32 +423,5 @@ type tls_ciphersuite_t uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t
 type tls_protocol_version_t uint
-
-const (
-	// tls_protocol_version_DTLSv10 - The DTLS 1.0 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/DTLSv10
-	tls_protocol_version_DTLSv10 tls_protocol_version_t = 0
-	// tls_protocol_version_DTLSv12 - The DTLS 1.2 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/DTLSv12
-	tls_protocol_version_DTLSv12 tls_protocol_version_t = 0
-	// tls_protocol_version_TLSv10 - The TLS 1.0 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv10
-	tls_protocol_version_TLSv10 tls_protocol_version_t = 0
-	// tls_protocol_version_TLSv11 - The TLS 1.1 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv11
-	tls_protocol_version_TLSv11 tls_protocol_version_t = 0
-	// tls_protocol_version_TLSv12 - The TLS 1.2 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv12
-	tls_protocol_version_TLSv12 tls_protocol_version_t = 0
-	// tls_protocol_version_TLSv13 - The TLS 1.3 protocol.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Security/tls_protocol_version_t/TLSv13
-	tls_protocol_version_TLSv13 tls_protocol_version_t = 0
-)
 
 

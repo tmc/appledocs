@@ -34,8 +34,8 @@ type IMenuToolbarItem interface {
 	SetItemMenu(value IMenu)
 	Menu() IMenu
 	SetMenu(value IMenu)
-	ShowsIndicator() bool /* primitive/slice/pointer. */
-	SetShowsIndicator(value bool /* primitive/slice/pointer. */)
+	ShowsIndicator() bool
+	SetShowsIndicator(value bool)
 	// methods:
 }
 
@@ -132,7 +132,7 @@ func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
-func (m_ MenuToolbarItem) ShowsIndicator() bool /* primitive/slice/pointer. */ {
+func (m_ MenuToolbarItem) ShowsIndicator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsIndicator"))
 	return rv
 }
@@ -142,7 +142,7 @@ func (m_ MenuToolbarItem) ShowsIndicator() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
-func (m_ MenuToolbarItem) SetShowsIndicator(value bool /* primitive/slice/pointer. */) {
+func (m_ MenuToolbarItem) SetShowsIndicator(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsIndicator:"), value)
 }
 

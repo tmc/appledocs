@@ -30,20 +30,21 @@ type _OverlayConfigurationClass struct {
 // An interface definition for the [OverlayConfiguration] class.
 type IOverlayConfiguration interface {
 	objectivec.IObject
-	Configuration() SKOverlayConfiguration
-	SetConfiguration(value ISKOverlayConfiguration)
+	// properties:
+	// methods:
 }
 
-// The abstract superclass for all classes that represent an overlay’s attributes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/Configuration-swift.class
+// A parent class referenced by other StoreKit classes.
+
+
+// A parent class referenced by other StoreKit classes. [Full Topic]
 type OverlayConfiguration struct {
 	objectivec.Object
 }
 
 // OverlayConfigurationFrom constructs a [OverlayConfiguration] from an unsafe.Pointer.
 //
-// The abstract superclass for all classes that represent an overlay’s attributes.
+// A parent class referenced by other StoreKit classes.
 func OverlayConfigurationFrom(ptr unsafe.Pointer) OverlayConfiguration {
 	return OverlayConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
@@ -79,24 +80,6 @@ func NewOverlayConfiguration() OverlayConfiguration {
 	return getOverlayConfigurationClass().New()
 }
 
-
-// An overlay’s attributes; for example, its position on the screen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayConfiguration) Configuration() SKOverlayConfiguration {
-	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// SetConfiguration sets the value of the configuration property.
-// An overlay’s attributes; for example, its position on the screen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
-}
 
 
 

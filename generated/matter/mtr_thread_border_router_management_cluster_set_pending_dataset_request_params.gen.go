@@ -31,15 +31,19 @@ type _MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParamsClass 
 // An interface definition for the [MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams] class.
 type IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams interface {
 	objectivec.IObject
-	PendingDataset() foundation.NSData
-	SetPendingDataset(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	PendingDataset() objc.IObject /* cross-framework: NSData */
+	SetPendingDataset(value objc.IObject /* cross-framework: NSData */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams
 type MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams() M
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/pendingDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) PendingDataset() foundation.NSData {
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) PendingDataset() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("pendingDataset"))
 	return rv
 }
 
 
-// SetPendingDataset sets the value of the pendingDataset property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/pendingDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetPendingDataset(value foundation.IData) {
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetPendingDataset(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingDataset:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

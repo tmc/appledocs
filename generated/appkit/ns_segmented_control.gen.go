@@ -36,20 +36,20 @@ type ISegmentedControl interface {
 	SetActiveCompressionOptions(value objc.IObject /* cross-framework: UserInterfaceCompressionOptions */)
 	BorderShape() unsafe.Pointer
 	SetBorderShape(value unsafe.Pointer)
-	DoubleValueForSelectedSegment() float64 /* primitive/slice/pointer. */
-	SetDoubleValueForSelectedSegment(value float64 /* primitive/slice/pointer. */)
-	IndexOfSelectedItem() int /* primitive/slice/pointer. */
-	SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */)
-	IsSpringLoaded() bool /* primitive/slice/pointer. */
-	SetIsSpringLoaded(value bool /* primitive/slice/pointer. */)
-	SegmentCount() int /* primitive/slice/pointer. */
-	SetSegmentCount(value int /* primitive/slice/pointer. */)
+	DoubleValueForSelectedSegment() float64
+	SetDoubleValueForSelectedSegment(value float64)
+	IndexOfSelectedItem() int
+	SetIndexOfSelectedItem(value int)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
+	SegmentCount() int
+	SetSegmentCount(value int)
 	SegmentDistribution() unsafe.Pointer
 	SetSegmentDistribution(value unsafe.Pointer)
 	SegmentStyle() unsafe.Pointer
 	SetSegmentStyle(value unsafe.Pointer)
-	SelectedSegment() int /* primitive/slice/pointer. */
-	SetSelectedSegment(value int /* primitive/slice/pointer. */)
+	SelectedSegment() int
+	SetSelectedSegment(value int)
 	TrackingMode() unsafe.Pointer
 	SetTrackingMode(value unsafe.Pointer)
 	// methods:
@@ -163,7 +163,7 @@ func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 /* primitive/slice/pointer. */ {
+func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
 	return rv
 }
@@ -173,14 +173,14 @@ func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64 /* primitive/slice/pointer. */) {
+func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValueForSelectedSegment:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-func (s_ SegmentedControl) IndexOfSelectedItem() int /* primitive/slice/pointer. */ {
+func (s_ SegmentedControl) IndexOfSelectedItem() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (s_ SegmentedControl) IndexOfSelectedItem() int /* primitive/slice/pointer.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-func (s_ SegmentedControl) SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */) {
+func (s_ SegmentedControl) SetIndexOfSelectedItem(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
 }
 
@@ -197,7 +197,7 @@ func (s_ SegmentedControl) SetIndexOfSelectedItem(value int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
-func (s_ SegmentedControl) IsSpringLoaded() bool /* primitive/slice/pointer. */ {
+func (s_ SegmentedControl) IsSpringLoaded() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSpringLoaded"))
 	return rv
 }
@@ -207,7 +207,7 @@ func (s_ SegmentedControl) IsSpringLoaded() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/isspringloaded
-func (s_ SegmentedControl) SetIsSpringLoaded(value bool /* primitive/slice/pointer. */) {
+func (s_ SegmentedControl) SetIsSpringLoaded(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
 
@@ -216,7 +216,7 @@ func (s_ SegmentedControl) SetIsSpringLoaded(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-func (s_ SegmentedControl) SegmentCount() int /* primitive/slice/pointer. */ {
+func (s_ SegmentedControl) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
 }
@@ -226,7 +226,7 @@ func (s_ SegmentedControl) SegmentCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-func (s_ SegmentedControl) SetSegmentCount(value int /* primitive/slice/pointer. */) {
+func (s_ SegmentedControl) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
 }
 
@@ -269,7 +269,7 @@ func (s_ SegmentedControl) SetSegmentStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-func (s_ SegmentedControl) SelectedSegment() int /* primitive/slice/pointer. */ {
+func (s_ SegmentedControl) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
 }
@@ -279,7 +279,7 @@ func (s_ SegmentedControl) SelectedSegment() int /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-func (s_ SegmentedControl) SetSelectedSegment(value int /* primitive/slice/pointer. */) {
+func (s_ SegmentedControl) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
 }
 

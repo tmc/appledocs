@@ -32,8 +32,8 @@ type IUserScriptTask interface {
 	objectivec.IObject
 	// properties:
 	ScriptURL() IURL
-	SetScriptURL(value IURL)
 	// methods:
+	ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* not a class type */)
 }
 
 // An object that executes scripts.
@@ -89,23 +89,35 @@ func NewUserScriptTask() UserScriptTask {
 
 
 
-// The URL of the script file.
+// Return a user script task instance given a URL for a script file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserscripttask/scripturl
-func (u_ UserScriptTask) ScriptURL() IURL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("scriptURL"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)
+func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
+	instance := getUserScriptTaskClass().Alloc()
+	rv := objc.Send[UserScriptTask](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
+	rv.Autorelease()
 	return rv
 }
 
 
+
+// Executes the script with no input and ignoring any result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/execute(completionHandler:)
+func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* not a class type */) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithCompletionHandler:"), handler)
+}
+
+
 // The URL of the script file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuserscripttask/scripturl
-func (u_ UserScriptTask) SetScriptURL(value IURL) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setScriptURL:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/scriptURL
+func (u_ UserScriptTask) ScriptURL() IURL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("scriptURL"))
+	return rv
 }
-
 
 

@@ -31,8 +31,6 @@ type _TermOfAddressClass struct {
 type ITermOfAddress interface {
 	objectivec.IObject
 	// properties:
-	LanguageIdentifier() IString
-	Pronouns() []MorphologyPronoun /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -87,62 +85,6 @@ func NewTermOfAddress() TermOfAddress {
 	return getTermOfAddressClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/currentUser
-func (tc _TermOfAddressClass) CurrentUser() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("currentUser"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/feminine
-func (tc _TermOfAddressClass) Feminine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("feminine"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/localizedForLanguageIdentifier:withPronouns:
-func (tc _TermOfAddressClass) LocalizedForLanguageIdentifierWithPronouns(language IString, pronouns []MorphologyPronoun /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("localizedForLanguageIdentifier:withPronouns:"), language, pronouns)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/masculine
-func (tc _TermOfAddressClass) Masculine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("masculine"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/neutral
-func (tc _TermOfAddressClass) Neutral() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("neutral"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/languageIdentifier
-func (t_ TermOfAddress) LanguageIdentifier() IString {
-	rv := objc.Send[String](t_.ID, objc.Sel("languageIdentifier"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/pronouns
-func (t_ TermOfAddress) Pronouns() []MorphologyPronoun /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]MorphologyPronoun](t_.ID, objc.Sel("pronouns"))
-	return rv
-}
 
 
 

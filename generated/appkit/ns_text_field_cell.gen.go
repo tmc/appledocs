@@ -39,8 +39,8 @@ type ITextFieldCell interface {
 	SetBackgroundColor(value IColor)
 	BezelStyle() unsafe.Pointer
 	SetBezelStyle(value unsafe.Pointer)
-	DrawsBackground() bool /* primitive/slice/pointer. */
-	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	DrawsBackground() bool
+	SetDrawsBackground(value bool)
 	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
 	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
 	TextColor() IColor
@@ -183,7 +183,7 @@ func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-func (t_ TextFieldCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
+func (t_ TextFieldCell) DrawsBackground() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (t_ TextFieldCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-func (t_ TextFieldCell) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
+func (t_ TextFieldCell) SetDrawsBackground(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -203,7 +203,7 @@ func (t_ TextFieldCell) SetDrawsBackground(value bool /* primitive/slice/pointer
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/placeholderattributedstring
 func (t_ TextFieldCell) PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
+	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 

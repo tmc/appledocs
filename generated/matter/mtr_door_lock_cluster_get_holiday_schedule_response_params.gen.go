@@ -31,21 +31,25 @@ type _MTRDoorLockClusterGetHolidayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetHolidayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetHolidayScheduleResponseParams interface {
 	objectivec.IObject
-	HolidayIndex() foundation.Number
-	SetHolidayIndex(value foundation.INumber)
-	LocalEndTime() foundation.Number
-	SetLocalEndTime(value foundation.INumber)
-	LocalStartTime() foundation.Number
-	SetLocalStartTime(value foundation.INumber)
-	OperatingMode() foundation.Number
-	SetOperatingMode(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	HolidayIndex() objc.IObject /* cross-framework: NSNumber */
+	SetHolidayIndex(value objc.IObject /* cross-framework: NSNumber */)
+	LocalEndTime() objc.IObject /* cross-framework: NSNumber */
+	SetLocalEndTime(value objc.IObject /* cross-framework: NSNumber */)
+	LocalStartTime() objc.IObject /* cross-framework: NSNumber */
+	SetLocalStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	OperatingMode() objc.IObject /* cross-framework: NSNumber */
+	SetOperatingMode(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterGetHolidayScheduleResponseParams
 type MTRDoorLockClusterGetHolidayScheduleResponseParams struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRDoorLockClusterGetHolidayScheduleResponseParams() MTRDoorLockClusterG
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) HolidayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holidayIndex"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) HolidayIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("holidayIndex"))
 	return rv
 }
 
 
-// SetHolidayIndex sets the value of the holidayIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/holidayindex
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetHolidayIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetHolidayIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHolidayIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalEndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localEndTime"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalEndTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("localEndTime"))
 	return rv
 }
 
 
-// SetLocalEndTime sets the value of the localEndTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localendtime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalEndTime(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalEndTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalStartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("localStartTime"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) LocalStartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("localStartTime"))
 	return rv
 }
 
 
-// SetLocalStartTime sets the value of the localStartTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/localstarttime
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalStartTime(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetLocalStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/operatingmode
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) OperatingMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operatingMode"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) OperatingMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operatingMode"))
 	return rv
 }
 
 
-// SetOperatingMode sets the value of the operatingMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/operatingmode
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetOperatingMode(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetOperatingMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatingMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetholidayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetHolidayScheduleResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -31,14 +31,14 @@ type _HKSampleClass struct {
 type IHKSample interface {
 	IHKObject
 	// properties:
-	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
-	HasUndeterminedDuration() bool /* primitive/slice/pointer. */
+	EndDate() objc.IObject /* cross-framework: NSDate */
+	HasUndeterminedDuration() bool
 	SampleType() IHKSampleType
-	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
-	HKPredicateKeyPathEndDate() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathStartDate() string /* primitive/slice/pointer. */
-	HKSampleSortIdentifierEndDate() string /* primitive/slice/pointer. */
-	HKSampleSortIdentifierStartDate() string /* primitive/slice/pointer. */
+	StartDate() objc.IObject /* cross-framework: NSDate */
+	HKPredicateKeyPathEndDate() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathStartDate() objc.IObject /* cross-framework: NSString */
+	HKSampleSortIdentifierEndDate() objc.IObject /* cross-framework: NSString */
+	HKSampleSortIdentifierStartDate() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -101,7 +101,7 @@ func NewHKSample() HKSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/endDate
-func (h_ HKSample) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (h_ HKSample) EndDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (h_ HKSample) EndDate() foundation.objc.IObject /* cross-framework: NSDate 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/hasUndeterminedDuration
-func (h_ HKSample) HasUndeterminedDuration() bool /* primitive/slice/pointer. */ {
+func (h_ HKSample) HasUndeterminedDuration() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasUndeterminedDuration"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (h_ HKSample) SampleType() IHKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/startDate
-func (h_ HKSample) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (h_ HKSample) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -141,8 +141,8 @@ func (h_ HKSample) StartDate() foundation.objc.IObject /* cross-framework: NSDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate
-func (h_ HKSample) HKPredicateKeyPathEndDate() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
+func (h_ HKSample) HKPredicateKeyPathEndDate() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
 	return rv
 }
 
@@ -151,8 +151,8 @@ func (h_ HKSample) HKPredicateKeyPathEndDate() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate
-func (h_ HKSample) HKPredicateKeyPathStartDate() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
+func (h_ HKSample) HKPredicateKeyPathStartDate() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
 	return rv
 }
 
@@ -161,8 +161,8 @@ func (h_ HKSample) HKPredicateKeyPathStartDate() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate
-func (h_ HKSample) HKSampleSortIdentifierEndDate() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
+func (h_ HKSample) HKSampleSortIdentifierEndDate() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (h_ HKSample) HKSampleSortIdentifierEndDate() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate
-func (h_ HKSample) HKSampleSortIdentifierStartDate() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
+func (h_ HKSample) HKSampleSortIdentifierStartDate() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
 	return rv
 }
 

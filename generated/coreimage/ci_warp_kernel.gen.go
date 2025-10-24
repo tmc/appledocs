@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [WarpKernel] class.
@@ -32,7 +33,7 @@ type IWarpKernel interface {
 	IKernel
 	// properties:
 	// methods:
-	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID /* already interface */) IImage
+	ApplyWithExtentRoiCallbackInputImageArguments(extent objc.IObject /* cross-framework: Rect */, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID) IImage
 }
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
@@ -94,8 +95,8 @@ func NewWarpKernel() WarpKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func NewWarpKernelWithString(string_ string /* primitive/slice/pointer. */) WarpKernel {
-	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
+func NewWarpKernelWithString(string_ objc.IObject /* cross-framework: NSString */) WarpKernel {
+	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
@@ -105,8 +106,8 @@ func NewWarpKernelWithString(string_ string /* primitive/slice/pointer. */) Warp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func (wc _WarpKernelClass) KernelWithString(string_ string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string_))
+func (wc _WarpKernelClass) KernelWithString(string_ objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
@@ -115,7 +116,7 @@ func (wc _WarpKernelClass) KernelWithString(string_ string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
-func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID /* already interface */) IImage {
+func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent objc.IObject /* cross-framework: Rect */, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }

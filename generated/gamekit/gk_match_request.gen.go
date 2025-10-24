@@ -32,34 +32,34 @@ type _MatchRequestClass struct {
 type IMatchRequest interface {
 	objectivec.IObject
 	// properties:
-	InviteMessage() string /* primitive/slice/pointer. */
-	SetInviteMessage(value string /* primitive/slice/pointer. */)
-	RecipientProperties() foundation.IDictionary /* already interface */
-	SetRecipientProperties(value foundation.IDictionary /* already interface */)
+	InviteMessage() objc.IObject /* cross-framework: NSString */
+	SetInviteMessage(value objc.IObject /* cross-framework: NSString */)
+	RecipientProperties() foundation.IDictionary
+	SetRecipientProperties(value foundation.IDictionary)
 	RecipientResponseHandler() unsafe.Pointer
 	SetRecipientResponseHandler(value unsafe.Pointer)
-	DefaultNumberOfPlayers() int /* primitive/slice/pointer. */
-	SetDefaultNumberOfPlayers(value int /* primitive/slice/pointer. */)
+	DefaultNumberOfPlayers() int
+	SetDefaultNumberOfPlayers(value int)
 	InviteeResponseHandler() unsafe.Pointer
 	SetInviteeResponseHandler(value unsafe.Pointer)
-	MaxPlayers() int /* primitive/slice/pointer. */
-	SetMaxPlayers(value int /* primitive/slice/pointer. */)
-	MinPlayers() int /* primitive/slice/pointer. */
-	SetMinPlayers(value int /* primitive/slice/pointer. */)
+	MaxPlayers() int
+	SetMaxPlayers(value int)
+	MinPlayers() int
+	SetMinPlayers(value int)
 	PlayerAttributes() unsafe.Pointer
 	SetPlayerAttributes(value unsafe.Pointer)
-	PlayerGroup() int /* primitive/slice/pointer. */
-	SetPlayerGroup(value int /* primitive/slice/pointer. */)
-	PlayersToInvite() string /* primitive/slice/pointer. */
-	SetPlayersToInvite(value string /* primitive/slice/pointer. */)
-	Properties() string /* primitive/slice/pointer. */
-	SetProperties(value string /* primitive/slice/pointer. */)
-	QueueName() string /* primitive/slice/pointer. */
-	SetQueueName(value string /* primitive/slice/pointer. */)
+	PlayerGroup() int
+	SetPlayerGroup(value int)
+	PlayersToInvite() objc.IObject /* cross-framework: NSString */
+	SetPlayersToInvite(value objc.IObject /* cross-framework: NSString */)
+	Properties() objc.IObject /* cross-framework: NSString */
+	SetProperties(value objc.IObject /* cross-framework: NSString */)
+	QueueName() objc.IObject /* cross-framework: NSString */
+	SetQueueName(value objc.IObject /* cross-framework: NSString */)
 	Recipients() IGKPlayer
 	SetRecipients(value IGKPlayer)
-	RestrictToAutomatch() bool /* primitive/slice/pointer. */
-	SetRestrictToAutomatch(value bool /* primitive/slice/pointer. */)
+	RestrictToAutomatch() bool
+	SetRestrictToAutomatch(value bool)
 	// methods:
 }
 
@@ -120,7 +120,7 @@ func NewMatchRequest() MatchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayersAllowedForMatch(of:)
-func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType /* not a class type */) uint /* primitive/slice/pointer. */ {
+func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType /* not a class type */) uint {
 	rv := objc.Send[uint](objc.ID(mc.class), objc.Sel("maxPlayersAllowedForMatchOfType:"), matchType)
 	return rv
 }
@@ -130,8 +130,8 @@ func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) InviteMessage() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("inviteMessage"))
+func (m_ MatchRequest) InviteMessage() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("inviteMessage"))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (m_ MatchRequest) InviteMessage() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/inviteMessage
-func (m_ MatchRequest) SetInviteMessage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), objc.String(value))
+func (m_ MatchRequest) SetInviteMessage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteMessage:"), value)
 }
 
 
@@ -149,7 +149,7 @@ func (m_ MatchRequest) SetInviteMessage(value string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-func (m_ MatchRequest) RecipientProperties() foundation.IDictionary /* already interface */ {
+func (m_ MatchRequest) RecipientProperties() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("recipientProperties"))
 	return rv
 }
@@ -159,7 +159,7 @@ func (m_ MatchRequest) RecipientProperties() foundation.IDictionary /* already i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-func (m_ MatchRequest) SetRecipientProperties(value foundation.IDictionary /* already interface */) {
+func (m_ MatchRequest) SetRecipientProperties(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecipientProperties:"), value)
 }
 
@@ -187,7 +187,7 @@ func (m_ MatchRequest) SetRecipientResponseHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/defaultnumberofplayers
-func (m_ MatchRequest) DefaultNumberOfPlayers() int /* primitive/slice/pointer. */ {
+func (m_ MatchRequest) DefaultNumberOfPlayers() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("defaultNumberOfPlayers"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (m_ MatchRequest) DefaultNumberOfPlayers() int /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/defaultnumberofplayers
-func (m_ MatchRequest) SetDefaultNumberOfPlayers(value int /* primitive/slice/pointer. */) {
+func (m_ MatchRequest) SetDefaultNumberOfPlayers(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNumberOfPlayers:"), value)
 }
 
@@ -225,7 +225,7 @@ func (m_ MatchRequest) SetInviteeResponseHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/maxplayers
-func (m_ MatchRequest) MaxPlayers() int /* primitive/slice/pointer. */ {
+func (m_ MatchRequest) MaxPlayers() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("maxPlayers"))
 	return rv
 }
@@ -235,7 +235,7 @@ func (m_ MatchRequest) MaxPlayers() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/maxplayers
-func (m_ MatchRequest) SetMaxPlayers(value int /* primitive/slice/pointer. */) {
+func (m_ MatchRequest) SetMaxPlayers(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPlayers:"), value)
 }
 
@@ -244,7 +244,7 @@ func (m_ MatchRequest) SetMaxPlayers(value int /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/minplayers
-func (m_ MatchRequest) MinPlayers() int /* primitive/slice/pointer. */ {
+func (m_ MatchRequest) MinPlayers() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("minPlayers"))
 	return rv
 }
@@ -254,7 +254,7 @@ func (m_ MatchRequest) MinPlayers() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/minplayers
-func (m_ MatchRequest) SetMinPlayers(value int /* primitive/slice/pointer. */) {
+func (m_ MatchRequest) SetMinPlayers(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPlayers:"), value)
 }
 
@@ -282,7 +282,7 @@ func (m_ MatchRequest) SetPlayerAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup
-func (m_ MatchRequest) PlayerGroup() int /* primitive/slice/pointer. */ {
+func (m_ MatchRequest) PlayerGroup() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("playerGroup"))
 	return rv
 }
@@ -292,7 +292,7 @@ func (m_ MatchRequest) PlayerGroup() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup
-func (m_ MatchRequest) SetPlayerGroup(value int /* primitive/slice/pointer. */) {
+func (m_ MatchRequest) SetPlayerGroup(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerGroup:"), value)
 }
 
@@ -301,8 +301,8 @@ func (m_ MatchRequest) SetPlayerGroup(value int /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-func (m_ MatchRequest) PlayersToInvite() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("playersToInvite"))
+func (m_ MatchRequest) PlayersToInvite() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("playersToInvite"))
 	return rv
 }
 
@@ -311,8 +311,8 @@ func (m_ MatchRequest) PlayersToInvite() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerstoinvite
-func (m_ MatchRequest) SetPlayersToInvite(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayersToInvite:"), objc.String(value))
+func (m_ MatchRequest) SetPlayersToInvite(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayersToInvite:"), value)
 }
 
 
@@ -320,8 +320,8 @@ func (m_ MatchRequest) SetPlayersToInvite(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-func (m_ MatchRequest) Properties() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
+func (m_ MatchRequest) Properties() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -330,8 +330,8 @@ func (m_ MatchRequest) Properties() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties
-func (m_ MatchRequest) SetProperties(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
+func (m_ MatchRequest) SetProperties(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
 }
 
 
@@ -339,8 +339,8 @@ func (m_ MatchRequest) SetProperties(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-func (m_ MatchRequest) QueueName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("queueName"))
+func (m_ MatchRequest) QueueName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("queueName"))
 	return rv
 }
 
@@ -349,8 +349,8 @@ func (m_ MatchRequest) QueueName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename
-func (m_ MatchRequest) SetQueueName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueName:"), objc.String(value))
+func (m_ MatchRequest) SetQueueName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueName:"), value)
 }
 
 
@@ -377,7 +377,7 @@ func (m_ MatchRequest) SetRecipients(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/restricttoautomatch
-func (m_ MatchRequest) RestrictToAutomatch() bool /* primitive/slice/pointer. */ {
+func (m_ MatchRequest) RestrictToAutomatch() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("restrictToAutomatch"))
 	return rv
 }
@@ -387,7 +387,7 @@ func (m_ MatchRequest) RestrictToAutomatch() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/restricttoautomatch
-func (m_ MatchRequest) SetRestrictToAutomatch(value bool /* primitive/slice/pointer. */) {
+func (m_ MatchRequest) SetRestrictToAutomatch(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictToAutomatch:"), value)
 }
 

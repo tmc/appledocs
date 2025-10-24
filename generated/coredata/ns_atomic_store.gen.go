@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AtomicStore] class.
@@ -30,16 +31,16 @@ type _AtomicStoreClass struct {
 type IAtomicStore interface {
 	IPersistentStore
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Metadata() string /* primitive/slice/pointer. */
-	SetMetadata(value string /* primitive/slice/pointer. */)
-	Type() string /* primitive/slice/pointer. */
-	SetType(value string /* primitive/slice/pointer. */)
-	NSStoreTypeKey() string /* primitive/slice/pointer. */
-	NSStoreUUIDKey() string /* primitive/slice/pointer. */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Metadata() objc.IObject /* cross-framework: NSString */
+	SetMetadata(value objc.IObject /* cross-framework: NSString */)
+	Type() objc.IObject /* cross-framework: NSString */
+	SetType(value objc.IObject /* cross-framework: NSString */)
+	NSStoreTypeKey() objc.IObject /* cross-framework: NSString */
+	NSStoreUUIDKey() objc.IObject /* cross-framework: NSString */
 	// methods:
-	Save(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	Save(error_ unsafe.Pointer) bool
 }
 
 // An abstract superclass that you subclass to create a Core Data atomic store.
@@ -101,7 +102,7 @@ func NewAtomicStore() AtomicStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStore/save()
-func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("save:"), error_)
 	return rv
 }
@@ -111,8 +112,8 @@ func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (a_ AtomicStore) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+func (a_ AtomicStore) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -121,8 +122,8 @@ func (a_ AtomicStore) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/identifier
-func (a_ AtomicStore) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (a_ AtomicStore) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -130,8 +131,8 @@ func (a_ AtomicStore) SetIdentifier(value string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-func (a_ AtomicStore) Metadata() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("metadata"))
+func (a_ AtomicStore) Metadata() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (a_ AtomicStore) Metadata() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/metadata
-func (a_ AtomicStore) SetMetadata(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (a_ AtomicStore) SetMetadata(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
 }
 
 
@@ -149,8 +150,8 @@ func (a_ AtomicStore) SetMetadata(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-func (a_ AtomicStore) Type() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("type"))
+func (a_ AtomicStore) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -159,8 +160,8 @@ func (a_ AtomicStore) Type() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/type
-func (a_ AtomicStore) SetType(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), objc.String(value))
+func (a_ AtomicStore) SetType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
 
 
@@ -168,8 +169,8 @@ func (a_ AtomicStore) SetType(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoretypekey
-func (a_ AtomicStore) NSStoreTypeKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreTypeKey"))
+func (a_ AtomicStore) NSStoreTypeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("NSStoreTypeKey"))
 	return rv
 }
 
@@ -178,8 +179,8 @@ func (a_ AtomicStore) NSStoreTypeKey() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstoreuuidkey
-func (a_ AtomicStore) NSStoreUUIDKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("NSStoreUUIDKey"))
+func (a_ AtomicStore) NSStoreUUIDKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv
 }
 

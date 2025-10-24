@@ -32,21 +32,21 @@ type _ModelDescriptionClass struct {
 type IModelDescription interface {
 	objectivec.IObject
 	// properties:
-	ClassLabels() []objc.ID /* already interface */
-	InputDescriptionsByName() foundation.IDictionary /* already interface */
-	Metadata() foundation.IDictionary /* already interface */
-	OutputDescriptionsByName() foundation.IDictionary /* already interface */
-	PredictedFeatureName() string /* primitive/slice/pointer. */
+	ClassLabels() []objc.ID
+	InputDescriptionsByName() foundation.IDictionary
+	Metadata() foundation.IDictionary
+	OutputDescriptionsByName() foundation.IDictionary
+	PredictedFeatureName() objc.IObject /* cross-framework: NSString */
 	Configuration() IMLModelConfiguration
 	SetConfiguration(value IMLModelConfiguration)
 	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
-	IsUpdatable() bool /* primitive/slice/pointer. */
-	SetIsUpdatable(value bool /* primitive/slice/pointer. */)
+	IsUpdatable() bool
+	SetIsUpdatable(value bool)
 	ParameterDescriptionsByKey() ParameterDescription /* not a class type */
 	SetParameterDescriptionsByKey(value ParameterDescription /* not a class type */)
-	PredictedProbabilitiesName() string /* primitive/slice/pointer. */
-	SetPredictedProbabilitiesName(value string /* primitive/slice/pointer. */)
+	PredictedProbabilitiesName() objc.IObject /* cross-framework: NSString */
+	SetPredictedProbabilitiesName(value objc.IObject /* cross-framework: NSString */)
 	StateDescriptionsByName() IMLFeatureDescription
 	SetStateDescriptionsByName(value IMLFeatureDescription)
 	TrainingInputDescriptionsByName() IMLFeatureDescription
@@ -109,7 +109,7 @@ func NewModelDescription() ModelDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/classLabels
-func (m_ ModelDescription) ClassLabels() []objc.ID /* already interface */ {
+func (m_ ModelDescription) ClassLabels() []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("classLabels"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (m_ ModelDescription) ClassLabels() []objc.ID /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/inputDescriptionsByName
-func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary /* already interface */ {
+func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("inputDescriptionsByName"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary /* a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/metadata
-func (m_ ModelDescription) Metadata() foundation.IDictionary /* already interface */ {
+func (m_ ModelDescription) Metadata() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -139,7 +139,7 @@ func (m_ ModelDescription) Metadata() foundation.IDictionary /* already interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary /* already interface */ {
+func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
@@ -149,8 +149,8 @@ func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (m_ ModelDescription) PredictedFeatureName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("predictedFeatureName"))
+func (m_ ModelDescription) PredictedFeatureName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (m_ ModelDescription) SetModelDescription(value IMLModelDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/isupdatable
-func (m_ ModelDescription) IsUpdatable() bool /* primitive/slice/pointer. */ {
+func (m_ ModelDescription) IsUpdatable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdatable"))
 	return rv
 }
@@ -207,7 +207,7 @@ func (m_ ModelDescription) IsUpdatable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/isupdatable
-func (m_ ModelDescription) SetIsUpdatable(value bool /* primitive/slice/pointer. */) {
+func (m_ ModelDescription) SetIsUpdatable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdatable:"), value)
 }
 
@@ -235,8 +235,8 @@ func (m_ ModelDescription) SetParameterDescriptionsByKey(value ParameterDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedprobabilitiesname
-func (m_ ModelDescription) PredictedProbabilitiesName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("predictedProbabilitiesName"))
+func (m_ ModelDescription) PredictedProbabilitiesName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("predictedProbabilitiesName"))
 	return rv
 }
 
@@ -245,8 +245,8 @@ func (m_ ModelDescription) PredictedProbabilitiesName() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedprobabilitiesname
-func (m_ ModelDescription) SetPredictedProbabilitiesName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPredictedProbabilitiesName:"), objc.String(value))
+func (m_ ModelDescription) SetPredictedProbabilitiesName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPredictedProbabilitiesName:"), value)
 }
 
 

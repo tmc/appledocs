@@ -25,27 +25,27 @@ var (
 	_cblas_dgbmv func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []float64, unsafe.Pointer, []float64, unsafe.Pointer, unsafe.Pointer, []float64, unsafe.Pointer)
 	_cblas_sasum func(unsafe.Pointer, []float32, unsafe.Pointer) float32
 	_cblas_sgemm func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []float32, unsafe.Pointer, []float32, unsafe.Pointer, unsafe.Pointer, []float32, unsafe.Pointer)
-	_sparse_inner_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_inner_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_inner_product_sparse_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_inner_product_sparse_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_insert_entry_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_insert_entry_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_product_sparse_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_product_sparse_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_trace_double_complex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_trace_float_complex func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_triangular_solve_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_triangular_solve_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_matrix_vector_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_inner_product_dense_double_complex func(Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_inner_product_dense_float_complex func(Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_inner_product_sparse_double_complex func(Sparse_dimension, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_inner_product_sparse_float_complex func(Sparse_dimension, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_insert_entry_double_complex func(Sparse_matrix_double_complex, unsafe.Pointer, Sparse_index, Sparse_index) unsafe.Pointer
+	_sparse_insert_entry_float_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_index, Sparse_index) unsafe.Pointer
+	_sparse_matrix_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, Sparse_matrix_double_complex, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_product_sparse_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Sparse_matrix_double_complex, Sparse_matrix_double_complex, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_product_sparse_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_trace_double_complex func(Sparse_matrix_double_complex, Sparse_index) unsafe.Pointer
+	_sparse_matrix_trace_float_complex func(unsafe.Pointer, Sparse_index) unsafe.Pointer
+	_sparse_matrix_triangular_solve_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, Sparse_matrix_double_complex, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_triangular_solve_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Sparse_dimension) unsafe.Pointer
+	_sparse_matrix_vector_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_matrix_double_complex, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sparse_matrix_vector_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_outer_product_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_outer_product_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_sparse_vector_add_with_scale_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_sparse_vector_add_with_scale_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_sparse_vector_triangular_solve_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_outer_product_dense_double_complex func(Sparse_dimension, Sparse_dimension, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_outer_product_dense_float_complex func(Sparse_dimension, Sparse_dimension, Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_sparse_vector_add_with_scale_dense_double_complex func(Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_sparse_vector_add_with_scale_dense_float_complex func(Sparse_dimension, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_sparse_vector_triangular_solve_dense_double_complex func(unsafe.Pointer, unsafe.Pointer, Sparse_matrix_double_complex, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_sparse_vector_triangular_solve_dense_float_complex func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_DFT_Interleaved_CreateSetupD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_DFT_Interleaved_DestroySetup func(unsafe.Pointer)
@@ -66,13 +66,13 @@ var (
 	_vDSP_ztocD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_vImageAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageAlphaBlend_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_vImageBuffer_InitWithCVPixelBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []float64, unsafe.Pointer) unsafe.Pointer
+	_vImageBuffer_InitWithCVPixelBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, VImageCVImageFormatRef, []float64, unsafe.Pointer) unsafe.Pointer
 	_vImageContrastStretch_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConvert_ARGB8888toARGB1555 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConvert_ARGBToYpCbCr_GenerateConversion func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConvert_YpCbCrToARGB_GenerateConversion func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConvolveFloatKernel_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []float32, uint32, uint32, float32, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_vImageConvolveWithBias_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint32, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageConvolveWithBias_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint32, uint32, int32, int32, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageDilate_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageEndsInContrastStretch_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageEqualization_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -85,7 +85,7 @@ var (
 	_vImageMultidimensionalTable_Release func(unsafe.Pointer) unsafe.Pointer
 	_vImageMultidimensionalTable_Retain func(unsafe.Pointer) unsafe.Pointer
 	_vImagePremultipliedAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_vImagePremultipliedConstAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImagePremultipliedConstAlphaBlend_ARGB8888 func(unsafe.Pointer, Pixel_8, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultiplyData_RGBA16U func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultiplyData_RGBA8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageRichardsonLucyDeConvolve_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []float32, []float32, uint32, uint32, uint32, uint32, unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
@@ -501,7 +501,7 @@ func cblas_sgemm(ORDER unsafe.Pointer, TRANSA unsafe.Pointer, TRANSB unsafe.Poin
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_inner_product_dense_double_complex
-func sparse_inner_product_dense_double_complex(nz unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
+func sparse_inner_product_dense_double_complex(nz Sparse_dimension, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
 	return _sparse_inner_product_dense_double_complex(nz, x, indx, y, incy)
 }
 
@@ -510,7 +510,7 @@ func sparse_inner_product_dense_double_complex(nz unsafe.Pointer, x unsafe.Point
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_inner_product_dense_float_complex
-func sparse_inner_product_dense_float_complex(nz unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
+func sparse_inner_product_dense_float_complex(nz Sparse_dimension, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
 	return _sparse_inner_product_dense_float_complex(nz, x, indx, y, incy)
 }
 
@@ -519,7 +519,7 @@ func sparse_inner_product_dense_float_complex(nz unsafe.Pointer, x unsafe.Pointe
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_inner_product_sparse_double_complex
-func sparse_inner_product_sparse_double_complex(nzx unsafe.Pointer, nzy unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer) unsafe.Pointer {
+func sparse_inner_product_sparse_double_complex(nzx Sparse_dimension, nzy Sparse_dimension, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer) unsafe.Pointer {
 	return _sparse_inner_product_sparse_double_complex(nzx, nzy, x, indx, y, indy)
 }
 
@@ -528,7 +528,7 @@ func sparse_inner_product_sparse_double_complex(nzx unsafe.Pointer, nzy unsafe.P
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_inner_product_sparse_float_complex
-func sparse_inner_product_sparse_float_complex(nzx unsafe.Pointer, nzy unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer) unsafe.Pointer {
+func sparse_inner_product_sparse_float_complex(nzx Sparse_dimension, nzy Sparse_dimension, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer) unsafe.Pointer {
 	return _sparse_inner_product_sparse_float_complex(nzx, nzy, x, indx, y, indy)
 }
 
@@ -537,7 +537,7 @@ func sparse_inner_product_sparse_float_complex(nzx unsafe.Pointer, nzy unsafe.Po
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_insert_entry_double_complex
-func sparse_insert_entry_double_complex(A unsafe.Pointer, val unsafe.Pointer, i unsafe.Pointer, j unsafe.Pointer) unsafe.Pointer {
+func sparse_insert_entry_double_complex(A Sparse_matrix_double_complex, val unsafe.Pointer, i Sparse_index, j Sparse_index) unsafe.Pointer {
 	return _sparse_insert_entry_double_complex(A, val, i, j)
 }
 
@@ -546,7 +546,7 @@ func sparse_insert_entry_double_complex(A unsafe.Pointer, val unsafe.Pointer, i 
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_insert_entry_float_complex
-func sparse_insert_entry_float_complex(A unsafe.Pointer, val unsafe.Pointer, i unsafe.Pointer, j unsafe.Pointer) unsafe.Pointer {
+func sparse_insert_entry_float_complex(A unsafe.Pointer, val unsafe.Pointer, i Sparse_index, j Sparse_index) unsafe.Pointer {
 	return _sparse_insert_entry_float_complex(A, val, i, j)
 }
 
@@ -555,7 +555,7 @@ func sparse_insert_entry_float_complex(A unsafe.Pointer, val unsafe.Pointer, i u
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_product_dense_double_complex
-func sparse_matrix_product_dense_double_complex(order unsafe.Pointer, transa unsafe.Pointer, n unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, ldb unsafe.Pointer, C unsafe.Pointer, ldc unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_product_dense_double_complex(order unsafe.Pointer, transa unsafe.Pointer, n Sparse_dimension, alpha unsafe.Pointer, A Sparse_matrix_double_complex, B unsafe.Pointer, ldb Sparse_dimension, C unsafe.Pointer, ldc Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_product_dense_double_complex(order, transa, n, alpha, A, B, ldb, C, ldc)
 }
 
@@ -564,7 +564,7 @@ func sparse_matrix_product_dense_double_complex(order unsafe.Pointer, transa uns
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_product_dense_float_complex
-func sparse_matrix_product_dense_float_complex(order unsafe.Pointer, transa unsafe.Pointer, n unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, ldb unsafe.Pointer, C unsafe.Pointer, ldc unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_product_dense_float_complex(order unsafe.Pointer, transa unsafe.Pointer, n Sparse_dimension, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, ldb Sparse_dimension, C unsafe.Pointer, ldc Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_product_dense_float_complex(order, transa, n, alpha, A, B, ldb, C, ldc)
 }
 
@@ -573,7 +573,7 @@ func sparse_matrix_product_dense_float_complex(order unsafe.Pointer, transa unsa
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_product_sparse_double_complex
-func sparse_matrix_product_sparse_double_complex(order unsafe.Pointer, transa unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, C unsafe.Pointer, ldc unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_product_sparse_double_complex(order unsafe.Pointer, transa unsafe.Pointer, alpha unsafe.Pointer, A Sparse_matrix_double_complex, B Sparse_matrix_double_complex, C unsafe.Pointer, ldc Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_product_sparse_double_complex(order, transa, alpha, A, B, C, ldc)
 }
 
@@ -582,7 +582,7 @@ func sparse_matrix_product_sparse_double_complex(order unsafe.Pointer, transa un
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_product_sparse_float_complex
-func sparse_matrix_product_sparse_float_complex(order unsafe.Pointer, transa unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, C unsafe.Pointer, ldc unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_product_sparse_float_complex(order unsafe.Pointer, transa unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, B unsafe.Pointer, C unsafe.Pointer, ldc Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_product_sparse_float_complex(order, transa, alpha, A, B, C, ldc)
 }
 
@@ -591,7 +591,7 @@ func sparse_matrix_product_sparse_float_complex(order unsafe.Pointer, transa uns
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_trace_double_complex
-func sparse_matrix_trace_double_complex(A unsafe.Pointer, offset unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_trace_double_complex(A Sparse_matrix_double_complex, offset Sparse_index) unsafe.Pointer {
 	return _sparse_matrix_trace_double_complex(A, offset)
 }
 
@@ -600,7 +600,7 @@ func sparse_matrix_trace_double_complex(A unsafe.Pointer, offset unsafe.Pointer)
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_trace_float_complex
-func sparse_matrix_trace_float_complex(A unsafe.Pointer, offset unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_trace_float_complex(A unsafe.Pointer, offset Sparse_index) unsafe.Pointer {
 	return _sparse_matrix_trace_float_complex(A, offset)
 }
 
@@ -609,7 +609,7 @@ func sparse_matrix_trace_float_complex(A unsafe.Pointer, offset unsafe.Pointer) 
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_triangular_solve_dense_double_complex
-func sparse_matrix_triangular_solve_dense_double_complex(order unsafe.Pointer, transt unsafe.Pointer, nrhs unsafe.Pointer, alpha unsafe.Pointer, T unsafe.Pointer, B unsafe.Pointer, ldb unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_triangular_solve_dense_double_complex(order unsafe.Pointer, transt unsafe.Pointer, nrhs Sparse_dimension, alpha unsafe.Pointer, T Sparse_matrix_double_complex, B unsafe.Pointer, ldb Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_triangular_solve_dense_double_complex(order, transt, nrhs, alpha, T, B, ldb)
 }
 
@@ -618,7 +618,7 @@ func sparse_matrix_triangular_solve_dense_double_complex(order unsafe.Pointer, t
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_triangular_solve_dense_float_complex
-func sparse_matrix_triangular_solve_dense_float_complex(order unsafe.Pointer, transt unsafe.Pointer, nrhs unsafe.Pointer, alpha unsafe.Pointer, T unsafe.Pointer, B unsafe.Pointer, ldb unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_triangular_solve_dense_float_complex(order unsafe.Pointer, transt unsafe.Pointer, nrhs Sparse_dimension, alpha unsafe.Pointer, T unsafe.Pointer, B unsafe.Pointer, ldb Sparse_dimension) unsafe.Pointer {
 	return _sparse_matrix_triangular_solve_dense_float_complex(order, transt, nrhs, alpha, T, B, ldb)
 }
 
@@ -627,7 +627,7 @@ func sparse_matrix_triangular_solve_dense_float_complex(order unsafe.Pointer, tr
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_matrix_vector_product_dense_double_complex
-func sparse_matrix_vector_product_dense_double_complex(transa unsafe.Pointer, alpha unsafe.Pointer, A unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
+func sparse_matrix_vector_product_dense_double_complex(transa unsafe.Pointer, alpha unsafe.Pointer, A Sparse_matrix_double_complex, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) unsafe.Pointer {
 	return _sparse_matrix_vector_product_dense_double_complex(transa, alpha, A, x, incx, y, incy)
 }
 
@@ -645,7 +645,7 @@ func sparse_matrix_vector_product_dense_float_complex(transa unsafe.Pointer, alp
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_outer_product_dense_double_complex
-func sparse_outer_product_dense_double_complex(M unsafe.Pointer, N unsafe.Pointer, nz unsafe.Pointer, alpha unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer, C unsafe.Pointer) unsafe.Pointer {
+func sparse_outer_product_dense_double_complex(M Sparse_dimension, N Sparse_dimension, nz Sparse_dimension, alpha unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer, C unsafe.Pointer) unsafe.Pointer {
 	return _sparse_outer_product_dense_double_complex(M, N, nz, alpha, x, incx, y, indy, C)
 }
 
@@ -654,7 +654,7 @@ func sparse_outer_product_dense_double_complex(M unsafe.Pointer, N unsafe.Pointe
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_outer_product_dense_float_complex
-func sparse_outer_product_dense_float_complex(M unsafe.Pointer, N unsafe.Pointer, nz unsafe.Pointer, alpha unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer, C unsafe.Pointer) unsafe.Pointer {
+func sparse_outer_product_dense_float_complex(M Sparse_dimension, N Sparse_dimension, nz Sparse_dimension, alpha unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer, y unsafe.Pointer, indy unsafe.Pointer, C unsafe.Pointer) unsafe.Pointer {
 	return _sparse_outer_product_dense_float_complex(M, N, nz, alpha, x, incx, y, indy, C)
 }
 
@@ -663,7 +663,7 @@ func sparse_outer_product_dense_float_complex(M unsafe.Pointer, N unsafe.Pointer
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_vector_add_with_scale_dense_double_complex
-func sparse_vector_add_with_scale_dense_double_complex(nz unsafe.Pointer, alpha unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) {
+func sparse_vector_add_with_scale_dense_double_complex(nz Sparse_dimension, alpha unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) {
 	_sparse_vector_add_with_scale_dense_double_complex(nz, alpha, x, indx, y, incy)
 }
 
@@ -672,7 +672,7 @@ func sparse_vector_add_with_scale_dense_double_complex(nz unsafe.Pointer, alpha 
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_vector_add_with_scale_dense_float_complex
-func sparse_vector_add_with_scale_dense_float_complex(nz unsafe.Pointer, alpha unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) {
+func sparse_vector_add_with_scale_dense_float_complex(nz Sparse_dimension, alpha unsafe.Pointer, x unsafe.Pointer, indx unsafe.Pointer, y unsafe.Pointer, incy unsafe.Pointer) {
 	_sparse_vector_add_with_scale_dense_float_complex(nz, alpha, x, indx, y, incy)
 }
 
@@ -681,7 +681,7 @@ func sparse_vector_add_with_scale_dense_float_complex(nz unsafe.Pointer, alpha u
 // Added in macOS 15.5.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/sparse_vector_triangular_solve_dense_double_complex
-func sparse_vector_triangular_solve_dense_double_complex(transt unsafe.Pointer, alpha unsafe.Pointer, T unsafe.Pointer, x unsafe.Pointer, incx unsafe.Pointer) unsafe.Pointer {
+func sparse_vector_triangular_solve_dense_double_complex(transt unsafe.Pointer, alpha unsafe.Pointer, T Sparse_matrix_double_complex, x unsafe.Pointer, incx unsafe.Pointer) unsafe.Pointer {
 	return _sparse_vector_triangular_solve_dense_double_complex(transt, alpha, T, x, incx)
 }
 
@@ -910,7 +910,7 @@ func vImageAlphaBlend_ARGBFFFF(srcTop unsafe.Pointer, srcBottom unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageBuffer_InitWithCVPixelBuffer(_:_:_:_:_:_:)
-func vImageBuffer_InitWithCVPixelBuffer(buffer unsafe.Pointer, desiredFormat unsafe.Pointer, cvPixelBuffer unsafe.Pointer, cvImageFormat unsafe.Pointer, backgroundColor []float64, flags unsafe.Pointer) unsafe.Pointer {
+func vImageBuffer_InitWithCVPixelBuffer(buffer unsafe.Pointer, desiredFormat unsafe.Pointer, cvPixelBuffer unsafe.Pointer, cvImageFormat VImageCVImageFormatRef, backgroundColor []float64, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImageBuffer_InitWithCVPixelBuffer(buffer, desiredFormat, cvPixelBuffer, cvImageFormat, backgroundColor, flags)
 }
 
@@ -976,7 +976,7 @@ func vImageConvolveFloatKernel_ARGB8888(src unsafe.Pointer, dest unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageConvolveWithBias_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:_:)
-func vImageConvolveWithBias_ARGB8888(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsafe.Pointer, srcOffsetToROI_X unsafe.Pointer, srcOffsetToROI_Y unsafe.Pointer, kernel unsafe.Pointer, kernel_height uint32, kernel_width uint32, divisor unsafe.Pointer, bias unsafe.Pointer, backgroundColor unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func vImageConvolveWithBias_ARGB8888(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsafe.Pointer, srcOffsetToROI_X unsafe.Pointer, srcOffsetToROI_Y unsafe.Pointer, kernel unsafe.Pointer, kernel_height uint32, kernel_width uint32, divisor int32, bias int32, backgroundColor unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImageConvolveWithBias_ARGB8888(src, dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel, kernel_height, kernel_width, divisor, bias, backgroundColor, flags)
 }
 
@@ -1119,7 +1119,7 @@ func vImagePremultipliedAlphaBlend_ARGB8888(srcTop unsafe.Pointer, srcBottom uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImagePremultipliedConstAlphaBlend_ARGB8888(_:_:_:_:_:)
-func vImagePremultipliedConstAlphaBlend_ARGB8888(srcTop unsafe.Pointer, constAlpha unsafe.Pointer, srcBottom unsafe.Pointer, dest unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func vImagePremultipliedConstAlphaBlend_ARGB8888(srcTop unsafe.Pointer, constAlpha Pixel_8, srcBottom unsafe.Pointer, dest unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImagePremultipliedConstAlphaBlend_ARGB8888(srcTop, constAlpha, srcBottom, dest, flags)
 }
 

@@ -31,9 +31,9 @@ type _ModelStructureProgramBlockClass struct {
 type IModelStructureProgramBlock interface {
 	objectivec.IObject
 	// properties:
-	Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */
-	Operations() []ModelStructureProgramOperation /* primitive/slice/pointer. */
-	OutputNames() []string /* primitive/slice/pointer. */
+	Inputs() []IModelStructureProgramNamedValueType
+	Operations() []IModelStructureProgramOperation
+	OutputNames() []string
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewModelStructureProgramBlock() ModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/inputs
-func (m_ ModelStructureProgramBlock) Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramBlock) Inputs() []IModelStructureProgramNamedValueType {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("inputs"))
 	return rv
 }
@@ -102,7 +102,7 @@ func (m_ ModelStructureProgramBlock) Inputs() []ModelStructureProgramNamedValueT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/operations
-func (m_ ModelStructureProgramBlock) Operations() []ModelStructureProgramOperation /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramBlock) Operations() []IModelStructureProgramOperation {
 	rv := objc.Send[[]ModelStructureProgramOperation](m_.ID, objc.Sel("operations"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (m_ ModelStructureProgramBlock) Operations() []ModelStructureProgramOperati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBlock/outputNames
-func (m_ ModelStructureProgramBlock) OutputNames() []string /* primitive/slice/pointer. */ {
+func (m_ ModelStructureProgramBlock) OutputNames() []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("outputNames"))
 	return rv
 }

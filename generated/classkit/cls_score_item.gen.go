@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SScoreItem] class.
@@ -30,10 +31,10 @@ type _SScoreItemClass struct {
 type ISScoreItem interface {
 	ISActivityItem
 	// properties:
-	MaxScore() float64 /* primitive/slice/pointer. */
-	SetMaxScore(value float64 /* primitive/slice/pointer. */)
-	Score() float64 /* primitive/slice/pointer. */
-	SetScore(value float64 /* primitive/slice/pointer. */)
+	MaxScore() float64
+	SetMaxScore(value float64)
+	Score() float64
+	SetScore(value float64)
 	// methods:
 }
 
@@ -96,9 +97,9 @@ func NewSScoreItem() SScoreItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/init(identifier:title:score:maxScore:)
-func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */, score float64 /* primitive/slice/pointer. */, maxScore float64 /* primitive/slice/pointer. */) SScoreItem {
+func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier objc.IObject /* cross-framework: NSString */, title objc.IObject /* cross-framework: NSString */, score float64, maxScore float64) SScoreItem {
 	instance := getSScoreItemClass().Alloc()
-	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), objc.String(identifier), objc.String(title), score, maxScore)
+	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), identifier, title, score, maxScore)
 	rv.Autorelease()
 	return rv
 }
@@ -109,7 +110,7 @@ func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-func (s_ SScoreItem) MaxScore() float64 /* primitive/slice/pointer. */ {
+func (s_ SScoreItem) MaxScore() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxScore"))
 	return rv
 }
@@ -119,7 +120,7 @@ func (s_ SScoreItem) MaxScore() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/maxScore
-func (s_ SScoreItem) SetMaxScore(value float64 /* primitive/slice/pointer. */) {
+func (s_ SScoreItem) SetMaxScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxScore:"), value)
 }
 
@@ -128,7 +129,7 @@ func (s_ SScoreItem) SetMaxScore(value float64 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-func (s_ SScoreItem) Score() float64 /* primitive/slice/pointer. */ {
+func (s_ SScoreItem) Score() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("score"))
 	return rv
 }
@@ -138,7 +139,7 @@ func (s_ SScoreItem) Score() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/score
-func (s_ SScoreItem) SetScore(value float64 /* primitive/slice/pointer. */) {
+func (s_ SScoreItem) SetScore(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScore:"), value)
 }
 

@@ -31,8 +31,6 @@ type _AltitudeDataClass struct {
 type IAltitudeData interface {
 	ILogItem
 	// properties:
-	Pressure() foundation.objc.IObject /* cross-framework: Number */
-	RelativeAltitude() foundation.objc.IObject /* cross-framework: Number */
 	// methods:
 }
 
@@ -87,27 +85,6 @@ func (a_ AltitudeData) Autorelease() AltitudeData {
 // NewAltitudeData creates a new AltitudeData instance.
 func NewAltitudeData() AltitudeData {
 	return getAltitudeDataClass().New()
-}
-
-
-
-// The recorded pressure, in kilopascals.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/pressure
-func (a_ AltitudeData) Pressure() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("pressure"))
-	return rv
-}
-
-
-// The change in altitude (in meters) since the first reported event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/relativeAltitude
-func (a_ AltitudeData) RelativeAltitude() foundation.objc.IObject /* cross-framework: Number */ {
-	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("relativeAltitude"))
-	return rv
 }
 
 

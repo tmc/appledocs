@@ -35,8 +35,8 @@ type IMetadataQueryResultGroup interface {
 	SetGroupedResults(value IMetadataQueryResultGroup)
 	OperationQueue() IOperationQueue
 	SetOperationQueue(value IOperationQueue)
-	ResultCount() int /* primitive/slice/pointer. */
-	SetResultCount(value int /* primitive/slice/pointer. */)
+	ResultCount() int
+	SetResultCount(value int)
 	Results() unsafe.Pointer
 	SetResults(value unsafe.Pointer)
 	ValueLists() IMetadataQueryAttributeValueTuple
@@ -143,7 +143,7 @@ func (m_ MetadataQueryResultGroup) SetOperationQueue(value IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-func (m_ MetadataQueryResultGroup) ResultCount() int /* primitive/slice/pointer. */ {
+func (m_ MetadataQueryResultGroup) ResultCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("resultCount"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (m_ MetadataQueryResultGroup) ResultCount() int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-func (m_ MetadataQueryResultGroup) SetResultCount(value int /* primitive/slice/pointer. */) {
+func (m_ MetadataQueryResultGroup) SetResultCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResultCount:"), value)
 }
 

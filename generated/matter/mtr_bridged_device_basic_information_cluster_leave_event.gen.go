@@ -30,9 +30,13 @@ type _MTRBridgedDeviceBasicInformationClusterLeaveEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterLeaveEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterLeaveEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterLeaveEvent
 type MTRBridgedDeviceBasicInformationClusterLeaveEvent struct {
 	objectivec.Object

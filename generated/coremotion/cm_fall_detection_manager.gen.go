@@ -31,11 +31,7 @@ type _FallDetectionManagerClass struct {
 type IFallDetectionManager interface {
 	objectivec.IObject
 	// properties:
-	AuthorizationStatus() AuthorizationStatus
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	// methods:
-	RequestAuthorizationWithHandler(handler unsafe.Pointer)
 }
 
 // An object for managing fall detection events.
@@ -95,57 +91,8 @@ func NewFallDetectionManager() FallDetectionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-func (fc _FallDetectionManagerClass) Available() bool /* primitive/slice/pointer. */ {
+func (fc _FallDetectionManagerClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("available"))
 	return rv
 }
-
-// Requests authorization to receive notifications about fall detection events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/requestAuthorization(handler:)
-func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("requestAuthorizationWithHandler:"), handler)
-}
-
-
-// The authorization status for receiving fall detection event notifications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
-func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
-	return rv
-}
-
-
-// A delegate that can receive notifications about fall detection events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
-func (f_ FallDetectionManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate that can receive notifications about fall detection events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
-func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean value that indicates whether the current device supports fall detection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-func (f_ FallDetectionManager) Available() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("available"))
-	return rv
-}
-
-
 

@@ -29,9 +29,13 @@ type _ReductionRowSumNodeClass struct {
 // An interface definition for the [ReductionRowSumNode] class.
 type IReductionRowSumNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowSumNode
 type ReductionRowSumNode struct {
 	UnaryReductionNode

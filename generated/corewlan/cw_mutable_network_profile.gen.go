@@ -33,8 +33,8 @@ type ICWMutableNetworkProfile interface {
 	// properties:
 	Security() CWSecurity
 	SetSecurity(value CWSecurity)
-	SsidData() foundation.objc.IObject /* cross-framework: NSData */
-	SetSsidData(value foundation.objc.IObject /* cross-framework: NSData */)
+	SsidData() objc.IObject /* cross-framework: NSData */
+	SetSsidData(value objc.IObject /* cross-framework: NSData */)
 	NetworkProfiles() objc.IObject /* cross-framework: OrderedSet */
 	SetNetworkProfiles(value objc.IObject /* cross-framework: OrderedSet */)
 	// methods:
@@ -118,7 +118,7 @@ func (c_ CWMutableNetworkProfile) SetSecurity(value CWSecurity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SsidData() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CWMutableNetworkProfile) SsidData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (c_ CWMutableNetworkProfile) SsidData() foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.objc.IObject /* cross-framework: NSData */) {
+func (c_ CWMutableNetworkProfile) SetSsidData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
 
@@ -138,7 +138,7 @@ func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.objc.IObject /* c
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
 func (c_ CWMutableNetworkProfile) NetworkProfiles() objc.IObject /* cross-framework: OrderedSet */ {
-	rv := objc.Send[OrderedSet](c_.ID, objc.Sel("networkProfiles"))
+	rv := objc.Send[foundation.OrderedSet](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 

@@ -31,33 +31,37 @@ type _MTRDeviceAttestationDeviceInfoClass struct {
 // An interface definition for the [MTRDeviceAttestationDeviceInfo] class.
 type IMTRDeviceAttestationDeviceInfo interface {
 	objectivec.IObject
-	AttestationChallenge() foundation.Data
-	SetAttestationChallenge(value foundation.IData)
-	AttestationNonce() foundation.Data
-	SetAttestationNonce(value foundation.IData)
-	BasicInformationProductID() foundation.Number
-	SetBasicInformationProductID(value foundation.INumber)
-	BasicInformationVendorID() foundation.Number
-	SetBasicInformationVendorID(value foundation.INumber)
-	CertificateDeclaration() foundation.Data
-	SetCertificateDeclaration(value foundation.IData)
-	CertificationDeclaration() foundation.Data
-	SetCertificationDeclaration(value foundation.IData)
-	DacCertificate() foundation.Data
-	SetDacCertificate(value foundation.IData)
-	DacPAICertificate() foundation.Data
-	SetDacPAICertificate(value foundation.IData)
-	ElementsSignature() foundation.Data
-	SetElementsSignature(value foundation.IData)
-	ElementsTLV() foundation.Data
-	SetElementsTLV(value foundation.IData)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	// properties:
+	AttestationChallenge() objc.IObject /* cross-framework: Data */
+	SetAttestationChallenge(value objc.IObject /* cross-framework: Data */)
+	AttestationNonce() objc.IObject /* cross-framework: Data */
+	SetAttestationNonce(value objc.IObject /* cross-framework: Data */)
+	BasicInformationProductID() objc.IObject /* cross-framework: NSNumber */
+	SetBasicInformationProductID(value objc.IObject /* cross-framework: NSNumber */)
+	BasicInformationVendorID() objc.IObject /* cross-framework: NSNumber */
+	SetBasicInformationVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	CertificateDeclaration() objc.IObject /* cross-framework: Data */
+	SetCertificateDeclaration(value objc.IObject /* cross-framework: Data */)
+	CertificationDeclaration() objc.IObject /* cross-framework: Data */
+	SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */)
+	DacCertificate() objc.IObject /* cross-framework: Data */
+	SetDacCertificate(value objc.IObject /* cross-framework: Data */)
+	DacPAICertificate() objc.IObject /* cross-framework: Data */
+	SetDacPAICertificate(value objc.IObject /* cross-framework: Data */)
+	ElementsSignature() objc.IObject /* cross-framework: Data */
+	SetElementsSignature(value objc.IObject /* cross-framework: Data */)
+	ElementsTLV() objc.IObject /* cross-framework: Data */
+	SetElementsTLV(value objc.IObject /* cross-framework: Data */)
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationDeviceInfo
 type MTRDeviceAttestationDeviceInfo struct {
 	objectivec.Object
@@ -100,198 +104,203 @@ func NewMTRDeviceAttestationDeviceInfo() MTRDeviceAttestationDeviceInfo {
 }
 
 
+
 // The attestation challenge from the secure session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/attestationchallenge
-func (m_ MTRDeviceAttestationDeviceInfo) AttestationChallenge() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) AttestationChallenge() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationChallenge"))
 	return rv
 }
 
 
-// SetAttestationChallenge sets the value of the attestationChallenge property.
 // The attestation challenge from the secure session.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/attestationchallenge
-func (m_ MTRDeviceAttestationDeviceInfo) SetAttestationChallenge(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetAttestationChallenge(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationChallenge:"), value)
 }
 
+
 // The attestation nonce from the AttestationRequest command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/attestationnonce
-func (m_ MTRDeviceAttestationDeviceInfo) AttestationNonce() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) AttestationNonce() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationNonce"))
 	return rv
 }
 
 
-// SetAttestationNonce sets the value of the attestationNonce property.
 // The attestation nonce from the AttestationRequest command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/attestationnonce
-func (m_ MTRDeviceAttestationDeviceInfo) SetAttestationNonce(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetAttestationNonce(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationNonce:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
-func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationProductID"))
+func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("basicInformationProductID"))
 	return rv
 }
 
 
-// SetBasicInformationProductID sets the value of the basicInformationProductID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationproductid
-func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationProductID(value foundation.INumber) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
-func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationVendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("basicInformationVendorID"))
+func (m_ MTRDeviceAttestationDeviceInfo) BasicInformationVendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("basicInformationVendorID"))
 	return rv
 }
 
 
-// SetBasicInformationVendorID sets the value of the basicInformationVendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/basicinformationvendorid
-func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationVendorID(value foundation.INumber) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetBasicInformationVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBasicInformationVendorID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) CertificateDeclaration() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) CertificateDeclaration() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificateDeclaration"))
 	return rv
 }
 
 
-// SetCertificateDeclaration sets the value of the certificateDeclaration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificatedeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) SetCertificateDeclaration(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetCertificateDeclaration(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificateDeclaration:"), value)
 }
 
+
 // The certification declaration of the device, if available. This is a DER-encoded string
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) CertificationDeclaration() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) CertificationDeclaration() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclaration"))
 	return rv
 }
 
 
-// SetCertificationDeclaration sets the value of the certificationDeclaration property.
 // The certification declaration of the device, if available. This is a DER-encoded string
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationDeviceInfo) SetCertificationDeclaration(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclaration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
-func (m_ MTRDeviceAttestationDeviceInfo) DacCertificate() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) DacCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("dacCertificate"))
 	return rv
 }
 
 
-// SetDacCertificate sets the value of the dacCertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/daccertificate
-func (m_ MTRDeviceAttestationDeviceInfo) SetDacCertificate(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetDacCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDacCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
-func (m_ MTRDeviceAttestationDeviceInfo) DacPAICertificate() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) DacPAICertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("dacPAICertificate"))
 	return rv
 }
 
 
-// SetDacPAICertificate sets the value of the dacPAICertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/dacpaicertificate
-func (m_ MTRDeviceAttestationDeviceInfo) SetDacPAICertificate(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetDacPAICertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDacPAICertificate:"), value)
 }
 
+
 // A signature, using the device attestation private key of the device that sent
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/elementssignature
-func (m_ MTRDeviceAttestationDeviceInfo) ElementsSignature() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) ElementsSignature() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsSignature"))
 	return rv
 }
 
 
-// SetElementsSignature sets the value of the elementsSignature property.
 // A signature, using the device attestation private key of the device that sent
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/elementssignature
-func (m_ MTRDeviceAttestationDeviceInfo) SetElementsSignature(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetElementsSignature(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsSignature:"), value)
 }
 
+
 // The TLV-encoded attestation_elements_message that was used to find the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/elementstlv
-func (m_ MTRDeviceAttestationDeviceInfo) ElementsTLV() foundation.Data {
+func (m_ MTRDeviceAttestationDeviceInfo) ElementsTLV() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsTLV"))
 	return rv
 }
 
 
-// SetElementsTLV sets the value of the elementsTLV property.
 // The TLV-encoded attestation_elements_message that was used to find the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/elementstlv
-func (m_ MTRDeviceAttestationDeviceInfo) SetElementsTLV(value foundation.IData) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetElementsTLV(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsTLV:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/productid
-func (m_ MTRDeviceAttestationDeviceInfo) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRDeviceAttestationDeviceInfo) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/productid
-func (m_ MTRDeviceAttestationDeviceInfo) SetProductID(value foundation.INumber) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
-func (m_ MTRDeviceAttestationDeviceInfo) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRDeviceAttestationDeviceInfo) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationdeviceinfo/vendorid
-func (m_ MTRDeviceAttestationDeviceInfo) SetVendorID(value foundation.INumber) {
+func (m_ MTRDeviceAttestationDeviceInfo) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

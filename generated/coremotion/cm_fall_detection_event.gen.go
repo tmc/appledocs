@@ -32,8 +32,6 @@ type _FallDetectionEventClass struct {
 type IFallDetectionEvent interface {
 	objectivec.IObject
 	// properties:
-	Date() foundation.objc.IObject /* cross-framework: NSDate */
-	Resolution() FallDetectionEventUserResolution
 	// methods:
 }
 
@@ -84,27 +82,6 @@ func (f_ FallDetectionEvent) Autorelease() FallDetectionEvent {
 // NewFallDetectionEvent creates a new FallDetectionEvent instance.
 func NewFallDetectionEvent() FallDetectionEvent {
 	return getFallDetectionEventClass().New()
-}
-
-
-
-// The event’s time and date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/date
-func (f_ FallDetectionEvent) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](f_.ID, objc.Sel("date"))
-	return rv
-}
-
-
-// The event’s resolution.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/resolution
-func (f_ FallDetectionEvent) Resolution() FallDetectionEventUserResolution {
-	rv := objc.Send[FallDetectionEventUserResolution](f_.ID, objc.Sel("resolution"))
-	return rv
 }
 
 

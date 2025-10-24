@@ -32,8 +32,8 @@ type ICircleObstacle interface {
 	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
-	Radius() float32 /* primitive/slice/pointer. */
-	SetRadius(value float32 /* primitive/slice/pointer. */)
+	Radius() float32
+	SetRadius(value float32)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewCircleObstacle() CircleObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/init(radius:)
-func NewCircleObstacleWithRadius(radius float32 /* primitive/slice/pointer. */) CircleObstacle {
+func NewCircleObstacleWithRadius(radius float32) CircleObstacle {
 	instance := getCircleObstacleClass().Alloc()
 	rv := objc.Send[CircleObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewCircleObstacleWithRadius(radius float32 /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/obstacleWithRadius:
-func (cc _CircleObstacleClass) ObstacleWithRadius(radius float32 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (cc _CircleObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
 }
@@ -138,7 +138,7 @@ func (c_ CircleObstacle) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-func (c_ CircleObstacle) Radius() float32 /* primitive/slice/pointer. */ {
+func (c_ CircleObstacle) Radius() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("radius"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (c_ CircleObstacle) Radius() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCircleObstacle/radius
-func (c_ CircleObstacle) SetRadius(value float32 /* primitive/slice/pointer. */) {
+func (c_ CircleObstacle) SetRadius(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterOperationalStateClass struct {
 // An interface definition for the [MTRBaseClusterOperationalState] class.
 type IMTRBaseClusterOperationalState interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOperationalState
 type MTRBaseClusterOperationalState struct {
 	MTRGenericBaseCluster

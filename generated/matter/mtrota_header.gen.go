@@ -31,29 +31,33 @@ type _MTROTAHeaderClass struct {
 // An interface definition for the [MTROTAHeader] class.
 type IMTROTAHeader interface {
 	objectivec.IObject
-	ImageDigest() foundation.Data
-	SetImageDigest(value foundation.IData)
+	// properties:
+	ImageDigest() objc.IObject /* cross-framework: Data */
+	SetImageDigest(value objc.IObject /* cross-framework: Data */)
 	ImageDigestType() MTROTAImageDigestType
 	SetImageDigestType(value MTROTAImageDigestType)
-	MaxApplicableVersion() foundation.Number
-	SetMaxApplicableVersion(value foundation.INumber)
-	MinApplicableVersion() foundation.Number
-	SetMinApplicableVersion(value foundation.INumber)
-	PayloadSize() foundation.Number
-	SetPayloadSize(value foundation.INumber)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
-	ReleaseNotesURL() string
-	SetReleaseNotesURL(value string)
-	SoftwareVersion() foundation.Number
-	SetSoftwareVersion(value foundation.INumber)
-	SoftwareVersionString() string
-	SetSoftwareVersionString(value string)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	MaxApplicableVersion() objc.IObject /* cross-framework: NSNumber */
+	SetMaxApplicableVersion(value objc.IObject /* cross-framework: NSNumber */)
+	MinApplicableVersion() objc.IObject /* cross-framework: NSNumber */
+	SetMinApplicableVersion(value objc.IObject /* cross-framework: NSNumber */)
+	PayloadSize() objc.IObject /* cross-framework: NSNumber */
+	SetPayloadSize(value objc.IObject /* cross-framework: NSNumber */)
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
+	ReleaseNotesURL() objc.IObject /* cross-framework: NSString */
+	SetReleaseNotesURL(value objc.IObject /* cross-framework: NSString */)
+	SoftwareVersion() objc.IObject /* cross-framework: NSNumber */
+	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
+	SoftwareVersionString() objc.IObject /* cross-framework: NSString */
+	SetSoftwareVersionString(value objc.IObject /* cross-framework: NSString */)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTAHeader
 type MTROTAHeader struct {
 	objectivec.Object
@@ -96,22 +100,23 @@ func NewMTROTAHeader() MTROTAHeader {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) ImageDigest() foundation.Data {
+func (m_ MTROTAHeader) ImageDigest() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("imageDigest"))
 	return rv
 }
 
 
-// SetImageDigest sets the value of the imageDigest property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) SetImageDigest(value foundation.IData) {
+func (m_ MTROTAHeader) SetImageDigest(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigest:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigesttype
 func (m_ MTROTAHeader) ImageDigestType() MTROTAImageDigestType {
 	rv := objc.Send[MTROTAImageDigestType](m_.ID, objc.Sel("imageDigestType"))
@@ -119,130 +124,129 @@ func (m_ MTROTAHeader) ImageDigestType() MTROTAImageDigestType {
 }
 
 
-// SetImageDigestType sets the value of the imageDigestType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigesttype
 func (m_ MTROTAHeader) SetImageDigestType(value MTROTAImageDigestType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigestType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/maxapplicableversion
-func (m_ MTROTAHeader) MaxApplicableVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxApplicableVersion"))
+func (m_ MTROTAHeader) MaxApplicableVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxApplicableVersion"))
 	return rv
 }
 
 
-// SetMaxApplicableVersion sets the value of the maxApplicableVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/maxapplicableversion
-func (m_ MTROTAHeader) SetMaxApplicableVersion(value foundation.INumber) {
+func (m_ MTROTAHeader) SetMaxApplicableVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxApplicableVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/minapplicableversion
-func (m_ MTROTAHeader) MinApplicableVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minApplicableVersion"))
+func (m_ MTROTAHeader) MinApplicableVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minApplicableVersion"))
 	return rv
 }
 
 
-// SetMinApplicableVersion sets the value of the minApplicableVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/minapplicableversion
-func (m_ MTROTAHeader) SetMinApplicableVersion(value foundation.INumber) {
+func (m_ MTROTAHeader) SetMinApplicableVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinApplicableVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
-func (m_ MTROTAHeader) PayloadSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("payloadSize"))
+func (m_ MTROTAHeader) PayloadSize() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("payloadSize"))
 	return rv
 }
 
 
-// SetPayloadSize sets the value of the payloadSize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
-func (m_ MTROTAHeader) SetPayloadSize(value foundation.INumber) {
+func (m_ MTROTAHeader) SetPayloadSize(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadSize:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/productid
-func (m_ MTROTAHeader) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTROTAHeader) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/productid
-func (m_ MTROTAHeader) SetProductID(value foundation.INumber) {
+func (m_ MTROTAHeader) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) ReleaseNotesURL() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("releaseNotesURL"))
+func (m_ MTROTAHeader) ReleaseNotesURL() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("releaseNotesURL"))
 	return rv
 }
 
 
-// SetReleaseNotesURL sets the value of the releaseNotesURL property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) SetReleaseNotesURL(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), objc.String(value))
+func (m_ MTROTAHeader) SetReleaseNotesURL(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversion
-func (m_ MTROTAHeader) SoftwareVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("softwareVersion"))
+func (m_ MTROTAHeader) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("softwareVersion"))
 	return rv
 }
 
 
-// SetSoftwareVersion sets the value of the softwareVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversion
-func (m_ MTROTAHeader) SetSoftwareVersion(value foundation.INumber) {
+func (m_ MTROTAHeader) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SoftwareVersionString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
+func (m_ MTROTAHeader) SoftwareVersionString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
 
-// SetSoftwareVersionString sets the value of the softwareVersionString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SetSoftwareVersionString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
+func (m_ MTROTAHeader) SetSoftwareVersionString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
-func (m_ MTROTAHeader) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTROTAHeader) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
-func (m_ MTROTAHeader) SetVendorID(value foundation.INumber) {
+func (m_ MTROTAHeader) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

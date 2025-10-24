@@ -31,15 +31,19 @@ type _MTRWaterHeaterManagementClusterBoostParamsClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterBoostParams] class.
 type IMTRWaterHeaterManagementClusterBoostParams interface {
 	objectivec.IObject
-	BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
+	// properties:
+	BoostInfo() IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct
 	SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams
 type MTRWaterHeaterManagementClusterBoostParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRWaterHeaterManagementClusterBoostParams() MTRWaterHeaterManagementClu
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
 	rv := objc.Send[MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct](m_.ID, objc.Sel("boostInfo"))
 	return rv
 }
 
 
-// SetBoostInfo sets the value of the boostInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/boostInfo
 func (m_ MTRWaterHeaterManagementClusterBoostParams) SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoostInfo:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterManagementClusterBoostParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRWaterHeaterManagementClusterBoostParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterManagementClusterBoostParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterManagementClusterBoostParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRWaterHeaterManagementClusterBoostParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterManagementClusterBoostParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

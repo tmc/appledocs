@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _PublicKeyCredentialClientDataClass struct {
 type IPublicKeyCredentialClientData interface {
 	objectivec.IObject
 	// properties:
-	Origin() string /* primitive/slice/pointer. */
-	SetOrigin(value string /* primitive/slice/pointer. */)
+	Origin() objc.IObject /* cross-framework: NSString */
+	SetOrigin(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -89,16 +90,16 @@ func NewPublicKeyCredentialClientData() PublicKeyCredentialClientData {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) Origin() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
+func (p_ PublicKeyCredentialClientData) Origin() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("origin"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) SetOrigin(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
+func (p_ PublicKeyCredentialClientData) SetOrigin(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), value)
 }
 
 

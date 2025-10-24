@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,8 @@ type _AlignmentFeedbackFilterClass struct {
 // An interface definition for the [AlignmentFeedbackFilter] class.
 type IAlignmentFeedbackFilter interface {
 	objectivec.IObject
-	AlignmentFeedbackTokenForHorizontalMovementInViewPreviousXAlignedXDefaultX(view IView, previousX float64, alignedX float64, defaultX float64) objc.ID
-	AlignmentFeedbackTokenForMovementInViewPreviousPointAlignedPointDefaultPoint(view IView, previousPoint coregraphics.CGPoint, alignedPoint coregraphics.CGPoint, defaultPoint coregraphics.CGPoint) objc.ID
-	AlignmentFeedbackTokenForVerticalMovementInViewPreviousYAlignedYDefaultY(view IView, previousY float64, alignedY float64, defaultY float64) objc.ID
-	PerformFeedbackPerformanceTime(alignmentFeedbackTokens []objc.ID, performanceTime IHapticFeedbackPerformanceTime)
-	UpdateWithEvent(event IEvent)
-	UpdateWithPanRecognizer(panRecognizer IPanGestureRecognizer)
+	// properties:
+	// methods:
 }
 
 // An object that can filter the movement of an object and provides haptic feedback when alignment occurs.
@@ -90,82 +85,6 @@ func NewAlignmentFeedbackFilter() AlignmentFeedbackFilter {
 	return getAlignmentFeedbackFilterClass().New()
 }
 
-
-
-// Retrieves the event types the filter accepts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask
-func (ac _AlignmentFeedbackFilterClass) InputEventMask() EventMask {
-	rv := objc.Send[EventMask](objc.ID(ac.class), objc.Sel("inputEventMask"))
-	return rv
-}
-
-// Requests a feedback token for the alignment of an object requiring horizontal movement only.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)
-func (a_ AlignmentFeedbackFilter) AlignmentFeedbackTokenForHorizontalMovementInViewPreviousXAlignedXDefaultX(view IView, previousX float64, alignedX float64, defaultX float64) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:"), view, previousX, alignedX, defaultX)
-	return rv
-}
-
-
-// Requests a feedback token for the alignment of an object requiring horizontal and vertical movement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)
-func (a_ AlignmentFeedbackFilter) AlignmentFeedbackTokenForMovementInViewPreviousPointAlignedPointDefaultPoint(view IView, previousPoint coregraphics.CGPoint, alignedPoint coregraphics.CGPoint, defaultPoint coregraphics.CGPoint) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:"), view, previousPoint, alignedPoint, defaultPoint)
-	return rv
-}
-
-
-// Requests a feedback token for the alignment of an object requiring vertical movement only.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)
-func (a_ AlignmentFeedbackFilter) AlignmentFeedbackTokenForVerticalMovementInViewPreviousYAlignedYDefaultY(view IView, previousY float64, alignedY float64, defaultY float64) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:"), view, previousY, alignedY, defaultY)
-	return rv
-}
-
-
-// Performs the haptic feedback described by one or more alignment feedback tokens.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)
-func (a_ AlignmentFeedbackFilter) PerformFeedbackPerformanceTime(alignmentFeedbackTokens []objc.ID, performanceTime IHapticFeedbackPerformanceTime) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("performFeedback:performanceTime:"), alignmentFeedbackTokens, performanceTime)
-}
-
-
-// Informs the feedback filter about a new event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)
-func (a_ AlignmentFeedbackFilter) UpdateWithEvent(event IEvent) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithEvent:"), event)
-}
-
-
-// Informs the feedback filter about a new pan (drag) gesture recognizer event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)
-func (a_ AlignmentFeedbackFilter) UpdateWithPanRecognizer(panRecognizer IPanGestureRecognizer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithPanRecognizer:"), panRecognizer)
-}
-
-
-// Retrieves the event types the filter accepts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask
-func (a_ AlignmentFeedbackFilter) InputEventMask() EventMask {
-	rv := objc.Send[EventMask](a_.ID, objc.Sel("inputEventMask"))
-	return rv
-}
 
 
 

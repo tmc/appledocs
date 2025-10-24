@@ -10,7 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AccountAuthenticationModificationControllerPresentationContextProviding = _undefined // referenced in AuthenticationServices
-	AnyHashable = _undefined // referenced in AuthenticationServices
 	AuthorizationControllerDelegate = _undefined // referenced in AuthenticationServices
 	AuthorizationControllerPresentationContextProviding = _undefined // referenced in AuthenticationServices
 	AuthorizationCredential = _undefined // referenced in AuthenticationServices
@@ -22,20 +21,13 @@ type (
 	AuthorizationPublicKeyCredentialLargeBlobAssertionOperation = _undefined // referenced in AuthenticationServices
 	AuthorizationPublicKeyCredentialLargeBlobSupportRequirement = _undefined // referenced in AuthenticationServices
 	AuthorizationPublicKeyCredentialUserVerificationPreference = _undefined // referenced in AuthenticationServices
-	AuthorizationState = _undefined // referenced in AuthenticationServices
-	Bool = _undefined // referenced in AuthenticationServices
 	COSEAlgorithmIdentifier = _undefined // referenced in AuthenticationServices
 	CredentialProviderExtensionContext = _undefined // referenced in AuthenticationServices
 	CredentialServiceIdentifier = _undefined // referenced in AuthenticationServices
-	HTTPURLResponse = _undefined // referenced in AuthenticationServices
 	PasskeyCredentialExtensionInput = _undefined // referenced in AuthenticationServices
-	PersonNameComponents = _undefined // referenced in AuthenticationServices
 	RequestStyle = _undefined // referenced in AuthenticationServices
-	Scope = _undefined // referenced in AuthenticationServices
-	SecKeyRef = _undefined // referenced in AuthenticationServices
 	UserAgeRange = _undefined // referenced in AuthenticationServices
 	UserDetectionStatus = _undefined // referenced in AuthenticationServices
-	WebAuthenticationSessionCallback = _undefined // referenced in AuthenticationServices
 	WebAuthenticationSessionCompletionHandler = _undefined // referenced in AuthenticationServices
 	WebAuthenticationSessionWebBrowserSessionHandling = _undefined // referenced in AuthenticationServices
 )

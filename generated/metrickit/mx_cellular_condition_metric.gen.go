@@ -29,11 +29,17 @@ type _MXCellularConditionMetricClass struct {
 // An interface definition for the [MXCellularConditionMetric] class.
 type IMXCellularConditionMetric interface {
 	IMXMetric
+	// properties:
 	HistogrammedCellularConditionTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the condition of the cellular network.
+
+
+// An object representing metrics about the condition of the cellular network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCellularConditionMetric
 type MXCellularConditionMetric struct {
 	MXMetric
@@ -80,8 +86,10 @@ func NewMXCellularConditionMetric() MXCellularConditionMetric {
 }
 
 
+
 // An object representing the distribution of the different levels of connectivity to the cellular network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCellularConditionMetric/histogrammedCellularConditionTime
 func (m_ MXCellularConditionMetric) HistogrammedCellularConditionTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedCellularConditionTime"))

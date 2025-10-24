@@ -15,27 +15,27 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_GSSCredentialGetLifetime func(unsafe.Pointer) unsafe.Pointer
+	_GSSCredentialGetLifetime func(unsafe.Pointer) OM_uint32
 	_GSSNameCreateDisplayString func(unsafe.Pointer) unsafe.Pointer
-	_gss_add_oid_set_member func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_create_empty_buffer_set func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_create_empty_oid_set func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_display_name func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_export_name func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_get_mic func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_init_sec_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_inquire_saslname_for_mech func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_krb5_copy_ccache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_krb5_export_lucid_sec_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_gss_add_oid_set_member func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_create_empty_buffer_set func(unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_create_empty_oid_set func(unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_display_name func(unsafe.Pointer, unsafe.Pointer, Gss_buffer_t, unsafe.Pointer) OM_uint32
+	_gss_export_name func(unsafe.Pointer, unsafe.Pointer, Gss_buffer_t) OM_uint32
+	_gss_get_mic func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Gss_buffer_t) OM_uint32
+	_gss_init_sec_context func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, OM_uint32, OM_uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Gss_buffer_t, unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_inquire_saslname_for_mech func(unsafe.Pointer, unsafe.Pointer, Gss_buffer_t, Gss_buffer_t, Gss_buffer_t) OM_uint32
+	_gss_krb5_copy_ccache func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_krb5_export_lucid_sec_context func(unsafe.Pointer, unsafe.Pointer, OM_uint32, unsafe.Pointer) OM_uint32
 	_gss_oid_equal func(unsafe.Pointer, unsafe.Pointer) int
-	_gss_oid_to_str func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_test_oid_set_member func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int) unsafe.Pointer
-	_gss_unseal func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int, []int) unsafe.Pointer
-	_gss_unwrap func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int, unsafe.Pointer) unsafe.Pointer
-	_gss_verify_mic func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_gss_wrap func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer, unsafe.Pointer, []int, unsafe.Pointer) unsafe.Pointer
-	_gsskrb5_extract_authz_data_from_sec_context func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer) unsafe.Pointer
-	_gsskrb5_register_acceptor_identity func(unsafe.Pointer) unsafe.Pointer
+	_gss_oid_to_str func(unsafe.Pointer, unsafe.Pointer, Gss_buffer_t) OM_uint32
+	_gss_test_oid_set_member func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []int) OM_uint32
+	_gss_unseal func(unsafe.Pointer, Gss_ctx_id_t, Gss_buffer_t, Gss_buffer_t, []int, []int) OM_uint32
+	_gss_unwrap func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, Gss_buffer_t, []int, unsafe.Pointer) OM_uint32
+	_gss_verify_mic func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) OM_uint32
+	_gss_wrap func(unsafe.Pointer, unsafe.Pointer, int, unsafe.Pointer, unsafe.Pointer, []int, Gss_buffer_t) OM_uint32
+	_gsskrb5_extract_authz_data_from_sec_context func(unsafe.Pointer, Gss_ctx_id_t, int, Gss_buffer_t) OM_uint32
+	_gsskrb5_register_acceptor_identity func(unsafe.Pointer) OM_uint32
 )
 
 func init() {
@@ -87,7 +87,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/GSSCredentialGetLifetime(_:)
-func GSSCredentialGetLifetime(cred unsafe.Pointer) unsafe.Pointer {
+func GSSCredentialGetLifetime(cred unsafe.Pointer) OM_uint32 {
 	return _GSSCredentialGetLifetime(cred)
 }
 
@@ -109,7 +109,7 @@ func GSSNameCreateDisplayString(name unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_add_oid_set_member(_:_:_:)
-func gss_add_oid_set_member(minor_status unsafe.Pointer, member_oid unsafe.Pointer, oid_set unsafe.Pointer) unsafe.Pointer {
+func gss_add_oid_set_member(minor_status unsafe.Pointer, member_oid unsafe.Pointer, oid_set unsafe.Pointer) OM_uint32 {
 	return _gss_add_oid_set_member(minor_status, member_oid, oid_set)
 }
 
@@ -120,7 +120,7 @@ func gss_add_oid_set_member(minor_status unsafe.Pointer, member_oid unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_create_empty_buffer_set(_:_:)
-func gss_create_empty_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.Pointer) unsafe.Pointer {
+func gss_create_empty_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.Pointer) OM_uint32 {
 	return _gss_create_empty_buffer_set(minor_status, buffer_set)
 }
 
@@ -131,7 +131,7 @@ func gss_create_empty_buffer_set(minor_status unsafe.Pointer, buffer_set unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_create_empty_oid_set(_:_:)
-func gss_create_empty_oid_set(minor_status unsafe.Pointer, oid_set unsafe.Pointer) unsafe.Pointer {
+func gss_create_empty_oid_set(minor_status unsafe.Pointer, oid_set unsafe.Pointer) OM_uint32 {
 	return _gss_create_empty_oid_set(minor_status, oid_set)
 }
 
@@ -142,7 +142,7 @@ func gss_create_empty_oid_set(minor_status unsafe.Pointer, oid_set unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_display_name(_:_:_:_:)
-func gss_display_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, output_name_buffer unsafe.Pointer, output_name_type unsafe.Pointer) unsafe.Pointer {
+func gss_display_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, output_name_buffer Gss_buffer_t, output_name_type unsafe.Pointer) OM_uint32 {
 	return _gss_display_name(minor_status, input_name, output_name_buffer, output_name_type)
 }
 
@@ -153,7 +153,7 @@ func gss_display_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, ou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_export_name(_:_:_:)
-func gss_export_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, exported_name unsafe.Pointer) unsafe.Pointer {
+func gss_export_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, exported_name Gss_buffer_t) OM_uint32 {
 	return _gss_export_name(minor_status, input_name, exported_name)
 }
 
@@ -164,7 +164,7 @@ func gss_export_name(minor_status unsafe.Pointer, input_name unsafe.Pointer, exp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_get_mic(_:_:_:_:_:)
-func gss_get_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, qop_req unsafe.Pointer, message_buffer unsafe.Pointer, message_token unsafe.Pointer) unsafe.Pointer {
+func gss_get_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, qop_req unsafe.Pointer, message_buffer unsafe.Pointer, message_token Gss_buffer_t) OM_uint32 {
 	return _gss_get_mic(minor_status, context_handle, qop_req, message_buffer, message_token)
 }
 
@@ -175,7 +175,7 @@ func gss_get_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, qop
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_init_sec_context(_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func gss_init_sec_context(minor_status unsafe.Pointer, initiator_cred_handle unsafe.Pointer, context_handle unsafe.Pointer, target_name unsafe.Pointer, input_mech_type unsafe.Pointer, req_flags unsafe.Pointer, time_req unsafe.Pointer, input_chan_bindings unsafe.Pointer, input_token unsafe.Pointer, actual_mech_type unsafe.Pointer, output_token unsafe.Pointer, ret_flags unsafe.Pointer, time_rec unsafe.Pointer) unsafe.Pointer {
+func gss_init_sec_context(minor_status unsafe.Pointer, initiator_cred_handle unsafe.Pointer, context_handle unsafe.Pointer, target_name unsafe.Pointer, input_mech_type unsafe.Pointer, req_flags OM_uint32, time_req OM_uint32, input_chan_bindings unsafe.Pointer, input_token unsafe.Pointer, actual_mech_type unsafe.Pointer, output_token Gss_buffer_t, ret_flags unsafe.Pointer, time_rec unsafe.Pointer) OM_uint32 {
 	return _gss_init_sec_context(minor_status, initiator_cred_handle, context_handle, target_name, input_mech_type, req_flags, time_req, input_chan_bindings, input_token, actual_mech_type, output_token, ret_flags, time_rec)
 }
 
@@ -186,7 +186,7 @@ func gss_init_sec_context(minor_status unsafe.Pointer, initiator_cred_handle uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_inquire_saslname_for_mech(_:_:_:_:_:)
-func gss_inquire_saslname_for_mech(minor_status unsafe.Pointer, desired_mech unsafe.Pointer, sasl_mech_name unsafe.Pointer, mech_name unsafe.Pointer, mech_description unsafe.Pointer) unsafe.Pointer {
+func gss_inquire_saslname_for_mech(minor_status unsafe.Pointer, desired_mech unsafe.Pointer, sasl_mech_name Gss_buffer_t, mech_name Gss_buffer_t, mech_description Gss_buffer_t) OM_uint32 {
 	return _gss_inquire_saslname_for_mech(minor_status, desired_mech, sasl_mech_name, mech_name, mech_description)
 }
 
@@ -196,7 +196,7 @@ func gss_inquire_saslname_for_mech(minor_status unsafe.Pointer, desired_mech uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_krb5_copy_ccache(_:_:_:)
-func gss_krb5_copy_ccache(minor_status unsafe.Pointer, cred unsafe.Pointer, out unsafe.Pointer) unsafe.Pointer {
+func gss_krb5_copy_ccache(minor_status unsafe.Pointer, cred unsafe.Pointer, out unsafe.Pointer) OM_uint32 {
 	return _gss_krb5_copy_ccache(minor_status, cred, out)
 }
 
@@ -207,7 +207,7 @@ func gss_krb5_copy_ccache(minor_status unsafe.Pointer, cred unsafe.Pointer, out 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_krb5_export_lucid_sec_context(_:_:_:_:)
-func gss_krb5_export_lucid_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, version unsafe.Pointer, rctx unsafe.Pointer) unsafe.Pointer {
+func gss_krb5_export_lucid_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, version OM_uint32, rctx unsafe.Pointer) OM_uint32 {
 	return _gss_krb5_export_lucid_sec_context(minor_status, context_handle, version, rctx)
 }
 
@@ -229,7 +229,7 @@ func gss_oid_equal(a unsafe.Pointer, b unsafe.Pointer) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_oid_to_str(_:_:_:)
-func gss_oid_to_str(minor_status unsafe.Pointer, oid unsafe.Pointer, oid_str unsafe.Pointer) unsafe.Pointer {
+func gss_oid_to_str(minor_status unsafe.Pointer, oid unsafe.Pointer, oid_str Gss_buffer_t) OM_uint32 {
 	return _gss_oid_to_str(minor_status, oid, oid_str)
 }
 
@@ -240,7 +240,7 @@ func gss_oid_to_str(minor_status unsafe.Pointer, oid unsafe.Pointer, oid_str uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_test_oid_set_member(_:_:_:_:)
-func gss_test_oid_set_member(minor_status unsafe.Pointer, member unsafe.Pointer, set unsafe.Pointer, present []int) unsafe.Pointer {
+func gss_test_oid_set_member(minor_status unsafe.Pointer, member unsafe.Pointer, set unsafe.Pointer, present []int) OM_uint32 {
 	return _gss_test_oid_set_member(minor_status, member, set, present)
 }
 
@@ -250,7 +250,7 @@ func gss_test_oid_set_member(minor_status unsafe.Pointer, member unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_unseal(_:_:_:_:_:_:)
-func gss_unseal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, input_message_buffer unsafe.Pointer, output_message_buffer unsafe.Pointer, conf_state []int, qop_state []int) unsafe.Pointer {
+func gss_unseal(minor_status unsafe.Pointer, context_handle Gss_ctx_id_t, input_message_buffer Gss_buffer_t, output_message_buffer Gss_buffer_t, conf_state []int, qop_state []int) OM_uint32 {
 	return _gss_unseal(minor_status, context_handle, input_message_buffer, output_message_buffer, conf_state, qop_state)
 }
 
@@ -261,7 +261,7 @@ func gss_unseal(minor_status unsafe.Pointer, context_handle unsafe.Pointer, inpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_unwrap(_:_:_:_:_:_:)
-func gss_unwrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, input_message_buffer unsafe.Pointer, output_message_buffer unsafe.Pointer, conf_state []int, qop_state unsafe.Pointer) unsafe.Pointer {
+func gss_unwrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, input_message_buffer unsafe.Pointer, output_message_buffer Gss_buffer_t, conf_state []int, qop_state unsafe.Pointer) OM_uint32 {
 	return _gss_unwrap(minor_status, context_handle, input_message_buffer, output_message_buffer, conf_state, qop_state)
 }
 
@@ -272,7 +272,7 @@ func gss_unwrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, inpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_verify_mic(_:_:_:_:_:)
-func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, message_buffer unsafe.Pointer, token_buffer unsafe.Pointer, qop_state unsafe.Pointer) unsafe.Pointer {
+func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, message_buffer unsafe.Pointer, token_buffer unsafe.Pointer, qop_state unsafe.Pointer) OM_uint32 {
 	return _gss_verify_mic(minor_status, context_handle, message_buffer, token_buffer, qop_state)
 }
 
@@ -283,7 +283,7 @@ func gss_verify_mic(minor_status unsafe.Pointer, context_handle unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gss_wrap(_:_:_:_:_:_:_:)
-func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state []int, output_message_buffer unsafe.Pointer) unsafe.Pointer {
+func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_req_flag int, qop_req unsafe.Pointer, input_message_buffer unsafe.Pointer, conf_state []int, output_message_buffer Gss_buffer_t) OM_uint32 {
 	return _gss_wrap(minor_status, context_handle, conf_req_flag, qop_req, input_message_buffer, conf_state, output_message_buffer)
 }
 
@@ -294,7 +294,7 @@ func gss_wrap(minor_status unsafe.Pointer, context_handle unsafe.Pointer, conf_r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gsskrb5_extract_authz_data_from_sec_context(_:_:_:_:)
-func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, context_handle unsafe.Pointer, ad_type int, ad_data unsafe.Pointer) unsafe.Pointer {
+func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, context_handle Gss_ctx_id_t, ad_type int, ad_data Gss_buffer_t) OM_uint32 {
 	return _gsskrb5_extract_authz_data_from_sec_context(minor_status, context_handle, ad_type, ad_data)
 }
 
@@ -305,7 +305,7 @@ func gsskrb5_extract_authz_data_from_sec_context(minor_status unsafe.Pointer, co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GSS/gsskrb5_register_acceptor_identity(_:)
-func gsskrb5_register_acceptor_identity(identity unsafe.Pointer) unsafe.Pointer {
+func gsskrb5_register_acceptor_identity(identity unsafe.Pointer) OM_uint32 {
 	return _gsskrb5_register_acceptor_identity(identity)
 }
 

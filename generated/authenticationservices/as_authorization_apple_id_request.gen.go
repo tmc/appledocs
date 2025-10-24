@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AuthorizationAppleIDRequest] class.
@@ -30,8 +31,8 @@ type _AuthorizationAppleIDRequestClass struct {
 type IAuthorizationAppleIDRequest interface {
 	IAuthorizationOpenIDRequest
 	// properties:
-	User() string /* primitive/slice/pointer. */
-	SetUser(value string /* primitive/slice/pointer. */)
+	User() objc.IObject /* cross-framework: NSString */
+	SetUser(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -92,8 +93,8 @@ func NewAuthorizationAppleIDRequest() AuthorizationAppleIDRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) User() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDRequest) User() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (a_ AuthorizationAppleIDRequest) User() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) SetUser(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+func (a_ AuthorizationAppleIDRequest) SetUser(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
 }
 
 

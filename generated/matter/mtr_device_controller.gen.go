@@ -31,26 +31,30 @@ type _MTRDeviceControllerClass struct {
 // An interface definition for the [MTRDeviceController] class.
 type IMTRDeviceController interface {
 	objectivec.IObject
-	CommissionNodeWithIDCommissioningParamsError(nodeID foundation.INumber, commissioningParams IMTRCommissioningParameters, error_ unsafe.Pointer) bool
-	SetDeviceControllerDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
-	SetupCommissioningSessionWithPayloadNewNodeIDError(payload IMTRSetupPayload, newNodeID foundation.INumber, error_ unsafe.Pointer) bool
-	ControllerNodeID() foundation.Number
-	SetControllerNodeID(value foundation.INumber)
-	ControllerNodeId() foundation.Number
-	SetControllerNodeId(value foundation.INumber)
-	Devices() MTRDevice
+	// properties:
+	ControllerNodeID() objc.IObject /* cross-framework: NSNumber */
+	SetControllerNodeID(value objc.IObject /* cross-framework: NSNumber */)
+	ControllerNodeId() objc.IObject /* cross-framework: NSNumber */
+	SetControllerNodeId(value objc.IObject /* cross-framework: NSNumber */)
+	Devices() IMTRDevice
 	SetDevices(value IMTRDevice)
 	IsRunning() bool
 	SetIsRunning(value bool)
 	IsSuspended() bool
 	SetIsSuspended(value bool)
-	NodesWithStoredData() foundation.Number
-	SetNodesWithStoredData(value foundation.INumber)
-	UniqueIdentifier() foundation.UUID
-	SetUniqueIdentifier(value foundation.IUUID)
+	NodesWithStoredData() objc.IObject /* cross-framework: NSNumber */
+	SetNodesWithStoredData(value objc.IObject /* cross-framework: NSNumber */)
+	UniqueIdentifier() objc.IObject /* cross-framework: UUID */
+	SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */)
+	// methods:
+	CommissionNodeWithIDCommissioningParamsError(nodeID objc.IObject /* cross-framework: NSNumber */, commissioningParams IMTRCommissioningParameters, error_ unsafe.Pointer) bool
+	SetDeviceControllerDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
+	SetupCommissioningSessionWithPayloadNewNodeIDError(payload IMTRSetupPayload, newNodeID objc.IObject /* cross-framework: NSNumber */, error_ unsafe.Pointer) bool
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceController
 type MTRDeviceController struct {
 	objectivec.Object
@@ -93,75 +97,80 @@ func NewMTRDeviceController() MTRDeviceController {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceController/commissionNode(withID:commissioningParams:)
-func (m_ MTRDeviceController) CommissionNodeWithIDCommissioningParamsError(nodeID foundation.INumber, commissioningParams IMTRCommissioningParameters, error_ unsafe.Pointer) bool {
+func (m_ MTRDeviceController) CommissionNodeWithIDCommissioningParamsError(nodeID objc.IObject /* cross-framework: NSNumber */, commissioningParams IMTRCommissioningParameters, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("commissionNodeWithID:commissioningParams:error:"), nodeID, commissioningParams, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceController/setDeviceControllerDelegate(_:queue:)
 func (m_ MTRDeviceController) SetDeviceControllerDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceControllerDelegate:queue:"), delegate, queue)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceController/setupCommissioningSession(with:newNodeID:)
-func (m_ MTRDeviceController) SetupCommissioningSessionWithPayloadNewNodeIDError(payload IMTRSetupPayload, newNodeID foundation.INumber, error_ unsafe.Pointer) bool {
+func (m_ MTRDeviceController) SetupCommissioningSessionWithPayloadNewNodeIDError(payload IMTRSetupPayload, newNodeID objc.IObject /* cross-framework: NSNumber */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setupCommissioningSessionWithPayload:newNodeID:error:"), payload, newNodeID, error_)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
-func (m_ MTRDeviceController) ControllerNodeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeID"))
+func (m_ MTRDeviceController) ControllerNodeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("controllerNodeID"))
 	return rv
 }
 
 
-// SetControllerNodeID sets the value of the controllerNodeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a04u
-func (m_ MTRDeviceController) SetControllerNodeID(value foundation.INumber) {
+func (m_ MTRDeviceController) SetControllerNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
-func (m_ MTRDeviceController) ControllerNodeId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("controllerNodeId"))
+func (m_ MTRDeviceController) ControllerNodeId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("controllerNodeId"))
 	return rv
 }
 
 
-// SetControllerNodeId sets the value of the controllerNodeId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/controllernodeid-6a03y
-func (m_ MTRDeviceController) SetControllerNodeId(value foundation.INumber) {
+func (m_ MTRDeviceController) SetControllerNodeId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControllerNodeId:"), value)
 }
 
+
 // Returns the list of MTRDevice instances that this controller has loaded
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
-func (m_ MTRDeviceController) Devices() MTRDevice {
+func (m_ MTRDeviceController) Devices() IMTRDevice {
 	rv := objc.Send[MTRDevice](m_.ID, objc.Sel("devices"))
 	return rv
 }
 
 
-// SetDevices sets the value of the devices property.
 // Returns the list of MTRDevice instances that this controller has loaded
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/devices
 func (m_ MTRDeviceController) SetDevices(value IMTRDevice) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDevices:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
 func (m_ MTRDeviceController) IsRunning() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isRunning"))
@@ -169,15 +178,16 @@ func (m_ MTRDeviceController) IsRunning() bool {
 }
 
 
-// SetIsRunning sets the value of the isRunning property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/isrunning
 func (m_ MTRDeviceController) SetIsRunning(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRunning:"), value)
 }
 
+
 // If true, the controller has been suspended via
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/issuspended
 func (m_ MTRDeviceController) IsSuspended() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSuspended"))
@@ -185,45 +195,45 @@ func (m_ MTRDeviceController) IsSuspended() bool {
 }
 
 
-// SetIsSuspended sets the value of the isSuspended property.
 // If true, the controller has been suspended via
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/issuspended
 func (m_ MTRDeviceController) SetIsSuspended(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSuspended:"), value)
 }
 
+
 // Returns the list of node IDs for which this controller has stored
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/nodeswithstoreddata
-func (m_ MTRDeviceController) NodesWithStoredData() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nodesWithStoredData"))
+func (m_ MTRDeviceController) NodesWithStoredData() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodesWithStoredData"))
 	return rv
 }
 
 
-// SetNodesWithStoredData sets the value of the nodesWithStoredData property.
 // Returns the list of node IDs for which this controller has stored
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/nodeswithstoreddata
-func (m_ MTRDeviceController) SetNodesWithStoredData(value foundation.INumber) {
+func (m_ MTRDeviceController) SetNodesWithStoredData(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodesWithStoredData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/uniqueidentifier
-func (m_ MTRDeviceController) UniqueIdentifier() foundation.UUID {
+func (m_ MTRDeviceController) UniqueIdentifier() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
 
-// SetUniqueIdentifier sets the value of the uniqueIdentifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontroller/uniqueidentifier
-func (m_ MTRDeviceController) SetUniqueIdentifier(value foundation.IUUID) {
+func (m_ MTRDeviceController) SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 

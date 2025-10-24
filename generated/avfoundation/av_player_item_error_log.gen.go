@@ -33,8 +33,8 @@ type IPlayerItemErrorLog interface {
 	// properties:
 	Events() IAVPlayerItemErrorLogEvent
 	SetEvents(value IAVPlayerItemErrorLogEvent)
-	ExtendedLogDataStringEncoding() uint /* primitive/slice/pointer. */
-	SetExtendedLogDataStringEncoding(value uint /* primitive/slice/pointer. */)
+	ExtendedLogDataStringEncoding() uint
+	SetExtendedLogDataStringEncoding(value uint)
 	// methods:
 }
 
@@ -112,7 +112,7 @@ func (p_ PlayerItemErrorLog) SetEvents(value IAVPlayerItemErrorLogEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlog/extendedlogdatastringencoding
-func (p_ PlayerItemErrorLog) ExtendedLogDataStringEncoding() uint /* primitive/slice/pointer. */ {
+func (p_ PlayerItemErrorLog) ExtendedLogDataStringEncoding() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("extendedLogDataStringEncoding"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (p_ PlayerItemErrorLog) ExtendedLogDataStringEncoding() uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlog/extendedlogdatastringencoding
-func (p_ PlayerItemErrorLog) SetExtendedLogDataStringEncoding(value uint /* primitive/slice/pointer. */) {
+func (p_ PlayerItemErrorLog) SetExtendedLogDataStringEncoding(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExtendedLogDataStringEncoding:"), value)
 }
 

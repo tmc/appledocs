@@ -34,7 +34,7 @@ type ILinguisticTagger interface {
 	DominantLanguage() IString
 	String() IString
 	SetString(value IString)
-	TagSchemes() []string /* primitive/slice/pointer. */
+	TagSchemes() []string
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewLinguisticTagger() LinguisticTagger {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/init(tagSchemes:options:)
-func NewLinguisticTaggerWithTagSchemesOptions(tagSchemes []string /* primitive/slice/pointer. */, opts uint /* primitive/slice/pointer. */) LinguisticTagger {
+func NewLinguisticTaggerWithTagSchemesOptions(tagSchemes []string, opts uint) LinguisticTagger {
 	instance := getLinguisticTaggerClass().Alloc()
 	rv := objc.Send[LinguisticTagger](instance.ID, objc.Sel("initWithTagSchemes:options:"), tagSchemes, opts)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewLinguisticTaggerWithTagSchemesOptions(tagSchemes []string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/availableTagSchemes(for:language:)
-func (lc _LinguisticTaggerClass) AvailableTagSchemesForUnitLanguage(unit LinguisticTaggerUnit, language IString) []string /* primitive/slice/pointer. */ {
+func (lc _LinguisticTaggerClass) AvailableTagSchemesForUnitLanguage(unit LinguisticTaggerUnit, language IString) []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableTagSchemesForUnit:language:"), unit, language)
 	return rv
 }
@@ -118,7 +118,7 @@ func (lc _LinguisticTaggerClass) AvailableTagSchemesForUnitLanguage(unit Linguis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/availableTagSchemes(forLanguage:)
-func (lc _LinguisticTaggerClass) AvailableTagSchemesForLanguage(language IString) []string /* primitive/slice/pointer. */ {
+func (lc _LinguisticTaggerClass) AvailableTagSchemesForLanguage(language IString) []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableTagSchemesForLanguage:"), language)
 	return rv
 }
@@ -138,7 +138,7 @@ func (lc _LinguisticTaggerClass) DominantLanguageForString(string_ IString) IStr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(for:range:unit:scheme:options:orthography:using:)
-func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrthographyUsingBlock(string_ IString, range_ objc.IObject /* cross-framework Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
+func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrthographyUsingBlock(string_ IString, range_ objc.IObject /* cross-framework: Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:"), string_, range_, unit, scheme, options, orthography, block)
 }
 
@@ -147,8 +147,8 @@ func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tag(for:at:unit:scheme:orthography:tokenRange:)
-func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ IString, charIndex uint /* primitive/slice/pointer. */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework LinguisticTagScheme */, orthography IOrthography, tokenRange objc.IObject /* cross-framework RangePointer */) objc.IObject /* cross-framework: LinguisticTag */ {
-	rv := objc.Send[LinguisticTag](objc.ID(lc.class), objc.Sel("tagForString:atIndex:unit:scheme:orthography:tokenRange:"), string_, charIndex, unit, scheme, orthography, tokenRange)
+func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ IString, charIndex uint, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, orthography IOrthography, tokenRange objc.IObject /* cross-framework: RangePointer */) objc.IObject /* cross-framework: LinguisticTag */ {
+	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("tagForString:atIndex:unit:scheme:orthography:tokenRange:"), string_, charIndex, unit, scheme, orthography, tokenRange)
 	return rv
 }
 
@@ -157,7 +157,7 @@ func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tags(for:range:unit:scheme:options:orthography:tokenRanges:)
-func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ IString, range_ objc.IObject /* cross-framework Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
+func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ IString, range_ objc.IObject /* cross-framework: Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []IValue) []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), string_, range_, unit, scheme, options, orthography, tokenRanges)
 	return rv
 }
@@ -196,7 +196,7 @@ func (l_ LinguisticTagger) SetString(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tagSchemes
-func (l_ LinguisticTagger) TagSchemes() []string /* primitive/slice/pointer. */ {
+func (l_ LinguisticTagger) TagSchemes() []string {
 	rv := objc.Send[[]string](l_.ID, objc.Sel("tagSchemes"))
 	return rv
 }

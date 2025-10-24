@@ -30,25 +30,29 @@ type _MTRGeneralDiagnosticsClusterNetworkInterfaceTypeClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterNetworkInterfaceType] class.
 type IMTRGeneralDiagnosticsClusterNetworkInterfaceType interface {
 	IMTRGeneralDiagnosticsClusterNetworkInterface
-	HardwareAddress() foundation.Data
-	SetHardwareAddress(value foundation.IData)
+	// properties:
+	HardwareAddress() objc.IObject /* cross-framework: Data */
+	SetHardwareAddress(value objc.IObject /* cross-framework: Data */)
 	IPv4Addresses() unsafe.Pointer
 	SetIPv4Addresses(value unsafe.Pointer)
 	IPv6Addresses() unsafe.Pointer
 	SetIPv6Addresses(value unsafe.Pointer)
-	IsOperational() foundation.Number
-	SetIsOperational(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	OffPremiseServicesReachableIPv4() foundation.Number
-	SetOffPremiseServicesReachableIPv4(value foundation.INumber)
-	OffPremiseServicesReachableIPv6() foundation.Number
-	SetOffPremiseServicesReachableIPv6(value foundation.INumber)
-	Type() foundation.Number
-	SetType(value foundation.INumber)
+	IsOperational() objc.IObject /* cross-framework: NSNumber */
+	SetIsOperational(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	OffPremiseServicesReachableIPv4() objc.IObject /* cross-framework: NSNumber */
+	SetOffPremiseServicesReachableIPv4(value objc.IObject /* cross-framework: NSNumber */)
+	OffPremiseServicesReachableIPv6() objc.IObject /* cross-framework: NSNumber */
+	SetOffPremiseServicesReachableIPv6(value objc.IObject /* cross-framework: NSNumber */)
+	Type() objc.IObject /* cross-framework: NSNumber */
+	SetType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterNetworkInterfaceType
 type MTRGeneralDiagnosticsClusterNetworkInterfaceType struct {
 	MTRGeneralDiagnosticsClusterNetworkInterface
@@ -93,22 +97,23 @@ func NewMTRGeneralDiagnosticsClusterNetworkInterfaceType() MTRGeneralDiagnostics
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() foundation.Data {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("hardwareAddress"))
 	return rv
 }
 
 
-// SetHardwareAddress sets the value of the hardwareAddress property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetHardwareAddress(value foundation.IData) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetHardwareAddress(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareAddress:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv4addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv4Addresses() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iPv4Addresses"))
@@ -116,14 +121,14 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv4Addresses() unsaf
 }
 
 
-// SetIPv4Addresses sets the value of the iPv4Addresses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv4addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIPv4Addresses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIPv4Addresses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv6addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv6Addresses() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iPv6Addresses"))
@@ -131,85 +136,84 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv6Addresses() unsaf
 }
 
 
-// SetIPv6Addresses sets the value of the iPv6Addresses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv6addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIPv6Addresses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIPv6Addresses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IsOperational() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("isOperational"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IsOperational() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("isOperational"))
 	return rv
 }
 
 
-// SetIsOperational sets the value of the isOperational property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIsOperational(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIsOperational(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsOperational:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv4() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv4"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv4() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offPremiseServicesReachableIPv4"))
 	return rv
 }
 
 
-// SetOffPremiseServicesReachableIPv4 sets the value of the offPremiseServicesReachableIPv4 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv4(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv4(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv4:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv6() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("offPremiseServicesReachableIPv6"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesReachableIPv6() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("offPremiseServicesReachableIPv6"))
 	return rv
 }
 
 
-// SetOffPremiseServicesReachableIPv6 sets the value of the offPremiseServicesReachableIPv6 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv6(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv6(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv6:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Type() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetType(value foundation.INumber) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

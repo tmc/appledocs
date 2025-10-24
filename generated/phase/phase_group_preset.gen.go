@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _PHASEGroupPresetClass struct {
 // An interface definition for the [PHASEGroupPreset] class.
 type IPHASEGroupPreset interface {
 	objectivec.IObject
+	// properties:
+	Settings() foundation.IDictionary
+	TimeToReset() float64
+	TimeToTarget() float64
+	// methods:
 	Activate()
 	ActivateWithTimeToTargetOverride(timeToTargetOverride float64)
 	Deactivate()
 	DeactivateWithTimeToResetOverride(timeToResetOverride float64)
-	Settings() unsafe.Pointer
-	TimeToReset() float64
-	TimeToTarget() float64
 }
 
 // A collection of settings for groups.
 //
 // Group presets pair groups with audio settings that your app can apply to specific sounds at a particular time in your app’s life cycle. This class enables many predefined group settings to take effect all at once.
+
+
+// A collection of settings for groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset
 type PHASEGroupPreset struct {
 	objectivec.Object
@@ -88,11 +95,11 @@ func NewPHASEGroupPreset() PHASEGroupPreset {
 
 
 
-
 // Creates a group preset with the designated engine, settings, and fade parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/init(engine:settings:timeToTarget:timeToReset:)
-func NewPHASEGroupPresetWithEngineSettingsTimeToTargetTimeToReset(engine IPHASEEngine, settings unsafe.Pointer, timeToTarget float64, timeToReset float64) PHASEGroupPreset {
+func NewPHASEGroupPresetWithEngineSettingsTimeToTargetTimeToReset(engine IPHASEEngine, settings foundation.IDictionary, timeToTarget float64, timeToReset float64) PHASEGroupPreset {
 	instance := getPHASEGroupPresetClass().Alloc()
 	rv := objc.Send[PHASEGroupPreset](instance.ID, objc.Sel("initWithEngine:settings:timeToTarget:timeToReset:"), engine, settings, timeToTarget, timeToReset)
 	rv.Autorelease()
@@ -100,52 +107,66 @@ func NewPHASEGroupPresetWithEngineSettingsTimeToTargetTimeToReset(engine IPHASEE
 }
 
 
+
 // Applies settings to the designated groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/activate()
 func (p_ PHASEGroupPreset) Activate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("activate"))
 }
 
+
 // Applies settings with an overriden fade duration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/activate(timeToTargetOverride:)
 func (p_ PHASEGroupPreset) ActivateWithTimeToTargetOverride(timeToTargetOverride float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("activateWithTimeToTargetOverride:"), timeToTargetOverride)
 }
 
+
 // Reverts settings for the preset’s groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/deactivate()
 func (p_ PHASEGroupPreset) Deactivate() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deactivate"))
 }
 
+
 // Reverts settings for the preset’s groups using a timed adjustment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/deactivate(timeToResetOverride:)
 func (p_ PHASEGroupPreset) DeactivateWithTimeToResetOverride(timeToResetOverride float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deactivateWithTimeToResetOverride:"), timeToResetOverride)
 }
 
+
 // A dictionary with preset setting values and group objects as keys.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/settings
-func (p_ PHASEGroupPreset) Settings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("settings"))
+func (p_ PHASEGroupPreset) Settings() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("settings"))
 	return rv
 }
 
+
 // A duration in which the framework restores the group’s original state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/timeToReset
 func (p_ PHASEGroupPreset) TimeToReset() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("timeToReset"))
 	return rv
 }
 
+
 // A duration in which the engine fades the settings from their original value to their new value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/timeToTarget
 func (p_ PHASEGroupPreset) TimeToTarget() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("timeToTarget"))

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _INParameterClass struct {
 type IINParameter interface {
 	objectivec.IObject
 	// properties:
-	ParameterClass() unsafe.Pointer
-	SetParameterClass(value unsafe.Pointer)
-	ParameterKeyPath() string /* primitive/slice/pointer. */
-	SetParameterKeyPath(value string /* primitive/slice/pointer. */)
+	ParameterClass() objc.Class
+	SetParameterClass(value objc.Class)
+	ParameterKeyPath() objc.IObject /* cross-framework: NSString */
+	SetParameterKeyPath(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewINParameter() INParameter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterclass
-func (i_ INParameter) ParameterClass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("parameterClass"))
+func (i_ INParameter) ParameterClass() objc.Class {
+	rv := objc.Send[objc.Class](i_.ID, objc.Sel("parameterClass"))
 	return rv
 }
 
@@ -105,7 +106,7 @@ func (i_ INParameter) ParameterClass() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterclass
-func (i_ INParameter) SetParameterClass(value unsafe.Pointer) {
+func (i_ INParameter) SetParameterClass(value objc.Class) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterClass:"), value)
 }
 
@@ -114,8 +115,8 @@ func (i_ INParameter) SetParameterClass(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterkeypath
-func (i_ INParameter) ParameterKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](i_.ID, objc.Sel("parameterKeyPath"))
+func (i_ INParameter) ParameterKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("parameterKeyPath"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (i_ INParameter) ParameterKeyPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterkeypath
-func (i_ INParameter) SetParameterKeyPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterKeyPath:"), objc.String(value))
+func (i_ INParameter) SetParameterKeyPath(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterKeyPath:"), value)
 }
 
 

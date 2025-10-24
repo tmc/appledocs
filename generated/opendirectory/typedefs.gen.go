@@ -1,18 +1,16 @@
 // Code generated from Apple documentation for OpenDirectory. DO NOT EDIT.
 
 package opendirectory
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
-// ODAttributeType - An Open Directory attribute type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeType
-// ODAttributeType has base type: NSString *
-type ODAttributeType uintptr
 // ODAuthenticationType - An Open Directory authentication type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAuthenticationType
-// ODAuthenticationType has base type: NSString *
-type ODAuthenticationType uintptr
+// ODAuthenticationType is a string typedef
+type ODAuthenticationType = string
 // ODContextRef - An Open Directory context type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODContext
@@ -21,8 +19,8 @@ type ODContextRef uintptr
 // ODErrorUserInfoKeyType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODErrorUserInfoKeyType
-// ODErrorUserInfoKeyType has base type: NSString *
-type ODErrorUserInfoKeyType uintptr
+// ODErrorUserInfoKeyType is a string typedef
+type ODErrorUserInfoKeyType = string
 // ODMatchType - An Open Directory match type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMatchType
@@ -41,33 +39,34 @@ type ODNodeType uintptr
 // ODOptionKeyType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODOptionKeyType
-// ODOptionKeyType has base type: NSString *
-type ODOptionKeyType uintptr
+// ODOptionKeyType is a string typedef
+type ODOptionKeyType = string
 // ODPolicyAttributeType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODPolicyAttributeType
-// ODPolicyAttributeType has base type: NSString *
-type ODPolicyAttributeType uintptr
+// ODPolicyAttributeType is a string typedef
+type ODPolicyAttributeType = string
 // ODPolicyCategoryType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODPolicyCategoryType
-// ODPolicyCategoryType has base type: NSString *
-type ODPolicyCategoryType uintptr
+// ODPolicyCategoryType is a string typedef
+type ODPolicyCategoryType = string
 // ODPolicyKeyType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODPolicyKeyType
-// ODPolicyKeyType has base type: NSString *
-type ODPolicyKeyType uintptr
+// ODPolicyKeyType is a string typedef
+type ODPolicyKeyType = string
 // ODPolicyType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODPolicyType
-// ODPolicyType has base type: NSString *
-type ODPolicyType uintptr
+// ODPolicyType is a string typedef
+type ODPolicyType = string
 // ODQueryCallback - A callback function called as results from a scheduled query are returned.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQueryCallback
-// ODQueryCallback has base type: void (*)(struct __ODQuery *, const struct __CFArray *, struct __CFError *, void *)
-type ODQueryCallback uintptr
+// ODQueryCallback is a callback function
+// C type: void (*)(struct __ODQuery *, const struct __CFArray *, struct __CFError *, void *)
+type ODQueryCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 // ODQueryRef - An Open Directory query type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQueryRef
@@ -86,6 +85,6 @@ type ODSessionRef uintptr
 // ODAttributeType - An Open Directory attribute type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeType
-// ODAttributeType has base type: NSString *
-type ODAttributeType uintptr
+// ODAttributeType is a string typedef
+type ODAttributeType = string
 

@@ -30,9 +30,13 @@ type _MTRWaterHeaterManagementClusterBoostEndedEventClass struct {
 // An interface definition for the [MTRWaterHeaterManagementClusterBoostEndedEvent] class.
 type IMTRWaterHeaterManagementClusterBoostEndedEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostEndedEvent
 type MTRWaterHeaterManagementClusterBoostEndedEvent struct {
 	objectivec.Object

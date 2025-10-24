@@ -29,9 +29,13 @@ type _MTRBaseClusterNitrogenDioxideConcentrationMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterNitrogenDioxideConcentrationMeasurement] class.
 type IMTRBaseClusterNitrogenDioxideConcentrationMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterNitrogenDioxideConcentrationMeasurement
 type MTRBaseClusterNitrogenDioxideConcentrationMeasurement struct {
 	MTRGenericBaseCluster

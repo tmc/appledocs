@@ -10,7 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	PixelBufferRef = _undefined // referenced in Cinematic
-	Progress = _undefined // referenced in Cinematic
 	SampleBufferRef = _undefined // referenced in Cinematic
 	Time = _undefined // referenced in Cinematic
 	TimeRange = _undefined // referenced in Cinematic

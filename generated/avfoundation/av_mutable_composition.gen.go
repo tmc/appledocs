@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [MutableComposition] class.
@@ -97,7 +98,7 @@ func NewMutableComposition() MutableComposition {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
 func (m_ MutableComposition) NaturalSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](m_.ID, objc.Sel("naturalSize"))
+	rv := objc.Send[corefoundation.Size](m_.ID, objc.Sel("naturalSize"))
 	return rv
 }
 

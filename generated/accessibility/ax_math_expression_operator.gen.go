@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXMathExpressionOperator] class.
@@ -30,7 +31,7 @@ type _AXMathExpressionOperatorClass struct {
 type IAXMathExpressionOperator interface {
 	IAXMathExpression
 	// properties:
-	Content() string /* primitive/slice/pointer. */
+	Content() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -84,9 +85,9 @@ func NewAXMathExpressionOperator() AXMathExpressionOperator {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/init(content:)
-func NewAXMathExpressionOperatorWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionOperator {
+func NewAXMathExpressionOperatorWithContent(content objc.IObject /* cross-framework: NSString */) AXMathExpressionOperator {
 	instance := getAXMathExpressionOperatorClass().Alloc()
-	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -95,8 +96,8 @@ func NewAXMathExpressionOperatorWithContent(content string /* primitive/slice/po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/content
-func (a_ AXMathExpressionOperator) Content() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionOperator) Content() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("content"))
 	return rv
 }
 

@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = callkit.NewCXProvider
 
-// ExampleNewCXProviderWithConfiguration demonstrates how to create a CXProvider instance using NewCXProviderWithConfiguration.
-// Initializes a new provider with the specified configuration.
-func ExampleNewCXProviderWithConfiguration() {
-	_ = callkit.NewCXProviderWithConfiguration(
-		callkit.CXProviderConfiguration{}, // configuration CXProviderConfiguration
-	)
-	// Output:
-}

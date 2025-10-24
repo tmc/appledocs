@@ -31,12 +31,12 @@ type _ABPersonViewClass struct {
 type IABPersonView interface {
 	appkit.IView
 	// properties:
-	Editing() bool /* primitive/slice/pointer. */
-	SetEditing(value bool /* primitive/slice/pointer. */)
+	Editing() bool
+	SetEditing(value bool)
 	Person() IABPerson
 	SetPerson(value IABPerson)
-	ShouldShowLinkedPeople() bool /* primitive/slice/pointer. */
-	SetShouldShowLinkedPeople(value bool /* primitive/slice/pointer. */)
+	ShouldShowLinkedPeople() bool
+	SetShouldShowLinkedPeople(value bool)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewABPersonView() ABPersonView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
-func (a_ ABPersonView) Editing() bool /* primitive/slice/pointer. */ {
+func (a_ ABPersonView) Editing() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editing"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (a_ ABPersonView) Editing() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/editing
-func (a_ ABPersonView) SetEditing(value bool /* primitive/slice/pointer. */) {
+func (a_ ABPersonView) SetEditing(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditing:"), value)
 }
 
@@ -135,7 +135,7 @@ func (a_ ABPersonView) SetPerson(value IABPerson) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
-func (a_ ABPersonView) ShouldShowLinkedPeople() bool /* primitive/slice/pointer. */ {
+func (a_ ABPersonView) ShouldShowLinkedPeople() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldShowLinkedPeople"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (a_ ABPersonView) ShouldShowLinkedPeople() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/shouldShowLinkedPeople
-func (a_ ABPersonView) SetShouldShowLinkedPeople(value bool /* primitive/slice/pointer. */) {
+func (a_ ABPersonView) SetShouldShowLinkedPeople(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldShowLinkedPeople:"), value)
 }
 

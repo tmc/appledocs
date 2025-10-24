@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to EndpointSecurity without requiring cgo.
-
-// Develop system extensions that enhance user security.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity
+// See: https://developer.apple.com/documentation/EndpointSecurity
 package endpointsecurity
 
 import (

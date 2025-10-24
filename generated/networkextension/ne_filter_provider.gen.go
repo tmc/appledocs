@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NEFilterProvider] class.
@@ -28,28 +29,24 @@ type _NEFilterProviderClass struct {
 
 // An interface definition for the [NEFilterProvider] class.
 type INEFilterProvider interface {
-	INEProvider
-	NEFilterErrorDomain() string
-	FilterConfiguration() NEFilterProviderConfiguration
-	SetFilterConfiguration(value INEFilterProviderConfiguration)
+	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-// An abstract base class shared by content filters.
-//
-// A Network Content Filter is made up of two Filter Provider extensions: The examines network content as it passes through the network stack on the device and decides if the network content should be blocked or allowed to pass on to its final destination. Because the Filter Data Provider extension has access to all of the network content flowing through the device, it runs in a very restrictive sandbox. The sandbox prevents the Filter Data Provider extension from moving network content outside of its address space by blocking all network access, IPC, and disk write operations. The Filter Data Provider extension is implemented by creating a custom subclass of the class. The is responsible for feeding information to the Filter Data Provider extension so that the Filter Data Provider extension can do its job. For example, the Filter Control Provider extension can be notified by the Filter Data Provider extension that it does not have enough information to make a decision about a particular flow of network content. The Filter Control Provider extension can then download more filtering rules from a server and write the rules to a location where the Filter Data Provider can access them. The Filter Control Provider extension is implemented by creating a custom subclass of the class.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider
+// A parent class referenced by other NetworkExtension classes.
+
+
+// A parent class referenced by other NetworkExtension classes. [Full Topic]
 type NEFilterProvider struct {
-	NEProvider
+	objectivec.Object
 }
 
 // NEFilterProviderFrom constructs a [NEFilterProvider] from an unsafe.Pointer.
 //
-// An abstract base class shared by content filters.
+// A parent class referenced by other NetworkExtension classes.
 func NEFilterProviderFrom(ptr unsafe.Pointer) NEFilterProvider {
-	return NEFilterProvider{
-		NEProvider: NEProviderFrom(ptr),
-	}
+	return NEFilterProvider{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -83,32 +80,6 @@ func NewNEFilterProvider() NEFilterProvider {
 	return getNEFilterProviderClass().New()
 }
 
-
-// The domain for errors resulting from calls to the filter manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterProvider) NEFilterErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
-	return rv
-}
-
-// An
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
-func (n_ NEFilterProvider) FilterConfiguration() NEFilterProviderConfiguration {
-	rv := objc.Send[NEFilterProviderConfiguration](n_.ID, objc.Sel("filterConfiguration"))
-	return rv
-}
-
-
-// SetFilterConfiguration sets the value of the filterConfiguration property.
-// An
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
-func (n_ NEFilterProvider) SetFilterConfiguration(value INEFilterProviderConfiguration) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterConfiguration:"), value)
-}
 
 
 

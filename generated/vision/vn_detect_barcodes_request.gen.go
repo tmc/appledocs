@@ -29,21 +29,27 @@ type _DetectBarcodesRequestClass struct {
 // An interface definition for the [DetectBarcodesRequest] class.
 type IDetectBarcodesRequest interface {
 	IImageBasedRequest
+	// properties:
 	CoalesceCompositeSymbologies() bool
 	SetCoalesceCompositeSymbologies(value bool)
-	Results() VNBarcodeObservation
-	SetResults(value IVNBarcodeObservation)
-	Symbologies() unsafe.Pointer
-	SetSymbologies(value unsafe.Pointer)
+	Results() objc.IObject /* cross-framework: BarcodeObservation */
+	SetResults(value objc.IObject /* cross-framework: BarcodeObservation */)
+	Symbologies() BarcodeSymbology /* not a class type */
+	SetSymbologies(value BarcodeSymbology /* not a class type */)
 	VNDetectBarcodesRequestRevision1() int
 	VNDetectBarcodesRequestRevision2() int
 	VNDetectBarcodesRequestRevision3() int
+	// methods:
 }
 
 // A request that detects barcodes in an image.
 //
 // This request returns an array of objects, one for each barcode it detects.
+
+
+// A request that detects barcodes in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectBarcodesRequest
 type DetectBarcodesRequest struct {
 	ImageBasedRequest
@@ -90,8 +96,10 @@ func NewDetectBarcodesRequest() DetectBarcodesRequest {
 }
 
 
+
 // A Boolean value that indicates whether to coalesce multiple codes based on the symbology.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/coalescecompositesymbologies
 func (d_ DetectBarcodesRequest) CoalesceCompositeSymbologies() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("coalesceCompositeSymbologies"))
@@ -99,69 +107,76 @@ func (d_ DetectBarcodesRequest) CoalesceCompositeSymbologies() bool {
 }
 
 
-// SetCoalesceCompositeSymbologies sets the value of the coalesceCompositeSymbologies property.
 // A Boolean value that indicates whether to coalesce multiple codes based on the symbology.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/coalescecompositesymbologies
 func (d_ DetectBarcodesRequest) SetCoalesceCompositeSymbologies(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoalesceCompositeSymbologies:"), value)
 }
 
+
 // The results of a barcode detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) Results() VNBarcodeObservation {
-	rv := objc.Send[VNBarcodeObservation](d_.ID, objc.Sel("results"))
+func (d_ DetectBarcodesRequest) Results() objc.IObject /* cross-framework: BarcodeObservation */ {
+	rv := objc.Send[BarcodeObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of a barcode detection request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) SetResults(value IVNBarcodeObservation) {
+func (d_ DetectBarcodesRequest) SetResults(value objc.IObject /* cross-framework: BarcodeObservation */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // The barcode symbologies that the request detects in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
-func (d_ DetectBarcodesRequest) Symbologies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("symbologies"))
+func (d_ DetectBarcodesRequest) Symbologies() BarcodeSymbology /* not a class type */ {
+	rv := objc.Send[BarcodeSymbology](d_.ID, objc.Sel("symbologies"))
 	return rv
 }
 
 
-// SetSymbologies sets the value of the symbologies property.
 // The barcode symbologies that the request detects in an image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/symbologies
-func (d_ DetectBarcodesRequest) SetSymbologies(value unsafe.Pointer) {
+func (d_ DetectBarcodesRequest) SetSymbologies(value BarcodeSymbology /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSymbologies:"), value)
 }
 
+
 // A constant for specifying revision 1 of the barcode detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision1
 func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectBarcodesRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the barcode detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision2
 func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision2() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectBarcodesRequestRevision2"))
 	return rv
 }
 
+
 // A constant for specifying revision 3 of the barcode detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3
 func (d_ DetectBarcodesRequest) VNDetectBarcodesRequestRevision3() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectBarcodesRequestRevision3"))

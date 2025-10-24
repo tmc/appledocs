@@ -47,7 +47,7 @@ type IMorphology interface {
 	SetPartOfSpeech(value GrammaticalPartOfSpeech)
 	PronounType() GrammaticalPronounType
 	SetPronounType(value GrammaticalPronounType)
-	Unspecified() bool /* primitive/slice/pointer. */
+	Unspecified() bool
 	// methods:
 }
 
@@ -249,7 +249,7 @@ func (m_ Morphology) SetPronounType(value GrammaticalPronounType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/unspecified
-func (m_ Morphology) Unspecified() bool /* primitive/slice/pointer. */ {
+func (m_ Morphology) Unspecified() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("unspecified"))
 	return rv
 }

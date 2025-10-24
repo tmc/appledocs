@@ -33,39 +33,39 @@ type ICNContact interface {
 	objectivec.IObject
 	// properties:
 	Birthday() objc.IObject /* cross-framework: DateComponents */
-	ContactRelations() []CNLabeledValue /* primitive/slice/pointer. */
+	ContactRelations() []ICNLabeledValue
 	ContactType() CNContactType
-	Dates() []CNLabeledValue /* primitive/slice/pointer. */
-	DepartmentName() string /* primitive/slice/pointer. */
-	EmailAddresses() []CNLabeledValue /* primitive/slice/pointer. */
-	FamilyName() string /* primitive/slice/pointer. */
-	GivenName() string /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
-	ImageData() foundation.objc.IObject /* cross-framework: NSData */
-	ImageDataAvailable() bool /* primitive/slice/pointer. */
-	InstantMessageAddresses() []CNLabeledValue /* primitive/slice/pointer. */
-	JobTitle() string /* primitive/slice/pointer. */
-	MiddleName() string /* primitive/slice/pointer. */
-	NamePrefix() string /* primitive/slice/pointer. */
-	NameSuffix() string /* primitive/slice/pointer. */
-	Nickname() string /* primitive/slice/pointer. */
+	Dates() []ICNLabeledValue
+	DepartmentName() objc.IObject /* cross-framework: NSString */
+	EmailAddresses() []ICNLabeledValue
+	FamilyName() objc.IObject /* cross-framework: NSString */
+	GivenName() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	ImageData() objc.IObject /* cross-framework: NSData */
+	ImageDataAvailable() bool
+	InstantMessageAddresses() []ICNLabeledValue
+	JobTitle() objc.IObject /* cross-framework: NSString */
+	MiddleName() objc.IObject /* cross-framework: NSString */
+	NamePrefix() objc.IObject /* cross-framework: NSString */
+	NameSuffix() objc.IObject /* cross-framework: NSString */
+	Nickname() objc.IObject /* cross-framework: NSString */
 	NonGregorianBirthday() objc.IObject /* cross-framework: DateComponents */
-	Note() string /* primitive/slice/pointer. */
-	OrganizationName() string /* primitive/slice/pointer. */
-	PhoneNumbers() []CNLabeledValue /* primitive/slice/pointer. */
-	PhoneticFamilyName() string /* primitive/slice/pointer. */
-	PhoneticGivenName() string /* primitive/slice/pointer. */
-	PhoneticMiddleName() string /* primitive/slice/pointer. */
-	PhoneticOrganizationName() string /* primitive/slice/pointer. */
-	PostalAddresses() []CNLabeledValue /* primitive/slice/pointer. */
-	PreviousFamilyName() string /* primitive/slice/pointer. */
-	SocialProfiles() []CNLabeledValue /* primitive/slice/pointer. */
-	ThumbnailImageData() foundation.objc.IObject /* cross-framework: NSData */
-	UrlAddresses() []CNLabeledValue /* primitive/slice/pointer. */
+	Note() objc.IObject /* cross-framework: NSString */
+	OrganizationName() objc.IObject /* cross-framework: NSString */
+	PhoneNumbers() []ICNLabeledValue
+	PhoneticFamilyName() objc.IObject /* cross-framework: NSString */
+	PhoneticGivenName() objc.IObject /* cross-framework: NSString */
+	PhoneticMiddleName() objc.IObject /* cross-framework: NSString */
+	PhoneticOrganizationName() objc.IObject /* cross-framework: NSString */
+	PostalAddresses() []ICNLabeledValue
+	PreviousFamilyName() objc.IObject /* cross-framework: NSString */
+	SocialProfiles() []ICNLabeledValue
+	ThumbnailImageData() objc.IObject /* cross-framework: NSData */
+	UrlAddresses() []ICNLabeledValue
 	// methods:
-	AreKeysAvailable(keyDescriptors []objc.ID /* already interface */) bool /* primitive/slice/pointer. */
-	IsKeyAvailable(key string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	IsUnifiedWithContactWithIdentifier(contactIdentifier string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	AreKeysAvailable(keyDescriptors []objc.ID) bool
+	IsKeyAvailable(key objc.IObject /* cross-framework: NSString */) bool
+	IsUnifiedWithContactWithIdentifier(contactIdentifier objc.IObject /* cross-framework: NSString */) bool
 }
 
 // An immutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.
@@ -145,8 +145,8 @@ func (cc _CNContactClass) DescriptorForAllComparatorKeys() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/localizedString(forKey:)
-func (cc _CNContactClass) LocalizedStringForKey(key string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNContactClass) LocalizedStringForKey(key objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), key)
 	return rv
 }
 
@@ -156,7 +156,7 @@ func (cc _CNContactClass) LocalizedStringForKey(key string /* primitive/slice/po
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matching:)
 func (cc _CNContactClass) PredicateForContactsMatchingPhoneNumber(phoneNumber ICNPhoneNumber) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingPhoneNumber:"), phoneNumber)
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingPhoneNumber:"), phoneNumber)
 	return rv
 }
 
@@ -165,8 +165,8 @@ func (cc _CNContactClass) PredicateForContactsMatchingPhoneNumber(phoneNumber IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matchingEmailAddress:)
-func (cc _CNContactClass) PredicateForContactsMatchingEmailAddress(emailAddress string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingEmailAddress:"), objc.String(emailAddress))
+func (cc _CNContactClass) PredicateForContactsMatchingEmailAddress(emailAddress objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingEmailAddress:"), emailAddress)
 	return rv
 }
 
@@ -175,8 +175,8 @@ func (cc _CNContactClass) PredicateForContactsMatchingEmailAddress(emailAddress 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matchingName:)
-func (cc _CNContactClass) PredicateForContactsMatchingName(name string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingName:"), objc.String(name))
+func (cc _CNContactClass) PredicateForContactsMatchingName(name objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingName:"), name)
 	return rv
 }
 
@@ -185,8 +185,8 @@ func (cc _CNContactClass) PredicateForContactsMatchingName(name string /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(withIdentifiers:)
-func (cc _CNContactClass) PredicateForContactsWithIdentifiers(identifiers []string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsWithIdentifiers:"), identifiers)
+func (cc _CNContactClass) PredicateForContactsWithIdentifiers(identifiers []string) objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsWithIdentifiers:"), identifiers)
 	return rv
 }
 
@@ -195,8 +195,8 @@ func (cc _CNContactClass) PredicateForContactsWithIdentifiers(identifiers []stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContactsInContainer(withIdentifier:)
-func (cc _CNContactClass) PredicateForContactsInContainerWithIdentifier(containerIdentifier string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInContainerWithIdentifier:"), objc.String(containerIdentifier))
+func (cc _CNContactClass) PredicateForContactsInContainerWithIdentifier(containerIdentifier objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInContainerWithIdentifier:"), containerIdentifier)
 	return rv
 }
 
@@ -205,8 +205,8 @@ func (cc _CNContactClass) PredicateForContactsInContainerWithIdentifier(containe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContactsInGroup(withIdentifier:)
-func (cc _CNContactClass) PredicateForContactsInGroupWithIdentifier(groupIdentifier string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInGroupWithIdentifier:"), objc.String(groupIdentifier))
+func (cc _CNContactClass) PredicateForContactsInGroupWithIdentifier(groupIdentifier objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInGroupWithIdentifier:"), groupIdentifier)
 	return rv
 }
 
@@ -215,7 +215,7 @@ func (cc _CNContactClass) PredicateForContactsInGroupWithIdentifier(groupIdentif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/areKeysAvailable(_:)
-func (c_ CNContact) AreKeysAvailable(keyDescriptors []objc.ID /* already interface */) bool /* primitive/slice/pointer. */ {
+func (c_ CNContact) AreKeysAvailable(keyDescriptors []objc.ID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("areKeysAvailable:"), keyDescriptors)
 	return rv
 }
@@ -225,8 +225,8 @@ func (c_ CNContact) AreKeysAvailable(keyDescriptors []objc.ID /* already interfa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/isKeyAvailable(_:)
-func (c_ CNContact) IsKeyAvailable(key string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isKeyAvailable:"), objc.String(key))
+func (c_ CNContact) IsKeyAvailable(key objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isKeyAvailable:"), key)
 	return rv
 }
 
@@ -235,8 +235,8 @@ func (c_ CNContact) IsKeyAvailable(key string /* primitive/slice/pointer. */) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/isUnifiedWithContact(withIdentifier:)
-func (c_ CNContact) IsUnifiedWithContactWithIdentifier(contactIdentifier string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isUnifiedWithContactWithIdentifier:"), objc.String(contactIdentifier))
+func (c_ CNContact) IsUnifiedWithContactWithIdentifier(contactIdentifier objc.IObject /* cross-framework: NSString */) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isUnifiedWithContactWithIdentifier:"), contactIdentifier)
 	return rv
 }
 
@@ -246,7 +246,7 @@ func (c_ CNContact) IsUnifiedWithContactWithIdentifier(contactIdentifier string 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/birthday
 func (c_ CNContact) Birthday() objc.IObject /* cross-framework: DateComponents */ {
-	rv := objc.Send[DateComponents](c_.ID, objc.Sel("birthday"))
+	rv := objc.Send[foundation.DateComponents](c_.ID, objc.Sel("birthday"))
 	return rv
 }
 
@@ -255,7 +255,7 @@ func (c_ CNContact) Birthday() objc.IObject /* cross-framework: DateComponents *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/contactRelations
-func (c_ CNContact) ContactRelations() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) ContactRelations() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("contactRelations"))
 	return rv
 }
@@ -275,7 +275,7 @@ func (c_ CNContact) ContactType() CNContactType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/dates
-func (c_ CNContact) Dates() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) Dates() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("dates"))
 	return rv
 }
@@ -285,8 +285,8 @@ func (c_ CNContact) Dates() []CNLabeledValue /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/departmentName
-func (c_ CNContact) DepartmentName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("departmentName"))
+func (c_ CNContact) DepartmentName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("departmentName"))
 	return rv
 }
 
@@ -295,7 +295,7 @@ func (c_ CNContact) DepartmentName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/emailAddresses
-func (c_ CNContact) EmailAddresses() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) EmailAddresses() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("emailAddresses"))
 	return rv
 }
@@ -305,8 +305,8 @@ func (c_ CNContact) EmailAddresses() []CNLabeledValue /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/familyName
-func (c_ CNContact) FamilyName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("familyName"))
+func (c_ CNContact) FamilyName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("familyName"))
 	return rv
 }
 
@@ -315,8 +315,8 @@ func (c_ CNContact) FamilyName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/givenName
-func (c_ CNContact) GivenName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
+func (c_ CNContact) GivenName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("givenName"))
 	return rv
 }
 
@@ -325,8 +325,8 @@ func (c_ CNContact) GivenName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/identifier
-func (c_ CNContact) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNContact) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -335,7 +335,7 @@ func (c_ CNContact) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/imageData
-func (c_ CNContact) ImageData() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CNContact) ImageData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("imageData"))
 	return rv
 }
@@ -345,7 +345,7 @@ func (c_ CNContact) ImageData() foundation.objc.IObject /* cross-framework: NSDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/imageDataAvailable
-func (c_ CNContact) ImageDataAvailable() bool /* primitive/slice/pointer. */ {
+func (c_ CNContact) ImageDataAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("imageDataAvailable"))
 	return rv
 }
@@ -355,7 +355,7 @@ func (c_ CNContact) ImageDataAvailable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/instantMessageAddresses
-func (c_ CNContact) InstantMessageAddresses() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) InstantMessageAddresses() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("instantMessageAddresses"))
 	return rv
 }
@@ -365,8 +365,8 @@ func (c_ CNContact) InstantMessageAddresses() []CNLabeledValue /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/jobTitle
-func (c_ CNContact) JobTitle() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
+func (c_ CNContact) JobTitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
@@ -375,8 +375,8 @@ func (c_ CNContact) JobTitle() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/middleName
-func (c_ CNContact) MiddleName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("middleName"))
+func (c_ CNContact) MiddleName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("middleName"))
 	return rv
 }
 
@@ -385,8 +385,8 @@ func (c_ CNContact) MiddleName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/namePrefix
-func (c_ CNContact) NamePrefix() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("namePrefix"))
+func (c_ CNContact) NamePrefix() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("namePrefix"))
 	return rv
 }
 
@@ -395,8 +395,8 @@ func (c_ CNContact) NamePrefix() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nameSuffix
-func (c_ CNContact) NameSuffix() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("nameSuffix"))
+func (c_ CNContact) NameSuffix() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
 
@@ -405,8 +405,8 @@ func (c_ CNContact) NameSuffix() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nickname
-func (c_ CNContact) Nickname() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("nickname"))
+func (c_ CNContact) Nickname() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("nickname"))
 	return rv
 }
 
@@ -416,7 +416,7 @@ func (c_ CNContact) Nickname() string /* primitive/slice/pointer. */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nonGregorianBirthday
 func (c_ CNContact) NonGregorianBirthday() objc.IObject /* cross-framework: DateComponents */ {
-	rv := objc.Send[DateComponents](c_.ID, objc.Sel("nonGregorianBirthday"))
+	rv := objc.Send[foundation.DateComponents](c_.ID, objc.Sel("nonGregorianBirthday"))
 	return rv
 }
 
@@ -425,8 +425,8 @@ func (c_ CNContact) NonGregorianBirthday() objc.IObject /* cross-framework: Date
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/note
-func (c_ CNContact) Note() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("note"))
+func (c_ CNContact) Note() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("note"))
 	return rv
 }
 
@@ -435,8 +435,8 @@ func (c_ CNContact) Note() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/organizationName
-func (c_ CNContact) OrganizationName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("organizationName"))
+func (c_ CNContact) OrganizationName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("organizationName"))
 	return rv
 }
 
@@ -445,7 +445,7 @@ func (c_ CNContact) OrganizationName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneNumbers
-func (c_ CNContact) PhoneNumbers() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) PhoneNumbers() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("phoneNumbers"))
 	return rv
 }
@@ -455,8 +455,8 @@ func (c_ CNContact) PhoneNumbers() []CNLabeledValue /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticFamilyName
-func (c_ CNContact) PhoneticFamilyName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticFamilyName"))
+func (c_ CNContact) PhoneticFamilyName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("phoneticFamilyName"))
 	return rv
 }
 
@@ -465,8 +465,8 @@ func (c_ CNContact) PhoneticFamilyName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticGivenName
-func (c_ CNContact) PhoneticGivenName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticGivenName"))
+func (c_ CNContact) PhoneticGivenName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("phoneticGivenName"))
 	return rv
 }
 
@@ -475,8 +475,8 @@ func (c_ CNContact) PhoneticGivenName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticMiddleName
-func (c_ CNContact) PhoneticMiddleName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticMiddleName"))
+func (c_ CNContact) PhoneticMiddleName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("phoneticMiddleName"))
 	return rv
 }
 
@@ -485,8 +485,8 @@ func (c_ CNContact) PhoneticMiddleName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticOrganizationName
-func (c_ CNContact) PhoneticOrganizationName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticOrganizationName"))
+func (c_ CNContact) PhoneticOrganizationName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("phoneticOrganizationName"))
 	return rv
 }
 
@@ -495,7 +495,7 @@ func (c_ CNContact) PhoneticOrganizationName() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/postalAddresses
-func (c_ CNContact) PostalAddresses() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) PostalAddresses() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("postalAddresses"))
 	return rv
 }
@@ -505,8 +505,8 @@ func (c_ CNContact) PostalAddresses() []CNLabeledValue /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/previousFamilyName
-func (c_ CNContact) PreviousFamilyName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("previousFamilyName"))
+func (c_ CNContact) PreviousFamilyName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("previousFamilyName"))
 	return rv
 }
 
@@ -515,7 +515,7 @@ func (c_ CNContact) PreviousFamilyName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/socialProfiles
-func (c_ CNContact) SocialProfiles() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) SocialProfiles() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("socialProfiles"))
 	return rv
 }
@@ -525,7 +525,7 @@ func (c_ CNContact) SocialProfiles() []CNLabeledValue /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/thumbnailImageData
-func (c_ CNContact) ThumbnailImageData() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CNContact) ThumbnailImageData() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("thumbnailImageData"))
 	return rv
 }
@@ -535,7 +535,7 @@ func (c_ CNContact) ThumbnailImageData() foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/urlAddresses
-func (c_ CNContact) UrlAddresses() []CNLabeledValue /* primitive/slice/pointer. */ {
+func (c_ CNContact) UrlAddresses() []ICNLabeledValue {
 	rv := objc.Send[[]CNLabeledValue](c_.ID, objc.Sel("urlAddresses"))
 	return rv
 }

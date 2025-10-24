@@ -32,9 +32,11 @@ type ILinguisticTagger interface {
 	objectivec.IObject
 	// properties:
 	DominantLanguage() IString
+	SetDominantLanguage(value IString)
 	String() IString
 	SetString(value IString)
-	TagSchemes() []string /* primitive/slice/pointer. */
+	TagSchemes() LinguisticTagScheme /* not a class type */
+	SetTagSchemes(value LinguisticTagScheme /* not a class type */)
 	// methods:
 }
 
@@ -91,74 +93,12 @@ func NewLinguisticTagger() LinguisticTagger {
 
 
 
-// Creates a linguistic tagger instance using the specified tag schemes and options.
+// Returns the dominant language of the string set for the linguistic tagger.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/init(tagSchemes:options:)
-func NewLinguisticTaggerWithTagSchemesOptions(tagSchemes []string /* primitive/slice/pointer. */, opts uint /* primitive/slice/pointer. */) LinguisticTagger {
-	instance := getLinguisticTaggerClass().Alloc()
-	rv := objc.Send[LinguisticTagger](instance.ID, objc.Sel("initWithTagSchemes:options:"), tagSchemes, opts)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the tag schemes available for a particular unit and language on the current device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/availableTagSchemes(for:language:)
-func (lc _LinguisticTaggerClass) AvailableTagSchemesForUnitLanguage(unit LinguisticTaggerUnit, language IString) []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableTagSchemesForUnit:language:"), unit, language)
-	return rv
-}
-
-
-// Returns the tag schemes available for a particular language on the current device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/availableTagSchemes(forLanguage:)
-func (lc _LinguisticTaggerClass) AvailableTagSchemesForLanguage(language IString) []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableTagSchemesForLanguage:"), language)
-	return rv
-}
-
-
-// Returns the dominant language for the specified string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/dominantLanguage(for:)
-func (lc _LinguisticTaggerClass) DominantLanguageForString(string_ IString) IString {
-	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), string_)
-	return rv
-}
-
-
-// Enumerates over a given string and calls the specified block for each tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(for:range:unit:scheme:options:orthography:using:)
-func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrthographyUsingBlock(string_ IString, range_ Range /* not a class type */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:"), string_, range_, unit, scheme, options, orthography, block)
-}
-
-
-// Returns a tag for a single scheme, for a given linguistic unit, at the specified character position in a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tag(for:at:unit:scheme:orthography:tokenRange:)
-func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ IString, charIndex uint /* primitive/slice/pointer. */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, orthography IOrthography, tokenRange objc.IObject /* cross-framework: RangePointer */) objc.IObject /* cross-framework: LinguisticTag */ {
-	rv := objc.Send[LinguisticTag](objc.ID(lc.class), objc.Sel("tagForString:atIndex:unit:scheme:orthography:tokenRange:"), string_, charIndex, unit, scheme, orthography, tokenRange)
-	return rv
-}
-
-
-// Returns an array of linguistic tags and token ranges for a given string and linguistic unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tags(for:range:unit:scheme:options:orthography:tokenRanges:)
-func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ IString, range_ Range /* not a class type */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), string_, range_, unit, scheme, options, orthography, tokenRanges)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
+func (l_ LinguisticTagger) DominantLanguage() IString {
+	rv := objc.Send[String](l_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 
@@ -166,17 +106,16 @@ func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyT
 // Returns the dominant language of the string set for the linguistic tagger.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/dominantLanguage
-func (l_ LinguisticTagger) DominantLanguage() IString {
-	rv := objc.Send[String](l_.ID, objc.Sel("dominantLanguage"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/dominantlanguage
+func (l_ LinguisticTagger) SetDominantLanguage(value IString) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setDominantLanguage:"), value)
 }
 
 
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/string
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
 func (l_ LinguisticTagger) String() IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("string"))
 	return rv
@@ -186,19 +125,29 @@ func (l_ LinguisticTagger) String() IString {
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/string
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/string
 func (l_ LinguisticTagger) SetString(value IString) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setString:"), value)
 }
 
 
-// Returns the tag schemes configured for this linguistic tagger. For possible values, see .
+// Returns the tag schemes configured for this linguistic tagger. For possible values, see
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tagSchemes
-func (l_ LinguisticTagger) TagSchemes() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](l_.ID, objc.Sel("tagSchemes"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
+func (l_ LinguisticTagger) TagSchemes() LinguisticTagScheme /* not a class type */ {
+	rv := objc.Send[LinguisticTagScheme](l_.ID, objc.Sel("tagSchemes"))
 	return rv
 }
+
+
+// Returns the tag schemes configured for this linguistic tagger. For possible values, see
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
+func (l_ LinguisticTagger) SetTagSchemes(value LinguisticTagScheme /* not a class type */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTagSchemes:"), value)
+}
+
 
 

@@ -31,16 +31,22 @@ type _AppServiceClass struct {
 // An interface definition for the [AppService] class.
 type IAppService interface {
 	objectivec.IObject
+	// properties:
+	Status() AppServiceStatus
+	// methods:
 	RegisterAndReturnError(error_ unsafe.Pointer) bool
 	UnregisterAndReturnError(error_ unsafe.Pointer) bool
 	UnregisterWithCompletionHandler(handler unsafe.Pointer)
-	Status() AppServiceStatus
 }
 
 // An object the framework uses to control helper executables that live inside an app’s main bundle.
 //
 // In macOS 13 and later, use to register and control , , and as helper executables for your app. When converting code from earlier versions of macOS, use an object and select one of the following methods depending on the type of service your helper executable provides: For initialized as , the and APIs provide a replacement for . For initialized as , the and methods provide a replacement for installing property lists in or . For initialized as , the and methods provide a replacement for installing property lists in .
+
+
+// An object the framework uses to control helper executables that live inside an app’s main bundle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService
 type AppService struct {
 	objectivec.Object
@@ -85,85 +91,107 @@ func NewAppService() AppService {
 }
 
 
+
 // Initializes an app service object with a launch agent with the property list name you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/agent(plistName:)
-func (ac _AppServiceClass) AgentServiceWithPlistName(plistName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("agentServiceWithPlistName:"), objc.String(plistName))
+func (ac _AppServiceClass) AgentServiceWithPlistName(plistName objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("agentServiceWithPlistName:"), plistName)
 	return rv
 }
+
 
 // Initializes an app service object with a launch daemon with the property list name you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/daemon(plistName:)
-func (ac _AppServiceClass) DaemonServiceWithPlistName(plistName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("daemonServiceWithPlistName:"), objc.String(plistName))
+func (ac _AppServiceClass) DaemonServiceWithPlistName(plistName objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("daemonServiceWithPlistName:"), plistName)
 	return rv
 }
+
 
 // Initializes an app service object for a login item corresponding to the bundle with the identifier you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/loginItem(identifier:)
-func (ac _AppServiceClass) LoginItemServiceWithIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("loginItemServiceWithIdentifier:"), objc.String(identifier))
+func (ac _AppServiceClass) LoginItemServiceWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("loginItemServiceWithIdentifier:"), identifier)
 	return rv
 }
 
+
 // Opens System Settings to the Login Items control panel.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()
 func (ac _AppServiceClass) OpenSystemSettingsLoginItems() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("openSystemSettingsLoginItems"))
 }
 
+
 // Check the authorization status of an earlier OS version login item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)
-func (ac _AppServiceClass) StatusForLegacyURL(url foundation.IURL) AppServiceStatus {
+func (ac _AppServiceClass) StatusForLegacyURL(url objc.IObject /* cross-framework: NSURL */) AppServiceStatus {
 	rv := objc.Send[AppServiceStatus](objc.ID(ac.class), objc.Sel("statusForLegacyURL:"), url)
 	return rv
 }
 
+
 // An app service object that corresponds to the main application as a login item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/mainApp
 func (ac _AppServiceClass) MainAppService() AppService {
-	rv := objc.Send[SMAppService](objc.ID(ac.class), objc.Sel("mainAppService"))
+	rv := objc.Send[AppService](objc.ID(ac.class), objc.Sel("mainAppService"))
 	return rv
 }
+
 // Registers the service so it can begin launching subject to user approval.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/register()
 func (a_ AppService) RegisterAndReturnError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("registerAndReturnError:"), error_)
 	return rv
 }
 
+
 // Unregisters the service so the system no longer launches it.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/unregister()
 func (a_ AppService) UnregisterAndReturnError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("unregisterAndReturnError:"), error_)
 	return rv
 }
 
+
 // Unregisters the service so the system no longer launches it and calls a completion handler you provide with the resulting error value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)
 func (a_ AppService) UnregisterWithCompletionHandler(handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("unregisterWithCompletionHandler:"), handler)
 }
 
+
 // An app service object that corresponds to the main application as a login item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/mainApp
-func (a_ AppService) MainAppService() SMAppService {
-	rv := objc.Send[SMAppService](a_.ID, objc.Sel("mainAppService"))
+func (a_ AppService) MainAppService() ISMAppService {
+	rv := objc.Send[AppService](a_.ID, objc.Sel("mainAppService"))
 	return rv
 }
 
+
 // A property that describes registration or authorization state of the service.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/status-swift.property
 func (a_ AppService) Status() AppServiceStatus {
 	rv := objc.Send[AppServiceStatus](a_.ID, objc.Sel("status"))

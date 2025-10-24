@@ -30,26 +30,32 @@ type _FXSpatialScalerDescriptorClass struct {
 // An interface definition for the [FXSpatialScalerDescriptor] class.
 type IFXSpatialScalerDescriptor interface {
 	objectivec.IObject
-	NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID
-	NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
+	// properties:
 	ColorProcessingMode() FXSpatialScalerColorProcessingMode
 	SetColorProcessingMode(value FXSpatialScalerColorProcessingMode)
-	ColorTextureFormat() unsafe.Pointer
-	SetColorTextureFormat(value unsafe.Pointer)
+	ColorTextureFormat() PixelFormat /* not a class type */
+	SetColorTextureFormat(value PixelFormat /* not a class type */)
 	InputHeight() uint
 	SetInputHeight(value uint)
 	InputWidth() uint
 	SetInputWidth(value uint)
 	OutputHeight() uint
 	SetOutputHeight(value uint)
-	OutputTextureFormat() unsafe.Pointer
-	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputTextureFormat() PixelFormat /* not a class type */
+	SetOutputTextureFormat(value PixelFormat /* not a class type */)
 	OutputWidth() uint
 	SetOutputWidth(value uint)
+	// methods:
+	NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID
+	NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 // A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
+
+
+// A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor
 type FXSpatialScalerDescriptor struct {
 	objectivec.Object
@@ -94,40 +100,50 @@ func NewFXSpatialScalerDescriptor() FXSpatialScalerDescriptor {
 }
 
 
+
 // Returns a Boolean value that indicates whether the spatial scaler works with a GPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/supportsDevice(_:)
 func (fc _FXSpatialScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
 
+
 // Queries whether a Metal device supports spatial scaling compatible with Metal 4.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/supportsMetal4FX(_:)
 func (fc _FXSpatialScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
 
+
 // Creates a spatial scaler instance from this descriptor’s current property values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/makeSpatialScaler(device:)
 func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newSpatialScalerWithDevice:"), device)
 	return rv
 }
 
+
 // Creates a spatial scaler instance for a Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/makeSpatialScaler(device:compiler:)
 func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newSpatialScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }
 
+
 // The color space of the input color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorProcessingMode
 func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() FXSpatialScalerColorProcessingMode {
 	rv := objc.Send[FXSpatialScalerColorProcessingMode](f_.ID, objc.Sel("colorProcessingMode"))
@@ -135,35 +151,37 @@ func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() FXSpatialScalerColorPr
 }
 
 
-// SetColorProcessingMode sets the value of the colorProcessingMode property.
 // The color space of the input color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorProcessingMode
 func (f_ FXSpatialScalerDescriptor) SetColorProcessingMode(value FXSpatialScalerColorProcessingMode) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorProcessingMode:"), value)
 }
 
+
 // The pixel format of the input color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorTextureFormat
-func (f_ FXSpatialScalerDescriptor) ColorTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("colorTextureFormat"))
+func (f_ FXSpatialScalerDescriptor) ColorTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("colorTextureFormat"))
 	return rv
 }
 
 
-// SetColorTextureFormat sets the value of the colorTextureFormat property.
 // The pixel format of the input color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorTextureFormat
-func (f_ FXSpatialScalerDescriptor) SetColorTextureFormat(value unsafe.Pointer) {
+func (f_ FXSpatialScalerDescriptor) SetColorTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorTextureFormat:"), value)
 }
 
+
 // The height of the input color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputHeight
 func (f_ FXSpatialScalerDescriptor) InputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputHeight"))
@@ -171,17 +189,18 @@ func (f_ FXSpatialScalerDescriptor) InputHeight() uint {
 }
 
 
-// SetInputHeight sets the value of the inputHeight property.
 // The height of the input color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputHeight
 func (f_ FXSpatialScalerDescriptor) SetInputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputHeight:"), value)
 }
 
+
 // The width of the input color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputWidth
 func (f_ FXSpatialScalerDescriptor) InputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputWidth"))
@@ -189,17 +208,18 @@ func (f_ FXSpatialScalerDescriptor) InputWidth() uint {
 }
 
 
-// SetInputWidth sets the value of the inputWidth property.
 // The width of the input color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/inputWidth
 func (f_ FXSpatialScalerDescriptor) SetInputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputWidth:"), value)
 }
 
+
 // The height of the output color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputHeight
 func (f_ FXSpatialScalerDescriptor) OutputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputHeight"))
@@ -207,35 +227,37 @@ func (f_ FXSpatialScalerDescriptor) OutputHeight() uint {
 }
 
 
-// SetOutputHeight sets the value of the outputHeight property.
 // The height of the output color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputHeight
 func (f_ FXSpatialScalerDescriptor) SetOutputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputHeight:"), value)
 }
 
+
 // The pixel format of the output color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputTextureFormat
-func (f_ FXSpatialScalerDescriptor) OutputTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("outputTextureFormat"))
+func (f_ FXSpatialScalerDescriptor) OutputTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("outputTextureFormat"))
 	return rv
 }
 
 
-// SetOutputTextureFormat sets the value of the outputTextureFormat property.
 // The pixel format of the output color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputTextureFormat
-func (f_ FXSpatialScalerDescriptor) SetOutputTextureFormat(value unsafe.Pointer) {
+func (f_ FXSpatialScalerDescriptor) SetOutputTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputTextureFormat:"), value)
 }
 
+
 // The width of the output color texture for the spatial scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputWidth
 func (f_ FXSpatialScalerDescriptor) OutputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputWidth"))
@@ -243,10 +265,9 @@ func (f_ FXSpatialScalerDescriptor) OutputWidth() uint {
 }
 
 
-// SetOutputWidth sets the value of the outputWidth property.
 // The width of the output color texture for the spatial scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/outputWidth
 func (f_ FXSpatialScalerDescriptor) SetOutputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputWidth:"), value)

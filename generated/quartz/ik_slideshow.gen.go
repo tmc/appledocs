@@ -30,12 +30,18 @@ type _IKSlideshowClass struct {
 // An interface definition for the [IKSlideshow] class.
 type IIKSlideshow interface {
 	objectivec.IObject
-	AutoPlayDelay() unsafe.Pointer
-	SetAutoPlayDelay(value unsafe.Pointer)
+	// properties:
+	AutoPlayDelay() float64
+	SetAutoPlayDelay(value float64)
+	// methods:
 }
 
 // The class encapsulates a data source and options for a slideshow.
+
+
+// The class encapsulates a data source and options for a slideshow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKSlideshow
 type IKSlideshow struct {
 	objectivec.Object
@@ -80,21 +86,22 @@ func NewIKSlideshow() IKSlideshow {
 }
 
 
+
 // Controls the interval of time before a slideshow starts to play automatically.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikslideshow/autoplaydelay
-func (i_ IKSlideshow) AutoPlayDelay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("autoPlayDelay"))
+func (i_ IKSlideshow) AutoPlayDelay() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("autoPlayDelay"))
 	return rv
 }
 
 
-// SetAutoPlayDelay sets the value of the autoPlayDelay property.
 // Controls the interval of time before a slideshow starts to play automatically.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikslideshow/autoplaydelay
-func (i_ IKSlideshow) SetAutoPlayDelay(value unsafe.Pointer) {
+func (i_ IKSlideshow) SetAutoPlayDelay(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAutoPlayDelay:"), value)
 }
 

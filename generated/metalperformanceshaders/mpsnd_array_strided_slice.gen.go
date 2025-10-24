@@ -29,11 +29,15 @@ type _NDArrayStridedSliceClass struct {
 // An interface definition for the [NDArrayStridedSlice] class.
 type INDArrayStridedSlice interface {
 	INDArrayUnaryKernel
-	Strides() unsafe.Pointer
-	SetStrides(value unsafe.Pointer)
+	// properties:
+	Strides() NDArrayOffsets /* not a class type */
+	SetStrides(value NDArrayOffsets /* not a class type */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSlice
 type NDArrayStridedSlice struct {
 	NDArrayUnaryKernel
@@ -78,18 +82,18 @@ func NewNDArrayStridedSlice() NDArrayStridedSlice {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSlice/strides
-func (n_ NDArrayStridedSlice) Strides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("strides"))
+func (n_ NDArrayStridedSlice) Strides() NDArrayOffsets /* not a class type */ {
+	rv := objc.Send[NDArrayOffsets](n_.ID, objc.Sel("strides"))
 	return rv
 }
 
 
-// SetStrides sets the value of the strides property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayStridedSlice/strides
-func (n_ NDArrayStridedSlice) SetStrides(value unsafe.Pointer) {
+func (n_ NDArrayStridedSlice) SetStrides(value NDArrayOffsets /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setStrides:"), value)
 }
 

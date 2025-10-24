@@ -5,76 +5,19 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFReadStreamRef is a CoreGraphics opaque type.
-type CFReadStreamRef unsafe.Pointer
-
-// CFRunLoopRef is a CoreGraphics opaque type.
-type CFRunLoopRef unsafe.Pointer
-
-// CFRunLoopSourceRef is a CoreGraphics opaque type.
-type CFRunLoopSourceRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFURLRef is a CoreGraphics opaque type.
-type CFURLRef unsafe.Pointer
-
-// CFWriteStreamRef is a CoreGraphics opaque type.
-type CFWriteStreamRef unsafe.Pointer
-
-
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type AllocatorRef = int
-
-type ArrayRef = int
-
-type DataRef = int
-
-type DictionaryRef = int
-
-type ErrorRef = int
-
-type HostClientContext = int
-
-type Index = int
-
-type NetServiceClientContext = int
-
-type OptionFlags = int
-
-type ReadStreamRef = int
-
-type RunLoopRef = int
-
-type RunLoopSourceRef = int
-
-type StreamClientContext = int
-
-type StreamError = int
-
-type StringRef = int
-
-type TypeID = int
-
-type URLRef = int
-
-type WriteStreamRef = int
+// C struct types
+// CFHostClientContext - A structure containing user-defined data and callbacks for CFHost objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostClientContext
+type CFHostClientContext struct {
+}// CFNetServiceClientContext - A structure provided when a CFNetService is associated with a callback function or when a CFNetServiceBrowser is created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceClientContext
+type CFNetServiceClientContext struct {
+}
 
 
 

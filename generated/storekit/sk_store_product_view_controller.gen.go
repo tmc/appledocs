@@ -30,16 +30,20 @@ type _StoreProductViewControllerClass struct {
 // An interface definition for the [StoreProductViewController] class.
 type IStoreProductViewController interface {
 	appkit.IViewController
-	LoadProductWithParametersCompletionBlock(parameters unsafe.Pointer, block unsafe.Pointer)
-	LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression ISKAdImpression, block unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	// properties:
+	Delegate() StoreProductViewControllerDelegate /* not a class type */
+	SetDelegate(value StoreProductViewControllerDelegate /* not a class type */)
+	// methods:
 }
 
 // A view controller that provides a page where customers can purchase media from the App Store.
 //
 // To display a store for customers to purchase media from the App Store, follow these steps: Create an object and set its . Indicate a specific product to sell by passing its iTunes item identifier to the method. Present the view controller modally from another view controller in your app. Your delegate dismisses the view controller when the customer completes the purchase. Present the object immediately when someone triggers an interaction, such as tapping a Buy button. Load the product information before presenting the view controller to ensure a seamless user experience. This class ignores settings, and those settings have no impact on the sheet’s presentation. To recommend another app without displaying a full product page, and to recommend an App Clip’s corresponding app from within the App Clip, use .
+
+
+// A view controller that provides a page where customers can purchase media from the App Store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController
 type StoreProductViewController struct {
 	appkit.ViewController
@@ -86,34 +90,22 @@ func NewStoreProductViewController() StoreProductViewController {
 }
 
 
-// Loads a new product screen to display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)
-func (s_ StoreProductViewController) LoadProductWithParametersCompletionBlock(parameters unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("loadProductWithParameters:completionBlock:"), parameters, block)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:impression:completionBlock:)
-func (s_ StoreProductViewController) LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression ISKAdImpression, block unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("loadProductWithParameters:impression:completionBlock:"), parameters, impression, block)
-}
 
 // The store view controller’s delegate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController/delegate
-func (s_ StoreProductViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller/delegate
+func (s_ StoreProductViewController) Delegate() StoreProductViewControllerDelegate /* not a class type */ {
+	rv := objc.Send[StoreProductViewControllerDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The store view controller’s delegate.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController/delegate
-func (s_ StoreProductViewController) SetDelegate(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller/delegate
+func (s_ StoreProductViewController) SetDelegate(value StoreProductViewControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 

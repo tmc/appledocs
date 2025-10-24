@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,10 @@ type _PHASEGroupClass struct {
 // An interface definition for the [PHASEGroup] class.
 type IPHASEGroup interface {
 	objectivec.IObject
-	FadeGainDurationCurveType(gain float64, duration float64, curveType PHASECurveType)
-	FadeRateDurationCurveType(rate float64, duration float64, curveType PHASECurveType)
-	Mute()
-	RegisterWithEngine(engine IPHASEEngine)
-	Solo()
-	Unmute()
-	UnregisterFromEngine()
-	Unsolo()
+	// properties:
 	Gain() float64
 	SetGain(value float64)
-	Identifier() string
+	Identifier() objc.IObject /* cross-framework: NSString */
 	Muted() bool
 	Soloed() bool
 	Rate() float64
@@ -49,12 +43,25 @@ type IPHASEGroup interface {
 	SetIsMuted(value bool)
 	IsSoloed() bool
 	SetIsSoloed(value bool)
+	// methods:
+	FadeGainDurationCurveType(gain float64, duration float64, curveType PHASECurveType)
+	FadeRateDurationCurveType(rate float64, duration float64, curveType PHASECurveType)
+	Mute()
+	RegisterWithEngine(engine IPHASEEngine)
+	Solo()
+	Unmute()
+	UnregisterFromEngine()
+	Unsolo()
 }
 
 // A container that shares audio parameters with a collection of sounds.
 //
 // With all the sounds it contains, a group shares settings like gain, playback rate, mute, and solo. Groups are nonhierarchical and don’t overlap — that is, each sound event associates with only one group.
+
+
+// A container that shares audio parameters with a collection of sounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup
 type PHASEGroup struct {
 	objectivec.Object
@@ -100,76 +107,94 @@ func NewPHASEGroup() PHASEGroup {
 
 
 
-
 // Creates a group with a unique name.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/init(identifier:)
-func NewPHASEGroupWithIdentifier(identifier string) PHASEGroup {
+func NewPHASEGroupWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) PHASEGroup {
 	instance := getPHASEGroupClass().Alloc()
-	rv := objc.Send[PHASEGroup](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[PHASEGroup](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // Adjusts the volume of the sounds in a group gradually.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)
 func (p_ PHASEGroup) FadeGainDurationCurveType(gain float64, duration float64, curveType PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fadeGain:duration:curveType:"), gain, duration, curveType)
 }
 
+
 // Adjusts the playback speed of the sounds in a group gradually.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)
 func (p_ PHASEGroup) FadeRateDurationCurveType(rate float64, duration float64, curveType PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fadeRate:duration:curveType:"), rate, duration, curveType)
 }
 
+
 // Silences the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/mute()
 func (p_ PHASEGroup) Mute() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("mute"))
 }
 
+
 // Adds the group to the engine’s dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/register(engine:)
 func (p_ PHASEGroup) RegisterWithEngine(engine IPHASEEngine) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("registerWithEngine:"), engine)
 }
 
+
 // Silences all other groups.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/solo()
 func (p_ PHASEGroup) Solo() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("solo"))
 }
 
+
 // Restores the group’s volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/unmute()
 func (p_ PHASEGroup) Unmute() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unmute"))
 }
 
+
 // Removes the group from the engine’s dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/unregisterFromEngine()
 func (p_ PHASEGroup) UnregisterFromEngine() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unregisterFromEngine"))
 }
 
+
 // Restores the other groups’ volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/unsolo()
 func (p_ PHASEGroup) Unsolo() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unsolo"))
 }
 
+
 // Modifies the volume of the group’s sounds.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/gain
 func (p_ PHASEGroup) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
@@ -177,41 +202,48 @@ func (p_ PHASEGroup) Gain() float64 {
 }
 
 
-// SetGain sets the value of the gain property.
 // Modifies the volume of the group’s sounds.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/gain
 func (p_ PHASEGroup) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 
+
 // A unique name for the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/identifier
-func (p_ PHASEGroup) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEGroup) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app silences the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/isMuted
 func (p_ PHASEGroup) Muted() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("muted"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the app silences all groups other than this group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/isSoloed
 func (p_ PHASEGroup) Soloed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("soloed"))
 	return rv
 }
 
+
 // The group’s playback speed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/rate
 func (p_ PHASEGroup) Rate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("rate"))
@@ -219,17 +251,18 @@ func (p_ PHASEGroup) Rate() float64 {
 }
 
 
-// SetRate sets the value of the rate property.
 // The group’s playback speed.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/rate
 func (p_ PHASEGroup) SetRate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
 
+
 // A Boolean value that indicates whether the app silences the group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/ismuted
 func (p_ PHASEGroup) IsMuted() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
@@ -237,17 +270,18 @@ func (p_ PHASEGroup) IsMuted() bool {
 }
 
 
-// SetIsMuted sets the value of the isMuted property.
 // A Boolean value that indicates whether the app silences the group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/ismuted
 func (p_ PHASEGroup) SetIsMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
 }
 
+
 // A Boolean value that indicates whether the app silences all groups other than this group.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/issoloed
 func (p_ PHASEGroup) IsSoloed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isSoloed"))
@@ -255,10 +289,9 @@ func (p_ PHASEGroup) IsSoloed() bool {
 }
 
 
-// SetIsSoloed sets the value of the isSoloed property.
 // A Boolean value that indicates whether the app silences all groups other than this group.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegroup/issoloed
 func (p_ PHASEGroup) SetIsSoloed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSoloed:"), value)

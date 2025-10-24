@@ -35,12 +35,12 @@ type IURLProtocol interface {
 	SetCachedResponse(value ICachedURLResponse)
 	Client() unsafe.Pointer
 	SetClient(value unsafe.Pointer)
-	Request() objc.IObject /* cross-framework: URLRequest */
-	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
+	Request() IURLRequest
+	SetRequest(value IURLRequest)
 	Task() IURLSessionTask
 	SetTask(value IURLSessionTask)
-	ProtocolClasses() unsafe.Pointer
-	SetProtocolClasses(value unsafe.Pointer)
+	ProtocolClasses() objc.Class
+	SetProtocolClasses(value objc.Class)
 	// methods:
 }
 
@@ -97,25 +97,6 @@ func NewURLProtocol() URLProtocol {
 
 
 
-// Fetches the property associated with the specified key in the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
-func (uc _URLProtocolClass) PropertyForKeyInRequest(key IString, request objc.IObject /* cross-framework URLRequest */) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), key, request)
-	return rv
-}
-
-
-// Sets the property associated with the specified key in the specified request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/setProperty(_:forKey:in:)
-func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key IString, request IMutableURLRequest) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, key, request)
-}
-
-
 // The protocol’s cached response.
 //
 // [Full Topic]
@@ -158,7 +139,7 @@ func (u_ URLProtocol) SetClient(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) Request() objc.IObject /* cross-framework: URLRequest */ {
+func (u_ URLProtocol) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
@@ -168,7 +149,7 @@ func (u_ URLProtocol) Request() objc.IObject /* cross-framework: URLRequest */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/request
-func (u_ URLProtocol) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
+func (u_ URLProtocol) SetRequest(value IURLRequest) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 
@@ -196,8 +177,8 @@ func (u_ URLProtocol) SetTask(value IURLSessionTask) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("protocolClasses"))
+func (u_ URLProtocol) ProtocolClasses() objc.Class {
+	rv := objc.Send[objc.Class](u_.ID, objc.Sel("protocolClasses"))
 	return rv
 }
 
@@ -206,7 +187,7 @@ func (u_ URLProtocol) ProtocolClasses() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
-func (u_ URLProtocol) SetProtocolClasses(value unsafe.Pointer) {
+func (u_ URLProtocol) SetProtocolClasses(value objc.Class) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
 }
 

@@ -31,11 +31,15 @@ type _MTRICDManagementClusterStayActiveResponseParamsClass struct {
 // An interface definition for the [MTRICDManagementClusterStayActiveResponseParams] class.
 type IMTRICDManagementClusterStayActiveResponseParams interface {
 	objectivec.IObject
-	PromisedActiveDuration() foundation.Number
-	SetPromisedActiveDuration(value foundation.INumber)
+	// properties:
+	PromisedActiveDuration() objc.IObject /* cross-framework: NSNumber */
+	SetPromisedActiveDuration(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams
 type MTRICDManagementClusterStayActiveResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRICDManagementClusterStayActiveResponseParams() MTRICDManagementCluste
 
 
 
-
 // Initialize an MTRICDManagementClusterStayActiveResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/init(responseValue:)
-func NewMTRICDManagementClusterStayActiveResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRICDManagementClusterStayActiveResponseParams {
+func NewMTRICDManagementClusterStayActiveResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRICDManagementClusterStayActiveResponseParams {
 	instance := getMTRICDManagementClusterStayActiveResponseParamsClass().Alloc()
 	rv := objc.Send[MTRICDManagementClusterStayActiveResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRICDManagementClusterStayActiveResponseParamsWithResponseValueError(re
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/promisedActiveDuration
-func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("promisedActiveDuration"))
+func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("promisedActiveDuration"))
 	return rv
 }
 
 
-// SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/promisedActiveDuration
-func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value foundation.INumber) {
+func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

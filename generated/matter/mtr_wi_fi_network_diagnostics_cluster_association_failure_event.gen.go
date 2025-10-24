@@ -31,15 +31,19 @@ type _MTRWiFiNetworkDiagnosticsClusterAssociationFailureEventClass struct {
 // An interface definition for the [MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent] class.
 type IMTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent interface {
 	objectivec.IObject
-	AssociationFailure() foundation.Number
-	SetAssociationFailure(value foundation.INumber)
-	AssociationFailureCause() foundation.Number
-	SetAssociationFailureCause(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
+	// properties:
+	AssociationFailure() objc.IObject /* cross-framework: NSNumber */
+	SetAssociationFailure(value objc.IObject /* cross-framework: NSNumber */)
+	AssociationFailureCause() objc.IObject /* cross-framework: NSNumber */
+	SetAssociationFailureCause(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent
 type MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent() MTRWiFiNetwork
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailure() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("associationFailure"))
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailure() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("associationFailure"))
 	return rv
 }
 
 
-// SetAssociationFailure sets the value of the associationFailure property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailure
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailure(value foundation.INumber) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailure(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAssociationFailure:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailurecause
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailureCause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("associationFailureCause"))
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) AssociationFailureCause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("associationFailureCause"))
 	return rv
 }
 
 
-// SetAssociationFailureCause sets the value of the associationFailureCause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/associationfailurecause
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailureCause(value foundation.INumber) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetAssociationFailureCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAssociationFailureCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterassociationfailureevent/status
-func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetStatus(value foundation.INumber) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 

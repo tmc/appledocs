@@ -15,12 +15,12 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_IOBluetoothAddSCOAudioDevice func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOBluetoothAddSCOAudioDevice func(BluetoothDeviceRef, unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothFindNumberOfRegistryEntriesOfClassName func(unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothGetUniqueFileNameAndPath func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothIgnoreHIDDevice func(unsafe.Pointer)
+	_IOBluetoothIgnoreHIDDevice func(BluetoothDeviceRef)
 	_IOBluetoothIsFileAppleDesignatedPIMData func(unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothL2CAPChannelRegisterForChannelCloseNotification func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOBluetoothL2CAPChannelRegisterForChannelCloseNotification func(BluetoothL2CAPChannelRef, BluetoothUserNotificationCallback, unsafe.Pointer) BluetoothUserNotificationRef
 	_IOBluetoothNSStringFromDeviceAddress func(unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothNSStringFromDeviceAddressColon func(unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothNSStringToDeviceAddress func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -28,57 +28,57 @@ var (
 	_IOBluetoothNumberOfKeyboardHIDDevices func() unsafe.Pointer
 	_IOBluetoothNumberOfPointingHIDDevices func() unsafe.Pointer
 	_IOBluetoothNumberOfTabletHIDDevices func() unsafe.Pointer
-	_IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothOBEXSessionOpenTransportConnection func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber func(BluetoothDeviceRef, BluetoothRFCOMMChannelID, unsafe.Pointer) OBEXError
+	_IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef func(BluetoothSDPServiceRecordRef, unsafe.Pointer) OBEXError
+	_IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel func(BluetoothRFCOMMChannelRef, OBEXSessionEventCallback, unsafe.Pointer, unsafe.Pointer) OBEXError
+	_IOBluetoothOBEXSessionOpenTransportConnection func(OBEXSessionRef, BluetoothOBEXSessionOpenConnectionCallback, unsafe.Pointer) OBEXError
 	_IOBluetoothPackData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothPackDataList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothRemoveIgnoredHIDDevice func(unsafe.Pointer)
-	_IOBluetoothRemoveSCOAudioDevice func(unsafe.Pointer) unsafe.Pointer
+	_IOBluetoothRemoveIgnoredHIDDevice func(BluetoothDeviceRef)
+	_IOBluetoothRemoveSCOAudioDevice func(BluetoothDeviceRef) unsafe.Pointer
 	_IOBluetoothUnpackData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOBluetoothUnpackDataList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOBluetoothUserNotificationUnregister func(unsafe.Pointer)
-	_OBEXAddApplicationParameterHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddAuthorizationChallengeHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddAuthorizationResponseHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddBodyHeader func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddByteSequenceHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddConnectionIDHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddCountHeader func(uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddDescriptionHeader func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddHTTPHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddLengthHeader func(uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddNameHeader func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddObjectClassHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddTargetHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddTime4ByteHeader func(uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddTimeISOHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddTypeHeader func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddUserDefinedHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
-	_OBEXAddWhoHeader func(unsafe.Pointer, uint32, unsafe.Pointer) unsafe.Pointer
+	_IOBluetoothUserNotificationUnregister func(BluetoothUserNotificationRef)
+	_OBEXAddApplicationParameterHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddAuthorizationChallengeHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddAuthorizationResponseHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddBodyHeader func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer) OBEXError
+	_OBEXAddByteSequenceHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddConnectionIDHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddCountHeader func(uint32, unsafe.Pointer) OBEXError
+	_OBEXAddDescriptionHeader func(unsafe.Pointer, unsafe.Pointer) OBEXError
+	_OBEXAddHTTPHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddLengthHeader func(uint32, unsafe.Pointer) OBEXError
+	_OBEXAddNameHeader func(unsafe.Pointer, unsafe.Pointer) OBEXError
+	_OBEXAddObjectClassHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddTargetHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddTime4ByteHeader func(uint32, unsafe.Pointer) OBEXError
+	_OBEXAddTimeISOHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddTypeHeader func(unsafe.Pointer, unsafe.Pointer) OBEXError
+	_OBEXAddUserDefinedHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
+	_OBEXAddWhoHeader func(unsafe.Pointer, uint32, unsafe.Pointer) OBEXError
 	_OBEXCreateVCard func(unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32) unsafe.Pointer
 	_OBEXCreateVEvent func(unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32, unsafe.Pointer, uint32) unsafe.Pointer
 	_OBEXGetHeaders func(unsafe.Pointer, uintptr) unsafe.Pointer
 	_OBEXHeadersToBytes func(unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionAbort func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionAbortResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionConnect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionConnectResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionDelete func(unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionDisconnect func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionDisconnectResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionGet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionGetAvailableCommandPayloadLength func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionGetAvailableCommandResponsePayloadLength func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionGetMaxPacketLength func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionGetResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionHasOpenOBEXConnection func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionPut func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionPutResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionSetPath func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionSetPathResponse func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_OBEXSessionSetServerCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_OBEXSessionAbort func(OBEXSessionRef, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionAbortResponse func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionConnect func(OBEXSessionRef, OBEXFlags, OBEXMaxPacketLength, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionConnectResponse func(OBEXSessionRef, OBEXOpCode, OBEXFlags, OBEXMaxPacketLength, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionDelete func(OBEXSessionRef) OBEXError
+	_OBEXSessionDisconnect func(OBEXSessionRef, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionDisconnectResponse func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionGet func(OBEXSessionRef, unsafe.Pointer, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionGetAvailableCommandPayloadLength func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer) OBEXError
+	_OBEXSessionGetAvailableCommandResponsePayloadLength func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer) OBEXError
+	_OBEXSessionGetMaxPacketLength func(OBEXSessionRef, unsafe.Pointer) OBEXError
+	_OBEXSessionGetResponse func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionHasOpenOBEXConnection func(OBEXSessionRef, unsafe.Pointer) OBEXError
+	_OBEXSessionPut func(OBEXSessionRef, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionPutResponse func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionSetPath func(OBEXSessionRef, OBEXFlags, OBEXConstants, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionSetPathResponse func(OBEXSessionRef, OBEXOpCode, unsafe.Pointer, uintptr, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
+	_OBEXSessionSetServerCallback func(OBEXSessionRef, OBEXSessionEventCallback, unsafe.Pointer) OBEXError
 )
 
 func init() {
@@ -175,7 +175,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothAddSCOAudioDevice
-func IOBluetoothAddSCOAudioDevice(device unsafe.Pointer, configDict unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothAddSCOAudioDevice(device BluetoothDeviceRef, configDict unsafe.Pointer) unsafe.Pointer {
 	return _IOBluetoothAddSCOAudioDevice(device, configDict)
 }
 
@@ -203,7 +203,7 @@ func IOBluetoothGetUniqueFileNameAndPath(inName unsafe.Pointer, inPath unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothIgnoreHIDDevice(_:)
-func IOBluetoothIgnoreHIDDevice(device unsafe.Pointer) {
+func IOBluetoothIgnoreHIDDevice(device BluetoothDeviceRef) {
 	_IOBluetoothIgnoreHIDDevice(device)
 }
 
@@ -223,7 +223,7 @@ func IOBluetoothIsFileAppleDesignatedPIMData(inFileName unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(_:_:_:)
-func IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel unsafe.Pointer, callback unsafe.Pointer, inRefCon unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel BluetoothL2CAPChannelRef, callback BluetoothUserNotificationCallback, inRefCon unsafe.Pointer) BluetoothUserNotificationRef {
 	return _IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel, callback, inRefCon)
 }
 
@@ -304,7 +304,7 @@ func IOBluetoothNumberOfTabletHIDDevices() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber
-func IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(inDeviceRef unsafe.Pointer, inChannelID unsafe.Pointer, outSessionRef unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(inDeviceRef BluetoothDeviceRef, inChannelID BluetoothRFCOMMChannelID, outSessionRef unsafe.Pointer) OBEXError {
 	return _IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(inDeviceRef, inChannelID, outSessionRef)
 }
 
@@ -317,7 +317,7 @@ func IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(inDevi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef
-func IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(inSDPServiceRef unsafe.Pointer, outSessionRef unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(inSDPServiceRef BluetoothSDPServiceRecordRef, outSessionRef unsafe.Pointer) OBEXError {
 	return _IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(inSDPServiceRef, outSessionRef)
 }
 
@@ -330,7 +330,7 @@ func IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(inSDPService
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel
-func IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(inRFCOMMChannelRef unsafe.Pointer, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer, outSessionRef unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(inRFCOMMChannelRef BluetoothRFCOMMChannelRef, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer, outSessionRef unsafe.Pointer) OBEXError {
 	return _IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(inRFCOMMChannelRef, inCallback, inUserRefCon, outSessionRef)
 }
 
@@ -341,7 +341,7 @@ func IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(inRFCOMMCh
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionOpenTransportConnection
-func IOBluetoothOBEXSessionOpenTransportConnection(inSessionRef unsafe.Pointer, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothOBEXSessionOpenTransportConnection(inSessionRef OBEXSessionRef, inCallback BluetoothOBEXSessionOpenConnectionCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _IOBluetoothOBEXSessionOpenTransportConnection(inSessionRef, inCallback, inUserRefCon)
 }
 
@@ -369,7 +369,7 @@ func IOBluetoothPackDataList(ioBuffer unsafe.Pointer, inFormat unsafe.Pointer, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRemoveIgnoredHIDDevice(_:)
-func IOBluetoothRemoveIgnoredHIDDevice(device unsafe.Pointer) {
+func IOBluetoothRemoveIgnoredHIDDevice(device BluetoothDeviceRef) {
 	_IOBluetoothRemoveIgnoredHIDDevice(device)
 }
 
@@ -382,7 +382,7 @@ func IOBluetoothRemoveIgnoredHIDDevice(device unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRemoveSCOAudioDevice
-func IOBluetoothRemoveSCOAudioDevice(device unsafe.Pointer) unsafe.Pointer {
+func IOBluetoothRemoveSCOAudioDevice(device BluetoothDeviceRef) unsafe.Pointer {
 	return _IOBluetoothRemoveSCOAudioDevice(device)
 }
 
@@ -410,7 +410,7 @@ func IOBluetoothUnpackDataList(inBufferSize unsafe.Pointer, inBuffer unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationUnregister(_:)
-func IOBluetoothUserNotificationUnregister(notificationRef unsafe.Pointer) {
+func IOBluetoothUserNotificationUnregister(notificationRef BluetoothUserNotificationRef) {
 	_IOBluetoothUserNotificationUnregister(notificationRef)
 }
 
@@ -420,7 +420,7 @@ func IOBluetoothUserNotificationUnregister(notificationRef unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddApplicationParameterHeader(_:_:_:)
-func OBEXAddApplicationParameterHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddApplicationParameterHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddApplicationParameterHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -430,7 +430,7 @@ func OBEXAddApplicationParameterHeader(inHeaderData unsafe.Pointer, inHeaderData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddAuthorizationChallengeHeader(_:_:_:)
-func OBEXAddAuthorizationChallengeHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddAuthorizationChallengeHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddAuthorizationChallengeHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -440,7 +440,7 @@ func OBEXAddAuthorizationChallengeHeader(inHeaderData unsafe.Pointer, inHeaderDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddAuthorizationResponseHeader(_:_:_:)
-func OBEXAddAuthorizationResponseHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddAuthorizationResponseHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddAuthorizationResponseHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -450,7 +450,7 @@ func OBEXAddAuthorizationResponseHeader(inHeaderData unsafe.Pointer, inHeaderDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddBodyHeader(_:_:_:_:)
-func OBEXAddBodyHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, isEndOfBody unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddBodyHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, isEndOfBody unsafe.Pointer, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddBodyHeader(inHeaderData, inHeaderDataLength, isEndOfBody, dictRef)
 }
 
@@ -460,7 +460,7 @@ func OBEXAddBodyHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddByteSequenceHeader(_:_:_:)
-func OBEXAddByteSequenceHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddByteSequenceHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddByteSequenceHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -470,7 +470,7 @@ func OBEXAddByteSequenceHeader(inHeaderData unsafe.Pointer, inHeaderDataLength u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddConnectionIDHeader(_:_:_:)
-func OBEXAddConnectionIDHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddConnectionIDHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddConnectionIDHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -480,7 +480,7 @@ func OBEXAddConnectionIDHeader(inHeaderData unsafe.Pointer, inHeaderDataLength u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddCountHeader(_:_:)
-func OBEXAddCountHeader(count uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddCountHeader(count uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddCountHeader(count, dictRef)
 }
 
@@ -490,7 +490,7 @@ func OBEXAddCountHeader(count uint32, dictRef unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddDescriptionHeader(_:_:)
-func OBEXAddDescriptionHeader(description unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddDescriptionHeader(description unsafe.Pointer, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddDescriptionHeader(description, dictRef)
 }
 
@@ -500,7 +500,7 @@ func OBEXAddDescriptionHeader(description unsafe.Pointer, dictRef unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddHTTPHeader(_:_:_:)
-func OBEXAddHTTPHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddHTTPHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddHTTPHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -510,7 +510,7 @@ func OBEXAddHTTPHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, d
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddLengthHeader(_:_:)
-func OBEXAddLengthHeader(length uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddLengthHeader(length uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddLengthHeader(length, dictRef)
 }
 
@@ -520,7 +520,7 @@ func OBEXAddLengthHeader(length uint32, dictRef unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddNameHeader(_:_:)
-func OBEXAddNameHeader(name unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddNameHeader(name unsafe.Pointer, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddNameHeader(name, dictRef)
 }
 
@@ -530,7 +530,7 @@ func OBEXAddNameHeader(name unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddObjectClassHeader(_:_:_:)
-func OBEXAddObjectClassHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddObjectClassHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddObjectClassHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -540,7 +540,7 @@ func OBEXAddObjectClassHeader(inHeaderData unsafe.Pointer, inHeaderDataLength ui
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddTargetHeader(_:_:_:)
-func OBEXAddTargetHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddTargetHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddTargetHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -550,7 +550,7 @@ func OBEXAddTargetHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddTime4ByteHeader(_:_:)
-func OBEXAddTime4ByteHeader(time4Byte uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddTime4ByteHeader(time4Byte uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddTime4ByteHeader(time4Byte, dictRef)
 }
 
@@ -560,7 +560,7 @@ func OBEXAddTime4ByteHeader(time4Byte uint32, dictRef unsafe.Pointer) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddTimeISOHeader(_:_:_:)
-func OBEXAddTimeISOHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddTimeISOHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddTimeISOHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -570,7 +570,7 @@ func OBEXAddTimeISOHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddTypeHeader(_:_:)
-func OBEXAddTypeHeader(type_ unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddTypeHeader(type_ unsafe.Pointer, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddTypeHeader(type_, dictRef)
 }
 
@@ -580,7 +580,7 @@ func OBEXAddTypeHeader(type_ unsafe.Pointer, dictRef unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddUserDefinedHeader(_:_:_:)
-func OBEXAddUserDefinedHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddUserDefinedHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddUserDefinedHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -590,7 +590,7 @@ func OBEXAddUserDefinedHeader(inHeaderData unsafe.Pointer, inHeaderDataLength ui
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAddWhoHeader(_:_:_:)
-func OBEXAddWhoHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) unsafe.Pointer {
+func OBEXAddWhoHeader(inHeaderData unsafe.Pointer, inHeaderDataLength uint32, dictRef unsafe.Pointer) OBEXError {
 	return _OBEXAddWhoHeader(inHeaderData, inHeaderDataLength, dictRef)
 }
 
@@ -649,7 +649,7 @@ func OBEXHeadersToBytes(dictionaryOfHeaders unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionAbort
-func OBEXSessionAbort(inSessionRef unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionAbort(inSessionRef OBEXSessionRef, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionAbort(inSessionRef, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -662,7 +662,7 @@ func OBEXSessionAbort(inSessionRef unsafe.Pointer, inOptionalHeaders unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionAbortResponse
-func OBEXSessionAbortResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionAbortResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionAbortResponse(inSessionRef, inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -675,7 +675,7 @@ func OBEXSessionAbortResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionConnect
-func OBEXSessionConnect(inSessionRef unsafe.Pointer, inFlags unsafe.Pointer, inMaxPacketLength unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionConnect(inSessionRef OBEXSessionRef, inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionConnect(inSessionRef, inFlags, inMaxPacketLength, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -688,7 +688,7 @@ func OBEXSessionConnect(inSessionRef unsafe.Pointer, inFlags unsafe.Pointer, inM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionConnectResponse
-func OBEXSessionConnectResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inFlags unsafe.Pointer, inMaxPacketLength unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionConnectResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionConnectResponse(inSessionRef, inResponseOpCode, inFlags, inMaxPacketLength, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -701,7 +701,7 @@ func OBEXSessionConnectResponse(inSessionRef unsafe.Pointer, inResponseOpCode un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionDelete
-func OBEXSessionDelete(inSessionRef unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionDelete(inSessionRef OBEXSessionRef) OBEXError {
 	return _OBEXSessionDelete(inSessionRef)
 }
 
@@ -714,7 +714,7 @@ func OBEXSessionDelete(inSessionRef unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionDisconnect
-func OBEXSessionDisconnect(inSessionRef unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionDisconnect(inSessionRef OBEXSessionRef, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionDisconnect(inSessionRef, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -727,7 +727,7 @@ func OBEXSessionDisconnect(inSessionRef unsafe.Pointer, inOptionalHeaders unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionDisconnectResponse
-func OBEXSessionDisconnectResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionDisconnectResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionDisconnectResponse(inSessionRef, inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -740,7 +740,7 @@ func OBEXSessionDisconnectResponse(inSessionRef unsafe.Pointer, inResponseOpCode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionGet
-func OBEXSessionGet(inSessionRef unsafe.Pointer, inIsFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionGet(inSessionRef OBEXSessionRef, inIsFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionGet(inSessionRef, inIsFinalChunk, inHeadersData, inHeadersDataLength, inCallback, inUserRefCon)
 }
 
@@ -753,7 +753,7 @@ func OBEXSessionGet(inSessionRef unsafe.Pointer, inIsFinalChunk unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionGetAvailableCommandPayloadLength
-func OBEXSessionGetAvailableCommandPayloadLength(inSessionRef unsafe.Pointer, inOpCode unsafe.Pointer, outLength unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionGetAvailableCommandPayloadLength(inSessionRef OBEXSessionRef, inOpCode OBEXOpCode, outLength unsafe.Pointer) OBEXError {
 	return _OBEXSessionGetAvailableCommandPayloadLength(inSessionRef, inOpCode, outLength)
 }
 
@@ -766,7 +766,7 @@ func OBEXSessionGetAvailableCommandPayloadLength(inSessionRef unsafe.Pointer, in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionGetAvailableCommandResponsePayloadLength
-func OBEXSessionGetAvailableCommandResponsePayloadLength(inSessionRef unsafe.Pointer, inOpCode unsafe.Pointer, outLength unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionGetAvailableCommandResponsePayloadLength(inSessionRef OBEXSessionRef, inOpCode OBEXOpCode, outLength unsafe.Pointer) OBEXError {
 	return _OBEXSessionGetAvailableCommandResponsePayloadLength(inSessionRef, inOpCode, outLength)
 }
 
@@ -779,7 +779,7 @@ func OBEXSessionGetAvailableCommandResponsePayloadLength(inSessionRef unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionGetMaxPacketLength
-func OBEXSessionGetMaxPacketLength(inSessionRef unsafe.Pointer, outLength unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionGetMaxPacketLength(inSessionRef OBEXSessionRef, outLength unsafe.Pointer) OBEXError {
 	return _OBEXSessionGetMaxPacketLength(inSessionRef, outLength)
 }
 
@@ -792,7 +792,7 @@ func OBEXSessionGetMaxPacketLength(inSessionRef unsafe.Pointer, outLength unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionGetResponse
-func OBEXSessionGetResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionGetResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionGetResponse(inSessionRef, inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -805,7 +805,7 @@ func OBEXSessionGetResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionHasOpenOBEXConnection
-func OBEXSessionHasOpenOBEXConnection(inSessionRef unsafe.Pointer, outIsConnected unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionHasOpenOBEXConnection(inSessionRef OBEXSessionRef, outIsConnected unsafe.Pointer) OBEXError {
 	return _OBEXSessionHasOpenOBEXConnection(inSessionRef, outIsConnected)
 }
 
@@ -818,7 +818,7 @@ func OBEXSessionHasOpenOBEXConnection(inSessionRef unsafe.Pointer, outIsConnecte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionPut
-func OBEXSessionPut(inSessionRef unsafe.Pointer, inIsFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inBodyData unsafe.Pointer, inBodyDataLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionPut(inSessionRef OBEXSessionRef, inIsFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inBodyData unsafe.Pointer, inBodyDataLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionPut(inSessionRef, inIsFinalChunk, inHeadersData, inHeadersDataLength, inBodyData, inBodyDataLength, inCallback, inUserRefCon)
 }
 
@@ -831,7 +831,7 @@ func OBEXSessionPut(inSessionRef unsafe.Pointer, inIsFinalChunk unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionPutResponse
-func OBEXSessionPutResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionPutResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionPutResponse(inSessionRef, inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -844,7 +844,7 @@ func OBEXSessionPutResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionSetPath
-func OBEXSessionSetPath(inSessionRef unsafe.Pointer, inFlags unsafe.Pointer, inConstants unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionSetPath(inSessionRef OBEXSessionRef, inFlags OBEXFlags, inConstants OBEXConstants, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionSetPath(inSessionRef, inFlags, inConstants, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -857,7 +857,7 @@ func OBEXSessionSetPath(inSessionRef unsafe.Pointer, inFlags unsafe.Pointer, inC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionSetPathResponse
-func OBEXSessionSetPathResponse(inSessionRef unsafe.Pointer, inResponseOpCode unsafe.Pointer, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionSetPathResponse(inSessionRef OBEXSessionRef, inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionSetPathResponse(inSessionRef, inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inCallback, inUserRefCon)
 }
 
@@ -868,7 +868,7 @@ func OBEXSessionSetPathResponse(inSessionRef unsafe.Pointer, inResponseOpCode un
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionSetServerCallback
-func OBEXSessionSetServerCallback(inSessionRef unsafe.Pointer, inCallback unsafe.Pointer, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func OBEXSessionSetServerCallback(inSessionRef OBEXSessionRef, inCallback OBEXSessionEventCallback, inUserRefCon unsafe.Pointer) OBEXError {
 	return _OBEXSessionSetServerCallback(inSessionRef, inCallback, inUserRefCon)
 }
 

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,56 +33,56 @@ type _ImageClass struct {
 type IImage interface {
 	objectivec.IObject
 	// properties:
-	CGImage() coregraphics.CGImageRef
-	ColorSpace() coregraphics.CGColorSpaceRef
-	ContentAverageLightLevel() float32 /* primitive/slice/pointer. */
-	ContentHeadroom() float32 /* primitive/slice/pointer. */
+	CGImage() ImageRef /* not a class type */
+	ColorSpace() ColorSpaceRef /* not a class type */
+	ContentAverageLightLevel() float32
+	ContentHeadroom() float32
 	Definition() ICIFilterShape
-	DepthData() objc.IObject /* cross-framework: DepthData */
-	Extent() coregraphics.CGRect
-	Opaque() bool /* primitive/slice/pointer. */
+	DepthData() objectivec.IObject
+	Extent() objc.IObject /* cross-framework: Rect */
+	Opaque() bool
 	MetalTexture() objc.ID
 	PixelBuffer() PixelBufferRef /* not a class type */
-	PortraitEffectsMatte() objc.IObject /* cross-framework: PortraitEffectsMatte */
-	Properties() foundation.IDictionary /* already interface */
-	SemanticSegmentationMatte() objc.IObject /* cross-framework: SemanticSegmentationMatte */
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	IsOpaque() bool /* primitive/slice/pointer. */
-	SetIsOpaque(value bool /* primitive/slice/pointer. */)
+	PortraitEffectsMatte() objectivec.IObject
+	Properties() foundation.IDictionary
+	SemanticSegmentationMatte() objectivec.IObject
+	Url() objc.IObject /* cross-framework: NSURL */
+	IsOpaque() bool
+	SetIsOpaque(value bool)
 	// methods:
-	ImageByApplyingFilter(filterName string /* primitive/slice/pointer. */) IImage
-	ImageByApplyingFilterWithInputParameters(filterName string /* primitive/slice/pointer. */, params foundation.IDictionary /* already interface */) IImage
+	ImageByApplyingFilter(filterName objc.IObject /* cross-framework: NSString */) IImage
+	ImageByApplyingFilterWithInputParameters(filterName objc.IObject /* cross-framework: NSString */, params foundation.IDictionary) IImage
 	ImageByApplyingGainMap(gainmap ICIImage) IImage
-	ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32 /* primitive/slice/pointer. */) IImage
-	ImageByApplyingGaussianBlurWithSigma(sigma float64 /* primitive/slice/pointer. */) IImage
-	AutoAdjustmentFilters() []Filter /* primitive/slice/pointer. */
-	AutoAdjustmentFiltersWithOptions(options foundation.IDictionary /* already interface */) []Filter /* primitive/slice/pointer. */
-	ImageByClampingToRect(rect coregraphics.CGRect) IImage
+	ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32) IImage
+	ImageByApplyingGaussianBlurWithSigma(sigma float64) IImage
+	AutoAdjustmentFilters() []IFilter
+	AutoAdjustmentFiltersWithOptions(options foundation.IDictionary) []IFilter
+	ImageByClampingToRect(rect objc.IObject /* cross-framework: Rect */) IImage
 	ImageByClampingToExtent() IImage
 	ImageByCompositingOverImage(dest ICIImage) IImage
 	ImageByConvertingLabToWorkingSpace() IImage
 	ImageByConvertingWorkingSpaceToLab() IImage
-	ImageByCroppingToRect(rect coregraphics.CGRect) IImage
-	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op CompositingOperation /* not a class type */, delta float64 /* primitive/slice/pointer. */)
-	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op CompositingOperation /* not a class type */, delta float64 /* primitive/slice/pointer. */)
+	ImageByCroppingToRect(rect objc.IObject /* cross-framework: Rect */) IImage
+	DrawAtPointFromRectOperationFraction(point objc.IObject /* cross-framework: Point */, fromRect objc.IObject /* cross-framework: Rect */, op CompositingOperation /* not a class type */, delta float64)
+	DrawInRectFromRectOperationFraction(rect objc.IObject /* cross-framework: Rect */, fromRect objc.IObject /* cross-framework: Rect */, op CompositingOperation /* not a class type */, delta float64)
 	ImageByInsertingIntermediate() IImage
 	ImageByInsertingTiledIntermediate() IImage
-	ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace coregraphics.CGColorSpaceRef) IImage
-	ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregraphics.CGColorSpaceRef) IImage
-	ImageTransformForCGOrientation(orientation ImagePropertyOrientation /* not a class type */) coregraphics.CGAffineTransform
-	ImageTransformForOrientation(orientation int /* primitive/slice/pointer. */) coregraphics.CGAffineTransform
+	ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace ColorSpaceRef /* not a class type */) IImage
+	ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace ColorSpaceRef /* not a class type */) IImage
+	ImageTransformForCGOrientation(orientation ImagePropertyOrientation /* not a class type */) objc.IObject /* cross-framework: AffineTransform */
+	ImageTransformForOrientation(orientation int) objc.IObject /* cross-framework: AffineTransform */
 	ImageByApplyingCGOrientation(orientation ImagePropertyOrientation /* not a class type */) IImage
-	ImageByApplyingOrientation(orientation int /* primitive/slice/pointer. */) IImage
+	ImageByApplyingOrientation(orientation int) IImage
 	ImageByPremultiplyingAlpha() IImage
-	RegionOfInterestForImageInRect(image ICIImage, rect coregraphics.CGRect) coregraphics.CGRect
+	RegionOfInterestForImageInRect(image ICIImage, rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 	ImageBySamplingLinear() IImage
 	ImageBySamplingNearest() IImage
-	ImageBySettingAlphaOneInExtent(extent coregraphics.CGRect) IImage
-	ImageBySettingContentAverageLightLevel(average float32 /* primitive/slice/pointer. */) IImage
-	ImageBySettingContentHeadroom(headroom float32 /* primitive/slice/pointer. */) IImage
-	ImageBySettingProperties(properties objectivec.IObject) IImage
-	ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) IImage
-	ImageByApplyingTransformHighQualityDownsample(matrix coregraphics.CGAffineTransform, highQualityDownsample bool /* primitive/slice/pointer. */) IImage
+	ImageBySettingAlphaOneInExtent(extent objc.IObject /* cross-framework: Rect */) IImage
+	ImageBySettingContentAverageLightLevel(average float32) IImage
+	ImageBySettingContentHeadroom(headroom float32) IImage
+	ImageBySettingProperties(properties objc.IObject /* cross-framework: NSDictionary */) IImage
+	ImageByApplyingTransform(matrix objc.IObject /* cross-framework: AffineTransform */) IImage
+	ImageByApplyingTransformHighQualityDownsample(matrix objc.IObject /* cross-framework: AffineTransform */, highQualityDownsample bool) IImage
 	ImageByUnpremultiplyingAlpha() IImage
 }
 
@@ -143,7 +143,7 @@ func NewImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapData:bytesPerRow:size:format:colorSpace:)
-func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.objc.IObject /* cross-framework NSData */, bytesPerRow uintptr /* not a class type */, size coregraphics.CGSize, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef) Image {
+func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data objc.IObject /* cross-framework: NSData */, bytesPerRow uintptr /* not a class type */, size objc.IObject /* cross-framework: Size */, format objc.IObject /* cross-framework: Format */, colorSpace ColorSpaceRef /* not a class type */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapData:bytesPerRow:size:format:colorSpace:"), data, bytesPerRow, size, format, colorSpace)
 	rv.Autorelease()
@@ -155,7 +155,7 @@ func NewImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(bitmapImageRep:)
-func NewImageWithBitmapImageRep(bitmapImageRep objc.IObject /* cross-framework BitmapImageRep */) Image {
+func NewImageWithBitmapImageRep(bitmapImageRep objectivec.IObject) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithBitmapImageRep:"), bitmapImageRep)
 	rv.Autorelease()
@@ -167,7 +167,7 @@ func NewImageWithBitmapImageRep(bitmapImageRep objc.IObject /* cross-framework B
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:)
-func NewImageWithCGImage(image coregraphics.CGImageRef) Image {
+func NewImageWithCGImage(image ImageRef /* not a class type */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:"), image)
 	rv.Autorelease()
@@ -179,7 +179,7 @@ func NewImageWithCGImage(image coregraphics.CGImageRef) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImage:options:)
-func NewImageWithCGImageOptions(image coregraphics.CGImageRef, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithCGImageOptions(image ImageRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImage:options:"), image, options)
 	rv.Autorelease()
@@ -189,7 +189,7 @@ func NewImageWithCGImageOptions(image coregraphics.CGImageRef, options foundatio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgImageSource:index:options:)
-func NewImageWithCGImageSourceIndexOptions(source ImageSourceRef /* not a class type */, index uintptr /* not a class type */, dict foundation.IDictionary /* already interface */) Image {
+func NewImageWithCGImageSourceIndexOptions(source ImageSourceRef /* not a class type */, index uintptr /* not a class type */, dict foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGImageSource:index:options:"), source, index, dict)
 	rv.Autorelease()
@@ -201,7 +201,7 @@ func NewImageWithCGImageSourceIndexOptions(source ImageSourceRef /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgLayer:)
-func NewImageWithCGLayer(layer coregraphics.CGLayerRef) Image {
+func NewImageWithCGLayer(layer LayerRef /* not a class type */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGLayer:"), layer)
 	rv.Autorelease()
@@ -213,7 +213,7 @@ func NewImageWithCGLayer(layer coregraphics.CGLayerRef) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cgLayer:options:)
-func NewImageWithCGLayerOptions(layer coregraphics.CGLayerRef, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithCGLayerOptions(layer LayerRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCGLayer:options:"), layer, options)
 	rv.Autorelease()
@@ -237,7 +237,7 @@ func NewImageWithCVImageBuffer(imageBuffer ImageBufferRef /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cvImageBuffer:options:)
-func NewImageWithCVImageBufferOptions(imageBuffer ImageBufferRef /* not a class type */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithCVImageBufferOptions(imageBuffer ImageBufferRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCVImageBuffer:options:"), imageBuffer, options)
 	rv.Autorelease()
@@ -261,7 +261,7 @@ func NewImageWithCVPixelBuffer(pixelBuffer PixelBufferRef /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(cvPixelBuffer:options:)
-func NewImageWithCVPixelBufferOptions(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithCVPixelBufferOptions(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCVPixelBuffer:options:"), pixelBuffer, options)
 	rv.Autorelease()
@@ -285,7 +285,7 @@ func NewImageWithColor(color ICIColor) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(contentsOf:)
-func NewImageWithContentsOfURL(url foundation.objc.IObject /* cross-framework URL */) Image {
+func NewImageWithContentsOfURL(url objc.IObject /* cross-framework: NSURL */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -297,7 +297,7 @@ func NewImageWithContentsOfURL(url foundation.objc.IObject /* cross-framework UR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(contentsOf:options:)
-func NewImageWithContentsOfURLOptions(url foundation.objc.IObject /* cross-framework URL */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithContentsOfURLOptions(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:options:"), url, options)
 	rv.Autorelease()
@@ -309,7 +309,7 @@ func NewImageWithContentsOfURLOptions(url foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:)
-func NewImageWithData(data foundation.objc.IObject /* cross-framework NSData */) Image {
+func NewImageWithData(data objc.IObject /* cross-framework: NSData */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -321,7 +321,7 @@ func NewImageWithData(data foundation.objc.IObject /* cross-framework NSData */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(data:options:)
-func NewImageWithDataOptions(data foundation.objc.IObject /* cross-framework NSData */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithDataOptions(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:options:"), data, options)
 	rv.Autorelease()
@@ -331,7 +331,7 @@ func NewImageWithDataOptions(data foundation.objc.IObject /* cross-framework NSD
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:)
-func NewImageWithDepthData(data objc.IObject /* cross-framework DepthData */) Image {
+func NewImageWithDepthData(data objectivec.IObject) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:"), data)
 	rv.Autorelease()
@@ -341,7 +341,7 @@ func NewImageWithDepthData(data objc.IObject /* cross-framework DepthData */) Im
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(depthData:options:)
-func NewImageWithDepthDataOptions(data objc.IObject /* cross-framework DepthData */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithDepthDataOptions(data objectivec.IObject, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDepthData:options:"), data, options)
 	rv.Autorelease()
@@ -365,7 +365,7 @@ func NewImageWithIOSurface(surface SurfaceRef /* not a class type */) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:options:)
-func NewImageWithIOSurfaceOptions(surface SurfaceRef /* not a class type */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithIOSurfaceOptions(surface SurfaceRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:options:"), surface, options)
 	rv.Autorelease()
@@ -377,7 +377,7 @@ func NewImageWithIOSurfaceOptions(surface SurfaceRef /* not a class type */, opt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(ioSurface:plane:format:options:)
-func NewImageWithIOSurfacePlaneFormatOptions(surface SurfaceRef /* not a class type */, plane uintptr /* not a class type */, format objc.IObject /* cross-framework Format */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithIOSurfacePlaneFormatOptions(surface SurfaceRef /* not a class type */, plane uintptr /* not a class type */, format objc.IObject /* cross-framework: Format */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithIOSurface:plane:format:options:"), surface, plane, format, options)
 	rv.Autorelease()
@@ -401,7 +401,7 @@ func NewImageWithImage(image IImage) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(image:options:)
-func NewImageWithImageOptions(image IImage, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithImageOptions(image IImage, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImage:options:"), image, options)
 	rv.Autorelease()
@@ -413,7 +413,7 @@ func NewImageWithImageOptions(image IImage, options foundation.IDictionary /* al
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(imageProvider:size:_:format:colorSpace:options:)
-func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width uintptr /* not a class type */, height uintptr /* not a class type */, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width uintptr /* not a class type */, height uintptr /* not a class type */, format objc.IObject /* cross-framework: Format */, colorSpace ColorSpaceRef /* not a class type */, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
 	rv.Autorelease()
@@ -425,7 +425,7 @@ func NewImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(mtlTexture:options:)
-func NewImageWithMTLTextureOptions(texture objectivec.IObject, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithMTLTextureOptions(texture objectivec.IObject, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithMTLTexture:options:"), texture, options)
 	rv.Autorelease()
@@ -435,7 +435,7 @@ func NewImageWithMTLTextureOptions(texture objectivec.IObject, options foundatio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:)
-func NewImageWithPortaitEffectsMatte(matte objc.IObject /* cross-framework PortraitEffectsMatte */) Image {
+func NewImageWithPortaitEffectsMatte(matte objectivec.IObject) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:"), matte)
 	rv.Autorelease()
@@ -445,7 +445,7 @@ func NewImageWithPortaitEffectsMatte(matte objc.IObject /* cross-framework Portr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(portaitEffectsMatte:options:)
-func NewImageWithPortaitEffectsMatteOptions(matte objc.IObject /* cross-framework PortraitEffectsMatte */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithPortaitEffectsMatteOptions(matte objectivec.IObject, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithPortaitEffectsMatte:options:"), matte, options)
 	rv.Autorelease()
@@ -455,7 +455,7 @@ func NewImageWithPortaitEffectsMatteOptions(matte objc.IObject /* cross-framewor
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:)
-func NewImageWithSemanticSegmentationMatte(matte objc.IObject /* cross-framework SemanticSegmentationMatte */) Image {
+func NewImageWithSemanticSegmentationMatte(matte objectivec.IObject) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:"), matte)
 	rv.Autorelease()
@@ -465,7 +465,7 @@ func NewImageWithSemanticSegmentationMatte(matte objc.IObject /* cross-framework
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(semanticSegmentationMatte:options:)
-func NewImageWithSemanticSegmentationMatteOptions(matte objc.IObject /* cross-framework SemanticSegmentationMatte */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithSemanticSegmentationMatteOptions(matte objectivec.IObject, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithSemanticSegmentationMatte:options:"), matte, options)
 	rv.Autorelease()
@@ -477,7 +477,7 @@ func NewImageWithSemanticSegmentationMatteOptions(matte objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:colorSpace:)
-func NewImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size coregraphics.CGSize, flipped bool /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) Image {
+func NewImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size objc.IObject /* cross-framework: Size */, flipped bool, colorSpace ColorSpaceRef /* not a class type */) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:colorSpace:"), name, size, flipped, colorSpace)
 	rv.Autorelease()
@@ -489,7 +489,7 @@ func NewImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/init(texture:size:flipped:options:)
-func NewImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size coregraphics.CGSize, flipped bool /* primitive/slice/pointer. */, options foundation.IDictionary /* already interface */) Image {
+func NewImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size objc.IObject /* cross-framework: Size */, flipped bool, options foundation.IDictionary) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithTexture:size:flipped:options:"), name, size, flipped, options)
 	rv.Autorelease()
@@ -512,7 +512,7 @@ func (ic _ImageClass) EmptyImage() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithBitmapData:bytesPerRow:size:format:colorSpace:
-func (ic _ImageClass) ImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data foundation.objc.IObject /* cross-framework NSData */, bytesPerRow uintptr /* not a class type */, size coregraphics.CGSize, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef) IImage {
+func (ic _ImageClass) ImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data objc.IObject /* cross-framework: NSData */, bytesPerRow uintptr /* not a class type */, size objc.IObject /* cross-framework: Size */, format objc.IObject /* cross-framework: Format */, colorSpace ColorSpaceRef /* not a class type */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithBitmapData:bytesPerRow:size:format:colorSpace:"), data, bytesPerRow, size, format, colorSpace)
 	return rv
 }
@@ -522,7 +522,7 @@ func (ic _ImageClass) ImageWithBitmapDataBytesPerRowSizeFormatColorSpace(data fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGImage:
-func (ic _ImageClass) ImageWithCGImage(image coregraphics.CGImageRef) IImage {
+func (ic _ImageClass) ImageWithCGImage(image ImageRef /* not a class type */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGImage:"), image)
 	return rv
 }
@@ -532,7 +532,7 @@ func (ic _ImageClass) ImageWithCGImage(image coregraphics.CGImageRef) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGImage:options:
-func (ic _ImageClass) ImageWithCGImageOptions(image coregraphics.CGImageRef, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithCGImageOptions(image ImageRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGImage:options:"), image, options)
 	return rv
 }
@@ -540,7 +540,7 @@ func (ic _ImageClass) ImageWithCGImageOptions(image coregraphics.CGImageRef, opt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGImageSource:index:options:
-func (ic _ImageClass) ImageWithCGImageSourceIndexOptions(source ImageSourceRef /* not a class type */, index uintptr /* not a class type */, dict foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithCGImageSourceIndexOptions(source ImageSourceRef /* not a class type */, index uintptr /* not a class type */, dict foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGImageSource:index:options:"), source, index, dict)
 	return rv
 }
@@ -550,7 +550,7 @@ func (ic _ImageClass) ImageWithCGImageSourceIndexOptions(source ImageSourceRef /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGLayer:
-func (ic _ImageClass) ImageWithCGLayer(layer coregraphics.CGLayerRef) IImage {
+func (ic _ImageClass) ImageWithCGLayer(layer LayerRef /* not a class type */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGLayer:"), layer)
 	return rv
 }
@@ -560,7 +560,7 @@ func (ic _ImageClass) ImageWithCGLayer(layer coregraphics.CGLayerRef) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCGLayer:options:
-func (ic _ImageClass) ImageWithCGLayerOptions(layer coregraphics.CGLayerRef, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithCGLayerOptions(layer LayerRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCGLayer:options:"), layer, options)
 	return rv
 }
@@ -580,7 +580,7 @@ func (ic _ImageClass) ImageWithCVImageBuffer(imageBuffer ImageBufferRef /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCVImageBuffer:options:
-func (ic _ImageClass) ImageWithCVImageBufferOptions(imageBuffer ImageBufferRef /* not a class type */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithCVImageBufferOptions(imageBuffer ImageBufferRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCVImageBuffer:options:"), imageBuffer, options)
 	return rv
 }
@@ -600,7 +600,7 @@ func (ic _ImageClass) ImageWithCVPixelBuffer(pixelBuffer PixelBufferRef /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithCVPixelBuffer:options:
-func (ic _ImageClass) ImageWithCVPixelBufferOptions(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithCVPixelBufferOptions(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithCVPixelBuffer:options:"), pixelBuffer, options)
 	return rv
 }
@@ -620,7 +620,7 @@ func (ic _ImageClass) ImageWithColor(color ICIColor) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithContentsOfURL:
-func (ic _ImageClass) ImageWithContentsOfURL(url foundation.objc.IObject /* cross-framework URL */) IImage {
+func (ic _ImageClass) ImageWithContentsOfURL(url objc.IObject /* cross-framework: NSURL */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithContentsOfURL:"), url)
 	return rv
 }
@@ -630,7 +630,7 @@ func (ic _ImageClass) ImageWithContentsOfURL(url foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithContentsOfURL:options:
-func (ic _ImageClass) ImageWithContentsOfURLOptions(url foundation.objc.IObject /* cross-framework URL */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithContentsOfURLOptions(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithContentsOfURL:options:"), url, options)
 	return rv
 }
@@ -640,7 +640,7 @@ func (ic _ImageClass) ImageWithContentsOfURLOptions(url foundation.objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithData:
-func (ic _ImageClass) ImageWithData(data foundation.objc.IObject /* cross-framework NSData */) IImage {
+func (ic _ImageClass) ImageWithData(data objc.IObject /* cross-framework: NSData */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithData:"), data)
 	return rv
 }
@@ -650,7 +650,7 @@ func (ic _ImageClass) ImageWithData(data foundation.objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithData:options:
-func (ic _ImageClass) ImageWithDataOptions(data foundation.objc.IObject /* cross-framework NSData */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithDataOptions(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithData:options:"), data, options)
 	return rv
 }
@@ -658,7 +658,7 @@ func (ic _ImageClass) ImageWithDataOptions(data foundation.objc.IObject /* cross
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithDepthData:
-func (ic _ImageClass) ImageWithDepthData(data objc.IObject /* cross-framework DepthData */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithDepthData(data objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithDepthData:"), data)
 	return rv
 }
@@ -666,7 +666,7 @@ func (ic _ImageClass) ImageWithDepthData(data objc.IObject /* cross-framework De
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithDepthData:options:
-func (ic _ImageClass) ImageWithDepthDataOptions(data objc.IObject /* cross-framework DepthData */, options foundation.IDictionary /* already interface */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithDepthDataOptions(data objectivec.IObject, options foundation.IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithDepthData:options:"), data, options)
 	return rv
 }
@@ -686,7 +686,7 @@ func (ic _ImageClass) ImageWithIOSurface(surface SurfaceRef /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithIOSurface:options:
-func (ic _ImageClass) ImageWithIOSurfaceOptions(surface SurfaceRef /* not a class type */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithIOSurfaceOptions(surface SurfaceRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithIOSurface:options:"), surface, options)
 	return rv
 }
@@ -696,7 +696,7 @@ func (ic _ImageClass) ImageWithIOSurfaceOptions(surface SurfaceRef /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithImageProvider:size::format:colorSpace:options:
-func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width uintptr /* not a class type */, height uintptr /* not a class type */, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider objectivec.IObject, width uintptr /* not a class type */, height uintptr /* not a class type */, format objc.IObject /* cross-framework: Format */, colorSpace ColorSpaceRef /* not a class type */, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithImageProvider:size::format:colorSpace:options:"), provider, width, height, format, colorSpace, options)
 	return rv
 }
@@ -706,7 +706,7 @@ func (ic _ImageClass) ImageWithImageProviderSizeFormatColorSpaceOptions(provider
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithMTLTexture:options:
-func (ic _ImageClass) ImageWithMTLTextureOptions(texture objectivec.IObject, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithMTLTextureOptions(texture objectivec.IObject, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithMTLTexture:options:"), texture, options)
 	return rv
 }
@@ -714,7 +714,7 @@ func (ic _ImageClass) ImageWithMTLTextureOptions(texture objectivec.IObject, opt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithPortaitEffectsMatte:
-func (ic _ImageClass) ImageWithPortaitEffectsMatte(matte objc.IObject /* cross-framework PortraitEffectsMatte */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithPortaitEffectsMatte(matte objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithPortaitEffectsMatte:"), matte)
 	return rv
 }
@@ -722,7 +722,7 @@ func (ic _ImageClass) ImageWithPortaitEffectsMatte(matte objc.IObject /* cross-f
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithPortaitEffectsMatte:options:
-func (ic _ImageClass) ImageWithPortaitEffectsMatteOptions(matte objc.IObject /* cross-framework PortraitEffectsMatte */, options foundation.IDictionary /* already interface */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithPortaitEffectsMatteOptions(matte objectivec.IObject, options foundation.IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithPortaitEffectsMatte:options:"), matte, options)
 	return rv
 }
@@ -730,7 +730,7 @@ func (ic _ImageClass) ImageWithPortaitEffectsMatteOptions(matte objc.IObject /* 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithSemanticSegmentationMatte:
-func (ic _ImageClass) ImageWithSemanticSegmentationMatte(matte objc.IObject /* cross-framework SemanticSegmentationMatte */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithSemanticSegmentationMatte(matte objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSemanticSegmentationMatte:"), matte)
 	return rv
 }
@@ -738,7 +738,7 @@ func (ic _ImageClass) ImageWithSemanticSegmentationMatte(matte objc.IObject /* c
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithSemanticSegmentationMatte:options:
-func (ic _ImageClass) ImageWithSemanticSegmentationMatteOptions(matte objc.IObject /* cross-framework SemanticSegmentationMatte */, options foundation.IDictionary /* already interface */) unsafe.Pointer {
+func (ic _ImageClass) ImageWithSemanticSegmentationMatteOptions(matte objectivec.IObject, options foundation.IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSemanticSegmentationMatte:options:"), matte, options)
 	return rv
 }
@@ -748,7 +748,7 @@ func (ic _ImageClass) ImageWithSemanticSegmentationMatteOptions(matte objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithTexture:size:flipped:colorSpace:
-func (ic _ImageClass) ImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size coregraphics.CGSize, flipped bool /* primitive/slice/pointer. */, colorSpace coregraphics.CGColorSpaceRef) IImage {
+func (ic _ImageClass) ImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer, size objc.IObject /* cross-framework: Size */, flipped bool, colorSpace ColorSpaceRef /* not a class type */) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithTexture:size:flipped:colorSpace:"), name, size, flipped, colorSpace)
 	return rv
 }
@@ -758,7 +758,7 @@ func (ic _ImageClass) ImageWithTextureSizeFlippedColorSpace(name unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/imageWithTexture:size:flipped:options:
-func (ic _ImageClass) ImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size coregraphics.CGSize, flipped bool /* primitive/slice/pointer. */, options foundation.IDictionary /* already interface */) IImage {
+func (ic _ImageClass) ImageWithTextureSizeFlippedOptions(name unsafe.Pointer, size objc.IObject /* cross-framework: Size */, flipped bool, options foundation.IDictionary) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageWithTexture:size:flipped:options:"), name, size, flipped, options)
 	return rv
 }
@@ -838,8 +838,8 @@ func (ic _ImageClass) YellowImage() Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:)
-func (i_ Image) ImageByApplyingFilter(filterName string /* primitive/slice/pointer. */) IImage {
-	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:"), objc.String(filterName))
+func (i_ Image) ImageByApplyingFilter(filterName objc.IObject /* cross-framework: NSString */) IImage {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:"), filterName)
 	return rv
 }
 
@@ -848,8 +848,8 @@ func (i_ Image) ImageByApplyingFilter(filterName string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingFilter(_:parameters:)
-func (i_ Image) ImageByApplyingFilterWithInputParameters(filterName string /* primitive/slice/pointer. */, params foundation.IDictionary /* already interface */) IImage {
-	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), objc.String(filterName), params)
+func (i_ Image) ImageByApplyingFilterWithInputParameters(filterName objc.IObject /* cross-framework: NSString */, params foundation.IDictionary) IImage {
+	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingFilter:withInputParameters:"), filterName, params)
 	return rv
 }
 
@@ -868,7 +868,7 @@ func (i_ Image) ImageByApplyingGainMap(gainmap ICIImage) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingGainMap(_:headroom:)
-func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32 /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float32) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingGainMap:headroom:"), gainmap, headroom)
 	return rv
 }
@@ -878,7 +878,7 @@ func (i_ Image) ImageByApplyingGainMapHeadroom(gainmap ICIImage, headroom float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/applyingGaussianBlur(sigma:)
-func (i_ Image) ImageByApplyingGaussianBlurWithSigma(sigma float64 /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageByApplyingGaussianBlurWithSigma(sigma float64) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingGaussianBlurWithSigma:"), sigma)
 	return rv
 }
@@ -888,7 +888,7 @@ func (i_ Image) ImageByApplyingGaussianBlurWithSigma(sigma float64 /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/autoAdjustmentFilters()
-func (i_ Image) AutoAdjustmentFilters() []Filter /* primitive/slice/pointer. */ {
+func (i_ Image) AutoAdjustmentFilters() []IFilter {
 	rv := objc.Send[[]Filter](i_.ID, objc.Sel("autoAdjustmentFilters"))
 	return rv
 }
@@ -898,7 +898,7 @@ func (i_ Image) AutoAdjustmentFilters() []Filter /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/autoAdjustmentFilters(options:)
-func (i_ Image) AutoAdjustmentFiltersWithOptions(options foundation.IDictionary /* already interface */) []Filter /* primitive/slice/pointer. */ {
+func (i_ Image) AutoAdjustmentFiltersWithOptions(options foundation.IDictionary) []IFilter {
 	rv := objc.Send[[]Filter](i_.ID, objc.Sel("autoAdjustmentFiltersWithOptions:"), options)
 	return rv
 }
@@ -908,7 +908,7 @@ func (i_ Image) AutoAdjustmentFiltersWithOptions(options foundation.IDictionary 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/clamped(to:)
-func (i_ Image) ImageByClampingToRect(rect coregraphics.CGRect) IImage {
+func (i_ Image) ImageByClampingToRect(rect objc.IObject /* cross-framework: Rect */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByClampingToRect:"), rect)
 	return rv
 }
@@ -954,7 +954,7 @@ func (i_ Image) ImageByConvertingWorkingSpaceToLab() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/cropped(to:)
-func (i_ Image) ImageByCroppingToRect(rect coregraphics.CGRect) IImage {
+func (i_ Image) ImageByCroppingToRect(rect objc.IObject /* cross-framework: Rect */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByCroppingToRect:"), rect)
 	return rv
 }
@@ -964,7 +964,7 @@ func (i_ Image) ImageByCroppingToRect(rect coregraphics.CGRect) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/draw(at:from:operation:fraction:)
-func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op CompositingOperation /* not a class type */, delta float64 /* primitive/slice/pointer. */) {
+func (i_ Image) DrawAtPointFromRectOperationFraction(point objc.IObject /* cross-framework: Point */, fromRect objc.IObject /* cross-framework: Rect */, op CompositingOperation /* not a class type */, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawAtPoint:fromRect:operation:fraction:"), point, fromRect, op, delta)
 }
 
@@ -973,7 +973,7 @@ func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/draw(in:from:operation:fraction:)
-func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op CompositingOperation /* not a class type */, delta float64 /* primitive/slice/pointer. */) {
+func (i_ Image) DrawInRectFromRectOperationFraction(rect objc.IObject /* cross-framework: Rect */, fromRect objc.IObject /* cross-framework: Rect */, op CompositingOperation /* not a class type */, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:"), rect, fromRect, op, delta)
 }
 
@@ -1002,7 +1002,7 @@ func (i_ Image) ImageByInsertingTiledIntermediate() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/matchedFromWorkingSpace(to:)
-func (i_ Image) ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace coregraphics.CGColorSpaceRef) IImage {
+func (i_ Image) ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace ColorSpaceRef /* not a class type */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByColorMatchingWorkingSpaceToColorSpace:"), colorSpace)
 	return rv
 }
@@ -1012,7 +1012,7 @@ func (i_ Image) ImageByColorMatchingWorkingSpaceToColorSpace(colorSpace coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/matchedToWorkingSpace(from:)
-func (i_ Image) ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregraphics.CGColorSpaceRef) IImage {
+func (i_ Image) ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace ColorSpaceRef /* not a class type */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByColorMatchingColorSpaceToWorkingSpace:"), colorSpace)
 	return rv
 }
@@ -1022,8 +1022,8 @@ func (i_ Image) ImageByColorMatchingColorSpaceToWorkingSpace(colorSpace coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/orientationTransform(for:)
-func (i_ Image) ImageTransformForCGOrientation(orientation ImagePropertyOrientation /* not a class type */) coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("imageTransformForCGOrientation:"), orientation)
+func (i_ Image) ImageTransformForCGOrientation(orientation ImagePropertyOrientation /* not a class type */) objc.IObject /* cross-framework: AffineTransform */ {
+	rv := objc.Send[corefoundation.AffineTransform](i_.ID, objc.Sel("imageTransformForCGOrientation:"), orientation)
 	return rv
 }
 
@@ -1032,8 +1032,8 @@ func (i_ Image) ImageTransformForCGOrientation(orientation ImagePropertyOrientat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/orientationTransform(forExifOrientation:)
-func (i_ Image) ImageTransformForOrientation(orientation int /* primitive/slice/pointer. */) coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](i_.ID, objc.Sel("imageTransformForOrientation:"), orientation)
+func (i_ Image) ImageTransformForOrientation(orientation int) objc.IObject /* cross-framework: AffineTransform */ {
+	rv := objc.Send[corefoundation.AffineTransform](i_.ID, objc.Sel("imageTransformForOrientation:"), orientation)
 	return rv
 }
 
@@ -1052,7 +1052,7 @@ func (i_ Image) ImageByApplyingCGOrientation(orientation ImagePropertyOrientatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/oriented(forExifOrientation:)
-func (i_ Image) ImageByApplyingOrientation(orientation int /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageByApplyingOrientation(orientation int) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingOrientation:"), orientation)
 	return rv
 }
@@ -1072,8 +1072,8 @@ func (i_ Image) ImageByPremultiplyingAlpha() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/regionOfInterest(for:in:)
-func (i_ Image) RegionOfInterestForImageInRect(image ICIImage, rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](i_.ID, objc.Sel("regionOfInterestForImage:inRect:"), image, rect)
+func (i_ Image) RegionOfInterestForImageInRect(image ICIImage, rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](i_.ID, objc.Sel("regionOfInterestForImage:inRect:"), image, rect)
 	return rv
 }
 
@@ -1102,7 +1102,7 @@ func (i_ Image) ImageBySamplingNearest() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingAlphaOne(in:)
-func (i_ Image) ImageBySettingAlphaOneInExtent(extent coregraphics.CGRect) IImage {
+func (i_ Image) ImageBySettingAlphaOneInExtent(extent objc.IObject /* cross-framework: Rect */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingAlphaOneInExtent:"), extent)
 	return rv
 }
@@ -1112,7 +1112,7 @@ func (i_ Image) ImageBySettingAlphaOneInExtent(extent coregraphics.CGRect) IImag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingContentAverageLightLevel(_:)
-func (i_ Image) ImageBySettingContentAverageLightLevel(average float32 /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageBySettingContentAverageLightLevel(average float32) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingContentAverageLightLevel:"), average)
 	return rv
 }
@@ -1122,7 +1122,7 @@ func (i_ Image) ImageBySettingContentAverageLightLevel(average float32 /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingContentHeadroom(_:)
-func (i_ Image) ImageBySettingContentHeadroom(headroom float32 /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageBySettingContentHeadroom(headroom float32) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingContentHeadroom:"), headroom)
 	return rv
 }
@@ -1132,7 +1132,7 @@ func (i_ Image) ImageBySettingContentHeadroom(headroom float32 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/settingProperties(_:)
-func (i_ Image) ImageBySettingProperties(properties objectivec.IObject) IImage {
+func (i_ Image) ImageBySettingProperties(properties objc.IObject /* cross-framework: NSDictionary */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageBySettingProperties:"), properties)
 	return rv
 }
@@ -1142,7 +1142,7 @@ func (i_ Image) ImageBySettingProperties(properties objectivec.IObject) IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/transformed(by:)
-func (i_ Image) ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) IImage {
+func (i_ Image) ImageByApplyingTransform(matrix objc.IObject /* cross-framework: AffineTransform */) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingTransform:"), matrix)
 	return rv
 }
@@ -1150,7 +1150,7 @@ func (i_ Image) ImageByApplyingTransform(matrix coregraphics.CGAffineTransform) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/transformed(by:highQualityDownsample:)
-func (i_ Image) ImageByApplyingTransformHighQualityDownsample(matrix coregraphics.CGAffineTransform, highQualityDownsample bool /* primitive/slice/pointer. */) IImage {
+func (i_ Image) ImageByApplyingTransformHighQualityDownsample(matrix objc.IObject /* cross-framework: AffineTransform */, highQualityDownsample bool) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageByApplyingTransform:highQualityDownsample:"), matrix, highQualityDownsample)
 	return rv
 }
@@ -1186,8 +1186,8 @@ func (i_ Image) BlueImage() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/cgImage
-func (i_ Image) CGImage() coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("CGImage"))
+func (i_ Image) CGImage() ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](i_.ID, objc.Sel("CGImage"))
 	return rv
 }
 
@@ -1204,8 +1204,8 @@ func (i_ Image) ClearImage() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/colorSpace
-func (i_ Image) ColorSpace() coregraphics.CGColorSpaceRef {
-	rv := objc.Send[coregraphics.CGColorSpaceRef](i_.ID, objc.Sel("colorSpace"))
+func (i_ Image) ColorSpace() ColorSpaceRef /* not a class type */ {
+	rv := objc.Send[ColorSpaceRef](i_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -1214,7 +1214,7 @@ func (i_ Image) ColorSpace() coregraphics.CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/contentAverageLightLevel
-func (i_ Image) ContentAverageLightLevel() float32 /* primitive/slice/pointer. */ {
+func (i_ Image) ContentAverageLightLevel() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("contentAverageLightLevel"))
 	return rv
 }
@@ -1224,7 +1224,7 @@ func (i_ Image) ContentAverageLightLevel() float32 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/contentHeadroom
-func (i_ Image) ContentHeadroom() float32 /* primitive/slice/pointer. */ {
+func (i_ Image) ContentHeadroom() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("contentHeadroom"))
 	return rv
 }
@@ -1252,8 +1252,8 @@ func (i_ Image) Definition() ICIFilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/depthData
-func (i_ Image) DepthData() objc.IObject /* cross-framework: DepthData */ {
-	rv := objc.Send[DepthData](i_.ID, objc.Sel("depthData"))
+func (i_ Image) DepthData() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("depthData"))
 	return rv
 }
 
@@ -1262,8 +1262,8 @@ func (i_ Image) DepthData() objc.IObject /* cross-framework: DepthData */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/extent
-func (i_ Image) Extent() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](i_.ID, objc.Sel("extent"))
+func (i_ Image) Extent() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](i_.ID, objc.Sel("extent"))
 	return rv
 }
 
@@ -1288,7 +1288,7 @@ func (i_ Image) GreenImage() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/isOpaque
-func (i_ Image) Opaque() bool /* primitive/slice/pointer. */ {
+func (i_ Image) Opaque() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("opaque"))
 	return rv
 }
@@ -1324,8 +1324,8 @@ func (i_ Image) PixelBuffer() PixelBufferRef /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/portraitEffectsMatte
-func (i_ Image) PortraitEffectsMatte() objc.IObject /* cross-framework: PortraitEffectsMatte */ {
-	rv := objc.Send[PortraitEffectsMatte](i_.ID, objc.Sel("portraitEffectsMatte"))
+func (i_ Image) PortraitEffectsMatte() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
 }
 
@@ -1334,7 +1334,7 @@ func (i_ Image) PortraitEffectsMatte() objc.IObject /* cross-framework: Portrait
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/properties
-func (i_ Image) Properties() foundation.IDictionary /* already interface */ {
+func (i_ Image) Properties() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](i_.ID, objc.Sel("properties"))
 	return rv
 }
@@ -1350,8 +1350,8 @@ func (i_ Image) RedImage() ICIImage {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/semanticSegmentationMatte
-func (i_ Image) SemanticSegmentationMatte() objc.IObject /* cross-framework: SemanticSegmentationMatte */ {
-	rv := objc.Send[SemanticSegmentationMatte](i_.ID, objc.Sel("semanticSegmentationMatte"))
+func (i_ Image) SemanticSegmentationMatte() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("semanticSegmentationMatte"))
 	return rv
 }
 
@@ -1360,8 +1360,8 @@ func (i_ Image) SemanticSegmentationMatte() objc.IObject /* cross-framework: Sem
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImage/url
-func (i_ Image) Url() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("url"))
+func (i_ Image) Url() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](i_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -1386,7 +1386,7 @@ func (i_ Image) YellowImage() ICIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
-func (i_ Image) IsOpaque() bool /* primitive/slice/pointer. */ {
+func (i_ Image) IsOpaque() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isOpaque"))
 	return rv
 }
@@ -1396,7 +1396,7 @@ func (i_ Image) IsOpaque() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/ciimage/isopaque
-func (i_ Image) SetIsOpaque(value bool /* primitive/slice/pointer. */) {
+func (i_ Image) SetIsOpaque(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpaque:"), value)
 }
 

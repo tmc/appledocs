@@ -32,8 +32,8 @@ type IINGetReservationDetailsIntentResponse interface {
 	// properties:
 	Code() unsafe.Pointer
 	SetCode(value unsafe.Pointer)
-	Reservations() INReservation /* already interface */
-	SetReservations(value INReservation /* already interface */)
+	Reservations() INReservation
+	SetReservations(value INReservation)
 	// methods:
 }
 
@@ -115,7 +115,7 @@ func (i_ INGetReservationDetailsIntentResponse) SetCode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
-func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation /* already interface */ {
+func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
 	rv := objc.Send[INReservation](i_.ID, objc.Sel("reservations"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
-func (i_ INGetReservationDetailsIntentResponse) SetReservations(value INReservation /* already interface */) {
+func (i_ INGetReservationDetailsIntentResponse) SetReservations(value INReservation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservations:"), value)
 }
 

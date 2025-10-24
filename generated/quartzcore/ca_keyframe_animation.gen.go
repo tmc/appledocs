@@ -7,8 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [KeyframeAnimation] class.
@@ -31,30 +31,36 @@ type _KeyframeAnimationClass struct {
 // An interface definition for the [KeyframeAnimation] class.
 type IKeyframeAnimation interface {
 	IPropertyAnimation
-	BiasValues() []foundation.Number
-	SetBiasValues(value []foundation.INumber)
-	CalculationMode() AnimationCalculationMode
-	SetCalculationMode(value AnimationCalculationMode)
-	ContinuityValues() []foundation.Number
-	SetContinuityValues(value []foundation.INumber)
-	KeyTimes() []foundation.Number
-	SetKeyTimes(value []foundation.INumber)
-	Path() coregraphics.CGPathRef
-	SetPath(value coregraphics.CGPathRef)
-	RotationMode() AnimationRotationMode
-	SetRotationMode(value AnimationRotationMode)
-	TensionValues() []foundation.Number
-	SetTensionValues(value []foundation.INumber)
-	TimingFunctions() []MediaTimingFunction
-	SetTimingFunctions(value []MediaTimingFunction)
-	Values() objc.ID
-	SetValues(value objc.ID)
+	// properties:
+	TimingFunctions() []IMediaTimingFunction
+	SetTimingFunctions(value []IMediaTimingFunction)
+	BiasValues() objc.IObject /* cross-framework: NSNumber */
+	SetBiasValues(value objc.IObject /* cross-framework: NSNumber */)
+	CalculationMode() AnimationCalculationMode /* not a class type */
+	SetCalculationMode(value AnimationCalculationMode /* not a class type */)
+	ContinuityValues() objc.IObject /* cross-framework: NSNumber */
+	SetContinuityValues(value objc.IObject /* cross-framework: NSNumber */)
+	KeyTimes() objc.IObject /* cross-framework: NSNumber */
+	SetKeyTimes(value objc.IObject /* cross-framework: NSNumber */)
+	Path() objectivec.IObject
+	SetPath(value objectivec.IObject)
+	RotationMode() AnimationRotationMode /* not a class type */
+	SetRotationMode(value AnimationRotationMode /* not a class type */)
+	TensionValues() objc.IObject /* cross-framework: NSNumber */
+	SetTensionValues(value objc.IObject /* cross-framework: NSNumber */)
+	Values() unsafe.Pointer
+	SetValues(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that provides keyframe animation capabilities for a layer object.
 //
 // You create a object using the inherited method, specifying the key path of the property that you want to animate on the layer. You can then specify the keyframe values to use to control the timing and animation behavior. For most types of animations, you specify the keyframe values using the and properties. During the animation, Core Animation generates intermediate values by interpolating between the values you provide. When animating a value that is a coordinate point, such as the layer’s position, you can specify a for that point to follow instead of individual values. The pacing of the animation is controlled by the timing information you provide. The following code shows how to create a keyframe animation that animates a layer’s background color from red to green to blue over a two second duration.
+
+
+// An object that provides keyframe animation capabilities for a layer object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation
 type KeyframeAnimation struct {
 	PropertyAnimation
@@ -101,187 +107,22 @@ func NewKeyframeAnimation() KeyframeAnimation {
 }
 
 
-// An array of numbers that define the position of the curve relative to a control point.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/biasValues
-func (k_ KeyframeAnimation) BiasValues() []foundation.Number {
-	rv := objc.Send[[]foundation.Number](k_.ID, objc.Sel("biasValues"))
-	return rv
-}
-
-
-// SetBiasValues sets the value of the biasValues property.
-// An array of numbers that define the position of the curve relative to a control point.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/biasValues
-func (k_ KeyframeAnimation) SetBiasValues(value []foundation.INumber) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](k_.ID, objc.Sel("setBiasValues:"), nsArray)
-}
-
-// Specifies how intermediate keyframe values are calculated by the receiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/calculationMode
-func (k_ KeyframeAnimation) CalculationMode() AnimationCalculationMode {
-	rv := objc.Send[AnimationCalculationMode](k_.ID, objc.Sel("calculationMode"))
-	return rv
-}
-
-
-// SetCalculationMode sets the value of the calculationMode property.
-// Specifies how intermediate keyframe values are calculated by the receiver.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/calculationMode
-func (k_ KeyframeAnimation) SetCalculationMode(value AnimationCalculationMode) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setCalculationMode:"), value)
-}
-
-// An array of numbers that define the sharpness of the timing curve’s corners.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
-func (k_ KeyframeAnimation) ContinuityValues() []foundation.Number {
-	rv := objc.Send[[]foundation.Number](k_.ID, objc.Sel("continuityValues"))
-	return rv
-}
-
-
-// SetContinuityValues sets the value of the continuityValues property.
-// An array of numbers that define the sharpness of the timing curve’s corners.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
-func (k_ KeyframeAnimation) SetContinuityValues(value []foundation.INumber) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](k_.ID, objc.Sel("setContinuityValues:"), nsArray)
-}
-
-// An optional array of objects that define the time at which to apply a given keyframe segment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
-func (k_ KeyframeAnimation) KeyTimes() []foundation.Number {
-	rv := objc.Send[[]foundation.Number](k_.ID, objc.Sel("keyTimes"))
-	return rv
-}
-
-
-// SetKeyTimes sets the value of the keyTimes property.
-// An optional array of objects that define the time at which to apply a given keyframe segment.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
-func (k_ KeyframeAnimation) SetKeyTimes(value []foundation.INumber) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](k_.ID, objc.Sel("setKeyTimes:"), nsArray)
-}
-
-// The path for a point-based property to follow.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/path
-func (k_ KeyframeAnimation) Path() coregraphics.CGPathRef {
-	rv := objc.Send[coregraphics.CGPathRef](k_.ID, objc.Sel("path"))
-	return rv
-}
-
-
-// SetPath sets the value of the path property.
-// The path for a point-based property to follow.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/path
-func (k_ KeyframeAnimation) SetPath(value coregraphics.CGPathRef) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setPath:"), value)
-}
-
-// Determines whether objects animating along the path rotate to match the path tangent.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/rotationMode
-func (k_ KeyframeAnimation) RotationMode() AnimationRotationMode {
-	rv := objc.Send[AnimationRotationMode](k_.ID, objc.Sel("rotationMode"))
-	return rv
-}
-
-
-// SetRotationMode sets the value of the rotationMode property.
-// Determines whether objects animating along the path rotate to match the path tangent.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/rotationMode
-func (k_ KeyframeAnimation) SetRotationMode(value AnimationRotationMode) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setRotationMode:"), value)
-}
-
-// An array of numbers that define the tightness of the curve.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
-func (k_ KeyframeAnimation) TensionValues() []foundation.Number {
-	rv := objc.Send[[]foundation.Number](k_.ID, objc.Sel("tensionValues"))
-	return rv
-}
-
-
-// SetTensionValues sets the value of the tensionValues property.
-// An array of numbers that define the tightness of the curve.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
-func (k_ KeyframeAnimation) SetTensionValues(value []foundation.INumber) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](k_.ID, objc.Sel("setTensionValues:"), nsArray)
-}
 
 // An optional array of objects that define the pacing for each keyframe segment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions
-func (k_ KeyframeAnimation) TimingFunctions() []MediaTimingFunction {
+func (k_ KeyframeAnimation) TimingFunctions() []IMediaTimingFunction {
 	rv := objc.Send[[]MediaTimingFunction](k_.ID, objc.Sel("timingFunctions"))
 	return rv
 }
 
 
-// SetTimingFunctions sets the value of the timingFunctions property.
 // An optional array of objects that define the pacing for each keyframe segment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions
-func (k_ KeyframeAnimation) SetTimingFunctions(value []MediaTimingFunction) {
+func (k_ KeyframeAnimation) SetTimingFunctions(value []IMediaTimingFunction) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -295,21 +136,155 @@ func (k_ KeyframeAnimation) SetTimingFunctions(value []MediaTimingFunction) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setTimingFunctions:"), nsArray)
 }
 
-// An array of objects that specify the keyframe values to use for the animation.
+
+// An array of numbers that define the position of the curve relative to a control point.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/values
-func (k_ KeyframeAnimation) Values() objc.ID {
-	rv := objc.Send[objc.ID](k_.ID, objc.Sel("values"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/biasvalues
+func (k_ KeyframeAnimation) BiasValues() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](k_.ID, objc.Sel("biasValues"))
 	return rv
 }
 
 
-// SetValues sets the value of the values property.
-// An array of objects that specify the keyframe values to use for the animation.
-
+// An array of numbers that define the position of the curve relative to a control point.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/values
-func (k_ KeyframeAnimation) SetValues(value objc.ID) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/biasvalues
+func (k_ KeyframeAnimation) SetBiasValues(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setBiasValues:"), value)
+}
+
+
+// Specifies how intermediate keyframe values are calculated by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/calculationmode
+func (k_ KeyframeAnimation) CalculationMode() AnimationCalculationMode /* not a class type */ {
+	rv := objc.Send[AnimationCalculationMode](k_.ID, objc.Sel("calculationMode"))
+	return rv
+}
+
+
+// Specifies how intermediate keyframe values are calculated by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/calculationmode
+func (k_ KeyframeAnimation) SetCalculationMode(value AnimationCalculationMode /* not a class type */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setCalculationMode:"), value)
+}
+
+
+// An array of numbers that define the sharpness of the timing curve’s corners.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/continuityvalues
+func (k_ KeyframeAnimation) ContinuityValues() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](k_.ID, objc.Sel("continuityValues"))
+	return rv
+}
+
+
+// An array of numbers that define the sharpness of the timing curve’s corners.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/continuityvalues
+func (k_ KeyframeAnimation) SetContinuityValues(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setContinuityValues:"), value)
+}
+
+
+// An optional array of
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes
+func (k_ KeyframeAnimation) KeyTimes() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](k_.ID, objc.Sel("keyTimes"))
+	return rv
+}
+
+
+// An optional array of
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes
+func (k_ KeyframeAnimation) SetKeyTimes(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setKeyTimes:"), value)
+}
+
+
+// The path for a point-based property to follow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/path
+func (k_ KeyframeAnimation) Path() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](k_.ID, objc.Sel("path"))
+	return rv
+}
+
+
+// The path for a point-based property to follow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/path
+func (k_ KeyframeAnimation) SetPath(value objectivec.IObject) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setPath:"), value)
+}
+
+
+// Determines whether objects animating along the path rotate to match the path tangent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/rotationmode
+func (k_ KeyframeAnimation) RotationMode() AnimationRotationMode /* not a class type */ {
+	rv := objc.Send[AnimationRotationMode](k_.ID, objc.Sel("rotationMode"))
+	return rv
+}
+
+
+// Determines whether objects animating along the path rotate to match the path tangent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/rotationmode
+func (k_ KeyframeAnimation) SetRotationMode(value AnimationRotationMode /* not a class type */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setRotationMode:"), value)
+}
+
+
+// An array of numbers that define the tightness of the curve.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/tensionvalues
+func (k_ KeyframeAnimation) TensionValues() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](k_.ID, objc.Sel("tensionValues"))
+	return rv
+}
+
+
+// An array of numbers that define the tightness of the curve.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/tensionvalues
+func (k_ KeyframeAnimation) SetTensionValues(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setTensionValues:"), value)
+}
+
+
+// An array of objects that specify the keyframe values to use for the animation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/values
+func (k_ KeyframeAnimation) Values() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("values"))
+	return rv
+}
+
+
+// An array of objects that specify the keyframe values to use for the animation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/values
+func (k_ KeyframeAnimation) SetValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setValues:"), value)
 }
 

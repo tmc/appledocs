@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKQuerySubscription] class.
@@ -122,7 +123,7 @@ func (c_ CKQuerySubscription) SetZoneID(value ICKRecordZoneID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerysubscription/predicate
 func (c_ CKQuerySubscription) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 

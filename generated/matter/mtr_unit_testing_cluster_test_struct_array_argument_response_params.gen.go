@@ -31,6 +31,7 @@ type _MTRUnitTestingClusterTestStructArrayArgumentResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestStructArrayArgumentResponseParams] class.
 type IMTRUnitTestingClusterTestStructArrayArgumentResponseParams interface {
 	objectivec.IObject
+	// properties:
 	Arg1() unsafe.Pointer
 	SetArg1(value unsafe.Pointer)
 	Arg2() unsafe.Pointer
@@ -39,15 +40,18 @@ type IMTRUnitTestingClusterTestStructArrayArgumentResponseParams interface {
 	SetArg3(value unsafe.Pointer)
 	Arg4() unsafe.Pointer
 	SetArg4(value unsafe.Pointer)
-	Arg5() foundation.Number
-	SetArg5(value foundation.INumber)
-	Arg6() foundation.Number
-	SetArg6(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	Arg5() objc.IObject /* cross-framework: NSNumber */
+	SetArg5(value objc.IObject /* cross-framework: NSNumber */)
+	Arg6() objc.IObject /* cross-framework: NSNumber */
+	SetArg6(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestStructArrayArgumentResponseParams
 type MTRUnitTestingClusterTestStructArrayArgumentResponseParams struct {
 	objectivec.Object
@@ -90,7 +94,8 @@ func NewMTRUnitTestingClusterTestStructArrayArgumentResponseParams() MTRUnitTest
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -98,14 +103,14 @@ func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg1() unsa
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg2
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg2() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg2"))
@@ -113,14 +118,14 @@ func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg2() unsa
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg2
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg2(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg3
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg3() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg3"))
@@ -128,14 +133,14 @@ func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg3() unsa
 }
 
 
-// SetArg3 sets the value of the arg3 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg3
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg3(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg4
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg4() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg4"))
@@ -143,55 +148,54 @@ func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg4() unsa
 }
 
 
-// SetArg4 sets the value of the arg4 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg4
 func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg4(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg5
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg5() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg5"))
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg5() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg5"))
 	return rv
 }
 
 
-// SetArg5 sets the value of the arg5 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg5
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg5(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg5(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg6
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg6() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg6"))
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) Arg6() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg6"))
 	return rv
 }
 
 
-// SetArg6 sets the value of the arg6 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/arg6
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg6(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetArg6(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterteststructarrayargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestStructArrayArgumentResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

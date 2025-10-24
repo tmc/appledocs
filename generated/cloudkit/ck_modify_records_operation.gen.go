@@ -33,10 +33,10 @@ type ICKModifyRecordsOperation interface {
 	// properties:
 	SavePolicy() unsafe.Pointer
 	SetSavePolicy(value unsafe.Pointer)
-	ClientChangeTokenData() foundation.objc.IObject /* cross-framework: Data */
-	SetClientChangeTokenData(value foundation.objc.IObject /* cross-framework: Data */)
-	IsAtomic() bool /* primitive/slice/pointer. */
-	SetIsAtomic(value bool /* primitive/slice/pointer. */)
+	ClientChangeTokenData() objc.IObject /* cross-framework: Data */
+	SetClientChangeTokenData(value objc.IObject /* cross-framework: Data */)
+	IsAtomic() bool
+	SetIsAtomic(value bool)
 	ModifyRecordsCompletionBlock() unsafe.Pointer
 	SetModifyRecordsCompletionBlock(value unsafe.Pointer)
 	ModifyRecordsResultBlock() unsafe.Pointer
@@ -140,7 +140,7 @@ func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.objc.IObject /* cross-framework: Data */ {
+func (c_ CKModifyRecordsOperation) ClientChangeTokenData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("clientChangeTokenData"))
 	return rv
 }
@@ -150,7 +150,7 @@ func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
 }
 
@@ -159,7 +159,7 @@ func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) IsAtomic() bool /* primitive/slice/pointer. */ {
+func (c_ CKModifyRecordsOperation) IsAtomic() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAtomic"))
 	return rv
 }
@@ -169,7 +169,7 @@ func (c_ CKModifyRecordsOperation) IsAtomic() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool /* primitive/slice/pointer. */) {
+func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAtomic:"), value)
 }
 

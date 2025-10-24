@@ -30,13 +30,17 @@ type _MTRModeSelectClusterSemanticTagClass struct {
 // An interface definition for the [MTRModeSelectClusterSemanticTag] class.
 type IMTRModeSelectClusterSemanticTag interface {
 	IMTRModeSelectClusterSemanticTagStruct
-	MfgCode() foundation.Number
-	SetMfgCode(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	MfgCode() objc.IObject /* cross-framework: NSNumber */
+	SetMfgCode(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRModeSelectClusterSemanticTag
 type MTRModeSelectClusterSemanticTag struct {
 	MTRModeSelectClusterSemanticTagStruct
@@ -81,33 +85,33 @@ func NewMTRModeSelectClusterSemanticTag() MTRModeSelectClusterSemanticTag {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/mfgcode
-func (m_ MTRModeSelectClusterSemanticTag) MfgCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRModeSelectClusterSemanticTag) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
 
-// SetMfgCode sets the value of the mfgCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/mfgcode
-func (m_ MTRModeSelectClusterSemanticTag) SetMfgCode(value foundation.INumber) {
+func (m_ MTRModeSelectClusterSemanticTag) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/value
-func (m_ MTRModeSelectClusterSemanticTag) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRModeSelectClusterSemanticTag) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/value
-func (m_ MTRModeSelectClusterSemanticTag) SetValue(value foundation.INumber) {
+func (m_ MTRModeSelectClusterSemanticTag) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

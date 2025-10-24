@@ -5,56 +5,7 @@ import (
 	"unsafe"
 )
 
-// CFAllocatorRef is a CoreGraphics opaque type.
-type CFAllocatorRef unsafe.Pointer
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDataRef is a CoreGraphics opaque type.
-type CFDataRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
-// CFLocaleRef is a CoreGraphics opaque type.
-type CFLocaleRef unsafe.Pointer
-
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
-
-// CFURLRef is a CoreGraphics opaque type.
-type CFURLRef unsafe.Pointer
-
-// CFWriteStreamRef is a CoreGraphics opaque type.
-type CFWriteStreamRef unsafe.Pointer
-
-
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type AllocatorRef = int
-
-type ArrayRef = int
-
-type DataRef = int
-
-type DictionaryRef = int
-
-type Index = int
-
-type LocaleRef = int
-
-type OptionFlags = int
-
-type StringRef = int
-
-type TypeID = int
-
-type URLRef = int
-
-type WriteStreamRef = int
 
 
 

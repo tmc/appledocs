@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _KeyClass struct {
 type IKey interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	Scope() string /* primitive/slice/pointer. */
-	SetScope(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Scope() objc.IObject /* cross-framework: NSString */
+	SetScope(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -95,8 +96,8 @@ func NewKey() Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-func (k_ Key) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](k_.ID, objc.Sel("name"))
+func (k_ Key) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](k_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (k_ Key) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-func (k_ Key) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), objc.String(value))
+func (k_ Key) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -114,8 +115,8 @@ func (k_ Key) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) Scope() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
+func (k_ Key) Scope() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](k_.ID, objc.Sel("scope"))
 	return rv
 }
 
@@ -124,8 +125,8 @@ func (k_ Key) Scope() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) SetScope(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
+func (k_ Key) SetScope(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), value)
 }
 
 

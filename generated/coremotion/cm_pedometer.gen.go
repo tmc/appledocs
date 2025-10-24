@@ -33,10 +33,8 @@ type IPedometer interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	QueryPedometerDataFromDateToDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */)
-	StartPedometerEventUpdatesWithHandler(handler PedometerEventHandler /* not a class type */)
-	StartPedometerUpdatesFromDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */)
-	StopPedometerEventUpdates()
+	QueryPedometerDataFromDateToDateWithHandler(start objc.IObject /* cross-framework: NSDate */, end objc.IObject /* cross-framework: NSDate */, handler PedometerHandler /* not a class type */)
+	StartPedometerUpdatesFromDateWithHandler(start objc.IObject /* cross-framework: NSDate */, handler PedometerHandler /* not a class type */)
 	StopPedometerUpdates()
 }
 
@@ -107,7 +105,7 @@ func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isCadenceAvailable()
-func (pc _PedometerClass) IsCadenceAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsCadenceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isCadenceAvailable"))
 	return rv
 }
@@ -117,7 +115,7 @@ func (pc _PedometerClass) IsCadenceAvailable() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isDistanceAvailable()
-func (pc _PedometerClass) IsDistanceAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsDistanceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isDistanceAvailable"))
 	return rv
 }
@@ -127,7 +125,7 @@ func (pc _PedometerClass) IsDistanceAvailable() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()
-func (pc _PedometerClass) IsFloorCountingAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsFloorCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isFloorCountingAvailable"))
 	return rv
 }
@@ -137,7 +135,7 @@ func (pc _PedometerClass) IsFloorCountingAvailable() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPaceAvailable()
-func (pc _PedometerClass) IsPaceAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsPaceAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPaceAvailable"))
 	return rv
 }
@@ -147,7 +145,7 @@ func (pc _PedometerClass) IsPaceAvailable() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()
-func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPedometerEventTrackingAvailable"))
 	return rv
 }
@@ -157,7 +155,7 @@ func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()
-func (pc _PedometerClass) IsStepCountingAvailable() bool /* primitive/slice/pointer. */ {
+func (pc _PedometerClass) IsStepCountingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }
@@ -167,17 +165,8 @@ func (pc _PedometerClass) IsStepCountingAvailable() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)
-func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */) {
+func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start objc.IObject /* cross-framework: NSDate */, end objc.IObject /* cross-framework: NSDate */, handler PedometerHandler /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("queryPedometerDataFromDate:toDate:withHandler:"), start, end, handler)
-}
-
-
-// Starts the delivery of pedometer events to your app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)
-func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler PedometerEventHandler /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerEventUpdatesWithHandler:"), handler)
 }
 
 
@@ -185,17 +174,8 @@ func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler PedometerEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)
-func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */) {
+func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start objc.IObject /* cross-framework: NSDate */, handler PedometerHandler /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerUpdatesFromDate:withHandler:"), start, handler)
-}
-
-
-// Stops the delivery of pedometer events to your app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/stopEventUpdates()
-func (p_ Pedometer) StopPedometerEventUpdates() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("stopPedometerEventUpdates"))
 }
 
 
@@ -206,6 +186,5 @@ func (p_ Pedometer) StopPedometerEventUpdates() {
 func (p_ Pedometer) StopPedometerUpdates() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopPedometerUpdates"))
 }
-
 
 

@@ -31,17 +31,21 @@ type _MTRThreadNetworkDirectoryClusterThreadNetworkStructClass struct {
 // An interface definition for the [MTRThreadNetworkDirectoryClusterThreadNetworkStruct] class.
 type IMTRThreadNetworkDirectoryClusterThreadNetworkStruct interface {
 	objectivec.IObject
-	ActiveTimestamp() foundation.Number
-	SetActiveTimestamp(value foundation.INumber)
-	Channel() foundation.Number
-	SetChannel(value foundation.INumber)
-	ExtendedPanID() foundation.NSData
-	SetExtendedPanID(value foundation.IData)
-	NetworkName() string
-	SetNetworkName(value string)
+	// properties:
+	ActiveTimestamp() objc.IObject /* cross-framework: NSNumber */
+	SetActiveTimestamp(value objc.IObject /* cross-framework: NSNumber */)
+	Channel() objc.IObject /* cross-framework: NSNumber */
+	SetChannel(value objc.IObject /* cross-framework: NSNumber */)
+	ExtendedPanID() objc.IObject /* cross-framework: NSData */
+	SetExtendedPanID(value objc.IObject /* cross-framework: NSData */)
+	NetworkName() objc.IObject /* cross-framework: NSString */
+	SetNetworkName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct
 type MTRThreadNetworkDirectoryClusterThreadNetworkStruct struct {
 	objectivec.Object
@@ -84,64 +88,64 @@ func NewMTRThreadNetworkDirectoryClusterThreadNetworkStruct() MTRThreadNetworkDi
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/activeTimestamp
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("activeTimestamp"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("activeTimestamp"))
 	return rv
 }
 
 
-// SetActiveTimestamp sets the value of the activeTimestamp property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/activeTimestamp
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestamp:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("channel"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("channel"))
 	return rv
 }
 
 
-// SetChannel sets the value of the channel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value foundation.INumber) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() foundation.NSData {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("extendedPanID"))
 	return rv
 }
 
 
-// SetExtendedPanID sets the value of the extendedPanID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(value foundation.IData) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
 
-// SetNetworkName sets the value of the networkName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
 
 

@@ -30,9 +30,13 @@ type _packetEncryptionClass struct {
 // An interface definition for the [packetEncryption] class.
 type IpacketEncryption interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-c.ivar
 type packetEncryption struct {
 	objectivec.Object

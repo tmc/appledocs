@@ -32,26 +32,26 @@ type IJSValue interface {
 	objectivec.IObject
 	// properties:
 	Context() IJSContext
-	IsArray() bool /* primitive/slice/pointer. */
-	SetIsArray(value bool /* primitive/slice/pointer. */)
-	IsBigInt() bool /* primitive/slice/pointer. */
-	SetIsBigInt(value bool /* primitive/slice/pointer. */)
-	IsBoolean() bool /* primitive/slice/pointer. */
-	SetIsBoolean(value bool /* primitive/slice/pointer. */)
-	IsDate() bool /* primitive/slice/pointer. */
-	SetIsDate(value bool /* primitive/slice/pointer. */)
-	IsNull() bool /* primitive/slice/pointer. */
-	SetIsNull(value bool /* primitive/slice/pointer. */)
-	IsNumber() bool /* primitive/slice/pointer. */
-	SetIsNumber(value bool /* primitive/slice/pointer. */)
-	IsObject() bool /* primitive/slice/pointer. */
-	SetIsObject(value bool /* primitive/slice/pointer. */)
-	IsString() bool /* primitive/slice/pointer. */
-	SetIsString(value bool /* primitive/slice/pointer. */)
-	IsSymbol() bool /* primitive/slice/pointer. */
-	SetIsSymbol(value bool /* primitive/slice/pointer. */)
-	IsUndefined() bool /* primitive/slice/pointer. */
-	SetIsUndefined(value bool /* primitive/slice/pointer. */)
+	IsArray() bool
+	SetIsArray(value bool)
+	IsBigInt() bool
+	SetIsBigInt(value bool)
+	IsBoolean() bool
+	SetIsBoolean(value bool)
+	IsDate() bool
+	SetIsDate(value bool)
+	IsNull() bool
+	SetIsNull(value bool)
+	IsNumber() bool
+	SetIsNumber(value bool)
+	IsObject() bool
+	SetIsObject(value bool)
+	IsString() bool
+	SetIsString(value bool)
+	IsSymbol() bool
+	SetIsSymbol(value bool)
+	IsUndefined() bool
+	SetIsUndefined(value bool)
 	JsValueRef() JSValueRef /* typedef */
 	SetJsValueRef(value JSValueRef /* typedef */)
 	// methods:
@@ -124,7 +124,7 @@ func (j_ JSValue) Context() IJSContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
-func (j_ JSValue) IsArray() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsArray() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isArray"))
 	return rv
 }
@@ -134,14 +134,14 @@ func (j_ JSValue) IsArray() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isarray
-func (j_ JSValue) SetIsArray(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsArray(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsArray:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
-func (j_ JSValue) IsBigInt() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsBigInt() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isBigInt"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (j_ JSValue) IsBigInt() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isbigint
-func (j_ JSValue) SetIsBigInt(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsBigInt(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsBigInt:"), value)
 }
 
@@ -158,7 +158,7 @@ func (j_ JSValue) SetIsBigInt(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isboolean
-func (j_ JSValue) IsBoolean() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsBoolean() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isBoolean"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (j_ JSValue) IsBoolean() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isboolean
-func (j_ JSValue) SetIsBoolean(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsBoolean(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsBoolean:"), value)
 }
 
@@ -177,7 +177,7 @@ func (j_ JSValue) SetIsBoolean(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
-func (j_ JSValue) IsDate() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsDate() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isDate"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (j_ JSValue) IsDate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isdate
-func (j_ JSValue) SetIsDate(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsDate(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsDate:"), value)
 }
 
@@ -196,7 +196,7 @@ func (j_ JSValue) SetIsDate(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
-func (j_ JSValue) IsNull() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsNull() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isNull"))
 	return rv
 }
@@ -206,7 +206,7 @@ func (j_ JSValue) IsNull() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnull
-func (j_ JSValue) SetIsNull(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsNull(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNull:"), value)
 }
 
@@ -215,7 +215,7 @@ func (j_ JSValue) SetIsNull(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
-func (j_ JSValue) IsNumber() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsNumber() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isNumber"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (j_ JSValue) IsNumber() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isnumber
-func (j_ JSValue) SetIsNumber(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsNumber(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsNumber:"), value)
 }
 
@@ -234,7 +234,7 @@ func (j_ JSValue) SetIsNumber(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
-func (j_ JSValue) IsObject() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsObject() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isObject"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (j_ JSValue) IsObject() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isobject
-func (j_ JSValue) SetIsObject(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsObject(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsObject:"), value)
 }
 
@@ -253,7 +253,7 @@ func (j_ JSValue) SetIsObject(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isstring
-func (j_ JSValue) IsString() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsString() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isString"))
 	return rv
 }
@@ -263,7 +263,7 @@ func (j_ JSValue) IsString() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isstring
-func (j_ JSValue) SetIsString(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsString(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsString:"), value)
 }
 
@@ -272,7 +272,7 @@ func (j_ JSValue) SetIsString(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/issymbol
-func (j_ JSValue) IsSymbol() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsSymbol() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isSymbol"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (j_ JSValue) IsSymbol() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/issymbol
-func (j_ JSValue) SetIsSymbol(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsSymbol(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsSymbol:"), value)
 }
 
@@ -291,7 +291,7 @@ func (j_ JSValue) SetIsSymbol(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isundefined
-func (j_ JSValue) IsUndefined() bool /* primitive/slice/pointer. */ {
+func (j_ JSValue) IsUndefined() bool {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isUndefined"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (j_ JSValue) IsUndefined() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/isundefined
-func (j_ JSValue) SetIsUndefined(value bool /* primitive/slice/pointer. */) {
+func (j_ JSValue) SetIsUndefined(value bool) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsUndefined:"), value)
 }
 

@@ -15,11 +15,11 @@ func ExampleNewABRecord() {
 	_ = addressbook.NewABRecord()
 	// Output:
 }
-// ExampleNewABRecordWithAddressBook demonstrates how to create a ABRecord instance using NewABRecordWithAddressBook.
-// Initializes a record using the given address book.
-func ExampleNewABRecordWithAddressBook() {
-	_ = addressbook.NewABRecordWithAddressBook(
-		addressbook.ABAddressBook{}, // addressBook ABAddressBook
-	)
+// ExampleABRecord_IsReadOnly demonstrates using IsReadOnly on a ABRecord instance.
+// Returns whether a record is read-only.
+func ExampleABRecord_IsReadOnly() {
+	obj := addressbook.NewABRecord()
+	_ = obj.IsReadOnly()
 	// Output:
-}
+	}
+

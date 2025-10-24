@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MKPinAnnotationView] class.
@@ -30,8 +31,8 @@ type _MKPinAnnotationViewClass struct {
 type IMKPinAnnotationView interface {
 	IMKAnnotationView
 	// properties:
-	AnimatesDrop() bool /* primitive/slice/pointer. */
-	SetAnimatesDrop(value bool /* primitive/slice/pointer. */)
+	AnimatesDrop() bool
+	SetAnimatesDrop(value bool)
 	PinColor() unsafe.Pointer
 	SetPinColor(value unsafe.Pointer)
 	PinTintColor() objc.IObject /* cross-framework: Color */
@@ -98,7 +99,7 @@ func NewMKPinAnnotationView() MKPinAnnotationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) AnimatesDrop() bool /* primitive/slice/pointer. */ {
+func (m_ MKPinAnnotationView) AnimatesDrop() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("animatesDrop"))
 	return rv
 }
@@ -108,7 +109,7 @@ func (m_ MKPinAnnotationView) AnimatesDrop() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool /* primitive/slice/pointer. */) {
+func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesDrop:"), value)
 }
 
@@ -137,7 +138,7 @@ func (m_ MKPinAnnotationView) SetPinColor(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
 func (m_ MKPinAnnotationView) PinTintColor() objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[Color](m_.ID, objc.Sel("pinTintColor"))
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("pinTintColor"))
 	return rv
 }
 

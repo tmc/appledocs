@@ -31,15 +31,19 @@ type _MTRDeviceTypeRevisionClass struct {
 // An interface definition for the [MTRDeviceTypeRevision] class.
 type IMTRDeviceTypeRevision interface {
 	objectivec.IObject
-	DeviceTypeID() foundation.Number
-	SetDeviceTypeID(value foundation.INumber)
-	DeviceTypeRevision() foundation.Number
-	SetDeviceTypeRevision(value foundation.INumber)
-	TypeInformation() MTRDeviceType
-	SetTypeInformation(value MTRDeviceType)
+	// properties:
+	DeviceTypeID() objc.IObject /* cross-framework: NSNumber */
+	SetDeviceTypeID(value objc.IObject /* cross-framework: NSNumber */)
+	DeviceTypeRevision() objc.IObject /* cross-framework: NSNumber */
+	SetDeviceTypeRevision(value objc.IObject /* cross-framework: NSNumber */)
+	TypeInformation() IMTRDeviceType
+	SetTypeInformation(value IMTRDeviceType)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeRevision
 type MTRDeviceTypeRevision struct {
 	objectivec.Object
@@ -82,51 +86,52 @@ func NewMTRDeviceTypeRevision() MTRDeviceTypeRevision {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
-func (m_ MTRDeviceTypeRevision) DeviceTypeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceTypeID"))
+func (m_ MTRDeviceTypeRevision) DeviceTypeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("deviceTypeID"))
 	return rv
 }
 
 
-// SetDeviceTypeID sets the value of the deviceTypeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
-func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value foundation.INumber) {
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
-func (m_ MTRDeviceTypeRevision) DeviceTypeRevision() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deviceTypeRevision"))
+func (m_ MTRDeviceTypeRevision) DeviceTypeRevision() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("deviceTypeRevision"))
 	return rv
 }
 
 
-// SetDeviceTypeRevision sets the value of the deviceTypeRevision property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
-func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value foundation.INumber) {
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeRevision:"), value)
 }
 
+
 // Returns the MTRDeviceType corresponding to deviceTypeID,
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
-func (m_ MTRDeviceTypeRevision) TypeInformation() MTRDeviceType {
+func (m_ MTRDeviceTypeRevision) TypeInformation() IMTRDeviceType {
 	rv := objc.Send[MTRDeviceType](m_.ID, objc.Sel("typeInformation"))
 	return rv
 }
 
 
-// SetTypeInformation sets the value of the typeInformation property.
 // Returns the MTRDeviceType corresponding to deviceTypeID,
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
-func (m_ MTRDeviceTypeRevision) SetTypeInformation(value MTRDeviceType) {
+func (m_ MTRDeviceTypeRevision) SetTypeInformation(value IMTRDeviceType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTypeInformation:"), value)
 }
 

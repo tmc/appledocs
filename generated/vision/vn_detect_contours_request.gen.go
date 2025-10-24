@@ -30,22 +30,29 @@ type _DetectContoursRequestClass struct {
 // An interface definition for the [DetectContoursRequest] class.
 type IDetectContoursRequest interface {
 	IImageBasedRequest
-	Results() []ContoursObservation
+	// properties:
 	VNDetectContourRequestRevision1() int
 	ContrastAdjustment() float32
 	SetContrastAdjustment(value float32)
-	ContrastPivot() foundation.Number
-	SetContrastPivot(value foundation.INumber)
+	ContrastPivot() objc.IObject /* cross-framework: NSNumber */
+	SetContrastPivot(value objc.IObject /* cross-framework: NSNumber */)
 	DetectDarkOnLight() bool
 	SetDetectDarkOnLight(value bool)
 	DetectsDarkOnLight() bool
 	SetDetectsDarkOnLight(value bool)
 	MaximumImageDimension() int
 	SetMaximumImageDimension(value int)
+	Results() objc.IObject /* cross-framework: ContoursObservation */
+	SetResults(value objc.IObject /* cross-framework: ContoursObservation */)
+	// methods:
 }
 
 // A request that detects the contours of the edges of an image.
+
+
+// A request that detects the contours of the edges of an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest
 type DetectContoursRequest struct {
 	ImageBasedRequest
@@ -92,24 +99,20 @@ func NewDetectContoursRequest() DetectContoursRequest {
 }
 
 
-// The results of the request to detect contours.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectContoursRequest/results
-func (d_ DetectContoursRequest) Results() []ContoursObservation {
-	rv := objc.Send[[]ContoursObservation](d_.ID, objc.Sel("results"))
-	return rv
-}
 
 // A constant for specifying revision 1 of the contours detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontourrequestrevision1
 func (d_ DetectContoursRequest) VNDetectContourRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectContourRequestRevision1"))
 	return rv
 }
 
+
 // The amount by which to adjust the image contrast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastadjustment
 func (d_ DetectContoursRequest) ContrastAdjustment() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("contrastAdjustment"))
@@ -117,35 +120,37 @@ func (d_ DetectContoursRequest) ContrastAdjustment() float32 {
 }
 
 
-// SetContrastAdjustment sets the value of the contrastAdjustment property.
 // The amount by which to adjust the image contrast.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastadjustment
 func (d_ DetectContoursRequest) SetContrastAdjustment(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastAdjustment:"), value)
 }
 
+
 // The pixel value to use as a pivot for the contrast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastpivot
-func (d_ DetectContoursRequest) ContrastPivot() foundation.Number {
-	rv := objc.Send[foundation.Number](d_.ID, objc.Sel("contrastPivot"))
+func (d_ DetectContoursRequest) ContrastPivot() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](d_.ID, objc.Sel("contrastPivot"))
 	return rv
 }
 
 
-// SetContrastPivot sets the value of the contrastPivot property.
 // The pixel value to use as a pivot for the contrast.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastpivot
-func (d_ DetectContoursRequest) SetContrastPivot(value foundation.INumber) {
+func (d_ DetectContoursRequest) SetContrastPivot(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastPivot:"), value)
 }
 
+
 // A Boolean value that indicates whether the request detects a dark object on a light background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/detectdarkonlight
 func (d_ DetectContoursRequest) DetectDarkOnLight() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("detectDarkOnLight"))
@@ -153,17 +158,18 @@ func (d_ DetectContoursRequest) DetectDarkOnLight() bool {
 }
 
 
-// SetDetectDarkOnLight sets the value of the detectDarkOnLight property.
 // A Boolean value that indicates whether the request detects a dark object on a light background.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/detectdarkonlight
 func (d_ DetectContoursRequest) SetDetectDarkOnLight(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDetectDarkOnLight:"), value)
 }
 
+
 // A Boolean value that indicates whether the request detects a dark object on a light background to aid in detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/detectsdarkonlight
 func (d_ DetectContoursRequest) DetectsDarkOnLight() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("detectsDarkOnLight"))
@@ -171,17 +177,18 @@ func (d_ DetectContoursRequest) DetectsDarkOnLight() bool {
 }
 
 
-// SetDetectsDarkOnLight sets the value of the detectsDarkOnLight property.
 // A Boolean value that indicates whether the request detects a dark object on a light background to aid in detection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/detectsdarkonlight
 func (d_ DetectContoursRequest) SetDetectsDarkOnLight(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDetectsDarkOnLight:"), value)
 }
 
+
 // The maximum image dimension to use for contour detection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/maximumimagedimension
 func (d_ DetectContoursRequest) MaximumImageDimension() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("maximumImageDimension"))
@@ -189,13 +196,31 @@ func (d_ DetectContoursRequest) MaximumImageDimension() int {
 }
 
 
-// SetMaximumImageDimension sets the value of the maximumImageDimension property.
 // The maximum image dimension to use for contour detection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/maximumimagedimension
 func (d_ DetectContoursRequest) SetMaximumImageDimension(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumImageDimension:"), value)
+}
+
+
+// The results of the request to detect contours.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
+func (d_ DetectContoursRequest) Results() objc.IObject /* cross-framework: ContoursObservation */ {
+	rv := objc.Send[ContoursObservation](d_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// The results of the request to detect contours.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/results
+func (d_ DetectContoursRequest) SetResults(value objc.IObject /* cross-framework: ContoursObservation */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
 

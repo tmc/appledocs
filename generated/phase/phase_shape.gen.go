@@ -30,15 +30,21 @@ type _PHASEShapeClass struct {
 // An interface definition for the [PHASEShape] class.
 type IPHASEShape interface {
 	objectivec.IObject
-	Elements() []PHASEShapeElement
-	Shapes() PHASEShape
+	// properties:
+	Elements() []IPHASEShapeElement
+	Shapes() IPHASEShape
 	SetShapes(value IPHASEShape)
+	// methods:
 }
 
 // A collection of points that connect to form a 3D volume.
 //
 // To define your scene’s important 3D volumes, create one or more of the following surfaces and add them to your scene’s array: The audio-emitting surface of a volumetric The audio-deflecting surface and texture of a
+
+
+// A collection of points that connect to form a 3D volume.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape
 type PHASEShape struct {
 	objectivec.Object
@@ -84,9 +90,9 @@ func NewPHASEShape() PHASEShape {
 
 
 
-
 // Creates an object that the given geometric data shapes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:)
 func NewPHASEShapeWithEngineMesh(engine IPHASEEngine, mesh unsafe.Pointer) PHASEShape {
 	instance := getPHASEShapeClass().Alloc()
@@ -96,11 +102,11 @@ func NewPHASEShapeWithEngineMesh(engine IPHASEEngine, mesh unsafe.Pointer) PHASE
 }
 
 
-
 // Creates an object of a specific material that the given geometric data shapes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:materials:)
-func NewPHASEShapeWithEngineMeshMaterials(engine IPHASEEngine, mesh unsafe.Pointer, materials []PHASEMaterial) PHASEShape {
+func NewPHASEShapeWithEngineMeshMaterials(engine IPHASEEngine, mesh unsafe.Pointer, materials []IPHASEMaterial) PHASEShape {
 	instance := getPHASEShapeClass().Alloc()
 	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:materials:"), engine, mesh, materials)
 	rv.Autorelease()
@@ -108,27 +114,30 @@ func NewPHASEShapeWithEngineMeshMaterials(engine IPHASEEngine, mesh unsafe.Point
 }
 
 
+
 // An array of objects that collectively describe the physical characteristics of a surface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/elements
-func (p_ PHASEShape) Elements() []PHASEShapeElement {
+func (p_ PHASEShape) Elements() []IPHASEShapeElement {
 	rv := objc.Send[[]PHASEShapeElement](p_.ID, objc.Sel("elements"))
 	return rv
 }
 
+
 // An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
-func (p_ PHASEShape) Shapes() PHASEShape {
+func (p_ PHASEShape) Shapes() IPHASEShape {
 	rv := objc.Send[PHASEShape](p_.ID, objc.Sel("shapes"))
 	return rv
 }
 
 
-// SetShapes sets the value of the shapes property.
 // An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
 func (p_ PHASEShape) SetShapes(value IPHASEShape) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShapes:"), value)

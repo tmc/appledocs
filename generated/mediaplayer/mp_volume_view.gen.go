@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [VolumeView] class.
@@ -31,35 +31,22 @@ type _VolumeViewClass struct {
 // An interface definition for the [VolumeView] class.
 type IVolumeView interface {
 	appkit.IView
-	MaximumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image
-	MinimumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image
-	RouteButtonImageForState(state unsafe.Pointer) appkit.Image
-	RouteButtonRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect
-	SetMaximumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer)
-	SetMinimumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer)
-	SetRouteButtonImageForState(image appkit.IImage, state unsafe.Pointer)
-	SetVolumeThumbImageForState(image appkit.IImage, state unsafe.Pointer)
-	VolumeSliderRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect
-	VolumeThumbImageForState(state unsafe.Pointer) appkit.Image
-	VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value float32) coregraphics.CGRect
-	WirelessRoutesAvailable() bool
-	WirelessRouteActive() bool
-	ShowsRouteButton() bool
-	SetShowsRouteButton(value bool)
-	ShowsVolumeSlider() bool
-	SetShowsVolumeSlider(value bool)
-	VolumeWarningSliderImage() appkit.Image
-	SetVolumeWarningSliderImage(value appkit.IImage)
+	// properties:
 	AreWirelessRoutesAvailable() bool
 	SetAreWirelessRoutesAvailable(value bool)
 	IsWirelessRouteActive() bool
 	SetIsWirelessRouteActive(value bool)
+	// methods:
 }
 
 // A slider control for setting the system audio output volume, and a button for choosing the audio output route.
 //
 // Use a volume view to present the user with a slider control for setting the system audio output volume, and a button for choosing the audio output route when the option is available. When first displayed, the slider’s position reflects the current system audio output volume. As the user drags the slider, the changes update the volume view. If the user presses the device volume buttons while sound is playing, the slider moves to reflect the new volume. If there’s an Apple TV or other AirPlay-enabled device in range, the route button allows the user to choose it. If there’s only one audio output route available, the view doesn’t display the route button. The view also doesn’t display a route button when the app runs in visionOS. Use this class by embedding an instance of it in your view hierarchy. The following code snippet assumes you’ve placed an instance of the class on a view using Interface Builder, sizing and positioning it as desired to contain the volume view. Point to the instance with an outlet variable—named, in the case of this example, . You’d typically place code like that shown in the following code in your method. Listing 1. Adding a volume view to your view hierarchy When an audio output route that doesn’t support volume control, such as a car head unit, is active, the system replaces the volume slider with the route name. To instead display a volume slider as an alert, use the functions described in .
+
+
+// A slider control for setting the system audio output volume, and a button for choosing the audio output route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView
 type VolumeView struct {
 	appkit.View
@@ -106,162 +93,10 @@ func NewVolumeView() VolumeView {
 }
 
 
-// Returns the maximum volume image associated with the specified control state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/maximumVolumeSliderImage(for:)
-func (v_ VolumeView) MaximumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("maximumVolumeSliderImageForState:"), state)
-	return rv
-}
-
-// Returns the minimum volume image associated with the specified control state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/minimumVolumeSliderImage(for:)
-func (v_ VolumeView) MinimumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("minimumVolumeSliderImageForState:"), state)
-	return rv
-}
-
-// Returns the button image associated with the specified control state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)
-func (v_ VolumeView) RouteButtonImageForState(state unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("routeButtonImageForState:"), state)
-	return rv
-}
-
-// Returns the drawing rectangle for the route button.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/routeButtonRect(forBounds:)
-func (v_ VolumeView) RouteButtonRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("routeButtonRectForBounds:"), bounds)
-	return rv
-}
-
-// Assigns a maximum volume slider image to the specified control states.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMaximumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumVolumeSliderImage:forState:"), image, state)
-}
-
-// Assigns a minimum volume slider image to the specified control states.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMinimumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMinimumVolumeSliderImage:forState:"), image, state)
-}
-
-// Assigns a button image to the specified control states.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setRouteButtonImage(_:for:)
-func (v_ VolumeView) SetRouteButtonImageForState(image appkit.IImage, state unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setRouteButtonImage:forState:"), image, state)
-}
-
-// Assigns a thumb image to the specified control states.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setVolumeThumbImage(_:for:)
-func (v_ VolumeView) SetVolumeThumbImageForState(image appkit.IImage, state unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeThumbImage:forState:"), image, state)
-}
-
-// Returns the drawing rectangle for the slider’s track.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeSliderRect(forBounds:)
-func (v_ VolumeView) VolumeSliderRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("volumeSliderRectForBounds:"), bounds)
-	return rv
-}
-
-// Returns the thumb image associated with the specified control state.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbImage(for:)
-func (v_ VolumeView) VolumeThumbImageForState(state unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeThumbImageForState:"), state)
-	return rv
-}
-
-// Returns the drawing rectangle for the volume slider’s thumb image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbRect(forBounds:volumeSliderRect:value:)
-func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value float32) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("volumeThumbRectForBounds:volumeSliderRect:value:"), bounds, rect, value)
-	return rv
-}
 
 // A Boolean value indicating wireless routes are available.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/areWirelessRoutesAvailable
-func (v_ VolumeView) WirelessRoutesAvailable() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("wirelessRoutesAvailable"))
-	return rv
-}
-
-// A Boolean value that indicates whether the wireless route is active.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/isWirelessRouteActive
-func (v_ VolumeView) WirelessRouteActive() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("wirelessRouteActive"))
-	return rv
-}
-
-// A Boolean value that indicates whether the route button is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/showsRouteButton
-func (v_ VolumeView) ShowsRouteButton() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("showsRouteButton"))
-	return rv
-}
-
-
-// SetShowsRouteButton sets the value of the showsRouteButton property.
-// A Boolean value that indicates whether the route button is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/showsRouteButton
-func (v_ VolumeView) SetShowsRouteButton(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
-
-// A Boolean value that indicates the volume slider is visible in the volume view.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/showsVolumeSlider
-func (v_ VolumeView) ShowsVolumeSlider() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("showsVolumeSlider"))
-	return rv
-}
-
-
-// SetShowsVolumeSlider sets the value of the showsVolumeSlider property.
-// A Boolean value that indicates the volume slider is visible in the volume view.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/showsVolumeSlider
-func (v_ VolumeView) SetShowsVolumeSlider(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setShowsVolumeSlider:"), value)
-}
-
-// The image used to designate the European Union volume limit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
-func (v_ VolumeView) VolumeWarningSliderImage() appkit.Image {
-	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeWarningSliderImage"))
-	return rv
-}
-
-
-// SetVolumeWarningSliderImage sets the value of the volumeWarningSliderImage property.
-// The image used to designate the European Union volume limit.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
-func (v_ VolumeView) SetVolumeWarningSliderImage(value appkit.IImage) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeWarningSliderImage:"), value)
-}
-
-// A Boolean value indicating wireless routes are available.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
 func (v_ VolumeView) AreWirelessRoutesAvailable() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("areWirelessRoutesAvailable"))
@@ -269,17 +104,18 @@ func (v_ VolumeView) AreWirelessRoutesAvailable() bool {
 }
 
 
-// SetAreWirelessRoutesAvailable sets the value of the areWirelessRoutesAvailable property.
 // A Boolean value indicating wireless routes are available.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/arewirelessroutesavailable
 func (v_ VolumeView) SetAreWirelessRoutesAvailable(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAreWirelessRoutesAvailable:"), value)
 }
 
+
 // A Boolean value that indicates whether the wireless route is active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
 func (v_ VolumeView) IsWirelessRouteActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isWirelessRouteActive"))
@@ -287,15 +123,12 @@ func (v_ VolumeView) IsWirelessRouteActive() bool {
 }
 
 
-// SetIsWirelessRouteActive sets the value of the isWirelessRouteActive property.
 // A Boolean value that indicates whether the wireless route is active.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/iswirelessrouteactive
 func (v_ VolumeView) SetIsWirelessRouteActive(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsWirelessRouteActive:"), value)
 }
-
-
 
 

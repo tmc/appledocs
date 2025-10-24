@@ -30,23 +30,29 @@ type _BackForwardListClass struct {
 // An interface definition for the [BackForwardList] class.
 type IBackForwardList interface {
 	objectivec.IObject
-	ForwardList() []BackForwardListItem
-	BackItem() WKBackForwardListItem
+	// properties:
+	ForwardList() []IBackForwardListItem
+	BackItem() IWKBackForwardListItem
 	SetBackItem(value IWKBackForwardListItem)
-	BackList() WKBackForwardListItem
+	BackList() IWKBackForwardListItem
 	SetBackList(value IWKBackForwardListItem)
-	CurrentItem() WKBackForwardListItem
+	CurrentItem() IWKBackForwardListItem
 	SetCurrentItem(value IWKBackForwardListItem)
-	ForwardItem() WKBackForwardListItem
+	ForwardItem() IWKBackForwardListItem
 	SetForwardItem(value IWKBackForwardListItem)
-	BackForwardList() WKBackForwardList
+	BackForwardList() IWKBackForwardList
 	SetBackForwardList(value IWKBackForwardList)
+	// methods:
 }
 
 // An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.
 //
 // Use a object to retrieve a web view’s previously loaded pages. Typically, you don’t create objects directly. Each web view creates one automatically and uses it to store the history of all loaded pages. Fetch this object from your web view’s property and use its contents to facilitate programmatic navigation.
+
+
+// An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardList
 type BackForwardList struct {
 	objectivec.Object
@@ -91,99 +97,106 @@ func NewBackForwardList() BackForwardList {
 }
 
 
+
 // The array of items that follow the current item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardList/forwardList
-func (b_ BackForwardList) ForwardList() []BackForwardListItem {
+func (b_ BackForwardList) ForwardList() []IBackForwardListItem {
 	rv := objc.Send[[]BackForwardListItem](b_.ID, objc.Sel("forwardList"))
 	return rv
 }
 
+
 // The item immediately preceding the current item, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backitem
-func (b_ BackForwardList) BackItem() WKBackForwardListItem {
-	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("backItem"))
+func (b_ BackForwardList) BackItem() IWKBackForwardListItem {
+	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("backItem"))
 	return rv
 }
 
 
-// SetBackItem sets the value of the backItem property.
 // The item immediately preceding the current item, if any.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backitem
 func (b_ BackForwardList) SetBackItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackItem:"), value)
 }
 
+
 // The array of items that precede the current item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
-func (b_ BackForwardList) BackList() WKBackForwardListItem {
-	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("backList"))
+func (b_ BackForwardList) BackList() IWKBackForwardListItem {
+	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("backList"))
 	return rv
 }
 
 
-// SetBackList sets the value of the backList property.
 // The array of items that precede the current item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
 func (b_ BackForwardList) SetBackList(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackList:"), value)
 }
 
+
 // The current item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
-func (b_ BackForwardList) CurrentItem() WKBackForwardListItem {
-	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("currentItem"))
+func (b_ BackForwardList) CurrentItem() IWKBackForwardListItem {
+	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("currentItem"))
 	return rv
 }
 
 
-// SetCurrentItem sets the value of the currentItem property.
 // The current item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
 func (b_ BackForwardList) SetCurrentItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCurrentItem:"), value)
 }
 
+
 // The item immediately following the current item, if any.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/forwarditem
-func (b_ BackForwardList) ForwardItem() WKBackForwardListItem {
-	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("forwardItem"))
+func (b_ BackForwardList) ForwardItem() IWKBackForwardListItem {
+	rv := objc.Send[BackForwardListItem](b_.ID, objc.Sel("forwardItem"))
 	return rv
 }
 
 
-// SetForwardItem sets the value of the forwardItem property.
 // The item immediately following the current item, if any.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/forwarditem
 func (b_ BackForwardList) SetForwardItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setForwardItem:"), value)
 }
 
+
 // The web view’s back-forward list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
-func (b_ BackForwardList) BackForwardList() WKBackForwardList {
-	rv := objc.Send[WKBackForwardList](b_.ID, objc.Sel("backForwardList"))
+func (b_ BackForwardList) BackForwardList() IWKBackForwardList {
+	rv := objc.Send[BackForwardList](b_.ID, objc.Sel("backForwardList"))
 	return rv
 }
 
 
-// SetBackForwardList sets the value of the backForwardList property.
 // The web view’s back-forward list.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
 func (b_ BackForwardList) SetBackForwardList(value IWKBackForwardList) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackForwardList:"), value)

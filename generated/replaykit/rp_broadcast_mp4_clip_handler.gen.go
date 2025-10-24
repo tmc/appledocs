@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,14 +31,18 @@ type _RPBroadcastMP4ClipHandlerClass struct {
 // An interface definition for the [RPBroadcastMP4ClipHandler] class.
 type IRPBroadcastMP4ClipHandler interface {
 	IRPBroadcastHandler
-	FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration IRPBroadcastConfiguration, error_ foundation.IError)
-	ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.IURL, setupInfo unsafe.Pointer, finished bool)
+	// properties:
+	// methods:
 }
 
 // An object that processes MP4 movie clips from ReplayKit.
 //
 // Subclass this class to handle movie clips as ReplayKit records them during the broadcast. The system calls when a movie clip is available for processing.
+
+
+// An object that processes MP4 movie clips from ReplayKit.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler
 type RPBroadcastMP4ClipHandler struct {
 	RPBroadcastHandler
@@ -81,21 +86,6 @@ func (r_ RPBroadcastMP4ClipHandler) Autorelease() RPBroadcastMP4ClipHandler {
 // NewRPBroadcastMP4ClipHandler creates a new RPBroadcastMP4ClipHandler instance.
 func NewRPBroadcastMP4ClipHandler() RPBroadcastMP4ClipHandler {
 	return getRPBroadcastMP4ClipHandlerClass().New()
-}
-
-
-// Applies configuration update changes to the next MP4 movie clip.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler/finishedProcessingMP4Clip(withUpdatedBroadcastConfiguration:error:)
-func (r_ RPBroadcastMP4ClipHandler) FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration IRPBroadcastConfiguration, error_ foundation.IError) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("finishedProcessingMP4ClipWithUpdatedBroadcastConfiguration:error:"), broadcastConfiguration, error_)
-}
-
-// Processes MP4 movie clips for a live broadcast.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler/processMP4Clip(with:setupInfo:finished:)
-func (r_ RPBroadcastMP4ClipHandler) ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.IURL, setupInfo unsafe.Pointer, finished bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("processMP4ClipWithURL:setupInfo:finished:"), mp4ClipURL, setupInfo, finished)
 }
 
 

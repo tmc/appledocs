@@ -29,12 +29,18 @@ type _VZMacGraphicsDeviceClass struct {
 // An interface definition for the [VZMacGraphicsDevice] class.
 type IVZMacGraphicsDevice interface {
 	IVZGraphicsDevice
+	// properties:
+	// methods:
 }
 
 // An object that represents a Mac graphics device.
 //
 // You don’t instantiate a   directly. Graphics devices are first configured on the through a subclass of  .  When the framework creates a VZVirtualMachine from the configuration, the graphics devices are available through the property.
+
+
+// An object that represents a Mac graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDevice
 type VZMacGraphicsDevice struct {
 	VZGraphicsDevice

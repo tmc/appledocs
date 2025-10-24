@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNTextInputNotificationResponse] class.
@@ -29,13 +30,19 @@ type _UNTextInputNotificationResponseClass struct {
 // An interface definition for the [UNTextInputNotificationResponse] class.
 type IUNTextInputNotificationResponse interface {
 	IUNNotificationResponse
-	UserText() string
+	// properties:
+	UserText() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // The user’s response to an actionable notification, including any custom text that the user typed or dictated.
 //
 // The system delivers a object to your app so that you can process user-provided text content. When defining your categories, you can specify an object instead of an object for your action. If you do, the system creates an object when the user selects the accompanying action, and it fills the property with any user-entered text. You don’t create objects yourself. Instead, the shared user notification center object creates them and delivers them to the method of its delegate object. Use that method to extract any needed information from the response object and take appropriate action. For more information about responding to actions, see .
+
+
+// The user’s response to an actionable notification, including any custom text that the user typed or dictated.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationResponse
 type UNTextInputNotificationResponse struct {
 	UNNotificationResponse
@@ -82,11 +89,13 @@ func NewUNTextInputNotificationResponse() UNTextInputNotificationResponse {
 }
 
 
+
 // The text response provided by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationResponse/userText
-func (u_ UNTextInputNotificationResponse) UserText() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("userText"))
+func (u_ UNTextInputNotificationResponse) UserText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("userText"))
 	return rv
 }
 

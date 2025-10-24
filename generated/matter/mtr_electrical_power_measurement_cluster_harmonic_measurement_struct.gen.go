@@ -31,13 +31,17 @@ type _MTRElectricalPowerMeasurementClusterHarmonicMeasurementStructClass struct 
 // An interface definition for the [MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct] class.
 type IMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct interface {
 	objectivec.IObject
-	Measurement() foundation.Number
-	SetMeasurement(value foundation.INumber)
-	Order() foundation.Number
-	SetOrder(value foundation.INumber)
+	// properties:
+	Measurement() objc.IObject /* cross-framework: NSNumber */
+	SetMeasurement(value objc.IObject /* cross-framework: NSNumber */)
+	Order() objc.IObject /* cross-framework: NSNumber */
+	SetOrder(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct
 type MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct() MTRElect
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurement() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurement"))
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurement() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("measurement"))
 	return rv
 }
 
 
-// SetMeasurement sets the value of the measurement property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurement:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("order"))
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("order"))
 	return rv
 }
 
 
-// SetOrder sets the value of the order property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOrder:"), value)
 }
 

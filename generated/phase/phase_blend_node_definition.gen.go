@@ -29,17 +29,23 @@ type _PHASEBlendNodeDefinitionClass struct {
 // An interface definition for the [PHASEBlendNodeDefinition] class.
 type IPHASEBlendNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
-	AddRangeWithEnvelopeSubtree(envelope IPHASEEnvelope, subtree IPHASESoundEventNodeDefinition)
-	BlendParameterDefinition() PHASENumberMetaParameterDefinition
+	// properties:
+	BlendParameterDefinition() IPHASENumberMetaParameterDefinition
 	SetBlendParameterDefinition(value IPHASENumberMetaParameterDefinition)
-	SpatialMixerDefinitionForDistance() PHASESpatialMixerDefinition
+	SpatialMixerDefinitionForDistance() IPHASESpatialMixerDefinition
 	SetSpatialMixerDefinitionForDistance(value IPHASESpatialMixerDefinition)
+	// methods:
+	AddRangeWithEnvelopeSubtree(envelope IPHASEEnvelope, subtree IPHASESoundEventNodeDefinition)
 }
 
 // A node that smoothly fades between the audio of its child nodes.
 //
 // This class defines a threshold and a numeric parameter the app increases and decreases to fade between child nodes. Each child node defines a range within the threshold in which the child node plays audio. As the app moves the blend parameter value between and the threshold, the blend node plays the audio of its child nodes whose range and fade curve overlap at the current value.
+
+
+// A node that smoothly fades between the audio of its child nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition
 type PHASEBlendNodeDefinition struct {
 	PHASESoundEventNodeDefinition
@@ -87,9 +93,9 @@ func NewPHASEBlendNodeDefinition() PHASEBlendNodeDefinition {
 
 
 
-
 // Creates a blend node with a maxiumum blend range value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:)
 func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(blendMetaParameterDefinition IPHASENumberMetaParameterDefinition) PHASEBlendNodeDefinition {
 	instance := getPHASEBlendNodeDefinitionClass().Alloc()
@@ -100,55 +106,47 @@ func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(blendMetaParame
 
 
 
-// Creates a named blend node with a maxiumum blend range value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/init(blendMetaParameterDefinition:identifier:)
-func NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinitionIdentifier(blendMetaParameterDefinition IPHASENumberMetaParameterDefinition, identifier string) PHASEBlendNodeDefinition {
-	instance := getPHASEBlendNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEBlendNodeDefinition](instance.ID, objc.Sel("initWithBlendMetaParameterDefinition:identifier:"), blendMetaParameterDefinition, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
 // Adds a child node with an envelope.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEBlendNodeDefinition/addRange(envelope:subtree:)
 func (p_ PHASEBlendNodeDefinition) AddRangeWithEnvelopeSubtree(envelope IPHASEEnvelope, subtree IPHASESoundEventNodeDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addRangeWithEnvelope:subtree:"), envelope, subtree)
 }
 
+
 // The meta parameter definition that caps the blend range.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/blendparameterdefinition
-func (p_ PHASEBlendNodeDefinition) BlendParameterDefinition() PHASENumberMetaParameterDefinition {
+func (p_ PHASEBlendNodeDefinition) BlendParameterDefinition() IPHASENumberMetaParameterDefinition {
 	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("blendParameterDefinition"))
 	return rv
 }
 
 
-// SetBlendParameterDefinition sets the value of the blendParameterDefinition property.
 // The meta parameter definition that caps the blend range.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/blendparameterdefinition
 func (p_ PHASEBlendNodeDefinition) SetBlendParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBlendParameterDefinition:"), value)
 }
 
+
 // An object that combines spatial audio layers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
-func (p_ PHASEBlendNodeDefinition) SpatialMixerDefinitionForDistance() PHASESpatialMixerDefinition {
+func (p_ PHASEBlendNodeDefinition) SpatialMixerDefinitionForDistance() IPHASESpatialMixerDefinition {
 	rv := objc.Send[PHASESpatialMixerDefinition](p_.ID, objc.Sel("spatialMixerDefinitionForDistance"))
 	return rv
 }
 
 
-// SetSpatialMixerDefinitionForDistance sets the value of the spatialMixerDefinitionForDistance property.
 // An object that combines spatial audio layers.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseblendnodedefinition/spatialmixerdefinitionfordistance
 func (p_ PHASEBlendNodeDefinition) SetSpatialMixerDefinitionForDistance(value IPHASESpatialMixerDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialMixerDefinitionForDistance:"), value)

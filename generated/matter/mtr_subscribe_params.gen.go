@@ -30,23 +30,27 @@ type _MTRSubscribeParamsClass struct {
 // An interface definition for the [MTRSubscribeParams] class.
 type IMTRSubscribeParams interface {
 	IMTRReadParams
-	AutoResubscribe() foundation.Number
-	SetAutoResubscribe(value foundation.INumber)
-	KeepPreviousSubscriptions() foundation.Number
-	SetKeepPreviousSubscriptions(value foundation.INumber)
-	MaxInterval() foundation.Number
-	SetMaxInterval(value foundation.INumber)
-	MinInterval() foundation.Number
-	SetMinInterval(value foundation.INumber)
+	// properties:
+	AutoResubscribe() objc.IObject /* cross-framework: NSNumber */
+	SetAutoResubscribe(value objc.IObject /* cross-framework: NSNumber */)
+	KeepPreviousSubscriptions() objc.IObject /* cross-framework: NSNumber */
+	SetKeepPreviousSubscriptions(value objc.IObject /* cross-framework: NSNumber */)
+	MaxInterval() objc.IObject /* cross-framework: NSNumber */
+	SetMaxInterval(value objc.IObject /* cross-framework: NSNumber */)
+	MinInterval() objc.IObject /* cross-framework: NSNumber */
+	SetMinInterval(value objc.IObject /* cross-framework: NSNumber */)
 	ShouldReplaceExistingSubscriptions() bool
 	SetShouldReplaceExistingSubscriptions(value bool)
 	ShouldReportEventsUrgently() bool
 	SetShouldReportEventsUrgently(value bool)
 	ShouldResubscribeAutomatically() bool
 	SetShouldResubscribeAutomatically(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSubscribeParams
 type MTRSubscribeParams struct {
 	MTRReadParams
@@ -91,67 +95,68 @@ func NewMTRSubscribeParams() MTRSubscribeParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/autoresubscribe
-func (m_ MTRSubscribeParams) AutoResubscribe() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("autoResubscribe"))
+func (m_ MTRSubscribeParams) AutoResubscribe() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("autoResubscribe"))
 	return rv
 }
 
 
-// SetAutoResubscribe sets the value of the autoResubscribe property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/autoresubscribe
-func (m_ MTRSubscribeParams) SetAutoResubscribe(value foundation.INumber) {
+func (m_ MTRSubscribeParams) SetAutoResubscribe(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoResubscribe:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/keepprevioussubscriptions
-func (m_ MTRSubscribeParams) KeepPreviousSubscriptions() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("keepPreviousSubscriptions"))
+func (m_ MTRSubscribeParams) KeepPreviousSubscriptions() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("keepPreviousSubscriptions"))
 	return rv
 }
 
 
-// SetKeepPreviousSubscriptions sets the value of the keepPreviousSubscriptions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/keepprevioussubscriptions
-func (m_ MTRSubscribeParams) SetKeepPreviousSubscriptions(value foundation.INumber) {
+func (m_ MTRSubscribeParams) SetKeepPreviousSubscriptions(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeepPreviousSubscriptions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/maxinterval
-func (m_ MTRSubscribeParams) MaxInterval() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxInterval"))
+func (m_ MTRSubscribeParams) MaxInterval() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxInterval"))
 	return rv
 }
 
 
-// SetMaxInterval sets the value of the maxInterval property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/maxinterval
-func (m_ MTRSubscribeParams) SetMaxInterval(value foundation.INumber) {
+func (m_ MTRSubscribeParams) SetMaxInterval(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxInterval:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/mininterval
-func (m_ MTRSubscribeParams) MinInterval() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minInterval"))
+func (m_ MTRSubscribeParams) MinInterval() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minInterval"))
 	return rv
 }
 
 
-// SetMinInterval sets the value of the minInterval property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/mininterval
-func (m_ MTRSubscribeParams) SetMinInterval(value foundation.INumber) {
+func (m_ MTRSubscribeParams) SetMinInterval(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinInterval:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldreplaceexistingsubscriptions
 func (m_ MTRSubscribeParams) ShouldReplaceExistingSubscriptions() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldReplaceExistingSubscriptions"))
@@ -159,14 +164,14 @@ func (m_ MTRSubscribeParams) ShouldReplaceExistingSubscriptions() bool {
 }
 
 
-// SetShouldReplaceExistingSubscriptions sets the value of the shouldReplaceExistingSubscriptions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldreplaceexistingsubscriptions
 func (m_ MTRSubscribeParams) SetShouldReplaceExistingSubscriptions(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldReplaceExistingSubscriptions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldreporteventsurgently
 func (m_ MTRSubscribeParams) ShouldReportEventsUrgently() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldReportEventsUrgently"))
@@ -174,14 +179,14 @@ func (m_ MTRSubscribeParams) ShouldReportEventsUrgently() bool {
 }
 
 
-// SetShouldReportEventsUrgently sets the value of the shouldReportEventsUrgently property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldreporteventsurgently
 func (m_ MTRSubscribeParams) SetShouldReportEventsUrgently(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldReportEventsUrgently:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldresubscribeautomatically
 func (m_ MTRSubscribeParams) ShouldResubscribeAutomatically() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldResubscribeAutomatically"))
@@ -189,8 +194,7 @@ func (m_ MTRSubscribeParams) ShouldResubscribeAutomatically() bool {
 }
 
 
-// SetShouldResubscribeAutomatically sets the value of the shouldResubscribeAutomatically property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/shouldresubscribeautomatically
 func (m_ MTRSubscribeParams) SetShouldResubscribeAutomatically(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldResubscribeAutomatically:"), value)

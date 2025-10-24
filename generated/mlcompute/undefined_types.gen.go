@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in MLCompute
 	CActivationDescriptor = _undefined // referenced in MLCompute
 	CArithmeticOperation = _undefined // referenced in MLCompute
 	CComparisonOperation = _undefined // referenced in MLCompute
@@ -25,11 +24,9 @@ type (
 	CReductionType = _undefined // referenced in MLCompute
 	CSampleMode = _undefined // referenced in MLCompute
 	CSoftmaxOperation = _undefined // referenced in MLCompute
-	CTensorParameter = _undefined // referenced in MLCompute
 	CYOLOLossDescriptor = _undefined // referenced in MLCompute
 	Device = _undefined // referenced in MLCompute
 	Number = _undefined // referenced in MLCompute
-	UnsafeMutableRawPointer = _undefined // referenced in MLCompute
 )
 
 

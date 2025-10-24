@@ -9,11 +9,11 @@ import (
 // Suppress unused import errors
 var _ = scriptingbridge.NewSBApplication
 
-// ExampleNewSBApplicationWithBundleIdentifier demonstrates how to create a SBApplication instance using NewSBApplicationWithBundleIdentifier.
-// Returns an instance of an   subclass that represents the   target application identified by the given bundle identifier.
-func ExampleNewSBApplicationWithBundleIdentifier() {
-	_ = scriptingbridge.NewSBApplicationWithBundleIdentifier(
-		"ident", // ident string
-	)
+// ExampleSBApplication_Activate demonstrates using Activate on a SBApplication instance.
+// Moves the target application to the foreground immediately.
+func ExampleSBApplication_Activate() {
+	obj := scriptingbridge.NewSBApplication()
+	obj.Activate()
 	// Output:
-}
+	}
+

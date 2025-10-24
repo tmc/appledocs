@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GraphOperation] class.
@@ -29,20 +30,27 @@ type _GraphOperationClass struct {
 // An interface definition for the [GraphOperation] class.
 type IGraphOperation interface {
 	IGraphObject
-	Graph() MPSGraph
-	Name() string
-	ControlDependencies() MPSGraphOperation
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	ControlDependencies() IMPSGraphOperation
 	SetControlDependencies(value IMPSGraphOperation)
-	InputTensors() MPSGraphTensor
+	Graph() IMPSGraph
+	SetGraph(value IMPSGraph)
+	InputTensors() IMPSGraphTensor
 	SetInputTensors(value IMPSGraphTensor)
-	OutputTensors() MPSGraphTensor
+	OutputTensors() IMPSGraphTensor
 	SetOutputTensors(value IMPSGraphTensor)
+	// methods:
 }
 
 // A symbolic representation of a compute operation.
 //
 // will take a refrence, this is so can work with the tensor. All operations are created, owned and destroyed by the graph.
+
+
+// A symbolic representation of a compute operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation
 type GraphOperation struct {
 	GraphObject
@@ -89,71 +97,87 @@ func NewGraphOperation() GraphOperation {
 }
 
 
-// The graph on which the operation is defined.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/graph
-func (g_ GraphOperation) Graph() MPSGraph {
-	rv := objc.Send[MPSGraph](g_.ID, objc.Sel("graph"))
-	return rv
-}
 
 // Name of the operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
-func (g_ GraphOperation) Name() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GraphOperation) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // The set of operations guaranteed to execute before this operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
-func (g_ GraphOperation) ControlDependencies() MPSGraphOperation {
-	rv := objc.Send[MPSGraphOperation](g_.ID, objc.Sel("controlDependencies"))
+func (g_ GraphOperation) ControlDependencies() IMPSGraphOperation {
+	rv := objc.Send[GraphOperation](g_.ID, objc.Sel("controlDependencies"))
 	return rv
 }
 
 
-// SetControlDependencies sets the value of the controlDependencies property.
 // The set of operations guaranteed to execute before this operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
 func (g_ GraphOperation) SetControlDependencies(value IMPSGraphOperation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControlDependencies:"), value)
 }
 
-// The input tensors of the operation.
+
+// The graph on which the operation is defined.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
-func (g_ GraphOperation) InputTensors() MPSGraphTensor {
-	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("inputTensors"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/graph
+func (g_ GraphOperation) Graph() IMPSGraph {
+	rv := objc.Send[Graph](g_.ID, objc.Sel("graph"))
 	return rv
 }
 
 
-// SetInputTensors sets the value of the inputTensors property.
-// The input tensors of the operation.
-
+// The graph on which the operation is defined.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/graph
+func (g_ GraphOperation) SetGraph(value IMPSGraph) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGraph:"), value)
+}
+
+
+// The input tensors of the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
+func (g_ GraphOperation) InputTensors() IMPSGraphTensor {
+	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("inputTensors"))
+	return rv
+}
+
+
+// The input tensors of the operation.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
 func (g_ GraphOperation) SetInputTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputTensors:"), value)
 }
 
+
 // The output tensors of the operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
-func (g_ GraphOperation) OutputTensors() MPSGraphTensor {
-	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("outputTensors"))
+func (g_ GraphOperation) OutputTensors() IMPSGraphTensor {
+	rv := objc.Send[GraphTensor](g_.ID, objc.Sel("outputTensors"))
 	return rv
 }
 
 
-// SetOutputTensors sets the value of the outputTensors property.
 // The output tensors of the operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
 func (g_ GraphOperation) SetOutputTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputTensors:"), value)

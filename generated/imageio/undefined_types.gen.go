@@ -9,18 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	ArrayRef = _undefined // referenced in ImageIO
 	DataConsumerRef = _undefined // referenced in ImageIO
 	DataProviderRef = _undefined // referenced in ImageIO
-	DataRef = _undefined // referenced in ImageIO
-	DictionaryRef = _undefined // referenced in ImageIO
-	ErrorRef = _undefined // referenced in ImageIO
 	ImageRef = _undefined // referenced in ImageIO
-	ImageSourceAnimationBlock = _undefined // referenced in ImageIO
-	MutableDataRef = _undefined // referenced in ImageIO
-	StringRef = _undefined // referenced in ImageIO
-	TypeID = _undefined // referenced in ImageIO
-	URLRef = _undefined // referenced in ImageIO
 )
 
 

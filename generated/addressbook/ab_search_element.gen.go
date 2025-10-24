@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IABSearchElement interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	MatchesRecord(record IABRecord) bool /* primitive/slice/pointer. */
+	MatchesRecord(record IABRecord) bool
 }
 
 // An object you use to specify a search query for records in the Address Book database.
@@ -92,7 +93,7 @@ func NewABSearchElement() ABSearchElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-func NewABSearchElementForConjunctionChildren(conjuction ABSearchConjunction /* typedef */, children objectivec.IObject) ABSearchElement {
+func NewABSearchElementForConjunctionChildren(conjuction ABSearchConjunction /* typedef */, children objc.IObject /* cross-framework: NSArray */) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(getABSearchElementClass().class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
 }
@@ -103,7 +104,7 @@ func NewABSearchElementForConjunctionChildren(conjuction ABSearchConjunction /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction ABSearchConjunction /* typedef */, children objectivec.IObject) ABSearchElement {
+func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction ABSearchConjunction /* typedef */, children objc.IObject /* cross-framework: NSArray */) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
 }
@@ -113,7 +114,7 @@ func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/matchesRecord(_:)
-func (a_ ABSearchElement) MatchesRecord(record IABRecord) bool /* primitive/slice/pointer. */ {
+func (a_ ABSearchElement) MatchesRecord(record IABRecord) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("matchesRecord:"), record)
 	return rv
 }

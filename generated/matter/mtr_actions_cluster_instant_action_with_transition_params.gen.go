@@ -31,19 +31,23 @@ type _MTRActionsClusterInstantActionWithTransitionParamsClass struct {
 // An interface definition for the [MTRActionsClusterInstantActionWithTransitionParams] class.
 type IMTRActionsClusterInstantActionWithTransitionParams interface {
 	objectivec.IObject
-	ActionID() foundation.Number
-	SetActionID(value foundation.INumber)
-	InvokeID() foundation.Number
-	SetInvokeID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	ActionID() objc.IObject /* cross-framework: NSNumber */
+	SetActionID(value objc.IObject /* cross-framework: NSNumber */)
+	InvokeID() objc.IObject /* cross-framework: NSNumber */
+	SetInvokeID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActionsClusterInstantActionWithTransitionParams
 type MTRActionsClusterInstantActionWithTransitionParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRActionsClusterInstantActionWithTransitionParams() MTRActionsClusterIn
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("actionID"))
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("actionID"))
 	return rv
 }
 
 
-// SetActionID sets the value of the actionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value foundation.INumber) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("invokeID"))
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("invokeID"))
 	return rv
 }
 
 
-// SetInvokeID sets the value of the invokeID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.INumber) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

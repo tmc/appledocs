@@ -30,20 +30,24 @@ type _PHContentEditingInputRequestOptionsClass struct {
 // An interface definition for the [PHContentEditingInputRequestOptions] class.
 type IPHContentEditingInputRequestOptions interface {
 	objectivec.IObject
-	CanHandleAdjustmentData() unsafe.Pointer
-	SetCanHandleAdjustmentData(value unsafe.Pointer)
-	NetworkAccessAllowed() bool
-	SetNetworkAccessAllowed(value bool)
-	ProgressHandler() unsafe.Pointer
-	SetProgressHandler(value unsafe.Pointer)
+	// properties:
+	CanHandleAdjustmentData() bool
+	SetCanHandleAdjustmentData(value bool)
 	IsNetworkAccessAllowed() bool
 	SetIsNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.
 //
 // You use the class with the method for editing the contents of a object. This class doesn’t affect photo editing extensions.
+
+
+// A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions
 type PHContentEditingInputRequestOptions struct {
 	objectivec.Object
@@ -88,62 +92,29 @@ func NewPHContentEditingInputRequestOptions() PHContentEditingInputRequestOption
 }
 
 
+
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/canHandleAdjustmentData
-func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("canHandleAdjustmentData"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/canhandleadjustmentdata
+func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("canHandleAdjustmentData"))
 	return rv
 }
 
 
-// SetCanHandleAdjustmentData sets the value of the canHandleAdjustmentData property.
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/canHandleAdjustmentData
-func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/canhandleadjustmentdata
+func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanHandleAdjustmentData:"), value)
 }
 
-// A Boolean value that specifies whether Photos can download the asset from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/isNetworkAccessAllowed
-func (p_ PHContentEditingInputRequestOptions) NetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("networkAccessAllowed"))
-	return rv
-}
-
-
-// SetNetworkAccessAllowed sets the value of the networkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the asset from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/isNetworkAccessAllowed
-func (p_ PHContentEditingInputRequestOptions) SetNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
-}
-
-// A block Photos calls periodically while downloading the asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/progressHandler
-func (p_ PHContentEditingInputRequestOptions) ProgressHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
-	return rv
-}
-
-
-// SetProgressHandler sets the value of the progressHandler property.
-// A block Photos calls periodically while downloading the asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/progressHandler
-func (p_ PHContentEditingInputRequestOptions) SetProgressHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
-}
 
 // A Boolean value that specifies whether Photos can download the asset from iCloud.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/isnetworkaccessallowed
 func (p_ PHContentEditingInputRequestOptions) IsNetworkAccessAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
@@ -151,13 +122,31 @@ func (p_ PHContentEditingInputRequestOptions) IsNetworkAccessAllowed() bool {
 }
 
 
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
 // A Boolean value that specifies whether Photos can download the asset from iCloud.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/isnetworkaccessallowed
 func (p_ PHContentEditingInputRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+
+// A block Photos calls periodically while downloading the asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/progresshandler
+func (p_ PHContentEditingInputRequestOptions) ProgressHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
+	return rv
+}
+
+
+// A block Photos calls periodically while downloading the asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/progresshandler
+func (p_ PHContentEditingInputRequestOptions) SetProgressHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
 
 

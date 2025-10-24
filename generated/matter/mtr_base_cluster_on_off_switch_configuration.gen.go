@@ -29,9 +29,13 @@ type _MTRBaseClusterOnOffSwitchConfigurationClass struct {
 // An interface definition for the [MTRBaseClusterOnOffSwitchConfiguration] class.
 type IMTRBaseClusterOnOffSwitchConfiguration interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOnOffSwitchConfiguration
 type MTRBaseClusterOnOffSwitchConfiguration struct {
 	MTRGenericBaseCluster

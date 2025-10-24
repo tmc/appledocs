@@ -31,13 +31,17 @@ type _MTRKeypadInputClusterSendKeyResponseParamsClass struct {
 // An interface definition for the [MTRKeypadInputClusterSendKeyResponseParams] class.
 type IMTRKeypadInputClusterSendKeyResponseParams interface {
 	objectivec.IObject
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRKeypadInputClusterSendKeyResponseParams
 type MTRKeypadInputClusterSendKeyResponseParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRKeypadInputClusterSendKeyResponseParams() MTRKeypadInputClusterSendKe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/status
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/status
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/timedinvoketimeoutms
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/timedinvoketimeoutms
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

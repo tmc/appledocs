@@ -31,17 +31,21 @@ type _MTRThermostatClusterGetWeeklyScheduleParamsClass struct {
 // An interface definition for the [MTRThermostatClusterGetWeeklyScheduleParams] class.
 type IMTRThermostatClusterGetWeeklyScheduleParams interface {
 	objectivec.IObject
-	DaysToReturn() foundation.Number
-	SetDaysToReturn(value foundation.INumber)
-	ModeToReturn() foundation.Number
-	SetModeToReturn(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DaysToReturn() objc.IObject /* cross-framework: NSNumber */
+	SetDaysToReturn(value objc.IObject /* cross-framework: NSNumber */)
+	ModeToReturn() objc.IObject /* cross-framework: NSNumber */
+	SetModeToReturn(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterGetWeeklyScheduleParams
 type MTRThermostatClusterGetWeeklyScheduleParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRThermostatClusterGetWeeklyScheduleParams() MTRThermostatClusterGetWee
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/daystoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) DaysToReturn() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("daysToReturn"))
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) DaysToReturn() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("daysToReturn"))
 	return rv
 }
 
 
-// SetDaysToReturn sets the value of the daysToReturn property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/daystoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetDaysToReturn(value foundation.INumber) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetDaysToReturn(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDaysToReturn:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/modetoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ModeToReturn() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("modeToReturn"))
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ModeToReturn() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("modeToReturn"))
 	return rv
 }
 
 
-// SetModeToReturn sets the value of the modeToReturn property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/modetoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetModeToReturn(value foundation.INumber) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetModeToReturn(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeToReturn:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -32,12 +32,12 @@ type IAudioPlayerNode interface {
 	// properties:
 	LastRenderTime() IAVAudioTime
 	SetLastRenderTime(value IAVAudioTime)
-	Latency() unsafe.Pointer
-	SetLatency(value unsafe.Pointer)
-	OutputPresentationLatency() unsafe.Pointer
-	SetOutputPresentationLatency(value unsafe.Pointer)
-	IsPlaying() bool /* primitive/slice/pointer. */
-	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	Latency() float64
+	SetLatency(value float64)
+	OutputPresentationLatency() float64
+	SetOutputPresentationLatency(value float64)
+	IsPlaying() bool
+	SetIsPlaying(value bool)
 	// methods:
 }
 
@@ -119,8 +119,8 @@ func (a_ AudioPlayerNode) SetLastRenderTime(value IAVAudioTime) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
-func (a_ AudioPlayerNode) Latency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("latency"))
+func (a_ AudioPlayerNode) Latency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("latency"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (a_ AudioPlayerNode) Latency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
-func (a_ AudioPlayerNode) SetLatency(value unsafe.Pointer) {
+func (a_ AudioPlayerNode) SetLatency(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLatency:"), value)
 }
 
@@ -138,8 +138,8 @@ func (a_ AudioPlayerNode) SetLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioPlayerNode) OutputPresentationLatency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputPresentationLatency"))
+func (a_ AudioPlayerNode) OutputPresentationLatency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("outputPresentationLatency"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (a_ AudioPlayerNode) OutputPresentationLatency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
-func (a_ AudioPlayerNode) SetOutputPresentationLatency(value unsafe.Pointer) {
+func (a_ AudioPlayerNode) SetOutputPresentationLatency(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputPresentationLatency:"), value)
 }
 
@@ -157,7 +157,7 @@ func (a_ AudioPlayerNode) SetOutputPresentationLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) IsPlaying() bool /* primitive/slice/pointer. */ {
+func (a_ AudioPlayerNode) IsPlaying() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (a_ AudioPlayerNode) IsPlaying() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioPlayerNode) SetIsPlaying(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 

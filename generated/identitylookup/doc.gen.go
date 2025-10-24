@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to IdentityLookup without requiring cgo.
-
-// Create app extensions to manage and report unwanted SMS messages and spam calls.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup
+// See: https://developer.apple.com/documentation/IdentityLookup
 package identitylookup
 
 import (

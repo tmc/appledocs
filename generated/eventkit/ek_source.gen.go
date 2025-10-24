@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKSource] class.
@@ -30,11 +31,10 @@ type _EKSourceClass struct {
 type IEKSource interface {
 	IEKObject
 	// properties:
-	Calendars() unsafe.Pointer
-	IsDelegate() bool /* primitive/slice/pointer. */
-	SourceIdentifier() string /* primitive/slice/pointer. */
+	IsDelegate() bool
+	SourceIdentifier() objc.IObject /* cross-framework: NSString */
 	SourceType() EKSourceType
-	Title() string /* primitive/slice/pointer. */
+	Title() objc.IObject /* cross-framework: NSString */
 	// methods:
 	CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer
 }
@@ -104,19 +104,9 @@ func (e_ EKSource) CalendarsForEntityType(entityType EKEntityType) unsafe.Pointe
 }
 
 
-// The calendars that belong to this source object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/calendars
-func (e_ EKSource) Calendars() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendars"))
-	return rv
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/isDelegate
-func (e_ EKSource) IsDelegate() bool /* primitive/slice/pointer. */ {
+func (e_ EKSource) IsDelegate() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDelegate"))
 	return rv
 }
@@ -126,8 +116,8 @@ func (e_ EKSource) IsDelegate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
-func (e_ EKSource) SourceIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
+func (e_ EKSource) SourceIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
 
@@ -146,10 +136,9 @@ func (e_ EKSource) SourceType() EKSourceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
-func (e_ EKSource) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKSource) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
 }
-
 
 

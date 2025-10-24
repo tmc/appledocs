@@ -30,9 +30,8 @@ type _INSearchForMediaIntentClass struct {
 type IINSearchForMediaIntent interface {
 	IINIntent
 	// properties:
-	MediaItems() []INMediaItem /* primitive/slice/pointer. */
-	MediaSearch() INMediaSearch /* already interface */
-	SetMediaSearch(value INMediaSearch /* already interface */)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 	// methods:
 }
 
@@ -91,21 +90,11 @@ func NewINSearchForMediaIntent() INSearchForMediaIntent {
 
 
 
-// The media items for which to search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMediaIntent/mediaItems
-func (i_ INSearchForMediaIntent) MediaItems() []INMediaItem /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
-	return rv
-}
-
-
 // The location to search for the media item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
-func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch /* already interface */ {
+func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
@@ -115,9 +104,8 @@ func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch /* already interfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
-func (i_ INSearchForMediaIntent) SetMediaSearch(value INMediaSearch /* already interface */) {
+func (i_ INSearchForMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
-
 
 

@@ -29,14 +29,20 @@ type _MXNetworkTransferMetricClass struct {
 // An interface definition for the [MXNetworkTransferMetric] class.
 type IMXNetworkTransferMetric interface {
 	IMXMetric
+	// properties:
 	CumulativeCellularDownload() unsafe.Pointer
 	CumulativeCellularUpload() unsafe.Pointer
 	CumulativeWifiDownload() unsafe.Pointer
 	CumulativeWifiUpload() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about network transfers.
+
+
+// An object representing metrics about network transfers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXNetworkTransferMetric
 type MXNetworkTransferMetric struct {
 	MXMetric
@@ -83,32 +89,40 @@ func NewMXNetworkTransferMetric() MXNetworkTransferMetric {
 }
 
 
+
 // The total amount of data downloaded over the cellular connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXNetworkTransferMetric/cumulativeCellularDownload
 func (m_ MXNetworkTransferMetric) CumulativeCellularDownload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCellularDownload"))
 	return rv
 }
 
+
 // The total amount of data uploaded over the cellular connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXNetworkTransferMetric/cumulativeCellularUpload
 func (m_ MXNetworkTransferMetric) CumulativeCellularUpload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCellularUpload"))
 	return rv
 }
 
+
 // The total amount of data downloaded over the WiFi connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXNetworkTransferMetric/cumulativeWifiDownload
 func (m_ MXNetworkTransferMetric) CumulativeWifiDownload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeWifiDownload"))
 	return rv
 }
 
+
 // The total amount of data uploaded over the WiFi connection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXNetworkTransferMetric/cumulativeWifiUpload
 func (m_ MXNetworkTransferMetric) CumulativeWifiUpload() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeWifiUpload"))

@@ -9,11 +9,18 @@ import (
 // Suppress unused import errors
 var _ = pdfkit.NewPDFSelection
 
-// ExampleNewPDFSelectionWithDocument demonstrates how to create a PDFSelection instance using NewPDFSelectionWithDocument.
-// Returns an empty   object.
-func ExampleNewPDFSelectionWithDocument() {
-	_ = pdfkit.NewPDFSelectionWithDocument(
-		pdfkit.PDFDocument{}, // document PDFDocument
-	)
+// ExamplePDFSelection_ExtendSelectionForLineBoundaries demonstrates using ExtendSelectionForLineBoundaries on a PDFSelection instance.
+func ExamplePDFSelection_ExtendSelectionForLineBoundaries() {
+	obj := pdfkit.NewPDFSelection()
+	obj.ExtendSelectionForLineBoundaries()
 	// Output:
-}
+	}
+
+// ExamplePDFSelection_SelectionsByLine demonstrates using SelectionsByLine on a PDFSelection instance.
+// Returns an array of selections, one for each line of text covered by the receiver.
+func ExamplePDFSelection_SelectionsByLine() {
+	obj := pdfkit.NewPDFSelection()
+	_ = obj.SelectionsByLine()
+	// Output:
+	}
+

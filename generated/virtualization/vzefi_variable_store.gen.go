@@ -31,11 +31,18 @@ type _VZEFIVariableStoreClass struct {
 // An interface definition for the [VZEFIVariableStore] class.
 type IVZEFIVariableStore interface {
 	objectivec.IObject
-	URL() foundation.URL
+	// properties:
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // An object that represents the Extensible Firmware Interface (EFI) variable store that contains NVRAM variables the EFI exposes.
+
+
+// An object that represents the Extensible Firmware Interface (EFI) variable store that contains NVRAM variables the EFI exposes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore
 type VZEFIVariableStore struct {
 	objectivec.Object
@@ -81,36 +88,23 @@ func NewVZEFIVariableStore() VZEFIVariableStore {
 
 
 
-
-// Creates a new EFI variable store at specified the URL on the filesystem, initialization options, and error-return variable.
+// The URL of the variable store on the local file system.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(creatingVariableStoreAt:options:)
-func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL foundation.IURL, options VZEFIVariableStoreInitializationOptions, error_ unsafe.Pointer) VZEFIVariableStore {
-	instance := getVZEFIVariableStoreClass().Alloc()
-	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initCreatingVariableStoreAtURL:options:error:"), URL, options, error_)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Initialize the variable store from the URL of an existing file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(url:)
-func NewVZEFIVariableStoreWithURL(URL foundation.IURL) VZEFIVariableStore {
-	instance := getVZEFIVariableStoreClass().Alloc()
-	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initWithURL:"), URL)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzefivariablestore/url
+func (v_ VZEFIVariableStore) Url() objc.IObject /* cross-framework: URL */ {
+	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("url"))
 	return rv
 }
 
 
 // The URL of the variable store on the local file system.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/url
-func (v_ VZEFIVariableStore) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzefivariablestore/url
+func (v_ VZEFIVariableStore) SetUrl(value objc.IObject /* cross-framework: URL */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
+
 
 

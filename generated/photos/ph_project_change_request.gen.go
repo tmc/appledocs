@@ -7,9 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PHProjectChangeRequest] class.
@@ -32,19 +30,22 @@ type _PHProjectChangeRequestClass struct {
 // An interface definition for the [PHProjectChangeRequest] class.
 type IPHProjectChangeRequest interface {
 	IPHChangeRequest
-	RemoveAssets(assets objectivec.IObject)
-	SetKeyAsset(keyAsset IPHAsset)
-	SetProjectPreviewImage(previewImage appkit.IImage)
-	ProjectExtensionData() foundation.NSData
-	SetProjectExtensionData(value foundation.IData)
-	Title() string
-	SetTitle(value string)
+	// properties:
+	ProjectExtensionData() objc.IObject /* cross-framework: Data */
+	SetProjectExtensionData(value objc.IObject /* cross-framework: Data */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A request to change asset data in a Photos project extension.
 //
 // Make a project change request to alter a project’s title or metadata. Respond to project change requests by updating your user interface as assets are added, modified, or removed.
+
+
+// A request to change asset data in a Photos project extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest
 type PHProjectChangeRequest struct {
 	PHChangeRequest
@@ -92,73 +93,42 @@ func NewPHProjectChangeRequest() PHProjectChangeRequest {
 
 
 
-
-// Creates a change request around the specified project.
+// Compressed project-specific data to use in the change request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/init(project:)
-func NewPHProjectChangeRequestWithProject(project IPHProject) PHProjectChangeRequest {
-	instance := getPHProjectChangeRequestClass().Alloc()
-	rv := objc.Send[PHProjectChangeRequest](instance.ID, objc.Sel("initWithProject:"), project)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phprojectchangerequest/projectextensiondata
+func (p_ PHProjectChangeRequest) ProjectExtensionData() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("projectExtensionData"))
 	return rv
 }
 
 
-// Removes the specified assets from the project.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/removeAssets:
-func (p_ PHProjectChangeRequest) RemoveAssets(assets objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("removeAssets:"), assets)
-}
-
-// Sets the key asset representing the project.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/setKeyAsset(_:)
-func (p_ PHProjectChangeRequest) SetKeyAsset(keyAsset IPHAsset) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyAsset:"), keyAsset)
-}
-
-// Updates the project preview in Photos.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/setProjectPreviewImage(_:)
-func (p_ PHProjectChangeRequest) SetProjectPreviewImage(previewImage appkit.IImage) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectPreviewImage:"), previewImage)
-}
-
 // Compressed project-specific data to use in the change request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/projectExtensionData
-func (p_ PHProjectChangeRequest) ProjectExtensionData() foundation.NSData {
-	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("projectExtensionData"))
-	return rv
-}
-
-
-// SetProjectExtensionData sets the value of the projectExtensionData property.
-// Compressed project-specific data to use in the change request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/projectExtensionData
-func (p_ PHProjectChangeRequest) SetProjectExtensionData(value foundation.IData) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phprojectchangerequest/projectextensiondata
+func (p_ PHProjectChangeRequest) SetProjectExtensionData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectExtensionData:"), value)
 }
 
+
 // The title of the change request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phprojectchangerequest/title
+func (p_ PHProjectChangeRequest) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("title"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
 // The title of the change request.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHProjectChangeRequest/title
-func (p_ PHProjectChangeRequest) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phprojectchangerequest/title
+func (p_ PHProjectChangeRequest) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
+
 
 

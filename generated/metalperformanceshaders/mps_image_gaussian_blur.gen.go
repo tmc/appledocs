@@ -31,8 +31,8 @@ type _ImageGaussianBlurClass struct {
 type IImageGaussianBlur interface {
 	IUnaryImageKernel
 	// properties:
-	Sigma() float32 /* primitive/slice/pointer. */
-	SetSigma(value float32 /* primitive/slice/pointer. */)
+	Sigma() float32
+	SetSigma(value float32)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewImageGaussianBlur() ImageGaussianBlur {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageGaussianBlur/init(device:sigma:)
-func NewImageGaussianBlurWithDeviceSigma(device objectivec.IObject, sigma float32 /* primitive/slice/pointer. */) ImageGaussianBlur {
+func NewImageGaussianBlurWithDeviceSigma(device objectivec.IObject, sigma float32) ImageGaussianBlur {
 	instance := getImageGaussianBlurClass().Alloc()
 	rv := objc.Send[ImageGaussianBlur](instance.ID, objc.Sel("initWithDevice:sigma:"), device, sigma)
 	rv.Autorelease()
@@ -106,7 +106,7 @@ func NewImageGaussianBlurWithDeviceSigma(device objectivec.IObject, sigma float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagegaussianblur/sigma
-func (i_ ImageGaussianBlur) Sigma() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageGaussianBlur) Sigma() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("sigma"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (i_ ImageGaussianBlur) Sigma() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagegaussianblur/sigma
-func (i_ ImageGaussianBlur) SetSigma(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageGaussianBlur) SetSigma(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSigma:"), value)
 }
 

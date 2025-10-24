@@ -31,13 +31,17 @@ type _MTREnergyEVSEClusterChargingTargetScheduleStructClass struct {
 // An interface definition for the [MTREnergyEVSEClusterChargingTargetScheduleStruct] class.
 type IMTREnergyEVSEClusterChargingTargetScheduleStruct interface {
 	objectivec.IObject
-	ChargingTargets() objc.ID
-	SetChargingTargets(value objc.ID)
-	DayOfWeekForSequence() foundation.Number
-	SetDayOfWeekForSequence(value foundation.INumber)
+	// properties:
+	ChargingTargets() objc.IObject /* cross-framework: NSArray */
+	SetChargingTargets(value objc.IObject /* cross-framework: NSArray */)
+	DayOfWeekForSequence() objc.IObject /* cross-framework: NSNumber */
+	SetDayOfWeekForSequence(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct
 type MTREnergyEVSEClusterChargingTargetScheduleStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTREnergyEVSEClusterChargingTargetScheduleStruct() MTREnergyEVSEClusterC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/chargingTargets
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) ChargingTargets() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("chargingTargets"))
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) ChargingTargets() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("chargingTargets"))
 	return rv
 }
 
 
-// SetChargingTargets sets the value of the chargingTargets property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/chargingTargets
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetChargingTargets(value objc.ID) {
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetChargingTargets(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargets:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/dayOfWeekForSequence
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) DayOfWeekForSequence() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dayOfWeekForSequence"))
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) DayOfWeekForSequence() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("dayOfWeekForSequence"))
 	return rv
 }
 
 
-// SetDayOfWeekForSequence sets the value of the dayOfWeekForSequence property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetScheduleStruct/dayOfWeekForSequence
-func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetDayOfWeekForSequence(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterChargingTargetScheduleStruct) SetDayOfWeekForSequence(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeekForSequence:"), value)
 }
 

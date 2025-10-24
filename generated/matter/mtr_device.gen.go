@@ -31,25 +31,29 @@ type _MTRDeviceClass struct {
 // An interface definition for the [MTRDevice] class.
 type IMTRDevice interface {
 	objectivec.IObject
+	// properties:
 	DeviceCachePrimed() bool
 	SetDeviceCachePrimed(value bool)
-	DeviceController() MTRDeviceController
+	DeviceController() IMTRDeviceController
 	SetDeviceController(value IMTRDeviceController)
-	EstimatedStartTime() foundation.Date
-	SetEstimatedStartTime(value foundation.IDate)
-	EstimatedSubscriptionLatency() foundation.Number
-	SetEstimatedSubscriptionLatency(value foundation.INumber)
+	EstimatedStartTime() objc.IObject /* cross-framework: Date */
+	SetEstimatedStartTime(value objc.IObject /* cross-framework: Date */)
+	EstimatedSubscriptionLatency() objc.IObject /* cross-framework: NSNumber */
+	SetEstimatedSubscriptionLatency(value objc.IObject /* cross-framework: NSNumber */)
 	NetworkCommissioningFeatures() MTRNetworkCommissioningFeature
-	SetNetworkCommissioningFeatures(value IMTRNetworkCommissioningFeature)
-	ProductID() foundation.Number
-	SetProductID(value foundation.INumber)
+	SetNetworkCommissioningFeatures(value MTRNetworkCommissioningFeature)
+	ProductID() objc.IObject /* cross-framework: NSNumber */
+	SetProductID(value objc.IObject /* cross-framework: NSNumber */)
 	State() MTRDeviceState
 	SetState(value MTRDeviceState)
-	VendorID() foundation.Number
-	SetVendorID(value foundation.INumber)
+	VendorID() objc.IObject /* cross-framework: NSNumber */
+	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDevice
 type MTRDevice struct {
 	objectivec.Object
@@ -92,7 +96,8 @@ func NewMTRDevice() MTRDevice {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecacheprimed
 func (m_ MTRDevice) DeviceCachePrimed() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("deviceCachePrimed"))
@@ -100,60 +105,61 @@ func (m_ MTRDevice) DeviceCachePrimed() bool {
 }
 
 
-// SetDeviceCachePrimed sets the value of the deviceCachePrimed property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecacheprimed
 func (m_ MTRDevice) SetDeviceCachePrimed(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceCachePrimed:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecontroller
-func (m_ MTRDevice) DeviceController() MTRDeviceController {
+func (m_ MTRDevice) DeviceController() IMTRDeviceController {
 	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("deviceController"))
 	return rv
 }
 
 
-// SetDeviceController sets the value of the deviceController property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecontroller
 func (m_ MTRDevice) SetDeviceController(value IMTRDeviceController) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceController:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedstarttime
-func (m_ MTRDevice) EstimatedStartTime() foundation.Date {
+func (m_ MTRDevice) EstimatedStartTime() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("estimatedStartTime"))
 	return rv
 }
 
 
-// SetEstimatedStartTime sets the value of the estimatedStartTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedstarttime
-func (m_ MTRDevice) SetEstimatedStartTime(value foundation.IDate) {
+func (m_ MTRDevice) SetEstimatedStartTime(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEstimatedStartTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedsubscriptionlatency
-func (m_ MTRDevice) EstimatedSubscriptionLatency() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("estimatedSubscriptionLatency"))
+func (m_ MTRDevice) EstimatedSubscriptionLatency() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("estimatedSubscriptionLatency"))
 	return rv
 }
 
 
-// SetEstimatedSubscriptionLatency sets the value of the estimatedSubscriptionLatency property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedsubscriptionlatency
-func (m_ MTRDevice) SetEstimatedSubscriptionLatency(value foundation.INumber) {
+func (m_ MTRDevice) SetEstimatedSubscriptionLatency(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEstimatedSubscriptionLatency:"), value)
 }
 
+
 // Network commissioning features supported by the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/networkcommissioningfeatures
 func (m_ MTRDevice) NetworkCommissioningFeatures() MTRNetworkCommissioningFeature {
 	rv := objc.Send[MTRNetworkCommissioningFeature](m_.ID, objc.Sel("networkCommissioningFeatures"))
@@ -161,34 +167,35 @@ func (m_ MTRDevice) NetworkCommissioningFeatures() MTRNetworkCommissioningFeatur
 }
 
 
-// SetNetworkCommissioningFeatures sets the value of the networkCommissioningFeatures property.
 // Network commissioning features supported by the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/networkcommissioningfeatures
-func (m_ MTRDevice) SetNetworkCommissioningFeatures(value IMTRNetworkCommissioningFeature) {
+func (m_ MTRDevice) SetNetworkCommissioningFeatures(value MTRNetworkCommissioningFeature) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkCommissioningFeatures:"), value)
 }
 
+
 // The Product Identifier associated with the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/productid
-func (m_ MTRDevice) ProductID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("productID"))
+func (m_ MTRDevice) ProductID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("productID"))
 	return rv
 }
 
 
-// SetProductID sets the value of the productID property.
 // The Product Identifier associated with the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/productid
-func (m_ MTRDevice) SetProductID(value foundation.INumber) {
+func (m_ MTRDevice) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/state
 func (m_ MTRDevice) State() MTRDeviceState {
 	rv := objc.Send[MTRDeviceState](m_.ID, objc.Sel("state"))
@@ -196,28 +203,28 @@ func (m_ MTRDevice) State() MTRDeviceState {
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/state
 func (m_ MTRDevice) SetState(value MTRDeviceState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 
+
 // The Vendor Identifier associated with the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/vendorid
-func (m_ MTRDevice) VendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("vendorID"))
+func (m_ MTRDevice) VendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
 }
 
 
-// SetVendorID sets the value of the vendorID property.
 // The Vendor Identifier associated with the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/vendorid
-func (m_ MTRDevice) SetVendorID(value foundation.INumber) {
+func (m_ MTRDevice) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

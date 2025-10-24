@@ -9,10 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AudioObjectID = _undefined // referenced in CoreAudio
-	Bool = _undefined // referenced in CoreAudio
 	TapMuteBehavior = _undefined // referenced in CoreAudio
-	UUID = _undefined // referenced in CoreAudio
 )
 
 

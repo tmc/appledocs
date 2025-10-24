@@ -31,15 +31,19 @@ type _MTRMediaPlaybackClusterSeekParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterSeekParams] class.
 type IMTRMediaPlaybackClusterSeekParams interface {
 	objectivec.IObject
-	Position() foundation.Number
-	SetPosition(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Position() objc.IObject /* cross-framework: NSNumber */
+	SetPosition(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterSeekParams
 type MTRMediaPlaybackClusterSeekParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRMediaPlaybackClusterSeekParams() MTRMediaPlaybackClusterSeekParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/position
-func (m_ MTRMediaPlaybackClusterSeekParams) Position() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("position"))
+func (m_ MTRMediaPlaybackClusterSeekParams) Position() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("position"))
 	return rv
 }
 
 
-// SetPosition sets the value of the position property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/position
-func (m_ MTRMediaPlaybackClusterSeekParams) SetPosition(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSeekParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaPlaybackClusterSeekParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSeekParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSeekParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterSeekParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSeekParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

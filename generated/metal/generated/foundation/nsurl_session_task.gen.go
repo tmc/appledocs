@@ -31,36 +31,42 @@ type _URLSessionTaskClass struct {
 type IURLSessionTask interface {
 	objectivec.IObject
 	// properties:
+	NSURLSessionTransferSizeUnknown() unsafe.Pointer
 	CountOfBytesClientExpectsToReceive() unsafe.Pointer
 	SetCountOfBytesClientExpectsToReceive(value unsafe.Pointer)
 	CountOfBytesClientExpectsToSend() unsafe.Pointer
 	SetCountOfBytesClientExpectsToSend(value unsafe.Pointer)
 	CountOfBytesExpectedToReceive() unsafe.Pointer
+	SetCountOfBytesExpectedToReceive(value unsafe.Pointer)
 	CountOfBytesExpectedToSend() unsafe.Pointer
+	SetCountOfBytesExpectedToSend(value unsafe.Pointer)
 	CountOfBytesReceived() unsafe.Pointer
+	SetCountOfBytesReceived(value unsafe.Pointer)
 	CountOfBytesSent() unsafe.Pointer
-	CurrentRequest() URLRequest /* not a class type */
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	SetCountOfBytesSent(value unsafe.Pointer)
+	CurrentRequest() IURLRequest
+	SetCurrentRequest(value IURLRequest)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	EarliestBeginDate() IDate
 	SetEarliestBeginDate(value IDate)
 	Error() IError
-	OriginalRequest() URLRequest /* not a class type */
-	PrefersIncrementalDelivery() bool /* primitive/slice/pointer. */
-	SetPrefersIncrementalDelivery(value bool /* primitive/slice/pointer. */)
-	Priority() float32 /* primitive/slice/pointer. */
-	SetPriority(value float32 /* primitive/slice/pointer. */)
+	SetError(value IError)
+	OriginalRequest() IURLRequest
+	SetOriginalRequest(value IURLRequest)
+	PrefersIncrementalDelivery() bool
+	SetPrefersIncrementalDelivery(value bool)
+	Priority() float32
+	SetPriority(value float32)
 	Progress() IProgress
+	SetProgress(value IProgress)
 	Response() IURLResponse
-	State() URLSessionTaskState
+	SetResponse(value IURLResponse)
 	TaskDescription() IString
 	SetTaskDescription(value IString)
-	TaskIdentifier() uint /* primitive/slice/pointer. */
-	NSURLSessionTransferSizeUnknown() unsafe.Pointer
+	TaskIdentifier() int
+	SetTaskIdentifier(value int)
 	// methods:
-	Cancel()
-	Resume()
-	Suspend()
 }
 
 // A task, like downloading a specific resource, performed in a URL session.
@@ -116,38 +122,20 @@ func NewURLSessionTask() URLSessionTask {
 
 
 
-
-// Cancels the task.
+// The total size of the transfer cannot be determined.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/cancel()
-func (u_ URLSessionTask) Cancel() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("cancel"))
-}
-
-
-// Resumes the task, if it is suspended.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/resume()
-func (u_ URLSessionTask) Resume() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("resume"))
-}
-
-
-// Temporarily suspends a task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/suspend()
-func (u_ URLSessionTask) Suspend() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("suspend"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlsessiontransfersizeunknown
+func (u_ URLSessionTask) NSURLSessionTransferSizeUnknown() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("NSURLSessionTransferSizeUnknown"))
+	return rv
 }
 
 
 // A best-guess upper bound on the number of bytes the client expects to receive.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToReceive
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesclientexpectstoreceive
 func (u_ URLSessionTask) CountOfBytesClientExpectsToReceive() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesClientExpectsToReceive"))
 	return rv
@@ -157,7 +145,7 @@ func (u_ URLSessionTask) CountOfBytesClientExpectsToReceive() unsafe.Pointer {
 // A best-guess upper bound on the number of bytes the client expects to receive.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToReceive
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesclientexpectstoreceive
 func (u_ URLSessionTask) SetCountOfBytesClientExpectsToReceive(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesClientExpectsToReceive:"), value)
 }
@@ -166,7 +154,7 @@ func (u_ URLSessionTask) SetCountOfBytesClientExpectsToReceive(value unsafe.Poin
 // A best-guess upper bound on the number of bytes the client expects to send.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToSend
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesclientexpectstosend
 func (u_ URLSessionTask) CountOfBytesClientExpectsToSend() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesClientExpectsToSend"))
 	return rv
@@ -176,7 +164,7 @@ func (u_ URLSessionTask) CountOfBytesClientExpectsToSend() unsafe.Pointer {
 // A best-guess upper bound on the number of bytes the client expects to send.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesClientExpectsToSend
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesclientexpectstosend
 func (u_ URLSessionTask) SetCountOfBytesClientExpectsToSend(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesClientExpectsToSend:"), value)
 }
@@ -185,9 +173,28 @@ func (u_ URLSessionTask) SetCountOfBytesClientExpectsToSend(value unsafe.Pointer
 // The number of bytes that the task expects to receive in the response body.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesExpectedToReceive
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesexpectedtoreceive
 func (u_ URLSessionTask) CountOfBytesExpectedToReceive() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesExpectedToReceive"))
+	return rv
+}
+
+
+// The number of bytes that the task expects to receive in the response body.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesexpectedtoreceive
+func (u_ URLSessionTask) SetCountOfBytesExpectedToReceive(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesExpectedToReceive:"), value)
+}
+
+
+// The number of bytes that the task expects to send in the request body.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesexpectedtosend
+func (u_ URLSessionTask) CountOfBytesExpectedToSend() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesExpectedToSend"))
 	return rv
 }
 
@@ -195,9 +202,18 @@ func (u_ URLSessionTask) CountOfBytesExpectedToReceive() unsafe.Pointer {
 // The number of bytes that the task expects to send in the request body.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesExpectedToSend
-func (u_ URLSessionTask) CountOfBytesExpectedToSend() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesExpectedToSend"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesexpectedtosend
+func (u_ URLSessionTask) SetCountOfBytesExpectedToSend(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesExpectedToSend:"), value)
+}
+
+
+// The number of bytes that the task has received from the server in the response body.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesreceived
+func (u_ URLSessionTask) CountOfBytesReceived() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesReceived"))
 	return rv
 }
 
@@ -205,9 +221,18 @@ func (u_ URLSessionTask) CountOfBytesExpectedToSend() unsafe.Pointer {
 // The number of bytes that the task has received from the server in the response body.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesReceived
-func (u_ URLSessionTask) CountOfBytesReceived() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesReceived"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytesreceived
+func (u_ URLSessionTask) SetCountOfBytesReceived(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesReceived:"), value)
+}
+
+
+// The number of bytes that the task has sent to the server in the request body.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytessent
+func (u_ URLSessionTask) CountOfBytesSent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesSent"))
 	return rv
 }
 
@@ -215,9 +240,18 @@ func (u_ URLSessionTask) CountOfBytesReceived() unsafe.Pointer {
 // The number of bytes that the task has sent to the server in the request body.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/countOfBytesSent
-func (u_ URLSessionTask) CountOfBytesSent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("countOfBytesSent"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/countofbytessent
+func (u_ URLSessionTask) SetCountOfBytesSent(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCountOfBytesSent:"), value)
+}
+
+
+// The URL request object currently being handled by the task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/currentrequest
+func (u_ URLSessionTask) CurrentRequest() IURLRequest {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
@@ -225,9 +259,18 @@ func (u_ URLSessionTask) CountOfBytesSent() unsafe.Pointer {
 // The URL request object currently being handled by the task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/currentRequest
-func (u_ URLSessionTask) CurrentRequest() URLRequest /* not a class type */ {
-	rv := objc.Send[URLRequest](u_.ID, objc.Sel("currentRequest"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/currentrequest
+func (u_ URLSessionTask) SetCurrentRequest(value IURLRequest) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setCurrentRequest:"), value)
+}
+
+
+// A delegate specific to the task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/delegate
+func (u_ URLSessionTask) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -235,18 +278,8 @@ func (u_ URLSessionTask) CurrentRequest() URLRequest /* not a class type */ {
 // A delegate specific to the task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/delegate
-func (u_ URLSessionTask) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A delegate specific to the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/delegate
-func (u_ URLSessionTask) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/delegate
+func (u_ URLSessionTask) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -254,7 +287,7 @@ func (u_ URLSessionTask) SetDelegate(value objc.ID) {
 // The earliest date at which the network load should begin.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/earliestbegindate
 func (u_ URLSessionTask) EarliestBeginDate() IDate {
 	rv := objc.Send[Date](u_.ID, objc.Sel("earliestBeginDate"))
 	return rv
@@ -264,7 +297,7 @@ func (u_ URLSessionTask) EarliestBeginDate() IDate {
 // The earliest date at which the network load should begin.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/earliestbegindate
 func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEarliestBeginDate:"), value)
 }
@@ -273,9 +306,28 @@ func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 // An error object that indicates why the task failed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/error
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
 func (u_ URLSessionTask) Error() IError {
 	rv := objc.Send[Error](u_.ID, objc.Sel("error"))
+	return rv
+}
+
+
+// An error object that indicates why the task failed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
+func (u_ URLSessionTask) SetError(value IError) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
+}
+
+
+// The original request object passed when the task was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/originalrequest
+func (u_ URLSessionTask) OriginalRequest() IURLRequest {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 
@@ -283,18 +335,17 @@ func (u_ URLSessionTask) Error() IError {
 // The original request object passed when the task was created.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/originalRequest
-func (u_ URLSessionTask) OriginalRequest() URLRequest /* not a class type */ {
-	rv := objc.Send[URLRequest](u_.ID, objc.Sel("originalRequest"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/originalrequest
+func (u_ URLSessionTask) SetOriginalRequest(value IURLRequest) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalRequest:"), value)
 }
 
 
 // A Boolean value that determines whether to deliver a partial response body in increments.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/prefersIncrementalDelivery
-func (u_ URLSessionTask) PrefersIncrementalDelivery() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/prefersincrementaldelivery
+func (u_ URLSessionTask) PrefersIncrementalDelivery() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("prefersIncrementalDelivery"))
 	return rv
 }
@@ -303,27 +354,27 @@ func (u_ URLSessionTask) PrefersIncrementalDelivery() bool /* primitive/slice/po
 // A Boolean value that determines whether to deliver a partial response body in increments.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/prefersIncrementalDelivery
-func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/prefersincrementaldelivery
+func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPrefersIncrementalDelivery:"), value)
 }
 
 
-// The relative priority at which you’d like a host to handle the task, specified as a floating point value between (lowest priority) and (highest priority).
+// The relative priority at which you’d like a host to handle the task, specified as a floating point value between
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) Priority() float32 /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/priority
+func (u_ URLSessionTask) Priority() float32 {
 	rv := objc.Send[float32](u_.ID, objc.Sel("priority"))
 	return rv
 }
 
 
-// The relative priority at which you’d like a host to handle the task, specified as a floating point value between (lowest priority) and (highest priority).
+// The relative priority at which you’d like a host to handle the task, specified as a floating point value between
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) SetPriority(value float32 /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/priority
+func (u_ URLSessionTask) SetPriority(value float32) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -331,9 +382,28 @@ func (u_ URLSessionTask) SetPriority(value float32 /* primitive/slice/pointer. *
 // A representation of the overall task progress.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/progress
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/progress
 func (u_ URLSessionTask) Progress() IProgress {
 	rv := objc.Send[Progress](u_.ID, objc.Sel("progress"))
+	return rv
+}
+
+
+// A representation of the overall task progress.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/progress
+func (u_ URLSessionTask) SetProgress(value IProgress) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProgress:"), value)
+}
+
+
+// The server’s response to the currently active request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+func (u_ URLSessionTask) Response() IURLResponse {
+	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -341,27 +411,16 @@ func (u_ URLSessionTask) Progress() IProgress {
 // The server’s response to the currently active request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/response
-func (u_ URLSessionTask) Response() IURLResponse {
-	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
-	return rv
-}
-
-
-// The current state of the task—active, suspended, in the process of being canceled, or completed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/state-swift.property
-func (u_ URLSessionTask) State() URLSessionTaskState {
-	rv := objc.Send[URLSessionTaskState](u_.ID, objc.Sel("state"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
+func (u_ URLSessionTask) SetResponse(value IURLResponse) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }
 
 
 // An app-provided string value for the current task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/taskdescription
 func (u_ URLSessionTask) TaskDescription() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("taskDescription"))
 	return rv
@@ -371,7 +430,7 @@ func (u_ URLSessionTask) TaskDescription() IString {
 // An app-provided string value for the current task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/taskdescription
 func (u_ URLSessionTask) SetTaskDescription(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), value)
 }
@@ -380,20 +439,20 @@ func (u_ URLSessionTask) SetTaskDescription(value IString) {
 // An identifier uniquely identifying the task within a given session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskIdentifier
-func (u_ URLSessionTask) TaskIdentifier() uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](u_.ID, objc.Sel("taskIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/taskidentifier
+func (u_ URLSessionTask) TaskIdentifier() int {
+	rv := objc.Send[int](u_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
 
 
-// The total size of the transfer cannot be determined.
+// An identifier uniquely identifying the task within a given session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlsessiontransfersizeunknown
-func (u_ URLSessionTask) NSURLSessionTransferSizeUnknown() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("NSURLSessionTransferSizeUnknown"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/taskidentifier
+func (u_ URLSessionTask) SetTaskIdentifier(value int) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskIdentifier:"), value)
 }
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,6 @@ type _GCGameControllerActivationContextClass struct {
 type IGCGameControllerActivationContext interface {
 	objectivec.IObject
 	// properties:
-	PreviousApplicationBundleID() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -77,15 +77,6 @@ func (g_ GCGameControllerActivationContext) Autorelease() GCGameControllerActiva
 // NewGCGameControllerActivationContext creates a new GCGameControllerActivationContext instance.
 func NewGCGameControllerActivationContext() GCGameControllerActivationContext {
 	return getGCGameControllerActivationContextClass().New()
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCGameControllerActivationContext/previousApplicationBundleID
-func (g_ GCGameControllerActivationContext) PreviousApplicationBundleID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("previousApplicationBundleID"))
-	return rv
 }
 
 

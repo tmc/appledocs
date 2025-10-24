@@ -31,22 +31,28 @@ type _MXSignpostIntervalDataClass struct {
 // An interface definition for the [MXSignpostIntervalData] class.
 type IMXSignpostIntervalData interface {
 	objectivec.IObject
-	AverageMemory() foundation.UnitInformationStorage
-	SetAverageMemory(value foundation.IUnitInformationStorage)
-	CumulativeCPUTime() foundation.UnitDuration
-	SetCumulativeCPUTime(value foundation.IUnitDuration)
-	CumulativeHitchTimeRatio() foundation.Unit
-	SetCumulativeHitchTimeRatio(value foundation.IUnit)
-	CumulativeLogicalWrites() foundation.UnitInformationStorage
-	SetCumulativeLogicalWrites(value foundation.IUnitInformationStorage)
-	HistogrammedSignpostDuration() foundation.UnitDuration
-	SetHistogrammedSignpostDuration(value foundation.IUnitDuration)
-	SignpostIntervalData() MXSignpostIntervalData
+	// properties:
+	AverageMemory() objc.IObject /* cross-framework: UnitInformationStorage */
+	SetAverageMemory(value objc.IObject /* cross-framework: UnitInformationStorage */)
+	CumulativeCPUTime() objc.IObject /* cross-framework: UnitDuration */
+	SetCumulativeCPUTime(value objc.IObject /* cross-framework: UnitDuration */)
+	CumulativeHitchTimeRatio() objc.IObject /* cross-framework: Unit */
+	SetCumulativeHitchTimeRatio(value objc.IObject /* cross-framework: Unit */)
+	CumulativeLogicalWrites() objc.IObject /* cross-framework: UnitInformationStorage */
+	SetCumulativeLogicalWrites(value objc.IObject /* cross-framework: UnitInformationStorage */)
+	HistogrammedSignpostDuration() objc.IObject /* cross-framework: UnitDuration */
+	SetHistogrammedSignpostDuration(value objc.IObject /* cross-framework: UnitDuration */)
+	SignpostIntervalData() IMXSignpostIntervalData
 	SetSignpostIntervalData(value IMXSignpostIntervalData)
+	// methods:
 }
 
 // A data object representing the captured data for a custom metric.
+
+
+// A data object representing the captured data for a custom metric.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostIntervalData
 type MXSignpostIntervalData struct {
 	objectivec.Object
@@ -91,109 +97,115 @@ func NewMXSignpostIntervalData() MXSignpostIntervalData {
 }
 
 
+
 // The average memory used during the logged intervals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
-func (m_ MXSignpostIntervalData) AverageMemory() foundation.UnitInformationStorage {
+func (m_ MXSignpostIntervalData) AverageMemory() objc.IObject /* cross-framework: UnitInformationStorage */ {
 	rv := objc.Send[foundation.UnitInformationStorage](m_.ID, objc.Sel("averageMemory"))
 	return rv
 }
 
 
-// SetAverageMemory sets the value of the averageMemory property.
 // The average memory used during the logged intervals.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
-func (m_ MXSignpostIntervalData) SetAverageMemory(value foundation.IUnitInformationStorage) {
+func (m_ MXSignpostIntervalData) SetAverageMemory(value objc.IObject /* cross-framework: UnitInformationStorage */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAverageMemory:"), value)
 }
 
+
 // The total amount of CPU time used during the logged intervals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) CumulativeCPUTime() foundation.UnitDuration {
+func (m_ MXSignpostIntervalData) CumulativeCPUTime() objc.IObject /* cross-framework: UnitDuration */ {
 	rv := objc.Send[foundation.UnitDuration](m_.ID, objc.Sel("cumulativeCPUTime"))
 	return rv
 }
 
 
-// SetCumulativeCPUTime sets the value of the cumulativeCPUTime property.
 // The total amount of CPU time used during the logged intervals.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value foundation.IUnitDuration) {
+func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value objc.IObject /* cross-framework: UnitDuration */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeCPUTime:"), value)
 }
 
+
 // The ratio of the total time spent hitching to the total time spent animating during the logged intervals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativehitchtimeratio
-func (m_ MXSignpostIntervalData) CumulativeHitchTimeRatio() foundation.Unit {
+func (m_ MXSignpostIntervalData) CumulativeHitchTimeRatio() objc.IObject /* cross-framework: Unit */ {
 	rv := objc.Send[foundation.Unit](m_.ID, objc.Sel("cumulativeHitchTimeRatio"))
 	return rv
 }
 
 
-// SetCumulativeHitchTimeRatio sets the value of the cumulativeHitchTimeRatio property.
 // The ratio of the total time spent hitching to the total time spent animating during the logged intervals.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativehitchtimeratio
-func (m_ MXSignpostIntervalData) SetCumulativeHitchTimeRatio(value foundation.IUnit) {
+func (m_ MXSignpostIntervalData) SetCumulativeHitchTimeRatio(value objc.IObject /* cross-framework: Unit */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeHitchTimeRatio:"), value)
 }
 
+
 // The total amount of data written to disk or other long term storage during the logged intervals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativelogicalwrites
-func (m_ MXSignpostIntervalData) CumulativeLogicalWrites() foundation.UnitInformationStorage {
+func (m_ MXSignpostIntervalData) CumulativeLogicalWrites() objc.IObject /* cross-framework: UnitInformationStorage */ {
 	rv := objc.Send[foundation.UnitInformationStorage](m_.ID, objc.Sel("cumulativeLogicalWrites"))
 	return rv
 }
 
 
-// SetCumulativeLogicalWrites sets the value of the cumulativeLogicalWrites property.
 // The total amount of data written to disk or other long term storage during the logged intervals.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativelogicalwrites
-func (m_ MXSignpostIntervalData) SetCumulativeLogicalWrites(value foundation.IUnitInformationStorage) {
+func (m_ MXSignpostIntervalData) SetCumulativeLogicalWrites(value objc.IObject /* cross-framework: UnitInformationStorage */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeLogicalWrites:"), value)
 }
 
+
 // A histogram of the different time intervals of a custom metric event.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/histogrammedsignpostduration
-func (m_ MXSignpostIntervalData) HistogrammedSignpostDuration() foundation.UnitDuration {
+func (m_ MXSignpostIntervalData) HistogrammedSignpostDuration() objc.IObject /* cross-framework: UnitDuration */ {
 	rv := objc.Send[foundation.UnitDuration](m_.ID, objc.Sel("histogrammedSignpostDuration"))
 	return rv
 }
 
 
-// SetHistogrammedSignpostDuration sets the value of the histogrammedSignpostDuration property.
 // A histogram of the different time intervals of a custom metric event.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/histogrammedsignpostduration
-func (m_ MXSignpostIntervalData) SetHistogrammedSignpostDuration(value foundation.IUnitDuration) {
+func (m_ MXSignpostIntervalData) SetHistogrammedSignpostDuration(value objc.IObject /* cross-framework: UnitDuration */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedSignpostDuration:"), value)
 }
 
+
 // The data captured for a custom metric.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
-func (m_ MXSignpostIntervalData) SignpostIntervalData() MXSignpostIntervalData {
+func (m_ MXSignpostIntervalData) SignpostIntervalData() IMXSignpostIntervalData {
 	rv := objc.Send[MXSignpostIntervalData](m_.ID, objc.Sel("signpostIntervalData"))
 	return rv
 }
 
 
-// SetSignpostIntervalData sets the value of the signpostIntervalData property.
 // The data captured for a custom metric.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
 func (m_ MXSignpostIntervalData) SetSignpostIntervalData(value IMXSignpostIntervalData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSignpostIntervalData:"), value)

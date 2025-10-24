@@ -30,9 +30,13 @@ type _trustKerberosPrincipalClass struct {
 // An interface definition for the [trustKerberosPrincipal] class.
 type ItrustKerberosPrincipal interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustKerberosPrincipal-c.ivar
 type trustKerberosPrincipal struct {
 	objectivec.Object

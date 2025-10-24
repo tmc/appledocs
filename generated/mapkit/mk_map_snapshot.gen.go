@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -98,7 +99,7 @@ func NewMKMapSnapshot() MKMapSnapshot {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
 func (m_ MKMapSnapshot) Appearance() objc.IObject /* cross-framework: Appearance */ {
-	rv := objc.Send[Appearance](m_.ID, objc.Sel("appearance"))
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (m_ MKMapSnapshot) SetAppearance(value objc.IObject /* cross-framework: App
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
 func (m_ MKMapSnapshot) Image() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
 	return rv
 }
 

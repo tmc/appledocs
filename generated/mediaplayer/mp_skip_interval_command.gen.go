@@ -30,14 +30,20 @@ type _SkipIntervalCommandClass struct {
 // An interface definition for the [SkipIntervalCommand] class.
 type ISkipIntervalCommand interface {
 	IRemoteCommand
-	PreferredIntervals() foundation.Number
-	SetPreferredIntervals(value foundation.INumber)
+	// properties:
+	PreferredIntervals() objc.IObject /* cross-framework: NSNumber */
+	SetPreferredIntervals(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // An object that defines the skip intervals for the player.
 //
 // You use a skip interval to move the playback of a media item, forward or backward, the indicated number of seconds. For example, a forward skip interval of 30 seconds at 2 minutes and 30 seconds into a song would immediately jump to 3 minutes into the song and continue playing. The skipped content isn’t played.
+
+
+// An object that defines the skip intervals for the player.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPSkipIntervalCommand
 type SkipIntervalCommand struct {
 	RemoteCommand
@@ -84,21 +90,22 @@ func NewSkipIntervalCommand() SkipIntervalCommand {
 }
 
 
+
 // The available skip intervals, in seconds, for a media item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand/preferredintervals
-func (s_ SkipIntervalCommand) PreferredIntervals() foundation.Number {
-	rv := objc.Send[foundation.Number](s_.ID, objc.Sel("preferredIntervals"))
+func (s_ SkipIntervalCommand) PreferredIntervals() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](s_.ID, objc.Sel("preferredIntervals"))
 	return rv
 }
 
 
-// SetPreferredIntervals sets the value of the preferredIntervals property.
 // The available skip intervals, in seconds, for a media item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand/preferredintervals
-func (s_ SkipIntervalCommand) SetPreferredIntervals(value foundation.INumber) {
+func (s_ SkipIntervalCommand) SetPreferredIntervals(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredIntervals:"), value)
 }
 

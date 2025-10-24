@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AXMathExpressionNumber] class.
@@ -30,7 +31,7 @@ type _AXMathExpressionNumberClass struct {
 type IAXMathExpressionNumber interface {
 	IAXMathExpression
 	// properties:
-	Content() string /* primitive/slice/pointer. */
+	Content() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -84,9 +85,9 @@ func NewAXMathExpressionNumber() AXMathExpressionNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/init(content:)
-func NewAXMathExpressionNumberWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionNumber {
+func NewAXMathExpressionNumberWithContent(content objc.IObject /* cross-framework: NSString */) AXMathExpressionNumber {
 	instance := getAXMathExpressionNumberClass().Alloc()
-	rv := objc.Send[AXMathExpressionNumber](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionNumber](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -95,8 +96,8 @@ func NewAXMathExpressionNumberWithContent(content string /* primitive/slice/poin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionNumber/content
-func (a_ AXMathExpressionNumber) Content() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionNumber) Content() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("content"))
 	return rv
 }
 

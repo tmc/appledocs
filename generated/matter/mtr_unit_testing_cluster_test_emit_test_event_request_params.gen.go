@@ -31,19 +31,23 @@ type _MTRUnitTestingClusterTestEmitTestEventRequestParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestEmitTestEventRequestParams] class.
 type IMTRUnitTestingClusterTestEmitTestEventRequestParams interface {
 	objectivec.IObject
-	Arg1() foundation.Number
-	SetArg1(value foundation.INumber)
-	Arg2() foundation.Number
-	SetArg2(value foundation.INumber)
-	Arg3() foundation.Number
-	SetArg3(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Arg1() objc.IObject /* cross-framework: NSNumber */
+	SetArg1(value objc.IObject /* cross-framework: NSNumber */)
+	Arg2() objc.IObject /* cross-framework: NSNumber */
+	SetArg2(value objc.IObject /* cross-framework: NSNumber */)
+	Arg3() objc.IObject /* cross-framework: NSNumber */
+	SetArg3(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEmitTestEventRequestParams
 type MTRUnitTestingClusterTestEmitTestEventRequestParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRUnitTestingClusterTestEmitTestEventRequestParams() MTRUnitTestingClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg1() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg1"))
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg1(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg2
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg2() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg2"))
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg2() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg2"))
 	return rv
 }
 
 
-// SetArg2 sets the value of the arg2 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg2
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg2(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg3
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg3() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("arg3"))
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg3() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("arg3"))
 	return rv
 }
 
 
-// SetArg3 sets the value of the arg3 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg3
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg3(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg3(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -30,19 +30,25 @@ type _ValueFunctionClass struct {
 // An interface definition for the [ValueFunction] class.
 type IValueFunction interface {
 	objectivec.IObject
-	Name() ValueFunctionName
+	// properties:
+	Name() ValueFunctionName /* not a class type */
 	FromValue() unsafe.Pointer
 	SetFromValue(value unsafe.Pointer)
 	ToValue() unsafe.Pointer
 	SetToValue(value unsafe.Pointer)
-	ValueFunction() CAValueFunction
+	ValueFunction() IValueFunction
 	SetValueFunction(value IValueFunction)
+	// methods:
 }
 
 // An object that provides a flexible method of defining animated transformations.
 //
 // You can use a value function to specify the individual components of an animated transform. For example, to create a basic animation that rotates a layer from 0° to 180° around its z-axis, you would create a object with a of , a of , and a of a with a function name of . The following code shows how you would create such a rotation and apply it to a named . The value functions and require 3 values, for the individual , and components. When working with these value functions, you specify the animation’s and as arrays. The following code shows how you could animate a layer’s scale from to using a value function.
+
+
+// An object that provides a flexible method of defining animated transformations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction
 type ValueFunction struct {
 	objectivec.Object
@@ -88,34 +94,19 @@ func NewValueFunction() ValueFunction {
 
 
 
-
-// Returns the value function object identified by the name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/init(name:)
-func NewValueFunctionWithName(name IValueFunctionName) ValueFunction {
-	rv := objc.Send[ValueFunction](objc.ID(getValueFunctionClass().class), objc.Sel("functionWithName:"), name)
-	return rv
-}
-
-
-// Returns the value function object identified by the name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/init(name:)
-func (vc _ValueFunctionClass) FunctionWithName(name IValueFunctionName) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("functionWithName:"), name)
-	return rv
-}
-
 // Returns the name of the value function.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAValueFunction/name
-func (v_ ValueFunction) Name() ValueFunctionName {
+func (v_ ValueFunction) Name() ValueFunctionName /* not a class type */ {
 	rv := objc.Send[ValueFunctionName](v_.ID, objc.Sel("name"))
 	return rv
 }
 
+
 // Defines the value the receiver uses to start interpolation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue
 func (v_ ValueFunction) FromValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fromValue"))
@@ -123,17 +114,18 @@ func (v_ ValueFunction) FromValue() unsafe.Pointer {
 }
 
 
-// SetFromValue sets the value of the fromValue property.
 // Defines the value the receiver uses to start interpolation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue
 func (v_ ValueFunction) SetFromValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFromValue:"), value)
 }
 
+
 // Defines the value the receiver uses to end interpolation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
 func (v_ ValueFunction) ToValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("toValue"))
@@ -141,31 +133,33 @@ func (v_ ValueFunction) ToValue() unsafe.Pointer {
 }
 
 
-// SetToValue sets the value of the toValue property.
 // Defines the value the receiver uses to end interpolation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue
 func (v_ ValueFunction) SetToValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setToValue:"), value)
 }
 
+
 // An optional value function that is applied to interpolated values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
-func (v_ ValueFunction) ValueFunction() CAValueFunction {
-	rv := objc.Send[CAValueFunction](v_.ID, objc.Sel("valueFunction"))
+func (v_ ValueFunction) ValueFunction() IValueFunction {
+	rv := objc.Send[ValueFunction](v_.ID, objc.Sel("valueFunction"))
 	return rv
 }
 
 
-// SetValueFunction sets the value of the valueFunction property.
 // An optional value function that is applied to interpolated values.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction
 func (v_ ValueFunction) SetValueFunction(value IValueFunction) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setValueFunction:"), value)
 }
+
+
 
 

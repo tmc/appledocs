@@ -30,12 +30,12 @@ type _TextTableBlockClass struct {
 type ITextTableBlock interface {
 	ITextBlock
 	// properties:
-	RowSpan() int /* primitive/slice/pointer. */
-	StartingColumn() int /* primitive/slice/pointer. */
-	ColumnSpan() int /* primitive/slice/pointer. */
-	SetColumnSpan(value int /* primitive/slice/pointer. */)
-	StartingRow() int /* primitive/slice/pointer. */
-	SetStartingRow(value int /* primitive/slice/pointer. */)
+	RowSpan() int
+	StartingColumn() int
+	ColumnSpan() int
+	SetColumnSpan(value int)
+	StartingRow() int
+	SetStartingRow(value int)
 	Table() ITextTable
 	SetTable(value ITextTable)
 	// methods:
@@ -98,7 +98,7 @@ func NewTextTableBlock() TextTableBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/rowSpan
-func (t_ TextTableBlock) RowSpan() int /* primitive/slice/pointer. */ {
+func (t_ TextTableBlock) RowSpan() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("rowSpan"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (t_ TextTableBlock) RowSpan() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/startingColumn
-func (t_ TextTableBlock) StartingColumn() int /* primitive/slice/pointer. */ {
+func (t_ TextTableBlock) StartingColumn() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("startingColumn"))
 	return rv
 }
@@ -118,7 +118,7 @@ func (t_ TextTableBlock) StartingColumn() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/columnspan
-func (t_ TextTableBlock) ColumnSpan() int /* primitive/slice/pointer. */ {
+func (t_ TextTableBlock) ColumnSpan() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("columnSpan"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (t_ TextTableBlock) ColumnSpan() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/columnspan
-func (t_ TextTableBlock) SetColumnSpan(value int /* primitive/slice/pointer. */) {
+func (t_ TextTableBlock) SetColumnSpan(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColumnSpan:"), value)
 }
 
@@ -137,7 +137,7 @@ func (t_ TextTableBlock) SetColumnSpan(value int /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/startingrow
-func (t_ TextTableBlock) StartingRow() int /* primitive/slice/pointer. */ {
+func (t_ TextTableBlock) StartingRow() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("startingRow"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (t_ TextTableBlock) StartingRow() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/startingrow
-func (t_ TextTableBlock) SetStartingRow(value int /* primitive/slice/pointer. */) {
+func (t_ TextTableBlock) SetStartingRow(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStartingRow:"), value)
 }
 

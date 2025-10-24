@@ -11,9 +11,7 @@ type _undefined = int
 type (
 	Data = _undefined // referenced in BackgroundAssets
 	DataReadingOptions = _undefined // referenced in BackgroundAssets
-	Set = _undefined // referenced in BackgroundAssets
 	URL = _undefined // referenced in BackgroundAssets
-	URLRequest = _undefined // referenced in BackgroundAssets
 )
 
 

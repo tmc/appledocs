@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,14 +34,14 @@ type IMKMapCamera interface {
 	// properties:
 	Altitude() LocationDistance /* not a class type */
 	SetAltitude(value LocationDistance /* not a class type */)
-	CenterCoordinate() LocationCoordinate2D /* not a class type */
-	SetCenterCoordinate(value LocationCoordinate2D /* not a class type */)
+	CenterCoordinate() objc.IObject /* cross-framework: LocationCoordinate2D */
+	SetCenterCoordinate(value objc.IObject /* cross-framework: LocationCoordinate2D */)
 	CenterCoordinateDistance() LocationDistance /* not a class type */
 	SetCenterCoordinateDistance(value LocationDistance /* not a class type */)
 	Heading() LocationDirection /* not a class type */
 	SetHeading(value LocationDirection /* not a class type */)
-	Pitch() float64 /* primitive/slice/pointer. */
-	SetPitch(value float64 /* primitive/slice/pointer. */)
+	Pitch() float64
+	SetPitch(value float64)
 	// methods:
 }
 
@@ -120,8 +121,8 @@ func (m_ MKMapCamera) SetAltitude(value LocationDistance /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapcamera/centercoordinate
-func (m_ MKMapCamera) CenterCoordinate() LocationCoordinate2D /* not a class type */ {
-	rv := objc.Send[LocationCoordinate2D](m_.ID, objc.Sel("centerCoordinate"))
+func (m_ MKMapCamera) CenterCoordinate() objc.IObject /* cross-framework: LocationCoordinate2D */ {
+	rv := objc.Send[corelocation.LocationCoordinate2D](m_.ID, objc.Sel("centerCoordinate"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (m_ MKMapCamera) CenterCoordinate() LocationCoordinate2D /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapcamera/centercoordinate
-func (m_ MKMapCamera) SetCenterCoordinate(value LocationCoordinate2D /* not a class type */) {
+func (m_ MKMapCamera) SetCenterCoordinate(value objc.IObject /* cross-framework: LocationCoordinate2D */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCenterCoordinate:"), value)
 }
 
@@ -177,7 +178,7 @@ func (m_ MKMapCamera) SetHeading(value LocationDirection /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapcamera/pitch
-func (m_ MKMapCamera) Pitch() float64 /* primitive/slice/pointer. */ {
+func (m_ MKMapCamera) Pitch() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("pitch"))
 	return rv
 }
@@ -187,7 +188,7 @@ func (m_ MKMapCamera) Pitch() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapcamera/pitch
-func (m_ MKMapCamera) SetPitch(value float64 /* primitive/slice/pointer. */) {
+func (m_ MKMapCamera) SetPitch(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPitch:"), value)
 }
 

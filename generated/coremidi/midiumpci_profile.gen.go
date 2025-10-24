@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,13 +35,13 @@ type IMIDIUMPCIProfile interface {
 	EnabledChannelCount() MIDIUInteger14 /* typedef */
 	FirstChannel() MIDIChannelNumber /* typedef */
 	GroupOffset() MIDIUMPGroupNumber /* typedef */
-	IsEnabled() bool /* primitive/slice/pointer. */
-	Name() string /* primitive/slice/pointer. */
+	IsEnabled() bool
+	Name() objc.IObject /* cross-framework: NSString */
 	ProfileID() unsafe.Pointer
 	ProfileType() MIDICIProfileType
 	TotalChannelCount() MIDIUInteger14 /* typedef */
 	// methods:
-	SetProfileStateEnabledChannelCountError(isEnabled bool /* primitive/slice/pointer. */, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool
 }
 
 
@@ -91,7 +92,7 @@ func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/setProfileState(_:enabledChannelCount:)
-func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool /* primitive/slice/pointer. */, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error_)
 	return rv
 }
@@ -123,7 +124,7 @@ func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber /* typedef */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/isEnabled
-func (m_ MIDIUMPCIProfile) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -131,8 +132,8 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-func (m_ MIDIUMPCIProfile) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPCIProfile) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 

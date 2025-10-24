@@ -30,7 +30,7 @@ type _MagnetometerDataClass struct {
 type IMagnetometerData interface {
 	ILogItem
 	// properties:
-	MagneticField() MagneticField /* not a class type */
+	MagneticField() CMMagneticField /* not a class type */
 	MagnetometerData() ICMMagnetometerData
 	SetMagnetometerData(value ICMMagnetometerData)
 	// methods:
@@ -95,7 +95,7 @@ func NewMagnetometerData() MagnetometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData/magneticField
-func (m_ MagnetometerData) MagneticField() MagneticField /* not a class type */ {
+func (m_ MagnetometerData) MagneticField() CMMagneticField /* not a class type */ {
 	rv := objc.Send[MagneticField](m_.ID, objc.Sel("magneticField"))
 	return rv
 }

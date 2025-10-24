@@ -29,9 +29,13 @@ type _ReductionRowMeanNodeClass struct {
 // An interface definition for the [ReductionRowMeanNode] class.
 type IReductionRowMeanNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMeanNode
 type ReductionRowMeanNode struct {
 	UnaryReductionNode

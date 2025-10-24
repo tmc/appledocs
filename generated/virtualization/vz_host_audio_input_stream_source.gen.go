@@ -29,12 +29,18 @@ type _VZHostAudioInputStreamSourceClass struct {
 // An interface definition for the [VZHostAudioInputStreamSource] class.
 type IVZHostAudioInputStreamSource interface {
 	IVZAudioInputStreamSource
+	// properties:
+	// methods:
 }
 
 // The host audio input stream source that provides audio from the host system’s default input device.
 //
 // The host input data comes from the same device that uses.
+
+
+// The host audio input stream source that provides audio from the host system’s default input device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZHostAudioInputStreamSource
 type VZHostAudioInputStreamSource struct {
 	VZAudioInputStreamSource

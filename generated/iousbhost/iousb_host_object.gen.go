@@ -32,11 +32,11 @@ type _USBHostObjectClass struct {
 type IUSBHostObject interface {
 	objectivec.IObject
 	// properties:
-	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
+	IOUSBHostDefaultControlCompletionTimeout() float64
 	CapabilityDescriptors() USBBOSDescriptor /* not a class type */
 	SetCapabilityDescriptors(value USBBOSDescriptor /* not a class type */)
-	DeviceAddress() int /* primitive/slice/pointer. */
-	SetDeviceAddress(value int /* primitive/slice/pointer. */)
+	DeviceAddress() int
+	SetDeviceAddress(value int)
 	DeviceDescriptor() USBDeviceDescriptor /* not a class type */
 	SetDeviceDescriptor(value USBDeviceDescriptor /* not a class type */)
 	IoService() unsafe.Pointer
@@ -44,9 +44,9 @@ type IUSBHostObject interface {
 	Queue() unsafe.Pointer
 	SetQueue(value unsafe.Pointer)
 	// methods:
-	ReferenceMicroframeWithTimeError(time USBHostTime /* not a class type */, error_ unsafe.Pointer) uint64 /* primitive/slice/pointer. */
-	SendDeviceRequestDataBytesTransferredCompletionTimeoutError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, bytesTransferred uint /* primitive/slice/pointer. */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SendDeviceRequestDataBytesTransferredError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, bytesTransferred uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ReferenceMicroframeWithTimeError(time USBHostTime /* not a class type */, error_ unsafe.Pointer) uint64
+	SendDeviceRequestDataBytesTransferredCompletionTimeoutError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, bytesTransferred uint, completionTimeout float64, error_ unsafe.Pointer) bool
+	SendDeviceRequestDataBytesTransferredError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, bytesTransferred uint, error_ unsafe.Pointer) bool
 }
 
 // This class provides basic functionality for sending device requests and retrieving descriptors.
@@ -115,7 +115,7 @@ func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/referenceMicroframeWithTime:error:
-func (u_ USBHostObject) ReferenceMicroframeWithTimeError(time USBHostTime /* not a class type */, error_ unsafe.Pointer) uint64 /* primitive/slice/pointer. */ {
+func (u_ USBHostObject) ReferenceMicroframeWithTimeError(time USBHostTime /* not a class type */, error_ unsafe.Pointer) uint64 {
 	rv := objc.Send[uint64](u_.ID, objc.Sel("referenceMicroframeWithTime:error:"), time, error_)
 	return rv
 }
@@ -125,7 +125,7 @@ func (u_ USBHostObject) ReferenceMicroframeWithTimeError(time USBHostTime /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/sendDeviceRequest:data:bytesTransferred:completionTimeout:error:
-func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredCompletionTimeoutError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, bytesTransferred uint /* primitive/slice/pointer. */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredCompletionTimeoutError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, bytesTransferred uint, completionTimeout float64, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendDeviceRequest:data:bytesTransferred:completionTimeout:error:"), request, data, bytesTransferred, completionTimeout, error_)
 	return rv
 }
@@ -135,7 +135,7 @@ func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredCompletionTimeoutEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/sendDeviceRequest:data:bytesTransferred:error:
-func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, bytesTransferred uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework: MutableData */, bytesTransferred uint, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendDeviceRequest:data:bytesTransferred:error:"), request, data, bytesTransferred, error_)
 	return rv
 }
@@ -145,8 +145,8 @@ func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request USBDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout
-func (u_ USBHostObject) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
+func (u_ USBHostObject) IOUSBHostDefaultControlCompletionTimeout() float64 {
+	rv := objc.Send[float64](u_.ID, objc.Sel("IOUSBHostDefaultControlCompletionTimeout"))
 	return rv
 }
 
@@ -170,7 +170,7 @@ func (u_ USBHostObject) SetCapabilityDescriptors(value USBBOSDescriptor /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/deviceaddress
-func (u_ USBHostObject) DeviceAddress() int /* primitive/slice/pointer. */ {
+func (u_ USBHostObject) DeviceAddress() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("deviceAddress"))
 	return rv
 }
@@ -180,7 +180,7 @@ func (u_ USBHostObject) DeviceAddress() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/deviceaddress
-func (u_ USBHostObject) SetDeviceAddress(value int /* primitive/slice/pointer. */) {
+func (u_ USBHostObject) SetDeviceAddress(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceAddress:"), value)
 }
 

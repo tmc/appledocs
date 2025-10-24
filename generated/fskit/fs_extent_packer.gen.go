@@ -32,7 +32,7 @@ type IFSExtentPacker interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	PackExtentWithResourceTypeLogicalOffsetPhysicalOffsetLength(resource IFSBlockDeviceResource, type_ FSExtentType, logicalOffset unsafe.Pointer, physicalOffset unsafe.Pointer, length uintptr /* not a class type */) bool /* primitive/slice/pointer. */
+	PackExtentWithResourceTypeLogicalOffsetPhysicalOffsetLength(resource IFSBlockDeviceResource, type_ FSExtentType, logicalOffset unsafe.Pointer, physicalOffset unsafe.Pointer, length uintptr /* not a class type */) bool
 }
 
 // A type that directs the kernel to map space on disk to a specific file managed by this file system.
@@ -92,7 +92,7 @@ func NewFSExtentPacker() FSExtentPacker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSExtentPacker/packExtent(resource:type:logicalOffset:physicalOffset:length:)
-func (f_ FSExtentPacker) PackExtentWithResourceTypeLogicalOffsetPhysicalOffsetLength(resource IFSBlockDeviceResource, type_ FSExtentType, logicalOffset unsafe.Pointer, physicalOffset unsafe.Pointer, length uintptr /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (f_ FSExtentPacker) PackExtentWithResourceTypeLogicalOffsetPhysicalOffsetLength(resource IFSBlockDeviceResource, type_ FSExtentType, logicalOffset unsafe.Pointer, physicalOffset unsafe.Pointer, length uintptr /* not a class type */) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("packExtentWithResource:type:logicalOffset:physicalOffset:length:"), resource, type_, logicalOffset, physicalOffset, length)
 	return rv
 }

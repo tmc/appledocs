@@ -31,19 +31,23 @@ type _MTRElectricalPowerMeasurementClusterMeasurementAccuracyStructClass struct 
 // An interface definition for the [MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct] class.
 type IMTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct interface {
 	objectivec.IObject
+	// properties:
 	AccuracyRanges() unsafe.Pointer
 	SetAccuracyRanges(value unsafe.Pointer)
-	MaxMeasuredValue() foundation.Number
-	SetMaxMeasuredValue(value foundation.INumber)
-	Measured() foundation.Number
-	SetMeasured(value foundation.INumber)
-	MeasurementType() foundation.Number
-	SetMeasurementType(value foundation.INumber)
-	MinMeasuredValue() foundation.Number
-	SetMinMeasuredValue(value foundation.INumber)
+	MaxMeasuredValue() objc.IObject /* cross-framework: NSNumber */
+	SetMaxMeasuredValue(value objc.IObject /* cross-framework: NSNumber */)
+	Measured() objc.IObject /* cross-framework: NSNumber */
+	SetMeasured(value objc.IObject /* cross-framework: NSNumber */)
+	MeasurementType() objc.IObject /* cross-framework: NSNumber */
+	SetMeasurementType(value objc.IObject /* cross-framework: NSNumber */)
+	MinMeasuredValue() objc.IObject /* cross-framework: NSNumber */
+	SetMinMeasuredValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct
 type MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct struct {
 	objectivec.Object
@@ -86,7 +90,8 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct() MTRElect
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/accuracyranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) AccuracyRanges() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accuracyRanges"))
@@ -94,70 +99,69 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) Accuracy
 }
 
 
-// SetAccuracyRanges sets the value of the accuracyRanges property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/accuracyranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetAccuracyRanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccuracyRanges:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/maxmeasuredvalue
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MaxMeasuredValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxMeasuredValue"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MaxMeasuredValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("maxMeasuredValue"))
 	return rv
 }
 
 
-// SetMaxMeasuredValue sets the value of the maxMeasuredValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/maxmeasuredvalue
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMaxMeasuredValue(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMaxMeasuredValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxMeasuredValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measured
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) Measured() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measured"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) Measured() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("measured"))
 	return rv
 }
 
 
-// SetMeasured sets the value of the measured property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measured
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasured(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasured(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasured:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measurementtype
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MeasurementType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("measurementType"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MeasurementType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("measurementType"))
 	return rv
 }
 
 
-// SetMeasurementType sets the value of the measurementType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/measurementtype
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasurementType(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMeasurementType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurementType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/minmeasuredvalue
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MinMeasuredValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minMeasuredValue"))
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) MinMeasuredValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minMeasuredValue"))
 	return rv
 }
 
 
-// SetMinMeasuredValue sets the value of the minMeasuredValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracystruct/minmeasuredvalue
-func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMinMeasuredValue(value foundation.INumber) {
+func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct) SetMinMeasuredValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinMeasuredValue:"), value)
 }
 

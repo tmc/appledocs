@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MediaPlaylist] class.
@@ -29,21 +30,18 @@ type _MediaPlaylistClass struct {
 // An interface definition for the [MediaPlaylist] class.
 type IMediaPlaylist interface {
 	IMediaItemCollection
-	AddMediaItemsCompletionHandler(mediaItems []MediaItem, completionHandler unsafe.Pointer)
-	AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer)
-	AuthorDisplayName() string
-	CloudGlobalID() string
-	DescriptionText() string
-	Name() string
-	PersistentID() MediaEntityPersistentID
-	PlaylistAttributes() MediaPlaylistAttribute
-	SeedItems() []MediaItem
+	// properties:
+	// methods:
 }
 
 // A playable collection of related media items.
 //
 // Each playlist has a name, a set of attributes, and a unique identifier that persists across application launches. Users configure playlists using iTunes or by creating a playlist on the device. Playlists are read-only to your iOS app. To obtain playlists, configure a media query that’s grouped by playlist. Each returned media item collection is a media playlist. The following code snippet illustrates this by logging playlist and song names to the Xcode debugger console: and describe the API for building a media query. describes the methods for querying media playlist property values.
+
+
+// A playable collection of related media items.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist
 type MediaPlaylist struct {
 	MediaItemCollection
@@ -87,77 +85,6 @@ func (m_ MediaPlaylist) Autorelease() MediaPlaylist {
 // NewMediaPlaylist creates a new MediaPlaylist instance.
 func NewMediaPlaylist() MediaPlaylist {
 	return getMediaPlaylistClass().New()
-}
-
-
-// Adds an array of media items to the end of the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/add(_:completionHandler:)
-func (m_ MediaPlaylist) AddMediaItemsCompletionHandler(mediaItems []MediaItem, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addMediaItems:completionHandler:"), mediaItems, completionHandler)
-}
-
-// Adds the item associated with the product identifier to the end of the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/addItem(withProductID:completionHandler:)
-func (m_ MediaPlaylist) AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), objc.String(productID), completionHandler)
-}
-
-// The display name for the playlist defined in the app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/authorDisplayName
-func (m_ MediaPlaylist) AuthorDisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
-	return rv
-}
-
-// The cloud identifier for the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/cloudGlobalID
-func (m_ MediaPlaylist) CloudGlobalID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("cloudGlobalID"))
-	return rv
-}
-
-// User supplied text that describes the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/descriptionText
-func (m_ MediaPlaylist) DescriptionText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
-	return rv
-}
-
-// The name of the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/name
-func (m_ MediaPlaylist) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
-	return rv
-}
-
-// The persistent identifier for the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/persistentID
-func (m_ MediaPlaylist) PersistentID() MediaEntityPersistentID {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
-	return rv
-}
-
-// The attributes associated with the playlist.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/playlistAttributes
-func (m_ MediaPlaylist) PlaylistAttributes() MediaPlaylistAttribute {
-	rv := objc.Send[MediaPlaylistAttribute](m_.ID, objc.Sel("playlistAttributes"))
-	return rv
-}
-
-// The items seeded to generate the playlist; applies only to Genius playlists.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/seedItems
-func (m_ MediaPlaylist) SeedItems() []MediaItem {
-	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("seedItems"))
-	return rv
 }
 
 

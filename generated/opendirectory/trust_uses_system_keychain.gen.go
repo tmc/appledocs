@@ -30,9 +30,13 @@ type _trustUsesSystemKeychainClass struct {
 // An interface definition for the [trustUsesSystemKeychain] class.
 type ItrustUsesSystemKeychain interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesSystemKeychain-c.ivar
 type trustUsesSystemKeychain struct {
 	objectivec.Object

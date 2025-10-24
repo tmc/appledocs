@@ -29,16 +29,20 @@ type _MatrixRandomClass struct {
 // An interface definition for the [MatrixRandom] class.
 type IMatrixRandom interface {
 	IKernel
-	DestinationDataType() unsafe.Pointer
+	// properties:
+	DestinationDataType() DataType /* not a class type */
 	BatchSize() int
 	SetBatchSize(value int)
 	BatchStart() int
 	SetBatchStart(value int)
-	DistributionType() unsafe.Pointer
-	SetDistributionType(value unsafe.Pointer)
+	DistributionType() MatrixRandomDistribution /* not a class type */
+	SetDistributionType(value MatrixRandomDistribution /* not a class type */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandom
 type MatrixRandom struct {
 	Kernel
@@ -83,14 +87,16 @@ func NewMatrixRandom() MatrixRandom {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandom/destinationDataType
-func (m_ MatrixRandom) DestinationDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destinationDataType"))
+func (m_ MatrixRandom) DestinationDataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](m_.ID, objc.Sel("destinationDataType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchsize
 func (m_ MatrixRandom) BatchSize() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("batchSize"))
@@ -98,14 +104,14 @@ func (m_ MatrixRandom) BatchSize() int {
 }
 
 
-// SetBatchSize sets the value of the batchSize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchsize
 func (m_ MatrixRandom) SetBatchSize(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBatchSize:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchstart
 func (m_ MatrixRandom) BatchStart() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("batchStart"))
@@ -113,25 +119,24 @@ func (m_ MatrixRandom) BatchStart() int {
 }
 
 
-// SetBatchStart sets the value of the batchStart property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/batchstart
 func (m_ MatrixRandom) SetBatchStart(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBatchStart:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
-func (m_ MatrixRandom) DistributionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distributionType"))
+func (m_ MatrixRandom) DistributionType() MatrixRandomDistribution /* not a class type */ {
+	rv := objc.Send[MatrixRandomDistribution](m_.ID, objc.Sel("distributionType"))
 	return rv
 }
 
 
-// SetDistributionType sets the value of the distributionType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom/distributiontype
-func (m_ MatrixRandom) SetDistributionType(value unsafe.Pointer) {
+func (m_ MatrixRandom) SetDistributionType(value MatrixRandomDistribution /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDistributionType:"), value)
 }
 

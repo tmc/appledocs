@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNNConvolutionTransposeGradientStateNode] class.
@@ -29,18 +28,24 @@ type _CNNConvolutionTransposeGradientStateNodeClass struct {
 
 // An interface definition for the [CNNConvolutionTransposeGradientStateNode] class.
 type ICNNConvolutionTransposeGradientStateNode interface {
-	objectivec.IObject
+	ICNNConvolutionGradientStateNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionTransposeGradientStateNode
 type CNNConvolutionTransposeGradientStateNode struct {
-	objectivec.Object
+	CNNConvolutionGradientStateNode
 }
 
 // CNNConvolutionTransposeGradientStateNodeFrom constructs a [CNNConvolutionTransposeGradientStateNode] from an unsafe.Pointer.
 func CNNConvolutionTransposeGradientStateNodeFrom(ptr unsafe.Pointer) CNNConvolutionTransposeGradientStateNode {
-	return CNNConvolutionTransposeGradientStateNode{objectivec.Object{objc.ID(ptr)}}
+	return CNNConvolutionTransposeGradientStateNode{
+		CNNConvolutionGradientStateNode: CNNConvolutionGradientStateNodeFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

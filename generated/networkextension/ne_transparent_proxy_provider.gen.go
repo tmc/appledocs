@@ -29,14 +29,20 @@ type _NETransparentProxyProviderClass struct {
 // An interface definition for the [NETransparentProxyProvider] class.
 type INETransparentProxyProvider interface {
 	INEAppProxyProvider
-	IncludedNetworkRules() NENetworkRule
-	SetIncludedNetworkRules(value INENetworkRule)
+	// properties:
+	IncludedNetworkRules() objc.IObject /* cross-framework: NENetworkRule */
+	SetIncludedNetworkRules(value objc.IObject /* cross-framework: NENetworkRule */)
+	// methods:
 }
 
 // An object that implements the client side of a custom transparent network proxy solution.
 //
 // The class has the following behavior differences from its superclass : Returning from and causes the flow to proceed to communicate directly with the flow’s ultimate destination, instead of closing the flow with a “Connection Refused” error. This provider ignores and specified within . Flows that match the within use the same DNS and proxy settings that other flows on the system currently use. Flows that are created using a “connect by name” API (such as framework or ) that match the don’t bypass DNS resolution.
+
+
+// An object that implements the client side of a custom transparent network proxy solution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETransparentProxyProvider
 type NETransparentProxyProvider struct {
 	NEAppProxyProvider
@@ -83,21 +89,22 @@ func NewNETransparentProxyProvider() NETransparentProxyProvider {
 }
 
 
+
 // An array of rules that collectively specify what traffic to route through the transparent proxy.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules
-func (n_ NETransparentProxyProvider) IncludedNetworkRules() NENetworkRule {
+func (n_ NETransparentProxyProvider) IncludedNetworkRules() objc.IObject /* cross-framework: NENetworkRule */ {
 	rv := objc.Send[NENetworkRule](n_.ID, objc.Sel("includedNetworkRules"))
 	return rv
 }
 
 
-// SetIncludedNetworkRules sets the value of the includedNetworkRules property.
 // An array of rules that collectively specify what traffic to route through the transparent proxy.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules
-func (n_ NETransparentProxyProvider) SetIncludedNetworkRules(value INENetworkRule) {
+func (n_ NETransparentProxyProvider) SetIncludedNetworkRules(value objc.IObject /* cross-framework: NENetworkRule */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedNetworkRules:"), value)
 }
 

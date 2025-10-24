@@ -30,15 +30,21 @@ type _OSSystemExtensionManagerClass struct {
 // An interface definition for the [OSSystemExtensionManager] class.
 type IOSSystemExtensionManager interface {
 	objectivec.IObject
-	SubmitRequest(request IOSSystemExtensionRequest)
+	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	// methods:
+	SubmitRequest(request IOSSystemExtensionRequest)
 }
 
 // A type that facilitates activation and deactivation of system extensions.
 //
 // Create an instance of with the class methods on that type, and submit it to the shared instance of the extension manager with . Set the on the request to receive the result of the activation or deactivation. The delegate also receives notifications if the user needs to authorize the extension or if a version conflict occurs.
+
+
+// A type that facilitates activation and deactivation of system extensions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager
 type OSSystemExtensionManager struct {
 	objectivec.Object
@@ -83,30 +89,19 @@ func NewOSSystemExtensionManager() OSSystemExtensionManager {
 }
 
 
-// The shared instance of the extension manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
-func (oc _OSSystemExtensionManagerClass) SharedManager() OSSystemExtensionManager {
-	rv := objc.Send[OSSystemExtensionManager](objc.ID(oc.class), objc.Sel("sharedManager"))
-	return rv
-}
+
 // Submits a system extension request to the manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/submitRequest(_:)
 func (o_ OSSystemExtensionManager) SubmitRequest(request IOSSystemExtensionRequest) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
 }
 
-// The shared instance of the extension manager.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
-func (o_ OSSystemExtensionManager) SharedManager() OSSystemExtensionManager {
-	rv := objc.Send[OSSystemExtensionManager](o_.ID, objc.Sel("sharedManager"))
-	return rv
-}
 
 // A delegate to receive updates about the progress of a request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
 func (o_ OSSystemExtensionManager) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
@@ -114,10 +109,9 @@ func (o_ OSSystemExtensionManager) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // A delegate to receive updates about the progress of a request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate
 func (o_ OSSystemExtensionManager) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)

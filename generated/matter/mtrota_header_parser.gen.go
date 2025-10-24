@@ -30,9 +30,13 @@ type _MTROTAHeaderParserClass struct {
 // An interface definition for the [MTROTAHeaderParser] class.
 type IMTROTAHeaderParser interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTAHeaderParser
 type MTROTAHeaderParser struct {
 	objectivec.Object

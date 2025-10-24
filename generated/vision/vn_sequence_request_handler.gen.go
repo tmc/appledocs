@@ -30,12 +30,18 @@ type _SequenceRequestHandlerClass struct {
 // An interface definition for the [SequenceRequestHandler] class.
 type ISequenceRequestHandler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that processes image-analysis requests for each frame in a sequence.
 //
 // Instantiate this handler to perform Vision requests on a series of images. Unlike the , you don’t specify the image on creation. Instead, you supply each image frame one by one as you continue to call one of the methods.
+
+
+// An object that processes image-analysis requests for each frame in a sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNSequenceRequestHandler
 type SequenceRequestHandler struct {
 	objectivec.Object

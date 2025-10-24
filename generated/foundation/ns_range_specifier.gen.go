@@ -30,10 +30,10 @@ type _RangeSpecifierClass struct {
 type IRangeSpecifier interface {
 	IScriptObjectSpecifier
 	// properties:
-	EndSpecifier() IScriptObjectSpecifier
-	SetEndSpecifier(value IScriptObjectSpecifier)
 	StartSpecifier() IScriptObjectSpecifier
 	SetStartSpecifier(value IScriptObjectSpecifier)
+	EndSpecifier() IScriptObjectSpecifier
+	SetEndSpecifier(value IScriptObjectSpecifier)
 	// methods:
 }
 
@@ -102,37 +102,6 @@ func NewRangeSpecifierWithCoder(inCoder ICoder) RangeSpecifier {
 }
 
 
-// Returns a range specifier initialized with the given properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/init(containerClassDescription:containerSpecifier:key:start:end:)
-func NewRangeSpecifierWithContainerClassDescriptionContainerSpecifierKeyStartSpecifierEndSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property IString, startSpec IScriptObjectSpecifier, endSpec IScriptObjectSpecifier) RangeSpecifier {
-	instance := getRangeSpecifierClass().Alloc()
-	rv := objc.Send[RangeSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:"), classDesc, container, property, startSpec, endSpec)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Sets the object specifier representing the last object of the range to a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/endSpecifier
-func (r_ RangeSpecifier) EndSpecifier() IScriptObjectSpecifier {
-	rv := objc.Send[ScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
-	return rv
-}
-
-
-// Sets the object specifier representing the last object of the range to a given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/endSpecifier
-func (r_ RangeSpecifier) SetEndSpecifier(value IScriptObjectSpecifier) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
-}
-
 
 // Returns the object specifier representing the first object of the range.
 //
@@ -150,6 +119,25 @@ func (r_ RangeSpecifier) StartSpecifier() IScriptObjectSpecifier {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
 func (r_ RangeSpecifier) SetStartSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartSpecifier:"), value)
+}
+
+
+// Sets the object specifier representing the last object of the range to a given object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
+func (r_ RangeSpecifier) EndSpecifier() IScriptObjectSpecifier {
+	rv := objc.Send[ScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
+	return rv
+}
+
+
+// Sets the object specifier representing the last object of the range to a given object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
+func (r_ RangeSpecifier) SetEndSpecifier(value IScriptObjectSpecifier) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
 }
 
 

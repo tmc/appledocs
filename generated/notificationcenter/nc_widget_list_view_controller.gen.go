@@ -30,8 +30,7 @@ type _NCWidgetListViewControllerClass struct {
 // An interface definition for the [NCWidgetListViewController] class.
 type INCWidgetListViewController interface {
 	appkit.IViewController
-	RowForViewController(viewController appkit.IViewController) uint
-	ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) appkit.ViewController
+	// properties:
 	Contents() []objc.ID
 	SetContents(value []objc.ID)
 	Delegate() objc.ID
@@ -44,12 +43,17 @@ type INCWidgetListViewController interface {
 	SetMinimumVisibleRowCount(value uint)
 	ShowsAddButtonWhenEditing() bool
 	SetShowsAddButtonWhenEditing(value bool)
+	// methods:
 }
 
 // An object that provides a list view for displaying content in a macOS Today widget.
 //
 // The class provides a list view for displaying content in a Today widget. A list view controller works together with its delegate to display content and support user interaction with the list. To learn about the list view controller delegate methods, see . You store the contents of a widget as an array of objects in the list view controller’s property. To display the objects, you use a object, which provides a custom view controller for each object in . A list view controller also provides properties that make it easy to specify aspects of the list’s appearance and behavior, such as the number of rows to display, the presence of divider lines, and the ability to edit the list.
+
+
+// An object that provides a list view for displaying content in a macOS Today widget.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController
 type NCWidgetListViewController struct {
 	appkit.ViewController
@@ -96,24 +100,10 @@ func NewNCWidgetListViewController() NCWidgetListViewController {
 }
 
 
-// Returns the row represented by the specified content view controller.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/row(for:)
-func (n_ NCWidgetListViewController) RowForViewController(viewController appkit.IViewController) uint {
-	rv := objc.Send[uint](n_.ID, objc.Sel("rowForViewController:"), viewController)
-	return rv
-}
-
-// Returns the content view controller associated with the specified row, or a new content view controller if desired.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/viewController(atRow:makeIfNecessary:)
-func (n_ NCWidgetListViewController) ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) appkit.ViewController {
-	rv := objc.Send[appkit.ViewController](n_.ID, objc.Sel("viewControllerAtRow:makeIfNecessary:"), row, makeIfNecesary)
-	return rv
-}
 
 // An array of objects to display in the list view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/contents
 func (n_ NCWidgetListViewController) Contents() []objc.ID {
 	rv := objc.Send[[]objc.ID](n_.ID, objc.Sel("contents"))
@@ -121,10 +111,9 @@ func (n_ NCWidgetListViewController) Contents() []objc.ID {
 }
 
 
-// SetContents sets the value of the contents property.
 // An array of objects to display in the list view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/contents
 func (n_ NCWidgetListViewController) SetContents(value []objc.ID) {
 	// Convert Go slice to NSArray
@@ -140,8 +129,10 @@ func (n_ NCWidgetListViewController) SetContents(value []objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setContents:"), nsArray)
 }
 
+
 // The list view controller’s delegate or if the receiver doesn’t have a delegate.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/delegate
 func (n_ NCWidgetListViewController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
@@ -149,17 +140,18 @@ func (n_ NCWidgetListViewController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The list view controller’s delegate or if the receiver doesn’t have a delegate.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/delegate
 func (n_ NCWidgetListViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value that indicates whether the list is in editing mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/editing
 func (n_ NCWidgetListViewController) Editing() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("editing"))
@@ -167,17 +159,18 @@ func (n_ NCWidgetListViewController) Editing() bool {
 }
 
 
-// SetEditing sets the value of the editing property.
 // A Boolean value that indicates whether the list is in editing mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/editing
 func (n_ NCWidgetListViewController) SetEditing(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEditing:"), value)
 }
 
+
 // A Boolean value that indicates whether list displays divider lines between rows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/hasDividerLines
 func (n_ NCWidgetListViewController) HasDividerLines() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasDividerLines"))
@@ -185,17 +178,18 @@ func (n_ NCWidgetListViewController) HasDividerLines() bool {
 }
 
 
-// SetHasDividerLines sets the value of the hasDividerLines property.
 // A Boolean value that indicates whether list displays divider lines between rows.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/hasDividerLines
 func (n_ NCWidgetListViewController) SetHasDividerLines(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasDividerLines:"), value)
 }
 
+
 // The minimum number of visible rows to display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/minimumVisibleRowCount
 func (n_ NCWidgetListViewController) MinimumVisibleRowCount() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumVisibleRowCount"))
@@ -203,17 +197,18 @@ func (n_ NCWidgetListViewController) MinimumVisibleRowCount() uint {
 }
 
 
-// SetMinimumVisibleRowCount sets the value of the minimumVisibleRowCount property.
 // The minimum number of visible rows to display.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/minimumVisibleRowCount
 func (n_ NCWidgetListViewController) SetMinimumVisibleRowCount(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumVisibleRowCount:"), value)
 }
 
+
 // A Boolean value that indicates whether an Add (+) button is displayed while the list is in editing mode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/showsAddButtonWhenEditing
 func (n_ NCWidgetListViewController) ShowsAddButtonWhenEditing() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("showsAddButtonWhenEditing"))
@@ -221,10 +216,9 @@ func (n_ NCWidgetListViewController) ShowsAddButtonWhenEditing() bool {
 }
 
 
-// SetShowsAddButtonWhenEditing sets the value of the showsAddButtonWhenEditing property.
 // A Boolean value that indicates whether an Add (+) button is displayed while the list is in editing mode.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/showsAddButtonWhenEditing
 func (n_ NCWidgetListViewController) SetShowsAddButtonWhenEditing(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setShowsAddButtonWhenEditing:"), value)

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetGroupCallAction] class.
@@ -30,8 +31,6 @@ type _CXSetGroupCallActionClass struct {
 type ICXSetGroupCallAction interface {
 	ICXCallAction
 	// properties:
-	CallUUIDToGroupWith() objc.IObject /* cross-framework: UUID */
-	SetCallUUIDToGroupWith(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -94,7 +93,7 @@ func NewCXSetGroupCallAction() CXSetGroupCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(call:callUUIDToGroupWith:)
-func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID objc.IObject /* cross-framework UUID */, callUUIDToGroupWith objc.IObject /* cross-framework UUID */) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID objc.IObject /* cross-framework: UUID */, callUUIDToGroupWith objc.IObject /* cross-framework: UUID */) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCallUUID:callUUIDToGroupWith:"), callUUID, callUUIDToGroupWith)
 	rv.Autorelease()
@@ -106,31 +105,12 @@ func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID objc.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(coder:)
-func NewCXSetGroupCallActionWithCoder(aDecoder Coder /* not a class type */) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCoder(aDecoder objc.IObject /* cross-framework: Coder */) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// The unique identifier of the call to be grouped with the call associated with the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[UUID](c_.ID, objc.Sel("callUUIDToGroupWith"))
-	return rv
-}
-
-
-// The unique identifier of the call to be grouped with the call associated with the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value objc.IObject /* cross-framework: UUID */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCallUUIDToGroupWith:"), value)
-}
 
 

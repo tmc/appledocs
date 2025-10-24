@@ -30,11 +30,15 @@ type _MTROvenCavityOperationalStateClusterOperationalErrorEventClass struct {
 // An interface definition for the [MTROvenCavityOperationalStateClusterOperationalErrorEvent] class.
 type IMTROvenCavityOperationalStateClusterOperationalErrorEvent interface {
 	objectivec.IObject
-	ErrorState() MTROvenCavityOperationalStateClusterErrorStateStruct
+	// properties:
+	ErrorState() IMTROvenCavityOperationalStateClusterErrorStateStruct
 	SetErrorState(value IMTROvenCavityOperationalStateClusterErrorStateStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalErrorEvent
 type MTROvenCavityOperationalStateClusterOperationalErrorEvent struct {
 	objectivec.Object
@@ -77,16 +81,16 @@ func NewMTROvenCavityOperationalStateClusterOperationalErrorEvent() MTROvenCavit
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalErrorEvent/errorState
-func (m_ MTROvenCavityOperationalStateClusterOperationalErrorEvent) ErrorState() MTROvenCavityOperationalStateClusterErrorStateStruct {
+func (m_ MTROvenCavityOperationalStateClusterOperationalErrorEvent) ErrorState() IMTROvenCavityOperationalStateClusterErrorStateStruct {
 	rv := objc.Send[MTROvenCavityOperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("errorState"))
 	return rv
 }
 
 
-// SetErrorState sets the value of the errorState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalErrorEvent/errorState
 func (m_ MTROvenCavityOperationalStateClusterOperationalErrorEvent) SetErrorState(value IMTROvenCavityOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorState:"), value)

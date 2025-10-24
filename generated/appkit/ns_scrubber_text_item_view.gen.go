@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrubberTextItemView] class.
@@ -29,9 +30,12 @@ type _ScrubberTextItemViewClass struct {
 // An interface definition for the [ScrubberTextItemView] class.
 type IScrubberTextItemView interface {
 	IScrubberItemView
-	TextField() NSTextField
-	Title() string
-	SetTitle(value string)
+	// properties:
+	TextField() ITextField
+	SetTextField(value ITextField)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A concrete view subclass for displaying text for an item in a scrubber.
@@ -92,9 +96,28 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 // The text field that the scrubber item uses to display its text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
-func (s_ ScrubberTextItemView) TextField() NSTextField {
-	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
+func (s_ ScrubberTextItemView) TextField() ITextField {
+	rv := objc.Send[TextField](s_.ID, objc.Sel("textField"))
+	return rv
+}
+
+
+// The text field that the scrubber item uses to display its text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
+func (s_ ScrubberTextItemView) SetTextField(value ITextField) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
+}
+
+
+// The text displayed for the scrubber item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/title
+func (s_ ScrubberTextItemView) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -102,19 +125,9 @@ func (s_ ScrubberTextItemView) TextField() NSTextField {
 // The text displayed for the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-func (s_ ScrubberTextItemView) Title() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
-	return rv
-}
-
-
-// The text displayed for the scrubber item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-func (s_ ScrubberTextItemView) SetTitle(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/title
+func (s_ ScrubberTextItemView) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }
 
 

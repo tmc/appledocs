@@ -29,27 +29,31 @@ type _LossGradientNodeClass struct {
 // An interface definition for the [LossGradientNode] class.
 type ILossGradientNode interface {
 	IGradientFilterNode
+	// properties:
 	Epsilon() float32
-	ReductionType() unsafe.Pointer
+	ReductionType() CNNReductionType /* not a class type */
 	Delta() float32
 	SetDelta(value float32)
 	IsLabelsGradientFilter() bool
 	SetIsLabelsGradientFilter(value bool)
 	LabelSmoothing() float32
 	SetLabelSmoothing(value float32)
-	LossType() unsafe.Pointer
-	SetLossType(value unsafe.Pointer)
+	LossType() CNNLossType /* not a class type */
+	SetLossType(value CNNLossType /* not a class type */)
 	NumberOfClasses() int
 	SetNumberOfClasses(value int)
-	PropertyCallBack() unsafe.Pointer
-	SetPropertyCallBack(value unsafe.Pointer)
+	PropertyCallBack() LossCallback /* not a class type */
+	SetPropertyCallBack(value LossCallback /* not a class type */)
 	ReduceAcrossBatch() bool
 	SetReduceAcrossBatch(value bool)
 	Weight() float32
 	SetWeight(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode
 type LossGradientNode struct {
 	GradientFilterNode
@@ -94,28 +98,32 @@ func NewLossGradientNode() LossGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:
-func (lc _LossGradientNodeClass) NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes []ImageNode, gradientState unsafe.Pointer, descriptor unsafe.Pointer, isLabelsGradientFilter bool) unsafe.Pointer {
+func (lc _LossGradientNodeClass) NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes []IImageNode, gradientState GradientStateNode /* not a class type */, descriptor CNNLossDescriptor /* not a class type */, isLabelsGradientFilter bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceNodes, gradientState, descriptor, isLabelsGradientFilter)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/epsilon
 func (l_ LossGradientNode) Epsilon() float32 {
 	rv := objc.Send[float32](l_.ID, objc.Sel("epsilon"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/reductionType
-func (l_ LossGradientNode) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("reductionType"))
+func (l_ LossGradientNode) ReductionType() CNNReductionType /* not a class type */ {
+	rv := objc.Send[CNNReductionType](l_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/delta
 func (l_ LossGradientNode) Delta() float32 {
 	rv := objc.Send[float32](l_.ID, objc.Sel("delta"))
@@ -123,14 +131,14 @@ func (l_ LossGradientNode) Delta() float32 {
 }
 
 
-// SetDelta sets the value of the delta property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/delta
 func (l_ LossGradientNode) SetDelta(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelta:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/islabelsgradientfilter
 func (l_ LossGradientNode) IsLabelsGradientFilter() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isLabelsGradientFilter"))
@@ -138,14 +146,14 @@ func (l_ LossGradientNode) IsLabelsGradientFilter() bool {
 }
 
 
-// SetIsLabelsGradientFilter sets the value of the isLabelsGradientFilter property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/islabelsgradientfilter
 func (l_ LossGradientNode) SetIsLabelsGradientFilter(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsLabelsGradientFilter:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/labelsmoothing
 func (l_ LossGradientNode) LabelSmoothing() float32 {
 	rv := objc.Send[float32](l_.ID, objc.Sel("labelSmoothing"))
@@ -153,29 +161,29 @@ func (l_ LossGradientNode) LabelSmoothing() float32 {
 }
 
 
-// SetLabelSmoothing sets the value of the labelSmoothing property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/labelsmoothing
 func (l_ LossGradientNode) SetLabelSmoothing(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLabelSmoothing:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/losstype
-func (l_ LossGradientNode) LossType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("lossType"))
+func (l_ LossGradientNode) LossType() CNNLossType /* not a class type */ {
+	rv := objc.Send[CNNLossType](l_.ID, objc.Sel("lossType"))
 	return rv
 }
 
 
-// SetLossType sets the value of the lossType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/losstype
-func (l_ LossGradientNode) SetLossType(value unsafe.Pointer) {
+func (l_ LossGradientNode) SetLossType(value CNNLossType /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLossType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/numberofclasses
 func (l_ LossGradientNode) NumberOfClasses() int {
 	rv := objc.Send[int](l_.ID, objc.Sel("numberOfClasses"))
@@ -183,29 +191,29 @@ func (l_ LossGradientNode) NumberOfClasses() int {
 }
 
 
-// SetNumberOfClasses sets the value of the numberOfClasses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/numberofclasses
 func (l_ LossGradientNode) SetNumberOfClasses(value int) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfClasses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/propertycallback
-func (l_ LossGradientNode) PropertyCallBack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("propertyCallBack"))
+func (l_ LossGradientNode) PropertyCallBack() LossCallback /* not a class type */ {
+	rv := objc.Send[LossCallback](l_.ID, objc.Sel("propertyCallBack"))
 	return rv
 }
 
 
-// SetPropertyCallBack sets the value of the propertyCallBack property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/propertycallback
-func (l_ LossGradientNode) SetPropertyCallBack(value unsafe.Pointer) {
+func (l_ LossGradientNode) SetPropertyCallBack(value LossCallback /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPropertyCallBack:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/reduceacrossbatch
 func (l_ LossGradientNode) ReduceAcrossBatch() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("reduceAcrossBatch"))
@@ -213,14 +221,14 @@ func (l_ LossGradientNode) ReduceAcrossBatch() bool {
 }
 
 
-// SetReduceAcrossBatch sets the value of the reduceAcrossBatch property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/reduceacrossbatch
 func (l_ LossGradientNode) SetReduceAcrossBatch(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setReduceAcrossBatch:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/weight
 func (l_ LossGradientNode) Weight() float32 {
 	rv := objc.Send[float32](l_.ID, objc.Sel("weight"))
@@ -228,8 +236,7 @@ func (l_ LossGradientNode) Weight() float32 {
 }
 
 
-// SetWeight sets the value of the weight property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/weight
 func (l_ LossGradientNode) SetWeight(value float32) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWeight:"), value)

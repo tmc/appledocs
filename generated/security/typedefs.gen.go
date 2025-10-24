@@ -1,6 +1,9 @@
 // Code generated from Apple documentation for Security. DO NOT EDIT.
 
 package security
+import (
+"unsafe"
+)
 
 // Type aliases and typedefs
 // AuthorizationEnvironment - An authorization item set designated to hold environment information relevant to authorization decisions.
@@ -33,16 +36,16 @@ type CE_CrlNumber uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CE_DeltaCrl
 // CE_DeltaCrl has base type: uint32
 type CE_DeltaCrl uintptr
-// CMSDecoderRef - An opaque reference to a CMS decoder object.
+// SDecoderRef - An opaque reference to a CMS decoder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoder
 // CMSDecoderRef has base type: struct _CMSDecoder *
-type CMSDecoderRef uintptr
-// CMSEncoderRef - Opaque reference to a CMS encoder object.
+type SDecoderRef uintptr
+// SEncoderRef - Opaque reference to a CMS encoder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoder
 // CMSEncoderRef has base type: struct _CMSEncoder *
-type CMSEncoderRef uintptr
+type SEncoderRef uintptr
 // CSSM_ACL_AUTHORIZATION_TAG type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_AUTHORIZATION_TAG
@@ -166,8 +169,9 @@ type CSSM_BOOL uintptr
 // CSSM_CALLOC type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CALLOC
-// CSSM_CALLOC has base type: void *(*)(unsigned int, unsigned long, void *)
-type CSSM_CALLOC uintptr
+// CSSM_CALLOC is a callback function
+// C type: void *(*)(unsigned int, unsigned long, void *)
+type CSSM_CALLOC = func(uint32, uint, unsafe.Pointer) unsafe.Pointer
 // CSSM_CC_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CC_HANDLE
@@ -441,8 +445,9 @@ type CSSM_EVIDENCE_FORM uintptr
 // CSSM_FREE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_FREE
-// CSSM_FREE has base type: void (*)(void *, void *)
-type CSSM_FREE uintptr
+// CSSM_FREE is a callback function
+// C type: void (*)(void *, void *)
+type CSSM_FREE = func(unsafe.Pointer, unsafe.Pointer)
 // CSSM_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_HANDLE
@@ -551,8 +556,9 @@ type CSSM_LONG_HANDLE_PTR uintptr
 // CSSM_MALLOC type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_MALLOC
-// CSSM_MALLOC has base type: void *(*)(unsigned long, void *)
-type CSSM_MALLOC uintptr
+// CSSM_MALLOC is a callback function
+// C type: void *(*)(unsigned long, void *)
+type CSSM_MALLOC = func(uint, unsafe.Pointer) unsafe.Pointer
 // CSSM_MANAGER_EVENT_TYPES type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_MANAGER_EVENT_TYPES
@@ -621,8 +627,9 @@ type CSSM_PRIVILEGE_SCOPE uintptr
 // CSSM_PROC_ADDR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PROC_ADDR
-// CSSM_PROC_ADDR has base type: void (*)(void)
-type CSSM_PROC_ADDR uintptr
+// CSSM_PROC_ADDR is a callback function
+// C type: void (*)(void)
+type CSSM_PROC_ADDR = func()
 // CSSM_PROC_ADDR_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PROC_ADDR_PTR
@@ -641,8 +648,9 @@ type CSSM_QUERY_FLAGS uintptr
 // CSSM_REALLOC type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_REALLOC
-// CSSM_REALLOC has base type: void *(*)(void *, unsigned long, void *)
-type CSSM_REALLOC uintptr
+// CSSM_REALLOC is a callback function
+// C type: void *(*)(void *, unsigned long, void *)
+type CSSM_REALLOC = func(unsafe.Pointer, uint, unsafe.Pointer) unsafe.Pointer
 // CSSM_RETURN type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_RETURN
@@ -816,13 +824,20 @@ type SSLContextRef uintptr
 // SSLReadFunc - A pointer to a customized read function that secure transport calls to read data from the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLReadFunc
-// SSLReadFunc has base type: int (*)(const void *, void *, unsigned long *)
-type SSLReadFunc uintptr
+// SSLReadFunc is a callback function
+// C type: int (*)(const void *, void *, unsigned long *)
+type SSLReadFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
 // SSLWriteFunc - A pointer to a customized write function that secure transport calls to write data to the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SSLWriteFunc
-// SSLWriteFunc has base type: int (*)(const void *, const void *, unsigned long *)
-type SSLWriteFunc uintptr
+// SSLWriteFunc is a callback function
+// C type: int (*)(const void *, const void *, unsigned long *)
+type SSLWriteFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
+// SecAFPServerSignature - Represents a 16-byte Apple File Protocol server signature block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAFPServerSignature
+// SecAFPServerSignature has base type: UInt8[16]
+type SecAFPServerSignature uintptr
 // SecAccessRef - An opaque type that identifies a keychain item’s access information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccess
@@ -856,8 +871,9 @@ type SecAsn1TemplateChooser uintptr
 // SecAsn1TemplateChooserPtr - A pointer to the template chooser function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1TemplateChooserPtr
-// SecAsn1TemplateChooserPtr has base type: const struct SecAsn1Template_struct *(*)(void *, unsigned char, const char *, unsigned long, void *)
-type SecAsn1TemplateChooserPtr uintptr
+// SecAsn1TemplateChooserPtr is a callback function
+// C type: const struct SecAsn1Template_struct *(*)(void *, unsigned char, const char *, unsigned long, void *)
+type SecAsn1TemplateChooserPtr = func(unsafe.Pointer, uint8, string, uint, unsafe.Pointer) unsafe.Pointer
 // SecCECrlReason type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCECrlReason
@@ -903,21 +919,31 @@ type SecIdentitySearchRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKey
 // SecKeyRef has base type: struct __SecKey *
 type SecKeyRef uintptr
-// SecKeyAlgorithm - The algorithms that cryptographic keys enable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyAlgorithm
-// SecKeyAlgorithm has base type: CFStringRef
-type SecKeyAlgorithm uintptr
 // SecKeychainRef - An opaque type that represents a keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychain
 // SecKeychainRef has base type: struct __SecKeychain *
 type SecKeychainRef uintptr
+// SecKeychainAttrType - The keychain attribute type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttrType
+// SecKeychainAttrType has base type: OSType
+type SecKeychainAttrType uintptr
+// SecKeychainAttributePtr - A pointer to a keychain attribute structure.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttributePtr
+// SecKeychainAttributePtr has base type: SecKeychainAttribute *
+type SecKeychainAttributePtr uintptr
 // SecKeychainItemRef - An opaque type that represents a keychain item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItem
 // SecKeychainItemRef has base type: struct __SecKeychainItem *
 type SecKeychainItemRef uintptr
+// SecPasswordRef - Contains information about a password.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecPassword
+// SecPasswordRef has base type: struct __SecPassword *
+type SecPasswordRef uintptr
 // SecPolicyRef - An object that represents a trust policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicy
@@ -953,12 +979,8 @@ type SecTransformRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformAttribute
 // SecTransformAttributeRef has base type: CFTypeRef
 type SecTransformAttributeRef uintptr
-// (* - A pointer to a function that creates a new instance of a custom transform.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformCreateFP
-// (* is a block type: struct __CFError *(^(*)(const struct __CFString *, const void *, const struct OpaqueSecTransformImplementation *))(void) SecTransformCreateFP
-// Block types are not yet fully supported in Go bindings
-type (* uintptr
+// SKIPPED: (* - invalid Go identifier "(*"
+// Original type: struct __CFError *(^(*)(const struct __CFString *, const void *, const struct OpaqueSecTransformImplementation *))(void) SecTransformCreateFP
 // SecTransformImplementationRef - An opaque pointer to a block that implements an instance of a transform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTransformImplementationRef
@@ -974,84 +996,79 @@ type SecTransformStringOrAttributeRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrust
 // SecTrustRef has base type: struct __SecTrust *
 type SecTrustRef uintptr
-// SecTrustedApplicationRef - An opaque type that contains information about a trusted app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplication
-// SecTrustedApplicationRef has base type: struct __SecTrustedApplication *
-type SecTrustedApplicationRef uintptr
 // SecuritySessionId - A type that contains an authorization session identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecuritySessionId
 // SecuritySessionId has base type: UInt32
 type SecuritySessionId uintptr
-// sec_certificate_t type alias
+// Sec_certificate_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_certificate_t
 // sec_certificate_t has base type: NSObject<OS_sec_certificate> *
-type sec_certificate_t uintptr
-// sec_identity_t type alias
+type Sec_certificate_t uintptr
+// Sec_identity_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_identity_t
 // sec_identity_t has base type: NSObject<OS_sec_identity> *
-type sec_identity_t uintptr
-// sec_object_t - A   is a generic, ARC-able type wrapper for common CoreFoundation Security types.
+type Sec_identity_t uintptr
+// Sec_object_t - A   is a generic, ARC-able type wrapper for common CoreFoundation Security types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_object_t
 // sec_object_t has base type: NSObject<OS_sec_object> *
-type sec_object_t uintptr
-// sec_protocol_metadata_t - A   instance conatins read-only properties of a connected and configured   security protocol. Clients use this object to read information about a protocol instance. Properties   include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
+type Sec_object_t uintptr
+// Sec_protocol_metadata_t - A   instance conatins read-only properties of a connected and configured   security protocol. Clients use this object to read information about a protocol instance. Properties   include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_t
 // sec_protocol_metadata_t has base type: NSObject<OS_sec_protocol_metadata> *
-type sec_protocol_metadata_t uintptr
-// sec_protocol_options_t - A   instance is a container of options for security protocol instances,   such as TLS. Protocol options are used to configure security protocols in the network stack.   For example, clients may set the maximum and minimum allowed TLS versions through protocol   options.
+type Sec_protocol_metadata_t uintptr
+// Sec_protocol_options_t - A   instance is a container of options for security protocol instances,   such as TLS. Protocol options are used to configure security protocols in the network stack.   For example, clients may set the maximum and minimum allowed TLS versions through protocol   options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_t
 // sec_protocol_options_t has base type: NSObject<OS_sec_protocol_options> *
-type sec_protocol_options_t uintptr
-// sec_trust_t - These are os_object compatible and ARC-able wrappers around existing CoreFoundation   Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow   clients to use these types in os_object-type APIs and data structures. The underlying   CoreFoundation types may be extracted and used by clients as needed.
+type Sec_protocol_options_t uintptr
+// Sec_trust_t - These are os_object compatible and ARC-able wrappers around existing CoreFoundation   Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow   clients to use these types in os_object-type APIs and data structures. The underlying   CoreFoundation types may be extracted and used by clients as needed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sec_trust_t
 // sec_trust_t has base type: NSObject<OS_sec_trust> *
-type sec_trust_t uintptr
-// sint16 type alias
+type Sec_trust_t uintptr
+// Sint16 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sint16
 // sint16 has base type: int16_t
-type sint16 uintptr
-// sint32 type alias
+type Sint16 uintptr
+// Sint32 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sint32
 // sint32 has base type: int32_t
-type sint32 uintptr
-// sint64 type alias
+type Sint32 uintptr
+// Sint64 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sint64
 // sint64 has base type: int64_t
-type sint64 uintptr
-// sint8 type alias
+type Sint64 uintptr
+// Sint8 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/sint8
 // sint8 has base type: int8_t
-type sint8 uintptr
-// uint16 type alias
+type Sint8 uintptr
+// Uint16 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/uint16
 // uint16 has base type: uint16_t
-type uint16 uintptr
-// uint32 type alias
+type Uint16 uintptr
+// Uint32 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/uint32
 // uint32 has base type: uint32_t
-type uint32 uintptr
-// uint64 type alias
+type Uint32 uintptr
+// Uint64 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/uint64
 // uint64 has base type: uint64_t
-type uint64 uintptr
-// uint8 type alias
+type Uint64 uintptr
+// Uint8 type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/uint8
 // uint8 has base type: uint8_t
-type uint8 uintptr
+type Uint8 uintptr
 

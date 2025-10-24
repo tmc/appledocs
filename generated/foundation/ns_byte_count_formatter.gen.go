@@ -33,24 +33,24 @@ type IByteCountFormatter interface {
 	// properties:
 	AllowedUnits() ByteCountFormatterUnits
 	SetAllowedUnits(value ByteCountFormatterUnits)
-	AllowsNonnumericFormatting() bool /* primitive/slice/pointer. */
-	SetAllowsNonnumericFormatting(value bool /* primitive/slice/pointer. */)
+	AllowsNonnumericFormatting() bool
+	SetAllowsNonnumericFormatting(value bool)
 	CountStyle() ByteCountFormatterCountStyle
 	SetCountStyle(value ByteCountFormatterCountStyle)
 	FormattingContext() FormattingContext
 	SetFormattingContext(value FormattingContext)
-	IncludesActualByteCount() bool /* primitive/slice/pointer. */
-	SetIncludesActualByteCount(value bool /* primitive/slice/pointer. */)
-	IncludesCount() bool /* primitive/slice/pointer. */
-	SetIncludesCount(value bool /* primitive/slice/pointer. */)
-	IncludesUnit() bool /* primitive/slice/pointer. */
-	SetIncludesUnit(value bool /* primitive/slice/pointer. */)
-	Adaptive() bool /* primitive/slice/pointer. */
-	SetAdaptive(value bool /* primitive/slice/pointer. */)
-	ZeroPadsFractionDigits() bool /* primitive/slice/pointer. */
-	SetZeroPadsFractionDigits(value bool /* primitive/slice/pointer. */)
-	IsAdaptive() bool /* primitive/slice/pointer. */
-	SetIsAdaptive(value bool /* primitive/slice/pointer. */)
+	IncludesActualByteCount() bool
+	SetIncludesActualByteCount(value bool)
+	IncludesCount() bool
+	SetIncludesCount(value bool)
+	IncludesUnit() bool
+	SetIncludesUnit(value bool)
+	Adaptive() bool
+	SetAdaptive(value bool)
+	ZeroPadsFractionDigits() bool
+	SetZeroPadsFractionDigits(value bool)
+	IsAdaptive() bool
+	SetIsAdaptive(value bool)
 	// methods:
 	StringForObjectValue(obj objectivec.IObject) IString
 	StringFromMeasurement(measurement unsafe.Pointer) IString
@@ -177,7 +177,7 @@ func (b_ ByteCountFormatter) SetAllowedUnits(value ByteCountFormatterUnits) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowsNonnumericFormatting
-func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsNonnumericFormatting"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowsNonnumericFormatting
-func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsNonnumericFormatting:"), value)
 }
 
@@ -234,7 +234,7 @@ func (b_ ByteCountFormatter) SetFormattingContext(value FormattingContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesActualByteCount
-func (b_ ByteCountFormatter) IncludesActualByteCount() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) IncludesActualByteCount() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesActualByteCount"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (b_ ByteCountFormatter) IncludesActualByteCount() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesActualByteCount
-func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesActualByteCount:"), value)
 }
 
@@ -253,7 +253,7 @@ func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesCount
-func (b_ ByteCountFormatter) IncludesCount() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) IncludesCount() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesCount"))
 	return rv
 }
@@ -263,7 +263,7 @@ func (b_ ByteCountFormatter) IncludesCount() bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesCount
-func (b_ ByteCountFormatter) SetIncludesCount(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetIncludesCount(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesCount:"), value)
 }
 
@@ -272,7 +272,7 @@ func (b_ ByteCountFormatter) SetIncludesCount(value bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesUnit
-func (b_ ByteCountFormatter) IncludesUnit() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) IncludesUnit() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesUnit"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (b_ ByteCountFormatter) IncludesUnit() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesUnit
-func (b_ ByteCountFormatter) SetIncludesUnit(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetIncludesUnit(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesUnit:"), value)
 }
 
@@ -291,7 +291,7 @@ func (b_ ByteCountFormatter) SetIncludesUnit(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/isAdaptive
-func (b_ ByteCountFormatter) Adaptive() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) Adaptive() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("adaptive"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (b_ ByteCountFormatter) Adaptive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/isAdaptive
-func (b_ ByteCountFormatter) SetAdaptive(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetAdaptive(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAdaptive:"), value)
 }
 
@@ -310,7 +310,7 @@ func (b_ ByteCountFormatter) SetAdaptive(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/zeroPadsFractionDigits
-func (b_ ByteCountFormatter) ZeroPadsFractionDigits() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) ZeroPadsFractionDigits() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("zeroPadsFractionDigits"))
 	return rv
 }
@@ -320,7 +320,7 @@ func (b_ ByteCountFormatter) ZeroPadsFractionDigits() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/zeroPadsFractionDigits
-func (b_ ByteCountFormatter) SetZeroPadsFractionDigits(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetZeroPadsFractionDigits(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setZeroPadsFractionDigits:"), value)
 }
 
@@ -329,7 +329,7 @@ func (b_ ByteCountFormatter) SetZeroPadsFractionDigits(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/isadaptive
-func (b_ ByteCountFormatter) IsAdaptive() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) IsAdaptive() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isAdaptive"))
 	return rv
 }
@@ -339,7 +339,7 @@ func (b_ ByteCountFormatter) IsAdaptive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/isadaptive
-func (b_ ByteCountFormatter) SetIsAdaptive(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetIsAdaptive(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsAdaptive:"), value)
 }
 

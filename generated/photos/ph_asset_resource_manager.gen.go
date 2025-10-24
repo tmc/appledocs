@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +30,18 @@ type _PHAssetResourceManagerClass struct {
 // An interface definition for the [PHAssetResourceManager] class.
 type IPHAssetResourceManager interface {
 	objectivec.IObject
-	CancelDataRequest(requestID IPHAssetResourceDataRequestID)
-	RequestDataForAssetResourceOptionsDataReceivedHandlerCompletionHandler(resource IPHAssetResource, options PHAssetResourceRequestOptions, handler unsafe.Pointer, completionHandler unsafe.Pointer) PHAssetResourceDataRequestID
-	WriteDataForAssetResourceToFileOptionsCompletionHandler(resource IPHAssetResource, fileURL foundation.IURL, options PHAssetResourceRequestOptions, completionHandler unsafe.Pointer)
+	// properties:
+	// methods:
 }
 
 // A resource manager for the data storage underlying a Photos asset.
 //
 // An asset can have multiple underlying data resources—for example, both original and edited versions—each of which is represented by a object. Unlike the class, which provides and caches the primary representations of assets as thumbnails, image objects, or video objects, the asset resource manager provides direct access to these underlying data resources.
+
+
+// A resource manager for the data storage underlying a Photos asset.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager
 type PHAssetResourceManager struct {
 	objectivec.Object
@@ -83,36 +85,6 @@ func NewPHAssetResourceManager() PHAssetResourceManager {
 	return getPHAssetResourceManagerClass().New()
 }
 
-
-// Returns the shared asset resource manager object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager/default()
-func (pc _PHAssetResourceManagerClass) DefaultManager() PHAssetResourceManager {
-	rv := objc.Send[PHAssetResourceManager](objc.ID(pc.class), objc.Sel("defaultManager"))
-	return rv
-}
-
-// Cancels an asynchronous request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager/cancelDataRequest(_:)
-func (p_ PHAssetResourceManager) CancelDataRequest(requestID IPHAssetResourceDataRequestID) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("cancelDataRequest:"), requestID)
-}
-
-// Requests the underlying data for the specified asset resource, to be delivered asynchronously.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager/requestData(for:options:dataReceivedHandler:completionHandler:)
-func (p_ PHAssetResourceManager) RequestDataForAssetResourceOptionsDataReceivedHandlerCompletionHandler(resource IPHAssetResource, options PHAssetResourceRequestOptions, handler unsafe.Pointer, completionHandler unsafe.Pointer) PHAssetResourceDataRequestID {
-	rv := objc.Send[PHAssetResourceDataRequestID](p_.ID, objc.Sel("requestDataForAssetResource:options:dataReceivedHandler:completionHandler:"), resource, options, handler, completionHandler)
-	return rv
-}
-
-// Requests the underlying data for the specified asset resource, to be asynchronously written to a local file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceManager/writeData(for:toFile:options:completionHandler:)
-func (p_ PHAssetResourceManager) WriteDataForAssetResourceToFileOptionsCompletionHandler(resource IPHAssetResource, fileURL foundation.IURL, options PHAssetResourceRequestOptions, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("writeDataForAssetResource:toFile:options:completionHandler:"), resource, fileURL, options, completionHandler)
-}
 
 
 

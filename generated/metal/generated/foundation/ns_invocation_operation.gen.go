@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [InvocationOperation] class.
@@ -31,8 +30,6 @@ type _InvocationOperationClass struct {
 type IInvocationOperation interface {
 	IOperation
 	// properties:
-	Invocation() IInvocation
-	Result() objc.ID
 	// methods:
 }
 
@@ -90,49 +87,5 @@ func NewInvocationOperation() InvocationOperation {
 }
 
 
-
-// Returns an object initialized with the specified invocation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
-func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
-	instance := getInvocationOperationClass().Alloc()
-	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithInvocation:"), inv)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an object initialized with the specified target and selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
-func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, sel objc.SEL, arg objectivec.IObject) InvocationOperation {
-	instance := getInvocationOperationClass().Alloc()
-	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The receiver’s invocation object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
-func (i_ InvocationOperation) Invocation() IInvocation {
-	rv := objc.Send[Invocation](i_.ID, objc.Sel("invocation"))
-	return rv
-}
-
-
-// The result of the invocation or method.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/result
-func (i_ InvocationOperation) Result() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("result"))
-	return rv
-}
 
 

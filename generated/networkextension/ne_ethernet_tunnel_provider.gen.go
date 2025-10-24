@@ -29,10 +29,16 @@ type _NEEthernetTunnelProviderClass struct {
 // An interface definition for the [NEEthernetTunnelProvider] class.
 type INEEthernetTunnelProvider interface {
 	INEPacketTunnelProvider
+	// properties:
+	// methods:
 }
 
 // A type that implements the client side of a custom link-layer packet tunneling protocol.
+
+
+// A type that implements the client side of a custom link-layer packet tunneling protocol.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelProvider
 type NEEthernetTunnelProvider struct {
 	NEPacketTunnelProvider

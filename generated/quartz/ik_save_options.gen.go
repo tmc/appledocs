@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,26 @@ type _IKSaveOptionsClass struct {
 // An interface definition for the [IKSaveOptions] class.
 type IIKSaveOptions interface {
 	objectivec.IObject
+	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	ImageProperties() unsafe.Pointer
 	SetImageProperties(value unsafe.Pointer)
-	ImageUTType() string
-	SetImageUTType(value string)
+	ImageUTType() objc.IObject /* cross-framework: NSString */
+	SetImageUTType(value objc.IObject /* cross-framework: NSString */)
 	RememberLastSetting() bool
 	SetRememberLastSetting(value bool)
 	UserSelection() unsafe.Pointer
 	SetUserSelection(value unsafe.Pointer)
+	// methods:
 }
 
 // The class initializes, adds, and manages user interface options for saving image data.
+
+
+// The class initializes, adds, and manages user interface options for saving image data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKSaveOptions
 type IKSaveOptions struct {
 	objectivec.Object
@@ -88,8 +95,10 @@ func NewIKSaveOptions() IKSaveOptions {
 }
 
 
+
 // Specifies the delegate object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/delegate
 func (i_ IKSaveOptions) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
@@ -97,17 +106,18 @@ func (i_ IKSaveOptions) Delegate() unsafe.Pointer {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // Specifies the delegate object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/delegate
 func (i_ IKSaveOptions) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // Returns a dictionary of updated image properties that reflects the user’s selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageproperties
 func (i_ IKSaveOptions) ImageProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageProperties"))
@@ -115,34 +125,35 @@ func (i_ IKSaveOptions) ImageProperties() unsafe.Pointer {
 }
 
 
-// SetImageProperties sets the value of the imageProperties property.
 // Returns a dictionary of updated image properties that reflects the user’s selection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageproperties
 func (i_ IKSaveOptions) SetImageProperties(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageProperties:"), value)
 }
 
+
 // Returns the uniform type identifier that reflects the user’s selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) ImageUTType() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("imageUTType"))
+func (i_ IKSaveOptions) ImageUTType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("imageUTType"))
 	return rv
 }
 
 
-// SetImageUTType sets the value of the imageUTType property.
 // Returns the uniform type identifier that reflects the user’s selection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) SetImageUTType(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), objc.String(value))
+func (i_ IKSaveOptions) SetImageUTType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/rememberlastsetting
 func (i_ IKSaveOptions) RememberLastSetting() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("rememberLastSetting"))
@@ -150,15 +161,16 @@ func (i_ IKSaveOptions) RememberLastSetting() bool {
 }
 
 
-// SetRememberLastSetting sets the value of the rememberLastSetting property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/rememberlastsetting
 func (i_ IKSaveOptions) SetRememberLastSetting(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRememberLastSetting:"), value)
 }
 
+
 // Returns a dictionary that contains the save options selected by the user.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/userselection
 func (i_ IKSaveOptions) UserSelection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userSelection"))
@@ -166,10 +178,9 @@ func (i_ IKSaveOptions) UserSelection() unsafe.Pointer {
 }
 
 
-// SetUserSelection sets the value of the userSelection property.
 // Returns a dictionary that contains the save options selected by the user.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/userselection
 func (i_ IKSaveOptions) SetUserSelection(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserSelection:"), value)

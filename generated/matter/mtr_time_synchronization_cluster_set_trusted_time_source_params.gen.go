@@ -31,15 +31,19 @@ type _MTRTimeSynchronizationClusterSetTrustedTimeSourceParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTrustedTimeSourceParams] class.
 type IMTRTimeSynchronizationClusterSetTrustedTimeSourceParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TrustedTimeSource() MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TrustedTimeSource() IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct
 	SetTrustedTimeSource(value IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams
 type MTRTimeSynchronizationClusterSetTrustedTimeSourceParams struct {
 	objectivec.Object
@@ -82,52 +86,54 @@ func NewMTRTimeSynchronizationClusterSetTrustedTimeSourceParams() MTRTimeSynchro
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/trustedTimeSource
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSource() MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSource() IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct {
 	rv := objc.Send[MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct](m_.ID, objc.Sel("trustedTimeSource"))
 	return rv
 }
 
 
-// SetTrustedTimeSource sets the value of the trustedTimeSource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/trustedTimeSource
 func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTrustedTimeSource(value IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrustedTimeSource:"), value)

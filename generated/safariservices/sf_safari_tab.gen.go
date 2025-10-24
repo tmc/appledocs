@@ -31,16 +31,22 @@ type _SFSafariTabClass struct {
 // An interface definition for the [SFSafariTab] class.
 type ISFSafariTab interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	ActivateWithCompletionHandler(completionHandler unsafe.Pointer)
 	Close()
 	GetActivePageWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetContainingWindowWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetPagesWithCompletionHandler(completionHandler unsafe.Pointer)
-	NavigateToURL(url foundation.IURL)
+	NavigateToURL(url objc.IObject /* cross-framework: NSURL */)
 }
 
 // A proxy for a tab in a Safari window.
+
+
+// A proxy for a tab in a Safari window.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab
 type SFSafariTab struct {
 	objectivec.Object
@@ -85,42 +91,51 @@ func NewSFSafariTab() SFSafariTab {
 }
 
 
+
 // Activates the tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/activate(completionHandler:)
 func (s_ SFSafariTab) ActivateWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("activateWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/close()
 func (s_ SFSafariTab) Close() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("close"))
 }
 
+
 // Calls the completion handler passing the active page in the tab.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/getActivePage(completionHandler:)
 func (s_ SFSafariTab) GetActivePageWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getActivePageWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/getContainingWindow(completionHandler:)
 func (s_ SFSafariTab) GetContainingWindowWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getContainingWindowWithCompletionHandler:"), completionHandler)
 }
 
+
 // Calls the completion handler with all of the tab’s active and preloading pages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/getPagesWithCompletionHandler(_:)
 func (s_ SFSafariTab) GetPagesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getPagesWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/navigate(to:)
-func (s_ SFSafariTab) NavigateToURL(url foundation.IURL) {
+func (s_ SFSafariTab) NavigateToURL(url objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("navigateToURL:"), url)
 }
 

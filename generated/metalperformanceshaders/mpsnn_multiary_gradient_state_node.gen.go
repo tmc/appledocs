@@ -29,9 +29,13 @@ type _MultiaryGradientStateNodeClass struct {
 // An interface definition for the [MultiaryGradientStateNode] class.
 type IMultiaryGradientStateNode interface {
 	IStateNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNMultiaryGradientStateNode
 type MultiaryGradientStateNode struct {
 	StateNode

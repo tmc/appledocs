@@ -30,9 +30,13 @@ type _SFSafariSettingsClass struct {
 // An interface definition for the [SFSafariSettings] class.
 type ISFSafariSettings interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariSettings
 type SFSafariSettings struct {
 	objectivec.Object
@@ -75,11 +79,11 @@ func NewSFSafariSettings() SFSafariSettings {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariSettings/openExportBrowsingDataSettings(completionHandler:)
-func (sc _SFSafariSettingsClass) OpenExportBrowsingDataSettingsWithCompletionHandler(completionHandler func(error objc.ID)) {
+func (sc _SFSafariSettingsClass) OpenExportBrowsingDataSettingsWithCompletionHandler(completionHandler func(unsafe.Pointer)) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("openExportBrowsingDataSettingsWithCompletionHandler:"), completionHandler)
 }
-
 
 

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +31,22 @@ type _OverlayTransitionContextClass struct {
 // An interface definition for the [OverlayTransitionContext] class.
 type IOverlayTransitionContext interface {
 	objectivec.IObject
-	AddAnimationBlock(block unsafe.Pointer)
-	EndFrame() coregraphics.CGRect
-	StartFrame() coregraphics.CGRect
+	// properties:
+	EndFrame() objc.IObject /* cross-framework: Rect */
+	SetEndFrame(value objc.IObject /* cross-framework: Rect */)
+	StartFrame() objc.IObject /* cross-framework: Rect */
+	SetStartFrame(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // A context object you can use to animate UI changes while the platform presents or dismisses an overlay.
 //
 // For more information on animating UI changes while the system presents or dismisses an overlay, see and .
+
+
+// A context object you can use to animate UI changes while the platform presents or dismisses an overlay.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/TransitionContext
 type OverlayTransitionContext struct {
 	objectivec.Object
@@ -84,27 +91,42 @@ func NewOverlayTransitionContext() OverlayTransitionContext {
 }
 
 
-// Adds a closure you can use to animate view properties.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/TransitionContext/addAnimation(_:)
-func (o_ OverlayTransitionContext) AddAnimationBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("addAnimationBlock:"), block)
-}
 
 // The size and location of the overlay at the end of the transition.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/TransitionContext/endFrame
-func (o_ OverlayTransitionContext) EndFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](o_.ID, objc.Sel("endFrame"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/transitioncontext/endframe
+func (o_ OverlayTransitionContext) EndFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](o_.ID, objc.Sel("endFrame"))
 	return rv
 }
 
+
+// The size and location of the overlay at the end of the transition.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/transitioncontext/endframe
+func (o_ OverlayTransitionContext) SetEndFrame(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setEndFrame:"), value)
+}
+
+
 // The size and location of the overlay before the transition.
 //
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/TransitionContext/startFrame
-func (o_ OverlayTransitionContext) StartFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](o_.ID, objc.Sel("startFrame"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/transitioncontext/startframe
+func (o_ OverlayTransitionContext) StartFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](o_.ID, objc.Sel("startFrame"))
 	return rv
+}
+
+
+// The size and location of the overlay before the transition.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/transitioncontext/startframe
+func (o_ OverlayTransitionContext) SetStartFrame(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setStartFrame:"), value)
 }
 
 

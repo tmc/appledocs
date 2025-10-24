@@ -6,7 +6,7 @@ package nearbyinteraction
 // NIAlgorithmConvergenceStatus - Expose algorithm state to make it possible for apps to coach users.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergenceStatus-2fbmj
-type NIAlgorithmConvergenceStatus uint
+type NIAlgorithmConvergenceStatus int
 
 const (
 	// NIAlgorithmConvergenceStatusNotConverged - A status that indicates the framework’s Camera Assistance feature requires action from the user.
@@ -39,30 +39,19 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIError/Code/accessoryPeerDeviceUnavailable
 	NIErrorCodeAccessoryPeerDeviceUnavailable NIErrorCode = 0
+	// NIErrorCodeInvalidConfiguration - An error code that indicates that the nearby-interaction configuration isn’t valid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIError/Code/invalidConfiguration
+	NIErrorCodeInvalidConfiguration NIErrorCode = 0
+	// NIErrorCodeUserDidNotAllow - An error code that indicates that the user declined the request to share their relative position with nearby devices.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIError/Code/userDidNotAllow
+	NIErrorCodeUserDidNotAllow NIErrorCode = 0
 )
 
 // NINearbyObjectRemovalReason - The reason a session removed a nearby object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/RemovalReason
 type NINearbyObjectRemovalReason uint
-
-const (
-	// NINearbyObjectRemovalReasonTimeout - NI timed out the session.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/RemovalReason/timeout
-	NINearbyObjectRemovalReasonTimeout NINearbyObjectRemovalReason = 0
-)
-
-// NINearbyObjectVerticalDirectionEstimate - Estimations of a nearby object’s vertical position in relation to the user’s device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum
-type NINearbyObjectVerticalDirectionEstimate uint
-
-const (
-	// NINearbyObjectVerticalDirectionEstimateUnknown - An indication that the nearby object resides at an unknown vertical location.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/VerticalDirectionEstimate-swift.enum/unknown
-	NINearbyObjectVerticalDirectionEstimateUnknown NINearbyObjectVerticalDirectionEstimate = 0
-)
 
 

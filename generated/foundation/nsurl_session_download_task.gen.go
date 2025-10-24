@@ -33,7 +33,6 @@ type IURLSessionDownloadTask interface {
 	Response() IURLResponse
 	SetResponse(value IURLResponse)
 	// methods:
-	CancelByProducingResumeData(completionHandler unsafe.Pointer)
 }
 
 // A URL session task that stores downloaded data to a file.
@@ -91,14 +90,6 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 
 
 
-// Cancels a download and calls a callback with resume data for later use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask/cancel(byProducingResumeData:)
-func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
-}
-
 
 // The server’s response to the currently active request.
 //
@@ -117,6 +108,5 @@ func (u_ URLSessionDownloadTask) Response() IURLResponse {
 func (u_ URLSessionDownloadTask) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }
-
 
 

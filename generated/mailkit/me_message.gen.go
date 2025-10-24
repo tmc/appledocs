@@ -32,9 +32,9 @@ type _MEMessageClass struct {
 type IMEMessage interface {
 	objectivec.IObject
 	// properties:
-	AllRecipientAddresses() []MEEmailAddress /* primitive/slice/pointer. */
+	AllRecipientAddresses() []IMEEmailAddress
 	State() MEMessageState
-	Subject() string /* primitive/slice/pointer. */
+	Subject() objc.IObject /* cross-framework: NSString */
 	BccAddresses() IMEEmailAddress
 	SetBccAddresses(value IMEEmailAddress)
 	CcAddresses() IMEEmailAddress
@@ -43,10 +43,10 @@ type IMEMessage interface {
 	SetEncryptionState(value unsafe.Pointer)
 	FromAddress() IMEEmailAddress
 	SetFromAddress(value IMEEmailAddress)
-	Headers() string /* primitive/slice/pointer. */
-	SetHeaders(value string /* primitive/slice/pointer. */)
-	RawData() foundation.objc.IObject /* cross-framework: Data */
-	SetRawData(value foundation.objc.IObject /* cross-framework: Data */)
+	Headers() objc.IObject /* cross-framework: NSString */
+	SetHeaders(value objc.IObject /* cross-framework: NSString */)
+	RawData() objc.IObject /* cross-framework: Data */
+	SetRawData(value objc.IObject /* cross-framework: Data */)
 	ReplyToAddresses() IMEEmailAddress
 	SetReplyToAddresses(value IMEEmailAddress)
 	ToAddresses() IMEEmailAddress
@@ -109,7 +109,7 @@ func NewMEMessage() MEMessage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/allRecipientAddresses
-func (m_ MEMessage) AllRecipientAddresses() []MEEmailAddress /* primitive/slice/pointer. */ {
+func (m_ MEMessage) AllRecipientAddresses() []IMEEmailAddress {
 	rv := objc.Send[[]MEEmailAddress](m_.ID, objc.Sel("allRecipientAddresses"))
 	return rv
 }
@@ -129,8 +129,8 @@ func (m_ MEMessage) State() MEMessageState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/subject
-func (m_ MEMessage) Subject() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("subject"))
+func (m_ MEMessage) Subject() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("subject"))
 	return rv
 }
 
@@ -211,8 +211,8 @@ func (m_ MEMessage) SetFromAddress(value IMEEmailAddress) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/headers
-func (m_ MEMessage) Headers() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("headers"))
+func (m_ MEMessage) Headers() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("headers"))
 	return rv
 }
 
@@ -221,8 +221,8 @@ func (m_ MEMessage) Headers() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/headers
-func (m_ MEMessage) SetHeaders(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaders:"), objc.String(value))
+func (m_ MEMessage) SetHeaders(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaders:"), value)
 }
 
 
@@ -230,7 +230,7 @@ func (m_ MEMessage) SetHeaders(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) RawData() foundation.objc.IObject /* cross-framework: Data */ {
+func (m_ MEMessage) RawData() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rawData"))
 	return rv
 }
@@ -240,7 +240,7 @@ func (m_ MEMessage) RawData() foundation.objc.IObject /* cross-framework: Data *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) SetRawData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (m_ MEMessage) SetRawData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 

@@ -32,30 +32,30 @@ type IString interface {
 	objectivec.IObject
 	// properties:
 	StringByAbbreviatingWithTildeInPath() IString
-	BoolValue() bool /* primitive/slice/pointer. */
+	BoolValue() bool
 	CapitalizedString() IString
 	DecomposedStringWithCanonicalMapping() IString
 	DecomposedStringWithCompatibilityMapping() IString
 	StringByDeletingLastPathComponent() IString
 	StringByDeletingPathExtension() IString
 	Description() IString
-	DoubleValue() float64 /* primitive/slice/pointer. */
+	DoubleValue() float64
 	StringByExpandingTildeInPath() IString
 	FastestEncoding() StringEncoding /* not a class type */
 	FileSystemRepresentation() unsafe.Pointer
-	FloatValue() float32 /* primitive/slice/pointer. */
-	Hash() uint /* primitive/slice/pointer. */
-	IntValue() int /* primitive/slice/pointer. */
-	IntegerValue() int /* primitive/slice/pointer. */
-	AbsolutePath() bool /* primitive/slice/pointer. */
+	FloatValue() float32
+	Hash() uint
+	IntValue() int
+	IntegerValue() int
+	AbsolutePath() bool
 	LastPathComponent() IString
-	Length() uint /* primitive/slice/pointer. */
+	Length() uint
 	LocalizedCapitalizedString() IString
 	LocalizedLowercaseString() IString
 	LocalizedUppercaseString() IString
 	LongLongValue() unsafe.Pointer
 	LowercaseString() IString
-	PathComponents() []string /* primitive/slice/pointer. */
+	PathComponents() []string
 	PathExtension() IString
 	PrecomposedStringWithCanonicalMapping() IString
 	PrecomposedStringWithCompatibilityMapping() IString
@@ -77,8 +77,8 @@ type IString interface {
 	SetDeletingPathExtension(value IString)
 	ExpandingTildeInPath() IString
 	SetExpandingTildeInPath(value IString)
-	IsAbsolutePath() bool /* primitive/slice/pointer. */
-	SetIsAbsolutePath(value bool /* primitive/slice/pointer. */)
+	IsAbsolutePath() bool
+	SetIsAbsolutePath(value bool)
 	LocalizedCapitalized() IString
 	SetLocalizedCapitalized(value IString)
 	LocalizedLowercase() IString
@@ -99,83 +99,82 @@ type IString interface {
 	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
 	StringByAppendingString(aString IString) IString
 	StringByAppendingPathComponent(str IString) IString
-	StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject /* cross-framework UTType */) IString
+	StringByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IString
 	StringByAppendingPathExtension(str IString) IString
-	StringByAppendingPathExtensionForType(contentType objc.IObject /* cross-framework UTType */) IString
-	StringByApplyingTransformReverse(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */) IString
-	BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */) objc.IObject /* cross-framework: Rect */
-	BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) objc.IObject /* cross-framework: Rect */
+	StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString
+	StringByApplyingTransformReverse(transform objc.IObject /* cross-framework: StringTransform */, reverse bool) IString
+	BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary) objc.IObject /* cross-framework: Rect */
+	BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) objc.IObject /* cross-framework: Rect */
 	CStringUsingEncoding(encoding StringEncoding /* not a class type */) unsafe.Pointer
-	CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
+	CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool
 	CapitalizedStringWithLocale(locale ILocale) IString
 	CaseInsensitiveCompare(string_ IString) ComparisonResult
-	CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */
+	CharacterAtIndex(index uint) Unichar /* typedef */
 	CommonPrefixWithStringOptions(str IString, mask StringCompareOptions) IString
 	Compare(string_ IString) ComparisonResult
 	CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult
-	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult
-	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult
-	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
-	ComponentsSeparatedByString(separator IString) []string /* primitive/slice/pointer. */
-	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */
-	ContainsString(str IString) bool /* primitive/slice/pointer. */
+	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */) ComparisonResult
+	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objectivec.IObject) ComparisonResult
+	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool, outputArray []string, filterTypes []string) uint
+	ComponentsSeparatedByString(separator IString) []string
+	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string
+	ContainsString(str IString) bool
 	DataUsingEncoding(encoding StringEncoding /* not a class type */) IData
-	DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool /* primitive/slice/pointer. */) IData
-	DrawAtPointWithAttributes(point objc.IObject /* cross-framework Point */, attrs IDictionary /* already interface */)
-	DrawInRectWithAttributes(rect objc.IObject /* cross-framework Rect */, attrs IDictionary /* already interface */)
-	DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */)
-	DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */)
+	DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool) IData
+	DrawAtPointWithAttributes(point objc.IObject /* cross-framework: Point */, attrs IDictionary)
+	DrawInRectWithAttributes(rect objc.IObject /* cross-framework: Rect */, attrs IDictionary)
+	DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework: Rect */, options StringDrawingOptions, attributes IDictionary)
+	DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework: Rect */, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject)
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
-	EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework Range */, opts StringEnumerationOptions, block unsafe.Pointer)
+	EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts StringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */
-	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
-	GetCharacters(buffer unichar /* typedef */)
-	GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */)
-	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */)
-	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */)
-	HasPrefix(str IString) bool /* primitive/slice/pointer. */
-	HasSuffix(str IString) bool /* primitive/slice/pointer. */
-	IsEqualToString(aString IString) bool /* primitive/slice/pointer. */
-	LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
-	LineRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool
+	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding StringEncoding /* not a class type */) bool
+	GetCharacters(buffer Unichar /* typedef */)
+	GetCharactersRange(buffer Unichar /* typedef */, range_ objc.IObject /* cross-framework: Range */)
+	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint) bool
+	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
+	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */)
+	HasPrefix(str IString) bool
+	HasSuffix(str IString) bool
+	IsEqualToString(aString IString) bool
+	LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint
+	LineRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
 	LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult
-	LocalizedCaseInsensitiveContainsString(str IString) bool /* primitive/slice/pointer. */
+	LocalizedCaseInsensitiveContainsString(str IString) bool
 	LocalizedCompare(string_ IString) ComparisonResult
 	LocalizedStandardCompare(string_ IString) ComparisonResult
-	LocalizedStandardContainsString(str IString) bool /* primitive/slice/pointer. */
+	LocalizedStandardContainsString(str IString) bool
 	LocalizedStandardRangeOfString(str IString) objc.IObject /* cross-framework: Range */
 	LowercaseStringWithLocale(locale ILocale) IString
-	MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
-	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint /* primitive/slice/pointer. */, padString IString, padIndex uint /* primitive/slice/pointer. */) IString
-	ParagraphRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
+	MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint
+	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString IString, padIndex uint) IString
+	ParagraphRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
 	PropertyList() objc.ID
 	PropertyListFromStringsFileFormat() IDictionary
 	RangeOfString(searchString IString) objc.IObject /* cross-framework: Range */
 	RangeOfStringOptions(searchString IString, mask StringCompareOptions) objc.IObject /* cross-framework: Range */
-	RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */, locale ILocale) objc.IObject /* cross-framework: Range */
+	RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
+	RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */, locale ILocale) objc.IObject /* cross-framework: Range */
 	RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /* cross-framework: Range */
 	RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) objc.IObject /* cross-framework: Range */
-	RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */
-	RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, replacement IString) IString
+	RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
+	RangeOfComposedCharacterSequenceAtIndex(index uint) objc.IObject /* cross-framework: Range */
+	RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
+	StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, replacement IString) IString
 	StringByReplacingOccurrencesOfStringWithString(target IString, replacement IString) IString
-	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) IString
-	SizeWithAttributes(attrs IDictionary /* already interface */) objc.IObject /* cross-framework: Size */
-	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
+	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework: Range */) IString
+	SizeWithAttributes(attrs IDictionary) objc.IObject /* cross-framework: Size */
 	StringByAppendingFormat(format IString) IString
-	StringsByAppendingPaths(paths []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
-	SubstringFromIndex(from uint /* primitive/slice/pointer. */) IString
-	SubstringToIndex(to uint /* primitive/slice/pointer. */) IString
-	SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString
+	StringsByAppendingPaths(paths []string) []string
+	SubstringFromIndex(from uint) IString
+	SubstringToIndex(to uint) IString
+	SubstringWithRange(range_ objc.IObject /* cross-framework: Range */) IString
 	StringByTrimmingCharactersInSet(set ICharacterSet) IString
 	UppercaseStringWithLocale(locale ILocale) IString
-	VariantFittingPresentationWidth(width int /* primitive/slice/pointer. */) IString
-	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
-	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
+	VariantFittingPresentationWidth(width int) IString
+	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool
+	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool
 }
 
 // A static, plain-text Unicode string object.
@@ -235,7 +234,7 @@ func NewString() String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytes:length:encoding:)
-func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) String {
+func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint, encoding StringEncoding /* not a class type */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len_, encoding)
 	rv.Autorelease()
@@ -245,7 +244,7 @@ func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint /* primiti
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
-func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */, deallocator unsafe.Pointer) String {
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint, encoding StringEncoding /* not a class type */, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len_, encoding, deallocator)
 	rv.Autorelease()
@@ -257,7 +256,7 @@ func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:freeWhenDone:)
-func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */, freeBuffer bool /* primitive/slice/pointer. */) String {
+func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes unsafe.Pointer, len_ uint, encoding StringEncoding /* not a class type */, freeBuffer bool) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len_, encoding, freeBuffer)
 	rv.Autorelease()
@@ -293,7 +292,7 @@ func NewStringWithCStringEncoding(nullTerminatedCString unsafe.Pointer, encoding
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CString:length:)
-func NewStringWithCStringLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) String {
+func NewStringWithCStringLength(bytes unsafe.Pointer, length uint) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:length:"), bytes, length)
 	rv.Autorelease()
@@ -305,7 +304,7 @@ func NewStringWithCStringLength(bytes unsafe.Pointer, length uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(CStringNoCopy:length:freeWhenDone:)
-func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
+func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, freeBuffer bool) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
 	rv.Autorelease()
@@ -317,7 +316,7 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersLength(characters unichar /* typedef */, length uint) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
 	rv.Autorelease()
@@ -327,7 +326,7 @@ func NewStringWithCharactersLength(characters unichar /* typedef */, length uint
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
-func NewStringWithCharactersNoCopyLengthDeallocator(chars unichar /* typedef */, len_ uint /* primitive/slice/pointer. */, deallocator unsafe.Pointer) String {
+func NewStringWithCharactersNoCopyLengthDeallocator(chars Unichar /* typedef */, len_ uint, deallocator unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len_, deallocator)
 	rv.Autorelease()
@@ -339,7 +338,7 @@ func NewStringWithCharactersNoCopyLengthDeallocator(chars unichar /* typedef */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:freeWhenDone:)
-func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters Unichar /* typedef */, length uint, freeBuffer bool) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
 	rv.Autorelease()
@@ -660,8 +659,18 @@ func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/path(withComponents:)
-func (sc _StringClass) PathWithComponents(components []string /* primitive/slice/pointer. */) IString {
+func (sc _StringClass) PathWithComponents(components []string) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("pathWithComponents:"), components)
+	return rv
+}
+
+
+// Returns an empty string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string
+func (sc _StringClass) String() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("string"))
 	return rv
 }
 
@@ -680,7 +689,7 @@ func (sc _StringClass) StringWithCString(bytes unsafe.Pointer) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withCString:length:)
-func (sc _StringClass) StringWithCStringLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) objc.ID {
+func (sc _StringClass) StringWithCStringLength(bytes unsafe.Pointer, length uint) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithCString:length:"), bytes, length)
 	return rv
 }
@@ -706,21 +715,11 @@ func (sc _StringClass) StringWithContentsOfFile(path IString) objc.ID {
 }
 
 
-// Returns an empty string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string
-func (sc _StringClass) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("string"))
-	return rv
-}
-
-
 // Returns the string encoding for the given data as detected by attempting to create a string according to the specified encoding options.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringEncoding(for:encodingOptions:convertedString:usedLossyConversion:)
-func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary /* already interface */, string_ IString, usedLossyConversion unsafe.Pointer) StringEncoding /* not a class type */ {
+func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary, string_ IString, usedLossyConversion unsafe.Pointer) StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, string_, usedLossyConversion)
 	return rv
 }
@@ -730,7 +729,7 @@ func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithCharacters:length:
-func (sc _StringClass) StringWithCharactersLength(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (sc _StringClass) StringWithCharactersLength(characters Unichar /* typedef */, length uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithCharacters:length:"), characters, length)
 	return rv
 }
@@ -834,7 +833,7 @@ func (s_ String) StringByAppendingPathComponent(str IString) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
-func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject /* cross-framework UTType */) IString {
+func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), partialName, contentType)
 	return rv
 }
@@ -852,7 +851,7 @@ func (s_ String) StringByAppendingPathExtension(str IString) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
-func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject /* cross-framework UTType */) IString {
+func (s_ String) StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
@@ -862,7 +861,7 @@ func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/applyingTransform(_:reverse:)
-func (s_ String) StringByApplyingTransformReverse(transform objc.IObject /* cross-framework StringTransform */, reverse bool /* primitive/slice/pointer. */) IString {
+func (s_ String) StringByApplyingTransformReverse(transform objc.IObject /* cross-framework: StringTransform */, reverse bool) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByApplyingTransform:reverse:"), transform, reverse)
 	return rv
 }
@@ -872,8 +871,8 @@ func (s_ String) StringByApplyingTransformReverse(transform objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:)
-func (s_ String) BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:"), size, options, attributes)
+func (s_ String) BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:"), size, options, attributes)
 	return rv
 }
 
@@ -882,8 +881,8 @@ func (s_ String) BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:context:)
-func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
+func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
 	return rv
 }
 
@@ -902,7 +901,7 @@ func (s_ String) CStringUsingEncoding(encoding StringEncoding /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/canBeConverted(to:)
-func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canBeConvertedToEncoding:"), encoding)
 	return rv
 }
@@ -932,8 +931,8 @@ func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/character(at:)
-func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */ {
-	rv := objc.Send[unichar](s_.ID, objc.Sel("characterAtIndex:"), index)
+func (s_ String) CharacterAtIndex(index uint) Unichar /* typedef */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("characterAtIndex:"), index)
 	return rv
 }
 
@@ -972,7 +971,7 @@ func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) Comp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:)
-func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult {
+func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), string_, mask, rangeOfReceiverToCompare)
 	return rv
 }
@@ -982,7 +981,7 @@ func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
-func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult {
+func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objectivec.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), string_, mask, rangeOfReceiverToCompare, locale)
 	return rv
 }
@@ -992,7 +991,7 @@ func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/completePath(into:caseSensitive:matchesInto:filterTypes:)
-func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool, outputArray []string, filterTypes []string) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), outputName, flag, outputArray, filterTypes)
 	return rv
 }
@@ -1002,7 +1001,7 @@ func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-238fy
-func (s_ String) ComponentsSeparatedByString(separator IString) []string /* primitive/slice/pointer. */ {
+func (s_ String) ComponentsSeparatedByString(separator IString) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByString:"), separator)
 	return rv
 }
@@ -1012,7 +1011,7 @@ func (s_ String) ComponentsSeparatedByString(separator IString) []string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-27x9g
-func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */ {
+func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByCharactersInSet:"), separator)
 	return rv
 }
@@ -1022,7 +1021,7 @@ func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/contains(_:)
-func (s_ String) ContainsString(str IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) ContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), str)
 	return rv
 }
@@ -1042,7 +1041,7 @@ func (s_ String) DataUsingEncoding(encoding StringEncoding /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/data(using:allowLossyConversion:)
-func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool /* primitive/slice/pointer. */) IData {
+func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool) IData {
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:allowLossyConversion:"), encoding, lossy)
 	return rv
 }
@@ -1052,7 +1051,7 @@ func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(at:withAttributes:)
-func (s_ String) DrawAtPointWithAttributes(point objc.IObject /* cross-framework Point */, attrs IDictionary /* already interface */) {
+func (s_ String) DrawAtPointWithAttributes(point objc.IObject /* cross-framework: Point */, attrs IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawAtPoint:withAttributes:"), point, attrs)
 }
 
@@ -1061,7 +1060,7 @@ func (s_ String) DrawAtPointWithAttributes(point objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(in:withAttributes:)
-func (s_ String) DrawInRectWithAttributes(rect objc.IObject /* cross-framework Rect */, attrs IDictionary /* already interface */) {
+func (s_ String) DrawInRectWithAttributes(rect objc.IObject /* cross-framework: Rect */, attrs IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawInRect:withAttributes:"), rect, attrs)
 }
 
@@ -1070,7 +1069,7 @@ func (s_ String) DrawInRectWithAttributes(rect objc.IObject /* cross-framework R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:)
-func (s_ String) DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */) {
+func (s_ String) DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework: Rect */, options StringDrawingOptions, attributes IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:"), rect, options, attributes)
 }
 
@@ -1079,7 +1078,7 @@ func (s_ String) DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:context:)
-func (s_ String) DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) {
+func (s_ String) DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework: Rect */, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:context:"), rect, options, attributes, context)
 }
 
@@ -1097,7 +1096,7 @@ func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateSubstrings(in:options:using:)
-func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework Range */, opts StringEnumerationOptions, block unsafe.Pointer) {
+func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts StringEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateSubstringsInRange:options:usingBlock:"), range_, opts, block)
 }
 
@@ -1116,7 +1115,7 @@ func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */ {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover objc.IObject /* cross-framework: RangePointer */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
@@ -1126,7 +1125,7 @@ func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:maxLength:encoding:)
-func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding StringEncoding /* not a class type */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getCString:maxLength:encoding:"), buffer, maxBufferCount, encoding)
 	return rv
 }
@@ -1136,7 +1135,7 @@ func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:)
-func (s_ String) GetCharacters(buffer unichar /* typedef */) {
+func (s_ String) GetCharacters(buffer Unichar /* typedef */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:"), buffer)
 }
 
@@ -1145,7 +1144,7 @@ func (s_ String) GetCharacters(buffer unichar /* typedef */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:range:)
-func (s_ String) GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */) {
+func (s_ String) GetCharactersRange(buffer Unichar /* typedef */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:range:"), buffer, range_)
 }
 
@@ -1154,7 +1153,7 @@ func (s_ String) GetCharactersRange(buffer unichar /* typedef */, range_ objc.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getFileSystemRepresentation(_:maxLength:)
-func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getFileSystemRepresentation:maxLength:"), cname, max)
 	return rv
 }
@@ -1164,7 +1163,7 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
-func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */) {
+func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
 }
 
@@ -1173,7 +1172,7 @@ func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
-func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework Range */) {
+func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
 }
 
@@ -1182,7 +1181,7 @@ func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasPrefix(_:)
-func (s_ String) HasPrefix(str IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) HasPrefix(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasPrefix:"), str)
 	return rv
 }
@@ -1192,7 +1191,7 @@ func (s_ String) HasPrefix(str IString) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasSuffix(_:)
-func (s_ String) HasSuffix(str IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) HasSuffix(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), str)
 	return rv
 }
@@ -1202,7 +1201,7 @@ func (s_ String) HasSuffix(str IString) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/isEqual(to:)
-func (s_ String) IsEqualToString(aString IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) IsEqualToString(aString IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), aString)
 	return rv
 }
@@ -1212,7 +1211,7 @@ func (s_ String) IsEqualToString(aString IString) bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lengthOfBytes(using:)
-func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */ {
+func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("lengthOfBytesUsingEncoding:"), enc)
 	return rv
 }
@@ -1222,8 +1221,8 @@ func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lineRange(for:)
-func (s_ String) LineRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("lineRangeForRange:"), range_)
+func (s_ String) LineRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("lineRangeForRange:"), range_)
 	return rv
 }
 
@@ -1242,7 +1241,7 @@ func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveContains(_:)
-func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), str)
 	return rv
 }
@@ -1272,7 +1271,7 @@ func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardContains(_:)
-func (s_ String) LocalizedStandardContainsString(str IString) bool /* primitive/slice/pointer. */ {
+func (s_ String) LocalizedStandardContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("localizedStandardContainsString:"), str)
 	return rv
 }
@@ -1283,7 +1282,7 @@ func (s_ String) LocalizedStandardContainsString(str IString) bool /* primitive/
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardRange(of:)
 func (s_ String) LocalizedStandardRangeOfString(str IString) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
 	return rv
 }
 
@@ -1302,7 +1301,7 @@ func (s_ String) LowercaseStringWithLocale(locale ILocale) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/maximumLengthOfBytes(using:)
-func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */ {
+func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("maximumLengthOfBytesUsingEncoding:"), enc)
 	return rv
 }
@@ -1312,7 +1311,7 @@ func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/padding(toLength:withPad:startingAt:)
-func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint /* primitive/slice/pointer. */, padString IString, padIndex uint /* primitive/slice/pointer. */) IString {
+func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString IString, padIndex uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByPaddingToLength:withString:startingAtIndex:"), newLength, padString, padIndex)
 	return rv
 }
@@ -1322,8 +1321,8 @@ func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/paragraphRange(for:)
-func (s_ String) ParagraphRangeForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
+func (s_ String) ParagraphRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
 	return rv
 }
 
@@ -1353,7 +1352,7 @@ func (s_ String) PropertyListFromStringsFileFormat() IDictionary {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:)
 func (s_ String) RangeOfString(searchString IString) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:"), searchString)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:"), searchString)
 	return rv
 }
 
@@ -1363,7 +1362,7 @@ func (s_ String) RangeOfString(searchString IString) objc.IObject /* cross-frame
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:)
 func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
 	return rv
 }
 
@@ -1372,8 +1371,8 @@ func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:)
-func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
+func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
 	return rv
 }
 
@@ -1382,8 +1381,8 @@ func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringComp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:locale:)
-func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */, locale ILocale) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
+func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */, locale ILocale) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
 	return rv
 }
 
@@ -1393,7 +1392,7 @@ func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask Stri
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:)
 func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:"), searchSet)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:"), searchSet)
 	return rv
 }
 
@@ -1403,7 +1402,7 @@ func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:)
 func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:"), searchSet, mask)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:"), searchSet, mask)
 	return rv
 }
 
@@ -1412,8 +1411,8 @@ func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask St
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:range:)
-func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
+func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
 	return rv
 }
 
@@ -1422,8 +1421,8 @@ func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, ma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequence(at:)
-func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequenceAtIndex:"), index)
+func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfComposedCharacterSequenceAtIndex:"), index)
 	return rv
 }
 
@@ -1432,8 +1431,8 @@ func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequences(for:)
-func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
+func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
 	return rv
 }
 
@@ -1442,7 +1441,7 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingCharacters(in:with:)
-func (s_ String) StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework Range */, replacement IString) IString {
+func (s_ String) StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, replacement IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, replacement)
 	return rv
 }
@@ -1462,7 +1461,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithString(target IString, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:options:range:)
-func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework Range */) IString {
+func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework: Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
 	return rv
 }
@@ -1472,16 +1471,8 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(targ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/size(withAttributes:)
-func (s_ String) SizeWithAttributes(attrs IDictionary /* already interface */) objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[Size](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sr_sensorForDeletionRecordsFromSensor()
-func (s_ String) Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sr_sensorForDeletionRecordsFromSensor"))
+func (s_ String) SizeWithAttributes(attrs IDictionary) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
 	return rv
 }
 
@@ -1500,7 +1491,7 @@ func (s_ String) StringByAppendingFormat(format IString) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/strings(byAppendingPaths:)
-func (s_ String) StringsByAppendingPaths(paths []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
+func (s_ String) StringsByAppendingPaths(paths []string) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("stringsByAppendingPaths:"), paths)
 	return rv
 }
@@ -1510,7 +1501,7 @@ func (s_ String) StringsByAppendingPaths(paths []string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(from:)
-func (s_ String) SubstringFromIndex(from uint /* primitive/slice/pointer. */) IString {
+func (s_ String) SubstringFromIndex(from uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringFromIndex:"), from)
 	return rv
 }
@@ -1520,7 +1511,7 @@ func (s_ String) SubstringFromIndex(from uint /* primitive/slice/pointer. */) IS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(to:)
-func (s_ String) SubstringToIndex(to uint /* primitive/slice/pointer. */) IString {
+func (s_ String) SubstringToIndex(to uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringToIndex:"), to)
 	return rv
 }
@@ -1530,7 +1521,7 @@ func (s_ String) SubstringToIndex(to uint /* primitive/slice/pointer. */) IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(with:)
-func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString {
+func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework: Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringWithRange:"), range_)
 	return rv
 }
@@ -1560,7 +1551,7 @@ func (s_ String) UppercaseStringWithLocale(locale ILocale) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/variantFittingPresentationWidth(_:)
-func (s_ String) VariantFittingPresentationWidth(width int /* primitive/slice/pointer. */) IString {
+func (s_ String) VariantFittingPresentationWidth(width int) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("variantFittingPresentationWidth:"), width)
 	return rv
 }
@@ -1570,7 +1561,7 @@ func (s_ String) VariantFittingPresentationWidth(width int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
-func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1580,7 +1571,7 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:encoding:)
-func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), path, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -1610,7 +1601,7 @@ func (s_ String) AvailableStringEncodings() StringEncoding /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boolValue
-func (s_ String) BoolValue() bool /* primitive/slice/pointer. */ {
+func (s_ String) BoolValue() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("boolValue"))
 	return rv
 }
@@ -1688,7 +1679,7 @@ func (s_ String) Description() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/doubleValue
-func (s_ String) DoubleValue() float64 /* primitive/slice/pointer. */ {
+func (s_ String) DoubleValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -1728,7 +1719,7 @@ func (s_ String) FileSystemRepresentation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/floatValue
-func (s_ String) FloatValue() float32 /* primitive/slice/pointer. */ {
+func (s_ String) FloatValue() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("floatValue"))
 	return rv
 }
@@ -1738,7 +1729,7 @@ func (s_ String) FloatValue() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hash
-func (s_ String) Hash() uint /* primitive/slice/pointer. */ {
+func (s_ String) Hash() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("hash"))
 	return rv
 }
@@ -1748,7 +1739,7 @@ func (s_ String) Hash() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/intValue
-func (s_ String) IntValue() int /* primitive/slice/pointer. */ {
+func (s_ String) IntValue() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("intValue"))
 	return rv
 }
@@ -1758,7 +1749,7 @@ func (s_ String) IntValue() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/integerValue
-func (s_ String) IntegerValue() int /* primitive/slice/pointer. */ {
+func (s_ String) IntegerValue() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("integerValue"))
 	return rv
 }
@@ -1768,7 +1759,7 @@ func (s_ String) IntegerValue() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/isAbsolutePath
-func (s_ String) AbsolutePath() bool /* primitive/slice/pointer. */ {
+func (s_ String) AbsolutePath() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("absolutePath"))
 	return rv
 }
@@ -1788,7 +1779,7 @@ func (s_ String) LastPathComponent() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/length
-func (s_ String) Length() uint /* primitive/slice/pointer. */ {
+func (s_ String) Length() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("length"))
 	return rv
 }
@@ -1848,7 +1839,7 @@ func (s_ String) LowercaseString() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/pathComponents
-func (s_ String) PathComponents() []string /* primitive/slice/pointer. */ {
+func (s_ String) PathComponents() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("pathComponents"))
 	return rv
 }
@@ -2058,7 +2049,7 @@ func (s_ String) SetExpandingTildeInPath(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
-func (s_ String) IsAbsolutePath() bool /* primitive/slice/pointer. */ {
+func (s_ String) IsAbsolutePath() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAbsolutePath"))
 	return rv
 }
@@ -2068,7 +2059,7 @@ func (s_ String) IsAbsolutePath() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
-func (s_ String) SetIsAbsolutePath(value bool /* primitive/slice/pointer. */) {
+func (s_ String) SetIsAbsolutePath(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAbsolutePath:"), value)
 }
 

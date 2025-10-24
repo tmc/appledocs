@@ -29,28 +29,32 @@ type _ForwardLossNodeClass struct {
 // An interface definition for the [ForwardLossNode] class.
 type IForwardLossNode interface {
 	IFilterNode
-	GradientFiltersWithSources(sourceGradient []ImageNode) []LossGradientNode
+	// properties:
 	Delta() float32
 	SetDelta(value float32)
 	Epsilon() float32
 	SetEpsilon(value float32)
 	LabelSmoothing() float32
 	SetLabelSmoothing(value float32)
-	LossType() unsafe.Pointer
-	SetLossType(value unsafe.Pointer)
+	LossType() CNNLossType /* not a class type */
+	SetLossType(value CNNLossType /* not a class type */)
 	NumberOfClasses() int
 	SetNumberOfClasses(value int)
-	PropertyCallBack() unsafe.Pointer
-	SetPropertyCallBack(value unsafe.Pointer)
+	PropertyCallBack() LossCallback /* not a class type */
+	SetPropertyCallBack(value LossCallback /* not a class type */)
 	ReduceAcrossBatch() bool
 	SetReduceAcrossBatch(value bool)
-	ReductionType() unsafe.Pointer
-	SetReductionType(value unsafe.Pointer)
+	ReductionType() CNNReductionType /* not a class type */
+	SetReductionType(value CNNReductionType /* not a class type */)
 	Weight() float32
 	SetWeight(value float32)
+	// methods:
+	GradientFiltersWithSources(sourceGradient []IImageNode) []ILossGradientNode
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLossNode
 type ForwardLossNode struct {
 	FilterNode
@@ -95,14 +99,16 @@ func NewForwardLossNode() ForwardLossNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLossNode/gradientFilters(withSources:)
-func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient []ImageNode) []LossGradientNode {
+func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient []IImageNode) []ILossGradientNode {
 	rv := objc.Send[[]LossGradientNode](f_.ID, objc.Sel("gradientFiltersWithSources:"), sourceGradient)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
 func (f_ ForwardLossNode) Delta() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("delta"))
@@ -110,14 +116,14 @@ func (f_ ForwardLossNode) Delta() float32 {
 }
 
 
-// SetDelta sets the value of the delta property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/delta
 func (f_ ForwardLossNode) SetDelta(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelta:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
 func (f_ ForwardLossNode) Epsilon() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("epsilon"))
@@ -125,14 +131,14 @@ func (f_ ForwardLossNode) Epsilon() float32 {
 }
 
 
-// SetEpsilon sets the value of the epsilon property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/epsilon
 func (f_ ForwardLossNode) SetEpsilon(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEpsilon:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/labelsmoothing
 func (f_ ForwardLossNode) LabelSmoothing() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("labelSmoothing"))
@@ -140,29 +146,29 @@ func (f_ ForwardLossNode) LabelSmoothing() float32 {
 }
 
 
-// SetLabelSmoothing sets the value of the labelSmoothing property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/labelsmoothing
 func (f_ ForwardLossNode) SetLabelSmoothing(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLabelSmoothing:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
-func (f_ ForwardLossNode) LossType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("lossType"))
+func (f_ ForwardLossNode) LossType() CNNLossType /* not a class type */ {
+	rv := objc.Send[CNNLossType](f_.ID, objc.Sel("lossType"))
 	return rv
 }
 
 
-// SetLossType sets the value of the lossType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/losstype
-func (f_ ForwardLossNode) SetLossType(value unsafe.Pointer) {
+func (f_ ForwardLossNode) SetLossType(value CNNLossType /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLossType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/numberofclasses
 func (f_ ForwardLossNode) NumberOfClasses() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("numberOfClasses"))
@@ -170,29 +176,29 @@ func (f_ ForwardLossNode) NumberOfClasses() int {
 }
 
 
-// SetNumberOfClasses sets the value of the numberOfClasses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/numberofclasses
 func (f_ ForwardLossNode) SetNumberOfClasses(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNumberOfClasses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
-func (f_ ForwardLossNode) PropertyCallBack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertyCallBack"))
+func (f_ ForwardLossNode) PropertyCallBack() LossCallback /* not a class type */ {
+	rv := objc.Send[LossCallback](f_.ID, objc.Sel("propertyCallBack"))
 	return rv
 }
 
 
-// SetPropertyCallBack sets the value of the propertyCallBack property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/propertycallback
-func (f_ ForwardLossNode) SetPropertyCallBack(value unsafe.Pointer) {
+func (f_ ForwardLossNode) SetPropertyCallBack(value LossCallback /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertyCallBack:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
 func (f_ ForwardLossNode) ReduceAcrossBatch() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("reduceAcrossBatch"))
@@ -200,29 +206,29 @@ func (f_ ForwardLossNode) ReduceAcrossBatch() bool {
 }
 
 
-// SetReduceAcrossBatch sets the value of the reduceAcrossBatch property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reduceacrossbatch
 func (f_ ForwardLossNode) SetReduceAcrossBatch(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReduceAcrossBatch:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
-func (f_ ForwardLossNode) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reductionType"))
+func (f_ ForwardLossNode) ReductionType() CNNReductionType /* not a class type */ {
+	rv := objc.Send[CNNReductionType](f_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
 
-// SetReductionType sets the value of the reductionType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/reductiontype
-func (f_ ForwardLossNode) SetReductionType(value unsafe.Pointer) {
+func (f_ ForwardLossNode) SetReductionType(value CNNReductionType /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReductionType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
 func (f_ ForwardLossNode) Weight() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("weight"))
@@ -230,8 +236,7 @@ func (f_ ForwardLossNode) Weight() float32 {
 }
 
 
-// SetWeight sets the value of the weight property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode/weight
 func (f_ ForwardLossNode) SetWeight(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWeight:"), value)

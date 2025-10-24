@@ -33,30 +33,30 @@ type IData interface {
 	// properties:
 	Bytes() unsafe.Pointer
 	Description() IString
-	Length() uint /* primitive/slice/pointer. */
-	NSCompressionErrorMaximum() int /* primitive/slice/pointer. */
-	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */)
-	NSCompressionErrorMinimum() int /* primitive/slice/pointer. */
-	SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */)
-	NSCompressionFailedError() int /* primitive/slice/pointer. */
-	SetNSCompressionFailedError(value int /* primitive/slice/pointer. */)
-	NSDecompressionFailedError() int /* primitive/slice/pointer. */
-	SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */)
+	Length() uint
+	NSCompressionErrorMaximum() int
+	SetNSCompressionErrorMaximum(value int)
+	NSCompressionErrorMinimum() int
+	SetNSCompressionErrorMinimum(value int)
+	NSCompressionFailedError() int
+	SetNSCompressionFailedError(value int)
+	NSDecompressionFailedError() int
+	SetNSDecompressionFailedError(value int)
 	// methods:
 	Base64EncodedDataWithOptions(options DataBase64EncodingOptions) IData
 	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) IString
 	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
-	GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/slice/pointer. */)
-	GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework Range */)
-	IsEqualToData(other IData) bool /* primitive/slice/pointer. */
-	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	SubdataWithRange(range_ objc.IObject /* cross-framework Range */) IData
-	WriteToURLAtomically(url IURL, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */
-	WriteToFileAtomically(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */
+	GetBytesLength(buffer unsafe.Pointer, length uint)
+	GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */)
+	IsEqualToData(other IData) bool
+	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
+	SubdataWithRange(range_ objc.IObject /* cross-framework: Range */) IData
+	WriteToURLAtomically(url IURL, atomically bool) bool
+	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool
+	WriteToFileAtomically(path IString, useAuxiliaryFile bool) bool
+	WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr IError) bool
 }
 
 // A static byte buffer in memory.
@@ -152,7 +152,7 @@ func NewDataWithBase64Encoding(base64String IString) Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytes:length:)
-func NewDataWithBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) Data {
+func NewDataWithBytesLength(bytes unsafe.Pointer, length uint) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytes:length:"), bytes, length)
 	rv.Autorelease()
@@ -164,7 +164,7 @@ func NewDataWithBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:)
-func NewDataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) Data {
+func NewDataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:"), bytes, length)
 	rv.Autorelease()
@@ -176,7 +176,7 @@ func NewDataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:deallocator:)
-func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, deallocator unsafe.Pointer) Data {
+func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint, deallocator unsafe.Pointer) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:deallocator:"), bytes, length, deallocator)
 	rv.Autorelease()
@@ -188,7 +188,7 @@ func NewDataWithBytesNoCopyLengthDeallocator(bytes unsafe.Pointer, length uint /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(bytesNoCopy:length:freeWhenDone:)
-func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, b bool /* primitive/slice/pointer. */) Data {
+func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, b bool) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBytesNoCopy:length:freeWhenDone:"), bytes, length, b)
 	rv.Autorelease()
@@ -283,7 +283,7 @@ func (dc _DataClass) Data() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytes:length:
-func (dc _DataClass) DataWithBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (dc _DataClass) DataWithBytesLength(bytes unsafe.Pointer, length uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytes:length:"), bytes, length)
 	return rv
 }
@@ -293,7 +293,7 @@ func (dc _DataClass) DataWithBytesLength(bytes unsafe.Pointer, length uint /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytesNoCopy:length:
-func (dc _DataClass) DataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (dc _DataClass) DataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytesNoCopy:length:"), bytes, length)
 	return rv
 }
@@ -303,7 +303,7 @@ func (dc _DataClass) DataWithBytesNoCopyLength(bytes unsafe.Pointer, length uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithBytesNoCopy:length:freeWhenDone:
-func (dc _DataClass) DataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */, b bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (dc _DataClass) DataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint, b bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithBytesNoCopy:length:freeWhenDone:"), bytes, length, b)
 	return rv
 }
@@ -422,7 +422,7 @@ func (d_ Data) EnumerateByteRangesUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:length:)
-func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/slice/pointer. */) {
+func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:length:"), buffer, length)
 }
 
@@ -431,7 +431,7 @@ func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:range:)
-func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) {
+func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:range:"), buffer, range_)
 }
 
@@ -440,7 +440,7 @@ func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/isEqual(to:)
-func (d_ Data) IsEqualToData(other IData) bool /* primitive/slice/pointer. */ {
+func (d_ Data) IsEqualToData(other IData) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToData:"), other)
 	return rv
 }
@@ -450,8 +450,8 @@ func (d_ Data) IsEqualToData(other IData) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/range(of:options:in:)
-func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
-	rv := objc.Send[Range](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
+func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
 	return rv
 }
 
@@ -460,7 +460,7 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
-func (d_ Data) SubdataWithRange(range_ objc.IObject /* cross-framework Range */) IData {
+func (d_ Data) SubdataWithRange(range_ objc.IObject /* cross-framework: Range */) IData {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }
@@ -470,7 +470,7 @@ func (d_ Data) SubdataWithRange(range_ objc.IObject /* cross-framework Range */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:atomically:)
-func (d_ Data) WriteToURLAtomically(url IURL, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToURLAtomically(url IURL, atomically bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
@@ -480,7 +480,7 @@ func (d_ Data) WriteToURLAtomically(url IURL, atomically bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:options:)
-func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:options:error:"), url, writeOptionsMask, errorPtr)
 	return rv
 }
@@ -490,7 +490,7 @@ func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOpti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(toFile:atomically:)
-func (d_ Data) WriteToFileAtomically(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToFileAtomically(path IString, useAuxiliaryFile bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
 	return rv
 }
@@ -500,7 +500,7 @@ func (d_ Data) WriteToFileAtomically(path IString, useAuxiliaryFile bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(toFile:options:)
-func (d_ Data) WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:options:error:"), path, writeOptionsMask, errorPtr)
 	return rv
 }
@@ -530,7 +530,7 @@ func (d_ Data) Description() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/length
-func (d_ Data) Length() uint /* primitive/slice/pointer. */ {
+func (d_ Data) Length() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("length"))
 	return rv
 }
@@ -540,7 +540,7 @@ func (d_ Data) Length() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (d_ Data) NSCompressionErrorMaximum() int /* primitive/slice/pointer. */ {
+func (d_ Data) NSCompressionErrorMaximum() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMaximum"))
 	return rv
 }
@@ -550,7 +550,7 @@ func (d_ Data) NSCompressionErrorMaximum() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (d_ Data) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */) {
+func (d_ Data) SetNSCompressionErrorMaximum(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
@@ -559,7 +559,7 @@ func (d_ Data) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (d_ Data) NSCompressionErrorMinimum() int /* primitive/slice/pointer. */ {
+func (d_ Data) NSCompressionErrorMinimum() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionErrorMinimum"))
 	return rv
 }
@@ -569,7 +569,7 @@ func (d_ Data) NSCompressionErrorMinimum() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (d_ Data) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */) {
+func (d_ Data) SetNSCompressionErrorMinimum(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
@@ -578,7 +578,7 @@ func (d_ Data) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (d_ Data) NSCompressionFailedError() int /* primitive/slice/pointer. */ {
+func (d_ Data) NSCompressionFailedError() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSCompressionFailedError"))
 	return rv
 }
@@ -588,7 +588,7 @@ func (d_ Data) NSCompressionFailedError() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (d_ Data) SetNSCompressionFailedError(value int /* primitive/slice/pointer. */) {
+func (d_ Data) SetNSCompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
 
@@ -597,7 +597,7 @@ func (d_ Data) SetNSCompressionFailedError(value int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (d_ Data) NSDecompressionFailedError() int /* primitive/slice/pointer. */ {
+func (d_ Data) NSDecompressionFailedError() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
 }
@@ -607,7 +607,7 @@ func (d_ Data) NSDecompressionFailedError() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (d_ Data) SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */) {
+func (d_ Data) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
 

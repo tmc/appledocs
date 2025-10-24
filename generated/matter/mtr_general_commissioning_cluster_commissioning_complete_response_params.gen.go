@@ -31,15 +31,19 @@ type _MTRGeneralCommissioningClusterCommissioningCompleteResponseParamsClass str
 // An interface definition for the [MTRGeneralCommissioningClusterCommissioningCompleteResponseParams] class.
 type IMTRGeneralCommissioningClusterCommissioningCompleteResponseParams interface {
 	objectivec.IObject
-	DebugText() string
-	SetDebugText(value string)
-	ErrorCode() foundation.Number
-	SetErrorCode(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DebugText() objc.IObject /* cross-framework: NSString */
+	SetDebugText(value objc.IObject /* cross-framework: NSString */)
+	ErrorCode() objc.IObject /* cross-framework: NSNumber */
+	SetErrorCode(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterCommissioningCompleteResponseParams
 type MTRGeneralCommissioningClusterCommissioningCompleteResponseParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteResponseParams() MTRG
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
 
-// SetDebugText sets the value of the debugText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/errorcode
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) ErrorCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("errorCode"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) ErrorCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("errorCode"))
 	return rv
 }
 
 
-// SetErrorCode sets the value of the errorCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/errorcode
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetErrorCode(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

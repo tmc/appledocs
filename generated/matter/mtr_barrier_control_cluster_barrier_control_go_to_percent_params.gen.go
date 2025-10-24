@@ -31,15 +31,19 @@ type _MTRBarrierControlClusterBarrierControlGoToPercentParamsClass struct {
 // An interface definition for the [MTRBarrierControlClusterBarrierControlGoToPercentParams] class.
 type IMTRBarrierControlClusterBarrierControlGoToPercentParams interface {
 	objectivec.IObject
-	PercentOpen() foundation.Number
-	SetPercentOpen(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	PercentOpen() objc.IObject /* cross-framework: NSNumber */
+	SetPercentOpen(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBarrierControlClusterBarrierControlGoToPercentParams
 type MTRBarrierControlClusterBarrierControlGoToPercentParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRBarrierControlClusterBarrierControlGoToPercentParams() MTRBarrierCont
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/percentopen
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) PercentOpen() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("percentOpen"))
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) PercentOpen() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("percentOpen"))
 	return rv
 }
 
 
-// SetPercentOpen sets the value of the percentOpen property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/percentopen
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetPercentOpen(value foundation.INumber) {
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetPercentOpen(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentOpen:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/serversideprocessingtimeout
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/serversideprocessingtimeout
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/timedinvoketimeoutms
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/timedinvoketimeoutms
-func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

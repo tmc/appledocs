@@ -11,7 +11,6 @@ type _undefined = int
 type (
 	ANTestPostbackResponseHandler = _undefined // referenced in StoreKitTest
 	AdNetworkCoarseConversionValue = _undefined // referenced in StoreKitTest
-	Bool = _undefined // referenced in StoreKitTest
 	ErrorCode = _undefined // referenced in StoreKitTest
 	PaymentTransactionState = _undefined // referenced in StoreKitTest
 )

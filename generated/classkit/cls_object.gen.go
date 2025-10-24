@@ -32,10 +32,10 @@ type _SObjectClass struct {
 type ISObject interface {
 	objectivec.IObject
 	// properties:
-	DateCreated() foundation.objc.IObject /* cross-framework: Date */
-	SetDateCreated(value foundation.objc.IObject /* cross-framework: Date */)
-	DateLastModified() foundation.objc.IObject /* cross-framework: Date */
-	SetDateLastModified(value foundation.objc.IObject /* cross-framework: Date */)
+	DateCreated() objc.IObject /* cross-framework: Date */
+	SetDateCreated(value objc.IObject /* cross-framework: Date */)
+	DateLastModified() objc.IObject /* cross-framework: Date */
+	SetDateLastModified(value objc.IObject /* cross-framework: Date */)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewSObject() SObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsobject/datecreated
-func (s_ SObject) DateCreated() foundation.objc.IObject /* cross-framework: Date */ {
+func (s_ SObject) DateCreated() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](s_.ID, objc.Sel("dateCreated"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (s_ SObject) DateCreated() foundation.objc.IObject /* cross-framework: Date
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsobject/datecreated
-func (s_ SObject) SetDateCreated(value foundation.objc.IObject /* cross-framework: Date */) {
+func (s_ SObject) SetDateCreated(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDateCreated:"), value)
 }
 
@@ -113,7 +113,7 @@ func (s_ SObject) SetDateCreated(value foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsobject/datelastmodified
-func (s_ SObject) DateLastModified() foundation.objc.IObject /* cross-framework: Date */ {
+func (s_ SObject) DateLastModified() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](s_.ID, objc.Sel("dateLastModified"))
 	return rv
 }
@@ -123,7 +123,7 @@ func (s_ SObject) DateLastModified() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsobject/datelastmodified
-func (s_ SObject) SetDateLastModified(value foundation.objc.IObject /* cross-framework: Date */) {
+func (s_ SObject) SetDateLastModified(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDateLastModified:"), value)
 }
 

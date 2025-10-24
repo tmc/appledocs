@@ -31,8 +31,8 @@ type _MovieClass struct {
 type IMovie interface {
 	IAsset
 	// properties:
-	CanContainMovieFragments() bool /* primitive/slice/pointer. */
-	ContainsMovieFragments() bool /* primitive/slice/pointer. */
+	CanContainMovieFragments() bool
+	ContainsMovieFragments() bool
 	Data() objc.IObject /* cross-framework: Data */
 	SetData(value objc.IObject /* cross-framework: Data */)
 	DefaultMediaDataStorage() objc.IObject /* cross-framework: MediaDataStorage */
@@ -103,7 +103,7 @@ func NewMovie() Movie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/canContainMovieFragments
-func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer. */ {
+func (m_ Movie) CanContainMovieFragments() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canContainMovieFragments"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/containsMovieFragments
-func (m_ Movie) ContainsMovieFragments() bool /* primitive/slice/pointer. */ {
+func (m_ Movie) ContainsMovieFragments() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("containsMovieFragments"))
 	return rv
 }

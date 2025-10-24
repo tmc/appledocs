@@ -6,7 +6,6 @@ import (
 )
 
 
-
 // C struct types
 // CFAllocatorContext - A structure that defines the context or operating environment for an allocator (CFAllocator) object. Every Core Foundation allocator object must have a context defined for it.
 //

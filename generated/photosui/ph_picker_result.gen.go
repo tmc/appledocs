@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,16 @@ type _PHPickerResultClass struct {
 // An interface definition for the [PHPickerResult] class.
 type IPHPickerResult interface {
 	objectivec.IObject
-	AssetIdentifier() string
-	ItemProvider() foundation.ItemProvider
+	// properties:
+	// methods:
 }
 
 // Types that represent a selected asset from the user’s photo library.
+
+
+// Types that represent a selected asset from the user’s photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class
 type PHPickerResult struct {
 	objectivec.Object
@@ -80,22 +83,6 @@ func NewPHPickerResult() PHPickerResult {
 	return getPHPickerResultClass().New()
 }
 
-
-// The selected asset’s local identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/assetIdentifier
-func (p_ PHPickerResult) AssetIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
-	return rv
-}
-
-// The supported representations of the selected asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/itemProvider
-func (p_ PHPickerResult) ItemProvider() foundation.ItemProvider {
-	rv := objc.Send[foundation.ItemProvider](p_.ID, objc.Sel("itemProvider"))
-	return rv
-}
 
 
 

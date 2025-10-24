@@ -30,6 +30,8 @@ type _VZSerialPortAttachmentClass struct {
 // An interface definition for the [VZSerialPortAttachment] class.
 type IVZSerialPortAttachment interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The common behaviors for the serial attachment points of your virtual machine.

@@ -9,12 +9,19 @@ import (
 // Suppress unused import errors
 var _ = multipeerconnectivity.NewMCNearbyServiceBrowser
 
-// ExampleNewMCNearbyServiceBrowserWithPeerServiceType demonstrates how to create a MCNearbyServiceBrowser instance using NewMCNearbyServiceBrowserWithPeerServiceType.
-// Initializes the nearby service browser object.
-func ExampleNewMCNearbyServiceBrowserWithPeerServiceType() {
-	_ = multipeerconnectivity.NewMCNearbyServiceBrowserWithPeerServiceType(
-		multipeerconnectivity.MCPeerID{}, // myPeerID MCPeerID
-		"serviceType", // serviceType string
-	)
+// ExampleMCNearbyServiceBrowser_StartBrowsingForPeers demonstrates using StartBrowsingForPeers on a MCNearbyServiceBrowser instance.
+// Starts browsing for peers.
+func ExampleMCNearbyServiceBrowser_StartBrowsingForPeers() {
+	obj := multipeerconnectivity.NewMCNearbyServiceBrowser()
+	obj.StartBrowsingForPeers()
 	// Output:
-}
+	}
+
+// ExampleMCNearbyServiceBrowser_StopBrowsingForPeers demonstrates using StopBrowsingForPeers on a MCNearbyServiceBrowser instance.
+// Stops browsing for peers.
+func ExampleMCNearbyServiceBrowser_StopBrowsingForPeers() {
+	obj := multipeerconnectivity.NewMCNearbyServiceBrowser()
+	obj.StopBrowsingForPeers()
+	// Output:
+	}
+

@@ -31,19 +31,25 @@ type _UNNotificationAttachmentClass struct {
 // An interface definition for the [UNNotificationAttachment] class.
 type IUNNotificationAttachment interface {
 	objectivec.IObject
-	Identifier() string
-	Type() string
-	URL() foundation.URL
-	UNNotificationAttachmentOptionsThumbnailClippingRectKey() string
-	UNNotificationAttachmentOptionsThumbnailHiddenKey() string
-	UNNotificationAttachmentOptionsThumbnailTimeKey() string
-	UNNotificationAttachmentOptionsTypeHintKey() string
+	// properties:
+	Identifier() objc.IObject /* cross-framework: NSString */
+	Type() objc.IObject /* cross-framework: NSString */
+	URL() objc.IObject /* cross-framework: NSURL */
+	UNNotificationAttachmentOptionsThumbnailClippingRectKey() objc.IObject /* cross-framework: NSString */
+	UNNotificationAttachmentOptionsThumbnailHiddenKey() objc.IObject /* cross-framework: NSString */
+	UNNotificationAttachmentOptionsThumbnailTimeKey() objc.IObject /* cross-framework: NSString */
+	UNNotificationAttachmentOptionsTypeHintKey() objc.IObject /* cross-framework: NSString */
+	// methods:
 }
 
 // A media file associated with a notification.
 //
 // Create a object when you want to include audio, image, or video content together in an alert-based notification. When creating the object, the file you specify must be on disk, and the file format must be one of the supported types. You’re responsible for supplying attachments before the system displays your notification’s alert. For local notifications, add attachments when creating the notification’s content. For remote notifications, use a notification service app extension to download the attached files and then add them to the notification’s content before delivery. The system validates attachments before displaying the associated notification. If you attach a file to a local notification request that’s corrupted, invalid, or of an unsupported file type, the system doesn’t schedule your request. For remote notifications, the system validates attachments after your notification service app extension finishes. Once validated, the system moves the attached files into the attachment data store so that the appropriate processes can access the files. The system copies attachments located inside an app’s bundle.
+
+
+// A media file associated with a notification.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment
 type UNNotificationAttachment struct {
 	objectivec.Object
@@ -89,77 +95,93 @@ func NewUNNotificationAttachment() UNNotificationAttachment {
 
 
 
-
 // Creates an attachment object from the specified file and options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier string, URL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) UNNotificationAttachment {
-	rv := objc.Send[UNNotificationAttachment](objc.ID(getUNNotificationAttachmentClass().class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
+func NewUNNotificationAttachmentWithIdentifierURLOptionsError(identifier objc.IObject /* cross-framework: NSString */, URL objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */, error_ unsafe.Pointer) UNNotificationAttachment {
+	rv := objc.Send[UNNotificationAttachment](objc.ID(getUNNotificationAttachmentClass().class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), identifier, URL, options, error_)
 	return rv
 }
 
 
+
 // Creates an attachment object from the specified file and options.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/init(identifier:url:options:)
-func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier string, URL foundation.IURL, options objectivec.IObject, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), objc.String(identifier), URL, options, error_)
+func (uc _UNNotificationAttachmentClass) AttachmentWithIdentifierURLOptionsError(identifier objc.IObject /* cross-framework: NSString */, URL objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("attachmentWithIdentifier:URL:options:error:"), identifier, URL, options, error_)
 	return rv
 }
+
 
 // The unique identifier for the attachment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/identifier
-func (u_ UNNotificationAttachment) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+func (u_ UNNotificationAttachment) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("identifier"))
 	return rv
 }
+
 
 // The UTI type of the attachment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/type
-func (u_ UNNotificationAttachment) Type() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("type"))
+func (u_ UNNotificationAttachment) Type() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("type"))
 	return rv
 }
+
 
 // The URL of the file for this attachment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttachment/url
-func (u_ UNNotificationAttachment) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("URL"))
+func (u_ UNNotificationAttachment) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](u_.ID, objc.Sel("URL"))
 	return rv
 }
+
 
 // The clipping rectangle for a thumbnail image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey
-func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailClippingRectKey() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailClippingRectKey"))
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailClippingRectKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailClippingRectKey"))
 	return rv
 }
+
 
 // A Boolean value indicating whether the system hides the attachment’s thumbnail.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailhiddenkey
-func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailHiddenKey() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailHiddenKey"))
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailHiddenKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailHiddenKey"))
 	return rv
 }
+
 
 // The frame number of an animation to use as a thumbnail image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailtimekey
-func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailTimeKey() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailTimeKey"))
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsThumbnailTimeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("UNNotificationAttachmentOptionsThumbnailTimeKey"))
 	return rv
 }
 
+
 // A hint about an attachment’s file type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionstypehintkey
-func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsTypeHintKey() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationAttachmentOptionsTypeHintKey"))
+func (u_ UNNotificationAttachment) UNNotificationAttachmentOptionsTypeHintKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](u_.ID, objc.Sel("UNNotificationAttachmentOptionsTypeHintKey"))
 	return rv
 }
 

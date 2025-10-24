@@ -29,14 +29,20 @@ type _VZVirtioSoundDeviceInputStreamConfigurationClass struct {
 // An interface definition for the [VZVirtioSoundDeviceInputStreamConfiguration] class.
 type IVZVirtioSoundDeviceInputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
-	Source() VZAudioInputStreamSource
+	// properties:
+	Source() IVZAudioInputStreamSource
 	SetSource(value IVZAudioInputStreamSource)
+	// methods:
 }
 
 // A PCM stream of input audio data, such as from a microphone.
 //
 // This device represents a PCM stream of audio data. Don’t instantiate directly. Instead, use one of its subclasses such as or .
+
+
+// A PCM stream of input audio data, such as from a microphone.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration
 type VZVirtioSoundDeviceInputStreamConfiguration struct {
 	VZVirtioSoundDeviceStreamConfiguration
@@ -83,19 +89,20 @@ func NewVZVirtioSoundDeviceInputStreamConfiguration() VZVirtioSoundDeviceInputSt
 }
 
 
+
 // An audio stream source that defines how the host supplies audio data for the guest.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration/source
-func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() VZAudioInputStreamSource {
+func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() IVZAudioInputStreamSource {
 	rv := objc.Send[VZAudioInputStreamSource](v_.ID, objc.Sel("source"))
 	return rv
 }
 
 
-// SetSource sets the value of the source property.
 // An audio stream source that defines how the host supplies audio data for the guest.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration/source
 func (v_ VZVirtioSoundDeviceInputStreamConfiguration) SetSource(value IVZAudioInputStreamSource) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSource:"), value)

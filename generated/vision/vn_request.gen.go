@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,26 +30,30 @@ type _RequestClass struct {
 // An interface definition for the [Request] class.
 type IRequest interface {
 	objectivec.IObject
-	Cancel()
-	ComputeDeviceForComputeStage(computeStage IComputeStage) objc.ID
-	SetComputeDeviceForComputeStage(computeDevice objectivec.IObject, computeStage IComputeStage)
-	SupportedComputeStageDevicesAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
-	CompletionHandler() unsafe.Pointer
-	PreferBackgroundProcessing() bool
-	SetPreferBackgroundProcessing(value bool)
-	Results() []Observation
-	Revision() uint
-	SetRevision(value uint)
+	// properties:
 	UsesCPUOnly() bool
 	SetUsesCPUOnly(value bool)
-	SupportedComputeStageDevices() unsafe.Pointer
-	SetSupportedComputeStageDevices(value unsafe.Pointer)
+	CompletionHandler() RequestCompletionHandler /* not a class type */
+	SetCompletionHandler(value RequestCompletionHandler /* not a class type */)
+	PreferBackgroundProcessing() bool
+	SetPreferBackgroundProcessing(value bool)
+	Results() IVNObservation
+	SetResults(value IVNObservation)
+	Revision() int
+	SetRevision(value int)
+	SupportedComputeStageDevices() ComputeDevice /* not a class type */
+	SetSupportedComputeStageDevices(value ComputeDevice /* not a class type */)
+	// methods:
 }
 
 // The abstract superclass for analysis requests.
 //
 // Other Vision request handlers that perform image analysis inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis.
+
+
+// The abstract superclass for analysis requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest
 type Request struct {
 	objectivec.Object
@@ -96,147 +99,9 @@ func NewRequest() Request {
 
 
 
-
-// Creates a new Vision request with an optional completion handler.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/init(completionHandler:)
-func NewRequestWithCompletionHandler(completionHandler unsafe.Pointer) Request {
-	instance := getRequestClass().Alloc()
-	rv := objc.Send[Request](instance.ID, objc.Sel("initWithCompletionHandler:"), completionHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-// The current revison supported by the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/currentRevision
-func (rc _RequestClass) CurrentRevision() uint {
-	rv := objc.Send[uint](objc.ID(rc.class), objc.Sel("currentRevision"))
-	return rv
-}
-// The revision of the latest request for the particular SDK linked with the client application.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/defaultRevision
-func (rc _RequestClass) DefaultRevision() uint {
-	rv := objc.Send[uint](objc.ID(rc.class), objc.Sel("defaultRevision"))
-	return rv
-}
-// The collection of currently-supported algorithm versions for the class of request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
-func (rc _RequestClass) SupportedRevisions() foundation.IndexSet {
-	rv := objc.Send[foundation.IndexSet](objc.ID(rc.class), objc.Sel("supportedRevisions"))
-	return rv
-}
-// Cancels the request before it can finish executing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/cancel()
-func (r_ Request) Cancel() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("cancel"))
-}
-
-// Returns the compute device for a compute stage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/computeDeviceForComputeStage:
-func (r_ Request) ComputeDeviceForComputeStage(computeStage IComputeStage) objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("computeDeviceForComputeStage:"), computeStage)
-	return rv
-}
-
-// Assigns a compute device for a compute stage.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/setComputeDevice:forComputeStage:
-func (r_ Request) SetComputeDeviceForComputeStage(computeDevice objectivec.IObject, computeStage IComputeStage) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setComputeDevice:forComputeStage:"), computeDevice, computeStage)
-}
-
-// The collection of compute devices per stage that a request supports.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedComputeStageDevicesAndReturnError:
-func (r_ Request) SupportedComputeStageDevicesAndReturnError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedComputeStageDevicesAndReturnError:"), error_)
-	return rv
-}
-
-// The completion handler the system invokes after the request finishes processing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/completionHandler
-func (r_ Request) CompletionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("completionHandler"))
-	return rv
-}
-
-// The current revison supported by the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/currentRevision
-func (r_ Request) CurrentRevision() uint {
-	rv := objc.Send[uint](r_.ID, objc.Sel("currentRevision"))
-	return rv
-}
-
-// The revision of the latest request for the particular SDK linked with the client application.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/defaultRevision
-func (r_ Request) DefaultRevision() uint {
-	rv := objc.Send[uint](r_.ID, objc.Sel("defaultRevision"))
-	return rv
-}
-
-// A hint to minimize the resource burden of the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/preferBackgroundProcessing
-func (r_ Request) PreferBackgroundProcessing() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("preferBackgroundProcessing"))
-	return rv
-}
-
-
-// SetPreferBackgroundProcessing sets the value of the preferBackgroundProcessing property.
-// A hint to minimize the resource burden of the request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/preferBackgroundProcessing
-func (r_ Request) SetPreferBackgroundProcessing(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferBackgroundProcessing:"), value)
-}
-
-// The collection of observation results generated by request processing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/results
-func (r_ Request) Results() []Observation {
-	rv := objc.Send[[]Observation](r_.ID, objc.Sel("results"))
-	return rv
-}
-
-// The specific algorithm or implementation revision that’s used to perform the request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/revision
-func (r_ Request) Revision() uint {
-	rv := objc.Send[uint](r_.ID, objc.Sel("revision"))
-	return rv
-}
-
-
-// SetRevision sets the value of the revision property.
-// The specific algorithm or implementation revision that’s used to perform the request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/revision
-func (r_ Request) SetRevision(value uint) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRevision:"), value)
-}
-
-// The collection of currently-supported algorithm versions for the class of request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
-func (r_ Request) SupportedRevisions() foundation.IndexSet {
-	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("supportedRevisions"))
-	return rv
-}
-
 // A Boolean signifying that the Vision request should execute exclusively on the CPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/usesCPUOnly
 func (r_ Request) UsesCPUOnly() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("usesCPUOnly"))
@@ -244,31 +109,108 @@ func (r_ Request) UsesCPUOnly() bool {
 }
 
 
-// SetUsesCPUOnly sets the value of the usesCPUOnly property.
 // A Boolean signifying that the Vision request should execute exclusively on the CPU.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/usesCPUOnly
 func (r_ Request) SetUsesCPUOnly(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUsesCPUOnly:"), value)
 }
 
-// The collection of compute devices per stage that a request supports.
+
+// The completion handler the system invokes after the request finishes processing.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
-func (r_ Request) SupportedComputeStageDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedComputeStageDevices"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/completionhandler
+func (r_ Request) CompletionHandler() RequestCompletionHandler /* not a class type */ {
+	rv := objc.Send[RequestCompletionHandler](r_.ID, objc.Sel("completionHandler"))
 	return rv
 }
 
 
-// SetSupportedComputeStageDevices sets the value of the supportedComputeStageDevices property.
-// The collection of compute devices per stage that a request supports.
-
+// The completion handler the system invokes after the request finishes processing.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/completionhandler
+func (r_ Request) SetCompletionHandler(value RequestCompletionHandler /* not a class type */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setCompletionHandler:"), value)
+}
+
+
+// A hint to minimize the resource burden of the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/preferbackgroundprocessing
+func (r_ Request) PreferBackgroundProcessing() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("preferBackgroundProcessing"))
+	return rv
+}
+
+
+// A hint to minimize the resource burden of the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/preferbackgroundprocessing
+func (r_ Request) SetPreferBackgroundProcessing(value bool) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferBackgroundProcessing:"), value)
+}
+
+
+// The collection of observation results generated by request processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/results
+func (r_ Request) Results() IVNObservation {
+	rv := objc.Send[Observation](r_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// The collection of observation results generated by request processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/results
+func (r_ Request) SetResults(value IVNObservation) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setResults:"), value)
+}
+
+
+// The specific algorithm or implementation revision that’s used to perform the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/revision
+func (r_ Request) Revision() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("revision"))
+	return rv
+}
+
+
+// The specific algorithm or implementation revision that’s used to perform the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/revision
+func (r_ Request) SetRevision(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRevision:"), value)
+}
+
+
+// The collection of compute devices per stage that a request supports.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
-func (r_ Request) SetSupportedComputeStageDevices(value unsafe.Pointer) {
+func (r_ Request) SupportedComputeStageDevices() ComputeDevice /* not a class type */ {
+	rv := objc.Send[ComputeDevice](r_.ID, objc.Sel("supportedComputeStageDevices"))
+	return rv
+}
+
+
+// The collection of compute devices per stage that a request supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnrequest/supportedcomputestagedevices
+func (r_ Request) SetSupportedComputeStageDevices(value ComputeDevice /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSupportedComputeStageDevices:"), value)
 }
+
 
 

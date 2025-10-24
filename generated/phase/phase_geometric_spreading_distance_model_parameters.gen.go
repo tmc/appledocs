@@ -29,16 +29,22 @@ type _PHASEGeometricSpreadingDistanceModelParametersClass struct {
 // An interface definition for the [PHASEGeometricSpreadingDistanceModelParameters] class.
 type IPHASEGeometricSpreadingDistanceModelParameters interface {
 	IPHASEDistanceModelParameters
+	// properties:
 	RolloffFactor() float64
 	SetRolloffFactor(value float64)
-	DistanceModelParameters() PHASEDistanceModelParameters
+	DistanceModelParameters() IPHASEDistanceModelParameters
 	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
+	// methods:
 }
 
 // An object that dissipates sound frequencies over distance.
 //
 // This class implements a effect — a strategy that aims to model the real-world manner in which sound changes with distance. When the distance between a sound and listener changes, the roll-off effect dissipates certain audio frequencies more than others.
+
+
+// An object that dissipates sound frequencies over distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters
 type PHASEGeometricSpreadingDistanceModelParameters struct {
 	PHASEDistanceModelParameters
@@ -85,8 +91,10 @@ func NewPHASEGeometricSpreadingDistanceModelParameters() PHASEGeometricSpreading
 }
 
 
+
 // A value that fades specific frequencies over a distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor
 func (p_ PHASEGeometricSpreadingDistanceModelParameters) RolloffFactor() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("rolloffFactor"))
@@ -94,28 +102,28 @@ func (p_ PHASEGeometricSpreadingDistanceModelParameters) RolloffFactor() float64
 }
 
 
-// SetRolloffFactor sets the value of the rolloffFactor property.
 // A value that fades specific frequencies over a distance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters/rolloffFactor
 func (p_ PHASEGeometricSpreadingDistanceModelParameters) SetRolloffFactor(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRolloffFactor:"), value)
 }
 
+
 // An effect that changes sound as it carries over a distance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEGeometricSpreadingDistanceModelParameters) DistanceModelParameters() PHASEDistanceModelParameters {
+func (p_ PHASEGeometricSpreadingDistanceModelParameters) DistanceModelParameters() IPHASEDistanceModelParameters {
 	rv := objc.Send[PHASEDistanceModelParameters](p_.ID, objc.Sel("distanceModelParameters"))
 	return rv
 }
 
 
-// SetDistanceModelParameters sets the value of the distanceModelParameters property.
 // An effect that changes sound as it carries over a distance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
 func (p_ PHASEGeometricSpreadingDistanceModelParameters) SetDistanceModelParameters(value IPHASEDistanceModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)

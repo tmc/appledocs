@@ -29,9 +29,13 @@ type _VZVirtioSocketDeviceClass struct {
 // An interface definition for the [VZVirtioSocketDevice] class.
 type IVZVirtioSocketDevice interface {
 	IVZSocketDevice
-	SocketDevices() VZSocketDevice
-	SetSocketDevices(value VZSocketDevice)
-	SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32)
+	// properties:
+	SocketDevices() IVZSocketDevice
+	SetSocketDevices(value IVZSocketDevice)
+	// methods:
+	ConnectToPortCompletionHandler(port uint32 /* not a class type */, completionHandler unsafe.Pointer)
+	RemoveSocketListenerForPort(port uint32 /* not a class type */)
+	SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32 /* not a class type */)
 }
 
 // A device that manages port-based connections between the guest system and the host computer.
@@ -89,11 +93,29 @@ func NewVZVirtioSocketDevice() VZVirtioSocketDevice {
 
 
 
+// Initiates a connection to the specified port of the guest operating system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/connect(toPort:)
+func (v_ VZVirtioSocketDevice) ConnectToPortCompletionHandler(port uint32 /* not a class type */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("connectToPort:completionHandler:"), port, completionHandler)
+}
+
+
+// Removes the listener object from the specfied port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/removeSocketListener(forPort:)
+func (v_ VZVirtioSocketDevice) RemoveSocketListenerForPort(port uint32 /* not a class type */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("removeSocketListenerForPort:"), port)
+}
+
+
 // Configures an object to monitor the specified port for new connections.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/setSocketListener(_:forPort:)
-func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32) {
+func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32 /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketListener:forPort:"), listener, port)
 }
 
@@ -102,7 +124,7 @@ func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocket
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
-func (v_ VZVirtioSocketDevice) SocketDevices() VZSocketDevice {
+func (v_ VZVirtioSocketDevice) SocketDevices() IVZSocketDevice {
 	rv := objc.Send[VZSocketDevice](v_.ID, objc.Sel("socketDevices"))
 	return rv
 }
@@ -112,7 +134,7 @@ func (v_ VZVirtioSocketDevice) SocketDevices() VZSocketDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
-func (v_ VZVirtioSocketDevice) SetSocketDevices(value VZSocketDevice) {
+func (v_ VZVirtioSocketDevice) SetSocketDevices(value IVZSocketDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
 }
 

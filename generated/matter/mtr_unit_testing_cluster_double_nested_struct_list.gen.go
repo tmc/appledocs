@@ -30,11 +30,15 @@ type _MTRUnitTestingClusterDoubleNestedStructListClass struct {
 // An interface definition for the [MTRUnitTestingClusterDoubleNestedStructList] class.
 type IMTRUnitTestingClusterDoubleNestedStructList interface {
 	objectivec.IObject
+	// properties:
 	A() unsafe.Pointer
 	SetA(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterDoubleNestedStructList
 type MTRUnitTestingClusterDoubleNestedStructList struct {
 	objectivec.Object
@@ -77,7 +81,8 @@ func NewMTRUnitTestingClusterDoubleNestedStructList() MTRUnitTestingClusterDoubl
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterdoublenestedstructlist/a
 func (m_ MTRUnitTestingClusterDoubleNestedStructList) A() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("a"))
@@ -85,8 +90,7 @@ func (m_ MTRUnitTestingClusterDoubleNestedStructList) A() unsafe.Pointer {
 }
 
 
-// SetA sets the value of the a property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclusterdoublenestedstructlist/a
 func (m_ MTRUnitTestingClusterDoubleNestedStructList) SetA(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)

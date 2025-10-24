@@ -29,15 +29,21 @@ type _ClassifyImageRequestClass struct {
 // An interface definition for the [ClassifyImageRequest] class.
 type IClassifyImageRequest interface {
 	IImageBasedRequest
-	SupportedIdentifiersAndReturnError(error_ unsafe.Pointer) []string
-	Results() []ClassificationObservation
+	// properties:
+	Results() IVNClassificationObservation
+	SetResults(value IVNClassificationObservation)
 	VNClassifyImageRequestRevision1() int
+	// methods:
 }
 
 // A request to classify an image.
 //
 // This type of request produces a collection of objects that describe an image. Access the classifications through .
+
+
+// A request to classify an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest
 type ClassifyImageRequest struct {
 	ImageBasedRequest
@@ -84,32 +90,29 @@ func NewClassifyImageRequest() ClassifyImageRequest {
 }
 
 
-// Requests the collection of classifications that the Vision framework recognizes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/knownClassifications(forRevision:)
-func (cc _ClassifyImageRequestClass) KnownClassificationsForRevisionError(requestRevision uint, error_ unsafe.Pointer) []ClassificationObservation {
-	rv := objc.Send[[]ClassificationObservation](objc.ID(cc.class), objc.Sel("knownClassificationsForRevision:error:"), requestRevision, error_)
-	return rv
-}
-
-// Returns the classification identifiers that the request supports in its current configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/supportedIdentifiers()
-func (c_ ClassifyImageRequest) SupportedIdentifiersAndReturnError(error_ unsafe.Pointer) []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedIdentifiersAndReturnError:"), error_)
-	return rv
-}
 
 // The results of the image classification request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNClassifyImageRequest/results
-func (c_ ClassifyImageRequest) Results() []ClassificationObservation {
-	rv := objc.Send[[]ClassificationObservation](c_.ID, objc.Sel("results"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassifyimagerequest/results
+func (c_ ClassifyImageRequest) Results() IVNClassificationObservation {
+	rv := objc.Send[ClassificationObservation](c_.ID, objc.Sel("results"))
 	return rv
 }
 
+
+// The results of the image classification request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnclassifyimagerequest/results
+func (c_ ClassifyImageRequest) SetResults(value IVNClassificationObservation) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResults:"), value)
+}
+
+
 // A constant for specifying the first revision of the image-classification request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1
 func (c_ ClassifyImageRequest) VNClassifyImageRequestRevision1() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("VNClassifyImageRequestRevision1"))

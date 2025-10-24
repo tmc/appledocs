@@ -32,12 +32,12 @@ type _DCAppAttestServiceClass struct {
 type IDCAppAttestService interface {
 	objectivec.IObject
 	// properties:
-	Supported() bool /* primitive/slice/pointer. */
-	IsSupported() bool /* primitive/slice/pointer. */
-	SetIsSupported(value bool /* primitive/slice/pointer. */)
+	Supported() bool
+	IsSupported() bool
+	SetIsSupported(value bool)
 	// methods:
-	AttestKeyClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
-	GenerateAssertionClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
+	AttestKeyClientDataHashCompletionHandler(keyId objc.IObject /* cross-framework: NSString */, clientDataHash objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer)
+	GenerateAssertionClientDataHashCompletionHandler(keyId objc.IObject /* cross-framework: NSString */, clientDataHash objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer)
 	GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -107,8 +107,8 @@ func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
+func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId objc.IObject /* cross-framework: NSString */, clientDataHash objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), keyId, clientDataHash, completionHandler)
 }
 
 
@@ -116,8 +116,8 @@ func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
+func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId objc.IObject /* cross-framework: NSString */, clientDataHash objc.IObject /* cross-framework: NSData */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), keyId, clientDataHash, completionHandler)
 }
 
 
@@ -134,7 +134,7 @@ func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
-func (d_ DCAppAttestService) Supported() bool /* primitive/slice/pointer. */ {
+func (d_ DCAppAttestService) Supported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (d_ DCAppAttestService) SharedService() IDCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-func (d_ DCAppAttestService) IsSupported() bool /* primitive/slice/pointer. */ {
+func (d_ DCAppAttestService) IsSupported() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (d_ DCAppAttestService) IsSupported() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-func (d_ DCAppAttestService) SetIsSupported(value bool /* primitive/slice/pointer. */) {
+func (d_ DCAppAttestService) SetIsSupported(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }
 

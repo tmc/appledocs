@@ -31,8 +31,8 @@ type _TurnBasedMatchmakerViewControllerClass struct {
 type ITurnBasedMatchmakerViewController interface {
 	appkit.IViewController
 	// properties:
-	ShowExistingMatches() bool /* primitive/slice/pointer. */
-	SetShowExistingMatches(value bool /* primitive/slice/pointer. */)
+	ShowExistingMatches() bool
+	SetShowExistingMatches(value bool)
 	TurnBasedMatchmakerDelegate() objc.ID
 	SetTurnBasedMatchmakerDelegate(value objc.ID)
 	MatchmakingMode() MatchmakingMode /* not a class type */
@@ -112,7 +112,7 @@ func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchReques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool /* primitive/slice/pointer. */ {
+func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("showExistingMatches"))
 	return rv
 }
@@ -122,7 +122,7 @@ func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool /* primitive/slice/pointer. */) {
+func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowExistingMatches:"), value)
 }
 

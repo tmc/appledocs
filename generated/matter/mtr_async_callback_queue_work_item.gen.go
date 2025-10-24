@@ -30,13 +30,17 @@ type _MTRAsyncCallbackQueueWorkItemClass struct {
 // An interface definition for the [MTRAsyncCallbackQueueWorkItem] class.
 type IMTRAsyncCallbackQueueWorkItem interface {
 	objectivec.IObject
+	// properties:
 	CancelHandler() unsafe.Pointer
 	SetCancelHandler(value unsafe.Pointer)
 	ReadyHandler() unsafe.Pointer
 	SetReadyHandler(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAsyncCallbackQueueWorkItem
 type MTRAsyncCallbackQueueWorkItem struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRAsyncCallbackQueueWorkItem() MTRAsyncCallbackQueueWorkItem {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/cancelhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) CancelHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cancelHandler"))
@@ -87,14 +92,14 @@ func (m_ MTRAsyncCallbackQueueWorkItem) CancelHandler() unsafe.Pointer {
 }
 
 
-// SetCancelHandler sets the value of the cancelHandler property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/cancelhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) SetCancelHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCancelHandler:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) ReadyHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readyHandler"))
@@ -102,8 +107,7 @@ func (m_ MTRAsyncCallbackQueueWorkItem) ReadyHandler() unsafe.Pointer {
 }
 
 
-// SetReadyHandler sets the value of the readyHandler property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrasynccallbackqueueworkitem/readyhandler
 func (m_ MTRAsyncCallbackQueueWorkItem) SetReadyHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReadyHandler:"), value)

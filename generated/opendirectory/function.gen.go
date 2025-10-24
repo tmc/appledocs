@@ -30,9 +30,13 @@ type _functionClass struct {
 // An interface definition for the [function] class.
 type Ifunction interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/function-c.ivar
 type function struct {
 	objectivec.Object

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreHID without requiring cgo.
-
-// Interact with keyboards, mice, and other human interface devices.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreHID
+// See: https://developer.apple.com/documentation/CoreHID
 package corehid
 
 import (

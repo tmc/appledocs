@@ -31,15 +31,19 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustEndEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustEndEvent] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustEndEvent interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	EnergyUse() foundation.Number
-	SetEnergyUse(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	EnergyUse() objc.IObject /* cross-framework: NSNumber */
+	SetEnergyUse(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent
 type MTRDeviceEnergyManagementClusterPowerAdjustEndEvent struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustEndEvent() MTRDeviceEnergyMan
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("energyUse"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("energyUse"))
 	return rv
 }
 
 
-// SetEnergyUse sets the value of the energyUse property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyUse:"), value)
 }
 

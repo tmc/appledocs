@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to BundleResources without requiring cgo.
-
-// Resources located in an app, framework, or plugin bundle.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BundleResources
+// See: https://developer.apple.com/documentation/BundleResources
 package bundleresources
 
 import (

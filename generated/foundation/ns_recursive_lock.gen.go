@@ -34,6 +34,8 @@ type IRecursiveLock interface {
 	Name() IString
 	SetName(value IString)
 	// methods:
+	LockBeforeDate(limit IDate) bool
+	TryLock() bool
 }
 
 // A lock that may be acquired multiple times by the same thread without causing a deadlock.
@@ -89,10 +91,30 @@ func NewRecursiveLock() RecursiveLock {
 
 
 
+// Attempts to acquire a lock before a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/lock(before:)
+func (r_ RecursiveLock) LockBeforeDate(limit IDate) bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("lockBeforeDate:"), limit)
+	return rv
+}
+
+
+// Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/try()
+func (r_ RecursiveLock) TryLock() bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("tryLock"))
+	return rv
+}
+
+
 // The name associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecursivelock/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
 func (r_ RecursiveLock) Name() IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("name"))
 	return rv
@@ -102,7 +124,7 @@ func (r_ RecursiveLock) Name() IString {
 // The name associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecursivelock/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
 func (r_ RecursiveLock) SetName(value IString) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), value)
 }

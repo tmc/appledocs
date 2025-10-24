@@ -29,14 +29,20 @@ type _CSoftmaxLayerClass struct {
 // An interface definition for the [CSoftmaxLayer] class.
 type ICSoftmaxLayer interface {
 	ICLayer
+	// properties:
 	Dimension() int
 	SetDimension(value int)
-	Operation() CSoftmaxOperation
-	SetOperation(value ICSoftmaxOperation)
+	Operation() CSoftmaxOperation /* not a class type */
+	SetOperation(value CSoftmaxOperation /* not a class type */)
+	// methods:
 }
 
 // A layer that outputs a probability distribution as attention weights.
+
+
+// A layer that outputs a probability distribution as attention weights.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSoftmaxLayer
 type CSoftmaxLayer struct {
 	CLayer
@@ -83,8 +89,10 @@ func NewCSoftmaxLayer() CSoftmaxLayer {
 }
 
 
+
 // The dimension over which you want to perform the softmax operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/dimension
 func (c_ CSoftmaxLayer) Dimension() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
@@ -92,30 +100,30 @@ func (c_ CSoftmaxLayer) Dimension() int {
 }
 
 
-// SetDimension sets the value of the dimension property.
 // The dimension over which you want to perform the softmax operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/dimension
 func (c_ CSoftmaxLayer) SetDimension(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
 }
 
+
 // The softmax operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
-func (c_ CSoftmaxLayer) Operation() CSoftmaxOperation {
+func (c_ CSoftmaxLayer) Operation() CSoftmaxOperation /* not a class type */ {
 	rv := objc.Send[CSoftmaxOperation](c_.ID, objc.Sel("operation"))
 	return rv
 }
 
 
-// SetOperation sets the value of the operation property.
 // The softmax operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
-func (c_ CSoftmaxLayer) SetOperation(value ICSoftmaxOperation) {
+func (c_ CSoftmaxLayer) SetOperation(value CSoftmaxOperation /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOperation:"), value)
 }
 

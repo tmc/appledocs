@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,26 @@ type _NEIPv4RouteClass struct {
 // An interface definition for the [NEIPv4Route] class.
 type INEIPv4Route interface {
 	objectivec.IObject
-	DestinationAddress() string
-	SetDestinationAddress(value string)
-	DestinationSubnetMask() string
-	SetDestinationSubnetMask(value string)
-	GatewayAddress() string
-	SetGatewayAddress(value string)
-	ExcludedRoutes() NEIPv4Route
+	// properties:
+	DestinationAddress() objc.IObject /* cross-framework: NSString */
+	SetDestinationAddress(value objc.IObject /* cross-framework: NSString */)
+	DestinationSubnetMask() objc.IObject /* cross-framework: NSString */
+	SetDestinationSubnetMask(value objc.IObject /* cross-framework: NSString */)
+	GatewayAddress() objc.IObject /* cross-framework: NSString */
+	SetGatewayAddress(value objc.IObject /* cross-framework: NSString */)
+	ExcludedRoutes() INEIPv4Route
 	SetExcludedRoutes(value INEIPv4Route)
-	IncludedRoutes() NEIPv4Route
+	IncludedRoutes() INEIPv4Route
 	SetIncludedRoutes(value INEIPv4Route)
+	// methods:
 }
 
 // The settings for an IPv4 route.
+
+
+// The settings for an IPv4 route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Route
 type NEIPv4Route struct {
 	objectivec.Object
@@ -88,95 +95,112 @@ func NewNEIPv4Route() NEIPv4Route {
 }
 
 
-// The destination network address of the route.
+
+// Initialize the object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
-func (n_ NEIPv4Route) DestinationAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationAddress"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEIPv4Route/init(destinationAddress:subnetMask:)
+func NewNEIPv4RouteWithDestinationAddressSubnetMask(address objc.IObject /* cross-framework: NSString */, subnetMask objc.IObject /* cross-framework: NSString */) NEIPv4Route {
+	instance := getNEIPv4RouteClass().Alloc()
+	rv := objc.Send[NEIPv4Route](instance.ID, objc.Sel("initWithDestinationAddress:subnetMask:"), address, subnetMask)
+	rv.Autorelease()
 	return rv
 }
 
 
-// SetDestinationAddress sets the value of the destinationAddress property.
-// The destination network address of the route.
 
+// The destination network address of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
-func (n_ NEIPv4Route) SetDestinationAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+func (n_ NEIPv4Route) DestinationAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("destinationAddress"))
+	return rv
 }
+
+
+// The destination network address of the route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
+func (n_ NEIPv4Route) SetDestinationAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), value)
+}
+
 
 // The destination network mask of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) DestinationSubnetMask() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationSubnetMask"))
+func (n_ NEIPv4Route) DestinationSubnetMask() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("destinationSubnetMask"))
 	return rv
 }
 
 
-// SetDestinationSubnetMask sets the value of the destinationSubnetMask property.
 // The destination network mask of the route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) SetDestinationSubnetMask(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), objc.String(value))
+func (n_ NEIPv4Route) SetDestinationSubnetMask(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), value)
 }
+
 
 // The address of the next-hop gateway of the route.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) GatewayAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+func (n_ NEIPv4Route) GatewayAddress() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("gatewayAddress"))
 	return rv
 }
 
 
-// SetGatewayAddress sets the value of the gatewayAddress property.
 // The address of the next-hop gateway of the route.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) SetGatewayAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
+func (n_ NEIPv4Route) SetGatewayAddress(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), value)
 }
+
 
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
-func (n_ NEIPv4Route) ExcludedRoutes() NEIPv4Route {
+func (n_ NEIPv4Route) ExcludedRoutes() INEIPv4Route {
 	rv := objc.Send[NEIPv4Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
 }
 
 
-// SetExcludedRoutes sets the value of the excludedRoutes property.
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
 func (n_ NEIPv4Route) SetExcludedRoutes(value INEIPv4Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), value)
 }
 
+
 // The IPv4 network traffic that the system routes to the TUN interface.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
-func (n_ NEIPv4Route) IncludedRoutes() NEIPv4Route {
+func (n_ NEIPv4Route) IncludedRoutes() INEIPv4Route {
 	rv := objc.Send[NEIPv4Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
 }
 
 
-// SetIncludedRoutes sets the value of the includedRoutes property.
 // The IPv4 network traffic that the system routes to the TUN interface.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
 func (n_ NEIPv4Route) SetIncludedRoutes(value INEIPv4Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)
 }
-
 
 

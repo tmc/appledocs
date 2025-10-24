@@ -2,55 +2,24 @@
 
 package foundation
 
-// Foundation-specific types
 
-// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
-type Point struct {
-	X float64
-	Y float64
-}
-
-type Size struct {
-	Width  float64
-	Height float64
-}
-
-type Rect struct {
-	Origin Point
-	Size   Size
-}
-
+// C struct types
+// Decimal - A structure representing a base-10 number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Decimal
+type Decimal struct {
+}// EdgeInsets - A description of the distance between the edges of two rectangles.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEdgeInsets
+type EdgeInsets struct {
+}// Range - A structure used to describe a portion of a series, such as characters in a string or objects in an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRange-c.struct
 type Range struct {
-	Location int
-	Length   int
 }
 
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
-
-type Error = int
-
-type Status = int
-
-type StreamDelegate = int
-
-type URL = int
-
-
-// Manual fallback types for API collection classes
-// These classes come from API collections and aren't in the parsed class list
-type AppleEventSendOptions = int
-type AppleEventManagerSuspensionID = int
-type ByteCountFormatterCountStyle = int
-type ByteCountFormatterUnits = int
-type DecodingFailurePolicy = int
-type ProgressFileOperationKind = int
-type ProgressKind = int
-type ProgressUserInfoKey = int
-type StringEncoding = int
-type StringTransform = int
 
 

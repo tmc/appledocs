@@ -32,8 +32,8 @@ type IXMLDTDNode interface {
 	// properties:
 	DtdKind() unsafe.Pointer
 	SetDtdKind(value unsafe.Pointer)
-	IsExternal() bool /* primitive/slice/pointer. */
-	SetIsExternal(value bool /* primitive/slice/pointer. */)
+	IsExternal() bool
+	SetIsExternal(value bool)
 	NotationName() IString
 	SetNotationName(value IString)
 	PublicID() IString
@@ -119,7 +119,7 @@ func (x_ XMLDTDNode) SetDtdKind(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) IsExternal() bool /* primitive/slice/pointer. */ {
+func (x_ XMLDTDNode) IsExternal() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isExternal"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (x_ XMLDTDNode) IsExternal() bool /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) SetIsExternal(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLDTDNode) SetIsExternal(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsExternal:"), value)
 }
 

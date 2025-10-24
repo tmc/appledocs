@@ -37,37 +37,37 @@ type IFont interface {
 	CoveredCharacterSet() objc.IObject /* cross-framework: CharacterSet */
 	DisplayName() objc.IObject /* cross-framework: NSString */
 	FontName() objc.IObject /* cross-framework: NSString */
-	Vertical() bool /* primitive/slice/pointer. */
+	Vertical() bool
 	MostCompatibleStringEncoding() StringEncoding /* not a class type */
-	NumberOfGlyphs() uint /* primitive/slice/pointer. */
-	PointSize() float64 /* primitive/slice/pointer. */
+	NumberOfGlyphs() uint
+	PointSize() float64
 	PrinterFont() IFont
 	RenderingMode() FontRenderingMode
 	ScreenFont() IFont
-	NSControlGlyph() int /* primitive/slice/pointer. */
-	SetNSControlGlyph(value int /* primitive/slice/pointer. */)
+	NSControlGlyph() int
+	SetNSControlGlyph(value int)
 	FamilyName() objc.IObject /* cross-framework: NSString */
 	SetFamilyName(value objc.IObject /* cross-framework: NSString */)
 	FontDescriptor() IFontDescriptor
 	SetFontDescriptor(value IFontDescriptor)
-	IsFixedPitch() bool /* primitive/slice/pointer. */
-	SetIsFixedPitch(value bool /* primitive/slice/pointer. */)
-	IsVertical() bool /* primitive/slice/pointer. */
-	SetIsVertical(value bool /* primitive/slice/pointer. */)
+	IsFixedPitch() bool
+	SetIsFixedPitch(value bool)
+	IsVertical() bool
+	SetIsVertical(value bool)
 	Printer() IFont
 	SetPrinter(value IFont)
 	Screen() IFont
 	SetScreen(value IFont)
-	NSNullGlyph() int /* primitive/slice/pointer. */
-	SetNSNullGlyph(value int /* primitive/slice/pointer. */)
+	NSNullGlyph() int
+	SetNSNullGlyph(value int)
 	// methods:
-	BoundingRectForCGGlyph(glyph objc.IObject /* cross-framework Glyph */) objc.IObject /* cross-framework: Rect */
-	BoundingRectForGlyph(glyph objc.IObject /* cross-framework Glyph */) objc.IObject /* cross-framework: Rect */
-	GlyphWithName(name objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: Glyph */
+	BoundingRectForCGGlyph(glyph objc.IObject /* cross-framework: Glyph */) objc.IObject /* cross-framework: Rect */
+	BoundingRectForGlyph(glyph objc.IObject /* cross-framework: Glyph */) objc.IObject /* cross-framework: Rect */
+	GlyphWithName(name objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Glyph */
 	ScreenFontWithRenderingMode(renderingMode FontRenderingMode) IFont
 	Set()
 	SetInContext(graphicsContext IGraphicsContext)
-	FontWithSize(fontSize float64 /* primitive/slice/pointer. */) IFont
+	FontWithSize(fontSize float64) IFont
 }
 
 // The representation of a font in an app.
@@ -127,7 +127,7 @@ func NewFont() Font {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(descriptor:size:)
-func NewFontWithDescriptorSize(fontDescriptor IFontDescriptor, fontSize float64 /* primitive/slice/pointer. */) Font {
+func NewFontWithDescriptorSize(fontDescriptor IFontDescriptor, fontSize float64) Font {
 	rv := objc.Send[Font](objc.ID(getFontClass().class), objc.Sel("fontWithDescriptor:size:"), fontDescriptor, fontSize)
 	return rv
 }
@@ -137,7 +137,7 @@ func NewFontWithDescriptorSize(fontDescriptor IFontDescriptor, fontSize float64 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(descriptor:textTransform:)
-func NewFontWithDescriptorTextTransform(fontDescriptor IFontDescriptor, textTransform objc.IObject /* cross-framework AffineTransform */) Font {
+func NewFontWithDescriptorTextTransform(fontDescriptor IFontDescriptor, textTransform objc.IObject /* cross-framework: AffineTransform */) Font {
 	rv := objc.Send[Font](objc.ID(getFontClass().class), objc.Sel("fontWithDescriptor:textTransform:"), fontDescriptor, textTransform)
 	return rv
 }
@@ -147,7 +147,7 @@ func NewFontWithDescriptorTextTransform(fontDescriptor IFontDescriptor, textTran
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(name:matrix:)
-func NewFontWithNameMatrix(fontName objc.IObject /* cross-framework NSString */, fontMatrix corefoundation.CGFloat) Font {
+func NewFontWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, fontMatrix corefoundation.CGFloat) Font {
 	rv := objc.Send[Font](objc.ID(getFontClass().class), objc.Sel("fontWithName:matrix:"), fontName, fontMatrix)
 	return rv
 }
@@ -157,7 +157,7 @@ func NewFontWithNameMatrix(fontName objc.IObject /* cross-framework NSString */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(name:size:)
-func NewFontWithNameSize(fontName objc.IObject /* cross-framework NSString */, fontSize float64 /* primitive/slice/pointer. */) Font {
+func NewFontWithNameSize(fontName objc.IObject /* cross-framework: NSString */, fontSize float64) Font {
 	rv := objc.Send[Font](objc.ID(getFontClass().class), objc.Sel("fontWithName:size:"), fontName, fontSize)
 	return rv
 }
@@ -168,7 +168,7 @@ func NewFontWithNameSize(fontName objc.IObject /* cross-framework NSString */, f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/boldSystemFont(ofSize:)
-func (fc _FontClass) BoldSystemFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) BoldSystemFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("boldSystemFontOfSize:"), fontSize)
 	return rv
 }
@@ -178,7 +178,7 @@ func (fc _FontClass) BoldSystemFontOfSize(fontSize float64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(descriptor:size:)
-func (fc _FontClass) FontWithDescriptorSize(fontDescriptor IFontDescriptor, fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) FontWithDescriptorSize(fontDescriptor IFontDescriptor, fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("fontWithDescriptor:size:"), fontDescriptor, fontSize)
 	return rv
 }
@@ -188,7 +188,7 @@ func (fc _FontClass) FontWithDescriptorSize(fontDescriptor IFontDescriptor, font
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(descriptor:textTransform:)
-func (fc _FontClass) FontWithDescriptorTextTransform(fontDescriptor IFontDescriptor, textTransform objc.IObject /* cross-framework AffineTransform */) IFont {
+func (fc _FontClass) FontWithDescriptorTextTransform(fontDescriptor IFontDescriptor, textTransform objc.IObject /* cross-framework: AffineTransform */) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("fontWithDescriptor:textTransform:"), fontDescriptor, textTransform)
 	return rv
 }
@@ -198,7 +198,7 @@ func (fc _FontClass) FontWithDescriptorTextTransform(fontDescriptor IFontDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(name:matrix:)
-func (fc _FontClass) FontWithNameMatrix(fontName objc.IObject /* cross-framework NSString */, fontMatrix corefoundation.CGFloat) IFont {
+func (fc _FontClass) FontWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, fontMatrix corefoundation.CGFloat) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("fontWithName:matrix:"), fontName, fontMatrix)
 	return rv
 }
@@ -208,7 +208,7 @@ func (fc _FontClass) FontWithNameMatrix(fontName objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/init(name:size:)
-func (fc _FontClass) FontWithNameSize(fontName objc.IObject /* cross-framework NSString */, fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) FontWithNameSize(fontName objc.IObject /* cross-framework: NSString */, fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("fontWithName:size:"), fontName, fontSize)
 	return rv
 }
@@ -218,7 +218,7 @@ func (fc _FontClass) FontWithNameSize(fontName objc.IObject /* cross-framework N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/labelFont(ofSize:)
-func (fc _FontClass) LabelFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) LabelFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("labelFontOfSize:"), fontSize)
 	return rv
 }
@@ -228,7 +228,7 @@ func (fc _FontClass) LabelFontOfSize(fontSize float64 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/menuBarFont(ofSize:)
-func (fc _FontClass) MenuBarFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) MenuBarFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("menuBarFontOfSize:"), fontSize)
 	return rv
 }
@@ -238,7 +238,7 @@ func (fc _FontClass) MenuBarFontOfSize(fontSize float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/messageFont(ofSize:)
-func (fc _FontClass) MessageFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) MessageFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("messageFontOfSize:"), fontSize)
 	return rv
 }
@@ -248,7 +248,7 @@ func (fc _FontClass) MessageFontOfSize(fontSize float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/monospacedDigitSystemFont(ofSize:weight:)
-func (fc _FontClass) MonospacedDigitSystemFontOfSizeWeight(fontSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) IFont {
+func (fc _FontClass) MonospacedDigitSystemFontOfSizeWeight(fontSize float64, weight FontWeight /* not a class type */) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("monospacedDigitSystemFontOfSize:weight:"), fontSize, weight)
 	return rv
 }
@@ -258,7 +258,7 @@ func (fc _FontClass) MonospacedDigitSystemFontOfSizeWeight(fontSize float64 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/monospacedSystemFont(ofSize:weight:)
-func (fc _FontClass) MonospacedSystemFontOfSizeWeight(fontSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) IFont {
+func (fc _FontClass) MonospacedSystemFontOfSizeWeight(fontSize float64, weight FontWeight /* not a class type */) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("monospacedSystemFontOfSize:weight:"), fontSize, weight)
 	return rv
 }
@@ -268,7 +268,7 @@ func (fc _FontClass) MonospacedSystemFontOfSizeWeight(fontSize float64 /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/preferredFont(forTextStyle:options:)
-func (fc _FontClass) PreferredFontForTextStyleOptions(style objc.IObject /* cross-framework FontTextStyle */, options foundation.IDictionary /* already interface */) IFont {
+func (fc _FontClass) PreferredFontForTextStyleOptions(style objc.IObject /* cross-framework: FontTextStyle */, options foundation.IDictionary) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("preferredFontForTextStyle:options:"), style, options)
 	return rv
 }
@@ -287,7 +287,7 @@ func (fc _FontClass) SetUserFont(font IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:)
-func (fc _FontClass) SystemFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) SystemFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:"), fontSize)
 	return rv
 }
@@ -297,7 +297,7 @@ func (fc _FontClass) SystemFontOfSize(fontSize float64 /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:weight:)
-func (fc _FontClass) SystemFontOfSizeWeight(fontSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) IFont {
+func (fc _FontClass) SystemFontOfSizeWeight(fontSize float64, weight FontWeight /* not a class type */) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:weight:"), fontSize, weight)
 	return rv
 }
@@ -305,7 +305,7 @@ func (fc _FontClass) SystemFontOfSizeWeight(fontSize float64 /* primitive/slice/
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:weight:width:)
-func (fc _FontClass) SystemFontOfSizeWeightWidth(fontSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */, width objc.IObject /* cross-framework FontWidth */) IFont {
+func (fc _FontClass) SystemFontOfSizeWeightWidth(fontSize float64, weight FontWeight /* not a class type */, width objc.IObject /* cross-framework: FontWidth */) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:weight:width:"), fontSize, weight, width)
 	return rv
 }
@@ -315,7 +315,7 @@ func (fc _FontClass) SystemFontOfSizeWeightWidth(fontSize float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFontSize(for:)
-func (fc _FontClass) SystemFontSizeForControlSize(controlSize ControlSize) float64 /* primitive/slice/pointer. */ {
+func (fc _FontClass) SystemFontSizeForControlSize(controlSize ControlSize) float64 {
 	rv := objc.Send[float64](objc.ID(fc.class), objc.Sel("systemFontSizeForControlSize:"), controlSize)
 	return rv
 }
@@ -325,7 +325,7 @@ func (fc _FontClass) SystemFontSizeForControlSize(controlSize ControlSize) float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/titleBarFont(ofSize:)
-func (fc _FontClass) TitleBarFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) TitleBarFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("titleBarFontOfSize:"), fontSize)
 	return rv
 }
@@ -335,7 +335,7 @@ func (fc _FontClass) TitleBarFontOfSize(fontSize float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/toolTipsFont(ofSize:)
-func (fc _FontClass) ToolTipsFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) ToolTipsFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("toolTipsFontOfSize:"), fontSize)
 	return rv
 }
@@ -345,7 +345,7 @@ func (fc _FontClass) ToolTipsFontOfSize(fontSize float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/userFixedPitchFont(ofSize:)
-func (fc _FontClass) UserFixedPitchFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) UserFixedPitchFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("userFixedPitchFontOfSize:"), fontSize)
 	return rv
 }
@@ -355,7 +355,7 @@ func (fc _FontClass) UserFixedPitchFontOfSize(fontSize float64 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/userFont(ofSize:)
-func (fc _FontClass) UserFontOfSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (fc _FontClass) UserFontOfSize(fontSize float64) IFont {
 	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("userFontOfSize:"), fontSize)
 	return rv
 }
@@ -365,7 +365,7 @@ func (fc _FontClass) UserFontOfSize(fontSize float64 /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/labelFontSize
-func (fc _FontClass) LabelFontSize() float64 /* primitive/slice/pointer. */ {
+func (fc _FontClass) LabelFontSize() float64 {
 	rv := objc.Send[float64](objc.ID(fc.class), objc.Sel("labelFontSize"))
 	return rv
 }
@@ -374,7 +374,7 @@ func (fc _FontClass) LabelFontSize() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/smallSystemFontSize
-func (fc _FontClass) SmallSystemFontSize() float64 /* primitive/slice/pointer. */ {
+func (fc _FontClass) SmallSystemFontSize() float64 {
 	rv := objc.Send[float64](objc.ID(fc.class), objc.Sel("smallSystemFontSize"))
 	return rv
 }
@@ -383,7 +383,7 @@ func (fc _FontClass) SmallSystemFontSize() float64 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFontSize
-func (fc _FontClass) SystemFontSize() float64 /* primitive/slice/pointer. */ {
+func (fc _FontClass) SystemFontSize() float64 {
 	rv := objc.Send[float64](objc.ID(fc.class), objc.Sel("systemFontSize"))
 	return rv
 }
@@ -392,8 +392,8 @@ func (fc _FontClass) SystemFontSize() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/boundingRect(forCGGlyph:)
-func (f_ Font) BoundingRectForCGGlyph(glyph objc.IObject /* cross-framework Glyph */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](f_.ID, objc.Sel("boundingRectForCGGlyph:"), glyph)
+func (f_ Font) BoundingRectForCGGlyph(glyph objc.IObject /* cross-framework: Glyph */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](f_.ID, objc.Sel("boundingRectForCGGlyph:"), glyph)
 	return rv
 }
 
@@ -402,8 +402,8 @@ func (f_ Font) BoundingRectForCGGlyph(glyph objc.IObject /* cross-framework Glyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/boundingRect(forGlyph:)
-func (f_ Font) BoundingRectForGlyph(glyph objc.IObject /* cross-framework Glyph */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](f_.ID, objc.Sel("boundingRectForGlyph:"), glyph)
+func (f_ Font) BoundingRectForGlyph(glyph objc.IObject /* cross-framework: Glyph */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](f_.ID, objc.Sel("boundingRectForGlyph:"), glyph)
 	return rv
 }
 
@@ -412,7 +412,7 @@ func (f_ Font) BoundingRectForGlyph(glyph objc.IObject /* cross-framework Glyph 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/glyph(withName:)
-func (f_ Font) GlyphWithName(name objc.IObject /* cross-framework NSString */) objc.IObject /* cross-framework: Glyph */ {
+func (f_ Font) GlyphWithName(name objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: Glyph */ {
 	rv := objc.Send[Glyph](f_.ID, objc.Sel("glyphWithName:"), name)
 	return rv
 }
@@ -448,7 +448,7 @@ func (f_ Font) SetInContext(graphicsContext IGraphicsContext) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/withSize(_:)
-func (f_ Font) FontWithSize(fontSize float64 /* primitive/slice/pointer. */) IFont {
+func (f_ Font) FontWithSize(fontSize float64) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("fontWithSize:"), fontSize)
 	return rv
 }
@@ -459,7 +459,7 @@ func (f_ Font) FontWithSize(fontSize float64 /* primitive/slice/pointer. */) IFo
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/boundingRectForFont
 func (f_ Font) BoundingRectForFont() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](f_.ID, objc.Sel("boundingRectForFont"))
+	rv := objc.Send[corefoundation.Rect](f_.ID, objc.Sel("boundingRectForFont"))
 	return rv
 }
 
@@ -469,7 +469,7 @@ func (f_ Font) BoundingRectForFont() objc.IObject /* cross-framework: Rect */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/coveredCharacterSet
 func (f_ Font) CoveredCharacterSet() objc.IObject /* cross-framework: CharacterSet */ {
-	rv := objc.Send[CharacterSet](f_.ID, objc.Sel("coveredCharacterSet"))
+	rv := objc.Send[foundation.CharacterSet](f_.ID, objc.Sel("coveredCharacterSet"))
 	return rv
 }
 
@@ -498,7 +498,7 @@ func (f_ Font) FontName() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/isVertical
-func (f_ Font) Vertical() bool /* primitive/slice/pointer. */ {
+func (f_ Font) Vertical() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("vertical"))
 	return rv
 }
@@ -508,7 +508,7 @@ func (f_ Font) Vertical() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/labelFontSize
-func (f_ Font) LabelFontSize() float64 /* primitive/slice/pointer. */ {
+func (f_ Font) LabelFontSize() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("labelFontSize"))
 	return rv
 }
@@ -528,7 +528,7 @@ func (f_ Font) MostCompatibleStringEncoding() StringEncoding /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/numberOfGlyphs
-func (f_ Font) NumberOfGlyphs() uint /* primitive/slice/pointer. */ {
+func (f_ Font) NumberOfGlyphs() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("numberOfGlyphs"))
 	return rv
 }
@@ -538,7 +538,7 @@ func (f_ Font) NumberOfGlyphs() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/pointSize
-func (f_ Font) PointSize() float64 /* primitive/slice/pointer. */ {
+func (f_ Font) PointSize() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("pointSize"))
 	return rv
 }
@@ -578,7 +578,7 @@ func (f_ Font) ScreenFont() IFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/smallSystemFontSize
-func (f_ Font) SmallSystemFontSize() float64 /* primitive/slice/pointer. */ {
+func (f_ Font) SmallSystemFontSize() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("smallSystemFontSize"))
 	return rv
 }
@@ -588,7 +588,7 @@ func (f_ Font) SmallSystemFontSize() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFontSize
-func (f_ Font) SystemFontSize() float64 /* primitive/slice/pointer. */ {
+func (f_ Font) SystemFontSize() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("systemFontSize"))
 	return rv
 }
@@ -598,7 +598,7 @@ func (f_ Font) SystemFontSize() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrolglyph
-func (f_ Font) NSControlGlyph() int /* primitive/slice/pointer. */ {
+func (f_ Font) NSControlGlyph() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("NSControlGlyph"))
 	return rv
 }
@@ -608,7 +608,7 @@ func (f_ Font) NSControlGlyph() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrolglyph
-func (f_ Font) SetNSControlGlyph(value int /* primitive/slice/pointer. */) {
+func (f_ Font) SetNSControlGlyph(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNSControlGlyph:"), value)
 }
 
@@ -655,7 +655,7 @@ func (f_ Font) SetFontDescriptor(value IFontDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isfixedpitch
-func (f_ Font) IsFixedPitch() bool /* primitive/slice/pointer. */ {
+func (f_ Font) IsFixedPitch() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isFixedPitch"))
 	return rv
 }
@@ -665,7 +665,7 @@ func (f_ Font) IsFixedPitch() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isfixedpitch
-func (f_ Font) SetIsFixedPitch(value bool /* primitive/slice/pointer. */) {
+func (f_ Font) SetIsFixedPitch(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsFixedPitch:"), value)
 }
 
@@ -674,7 +674,7 @@ func (f_ Font) SetIsFixedPitch(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isvertical
-func (f_ Font) IsVertical() bool /* primitive/slice/pointer. */ {
+func (f_ Font) IsVertical() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isVertical"))
 	return rv
 }
@@ -684,7 +684,7 @@ func (f_ Font) IsVertical() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/isvertical
-func (f_ Font) SetIsVertical(value bool /* primitive/slice/pointer. */) {
+func (f_ Font) SetIsVertical(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsVertical:"), value)
 }
 
@@ -731,7 +731,7 @@ func (f_ Font) SetScreen(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsnullglyph
-func (f_ Font) NSNullGlyph() int /* primitive/slice/pointer. */ {
+func (f_ Font) NSNullGlyph() int {
 	rv := objc.Send[int](f_.ID, objc.Sel("NSNullGlyph"))
 	return rv
 }
@@ -741,7 +741,7 @@ func (f_ Font) NSNullGlyph() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsnullglyph
-func (f_ Font) SetNSNullGlyph(value int /* primitive/slice/pointer. */) {
+func (f_ Font) SetNSNullGlyph(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNSNullGlyph:"), value)
 }
 

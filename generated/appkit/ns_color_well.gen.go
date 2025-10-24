@@ -33,26 +33,26 @@ type IColorWell interface {
 	// properties:
 	Color() IColor
 	SetColor(value IColor)
-	Bordered() bool /* primitive/slice/pointer. */
-	SetBordered(value bool /* primitive/slice/pointer. */)
+	Bordered() bool
+	SetBordered(value bool)
 	PulldownTarget() objc.ID
 	SetPulldownTarget(value objc.ID)
-	SupportsAlpha() bool /* primitive/slice/pointer. */
-	SetSupportsAlpha(value bool /* primitive/slice/pointer. */)
+	SupportsAlpha() bool
+	SetSupportsAlpha(value bool)
 	ColorWellStyle() unsafe.Pointer
 	SetColorWellStyle(value unsafe.Pointer)
 	Image() IImage
 	SetImage(value IImage)
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	IsBordered() bool /* primitive/slice/pointer. */
-	SetIsBordered(value bool /* primitive/slice/pointer. */)
-	MaximumLinearExposure() float64 /* primitive/slice/pointer. */
-	SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	MaximumLinearExposure() float64
+	SetMaximumLinearExposure(value float64)
 	PulldownAction() unsafe.Pointer
 	SetPulldownAction(value unsafe.Pointer)
 	// methods:
-	Activate(exclusive bool /* primitive/slice/pointer. */)
+	Activate(exclusive bool)
 	TakeColorFrom(sender objectivec.IObject)
 }
 
@@ -115,7 +115,7 @@ func NewColorWell() ColorWell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/activate(_:)
-func (c_ ColorWell) Activate(exclusive bool /* primitive/slice/pointer. */) {
+func (c_ ColorWell) Activate(exclusive bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("activate:"), exclusive)
 }
 
@@ -152,7 +152,7 @@ func (c_ ColorWell) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/isBordered
-func (c_ ColorWell) Bordered() bool /* primitive/slice/pointer. */ {
+func (c_ ColorWell) Bordered() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (c_ ColorWell) Bordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/isBordered
-func (c_ ColorWell) SetBordered(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorWell) SetBordered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -190,7 +190,7 @@ func (c_ ColorWell) SetPulldownTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
-func (c_ ColorWell) SupportsAlpha() bool /* primitive/slice/pointer. */ {
+func (c_ ColorWell) SupportsAlpha() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAlpha"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (c_ ColorWell) SupportsAlpha() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
-func (c_ ColorWell) SetSupportsAlpha(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorWell) SetSupportsAlpha(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
 
@@ -247,7 +247,7 @@ func (c_ ColorWell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
-func (c_ ColorWell) IsActive() bool /* primitive/slice/pointer. */ {
+func (c_ ColorWell) IsActive() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -257,7 +257,7 @@ func (c_ ColorWell) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
-func (c_ ColorWell) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorWell) SetIsActive(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -266,7 +266,7 @@ func (c_ ColorWell) SetIsActive(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
-func (c_ ColorWell) IsBordered() bool /* primitive/slice/pointer. */ {
+func (c_ ColorWell) IsBordered() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -276,7 +276,7 @@ func (c_ ColorWell) IsBordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
-func (c_ ColorWell) SetIsBordered(value bool /* primitive/slice/pointer. */) {
+func (c_ ColorWell) SetIsBordered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -285,7 +285,7 @@ func (c_ ColorWell) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
-func (c_ ColorWell) MaximumLinearExposure() float64 /* primitive/slice/pointer. */ {
+func (c_ ColorWell) MaximumLinearExposure() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
 	return rv
 }
@@ -295,7 +295,7 @@ func (c_ ColorWell) MaximumLinearExposure() float64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
-func (c_ ColorWell) SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */) {
+func (c_ ColorWell) SetMaximumLinearExposure(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
 }
 

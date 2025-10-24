@@ -31,17 +31,21 @@ type _MTREnergyEVSEClusterFaultEventClass struct {
 // An interface definition for the [MTREnergyEVSEClusterFaultEvent] class.
 type IMTREnergyEVSEClusterFaultEvent interface {
 	objectivec.IObject
-	FaultStateCurrentState() foundation.Number
-	SetFaultStateCurrentState(value foundation.INumber)
-	FaultStatePreviousState() foundation.Number
-	SetFaultStatePreviousState(value foundation.INumber)
-	SessionID() foundation.Number
-	SetSessionID(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	FaultStateCurrentState() objc.IObject /* cross-framework: NSNumber */
+	SetFaultStateCurrentState(value objc.IObject /* cross-framework: NSNumber */)
+	FaultStatePreviousState() objc.IObject /* cross-framework: NSNumber */
+	SetFaultStatePreviousState(value objc.IObject /* cross-framework: NSNumber */)
+	SessionID() objc.IObject /* cross-framework: NSNumber */
+	SetSessionID(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent
 type MTREnergyEVSEClusterFaultEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTREnergyEVSEClusterFaultEvent() MTREnergyEVSEClusterFaultEvent {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStateCurrentState
-func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("faultStateCurrentState"))
+func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("faultStateCurrentState"))
 	return rv
 }
 
 
-// SetFaultStateCurrentState sets the value of the faultStateCurrentState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStateCurrentState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStateCurrentState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
-func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("faultStatePreviousState"))
+func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("faultStatePreviousState"))
 	return rv
 }
 
 
-// SetFaultStatePreviousState sets the value of the faultStatePreviousState property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStatePreviousState:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
-func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("sessionID"))
+func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
 
-// SetSessionID sets the value of the sessionID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
-func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
-func (m_ MTREnergyEVSEClusterFaultEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTREnergyEVSEClusterFaultEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
-func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value foundation.INumber) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

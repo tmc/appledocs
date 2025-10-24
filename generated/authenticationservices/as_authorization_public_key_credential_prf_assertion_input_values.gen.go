@@ -32,7 +32,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionInputValuesClass struct {
 type IAuthorizationPublicKeyCredentialPRFAssertionInputValues interface {
 	objectivec.IObject
 	// properties:
-	SaltInput2() foundation.objc.IObject /* cross-framework: NSData */
+	SaltInput2() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInputValues() AuthorizationP
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInputValues/saltInput2
-func (a_ AuthorizationPublicKeyCredentialPRFAssertionInputValues) SaltInput2() foundation.objc.IObject /* cross-framework: NSData */ {
+func (a_ AuthorizationPublicKeyCredentialPRFAssertionInputValues) SaltInput2() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("saltInput2"))
 	return rv
 }

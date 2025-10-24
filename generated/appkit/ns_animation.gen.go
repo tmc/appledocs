@@ -38,16 +38,16 @@ type IAnimation interface {
 	SetAnimationCurve(value unsafe.Pointer)
 	CurrentProgress() objc.IObject /* cross-framework: Progress */
 	SetCurrentProgress(value objc.IObject /* cross-framework: Progress */)
-	CurrentValue() float32 /* primitive/slice/pointer. */
-	SetCurrentValue(value float32 /* primitive/slice/pointer. */)
+	CurrentValue() float32
+	SetCurrentValue(value float32)
 	Delegate() AnimationDelegate /* not a class type */
 	SetDelegate(value AnimationDelegate /* not a class type */)
-	Duration() unsafe.Pointer
-	SetDuration(value unsafe.Pointer)
-	FrameRate() float32 /* primitive/slice/pointer. */
-	SetFrameRate(value float32 /* primitive/slice/pointer. */)
-	IsAnimating() bool /* primitive/slice/pointer. */
-	SetIsAnimating(value bool /* primitive/slice/pointer. */)
+	Duration() float64
+	SetDuration(value float64)
+	FrameRate() float32
+	SetFrameRate(value float32)
+	IsAnimating() bool
+	SetIsAnimating(value bool)
 	ProgressMarks() objc.IObject /* cross-framework: NSNumber */
 	SetProgressMarks(value objc.IObject /* cross-framework: NSNumber */)
 	RunLoopModesForAnimating() unsafe.Pointer
@@ -169,7 +169,7 @@ func (a_ Animation) SetCurrentProgress(value objc.IObject /* cross-framework: Pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) CurrentValue() float32 /* primitive/slice/pointer. */ {
+func (a_ Animation) CurrentValue() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("currentValue"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (a_ Animation) CurrentValue() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) SetCurrentValue(value float32 /* primitive/slice/pointer. */) {
+func (a_ Animation) SetCurrentValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentValue:"), value)
 }
 
@@ -207,8 +207,8 @@ func (a_ Animation) SetDelegate(value AnimationDelegate /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
-func (a_ Animation) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("duration"))
+func (a_ Animation) Duration() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -217,7 +217,7 @@ func (a_ Animation) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/duration
-func (a_ Animation) SetDuration(value unsafe.Pointer) {
+func (a_ Animation) SetDuration(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -226,7 +226,7 @@ func (a_ Animation) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) FrameRate() float32 /* primitive/slice/pointer. */ {
+func (a_ Animation) FrameRate() float32 {
 	rv := objc.Send[float32](a_.ID, objc.Sel("frameRate"))
 	return rv
 }
@@ -236,7 +236,7 @@ func (a_ Animation) FrameRate() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) SetFrameRate(value float32 /* primitive/slice/pointer. */) {
+func (a_ Animation) SetFrameRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameRate:"), value)
 }
 
@@ -245,7 +245,7 @@ func (a_ Animation) SetFrameRate(value float32 /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-func (a_ Animation) IsAnimating() bool /* primitive/slice/pointer. */ {
+func (a_ Animation) IsAnimating() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAnimating"))
 	return rv
 }
@@ -255,7 +255,7 @@ func (a_ Animation) IsAnimating() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-func (a_ Animation) SetIsAnimating(value bool /* primitive/slice/pointer. */) {
+func (a_ Animation) SetIsAnimating(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAnimating:"), value)
 }
 

@@ -36,8 +36,8 @@ type ICustomMediaSelectionScheme interface {
 	SetAvailableLanguages(value objc.IObject /* cross-framework: NSString */)
 	Selectors() IAVMediaPresentationSelector
 	SetSelectors(value IAVMediaPresentationSelector)
-	ShouldOfferLanguageSelection() bool /* primitive/slice/pointer. */
-	SetShouldOfferLanguageSelection(value bool /* primitive/slice/pointer. */)
+	ShouldOfferLanguageSelection() bool
+	SetShouldOfferLanguageSelection(value bool)
 	// methods:
 }
 
@@ -136,7 +136,7 @@ func (c_ CustomMediaSelectionScheme) SetSelectors(value IAVMediaPresentationSele
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcustommediaselectionscheme/shouldofferlanguageselection
-func (c_ CustomMediaSelectionScheme) ShouldOfferLanguageSelection() bool /* primitive/slice/pointer. */ {
+func (c_ CustomMediaSelectionScheme) ShouldOfferLanguageSelection() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldOfferLanguageSelection"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (c_ CustomMediaSelectionScheme) ShouldOfferLanguageSelection() bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcustommediaselectionscheme/shouldofferlanguageselection
-func (c_ CustomMediaSelectionScheme) SetShouldOfferLanguageSelection(value bool /* primitive/slice/pointer. */) {
+func (c_ CustomMediaSelectionScheme) SetShouldOfferLanguageSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldOfferLanguageSelection:"), value)
 }
 

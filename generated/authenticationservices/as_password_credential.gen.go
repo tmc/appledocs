@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _PasswordCredentialClass struct {
 type IPasswordCredential interface {
 	objectivec.IObject
 	// properties:
-	Password() string /* primitive/slice/pointer. */
-	User() string /* primitive/slice/pointer. */
-	SetUser(value string /* primitive/slice/pointer. */)
+	Password() objc.IObject /* cross-framework: NSString */
+	User() objc.IObject /* cross-framework: NSString */
+	SetUser(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -92,8 +93,8 @@ func NewPasswordCredential() PasswordCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password
-func (p_ PasswordCredential) Password() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("password"))
+func (p_ PasswordCredential) Password() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("password"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (p_ PasswordCredential) Password() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) User() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("user"))
+func (p_ PasswordCredential) User() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (p_ PasswordCredential) User() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) SetUser(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), objc.String(value))
+func (p_ PasswordCredential) SetUser(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), value)
 }
 
 

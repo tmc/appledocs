@@ -10,7 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	BarButtonItem = _undefined // referenced in PencilKit
-	Bool = _undefined // referenced in PencilKit
 	Color = _undefined // referenced in PencilKit
 	ColorRef = _undefined // referenced in PencilKit
 	Data = _undefined // referenced in PencilKit

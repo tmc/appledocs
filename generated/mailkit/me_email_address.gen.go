@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _MEEmailAddressClass struct {
 type IMEEmailAddress interface {
 	objectivec.IObject
 	// properties:
-	AddressString() string /* primitive/slice/pointer. */
-	RawString() string /* primitive/slice/pointer. */
+	AddressString() objc.IObject /* cross-framework: NSString */
+	RawString() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -84,9 +85,9 @@ func NewMEEmailAddress() MEEmailAddress {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/init(rawString:)
-func NewMEEmailAddressWithRawString(rawString string /* primitive/slice/pointer. */) MEEmailAddress {
+func NewMEEmailAddressWithRawString(rawString objc.IObject /* cross-framework: NSString */) MEEmailAddress {
 	instance := getMEEmailAddressClass().Alloc()
-	rv := objc.Send[MEEmailAddress](instance.ID, objc.Sel("initWithRawString:"), objc.String(rawString))
+	rv := objc.Send[MEEmailAddress](instance.ID, objc.Sel("initWithRawString:"), rawString)
 	rv.Autorelease()
 	return rv
 }
@@ -95,16 +96,16 @@ func NewMEEmailAddressWithRawString(rawString string /* primitive/slice/pointer.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
-func (m_ MEEmailAddress) AddressString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
+func (m_ MEEmailAddress) AddressString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/rawString
-func (m_ MEEmailAddress) RawString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("rawString"))
+func (m_ MEEmailAddress) RawString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("rawString"))
 	return rv
 }
 

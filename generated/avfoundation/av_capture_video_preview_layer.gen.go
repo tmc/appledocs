@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureVideoPreviewLayer] class.
@@ -29,16 +28,16 @@ type _CaptureVideoPreviewLayerClass struct {
 
 // An interface definition for the [CaptureVideoPreviewLayer] class.
 type ICaptureVideoPreviewLayer interface {
-	quartzcore.ILayer
+	ILayer
 	// properties:
 	Connection() IAVCaptureConnection
 	SetConnection(value IAVCaptureConnection)
-	IsDeferredStartEnabled() bool /* primitive/slice/pointer. */
-	SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */)
-	IsDeferredStartSupported() bool /* primitive/slice/pointer. */
-	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */)
-	IsPreviewing() bool /* primitive/slice/pointer. */
-	SetIsPreviewing(value bool /* primitive/slice/pointer. */)
+	IsDeferredStartEnabled() bool
+	SetIsDeferredStartEnabled(value bool)
+	IsDeferredStartSupported() bool
+	SetIsDeferredStartSupported(value bool)
+	IsPreviewing() bool
+	SetIsPreviewing(value bool)
 	Session() IAVCaptureSession
 	SetSession(value IAVCaptureSession)
 	VideoGravity() LayerVideoGravity /* not a class type */
@@ -56,7 +55,7 @@ type ICaptureVideoPreviewLayer interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer
 type CaptureVideoPreviewLayer struct {
-	quartzcore.Layer
+	Layer
 }
 
 // CaptureVideoPreviewLayerFrom constructs a [CaptureVideoPreviewLayer] from an unsafe.Pointer.
@@ -64,7 +63,7 @@ type CaptureVideoPreviewLayer struct {
 // A Core Animation layer that displays video from a camera device.
 func CaptureVideoPreviewLayerFrom(ptr unsafe.Pointer) CaptureVideoPreviewLayer {
 	return CaptureVideoPreviewLayer{
-		Layer: quartzcore.LayerFrom(ptr),
+		Layer: LayerFrom(ptr),
 	}
 }
 
@@ -124,7 +123,7 @@ func (c_ CaptureVideoPreviewLayer) SetConnection(value IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
 	return rv
 }
@@ -134,7 +133,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
 }
 
@@ -143,7 +142,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
 	return rv
 }
@@ -153,7 +152,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
 }
 
@@ -162,7 +161,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPreviewing"))
 	return rv
 }
@@ -172,7 +171,7 @@ func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPreviewing:"), value)
 }
 

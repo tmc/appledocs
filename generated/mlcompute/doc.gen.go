@@ -2,12 +2,12 @@
 
 // Package mlcompute provides Go bindings for the MLCompute framework.
 //
-// Accelerate training and validation of neural networks across the CPU and one or more GPUs. [Full Topic]
+// Accelerate training and validation of neural networks across the CPU and one or more GPUs.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MLCompute without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute
+// See: https://developer.apple.com/documentation/MLCompute
 package mlcompute
 
 import (

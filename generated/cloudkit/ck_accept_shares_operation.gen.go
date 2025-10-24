@@ -41,13 +41,13 @@ type ICKAcceptSharesOperation interface {
 	SetPerShareResultBlock(value unsafe.Pointer)
 	ShareMetadatas() objc.IObject /* cross-framework: CKShareMetadata */
 	SetShareMetadatas(value objc.IObject /* cross-framework: CKShareMetadata */)
-	CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */
-	ContainerIdentifier() string /* primitive/slice/pointer. */
-	SetContainerIdentifier(value string /* primitive/slice/pointer. */)
-	Url() foundation.objc.IObject /* cross-framework: URL */
-	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
-	UserInfo() string /* primitive/slice/pointer. */
-	SetUserInfo(value string /* primitive/slice/pointer. */)
+	CKPartialErrorsByItemIDKey() objc.IObject /* cross-framework: NSString */
+	ContainerIdentifier() objc.IObject /* cross-framework: NSString */
+	SetContainerIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
+	UserInfo() objc.IObject /* cross-framework: NSString */
+	SetUserInfo(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -197,8 +197,8 @@ func (c_ CKAcceptSharesOperation) SetShareMetadatas(value objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
-func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
+func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
 }
 
@@ -207,8 +207,8 @@ func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
-func (c_ CKAcceptSharesOperation) ContainerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CKAcceptSharesOperation) ContainerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
@@ -217,8 +217,8 @@ func (c_ CKAcceptSharesOperation) ContainerIdentifier() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
-func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
+func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), value)
 }
 
 
@@ -226,7 +226,7 @@ func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) Url() foundation.objc.IObject /* cross-framework: URL */ {
+func (c_ CKAcceptSharesOperation) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
 }
@@ -236,7 +236,7 @@ func (c_ CKAcceptSharesOperation) Url() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
+func (c_ CKAcceptSharesOperation) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -245,8 +245,8 @@ func (c_ CKAcceptSharesOperation) SetUrl(value foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKAcceptSharesOperation) UserInfo() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
+func (c_ CKAcceptSharesOperation) UserInfo() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -255,8 +255,8 @@ func (c_ CKAcceptSharesOperation) UserInfo() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKAcceptSharesOperation) SetUserInfo(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
+func (c_ CKAcceptSharesOperation) SetUserInfo(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 

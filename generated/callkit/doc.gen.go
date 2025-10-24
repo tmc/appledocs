@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CallKit without requiring cgo.
-
-// Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit
+// See: https://developer.apple.com/documentation/CallKit
 package callkit
 
 import (

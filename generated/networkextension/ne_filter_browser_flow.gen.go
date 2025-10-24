@@ -30,16 +30,22 @@ type _NEFilterBrowserFlowClass struct {
 // An interface definition for the [NEFilterBrowserFlow] class.
 type INEFilterBrowserFlow interface {
 	INEFilterFlow
-	ParentURL() foundation.URL
-	SetParentURL(value foundation.IURL)
-	Request() foundation.URLRequest
-	SetRequest(value foundation.IURLRequest)
-	Response() foundation.URLResponse
-	SetResponse(value foundation.IURLResponse)
+	// properties:
+	ParentURL() objc.IObject /* cross-framework: URL */
+	SetParentURL(value objc.IObject /* cross-framework: URL */)
+	Request() objc.IObject /* cross-framework: URLRequest */
+	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
+	Response() objc.IObject /* cross-framework: URLResponse */
+	SetResponse(value objc.IObject /* cross-framework: URLResponse */)
+	// methods:
 }
 
 // A flow of network data, originating from a WebKit-based browser, that the filter examines.
+
+
+// A flow of network data, originating from a WebKit-based browser, that the filter examines.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow
 type NEFilterBrowserFlow struct {
 	NEFilterFlow
@@ -86,57 +92,60 @@ func NewNEFilterBrowserFlow() NEFilterBrowserFlow {
 }
 
 
+
 // A URL of the web page that’s responsible for the flow’s creation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
-func (n_ NEFilterBrowserFlow) ParentURL() foundation.URL {
+func (n_ NEFilterBrowserFlow) ParentURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("parentURL"))
 	return rv
 }
 
 
-// SetParentURL sets the value of the parentURL property.
 // A URL of the web page that’s responsible for the flow’s creation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
-func (n_ NEFilterBrowserFlow) SetParentURL(value foundation.IURL) {
+func (n_ NEFilterBrowserFlow) SetParentURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setParentURL:"), value)
 }
 
+
 // An HTTP request of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) Request() foundation.URLRequest {
+func (n_ NEFilterBrowserFlow) Request() objc.IObject /* cross-framework: URLRequest */ {
 	rv := objc.Send[foundation.URLRequest](n_.ID, objc.Sel("request"))
 	return rv
 }
 
 
-// SetRequest sets the value of the request property.
 // An HTTP request of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) SetRequest(value foundation.IURLRequest) {
+func (n_ NEFilterBrowserFlow) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
 }
 
+
 // An HTTP response of the flow.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) Response() foundation.URLResponse {
+func (n_ NEFilterBrowserFlow) Response() objc.IObject /* cross-framework: URLResponse */ {
 	rv := objc.Send[foundation.URLResponse](n_.ID, objc.Sel("response"))
 	return rv
 }
 
 
-// SetResponse sets the value of the response property.
 // An HTTP response of the flow.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) SetResponse(value foundation.IURLResponse) {
+func (n_ NEFilterBrowserFlow) SetResponse(value objc.IObject /* cross-framework: URLResponse */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
 }
 

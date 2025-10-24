@@ -32,7 +32,7 @@ type _ImageThresholdToZeroInverseClass struct {
 type IImageThresholdToZeroInverse interface {
 	IUnaryImageKernel
 	// properties:
-	ThresholdValue() float32 /* primitive/slice/pointer. */
+	ThresholdValue() float32
 	Transform() unsafe.Pointer
 	// methods:
 }
@@ -106,7 +106,7 @@ func NewImageThresholdToZeroInverseWithCoderDevice(aDecoder objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdToZeroInverse/init(device:thresholdValue:linearGrayColorTransform:)
-func NewImageThresholdToZeroInverseWithDeviceThresholdValueLinearGrayColorTransform(device objectivec.IObject, thresholdValue float32 /* primitive/slice/pointer. */, transform unsafe.Pointer) ImageThresholdToZeroInverse {
+func NewImageThresholdToZeroInverseWithDeviceThresholdValueLinearGrayColorTransform(device objectivec.IObject, thresholdValue float32, transform unsafe.Pointer) ImageThresholdToZeroInverse {
 	instance := getImageThresholdToZeroInverseClass().Alloc()
 	rv := objc.Send[ImageThresholdToZeroInverse](instance.ID, objc.Sel("initWithDevice:thresholdValue:linearGrayColorTransform:"), device, thresholdValue, transform)
 	rv.Autorelease()
@@ -119,7 +119,7 @@ func NewImageThresholdToZeroInverseWithDeviceThresholdValueLinearGrayColorTransf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdToZeroInverse/thresholdValue
-func (i_ ImageThresholdToZeroInverse) ThresholdValue() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdToZeroInverse) ThresholdValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
 	return rv
 }

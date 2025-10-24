@@ -30,19 +30,23 @@ type _MTRSoftwareDiagnosticsClusterThreadMetricsClass struct {
 // An interface definition for the [MTRSoftwareDiagnosticsClusterThreadMetrics] class.
 type IMTRSoftwareDiagnosticsClusterThreadMetrics interface {
 	IMTRSoftwareDiagnosticsClusterThreadMetricsStruct
-	Id() foundation.Number
-	SetId(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	StackFreeCurrent() foundation.Number
-	SetStackFreeCurrent(value foundation.INumber)
-	StackFreeMinimum() foundation.Number
-	SetStackFreeMinimum(value foundation.INumber)
-	StackSize() foundation.Number
-	SetStackSize(value foundation.INumber)
+	// properties:
+	Id() objc.IObject /* cross-framework: NSNumber */
+	SetId(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	StackFreeCurrent() objc.IObject /* cross-framework: NSNumber */
+	SetStackFreeCurrent(value objc.IObject /* cross-framework: NSNumber */)
+	StackFreeMinimum() objc.IObject /* cross-framework: NSNumber */
+	SetStackFreeMinimum(value objc.IObject /* cross-framework: NSNumber */)
+	StackSize() objc.IObject /* cross-framework: NSNumber */
+	SetStackSize(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSoftwareDiagnosticsClusterThreadMetrics
 type MTRSoftwareDiagnosticsClusterThreadMetrics struct {
 	MTRSoftwareDiagnosticsClusterThreadMetricsStruct
@@ -87,78 +91,78 @@ func NewMTRSoftwareDiagnosticsClusterThreadMetrics() MTRSoftwareDiagnosticsClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/id
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Id() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("id"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Id() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("id"))
 	return rv
 }
 
 
-// SetId sets the value of the id property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/id
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetId(value foundation.INumber) {
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/name
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeCurrent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeCurrent"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeCurrent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stackFreeCurrent"))
 	return rv
 }
 
 
-// SetStackFreeCurrent sets the value of the stackFreeCurrent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreecurrent
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeCurrent(value foundation.INumber) {
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeCurrent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreeminimum
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeMinimum() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackFreeMinimum"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackFreeMinimum() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stackFreeMinimum"))
 	return rv
 }
 
 
-// SetStackFreeMinimum sets the value of the stackFreeMinimum property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stackfreeminimum
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeMinimum(value foundation.INumber) {
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackFreeMinimum(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStackFreeMinimum:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("stackSize"))
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) StackSize() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("stackSize"))
 	return rv
 }
 
 
-// SetStackSize sets the value of the stackSize property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterthreadmetrics/stacksize
-func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackSize(value foundation.INumber) {
+func (m_ MTRSoftwareDiagnosticsClusterThreadMetrics) SetStackSize(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStackSize:"), value)
 }
 

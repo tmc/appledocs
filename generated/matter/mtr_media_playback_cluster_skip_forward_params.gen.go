@@ -31,15 +31,19 @@ type _MTRMediaPlaybackClusterSkipForwardParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterSkipForwardParams] class.
 type IMTRMediaPlaybackClusterSkipForwardParams interface {
 	objectivec.IObject
-	DeltaPositionMilliseconds() foundation.Number
-	SetDeltaPositionMilliseconds(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	DeltaPositionMilliseconds() objc.IObject /* cross-framework: NSNumber */
+	SetDeltaPositionMilliseconds(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterSkipForwardParams
 type MTRMediaPlaybackClusterSkipForwardParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRMediaPlaybackClusterSkipForwardParams() MTRMediaPlaybackClusterSkipFo
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/deltapositionmilliseconds
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) DeltaPositionMilliseconds() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("deltaPositionMilliseconds"))
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) DeltaPositionMilliseconds() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("deltaPositionMilliseconds"))
 	return rv
 }
 
 
-// SetDeltaPositionMilliseconds sets the value of the deltaPositionMilliseconds property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/deltapositionmilliseconds
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetDeltaPositionMilliseconds(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetDeltaPositionMilliseconds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeltaPositionMilliseconds:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

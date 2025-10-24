@@ -33,14 +33,14 @@ type IMIDICIDevice interface {
 	// properties:
 	DeviceInfo() IMIDI2DeviceInfo
 	DeviceType() MIDICIDeviceType
-	MaxPropertyExchangeRequests() uint /* primitive/slice/pointer. */
-	MaxSysExSize() uint /* primitive/slice/pointer. */
+	MaxPropertyExchangeRequests() uint
+	MaxSysExSize() uint
 	MUID() MIDICIMUID /* typedef */
-	Profiles() []MIDIUMPCIProfile /* primitive/slice/pointer. */
-	SupportsProcessInquiry() bool /* primitive/slice/pointer. */
-	SupportsProfileConfiguration() bool /* primitive/slice/pointer. */
-	SupportsPropertyExchange() bool /* primitive/slice/pointer. */
-	SupportsProtocolNegotiation() bool /* primitive/slice/pointer. */
+	Profiles() []IMIDIUMPCIProfile
+	SupportsProcessInquiry() bool
+	SupportsProfileConfiguration() bool
+	SupportsPropertyExchange() bool
+	SupportsProtocolNegotiation() bool
 	// methods:
 }
 
@@ -108,7 +108,7 @@ func (m_ MIDICIDevice) DeviceType() MIDICIDeviceType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxPropertyExchangeRequests
-func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxPropertyExchangeRequests"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint /* primitive/slice/poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxSysExSize
-func (m_ MIDICIDevice) MaxSysExSize() uint /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) MaxSysExSize() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (m_ MIDICIDevice) MUID() MIDICIMUID /* typedef */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/profiles
-func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) Profiles() []IMIDIUMPCIProfile {
 	rv := objc.Send[[]MIDIUMPCIProfile](m_.ID, objc.Sel("profiles"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile /* primitive/slice/pointer.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProcessInquiry
-func (m_ MIDICIDevice) SupportsProcessInquiry() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) SupportsProcessInquiry() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProcessInquiry"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (m_ MIDICIDevice) SupportsProcessInquiry() bool /* primitive/slice/pointer.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProfileConfiguration
-func (m_ MIDICIDevice) SupportsProfileConfiguration() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) SupportsProfileConfiguration() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileConfiguration"))
 	return rv
 }
@@ -156,7 +156,7 @@ func (m_ MIDICIDevice) SupportsProfileConfiguration() bool /* primitive/slice/po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsPropertyExchange
-func (m_ MIDICIDevice) SupportsPropertyExchange() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) SupportsPropertyExchange() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyExchange"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (m_ MIDICIDevice) SupportsPropertyExchange() bool /* primitive/slice/pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProtocolNegotiation
-func (m_ MIDICIDevice) SupportsProtocolNegotiation() bool /* primitive/slice/pointer. */ {
+func (m_ MIDICIDevice) SupportsProtocolNegotiation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProtocolNegotiation"))
 	return rv
 }

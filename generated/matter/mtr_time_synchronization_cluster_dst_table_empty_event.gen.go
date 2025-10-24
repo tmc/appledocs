@@ -30,9 +30,13 @@ type _MTRTimeSynchronizationClusterDSTTableEmptyEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDSTTableEmptyEvent] class.
 type IMTRTimeSynchronizationClusterDSTTableEmptyEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTTableEmptyEvent
 type MTRTimeSynchronizationClusterDSTTableEmptyEvent struct {
 	objectivec.Object

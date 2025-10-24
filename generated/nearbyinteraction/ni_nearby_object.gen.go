@@ -30,20 +30,22 @@ type _NINearbyObjectClass struct {
 // An interface definition for the [NINearbyObject] class.
 type ININearbyObject interface {
 	objectivec.IObject
-	DiscoveryToken() NIDiscoveryToken
-	VerticalDirectionEstimate() NINearbyObjectVerticalDirectionEstimate
-	Direction() unsafe.Pointer
-	SetDirection(value unsafe.Pointer)
-	Distance() float32
-	SetDistance(value float32)
+	// properties:
+	DiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */
+	SetDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */)
 	HorizontalAngle() float32
 	SetHorizontalAngle(value float32)
+	// methods:
 }
 
 // Location information for a peer device in an interaction session.
 //
 // A nearby object refers to a peer Apple device or third-party accessory. When the framework is ready to provide your app with information about a nearby object’s relative position, it calls your delegate’s implementation. If a session can’t provide peer direction or distance, it sets the values to . In Objective-C, the session uses the and values to indicate missing direction or distance. For more information, see .
+
+
+// Location information for a peer device in an interaction session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject
 type NINearbyObject struct {
 	objectivec.Object
@@ -88,60 +90,29 @@ func NewNINearbyObject() NINearbyObject {
 }
 
 
+
 // A unique identifier for a peer device in the session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken
-func (n_ NINearbyObject) DiscoveryToken() NIDiscoveryToken {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/discoverytoken
+func (n_ NINearbyObject) DiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */ {
 	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
 	return rv
 }
 
-// The estimation of a nearby object’s vertical position as it relates to the user’s device.
+
+// A unique identifier for a peer device in the session.
 //
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property
-func (n_ NINearbyObject) VerticalDirectionEstimate() NINearbyObjectVerticalDirectionEstimate {
-	rv := objc.Send[NINearbyObjectVerticalDirectionEstimate](n_.ID, objc.Sel("verticalDirectionEstimate"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/discoverytoken
+func (n_ NINearbyObject) SetDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
 }
 
-// A vector that points from the user’s device in the direction of the peer device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/direction-4qh5w
-func (n_ NINearbyObject) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
-	return rv
-}
-
-
-// SetDirection sets the value of the direction property.
-// A vector that points from the user’s device in the direction of the peer device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/direction-4qh5w
-func (n_ NINearbyObject) SetDirection(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
-}
-
-// The distance from the user’s device to the peer device in meters.
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyObject) Distance() float32 {
-	rv := objc.Send[float32](n_.ID, objc.Sel("distance"))
-	return rv
-}
-
-
-// SetDistance sets the value of the distance property.
-// The distance from the user’s device to the peer device in meters.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm
-func (n_ NINearbyObject) SetDistance(value float32) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDistance:"), value)
-}
 
 // An angle in radians that indicates the azimuthal direction to the nearby object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
 func (n_ NINearbyObject) HorizontalAngle() float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("horizontalAngle"))
@@ -149,14 +120,12 @@ func (n_ NINearbyObject) HorizontalAngle() float32 {
 }
 
 
-// SetHorizontalAngle sets the value of the horizontalAngle property.
 // An angle in radians that indicates the azimuthal direction to the nearby object.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
 func (n_ NINearbyObject) SetHorizontalAngle(value float32) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
 }
-
 
 

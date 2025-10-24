@@ -30,14 +30,20 @@ type _MEDecodeFrameOptionsClass struct {
 // An interface definition for the [MEDecodeFrameOptions] class.
 type IMEDecodeFrameOptions interface {
 	objectivec.IObject
+	// properties:
 	DoNotOutputFrame() bool
 	SetDoNotOutputFrame(value bool)
 	RealTimePlayback() bool
 	SetRealTimePlayback(value bool)
+	// methods:
 }
 
 // An object that guides the video decoder operation on a per-frame basis.
+
+
+// An object that guides the video decoder operation on a per-frame basis.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions
 type MEDecodeFrameOptions struct {
 	objectivec.Object
@@ -82,8 +88,10 @@ func NewMEDecodeFrameOptions() MEDecodeFrameOptions {
 }
 
 
+
 // A Boolean value that hints to the decoder whether or not it should emit an image buffer for the frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions/doNotOutputFrame
 func (m_ MEDecodeFrameOptions) DoNotOutputFrame() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("doNotOutputFrame"))
@@ -91,29 +99,29 @@ func (m_ MEDecodeFrameOptions) DoNotOutputFrame() bool {
 }
 
 
-// SetDoNotOutputFrame sets the value of the doNotOutputFrame property.
 // A Boolean value that hints to the decoder whether or not it should emit an image buffer for the frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions/doNotOutputFrame
 func (m_ MEDecodeFrameOptions) SetDoNotOutputFrame(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoNotOutputFrame:"), value)
 }
 
+
 // A Boolean value that hints to the decoder to use a low-power mode that can’t decode faster than 1x real-time.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions/realTimePlayback
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/medecodeframeoptions/realtimeplayback
 func (m_ MEDecodeFrameOptions) RealTimePlayback() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("realTimePlayback"))
 	return rv
 }
 
 
-// SetRealTimePlayback sets the value of the realTimePlayback property.
 // A Boolean value that hints to the decoder to use a low-power mode that can’t decode faster than 1x real-time.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEDecodeFrameOptions/realTimePlayback
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/medecodeframeoptions/realtimeplayback
 func (m_ MEDecodeFrameOptions) SetRealTimePlayback(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRealTimePlayback:"), value)
 }

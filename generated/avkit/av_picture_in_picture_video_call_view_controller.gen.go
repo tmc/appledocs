@@ -115,7 +115,7 @@ func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewC
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
 func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[View](p_.ID, objc.Sel("activeVideoCallSourceView"))
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 

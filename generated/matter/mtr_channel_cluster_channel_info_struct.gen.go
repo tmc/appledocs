@@ -31,23 +31,27 @@ type _MTRChannelClusterChannelInfoStructClass struct {
 // An interface definition for the [MTRChannelClusterChannelInfoStruct] class.
 type IMTRChannelClusterChannelInfoStruct interface {
 	objectivec.IObject
-	AffiliateCallSign() string
-	SetAffiliateCallSign(value string)
-	CallSign() string
-	SetCallSign(value string)
-	Identifier() string
-	SetIdentifier(value string)
-	MajorNumber() foundation.Number
-	SetMajorNumber(value foundation.INumber)
-	MinorNumber() foundation.Number
-	SetMinorNumber(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	Type() foundation.Number
-	SetType(value foundation.INumber)
+	// properties:
+	AffiliateCallSign() objc.IObject /* cross-framework: NSString */
+	SetAffiliateCallSign(value objc.IObject /* cross-framework: NSString */)
+	CallSign() objc.IObject /* cross-framework: NSString */
+	SetCallSign(value objc.IObject /* cross-framework: NSString */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	MajorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	MinorNumber() objc.IObject /* cross-framework: NSNumber */
+	SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Type() objc.IObject /* cross-framework: NSNumber */
+	SetType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelInfoStruct
 type MTRChannelClusterChannelInfoStruct struct {
 	objectivec.Object
@@ -90,108 +94,108 @@ func NewMTRChannelClusterChannelInfoStruct() MTRChannelClusterChannelInfoStruct 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
+func (m_ MTRChannelClusterChannelInfoStruct) AffiliateCallSign() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("affiliateCallSign"))
 	return rv
 }
 
 
-// SetAffiliateCallSign sets the value of the affiliateCallSign property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfoStruct) SetAffiliateCallSign(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) CallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
+func (m_ MTRChannelClusterChannelInfoStruct) CallSign() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("callSign"))
 	return rv
 }
 
 
-// SetCallSign sets the value of the callSign property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/callsign
-func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfoStruct) SetCallSign(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/identifier
-func (m_ MTRChannelClusterChannelInfoStruct) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+func (m_ MTRChannelClusterChannelInfoStruct) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// SetIdentifier sets the value of the identifier property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/identifier
-func (m_ MTRChannelClusterChannelInfoStruct) SetIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfoStruct) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/majornumber
-func (m_ MTRChannelClusterChannelInfoStruct) MajorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("majorNumber"))
+func (m_ MTRChannelClusterChannelInfoStruct) MajorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("majorNumber"))
 	return rv
 }
 
 
-// SetMajorNumber sets the value of the majorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/majornumber
-func (m_ MTRChannelClusterChannelInfoStruct) SetMajorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChannelInfoStruct) SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/minornumber
-func (m_ MTRChannelClusterChannelInfoStruct) MinorNumber() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("minorNumber"))
+func (m_ MTRChannelClusterChannelInfoStruct) MinorNumber() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("minorNumber"))
 	return rv
 }
 
 
-// SetMinorNumber sets the value of the minorNumber property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/minornumber
-func (m_ MTRChannelClusterChannelInfoStruct) SetMinorNumber(value foundation.INumber) {
+func (m_ MTRChannelClusterChannelInfoStruct) SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/name
-func (m_ MTRChannelClusterChannelInfoStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterChannelInfoStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/name
-func (m_ MTRChannelClusterChannelInfoStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
-func (m_ MTRChannelClusterChannelInfoStruct) Type() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("type"))
+func (m_ MTRChannelClusterChannelInfoStruct) Type() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 
-// SetType sets the value of the type property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfostruct/type
-func (m_ MTRChannelClusterChannelInfoStruct) SetType(value foundation.INumber) {
+func (m_ MTRChannelClusterChannelInfoStruct) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

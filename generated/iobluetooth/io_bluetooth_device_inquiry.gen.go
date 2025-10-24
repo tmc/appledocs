@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,12 +34,12 @@ type IBluetoothDeviceInquiry interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	InquiryLength() unsafe.Pointer
-	SetInquiryLength(value unsafe.Pointer)
+	InquiryLength() uint8 /* not a class type */
+	SetInquiryLength(value uint8 /* not a class type */)
 	SearchType() objc.IObject /* cross-framework: BluetoothDeviceSearchTypes */
 	SetSearchType(value objc.IObject /* cross-framework: BluetoothDeviceSearchTypes */)
-	UpdateNewDeviceNames() bool /* primitive/slice/pointer. */
-	SetUpdateNewDeviceNames(value bool /* primitive/slice/pointer. */)
+	UpdateNewDeviceNames() bool
+	SetUpdateNewDeviceNames(value bool)
 	// methods:
 	ClearFoundDevices()
 	FoundDevices() objc.IObject /* cross-framework: Array */
@@ -137,7 +138,7 @@ func (b_ BluetoothDeviceInquiry) ClearFoundDevices() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/foundDevices()
 func (b_ BluetoothDeviceInquiry) FoundDevices() objc.IObject /* cross-framework: Array */ {
-	rv := objc.Send[Array](b_.ID, objc.Sel("foundDevices"))
+	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("foundDevices"))
 	return rv
 }
 
@@ -190,8 +191,8 @@ func (b_ BluetoothDeviceInquiry) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/inquiryLength
-func (b_ BluetoothDeviceInquiry) InquiryLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("inquiryLength"))
+func (b_ BluetoothDeviceInquiry) InquiryLength() uint8 /* not a class type */ {
+	rv := objc.Send[uint8](b_.ID, objc.Sel("inquiryLength"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (b_ BluetoothDeviceInquiry) InquiryLength() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/inquiryLength
-func (b_ BluetoothDeviceInquiry) SetInquiryLength(value unsafe.Pointer) {
+func (b_ BluetoothDeviceInquiry) SetInquiryLength(value uint8 /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInquiryLength:"), value)
 }
 
@@ -228,7 +229,7 @@ func (b_ BluetoothDeviceInquiry) SetSearchType(value objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/updateNewDeviceNames
-func (b_ BluetoothDeviceInquiry) UpdateNewDeviceNames() bool /* primitive/slice/pointer. */ {
+func (b_ BluetoothDeviceInquiry) UpdateNewDeviceNames() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("updateNewDeviceNames"))
 	return rv
 }
@@ -238,7 +239,7 @@ func (b_ BluetoothDeviceInquiry) UpdateNewDeviceNames() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/updateNewDeviceNames
-func (b_ BluetoothDeviceInquiry) SetUpdateNewDeviceNames(value bool /* primitive/slice/pointer. */) {
+func (b_ BluetoothDeviceInquiry) SetUpdateNewDeviceNames(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUpdateNewDeviceNames:"), value)
 }
 

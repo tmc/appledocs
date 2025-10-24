@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,7 +92,7 @@ func NewCNScript() CNScript {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/loadFromAsset:changes:progress:completionHandler:
-func (cc _CNScriptClass) LoadFromAssetChangesProgressCompletionHandler(asset objc.IObject /* cross-framework Asset */, changes ICNScriptChanges, progress Progress /* not a class type */, completionHandler unsafe.Pointer) {
+func (cc _CNScriptClass) LoadFromAssetChangesProgressCompletionHandler(asset objc.IObject /* cross-framework: Asset */, changes ICNScriptChanges, progress objc.IObject /* cross-framework: Progress */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:changes:progress:completionHandler:"), asset, changes, progress, completionHandler)
 }
 

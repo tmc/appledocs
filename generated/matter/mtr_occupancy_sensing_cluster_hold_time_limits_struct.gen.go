@@ -31,15 +31,19 @@ type _MTROccupancySensingClusterHoldTimeLimitsStructClass struct {
 // An interface definition for the [MTROccupancySensingClusterHoldTimeLimitsStruct] class.
 type IMTROccupancySensingClusterHoldTimeLimitsStruct interface {
 	objectivec.IObject
-	HoldTimeDefault() foundation.Number
-	SetHoldTimeDefault(value foundation.INumber)
-	HoldTimeMax() foundation.Number
-	SetHoldTimeMax(value foundation.INumber)
-	HoldTimeMin() foundation.Number
-	SetHoldTimeMin(value foundation.INumber)
+	// properties:
+	HoldTimeDefault() objc.IObject /* cross-framework: NSNumber */
+	SetHoldTimeDefault(value objc.IObject /* cross-framework: NSNumber */)
+	HoldTimeMax() objc.IObject /* cross-framework: NSNumber */
+	SetHoldTimeMax(value objc.IObject /* cross-framework: NSNumber */)
+	HoldTimeMin() objc.IObject /* cross-framework: NSNumber */
+	SetHoldTimeMin(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct
 type MTROccupancySensingClusterHoldTimeLimitsStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTROccupancySensingClusterHoldTimeLimitsStruct() MTROccupancySensingClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeDefault
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeDefault() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeDefault"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeDefault() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("holdTimeDefault"))
 	return rv
 }
 
 
-// SetHoldTimeDefault sets the value of the holdTimeDefault property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeDefault
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeDefault(value foundation.INumber) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeDefault(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeDefault:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMax
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMax() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeMax"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMax() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("holdTimeMax"))
 	return rv
 }
 
 
-// SetHoldTimeMax sets the value of the holdTimeMax property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMax
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMax(value foundation.INumber) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeMax:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMin
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMin() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("holdTimeMin"))
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) HoldTimeMin() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("holdTimeMin"))
 	return rv
 }
 
 
-// SetHoldTimeMin sets the value of the holdTimeMin property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterHoldTimeLimitsStruct/holdTimeMin
-func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMin(value foundation.INumber) {
+func (m_ MTROccupancySensingClusterHoldTimeLimitsStruct) SetHoldTimeMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHoldTimeMin:"), value)
 }
 

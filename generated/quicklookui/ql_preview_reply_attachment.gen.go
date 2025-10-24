@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PreviewReplyAttachment] class.
@@ -31,16 +32,23 @@ type _PreviewReplyAttachmentClass struct {
 // An interface definition for the [PreviewReplyAttachment] class.
 type IPreviewReplyAttachment interface {
 	objectivec.IObject
-	ContentType() unsafe.Pointer
-	Data() foundation.NSData
-	Attachments() QLPreviewReplyAttachment
+	// properties:
+	ContentType() objc.IObject /* cross-framework: UTType */
+	Attachments() IQLPreviewReplyAttachment
 	SetAttachments(value IQLPreviewReplyAttachment)
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // An attachment for a Quick Look preview reply that provides additional content for the system to display a preview.
 //
 // When providing a data-based Quick Look preview with HTML, use to include images, CSS, and other linked content in the HTML of the preview. Reference content in your html using the notation for the reference. For instance, if your HTML preview response includes an image, create a with the image, add it the reply’s with an associated string, and reference the image with the associated string, prefixed by . The following example illustrates returning HTML as a preview reply with an image as an attachment:
+
+
+// An attachment for a Quick Look preview reply that provides additional content for the system to display a preview.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment
 type PreviewReplyAttachment struct {
 	objectivec.Object
@@ -86,11 +94,11 @@ func NewPreviewReplyAttachment() PreviewReplyAttachment {
 
 
 
-
 // Creates a preview reply attachment with the specified type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/init(data:contentType:)
-func NewPreviewReplyAttachmentWithDataContentType(data foundation.IData, contentType unsafe.Pointer) PreviewReplyAttachment {
+func NewPreviewReplyAttachmentWithDataContentType(data objc.IObject /* cross-framework: NSData */, contentType objc.IObject /* cross-framework: UTType */) PreviewReplyAttachment {
 	instance := getPreviewReplyAttachmentClass().Alloc()
 	rv := objc.Send[PreviewReplyAttachment](instance.ID, objc.Sel("initWithData:contentType:"), data, contentType)
 	rv.Autorelease()
@@ -98,38 +106,52 @@ func NewPreviewReplyAttachmentWithDataContentType(data foundation.IData, content
 }
 
 
+
 // The content type of the preview attachment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType
-func (p_ PreviewReplyAttachment) ContentType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
+func (p_ PreviewReplyAttachment) ContentType() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
-// The data of the preview attachment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/data
-func (p_ PreviewReplyAttachment) Data() foundation.NSData {
-	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("data"))
-	return rv
-}
 
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
-func (p_ PreviewReplyAttachment) Attachments() QLPreviewReplyAttachment {
-	rv := objc.Send[QLPreviewReplyAttachment](p_.ID, objc.Sel("attachments"))
+func (p_ PreviewReplyAttachment) Attachments() IQLPreviewReplyAttachment {
+	rv := objc.Send[PreviewReplyAttachment](p_.ID, objc.Sel("attachments"))
 	return rv
 }
 
 
-// SetAttachments sets the value of the attachments property.
 // The attachments for a preview reply that provide additional data for the system to display the preview.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
 func (p_ PreviewReplyAttachment) SetAttachments(value IQLPreviewReplyAttachment) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
+}
+
+
+// The data of the preview attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreplyattachment/data
+func (p_ PreviewReplyAttachment) Data() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// The data of the preview attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreplyattachment/data
+func (p_ PreviewReplyAttachment) SetData(value objc.IObject /* cross-framework: Data */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setData:"), value)
 }
 
 

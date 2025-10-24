@@ -30,18 +30,24 @@ type _ContentSharingPickerClass struct {
 // An interface definition for the [ContentSharingPicker] class.
 type IContentSharingPicker interface {
 	objectivec.IObject
-	Configuration() ContentSharingPickerConfiguration
+	// properties:
+	Configuration() IContentSharingPickerConfiguration
 	SetConfiguration(value IContentSharingPickerConfiguration)
-	DefaultConfiguration() ContentSharingPickerConfiguration
+	DefaultConfiguration() IContentSharingPickerConfiguration
 	SetDefaultConfiguration(value IContentSharingPickerConfiguration)
 	IsActive() bool
 	SetIsActive(value bool)
 	MaximumStreamCount() int
 	SetMaximumStreamCount(value int)
+	// methods:
 }
 
 // An instance of a picker presented by the operating system for managing frame-capture streams.
+
+
+// An instance of a picker presented by the operating system for managing frame-capture streams.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker
 type ContentSharingPicker struct {
 	objectivec.Object
@@ -86,59 +92,67 @@ func NewContentSharingPicker() ContentSharingPicker {
 }
 
 
+
 // The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
 func (cc _ContentSharingPickerClass) SharedPicker() ContentSharingPicker {
-	rv := objc.Send[SCContentSharingPicker](objc.ID(cc.class), objc.Sel("sharedPicker"))
-	return rv
-}
-// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
-func (c_ ContentSharingPicker) SharedPicker() SCContentSharingPicker {
-	rv := objc.Send[SCContentSharingPicker](c_.ID, objc.Sel("sharedPicker"))
+	rv := objc.Send[ContentSharingPicker](objc.ID(cc.class), objc.Sel("sharedPicker"))
 	return rv
 }
 
+// The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
+func (c_ ContentSharingPicker) SharedPicker() ISCContentSharingPicker {
+	rv := objc.Send[ContentSharingPicker](c_.ID, objc.Sel("sharedPicker"))
+	return rv
+}
+
+
 // Sets the configuration for the content capture picker for all streams, providing allowed selection modes and content excluded from selection.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/configuration
-func (c_ ContentSharingPicker) Configuration() ContentSharingPickerConfiguration {
+func (c_ ContentSharingPicker) Configuration() IContentSharingPickerConfiguration {
 	rv := objc.Send[ContentSharingPickerConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
 // Sets the configuration for the content capture picker for all streams, providing allowed selection modes and content excluded from selection.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/configuration
 func (c_ ContentSharingPicker) SetConfiguration(value IContentSharingPickerConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
 
+
 // The default configuration to use for the content capture picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/defaultconfiguration-94q2b
-func (c_ ContentSharingPicker) DefaultConfiguration() ContentSharingPickerConfiguration {
+func (c_ ContentSharingPicker) DefaultConfiguration() IContentSharingPickerConfiguration {
 	rv := objc.Send[ContentSharingPickerConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }
 
 
-// SetDefaultConfiguration sets the value of the defaultConfiguration property.
 // The default configuration to use for the content capture picker.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/defaultconfiguration-94q2b
 func (c_ ContentSharingPicker) SetDefaultConfiguration(value IContentSharingPickerConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
 
+
 // A Boolean value that indicates if the picker is active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
 func (c_ ContentSharingPicker) IsActive() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
@@ -146,17 +160,18 @@ func (c_ ContentSharingPicker) IsActive() bool {
 }
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates if the picker is active.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/isactive
 func (c_ ContentSharingPicker) SetIsActive(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
 
+
 // The maximum number of streams the content capture picker allows.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/maximumstreamcount-2kuaa
 func (c_ ContentSharingPicker) MaximumStreamCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("maximumStreamCount"))
@@ -164,10 +179,9 @@ func (c_ ContentSharingPicker) MaximumStreamCount() int {
 }
 
 
-// SetMaximumStreamCount sets the value of the maximumStreamCount property.
 // The maximum number of streams the content capture picker allows.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/maximumstreamcount-2kuaa
 func (c_ ContentSharingPicker) SetMaximumStreamCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumStreamCount:"), value)

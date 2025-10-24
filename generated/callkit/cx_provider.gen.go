@@ -32,20 +32,9 @@ type _CXProviderClass struct {
 type ICXProvider interface {
 	objectivec.IObject
 	// properties:
-	Configuration() ICXProviderConfiguration
-	SetConfiguration(value ICXProviderConfiguration)
-	PendingTransactions() []CXTransaction /* primitive/slice/pointer. */
-	CXErrorDomain() string /* primitive/slice/pointer. */
-	CXErrorDomainIncomingCall() string /* primitive/slice/pointer. */
+	CXErrorDomain() objc.IObject /* cross-framework: NSString */
+	CXErrorDomainIncomingCall() objc.IObject /* cross-framework: NSString */
 	// methods:
-	Invalidate()
-	PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID objc.IObject /* cross-framework UUID */) []CXCallAction /* primitive/slice/pointer. */
-	ReportCallWithUUIDEndedAtDateReason(UUID objc.IObject /* cross-framework UUID */, dateEnded foundation.objc.IObject /* cross-framework NSDate */, endedReason CXCallEndedReason)
-	ReportCallWithUUIDUpdated(UUID objc.IObject /* cross-framework UUID */, update ICXCallUpdate)
-	ReportNewIncomingCallWithUUIDUpdateCompletion(UUID objc.IObject /* cross-framework UUID */, update ICXCallUpdate, completion unsafe.Pointer)
-	ReportOutgoingCallWithUUIDConnectedAtDate(UUID objc.IObject /* cross-framework UUID */, dateConnected foundation.objc.IObject /* cross-framework NSDate */)
-	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID objc.IObject /* cross-framework UUID */, dateStartedConnecting foundation.objc.IObject /* cross-framework NSDate */)
-	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 }
 
 // An object that represents a telephony provider.
@@ -118,110 +107,8 @@ func NewCXProviderWithConfiguration(configuration ICXProviderConfiguration) CXPr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingVoIPPushPayload(_:completion:)
-func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionaryPayload objectivec.IObject, completion unsafe.Pointer) {
+func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionaryPayload objc.IObject /* cross-framework: NSDictionary */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("reportNewIncomingVoIPPushPayload:completion:"), dictionaryPayload, completion)
-}
-
-
-// Invalidates the provider and completes all active calls with an error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/invalidate()
-func (c_ CXProvider) Invalidate() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("invalidate"))
-}
-
-
-// Returns all call actions in any pending transactions of the specified class for the specified call identifier that are incomplete.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingCallActions(of:withCall:)
-func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID objc.IObject /* cross-framework UUID */) []CXCallAction /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CXCallAction](c_.ID, objc.Sel("pendingCallActionsOfClass:withCallUUID:"), callActionClass, callUUID)
-	return rv
-}
-
-
-// Reports to the provider that a call with the specified identifier ended at a given date for a particular reason.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:endedAt:reason:)
-func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID objc.IObject /* cross-framework UUID */, dateEnded foundation.objc.IObject /* cross-framework NSDate */, endedReason CXCallEndedReason) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:endedAtDate:reason:"), UUID, dateEnded, endedReason)
-}
-
-
-// Reports to the provider that an active call updated its information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:updated:)
-func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID objc.IObject /* cross-framework UUID */, update ICXCallUpdate) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:updated:"), UUID, update)
-}
-
-
-// Reports a new incoming call with the specified unique identifier to the provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)
-func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID objc.IObject /* cross-framework UUID */, update ICXCallUpdate, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reportNewIncomingCallWithUUID:update:completion:"), UUID, update, completion)
-}
-
-
-// Reports to the provider that an outgoing call with the specified unique identifier finished connecting at a particular time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:connectedAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID objc.IObject /* cross-framework UUID */, dateConnected foundation.objc.IObject /* cross-framework NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:connectedAtDate:"), UUID, dateConnected)
-}
-
-
-// Reports to the provider that an outgoing call with the specified unique identifier started connecting at a particular time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:startedConnectingAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID objc.IObject /* cross-framework UUID */, dateStartedConnecting foundation.objc.IObject /* cross-framework NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:startedConnectingAtDate:"), UUID, dateStartedConnecting)
-}
-
-
-// Sets a provider delegate, specifying an optional queue on which to execute delegate methods.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/setDelegate(_:queue:)
-func (c_ CXProvider) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
-}
-
-
-// The configuration of the provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
-func (c_ CXProvider) Configuration() ICXProviderConfiguration {
-	rv := objc.Send[CXProviderConfiguration](c_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// The configuration of the provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
-func (c_ CXProvider) SetConfiguration(value ICXProviderConfiguration) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
-}
-
-
-// Incomplete transactions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingTransactions
-func (c_ CXProvider) PendingTransactions() []CXTransaction /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CXTransaction](c_.ID, objc.Sel("pendingTransactions"))
-	return rv
 }
 
 
@@ -229,8 +116,8 @@ func (c_ CXProvider) PendingTransactions() []CXTransaction /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomain
-func (c_ CXProvider) CXErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomain"))
+func (c_ CXProvider) CXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomain"))
 	return rv
 }
 
@@ -239,8 +126,8 @@ func (c_ CXProvider) CXErrorDomain() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainincomingcall
-func (c_ CXProvider) CXErrorDomainIncomingCall() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainIncomingCall"))
+func (c_ CXProvider) CXErrorDomainIncomingCall() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomainIncomingCall"))
 	return rv
 }
 

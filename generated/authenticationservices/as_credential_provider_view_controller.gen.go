@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,10 +35,9 @@ type ICredentialProviderViewController interface {
 	// properties:
 	ExtensionContext() CredentialProviderExtensionContext /* not a class type */
 	SetExtensionContext(value CredentialProviderExtensionContext /* not a class type */)
-	ASExtensionErrorDomain() string /* primitive/slice/pointer. */
+	ASExtensionErrorDomain() objc.IObject /* cross-framework: NSString */
 	// methods:
 	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest IASPasskeyCredentialRequest)
-	PrepareInterfaceForUserChoosingTextToInsert()
 	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
 	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
 }
@@ -106,15 +106,6 @@ func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUser
 }
 
 
-// Prepare the view controller to show a list of all insertable text with user selectable fields.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareInterfaceForUserChoosingTextToInsert()
-func (c_ CredentialProviderViewController) PrepareInterfaceForUserChoosingTextToInsert() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("prepareInterfaceForUserChoosingTextToInsert"))
-}
-
-
 // Prepare the view controller to show user interface for providing the requested credential.
 //
 // [Full Topic]
@@ -156,10 +147,9 @@ func (c_ CredentialProviderViewController) SetExtensionContext(value CredentialP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
-func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
+func (c_ CredentialProviderViewController) ASExtensionErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("ASExtensionErrorDomain"))
 	return rv
 }
-
 
 

@@ -35,8 +35,8 @@ type IAEAssessmentSession interface {
 	SetConfiguration(value IAEAssessmentConfiguration)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
 	// methods:
 	Begin()
 	End()
@@ -165,7 +165,7 @@ func (a_ AEAssessmentSession) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-func (a_ AEAssessmentSession) IsActive() bool /* primitive/slice/pointer. */ {
+func (a_ AEAssessmentSession) IsActive() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (a_ AEAssessmentSession) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-func (a_ AEAssessmentSession) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (a_ AEAssessmentSession) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
 

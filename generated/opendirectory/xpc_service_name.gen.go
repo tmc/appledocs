@@ -30,9 +30,13 @@ type _xpcServiceNameClass struct {
 // An interface definition for the [xpcServiceName] class.
 type IxpcServiceName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-c.ivar
 type xpcServiceName struct {
 	objectivec.Object

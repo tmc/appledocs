@@ -29,12 +29,18 @@ type _MXCPUMetricClass struct {
 // An interface definition for the [MXCPUMetric] class.
 type IMXCPUMetric interface {
 	IMXMetric
+	// properties:
 	CumulativeCPUInstructions() unsafe.Pointer
 	CumulativeCPUTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the use of the CPU.
+
+
+// An object representing metrics about the use of the CPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUMetric
 type MXCPUMetric struct {
 	MXMetric
@@ -81,16 +87,20 @@ func NewMXCPUMetric() MXCPUMetric {
 }
 
 
+
 // The total number of CPU instructions the app executed during the reporting period.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUMetric/cumulativeCPUInstructions
 func (m_ MXCPUMetric) CumulativeCPUInstructions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCPUInstructions"))
 	return rv
 }
 
+
 // The total amount of CPU the app used.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUMetric/cumulativeCPUTime
 func (m_ MXCPUMetric) CumulativeCPUTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCPUTime"))

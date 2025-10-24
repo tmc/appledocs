@@ -30,12 +30,18 @@ type _OSLogPositionClass struct {
 // An interface definition for the [OSLogPosition] class.
 type IOSLogPosition interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A representation of a point in a sequence of entries in the unified logging system.
 //
 // Generate positions with instance methods and use them to view entries from a particular starting point.
+
+
+// A representation of a point in a sequence of entries in the unified logging system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogPosition
 type OSLogPosition struct {
 	objectivec.Object

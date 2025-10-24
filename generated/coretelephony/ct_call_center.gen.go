@@ -31,7 +31,6 @@ type _CallCenterClass struct {
 type ICallCenter interface {
 	objectivec.IObject
 	// properties:
-	CurrentCalls() unsafe.Pointer
 	CallEventHandler() unsafe.Pointer
 	SetCallEventHandler(value unsafe.Pointer)
 	// methods:
@@ -88,16 +87,6 @@ func NewCallCenter() CallCenter {
 
 
 
-// An array representing the cellular calls in progress.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCallCenter/currentCalls
-func (c_ CallCenter) CurrentCalls() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentCalls"))
-	return rv
-}
-
-
 // A closure dispatched when a call changes state.
 //
 // [Full Topic]
@@ -115,6 +104,5 @@ func (c_ CallCenter) CallEventHandler() unsafe.Pointer {
 func (c_ CallCenter) SetCallEventHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallEventHandler:"), value)
 }
-
 
 

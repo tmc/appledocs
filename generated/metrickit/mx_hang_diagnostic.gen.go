@@ -29,12 +29,18 @@ type _MXHangDiagnosticClass struct {
 // An interface definition for the [MXHangDiagnostic] class.
 type IMXHangDiagnostic interface {
 	IMXDiagnostic
-	CallStackTree() MXCallStackTree
+	// properties:
+	CallStackTree() IMXCallStackTree
 	HangDuration() unsafe.Pointer
+	// methods:
 }
 
 // An object representing a diagnostic report for an app that is too busy to handle user input responsively.
+
+
+// An object representing a diagnostic report for an app that is too busy to handle user input responsively.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHangDiagnostic
 type MXHangDiagnostic struct {
 	MXDiagnostic
@@ -81,16 +87,20 @@ func NewMXHangDiagnostic() MXHangDiagnostic {
 }
 
 
+
 // The call stack for the app hang report.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHangDiagnostic/callStackTree
-func (m_ MXHangDiagnostic) CallStackTree() MXCallStackTree {
+func (m_ MXHangDiagnostic) CallStackTree() IMXCallStackTree {
 	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 
+
 // The amount of time the app is busy and unable to respond to user interaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHangDiagnostic/hangDuration
 func (m_ MXHangDiagnostic) HangDuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hangDuration"))

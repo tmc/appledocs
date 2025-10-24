@@ -6,19 +6,15 @@ import (
 )
 
 
-
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
-
-type CellularDataRestrictionDidUpdateNotifier = int
-
-type SubscriberDelegate = int
-
-type TelephonyNetworkInfoDelegate = int
-
-type Void = int
+// C struct types
+// CTError - A type representing a Core Telephony error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTError
+type CTError struct {
+	Domain unsafe.Pointer // A numeric indication of the error domain.
+	Error unsafe.Pointer // A code indicating the specific error.
+}
 
 
 

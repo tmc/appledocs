@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFAnnotationFreeText] class.
@@ -29,14 +30,20 @@ type _PDFAnnotationFreeTextClass struct {
 // An interface definition for the [PDFAnnotationFreeText] class.
 type IPDFAnnotationFreeText interface {
 	IPDFAnnotation
-	Contents() string
-	SetContents(value string)
+	// properties:
+	Contents() objc.IObject /* cross-framework: NSString */
+	SetContents(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A object displays text on a page.
 //
 // Unlike a object, a object has no open or closed state; its text is always visible. The text annotation performed in Preview uses . The class’s property lets you get and set the textual content for a object.
+
+
+// A object displays text on a page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationFreeText
 type PDFAnnotationFreeText struct {
 	PDFAnnotation
@@ -83,22 +90,23 @@ func NewPDFAnnotationFreeText() PDFAnnotationFreeText {
 }
 
 
+
 // Returns the textual content (if any) associated with the annotation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFAnnotationFreeText) Contents() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
+func (p_ PDFAnnotationFreeText) Contents() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
 
-// SetContents sets the value of the contents property.
 // Returns the textual content (if any) associated with the annotation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFAnnotationFreeText) SetContents(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
+func (p_ PDFAnnotationFreeText) SetContents(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
 }
 
 

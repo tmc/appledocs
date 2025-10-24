@@ -36,19 +36,19 @@ type IHKWorkoutBuilder interface {
 	SetAllStatistics(value IHKStatistics)
 	Device() IHKDevice
 	SetDevice(value IHKDevice)
-	EndDate() foundation.objc.IObject /* cross-framework: Date */
-	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
-	Metadata() string /* primitive/slice/pointer. */
-	SetMetadata(value string /* primitive/slice/pointer. */)
-	StartDate() foundation.objc.IObject /* cross-framework: Date */
-	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	EndDate() objc.IObject /* cross-framework: Date */
+	SetEndDate(value objc.IObject /* cross-framework: Date */)
+	Metadata() objc.IObject /* cross-framework: NSString */
+	SetMetadata(value objc.IObject /* cross-framework: NSString */)
+	StartDate() objc.IObject /* cross-framework: Date */
+	SetStartDate(value objc.IObject /* cross-framework: Date */)
 	WorkoutActivities() IHKWorkoutActivity
 	SetWorkoutActivities(value IHKWorkoutActivity)
 	WorkoutConfiguration() IHKWorkoutConfiguration
 	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
 	WorkoutEvents() IHKWorkoutEvent
 	SetWorkoutEvents(value IHKWorkoutEvent)
-	HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */
+	HKWorkoutTypeIdentifier() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -147,7 +147,7 @@ func (h_ HKWorkoutBuilder) SetDevice(value IHKDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
-func (h_ HKWorkoutBuilder) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKWorkoutBuilder) EndDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (h_ HKWorkoutBuilder) EndDate() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/enddate
-func (h_ HKWorkoutBuilder) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKWorkoutBuilder) SetEndDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -166,8 +166,8 @@ func (h_ HKWorkoutBuilder) SetEndDate(value foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
-func (h_ HKWorkoutBuilder) Metadata() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+func (h_ HKWorkoutBuilder) Metadata() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -176,8 +176,8 @@ func (h_ HKWorkoutBuilder) Metadata() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/metadata
-func (h_ HKWorkoutBuilder) SetMetadata(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (h_ HKWorkoutBuilder) SetMetadata(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
 }
 
 
@@ -185,7 +185,7 @@ func (h_ HKWorkoutBuilder) SetMetadata(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
-func (h_ HKWorkoutBuilder) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKWorkoutBuilder) StartDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (h_ HKWorkoutBuilder) StartDate() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/startdate
-func (h_ HKWorkoutBuilder) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKWorkoutBuilder) SetStartDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -257,8 +257,8 @@ func (h_ HKWorkoutBuilder) SetWorkoutEvents(value IHKWorkoutEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+func (h_ HKWorkoutBuilder) HKWorkoutTypeIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }
 

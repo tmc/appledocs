@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _GLKMeshClass struct {
 type IGLKMesh interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	Submeshes() []GLKSubmesh /* primitive/slice/pointer. */
-	VertexBuffers() []GLKMeshBuffer /* primitive/slice/pointer. */
-	VertexCount() uint /* primitive/slice/pointer. */
+	Name() objc.IObject /* cross-framework: NSString */
+	Submeshes() []IGLKSubmesh
+	VertexBuffers() []IGLKMeshBuffer
+	VertexCount() uint
 	VertexDescriptor() unsafe.Pointer
 	// methods:
 }
@@ -98,7 +99,7 @@ func NewGLKMeshWithMeshError(mesh unsafe.Pointer, error_ unsafe.Pointer) GLKMesh
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/newMeshes(from:sourceMeshes:)
-func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer, sourceMeshes []MDLMesh /* primitive/slice/pointer. */, error_ unsafe.Pointer) []GLKMesh /* primitive/slice/pointer. */ {
+func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer, sourceMeshes []MDLMesh /* not a class type */, error_ unsafe.Pointer) []IGLKMesh {
 	rv := objc.Send[[]GLKMesh](objc.ID(gc.class), objc.Sel("newMeshesFromAsset:sourceMeshes:error:"), asset, sourceMeshes, error_)
 	return rv
 }
@@ -106,15 +107,15 @@ func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/name
-func (g_ GLKMesh) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GLKMesh) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("name"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/submeshes
-func (g_ GLKMesh) Submeshes() []GLKSubmesh /* primitive/slice/pointer. */ {
+func (g_ GLKMesh) Submeshes() []IGLKSubmesh {
 	rv := objc.Send[[]GLKSubmesh](g_.ID, objc.Sel("submeshes"))
 	return rv
 }
@@ -122,7 +123,7 @@ func (g_ GLKMesh) Submeshes() []GLKSubmesh /* primitive/slice/pointer. */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/vertexBuffers
-func (g_ GLKMesh) VertexBuffers() []GLKMeshBuffer /* primitive/slice/pointer. */ {
+func (g_ GLKMesh) VertexBuffers() []IGLKMeshBuffer {
 	rv := objc.Send[[]GLKMeshBuffer](g_.ID, objc.Sel("vertexBuffers"))
 	return rv
 }
@@ -130,7 +131,7 @@ func (g_ GLKMesh) VertexBuffers() []GLKMeshBuffer /* primitive/slice/pointer. */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/vertexCount
-func (g_ GLKMesh) VertexCount() uint /* primitive/slice/pointer. */ {
+func (g_ GLKMesh) VertexCount() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("vertexCount"))
 	return rv
 }

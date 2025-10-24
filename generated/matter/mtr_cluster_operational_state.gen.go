@@ -29,9 +29,13 @@ type _MTRClusterOperationalStateClass struct {
 // An interface definition for the [MTRClusterOperationalState] class.
 type IMTRClusterOperationalState interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOperationalState
 type MTRClusterOperationalState struct {
 	MTRGenericCluster

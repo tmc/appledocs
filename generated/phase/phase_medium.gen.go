@@ -30,14 +30,20 @@ type _PHASEMediumClass struct {
 // An interface definition for the [PHASEMedium] class.
 type IPHASEMedium interface {
 	objectivec.IObject
-	DefaultMedium() PHASEMedium
+	// properties:
+	DefaultMedium() IPHASEMedium
 	SetDefaultMedium(value IPHASEMedium)
+	// methods:
 }
 
 // A property or quality of the environment that affects how sound travels.
 //
 // This class defines choices for the engine’s . Currently, this property provides only sound traveling through air.
+
+
+// A property or quality of the environment that affects how sound travels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMedium
 type PHASEMedium struct {
 	objectivec.Object
@@ -83,11 +89,11 @@ func NewPHASEMedium() PHASEMedium {
 
 
 
-
 // Creates a medium.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMedium/init(engine:preset:)
-func NewPHASEMediumWithEnginePreset(engine IPHASEEngine, preset IPHASEMediumPreset) PHASEMedium {
+func NewPHASEMediumWithEnginePreset(engine IPHASEEngine, preset PHASEMediumPreset) PHASEMedium {
 	instance := getPHASEMediumClass().Alloc()
 	rv := objc.Send[PHASEMedium](instance.ID, objc.Sel("initWithEngine:preset:"), engine, preset)
 	rv.Autorelease()
@@ -95,19 +101,20 @@ func NewPHASEMediumWithEnginePreset(engine IPHASEEngine, preset IPHASEMediumPres
 }
 
 
+
 // The physical matter through which sound travels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
-func (p_ PHASEMedium) DefaultMedium() PHASEMedium {
+func (p_ PHASEMedium) DefaultMedium() IPHASEMedium {
 	rv := objc.Send[PHASEMedium](p_.ID, objc.Sel("defaultMedium"))
 	return rv
 }
 
 
-// SetDefaultMedium sets the value of the defaultMedium property.
 // The physical matter through which sound travels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
 func (p_ PHASEMedium) SetDefaultMedium(value IPHASEMedium) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultMedium:"), value)

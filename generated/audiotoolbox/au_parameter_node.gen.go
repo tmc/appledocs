@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,22 +32,22 @@ type _ParameterNodeClass struct {
 type IParameterNode interface {
 	objectivec.IObject
 	// properties:
-	DisplayName() string /* primitive/slice/pointer. */
-	Identifier() string /* primitive/slice/pointer. */
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
 	ImplementorDisplayNameWithLengthCallback() ImplementorDisplayNameWithLengthCallback /* not a class type */
 	SetImplementorDisplayNameWithLengthCallback(value ImplementorDisplayNameWithLengthCallback /* not a class type */)
 	ImplementorStringFromValueCallback() ImplementorStringFromValueCallback /* not a class type */
 	SetImplementorStringFromValueCallback(value ImplementorStringFromValueCallback /* not a class type */)
 	ImplementorValueFromStringCallback() ImplementorValueFromStringCallback /* not a class type */
 	SetImplementorValueFromStringCallback(value ImplementorValueFromStringCallback /* not a class type */)
-	KeyPath() string /* primitive/slice/pointer. */
+	KeyPath() objc.IObject /* cross-framework: NSString */
 	ImplementorValueObserver() ImplementorValueObserver /* not a class type */
 	SetImplementorValueObserver(value ImplementorValueObserver /* not a class type */)
 	ImplementorValueProvider() ImplementorValueProvider /* not a class type */
 	SetImplementorValueProvider(value ImplementorValueProvider /* not a class type */)
 	// methods:
-	DisplayNameWithLength(maximumLength int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
-	RemoveParameterObserver(token objc.IObject /* cross-framework ParameterObserverToken */)
+	DisplayNameWithLength(maximumLength int) objc.IObject /* cross-framework: String */
+	RemoveParameterObserver(token objc.IObject /* cross-framework: ParameterObserverToken */)
 	TokenByAddingParameterAutomationObserver(observer ParameterAutomationObserver /* not a class type */) objc.IObject /* cross-framework: ParameterObserverToken */
 	TokenByAddingParameterObserver(observer ParameterObserver /* not a class type */) objc.IObject /* cross-framework: ParameterObserverToken */
 	TokenByAddingParameterRecordingObserver(observer ParameterRecordingObserver /* not a class type */) objc.IObject /* cross-framework: ParameterObserverToken */
@@ -109,8 +110,8 @@ func NewParameterNode() ParameterNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName(withLength:)
-func (p_ ParameterNode) DisplayNameWithLength(maximumLength int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](p_.ID, objc.Sel("displayNameWithLength:"), maximumLength)
+func (p_ ParameterNode) DisplayNameWithLength(maximumLength int) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("displayNameWithLength:"), maximumLength)
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (p_ ParameterNode) DisplayNameWithLength(maximumLength int /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/removeParameterObserver(_:)
-func (p_ ParameterNode) RemoveParameterObserver(token objc.IObject /* cross-framework ParameterObserverToken */) {
+func (p_ ParameterNode) RemoveParameterObserver(token objc.IObject /* cross-framework: ParameterObserverToken */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeParameterObserver:"), token)
 }
 
@@ -156,8 +157,8 @@ func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer Paramet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName
-func (p_ ParameterNode) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("displayName"))
+func (p_ ParameterNode) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -166,8 +167,8 @@ func (p_ ParameterNode) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/identifier
-func (p_ ParameterNode) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ ParameterNode) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -233,8 +234,8 @@ func (p_ ParameterNode) SetImplementorValueFromStringCallback(value ImplementorV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/keyPath
-func (p_ ParameterNode) KeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
+func (p_ ParameterNode) KeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("keyPath"))
 	return rv
 }
 

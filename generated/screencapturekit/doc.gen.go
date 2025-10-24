@@ -2,12 +2,12 @@
 
 // Package screencapturekit provides Go bindings for the ScreenCaptureKit framework.
 //
-// Filter and select screen content and stream it to your app. [Full Topic]
+// Filter and select screen content and stream it to your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ScreenCaptureKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit
+// See: https://developer.apple.com/documentation/ScreenCaptureKit
 package screencapturekit
 
 import (

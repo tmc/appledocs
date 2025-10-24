@@ -31,15 +31,19 @@ type _MTRRVCRunModeClusterModeOptionStructClass struct {
 // An interface definition for the [MTRRVCRunModeClusterModeOptionStruct] class.
 type IMTRRVCRunModeClusterModeOptionStruct interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	Mode() foundation.Number
-	SetMode(value foundation.INumber)
+	// properties:
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Mode() objc.IObject /* cross-framework: NSNumber */
+	SetMode(value objc.IObject /* cross-framework: NSNumber */)
 	ModeTags() unsafe.Pointer
 	SetModeTags(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCRunModeClusterModeOptionStruct
 type MTRRVCRunModeClusterModeOptionStruct struct {
 	objectivec.Object
@@ -82,37 +86,38 @@ func NewMTRRVCRunModeClusterModeOptionStruct() MTRRVCRunModeClusterModeOptionStr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/label
-func (m_ MTRRVCRunModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRRVCRunModeClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
 }
 
 
-// SetLabel sets the value of the label property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/label
-func (m_ MTRRVCRunModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRRVCRunModeClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/mode
-func (m_ MTRRVCRunModeClusterModeOptionStruct) Mode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mode"))
+func (m_ MTRRVCRunModeClusterModeOptionStruct) Mode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mode"))
 	return rv
 }
 
 
-// SetMode sets the value of the mode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/mode
-func (m_ MTRRVCRunModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
+func (m_ MTRRVCRunModeClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/modetags
 func (m_ MTRRVCRunModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
@@ -120,8 +125,7 @@ func (m_ MTRRVCRunModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 }
 
 
-// SetModeTags sets the value of the modeTags property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodeoptionstruct/modetags
 func (m_ MTRRVCRunModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)

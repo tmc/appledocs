@@ -29,9 +29,13 @@ type _MTRBaseClusterTimeFormatLocalizationClass struct {
 // An interface definition for the [MTRBaseClusterTimeFormatLocalization] class.
 type IMTRBaseClusterTimeFormatLocalization interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterTimeFormatLocalization
 type MTRBaseClusterTimeFormatLocalization struct {
 	MTRGenericBaseCluster

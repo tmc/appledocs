@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterLeakageEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterLeakageEvent] class.
 type IMTRPumpConfigurationAndControlClusterLeakageEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterLeakageEvent
 type MTRPumpConfigurationAndControlClusterLeakageEvent struct {
 	objectivec.Object

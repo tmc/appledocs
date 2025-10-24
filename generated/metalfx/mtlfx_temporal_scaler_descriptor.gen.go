@@ -30,12 +30,11 @@ type _FXTemporalScalerDescriptorClass struct {
 // An interface definition for the [FXTemporalScalerDescriptor] class.
 type IFXTemporalScalerDescriptor interface {
 	objectivec.IObject
-	NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID
-	NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
-	ColorTextureFormat() unsafe.Pointer
-	SetColorTextureFormat(value unsafe.Pointer)
-	DepthTextureFormat() unsafe.Pointer
-	SetDepthTextureFormat(value unsafe.Pointer)
+	// properties:
+	ColorTextureFormat() PixelFormat /* not a class type */
+	SetColorTextureFormat(value PixelFormat /* not a class type */)
+	DepthTextureFormat() PixelFormat /* not a class type */
+	SetDepthTextureFormat(value PixelFormat /* not a class type */)
 	InputContentMaxScale() float32
 	SetInputContentMaxScale(value float32)
 	InputContentMinScale() float32
@@ -50,16 +49,16 @@ type IFXTemporalScalerDescriptor interface {
 	SetInputContentPropertiesEnabled(value bool)
 	ReactiveMaskTextureEnabled() bool
 	SetReactiveMaskTextureEnabled(value bool)
-	MotionTextureFormat() unsafe.Pointer
-	SetMotionTextureFormat(value unsafe.Pointer)
+	MotionTextureFormat() PixelFormat /* not a class type */
+	SetMotionTextureFormat(value PixelFormat /* not a class type */)
 	OutputHeight() uint
 	SetOutputHeight(value uint)
-	OutputTextureFormat() unsafe.Pointer
-	SetOutputTextureFormat(value unsafe.Pointer)
+	OutputTextureFormat() PixelFormat /* not a class type */
+	SetOutputTextureFormat(value PixelFormat /* not a class type */)
 	OutputWidth() uint
 	SetOutputWidth(value uint)
-	ReactiveMaskTextureFormat() unsafe.Pointer
-	SetReactiveMaskTextureFormat(value unsafe.Pointer)
+	ReactiveMaskTextureFormat() PixelFormat /* not a class type */
+	SetReactiveMaskTextureFormat(value PixelFormat /* not a class type */)
 	RequiresSynchronousInitialization() bool
 	SetRequiresSynchronousInitialization(value bool)
 	IsAutoExposureEnabled() bool
@@ -68,10 +67,17 @@ type IFXTemporalScalerDescriptor interface {
 	SetIsInputContentPropertiesEnabled(value bool)
 	IsReactiveMaskTextureEnabled() bool
 	SetIsReactiveMaskTextureEnabled(value bool)
+	// methods:
+	NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID
+	NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 // A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.
+
+
+// A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor
 type FXTemporalScalerDescriptor struct {
 	objectivec.Object
@@ -116,92 +122,108 @@ func NewFXTemporalScalerDescriptor() FXTemporalScalerDescriptor {
 }
 
 
+
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMaxScale(device:)
 func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) float32 {
 	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
 
+
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMinScale(device:)
 func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) float32 {
 	rv := objc.Send[float32](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
 
+
 // Returns a Boolean value that indicates whether the temporal scaler works with a GPU.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportsDevice(_:)
 func (fc _FXTemporalScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
 
+
 // Queries whether a Metal device supports temporal scaling compatible with Metal 4.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportsMetal4FX(_:)
 func (fc _FXTemporalScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
 
+
 // Creates a temporal scaler instance from this descriptor’s current property values.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/makeTemporalScaler(device:)
 func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalScalerWithDevice:"), device)
 	return rv
 }
 
+
 // Creates a temporal scaler instance for a Metal device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/makeTemporalScaler(device:compiler:)
 func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }
 
+
 // The pixel format of the input color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/colorTextureFormat
-func (f_ FXTemporalScalerDescriptor) ColorTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("colorTextureFormat"))
+func (f_ FXTemporalScalerDescriptor) ColorTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("colorTextureFormat"))
 	return rv
 }
 
 
-// SetColorTextureFormat sets the value of the colorTextureFormat property.
 // The pixel format of the input color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/colorTextureFormat
-func (f_ FXTemporalScalerDescriptor) SetColorTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetColorTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorTextureFormat:"), value)
 }
 
+
 // The pixel format of the input depth texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/depthTextureFormat
-func (f_ FXTemporalScalerDescriptor) DepthTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("depthTextureFormat"))
+func (f_ FXTemporalScalerDescriptor) DepthTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("depthTextureFormat"))
 	return rv
 }
 
 
-// SetDepthTextureFormat sets the value of the depthTextureFormat property.
 // The pixel format of the input depth texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/depthTextureFormat
-func (f_ FXTemporalScalerDescriptor) SetDepthTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetDepthTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDepthTextureFormat:"), value)
 }
 
+
 // The largest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMaxScale
 func (f_ FXTemporalScalerDescriptor) InputContentMaxScale() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("inputContentMaxScale"))
@@ -209,17 +231,18 @@ func (f_ FXTemporalScalerDescriptor) InputContentMaxScale() float32 {
 }
 
 
-// SetInputContentMaxScale sets the value of the inputContentMaxScale property.
 // The largest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMaxScale
 func (f_ FXTemporalScalerDescriptor) SetInputContentMaxScale(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputContentMaxScale:"), value)
 }
 
+
 // The smallest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMinScale
 func (f_ FXTemporalScalerDescriptor) InputContentMinScale() float32 {
 	rv := objc.Send[float32](f_.ID, objc.Sel("inputContentMinScale"))
@@ -227,17 +250,18 @@ func (f_ FXTemporalScalerDescriptor) InputContentMinScale() float32 {
 }
 
 
-// SetInputContentMinScale sets the value of the inputContentMinScale property.
 // The smallest scale factor the temporal scaler you create with this descriptor can use to generate output textures.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputContentMinScale
 func (f_ FXTemporalScalerDescriptor) SetInputContentMinScale(value float32) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputContentMinScale:"), value)
 }
 
+
 // The height of the input color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputHeight
 func (f_ FXTemporalScalerDescriptor) InputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputHeight"))
@@ -245,17 +269,18 @@ func (f_ FXTemporalScalerDescriptor) InputHeight() uint {
 }
 
 
-// SetInputHeight sets the value of the inputHeight property.
 // The height of the input color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputHeight
 func (f_ FXTemporalScalerDescriptor) SetInputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputHeight:"), value)
 }
 
+
 // The width of the input color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputWidth
 func (f_ FXTemporalScalerDescriptor) InputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("inputWidth"))
@@ -263,17 +288,18 @@ func (f_ FXTemporalScalerDescriptor) InputWidth() uint {
 }
 
 
-// SetInputWidth sets the value of the inputWidth property.
 // The width of the input color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/inputWidth
 func (f_ FXTemporalScalerDescriptor) SetInputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputWidth:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isAutoExposureEnabled
 func (f_ FXTemporalScalerDescriptor) AutoExposureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("autoExposureEnabled"))
@@ -281,17 +307,18 @@ func (f_ FXTemporalScalerDescriptor) AutoExposureEnabled() bool {
 }
 
 
-// SetAutoExposureEnabled sets the value of the autoExposureEnabled property.
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isAutoExposureEnabled
 func (f_ FXTemporalScalerDescriptor) SetAutoExposureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAutoExposureEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isInputContentPropertiesEnabled
 func (f_ FXTemporalScalerDescriptor) InputContentPropertiesEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("inputContentPropertiesEnabled"))
@@ -299,17 +326,18 @@ func (f_ FXTemporalScalerDescriptor) InputContentPropertiesEnabled() bool {
 }
 
 
-// SetInputContentPropertiesEnabled sets the value of the inputContentPropertiesEnabled property.
 // A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isInputContentPropertiesEnabled
 func (f_ FXTemporalScalerDescriptor) SetInputContentPropertiesEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setInputContentPropertiesEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a temporal scaler you create with the descriptor applies a reactive mask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isReactiveMaskTextureEnabled
 func (f_ FXTemporalScalerDescriptor) ReactiveMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("reactiveMaskTextureEnabled"))
@@ -317,35 +345,37 @@ func (f_ FXTemporalScalerDescriptor) ReactiveMaskTextureEnabled() bool {
 }
 
 
-// SetReactiveMaskTextureEnabled sets the value of the reactiveMaskTextureEnabled property.
 // A Boolean value that indicates whether a temporal scaler you create with the descriptor applies a reactive mask.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/isReactiveMaskTextureEnabled
 func (f_ FXTemporalScalerDescriptor) SetReactiveMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReactiveMaskTextureEnabled:"), value)
 }
 
+
 // The pixel format of the input motion texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/motionTextureFormat
-func (f_ FXTemporalScalerDescriptor) MotionTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("motionTextureFormat"))
+func (f_ FXTemporalScalerDescriptor) MotionTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("motionTextureFormat"))
 	return rv
 }
 
 
-// SetMotionTextureFormat sets the value of the motionTextureFormat property.
 // The pixel format of the input motion texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/motionTextureFormat
-func (f_ FXTemporalScalerDescriptor) SetMotionTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetMotionTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMotionTextureFormat:"), value)
 }
 
+
 // The height of the output color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputHeight
 func (f_ FXTemporalScalerDescriptor) OutputHeight() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputHeight"))
@@ -353,35 +383,37 @@ func (f_ FXTemporalScalerDescriptor) OutputHeight() uint {
 }
 
 
-// SetOutputHeight sets the value of the outputHeight property.
 // The height of the output color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputHeight
 func (f_ FXTemporalScalerDescriptor) SetOutputHeight(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputHeight:"), value)
 }
 
+
 // The pixel format of the output color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputTextureFormat
-func (f_ FXTemporalScalerDescriptor) OutputTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("outputTextureFormat"))
+func (f_ FXTemporalScalerDescriptor) OutputTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("outputTextureFormat"))
 	return rv
 }
 
 
-// SetOutputTextureFormat sets the value of the outputTextureFormat property.
 // The pixel format of the output color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputTextureFormat
-func (f_ FXTemporalScalerDescriptor) SetOutputTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetOutputTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputTextureFormat:"), value)
 }
 
+
 // The width of the output color texture for the temporal scaler you create with this descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputWidth
 func (f_ FXTemporalScalerDescriptor) OutputWidth() uint {
 	rv := objc.Send[uint](f_.ID, objc.Sel("outputWidth"))
@@ -389,35 +421,37 @@ func (f_ FXTemporalScalerDescriptor) OutputWidth() uint {
 }
 
 
-// SetOutputWidth sets the value of the outputWidth property.
 // The width of the output color texture for the temporal scaler you create with this descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/outputWidth
 func (f_ FXTemporalScalerDescriptor) SetOutputWidth(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputWidth:"), value)
 }
 
+
 // The pixel format of the reactive mask input texture for a temporal scaler you create with the descriptor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/reactiveMaskTextureFormat
-func (f_ FXTemporalScalerDescriptor) ReactiveMaskTextureFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("reactiveMaskTextureFormat"))
+func (f_ FXTemporalScalerDescriptor) ReactiveMaskTextureFormat() PixelFormat /* not a class type */ {
+	rv := objc.Send[PixelFormat](f_.ID, objc.Sel("reactiveMaskTextureFormat"))
 	return rv
 }
 
 
-// SetReactiveMaskTextureFormat sets the value of the reactiveMaskTextureFormat property.
 // The pixel format of the reactive mask input texture for a temporal scaler you create with the descriptor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/reactiveMaskTextureFormat
-func (f_ FXTemporalScalerDescriptor) SetReactiveMaskTextureFormat(value unsafe.Pointer) {
+func (f_ FXTemporalScalerDescriptor) SetReactiveMaskTextureFormat(value PixelFormat /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReactiveMaskTextureFormat:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX compiles a temporal scaling effect’s underlying upscaler as it creates the instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/requiresSynchronousInitialization
 func (f_ FXTemporalScalerDescriptor) RequiresSynchronousInitialization() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("requiresSynchronousInitialization"))
@@ -425,17 +459,18 @@ func (f_ FXTemporalScalerDescriptor) RequiresSynchronousInitialization() bool {
 }
 
 
-// SetRequiresSynchronousInitialization sets the value of the requiresSynchronousInitialization property.
 // A Boolean value that indicates whether MetalFX compiles a temporal scaling effect’s underlying upscaler as it creates the instance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/requiresSynchronousInitialization
 func (f_ FXTemporalScalerDescriptor) SetRequiresSynchronousInitialization(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRequiresSynchronousInitialization:"), value)
 }
 
+
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
 func (f_ FXTemporalScalerDescriptor) IsAutoExposureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isAutoExposureEnabled"))
@@ -443,17 +478,18 @@ func (f_ FXTemporalScalerDescriptor) IsAutoExposureEnabled() bool {
 }
 
 
-// SetIsAutoExposureEnabled sets the value of the isAutoExposureEnabled property.
 // A Boolean value that indicates whether MetalFX calculates the exposure for each frame.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isautoexposureenabled
 func (f_ FXTemporalScalerDescriptor) SetIsAutoExposureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsAutoExposureEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
 func (f_ FXTemporalScalerDescriptor) IsInputContentPropertiesEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isInputContentPropertiesEnabled"))
@@ -461,17 +497,18 @@ func (f_ FXTemporalScalerDescriptor) IsInputContentPropertiesEnabled() bool {
 }
 
 
-// SetIsInputContentPropertiesEnabled sets the value of the isInputContentPropertiesEnabled property.
 // A Boolean value that indicates whether the temporal scaler you create with this descriptor uses dynamic resolution.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isinputcontentpropertiesenabled
 func (f_ FXTemporalScalerDescriptor) SetIsInputContentPropertiesEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsInputContentPropertiesEnabled:"), value)
 }
 
+
 // A Boolean value that indicates whether a temporal scaler you create with the
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
 func (f_ FXTemporalScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isReactiveMaskTextureEnabled"))
@@ -479,10 +516,9 @@ func (f_ FXTemporalScalerDescriptor) IsReactiveMaskTextureEnabled() bool {
 }
 
 
-// SetIsReactiveMaskTextureEnabled sets the value of the isReactiveMaskTextureEnabled property.
 // A Boolean value that indicates whether a temporal scaler you create with the
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/isreactivemasktextureenabled
 func (f_ FXTemporalScalerDescriptor) SetIsReactiveMaskTextureEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReactiveMaskTextureEnabled:"), value)

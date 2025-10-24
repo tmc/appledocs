@@ -30,12 +30,18 @@ type _MediaPredicateClass struct {
 // An interface definition for the [MediaPredicate] class.
 type IMediaPredicate interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract class that defines classes for filtering media in a media query.
 //
 // In media queries, a is a statement of a logical condition that you want to test each media item against. The system returns the media items that satisfy the condition in the query result. Use this class’s concrete subclass, described in , to define the filter in a media query to retrieve a subset of media items from the library. For more information about media queries, see .
+
+
+// An abstract class that defines classes for filtering media in a media query.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPredicate
 type MediaPredicate struct {
 	objectivec.Object

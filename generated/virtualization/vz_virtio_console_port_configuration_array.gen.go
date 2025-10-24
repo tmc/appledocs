@@ -30,16 +30,22 @@ type _VZVirtioConsolePortConfigurationArrayClass struct {
 // An interface definition for the [VZVirtioConsolePortConfigurationArray] class.
 type IVZVirtioConsolePortConfigurationArray interface {
 	objectivec.IObject
+	// properties:
+	MaximumPortCount() uint32 /* not a class type */
+	SetMaximumPortCount(value uint32 /* not a class type */)
+	// methods:
 	SetObjectAtIndexedSubscript(configuration IVZVirtioConsolePortConfiguration, portIndex uint)
-	ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePortConfiguration
-	MaximumPortCount() uint32
-	SetMaximumPortCount(value Iuint32)
+	ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePortConfiguration
 }
 
 // A class that represents a collection of Virtio console port configurations.
 //
 // This array stores a collection of port configurations for a . The index in the array corresponds to the port index that the VM uses. You can set a value, but the value must be larger than the highest indexed port. If there’s no value set, the framework uses the value the highest indexed port.
+
+
+// A class that represents a collection of Virtio console port configurations.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray
 type VZVirtioConsolePortConfigurationArray struct {
 	objectivec.Object
@@ -84,35 +90,39 @@ func NewVZVirtioConsolePortConfigurationArray() VZVirtioConsolePortConfiguration
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/setObject:atIndexedSubscript:
 func (v_ VZVirtioConsolePortConfigurationArray) SetObjectAtIndexedSubscript(configuration IVZVirtioConsolePortConfiguration, portIndex uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setObject:atIndexedSubscript:"), configuration, portIndex)
 }
 
+
 // Returns the Virtio console port configuration as the specified index.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/subscript(_:)
-func (v_ VZVirtioConsolePortConfigurationArray) ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePortConfiguration {
+func (v_ VZVirtioConsolePortConfigurationArray) ObjectAtIndexedSubscript(portIndex uint) IVZVirtioConsolePortConfiguration {
 	rv := objc.Send[VZVirtioConsolePortConfiguration](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
 	return rv
 }
 
+
 // An unsigned integer that represents the maximum number of ports allocated by this device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/maximumPortCount
-func (v_ VZVirtioConsolePortConfigurationArray) MaximumPortCount() uint32 {
+func (v_ VZVirtioConsolePortConfigurationArray) MaximumPortCount() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](v_.ID, objc.Sel("maximumPortCount"))
 	return rv
 }
 
 
-// SetMaximumPortCount sets the value of the maximumPortCount property.
 // An unsigned integer that represents the maximum number of ports allocated by this device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/maximumPortCount
-func (v_ VZVirtioConsolePortConfigurationArray) SetMaximumPortCount(value Iuint32) {
+func (v_ VZVirtioConsolePortConfigurationArray) SetMaximumPortCount(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumPortCount:"), value)
 }
 

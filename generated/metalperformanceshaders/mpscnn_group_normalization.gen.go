@@ -29,22 +29,28 @@ type _CNNGroupNormalizationClass struct {
 
 // An interface definition for the [CNNGroupNormalization] class.
 type ICNNGroupNormalization interface {
-	objectivec.IObject
-	DataSource() unsafe.Pointer
-	SetDataSource(value unsafe.Pointer)
+	ICNNKernel
+	// properties:
+	DataSource() CNNGroupNormalizationDataSource /* not a class type */
+	SetDataSource(value CNNGroupNormalizationDataSource /* not a class type */)
 	Epsilon() float32
 	SetEpsilon(value float32)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalization
 type CNNGroupNormalization struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // CNNGroupNormalizationFrom constructs a [CNNGroupNormalization] from an unsafe.Pointer.
 func CNNGroupNormalizationFrom(ptr unsafe.Pointer) CNNGroupNormalization {
-	return CNNGroupNormalization{objectivec.Object{objc.ID(ptr)}}
+	return CNNGroupNormalization{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -79,7 +85,8 @@ func NewCNNGroupNormalization() CNNGroupNormalization {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalization/init(device:dataSource:)
 func NewCNNGroupNormalizationWithDeviceDataSource(device objectivec.IObject, dataSource objectivec.IObject) CNNGroupNormalization {
 	instance := getCNNGroupNormalizationClass().Alloc()
@@ -89,22 +96,23 @@ func NewCNNGroupNormalizationWithDeviceDataSource(device objectivec.IObject, dat
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/datasource
-func (c_ CNNGroupNormalization) DataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataSource"))
+func (c_ CNNGroupNormalization) DataSource() CNNGroupNormalizationDataSource /* not a class type */ {
+	rv := objc.Send[CNNGroupNormalizationDataSource](c_.ID, objc.Sel("dataSource"))
 	return rv
 }
 
 
-// SetDataSource sets the value of the dataSource property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/datasource
-func (c_ CNNGroupNormalization) SetDataSource(value unsafe.Pointer) {
+func (c_ CNNGroupNormalization) SetDataSource(value CNNGroupNormalizationDataSource /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
 func (c_ CNNGroupNormalization) Epsilon() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("epsilon"))
@@ -112,8 +120,7 @@ func (c_ CNNGroupNormalization) Epsilon() float32 {
 }
 
 
-// SetEpsilon sets the value of the epsilon property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization/epsilon
 func (c_ CNNGroupNormalization) SetEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEpsilon:"), value)

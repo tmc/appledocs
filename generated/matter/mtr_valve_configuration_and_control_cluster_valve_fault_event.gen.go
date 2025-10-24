@@ -31,11 +31,15 @@ type _MTRValveConfigurationAndControlClusterValveFaultEventClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterValveFaultEvent] class.
 type IMTRValveConfigurationAndControlClusterValveFaultEvent interface {
 	objectivec.IObject
-	ValveFault() foundation.Number
-	SetValveFault(value foundation.INumber)
+	// properties:
+	ValveFault() objc.IObject /* cross-framework: NSNumber */
+	SetValveFault(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterValveFaultEvent
 type MTRValveConfigurationAndControlClusterValveFaultEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRValveConfigurationAndControlClusterValveFaultEvent() MTRValveConfigur
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
-func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("valveFault"))
+func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("valveFault"))
 	return rv
 }
 
 
-// SetValveFault sets the value of the valveFault property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
-func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveFault:"), value)
 }
 

@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CSLocalizedString] class.
@@ -94,7 +94,7 @@ func NewCSLocalizedString() CSLocalizedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/init(localizedStrings:)
-func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObject) CSLocalizedString {
+func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objc.IObject /* cross-framework: NSDictionary */) CSLocalizedString {
 	instance := getCSLocalizedStringClass().Alloc()
 	rv := objc.Send[CSLocalizedString](instance.ID, objc.Sel("initWithLocalizedStrings:"), localizedStrings)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObjec
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/localizedString()
 func (c_ CSLocalizedString) LocalizedString() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](c_.ID, objc.Sel("localizedString"))
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("localizedString"))
 	return rv
 }
 

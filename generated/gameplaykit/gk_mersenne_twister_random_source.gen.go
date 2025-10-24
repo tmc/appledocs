@@ -30,8 +30,8 @@ type _MersenneTwisterRandomSourceClass struct {
 type IMersenneTwisterRandomSource interface {
 	IRandomSource
 	// properties:
-	Seed() uint64 /* primitive/slice/pointer. */
-	SetSeed(value uint64 /* primitive/slice/pointer. */)
+	Seed() uint64
+	SetSeed(value uint64)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewMersenneTwisterRandomSource() MersenneTwisterRandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/init(seed:)
-func NewMersenneTwisterRandomSourceWithSeed(seed uint64 /* primitive/slice/pointer. */) MersenneTwisterRandomSource {
+func NewMersenneTwisterRandomSourceWithSeed(seed uint64) MersenneTwisterRandomSource {
 	instance := getMersenneTwisterRandomSourceClass().Alloc()
 	rv := objc.Send[MersenneTwisterRandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewMersenneTwisterRandomSourceWithSeed(seed uint64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/seed
-func (m_ MersenneTwisterRandomSource) Seed() uint64 /* primitive/slice/pointer. */ {
+func (m_ MersenneTwisterRandomSource) Seed() uint64 {
 	rv := objc.Send[uint64](m_.ID, objc.Sel("seed"))
 	return rv
 }
@@ -117,7 +117,7 @@ func (m_ MersenneTwisterRandomSource) Seed() uint64 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMersenneTwisterRandomSource/seed
-func (m_ MersenneTwisterRandomSource) SetSeed(value uint64 /* primitive/slice/pointer. */) {
+func (m_ MersenneTwisterRandomSource) SetSeed(value uint64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSeed:"), value)
 }
 

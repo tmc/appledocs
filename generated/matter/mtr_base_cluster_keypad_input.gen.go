@@ -29,9 +29,13 @@ type _MTRBaseClusterKeypadInputClass struct {
 // An interface definition for the [MTRBaseClusterKeypadInput] class.
 type IMTRBaseClusterKeypadInput interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterKeypadInput
 type MTRBaseClusterKeypadInput struct {
 	MTRGenericBaseCluster

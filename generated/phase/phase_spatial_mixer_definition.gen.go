@@ -29,19 +29,26 @@ type _PHASESpatialMixerDefinitionClass struct {
 // An interface definition for the [PHASESpatialMixerDefinition] class.
 type IPHASESpatialMixerDefinition interface {
 	IPHASEMixerDefinition
-	DistanceModelParameters() PHASEDistanceModelParameters
+	// properties:
+	DistanceModelParameters() IPHASEDistanceModelParameters
 	SetDistanceModelParameters(value IPHASEDistanceModelParameters)
-	ListenerDirectivityModelParameters() PHASEDirectivityModelParameters
+	ListenerDirectivityModelParameters() IPHASEDirectivityModelParameters
 	SetListenerDirectivityModelParameters(value IPHASEDirectivityModelParameters)
-	SpatialPipeline() PHASESpatialPipeline
-	SourceDirectivityModelParameters() PHASEDirectivityModelParameters
+	SourceDirectivityModelParameters() IPHASEDirectivityModelParameters
 	SetSourceDirectivityModelParameters(value IPHASEDirectivityModelParameters)
+	SpatialPipeline() IPHASESpatialPipeline
+	SetSpatialPipeline(value IPHASESpatialPipeline)
+	// methods:
 }
 
 // An audio-layering object that produces environmental effects and plays sound with a 3D position and orientation.
 //
 // This class enables the app to define a relationship between a source and listener in six degrees of freedom: orientation (roll, pitch, yaw) and a 3D position (x, y, z). The framework plays back an audio source with (see ), direct path transmission effects and any combination of environmental effects, such as reverb (see ), and directivity (see ).  The result enables an app to implement directive point or omnidirectional sound sources — with or without direction, respectively — and volumetric sources with a defined shape. For a walkthrough of spatial mixing, see .
+
+
+// An audio-layering object that produces environmental effects and plays sound with a 3D position and orientation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition
 type PHASESpatialMixerDefinition struct {
 	PHASEMixerDefinition
@@ -88,66 +95,80 @@ func NewPHASESpatialMixerDefinition() PHASESpatialMixerDefinition {
 }
 
 
+
 // An effect that changes sound as it carries over a distance.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/distanceModelParameters
-func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() PHASEDistanceModelParameters {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
+func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() IPHASEDistanceModelParameters {
 	rv := objc.Send[PHASEDistanceModelParameters](p_.ID, objc.Sel("distanceModelParameters"))
 	return rv
 }
 
 
-// SetDistanceModelParameters sets the value of the distanceModelParameters property.
 // An effect that changes sound as it carries over a distance.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/distanceModelParameters
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
 func (p_ PHASESpatialMixerDefinition) SetDistanceModelParameters(value IPHASEDistanceModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
 }
 
+
 // A data set that determines how well the listener hears depending on its direction relative to a sound source.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/listenerDirectivityModelParameters
-func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() PHASEDirectivityModelParameters {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/listenerdirectivitymodelparameters
+func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() IPHASEDirectivityModelParameters {
 	rv := objc.Send[PHASEDirectivityModelParameters](p_.ID, objc.Sel("listenerDirectivityModelParameters"))
 	return rv
 }
 
 
-// SetListenerDirectivityModelParameters sets the value of the listenerDirectivityModelParameters property.
 // A data set that determines how well the listener hears depending on its direction relative to a sound source.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/listenerDirectivityModelParameters
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/listenerdirectivitymodelparameters
 func (p_ PHASESpatialMixerDefinition) SetListenerDirectivityModelParameters(value IPHASEDirectivityModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setListenerDirectivityModelParameters:"), value)
 }
 
-// An object that adds sound layers for environmental effects.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/spatialPipeline
-func (p_ PHASESpatialMixerDefinition) SpatialPipeline() PHASESpatialPipeline {
-	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
-	return rv
-}
 
 // A data set that directs sound such that it’s louder when directed at the listener.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
-func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() PHASEDirectivityModelParameters {
+func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() IPHASEDirectivityModelParameters {
 	rv := objc.Send[PHASEDirectivityModelParameters](p_.ID, objc.Sel("sourceDirectivityModelParameters"))
 	return rv
 }
 
 
-// SetSourceDirectivityModelParameters sets the value of the sourceDirectivityModelParameters property.
 // A data set that directs sound such that it’s louder when directed at the listener.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
 func (p_ PHASESpatialMixerDefinition) SetSourceDirectivityModelParameters(value IPHASEDirectivityModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceDirectivityModelParameters:"), value)
+}
+
+
+// An object that adds sound layers for environmental effects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialMixerDefinition) SpatialPipeline() IPHASESpatialPipeline {
+	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
+	return rv
+}
+
+
+// An object that adds sound layers for environmental effects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
+func (p_ PHASESpatialMixerDefinition) SetSpatialPipeline(value IPHASESpatialPipeline) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
 }
 
 

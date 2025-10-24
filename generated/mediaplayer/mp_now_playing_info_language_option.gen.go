@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,25 @@ type _NowPlayingInfoLanguageOptionClass struct {
 // An interface definition for the [NowPlayingInfoLanguageOption] class.
 type INowPlayingInfoLanguageOption interface {
 	objectivec.IObject
-	IsAutomaticAudibleLanguageOption() bool
-	IsAutomaticLegibleLanguageOption() bool
-	DisplayName() string
-	Identifier() string
+	// properties:
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: NSString */
 	LanguageOptionCharacteristics() []string
 	LanguageOptionType() NowPlayingInfoLanguageOptionType
-	LanguageTag() string
+	LanguageTag() objc.IObject /* cross-framework: NSString */
+	// methods:
+	IsAutomaticAudibleLanguageOption() bool
+	IsAutomaticLegibleLanguageOption() bool
 }
 
 // A set of interfaces for setting the language option for the Now Playing item.
 //
 // The and classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+
+
+// A set of interfaces for setting the language option for the Now Playing item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption
 type NowPlayingInfoLanguageOption struct {
 	objectivec.Object
@@ -88,71 +95,85 @@ func NewNowPlayingInfoLanguageOption() NowPlayingInfoLanguageOption {
 
 
 
-
 // Creates a single language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/init(type:languageTag:characteristics:displayName:identifier:)
-func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(languageOptionType NowPlayingInfoLanguageOptionType, languageTag string, languageOptionCharacteristics []string, displayName string, identifier string) NowPlayingInfoLanguageOption {
+func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(languageOptionType NowPlayingInfoLanguageOptionType, languageTag objc.IObject /* cross-framework: NSString */, languageOptionCharacteristics []string, displayName objc.IObject /* cross-framework: NSString */, identifier objc.IObject /* cross-framework: NSString */) NowPlayingInfoLanguageOption {
 	instance := getNowPlayingInfoLanguageOptionClass().Alloc()
-	rv := objc.Send[NowPlayingInfoLanguageOption](instance.ID, objc.Sel("initWithType:languageTag:characteristics:displayName:identifier:"), languageOptionType, objc.String(languageTag), languageOptionCharacteristics, objc.String(displayName), objc.String(identifier))
+	rv := objc.Send[NowPlayingInfoLanguageOption](instance.ID, objc.Sel("initWithType:languageTag:characteristics:displayName:identifier:"), languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // Returns a Boolean value that determines whether to use the best audible language option based on the system preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/isAutomaticAudibleLanguageOption()
 func (n_ NowPlayingInfoLanguageOption) IsAutomaticAudibleLanguageOption() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isAutomaticAudibleLanguageOption"))
 	return rv
 }
 
+
 // Returns a Boolean value that determines whether to use the best legible language option based on the system preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/isAutomaticLegibleLanguageOption()
 func (n_ NowPlayingInfoLanguageOption) IsAutomaticLegibleLanguageOption() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isAutomaticLegibleLanguageOption"))
 	return rv
 }
 
+
 // The display name for a language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/displayName
-func (n_ NowPlayingInfoLanguageOption) DisplayName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("displayName"))
+func (n_ NowPlayingInfoLanguageOption) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("displayName"))
 	return rv
 }
+
 
 // The unique identifier for the language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/identifier
-func (n_ NowPlayingInfoLanguageOption) Identifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
+func (n_ NowPlayingInfoLanguageOption) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // The characteristics that describe the content of the language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageOptionCharacteristics
 func (n_ NowPlayingInfoLanguageOption) LanguageOptionCharacteristics() []string {
 	rv := objc.Send[[]string](n_.ID, objc.Sel("languageOptionCharacteristics"))
 	return rv
 }
 
+
 // The type of language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageOptionType
 func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() NowPlayingInfoLanguageOptionType {
 	rv := objc.Send[NowPlayingInfoLanguageOptionType](n_.ID, objc.Sel("languageOptionType"))
 	return rv
 }
 
+
 // The abbreviated language code for the language option.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageTag
-func (n_ NowPlayingInfoLanguageOption) LanguageTag() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("languageTag"))
+func (n_ NowPlayingInfoLanguageOption) LanguageTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("languageTag"))
 	return rv
 }
 

@@ -31,15 +31,19 @@ type _MTRChannelClusterChangeChannelResponseParamsClass struct {
 // An interface definition for the [MTRChannelClusterChangeChannelResponseParams] class.
 type IMTRChannelClusterChangeChannelResponseParams interface {
 	objectivec.IObject
-	Data() string
-	SetData(value string)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: NSString */
+	SetData(value objc.IObject /* cross-framework: NSString */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChangeChannelResponseParams
 type MTRChannelClusterChangeChannelResponseParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRChannelClusterChangeChannelResponseParams() MTRChannelClusterChangeCh
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
-func (m_ MTRChannelClusterChangeChannelResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRChannelClusterChangeChannelResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
-func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
-func (m_ MTRChannelClusterChangeChannelResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRChannelClusterChangeChannelResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
-func (m_ MTRChannelClusterChangeChannelResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterChangeChannelResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRChannelClusterChangeChannelResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

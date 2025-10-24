@@ -31,17 +31,21 @@ type _MTROperationalCredentialsClusterAddTrustedRootCertificateParamsClass struc
 // An interface definition for the [MTROperationalCredentialsClusterAddTrustedRootCertificateParams] class.
 type IMTROperationalCredentialsClusterAddTrustedRootCertificateParams interface {
 	objectivec.IObject
-	RootCACertificate() foundation.Data
-	SetRootCACertificate(value foundation.IData)
-	RootCertificate() foundation.Data
-	SetRootCertificate(value foundation.IData)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	RootCACertificate() objc.IObject /* cross-framework: Data */
+	SetRootCACertificate(value objc.IObject /* cross-framework: Data */)
+	RootCertificate() objc.IObject /* cross-framework: Data */
+	SetRootCertificate(value objc.IObject /* cross-framework: Data */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCredentialsClusterAddTrustedRootCertificateParams
 type MTROperationalCredentialsClusterAddTrustedRootCertificateParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROperationalCredentialsClusterAddTrustedRootCertificateParams() MTROpe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/rootcacertificate
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) RootCACertificate() foundation.Data {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) RootCACertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCACertificate"))
 	return rv
 }
 
 
-// SetRootCACertificate sets the value of the rootCACertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/rootcacertificate
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetRootCACertificate(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetRootCACertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCACertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/rootcertificate
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) RootCertificate() foundation.Data {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) RootCertificate() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
 
-// SetRootCertificate sets the value of the rootCertificate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/rootcertificate
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetRootCertificate(value foundation.IData) {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetRootCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddtrustedrootcertificateparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROperationalCredentialsClusterAddTrustedRootCertificateParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

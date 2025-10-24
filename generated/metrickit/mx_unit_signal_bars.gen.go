@@ -30,14 +30,20 @@ type _MXUnitSignalBarsClass struct {
 // An interface definition for the [MXUnitSignalBars] class.
 type IMXUnitSignalBars interface {
 	foundation.IDimension
-	HistogrammedCellularConditionTime() MXUnitSignalBars
+	// properties:
+	HistogrammedCellularConditionTime() IMXUnitSignalBars
 	SetHistogrammedCellularConditionTime(value IMXUnitSignalBars)
+	// methods:
 }
 
 // A unit of measure for the number of bars of cellular network connectivity.
 //
 // Cellular connectivity measures the relative strength of the device’s signal reception in decibels, which usually falls in a range of 0 to -110. defines the base unit as bars corresponding to the bars in the cellular connection status icon at the top of a device screen.
+
+
+// A unit of measure for the number of bars of cellular network connectivity.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars
 type MXUnitSignalBars struct {
 	foundation.Dimension
@@ -84,34 +90,20 @@ func NewMXUnitSignalBars() MXUnitSignalBars {
 }
 
 
-// The number of bars of connectivity to the cellular network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
-func (mc _MXUnitSignalBarsClass) Bars() MXUnitSignalBars {
-	rv := objc.Send[MXUnitSignalBars](objc.ID(mc.class), objc.Sel("bars"))
-	return rv
-}
-// The number of bars of connectivity to the cellular network.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
-func (m_ MXUnitSignalBars) Bars() MXUnitSignalBars {
-	rv := objc.Send[MXUnitSignalBars](m_.ID, objc.Sel("bars"))
-	return rv
-}
 
 // An object representing the distribution of the different levels of connectivity to the cellular network.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
-func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() MXUnitSignalBars {
+func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() IMXUnitSignalBars {
 	rv := objc.Send[MXUnitSignalBars](m_.ID, objc.Sel("histogrammedCellularConditionTime"))
 	return rv
 }
 
 
-// SetHistogrammedCellularConditionTime sets the value of the histogrammedCellularConditionTime property.
 // An object representing the distribution of the different levels of connectivity to the cellular network.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
 func (m_ MXUnitSignalBars) SetHistogrammedCellularConditionTime(value IMXUnitSignalBars) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedCellularConditionTime:"), value)

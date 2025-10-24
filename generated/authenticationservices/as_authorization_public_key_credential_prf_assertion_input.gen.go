@@ -32,7 +32,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionInputClass struct {
 type IAuthorizationPublicKeyCredentialPRFAssertionInput interface {
 	objectivec.IObject
 	// properties:
-	PerCredentialInputValues() foundation.IDictionary /* already interface */
+	PerCredentialInputValues() foundation.IDictionary
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInput() AuthorizationPublicK
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class/perCredentialInputValues
-func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() foundation.IDictionary /* already interface */ {
+func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("perCredentialInputValues"))
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +32,8 @@ type _CXCallDirectoryManagerClass struct {
 type ICXCallDirectoryManager interface {
 	objectivec.IObject
 	// properties:
-	CXErrorDomainCallDirectoryManager() string /* primitive/slice/pointer. */
+	CXErrorDomainCallDirectoryManager() objc.IObject /* cross-framework: NSString */
 	// methods:
-	GetEnabledStatusForExtensionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completion unsafe.Pointer)
-	OpenSettingsWithCompletionHandler(completion unsafe.Pointer)
-	ReloadExtensionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completion unsafe.Pointer)
 }
 
 // The programmatic interface to an object that manages a Call Directory app extension.
@@ -98,51 +96,13 @@ func (cc _CXCallDirectoryManagerClass) SharedInstance() CXCallDirectoryManager {
 	return rv
 }
 
-// Asynchronously returns the enabled status of the extension with the specified identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/getEnabledStatusForExtension(withIdentifier:completionHandler:)
-func (c_ CXCallDirectoryManager) GetEnabledStatusForExtensionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("getEnabledStatusForExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
-}
-
-
-// Opens the iOS Settings app and shows the Call Blocking & Identification settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/openSettings(completionHandler:)
-func (c_ CXCallDirectoryManager) OpenSettingsWithCompletionHandler(completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("openSettingsWithCompletionHandler:"), completion)
-}
-
-
-// Asynchronously reloads the extension with the specified identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/reloadExtension(withIdentifier:completionHandler:)
-func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reloadExtensionWithIdentifier:completionHandler:"), objc.String(identifier), completion)
-}
-
-
-// Returns the shared call directory manager instance for the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
-func (c_ CXCallDirectoryManager) SharedInstance() ICXCallDirectoryManager {
-	rv := objc.Send[CXCallDirectoryManager](c_.ID, objc.Sel("sharedInstance"))
-	return rv
-}
-
-
 // Domain for errors when interacting with a call directory manager.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager
-func (c_ CXCallDirectoryManager) CXErrorDomainCallDirectoryManager() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainCallDirectoryManager"))
+func (c_ CXCallDirectoryManager) CXErrorDomainCallDirectoryManager() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomainCallDirectoryManager"))
 	return rv
 }
-
 
 

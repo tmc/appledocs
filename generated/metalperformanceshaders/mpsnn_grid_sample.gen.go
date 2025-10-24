@@ -30,11 +30,15 @@ type _GridSampleClass struct {
 // An interface definition for the [GridSample] class.
 type IGridSample interface {
 	ICNNBinaryKernel
+	// properties:
 	UseGridValueAsInputCoordinate() bool
 	SetUseGridValueAsInputCoordinate(value bool)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGridSample
 type GridSample struct {
 	CNNBinaryKernel
@@ -79,7 +83,8 @@ func NewGridSample() GridSample {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGridSample/init(device:)
 func NewGridSampleWithDevice(device objectivec.IObject) GridSample {
 	instance := getGridSampleClass().Alloc()
@@ -89,7 +94,8 @@ func NewGridSampleWithDevice(device objectivec.IObject) GridSample {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample/usegridvalueasinputcoordinate
 func (g_ GridSample) UseGridValueAsInputCoordinate() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("useGridValueAsInputCoordinate"))
@@ -97,8 +103,7 @@ func (g_ GridSample) UseGridValueAsInputCoordinate() bool {
 }
 
 
-// SetUseGridValueAsInputCoordinate sets the value of the useGridValueAsInputCoordinate property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample/usegridvalueasinputcoordinate
 func (g_ GridSample) SetUseGridValueAsInputCoordinate(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUseGridValueAsInputCoordinate:"), value)

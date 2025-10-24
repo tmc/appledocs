@@ -32,7 +32,7 @@ type _AuthorizationPublicKeyCredentialPRFRegistrationOutputClass struct {
 type IAuthorizationPublicKeyCredentialPRFRegistrationOutput interface {
 	objectivec.IObject
 	// properties:
-	First() foundation.objc.IObject /* cross-framework: NSData */
+	First() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationOutput() AuthorizationPub
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput-c.class/first
-func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) First() foundation.objc.IObject /* cross-framework: NSData */ {
+func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) First() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("first"))
 	return rv
 }

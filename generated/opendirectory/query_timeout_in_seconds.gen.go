@@ -30,9 +30,13 @@ type _queryTimeoutInSecondsClass struct {
 // An interface definition for the [queryTimeoutInSeconds] class.
 type IqueryTimeoutInSeconds interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/queryTimeoutInSeconds-c.ivar
 type queryTimeoutInSeconds struct {
 	objectivec.Object

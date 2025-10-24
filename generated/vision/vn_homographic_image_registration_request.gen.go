@@ -29,15 +29,21 @@ type _HomographicImageRegistrationRequestClass struct {
 // An interface definition for the [HomographicImageRegistrationRequest] class.
 type IHomographicImageRegistrationRequest interface {
 	IImageRegistrationRequest
-	Results() VNImageHomographicAlignmentObservation
+	// properties:
+	Results() IVNImageHomographicAlignmentObservation
 	SetResults(value IVNImageHomographicAlignmentObservation)
 	VNHomographicImageRegistrationRequestRevision1() int
+	// methods:
 }
 
 // An image-analysis request that determines the perspective warp matrix necessary to align the content of two images.
 //
 // Create and perform a homographic image registration request to align content in two images through a homography. A is an isomorphism of projected spaces, a bijection that maps lines to lines.
+
+
+// An image-analysis request that determines the perspective warp matrix necessary to align the content of two images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHomographicImageRegistrationRequest
 type HomographicImageRegistrationRequest struct {
 	ImageRegistrationRequest
@@ -84,26 +90,29 @@ func NewHomographicImageRegistrationRequest() HomographicImageRegistrationReques
 }
 
 
+
 // The results of the image registration request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
-func (h_ HomographicImageRegistrationRequest) Results() VNImageHomographicAlignmentObservation {
-	rv := objc.Send[VNImageHomographicAlignmentObservation](h_.ID, objc.Sel("results"))
+func (h_ HomographicImageRegistrationRequest) Results() IVNImageHomographicAlignmentObservation {
+	rv := objc.Send[ImageHomographicAlignmentObservation](h_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the image registration request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
 func (h_ HomographicImageRegistrationRequest) SetResults(value IVNImageHomographicAlignmentObservation) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the homographic image registration request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequestrevision1
 func (h_ HomographicImageRegistrationRequest) VNHomographicImageRegistrationRequestRevision1() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("VNHomographicImageRegistrationRequestRevision1"))

@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterDryRunningEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterDryRunningEvent] class.
 type IMTRPumpConfigurationAndControlClusterDryRunningEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterDryRunningEvent
 type MTRPumpConfigurationAndControlClusterDryRunningEvent struct {
 	objectivec.Object

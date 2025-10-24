@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ForceFeedback without requiring cgo.
-
-// Control force feedback devices attached to the system. Develop plug-ins that enable communication with force feedback hardware.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ForceFeedback
+// See: https://developer.apple.com/documentation/ForceFeedback
 package forcefeedback
 
 import (

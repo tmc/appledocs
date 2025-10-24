@@ -107,7 +107,7 @@ func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/parentWindow
 func (d_ DialogController) ParentWindow() objc.IObject /* cross-framework: Window */ {
-	rv := objc.Send[Window](d_.ID, objc.Sel("parentWindow"))
+	rv := objc.Send[appkit.Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 

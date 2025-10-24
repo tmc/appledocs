@@ -31,15 +31,19 @@ type _MTRApplicationLauncherClusterStopAppParamsClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterStopAppParams] class.
 type IMTRApplicationLauncherClusterStopAppParams interface {
 	objectivec.IObject
-	Application() MTRApplicationLauncherClusterApplicationStruct
+	// properties:
+	Application() IMTRApplicationLauncherClusterApplicationStruct
 	SetApplication(value IMTRApplicationLauncherClusterApplicationStruct)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterStopAppParams
 type MTRApplicationLauncherClusterStopAppParams struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRApplicationLauncherClusterStopAppParams() MTRApplicationLauncherClust
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/application
-func (m_ MTRApplicationLauncherClusterStopAppParams) Application() MTRApplicationLauncherClusterApplicationStruct {
+func (m_ MTRApplicationLauncherClusterStopAppParams) Application() IMTRApplicationLauncherClusterApplicationStruct {
 	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
 
-// SetApplication sets the value of the application property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/application
 func (m_ MTRApplicationLauncherClusterStopAppParams) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterStopAppParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRApplicationLauncherClusterStopAppParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterStopAppParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterStopAppParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterStopAppParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRApplicationLauncherClusterStopAppParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterStopAppParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterStopAppParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

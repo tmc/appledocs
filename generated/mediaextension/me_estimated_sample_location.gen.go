@@ -30,14 +30,20 @@ type _MEEstimatedSampleLocationClass struct {
 // An interface definition for the [MEEstimatedSampleLocation] class.
 type IMEEstimatedSampleLocation interface {
 	objectivec.IObject
-	ByteSource() MEByteSource
-	EstimatedSampleLocation() unsafe.Pointer
-	RefinementDataLocation() unsafe.Pointer
-	SetRefinementDataLocation(value unsafe.Pointer)
+	// properties:
+	EstimatedSampleLocation() SampleCursorStorageRange /* not a class type */
+	RefinementDataLocation() SampleCursorStorageRange /* not a class type */
+	ByteSource() IMEByteSource
+	SetByteSource(value IMEByteSource)
+	// methods:
 }
 
 // An object that provides information about the estimated sample location with the media.
+
+
+// An object that provides information about the estimated sample location with the media.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation
 type MEEstimatedSampleLocation struct {
 	objectivec.Object
@@ -82,39 +88,56 @@ func NewMEEstimatedSampleLocation() MEEstimatedSampleLocation {
 }
 
 
+
+// Creates an estimated sample location object with the byte source, sample location, and data location that you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/init(byteSource:estimatedSampleLocation:refinementDataLocation:)
+func NewMEEstimatedSampleLocationWithByteSourceEstimatedSampleLocationRefinementDataLocation(byteSource IMEByteSource, estimatedSampleLocation SampleCursorStorageRange /* not a class type */, refinementDataLocation SampleCursorStorageRange /* not a class type */) MEEstimatedSampleLocation {
+	instance := getMEEstimatedSampleLocationClass().Alloc()
+	rv := objc.Send[MEEstimatedSampleLocation](instance.ID, objc.Sel("initWithByteSource:estimatedSampleLocation:refinementDataLocation:"), byteSource, estimatedSampleLocation, refinementDataLocation)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The estimated starting file offset and size in bytes of the sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/estimatedSampleLocation
+func (m_ MEEstimatedSampleLocation) EstimatedSampleLocation() SampleCursorStorageRange /* not a class type */ {
+	rv := objc.Send[SampleCursorStorageRange](m_.ID, objc.Sel("estimatedSampleLocation"))
+	return rv
+}
+
+
+// The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/refinementDataLocation
+func (m_ MEEstimatedSampleLocation) RefinementDataLocation() SampleCursorStorageRange /* not a class type */ {
+	rv := objc.Send[SampleCursorStorageRange](m_.ID, objc.Sel("refinementDataLocation"))
+	return rv
+}
+
+
 // The byte source to use to read the data for the sample.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/byteSource
-func (m_ MEEstimatedSampleLocation) ByteSource() MEByteSource {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/bytesource
+func (m_ MEEstimatedSampleLocation) ByteSource() IMEByteSource {
 	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
 }
 
-// The estimated starting file offset and size in bytes of the sample.
+
+// The byte source to use to read the data for the sample.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/estimatedSampleLocation
-func (m_ MEEstimatedSampleLocation) EstimatedSampleLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("estimatedSampleLocation"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/bytesource
+func (m_ MEEstimatedSampleLocation) SetByteSource(value IMEByteSource) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setByteSource:"), value)
 }
-
-// The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
-func (m_ MEEstimatedSampleLocation) RefinementDataLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("refinementDataLocation"))
-	return rv
-}
-
-
-// SetRefinementDataLocation sets the value of the refinementDataLocation property.
-// The starting file offset and size in bytes of the data necessary to provide an accurate sample location.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation/refinementdatalocation
-func (m_ MEEstimatedSampleLocation) SetRefinementDataLocation(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRefinementDataLocation:"), value)
-}
-
 
 

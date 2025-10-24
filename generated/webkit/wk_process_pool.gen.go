@@ -30,14 +30,20 @@ type _ProcessPoolClass struct {
 // An interface definition for the [ProcessPool] class.
 type IProcessPool interface {
 	objectivec.IObject
-	ProcessPool() WKProcessPool
+	// properties:
+	ProcessPool() IWKProcessPool
 	SetProcessPool(value IWKProcessPool)
+	// methods:
 }
 
 // An opaque token that you use to run multiple web views in a single process.
 //
 // A object represents a single process that WebKit uses to manage web content. To provide a more secure and stable experience, WebKit renders the content of web views in separate processes, rather than in your app’s process space. By default, WebKit gives each web view its own process space until it reaches an implementation-defined process limit. After that, web views with the same object share the same web content process. If your app creates multiple web views, assign the same object to web views that may safely share a process space. Instantiate an instance of this class and assign it to the property of each web view’s object.
+
+
+// An opaque token that you use to run multiple web views in a single process.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKProcessPool
 type ProcessPool struct {
 	objectivec.Object
@@ -82,19 +88,20 @@ func NewProcessPool() ProcessPool {
 }
 
 
+
 // The object that coordinates the processes the web view uses to render its web content and execute scripts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool
-func (p_ ProcessPool) ProcessPool() WKProcessPool {
-	rv := objc.Send[WKProcessPool](p_.ID, objc.Sel("processPool"))
+func (p_ ProcessPool) ProcessPool() IWKProcessPool {
+	rv := objc.Send[ProcessPool](p_.ID, objc.Sel("processPool"))
 	return rv
 }
 
 
-// SetProcessPool sets the value of the processPool property.
 // The object that coordinates the processes the web view uses to render its web content and execute scripts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool
 func (p_ ProcessPool) SetProcessPool(value IWKProcessPool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessPool:"), value)

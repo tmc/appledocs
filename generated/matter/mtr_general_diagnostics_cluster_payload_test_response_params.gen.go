@@ -31,11 +31,15 @@ type _MTRGeneralDiagnosticsClusterPayloadTestResponseParamsClass struct {
 // An interface definition for the [MTRGeneralDiagnosticsClusterPayloadTestResponseParams] class.
 type IMTRGeneralDiagnosticsClusterPayloadTestResponseParams interface {
 	objectivec.IObject
-	Payload() foundation.NSData
-	SetPayload(value foundation.IData)
+	// properties:
+	Payload() objc.IObject /* cross-framework: NSData */
+	SetPayload(value objc.IObject /* cross-framework: NSData */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams
 type MTRGeneralDiagnosticsClusterPayloadTestResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParams() MTRGeneralDiagno
 
 
 
-
 // Initialize an MTRGeneralDiagnosticsClusterPayloadTestResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/init(responseValue:)
-func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRGeneralDiagnosticsClusterPayloadTestResponseParams {
+func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRGeneralDiagnosticsClusterPayloadTestResponseParams {
 	instance := getMTRGeneralDiagnosticsClusterPayloadTestResponseParamsClass().Alloc()
 	rv := objc.Send[MTRGeneralDiagnosticsClusterPayloadTestResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParamsWithResponseValueEr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/payload
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() foundation.NSData {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("payload"))
 	return rv
 }
 
 
-// SetPayload sets the value of the payload property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/payload
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) SetPayload(value foundation.IData) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) SetPayload(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayload:"), value)
 }
 

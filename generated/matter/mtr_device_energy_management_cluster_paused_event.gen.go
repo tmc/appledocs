@@ -30,9 +30,13 @@ type _MTRDeviceEnergyManagementClusterPausedEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPausedEvent] class.
 type IMTRDeviceEnergyManagementClusterPausedEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPausedEvent
 type MTRDeviceEnergyManagementClusterPausedEvent struct {
 	objectivec.Object

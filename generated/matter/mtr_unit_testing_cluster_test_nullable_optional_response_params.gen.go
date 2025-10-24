@@ -31,19 +31,23 @@ type _MTRUnitTestingClusterTestNullableOptionalResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestNullableOptionalResponseParams] class.
 type IMTRUnitTestingClusterTestNullableOptionalResponseParams interface {
 	objectivec.IObject
-	OriginalValue() foundation.Number
-	SetOriginalValue(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
-	WasNull() foundation.Number
-	SetWasNull(value foundation.INumber)
-	WasPresent() foundation.Number
-	SetWasPresent(value foundation.INumber)
+	// properties:
+	OriginalValue() objc.IObject /* cross-framework: NSNumber */
+	SetOriginalValue(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	WasNull() objc.IObject /* cross-framework: NSNumber */
+	SetWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	WasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestNullableOptionalResponseParams
 type MTRUnitTestingClusterTestNullableOptionalResponseParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRUnitTestingClusterTestNullableOptionalResponseParams() MTRUnitTesting
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/originalvalue
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) OriginalValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("originalValue"))
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) OriginalValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("originalValue"))
 	return rv
 }
 
 
-// SetOriginalValue sets the value of the originalValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/originalvalue
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetOriginalValue(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetOriginalValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/value
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/value
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetValue(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/wasnull
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) WasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wasNull"))
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) WasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("wasNull"))
 	return rv
 }
 
 
-// SetWasNull sets the value of the wasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/wasnull
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetWasNull(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/waspresent
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) WasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("wasPresent"))
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) WasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("wasPresent"))
 	return rv
 }
 
 
-// SetWasPresent sets the value of the wasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestnullableoptionalresponseparams/waspresent
-func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetWasPresent(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestNullableOptionalResponseParams) SetWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasPresent:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,12 +35,12 @@ type ICursor interface {
 	// properties:
 	HotSpot() objc.IObject /* cross-framework: Point */
 	Image() IImage
-	SetOnMouseEntered() bool /* primitive/slice/pointer. */
-	SetOnMouseExited() bool /* primitive/slice/pointer. */
-	IsSetOnMouseEntered() bool /* primitive/slice/pointer. */
-	SetIsSetOnMouseEntered(value bool /* primitive/slice/pointer. */)
-	IsSetOnMouseExited() bool /* primitive/slice/pointer. */
-	SetIsSetOnMouseExited(value bool /* primitive/slice/pointer. */)
+	SetOnMouseEntered() bool
+	SetOnMouseExited() bool
+	IsSetOnMouseEntered() bool
+	SetIsSetOnMouseEntered(value bool)
+	IsSetOnMouseExited() bool
+	SetIsSetOnMouseExited(value bool)
 	// methods:
 	Pop()
 	Push()
@@ -100,7 +102,7 @@ func NewCursor() Cursor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(coder:)
-func NewCursorWithCoder(coder objc.IObject /* cross-framework Coder */) Cursor {
+func NewCursorWithCoder(coder objc.IObject /* cross-framework: Coder */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -112,7 +114,7 @@ func NewCursorWithCoder(coder objc.IObject /* cross-framework Coder */) Cursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:foregroundColorHint:backgroundColorHint:hotSpot:)
-func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage IImage, fg IColor, bg IColor, hotSpot objc.IObject /* cross-framework Point */) Cursor {
+func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage IImage, fg IColor, bg IColor, hotSpot objc.IObject /* cross-framework: Point */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:"), newImage, fg, bg, hotSpot)
 	rv.Autorelease()
@@ -124,7 +126,7 @@ func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage II
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:hotSpot:)
-func NewCursorWithImageHotSpot(newImage IImage, point objc.IObject /* cross-framework Point */) Cursor {
+func NewCursorWithImageHotSpot(newImage IImage, point objc.IObject /* cross-framework: Point */) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:hotSpot:"), newImage, point)
 	rv.Autorelease()
@@ -185,7 +187,7 @@ func (cc _CursorClass) RowResizeCursorInDirections(directions VerticalDirections
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/setHiddenUntilMouseMoves(_:)
-func (cc _CursorClass) SetHiddenUntilMouseMoves(flag bool /* primitive/slice/pointer. */) {
+func (cc _CursorClass) SetHiddenUntilMouseMoves(flag bool) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setHiddenUntilMouseMoves:"), flag)
 }
 
@@ -547,7 +549,7 @@ func (c_ Cursor) DragLinkCursor() ICursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/hotSpot
 func (c_ Cursor) HotSpot() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](c_.ID, objc.Sel("hotSpot"))
+	rv := objc.Send[corefoundation.Point](c_.ID, objc.Sel("hotSpot"))
 	return rv
 }
 
@@ -586,7 +588,7 @@ func (c_ Cursor) Image() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/isSetOnMouseEntered
-func (c_ Cursor) SetOnMouseEntered() bool /* primitive/slice/pointer. */ {
+func (c_ Cursor) SetOnMouseEntered() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setOnMouseEntered"))
 	return rv
 }
@@ -596,7 +598,7 @@ func (c_ Cursor) SetOnMouseEntered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/isSetOnMouseExited
-func (c_ Cursor) SetOnMouseExited() bool /* primitive/slice/pointer. */ {
+func (c_ Cursor) SetOnMouseExited() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setOnMouseExited"))
 	return rv
 }
@@ -726,7 +728,7 @@ func (c_ Cursor) ZoomOutCursor() ICursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseentered
-func (c_ Cursor) IsSetOnMouseEntered() bool /* primitive/slice/pointer. */ {
+func (c_ Cursor) IsSetOnMouseEntered() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSetOnMouseEntered"))
 	return rv
 }
@@ -736,7 +738,7 @@ func (c_ Cursor) IsSetOnMouseEntered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseentered
-func (c_ Cursor) SetIsSetOnMouseEntered(value bool /* primitive/slice/pointer. */) {
+func (c_ Cursor) SetIsSetOnMouseEntered(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSetOnMouseEntered:"), value)
 }
 
@@ -745,7 +747,7 @@ func (c_ Cursor) SetIsSetOnMouseEntered(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseexited
-func (c_ Cursor) IsSetOnMouseExited() bool /* primitive/slice/pointer. */ {
+func (c_ Cursor) IsSetOnMouseExited() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSetOnMouseExited"))
 	return rv
 }
@@ -755,7 +757,7 @@ func (c_ Cursor) IsSetOnMouseExited() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/issetonmouseexited
-func (c_ Cursor) SetIsSetOnMouseExited(value bool /* primitive/slice/pointer. */) {
+func (c_ Cursor) SetIsSetOnMouseExited(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSetOnMouseExited:"), value)
 }
 

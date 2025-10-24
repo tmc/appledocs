@@ -31,16 +31,16 @@ type _NoiseMapClass struct {
 type INoiseMap interface {
 	objectivec.IObject
 	// properties:
-	Seamless() bool /* primitive/slice/pointer. */
+	Seamless() bool
 	Origin() unsafe.Pointer
 	SampleCount() unsafe.Pointer
 	Size() unsafe.Pointer
-	IsSeamless() bool /* primitive/slice/pointer. */
-	SetIsSeamless(value bool /* primitive/slice/pointer. */)
+	IsSeamless() bool
+	SetIsSeamless(value bool)
 	// methods:
-	InterpolatedValueAtPosition(position unsafe.Pointer) float32 /* primitive/slice/pointer. */
-	SetValueAtPosition(value float32 /* primitive/slice/pointer. */, position unsafe.Pointer)
-	ValueAtPosition(position unsafe.Pointer) float32 /* primitive/slice/pointer. */
+	InterpolatedValueAtPosition(position unsafe.Pointer) float32
+	SetValueAtPosition(value float32, position unsafe.Pointer)
+	ValueAtPosition(position unsafe.Pointer) float32
 }
 
 // A sample of procedural noise data from which you can read noise values directly or create noise textures.
@@ -112,7 +112,7 @@ func NewNoiseMapWithNoise(noise IGKNoise) NoiseMap {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/init(_:size:origin:sampleCount:seamless:)
-func NewNoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool /* primitive/slice/pointer. */) NoiseMap {
+func NewNoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) NoiseMap {
 	instance := getNoiseMapClass().Alloc()
 	rv := objc.Send[NoiseMap](instance.ID, objc.Sel("initWithNoise:size:origin:sampleCount:seamless:"), noise, size, origin, sampleCount, seamless)
 	rv.Autorelease()
@@ -135,7 +135,7 @@ func (nc _NoiseMapClass) NoiseMapWithNoise(noise IGKNoise) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/noiseMapWithNoise:size:origin:sampleCount:seamless:
-func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool /* primitive/slice/pointer. */) unsafe.Pointer {
+func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseMapWithNoise:size:origin:sampleCount:seamless:"), noise, size, origin, sampleCount, seamless)
 	return rv
 }
@@ -145,7 +145,7 @@ func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/interpolatedValue(at:)
-func (n_ NoiseMap) InterpolatedValueAtPosition(position unsafe.Pointer) float32 /* primitive/slice/pointer. */ {
+func (n_ NoiseMap) InterpolatedValueAtPosition(position unsafe.Pointer) float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("interpolatedValueAtPosition:"), position)
 	return rv
 }
@@ -155,7 +155,7 @@ func (n_ NoiseMap) InterpolatedValueAtPosition(position unsafe.Pointer) float32 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/setValue(_:at:)
-func (n_ NoiseMap) SetValueAtPosition(value float32 /* primitive/slice/pointer. */, position unsafe.Pointer) {
+func (n_ NoiseMap) SetValueAtPosition(value float32, position unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setValue:atPosition:"), value, position)
 }
 
@@ -164,7 +164,7 @@ func (n_ NoiseMap) SetValueAtPosition(value float32 /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/value(at:)
-func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) float32 /* primitive/slice/pointer. */ {
+func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) float32 {
 	rv := objc.Send[float32](n_.ID, objc.Sel("valueAtPosition:"), position)
 	return rv
 }
@@ -174,7 +174,7 @@ func (n_ NoiseMap) ValueAtPosition(position unsafe.Pointer) float32 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/isSeamless
-func (n_ NoiseMap) Seamless() bool /* primitive/slice/pointer. */ {
+func (n_ NoiseMap) Seamless() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("seamless"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (n_ NoiseMap) Size() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gknoisemap/isseamless
-func (n_ NoiseMap) IsSeamless() bool /* primitive/slice/pointer. */ {
+func (n_ NoiseMap) IsSeamless() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isSeamless"))
 	return rv
 }
@@ -224,7 +224,7 @@ func (n_ NoiseMap) IsSeamless() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gknoisemap/isseamless
-func (n_ NoiseMap) SetIsSeamless(value bool /* primitive/slice/pointer. */) {
+func (n_ NoiseMap) SetIsSeamless(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsSeamless:"), value)
 }
 

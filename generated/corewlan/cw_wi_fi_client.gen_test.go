@@ -15,4 +15,27 @@ func ExampleNewCWWiFiClient() {
 	_ = corewlan.NewCWWiFiClient()
 	// Output:
 }
+// ExampleCWWiFiClient_Interface demonstrates using Interface on a CWWiFiClient instance.
+// Returns the default Wi-Fi interface.
+func ExampleCWWiFiClient_Interface() {
+	obj := corewlan.NewCWWiFiClient()
+	_ = obj.Interface()
+	// Output:
+	}
+
+// ExampleCWWiFiClient_InterfaceNames demonstrates using InterfaceNames on a CWWiFiClient instance.
+func ExampleCWWiFiClient_InterfaceNames() {
+	obj := corewlan.NewCWWiFiClient()
+	_ = obj.InterfaceNames()
+	// Output:
+	}
+
+// ExampleCWWiFiClient_Interfaces demonstrates using Interfaces on a CWWiFiClient instance.
+// Returns all available Wi-Fi interfaces.
+func ExampleCWWiFiClient_Interfaces() {
+	obj := corewlan.NewCWWiFiClient()
+	_ = obj.Interfaces()
+	// Output:
+	}
+
 

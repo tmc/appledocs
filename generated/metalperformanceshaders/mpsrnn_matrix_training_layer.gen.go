@@ -29,6 +29,7 @@ type _RNNMatrixTrainingLayerClass struct {
 // An interface definition for the [RNNMatrixTrainingLayer] class.
 type IRNNMatrixTrainingLayer interface {
 	IKernel
+	// properties:
 	AccumulateWeightGradients() bool
 	SetAccumulateWeightGradients(value bool)
 	InputFeatureChannels() int
@@ -41,10 +42,15 @@ type IRNNMatrixTrainingLayer interface {
 	SetStoreAllIntermediateStates(value bool)
 	TrainingStateIsTemporary() bool
 	SetTrainingStateIsTemporary(value bool)
+	// methods:
 }
 
 // A layer for training recurrent neural networks on Metal Performance Shaders matrices.
+
+
+// A layer for training recurrent neural networks on Metal Performance Shaders matrices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRNNMatrixTrainingLayer
 type RNNMatrixTrainingLayer struct {
 	Kernel
@@ -91,7 +97,8 @@ func NewRNNMatrixTrainingLayer() RNNMatrixTrainingLayer {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
 func (r_ RNNMatrixTrainingLayer) AccumulateWeightGradients() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("accumulateWeightGradients"))
@@ -99,14 +106,14 @@ func (r_ RNNMatrixTrainingLayer) AccumulateWeightGradients() bool {
 }
 
 
-// SetAccumulateWeightGradients sets the value of the accumulateWeightGradients property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/accumulateweightgradients
 func (r_ RNNMatrixTrainingLayer) SetAccumulateWeightGradients(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAccumulateWeightGradients:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) InputFeatureChannels() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("inputFeatureChannels"))
@@ -114,14 +121,14 @@ func (r_ RNNMatrixTrainingLayer) InputFeatureChannels() int {
 }
 
 
-// SetInputFeatureChannels sets the value of the inputFeatureChannels property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/inputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) SetInputFeatureChannels(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInputFeatureChannels:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) OutputFeatureChannels() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("outputFeatureChannels"))
@@ -129,14 +136,14 @@ func (r_ RNNMatrixTrainingLayer) OutputFeatureChannels() int {
 }
 
 
-// SetOutputFeatureChannels sets the value of the outputFeatureChannels property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/outputfeaturechannels
 func (r_ RNNMatrixTrainingLayer) SetOutputFeatureChannels(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOutputFeatureChannels:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/recurrentoutputistemporary
 func (r_ RNNMatrixTrainingLayer) RecurrentOutputIsTemporary() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("recurrentOutputIsTemporary"))
@@ -144,14 +151,14 @@ func (r_ RNNMatrixTrainingLayer) RecurrentOutputIsTemporary() bool {
 }
 
 
-// SetRecurrentOutputIsTemporary sets the value of the recurrentOutputIsTemporary property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/recurrentoutputistemporary
 func (r_ RNNMatrixTrainingLayer) SetRecurrentOutputIsTemporary(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRecurrentOutputIsTemporary:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/storeallintermediatestates
 func (r_ RNNMatrixTrainingLayer) StoreAllIntermediateStates() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("storeAllIntermediateStates"))
@@ -159,14 +166,14 @@ func (r_ RNNMatrixTrainingLayer) StoreAllIntermediateStates() bool {
 }
 
 
-// SetStoreAllIntermediateStates sets the value of the storeAllIntermediateStates property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/storeallintermediatestates
 func (r_ RNNMatrixTrainingLayer) SetStoreAllIntermediateStates(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStoreAllIntermediateStates:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/trainingstateistemporary
 func (r_ RNNMatrixTrainingLayer) TrainingStateIsTemporary() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trainingStateIsTemporary"))
@@ -174,8 +181,7 @@ func (r_ RNNMatrixTrainingLayer) TrainingStateIsTemporary() bool {
 }
 
 
-// SetTrainingStateIsTemporary sets the value of the trainingStateIsTemporary property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer/trainingstateistemporary
 func (r_ RNNMatrixTrainingLayer) SetTrainingStateIsTemporary(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTrainingStateIsTemporary:"), value)

@@ -29,14 +29,20 @@ type _VZVirtioSocketDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioSocketDeviceConfiguration] class.
 type IVZVirtioSocketDeviceConfiguration interface {
 	IVZSocketDeviceConfiguration
-	SocketDevices() VZSocketDeviceConfiguration
+	// properties:
+	SocketDevices() IVZSocketDeviceConfiguration
 	SetSocketDevices(value IVZSocketDeviceConfiguration)
+	// methods:
 }
 
 // A configuration object that requests the creation of a socket device to communicate with the guest system.
 //
 // Use a object to implement port-based communication between the guest operating system and the host computer. When you add this object to the property of your , the virtual machine provides a corresponding object to use to configure the ports. Add only one to your virtual machine’s configuration.
+
+
+// A configuration object that requests the creation of a socket device to communicate with the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDeviceConfiguration
 type VZVirtioSocketDeviceConfiguration struct {
 	VZSocketDeviceConfiguration
@@ -84,19 +90,20 @@ func NewVZVirtioSocketDeviceConfiguration() VZVirtioSocketDeviceConfiguration {
 
 
 
+
 // The socket device that you use to implement port-based communication with the guest operating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/socketdevices
-func (v_ VZVirtioSocketDeviceConfiguration) SocketDevices() VZSocketDeviceConfiguration {
+func (v_ VZVirtioSocketDeviceConfiguration) SocketDevices() IVZSocketDeviceConfiguration {
 	rv := objc.Send[VZSocketDeviceConfiguration](v_.ID, objc.Sel("socketDevices"))
 	return rv
 }
 
 
-// SetSocketDevices sets the value of the socketDevices property.
 // The socket device that you use to implement port-based communication with the guest operating system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/socketdevices
 func (v_ VZVirtioSocketDeviceConfiguration) SetSocketDevices(value IVZSocketDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)

@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	OSSystemExtensionProperties = _undefined // referenced in SystemExtensions
 	Set = _undefined // referenced in SystemExtensions
 )
 

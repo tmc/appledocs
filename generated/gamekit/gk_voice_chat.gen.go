@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,20 +32,20 @@ type _VoiceChatClass struct {
 type IVoiceChat interface {
 	objectivec.IObject
 	// properties:
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	PlayerIDs() string /* primitive/slice/pointer. */
-	SetPlayerIDs(value string /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	PlayerIDs() objc.IObject /* cross-framework: NSString */
+	SetPlayerIDs(value objc.IObject /* cross-framework: NSString */)
 	PlayerStateUpdateHandler() unsafe.Pointer
 	SetPlayerStateUpdateHandler(value unsafe.Pointer)
 	PlayerVoiceChatStateDidChangeHandler() unsafe.Pointer
 	SetPlayerVoiceChatStateDidChangeHandler(value unsafe.Pointer)
 	Players() IGKPlayer
 	SetPlayers(value IGKPlayer)
-	Volume() float32 /* primitive/slice/pointer. */
-	SetVolume(value float32 /* primitive/slice/pointer. */)
+	Volume() float32
+	SetVolume(value float32)
 	// methods:
 }
 
@@ -105,7 +106,7 @@ func NewVoiceChat() VoiceChat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat/isVoIPAllowed()
-func (vc _VoiceChatClass) IsVoIPAllowed() bool /* primitive/slice/pointer. */ {
+func (vc _VoiceChatClass) IsVoIPAllowed() bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("isVoIPAllowed"))
 	return rv
 }
@@ -115,7 +116,7 @@ func (vc _VoiceChatClass) IsVoIPAllowed() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
-func (v_ VoiceChat) IsActive() bool /* primitive/slice/pointer. */ {
+func (v_ VoiceChat) IsActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -125,7 +126,7 @@ func (v_ VoiceChat) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive
-func (v_ VoiceChat) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (v_ VoiceChat) SetIsActive(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -134,8 +135,8 @@ func (v_ VoiceChat) SetIsActive(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
-func (v_ VoiceChat) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VoiceChat) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -144,8 +145,8 @@ func (v_ VoiceChat) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/name
-func (v_ VoiceChat) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
+func (v_ VoiceChat) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -153,8 +154,8 @@ func (v_ VoiceChat) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
-func (v_ VoiceChat) PlayerIDs() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](v_.ID, objc.Sel("playerIDs"))
+func (v_ VoiceChat) PlayerIDs() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("playerIDs"))
 	return rv
 }
 
@@ -163,8 +164,8 @@ func (v_ VoiceChat) PlayerIDs() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/playerids
-func (v_ VoiceChat) SetPlayerIDs(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
+func (v_ VoiceChat) SetPlayerIDs(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPlayerIDs:"), value)
 }
 
 
@@ -229,7 +230,7 @@ func (v_ VoiceChat) SetPlayers(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
-func (v_ VoiceChat) Volume() float32 /* primitive/slice/pointer. */ {
+func (v_ VoiceChat) Volume() float32 {
 	rv := objc.Send[float32](v_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -239,7 +240,7 @@ func (v_ VoiceChat) Volume() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/volume
-func (v_ VoiceChat) SetVolume(value float32 /* primitive/slice/pointer. */) {
+func (v_ VoiceChat) SetVolume(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolume:"), value)
 }
 

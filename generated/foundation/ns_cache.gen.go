@@ -31,22 +31,22 @@ type _CacheClass struct {
 type ICache interface {
 	objectivec.IObject
 	// properties:
-	CountLimit() uint /* primitive/slice/pointer. */
-	SetCountLimit(value uint /* primitive/slice/pointer. */)
+	CountLimit() uint
+	SetCountLimit(value uint)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	EvictsObjectsWithDiscardedContent() bool /* primitive/slice/pointer. */
-	SetEvictsObjectsWithDiscardedContent(value bool /* primitive/slice/pointer. */)
+	EvictsObjectsWithDiscardedContent() bool
+	SetEvictsObjectsWithDiscardedContent(value bool)
 	Name() IString
 	SetName(value IString)
-	TotalCostLimit() uint /* primitive/slice/pointer. */
-	SetTotalCostLimit(value uint /* primitive/slice/pointer. */)
+	TotalCostLimit() uint
+	SetTotalCostLimit(value uint)
 	// methods:
 	ObjectForKey(key unsafe.Pointer) unsafe.Pointer
 	RemoveAllObjects()
 	RemoveObjectForKey(key unsafe.Pointer)
 	SetObjectForKey(obj unsafe.Pointer, key unsafe.Pointer)
-	SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint /* primitive/slice/pointer. */)
+	SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint)
 }
 
 // A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.
@@ -143,7 +143,7 @@ func (c_ Cache) SetObjectForKey(obj unsafe.Pointer, key unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/setObject(_:forKey:cost:)
-func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint /* primitive/slice/pointer. */) {
+func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
 }
 
@@ -152,7 +152,7 @@ func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g ui
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/countLimit
-func (c_ Cache) CountLimit() uint /* primitive/slice/pointer. */ {
+func (c_ Cache) CountLimit() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("countLimit"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (c_ Cache) CountLimit() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/countLimit
-func (c_ Cache) SetCountLimit(value uint /* primitive/slice/pointer. */) {
+func (c_ Cache) SetCountLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountLimit:"), value)
 }
 
@@ -190,7 +190,7 @@ func (c_ Cache) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) EvictsObjectsWithDiscardedContent() bool /* primitive/slice/pointer. */ {
+func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
 	return rv
 }
@@ -200,7 +200,7 @@ func (c_ Cache) EvictsObjectsWithDiscardedContent() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool /* primitive/slice/pointer. */) {
+func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
 
@@ -228,7 +228,7 @@ func (c_ Cache) SetName(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/totalCostLimit
-func (c_ Cache) TotalCostLimit() uint /* primitive/slice/pointer. */ {
+func (c_ Cache) TotalCostLimit() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("totalCostLimit"))
 	return rv
 }
@@ -238,7 +238,7 @@ func (c_ Cache) TotalCostLimit() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/totalCostLimit
-func (c_ Cache) SetTotalCostLimit(value uint /* primitive/slice/pointer. */) {
+func (c_ Cache) SetTotalCostLimit(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTotalCostLimit:"), value)
 }
 

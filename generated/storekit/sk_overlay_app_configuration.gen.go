@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [OverlayAppConfiguration] class.
@@ -31,33 +30,36 @@ type _OverlayAppConfigurationClass struct {
 // An interface definition for the [OverlayAppConfiguration] class.
 type IOverlayAppConfiguration interface {
 	IOverlayConfiguration
-	AdditionalValueForKey(key string) objc.ID
-	SetAdImpression(impression ISKAdImpression)
-	SetAdditionalValueForKey(value objectivec.IObject, key string)
-	AppIdentifier() string
-	SetAppIdentifier(value string)
-	CampaignToken() string
-	SetCampaignToken(value string)
-	CustomProductPageIdentifier() string
-	SetCustomProductPageIdentifier(value string)
-	LatestReleaseID() string
-	SetLatestReleaseID(value string)
-	Position() OverlayPosition
-	SetPosition(value OverlayPosition)
-	ProviderToken() string
-	SetProviderToken(value string)
-	UserDismissible() bool
-	SetUserDismissible(value bool)
-	AdAttributionReengagementURL() foundation.URL
-	SetAdAttributionReengagementURL(value foundation.IURL)
+	// properties:
+	AdAttributionReengagementURL() objc.IObject /* cross-framework: URL */
+	SetAdAttributionReengagementURL(value objc.IObject /* cross-framework: URL */)
+	AppIdentifier() objc.IObject /* cross-framework: NSString */
+	SetAppIdentifier(value objc.IObject /* cross-framework: NSString */)
 	AppImpression() unsafe.Pointer
 	SetAppImpression(value unsafe.Pointer)
-	Configuration() SKOverlayConfiguration
-	SetConfiguration(value ISKOverlayConfiguration)
+	CampaignToken() objc.IObject /* cross-framework: NSString */
+	SetCampaignToken(value objc.IObject /* cross-framework: NSString */)
+	CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */
+	SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */)
+	LatestReleaseID() objc.IObject /* cross-framework: NSString */
+	SetLatestReleaseID(value objc.IObject /* cross-framework: NSString */)
+	Position() unsafe.Pointer
+	SetPosition(value unsafe.Pointer)
+	ProviderToken() objc.IObject /* cross-framework: NSString */
+	SetProviderToken(value objc.IObject /* cross-framework: NSString */)
+	UserDismissible() bool
+	SetUserDismissible(value bool)
+	Configuration() objc.IObject /* cross-framework: OverlayConfiguration */
+	SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */)
+	// methods:
 }
 
 // An object that represents the attributes of an overlay you use to recommend another app on the App Store.
+
+
+// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration
 type OverlayAppConfiguration struct {
 	OverlayConfiguration
@@ -105,181 +107,41 @@ func NewOverlayAppConfiguration() OverlayAppConfiguration {
 
 
 
-
-// Creates an object that represents the attributes of an overlay you use to recommend another app on the App Store.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/init(appIdentifier:position:)
-func NewOverlayAppConfigurationWithAppIdentifierPosition(appIdentifier string, position OverlayPosition) OverlayAppConfiguration {
-	instance := getOverlayAppConfigurationClass().Alloc()
-	rv := objc.Send[OverlayAppConfiguration](instance.ID, objc.Sel("initWithAppIdentifier:position:"), objc.String(appIdentifier), position)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns the object associated with the key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/additionalValue(forKey:)
-func (o_ OverlayAppConfiguration) AdditionalValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("additionalValueForKey:"), objc.String(key))
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/setAdImpression(_:)
-func (o_ OverlayAppConfiguration) SetAdImpression(impression ISKAdImpression) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAdImpression:"), impression)
-}
-
-// Sets an additional value for a key; for example, a value for measuring the effectiveness of an ad campaign.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/setAdditionalValue(_:forKey:)
-func (o_ OverlayAppConfiguration) SetAdditionalValueForKey(value objectivec.IObject, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, objc.String(key))
-}
-
-// The iTunes identifier of the recommended app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/appIdentifier
-func (o_ OverlayAppConfiguration) AppIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("appIdentifier"))
-	return rv
-}
-
-
-// SetAppIdentifier sets the value of the appIdentifier property.
-// The iTunes identifier of the recommended app.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/appIdentifier
-func (o_ OverlayAppConfiguration) SetAppIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAppIdentifier:"), objc.String(value))
-}
-
-// A token you use to represent an ad campaign and measure its effectiveness.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/campaignToken
-func (o_ OverlayAppConfiguration) CampaignToken() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("campaignToken"))
-	return rv
-}
-
-
-// SetCampaignToken sets the value of the campaignToken property.
-// A token you use to represent an ad campaign and measure its effectiveness.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/campaignToken
-func (o_ OverlayAppConfiguration) SetCampaignToken(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), objc.String(value))
-}
-
-// An optional identifier for an app’s custom product page.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/customProductPageIdentifier
-func (o_ OverlayAppConfiguration) CustomProductPageIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("customProductPageIdentifier"))
-	return rv
-}
-
-
-// SetCustomProductPageIdentifier sets the value of the customProductPageIdentifier property.
-// An optional identifier for an app’s custom product page.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/customProductPageIdentifier
-func (o_ OverlayAppConfiguration) SetCustomProductPageIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), objc.String(value))
-}
-
-// The release ID of the latest version of your app as displayed in App Store Connect.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/latestReleaseID
-func (o_ OverlayAppConfiguration) LatestReleaseID() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("latestReleaseID"))
-	return rv
-}
-
-
-// SetLatestReleaseID sets the value of the latestReleaseID property.
-// The release ID of the latest version of your app as displayed in App Store Connect.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/latestReleaseID
-func (o_ OverlayAppConfiguration) SetLatestReleaseID(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), objc.String(value))
-}
-
-// The position of the overlay on the screen.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/position
-func (o_ OverlayAppConfiguration) Position() OverlayPosition {
-	rv := objc.Send[OverlayPosition](o_.ID, objc.Sel("position"))
-	return rv
-}
-
-
-// SetPosition sets the value of the position property.
-// The position of the overlay on the screen.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/position
-func (o_ OverlayAppConfiguration) SetPosition(value OverlayPosition) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPosition:"), value)
-}
-
-// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/providerToken
-func (o_ OverlayAppConfiguration) ProviderToken() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("providerToken"))
-	return rv
-}
-
-
-// SetProviderToken sets the value of the providerToken property.
-// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/providerToken
-func (o_ OverlayAppConfiguration) SetProviderToken(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), objc.String(value))
-}
-
-// A Boolean value that indicates whether the user can dismiss the overlay.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/userDismissible
-func (o_ OverlayAppConfiguration) UserDismissible() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("userDismissible"))
-	return rv
-}
-
-
-// SetUserDismissible sets the value of the userDismissible property.
-// A Boolean value that indicates whether the user can dismiss the overlay.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/userDismissible
-func (o_ OverlayAppConfiguration) SetUserDismissible(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUserDismissible:"), value)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
-func (o_ OverlayAppConfiguration) AdAttributionReengagementURL() foundation.URL {
+func (o_ OverlayAppConfiguration) AdAttributionReengagementURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("adAttributionReengagementURL"))
 	return rv
 }
 
 
-// SetAdAttributionReengagementURL sets the value of the adAttributionReengagementURL property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
-func (o_ OverlayAppConfiguration) SetAdAttributionReengagementURL(value foundation.IURL) {
+func (o_ OverlayAppConfiguration) SetAdAttributionReengagementURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAdAttributionReengagementURL:"), value)
 }
 
+
+// The iTunes identifier of the recommended app.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appidentifier
+func (o_ OverlayAppConfiguration) AppIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("appIdentifier"))
+	return rv
+}
+
+
+// The iTunes identifier of the recommended app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appidentifier
+func (o_ OverlayAppConfiguration) SetAppIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAppIdentifier:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
 func (o_ OverlayAppConfiguration) AppImpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("appImpression"))
@@ -287,29 +149,144 @@ func (o_ OverlayAppConfiguration) AppImpression() unsafe.Pointer {
 }
 
 
-// SetAppImpression sets the value of the appImpression property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
 func (o_ OverlayAppConfiguration) SetAppImpression(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAppImpression:"), value)
 }
 
-// An overlay’s attributes; for example, its position on the screen.
+
+// A token you use to represent an ad campaign and measure its effectiveness.
 //
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppConfiguration) Configuration() SKOverlayConfiguration {
-	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/campaigntoken
+func (o_ OverlayAppConfiguration) CampaignToken() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("campaignToken"))
 	return rv
 }
 
 
-// SetConfiguration sets the value of the configuration property.
-// An overlay’s attributes; for example, its position on the screen.
-
+// A token you use to represent an ad campaign and measure its effectiveness.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/campaigntoken
+func (o_ OverlayAppConfiguration) SetCampaignToken(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), value)
+}
+
+
+// An optional identifier for an app’s custom product page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/customproductpageidentifier
+func (o_ OverlayAppConfiguration) CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customProductPageIdentifier"))
+	return rv
+}
+
+
+// An optional identifier for an app’s custom product page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/customproductpageidentifier
+func (o_ OverlayAppConfiguration) SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), value)
+}
+
+
+// The release ID of the latest version of your app as displayed in App Store Connect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/latestreleaseid
+func (o_ OverlayAppConfiguration) LatestReleaseID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("latestReleaseID"))
+	return rv
+}
+
+
+// The release ID of the latest version of your app as displayed in App Store Connect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/latestreleaseid
+func (o_ OverlayAppConfiguration) SetLatestReleaseID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), value)
+}
+
+
+// The position of the overlay on the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/position
+func (o_ OverlayAppConfiguration) Position() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("position"))
+	return rv
+}
+
+
+// The position of the overlay on the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/position
+func (o_ OverlayAppConfiguration) SetPosition(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setPosition:"), value)
+}
+
+
+// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/providertoken
+func (o_ OverlayAppConfiguration) ProviderToken() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("providerToken"))
+	return rv
+}
+
+
+// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/providertoken
+func (o_ OverlayAppConfiguration) SetProviderToken(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), value)
+}
+
+
+// A Boolean value that indicates whether the user can dismiss the overlay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/userdismissible
+func (o_ OverlayAppConfiguration) UserDismissible() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("userDismissible"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the user can dismiss the overlay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/userdismissible
+func (o_ OverlayAppConfiguration) SetUserDismissible(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUserDismissible:"), value)
+}
+
+
+// An overlay’s attributes; for example, its position on the screen.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
+func (o_ OverlayAppConfiguration) Configuration() objc.IObject /* cross-framework: OverlayConfiguration */ {
+	rv := objc.Send[OverlayConfiguration](o_.ID, objc.Sel("configuration"))
+	return rv
+}
+
+
+// An overlay’s attributes; for example, its position on the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
+func (o_ OverlayAppConfiguration) SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
 }
+
 
 

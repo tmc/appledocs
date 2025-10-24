@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in MetalPerformanceShadersGraph
 	DataType = _undefined // referenced in MetalPerformanceShadersGraph
 	Device = _undefined // referenced in MetalPerformanceShadersGraph
 	GraphCompilationCompletionHandler = _undefined // referenced in MetalPerformanceShadersGraph

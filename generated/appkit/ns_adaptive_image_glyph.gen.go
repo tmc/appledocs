@@ -94,7 +94,7 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(coder:)
-func NewAdaptiveImageGlyphWithCoder(coder objc.IObject /* cross-framework Coder */) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithCoder(coder objc.IObject /* cross-framework: Coder */) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -106,7 +106,7 @@ func NewAdaptiveImageGlyphWithCoder(coder objc.IObject /* cross-framework Coder 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(imageContent:)
-func NewAdaptiveImageGlyphWithImageContent(imageContent objc.IObject /* cross-framework NSData */) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithImageContent(imageContent objc.IObject /* cross-framework: NSData */) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithImageContent:"), imageContent)
 	rv.Autorelease()

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,17 @@ type _MTRContentLauncherClusterAdditionalInfoStructClass struct {
 // An interface definition for the [MTRContentLauncherClusterAdditionalInfoStruct] class.
 type IMTRContentLauncherClusterAdditionalInfoStruct interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	Value() string
-	SetValue(value string)
+	// properties:
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Value() objc.IObject /* cross-framework: NSString */
+	SetValue(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterAdditionalInfoStruct
 type MTRContentLauncherClusterAdditionalInfoStruct struct {
 	objectivec.Object
@@ -79,34 +84,34 @@ func NewMTRContentLauncherClusterAdditionalInfoStruct() MTRContentLauncherCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/name
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) Value() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfostruct/value
-func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRContentLauncherClusterAdditionalInfoStruct) SetValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

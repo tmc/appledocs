@@ -30,9 +30,13 @@ type _MTROnboardingPayloadParserClass struct {
 // An interface definition for the [MTROnboardingPayloadParser] class.
 type IMTROnboardingPayloadParser interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROnboardingPayloadParser
 type MTROnboardingPayloadParser struct {
 	objectivec.Object
@@ -74,13 +78,6 @@ func NewMTROnboardingPayloadParser() MTROnboardingPayloadParser {
 	return getMTROnboardingPayloadParserClass().New()
 }
 
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROnboardingPayloadParser/setupPayload(forOnboardingPayload:)
-func (mc _MTROnboardingPayloadParserClass) SetupPayloadForOnboardingPayloadError(onboardingPayload string, error_ unsafe.Pointer) MTRSetupPayload {
-	rv := objc.Send[MTRSetupPayload](objc.ID(mc.class), objc.Sel("setupPayloadForOnboardingPayload:error:"), objc.String(onboardingPayload), error_)
-	return rv
-}
 
 
 

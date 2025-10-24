@@ -29,12 +29,16 @@ type _MXAppLaunchDiagnosticClass struct {
 // An interface definition for the [MXAppLaunchDiagnostic] class.
 type IMXAppLaunchDiagnostic interface {
 	IMXDiagnostic
-	CallStackTree() MXCallStackTree
-	LaunchDuration() unsafe.Pointer
+	// properties:
+	// methods:
 }
 
 // A diagnostic subclass that encapsulates app launch diagnostic reports.
+
+
+// A diagnostic subclass that encapsulates app launch diagnostic reports.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchDiagnostic
 type MXAppLaunchDiagnostic struct {
 	MXDiagnostic
@@ -78,23 +82,6 @@ func (m_ MXAppLaunchDiagnostic) Autorelease() MXAppLaunchDiagnostic {
 // NewMXAppLaunchDiagnostic creates a new MXAppLaunchDiagnostic instance.
 func NewMXAppLaunchDiagnostic() MXAppLaunchDiagnostic {
 	return getMXAppLaunchDiagnosticClass().New()
-}
-
-
-// The call stack tree associated with the app launch.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchDiagnostic/callStackTree
-func (m_ MXAppLaunchDiagnostic) CallStackTree() MXCallStackTree {
-	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
-	return rv
-}
-
-// The total app launch duration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchDiagnostic/launchDuration
-func (m_ MXAppLaunchDiagnostic) LaunchDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("launchDuration"))
-	return rv
 }
 
 

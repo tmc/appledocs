@@ -29,9 +29,13 @@ type _MTRBaseClusterPM25ConcentrationMeasurementClass struct {
 // An interface definition for the [MTRBaseClusterPM25ConcentrationMeasurement] class.
 type IMTRBaseClusterPM25ConcentrationMeasurement interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPM25ConcentrationMeasurement
 type MTRBaseClusterPM25ConcentrationMeasurement struct {
 	MTRGenericBaseCluster

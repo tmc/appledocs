@@ -31,9 +31,6 @@ type _HighFrequencyHeartRateDataClass struct {
 type IHighFrequencyHeartRateData interface {
 	ILogItem
 	// properties:
-	Confidence() HighFrequencyHeartRateDataConfidence
-	Date() foundation.objc.IObject /* cross-framework: NSDate */
-	HeartRate() float64 /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -88,37 +85,6 @@ func (h_ HighFrequencyHeartRateData) Autorelease() HighFrequencyHeartRateData {
 // NewHighFrequencyHeartRateData creates a new HighFrequencyHeartRateData instance.
 func NewHighFrequencyHeartRateData() HighFrequencyHeartRateData {
 	return getHighFrequencyHeartRateDataClass().New()
-}
-
-
-
-// The confidence level of the heart rate value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/confidence
-func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConfidence {
-	rv := objc.Send[HighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
-	return rv
-}
-
-
-// The time the heart rate value occurs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/date
-func (h_ HighFrequencyHeartRateData) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
-	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("date"))
-	return rv
-}
-
-
-// The heart rate value in units of beats per minute (BPM).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/heartRate
-func (h_ HighFrequencyHeartRateData) HeartRate() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](h_.ID, objc.Sel("heartRate"))
-	return rv
 }
 
 

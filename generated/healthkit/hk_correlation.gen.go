@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKCorrelation] class.
@@ -34,8 +35,8 @@ type IHKCorrelation interface {
 	SetCorrelationType(value IHKCorrelationType)
 	Objects() IHKSample
 	SetObjects(value IHKSample)
-	HKMetadataKeyFoodType() string /* primitive/slice/pointer. */
-	HKPredicateKeyPathCorrelation() string /* primitive/slice/pointer. */
+	HKMetadataKeyFoodType() objc.IObject /* cross-framework: NSString */
+	HKPredicateKeyPathCorrelation() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -136,8 +137,8 @@ func (h_ HKCorrelation) SetObjects(value IHKSample) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
-func (h_ HKCorrelation) HKMetadataKeyFoodType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
+func (h_ HKCorrelation) HKMetadataKeyFoodType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (h_ HKCorrelation) HKMetadataKeyFoodType() string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
-func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
+func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
 	return rv
 }
 

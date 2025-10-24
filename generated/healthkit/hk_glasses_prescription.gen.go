@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKGlassesPrescription] class.
@@ -34,7 +35,7 @@ type IHKGlassesPrescription interface {
 	SetLeftEye(value IHKGlassesLensSpecification)
 	RightEye() IHKGlassesLensSpecification
 	SetRightEye(value IHKGlassesLensSpecification)
-	HKMetadataKeyGlassesPrescriptionDescription() string /* primitive/slice/pointer. */
+	HKMetadataKeyGlassesPrescriptionDescription() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -135,8 +136,8 @@ func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
-func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
+func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv
 }
 

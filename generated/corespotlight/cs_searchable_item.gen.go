@@ -34,28 +34,28 @@ type ICSSearchableItem interface {
 	// properties:
 	AttributeSet() ICSSearchableItemAttributeSet
 	SetAttributeSet(value ICSSearchableItemAttributeSet)
-	DomainIdentifier() string /* primitive/slice/pointer. */
-	SetDomainIdentifier(value string /* primitive/slice/pointer. */)
-	ExpirationDate() foundation.objc.IObject /* cross-framework: NSDate */
-	SetExpirationDate(value foundation.objc.IObject /* cross-framework: NSDate */)
-	IsUpdate() bool /* primitive/slice/pointer. */
-	SetIsUpdate(value bool /* primitive/slice/pointer. */)
-	UniqueIdentifier() string /* primitive/slice/pointer. */
-	SetUniqueIdentifier(value string /* primitive/slice/pointer. */)
+	DomainIdentifier() objc.IObject /* cross-framework: NSString */
+	SetDomainIdentifier(value objc.IObject /* cross-framework: NSString */)
+	ExpirationDate() objc.IObject /* cross-framework: NSDate */
+	SetExpirationDate(value objc.IObject /* cross-framework: NSDate */)
+	IsUpdate() bool
+	SetIsUpdate(value bool)
+	UniqueIdentifier() objc.IObject /* cross-framework: NSString */
+	SetUniqueIdentifier(value objc.IObject /* cross-framework: NSString */)
 	UpdateListenerOptions() CSSearchableItemUpdateListenerOptions
 	SetUpdateListenerOptions(value CSSearchableItemUpdateListenerOptions)
-	CSQueryContinuationActionType() string /* primitive/slice/pointer. */
-	CSSearchQueryString() string /* primitive/slice/pointer. */
-	CSSearchableItemActionType() string /* primitive/slice/pointer. */
-	CSSearchableItemActivityIdentifier() string /* primitive/slice/pointer. */
-	ContentType() string /* primitive/slice/pointer. */
-	SetContentType(value string /* primitive/slice/pointer. */)
-	ContentURL() foundation.objc.IObject /* cross-framework: URL */
-	SetContentURL(value foundation.objc.IObject /* cross-framework: URL */)
-	DisplayName() string /* primitive/slice/pointer. */
-	SetDisplayName(value string /* primitive/slice/pointer. */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
+	CSQueryContinuationActionType() objc.IObject /* cross-framework: NSString */
+	CSSearchQueryString() objc.IObject /* cross-framework: NSString */
+	CSSearchableItemActionType() objc.IObject /* cross-framework: NSString */
+	CSSearchableItemActivityIdentifier() objc.IObject /* cross-framework: NSString */
+	ContentType() objc.IObject /* cross-framework: NSString */
+	SetContentType(value objc.IObject /* cross-framework: NSString */)
+	ContentURL() objc.IObject /* cross-framework: URL */
+	SetContentURL(value objc.IObject /* cross-framework: URL */)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 	CompareByRank(other ICSSearchableItem) ComparisonResult /* not a class type */
 }
@@ -117,9 +117,9 @@ func NewCSSearchableItem() CSSearchableItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)
-func NewCSSearchableItemWithUniqueIdentifierDomainIdentifierAttributeSet(uniqueIdentifier string /* primitive/slice/pointer. */, domainIdentifier string /* primitive/slice/pointer. */, attributeSet ICSSearchableItemAttributeSet) CSSearchableItem {
+func NewCSSearchableItemWithUniqueIdentifierDomainIdentifierAttributeSet(uniqueIdentifier objc.IObject /* cross-framework: NSString */, domainIdentifier objc.IObject /* cross-framework: NSString */, attributeSet ICSSearchableItemAttributeSet) CSSearchableItem {
 	instance := getCSSearchableItemClass().Alloc()
-	rv := objc.Send[CSSearchableItem](instance.ID, objc.Sel("initWithUniqueIdentifier:domainIdentifier:attributeSet:"), objc.String(uniqueIdentifier), objc.String(domainIdentifier), attributeSet)
+	rv := objc.Send[CSSearchableItem](instance.ID, objc.Sel("initWithUniqueIdentifier:domainIdentifier:attributeSet:"), uniqueIdentifier, domainIdentifier, attributeSet)
 	rv.Autorelease()
 	return rv
 }
@@ -159,8 +159,8 @@ func (c_ CSSearchableItem) SetAttributeSet(value ICSSearchableItemAttributeSet) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) DomainIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("domainIdentifier"))
+func (c_ CSSearchableItem) DomainIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -169,8 +169,8 @@ func (c_ CSSearchableItem) DomainIdentifier() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier
-func (c_ CSSearchableItem) SetDomainIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), objc.String(value))
+func (c_ CSSearchableItem) SetDomainIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDomainIdentifier:"), value)
 }
 
 
@@ -178,7 +178,7 @@ func (c_ CSSearchableItem) SetDomainIdentifier(value string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/expirationDate
-func (c_ CSSearchableItem) ExpirationDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (c_ CSSearchableItem) ExpirationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("expirationDate"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (c_ CSSearchableItem) ExpirationDate() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/expirationDate
-func (c_ CSSearchableItem) SetExpirationDate(value foundation.objc.IObject /* cross-framework: NSDate */) {
+func (c_ CSSearchableItem) SetExpirationDate(value objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
@@ -197,7 +197,7 @@ func (c_ CSSearchableItem) SetExpirationDate(value foundation.objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/isUpdate
-func (c_ CSSearchableItem) IsUpdate() bool /* primitive/slice/pointer. */ {
+func (c_ CSSearchableItem) IsUpdate() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isUpdate"))
 	return rv
 }
@@ -207,7 +207,7 @@ func (c_ CSSearchableItem) IsUpdate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/isUpdate
-func (c_ CSSearchableItem) SetIsUpdate(value bool /* primitive/slice/pointer. */) {
+func (c_ CSSearchableItem) SetIsUpdate(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsUpdate:"), value)
 }
 
@@ -216,8 +216,8 @@ func (c_ CSSearchableItem) SetIsUpdate(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) UniqueIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("uniqueIdentifier"))
+func (c_ CSSearchableItem) UniqueIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
@@ -226,8 +226,8 @@ func (c_ CSSearchableItem) UniqueIdentifier() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier
-func (c_ CSSearchableItem) SetUniqueIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), objc.String(value))
+func (c_ CSSearchableItem) SetUniqueIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 
 
@@ -250,8 +250,8 @@ func (c_ CSSearchableItem) SetUpdateListenerOptions(value CSSearchableItemUpdate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype
-func (c_ CSSearchableItem) CSQueryContinuationActionType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSQueryContinuationActionType"))
+func (c_ CSSearchableItem) CSQueryContinuationActionType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CSQueryContinuationActionType"))
 	return rv
 }
 
@@ -260,8 +260,8 @@ func (c_ CSSearchableItem) CSQueryContinuationActionType() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchquerystring
-func (c_ CSSearchableItem) CSSearchQueryString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchQueryString"))
+func (c_ CSSearchableItem) CSSearchQueryString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CSSearchQueryString"))
 	return rv
 }
 
@@ -270,8 +270,8 @@ func (c_ CSSearchableItem) CSSearchQueryString() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactiontype
-func (c_ CSSearchableItem) CSSearchableItemActionType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActionType"))
+func (c_ CSSearchableItem) CSSearchableItemActionType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CSSearchableItemActionType"))
 	return rv
 }
 
@@ -280,8 +280,8 @@ func (c_ CSSearchableItem) CSSearchableItemActionType() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemactivityidentifier
-func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CSSearchableItemActivityIdentifier"))
+func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CSSearchableItemActivityIdentifier"))
 	return rv
 }
 
@@ -290,8 +290,8 @@ func (c_ CSSearchableItem) CSSearchableItemActivityIdentifier() string /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
-func (c_ CSSearchableItem) ContentType() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contentType"))
+func (c_ CSSearchableItem) ContentType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -300,8 +300,8 @@ func (c_ CSSearchableItem) ContentType() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype
-func (c_ CSSearchableItem) SetContentType(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), objc.String(value))
+func (c_ CSSearchableItem) SetContentType(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContentType:"), value)
 }
 
 
@@ -309,7 +309,7 @@ func (c_ CSSearchableItem) SetContentType(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl
-func (c_ CSSearchableItem) ContentURL() foundation.objc.IObject /* cross-framework: URL */ {
+func (c_ CSSearchableItem) ContentURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("contentURL"))
 	return rv
 }
@@ -319,7 +319,7 @@ func (c_ CSSearchableItem) ContentURL() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl
-func (c_ CSSearchableItem) SetContentURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (c_ CSSearchableItem) SetContentURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentURL:"), value)
 }
 
@@ -328,8 +328,8 @@ func (c_ CSSearchableItem) SetContentURL(value foundation.objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
-func (c_ CSSearchableItem) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
+func (c_ CSSearchableItem) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -338,8 +338,8 @@ func (c_ CSSearchableItem) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname
-func (c_ CSSearchableItem) SetDisplayName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (c_ CSSearchableItem) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 
@@ -347,8 +347,8 @@ func (c_ CSSearchableItem) SetDisplayName(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
-func (c_ CSSearchableItem) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ CSSearchableItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -357,8 +357,8 @@ func (c_ CSSearchableItem) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title
-func (c_ CSSearchableItem) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ CSSearchableItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 

@@ -33,14 +33,14 @@ type IHKClinicalRecord interface {
 	// properties:
 	ClinicalType() IHKClinicalType
 	SetClinicalType(value IHKClinicalType)
-	DisplayName() string /* primitive/slice/pointer. */
-	SetDisplayName(value string /* primitive/slice/pointer. */)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
 	FhirResource() IHKFHIRResource
 	SetFhirResource(value IHKFHIRResource)
-	EndDate() foundation.objc.IObject /* cross-framework: Date */
-	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
-	StartDate() foundation.objc.IObject /* cross-framework: Date */
-	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	EndDate() objc.IObject /* cross-framework: Date */
+	SetEndDate(value objc.IObject /* cross-framework: Date */)
+	StartDate() objc.IObject /* cross-framework: Date */
+	SetStartDate(value objc.IObject /* cross-framework: Date */)
 	// methods:
 }
 
@@ -122,8 +122,8 @@ func (h_ HKClinicalRecord) SetClinicalType(value IHKClinicalType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalrecord/displayname
-func (h_ HKClinicalRecord) DisplayName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
+func (h_ HKClinicalRecord) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (h_ HKClinicalRecord) DisplayName() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalrecord/displayname
-func (h_ HKClinicalRecord) SetDisplayName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (h_ HKClinicalRecord) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 
@@ -160,7 +160,7 @@ func (h_ HKClinicalRecord) SetFhirResource(value IHKFHIRResource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-func (h_ HKClinicalRecord) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKClinicalRecord) EndDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (h_ HKClinicalRecord) EndDate() foundation.objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-func (h_ HKClinicalRecord) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKClinicalRecord) SetEndDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -179,7 +179,7 @@ func (h_ HKClinicalRecord) SetEndDate(value foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-func (h_ HKClinicalRecord) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (h_ HKClinicalRecord) StartDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (h_ HKClinicalRecord) StartDate() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-func (h_ HKClinicalRecord) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (h_ HKClinicalRecord) SetStartDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

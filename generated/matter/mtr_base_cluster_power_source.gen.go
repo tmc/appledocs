@@ -29,9 +29,13 @@ type _MTRBaseClusterPowerSourceClass struct {
 // An interface definition for the [MTRBaseClusterPowerSource] class.
 type IMTRBaseClusterPowerSource interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPowerSource
 type MTRBaseClusterPowerSource struct {
 	MTRGenericBaseCluster

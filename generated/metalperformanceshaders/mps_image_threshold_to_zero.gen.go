@@ -30,9 +30,9 @@ type _ImageThresholdToZeroClass struct {
 type IImageThresholdToZero interface {
 	IUnaryImageKernel
 	// properties:
-	ThresholdValue() float32 /* primitive/slice/pointer. */
-	Transform() float32 /* primitive/slice/pointer. */
-	SetTransform(value float32 /* primitive/slice/pointer. */)
+	ThresholdValue() float32
+	Transform() float32
+	SetTransform(value float32)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewImageThresholdToZero() ImageThresholdToZero {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageThresholdToZero/thresholdValue
-func (i_ ImageThresholdToZero) ThresholdValue() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdToZero) ThresholdValue() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("thresholdValue"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (i_ ImageThresholdToZero) ThresholdValue() float32 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozero/transform
-func (i_ ImageThresholdToZero) Transform() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageThresholdToZero) Transform() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("transform"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (i_ ImageThresholdToZero) Transform() float32 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozero/transform
-func (i_ ImageThresholdToZero) SetTransform(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageThresholdToZero) SetTransform(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransform:"), value)
 }
 

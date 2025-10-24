@@ -30,8 +30,8 @@ type _ConstantNoiseSourceClass struct {
 type IConstantNoiseSource interface {
 	INoiseSource
 	// properties:
-	Value() float64 /* primitive/slice/pointer. */
-	SetValue(value float64 /* primitive/slice/pointer. */)
+	Value() float64
+	SetValue(value float64)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewConstantNoiseSource() ConstantNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/init(value:)
-func NewConstantNoiseSourceWithValue(value float64 /* primitive/slice/pointer. */) ConstantNoiseSource {
+func NewConstantNoiseSourceWithValue(value float64) ConstantNoiseSource {
 	instance := getConstantNoiseSourceClass().Alloc()
 	rv := objc.Send[ConstantNoiseSource](instance.ID, objc.Sel("initWithValue:"), value)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewConstantNoiseSourceWithValue(value float64 /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/constantNoise(withValue:)
-func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constantNoiseWithValue:"), value)
 	return rv
 }
@@ -117,7 +117,7 @@ func (cc _ConstantNoiseSourceClass) ConstantNoiseWithValue(value float64 /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
-func (c_ ConstantNoiseSource) Value() float64 /* primitive/slice/pointer. */ {
+func (c_ ConstantNoiseSource) Value() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("value"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (c_ ConstantNoiseSource) Value() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKConstantNoiseSource/value
-func (c_ ConstantNoiseSource) SetValue(value float64 /* primitive/slice/pointer. */) {
+func (c_ ConstantNoiseSource) SetValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 

@@ -33,12 +33,12 @@ type ICaptureSmartFramingMonitor interface {
 	// properties:
 	SmartFramingMonitor() IAVCaptureSmartFramingMonitor
 	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
-	VideoZoomFactor() float64 /* primitive/slice/pointer. */
-	SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */)
+	VideoZoomFactor() float64
+	SetVideoZoomFactor(value float64)
 	EnabledFramings() objc.IObject /* cross-framework: CaptureFraming */
 	SetEnabledFramings(value objc.IObject /* cross-framework: CaptureFraming */)
-	IsMonitoring() bool /* primitive/slice/pointer. */
-	SetIsMonitoring(value bool /* primitive/slice/pointer. */)
+	IsMonitoring() bool
+	SetIsMonitoring(value bool)
 	RecommendedFraming() objc.IObject /* cross-framework: CaptureFraming */
 	SetRecommendedFraming(value objc.IObject /* cross-framework: CaptureFraming */)
 	SupportedFramings() objc.IObject /* cross-framework: CaptureFraming */
@@ -122,7 +122,7 @@ func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 /* primitive/slice/pointer. */ {
+func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactor"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */) {
+func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactor:"), value)
 }
 
@@ -160,7 +160,7 @@ func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool /* primitive/slice/pointer. */ {
+func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMonitoring"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool /* primitive/slice/pointer. */) {
+func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMonitoring:"), value)
 }
 

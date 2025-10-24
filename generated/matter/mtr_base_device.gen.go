@@ -30,11 +30,15 @@ type _MTRBaseDeviceClass struct {
 // An interface definition for the [MTRBaseDevice] class.
 type IMTRBaseDevice interface {
 	objectivec.IObject
+	// properties:
 	SessionTransportType() MTRTransportType
 	SetSessionTransportType(value MTRTransportType)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseDevice
 type MTRBaseDevice struct {
 	objectivec.Object
@@ -77,7 +81,8 @@ func NewMTRBaseDevice() MTRBaseDevice {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasedevice/sessiontransporttype
 func (m_ MTRBaseDevice) SessionTransportType() MTRTransportType {
 	rv := objc.Send[MTRTransportType](m_.ID, objc.Sel("sessionTransportType"))
@@ -85,8 +90,7 @@ func (m_ MTRBaseDevice) SessionTransportType() MTRTransportType {
 }
 
 
-// SetSessionTransportType sets the value of the sessionTransportType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasedevice/sessiontransporttype
 func (m_ MTRBaseDevice) SetSessionTransportType(value MTRTransportType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionTransportType:"), value)

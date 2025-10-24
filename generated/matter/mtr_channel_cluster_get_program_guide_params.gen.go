@@ -31,25 +31,29 @@ type _MTRChannelClusterGetProgramGuideParamsClass struct {
 // An interface definition for the [MTRChannelClusterGetProgramGuideParams] class.
 type IMTRChannelClusterGetProgramGuideParams interface {
 	objectivec.IObject
-	ChannelList() objc.ID
-	SetChannelList(value objc.ID)
-	Data() foundation.NSData
-	SetData(value foundation.IData)
-	EndTime() foundation.Number
-	SetEndTime(value foundation.INumber)
-	PageToken() MTRChannelClusterPageTokenStruct
+	// properties:
+	ChannelList() objc.IObject /* cross-framework: NSArray */
+	SetChannelList(value objc.IObject /* cross-framework: NSArray */)
+	Data() objc.IObject /* cross-framework: NSData */
+	SetData(value objc.IObject /* cross-framework: NSData */)
+	EndTime() objc.IObject /* cross-framework: NSNumber */
+	SetEndTime(value objc.IObject /* cross-framework: NSNumber */)
+	PageToken() IMTRChannelClusterPageTokenStruct
 	SetPageToken(value IMTRChannelClusterPageTokenStruct)
-	RecordingFlag() foundation.Number
-	SetRecordingFlag(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	StartTime() foundation.Number
-	SetStartTime(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	RecordingFlag() objc.IObject /* cross-framework: NSNumber */
+	SetRecordingFlag(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	StartTime() objc.IObject /* cross-framework: NSNumber */
+	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams
 type MTRChannelClusterGetProgramGuideParams struct {
 	objectivec.Object
@@ -92,129 +96,131 @@ func NewMTRChannelClusterGetProgramGuideParams() MTRChannelClusterGetProgramGuid
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/channelList
-func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("channelList"))
+func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("channelList"))
 	return rv
 }
 
 
-// SetChannelList sets the value of the channelList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/channelList
-func (m_ MTRChannelClusterGetProgramGuideParams) SetChannelList(value objc.ID) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetChannelList(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/data
-func (m_ MTRChannelClusterGetProgramGuideParams) Data() foundation.NSData {
+func (m_ MTRChannelClusterGetProgramGuideParams) Data() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/data
-func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value foundation.IData) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
-func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endTime"))
+func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endTime"))
 	return rv
 }
 
 
-// SetEndTime sets the value of the endTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value foundation.INumber) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/pageToken
-func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() MTRChannelClusterPageTokenStruct {
+func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() IMTRChannelClusterPageTokenStruct {
 	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("pageToken"))
 	return rv
 }
 
 
-// SetPageToken sets the value of the pageToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/pageToken
 func (m_ MTRChannelClusterGetProgramGuideParams) SetPageToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPageToken:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
-func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("recordingFlag"))
+func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("recordingFlag"))
 	return rv
 }
 
 
-// SetRecordingFlag sets the value of the recordingFlag property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
-func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value foundation.INumber) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
-func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
+func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
 
-// SetStartTime sets the value of the startTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value foundation.INumber) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

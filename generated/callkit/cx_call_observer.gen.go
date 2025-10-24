@@ -31,11 +31,9 @@ type _CXCallObserverClass struct {
 type ICXCallObserver interface {
 	objectivec.IObject
 	// properties:
-	Calls() []CXCall /* primitive/slice/pointer. */
 	CallObserver() ICXCallObserver
 	SetCallObserver(value ICXCallObserver)
 	// methods:
-	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 }
 
 // A programmatic interface for an object that manages a list of active calls and observes call changes.
@@ -91,25 +89,6 @@ func NewCXCallObserver() CXCallObserver {
 
 
 
-// Sets a call observer delegate, specifying an optional queue on which to execute delegate methods.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/setDelegate(_:queue:)
-func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
-}
-
-
-// Returns the active calls of the telephony provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/calls
-func (c_ CXCallObserver) Calls() []CXCall /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]CXCall](c_.ID, objc.Sel("calls"))
-	return rv
-}
-
-
 // Returns an observer for active calls.
 //
 // [Full Topic]
@@ -127,6 +106,5 @@ func (c_ CXCallObserver) CallObserver() ICXCallObserver {
 func (c_ CXCallObserver) SetCallObserver(value ICXCallObserver) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallObserver:"), value)
 }
-
 
 

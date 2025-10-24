@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,10 +31,10 @@ type _RenderInfoClass struct {
 type IRenderInfo interface {
 	objectivec.IObject
 	// properties:
-	KernelCompileTime() foundation.TimeInterval /* not a class type */
-	KernelExecutionTime() foundation.TimeInterval /* not a class type */
-	PassCount() int /* primitive/slice/pointer. */
-	PixelsProcessed() int /* primitive/slice/pointer. */
+	KernelCompileTime() float64
+	KernelExecutionTime() float64
+	PassCount() int
+	PixelsProcessed() int
 	// methods:
 }
 
@@ -94,8 +93,8 @@ func NewRenderInfo() RenderInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelCompileTime
-func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
+func (r_ RenderInfo) KernelCompileTime() float64 {
+	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
 	return rv
 }
 
@@ -104,8 +103,8 @@ func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelExecutionTime
-func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval /* not a class type */ {
-	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
+func (r_ RenderInfo) KernelExecutionTime() float64 {
+	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
 	return rv
 }
 
@@ -114,7 +113,7 @@ func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/passCount
-func (r_ RenderInfo) PassCount() int /* primitive/slice/pointer. */ {
+func (r_ RenderInfo) PassCount() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("passCount"))
 	return rv
 }
@@ -124,7 +123,7 @@ func (r_ RenderInfo) PassCount() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/pixelsProcessed
-func (r_ RenderInfo) PixelsProcessed() int /* primitive/slice/pointer. */ {
+func (r_ RenderInfo) PixelsProcessed() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("pixelsProcessed"))
 	return rv
 }

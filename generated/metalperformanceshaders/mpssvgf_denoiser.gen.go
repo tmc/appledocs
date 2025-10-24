@@ -30,16 +30,20 @@ type _SVGFDenoiserClass struct {
 // An interface definition for the [SVGFDenoiser] class.
 type ISVGFDenoiser interface {
 	objectivec.IObject
-	EncodeToCommandBufferSourceTextureDestinationTextureSourceTexture2DestinationTexture2MotionVectorTextureDepthNormalTexturePreviousDepthNormalTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, destinationTexture objectivec.IObject, sourceTexture2 objectivec.IObject, destinationTexture2 objectivec.IObject, motionVectorTexture objectivec.IObject, depthNormalTexture objectivec.IObject, previousDepthNormalTexture objectivec.IObject)
+	// properties:
 	BilateralFilterIterations() int
 	SetBilateralFilterIterations(value int)
-	Svgf() MPSSVGF
+	Svgf() IMPSSVGF
 	SetSvgf(value IMPSSVGF)
-	TextureAllocator() unsafe.Pointer
-	SetTextureAllocator(value unsafe.Pointer)
+	TextureAllocator() SVGFTextureAllocator /* not a class type */
+	SetTextureAllocator(value SVGFTextureAllocator /* not a class type */)
+	// methods:
+	EncodeToCommandBufferSourceTextureDestinationTextureSourceTexture2DestinationTexture2MotionVectorTextureDepthNormalTexturePreviousDepthNormalTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, destinationTexture objectivec.IObject, sourceTexture2 objectivec.IObject, destinationTexture2 objectivec.IObject, motionVectorTexture objectivec.IObject, depthNormalTexture objectivec.IObject, previousDepthNormalTexture objectivec.IObject)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDenoiser
 type SVGFDenoiser struct {
 	objectivec.Object
@@ -82,13 +86,15 @@ func NewSVGFDenoiser() SVGFDenoiser {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDenoiser/encode(commandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)
 func (s_ SVGFDenoiser) EncodeToCommandBufferSourceTextureDestinationTextureSourceTexture2DestinationTexture2MotionVectorTextureDepthNormalTexturePreviousDepthNormalTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, destinationTexture objectivec.IObject, sourceTexture2 objectivec.IObject, destinationTexture2 objectivec.IObject, motionVectorTexture objectivec.IObject, depthNormalTexture objectivec.IObject, previousDepthNormalTexture objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:"), commandBuffer, sourceTexture, destinationTexture, sourceTexture2, destinationTexture2, motionVectorTexture, depthNormalTexture, previousDepthNormalTexture)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/bilateralfilteriterations
 func (s_ SVGFDenoiser) BilateralFilterIterations() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("bilateralFilterIterations"))
@@ -96,40 +102,39 @@ func (s_ SVGFDenoiser) BilateralFilterIterations() int {
 }
 
 
-// SetBilateralFilterIterations sets the value of the bilateralFilterIterations property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/bilateralfilteriterations
 func (s_ SVGFDenoiser) SetBilateralFilterIterations(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBilateralFilterIterations:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
-func (s_ SVGFDenoiser) Svgf() MPSSVGF {
-	rv := objc.Send[MPSSVGF](s_.ID, objc.Sel("svgf"))
+func (s_ SVGFDenoiser) Svgf() IMPSSVGF {
+	rv := objc.Send[SVGF](s_.ID, objc.Sel("svgf"))
 	return rv
 }
 
 
-// SetSvgf sets the value of the svgf property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/svgf
 func (s_ SVGFDenoiser) SetSvgf(value IMPSSVGF) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSvgf:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/textureallocator
-func (s_ SVGFDenoiser) TextureAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("textureAllocator"))
+func (s_ SVGFDenoiser) TextureAllocator() SVGFTextureAllocator /* not a class type */ {
+	rv := objc.Send[SVGFTextureAllocator](s_.ID, objc.Sel("textureAllocator"))
 	return rv
 }
 
 
-// SetTextureAllocator sets the value of the textureAllocator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser/textureallocator
-func (s_ SVGFDenoiser) SetTextureAllocator(value unsafe.Pointer) {
+func (s_ SVGFDenoiser) SetTextureAllocator(value SVGFTextureAllocator /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTextureAllocator:"), value)
 }
 

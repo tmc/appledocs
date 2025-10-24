@@ -30,9 +30,13 @@ type _trustMetaAccountClass struct {
 // An interface definition for the [trustMetaAccount] class.
 type ItrustMetaAccount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustMetaAccount-c.ivar
 type trustMetaAccount struct {
 	objectivec.Object

@@ -2,12 +2,12 @@
 
 // Package pencilkit provides Go bindings for the PencilKit framework.
 //
-// Capture touch and Apple Pencil input as a drawing, and display that content from your app. [Full Topic]
+// Capture touch and Apple Pencil input as a drawing, and display that content from your app.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PencilKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit
+// See: https://developer.apple.com/documentation/PencilKit
 package pencilkit
 
 import (

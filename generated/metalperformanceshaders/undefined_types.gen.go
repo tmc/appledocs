@@ -12,7 +12,6 @@ type (
 	AccelerationStructureStatus = _undefined // referenced in MetalPerformanceShaders
 	AccelerationStructureUsage = _undefined // referenced in MetalPerformanceShaders
 	AxisAlignedBoundingBox = _undefined // referenced in MetalPerformanceShaders
-	Bool = _undefined // referenced in MetalPerformanceShaders
 	BoundingBoxIntersectionTestType = _undefined // referenced in MetalPerformanceShaders
 	Buffer = _undefined // referenced in MetalPerformanceShaders
 	CNNConvolutionDataSource = _undefined // referenced in MetalPerformanceShaders
@@ -36,12 +35,10 @@ type (
 	ImageCoordinate = _undefined // referenced in MetalPerformanceShaders
 	ImageFeatureChannelFormat = _undefined // referenced in MetalPerformanceShaders
 	ImageHistogramInfo = _undefined // referenced in MetalPerformanceShaders
-	ImageType = _undefined // referenced in MetalPerformanceShaders
 	IntersectionDataType = _undefined // referenced in MetalPerformanceShaders
 	KernelOptions = _undefined // referenced in MetalPerformanceShaders
 	LossCallback = _undefined // referenced in MetalPerformanceShaders
 	MTLRegion = _undefined // referenced in MetalPerformanceShaders
-	MTLSize = _undefined // referenced in MetalPerformanceShaders
 	MatrixRandomDistribution = _undefined // referenced in MetalPerformanceShaders
 	NDArrayAllocator = _undefined // referenced in MetalPerformanceShaders
 	NDArrayOffsets = _undefined // referenced in MetalPerformanceShaders
@@ -63,8 +60,6 @@ type (
 	TrainingStyle = _undefined // referenced in MetalPerformanceShaders
 	TransformType = _undefined // referenced in MetalPerformanceShaders
 	TriangleIntersectionTestType = _undefined // referenced in MetalPerformanceShaders
-	UInt16 = _undefined // referenced in MetalPerformanceShaders
-	UInt32 = _undefined // referenced in MetalPerformanceShaders
 	UInteger = _undefined // referenced in MetalPerformanceShaders
 	Winding = _undefined // referenced in MetalPerformanceShaders
 	Zone = _undefined // referenced in MetalPerformanceShaders

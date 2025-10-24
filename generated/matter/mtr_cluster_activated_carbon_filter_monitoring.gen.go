@@ -29,9 +29,13 @@ type _MTRClusterActivatedCarbonFilterMonitoringClass struct {
 // An interface definition for the [MTRClusterActivatedCarbonFilterMonitoring] class.
 type IMTRClusterActivatedCarbonFilterMonitoring interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterActivatedCarbonFilterMonitoring
 type MTRClusterActivatedCarbonFilterMonitoring struct {
 	MTRGenericCluster

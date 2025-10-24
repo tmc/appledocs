@@ -34,7 +34,7 @@ type IHeading interface {
 	// properties:
 	HeadingAccuracy() LocationDirection /* not a class type */
 	MagneticHeading() LocationDirection /* not a class type */
-	Timestamp() foundation.objc.IObject /* cross-framework: NSDate */
+	Timestamp() objc.IObject /* cross-framework: NSDate */
 	TrueHeading() LocationDirection /* not a class type */
 	X() objc.IObject /* cross-framework: HeadingComponentValue */
 	Y() objc.IObject /* cross-framework: HeadingComponentValue */
@@ -119,7 +119,7 @@ func (h_ Heading) MagneticHeading() LocationDirection /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
-func (h_ Heading) Timestamp() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (h_ Heading) Timestamp() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("timestamp"))
 	return rv
 }

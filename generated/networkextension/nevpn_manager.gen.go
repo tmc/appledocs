@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,34 +31,37 @@ type _NEVPNManagerClass struct {
 // An interface definition for the [NEVPNManager] class.
 type INEVPNManager interface {
 	objectivec.IObject
-	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
-	SetAuthorization(authorization unsafe.Pointer)
-	Connection() NEVPNConnection
-	Enabled() bool
-	SetEnabled(value bool)
-	OnDemandEnabled() bool
-	SetOnDemandEnabled(value bool)
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
-	OnDemandRules() []NEOnDemandRule
-	SetOnDemandRules(value []NEOnDemandRule)
-	Protocol() NEVPNProtocol
-	SetProtocol(value INEVPNProtocol)
-	ProtocolConfiguration() NEVPNProtocol
-	SetProtocolConfiguration(value INEVPNProtocol)
-	NEVPNErrorDomain() string
+	// properties:
+	NEVPNErrorDomain() objc.IObject /* cross-framework: NSString */
+	Connection() INEVPNConnection
+	SetConnection(value INEVPNConnection)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	IsOnDemandEnabled() bool
 	SetIsOnDemandEnabled(value bool)
+	LocalizedDescription() objc.IObject /* cross-framework: NSString */
+	SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */)
+	OnDemandRules() objc.IObject /* cross-framework: NEOnDemandRule */
+	SetOnDemandRules(value objc.IObject /* cross-framework: NEOnDemandRule */)
+	Protocol() INEVPNProtocol
+	SetProtocol(value INEVPNProtocol)
+	ProtocolConfiguration() INEVPNProtocol
+	SetProtocolConfiguration(value INEVPNProtocol)
+	// methods:
+	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
+	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
+	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
+	SetAuthorization(authorization unsafe.Pointer)
 }
 
 // An object to create and manage a Personal VPN configuration.
 //
 // The API gives apps the ability to create and manage a Personal VPN configuration on iOS and macOS. Personal VPN configurations are typically used to provide a service to users that protects their Internet browsing activity on insecure networks such as public Wi-Fi networks.
+
+
+// An object to create and manage a Personal VPN configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager
 type NEVPNManager struct {
 	objectivec.Object
@@ -102,176 +106,81 @@ func NewNEVPNManager() NEVPNManager {
 }
 
 
+
 // Access the single instance of .
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/shared()
 func (nc _NEVPNManagerClass) SharedManager() NEVPNManager {
 	rv := objc.Send[NEVPNManager](objc.ID(nc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
+
 // Load the VPN configuration from the Network Extension preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/loadFromPreferences(completionHandler:)
 func (n_ NEVPNManager) LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("loadFromPreferencesWithCompletionHandler:"), completionHandler)
 }
 
+
 // Remove the VPN configuration from the Network Extension preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/removeFromPreferences(completionHandler:)
 func (n_ NEVPNManager) RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromPreferencesWithCompletionHandler:"), completionHandler)
 }
 
+
 // Save the VPN configuration in the Network Extension preferences.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/saveToPreferences(completionHandler:)
 func (n_ NEVPNManager) SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("saveToPreferencesWithCompletionHandler:"), completionHandler)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/setAuthorization(_:)
 func (n_ NEVPNManager) SetAuthorization(authorization unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAuthorization:"), authorization)
 }
 
-// An object that is used to control the VPN tunnel specified by the VPN configuration.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnerrordomain
+func (n_ NEVPNManager) NEVPNErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEVPNErrorDomain"))
+	return rv
+}
+
+
+// An
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/connection
-func (n_ NEVPNManager) Connection() NEVPNConnection {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
+func (n_ NEVPNManager) Connection() INEVPNConnection {
 	rv := objc.Send[NEVPNConnection](n_.ID, objc.Sel("connection"))
 	return rv
 }
 
-// A Boolean used to toggle the enabled state of the VPN configuration.
+
+// An
 //
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/isEnabled
-func (n_ NEVPNManager) Enabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("enabled"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
+func (n_ NEVPNManager) SetConnection(value INEVPNConnection) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConnection:"), value)
 }
 
-
-// SetEnabled sets the value of the enabled property.
-// A Boolean used to toggle the enabled state of the VPN configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/isEnabled
-func (n_ NEVPNManager) SetEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setEnabled:"), value)
-}
-
-// A Boolean used to toggle the Connect On Demand capability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled
-func (n_ NEVPNManager) OnDemandEnabled() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("onDemandEnabled"))
-	return rv
-}
-
-
-// SetOnDemandEnabled sets the value of the onDemandEnabled property.
-// A Boolean used to toggle the Connect On Demand capability.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled
-func (n_ NEVPNManager) SetOnDemandEnabled(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandEnabled:"), value)
-}
-
-// A string containing the display name of the VPN configuration.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
-	return rv
-}
-
-
-// SetLocalizedDescription sets the value of the localizedDescription property.
-// A string containing the display name of the VPN configuration.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
-}
-
-// An ordered list of Connect On Demand rules.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/onDemandRules
-func (n_ NEVPNManager) OnDemandRules() []NEOnDemandRule {
-	rv := objc.Send[[]NEOnDemandRule](n_.ID, objc.Sel("onDemandRules"))
-	return rv
-}
-
-
-// SetOnDemandRules sets the value of the onDemandRules property.
-// An ordered list of Connect On Demand rules.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/onDemandRules
-func (n_ NEVPNManager) SetOnDemandRules(value []NEOnDemandRule) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), nsArray)
-}
-
-// An object containing the configuration settings of the VPN tunneling protocol.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocol
-func (n_ NEVPNManager) Protocol() NEVPNProtocol {
-	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocol"))
-	return rv
-}
-
-
-// SetProtocol sets the value of the protocol property.
-// An object containing the configuration settings of the VPN tunneling protocol.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocol
-func (n_ NEVPNManager) SetProtocol(value INEVPNProtocol) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocol:"), value)
-}
-
-// An object containing the configuration settings of the VPN tunneling protocol.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocolConfiguration
-func (n_ NEVPNManager) ProtocolConfiguration() NEVPNProtocol {
-	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocolConfiguration"))
-	return rv
-}
-
-
-// SetProtocolConfiguration sets the value of the protocolConfiguration property.
-// An object containing the configuration settings of the VPN tunneling protocol.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocolConfiguration
-func (n_ NEVPNManager) SetProtocolConfiguration(value INEVPNProtocol) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnerrordomain
-func (n_ NEVPNManager) NEVPNErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNErrorDomain"))
-	return rv
-}
 
 // A Boolean used to toggle the enabled state of the VPN configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isenabled
 func (n_ NEVPNManager) IsEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEnabled"))
@@ -279,17 +188,18 @@ func (n_ NEVPNManager) IsEnabled() bool {
 }
 
 
-// SetIsEnabled sets the value of the isEnabled property.
 // A Boolean used to toggle the enabled state of the VPN configuration.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isenabled
 func (n_ NEVPNManager) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
+
 // A Boolean used to toggle the Connect On Demand capability.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isondemandenabled
 func (n_ NEVPNManager) IsOnDemandEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isOnDemandEnabled"))
@@ -297,13 +207,88 @@ func (n_ NEVPNManager) IsOnDemandEnabled() bool {
 }
 
 
-// SetIsOnDemandEnabled sets the value of the isOnDemandEnabled property.
 // A Boolean used to toggle the Connect On Demand capability.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/isondemandenabled
 func (n_ NEVPNManager) SetIsOnDemandEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsOnDemandEnabled:"), value)
+}
+
+
+// A string containing the display name of the VPN configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/localizeddescription
+func (n_ NEVPNManager) LocalizedDescription() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("localizedDescription"))
+	return rv
+}
+
+
+// A string containing the display name of the VPN configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/localizeddescription
+func (n_ NEVPNManager) SetLocalizedDescription(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
+}
+
+
+// An ordered list of Connect On Demand rules.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
+func (n_ NEVPNManager) OnDemandRules() objc.IObject /* cross-framework: NEOnDemandRule */ {
+	rv := objc.Send[NEOnDemandRule](n_.ID, objc.Sel("onDemandRules"))
+	return rv
+}
+
+
+// An ordered list of Connect On Demand rules.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
+func (n_ NEVPNManager) SetOnDemandRules(value objc.IObject /* cross-framework: NEOnDemandRule */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), value)
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocol
+func (n_ NEVPNManager) Protocol() INEVPNProtocol {
+	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocol"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocol
+func (n_ NEVPNManager) SetProtocol(value INEVPNProtocol) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocol:"), value)
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
+func (n_ NEVPNManager) ProtocolConfiguration() INEVPNProtocol {
+	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocolConfiguration"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
+func (n_ NEVPNManager) SetProtocolConfiguration(value INEVPNProtocol) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
 }
 
 

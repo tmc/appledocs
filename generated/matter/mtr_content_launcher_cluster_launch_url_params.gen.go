@@ -31,19 +31,23 @@ type _MTRContentLauncherClusterLaunchURLParamsClass struct {
 // An interface definition for the [MTRContentLauncherClusterLaunchURLParams] class.
 type IMTRContentLauncherClusterLaunchURLParams interface {
 	objectivec.IObject
-	BrandingInformation() MTRContentLauncherClusterBrandingInformationStruct
+	// properties:
+	BrandingInformation() IMTRContentLauncherClusterBrandingInformationStruct
 	SetBrandingInformation(value IMTRContentLauncherClusterBrandingInformationStruct)
-	ContentURL() string
-	SetContentURL(value string)
-	DisplayString() string
-	SetDisplayString(value string)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	ContentURL() objc.IObject /* cross-framework: NSString */
+	SetContentURL(value objc.IObject /* cross-framework: NSString */)
+	DisplayString() objc.IObject /* cross-framework: NSString */
+	SetDisplayString(value objc.IObject /* cross-framework: NSString */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterLaunchURLParams
 type MTRContentLauncherClusterLaunchURLParams struct {
 	objectivec.Object
@@ -86,78 +90,78 @@ func NewMTRContentLauncherClusterLaunchURLParams() MTRContentLauncherClusterLaun
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
-func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() MTRContentLauncherClusterBrandingInformationStruct {
+func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() IMTRContentLauncherClusterBrandingInformationStruct {
 	rv := objc.Send[MTRContentLauncherClusterBrandingInformationStruct](m_.ID, objc.Sel("brandingInformation"))
 	return rv
 }
 
 
-// SetBrandingInformation sets the value of the brandingInformation property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetBrandingInformation(value IMTRContentLauncherClusterBrandingInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBrandingInformation:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("contentURL"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("contentURL"))
 	return rv
 }
 
 
-// SetContentURL sets the value of the contentURL property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("displayString"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("displayString"))
 	return rv
 }
 
 
-// SetDisplayString sets the value of the displayString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchURLParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLaunchURLParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

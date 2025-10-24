@@ -31,13 +31,19 @@ type _VZMacMachineIdentifierClass struct {
 // An interface definition for the [VZMacMachineIdentifier] class.
 type IVZMacMachineIdentifier interface {
 	objectivec.IObject
-	DataRepresentation() foundation.NSData
+	// properties:
+	DataRepresentation() objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // A unique identifier for a VM.
 //
 // This value uniquely identifies a virtual Mac hardware instance. Two VMs running concurrently shouldn’t use the same identifier. When serializing the VM to disk, you can preserve the identifier in a binary representation by serializing the data in the . property. Conversely, you can recreate the identifier with from the binary representation. You can compare the contents of two identifiers with .
+
+
+// A unique identifier for a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier
 type VZMacMachineIdentifier struct {
 	objectivec.Object
@@ -83,11 +89,11 @@ func NewVZMacMachineIdentifier() VZMacMachineIdentifier {
 
 
 
-
 // Create a machine identifier described by the specified data representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier/init(dataRepresentation:)
-func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation foundation.IData) VZMacMachineIdentifier {
+func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation objc.IObject /* cross-framework: NSData */) VZMacMachineIdentifier {
 	instance := getVZMacMachineIdentifierClass().Alloc()
 	rv := objc.Send[VZMacMachineIdentifier](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
 	rv.Autorelease()
@@ -95,10 +101,12 @@ func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation foundati
 }
 
 
+
 // Returns the opaque data representation of the machine identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier/dataRepresentation
-func (v_ VZMacMachineIdentifier) DataRepresentation() foundation.NSData {
+func (v_ VZMacMachineIdentifier) DataRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }

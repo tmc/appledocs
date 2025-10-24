@@ -31,13 +31,17 @@ type _MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStructClas
 // An interface definition for the [MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct] class.
 type IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct interface {
 	objectivec.IObject
-	MfgCode() foundation.Number
-	SetMfgCode(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	MfgCode() objc.IObject /* cross-framework: NSNumber */
+	SetMfgCode(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct
 type MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct()
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/mfgCode
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) MfgCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
 
-// SetMfgCode sets the value of the mfgCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/mfgCode
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/value
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct/value
-func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetValue(value foundation.INumber) {
+func (m_ MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

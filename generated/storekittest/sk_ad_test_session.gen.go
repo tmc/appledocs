@@ -32,19 +32,18 @@ type _AdTestSessionClass struct {
 // An interface definition for the [AdTestSession] class.
 type IAdTestSession interface {
 	objectivec.IObject
-	FlushPostbacksWithResponses(responses unsafe.Pointer)
-	SetPostbacksError(postbacks []AdTestPostback, error_ unsafe.Pointer) bool
-	ValidateImpressionPublicKeyError(impression storekit.IAdImpression, publicKey string, error_ unsafe.Pointer) bool
-	ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool
-	ValidateWebAdImpressionPayloadPublicKeyError(impressionData foundation.IData, publicKey string, error_ unsafe.Pointer) bool
-	DeveloperPostbackURL() foundation.URL
-	Postbacks() []AdTestPostback
+	// properties:
+	// methods:
 }
 
 // The class you use to test ad impressions and postbacks in Xcode.
 //
 // Use the class to test your implementations of SKAdNetwork. Create one instance of this class to use in multiple test cases. The instance represents a test session, and holds a set of test postbacks. Use to create test postbacks. Call to add test postbacks to the test session. The test session deletes the postbacks from the instance after you call .
+
+
+// The class you use to test ad impressions and postbacks in Xcode.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession
 type AdTestSession struct {
 	objectivec.Object
@@ -89,60 +88,5 @@ func NewAdTestSession() AdTestSession {
 }
 
 
-
-// Sends the test postbacks and handles the responses.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/flushPostbacks(responses:)
-func (a_ AdTestSession) FlushPostbacksWithResponses(responses unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("flushPostbacksWithResponses:"), responses)
-}
-
-// Add test postbacks to the test session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/setPostbacks(_:)
-func (a_ AdTestSession) SetPostbacksError(postbacks []AdTestPostback, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setPostbacks:error:"), postbacks, error_)
-	return rv
-}
-
-// Validates an impression for a view-through ad.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validate(_:publicKey:)
-func (a_ AdTestSession) ValidateImpressionPublicKeyError(impression storekit.IAdImpression, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpression:publicKey:error:"), impression, objc.String(publicKey), error_)
-	return rv
-}
-
-// Validates an impression for a StoreKit-rendered ad.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validateImpression(parameters:publicKey:)
-func (a_ AdTestSession) ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpressionWithParameters:publicKey:error:"), parameters, objc.String(publicKey), error_)
-	return rv
-}
-
-// Validates an impression for a web ad.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validateWebAdImpressionPayload(_:publicKey:)
-func (a_ AdTestSession) ValidateWebAdImpressionPayloadPublicKeyError(impressionData foundation.IData, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateWebAdImpressionPayload:publicKey:error:"), impressionData, objc.String(publicKey), error_)
-	return rv
-}
-
-// The URL that SKAdNetwork computes to send copies of winning postbacks to the advertised app’s developer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/developerPostbackURL
-func (a_ AdTestSession) DeveloperPostbackURL() foundation.URL {
-	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("developerPostbackURL"))
-	return rv
-}
-
-// An array of test postbacks you set in the testing environment.
-//
-// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/postbacks
-func (a_ AdTestSession) Postbacks() []AdTestPostback {
-	rv := objc.Send[[]AdTestPostback](a_.ID, objc.Sel("postbacks"))
-	return rv
-}
 
 

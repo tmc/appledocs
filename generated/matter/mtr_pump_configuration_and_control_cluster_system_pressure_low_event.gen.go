@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterSystemPressureLowEventClass struct {
 // An interface definition for the [MTRPumpConfigurationAndControlClusterSystemPressureLowEvent] class.
 type IMTRPumpConfigurationAndControlClusterSystemPressureLowEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSystemPressureLowEvent
 type MTRPumpConfigurationAndControlClusterSystemPressureLowEvent struct {
 	objectivec.Object

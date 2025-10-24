@@ -29,18 +29,24 @@ type _AccelerationStructureClass struct {
 // An interface definition for the [AccelerationStructure] class.
 type IAccelerationStructure interface {
 	IKernel
-	BoundingBox() unsafe.Pointer
-	SetBoundingBox(value unsafe.Pointer)
-	Group() MPSAccelerationStructureGroup
+	// properties:
+	BoundingBox() AxisAlignedBoundingBox /* not a class type */
+	SetBoundingBox(value AxisAlignedBoundingBox /* not a class type */)
+	Group() IMPSAccelerationStructureGroup
 	SetGroup(value IMPSAccelerationStructureGroup)
-	Status() unsafe.Pointer
-	SetStatus(value unsafe.Pointer)
-	Usage() unsafe.Pointer
-	SetUsage(value unsafe.Pointer)
+	Status() AccelerationStructureStatus /* not a class type */
+	SetStatus(value AccelerationStructureStatus /* not a class type */)
+	Usage() AccelerationStructureUsage /* not a class type */
+	SetUsage(value AccelerationStructureUsage /* not a class type */)
+	// methods:
 }
 
 // The base class for data structures that are built over geometry and used to accelerate ray tracing.
+
+
+// The base class for data structures that are built over geometry and used to accelerate ray tracing.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructure
 type AccelerationStructure struct {
 	Kernel
@@ -87,7 +93,8 @@ func NewAccelerationStructure() AccelerationStructure {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructure/init(group:)
 func NewAccelerationStructureWithGroup(group IMPSAccelerationStructureGroup) AccelerationStructure {
 	instance := getAccelerationStructureClass().Alloc()
@@ -97,63 +104,63 @@ func NewAccelerationStructureWithGroup(group IMPSAccelerationStructureGroup) Acc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/boundingbox
-func (a_ AccelerationStructure) BoundingBox() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("boundingBox"))
+func (a_ AccelerationStructure) BoundingBox() AxisAlignedBoundingBox /* not a class type */ {
+	rv := objc.Send[AxisAlignedBoundingBox](a_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
 
-// SetBoundingBox sets the value of the boundingBox property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/boundingbox
-func (a_ AccelerationStructure) SetBoundingBox(value unsafe.Pointer) {
+func (a_ AccelerationStructure) SetBoundingBox(value AxisAlignedBoundingBox /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBox:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
-func (a_ AccelerationStructure) Group() MPSAccelerationStructureGroup {
-	rv := objc.Send[MPSAccelerationStructureGroup](a_.ID, objc.Sel("group"))
+func (a_ AccelerationStructure) Group() IMPSAccelerationStructureGroup {
+	rv := objc.Send[AccelerationStructureGroup](a_.ID, objc.Sel("group"))
 	return rv
 }
 
 
-// SetGroup sets the value of the group property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
 func (a_ AccelerationStructure) SetGroup(value IMPSAccelerationStructureGroup) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGroup:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/status
-func (a_ AccelerationStructure) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
+func (a_ AccelerationStructure) Status() AccelerationStructureStatus /* not a class type */ {
+	rv := objc.Send[AccelerationStructureStatus](a_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/status
-func (a_ AccelerationStructure) SetStatus(value unsafe.Pointer) {
+func (a_ AccelerationStructure) SetStatus(value AccelerationStructureStatus /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
-func (a_ AccelerationStructure) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("usage"))
+func (a_ AccelerationStructure) Usage() AccelerationStructureUsage /* not a class type */ {
+	rv := objc.Send[AccelerationStructureUsage](a_.ID, objc.Sel("usage"))
 	return rv
 }
 
 
-// SetUsage sets the value of the usage property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/usage
-func (a_ AccelerationStructure) SetUsage(value unsafe.Pointer) {
+func (a_ AccelerationStructure) SetUsage(value AccelerationStructureUsage /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsage:"), value)
 }
 

@@ -29,9 +29,13 @@ type _MTRBaseClusterChannelClass struct {
 // An interface definition for the [MTRBaseClusterChannel] class.
 type IMTRBaseClusterChannel interface {
 	IMTRGenericBaseCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterChannel
 type MTRBaseClusterChannel struct {
 	MTRGenericBaseCluster

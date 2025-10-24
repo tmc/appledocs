@@ -457,8 +457,7 @@ type RectCount uintptr
 // RefreshRate - A display’s refresh rate in frames per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRefreshRate
-// CGRefreshRate has base type: double
-type RefreshRate uintptr
+type RefreshRate float64
 // RenderingBufferProviderRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProvider

@@ -30,67 +30,71 @@ type _MTRTestClusterClusterTestComplexNullableOptionalResponseParamsClass struct
 // An interface definition for the [MTRTestClusterClusterTestComplexNullableOptionalResponseParams] class.
 type IMTRTestClusterClusterTestComplexNullableOptionalResponseParams interface {
 	IMTRUnitTestingClusterTestComplexNullableOptionalResponseParams
-	NullableIntValue() foundation.Number
-	SetNullableIntValue(value foundation.INumber)
-	NullableIntWasNull() foundation.Number
-	SetNullableIntWasNull(value foundation.INumber)
+	// properties:
+	NullableIntValue() objc.IObject /* cross-framework: NSNumber */
+	SetNullableIntValue(value objc.IObject /* cross-framework: NSNumber */)
+	NullableIntWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableIntWasNull(value objc.IObject /* cross-framework: NSNumber */)
 	NullableListValue() unsafe.Pointer
 	SetNullableListValue(value unsafe.Pointer)
-	NullableListWasNull() foundation.Number
-	SetNullableListWasNull(value foundation.INumber)
-	NullableOptionalIntValue() foundation.Number
-	SetNullableOptionalIntValue(value foundation.INumber)
-	NullableOptionalIntWasNull() foundation.Number
-	SetNullableOptionalIntWasNull(value foundation.INumber)
-	NullableOptionalIntWasPresent() foundation.Number
-	SetNullableOptionalIntWasPresent(value foundation.INumber)
+	NullableListWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableListWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalIntValue() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalIntWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalIntWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalIntWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */)
 	NullableOptionalListValue() unsafe.Pointer
 	SetNullableOptionalListValue(value unsafe.Pointer)
-	NullableOptionalListWasNull() foundation.Number
-	SetNullableOptionalListWasNull(value foundation.INumber)
-	NullableOptionalListWasPresent() foundation.Number
-	SetNullableOptionalListWasPresent(value foundation.INumber)
-	NullableOptionalStringValue() string
-	SetNullableOptionalStringValue(value string)
-	NullableOptionalStringWasNull() foundation.Number
-	SetNullableOptionalStringWasNull(value foundation.INumber)
-	NullableOptionalStringWasPresent() foundation.Number
-	SetNullableOptionalStringWasPresent(value foundation.INumber)
-	NullableOptionalStructValue() MTRUnitTestingClusterSimpleStruct
+	NullableOptionalListWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalListWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalListWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalStringValue() objc.IObject /* cross-framework: NSString */
+	SetNullableOptionalStringValue(value objc.IObject /* cross-framework: NSString */)
+	NullableOptionalStringWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalStringWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalStringWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalStructValue() IMTRUnitTestingClusterSimpleStruct
 	SetNullableOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct)
-	NullableOptionalStructWasNull() foundation.Number
-	SetNullableOptionalStructWasNull(value foundation.INumber)
-	NullableOptionalStructWasPresent() foundation.Number
-	SetNullableOptionalStructWasPresent(value foundation.INumber)
-	NullableStringValue() string
-	SetNullableStringValue(value string)
-	NullableStringWasNull() foundation.Number
-	SetNullableStringWasNull(value foundation.INumber)
-	NullableStructValue() MTRUnitTestingClusterSimpleStruct
+	NullableOptionalStructWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalStructWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableOptionalStructWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetNullableOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	NullableStringValue() objc.IObject /* cross-framework: NSString */
+	SetNullableStringValue(value objc.IObject /* cross-framework: NSString */)
+	NullableStringWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableStringWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	NullableStructValue() IMTRUnitTestingClusterSimpleStruct
 	SetNullableStructValue(value IMTRUnitTestingClusterSimpleStruct)
-	NullableStructWasNull() foundation.Number
-	SetNullableStructWasNull(value foundation.INumber)
-	OptionalIntValue() foundation.Number
-	SetOptionalIntValue(value foundation.INumber)
-	OptionalIntWasPresent() foundation.Number
-	SetOptionalIntWasPresent(value foundation.INumber)
+	NullableStructWasNull() objc.IObject /* cross-framework: NSNumber */
+	SetNullableStructWasNull(value objc.IObject /* cross-framework: NSNumber */)
+	OptionalIntValue() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */)
+	OptionalIntWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */)
 	OptionalListValue() unsafe.Pointer
 	SetOptionalListValue(value unsafe.Pointer)
-	OptionalListWasPresent() foundation.Number
-	SetOptionalListWasPresent(value foundation.INumber)
-	OptionalStringValue() string
-	SetOptionalStringValue(value string)
-	OptionalStringWasPresent() foundation.Number
-	SetOptionalStringWasPresent(value foundation.INumber)
-	OptionalStructValue() MTRUnitTestingClusterSimpleStruct
+	OptionalListWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	OptionalStringValue() objc.IObject /* cross-framework: NSString */
+	SetOptionalStringValue(value objc.IObject /* cross-framework: NSString */)
+	OptionalStringWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	OptionalStructValue() IMTRUnitTestingClusterSimpleStruct
 	SetOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct)
-	OptionalStructWasPresent() foundation.Number
-	SetOptionalStructWasPresent(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	OptionalStructWasPresent() objc.IObject /* cross-framework: NSNumber */
+	SetOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestComplexNullableOptionalResponseParams
 type MTRTestClusterClusterTestComplexNullableOptionalResponseParams struct {
 	MTRUnitTestingClusterTestComplexNullableOptionalResponseParams
@@ -135,37 +139,38 @@ func NewMTRTestClusterClusterTestComplexNullableOptionalResponseParams() MTRTest
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableIntValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableIntValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableIntValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableIntValue"))
 	return rv
 }
 
 
-// SetNullableIntValue sets the value of the nullableIntValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableIntWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableIntWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableIntWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableIntWasNull"))
 	return rv
 }
 
 
-// SetNullableIntWasNull sets the value of the nullableIntWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableListValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableListValue"))
@@ -173,74 +178,74 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 }
 
 
-// SetNullableListValue sets the value of the nullableListValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableListValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableListWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableListWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableListWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableListWasNull"))
 	return rv
 }
 
 
-// SetNullableListWasNull sets the value of the nullableListWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableListWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableListWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableListWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalIntValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalIntValue"))
 	return rv
 }
 
 
-// SetNullableOptionalIntValue sets the value of the nullableOptionalIntValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalIntWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalIntWasNull"))
 	return rv
 }
 
 
-// SetNullableOptionalIntWasNull sets the value of the nullableOptionalIntWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalIntWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalIntWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalIntWasPresent"))
 	return rv
 }
 
 
-// SetNullableOptionalIntWasPresent sets the value of the nullableOptionalIntWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalListValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableOptionalListValue"))
@@ -248,224 +253,224 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 }
 
 
-// SetNullableOptionalListValue sets the value of the nullableOptionalListValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalListWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalListWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalListWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalListWasNull"))
 	return rv
 }
 
 
-// SetNullableOptionalListWasNull sets the value of the nullableOptionalListWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalListWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalListWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalListWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalListWasPresent"))
 	return rv
 }
 
 
-// SetNullableOptionalListWasPresent sets the value of the nullableOptionalListWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableOptionalStringValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("nullableOptionalStringValue"))
 	return rv
 }
 
 
-// SetNullableOptionalStringValue sets the value of the nullableOptionalStringValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringValue:"), objc.String(value))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalStringWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalStringWasNull"))
 	return rv
 }
 
 
-// SetNullableOptionalStringWasNull sets the value of the nullableOptionalStringWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalStringWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalStringWasPresent"))
 	return rv
 }
 
 
-// SetNullableOptionalStringWasPresent sets the value of the nullableOptionalStringWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructValue() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructValue() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableOptionalStructValue"))
 	return rv
 }
 
 
-// SetNullableOptionalStructValue sets the value of the nullableOptionalStructValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalStructWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalStructWasNull"))
 	return rv
 }
 
 
-// SetNullableOptionalStructWasNull sets the value of the nullableOptionalStructWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableOptionalStructWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableOptionalStructWasPresent"))
 	return rv
 }
 
 
-// SetNullableOptionalStructWasPresent sets the value of the nullableOptionalStructWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableStringValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("nullableStringValue"))
 	return rv
 }
 
 
-// SetNullableStringValue sets the value of the nullableStringValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringValue:"), objc.String(value))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStringWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableStringWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStringWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableStringWasNull"))
 	return rv
 }
 
 
-// SetNullableStringWasNull sets the value of the nullableStringWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStructValue() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStructValue() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableStructValue"))
 	return rv
 }
 
 
-// SetNullableStructValue sets the value of the nullableStructValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStructWasNull() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("nullableStructWasNull"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableStructWasNull() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nullableStructWasNull"))
 	return rv
 }
 
 
-// SetNullableStructWasNull sets the value of the nullableStructWasNull property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructwasnull
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStructWasNull(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStructWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructWasNull:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalIntValue() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalIntValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalIntValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalIntValue"))
 	return rv
 }
 
 
-// SetOptionalIntValue sets the value of the optionalIntValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntValue(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalIntWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalIntWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalIntWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalIntWasPresent"))
 	return rv
 }
 
 
-// SetOptionalIntWasPresent sets the value of the optionalIntWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalListValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("optionalListValue"))
@@ -473,100 +478,99 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 }
 
 
-// SetOptionalListValue sets the value of the optionalListValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalListValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalListWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalListWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalListWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalListWasPresent"))
 	return rv
 }
 
 
-// SetOptionalListWasPresent sets the value of the optionalListWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalListWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalListWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("optionalStringValue"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("optionalStringValue"))
 	return rv
 }
 
 
-// SetOptionalStringValue sets the value of the optionalStringValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringValue:"), objc.String(value))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStringWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalStringWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStringWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalStringWasPresent"))
 	return rv
 }
 
 
-// SetOptionalStringWasPresent sets the value of the optionalStringWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStructValue() MTRUnitTestingClusterSimpleStruct {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStructValue() IMTRUnitTestingClusterSimpleStruct {
 	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("optionalStructValue"))
 	return rv
 }
 
 
-// SetOptionalStructValue sets the value of the optionalStructValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructValue:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStructWasPresent() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("optionalStructWasPresent"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) OptionalStructWasPresent() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionalStructWasPresent"))
 	return rv
 }
 
 
-// SetOptionalStructWasPresent sets the value of the optionalStructWasPresent property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructwaspresent
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStructWasPresent(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructWasPresent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

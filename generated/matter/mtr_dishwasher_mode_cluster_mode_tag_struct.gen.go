@@ -31,13 +31,17 @@ type _MTRDishwasherModeClusterModeTagStructClass struct {
 // An interface definition for the [MTRDishwasherModeClusterModeTagStruct] class.
 type IMTRDishwasherModeClusterModeTagStruct interface {
 	objectivec.IObject
-	MfgCode() foundation.Number
-	SetMfgCode(value foundation.INumber)
-	Value() foundation.Number
-	SetValue(value foundation.INumber)
+	// properties:
+	MfgCode() objc.IObject /* cross-framework: NSNumber */
+	SetMfgCode(value objc.IObject /* cross-framework: NSNumber */)
+	Value() objc.IObject /* cross-framework: NSNumber */
+	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct
 type MTRDishwasherModeClusterModeTagStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRDishwasherModeClusterModeTagStruct() MTRDishwasherModeClusterModeTagS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mfgCode"))
+func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mfgCode"))
 	return rv
 }
 
 
-// SetMfgCode sets the value of the mfgCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
-func (m_ MTRDishwasherModeClusterModeTagStruct) Value() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("value"))
+func (m_ MTRDishwasherModeClusterModeTagStruct) Value() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value foundation.INumber) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

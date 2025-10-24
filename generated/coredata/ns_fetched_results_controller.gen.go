@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +32,21 @@ type _FetchedResultsControllerClass struct {
 type IFetchedResultsController interface {
 	objectivec.IObject
 	// properties:
-	CacheName() string /* primitive/slice/pointer. */
+	CacheName() objc.IObject /* cross-framework: NSString */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	FetchRequest() unsafe.Pointer
-	FetchedObjects() []objc.ID /* already interface */
+	FetchedObjects() []objc.ID
 	ManagedObjectContext() IManagedObjectContext
-	SectionIndexTitles() []string /* primitive/slice/pointer. */
-	SectionNameKeyPath() string /* primitive/slice/pointer. */
-	Sections() []objc.ID /* already interface */
+	SectionIndexTitles() []string
+	SectionNameKeyPath() objc.IObject /* cross-framework: NSString */
+	Sections() []objc.ID
 	// methods:
-	IndexPathForObject(object unsafe.Pointer) IndexPath /* not a class type */
-	ObjectAtIndexPath(indexPath IndexPath /* not a class type */) unsafe.Pointer
-	PerformFetch(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SectionForSectionIndexTitleAtIndex(title string /* primitive/slice/pointer. */, sectionIndex int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
-	SectionIndexTitleForSectionName(sectionName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	IndexPathForObject(object unsafe.Pointer) objc.IObject /* cross-framework: IndexPath */
+	ObjectAtIndexPath(indexPath objc.IObject /* cross-framework: IndexPath */) unsafe.Pointer
+	PerformFetch(error_ unsafe.Pointer) bool
+	SectionForSectionIndexTitleAtIndex(title objc.IObject /* cross-framework: NSString */, sectionIndex int) int
+	SectionIndexTitleForSectionName(sectionName objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
 }
 
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
@@ -105,9 +106,9 @@ func NewFetchedResultsController() FetchedResultsController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/init(fetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)
-func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context IManagedObjectContext, sectionNameKeyPath string /* primitive/slice/pointer. */, name string /* primitive/slice/pointer. */) FetchedResultsController {
+func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context IManagedObjectContext, sectionNameKeyPath objc.IObject /* cross-framework: NSString */, name objc.IObject /* cross-framework: NSString */) FetchedResultsController {
 	instance := getFetchedResultsControllerClass().Alloc()
-	rv := objc.Send[FetchedResultsController](instance.ID, objc.Sel("initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:"), fetchRequest, context, objc.String(sectionNameKeyPath), objc.String(name))
+	rv := objc.Send[FetchedResultsController](instance.ID, objc.Sel("initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:"), fetchRequest, context, sectionNameKeyPath, name)
 	rv.Autorelease()
 	return rv
 }
@@ -118,8 +119,8 @@ func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/deleteCache(withName:)
-func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), objc.String(name))
+func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), name)
 }
 
 
@@ -127,8 +128,8 @@ func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/indexPath(forObject:)
-func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) IndexPath /* not a class type */ {
-	rv := objc.Send[IndexPath](f_.ID, objc.Sel("indexPathForObject:"), object)
+func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) objc.IObject /* cross-framework: IndexPath */ {
+	rv := objc.Send[foundation.IndexPath](f_.ID, objc.Sel("indexPathForObject:"), object)
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) Ind
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/object(at:)
-func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath IndexPath /* not a class type */) unsafe.Pointer {
+func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath objc.IObject /* cross-framework: IndexPath */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("objectAtIndexPath:"), indexPath)
 	return rv
 }
@@ -147,7 +148,7 @@ func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath IndexPath /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/performFetch()
-func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("performFetch:"), error_)
 	return rv
 }
@@ -157,8 +158,8 @@ func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/section(forSectionIndexTitle:at:)
-func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title string /* primitive/slice/pointer. */, sectionIndex int /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), objc.String(title), sectionIndex)
+func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title objc.IObject /* cross-framework: NSString */, sectionIndex int) int {
+	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), title, sectionIndex)
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitle(forSectionName:)
-func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), objc.String(sectionName))
+func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[foundation.String](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), sectionName)
 	return rv
 }
 
@@ -177,8 +178,8 @@ func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/cacheName
-func (f_ FetchedResultsController) CacheName() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("cacheName"))
+func (f_ FetchedResultsController) CacheName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("cacheName"))
 	return rv
 }
 
@@ -216,7 +217,7 @@ func (f_ FetchedResultsController) FetchRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/fetchedObjects
-func (f_ FetchedResultsController) FetchedObjects() []objc.ID /* already interface */ {
+func (f_ FetchedResultsController) FetchedObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("fetchedObjects"))
 	return rv
 }
@@ -236,7 +237,7 @@ func (f_ FetchedResultsController) ManagedObjectContext() IManagedObjectContext 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitles
-func (f_ FetchedResultsController) SectionIndexTitles() []string /* primitive/slice/pointer. */ {
+func (f_ FetchedResultsController) SectionIndexTitles() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("sectionIndexTitles"))
 	return rv
 }
@@ -246,8 +247,8 @@ func (f_ FetchedResultsController) SectionIndexTitles() []string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionNameKeyPath
-func (f_ FetchedResultsController) SectionNameKeyPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](f_.ID, objc.Sel("sectionNameKeyPath"))
+func (f_ FetchedResultsController) SectionNameKeyPath() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("sectionNameKeyPath"))
 	return rv
 }
 
@@ -256,7 +257,7 @@ func (f_ FetchedResultsController) SectionNameKeyPath() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sections
-func (f_ FetchedResultsController) Sections() []objc.ID /* already interface */ {
+func (f_ FetchedResultsController) Sections() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("sections"))
 	return rv
 }

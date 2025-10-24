@@ -35,34 +35,34 @@ type IRunningApplication interface {
 	ActivationPolicy() ApplicationActivationPolicy
 	BundleIdentifier() objc.IObject /* cross-framework: NSString */
 	BundleURL() objc.IObject /* cross-framework: NSURL */
-	ExecutableArchitecture() int /* primitive/slice/pointer. */
+	ExecutableArchitecture() int
 	ExecutableURL() objc.IObject /* cross-framework: NSURL */
 	Icon() IImage
-	Active() bool /* primitive/slice/pointer. */
-	FinishedLaunching() bool /* primitive/slice/pointer. */
-	Hidden() bool /* primitive/slice/pointer. */
-	Terminated() bool /* primitive/slice/pointer. */
+	Active() bool
+	FinishedLaunching() bool
+	Hidden() bool
+	Terminated() bool
 	LaunchDate() objc.IObject /* cross-framework: NSDate */
 	LocalizedName() objc.IObject /* cross-framework: NSString */
-	OwnsMenuBar() bool /* primitive/slice/pointer. */
+	OwnsMenuBar() bool
 	ProcessIdentifier() unsafe.Pointer
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	IsFinishedLaunching() bool /* primitive/slice/pointer. */
-	SetIsFinishedLaunching(value bool /* primitive/slice/pointer. */)
-	IsHidden() bool /* primitive/slice/pointer. */
-	SetIsHidden(value bool /* primitive/slice/pointer. */)
-	IsTerminated() bool /* primitive/slice/pointer. */
-	SetIsTerminated(value bool /* primitive/slice/pointer. */)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFinishedLaunching() bool
+	SetIsFinishedLaunching(value bool)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	IsTerminated() bool
+	SetIsTerminated(value bool)
 	RunningApplications() IRunningApplication
 	SetRunningApplications(value IRunningApplication)
 	// methods:
-	ActivateFromApplicationOptions(application IRunningApplication, options ApplicationActivationOptions) bool /* primitive/slice/pointer. */
-	ActivateWithOptions(options ApplicationActivationOptions) bool /* primitive/slice/pointer. */
-	ForceTerminate() bool /* primitive/slice/pointer. */
-	Hide() bool /* primitive/slice/pointer. */
-	Terminate() bool /* primitive/slice/pointer. */
-	Unhide() bool /* primitive/slice/pointer. */
+	ActivateFromApplicationOptions(application IRunningApplication, options ApplicationActivationOptions) bool
+	ActivateWithOptions(options ApplicationActivationOptions) bool
+	ForceTerminate() bool
+	Hide() bool
+	Terminate() bool
+	Unhide() bool
 }
 
 // An object that can manipulate and provide information for a single instance of an app.
@@ -143,7 +143,7 @@ func (rc _RunningApplicationClass) RunningApplicationWithProcessIdentifier(pid u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)
-func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework NSString */) []RunningApplication /* primitive/slice/pointer. */ {
+func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) []IRunningApplication {
 	rv := objc.Send[[]RunningApplication](objc.ID(rc.class), objc.Sel("runningApplicationsWithBundleIdentifier:"), bundleIdentifier)
 	return rv
 }
@@ -171,7 +171,7 @@ func (rc _RunningApplicationClass) CurrentApplication() RunningApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/activate(from:options:)
-func (r_ RunningApplication) ActivateFromApplicationOptions(application IRunningApplication, options ApplicationActivationOptions) bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) ActivateFromApplicationOptions(application IRunningApplication, options ApplicationActivationOptions) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("activateFromApplication:options:"), application, options)
 	return rv
 }
@@ -181,7 +181,7 @@ func (r_ RunningApplication) ActivateFromApplicationOptions(application IRunning
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/activate(options:)
-func (r_ RunningApplication) ActivateWithOptions(options ApplicationActivationOptions) bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) ActivateWithOptions(options ApplicationActivationOptions) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("activateWithOptions:"), options)
 	return rv
 }
@@ -191,7 +191,7 @@ func (r_ RunningApplication) ActivateWithOptions(options ApplicationActivationOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/forceTerminate()
-func (r_ RunningApplication) ForceTerminate() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) ForceTerminate() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("forceTerminate"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (r_ RunningApplication) ForceTerminate() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/hide()
-func (r_ RunningApplication) Hide() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Hide() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("hide"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (r_ RunningApplication) Hide() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/terminate()
-func (r_ RunningApplication) Terminate() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Terminate() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("terminate"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (r_ RunningApplication) Terminate() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/unhide()
-func (r_ RunningApplication) Unhide() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Unhide() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("unhide"))
 	return rv
 }
@@ -271,7 +271,7 @@ func (r_ RunningApplication) CurrentApplication() IRunningApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/executableArchitecture
-func (r_ RunningApplication) ExecutableArchitecture() int /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) ExecutableArchitecture() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("executableArchitecture"))
 	return rv
 }
@@ -301,7 +301,7 @@ func (r_ RunningApplication) Icon() IImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/isActive
-func (r_ RunningApplication) Active() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Active() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("active"))
 	return rv
 }
@@ -311,7 +311,7 @@ func (r_ RunningApplication) Active() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/isFinishedLaunching
-func (r_ RunningApplication) FinishedLaunching() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) FinishedLaunching() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("finishedLaunching"))
 	return rv
 }
@@ -321,7 +321,7 @@ func (r_ RunningApplication) FinishedLaunching() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/isHidden
-func (r_ RunningApplication) Hidden() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Hidden() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("hidden"))
 	return rv
 }
@@ -331,7 +331,7 @@ func (r_ RunningApplication) Hidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/isTerminated
-func (r_ RunningApplication) Terminated() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) Terminated() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("terminated"))
 	return rv
 }
@@ -361,7 +361,7 @@ func (r_ RunningApplication) LocalizedName() objc.IObject /* cross-framework: NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/ownsMenuBar
-func (r_ RunningApplication) OwnsMenuBar() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) OwnsMenuBar() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("ownsMenuBar"))
 	return rv
 }
@@ -381,7 +381,7 @@ func (r_ RunningApplication) ProcessIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
-func (r_ RunningApplication) IsActive() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) IsActive() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (r_ RunningApplication) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isactive
-func (r_ RunningApplication) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (r_ RunningApplication) SetIsActive(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -400,7 +400,7 @@ func (r_ RunningApplication) SetIsActive(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
-func (r_ RunningApplication) IsFinishedLaunching() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) IsFinishedLaunching() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isFinishedLaunching"))
 	return rv
 }
@@ -410,7 +410,7 @@ func (r_ RunningApplication) IsFinishedLaunching() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isfinishedlaunching
-func (r_ RunningApplication) SetIsFinishedLaunching(value bool /* primitive/slice/pointer. */) {
+func (r_ RunningApplication) SetIsFinishedLaunching(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFinishedLaunching:"), value)
 }
 
@@ -419,7 +419,7 @@ func (r_ RunningApplication) SetIsFinishedLaunching(value bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
-func (r_ RunningApplication) IsHidden() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) IsHidden() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -429,7 +429,7 @@ func (r_ RunningApplication) IsHidden() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/ishidden
-func (r_ RunningApplication) SetIsHidden(value bool /* primitive/slice/pointer. */) {
+func (r_ RunningApplication) SetIsHidden(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -438,7 +438,7 @@ func (r_ RunningApplication) SetIsHidden(value bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
-func (r_ RunningApplication) IsTerminated() bool /* primitive/slice/pointer. */ {
+func (r_ RunningApplication) IsTerminated() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isTerminated"))
 	return rv
 }
@@ -448,7 +448,7 @@ func (r_ RunningApplication) IsTerminated() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrunningapplication/isterminated
-func (r_ RunningApplication) SetIsTerminated(value bool /* primitive/slice/pointer. */) {
+func (r_ RunningApplication) SetIsTerminated(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsTerminated:"), value)
 }
 

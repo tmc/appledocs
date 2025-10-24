@@ -92,7 +92,7 @@ func NewLogicalTest() LogicalTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
-func NewLogicalTestAndTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer. */) LogicalTest {
+func NewLogicalTestAndTestWithTests(subTests []ISpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewLogicalTestNotTestWithTest(subTest IScriptWhoseTest) LogicalTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
-func NewLogicalTestOrTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer. */) LogicalTest {
+func NewLogicalTestOrTestWithTests(subTests []ISpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)
 	rv.Autorelease()

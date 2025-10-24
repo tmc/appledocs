@@ -29,18 +29,24 @@ type _PHASESwitchNodeDefinitionClass struct {
 // An interface definition for the [PHASESwitchNodeDefinition] class.
 type IPHASESwitchNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
-	GlobalMetaParameters() PHASEMetaParameter
+	// properties:
+	GlobalMetaParameters() IPHASEMetaParameter
 	SetGlobalMetaParameters(value IPHASEMetaParameter)
-	MetaParameters() PHASEMetaParameter
+	MetaParameters() IPHASEMetaParameter
 	SetMetaParameters(value IPHASEMetaParameter)
-	SwitchMetaParameterDefinition() PHASEStringMetaParameterDefinition
+	SwitchMetaParameterDefinition() IPHASEStringMetaParameterDefinition
 	SetSwitchMetaParameterDefinition(value IPHASEStringMetaParameterDefinition)
+	// methods:
 }
 
 // A node that passes invocation to only one of its child nodes.
 //
 // A switch node takes a different path in a sound-event hierarchy depending on the value that the app supplies for the node’s switch metaparameter. You define the available paths ahead of time by calling at least twice and supplying the subtree’s unique string name as the switch value. When your app invokes a sound event at runtime, PHASE checks the value of to determine which path to take.
+
+
+// A node that passes invocation to only one of its child nodes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESwitchNodeDefinition
 type PHASESwitchNodeDefinition struct {
 	PHASESoundEventNodeDefinition
@@ -88,9 +94,9 @@ func NewPHASESwitchNodeDefinition() PHASESwitchNodeDefinition {
 
 
 
-
 // Creates a node that invokes a child node based on the value of the given parameter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESwitchNodeDefinition/init(switchMetaParameterDefinition:)
 func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaParameterDefinition IPHASEStringMetaParameterDefinition) PHASESwitchNodeDefinition {
 	instance := getPHASESwitchNodeDefinitionClass().Alloc()
@@ -100,55 +106,58 @@ func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaPar
 }
 
 
+
 // A dictionary of metaparameters that all sound event assets share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() PHASEMetaParameter {
+func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
 
-// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
 // A dictionary of metaparameters that all sound event assets share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
 func (p_ PHASESwitchNodeDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
+
 // The object’s meta parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESwitchNodeDefinition) MetaParameters() PHASEMetaParameter {
+func (p_ PHASESwitchNodeDefinition) MetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
 
-// SetMetaParameters sets the value of the metaParameters property.
 // The object’s meta parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
 func (p_ PHASESwitchNodeDefinition) SetMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
+
 // The meta parameter that holds the name of the child node to invoke.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
-func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() PHASEStringMetaParameterDefinition {
+func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() IPHASEStringMetaParameterDefinition {
 	rv := objc.Send[PHASEStringMetaParameterDefinition](p_.ID, objc.Sel("switchMetaParameterDefinition"))
 	return rv
 }
 
 
-// SetSwitchMetaParameterDefinition sets the value of the switchMetaParameterDefinition property.
 // The meta parameter that holds the name of the child node to invoke.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
 func (p_ PHASESwitchNodeDefinition) SetSwitchMetaParameterDefinition(value IPHASEStringMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSwitchMetaParameterDefinition:"), value)

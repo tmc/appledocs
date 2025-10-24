@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,16 +31,13 @@ type _PasteboardItemClass struct {
 type IPasteboardItem interface {
 	objectivec.IObject
 	// properties:
-	CollaborationMetadata() unsafe.Pointer
-	SetCollaborationMetadata(value unsafe.Pointer)
 	PasteboardItems() IPasteboardItem
 	SetPasteboardItems(value IPasteboardItem)
-	Types() objc.IObject /* cross-framework: PasteboardType */
-	SetTypes(value objc.IObject /* cross-framework: PasteboardType */)
+	CollaborationMetadata() unsafe.Pointer
+	SetCollaborationMetadata(value unsafe.Pointer)
+	Types() unsafe.Pointer
+	SetTypes(value unsafe.Pointer)
 	// methods:
-	AvailableTypeFromArray(types []string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: PasteboardType */
-	DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler foundation.IDictionary /* already interface */)
-	SetDataProviderForTypes(dataProvider objectivec.IObject, types []string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // An item on a pasteboard.
@@ -97,54 +93,6 @@ func NewPasteboardItem() PasteboardItem {
 
 
 
-// Returns from a given array of types the first type within the pasteboard item, according to the ordering of types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/availableType(from:)
-func (p_ PasteboardItem) AvailableTypeFromArray(types []string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: PasteboardType */ {
-	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("availableTypeFromArray:"), types)
-	return rv
-}
-
-
-// Determines whether this pasteboard item matches the specified patterns, reading the contents if it finds a match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectValuesForPatterns:completionHandler:
-func (p_ PasteboardItem) DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler foundation.IDictionary /* already interface */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectValuesForPatterns:completionHandler:"), patterns, completionHandler)
-}
-
-
-// Sets the data provider for the specified types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setDataProvider(_:forTypes:)
-func (p_ PasteboardItem) SetDataProviderForTypes(dataProvider objectivec.IObject, types []string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setDataProvider:forTypes:"), dataProvider, types)
-	return rv
-}
-
-
-// A model object you use for conveying data during a collaboration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/collaborationMetadata
-func (p_ PasteboardItem) CollaborationMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collaborationMetadata"))
-	return rv
-}
-
-
-// A model object you use for conveying data during a collaboration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/collaborationMetadata
-func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCollaborationMetadata:"), value)
-}
-
-
 // An array that contains all the items held by the pasteboard.
 //
 // [Full Topic]
@@ -164,12 +112,31 @@ func (p_ PasteboardItem) SetPasteboardItems(value IPasteboardItem) {
 }
 
 
+// A model object you use for conveying data during a collaboration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/collaborationmetadata
+func (p_ PasteboardItem) CollaborationMetadata() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collaborationMetadata"))
+	return rv
+}
+
+
+// A model object you use for conveying data during a collaboration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/collaborationmetadata
+func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCollaborationMetadata:"), value)
+}
+
+
 // An array of uniform type identifier strings of the data types that the receiver supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
-func (p_ PasteboardItem) Types() objc.IObject /* cross-framework: PasteboardType */ {
-	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("types"))
+func (p_ PasteboardItem) Types() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("types"))
 	return rv
 }
 
@@ -178,7 +145,7 @@ func (p_ PasteboardItem) Types() objc.IObject /* cross-framework: PasteboardType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
-func (p_ PasteboardItem) SetTypes(value objc.IObject /* cross-framework: PasteboardType */) {
+func (p_ PasteboardItem) SetTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
 }
 

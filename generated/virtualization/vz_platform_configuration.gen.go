@@ -30,6 +30,8 @@ type _VZPlatformConfigurationClass struct {
 // An interface definition for the [VZPlatformConfiguration] class.
 type IVZPlatformConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a platform configuration.

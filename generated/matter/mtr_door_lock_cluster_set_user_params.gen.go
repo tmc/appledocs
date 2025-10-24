@@ -31,29 +31,33 @@ type _MTRDoorLockClusterSetUserParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterSetUserParams] class.
 type IMTRDoorLockClusterSetUserParams interface {
 	objectivec.IObject
-	CredentialRule() foundation.Number
-	SetCredentialRule(value foundation.INumber)
-	OperationType() foundation.Number
-	SetOperationType(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
-	UserName() string
-	SetUserName(value string)
-	UserStatus() foundation.Number
-	SetUserStatus(value foundation.INumber)
-	UserType() foundation.Number
-	SetUserType(value foundation.INumber)
-	UserUniqueID() foundation.Number
-	SetUserUniqueID(value foundation.INumber)
-	UserUniqueId() foundation.Number
-	SetUserUniqueId(value foundation.INumber)
+	// properties:
+	CredentialRule() objc.IObject /* cross-framework: NSNumber */
+	SetCredentialRule(value objc.IObject /* cross-framework: NSNumber */)
+	OperationType() objc.IObject /* cross-framework: NSNumber */
+	SetOperationType(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	UserName() objc.IObject /* cross-framework: NSString */
+	SetUserName(value objc.IObject /* cross-framework: NSString */)
+	UserStatus() objc.IObject /* cross-framework: NSNumber */
+	SetUserStatus(value objc.IObject /* cross-framework: NSNumber */)
+	UserType() objc.IObject /* cross-framework: NSNumber */
+	SetUserType(value objc.IObject /* cross-framework: NSNumber */)
+	UserUniqueID() objc.IObject /* cross-framework: NSNumber */
+	SetUserUniqueID(value objc.IObject /* cross-framework: NSNumber */)
+	UserUniqueId() objc.IObject /* cross-framework: NSNumber */
+	SetUserUniqueId(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetUserParams
 type MTRDoorLockClusterSetUserParams struct {
 	objectivec.Object
@@ -96,153 +100,153 @@ func NewMTRDoorLockClusterSetUserParams() MTRDoorLockClusterSetUserParams {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/credentialrule
-func (m_ MTRDoorLockClusterSetUserParams) CredentialRule() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("credentialRule"))
+func (m_ MTRDoorLockClusterSetUserParams) CredentialRule() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("credentialRule"))
 	return rv
 }
 
 
-// SetCredentialRule sets the value of the credentialRule property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/credentialrule
-func (m_ MTRDoorLockClusterSetUserParams) SetCredentialRule(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetCredentialRule(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialRule:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/operationtype
-func (m_ MTRDoorLockClusterSetUserParams) OperationType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationType"))
+func (m_ MTRDoorLockClusterSetUserParams) OperationType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operationType"))
 	return rv
 }
 
 
-// SetOperationType sets the value of the operationType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/operationtype
-func (m_ MTRDoorLockClusterSetUserParams) SetOperationType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetOperationType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetUserParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDoorLockClusterSetUserParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetUserParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetUserParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterSetUserParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetUserParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userindex
-func (m_ MTRDoorLockClusterSetUserParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterSetUserParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userindex
-func (m_ MTRDoorLockClusterSetUserParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/username
-func (m_ MTRDoorLockClusterSetUserParams) UserName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("userName"))
+func (m_ MTRDoorLockClusterSetUserParams) UserName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("userName"))
 	return rv
 }
 
 
-// SetUserName sets the value of the userName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/username
-func (m_ MTRDoorLockClusterSetUserParams) SetUserName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), objc.String(value))
+func (m_ MTRDoorLockClusterSetUserParams) SetUserName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userstatus
-func (m_ MTRDoorLockClusterSetUserParams) UserStatus() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userStatus"))
+func (m_ MTRDoorLockClusterSetUserParams) UserStatus() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userStatus"))
 	return rv
 }
 
 
-// SetUserStatus sets the value of the userStatus property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userstatus
-func (m_ MTRDoorLockClusterSetUserParams) SetUserStatus(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/usertype
-func (m_ MTRDoorLockClusterSetUserParams) UserType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userType"))
+func (m_ MTRDoorLockClusterSetUserParams) UserType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userType"))
 	return rv
 }
 
 
-// SetUserType sets the value of the userType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/usertype
-func (m_ MTRDoorLockClusterSetUserParams) SetUserType(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tka
-func (m_ MTRDoorLockClusterSetUserParams) UserUniqueID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userUniqueID"))
+func (m_ MTRDoorLockClusterSetUserParams) UserUniqueID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userUniqueID"))
 	return rv
 }
 
 
-// SetUserUniqueID sets the value of the userUniqueID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tka
-func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueID(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserUniqueID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tje
-func (m_ MTRDoorLockClusterSetUserParams) UserUniqueId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userUniqueId"))
+func (m_ MTRDoorLockClusterSetUserParams) UserUniqueId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userUniqueId"))
 	return rv
 }
 
 
-// SetUserUniqueId sets the value of the userUniqueId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tje
-func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueId(value foundation.INumber) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserUniqueId:"), value)
 }
 

@@ -31,15 +31,19 @@ type _MTRMediaPlaybackClusterActivateTextTrackParamsClass struct {
 // An interface definition for the [MTRMediaPlaybackClusterActivateTextTrackParams] class.
 type IMTRMediaPlaybackClusterActivateTextTrackParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	TrackID() string
-	SetTrackID(value string)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	TrackID() objc.IObject /* cross-framework: NSString */
+	SetTrackID(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams
 type MTRMediaPlaybackClusterActivateTextTrackParams struct {
 	objectivec.Object
@@ -82,55 +86,57 @@ func NewMTRMediaPlaybackClusterActivateTextTrackParams() MTRMediaPlaybackCluster
 }
 
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/serverSideProcessingTimeout
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/serverSideProcessingTimeout
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("trackID"))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("trackID"))
 	return rv
 }
 
 
-// SetTrackID sets the value of the trackID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
 }
 
 

@@ -30,12 +30,18 @@ type _ToolClass struct {
 // An interface definition for the [Tool] class.
 type ITool interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract base class for tools used by a canvas view.
 //
 // A object is an abstract base class for tool types associated with a . Tools are user-facing, and the selected tool determines how the canvas interprets incoming gestures. Don’t create objects directly. Instead, create one of its subclasses to provide users with the desired the tool behavior.
+
+
+// An abstract base class for tools used by a canvas view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKTool-c.class
 type Tool struct {
 	objectivec.Object

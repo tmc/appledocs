@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coremedia"
 )
 
 // The class instance for the [DetectTrajectoriesRequest] class.
@@ -29,7 +30,7 @@ type _DetectTrajectoriesRequestClass struct {
 // An interface definition for the [DetectTrajectoriesRequest] class.
 type IDetectTrajectoriesRequest interface {
 	IStatefulRequest
-	Results() []TrajectoryObservation
+	// properties:
 	MaximumObjectSize() float32
 	SetMaximumObjectSize(value float32)
 	MinimumObjectSize() float32
@@ -38,17 +39,24 @@ type IDetectTrajectoriesRequest interface {
 	SetObjectMaximumNormalizedRadius(value float32)
 	ObjectMinimumNormalizedRadius() float32
 	SetObjectMinimumNormalizedRadius(value float32)
-	TargetFrameTime() unsafe.Pointer
-	SetTargetFrameTime(value unsafe.Pointer)
+	Results() objc.IObject /* cross-framework: TrajectoryObservation */
+	SetResults(value objc.IObject /* cross-framework: TrajectoryObservation */)
+	TargetFrameTime() objc.IObject /* cross-framework: Time */
+	SetTargetFrameTime(value objc.IObject /* cross-framework: Time */)
 	TrajectoryLength() int
 	SetTrajectoryLength(value int)
 	VNDetectTrajectoriesRequestRevision1() int
+	// methods:
 }
 
 // A request that detects the trajectories of shapes moving along a parabolic path.
 //
 // After the request detects a trajectory, it produces an observation that contains the shape’s detected points and an equation describing the parabola.
+
+
+// A request that detects the trajectories of shapes moving along a parabolic path.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTrajectoriesRequest
 type DetectTrajectoriesRequest struct {
 	StatefulRequest
@@ -95,16 +103,10 @@ func NewDetectTrajectoriesRequest() DetectTrajectoriesRequest {
 }
 
 
-// The array of detected trajectory observations.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectTrajectoriesRequest/results
-func (d_ DetectTrajectoriesRequest) Results() []TrajectoryObservation {
-	rv := objc.Send[[]TrajectoryObservation](d_.ID, objc.Sel("results"))
-	return rv
-}
 
 // The maximum radius of the tracked shape’s bounding circle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/maximumobjectsize
 func (d_ DetectTrajectoriesRequest) MaximumObjectSize() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("maximumObjectSize"))
@@ -112,17 +114,18 @@ func (d_ DetectTrajectoriesRequest) MaximumObjectSize() float32 {
 }
 
 
-// SetMaximumObjectSize sets the value of the maximumObjectSize property.
 // The maximum radius of the tracked shape’s bounding circle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/maximumobjectsize
 func (d_ DetectTrajectoriesRequest) SetMaximumObjectSize(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumObjectSize:"), value)
 }
 
+
 // The minimum radius of the tracked shape’s bounding circle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/minimumobjectsize
 func (d_ DetectTrajectoriesRequest) MinimumObjectSize() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("minimumObjectSize"))
@@ -130,17 +133,18 @@ func (d_ DetectTrajectoriesRequest) MinimumObjectSize() float32 {
 }
 
 
-// SetMinimumObjectSize sets the value of the minimumObjectSize property.
 // The minimum radius of the tracked shape’s bounding circle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/minimumobjectsize
 func (d_ DetectTrajectoriesRequest) SetMinimumObjectSize(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumObjectSize:"), value)
 }
 
+
 // The maximum radius of the bounding circle of the object to track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectmaximumnormalizedradius
 func (d_ DetectTrajectoriesRequest) ObjectMaximumNormalizedRadius() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("objectMaximumNormalizedRadius"))
@@ -148,17 +152,18 @@ func (d_ DetectTrajectoriesRequest) ObjectMaximumNormalizedRadius() float32 {
 }
 
 
-// SetObjectMaximumNormalizedRadius sets the value of the objectMaximumNormalizedRadius property.
 // The maximum radius of the bounding circle of the object to track.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectmaximumnormalizedradius
 func (d_ DetectTrajectoriesRequest) SetObjectMaximumNormalizedRadius(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setObjectMaximumNormalizedRadius:"), value)
 }
 
+
 // The minimum radius of the bounding circle of the object to track.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectminimumnormalizedradius
 func (d_ DetectTrajectoriesRequest) ObjectMinimumNormalizedRadius() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("objectMinimumNormalizedRadius"))
@@ -166,35 +171,56 @@ func (d_ DetectTrajectoriesRequest) ObjectMinimumNormalizedRadius() float32 {
 }
 
 
-// SetObjectMinimumNormalizedRadius sets the value of the objectMinimumNormalizedRadius property.
 // The minimum radius of the bounding circle of the object to track.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/objectminimumnormalizedradius
 func (d_ DetectTrajectoriesRequest) SetObjectMinimumNormalizedRadius(value float32) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setObjectMinimumNormalizedRadius:"), value)
 }
 
-// The requested target frame time for processing trajectory detection.
+
+// The array of detected trajectory observations.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/targetframetime
-func (d_ DetectTrajectoriesRequest) TargetFrameTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("targetFrameTime"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
+func (d_ DetectTrajectoriesRequest) Results() objc.IObject /* cross-framework: TrajectoryObservation */ {
+	rv := objc.Send[TrajectoryObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetTargetFrameTime sets the value of the targetFrameTime property.
-// The requested target frame time for processing trajectory detection.
-
+// The array of detected trajectory observations.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
+func (d_ DetectTrajectoriesRequest) SetResults(value objc.IObject /* cross-framework: TrajectoryObservation */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
+}
+
+
+// The requested target frame time for processing trajectory detection.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/targetframetime
-func (d_ DetectTrajectoriesRequest) SetTargetFrameTime(value unsafe.Pointer) {
+func (d_ DetectTrajectoriesRequest) TargetFrameTime() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[coremedia.Time](d_.ID, objc.Sel("targetFrameTime"))
+	return rv
+}
+
+
+// The requested target frame time for processing trajectory detection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/targetframetime
+func (d_ DetectTrajectoriesRequest) SetTargetFrameTime(value objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTargetFrameTime:"), value)
 }
 
+
 // The number of points to detect before calculating a trajectory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/trajectorylength
 func (d_ DetectTrajectoriesRequest) TrajectoryLength() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("trajectoryLength"))
@@ -202,17 +228,18 @@ func (d_ DetectTrajectoriesRequest) TrajectoryLength() int {
 }
 
 
-// SetTrajectoryLength sets the value of the trajectoryLength property.
 // The number of points to detect before calculating a trajectory.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/trajectorylength
 func (d_ DetectTrajectoriesRequest) SetTrajectoryLength(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTrajectoryLength:"), value)
 }
 
+
 // A constant for specifying revision 1 of the trajectories detection request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequestrevision1
 func (d_ DetectTrajectoriesRequest) VNDetectTrajectoriesRequestRevision1() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("VNDetectTrajectoriesRequestRevision1"))

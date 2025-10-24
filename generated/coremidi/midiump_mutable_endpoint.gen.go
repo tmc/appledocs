@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MIDIUMPMutableEndpoint] class.
@@ -30,13 +31,13 @@ type _MIDIUMPMutableEndpointClass struct {
 type IMIDIUMPMutableEndpoint interface {
 	IMIDIUMPEndpoint
 	// properties:
-	IsEnabled() bool /* primitive/slice/pointer. */
-	MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */
-	SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */)
+	IsEnabled() bool
+	MutableFunctionBlocks() []IMIDIUMPMutableFunctionBlock
+	SetMutableFunctionBlocks(value []IMIDIUMPMutableFunctionBlock)
 	// methods:
-	RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */, markAsStatic bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetEnabledError(isEnabled bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetNameError(name string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	RegisterFunctionBlocksMarkAsStaticError(functionBlocks []IMIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool
+	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
+	SetNameError(name objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
 }
 
 
@@ -89,9 +90,9 @@ func NewMIDIUMPMutableEndpoint() MIDIUMPMutableEndpoint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/init(name:deviceInfo:productInstanceID:midiProtocol:destinationCallback:)
-func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string /* primitive/slice/pointer. */, deviceInfo IMIDI2DeviceInfo, productInstanceID string /* primitive/slice/pointer. */, MIDIProtocol MIDIProtocolID, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
+func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name objc.IObject /* cross-framework: NSString */, deviceInfo IMIDI2DeviceInfo, productInstanceID objc.IObject /* cross-framework: NSString */, MIDIProtocol MIDIProtocolID, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
 	instance := getMIDIUMPMutableEndpointClass().Alloc()
-	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), objc.String(name), deviceInfo, objc.String(productInstanceID), MIDIProtocol, destinationCallback)
+	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), name, deviceInfo, productInstanceID, MIDIProtocol, destinationCallback)
 	rv.Autorelease()
 	return rv
 }
@@ -100,7 +101,7 @@ func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDes
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/registerFunctionBlocks(_:markAsStatic:)
-func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */, markAsStatic bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks []IMIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("registerFunctionBlocks:markAsStatic:error:"), functionBlocks, markAsStatic, error_)
 	return rv
 }
@@ -108,7 +109,7 @@ func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setEnabled(_:)
-func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error_)
 	return rv
 }
@@ -116,15 +117,15 @@ func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool /* primitive/sli
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setName(_:)
-func (m_ MIDIUMPMutableEndpoint) SetNameError(name string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
+func (m_ MIDIUMPMutableEndpoint) SetNameError(name objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), name, error_)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/isEnabled
-func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -132,7 +133,7 @@ func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool /* primitive/slice/pointer. */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/mutableFunctionBlocks
-func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */ {
+func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []IMIDIUMPMutableFunctionBlock {
 	rv := objc.Send[[]MIDIUMPMutableFunctionBlock](m_.ID, objc.Sel("mutableFunctionBlocks"))
 	return rv
 }
@@ -140,7 +141,7 @@ func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []MIDIUMPMutableFunctio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/mutableFunctionBlocks
-func (m_ MIDIUMPMutableEndpoint) SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */) {
+func (m_ MIDIUMPMutableEndpoint) SetMutableFunctionBlocks(value []IMIDIUMPMutableFunctionBlock) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

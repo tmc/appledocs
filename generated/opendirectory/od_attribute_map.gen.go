@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,19 +31,23 @@ type _ODAttributeMapClass struct {
 // An interface definition for the [ODAttributeMap] class.
 type IODAttributeMap interface {
 	objectivec.IObject
-	SetStaticValue(staticValue string)
-	SetVariableSubstitution(variableSubstitution string)
-	CustomAttributes() objc.ID
-	SetCustomAttributes(value objc.ID)
-	CustomQueryFunction() string
-	SetCustomQueryFunction(value string)
-	CustomTranslationFunction() string
-	SetCustomTranslationFunction(value string)
-	Value() string
-	SetValue(value string)
+	// properties:
+	CustomAttributes() objc.IObject /* cross-framework: NSArray */
+	SetCustomAttributes(value objc.IObject /* cross-framework: NSArray */)
+	CustomQueryFunction() objc.IObject /* cross-framework: NSString */
+	SetCustomQueryFunction(value objc.IObject /* cross-framework: NSString */)
+	CustomTranslationFunction() objc.IObject /* cross-framework: NSString */
+	SetCustomTranslationFunction(value objc.IObject /* cross-framework: NSString */)
+	Value() objc.IObject /* cross-framework: NSString */
+	SetValue(value objc.IObject /* cross-framework: NSString */)
+	// methods:
+	SetStaticValue(staticValue objc.IObject /* cross-framework: NSString */)
+	SetVariableSubstitution(variableSubstitution objc.IObject /* cross-framework: NSString */)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap
 type ODAttributeMap struct {
 	objectivec.Object
@@ -85,105 +90,111 @@ func NewODAttributeMap() ODAttributeMap {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/init(staticValue:)
-func NewODAttributeMapWithStaticValue(staticValue string) ODAttributeMap {
-	rv := objc.Send[ODAttributeMap](objc.ID(getODAttributeMapClass().class), objc.Sel("attributeMapWithStaticValue:"), objc.String(staticValue))
+func NewODAttributeMapWithStaticValue(staticValue objc.IObject /* cross-framework: NSString */) ODAttributeMap {
+	rv := objc.Send[ODAttributeMap](objc.ID(getODAttributeMapClass().class), objc.Sel("attributeMapWithStaticValue:"), staticValue)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/init(value:)
-func NewODAttributeMapWithValue(value string) ODAttributeMap {
-	rv := objc.Send[ODAttributeMap](objc.ID(getODAttributeMapClass().class), objc.Sel("attributeMapWithValue:"), objc.String(value))
+func NewODAttributeMapWithValue(value objc.IObject /* cross-framework: NSString */) ODAttributeMap {
+	rv := objc.Send[ODAttributeMap](objc.ID(getODAttributeMapClass().class), objc.Sel("attributeMapWithValue:"), value)
 	return rv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/init(staticValue:)
-func (oc _ODAttributeMapClass) AttributeMapWithStaticValue(staticValue string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("attributeMapWithStaticValue:"), objc.String(staticValue))
+func (oc _ODAttributeMapClass) AttributeMapWithStaticValue(staticValue objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("attributeMapWithStaticValue:"), staticValue)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/init(value:)
-func (oc _ODAttributeMapClass) AttributeMapWithValue(value string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("attributeMapWithValue:"), objc.String(value))
+func (oc _ODAttributeMapClass) AttributeMapWithValue(value objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("attributeMapWithValue:"), value)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/setStaticValue(_:)
-func (o_ ODAttributeMap) SetStaticValue(staticValue string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setStaticValue:"), objc.String(staticValue))
+func (o_ ODAttributeMap) SetStaticValue(staticValue objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setStaticValue:"), staticValue)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/setVariableSubstitution(_:)
-func (o_ ODAttributeMap) SetVariableSubstitution(variableSubstitution string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setVariableSubstitution:"), objc.String(variableSubstitution))
+func (o_ ODAttributeMap) SetVariableSubstitution(variableSubstitution objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setVariableSubstitution:"), variableSubstitution)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customAttributes-swift.property
-func (o_ ODAttributeMap) CustomAttributes() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("customAttributes"))
+func (o_ ODAttributeMap) CustomAttributes() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("customAttributes"))
 	return rv
 }
 
 
-// SetCustomAttributes sets the value of the customAttributes property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customAttributes-swift.property
-func (o_ ODAttributeMap) SetCustomAttributes(value objc.ID) {
+func (o_ ODAttributeMap) SetCustomAttributes(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomAttributes:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-swift.property
-func (o_ ODAttributeMap) CustomQueryFunction() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("customQueryFunction"))
+func (o_ ODAttributeMap) CustomQueryFunction() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customQueryFunction"))
 	return rv
 }
 
 
-// SetCustomQueryFunction sets the value of the customQueryFunction property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-swift.property
-func (o_ ODAttributeMap) SetCustomQueryFunction(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomQueryFunction:"), objc.String(value))
+func (o_ ODAttributeMap) SetCustomQueryFunction(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomQueryFunction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-swift.property
-func (o_ ODAttributeMap) CustomTranslationFunction() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("customTranslationFunction"))
+func (o_ ODAttributeMap) CustomTranslationFunction() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customTranslationFunction"))
 	return rv
 }
 
 
-// SetCustomTranslationFunction sets the value of the customTranslationFunction property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customTranslationFunction-swift.property
-func (o_ ODAttributeMap) SetCustomTranslationFunction(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomTranslationFunction:"), objc.String(value))
+func (o_ ODAttributeMap) SetCustomTranslationFunction(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomTranslationFunction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-swift.property
-func (o_ ODAttributeMap) Value() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("value"))
+func (o_ ODAttributeMap) Value() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("value"))
 	return rv
 }
 
 
-// SetValue sets the value of the value property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-swift.property
-func (o_ ODAttributeMap) SetValue(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:"), objc.String(value))
+func (o_ ODAttributeMap) SetValue(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:"), value)
 }
 
 

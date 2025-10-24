@@ -31,23 +31,27 @@ type _MTRMessagesClusterMessageStructClass struct {
 // An interface definition for the [MTRMessagesClusterMessageStruct] class.
 type IMTRMessagesClusterMessageStruct interface {
 	objectivec.IObject
-	Duration() foundation.Number
-	SetDuration(value foundation.INumber)
-	MessageControl() foundation.Number
-	SetMessageControl(value foundation.INumber)
-	MessageID() foundation.NSData
-	SetMessageID(value foundation.IData)
-	MessageText() string
-	SetMessageText(value string)
-	Priority() foundation.Number
-	SetPriority(value foundation.INumber)
-	Responses() objc.ID
-	SetResponses(value objc.ID)
-	StartTime() foundation.Number
-	SetStartTime(value foundation.INumber)
+	// properties:
+	Duration() objc.IObject /* cross-framework: NSNumber */
+	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
+	MessageControl() objc.IObject /* cross-framework: NSNumber */
+	SetMessageControl(value objc.IObject /* cross-framework: NSNumber */)
+	MessageID() objc.IObject /* cross-framework: NSData */
+	SetMessageID(value objc.IObject /* cross-framework: NSData */)
+	MessageText() objc.IObject /* cross-framework: NSString */
+	SetMessageText(value objc.IObject /* cross-framework: NSString */)
+	Priority() objc.IObject /* cross-framework: NSNumber */
+	SetPriority(value objc.IObject /* cross-framework: NSNumber */)
+	Responses() objc.IObject /* cross-framework: NSArray */
+	SetResponses(value objc.IObject /* cross-framework: NSArray */)
+	StartTime() objc.IObject /* cross-framework: NSNumber */
+	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct
 type MTRMessagesClusterMessageStruct struct {
 	objectivec.Object
@@ -90,108 +94,108 @@ func NewMTRMessagesClusterMessageStruct() MTRMessagesClusterMessageStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
-func (m_ MTRMessagesClusterMessageStruct) Duration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("duration"))
+func (m_ MTRMessagesClusterMessageStruct) Duration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
 }
 
 
-// SetDuration sets the value of the duration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
-func (m_ MTRMessagesClusterMessageStruct) SetDuration(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageStruct) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
-func (m_ MTRMessagesClusterMessageStruct) MessageControl() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("messageControl"))
+func (m_ MTRMessagesClusterMessageStruct) MessageControl() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("messageControl"))
 	return rv
 }
 
 
-// SetMessageControl sets the value of the messageControl property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
-func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) MessageID() foundation.NSData {
+func (m_ MTRMessagesClusterMessageStruct) MessageID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
 	return rv
 }
 
 
-// SetMessageID sets the value of the messageID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value foundation.IData) {
+func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("messageText"))
+func (m_ MTRMessagesClusterMessageStruct) MessageText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("messageText"))
 	return rv
 }
 
 
-// SetMessageText sets the value of the messageText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
+func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
-func (m_ MTRMessagesClusterMessageStruct) Priority() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("priority"))
+func (m_ MTRMessagesClusterMessageStruct) Priority() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("priority"))
 	return rv
 }
 
 
-// SetPriority sets the value of the priority property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
-func (m_ MTRMessagesClusterMessageStruct) SetPriority(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageStruct) SetPriority(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) Responses() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("responses"))
+func (m_ MTRMessagesClusterMessageStruct) Responses() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("responses"))
 	return rv
 }
 
 
-// SetResponses sets the value of the responses property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) SetResponses(value objc.ID) {
+func (m_ MTRMessagesClusterMessageStruct) SetResponses(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponses:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
-func (m_ MTRMessagesClusterMessageStruct) StartTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startTime"))
+func (m_ MTRMessagesClusterMessageStruct) StartTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
 }
 
 
-// SetStartTime sets the value of the startTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
-func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

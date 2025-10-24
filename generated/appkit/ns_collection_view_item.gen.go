@@ -42,8 +42,8 @@ type ICollectionViewItem interface {
 	SetDraggingImageComponents(value IDraggingImageComponent)
 	ImageView() IImageView
 	SetImageView(value IImageView)
-	IsSelected() bool /* primitive/slice/pointer. */
-	SetIsSelected(value bool /* primitive/slice/pointer. */)
+	IsSelected() bool
+	SetIsSelected(value bool)
 	View() IView
 	SetView(value IView)
 	// methods:
@@ -222,7 +222,7 @@ func (c_ CollectionViewItem) SetImageView(value IImageView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
-func (c_ CollectionViewItem) IsSelected() bool /* primitive/slice/pointer. */ {
+func (c_ CollectionViewItem) IsSelected() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSelected"))
 	return rv
 }
@@ -232,7 +232,7 @@ func (c_ CollectionViewItem) IsSelected() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/isselected
-func (c_ CollectionViewItem) SetIsSelected(value bool /* primitive/slice/pointer. */) {
+func (c_ CollectionViewItem) SetIsSelected(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelected:"), value)
 }
 

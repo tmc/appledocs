@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeviceCheck without requiring cgo.
-
-// Reduce fraudulent use of your services by managing device state and asserting app
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DeviceCheck
+// See: https://developer.apple.com/documentation/DeviceCheck
 package devicecheck
 
 import (

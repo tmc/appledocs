@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,26 +38,26 @@ type IRulerMarker interface {
 	ImageOrigin() objc.IObject /* cross-framework: Point */
 	SetImageOrigin(value objc.IObject /* cross-framework: Point */)
 	ImageRectInRuler() objc.IObject /* cross-framework: Rect */
-	Dragging() bool /* primitive/slice/pointer. */
-	Movable() bool /* primitive/slice/pointer. */
-	SetMovable(value bool /* primitive/slice/pointer. */)
-	Removable() bool /* primitive/slice/pointer. */
-	SetRemovable(value bool /* primitive/slice/pointer. */)
-	MarkerLocation() float64 /* primitive/slice/pointer. */
-	SetMarkerLocation(value float64 /* primitive/slice/pointer. */)
+	Dragging() bool
+	Movable() bool
+	SetMovable(value bool)
+	Removable() bool
+	SetRemovable(value bool)
+	MarkerLocation() float64
+	SetMarkerLocation(value float64)
 	RepresentedObject() objc.ID
 	SetRepresentedObject(value objc.ID)
 	Ruler() IRulerView
-	ThicknessRequiredInRuler() float64 /* primitive/slice/pointer. */
-	IsDragging() bool /* primitive/slice/pointer. */
-	SetIsDragging(value bool /* primitive/slice/pointer. */)
-	IsMovable() bool /* primitive/slice/pointer. */
-	SetIsMovable(value bool /* primitive/slice/pointer. */)
-	IsRemovable() bool /* primitive/slice/pointer. */
-	SetIsRemovable(value bool /* primitive/slice/pointer. */)
+	ThicknessRequiredInRuler() float64
+	IsDragging() bool
+	SetIsDragging(value bool)
+	IsMovable() bool
+	SetIsMovable(value bool)
+	IsRemovable() bool
+	SetIsRemovable(value bool)
 	// methods:
-	DrawRect(rect objc.IObject /* cross-framework Rect */)
-	TrackMouseAdding(mouseDownEvent IEvent, isAdding bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	DrawRect(rect objc.IObject /* cross-framework: Rect */)
+	TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool
 }
 
 // A symbol on a ruler view, indicating a location for the graphics element it represents in the client of the ruler view.
@@ -113,7 +115,7 @@ func NewRulerMarker() RulerMarker {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/init(coder:)
-func NewRulerMarkerWithCoder(coder objc.IObject /* cross-framework Coder */) RulerMarker {
+func NewRulerMarkerWithCoder(coder objc.IObject /* cross-framework: Coder */) RulerMarker {
 	instance := getRulerMarkerClass().Alloc()
 	rv := objc.Send[RulerMarker](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -125,7 +127,7 @@ func NewRulerMarkerWithCoder(coder objc.IObject /* cross-framework Coder */) Rul
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/init(rulerView:markerLocation:image:imageOrigin:)
-func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView, location float64 /* primitive/slice/pointer. */, image IImage, imageOrigin objc.IObject /* cross-framework Point */) RulerMarker {
+func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView, location float64, image IImage, imageOrigin objc.IObject /* cross-framework: Point */) RulerMarker {
 	instance := getRulerMarkerClass().Alloc()
 	rv := objc.Send[RulerMarker](instance.ID, objc.Sel("initWithRulerView:markerLocation:image:imageOrigin:"), ruler, location, image, imageOrigin)
 	rv.Autorelease()
@@ -138,7 +140,7 @@ func NewRulerMarkerWithRulerViewMarkerLocationImageImageOrigin(ruler IRulerView,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/draw(_:)
-func (r_ RulerMarker) DrawRect(rect objc.IObject /* cross-framework Rect */) {
+func (r_ RulerMarker) DrawRect(rect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("drawRect:"), rect)
 }
 
@@ -147,7 +149,7 @@ func (r_ RulerMarker) DrawRect(rect objc.IObject /* cross-framework Rect */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/trackMouse(with:adding:)
-func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent IEvent, isAdding bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) TrackMouseAdding(mouseDownEvent IEvent, isAdding bool) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMouse:adding:"), mouseDownEvent, isAdding)
 	return rv
 }
@@ -177,7 +179,7 @@ func (r_ RulerMarker) SetImage(value IImage) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/imageOrigin
 func (r_ RulerMarker) ImageOrigin() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[Point](r_.ID, objc.Sel("imageOrigin"))
+	rv := objc.Send[corefoundation.Point](r_.ID, objc.Sel("imageOrigin"))
 	return rv
 }
 
@@ -196,7 +198,7 @@ func (r_ RulerMarker) SetImageOrigin(value objc.IObject /* cross-framework: Poin
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/imageRectInRuler
 func (r_ RulerMarker) ImageRectInRuler() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](r_.ID, objc.Sel("imageRectInRuler"))
+	rv := objc.Send[corefoundation.Rect](r_.ID, objc.Sel("imageRectInRuler"))
 	return rv
 }
 
@@ -205,7 +207,7 @@ func (r_ RulerMarker) ImageRectInRuler() objc.IObject /* cross-framework: Rect *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/isDragging
-func (r_ RulerMarker) Dragging() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) Dragging() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("dragging"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (r_ RulerMarker) Dragging() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/isMovable
-func (r_ RulerMarker) Movable() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) Movable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("movable"))
 	return rv
 }
@@ -225,7 +227,7 @@ func (r_ RulerMarker) Movable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/isMovable
-func (r_ RulerMarker) SetMovable(value bool /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetMovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMovable:"), value)
 }
 
@@ -234,7 +236,7 @@ func (r_ RulerMarker) SetMovable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/isRemovable
-func (r_ RulerMarker) Removable() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) Removable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("removable"))
 	return rv
 }
@@ -244,7 +246,7 @@ func (r_ RulerMarker) Removable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/isRemovable
-func (r_ RulerMarker) SetRemovable(value bool /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetRemovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRemovable:"), value)
 }
 
@@ -253,7 +255,7 @@ func (r_ RulerMarker) SetRemovable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/markerLocation
-func (r_ RulerMarker) MarkerLocation() float64 /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) MarkerLocation() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("markerLocation"))
 	return rv
 }
@@ -263,7 +265,7 @@ func (r_ RulerMarker) MarkerLocation() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/markerLocation
-func (r_ RulerMarker) SetMarkerLocation(value float64 /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetMarkerLocation(value float64) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMarkerLocation:"), value)
 }
 
@@ -301,7 +303,7 @@ func (r_ RulerMarker) Ruler() IRulerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/thicknessRequiredInRuler
-func (r_ RulerMarker) ThicknessRequiredInRuler() float64 /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) ThicknessRequiredInRuler() float64 {
 	rv := objc.Send[float64](r_.ID, objc.Sel("thicknessRequiredInRuler"))
 	return rv
 }
@@ -311,7 +313,7 @@ func (r_ RulerMarker) ThicknessRequiredInRuler() float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isdragging
-func (r_ RulerMarker) IsDragging() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) IsDragging() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isDragging"))
 	return rv
 }
@@ -321,7 +323,7 @@ func (r_ RulerMarker) IsDragging() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isdragging
-func (r_ RulerMarker) SetIsDragging(value bool /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetIsDragging(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDragging:"), value)
 }
 
@@ -330,7 +332,7 @@ func (r_ RulerMarker) SetIsDragging(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/ismovable
-func (r_ RulerMarker) IsMovable() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) IsMovable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isMovable"))
 	return rv
 }
@@ -340,7 +342,7 @@ func (r_ RulerMarker) IsMovable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/ismovable
-func (r_ RulerMarker) SetIsMovable(value bool /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetIsMovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsMovable:"), value)
 }
 
@@ -349,7 +351,7 @@ func (r_ RulerMarker) SetIsMovable(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isremovable
-func (r_ RulerMarker) IsRemovable() bool /* primitive/slice/pointer. */ {
+func (r_ RulerMarker) IsRemovable() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isRemovable"))
 	return rv
 }
@@ -359,7 +361,7 @@ func (r_ RulerMarker) IsRemovable() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrulermarker/isremovable
-func (r_ RulerMarker) SetIsRemovable(value bool /* primitive/slice/pointer. */) {
+func (r_ RulerMarker) SetIsRemovable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsRemovable:"), value)
 }
 

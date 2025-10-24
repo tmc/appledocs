@@ -29,14 +29,20 @@ type _MXAppLaunchMetricClass struct {
 // An interface definition for the [MXAppLaunchMetric] class.
 type IMXAppLaunchMetric interface {
 	IMXMetric
+	// properties:
 	HistogrammedApplicationResumeTime() unsafe.Pointer
 	HistogrammedExtendedLaunch() unsafe.Pointer
 	HistogrammedOptimizedTimeToFirstDraw() unsafe.Pointer
 	HistogrammedTimeToFirstDraw() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about app launch time.
+
+
+// An object representing metrics about app launch time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchMetric
 type MXAppLaunchMetric struct {
 	MXMetric
@@ -83,32 +89,40 @@ func NewMXAppLaunchMetric() MXAppLaunchMetric {
 }
 
 
+
 // A histogram of the different amounts of time taken to resume the app from the background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchMetric/histogrammedApplicationResumeTime
 func (m_ MXAppLaunchMetric) HistogrammedApplicationResumeTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedApplicationResumeTime"))
 	return rv
 }
 
+
 // A histogram of the different amounts of time taken to launch the app, including the extended launch tasks.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchMetric/histogrammedExtendedLaunch
 func (m_ MXAppLaunchMetric) HistogrammedExtendedLaunch() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedExtendedLaunch"))
 	return rv
 }
 
+
 // A histogram of the different amounts of time associated with prewarmed app launches.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchMetric/histogrammedOptimizedTimeToFirstDraw
 func (m_ MXAppLaunchMetric) HistogrammedOptimizedTimeToFirstDraw() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedOptimizedTimeToFirstDraw"))
 	return rv
 }
 
+
 // A histogram of the different amounts of time taken to launch the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchMetric/histogrammedTimeToFirstDraw
 func (m_ MXAppLaunchMetric) HistogrammedTimeToFirstDraw() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedTimeToFirstDraw"))

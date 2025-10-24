@@ -31,12 +31,14 @@ type _UserNotificationActionClass struct {
 type IUserNotificationAction interface {
 	objectivec.IObject
 	// properties:
-	Identifier() IString
-	Title() IString
 	AdditionalActions() IUserNotificationAction
 	SetAdditionalActions(value IUserNotificationAction)
 	AdditionalActivationAction() IUserNotificationAction
 	SetAdditionalActivationAction(value IUserNotificationAction)
+	Identifier() IString
+	SetIdentifier(value IString)
+	Title() IString
+	SetTitle(value IString)
 	// methods:
 }
 
@@ -93,47 +95,6 @@ func NewUserNotificationAction() UserNotificationAction {
 
 
 
-// Creates a user notification action with a specified identifier and title.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func NewUserNotificationActionWithIdentifierTitle(identifier IString, title IString) UserNotificationAction {
-	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
-	return rv
-}
-
-
-
-// Creates a user notification action with a specified identifier and title.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier IString, title IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
-	return rv
-}
-
-
-// The identifier for the user notification action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The localized title shown to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("title"))
-	return rv
-}
-
-
 // The actions that can be taken on a notification in addition to the default action.
 //
 // [Full Topic]
@@ -170,5 +131,44 @@ func (u_ UserNotificationAction) AdditionalActivationAction() IUserNotificationA
 func (u_ UserNotificationAction) SetAdditionalActivationAction(value IUserNotificationAction) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
 }
+
+
+// The identifier for the user notification action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationaction/identifier
+func (u_ UserNotificationAction) Identifier() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// The identifier for the user notification action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationaction/identifier
+func (u_ UserNotificationAction) SetIdentifier(value IString) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+
+// The localized title shown to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationaction/title
+func (u_ UserNotificationAction) Title() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The localized title shown to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationaction/title
+func (u_ UserNotificationAction) SetTitle(value IString) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
+}
+
 
 

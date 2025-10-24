@@ -31,13 +31,17 @@ type _MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStructClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct] class.
 type IMTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	PowerAdjustCapability() objc.ID
-	SetPowerAdjustCapability(value objc.ID)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	PowerAdjustCapability() objc.IObject /* cross-framework: NSArray */
+	SetPowerAdjustCapability(value objc.IObject /* cross-framework: NSArray */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct
 type MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct() MTRDeviceE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/powerAdjustCapability
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjustCapability() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("powerAdjustCapability"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjustCapability() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("powerAdjustCapability"))
 	return rv
 }
 
 
-// SetPowerAdjustCapability sets the value of the powerAdjustCapability property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/powerAdjustCapability
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetPowerAdjustCapability(value objc.ID) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetPowerAdjustCapability(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPowerAdjustCapability:"), value)
 }
 

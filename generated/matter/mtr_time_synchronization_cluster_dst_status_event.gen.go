@@ -31,11 +31,15 @@ type _MTRTimeSynchronizationClusterDSTStatusEventClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterDSTStatusEvent] class.
 type IMTRTimeSynchronizationClusterDSTStatusEvent interface {
 	objectivec.IObject
-	DstOffsetActive() foundation.Number
-	SetDstOffsetActive(value foundation.INumber)
+	// properties:
+	DstOffsetActive() objc.IObject /* cross-framework: NSNumber */
+	SetDstOffsetActive(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent
 type MTRTimeSynchronizationClusterDSTStatusEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRTimeSynchronizationClusterDSTStatusEvent() MTRTimeSynchronizationClus
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent/dstOffsetActive
-func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dstOffsetActive"))
+func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("dstOffsetActive"))
 	return rv
 }
 
 
-// SetDstOffsetActive sets the value of the dstOffsetActive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent/dstOffsetActive
-func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetActive:"), value)
 }
 

@@ -31,20 +31,23 @@ type _ScriptCommandDescriptionClass struct {
 type IScriptCommandDescription interface {
 	objectivec.IObject
 	// properties:
-	AppleEventClassCode() unsafe.Pointer
-	AppleEventCode() unsafe.Pointer
-	AppleEventCodeForReturnType() unsafe.Pointer
-	ArgumentNames() []string /* primitive/slice/pointer. */
+	AppleEventClassCode() uint32 /* not a class type */
+	SetAppleEventClassCode(value uint32 /* not a class type */)
+	AppleEventCode() uint32 /* not a class type */
+	SetAppleEventCode(value uint32 /* not a class type */)
+	AppleEventCodeForReturnType() uint32 /* not a class type */
+	SetAppleEventCodeForReturnType(value uint32 /* not a class type */)
+	ArgumentNames() IString
+	SetArgumentNames(value IString)
 	CommandClassName() IString
+	SetCommandClassName(value IString)
 	CommandName() IString
+	SetCommandName(value IString)
 	ReturnType() IString
+	SetReturnType(value IString)
 	SuiteName() IString
+	SetSuiteName(value IString)
 	// methods:
-	AppleEventCodeForArgumentWithName(argumentName IString) unsafe.Pointer
-	CreateCommandInstance() IScriptCommand
-	CreateCommandInstanceWithZone(zone Zone /* not a class type */) IScriptCommand
-	IsOptionalArgumentWithName(argumentName IString) bool /* primitive/slice/pointer. */
-	TypeForArgumentWithName(argumentName IString) IString
 }
 
 // A script command that a macOS app supports.
@@ -100,75 +103,12 @@ func NewScriptCommandDescription() ScriptCommandDescription {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/init(coder:)
-func NewScriptCommandDescriptionWithCoder(inCoder ICoder) ScriptCommandDescription {
-	instance := getScriptCommandDescriptionClass().Alloc()
-	rv := objc.Send[ScriptCommandDescription](instance.ID, objc.Sel("initWithCoder:"), inCoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes and returns a newly allocated instance of .
+// Returns the four-character code for the Apple event class of the receiver’s command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/init(suiteName:commandName:dictionary:)
-func NewScriptCommandDescriptionWithSuiteNameCommandNameDictionary(suiteName IString, commandName IString, commandDeclaration IDictionary) ScriptCommandDescription {
-	instance := getScriptCommandDescriptionClass().Alloc()
-	rv := objc.Send[ScriptCommandDescription](instance.ID, objc.Sel("initWithSuiteName:commandName:dictionary:"), suiteName, commandName, commandDeclaration)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the Apple event code for the specified command argument of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/appleEventCodeForArgument(withName:)
-func (s_ ScriptCommandDescription) AppleEventCodeForArgumentWithName(argumentName IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForArgumentWithName:"), argumentName)
-	return rv
-}
-
-
-// Creates and returns an instance of the command object described by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/createCommandInstance()
-func (s_ ScriptCommandDescription) CreateCommandInstance() IScriptCommand {
-	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("createCommandInstance"))
-	return rv
-}
-
-
-// Creates and returns an instance of the command object described by the receiver in the specified memory zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/createCommandInstance(with:)
-func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone Zone /* not a class type */) IScriptCommand {
-	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("createCommandInstanceWithZone:"), zone)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the command argument identified by the specified argument key is an optional argument.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/isOptionalArgument(withName:)
-func (s_ ScriptCommandDescription) IsOptionalArgumentWithName(argumentName IString) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isOptionalArgumentWithName:"), argumentName)
-	return rv
-}
-
-
-// Returns the type of the command argument identified by the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/typeForArgument(withName:)
-func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName IString) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("typeForArgumentWithName:"), argumentName)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
+func (s_ ScriptCommandDescription) AppleEventClassCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("appleEventClassCode"))
 	return rv
 }
 
@@ -176,9 +116,18 @@ func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName IString)
 // Returns the four-character code for the Apple event class of the receiver’s command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/appleEventClassCode
-func (s_ ScriptCommandDescription) AppleEventClassCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventClassCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventclasscode
+func (s_ ScriptCommandDescription) SetAppleEventClassCode(value uint32 /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventClassCode:"), value)
+}
+
+
+// Returns the four-character code for the Apple event ID of the receiver’s command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
+func (s_ ScriptCommandDescription) AppleEventCode() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("appleEventCode"))
 	return rv
 }
 
@@ -186,9 +135,18 @@ func (s_ ScriptCommandDescription) AppleEventClassCode() unsafe.Pointer {
 // Returns the four-character code for the Apple event ID of the receiver’s command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/appleEventCode
-func (s_ ScriptCommandDescription) AppleEventCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCode"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcode
+func (s_ ScriptCommandDescription) SetAppleEventCode(value uint32 /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
+}
+
+
+// Returns the Apple event code that identifies the command’s return type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
+func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](s_.ID, objc.Sel("appleEventCodeForReturnType"))
 	return rv
 }
 
@@ -196,9 +154,18 @@ func (s_ ScriptCommandDescription) AppleEventCode() unsafe.Pointer {
 // Returns the Apple event code that identifies the command’s return type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/appleEventCodeForReturnType
-func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForReturnType"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/appleeventcodeforreturntype
+func (s_ ScriptCommandDescription) SetAppleEventCodeForReturnType(value uint32 /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCodeForReturnType:"), value)
+}
+
+
+// Returns the names (or keys) for all arguments of the receiver’s command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
+func (s_ ScriptCommandDescription) ArgumentNames() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("argumentNames"))
 	return rv
 }
 
@@ -206,9 +173,18 @@ func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer 
 // Returns the names (or keys) for all arguments of the receiver’s command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/argumentNames
-func (s_ ScriptCommandDescription) ArgumentNames() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("argumentNames"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/argumentnames
+func (s_ ScriptCommandDescription) SetArgumentNames(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setArgumentNames:"), value)
+}
+
+
+// Returns the name of the class that will be instantiated to handle the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
+func (s_ ScriptCommandDescription) CommandClassName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("commandClassName"))
 	return rv
 }
 
@@ -216,9 +192,18 @@ func (s_ ScriptCommandDescription) ArgumentNames() []string /* primitive/slice/p
 // Returns the name of the class that will be instantiated to handle the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/commandClassName
-func (s_ ScriptCommandDescription) CommandClassName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("commandClassName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandclassname
+func (s_ ScriptCommandDescription) SetCommandClassName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandClassName:"), value)
+}
+
+
+// Returns the name of the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
+func (s_ ScriptCommandDescription) CommandName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("commandName"))
 	return rv
 }
 
@@ -226,9 +211,18 @@ func (s_ ScriptCommandDescription) CommandClassName() IString {
 // Returns the name of the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/commandName
-func (s_ ScriptCommandDescription) CommandName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("commandName"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/commandname
+func (s_ ScriptCommandDescription) SetCommandName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCommandName:"), value)
+}
+
+
+// Returns the return type of the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
+func (s_ ScriptCommandDescription) ReturnType() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("returnType"))
 	return rv
 }
 
@@ -236,9 +230,18 @@ func (s_ ScriptCommandDescription) CommandName() IString {
 // Returns the return type of the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/returnType
-func (s_ ScriptCommandDescription) ReturnType() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("returnType"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/returntype
+func (s_ ScriptCommandDescription) SetReturnType(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReturnType:"), value)
+}
+
+
+// Returns the name of the suite that contains the command described by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
+func (s_ ScriptCommandDescription) SuiteName() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("suiteName"))
 	return rv
 }
 
@@ -246,10 +249,10 @@ func (s_ ScriptCommandDescription) ReturnType() IString {
 // Returns the name of the suite that contains the command described by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/suiteName
-func (s_ ScriptCommandDescription) SuiteName() IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("suiteName"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommanddescription/suitename
+func (s_ ScriptCommandDescription) SetSuiteName(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), value)
 }
+
 
 

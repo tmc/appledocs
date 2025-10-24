@@ -31,25 +31,30 @@ type _RPBroadcastControllerClass struct {
 // An interface definition for the [RPBroadcastController] class.
 type IRPBroadcastController interface {
 	objectivec.IObject
-	FinishBroadcastWithHandler(handler func(error objc.ID))
-	PauseBroadcast()
-	ResumeBroadcast()
-	StartBroadcastWithHandler(handler func(error objc.ID))
-	BroadcastExtensionBundleID() string
-	BroadcastURL() foundation.URL
+	// properties:
+	BroadcastURL() objc.IObject /* cross-framework: NSURL */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Broadcasting() bool
 	Paused() bool
-	ServiceInfo() unsafe.Pointer
+	ServiceInfo() foundation.IDictionary
 	IsBroadcasting() bool
 	SetIsBroadcasting(value bool)
 	IsPaused() bool
 	SetIsPaused(value bool)
+	// methods:
+	FinishBroadcastWithHandler(handler func(unsafe.Pointer))
+	PauseBroadcast()
+	ResumeBroadcast()
+	StartBroadcastWithHandler(handler func(unsafe.Pointer))
 }
 
 // An object containing methods for starting and controlling a broadcast.
+
+
+// An object containing methods for starting and controlling a broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController
 type RPBroadcastController struct {
 	objectivec.Object
@@ -94,52 +99,56 @@ func NewRPBroadcastController() RPBroadcastController {
 }
 
 
+
 // Stops the current broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/finishBroadcast(handler:)
-func (r_ RPBroadcastController) FinishBroadcastWithHandler(handler func(error objc.ID)) {
+func (r_ RPBroadcastController) FinishBroadcastWithHandler(handler func(unsafe.Pointer)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("finishBroadcastWithHandler:"), handler)
 }
 
+
 // Pauses the current broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/pauseBroadcast()
 func (r_ RPBroadcastController) PauseBroadcast() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("pauseBroadcast"))
 }
 
+
 // Resumes a paused broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/resumeBroadcast()
 func (r_ RPBroadcastController) ResumeBroadcast() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("resumeBroadcast"))
 }
 
+
 // Starts a broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/startBroadcast(handler:)
-func (r_ RPBroadcastController) StartBroadcastWithHandler(handler func(error objc.ID)) {
+func (r_ RPBroadcastController) StartBroadcastWithHandler(handler func(unsafe.Pointer)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("startBroadcastWithHandler:"), handler)
 }
 
-// The bundle ID for the selected broadcast service.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/broadcastExtensionBundleID
-func (r_ RPBroadcastController) BroadcastExtensionBundleID() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("broadcastExtensionBundleID"))
-	return rv
-}
 
 // A URL that redirects users to an ongoing or completed broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/broadcastURL
-func (r_ RPBroadcastController) BroadcastURL() foundation.URL {
-	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("broadcastURL"))
+func (r_ RPBroadcastController) BroadcastURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](r_.ID, objc.Sel("broadcastURL"))
 	return rv
 }
 
+
 // The delegate for the broadcast controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/delegate
 func (r_ RPBroadcastController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
@@ -147,41 +156,48 @@ func (r_ RPBroadcastController) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate for the broadcast controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/delegate
 func (r_ RPBroadcastController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // A Boolean value indicating whether the controller is broadcasting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/isBroadcasting
 func (r_ RPBroadcastController) Broadcasting() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("broadcasting"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the broadcast is paused.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/isPaused
 func (r_ RPBroadcastController) Paused() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("paused"))
 	return rv
 }
 
+
 // Information updated by the service during a broadcast.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastController/serviceInfo
-func (r_ RPBroadcastController) ServiceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("serviceInfo"))
+func (r_ RPBroadcastController) ServiceInfo() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](r_.ID, objc.Sel("serviceInfo"))
 	return rv
 }
 
+
 // A Boolean value indicating whether the controller is broadcasting.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/isbroadcasting
 func (r_ RPBroadcastController) IsBroadcasting() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isBroadcasting"))
@@ -189,17 +205,18 @@ func (r_ RPBroadcastController) IsBroadcasting() bool {
 }
 
 
-// SetIsBroadcasting sets the value of the isBroadcasting property.
 // A Boolean value indicating whether the controller is broadcasting.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/isbroadcasting
 func (r_ RPBroadcastController) SetIsBroadcasting(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsBroadcasting:"), value)
 }
 
+
 // A Boolean value indicating whether the broadcast is paused.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/ispaused
 func (r_ RPBroadcastController) IsPaused() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isPaused"))
@@ -207,14 +224,12 @@ func (r_ RPBroadcastController) IsPaused() bool {
 }
 
 
-// SetIsPaused sets the value of the isPaused property.
 // A Boolean value indicating whether the broadcast is paused.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller/ispaused
 func (r_ RPBroadcastController) SetIsPaused(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsPaused:"), value)
 }
-
 
 

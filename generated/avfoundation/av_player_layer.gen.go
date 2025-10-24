@@ -7,8 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [PlayerLayer] class.
@@ -30,10 +30,10 @@ type _PlayerLayerClass struct {
 
 // An interface definition for the [PlayerLayer] class.
 type IPlayerLayer interface {
-	quartzcore.ILayer
+	ILayer
 	// properties:
-	IsReadyForDisplay() bool /* primitive/slice/pointer. */
-	SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */)
+	IsReadyForDisplay() bool
+	SetIsReadyForDisplay(value bool)
 	PixelBufferAttributes() objc.IObject /* cross-framework: NSString */
 	SetPixelBufferAttributes(value objc.IObject /* cross-framework: NSString */)
 	Player() IAVPlayer
@@ -57,7 +57,7 @@ type IPlayerLayer interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer
 type PlayerLayer struct {
-	quartzcore.Layer
+	Layer
 }
 
 // PlayerLayerFrom constructs a [PlayerLayer] from an unsafe.Pointer.
@@ -65,7 +65,7 @@ type PlayerLayer struct {
 // An object that presents the visual contents of a player object.
 func PlayerLayerFrom(ptr unsafe.Pointer) PlayerLayer {
 	return PlayerLayer{
-		Layer: quartzcore.LayerFrom(ptr),
+		Layer: LayerFrom(ptr),
 	}
 }
 
@@ -106,7 +106,7 @@ func NewPlayerLayer() PlayerLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
+func (p_ PlayerLayer) IsReadyForDisplay() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */) {
+func (p_ PlayerLayer) SetIsReadyForDisplay(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
@@ -183,7 +183,7 @@ func (p_ PlayerLayer) SetVideoGravity(value LayerVideoGravity /* not a class typ
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videorect
 func (p_ PlayerLayer) VideoRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](p_.ID, objc.Sel("videoRect"))
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("videoRect"))
 	return rv
 }
 

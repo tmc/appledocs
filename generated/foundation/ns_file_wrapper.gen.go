@@ -31,35 +31,29 @@ type _FileWrapperClass struct {
 type IFileWrapper interface {
 	objectivec.IObject
 	// properties:
-	FileAttributes() IDictionary /* already interface */
-	SetFileAttributes(value IDictionary /* already interface */)
-	FileWrappers() IDictionary /* already interface */
 	Filename() IString
 	SetFilename(value IString)
-	Icon() objc.IObject /* cross-framework: Image */
-	SetIcon(value objc.IObject /* cross-framework: Image */)
-	Directory() bool /* primitive/slice/pointer. */
-	RegularFile() bool /* primitive/slice/pointer. */
-	SymbolicLink() bool /* primitive/slice/pointer. */
+	FileAttributes() IString
+	SetFileAttributes(value IString)
+	FileWrappers() IFileWrapper
+	SetFileWrappers(value IFileWrapper)
+	Icon() objectivec.IObject
+	SetIcon(value objectivec.IObject)
+	IsDirectory() bool
+	SetIsDirectory(value bool)
+	IsRegularFile() bool
+	SetIsRegularFile(value bool)
+	IsSymbolicLink() bool
+	SetIsSymbolicLink(value bool)
 	PreferredFilename() IString
 	SetPreferredFilename(value IString)
 	RegularFileContents() IData
+	SetRegularFileContents(value IData)
 	SerializedRepresentation() IData
+	SetSerializedRepresentation(value IData)
 	SymbolicLinkDestinationURL() IURL
-	IsDirectory() bool /* primitive/slice/pointer. */
-	SetIsDirectory(value bool /* primitive/slice/pointer. */)
-	IsRegularFile() bool /* primitive/slice/pointer. */
-	SetIsRegularFile(value bool /* primitive/slice/pointer. */)
-	IsSymbolicLink() bool /* primitive/slice/pointer. */
-	SetIsSymbolicLink(value bool /* primitive/slice/pointer. */)
+	SetSymbolicLinkDestinationURL(value IURL)
 	// methods:
-	AddFileWrapper(child IFileWrapper) IString
-	AddRegularFileWithContentsPreferredFilename(data IData, fileName IString) IString
-	KeyForFileWrapper(child IFileWrapper) IString
-	MatchesContentsOfURL(url IURL) bool /* primitive/slice/pointer. */
-	ReadFromURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) bool /* primitive/slice/pointer. */
-	RemoveFileWrapper(child IFileWrapper)
-	WriteToURLOptionsOriginalContentsURLError(url IURL, options FileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool /* primitive/slice/pointer. */
 }
 
 // A representation of a node (a file, directory, or symbolic link) in the file system.
@@ -115,199 +109,6 @@ func NewFileWrapper() FileWrapper {
 
 
 
-// Initializes the receiver as a directory file wrapper, with a given file-wrapper list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(directoryWithFileWrappers:)
-func NewFileWrapperDirectoryWithFileWrappers(childrenByPreferredName IDictionary /* already interface */) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initDirectoryWithFileWrappers:"), childrenByPreferredName)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes the receiver as a regular-file file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(regularFileWithContents:)
-func NewFileWrapperRegularFileWithContents(contents IData) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initRegularFileWithContents:"), contents)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes the receiver as a symbolic-link file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(symbolicLinkWithDestination:)
-func NewFileWrapperSymbolicLinkWithDestination(path IString) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initSymbolicLinkWithDestination:"), path)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes the receiver as a symbolic-link file wrapper that links to a specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(symbolicLinkWithDestinationURL:)
-func NewFileWrapperSymbolicLinkWithDestinationURL(url IURL) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initSymbolicLinkWithDestinationURL:"), url)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(coder:)
-func NewFileWrapperWithCoder(inCoder ICoder) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithCoder:"), inCoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a file wrapper instance whose kind is determined by the type of file-system node located by the path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(path:)
-func NewFileWrapperWithPath(path IString) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithPath:"), path)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes the receiver as a regular-file file wrapper from given serialized data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(serializedRepresentation:)
-func NewFileWrapperWithSerializedRepresentation(serializeRepresentation IData) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithSerializedRepresentation:"), serializeRepresentation)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a file wrapper instance whose kind is determined by the type of file-system node located by the URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(url:options:)
-func NewFileWrapperWithURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) FileWrapper {
-	instance := getFileWrapperClass().Alloc()
-	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithURL:options:error:"), url, options, outError)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Adds a child file wrapper to the receiver, which must be a directory file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/addFileWrapper(_:)
-func (f_ FileWrapper) AddFileWrapper(child IFileWrapper) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("addFileWrapper:"), child)
-	return rv
-}
-
-
-// Creates a regular-file file wrapper with the given contents and adds it to the receiver, which must be a directory file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/addRegularFile(withContents:preferredFilename:)
-func (f_ FileWrapper) AddRegularFileWithContentsPreferredFilename(data IData, fileName IString) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("addRegularFileWithContents:preferredFilename:"), data, fileName)
-	return rv
-}
-
-
-// Returns the dictionary key used by a directory to identify a given file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/keyForChildFileWrapper(_:)
-func (f_ FileWrapper) KeyForFileWrapper(child IFileWrapper) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("keyForFileWrapper:"), child)
-	return rv
-}
-
-
-// Indicates whether the contents of a file wrapper matches a directory, regular file, or symbolic link on disk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/matchesContents(of:)
-func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("matchesContentsOfURL:"), url)
-	return rv
-}
-
-
-// Recursively rereads the entire contents of a file wrapper from the specified location on disk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/read(from:options:)
-func (f_ FileWrapper) ReadFromURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("readFromURL:options:error:"), url, options, outError)
-	return rv
-}
-
-
-// Removes a child file wrapper from the receiver, which must be a directory file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/removeFileWrapper(_:)
-func (f_ FileWrapper) RemoveFileWrapper(child IFileWrapper) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("removeFileWrapper:"), child)
-}
-
-
-// Recursively writes the entire contents of a file wrapper to a given file-system URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/write(to:options:originalContentsURL:)
-func (f_ FileWrapper) WriteToURLOptionsOriginalContentsURLError(url IURL, options FileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:options:originalContentsURL:error:"), url, options, originalContentsURL, outError)
-	return rv
-}
-
-
-// A dictionary of file attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileAttributes
-func (f_ FileWrapper) FileAttributes() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](f_.ID, objc.Sel("fileAttributes"))
-	return rv
-}
-
-
-// A dictionary of file attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileAttributes
-func (f_ FileWrapper) SetFileAttributes(value IDictionary /* already interface */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), value)
-}
-
-
-// The file wrappers contained by a directory file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileWrappers
-func (f_ FileWrapper) FileWrappers() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](f_.ID, objc.Sel("fileWrappers"))
-	return rv
-}
-
-
 // The filename of the file wrapper object
 //
 // [Full Topic]
@@ -327,12 +128,50 @@ func (f_ FileWrapper) SetFilename(value IString) {
 }
 
 
+// A dictionary of file attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
+func (f_ FileWrapper) FileAttributes() IString {
+	rv := objc.Send[String](f_.ID, objc.Sel("fileAttributes"))
+	return rv
+}
+
+
+// A dictionary of file attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/fileattributes
+func (f_ FileWrapper) SetFileAttributes(value IString) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), value)
+}
+
+
+// The file wrappers contained by a directory file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
+func (f_ FileWrapper) FileWrappers() IFileWrapper {
+	rv := objc.Send[FileWrapper](f_.ID, objc.Sel("fileWrappers"))
+	return rv
+}
+
+
+// The file wrappers contained by a directory file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
+func (f_ FileWrapper) SetFileWrappers(value IFileWrapper) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileWrappers:"), value)
+}
+
+
 // The icon that represents the file wrapper.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/icon
-func (f_ FileWrapper) Icon() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[Image](f_.ID, objc.Sel("icon"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/icon
+func (f_ FileWrapper) Icon() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("icon"))
 	return rv
 }
 
@@ -340,8 +179,8 @@ func (f_ FileWrapper) Icon() objc.IObject /* cross-framework: Image */ {
 // The icon that represents the file wrapper.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/icon
-func (f_ FileWrapper) SetIcon(value objc.IObject /* cross-framework: Image */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/icon
+func (f_ FileWrapper) SetIcon(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIcon:"), value)
 }
 
@@ -349,87 +188,8 @@ func (f_ FileWrapper) SetIcon(value objc.IObject /* cross-framework: Image */) {
 // This property contains a boolean value indicating whether the file wrapper is a directory file wrapper.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isDirectory
-func (f_ FileWrapper) Directory() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("directory"))
-	return rv
-}
-
-
-// This property contains a boolean value that indicates whether the file wrapper object is a regular-file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isRegularFile
-func (f_ FileWrapper) RegularFile() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("regularFile"))
-	return rv
-}
-
-
-// A boolean that indicates whether the file wrapper object is a symbolic-link file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isSymbolicLink
-func (f_ FileWrapper) SymbolicLink() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](f_.ID, objc.Sel("symbolicLink"))
-	return rv
-}
-
-
-// The preferred filename for the file wrapper object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/preferredFilename
-func (f_ FileWrapper) PreferredFilename() IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("preferredFilename"))
-	return rv
-}
-
-
-// The preferred filename for the file wrapper object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/preferredFilename
-func (f_ FileWrapper) SetPreferredFilename(value IString) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), value)
-}
-
-
-// The contents of the file-system node associated with a regular-file file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/regularFileContents
-func (f_ FileWrapper) RegularFileContents() IData {
-	rv := objc.Send[Data](f_.ID, objc.Sel("regularFileContents"))
-	return rv
-}
-
-
-// The contents of the file wrapper as an opaque data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
-func (f_ FileWrapper) SerializedRepresentation() IData {
-	rv := objc.Send[Data](f_.ID, objc.Sel("serializedRepresentation"))
-	return rv
-}
-
-
-// The URL referenced by the file wrapper object, which must be a symbolic-link file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/symbolicLinkDestinationURL
-func (f_ FileWrapper) SymbolicLinkDestinationURL() IURL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("symbolicLinkDestinationURL"))
-	return rv
-}
-
-
-// This property contains a boolean value indicating whether the file wrapper is a directory file wrapper.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-func (f_ FileWrapper) IsDirectory() bool /* primitive/slice/pointer. */ {
+func (f_ FileWrapper) IsDirectory() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDirectory"))
 	return rv
 }
@@ -439,7 +199,7 @@ func (f_ FileWrapper) IsDirectory() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-func (f_ FileWrapper) SetIsDirectory(value bool /* primitive/slice/pointer. */) {
+func (f_ FileWrapper) SetIsDirectory(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDirectory:"), value)
 }
 
@@ -448,7 +208,7 @@ func (f_ FileWrapper) SetIsDirectory(value bool /* primitive/slice/pointer. */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-func (f_ FileWrapper) IsRegularFile() bool /* primitive/slice/pointer. */ {
+func (f_ FileWrapper) IsRegularFile() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRegularFile"))
 	return rv
 }
@@ -458,7 +218,7 @@ func (f_ FileWrapper) IsRegularFile() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-func (f_ FileWrapper) SetIsRegularFile(value bool /* primitive/slice/pointer. */) {
+func (f_ FileWrapper) SetIsRegularFile(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRegularFile:"), value)
 }
 
@@ -467,7 +227,7 @@ func (f_ FileWrapper) SetIsRegularFile(value bool /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-func (f_ FileWrapper) IsSymbolicLink() bool /* primitive/slice/pointer. */ {
+func (f_ FileWrapper) IsSymbolicLink() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSymbolicLink"))
 	return rv
 }
@@ -477,8 +237,85 @@ func (f_ FileWrapper) IsSymbolicLink() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-func (f_ FileWrapper) SetIsSymbolicLink(value bool /* primitive/slice/pointer. */) {
+func (f_ FileWrapper) SetIsSymbolicLink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSymbolicLink:"), value)
 }
+
+
+// The preferred filename for the file wrapper object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
+func (f_ FileWrapper) PreferredFilename() IString {
+	rv := objc.Send[String](f_.ID, objc.Sel("preferredFilename"))
+	return rv
+}
+
+
+// The preferred filename for the file wrapper object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/preferredfilename
+func (f_ FileWrapper) SetPreferredFilename(value IString) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), value)
+}
+
+
+// The contents of the file-system node associated with a regular-file file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
+func (f_ FileWrapper) RegularFileContents() IData {
+	rv := objc.Send[Data](f_.ID, objc.Sel("regularFileContents"))
+	return rv
+}
+
+
+// The contents of the file-system node associated with a regular-file file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
+func (f_ FileWrapper) SetRegularFileContents(value IData) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRegularFileContents:"), value)
+}
+
+
+// The contents of the file wrapper as an opaque data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation
+func (f_ FileWrapper) SerializedRepresentation() IData {
+	rv := objc.Send[Data](f_.ID, objc.Sel("serializedRepresentation"))
+	return rv
+}
+
+
+// The contents of the file wrapper as an opaque data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation
+func (f_ FileWrapper) SetSerializedRepresentation(value IData) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSerializedRepresentation:"), value)
+}
+
+
+// The URL referenced by the file wrapper object, which must be a symbolic-link file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
+func (f_ FileWrapper) SymbolicLinkDestinationURL() IURL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("symbolicLinkDestinationURL"))
+	return rv
+}
+
+
+// The URL referenced by the file wrapper object, which must be a symbolic-link file wrapper.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl
+func (f_ FileWrapper) SetSymbolicLinkDestinationURL(value IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSymbolicLinkDestinationURL:"), value)
+}
+
 
 

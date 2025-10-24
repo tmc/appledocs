@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [AudioIONode] class.
@@ -30,12 +31,12 @@ type _AudioIONodeClass struct {
 type IAudioIONode interface {
 	IAudioNode
 	// properties:
-	AudioUnit() IAudioUnit
-	SetAudioUnit(value IAudioUnit)
-	IsVoiceProcessingEnabled() bool /* primitive/slice/pointer. */
-	SetIsVoiceProcessingEnabled(value bool /* primitive/slice/pointer. */)
-	PresentationLatency() unsafe.Pointer
-	SetPresentationLatency(value unsafe.Pointer)
+	AudioUnit() audiotoolbox.IAudioUnit
+	SetAudioUnit(value audiotoolbox.IAudioUnit)
+	IsVoiceProcessingEnabled() bool
+	SetIsVoiceProcessingEnabled(value bool)
+	PresentationLatency() float64
+	SetPresentationLatency(value float64)
 	// methods:
 }
 
@@ -98,8 +99,8 @@ func NewAudioIONode() AudioIONode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
-func (a_ AudioIONode) AudioUnit() IAudioUnit {
-	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
+func (a_ AudioIONode) AudioUnit() audiotoolbox.IAudioUnit {
+	rv := objc.Send[audiotoolbox.AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
 }
 
@@ -108,7 +109,7 @@ func (a_ AudioIONode) AudioUnit() IAudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
-func (a_ AudioIONode) SetAudioUnit(value IAudioUnit) {
+func (a_ AudioIONode) SetAudioUnit(value audiotoolbox.IAudioUnit) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioUnit:"), value)
 }
 
@@ -117,7 +118,7 @@ func (a_ AudioIONode) SetAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) IsVoiceProcessingEnabled() bool /* primitive/slice/pointer. */ {
+func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingEnabled"))
 	return rv
 }
@@ -127,7 +128,7 @@ func (a_ AudioIONode) IsVoiceProcessingEnabled() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingEnabled:"), value)
 }
 
@@ -136,8 +137,8 @@ func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/presentationlatency
-func (a_ AudioIONode) PresentationLatency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationLatency"))
+func (a_ AudioIONode) PresentationLatency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("presentationLatency"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (a_ AudioIONode) PresentationLatency() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/presentationlatency
-func (a_ AudioIONode) SetPresentationLatency(value unsafe.Pointer) {
+func (a_ AudioIONode) SetPresentationLatency(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationLatency:"), value)
 }
 

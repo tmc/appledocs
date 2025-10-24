@@ -31,17 +31,21 @@ type _MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParamsClass struct {
 // An interface definition for the [MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams] class.
 type IMTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams interface {
 	objectivec.IObject
-	NewVersion() foundation.Number
-	SetNewVersion(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UpdateToken() foundation.Data
-	SetUpdateToken(value foundation.IData)
+	// properties:
+	NewVersion() objc.IObject /* cross-framework: NSNumber */
+	SetNewVersion(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UpdateToken() objc.IObject /* cross-framework: Data */
+	SetUpdateToken(value objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams-1mlcr
 type MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams() MTROTASoft
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/newversion
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) NewVersion() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("newVersion"))
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) NewVersion() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newVersion"))
 	return rv
 }
 
 
-// SetNewVersion sets the value of the newVersion property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/newversion
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetNewVersion(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetNewVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewVersion:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/serversideprocessingtimeout
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/serversideprocessingtimeout
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) UpdateToken() foundation.Data {
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) UpdateToken() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("updateToken"))
 	return rv
 }
 
 
-// SetUpdateToken sets the value of the updateToken property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdaterequestparams-1mlcr/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetUpdateToken(value foundation.IData) {
+func (m_ MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) SetUpdateToken(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
 }
 

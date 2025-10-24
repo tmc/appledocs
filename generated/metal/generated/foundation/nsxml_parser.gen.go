@@ -33,24 +33,22 @@ type IXMLParser interface {
 	// properties:
 	AllowedExternalEntityURLs() IURL
 	SetAllowedExternalEntityURLs(value IURL)
-	ColumnNumber() int /* primitive/slice/pointer. */
-	SetColumnNumber(value int /* primitive/slice/pointer. */)
+	ColumnNumber() int
+	SetColumnNumber(value int)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	ExternalEntityResolvingPolicy() unsafe.Pointer
 	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
-	LineNumber() int /* primitive/slice/pointer. */
-	SetLineNumber(value int /* primitive/slice/pointer. */)
-	ParserError() IError
-	SetParserError(value IError)
+	LineNumber() int
+	SetLineNumber(value int)
 	PublicID() IString
 	SetPublicID(value IString)
-	ShouldProcessNamespaces() bool /* primitive/slice/pointer. */
-	SetShouldProcessNamespaces(value bool /* primitive/slice/pointer. */)
-	ShouldReportNamespacePrefixes() bool /* primitive/slice/pointer. */
-	SetShouldReportNamespacePrefixes(value bool /* primitive/slice/pointer. */)
-	ShouldResolveExternalEntities() bool /* primitive/slice/pointer. */
-	SetShouldResolveExternalEntities(value bool /* primitive/slice/pointer. */)
+	ShouldProcessNamespaces() bool
+	SetShouldProcessNamespaces(value bool)
+	ShouldReportNamespacePrefixes() bool
+	SetShouldReportNamespacePrefixes(value bool)
+	ShouldResolveExternalEntities() bool
+	SetShouldResolveExternalEntities(value bool)
 	SystemID() IString
 	SetSystemID(value IString)
 	// methods:
@@ -128,7 +126,7 @@ func (x_ XMLParser) SetAllowedExternalEntityURLs(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-func (x_ XMLParser) ColumnNumber() int /* primitive/slice/pointer. */ {
+func (x_ XMLParser) ColumnNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("columnNumber"))
 	return rv
 }
@@ -138,7 +136,7 @@ func (x_ XMLParser) ColumnNumber() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/columnnumber
-func (x_ XMLParser) SetColumnNumber(value int /* primitive/slice/pointer. */) {
+func (x_ XMLParser) SetColumnNumber(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setColumnNumber:"), value)
 }
 
@@ -181,7 +179,7 @@ func (x_ XMLParser) SetExternalEntityResolvingPolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/linenumber
-func (x_ XMLParser) LineNumber() int /* primitive/slice/pointer. */ {
+func (x_ XMLParser) LineNumber() int {
 	rv := objc.Send[int](x_.ID, objc.Sel("lineNumber"))
 	return rv
 }
@@ -191,27 +189,8 @@ func (x_ XMLParser) LineNumber() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/linenumber
-func (x_ XMLParser) SetLineNumber(value int /* primitive/slice/pointer. */) {
+func (x_ XMLParser) SetLineNumber(value int) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setLineNumber:"), value)
-}
-
-
-// An
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
-func (x_ XMLParser) ParserError() IError {
-	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
-	return rv
-}
-
-
-// An
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
-func (x_ XMLParser) SetParserError(value IError) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setParserError:"), value)
 }
 
 
@@ -238,7 +217,7 @@ func (x_ XMLParser) SetPublicID(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
-func (x_ XMLParser) ShouldProcessNamespaces() bool /* primitive/slice/pointer. */ {
+func (x_ XMLParser) ShouldProcessNamespaces() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldProcessNamespaces"))
 	return rv
 }
@@ -248,7 +227,7 @@ func (x_ XMLParser) ShouldProcessNamespaces() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldprocessnamespaces
-func (x_ XMLParser) SetShouldProcessNamespaces(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLParser) SetShouldProcessNamespaces(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldProcessNamespaces:"), value)
 }
 
@@ -257,7 +236,7 @@ func (x_ XMLParser) SetShouldProcessNamespaces(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldreportnamespaceprefixes
-func (x_ XMLParser) ShouldReportNamespacePrefixes() bool /* primitive/slice/pointer. */ {
+func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldReportNamespacePrefixes"))
 	return rv
 }
@@ -267,7 +246,7 @@ func (x_ XMLParser) ShouldReportNamespacePrefixes() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldreportnamespaceprefixes
-func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
 
@@ -276,7 +255,7 @@ func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
-func (x_ XMLParser) ShouldResolveExternalEntities() bool /* primitive/slice/pointer. */ {
+func (x_ XMLParser) ShouldResolveExternalEntities() bool {
 	rv := objc.Send[bool](x_.ID, objc.Sel("shouldResolveExternalEntities"))
 	return rv
 }
@@ -286,7 +265,7 @@ func (x_ XMLParser) ShouldResolveExternalEntities() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/shouldresolveexternalentities
-func (x_ XMLParser) SetShouldResolveExternalEntities(value bool /* primitive/slice/pointer. */) {
+func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldResolveExternalEntities:"), value)
 }
 

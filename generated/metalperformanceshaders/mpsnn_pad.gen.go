@@ -30,24 +30,30 @@ type _PadClass struct {
 
 // An interface definition for the [Pad] class.
 type IPad interface {
-	objectivec.IObject
-	PaddingSizeBefore() unsafe.Pointer
-	SetPaddingSizeBefore(value unsafe.Pointer)
+	ICNNKernel
+	// properties:
+	PaddingSizeAfter() ImageCoordinate /* not a class type */
+	SetPaddingSizeAfter(value ImageCoordinate /* not a class type */)
+	PaddingSizeBefore() ImageCoordinate /* not a class type */
+	SetPaddingSizeBefore(value ImageCoordinate /* not a class type */)
 	FillValue() float32
 	SetFillValue(value float32)
-	PaddingSizeAfter() unsafe.Pointer
-	SetPaddingSizeAfter(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad
 type Pad struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // PadFrom constructs a [Pad] from an unsafe.Pointer.
 func PadFrom(ptr unsafe.Pointer) Pad {
-	return Pad{objectivec.Object{objc.ID(ptr)}}
+	return Pad{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -82,9 +88,10 @@ func NewPad() Pad {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/init(coder:device:)
-func NewPadWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) Pad {
+func NewPadWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) Pad {
 	instance := getPadClass().Alloc()
 	rv := objc.Send[Pad](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -92,22 +99,38 @@ func NewPadWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
-func (p_ Pad) PaddingSizeBefore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paddingSizeBefore"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeAfter
+func (p_ Pad) PaddingSizeAfter() ImageCoordinate /* not a class type */ {
+	rv := objc.Send[ImageCoordinate](p_.ID, objc.Sel("paddingSizeAfter"))
 	return rv
 }
 
 
-// SetPaddingSizeBefore sets the value of the paddingSizeBefore property.
-//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeAfter
+func (p_ Pad) SetPaddingSizeAfter(value ImageCoordinate /* not a class type */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeAfter:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
-func (p_ Pad) SetPaddingSizeBefore(value unsafe.Pointer) {
+func (p_ Pad) PaddingSizeBefore() ImageCoordinate /* not a class type */ {
+	rv := objc.Send[ImageCoordinate](p_.ID, objc.Sel("paddingSizeBefore"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/paddingSizeBefore
+func (p_ Pad) SetPaddingSizeBefore(value ImageCoordinate /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeBefore:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
 func (p_ Pad) FillValue() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("fillValue"))
@@ -115,26 +138,10 @@ func (p_ Pad) FillValue() float32 {
 }
 
 
-// SetFillValue sets the value of the fillValue property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/fillvalue
 func (p_ Pad) SetFillValue(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFillValue:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/paddingsizeafter
-func (p_ Pad) PaddingSizeAfter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paddingSizeAfter"))
-	return rv
-}
-
-
-// SetPaddingSizeAfter sets the value of the paddingSizeAfter property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpad/paddingsizeafter
-func (p_ Pad) SetPaddingSizeAfter(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPaddingSizeAfter:"), value)
 }
 
 

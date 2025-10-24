@@ -30,9 +30,13 @@ type _MTRSmokeCOAlarmClusterMuteEndedEventClass struct {
 // An interface definition for the [MTRSmokeCOAlarmClusterMuteEndedEvent] class.
 type IMTRSmokeCOAlarmClusterMuteEndedEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterMuteEndedEvent
 type MTRSmokeCOAlarmClusterMuteEndedEvent struct {
 	objectivec.Object

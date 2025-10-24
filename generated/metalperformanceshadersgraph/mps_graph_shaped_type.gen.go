@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GraphShapedType] class.
@@ -29,14 +30,20 @@ type _GraphShapedTypeClass struct {
 // An interface definition for the [GraphShapedType] class.
 type IGraphShapedType interface {
 	IGraphType
-	DataType() unsafe.Pointer
-	SetDataType(value unsafe.Pointer)
-	Shape() unsafe.Pointer
-	SetShape(value unsafe.Pointer)
+	// properties:
+	DataType() DataType /* not a class type */
+	SetDataType(value DataType /* not a class type */)
+	Shape() objc.IObject /* cross-framework: NSNumber */
+	SetShape(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
 // The shaped type class for types on tensors with a shape and data type.
+
+
+// The shaped type class for types on tensors with a shape and data type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType
 type GraphShapedType struct {
 	GraphType
@@ -84,11 +91,11 @@ func NewGraphShapedType() GraphShapedType {
 
 
 
-
 // Initializes a shaped type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/init(shape:dataType:)
-func NewGraphShapedTypeWithShapeDataType(shape unsafe.Pointer, dataType unsafe.Pointer) GraphShapedType {
+func NewGraphShapedTypeWithShapeDataType(shape Shape /* not a class type */, dataType DataType /* not a class type */) GraphShapedType {
 	instance := getGraphShapedTypeClass().Alloc()
 	rv := objc.Send[GraphShapedType](instance.ID, objc.Sel("initWithShape:dataType:"), shape, dataType)
 	rv.Autorelease()
@@ -96,47 +103,41 @@ func NewGraphShapedTypeWithShapeDataType(shape unsafe.Pointer, dataType unsafe.P
 }
 
 
-// Checks if shapes and element data type are the same as the input shaped type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/isEqual(to:)
-func (g_ GraphShapedType) IsEqualTo(object MPSGraphShapedType) bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("isEqualTo:"), object)
-	return rv
-}
 
 // The data type of the shaped type.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/dataType
-func (g_ GraphShapedType) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataType"))
+func (g_ GraphShapedType) DataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](g_.ID, objc.Sel("dataType"))
 	return rv
 }
 
 
-// SetDataType sets the value of the dataType property.
 // The data type of the shaped type.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/dataType
-func (g_ GraphShapedType) SetDataType(value unsafe.Pointer) {
+func (g_ GraphShapedType) SetDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataType:"), value)
 }
 
+
 // The Shape of the shaped type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/shape
-func (g_ GraphShapedType) Shape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("shape"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/shape
+func (g_ GraphShapedType) Shape() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](g_.ID, objc.Sel("shape"))
 	return rv
 }
 
 
-// SetShape sets the value of the shape property.
 // The Shape of the shaped type.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/shape
-func (g_ GraphShapedType) SetShape(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype/shape
+func (g_ GraphShapedType) SetShape(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
 

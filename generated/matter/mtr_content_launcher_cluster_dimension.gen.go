@@ -30,15 +30,19 @@ type _MTRContentLauncherClusterDimensionClass struct {
 // An interface definition for the [MTRContentLauncherClusterDimension] class.
 type IMTRContentLauncherClusterDimension interface {
 	IMTRContentLauncherClusterDimensionStruct
-	Height() foundation.Number
-	SetHeight(value foundation.INumber)
-	Metric() foundation.Number
-	SetMetric(value foundation.INumber)
-	Width() foundation.Number
-	SetWidth(value foundation.INumber)
+	// properties:
+	Height() objc.IObject /* cross-framework: NSNumber */
+	SetHeight(value objc.IObject /* cross-framework: NSNumber */)
+	Metric() objc.IObject /* cross-framework: NSNumber */
+	SetMetric(value objc.IObject /* cross-framework: NSNumber */)
+	Width() objc.IObject /* cross-framework: NSNumber */
+	SetWidth(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimension
 type MTRContentLauncherClusterDimension struct {
 	MTRContentLauncherClusterDimensionStruct
@@ -83,48 +87,48 @@ func NewMTRContentLauncherClusterDimension() MTRContentLauncherClusterDimension 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/height
-func (m_ MTRContentLauncherClusterDimension) Height() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("height"))
+func (m_ MTRContentLauncherClusterDimension) Height() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("height"))
 	return rv
 }
 
 
-// SetHeight sets the value of the height property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/height
-func (m_ MTRContentLauncherClusterDimension) SetHeight(value foundation.INumber) {
+func (m_ MTRContentLauncherClusterDimension) SetHeight(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeight:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/metric
-func (m_ MTRContentLauncherClusterDimension) Metric() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("metric"))
+func (m_ MTRContentLauncherClusterDimension) Metric() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("metric"))
 	return rv
 }
 
 
-// SetMetric sets the value of the metric property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/metric
-func (m_ MTRContentLauncherClusterDimension) SetMetric(value foundation.INumber) {
+func (m_ MTRContentLauncherClusterDimension) SetMetric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetric:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
-func (m_ MTRContentLauncherClusterDimension) Width() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("width"))
+func (m_ MTRContentLauncherClusterDimension) Width() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("width"))
 	return rv
 }
 
 
-// SetWidth sets the value of the width property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimension/width
-func (m_ MTRContentLauncherClusterDimension) SetWidth(value foundation.INumber) {
+func (m_ MTRContentLauncherClusterDimension) SetWidth(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWidth:"), value)
 }
 

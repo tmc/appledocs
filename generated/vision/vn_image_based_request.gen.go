@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [ImageBasedRequest] class.
@@ -30,14 +30,20 @@ type _ImageBasedRequestClass struct {
 // An interface definition for the [ImageBasedRequest] class.
 type IImageBasedRequest interface {
 	IRequest
-	RegionOfInterest() coregraphics.CGRect
-	SetRegionOfInterest(value coregraphics.CGRect)
+	// properties:
+	RegionOfInterest() objc.IObject /* cross-framework: Rect */
+	SetRegionOfInterest(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // The abstract superclass for image-analysis requests that focus on a specific part of an image.
 //
 // Other Vision request handlers that operate on still images inherit from this abstract base class. Don’t use it directly.
+
+
+// The abstract superclass for image-analysis requests that focus on a specific part of an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageBasedRequest
 type ImageBasedRequest struct {
 	Request
@@ -84,21 +90,22 @@ func NewImageBasedRequest() ImageBasedRequest {
 }
 
 
+
 // The region of the image in which Vision will perform the request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageBasedRequest/regionOfInterest
-func (i_ ImageBasedRequest) RegionOfInterest() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](i_.ID, objc.Sel("regionOfInterest"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagebasedrequest/regionofinterest
+func (i_ ImageBasedRequest) RegionOfInterest() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](i_.ID, objc.Sel("regionOfInterest"))
 	return rv
 }
 
 
-// SetRegionOfInterest sets the value of the regionOfInterest property.
 // The region of the image in which Vision will perform the request.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageBasedRequest/regionOfInterest
-func (i_ ImageBasedRequest) SetRegionOfInterest(value coregraphics.CGRect) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagebasedrequest/regionofinterest
+func (i_ ImageBasedRequest) SetRegionOfInterest(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegionOfInterest:"), value)
 }
 

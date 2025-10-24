@@ -32,7 +32,6 @@ type ICXAnswerCallAction interface {
 	ICXCallAction
 	// properties:
 	// methods:
-	FulfillWithDateConnected(dateConnected foundation.objc.IObject /* cross-framework NSDate */)
 }
 
 // An encapsulation of the act of answering an incoming call.
@@ -86,16 +85,6 @@ func (c_ CXAnswerCallAction) Autorelease() CXAnswerCallAction {
 // NewCXAnswerCallAction creates a new CXAnswerCallAction instance.
 func NewCXAnswerCallAction() CXAnswerCallAction {
 	return getCXAnswerCallActionClass().New()
-}
-
-
-
-// Reports the successful execution of the action at the specified time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction/fulfill(withDateConnected:)
-func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.objc.IObject /* cross-framework NSDate */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateConnected:"), dateConnected)
 }
 
 

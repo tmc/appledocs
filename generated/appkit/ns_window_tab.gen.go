@@ -124,7 +124,7 @@ func (w_ WindowTab) SetAccessoryView(value IView) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
 func (w_ WindowTab) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedTitle"))
+	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 

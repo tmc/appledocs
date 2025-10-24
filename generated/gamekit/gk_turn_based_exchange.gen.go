@@ -32,25 +32,25 @@ type _TurnBasedExchangeClass struct {
 type ITurnBasedExchange interface {
 	objectivec.IObject
 	// properties:
-	ExchangeID() string /* primitive/slice/pointer. */
-	CompletionDate() foundation.objc.IObject /* cross-framework: Date */
-	SetCompletionDate(value foundation.objc.IObject /* cross-framework: Date */)
-	Data() foundation.objc.IObject /* cross-framework: Data */
-	SetData(value foundation.objc.IObject /* cross-framework: Data */)
-	Message() string /* primitive/slice/pointer. */
-	SetMessage(value string /* primitive/slice/pointer. */)
+	ExchangeID() objc.IObject /* cross-framework: NSString */
+	CompletionDate() objc.IObject /* cross-framework: Date */
+	SetCompletionDate(value objc.IObject /* cross-framework: Date */)
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	Message() objc.IObject /* cross-framework: NSString */
+	SetMessage(value objc.IObject /* cross-framework: NSString */)
 	Recipients() IGKTurnBasedParticipant
 	SetRecipients(value IGKTurnBasedParticipant)
 	Replies() IGKTurnBasedExchangeReply
 	SetReplies(value IGKTurnBasedExchangeReply)
-	SendDate() foundation.objc.IObject /* cross-framework: Date */
-	SetSendDate(value foundation.objc.IObject /* cross-framework: Date */)
+	SendDate() objc.IObject /* cross-framework: Date */
+	SetSendDate(value objc.IObject /* cross-framework: Date */)
 	Sender() IGKTurnBasedParticipant
 	SetSender(value IGKTurnBasedParticipant)
 	Status() TurnBasedExchangeStatus
 	SetStatus(value TurnBasedExchangeStatus)
-	TimeoutDate() foundation.objc.IObject /* cross-framework: Date */
-	SetTimeoutDate(value foundation.objc.IObject /* cross-framework: Date */)
+	TimeoutDate() objc.IObject /* cross-framework: Date */
+	SetTimeoutDate(value objc.IObject /* cross-framework: Date */)
 	CompletedExchanges() IGKTurnBasedExchange
 	SetCompletedExchanges(value IGKTurnBasedExchange)
 	// methods:
@@ -113,8 +113,8 @@ func NewTurnBasedExchange() TurnBasedExchange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchange/exchangeID
-func (t_ TurnBasedExchange) ExchangeID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("exchangeID"))
+func (t_ TurnBasedExchange) ExchangeID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("exchangeID"))
 	return rv
 }
 
@@ -123,7 +123,7 @@ func (t_ TurnBasedExchange) ExchangeID() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
-func (t_ TurnBasedExchange) CompletionDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (t_ TurnBasedExchange) CompletionDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("completionDate"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (t_ TurnBasedExchange) CompletionDate() foundation.objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/completiondate
-func (t_ TurnBasedExchange) SetCompletionDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (t_ TurnBasedExchange) SetCompletionDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
@@ -142,7 +142,7 @@ func (t_ TurnBasedExchange) SetCompletionDate(value foundation.objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
-func (t_ TurnBasedExchange) Data() foundation.objc.IObject /* cross-framework: Data */ {
+func (t_ TurnBasedExchange) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (t_ TurnBasedExchange) Data() foundation.objc.IObject /* cross-framework: D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/data
-func (t_ TurnBasedExchange) SetData(value foundation.objc.IObject /* cross-framework: Data */) {
+func (t_ TurnBasedExchange) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
 
@@ -161,8 +161,8 @@ func (t_ TurnBasedExchange) SetData(value foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-func (t_ TurnBasedExchange) Message() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](t_.ID, objc.Sel("message"))
+func (t_ TurnBasedExchange) Message() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (t_ TurnBasedExchange) Message() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/message
-func (t_ TurnBasedExchange) SetMessage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
+func (t_ TurnBasedExchange) SetMessage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), value)
 }
 
 
@@ -218,7 +218,7 @@ func (t_ TurnBasedExchange) SetReplies(value IGKTurnBasedExchangeReply) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
-func (t_ TurnBasedExchange) SendDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (t_ TurnBasedExchange) SendDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("sendDate"))
 	return rv
 }
@@ -228,7 +228,7 @@ func (t_ TurnBasedExchange) SendDate() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/senddate
-func (t_ TurnBasedExchange) SetSendDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (t_ TurnBasedExchange) SetSendDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSendDate:"), value)
 }
 
@@ -275,7 +275,7 @@ func (t_ TurnBasedExchange) SetStatus(value TurnBasedExchangeStatus) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
-func (t_ TurnBasedExchange) TimeoutDate() foundation.objc.IObject /* cross-framework: Date */ {
+func (t_ TurnBasedExchange) TimeoutDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
@@ -285,7 +285,7 @@ func (t_ TurnBasedExchange) TimeoutDate() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/timeoutdate
-func (t_ TurnBasedExchange) SetTimeoutDate(value foundation.objc.IObject /* cross-framework: Date */) {
+func (t_ TurnBasedExchange) SetTimeoutDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeoutDate:"), value)
 }
 

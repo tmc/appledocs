@@ -30,8 +30,8 @@ type _SpheresNoiseSourceClass struct {
 type ISpheresNoiseSource interface {
 	INoiseSource
 	// properties:
-	Frequency() float64 /* primitive/slice/pointer. */
-	SetFrequency(value float64 /* primitive/slice/pointer. */)
+	Frequency() float64
+	SetFrequency(value float64)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewSpheresNoiseSource() SpheresNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/init(frequency:)
-func NewSpheresNoiseSourceWithFrequency(frequency float64 /* primitive/slice/pointer. */) SpheresNoiseSource {
+func NewSpheresNoiseSourceWithFrequency(frequency float64) SpheresNoiseSource {
 	instance := getSpheresNoiseSourceClass().Alloc()
 	rv := objc.Send[SpheresNoiseSource](instance.ID, objc.Sel("initWithFrequency:"), frequency)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewSpheresNoiseSourceWithFrequency(frequency float64 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/spheresNoise(withFrequency:)
-func (sc _SpheresNoiseSourceClass) SpheresNoiseWithFrequency(frequency float64 /* primitive/slice/pointer. */) unsafe.Pointer {
+func (sc _SpheresNoiseSourceClass) SpheresNoiseWithFrequency(frequency float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("spheresNoiseWithFrequency:"), frequency)
 	return rv
 }
@@ -117,7 +117,7 @@ func (sc _SpheresNoiseSourceClass) SpheresNoiseWithFrequency(frequency float64 /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/frequency
-func (s_ SpheresNoiseSource) Frequency() float64 /* primitive/slice/pointer. */ {
+func (s_ SpheresNoiseSource) Frequency() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("frequency"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (s_ SpheresNoiseSource) Frequency() float64 /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSpheresNoiseSource/frequency
-func (s_ SpheresNoiseSource) SetFrequency(value float64 /* primitive/slice/pointer. */) {
+func (s_ SpheresNoiseSource) SetFrequency(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFrequency:"), value)
 }
 

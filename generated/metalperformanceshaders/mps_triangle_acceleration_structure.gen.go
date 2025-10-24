@@ -29,12 +29,18 @@ type _TriangleAccelerationStructureClass struct {
 // An interface definition for the [TriangleAccelerationStructure] class.
 type ITriangleAccelerationStructure interface {
 	IPolygonAccelerationStructure
+	// properties:
 	TriangleCount() uint
 	SetTriangleCount(value uint)
+	// methods:
 }
 
 // An acceleration structure built over triangles.
+
+
+// An acceleration structure built over triangles.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleAccelerationStructure
 type TriangleAccelerationStructure struct {
 	PolygonAccelerationStructure
@@ -81,7 +87,8 @@ func NewTriangleAccelerationStructure() TriangleAccelerationStructure {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleAccelerationStructure/triangleCount
 func (t_ TriangleAccelerationStructure) TriangleCount() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("triangleCount"))
@@ -89,8 +96,7 @@ func (t_ TriangleAccelerationStructure) TriangleCount() uint {
 }
 
 
-// SetTriangleCount sets the value of the triangleCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTriangleAccelerationStructure/triangleCount
 func (t_ TriangleAccelerationStructure) SetTriangleCount(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTriangleCount:"), value)

@@ -96,7 +96,7 @@ func NewComputePlan() ComputePlan {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url objc.IObject /* cross-framework: NSURL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 

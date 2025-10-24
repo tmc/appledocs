@@ -30,13 +30,17 @@ type _MTRBasicClusterCapabilityMinimaStructClass struct {
 // An interface definition for the [MTRBasicClusterCapabilityMinimaStruct] class.
 type IMTRBasicClusterCapabilityMinimaStruct interface {
 	IMTRBasicInformationClusterCapabilityMinimaStruct
-	CaseSessionsPerFabric() foundation.Number
-	SetCaseSessionsPerFabric(value foundation.INumber)
-	SubscriptionsPerFabric() foundation.Number
-	SetSubscriptionsPerFabric(value foundation.INumber)
+	// properties:
+	CaseSessionsPerFabric() objc.IObject /* cross-framework: NSNumber */
+	SetCaseSessionsPerFabric(value objc.IObject /* cross-framework: NSNumber */)
+	SubscriptionsPerFabric() objc.IObject /* cross-framework: NSNumber */
+	SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterCapabilityMinimaStruct
 type MTRBasicClusterCapabilityMinimaStruct struct {
 	MTRBasicInformationClusterCapabilityMinimaStruct
@@ -81,33 +85,33 @@ func NewMTRBasicClusterCapabilityMinimaStruct() MTRBasicClusterCapabilityMinimaS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
-func (m_ MTRBasicClusterCapabilityMinimaStruct) CaseSessionsPerFabric() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("caseSessionsPerFabric"))
+func (m_ MTRBasicClusterCapabilityMinimaStruct) CaseSessionsPerFabric() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("caseSessionsPerFabric"))
 	return rv
 }
 
 
-// SetCaseSessionsPerFabric sets the value of the caseSessionsPerFabric property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
-func (m_ MTRBasicClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value foundation.INumber) {
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseSessionsPerFabric:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
-func (m_ MTRBasicClusterCapabilityMinimaStruct) SubscriptionsPerFabric() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("subscriptionsPerFabric"))
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SubscriptionsPerFabric() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("subscriptionsPerFabric"))
 	return rv
 }
 
 
-// SetSubscriptionsPerFabric sets the value of the subscriptionsPerFabric property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
-func (m_ MTRBasicClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value foundation.INumber) {
+func (m_ MTRBasicClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubscriptionsPerFabric:"), value)
 }
 

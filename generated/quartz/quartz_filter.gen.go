@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,13 @@ type _QuartzFilterClass struct {
 // An interface definition for the [QuartzFilter] class.
 type IQuartzFilter interface {
 	objectivec.IObject
-	Properties() foundation.Dictionary
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter
 type QuartzFilter struct {
 	objectivec.Object
@@ -77,26 +79,5 @@ func NewQuartzFilter() QuartzFilter {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/init(properties:)
-func NewQuartzFilterWithProperties(properties objectivec.IObject) QuartzFilter {
-	rv := objc.Send[QuartzFilter](objc.ID(getQuartzFilterClass().class), objc.Sel("quartzFilterWithProperties:"), properties)
-	return rv
-}
-
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/init(properties:)
-func (qc _QuartzFilterClass) QuartzFilterWithProperties(properties objectivec.IObject) QuartzFilter {
-	rv := objc.Send[QuartzFilter](objc.ID(qc.class), objc.Sel("quartzFilterWithProperties:"), properties)
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/properties()
-func (q_ QuartzFilter) Properties() foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](q_.ID, objc.Sel("properties"))
-	return rv
-}
 
 

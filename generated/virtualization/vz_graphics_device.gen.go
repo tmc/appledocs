@@ -30,9 +30,11 @@ type _VZGraphicsDeviceClass struct {
 // An interface definition for the [VZGraphicsDevice] class.
 type IVZGraphicsDevice interface {
 	objectivec.IObject
-	Displays() []VZGraphicsDisplay
+	// properties:
+	Displays() []IVZGraphicsDisplay
 	GraphicsDevices() IVZGraphicsDevice
 	SetGraphicsDevices(value IVZGraphicsDevice)
+	// methods:
 }
 
 // A class that represents a graphics device in a VM.
@@ -92,7 +94,7 @@ func NewVZGraphicsDevice() VZGraphicsDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDevice/displays
-func (v_ VZGraphicsDevice) Displays() []VZGraphicsDisplay {
+func (v_ VZGraphicsDevice) Displays() []IVZGraphicsDisplay {
 	rv := objc.Send[[]VZGraphicsDisplay](v_.ID, objc.Sel("displays"))
 	return rv
 }

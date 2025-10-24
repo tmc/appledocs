@@ -30,12 +30,18 @@ type _VZGraphicsDisplayConfigurationClass struct {
 // An interface definition for the [VZGraphicsDisplayConfiguration] class.
 type IVZGraphicsDisplayConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for a graphics display configuration.
 //
 // Don’t instantiate directly. Use one of its subclasses instead.
+
+
+// The base class for a graphics display configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplayConfiguration
 type VZGraphicsDisplayConfiguration struct {
 	objectivec.Object

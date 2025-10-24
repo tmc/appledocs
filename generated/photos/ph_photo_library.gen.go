@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,30 +33,30 @@ type _PHPhotoLibraryClass struct {
 // An interface definition for the [PHPhotoLibrary] class.
 type IPHPhotoLibrary interface {
 	objectivec.IObject
-	CloudIdentifierMappingsForLocalIdentifiers(localIdentifiers []string) unsafe.Pointer
-	CloudIdentifiersForLocalIdentifiers(localIdentifiers []string) []PHCloudIdentifier
-	FetchPersistentChangesSinceTokenError(token IPHPersistentChangeToken, error_ unsafe.Pointer) PHPersistentChangeFetchResult
-	LocalIdentifierMappingsForCloudIdentifiers(cloudIdentifiers []PHCloudIdentifier) unsafe.Pointer
-	LocalIdentifiersForCloudIdentifiers(cloudIdentifiers []PHCloudIdentifier) []string
+	// properties:
+	CurrentChangeToken() IPHPersistentChangeToken
+	UnavailabilityReason() objc.IObject /* cross-framework: Error */
+	PHLocalIdentifierNotFound() objc.IObject /* cross-framework: NSString */
+	// methods:
+	CloudIdentifierMappingsForLocalIdentifiers(localIdentifiers []string) foundation.IDictionary
+	FetchPersistentChangesSinceTokenError(token IPHPersistentChangeToken, error_ unsafe.Pointer) IPHPersistentChangeFetchResult
+	LocalIdentifierMappingsForCloudIdentifiers(cloudIdentifiers []IPHCloudIdentifier) foundation.IDictionary
 	PerformChangesCompletionHandler(changeBlock unsafe.Pointer, completionHandler unsafe.Pointer)
 	PerformChangesAndWaitError(changeBlock unsafe.Pointer, error_ unsafe.Pointer) bool
-	PresentLimitedLibraryPickerFromViewController(controller appkit.IViewController)
-	PresentLimitedLibraryPickerFromViewControllerCompletionHandler(controller appkit.IViewController, completionHandler unsafe.Pointer)
 	RegisterChangeObserver(observer objectivec.IObject)
 	RegisterAvailabilityObserver(observer objectivec.IObject)
-	SetUploadJobExtensionEnabledError(enable bool, error_ unsafe.Pointer) bool
 	UnregisterAvailabilityObserver(observer objectivec.IObject)
 	UnregisterChangeObserver(observer objectivec.IObject)
-	CurrentChangeToken() PHPersistentChangeToken
-	UnavailabilityReason() foundation.Error
-	UploadJobExtensionEnabled() bool
-	PHLocalIdentifierNotFound() string
 }
 
 // An object that manages access and changes to the user’s photo library.
 //
 // The object represents the entire set of assets and collections that the Photos app manages, including assets stored on the local device and those stored in iCloud Photos. Use this object for the following tasks: Retrieving or verifying the user’s permission for your app to access Photos content Making changes to assets and collections; for example, editing asset metadata or content, inserting new assets, or rearranging the members of a collection Determining which records change since a previous state of the Photos library Registering for update messages the system sends when the library changes
+
+
+// An object that manages access and changes to the user’s photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary
 type PHPhotoLibrary struct {
 	objectivec.Object
@@ -100,179 +101,167 @@ func NewPHPhotoLibrary() PHPhotoLibrary {
 }
 
 
+
 // Returns information about your app’s authorization to access the user’s photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/authorizationStatus()
 func (pc _PHPhotoLibraryClass) AuthorizationStatus() PHAuthorizationStatus {
 	rv := objc.Send[PHAuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
+
 // Returns the app’s authorization to access the user’s photo library for the specified access level.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)
 func (pc _PHPhotoLibraryClass) AuthorizationStatusForAccessLevel(accessLevel PHAccessLevel) PHAuthorizationStatus {
 	rv := objc.Send[PHAuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatusForAccessLevel:"), accessLevel)
 	return rv
 }
 
+
 // Requests the user’s permission, if needed, to access the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)
 func (pc _PHPhotoLibraryClass) RequestAuthorization(handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("requestAuthorization:"), handler)
 }
 
+
 // Prompts the user to grant the app permission to access the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)
 func (pc _PHPhotoLibraryClass) RequestAuthorizationForAccessLevelHandler(accessLevel PHAccessLevel, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("requestAuthorizationForAccessLevel:handler:"), accessLevel, handler)
 }
 
+
 // Retrieves the shared photo library object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/shared()
 func (pc _PHPhotoLibraryClass) SharedPhotoLibrary() PHPhotoLibrary {
 	rv := objc.Send[PHPhotoLibrary](objc.ID(pc.class), objc.Sel("sharedPhotoLibrary"))
 	return rv
 }
 
+
 // Retrieves the cloud identifier mappings for the list of local identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappingsForLocalIdentifiers:
-func (p_ PHPhotoLibrary) CloudIdentifierMappingsForLocalIdentifiers(localIdentifiers []string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cloudIdentifierMappingsForLocalIdentifiers:"), localIdentifiers)
+func (p_ PHPhotoLibrary) CloudIdentifierMappingsForLocalIdentifiers(localIdentifiers []string) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("cloudIdentifierMappingsForLocalIdentifiers:"), localIdentifiers)
 	return rv
 }
 
-// Retrieves the equivalent iCloud identifiers for the list of local identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/cloudIdentifiers(forLocalIdentifiers:)
-func (p_ PHPhotoLibrary) CloudIdentifiersForLocalIdentifiers(localIdentifiers []string) []PHCloudIdentifier {
-	rv := objc.Send[[]PHCloudIdentifier](p_.ID, objc.Sel("cloudIdentifiersForLocalIdentifiers:"), localIdentifiers)
-	return rv
-}
 
 // Retrieves the Photos library changes since the token you specify.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/fetchPersistentChanges(since:)
-func (p_ PHPhotoLibrary) FetchPersistentChangesSinceTokenError(token IPHPersistentChangeToken, error_ unsafe.Pointer) PHPersistentChangeFetchResult {
+func (p_ PHPhotoLibrary) FetchPersistentChangesSinceTokenError(token IPHPersistentChangeToken, error_ unsafe.Pointer) IPHPersistentChangeFetchResult {
 	rv := objc.Send[PHPersistentChangeFetchResult](p_.ID, objc.Sel("fetchPersistentChangesSinceToken:error:"), token, error_)
 	return rv
 }
 
+
 // Retrieves the local identifier mappings for the list of cloud identifiers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:
-func (p_ PHPhotoLibrary) LocalIdentifierMappingsForCloudIdentifiers(cloudIdentifiers []PHCloudIdentifier) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("localIdentifierMappingsForCloudIdentifiers:"), cloudIdentifiers)
+func (p_ PHPhotoLibrary) LocalIdentifierMappingsForCloudIdentifiers(cloudIdentifiers []IPHCloudIdentifier) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("localIdentifierMappingsForCloudIdentifiers:"), cloudIdentifiers)
 	return rv
 }
 
-// Retrieves the equivalent local identifiers for the list of iCloud identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/localIdentifiers(for:)
-func (p_ PHPhotoLibrary) LocalIdentifiersForCloudIdentifiers(cloudIdentifiers []PHCloudIdentifier) []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("localIdentifiersForCloudIdentifiers:"), cloudIdentifiers)
-	return rv
-}
 
 // Asynchronously runs a block that requests changes to the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/performChanges(_:completionHandler:)
 func (p_ PHPhotoLibrary) PerformChangesCompletionHandler(changeBlock unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("performChanges:completionHandler:"), changeBlock, completionHandler)
 }
 
+
 // Synchronously runs a block that requests changes to be performed in the photo library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/performChangesAndWait(_:)
 func (p_ PHPhotoLibrary) PerformChangesAndWaitError(changeBlock unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("performChangesAndWait:error:"), changeBlock, error_)
 	return rv
 }
 
-// Prompts the user to update their limited library selection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:)
-func (p_ PHPhotoLibrary) PresentLimitedLibraryPickerFromViewController(controller appkit.IViewController) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("presentLimitedLibraryPickerFromViewController:"), controller)
-}
-
-// Prompts the user to update their limited library selection with a callback providing newly selected identifiers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:completionHandler:)
-func (p_ PHPhotoLibrary) PresentLimitedLibraryPickerFromViewControllerCompletionHandler(controller appkit.IViewController, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("presentLimitedLibraryPickerFromViewController:completionHandler:"), controller, completionHandler)
-}
 
 // Registers an object to receive messages when objects in the photo library change.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9
 func (p_ PHPhotoLibrary) RegisterChangeObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("registerChangeObserver:"), observer)
 }
 
+
 // Registers an object to observe changes to the photo library’s availability.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/register(_:)-gm0a
 func (p_ PHPhotoLibrary) RegisterAvailabilityObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("registerAvailabilityObserver:"), observer)
 }
 
-// Enables or disables the background asset resource upload job processing. This must be called before creating , by the extension’s host application.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/setUploadJobExtensionEnabled(_:)
-func (p_ PHPhotoLibrary) SetUploadJobExtensionEnabledError(enable bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setUploadJobExtensionEnabled:error:"), enable, error_)
-	return rv
-}
 
 // Unregisters an object from observing changes to the photo library’s availability.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/unregisterAvailabilityObserver(_:)
 func (p_ PHPhotoLibrary) UnregisterAvailabilityObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unregisterAvailabilityObserver:"), observer)
 }
 
+
 // Unregisters an object so that it no longer receives change messages.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)
 func (p_ PHPhotoLibrary) UnregisterChangeObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unregisterChangeObserver:"), observer)
 }
 
+
 // The opaque token that represents the current state of the Photos library.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/currentChangeToken
-func (p_ PHPhotoLibrary) CurrentChangeToken() PHPersistentChangeToken {
+func (p_ PHPhotoLibrary) CurrentChangeToken() IPHPersistentChangeToken {
 	rv := objc.Send[PHPersistentChangeToken](p_.ID, objc.Sel("currentChangeToken"))
 	return rv
 }
 
+
 // An error that describes the reason the photo library isn’t available.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/unavailabilityReason
-func (p_ PHPhotoLibrary) UnavailabilityReason() foundation.Error {
-	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("unavailabilityReason"))
+func (p_ PHPhotoLibrary) UnavailabilityReason() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](p_.ID, objc.Sel("unavailabilityReason"))
 	return rv
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHPhotoLibrary/uploadJobExtensionEnabled
-func (p_ PHPhotoLibrary) UploadJobExtensionEnabled() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("uploadJobExtensionEnabled"))
-	return rv
-}
 
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHPhotoLibrary) PHLocalIdentifierNotFound() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHPhotoLibrary) PHLocalIdentifierNotFound() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
-
 
 

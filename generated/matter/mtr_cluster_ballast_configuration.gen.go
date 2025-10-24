@@ -29,9 +29,13 @@ type _MTRClusterBallastConfigurationClass struct {
 // An interface definition for the [MTRClusterBallastConfiguration] class.
 type IMTRClusterBallastConfiguration interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBallastConfiguration
 type MTRClusterBallastConfiguration struct {
 	MTRGenericCluster

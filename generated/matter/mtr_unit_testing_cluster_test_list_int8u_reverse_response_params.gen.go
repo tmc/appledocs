@@ -31,13 +31,17 @@ type _MTRUnitTestingClusterTestListInt8UReverseResponseParamsClass struct {
 // An interface definition for the [MTRUnitTestingClusterTestListInt8UReverseResponseParams] class.
 type IMTRUnitTestingClusterTestListInt8UReverseResponseParams interface {
 	objectivec.IObject
+	// properties:
 	Arg1() unsafe.Pointer
 	SetArg1(value unsafe.Pointer)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestListInt8UReverseResponseParams
 type MTRUnitTestingClusterTestListInt8UReverseResponseParams struct {
 	objectivec.Object
@@ -80,7 +84,8 @@ func NewMTRUnitTestingClusterTestListInt8UReverseResponseParams() MTRUnitTesting
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8ureverseresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) Arg1() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
@@ -88,25 +93,24 @@ func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) Arg1() unsafe.
 }
 
 
-// SetArg1 sets the value of the arg1 property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8ureverseresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRUnitTestingClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

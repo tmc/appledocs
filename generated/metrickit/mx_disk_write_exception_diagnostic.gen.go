@@ -29,14 +29,20 @@ type _MXDiskWriteExceptionDiagnosticClass struct {
 // An interface definition for the [MXDiskWriteExceptionDiagnostic] class.
 type IMXDiskWriteExceptionDiagnostic interface {
 	IMXDiagnostic
-	CallStackTree() MXCallStackTree
+	// properties:
+	CallStackTree() IMXCallStackTree
 	TotalWritesCaused() unsafe.Pointer
+	// methods:
 }
 
 // An object representing a diagnostic report for a disk write exception.
 //
 // A disk write exception occurs when the app writes an excessive amount of data to the disk.
+
+
+// An object representing a diagnostic report for a disk write exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskWriteExceptionDiagnostic
 type MXDiskWriteExceptionDiagnostic struct {
 	MXDiagnostic
@@ -83,16 +89,20 @@ func NewMXDiskWriteExceptionDiagnostic() MXDiskWriteExceptionDiagnostic {
 }
 
 
+
 // The call stack for the disk write exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskWriteExceptionDiagnostic/callStackTree
-func (m_ MXDiskWriteExceptionDiagnostic) CallStackTree() MXCallStackTree {
+func (m_ MXDiskWriteExceptionDiagnostic) CallStackTree() IMXCallStackTree {
 	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 
+
 // The total amount of data written to disk or other long-term storage during the disk write exception.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskWriteExceptionDiagnostic/totalWritesCaused
 func (m_ MXDiskWriteExceptionDiagnostic) TotalWritesCaused() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalWritesCaused"))

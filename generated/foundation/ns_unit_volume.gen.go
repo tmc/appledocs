@@ -88,4 +88,23 @@ func NewUnitVolume() UnitVolume {
 
 
 
+// The liters unit of volume.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
+func (uc _UnitVolumeClass) Liters() UnitVolume {
+	rv := objc.Send[UnitVolume](objc.ID(uc.class), objc.Sel("liters"))
+	return rv
+}
+
+// The liters unit of volume.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
+func (u_ UnitVolume) Liters() IUnitVolume {
+	rv := objc.Send[UnitVolume](u_.ID, objc.Sel("liters"))
+	return rv
+}
+
+
 

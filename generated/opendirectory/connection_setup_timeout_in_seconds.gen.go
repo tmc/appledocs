@@ -30,9 +30,13 @@ type _connectionSetupTimeoutInSecondsClass struct {
 // An interface definition for the [connectionSetupTimeoutInSeconds] class.
 type IconnectionSetupTimeoutInSeconds interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionSetupTimeoutInSeconds-c.ivar
 type connectionSetupTimeoutInSeconds struct {
 	objectivec.Object

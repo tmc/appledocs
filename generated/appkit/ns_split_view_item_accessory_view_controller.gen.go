@@ -30,14 +30,14 @@ type _SplitViewItemAccessoryViewControllerClass struct {
 type ISplitViewItemAccessoryViewController interface {
 	IViewController
 	// properties:
-	AutomaticallyAppliesContentInsets() bool /* primitive/slice/pointer. */
-	SetAutomaticallyAppliesContentInsets(value bool /* primitive/slice/pointer. */)
+	AutomaticallyAppliesContentInsets() bool
+	SetAutomaticallyAppliesContentInsets(value bool)
 	BottomAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
 	TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
-	IsHidden() bool /* primitive/slice/pointer. */
-	SetIsHidden(value bool /* primitive/slice/pointer. */)
+	IsHidden() bool
+	SetIsHidden(value bool)
 	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
 	SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle)
 	// methods:
@@ -95,7 +95,7 @@ func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewControl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/automaticallyAppliesContentInsets
-func (s_ SplitViewItemAccessoryViewController) AutomaticallyAppliesContentInsets() bool /* primitive/slice/pointer. */ {
+func (s_ SplitViewItemAccessoryViewController) AutomaticallyAppliesContentInsets() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyAppliesContentInsets"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (s_ SplitViewItemAccessoryViewController) AutomaticallyAppliesContentInsets
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/automaticallyAppliesContentInsets
-func (s_ SplitViewItemAccessoryViewController) SetAutomaticallyAppliesContentInsets(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitViewItemAccessoryViewController) SetAutomaticallyAppliesContentInsets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyAppliesContentInsets:"), value)
 }
 
@@ -148,7 +148,7 @@ func (s_ SplitViewItemAccessoryViewController) SetTopAlignedAccessoryViewControl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/ishidden
-func (s_ SplitViewItemAccessoryViewController) IsHidden() bool /* primitive/slice/pointer. */ {
+func (s_ SplitViewItemAccessoryViewController) IsHidden() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (s_ SplitViewItemAccessoryViewController) IsHidden() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/ishidden
-func (s_ SplitViewItemAccessoryViewController) SetIsHidden(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitViewItemAccessoryViewController) SetIsHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHidden:"), value)
 }
 

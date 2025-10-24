@@ -31,14 +31,13 @@ type _AudioApplicationClass struct {
 type IAudioApplication interface {
 	objectivec.IObject
 	// properties:
-	InputMuted() bool /* primitive/slice/pointer. */
-	MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission
+	InputMuted() bool
 	RecordPermission() AudioApplicationRecordPermission
-	IsInputMuted() bool /* primitive/slice/pointer. */
-	SetIsInputMuted(value bool /* primitive/slice/pointer. */)
+	IsInputMuted() bool
+	SetIsInputMuted(value bool)
 	// methods:
-	SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
-	SetInputMutedError(muted bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool
+	SetInputMutedError(muted bool, outError unsafe.Pointer) bool
 }
 
 // An object that manages one or more audio sessions that belong to an app.
@@ -125,7 +124,7 @@ func (ac _AudioApplicationClass) SharedInstance() AudioApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/setInputMuteStateChangeHandler(_:)
-func (a_ AudioApplication) SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (a_ AudioApplication) SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputMuteStateChangeHandler:error:"), inputMuteHandler, outError)
 	return rv
 }
@@ -135,7 +134,7 @@ func (a_ AudioApplication) SetInputMuteStateChangeHandlerError(inputMuteHandler 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/setInputMuted(_:)
-func (a_ AudioApplication) SetInputMutedError(muted bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (a_ AudioApplication) SetInputMutedError(muted bool, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputMuted:error:"), muted, outError)
 	return rv
 }
@@ -145,18 +144,8 @@ func (a_ AudioApplication) SetInputMutedError(muted bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/isInputMuted
-func (a_ AudioApplication) InputMuted() bool /* primitive/slice/pointer. */ {
+func (a_ AudioApplication) InputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputMuted"))
-	return rv
-}
-
-
-// A value that indicates an app’s permission to add audio to calls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/microphoneInjectionPermission-swift.property
-func (a_ AudioApplication) MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission {
-	rv := objc.Send[AudioApplicationMicrophoneInjectionPermission](a_.ID, objc.Sel("microphoneInjectionPermission"))
 	return rv
 }
 
@@ -185,7 +174,7 @@ func (a_ AudioApplication) SharedInstance() IAVAudioApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
-func (a_ AudioApplication) IsInputMuted() bool /* primitive/slice/pointer. */ {
+func (a_ AudioApplication) IsInputMuted() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInputMuted"))
 	return rv
 }
@@ -195,9 +184,8 @@ func (a_ AudioApplication) IsInputMuted() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioapplication/isinputmuted
-func (a_ AudioApplication) SetIsInputMuted(value bool /* primitive/slice/pointer. */) {
+func (a_ AudioApplication) SetIsInputMuted(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInputMuted:"), value)
 }
-
 
 

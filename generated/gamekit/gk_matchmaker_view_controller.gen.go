@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MatchmakerViewController] class.
@@ -31,12 +32,12 @@ type _MatchmakerViewControllerClass struct {
 type IMatchmakerViewController interface {
 	appkit.IViewController
 	// properties:
-	DefaultInvitationMessage() string /* primitive/slice/pointer. */
-	SetDefaultInvitationMessage(value string /* primitive/slice/pointer. */)
-	CanStartWithMinimumPlayers() bool /* primitive/slice/pointer. */
-	SetCanStartWithMinimumPlayers(value bool /* primitive/slice/pointer. */)
-	IsHosted() bool /* primitive/slice/pointer. */
-	SetIsHosted(value bool /* primitive/slice/pointer. */)
+	DefaultInvitationMessage() objc.IObject /* cross-framework: NSString */
+	SetDefaultInvitationMessage(value objc.IObject /* cross-framework: NSString */)
+	CanStartWithMinimumPlayers() bool
+	SetCanStartWithMinimumPlayers(value bool)
+	IsHosted() bool
+	SetIsHosted(value bool)
 	MatchRequest() IGKMatchRequest
 	SetMatchRequest(value IGKMatchRequest)
 	MatchmakerDelegate() MatchmakerViewControllerDelegate /* not a class type */
@@ -118,8 +119,8 @@ func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) Matchm
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) DefaultInvitationMessage() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("defaultInvitationMessage"))
+func (m_ MatchmakerViewController) DefaultInvitationMessage() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("defaultInvitationMessage"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
+func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), value)
 }
 
 
@@ -137,7 +138,7 @@ func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
-func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool /* primitive/slice/pointer. */ {
+func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canStartWithMinimumPlayers"))
 	return rv
 }
@@ -147,7 +148,7 @@ func (m_ MatchmakerViewController) CanStartWithMinimumPlayers() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/canstartwithminimumplayers
-func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool /* primitive/slice/pointer. */) {
+func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCanStartWithMinimumPlayers:"), value)
 }
 
@@ -156,7 +157,7 @@ func (m_ MatchmakerViewController) SetCanStartWithMinimumPlayers(value bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
-func (m_ MatchmakerViewController) IsHosted() bool /* primitive/slice/pointer. */ {
+func (m_ MatchmakerViewController) IsHosted() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isHosted"))
 	return rv
 }
@@ -166,7 +167,7 @@ func (m_ MatchmakerViewController) IsHosted() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/ishosted
-func (m_ MatchmakerViewController) SetIsHosted(value bool /* primitive/slice/pointer. */) {
+func (m_ MatchmakerViewController) SetIsHosted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsHosted:"), value)
 }
 

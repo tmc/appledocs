@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -46,16 +47,12 @@ type IMKMapSnapshotOptions interface {
 	SetPreferredConfiguration(value objc.IObject /* cross-framework: MKMapConfiguration */)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
-	Scale() float64 /* primitive/slice/pointer. */
-	SetScale(value float64 /* primitive/slice/pointer. */)
-	ShowsBuildings() bool /* primitive/slice/pointer. */
-	SetShowsBuildings(value bool /* primitive/slice/pointer. */)
-	ShowsPointsOfInterest() bool /* primitive/slice/pointer. */
-	SetShowsPointsOfInterest(value bool /* primitive/slice/pointer. */)
-	Size() foundation.objc.IObject /* cross-framework: Size */
-	SetSize(value foundation.objc.IObject /* cross-framework: Size */)
-	TraitCollection() TraitCollection /* not a class type */
-	SetTraitCollection(value TraitCollection /* not a class type */)
+	ShowsBuildings() bool
+	SetShowsBuildings(value bool)
+	ShowsPointsOfInterest() bool
+	SetShowsPointsOfInterest(value bool)
+	Size() objc.IObject /* cross-framework: Size */
+	SetSize(value objc.IObject /* cross-framework: Size */)
 	// methods:
 }
 
@@ -117,7 +114,7 @@ func NewMKMapSnapshotOptions() MKMapSnapshotOptions {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/appearance
 func (m_ MKMapSnapshotOptions) Appearance() objc.IObject /* cross-framework: Appearance */ {
-	rv := objc.Send[Appearance](m_.ID, objc.Sel("appearance"))
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -245,30 +242,11 @@ func (m_ MKMapSnapshotOptions) SetRegion(value unsafe.Pointer) {
 }
 
 
-// The scale factor to use when creating the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/scale
-func (m_ MKMapSnapshotOptions) Scale() float64 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float64](m_.ID, objc.Sel("scale"))
-	return rv
-}
-
-
-// The scale factor to use when creating the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/scale
-func (m_ MKMapSnapshotOptions) SetScale(value float64 /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setScale:"), value)
-}
-
-
 // A Boolean that indicates whether the map displays extruded building information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsBuildings
-func (m_ MKMapSnapshotOptions) ShowsBuildings() bool /* primitive/slice/pointer. */ {
+func (m_ MKMapSnapshotOptions) ShowsBuildings() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsBuildings"))
 	return rv
 }
@@ -278,7 +256,7 @@ func (m_ MKMapSnapshotOptions) ShowsBuildings() bool /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsBuildings
-func (m_ MKMapSnapshotOptions) SetShowsBuildings(value bool /* primitive/slice/pointer. */) {
+func (m_ MKMapSnapshotOptions) SetShowsBuildings(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsBuildings:"), value)
 }
 
@@ -287,7 +265,7 @@ func (m_ MKMapSnapshotOptions) SetShowsBuildings(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsPointsOfInterest
-func (m_ MKMapSnapshotOptions) ShowsPointsOfInterest() bool /* primitive/slice/pointer. */ {
+func (m_ MKMapSnapshotOptions) ShowsPointsOfInterest() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsPointsOfInterest"))
 	return rv
 }
@@ -297,7 +275,7 @@ func (m_ MKMapSnapshotOptions) ShowsPointsOfInterest() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsPointsOfInterest
-func (m_ MKMapSnapshotOptions) SetShowsPointsOfInterest(value bool /* primitive/slice/pointer. */) {
+func (m_ MKMapSnapshotOptions) SetShowsPointsOfInterest(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPointsOfInterest:"), value)
 }
 
@@ -306,8 +284,8 @@ func (m_ MKMapSnapshotOptions) SetShowsPointsOfInterest(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/size
-func (m_ MKMapSnapshotOptions) Size() foundation.objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[foundation.Size](m_.ID, objc.Sel("size"))
+func (m_ MKMapSnapshotOptions) Size() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](m_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -316,28 +294,8 @@ func (m_ MKMapSnapshotOptions) Size() foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/size
-func (m_ MKMapSnapshotOptions) SetSize(value foundation.objc.IObject /* cross-framework: Size */) {
+func (m_ MKMapSnapshotOptions) SetSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
-
-
-// Traits that determine the appearance of the map snapshot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/traitCollection
-func (m_ MKMapSnapshotOptions) TraitCollection() TraitCollection /* not a class type */ {
-	rv := objc.Send[TraitCollection](m_.ID, objc.Sel("traitCollection"))
-	return rv
-}
-
-
-// Traits that determine the appearance of the map snapshot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/traitCollection
-func (m_ MKMapSnapshotOptions) SetTraitCollection(value TraitCollection /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)
-}
-
 
 

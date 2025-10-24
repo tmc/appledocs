@@ -31,11 +31,15 @@ type _MTRDeviceEnergyManagementClusterResumedEventClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterResumedEvent] class.
 type IMTRDeviceEnergyManagementClusterResumedEvent interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent
 type MTRDeviceEnergyManagementClusterResumedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRDeviceEnergyManagementClusterResumedEvent() MTRDeviceEnergyManagement
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 

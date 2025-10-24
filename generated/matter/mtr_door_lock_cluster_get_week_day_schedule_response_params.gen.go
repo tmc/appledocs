@@ -31,27 +31,31 @@ type _MTRDoorLockClusterGetWeekDayScheduleResponseParamsClass struct {
 // An interface definition for the [MTRDoorLockClusterGetWeekDayScheduleResponseParams] class.
 type IMTRDoorLockClusterGetWeekDayScheduleResponseParams interface {
 	objectivec.IObject
-	DaysMask() foundation.Number
-	SetDaysMask(value foundation.INumber)
-	EndHour() foundation.Number
-	SetEndHour(value foundation.INumber)
-	EndMinute() foundation.Number
-	SetEndMinute(value foundation.INumber)
-	StartHour() foundation.Number
-	SetStartHour(value foundation.INumber)
-	StartMinute() foundation.Number
-	SetStartMinute(value foundation.INumber)
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
-	UserIndex() foundation.Number
-	SetUserIndex(value foundation.INumber)
-	WeekDayIndex() foundation.Number
-	SetWeekDayIndex(value foundation.INumber)
+	// properties:
+	DaysMask() objc.IObject /* cross-framework: NSNumber */
+	SetDaysMask(value objc.IObject /* cross-framework: NSNumber */)
+	EndHour() objc.IObject /* cross-framework: NSNumber */
+	SetEndHour(value objc.IObject /* cross-framework: NSNumber */)
+	EndMinute() objc.IObject /* cross-framework: NSNumber */
+	SetEndMinute(value objc.IObject /* cross-framework: NSNumber */)
+	StartHour() objc.IObject /* cross-framework: NSNumber */
+	SetStartHour(value objc.IObject /* cross-framework: NSNumber */)
+	StartMinute() objc.IObject /* cross-framework: NSNumber */
+	SetStartMinute(value objc.IObject /* cross-framework: NSNumber */)
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	UserIndex() objc.IObject /* cross-framework: NSNumber */
+	SetUserIndex(value objc.IObject /* cross-framework: NSNumber */)
+	WeekDayIndex() objc.IObject /* cross-framework: NSNumber */
+	SetWeekDayIndex(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterGetWeekDayScheduleResponseParams
 type MTRDoorLockClusterGetWeekDayScheduleResponseParams struct {
 	objectivec.Object
@@ -94,138 +98,138 @@ func NewMTRDoorLockClusterGetWeekDayScheduleResponseParams() MTRDoorLockClusterG
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/daysmask
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) DaysMask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("daysMask"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) DaysMask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("daysMask"))
 	return rv
 }
 
 
-// SetDaysMask sets the value of the daysMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/daysmask
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetDaysMask(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetDaysMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDaysMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endhour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndHour() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endHour"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndHour() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endHour"))
 	return rv
 }
 
 
-// SetEndHour sets the value of the endHour property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endhour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndHour(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndHour(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndHour:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndMinute() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("endMinute"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndMinute() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("endMinute"))
 	return rv
 }
 
 
-// SetEndMinute sets the value of the endMinute property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndMinute(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndMinute(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndMinute:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/starthour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartHour() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startHour"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartHour() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startHour"))
 	return rv
 }
 
 
-// SetStartHour sets the value of the startHour property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/starthour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartHour(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartHour(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartHour:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/startminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartMinute() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("startMinute"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartMinute() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startMinute"))
 	return rv
 }
 
 
-// SetStartMinute sets the value of the startMinute property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/startminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartMinute(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartMinute(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartMinute:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/userindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) UserIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("userIndex"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) UserIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("userIndex"))
 	return rv
 }
 
 
-// SetUserIndex sets the value of the userIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/userindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetUserIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetUserIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/weekdayindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) WeekDayIndex() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("weekDayIndex"))
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) WeekDayIndex() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("weekDayIndex"))
 	return rv
 }
 
 
-// SetWeekDayIndex sets the value of the weekDayIndex property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/weekdayindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetWeekDayIndex(value foundation.INumber) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetWeekDayIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWeekDayIndex:"), value)
 }
 

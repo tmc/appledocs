@@ -29,18 +29,24 @@ type _CSliceLayerClass struct {
 // An interface definition for the [CSliceLayer] class.
 type ICSliceLayer interface {
 	ICLayer
+	// properties:
 	End() int
 	SetEnd(value int)
 	Start() int
 	SetStart(value int)
 	Stride() int
 	SetStride(value int)
+	// methods:
 }
 
 // A layer that extracts a slice from a tensor.
 //
 // The framework supports positive stride. Use a slice layer to slice a given source. Slicing won’t decrease the tensor dimension. The start, end, and stride vectors must be of the same size, equal to the source tensor dimension.
+
+
+// A layer that extracts a slice from a tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer
 type CSliceLayer struct {
 	CLayer
@@ -87,8 +93,10 @@ func NewCSliceLayer() CSliceLayer {
 }
 
 
+
 // The end vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/end-9xw91
 func (c_ CSliceLayer) End() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("end"))
@@ -96,17 +104,18 @@ func (c_ CSliceLayer) End() int {
 }
 
 
-// SetEnd sets the value of the end property.
 // The end vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/end-9xw91
 func (c_ CSliceLayer) SetEnd(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnd:"), value)
 }
 
+
 // The start vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/start-6wsh6
 func (c_ CSliceLayer) Start() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("start"))
@@ -114,17 +123,18 @@ func (c_ CSliceLayer) Start() int {
 }
 
 
-// SetStart sets the value of the start property.
 // The start vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/start-6wsh6
 func (c_ CSliceLayer) SetStart(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStart:"), value)
 }
 
+
 // The stride vector.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/stride-84fhb
 func (c_ CSliceLayer) Stride() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("stride"))
@@ -132,10 +142,9 @@ func (c_ CSliceLayer) Stride() int {
 }
 
 
-// SetStride sets the value of the stride property.
 // The stride vector.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/stride-84fhb
 func (c_ CSliceLayer) SetStride(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStride:"), value)

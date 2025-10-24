@@ -31,19 +31,23 @@ type _MTRDeviceEnergyManagementClusterModifyForecastRequestParamsClass struct {
 // An interface definition for the [MTRDeviceEnergyManagementClusterModifyForecastRequestParams] class.
 type IMTRDeviceEnergyManagementClusterModifyForecastRequestParams interface {
 	objectivec.IObject
-	Cause() foundation.Number
-	SetCause(value foundation.INumber)
-	ForecastID() foundation.Number
-	SetForecastID(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	SlotAdjustments() objc.ID
-	SetSlotAdjustments(value objc.ID)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Cause() objc.IObject /* cross-framework: NSNumber */
+	SetCause(value objc.IObject /* cross-framework: NSNumber */)
+	ForecastID() objc.IObject /* cross-framework: NSNumber */
+	SetForecastID(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	SlotAdjustments() objc.IObject /* cross-framework: NSArray */
+	SetSlotAdjustments(value objc.IObject /* cross-framework: NSArray */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams
 type MTRDeviceEnergyManagementClusterModifyForecastRequestParams struct {
 	objectivec.Object
@@ -86,84 +90,86 @@ func NewMTRDeviceEnergyManagementClusterModifyForecastRequestParams() MTRDeviceE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("cause"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("cause"))
 	return rv
 }
 
 
-// SetCause sets the value of the cause property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("forecastID"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("forecastID"))
 	return rv
 }
 
 
-// SetForecastID sets the value of the forecastID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/slotAdjustments
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjustments() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("slotAdjustments"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjustments() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("slotAdjustments"))
 	return rv
 }
 
 
-// SetSlotAdjustments sets the value of the slotAdjustments property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/slotAdjustments
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdjustments(value objc.ID) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdjustments(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotAdjustments:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

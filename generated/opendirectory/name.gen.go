@@ -30,9 +30,13 @@ type _nameClass struct {
 // An interface definition for the [name] class.
 type Iname interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-c.ivar
 type name struct {
 	objectivec.Object

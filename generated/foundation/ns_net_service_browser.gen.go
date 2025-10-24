@@ -33,8 +33,8 @@ type INetServiceBrowser interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	IncludesPeerToPeer() bool /* primitive/slice/pointer. */
-	SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */)
+	IncludesPeerToPeer() bool
+	SetIncludesPeerToPeer(value bool)
 	// methods:
 }
 
@@ -115,7 +115,7 @@ func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) IncludesPeerToPeer() bool /* primitive/slice/pointer. */ {
+func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer. */) {
+func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
 

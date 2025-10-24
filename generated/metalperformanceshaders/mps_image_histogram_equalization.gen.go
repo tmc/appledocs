@@ -34,7 +34,7 @@ type IImageHistogramEqualization interface {
 	// properties:
 	HistogramInfo() ImageHistogramInfo /* not a class type */
 	// methods:
-	EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer objectivec.IObject, source objectivec.IObject, histogram objectivec.IObject, histogramOffset uint /* primitive/slice/pointer. */)
+	EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer objectivec.IObject, source objectivec.IObject, histogram objectivec.IObject, histogramOffset uint)
 }
 
 // A filter that equalizes the histogram of an image.
@@ -119,7 +119,7 @@ func NewImageHistogramEqualizationWithDeviceHistogramInfo(device objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageHistogramEqualization/encodeTransform(to:sourceTexture:histogram:histogramOffset:)
-func (i_ ImageHistogramEqualization) EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer objectivec.IObject, source objectivec.IObject, histogram objectivec.IObject, histogramOffset uint /* primitive/slice/pointer. */) {
+func (i_ ImageHistogramEqualization) EncodeTransformToCommandBufferSourceTextureHistogramHistogramOffset(commandBuffer objectivec.IObject, source objectivec.IObject, histogram objectivec.IObject, histogramOffset uint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:"), commandBuffer, source, histogram, histogramOffset)
 }
 

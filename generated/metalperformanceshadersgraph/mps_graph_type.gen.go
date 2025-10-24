@@ -29,10 +29,16 @@ type _GraphTypeClass struct {
 // An interface definition for the [GraphType] class.
 type IGraphType interface {
 	IGraphObject
+	// properties:
+	// methods:
 }
 
 // The base type class for types on tensors.
+
+
+// The base type class for types on tensors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphType
 type GraphType struct {
 	GraphObject

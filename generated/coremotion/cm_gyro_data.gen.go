@@ -30,7 +30,7 @@ type _GyroDataClass struct {
 type IGyroData interface {
 	ILogItem
 	// properties:
-	RotationRate() RotationRate /* not a class type */
+	RotationRate() CMRotationRate /* not a class type */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewGyroData() GyroData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData/rotationRate
-func (g_ GyroData) RotationRate() RotationRate /* not a class type */ {
+func (g_ GyroData) RotationRate() CMRotationRate /* not a class type */ {
 	rv := objc.Send[RotationRate](g_.ID, objc.Sel("rotationRate"))
 	return rv
 }

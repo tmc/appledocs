@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ByteCountFormatter] class.
@@ -31,30 +30,23 @@ type _ByteCountFormatterClass struct {
 type IByteCountFormatter interface {
 	IFormatter
 	// properties:
-	AllowedUnits() ByteCountFormatterUnits
-	SetAllowedUnits(value ByteCountFormatterUnits)
-	AllowsNonnumericFormatting() bool /* primitive/slice/pointer. */
-	SetAllowsNonnumericFormatting(value bool /* primitive/slice/pointer. */)
-	CountStyle() ByteCountFormatterCountStyle
-	SetCountStyle(value ByteCountFormatterCountStyle)
-	FormattingContext() FormattingContext
-	SetFormattingContext(value FormattingContext)
-	IncludesActualByteCount() bool /* primitive/slice/pointer. */
-	SetIncludesActualByteCount(value bool /* primitive/slice/pointer. */)
-	IncludesCount() bool /* primitive/slice/pointer. */
-	SetIncludesCount(value bool /* primitive/slice/pointer. */)
-	IncludesUnit() bool /* primitive/slice/pointer. */
-	SetIncludesUnit(value bool /* primitive/slice/pointer. */)
-	Adaptive() bool /* primitive/slice/pointer. */
-	SetAdaptive(value bool /* primitive/slice/pointer. */)
-	ZeroPadsFractionDigits() bool /* primitive/slice/pointer. */
-	SetZeroPadsFractionDigits(value bool /* primitive/slice/pointer. */)
-	IsAdaptive() bool /* primitive/slice/pointer. */
-	SetIsAdaptive(value bool /* primitive/slice/pointer. */)
+	AllowedUnits() unsafe.Pointer
+	SetAllowedUnits(value unsafe.Pointer)
+	AllowsNonnumericFormatting() bool
+	SetAllowsNonnumericFormatting(value bool)
+	CountStyle() unsafe.Pointer
+	SetCountStyle(value unsafe.Pointer)
+	IncludesActualByteCount() bool
+	SetIncludesActualByteCount(value bool)
+	IncludesCount() bool
+	SetIncludesCount(value bool)
+	IncludesUnit() bool
+	SetIncludesUnit(value bool)
+	IsAdaptive() bool
+	SetIsAdaptive(value bool)
+	ZeroPadsFractionDigits() bool
+	SetZeroPadsFractionDigits(value bool)
 	// methods:
-	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromMeasurement(measurement unsafe.Pointer) IString
-	StringFromByteCount(byteCount unsafe.Pointer) IString
 }
 
 // A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on).
@@ -110,46 +102,12 @@ func NewByteCountFormatter() ByteCountFormatter {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(from:countStyle:)
-func (bc _ByteCountFormatterClass) StringFromMeasurementCountStyle(measurement unsafe.Pointer, countStyle ByteCountFormatterCountStyle) IString {
-	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("stringFromMeasurement:countStyle:"), measurement, countStyle)
-	return rv
-}
-
-
-// Converts a byte count into the specified string format without creating an object.
+// Specify the units that can be used in the output.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(fromByteCount:countStyle:)
-func (bc _ByteCountFormatterClass) StringFromByteCountCountStyle(byteCount unsafe.Pointer, countStyle ByteCountFormatterCountStyle) IString {
-	rv := objc.Send[String](objc.ID(bc.class), objc.Sel("stringFromByteCount:countStyle:"), byteCount, countStyle)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(for:)
-func (b_ ByteCountFormatter) StringForObjectValue(obj objectivec.IObject) IString {
-	rv := objc.Send[String](b_.ID, objc.Sel("stringForObjectValue:"), obj)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(from:)
-func (b_ ByteCountFormatter) StringFromMeasurement(measurement unsafe.Pointer) IString {
-	rv := objc.Send[String](b_.ID, objc.Sel("stringFromMeasurement:"), measurement)
-	return rv
-}
-
-
-// Converts a byte count into a string without creating an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(fromByteCount:)
-func (b_ ByteCountFormatter) StringFromByteCount(byteCount unsafe.Pointer) IString {
-	rv := objc.Send[String](b_.ID, objc.Sel("stringFromByteCount:"), byteCount)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/allowedunits
+func (b_ ByteCountFormatter) AllowedUnits() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("allowedUnits"))
 	return rv
 }
 
@@ -157,18 +115,8 @@ func (b_ ByteCountFormatter) StringFromByteCount(byteCount unsafe.Pointer) IStri
 // Specify the units that can be used in the output.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowedUnits
-func (b_ ByteCountFormatter) AllowedUnits() ByteCountFormatterUnits {
-	rv := objc.Send[ByteCountFormatterUnits](b_.ID, objc.Sel("allowedUnits"))
-	return rv
-}
-
-
-// Specify the units that can be used in the output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowedUnits
-func (b_ ByteCountFormatter) SetAllowedUnits(value ByteCountFormatterUnits) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/allowedunits
+func (b_ ByteCountFormatter) SetAllowedUnits(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowedUnits:"), value)
 }
 
@@ -176,8 +124,8 @@ func (b_ ByteCountFormatter) SetAllowedUnits(value ByteCountFormatterUnits) {
 // Determines whether to allow more natural display of some values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowsNonnumericFormatting
-func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/allowsnonnumericformatting
+func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsNonnumericFormatting"))
 	return rv
 }
@@ -186,8 +134,8 @@ func (b_ ByteCountFormatter) AllowsNonnumericFormatting() bool /* primitive/slic
 // Determines whether to allow more natural display of some values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/allowsNonnumericFormatting
-func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/allowsnonnumericformatting
+func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsNonnumericFormatting:"), value)
 }
 
@@ -195,9 +143,9 @@ func (b_ ByteCountFormatter) SetAllowsNonnumericFormatting(value bool /* primiti
 // Specify the number of bytes to be used for kilobytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/countStyle-swift.property
-func (b_ ByteCountFormatter) CountStyle() ByteCountFormatterCountStyle {
-	rv := objc.Send[ByteCountFormatterCountStyle](b_.ID, objc.Sel("countStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.property
+func (b_ ByteCountFormatter) CountStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("countStyle"))
 	return rv
 }
 
@@ -205,36 +153,17 @@ func (b_ ByteCountFormatter) CountStyle() ByteCountFormatterCountStyle {
 // Specify the number of bytes to be used for kilobytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/countStyle-swift.property
-func (b_ ByteCountFormatter) SetCountStyle(value ByteCountFormatterCountStyle) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.property
+func (b_ ByteCountFormatter) SetCountStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCountStyle:"), value)
-}
-
-
-// Specify the formatting context for the formatted string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/formattingContext
-func (b_ ByteCountFormatter) FormattingContext() FormattingContext {
-	rv := objc.Send[FormattingContext](b_.ID, objc.Sel("formattingContext"))
-	return rv
-}
-
-
-// Specify the formatting context for the formatted string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/formattingContext
-func (b_ ByteCountFormatter) SetFormattingContext(value FormattingContext) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
 
 // Determines whether to include the number of bytes after the formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesActualByteCount
-func (b_ ByteCountFormatter) IncludesActualByteCount() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includesactualbytecount
+func (b_ ByteCountFormatter) IncludesActualByteCount() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesActualByteCount"))
 	return rv
 }
@@ -243,8 +172,8 @@ func (b_ ByteCountFormatter) IncludesActualByteCount() bool /* primitive/slice/p
 // Determines whether to include the number of bytes after the formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesActualByteCount
-func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includesactualbytecount
+func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesActualByteCount:"), value)
 }
 
@@ -252,8 +181,8 @@ func (b_ ByteCountFormatter) SetIncludesActualByteCount(value bool /* primitive/
 // Determines whether to include the count in the resulting formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesCount
-func (b_ ByteCountFormatter) IncludesCount() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includescount
+func (b_ ByteCountFormatter) IncludesCount() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesCount"))
 	return rv
 }
@@ -262,8 +191,8 @@ func (b_ ByteCountFormatter) IncludesCount() bool /* primitive/slice/pointer. */
 // Determines whether to include the count in the resulting formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesCount
-func (b_ ByteCountFormatter) SetIncludesCount(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includescount
+func (b_ ByteCountFormatter) SetIncludesCount(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesCount:"), value)
 }
 
@@ -271,8 +200,8 @@ func (b_ ByteCountFormatter) SetIncludesCount(value bool /* primitive/slice/poin
 // Determines whether to include the units in the resulting formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesUnit
-func (b_ ByteCountFormatter) IncludesUnit() bool /* primitive/slice/pointer. */ {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includesunit
+func (b_ ByteCountFormatter) IncludesUnit() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesUnit"))
 	return rv
 }
@@ -281,8 +210,8 @@ func (b_ ByteCountFormatter) IncludesUnit() bool /* primitive/slice/pointer. */ 
 // Determines whether to include the units in the resulting formatted string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/includesUnit
-func (b_ ByteCountFormatter) SetIncludesUnit(value bool /* primitive/slice/pointer. */) {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/includesunit
+func (b_ ByteCountFormatter) SetIncludesUnit(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesUnit:"), value)
 }
 
@@ -290,46 +219,8 @@ func (b_ ByteCountFormatter) SetIncludesUnit(value bool /* primitive/slice/point
 // Determines the display style of the size representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/isAdaptive
-func (b_ ByteCountFormatter) Adaptive() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](b_.ID, objc.Sel("adaptive"))
-	return rv
-}
-
-
-// Determines the display style of the size representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/isAdaptive
-func (b_ ByteCountFormatter) SetAdaptive(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setAdaptive:"), value)
-}
-
-
-// Determines whether to zero pad fraction digits so a consistent number of characters is displayed in a representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/zeroPadsFractionDigits
-func (b_ ByteCountFormatter) ZeroPadsFractionDigits() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](b_.ID, objc.Sel("zeroPadsFractionDigits"))
-	return rv
-}
-
-
-// Determines whether to zero pad fraction digits so a consistent number of characters is displayed in a representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/zeroPadsFractionDigits
-func (b_ ByteCountFormatter) SetZeroPadsFractionDigits(value bool /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setZeroPadsFractionDigits:"), value)
-}
-
-
-// Determines the display style of the size representation.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/isadaptive
-func (b_ ByteCountFormatter) IsAdaptive() bool /* primitive/slice/pointer. */ {
+func (b_ ByteCountFormatter) IsAdaptive() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isAdaptive"))
 	return rv
 }
@@ -339,8 +230,27 @@ func (b_ ByteCountFormatter) IsAdaptive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/isadaptive
-func (b_ ByteCountFormatter) SetIsAdaptive(value bool /* primitive/slice/pointer. */) {
+func (b_ ByteCountFormatter) SetIsAdaptive(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsAdaptive:"), value)
+}
+
+
+// Determines whether to zero pad fraction digits so a consistent number of characters is displayed in a representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/zeropadsfractiondigits
+func (b_ ByteCountFormatter) ZeroPadsFractionDigits() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("zeroPadsFractionDigits"))
+	return rv
+}
+
+
+// Determines whether to zero pad fraction digits so a consistent number of characters is displayed in a representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/zeropadsfractiondigits
+func (b_ ByteCountFormatter) SetZeroPadsFractionDigits(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setZeroPadsFractionDigits:"), value)
 }
 
 

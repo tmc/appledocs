@@ -31,17 +31,21 @@ type _MTRChannelClusterLineupInfoStructClass struct {
 // An interface definition for the [MTRChannelClusterLineupInfoStruct] class.
 type IMTRChannelClusterLineupInfoStruct interface {
 	objectivec.IObject
-	LineupInfoType() foundation.Number
-	SetLineupInfoType(value foundation.INumber)
-	LineupName() string
-	SetLineupName(value string)
-	OperatorName() string
-	SetOperatorName(value string)
-	PostalCode() string
-	SetPostalCode(value string)
+	// properties:
+	LineupInfoType() objc.IObject /* cross-framework: NSNumber */
+	SetLineupInfoType(value objc.IObject /* cross-framework: NSNumber */)
+	LineupName() objc.IObject /* cross-framework: NSString */
+	SetLineupName(value objc.IObject /* cross-framework: NSString */)
+	OperatorName() objc.IObject /* cross-framework: NSString */
+	SetOperatorName(value objc.IObject /* cross-framework: NSString */)
+	PostalCode() objc.IObject /* cross-framework: NSString */
+	SetPostalCode(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterLineupInfoStruct
 type MTRChannelClusterLineupInfoStruct struct {
 	objectivec.Object
@@ -84,64 +88,64 @@ func NewMTRChannelClusterLineupInfoStruct() MTRChannelClusterLineupInfoStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
-func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("lineupInfoType"))
+func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lineupInfoType"))
 	return rv
 }
 
 
-// SetLineupInfoType sets the value of the lineupInfoType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
-func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value foundation.INumber) {
+func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
-func (m_ MTRChannelClusterLineupInfoStruct) LineupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("lineupName"))
+func (m_ MTRChannelClusterLineupInfoStruct) LineupName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("lineupName"))
 	return rv
 }
 
 
-// SetLineupName sets the value of the lineupName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
-func (m_ MTRChannelClusterLineupInfoStruct) SetLineupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfoStruct) SetLineupName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
-func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
+func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 
 
-// SetOperatorName sets the value of the operatorName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
-func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
-func (m_ MTRChannelClusterLineupInfoStruct) PostalCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("postalCode"))
+func (m_ MTRChannelClusterLineupInfoStruct) PostalCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
 
-// SetPostalCode sets the value of the postalCode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
-func (m_ MTRChannelClusterLineupInfoStruct) SetPostalCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfoStruct) SetPostalCode(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), value)
 }
 
 

@@ -31,9 +31,10 @@ type _UUIDClass struct {
 type IUUID interface {
 	objectivec.IObject
 	// properties:
-	UuidString() IString
-	SetUuidString(value IString)
+	UUIDString() IString
 	// methods:
+	Compare(otherUUID IUUID) ComparisonResult
+	GetUUIDBytes(uuid unsafe.Pointer)
 }
 
 // A universally unique value that can be used to identify types, interfaces, and other items.
@@ -89,23 +90,65 @@ func NewUUID() UUID {
 
 
 
-// The UUID as a string.
+// Initializes a new UUID with the given bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) UuidString() IString {
-	rv := objc.Send[String](u_.ID, objc.Sel("uuidString"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/init(uuidBytes:)
+func NewUUIDWithUUIDBytes(bytes unsafe.Pointer) UUID {
+	instance := getUUIDClass().Alloc()
+	rv := objc.Send[UUID](instance.ID, objc.Sel("initWithUUIDBytes:"), bytes)
+	rv.Autorelease()
 	return rv
 }
 
 
+// Initializes a new UUID with the formatted string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/init(uuidString:)
+func NewUUIDWithUUIDString(string_ IString) UUID {
+	instance := getUUIDClass().Alloc()
+	rv := objc.Send[UUID](instance.ID, objc.Sel("initWithUUIDString:"), string_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Create and returns a new UUID with RFC 4122 version 4 random bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/UUID
+func (uc _UUIDClass) UUID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("UUID"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
+func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
+	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
+	return rv
+}
+
+
+// Returns the UUID as bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/getBytes(_:)
+func (u_ UUID) GetUUIDBytes(uuid unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("getUUIDBytes:"), uuid)
+}
+
+
 // The UUID as a string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) SetUuidString(value IString) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/uuidString
+func (u_ UUID) UUIDString() IString {
+	rv := objc.Send[String](u_.ID, objc.Sel("UUIDString"))
+	return rv
 }
-
 
 

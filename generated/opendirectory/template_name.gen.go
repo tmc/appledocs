@@ -30,10 +30,14 @@ type _templateNameClass struct {
 // An interface definition for the [templateName] class.
 type ItemplateName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/templateName-c.ivar
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-c.ivar
 type templateName struct {
 	objectivec.Object
 }

@@ -33,16 +33,15 @@ type IEKParticipant interface {
 	IEKObject
 	// properties:
 	ContactPredicate() objc.IObject /* cross-framework: Predicate */
-	CurrentUser() bool /* primitive/slice/pointer. */
-	Name() string /* primitive/slice/pointer. */
+	CurrentUser() bool
+	Name() objc.IObject /* cross-framework: NSString */
 	ParticipantRole() EKParticipantRole
 	ParticipantStatus() EKParticipantStatus
 	ParticipantType() EKParticipantType
-	URL() foundation.objc.IObject /* cross-framework: URL */
-	IsCurrentUser() bool /* primitive/slice/pointer. */
-	SetIsCurrentUser(value bool /* primitive/slice/pointer. */)
+	URL() objc.IObject /* cross-framework: NSURL */
+	IsCurrentUser() bool
+	SetIsCurrentUser(value bool)
 	// methods:
-	ABRecordWithAddressBook(addressBook ABAddressBookRef /* typedef */) ABRecordRef /* typedef */
 }
 
 // A class that represents person, group, or room invited to a calendar event.
@@ -100,22 +99,12 @@ func NewEKParticipant() EKParticipant {
 
 
 
-// Returns the address book record that represents the participant.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
-func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef /* typedef */) ABRecordRef /* typedef */ {
-	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
-	return rv
-}
-
-
 // A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
 func (e_ EKParticipant) ContactPredicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](e_.ID, objc.Sel("contactPredicate"))
+	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
 }
 
@@ -124,7 +113,7 @@ func (e_ EKParticipant) ContactPredicate() objc.IObject /* cross-framework: Pred
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/isCurrentUser
-func (e_ EKParticipant) CurrentUser() bool /* primitive/slice/pointer. */ {
+func (e_ EKParticipant) CurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("currentUser"))
 	return rv
 }
@@ -134,8 +123,8 @@ func (e_ EKParticipant) CurrentUser() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-func (e_ EKParticipant) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EKParticipant) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -174,8 +163,8 @@ func (e_ EKParticipant) ParticipantType() EKParticipantType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/url
-func (e_ EKParticipant) URL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
+func (e_ EKParticipant) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](e_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -184,7 +173,7 @@ func (e_ EKParticipant) URL() foundation.objc.IObject /* cross-framework: URL */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-func (e_ EKParticipant) IsCurrentUser() bool /* primitive/slice/pointer. */ {
+func (e_ EKParticipant) IsCurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
 	return rv
 }
@@ -194,9 +183,8 @@ func (e_ EKParticipant) IsCurrentUser() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-func (e_ EKParticipant) SetIsCurrentUser(value bool /* primitive/slice/pointer. */) {
+func (e_ EKParticipant) SetIsCurrentUser(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
 }
-
 
 

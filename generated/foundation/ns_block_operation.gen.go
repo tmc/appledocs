@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [BlockOperation] class.
@@ -28,9 +29,9 @@ type _BlockOperationClass struct {
 
 // An interface definition for the [BlockOperation] class.
 type IBlockOperation interface {
-	IOperation
+	objectivec.IIObject
 	// properties:
-	ExecutionBlocks() []func() /* primitive/slice/pointer. */
+	ExecutionBlocks() []func()
 	// methods:
 	AddExecutionBlock(block unsafe.Pointer)
 }
@@ -45,7 +46,7 @@ type IBlockOperation interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation
 type BlockOperation struct {
-	Operation
+	objectivec.IObject
 }
 
 // BlockOperationFrom constructs a [BlockOperation] from an unsafe.Pointer.
@@ -53,7 +54,7 @@ type BlockOperation struct {
 // An operation that manages the concurrent execution of one or more blocks.
 func BlockOperationFrom(ptr unsafe.Pointer) BlockOperation {
 	return BlockOperation{
-		Operation: OperationFrom(ptr),
+		Operation: objectivec.IObjectFrom(ptr),
 	}
 }
 
@@ -124,8 +125,8 @@ func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
-func (b_ BlockOperation) ExecutionBlocks() []func() /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
+func (b_ BlockOperation) ExecutionBlocks() []func() {
+	rv := objc.Send[[]objc.ID](b_.ID, objc.Sel("executionBlocks"))
 	return rv
 }
 

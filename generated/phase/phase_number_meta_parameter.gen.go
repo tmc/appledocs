@@ -29,22 +29,28 @@ type _PHASENumberMetaParameterClass struct {
 // An interface definition for the [PHASENumberMetaParameter] class.
 type IPHASENumberMetaParameter interface {
 	IPHASEMetaParameter
-	GlobalMetaParameters() PHASEMetaParameter
+	// properties:
+	GlobalMetaParameters() IPHASEMetaParameter
 	SetGlobalMetaParameters(value IPHASEMetaParameter)
-	InputMetaParameterDefinition() PHASENumberMetaParameterDefinition
+	InputMetaParameterDefinition() IPHASENumberMetaParameterDefinition
 	SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition)
 	Maximum() float64
 	SetMaximum(value float64)
 	Minimum() float64
 	SetMinimum(value float64)
-	MetaParameters() PHASEMetaParameter
+	MetaParameters() IPHASEMetaParameter
 	SetMetaParameters(value IPHASEMetaParameter)
+	// methods:
 }
 
 // A metaparameter defined by a number that can change over time.
 //
 // This class contains a number that updates, like a “player speed” metaparameter that the app changes gradually from to . To create an instance of this class, first create a , and either: Register it with the engine by calling , then access the instance of this class in the engine’s dictionary. Pass it to the initializer, , and then access the instance of this class in a sound event’s dictionary. Use it as the input value for a by passing it into the initializer. Then, access the instance of this class using the mapped parameter’s property.
+
+
+// A metaparameter defined by a number that can change over time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASENumberMetaParameter
 type PHASENumberMetaParameter struct {
 	PHASEMetaParameter
@@ -91,44 +97,48 @@ func NewPHASENumberMetaParameter() PHASENumberMetaParameter {
 }
 
 
+
 // A dictionary of metaparameters that all sound event assets share.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASENumberMetaParameter) GlobalMetaParameters() PHASEMetaParameter {
+func (p_ PHASENumberMetaParameter) GlobalMetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
 
-// SetGlobalMetaParameters sets the value of the globalMetaParameters property.
 // A dictionary of metaparameters that all sound event assets share.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
 func (p_ PHASENumberMetaParameter) SetGlobalMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
+
 // A linear input value to plot on a curve.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASENumberMetaParameter) InputMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+func (p_ PHASENumberMetaParameter) InputMetaParameterDefinition() IPHASENumberMetaParameterDefinition {
 	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("inputMetaParameterDefinition"))
 	return rv
 }
 
 
-// SetInputMetaParameterDefinition sets the value of the inputMetaParameterDefinition property.
 // A linear input value to plot on a curve.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
 func (p_ PHASENumberMetaParameter) SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)
 }
 
+
 // The highest possible number for the value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameter/maximum
 func (p_ PHASENumberMetaParameter) Maximum() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("maximum"))
@@ -136,17 +146,18 @@ func (p_ PHASENumberMetaParameter) Maximum() float64 {
 }
 
 
-// SetMaximum sets the value of the maximum property.
 // The highest possible number for the value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameter/maximum
 func (p_ PHASENumberMetaParameter) SetMaximum(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaximum:"), value)
 }
 
+
 // The lowest possible number for the value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameter/minimum
 func (p_ PHASENumberMetaParameter) Minimum() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("minimum"))
@@ -154,28 +165,28 @@ func (p_ PHASENumberMetaParameter) Minimum() float64 {
 }
 
 
-// SetMinimum sets the value of the minimum property.
 // The lowest possible number for the value.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasenumbermetaparameter/minimum
 func (p_ PHASENumberMetaParameter) SetMinimum(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinimum:"), value)
 }
 
+
 // The object’s meta parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASENumberMetaParameter) MetaParameters() PHASEMetaParameter {
+func (p_ PHASENumberMetaParameter) MetaParameters() IPHASEMetaParameter {
 	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
 
-// SetMetaParameters sets the value of the metaParameters property.
 // The object’s meta parameters.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
 func (p_ PHASENumberMetaParameter) SetMetaParameters(value IPHASEMetaParameter) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)

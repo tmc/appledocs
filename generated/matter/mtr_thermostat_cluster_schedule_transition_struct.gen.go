@@ -31,21 +31,25 @@ type _MTRThermostatClusterScheduleTransitionStructClass struct {
 // An interface definition for the [MTRThermostatClusterScheduleTransitionStruct] class.
 type IMTRThermostatClusterScheduleTransitionStruct interface {
 	objectivec.IObject
-	CoolingSetpoint() foundation.Number
-	SetCoolingSetpoint(value foundation.INumber)
-	DayOfWeek() foundation.Number
-	SetDayOfWeek(value foundation.INumber)
-	HeatingSetpoint() foundation.Number
-	SetHeatingSetpoint(value foundation.INumber)
-	PresetHandle() foundation.NSData
-	SetPresetHandle(value foundation.IData)
-	SystemMode() foundation.Number
-	SetSystemMode(value foundation.INumber)
-	TransitionTime() foundation.Number
-	SetTransitionTime(value foundation.INumber)
+	// properties:
+	CoolingSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetCoolingSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	DayOfWeek() objc.IObject /* cross-framework: NSNumber */
+	SetDayOfWeek(value objc.IObject /* cross-framework: NSNumber */)
+	HeatingSetpoint() objc.IObject /* cross-framework: NSNumber */
+	SetHeatingSetpoint(value objc.IObject /* cross-framework: NSNumber */)
+	PresetHandle() objc.IObject /* cross-framework: NSData */
+	SetPresetHandle(value objc.IObject /* cross-framework: NSData */)
+	SystemMode() objc.IObject /* cross-framework: NSNumber */
+	SetSystemMode(value objc.IObject /* cross-framework: NSNumber */)
+	TransitionTime() objc.IObject /* cross-framework: NSNumber */
+	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct
 type MTRThermostatClusterScheduleTransitionStruct struct {
 	objectivec.Object
@@ -88,93 +92,93 @@ func NewMTRThermostatClusterScheduleTransitionStruct() MTRThermostatClusterSched
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/coolingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) CoolingSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("coolingSetpoint"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) CoolingSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("coolingSetpoint"))
 	return rv
 }
 
 
-// SetCoolingSetpoint sets the value of the coolingSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/coolingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetCoolingSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetCoolingSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/dayOfWeek
-func (m_ MTRThermostatClusterScheduleTransitionStruct) DayOfWeek() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dayOfWeek"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) DayOfWeek() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("dayOfWeek"))
 	return rv
 }
 
 
-// SetDayOfWeek sets the value of the dayOfWeek property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/dayOfWeek
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetDayOfWeek(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetDayOfWeek(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeek:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/heatingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) HeatingSetpoint() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("heatingSetpoint"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) HeatingSetpoint() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("heatingSetpoint"))
 	return rv
 }
 
 
-// SetHeatingSetpoint sets the value of the heatingSetpoint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/heatingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetHeatingSetpoint(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetHeatingSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() foundation.NSData {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
 
-// SetPresetHandle sets the value of the presetHandle property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetPresetHandle(value foundation.IData) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetPresetHandle(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SystemMode() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("systemMode"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SystemMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("systemMode"))
 	return rv
 }
 
 
-// SetSystemMode sets the value of the systemMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetSystemMode(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetSystemMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/transitionTime
-func (m_ MTRThermostatClusterScheduleTransitionStruct) TransitionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("transitionTime"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
 }
 
 
-// SetTransitionTime sets the value of the transitionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/transitionTime
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetTransitionTime(value foundation.INumber) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

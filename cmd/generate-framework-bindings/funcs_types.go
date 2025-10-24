@@ -103,6 +103,33 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		"objcType", objcType,
 		"framework", framework)
 
+	// Early check: if this is a typedef in the current framework, return the title-cased name immediately
+	// This prevents occ2go.MapCTypeToGo from mapping unknown types to unsafe.Pointer
+	strippedObjCType := stripObjCPrefix(objcType)
+	if currentFrameworkTypedefs[strippedObjCType] {
+		titleCasedType := titleString(strippedObjCType)
+		Debug.TypeMap("early typedef check, returning title-cased", objcType, titleCasedType,
+			"objcType", objcType,
+			"strippedObjCType", strippedObjCType,
+			"titleCasedType", titleCasedType)
+		return titleCasedType
+	}
+
+	// Also check if objcType is a pointer to a typedef (e.g., "unichar *")
+	if occ2go.IsPointerType(objcType) {
+		baseType := occ2go.StripPointer(objcType)
+		strippedBaseType := stripObjCPrefix(baseType)
+		if currentFrameworkTypedefs[strippedBaseType] {
+			titleCasedType := titleString(strippedBaseType)
+			Debug.TypeMap("early typedef pointer check, returning title-cased", objcType, titleCasedType,
+				"objcType", objcType,
+				"baseType", baseType,
+				"strippedBaseType", strippedBaseType,
+				"titleCasedType", titleCasedType)
+			return titleCasedType
+		}
+	}
+
 	// Strip self-package qualifications from Swift documentation
 	// Swift docs often use module.Type format (e.g., uniformtypeidentifiers.UTType)
 	// When generating the same framework, we should use unqualified names
@@ -327,6 +354,17 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				return strippedType
 			}
 
+			// Check if this is a typedef - typedefs use title-cased stripped names
+			if currentFrameworkTypedefs[strippedType] {
+				// This is a typedef - return the title-cased stripped type to match generated typedef names
+				titleCasedType := titleString(strippedType)
+				Debug.TypeMap("is typedef, returning title-cased", objcType, titleCasedType,
+					"objcType", objcType,
+					"strippedType", strippedType,
+					"titleCasedType", titleCasedType)
+				return titleCasedType
+			}
+
 			// Don't check currentFrameworkStructs here for early return!
 			// Structs can be cross-framework (e.g., CGPoint defined in CoreFoundation but used in ObjectiveC).
 			// Let resolveType() handle framework qualification below.
@@ -357,6 +395,17 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				return objcType
 			}
 			return resolvedType
+		} else {
+			// strippedType == objcType (no prefix was stripped)
+			// Still check if it's a typedef that needs title-casing
+			if currentFrameworkTypedefs[objcType] {
+				// This is a typedef with no prefix - return title-cased name
+				titleCasedType := titleString(objcType)
+				Debug.TypeMap("typedef with no prefix, returning title-cased", objcType, titleCasedType,
+					"objcType", objcType,
+					"titleCasedType", titleCasedType)
+				return titleCasedType
+			}
 		}
 	}
 
@@ -410,6 +459,17 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				"equal", strippedGoType == goType,
 				"isUnsafe", goType == "unsafe.Pointer",
 				"inCurrentFramework", inCurrentFramework)
+		}
+
+		// If this is a typedef in the current framework, title-case it to match the generated typedef name
+		// (e.g., "unichar" -> "Unichar")
+		if currentFrameworkTypedefs[strippedGoType] {
+			titleCasedType := titleString(strippedGoType)
+			Debug.TypeMap("typedef in current framework, title-casing", goType, titleCasedType,
+				"originalType", goType,
+				"strippedGoType", strippedGoType,
+				"titleCasedType", titleCasedType)
+			goType = titleCasedType
 		}
 	}
 
@@ -495,6 +555,7 @@ func getFrameworkLevel(framework string) int {
 		"coreml":                 2,
 		"vision":                 2,
 		"naturallanguage":        2,
+		"coretelephony":          2, // CoreTelephony uses Foundation types
 		"appkit":                 3,
 		"uikit":                  3,
 		"webkit":                 3,
@@ -513,6 +574,7 @@ func getFrameworkLevel(framework string) int {
 		"intentsui":              4,
 		"metal":                  4,
 		"metalkit":               4,
+		"metalperformanceshaders": 4,
 		"eventkit":               4,
 		"healthkit":              4,
 		"homekit":                4,
@@ -521,6 +583,8 @@ func getFrameworkLevel(framework string) int {
 		"storekit":               4,
 		"usernotifications":      4,
 		"replaykit":              4,
+		"quartz":                 4, // Quartz (ImageKit) depends on AppKit
+		"virtualization":         5, // Virtualization depends on AppKit
 	}
 	if level, ok := levels[strings.ToLower(framework)]; ok {
 		return level

@@ -29,13 +29,17 @@ type _NDArrayMatrixMultiplicationClass struct {
 // An interface definition for the [NDArrayMatrixMultiplication] class.
 type INDArrayMatrixMultiplication interface {
 	INDArrayMultiaryKernel
+	// properties:
 	Alpha() float64
 	SetAlpha(value float64)
 	Beta() float64
 	SetBeta(value float64)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication
 type NDArrayMatrixMultiplication struct {
 	NDArrayMultiaryKernel
@@ -80,7 +84,8 @@ func NewNDArrayMatrixMultiplication() NDArrayMatrixMultiplication {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
 func (n_ NDArrayMatrixMultiplication) Alpha() float64 {
 	rv := objc.Send[float64](n_.ID, objc.Sel("alpha"))
@@ -88,14 +93,14 @@ func (n_ NDArrayMatrixMultiplication) Alpha() float64 {
 }
 
 
-// SetAlpha sets the value of the alpha property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/alpha
 func (n_ NDArrayMatrixMultiplication) SetAlpha(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlpha:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
 func (n_ NDArrayMatrixMultiplication) Beta() float64 {
 	rv := objc.Send[float64](n_.ID, objc.Sel("beta"))
@@ -103,8 +108,7 @@ func (n_ NDArrayMatrixMultiplication) Beta() float64 {
 }
 
 
-// SetBeta sets the value of the beta property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMatrixMultiplication/beta
 func (n_ NDArrayMatrixMultiplication) SetBeta(value float64) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setBeta:"), value)

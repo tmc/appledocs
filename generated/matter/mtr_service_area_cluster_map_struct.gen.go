@@ -31,13 +31,17 @@ type _MTRServiceAreaClusterMapStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterMapStruct] class.
 type IMTRServiceAreaClusterMapStruct interface {
 	objectivec.IObject
-	MapID() foundation.Number
-	SetMapID(value foundation.INumber)
-	Name() string
-	SetName(value string)
+	// properties:
+	MapID() objc.IObject /* cross-framework: NSNumber */
+	SetMapID(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct
 type MTRServiceAreaClusterMapStruct struct {
 	objectivec.Object
@@ -80,34 +84,34 @@ func NewMTRServiceAreaClusterMapStruct() MTRServiceAreaClusterMapStruct {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/mapID
-func (m_ MTRServiceAreaClusterMapStruct) MapID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mapID"))
+func (m_ MTRServiceAreaClusterMapStruct) MapID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mapID"))
 	return rv
 }
 
 
-// SetMapID sets the value of the mapID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/mapID
-func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value foundation.INumber) {
+func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRServiceAreaClusterMapStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRServiceAreaClusterMapStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

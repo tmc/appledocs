@@ -32,8 +32,8 @@ type _ImagePyramidClass struct {
 type IImagePyramid interface {
 	IUnaryImageKernel
 	// properties:
-	KernelHeight() uint /* primitive/slice/pointer. */
-	KernelWidth() uint /* primitive/slice/pointer. */
+	KernelHeight() uint
+	KernelWidth() uint
 	// methods:
 }
 
@@ -116,7 +116,7 @@ func NewImagePyramidWithDevice(device objectivec.IObject) ImagePyramid {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImagePyramid/init(device:centerWeight:)
-func NewImagePyramidWithDeviceCenterWeight(device objectivec.IObject, centerWeight float32 /* primitive/slice/pointer. */) ImagePyramid {
+func NewImagePyramidWithDeviceCenterWeight(device objectivec.IObject, centerWeight float32) ImagePyramid {
 	instance := getImagePyramidClass().Alloc()
 	rv := objc.Send[ImagePyramid](instance.ID, objc.Sel("initWithDevice:centerWeight:"), device, centerWeight)
 	rv.Autorelease()
@@ -128,7 +128,7 @@ func NewImagePyramidWithDeviceCenterWeight(device objectivec.IObject, centerWeig
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImagePyramid/init(device:kernelWidth:kernelHeight:weights:)
-func NewImagePyramidWithDeviceKernelWidthKernelHeightWeights(device objectivec.IObject, kernelWidth uint /* primitive/slice/pointer. */, kernelHeight uint /* primitive/slice/pointer. */, kernelWeights unsafe.Pointer) ImagePyramid {
+func NewImagePyramidWithDeviceKernelWidthKernelHeightWeights(device objectivec.IObject, kernelWidth uint, kernelHeight uint, kernelWeights unsafe.Pointer) ImagePyramid {
 	instance := getImagePyramidClass().Alloc()
 	rv := objc.Send[ImagePyramid](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:weights:"), device, kernelWidth, kernelHeight, kernelWeights)
 	rv.Autorelease()
@@ -141,7 +141,7 @@ func NewImagePyramidWithDeviceKernelWidthKernelHeightWeights(device objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImagePyramid/kernelHeight
-func (i_ ImagePyramid) KernelHeight() uint /* primitive/slice/pointer. */ {
+func (i_ ImagePyramid) KernelHeight() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelHeight"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (i_ ImagePyramid) KernelHeight() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImagePyramid/kernelWidth
-func (i_ ImagePyramid) KernelWidth() uint /* primitive/slice/pointer. */ {
+func (i_ ImagePyramid) KernelWidth() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("kernelWidth"))
 	return rv
 }

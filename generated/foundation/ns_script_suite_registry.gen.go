@@ -31,20 +31,10 @@ type _ScriptSuiteRegistryClass struct {
 type IScriptSuiteRegistry interface {
 	objectivec.IObject
 	// properties:
-	SuiteNames() []string /* primitive/slice/pointer. */
+	SuiteNames() IString
+	SetSuiteNames(value IString)
 	// methods:
-	AeteResource(languageName IString) IData
-	AppleEventCodeForSuite(suiteName IString) unsafe.Pointer
-	BundleForSuite(suiteName IString) IBundle
-	ClassDescriptionWithAppleEventCode(appleEventCode unsafe.Pointer) IScriptClassDescription
-	ClassDescriptionsInSuite(suiteName IString) IDictionary /* already interface */
-	CommandDescriptionWithAppleEventClassAndAppleEventCode(appleEventClassCode unsafe.Pointer, appleEventIDCode unsafe.Pointer) IScriptCommandDescription
-	CommandDescriptionsInSuite(suiteName IString) IDictionary /* already interface */
-	LoadSuiteWithDictionaryFromBundle(suiteDeclaration IDictionary, bundle IBundle)
-	LoadSuitesFromBundle(bundle IBundle)
-	RegisterCommandDescription(commandDescription IScriptCommandDescription)
-	RegisterClassDescription(classDescription IScriptClassDescription)
-	SuiteForAppleEventCode(appleEventCode unsafe.Pointer) IString
+	CommandDescriptionsInSuite(suiteName IString) IDictionary
 }
 
 // The top-level repository of scriptability information for an app at runtime.
@@ -100,137 +90,12 @@ func NewScriptSuiteRegistry() ScriptSuiteRegistry {
 
 
 
-// Sets the single, shared instance of to .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/setShared(_:)
-func (sc _ScriptSuiteRegistryClass) SetSharedScriptSuiteRegistry(registry IScriptSuiteRegistry) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("setSharedScriptSuiteRegistry:"), registry)
-}
-
-
-// Returns the single, shared instance of , creating it first if it doesn’t exist.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/shared()
-func (sc _ScriptSuiteRegistryClass) SharedScriptSuiteRegistry() IScriptSuiteRegistry {
-	rv := objc.Send[ScriptSuiteRegistry](objc.ID(sc.class), objc.Sel("sharedScriptSuiteRegistry"))
-	return rv
-}
-
-
-// Returns an object that contains data in resource format describing the scriptability information currently known to the application.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/aeteResource(_:)
-func (s_ ScriptSuiteRegistry) AeteResource(languageName IString) IData {
-	rv := objc.Send[Data](s_.ID, objc.Sel("aeteResource:"), languageName)
-	return rv
-}
-
-
-// Returns the Apple event code associated with the suite named , such as for the Core suite.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/appleEventCode(forSuite:)
-func (s_ ScriptSuiteRegistry) AppleEventCodeForSuite(suiteName IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForSuite:"), suiteName)
-	return rv
-}
-
-
-// Returns the bundle containing the suite-definition property list (extension ) identified by .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/bundle(forSuite:)
-func (s_ ScriptSuiteRegistry) BundleForSuite(suiteName IString) IBundle {
-	rv := objc.Send[Bundle](s_.ID, objc.Sel("bundleForSuite:"), suiteName)
-	return rv
-}
-
-
-// Returns the class description associated with the given four-character Apple event code, .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/classDescription(withAppleEventCode:)
-func (s_ ScriptSuiteRegistry) ClassDescriptionWithAppleEventCode(appleEventCode unsafe.Pointer) IScriptClassDescription {
-	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("classDescriptionWithAppleEventCode:"), appleEventCode)
-	return rv
-}
-
-
-// Returns the class descriptions contained in the suite identified by .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/classDescriptions(inSuite:)
-func (s_ ScriptSuiteRegistry) ClassDescriptionsInSuite(suiteName IString) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](s_.ID, objc.Sel("classDescriptionsInSuite:"), suiteName)
-	return rv
-}
-
-
-// Returns the command description identified by a suite’s four-character Apple event code of the class ( ) and the four-character Apple event code of the command ( ).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescription(withAppleEventClass:andAppleEventCode:)
-func (s_ ScriptSuiteRegistry) CommandDescriptionWithAppleEventClassAndAppleEventCode(appleEventClassCode unsafe.Pointer, appleEventIDCode unsafe.Pointer) IScriptCommandDescription {
-	rv := objc.Send[ScriptCommandDescription](s_.ID, objc.Sel("commandDescriptionWithAppleEventClass:andAppleEventCode:"), appleEventClassCode, appleEventIDCode)
-	return rv
-}
-
-
 // Returns the command descriptions contained in the suite identified by .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescriptions(inSuite:)
-func (s_ ScriptSuiteRegistry) CommandDescriptionsInSuite(suiteName IString) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](s_.ID, objc.Sel("commandDescriptionsInSuite:"), suiteName)
-	return rv
-}
-
-
-// Loads the suite definition encapsulated in ; previously, this suite definition was parsed from a property list contained in a framework or in .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/loadSuite(with:from:)
-func (s_ ScriptSuiteRegistry) LoadSuiteWithDictionaryFromBundle(suiteDeclaration IDictionary, bundle IBundle) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("loadSuiteWithDictionary:fromBundle:"), suiteDeclaration, bundle)
-}
-
-
-// Loads the suite definitions in bundle , invoking for each suite found.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/loadSuites(from:)
-func (s_ ScriptSuiteRegistry) LoadSuitesFromBundle(bundle IBundle) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("loadSuitesFromBundle:"), bundle)
-}
-
-
-// Registers command description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the command name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/register(_:)-5mq91
-func (s_ ScriptSuiteRegistry) RegisterCommandDescription(commandDescription IScriptCommandDescription) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("registerCommandDescription:"), commandDescription)
-}
-
-
-// Registers class description for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the class name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/register(_:)-9aplw
-func (s_ ScriptSuiteRegistry) RegisterClassDescription(classDescription IScriptClassDescription) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("registerClassDescription:"), classDescription)
-}
-
-
-// Returns the name of the suite definition associated with the given four-character Apple event code, .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/suite(forAppleEventCode:)
-func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Pointer) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("suiteForAppleEventCode:"), appleEventCode)
+func (s_ ScriptSuiteRegistry) CommandDescriptionsInSuite(suiteName IString) IDictionary {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("commandDescriptionsInSuite:"), suiteName)
 	return rv
 }
 
@@ -238,10 +103,19 @@ func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Point
 // Returns the names of the suite definitions currently loaded by the application.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/suiteNames
-func (s_ ScriptSuiteRegistry) SuiteNames() []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("suiteNames"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
+func (s_ ScriptSuiteRegistry) SuiteNames() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("suiteNames"))
 	return rv
+}
+
+
+// Returns the names of the suite definitions currently loaded by the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry/suitenames
+func (s_ ScriptSuiteRegistry) SetSuiteNames(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteNames:"), value)
 }
 
 

@@ -30,8 +30,8 @@ type _URLSessionStreamTaskClass struct {
 type IURLSessionStreamTask interface {
 	IURLSessionTask
 	// properties:
-	HttpShouldUsePipelining() bool /* primitive/slice/pointer. */
-	SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */)
+	HttpShouldUsePipelining() bool
+	SetHttpShouldUsePipelining(value bool)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewURLSessionStreamTask() URLSessionStreamTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
-func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool /* primitive/slice/pointer. */ {
+func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (u_ URLSessionStreamTask) HttpShouldUsePipelining() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining
-func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */) {
+func (u_ URLSessionStreamTask) SetHttpShouldUsePipelining(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
 }
 

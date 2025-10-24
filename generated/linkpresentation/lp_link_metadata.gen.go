@@ -32,20 +32,20 @@ type _LPLinkMetadataClass struct {
 type ILPLinkMetadata interface {
 	objectivec.IObject
 	// properties:
-	IconProvider() ItemProvider /* not a class type */
-	SetIconProvider(value ItemProvider /* not a class type */)
-	ImageProvider() ItemProvider /* not a class type */
-	SetImageProvider(value ItemProvider /* not a class type */)
-	OriginalURL() foundation.objc.IObject /* cross-framework: URL */
-	SetOriginalURL(value foundation.objc.IObject /* cross-framework: URL */)
-	RemoteVideoURL() foundation.objc.IObject /* cross-framework: URL */
-	SetRemoteVideoURL(value foundation.objc.IObject /* cross-framework: URL */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
-	URL() foundation.objc.IObject /* cross-framework: URL */
-	SetURL(value foundation.objc.IObject /* cross-framework: URL */)
-	VideoProvider() ItemProvider /* not a class type */
-	SetVideoProvider(value ItemProvider /* not a class type */)
+	IconProvider() objc.IObject /* cross-framework: ItemProvider */
+	SetIconProvider(value objc.IObject /* cross-framework: ItemProvider */)
+	ImageProvider() objc.IObject /* cross-framework: ItemProvider */
+	SetImageProvider(value objc.IObject /* cross-framework: ItemProvider */)
+	OriginalURL() objc.IObject /* cross-framework: NSURL */
+	SetOriginalURL(value objc.IObject /* cross-framework: NSURL */)
+	RemoteVideoURL() objc.IObject /* cross-framework: NSURL */
+	SetRemoteVideoURL(value objc.IObject /* cross-framework: NSURL */)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	URL() objc.IObject /* cross-framework: NSURL */
+	SetURL(value objc.IObject /* cross-framework: NSURL */)
+	VideoProvider() objc.IObject /* cross-framework: ItemProvider */
+	SetVideoProvider(value objc.IObject /* cross-framework: ItemProvider */)
 	// methods:
 }
 
@@ -106,8 +106,8 @@ func NewLPLinkMetadata() LPLinkMetadata {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/iconProvider
-func (l_ LPLinkMetadata) IconProvider() ItemProvider /* not a class type */ {
-	rv := objc.Send[ItemProvider](l_.ID, objc.Sel("iconProvider"))
+func (l_ LPLinkMetadata) IconProvider() objc.IObject /* cross-framework: ItemProvider */ {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("iconProvider"))
 	return rv
 }
 
@@ -116,7 +116,7 @@ func (l_ LPLinkMetadata) IconProvider() ItemProvider /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/iconProvider
-func (l_ LPLinkMetadata) SetIconProvider(value ItemProvider /* not a class type */) {
+func (l_ LPLinkMetadata) SetIconProvider(value objc.IObject /* cross-framework: ItemProvider */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIconProvider:"), value)
 }
 
@@ -125,8 +125,8 @@ func (l_ LPLinkMetadata) SetIconProvider(value ItemProvider /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/imageProvider
-func (l_ LPLinkMetadata) ImageProvider() ItemProvider /* not a class type */ {
-	rv := objc.Send[ItemProvider](l_.ID, objc.Sel("imageProvider"))
+func (l_ LPLinkMetadata) ImageProvider() objc.IObject /* cross-framework: ItemProvider */ {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("imageProvider"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (l_ LPLinkMetadata) ImageProvider() ItemProvider /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/imageProvider
-func (l_ LPLinkMetadata) SetImageProvider(value ItemProvider /* not a class type */) {
+func (l_ LPLinkMetadata) SetImageProvider(value objc.IObject /* cross-framework: ItemProvider */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setImageProvider:"), value)
 }
 
@@ -144,8 +144,8 @@ func (l_ LPLinkMetadata) SetImageProvider(value ItemProvider /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
-func (l_ LPLinkMetadata) OriginalURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("originalURL"))
+func (l_ LPLinkMetadata) OriginalURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](l_.ID, objc.Sel("originalURL"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (l_ LPLinkMetadata) OriginalURL() foundation.objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
-func (l_ LPLinkMetadata) SetOriginalURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (l_ LPLinkMetadata) SetOriginalURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOriginalURL:"), value)
 }
 
@@ -163,8 +163,8 @@ func (l_ LPLinkMetadata) SetOriginalURL(value foundation.objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
-func (l_ LPLinkMetadata) RemoteVideoURL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("remoteVideoURL"))
+func (l_ LPLinkMetadata) RemoteVideoURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](l_.ID, objc.Sel("remoteVideoURL"))
 	return rv
 }
 
@@ -173,7 +173,7 @@ func (l_ LPLinkMetadata) RemoteVideoURL() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
-func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (l_ LPLinkMetadata) SetRemoteVideoURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setRemoteVideoURL:"), value)
 }
 
@@ -182,8 +182,8 @@ func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](l_.ID, objc.Sel("title"))
+func (l_ LPLinkMetadata) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -192,8 +192,8 @@ func (l_ LPLinkMetadata) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (l_ LPLinkMetadata) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -201,8 +201,8 @@ func (l_ LPLinkMetadata) SetTitle(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
-func (l_ LPLinkMetadata) URL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](l_.ID, objc.Sel("URL"))
+func (l_ LPLinkMetadata) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](l_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (l_ LPLinkMetadata) URL() foundation.objc.IObject /* cross-framework: URL *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
-func (l_ LPLinkMetadata) SetURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (l_ LPLinkMetadata) SetURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setURL:"), value)
 }
 
@@ -220,8 +220,8 @@ func (l_ LPLinkMetadata) SetURL(value foundation.objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/videoProvider
-func (l_ LPLinkMetadata) VideoProvider() ItemProvider /* not a class type */ {
-	rv := objc.Send[ItemProvider](l_.ID, objc.Sel("videoProvider"))
+func (l_ LPLinkMetadata) VideoProvider() objc.IObject /* cross-framework: ItemProvider */ {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("videoProvider"))
 	return rv
 }
 
@@ -230,7 +230,7 @@ func (l_ LPLinkMetadata) VideoProvider() ItemProvider /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/videoProvider
-func (l_ LPLinkMetadata) SetVideoProvider(value ItemProvider /* not a class type */) {
+func (l_ LPLinkMetadata) SetVideoProvider(value objc.IObject /* cross-framework: ItemProvider */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVideoProvider:"), value)
 }
 

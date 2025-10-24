@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [USBHostStream] class.
@@ -30,13 +31,13 @@ type _USBHostStreamClass struct {
 type IUSBHostStream interface {
 	IUSBHostIOSource
 	// properties:
-	StreamID() uint /* primitive/slice/pointer. */
-	HostPipe() IOUSBHostPipe /* already interface */
-	SetHostPipe(value IOUSBHostPipe /* already interface */)
+	StreamID() uint
+	HostPipe() IOUSBHostPipe
+	SetHostPipe(value IOUSBHostPipe)
 	// methods:
-	AbortWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	AbortWithOptionError(option USBHostAbortOption /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
-	EnqueueIORequestWithDataErrorCompletionHandler(data objc.IObject /* cross-framework MutableData */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */
+	AbortWithError(error_ unsafe.Pointer) bool
+	AbortWithOptionError(option USBHostAbortOption /* not a class type */, error_ unsafe.Pointer) bool
+	EnqueueIORequestWithDataErrorCompletionHandler(data objc.IObject /* cross-framework: MutableData */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool
 }
 
 // The class responsible for sending stream data for function drivers.
@@ -98,7 +99,7 @@ func NewUSBHostStream() USBHostStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/abort()
-func (u_ USBHostStream) AbortWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostStream) AbortWithError(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("abortWithError:"), error_)
 	return rv
 }
@@ -108,7 +109,7 @@ func (u_ USBHostStream) AbortWithError(error_ unsafe.Pointer) bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/abort(with:)
-func (u_ USBHostStream) AbortWithOptionError(option USBHostAbortOption /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostStream) AbortWithOptionError(option USBHostAbortOption /* not a class type */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("abortWithOption:error:"), option, error_)
 	return rv
 }
@@ -118,7 +119,7 @@ func (u_ USBHostStream) AbortWithOptionError(option USBHostAbortOption /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/enqueueIORequest(with:completionHandler:)
-func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data objc.IObject /* cross-framework MutableData */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */ {
+func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data objc.IObject /* cross-framework: MutableData */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueIORequestWithData:error:completionHandler:"), data, error_, completionHandler)
 	return rv
 }
@@ -128,7 +129,7 @@ func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/streamID
-func (u_ USBHostStream) StreamID() uint /* primitive/slice/pointer. */ {
+func (u_ USBHostStream) StreamID() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("streamID"))
 	return rv
 }
@@ -138,7 +139,7 @@ func (u_ USBHostStream) StreamID() uint /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhoststream/hostpipe
-func (u_ USBHostStream) HostPipe() IOUSBHostPipe /* already interface */ {
+func (u_ USBHostStream) HostPipe() IOUSBHostPipe {
 	rv := objc.Send[USBHostPipe](u_.ID, objc.Sel("hostPipe"))
 	return rv
 }
@@ -148,7 +149,7 @@ func (u_ USBHostStream) HostPipe() IOUSBHostPipe /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhoststream/hostpipe
-func (u_ USBHostStream) SetHostPipe(value IOUSBHostPipe /* already interface */) {
+func (u_ USBHostStream) SetHostPipe(value IOUSBHostPipe) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHostPipe:"), value)
 }
 

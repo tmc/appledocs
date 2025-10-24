@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CreateML without requiring cgo.
-
-// Create machine learning models for use in your app.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CreateML
+// See: https://developer.apple.com/documentation/CreateML
 package createml
 
 import (

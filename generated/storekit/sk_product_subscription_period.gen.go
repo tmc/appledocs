@@ -36,8 +36,8 @@ type IProductSubscriptionPeriod interface {
 	SetSubscriptionGroupIdentifier(value objc.IObject /* cross-framework: NSString */)
 	SubscriptionPeriod() ISKProductSubscriptionPeriod
 	SetSubscriptionPeriod(value ISKProductSubscriptionPeriod)
-	NumberOfUnits() int /* primitive/slice/pointer. */
-	SetNumberOfUnits(value int /* primitive/slice/pointer. */)
+	NumberOfUnits() int
+	SetNumberOfUnits(value int)
 	Unit() unsafe.Pointer
 	SetUnit(value unsafe.Pointer)
 	// methods:
@@ -138,7 +138,7 @@ func (p_ ProductSubscriptionPeriod) SetSubscriptionPeriod(value ISKProductSubscr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod/numberofunits
-func (p_ ProductSubscriptionPeriod) NumberOfUnits() int /* primitive/slice/pointer. */ {
+func (p_ ProductSubscriptionPeriod) NumberOfUnits() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfUnits"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (p_ ProductSubscriptionPeriod) NumberOfUnits() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod/numberofunits
-func (p_ ProductSubscriptionPeriod) SetNumberOfUnits(value int /* primitive/slice/pointer. */) {
+func (p_ ProductSubscriptionPeriod) SetNumberOfUnits(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfUnits:"), value)
 }
 

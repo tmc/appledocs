@@ -30,19 +30,23 @@ type _MTRDeviceControllerParametersClass struct {
 // An interface definition for the [MTRDeviceControllerParameters] class.
 type IMTRDeviceControllerParameters interface {
 	IMTRDeviceControllerAbstractParameters
-	CertificationDeclarationCertificates() foundation.Data
-	SetCertificationDeclarationCertificates(value foundation.IData)
+	// properties:
+	CertificationDeclarationCertificates() objc.IObject /* cross-framework: Data */
+	SetCertificationDeclarationCertificates(value objc.IObject /* cross-framework: Data */)
 	ConcurrentSubscriptionEstablishmentsAllowedOnThread() int
 	SetConcurrentSubscriptionEstablishmentsAllowedOnThread(value int)
-	ProductAttestationAuthorityCertificates() foundation.Data
-	SetProductAttestationAuthorityCertificates(value foundation.IData)
+	ProductAttestationAuthorityCertificates() objc.IObject /* cross-framework: Data */
+	SetProductAttestationAuthorityCertificates(value objc.IObject /* cross-framework: Data */)
 	ShouldAdvertiseOperational() bool
 	SetShouldAdvertiseOperational(value bool)
-	StorageBehaviorConfiguration() MTRDeviceStorageBehaviorConfiguration
+	StorageBehaviorConfiguration() IMTRDeviceStorageBehaviorConfiguration
 	SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerParameters
 type MTRDeviceControllerParameters struct {
 	MTRDeviceControllerAbstractParameters
@@ -87,22 +91,23 @@ func NewMTRDeviceControllerParameters() MTRDeviceControllerParameters {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() foundation.Data {
+func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclarationCertificates"))
 	return rv
 }
 
 
-// SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value foundation.IData) {
+func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/concurrentsubscriptionestablishmentsallowedonthread
 func (m_ MTRDeviceControllerParameters) ConcurrentSubscriptionEstablishmentsAllowedOnThread() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("concurrentSubscriptionEstablishmentsAllowedOnThread"))
@@ -110,29 +115,29 @@ func (m_ MTRDeviceControllerParameters) ConcurrentSubscriptionEstablishmentsAllo
 }
 
 
-// SetConcurrentSubscriptionEstablishmentsAllowedOnThread sets the value of the concurrentSubscriptionEstablishmentsAllowedOnThread property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/concurrentsubscriptionestablishmentsallowedonthread
 func (m_ MTRDeviceControllerParameters) SetConcurrentSubscriptionEstablishmentsAllowedOnThread(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConcurrentSubscriptionEstablishmentsAllowedOnThread:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() foundation.Data {
+func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
 
-// SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value foundation.IData) {
+func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
 func (m_ MTRDeviceControllerParameters) ShouldAdvertiseOperational() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldAdvertiseOperational"))
@@ -140,26 +145,26 @@ func (m_ MTRDeviceControllerParameters) ShouldAdvertiseOperational() bool {
 }
 
 
-// SetShouldAdvertiseOperational sets the value of the shouldAdvertiseOperational property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
 func (m_ MTRDeviceControllerParameters) SetShouldAdvertiseOperational(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAdvertiseOperational:"), value)
 }
 
+
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/storagebehaviorconfiguration
-func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() MTRDeviceStorageBehaviorConfiguration {
+func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() IMTRDeviceStorageBehaviorConfiguration {
 	rv := objc.Send[MTRDeviceStorageBehaviorConfiguration](m_.ID, objc.Sel("storageBehaviorConfiguration"))
 	return rv
 }
 
 
-// SetStorageBehaviorConfiguration sets the value of the storageBehaviorConfiguration property.
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/storagebehaviorconfiguration
 func (m_ MTRDeviceControllerParameters) SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageBehaviorConfiguration:"), value)

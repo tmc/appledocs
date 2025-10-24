@@ -9,11 +9,27 @@ import (
 // Suppress unused import errors
 var _ = photosui.NewPHPickerViewController
 
-// ExampleNewPHPickerViewControllerWithConfiguration demonstrates how to create a PHPickerViewController instance using NewPHPickerViewControllerWithConfiguration.
-// Creates a new picker view controller with the configuration you specify.
-func ExampleNewPHPickerViewControllerWithConfiguration() {
-	_ = photosui.NewPHPickerViewControllerWithConfiguration(
-		photosui.PHPickerConfiguration{}, // configuration PHPickerConfiguration
-	)
+// ExamplePHPickerViewController_ScrollToInitialPosition demonstrates using ScrollToInitialPosition on a PHPickerViewController instance.
+// Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.
+func ExamplePHPickerViewController_ScrollToInitialPosition() {
+	obj := photosui.NewPHPickerViewController()
+	obj.ScrollToInitialPosition()
 	// Output:
-}
+	}
+
+// ExamplePHPickerViewController_ZoomIn demonstrates using ZoomIn on a PHPickerViewController instance.
+// Changes the picker’s content scale by making the photo thumbnails larger in the view.
+func ExamplePHPickerViewController_ZoomIn() {
+	obj := photosui.NewPHPickerViewController()
+	obj.ZoomIn()
+	// Output:
+	}
+
+// ExamplePHPickerViewController_ZoomOut demonstrates using ZoomOut on a PHPickerViewController instance.
+// Changes the picker’s content scale by making the photo thumbnails smaller in the view.
+func ExamplePHPickerViewController_ZoomOut() {
+	obj := photosui.NewPHPickerViewController()
+	obj.ZoomOut()
+	// Output:
+	}
+

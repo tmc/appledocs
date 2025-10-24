@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CloudKit without requiring cgo.
-
-// Store structured app and user data in iCloud containers that all users of your app can share.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit
+// See: https://developer.apple.com/documentation/CloudKit
 package cloudkit
 
 import (

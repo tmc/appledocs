@@ -32,58 +32,58 @@ type _PlayerItemAccessLogEventClass struct {
 type IPlayerItemAccessLogEvent interface {
 	objectivec.IObject
 	// properties:
-	AverageAudioBitrate() float64 /* primitive/slice/pointer. */
-	SetAverageAudioBitrate(value float64 /* primitive/slice/pointer. */)
-	AverageVideoBitrate() float64 /* primitive/slice/pointer. */
-	SetAverageVideoBitrate(value float64 /* primitive/slice/pointer. */)
-	DownloadOverdue() int /* primitive/slice/pointer. */
-	SetDownloadOverdue(value int /* primitive/slice/pointer. */)
-	DurationWatched() unsafe.Pointer
-	SetDurationWatched(value unsafe.Pointer)
-	IndicatedAverageBitrate() float64 /* primitive/slice/pointer. */
-	SetIndicatedAverageBitrate(value float64 /* primitive/slice/pointer. */)
-	IndicatedBitrate() float64 /* primitive/slice/pointer. */
-	SetIndicatedBitrate(value float64 /* primitive/slice/pointer. */)
-	MediaRequestsWWAN() int /* primitive/slice/pointer. */
-	SetMediaRequestsWWAN(value int /* primitive/slice/pointer. */)
+	AverageAudioBitrate() float64
+	SetAverageAudioBitrate(value float64)
+	AverageVideoBitrate() float64
+	SetAverageVideoBitrate(value float64)
+	DownloadOverdue() int
+	SetDownloadOverdue(value int)
+	DurationWatched() float64
+	SetDurationWatched(value float64)
+	IndicatedAverageBitrate() float64
+	SetIndicatedAverageBitrate(value float64)
+	IndicatedBitrate() float64
+	SetIndicatedBitrate(value float64)
+	MediaRequestsWWAN() int
+	SetMediaRequestsWWAN(value int)
 	NumberOfBytesTransferred() unsafe.Pointer
 	SetNumberOfBytesTransferred(value unsafe.Pointer)
-	NumberOfDroppedVideoFrames() int /* primitive/slice/pointer. */
-	SetNumberOfDroppedVideoFrames(value int /* primitive/slice/pointer. */)
-	NumberOfMediaRequests() int /* primitive/slice/pointer. */
-	SetNumberOfMediaRequests(value int /* primitive/slice/pointer. */)
-	NumberOfSegmentsDownloaded() int /* primitive/slice/pointer. */
-	SetNumberOfSegmentsDownloaded(value int /* primitive/slice/pointer. */)
-	NumberOfServerAddressChanges() int /* primitive/slice/pointer. */
-	SetNumberOfServerAddressChanges(value int /* primitive/slice/pointer. */)
-	NumberOfStalls() int /* primitive/slice/pointer. */
-	SetNumberOfStalls(value int /* primitive/slice/pointer. */)
-	ObservedBitrate() float64 /* primitive/slice/pointer. */
-	SetObservedBitrate(value float64 /* primitive/slice/pointer. */)
-	ObservedBitrateStandardDeviation() float64 /* primitive/slice/pointer. */
-	SetObservedBitrateStandardDeviation(value float64 /* primitive/slice/pointer. */)
-	ObservedMaxBitrate() float64 /* primitive/slice/pointer. */
-	SetObservedMaxBitrate(value float64 /* primitive/slice/pointer. */)
-	ObservedMinBitrate() float64 /* primitive/slice/pointer. */
-	SetObservedMinBitrate(value float64 /* primitive/slice/pointer. */)
+	NumberOfDroppedVideoFrames() int
+	SetNumberOfDroppedVideoFrames(value int)
+	NumberOfMediaRequests() int
+	SetNumberOfMediaRequests(value int)
+	NumberOfSegmentsDownloaded() int
+	SetNumberOfSegmentsDownloaded(value int)
+	NumberOfServerAddressChanges() int
+	SetNumberOfServerAddressChanges(value int)
+	NumberOfStalls() int
+	SetNumberOfStalls(value int)
+	ObservedBitrate() float64
+	SetObservedBitrate(value float64)
+	ObservedBitrateStandardDeviation() float64
+	SetObservedBitrateStandardDeviation(value float64)
+	ObservedMaxBitrate() float64
+	SetObservedMaxBitrate(value float64)
+	ObservedMinBitrate() float64
+	SetObservedMinBitrate(value float64)
 	PlaybackSessionID() objc.IObject /* cross-framework: NSString */
 	SetPlaybackSessionID(value objc.IObject /* cross-framework: NSString */)
 	PlaybackStartDate() objc.IObject /* cross-framework: Date */
 	SetPlaybackStartDate(value objc.IObject /* cross-framework: Date */)
-	PlaybackStartOffset() unsafe.Pointer
-	SetPlaybackStartOffset(value unsafe.Pointer)
+	PlaybackStartOffset() float64
+	SetPlaybackStartOffset(value float64)
 	PlaybackType() objc.IObject /* cross-framework: NSString */
 	SetPlaybackType(value objc.IObject /* cross-framework: NSString */)
-	SegmentsDownloadedDuration() unsafe.Pointer
-	SetSegmentsDownloadedDuration(value unsafe.Pointer)
+	SegmentsDownloadedDuration() float64
+	SetSegmentsDownloadedDuration(value float64)
 	ServerAddress() objc.IObject /* cross-framework: NSString */
 	SetServerAddress(value objc.IObject /* cross-framework: NSString */)
-	StartupTime() unsafe.Pointer
-	SetStartupTime(value unsafe.Pointer)
-	SwitchBitrate() float64 /* primitive/slice/pointer. */
-	SetSwitchBitrate(value float64 /* primitive/slice/pointer. */)
-	TransferDuration() unsafe.Pointer
-	SetTransferDuration(value unsafe.Pointer)
+	StartupTime() float64
+	SetStartupTime(value float64)
+	SwitchBitrate() float64
+	SetSwitchBitrate(value float64)
+	TransferDuration() float64
+	SetTransferDuration(value float64)
 	Uri() objc.IObject /* cross-framework: NSString */
 	SetUri(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -146,7 +146,7 @@ func NewPlayerItemAccessLogEvent() PlayerItemAccessLogEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/averageaudiobitrate
-func (p_ PlayerItemAccessLogEvent) AverageAudioBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) AverageAudioBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("averageAudioBitrate"))
 	return rv
 }
@@ -156,7 +156,7 @@ func (p_ PlayerItemAccessLogEvent) AverageAudioBitrate() float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/averageaudiobitrate
-func (p_ PlayerItemAccessLogEvent) SetAverageAudioBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetAverageAudioBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAverageAudioBitrate:"), value)
 }
 
@@ -165,7 +165,7 @@ func (p_ PlayerItemAccessLogEvent) SetAverageAudioBitrate(value float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/averagevideobitrate
-func (p_ PlayerItemAccessLogEvent) AverageVideoBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) AverageVideoBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("averageVideoBitrate"))
 	return rv
 }
@@ -175,7 +175,7 @@ func (p_ PlayerItemAccessLogEvent) AverageVideoBitrate() float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/averagevideobitrate
-func (p_ PlayerItemAccessLogEvent) SetAverageVideoBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetAverageVideoBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAverageVideoBitrate:"), value)
 }
 
@@ -184,7 +184,7 @@ func (p_ PlayerItemAccessLogEvent) SetAverageVideoBitrate(value float64 /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/downloadoverdue
-func (p_ PlayerItemAccessLogEvent) DownloadOverdue() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) DownloadOverdue() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("downloadOverdue"))
 	return rv
 }
@@ -194,7 +194,7 @@ func (p_ PlayerItemAccessLogEvent) DownloadOverdue() int /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/downloadoverdue
-func (p_ PlayerItemAccessLogEvent) SetDownloadOverdue(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetDownloadOverdue(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadOverdue:"), value)
 }
 
@@ -203,8 +203,8 @@ func (p_ PlayerItemAccessLogEvent) SetDownloadOverdue(value int /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/durationwatched
-func (p_ PlayerItemAccessLogEvent) DurationWatched() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("durationWatched"))
+func (p_ PlayerItemAccessLogEvent) DurationWatched() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("durationWatched"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (p_ PlayerItemAccessLogEvent) DurationWatched() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/durationwatched
-func (p_ PlayerItemAccessLogEvent) SetDurationWatched(value unsafe.Pointer) {
+func (p_ PlayerItemAccessLogEvent) SetDurationWatched(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDurationWatched:"), value)
 }
 
@@ -222,7 +222,7 @@ func (p_ PlayerItemAccessLogEvent) SetDurationWatched(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/indicatedaveragebitrate
-func (p_ PlayerItemAccessLogEvent) IndicatedAverageBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) IndicatedAverageBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("indicatedAverageBitrate"))
 	return rv
 }
@@ -232,7 +232,7 @@ func (p_ PlayerItemAccessLogEvent) IndicatedAverageBitrate() float64 /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/indicatedaveragebitrate
-func (p_ PlayerItemAccessLogEvent) SetIndicatedAverageBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetIndicatedAverageBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndicatedAverageBitrate:"), value)
 }
 
@@ -241,7 +241,7 @@ func (p_ PlayerItemAccessLogEvent) SetIndicatedAverageBitrate(value float64 /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/indicatedbitrate
-func (p_ PlayerItemAccessLogEvent) IndicatedBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) IndicatedBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("indicatedBitrate"))
 	return rv
 }
@@ -251,7 +251,7 @@ func (p_ PlayerItemAccessLogEvent) IndicatedBitrate() float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/indicatedbitrate
-func (p_ PlayerItemAccessLogEvent) SetIndicatedBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetIndicatedBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIndicatedBitrate:"), value)
 }
 
@@ -260,7 +260,7 @@ func (p_ PlayerItemAccessLogEvent) SetIndicatedBitrate(value float64 /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/mediarequestswwan
-func (p_ PlayerItemAccessLogEvent) MediaRequestsWWAN() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) MediaRequestsWWAN() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("mediaRequestsWWAN"))
 	return rv
 }
@@ -270,7 +270,7 @@ func (p_ PlayerItemAccessLogEvent) MediaRequestsWWAN() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/mediarequestswwan
-func (p_ PlayerItemAccessLogEvent) SetMediaRequestsWWAN(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetMediaRequestsWWAN(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaRequestsWWAN:"), value)
 }
 
@@ -298,7 +298,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfBytesTransferred(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofdroppedvideoframes
-func (p_ PlayerItemAccessLogEvent) NumberOfDroppedVideoFrames() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) NumberOfDroppedVideoFrames() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfDroppedVideoFrames"))
 	return rv
 }
@@ -308,7 +308,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfDroppedVideoFrames() int /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofdroppedvideoframes
-func (p_ PlayerItemAccessLogEvent) SetNumberOfDroppedVideoFrames(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetNumberOfDroppedVideoFrames(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfDroppedVideoFrames:"), value)
 }
 
@@ -317,7 +317,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfDroppedVideoFrames(value int /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofmediarequests
-func (p_ PlayerItemAccessLogEvent) NumberOfMediaRequests() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) NumberOfMediaRequests() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfMediaRequests"))
 	return rv
 }
@@ -327,7 +327,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfMediaRequests() int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofmediarequests
-func (p_ PlayerItemAccessLogEvent) SetNumberOfMediaRequests(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetNumberOfMediaRequests(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfMediaRequests:"), value)
 }
 
@@ -336,7 +336,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfMediaRequests(value int /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofsegmentsdownloaded
-func (p_ PlayerItemAccessLogEvent) NumberOfSegmentsDownloaded() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) NumberOfSegmentsDownloaded() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfSegmentsDownloaded"))
 	return rv
 }
@@ -346,7 +346,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfSegmentsDownloaded() int /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofsegmentsdownloaded
-func (p_ PlayerItemAccessLogEvent) SetNumberOfSegmentsDownloaded(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetNumberOfSegmentsDownloaded(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfSegmentsDownloaded:"), value)
 }
 
@@ -355,7 +355,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfSegmentsDownloaded(value int /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofserveraddresschanges
-func (p_ PlayerItemAccessLogEvent) NumberOfServerAddressChanges() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) NumberOfServerAddressChanges() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfServerAddressChanges"))
 	return rv
 }
@@ -365,7 +365,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfServerAddressChanges() int /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofserveraddresschanges
-func (p_ PlayerItemAccessLogEvent) SetNumberOfServerAddressChanges(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetNumberOfServerAddressChanges(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfServerAddressChanges:"), value)
 }
 
@@ -374,7 +374,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfServerAddressChanges(value int /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofstalls
-func (p_ PlayerItemAccessLogEvent) NumberOfStalls() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) NumberOfStalls() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("numberOfStalls"))
 	return rv
 }
@@ -384,7 +384,7 @@ func (p_ PlayerItemAccessLogEvent) NumberOfStalls() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/numberofstalls
-func (p_ PlayerItemAccessLogEvent) SetNumberOfStalls(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetNumberOfStalls(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNumberOfStalls:"), value)
 }
 
@@ -393,7 +393,7 @@ func (p_ PlayerItemAccessLogEvent) SetNumberOfStalls(value int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedbitrate
-func (p_ PlayerItemAccessLogEvent) ObservedBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) ObservedBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedBitrate"))
 	return rv
 }
@@ -403,7 +403,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedBitrate() float64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedbitrate
-func (p_ PlayerItemAccessLogEvent) SetObservedBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetObservedBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedBitrate:"), value)
 }
 
@@ -412,7 +412,7 @@ func (p_ PlayerItemAccessLogEvent) SetObservedBitrate(value float64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedbitratestandarddeviation
-func (p_ PlayerItemAccessLogEvent) ObservedBitrateStandardDeviation() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) ObservedBitrateStandardDeviation() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedBitrateStandardDeviation"))
 	return rv
 }
@@ -422,7 +422,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedBitrateStandardDeviation() float64 /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedbitratestandarddeviation
-func (p_ PlayerItemAccessLogEvent) SetObservedBitrateStandardDeviation(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetObservedBitrateStandardDeviation(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedBitrateStandardDeviation:"), value)
 }
 
@@ -431,7 +431,7 @@ func (p_ PlayerItemAccessLogEvent) SetObservedBitrateStandardDeviation(value flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedmaxbitrate
-func (p_ PlayerItemAccessLogEvent) ObservedMaxBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) ObservedMaxBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedMaxBitrate"))
 	return rv
 }
@@ -441,7 +441,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedMaxBitrate() float64 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedmaxbitrate
-func (p_ PlayerItemAccessLogEvent) SetObservedMaxBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetObservedMaxBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedMaxBitrate:"), value)
 }
 
@@ -450,7 +450,7 @@ func (p_ PlayerItemAccessLogEvent) SetObservedMaxBitrate(value float64 /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedminbitrate
-func (p_ PlayerItemAccessLogEvent) ObservedMinBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) ObservedMinBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("observedMinBitrate"))
 	return rv
 }
@@ -460,7 +460,7 @@ func (p_ PlayerItemAccessLogEvent) ObservedMinBitrate() float64 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/observedminbitrate
-func (p_ PlayerItemAccessLogEvent) SetObservedMinBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetObservedMinBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedMinBitrate:"), value)
 }
 
@@ -507,8 +507,8 @@ func (p_ PlayerItemAccessLogEvent) SetPlaybackStartDate(value objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/playbackstartoffset
-func (p_ PlayerItemAccessLogEvent) PlaybackStartOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackStartOffset"))
+func (p_ PlayerItemAccessLogEvent) PlaybackStartOffset() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("playbackStartOffset"))
 	return rv
 }
 
@@ -517,7 +517,7 @@ func (p_ PlayerItemAccessLogEvent) PlaybackStartOffset() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/playbackstartoffset
-func (p_ PlayerItemAccessLogEvent) SetPlaybackStartOffset(value unsafe.Pointer) {
+func (p_ PlayerItemAccessLogEvent) SetPlaybackStartOffset(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackStartOffset:"), value)
 }
 
@@ -545,8 +545,8 @@ func (p_ PlayerItemAccessLogEvent) SetPlaybackType(value objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/segmentsdownloadedduration
-func (p_ PlayerItemAccessLogEvent) SegmentsDownloadedDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("segmentsDownloadedDuration"))
+func (p_ PlayerItemAccessLogEvent) SegmentsDownloadedDuration() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("segmentsDownloadedDuration"))
 	return rv
 }
 
@@ -555,7 +555,7 @@ func (p_ PlayerItemAccessLogEvent) SegmentsDownloadedDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/segmentsdownloadedduration
-func (p_ PlayerItemAccessLogEvent) SetSegmentsDownloadedDuration(value unsafe.Pointer) {
+func (p_ PlayerItemAccessLogEvent) SetSegmentsDownloadedDuration(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSegmentsDownloadedDuration:"), value)
 }
 
@@ -583,8 +583,8 @@ func (p_ PlayerItemAccessLogEvent) SetServerAddress(value objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/startuptime
-func (p_ PlayerItemAccessLogEvent) StartupTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startupTime"))
+func (p_ PlayerItemAccessLogEvent) StartupTime() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("startupTime"))
 	return rv
 }
 
@@ -593,7 +593,7 @@ func (p_ PlayerItemAccessLogEvent) StartupTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/startuptime
-func (p_ PlayerItemAccessLogEvent) SetStartupTime(value unsafe.Pointer) {
+func (p_ PlayerItemAccessLogEvent) SetStartupTime(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartupTime:"), value)
 }
 
@@ -602,7 +602,7 @@ func (p_ PlayerItemAccessLogEvent) SetStartupTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/switchbitrate
-func (p_ PlayerItemAccessLogEvent) SwitchBitrate() float64 /* primitive/slice/pointer. */ {
+func (p_ PlayerItemAccessLogEvent) SwitchBitrate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("switchBitrate"))
 	return rv
 }
@@ -612,7 +612,7 @@ func (p_ PlayerItemAccessLogEvent) SwitchBitrate() float64 /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/switchbitrate
-func (p_ PlayerItemAccessLogEvent) SetSwitchBitrate(value float64 /* primitive/slice/pointer. */) {
+func (p_ PlayerItemAccessLogEvent) SetSwitchBitrate(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSwitchBitrate:"), value)
 }
 
@@ -621,8 +621,8 @@ func (p_ PlayerItemAccessLogEvent) SetSwitchBitrate(value float64 /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/transferduration
-func (p_ PlayerItemAccessLogEvent) TransferDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transferDuration"))
+func (p_ PlayerItemAccessLogEvent) TransferDuration() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("transferDuration"))
 	return rv
 }
 
@@ -631,7 +631,7 @@ func (p_ PlayerItemAccessLogEvent) TransferDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent/transferduration
-func (p_ PlayerItemAccessLogEvent) SetTransferDuration(value unsafe.Pointer) {
+func (p_ PlayerItemAccessLogEvent) SetTransferDuration(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransferDuration:"), value)
 }
 

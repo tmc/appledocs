@@ -30,13 +30,17 @@ type _MTRServiceAreaClusterAreaInfoStructClass struct {
 // An interface definition for the [MTRServiceAreaClusterAreaInfoStruct] class.
 type IMTRServiceAreaClusterAreaInfoStruct interface {
 	objectivec.IObject
-	LandmarkInfo() MTRServiceAreaClusterLandmarkInfoStruct
+	// properties:
+	LandmarkInfo() IMTRServiceAreaClusterLandmarkInfoStruct
 	SetLandmarkInfo(value IMTRServiceAreaClusterLandmarkInfoStruct)
-	LocationInfo() MTRDataTypeLocationDescriptorStruct
+	LocationInfo() IMTRDataTypeLocationDescriptorStruct
 	SetLocationInfo(value IMTRDataTypeLocationDescriptorStruct)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct
 type MTRServiceAreaClusterAreaInfoStruct struct {
 	objectivec.Object
@@ -79,31 +83,31 @@ func NewMTRServiceAreaClusterAreaInfoStruct() MTRServiceAreaClusterAreaInfoStruc
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/landmarkInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() MTRServiceAreaClusterLandmarkInfoStruct {
+func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() IMTRServiceAreaClusterLandmarkInfoStruct {
 	rv := objc.Send[MTRServiceAreaClusterLandmarkInfoStruct](m_.ID, objc.Sel("landmarkInfo"))
 	return rv
 }
 
 
-// SetLandmarkInfo sets the value of the landmarkInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/landmarkInfo
 func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLandmarkInfo(value IMTRServiceAreaClusterLandmarkInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkInfo:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/locationInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() MTRDataTypeLocationDescriptorStruct {
+func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() IMTRDataTypeLocationDescriptorStruct {
 	rv := objc.Send[MTRDataTypeLocationDescriptorStruct](m_.ID, objc.Sel("locationInfo"))
 	return rv
 }
 
 
-// SetLocationInfo sets the value of the locationInfo property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/locationInfo
 func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLocationInfo(value IMTRDataTypeLocationDescriptorStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationInfo:"), value)

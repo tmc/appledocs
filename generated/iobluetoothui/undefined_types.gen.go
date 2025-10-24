@@ -9,8 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	BluetoothDeviceSearchAttributes = _undefined // referenced in IOBluetoothUI
-	Bool = _undefined // referenced in IOBluetoothUI
 	Return = _undefined // referenced in IOBluetoothUI
 	String = _undefined // referenced in IOBluetoothUI
 )

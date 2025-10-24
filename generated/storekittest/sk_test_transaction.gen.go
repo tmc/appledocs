@@ -31,25 +31,31 @@ type _TestTransactionClass struct {
 // An interface definition for the [TestTransaction] class.
 type ITestTransaction interface {
 	objectivec.IObject
+	// properties:
 	AutoRenewingEnabled() bool
-	CancelDate() foundation.NSDate
-	ExpirationDate() foundation.NSDate
+	CancelDate() objc.IObject /* cross-framework: NSDate */
+	ExpirationDate() objc.IObject /* cross-framework: NSDate */
 	HasPurchaseIssue() bool
 	Identifier() uint
 	PendingPriceIncreaseConsent() bool
 	OriginalTransactionIdentifier() uint
 	PendingAskToBuyConfirmation() bool
-	ProductIdentifier() string
-	PurchaseDate() foundation.NSDate
-	State() unsafe.Pointer
+	ProductIdentifier() objc.IObject /* cross-framework: NSString */
+	PurchaseDate() objc.IObject /* cross-framework: NSDate */
+	State() PaymentTransactionState /* not a class type */
 	IsPendingPriceIncreaseConsent() bool
 	SetIsPendingPriceIncreaseConsent(value bool)
+	// methods:
 }
 
 // A transaction that occurs in the testing environment.
 //
 // The test transaction represents the test environment’s knowledge of the transaction, including its identifier and the transaction’s state. It represents all the transaction-related configurations you control manually in Xcode for interrupted purchases, Ask to Buy scenarios, and changes to a subscription’s auto-renew state. The test environment creates an instance each time your test code calls any method of that affects in-app purchases.
+
+
+// A transaction that occurs in the testing environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction
 type TestTransaction struct {
 	objectivec.Object
@@ -94,96 +100,120 @@ func NewTestTransaction() TestTransaction {
 }
 
 
+
 // A Boolean value that indicates whether automatic renewal is enabled for the subscription.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/autoRenewingEnabled
 func (t_ TestTransaction) AutoRenewingEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("autoRenewingEnabled"))
 	return rv
 }
 
+
 // The date when the system refunded the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/cancelDate
-func (t_ TestTransaction) CancelDate() foundation.NSDate {
+func (t_ TestTransaction) CancelDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("cancelDate"))
 	return rv
 }
 
+
 // The date a subscription expires.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/expirationDate
-func (t_ TestTransaction) ExpirationDate() foundation.NSDate {
+func (t_ TestTransaction) ExpirationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether you resolve this transaction using the test framework functions.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/hasPurchaseIssue
 func (t_ TestTransaction) HasPurchaseIssue() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hasPurchaseIssue"))
 	return rv
 }
 
+
 // The identifier of the transaction in the testing environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/identifier
 func (t_ TestTransaction) Identifier() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the auto-renewable subscription has a price increase that’s awaiting user consent in the test environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/isPendingPriceIncreaseConsent
 func (t_ TestTransaction) PendingPriceIncreaseConsent() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("pendingPriceIncreaseConsent"))
 	return rv
 }
 
+
 // The identifier of the original transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/originalTransactionIdentifier
 func (t_ TestTransaction) OriginalTransactionIdentifier() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("originalTransactionIdentifier"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the transaction is awaiting an Ask to Buy confirmation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/pendingAskToBuyConfirmation
 func (t_ TestTransaction) PendingAskToBuyConfirmation() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("pendingAskToBuyConfirmation"))
 	return rv
 }
 
+
 // An identifier that uniquely represents a product, which you provide in the StoreKit configuration file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/productIdentifier
-func (t_ TestTransaction) ProductIdentifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("productIdentifier"))
+func (t_ TestTransaction) ProductIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
+
 // The date of purchase for the transaction.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/purchaseDate
-func (t_ TestTransaction) PurchaseDate() foundation.NSDate {
+func (t_ TestTransaction) PurchaseDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("purchaseDate"))
 	return rv
 }
 
+
 // The state of the transaction in the test environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/state
-func (t_ TestTransaction) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("state"))
+func (t_ TestTransaction) State() PaymentTransactionState /* not a class type */ {
+	rv := objc.Send[PaymentTransactionState](t_.ID, objc.Sel("state"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the auto-renewable subscription has a price increase that’s awaiting user consent in the test environment.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekittest/sktesttransaction/ispendingpriceincreaseconsent
 func (t_ TestTransaction) IsPendingPriceIncreaseConsent() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isPendingPriceIncreaseConsent"))
@@ -191,10 +221,9 @@ func (t_ TestTransaction) IsPendingPriceIncreaseConsent() bool {
 }
 
 
-// SetIsPendingPriceIncreaseConsent sets the value of the isPendingPriceIncreaseConsent property.
 // A Boolean value that indicates whether the auto-renewable subscription has a price increase that’s awaiting user consent in the test environment.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekittest/sktesttransaction/ispendingpriceincreaseconsent
 func (t_ TestTransaction) SetIsPendingPriceIncreaseConsent(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsPendingPriceIncreaseConsent:"), value)

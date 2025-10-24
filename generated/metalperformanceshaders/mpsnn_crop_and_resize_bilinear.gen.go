@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,27 +30,35 @@ type _CropAndResizeBilinearClass struct {
 
 // An interface definition for the [CropAndResizeBilinear] class.
 type ICropAndResizeBilinear interface {
-	objectivec.IObject
-	Regions() corelocation.Region
+	ICNNKernel
+	// properties:
+	Regions() MPSRegion /* not a class type */
 	ResizeHeight() uint
 	NumberOfRegions() int
 	SetNumberOfRegions(value int)
 	ResizeWidth() int
 	SetResizeWidth(value int)
+	// methods:
 }
 
 // A cropping and bilinear resizing filter.
+
+
+// A cropping and bilinear resizing filter.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear
 type CropAndResizeBilinear struct {
-	objectivec.Object
+	CNNKernel
 }
 
 // CropAndResizeBilinearFrom constructs a [CropAndResizeBilinear] from an unsafe.Pointer.
 //
 // A cropping and bilinear resizing filter.
 func CropAndResizeBilinearFrom(ptr unsafe.Pointer) CropAndResizeBilinear {
-	return CropAndResizeBilinear{objectivec.Object{objc.ID(ptr)}}
+	return CropAndResizeBilinear{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -86,9 +93,10 @@ func NewCropAndResizeBilinear() CropAndResizeBilinear {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/init(coder:device:)
-func NewCropAndResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) CropAndResizeBilinear {
+func NewCropAndResizeBilinearWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) CropAndResizeBilinear {
 	instance := getCropAndResizeBilinearClass().Alloc()
 	rv := objc.Send[CropAndResizeBilinear](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -96,21 +104,24 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device 
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
-func (c_ CropAndResizeBilinear) Regions() corelocation.Region {
-	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("regions"))
+func (c_ CropAndResizeBilinear) Regions() MPSRegion /* not a class type */ {
+	rv := objc.Send[Region](c_.ID, objc.Sel("regions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/resizeHeight
 func (c_ CropAndResizeBilinear) ResizeHeight() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("resizeHeight"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
 func (c_ CropAndResizeBilinear) NumberOfRegions() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfRegions"))
@@ -118,14 +129,14 @@ func (c_ CropAndResizeBilinear) NumberOfRegions() int {
 }
 
 
-// SetNumberOfRegions sets the value of the numberOfRegions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
 func (c_ CropAndResizeBilinear) SetNumberOfRegions(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfRegions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
 func (c_ CropAndResizeBilinear) ResizeWidth() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("resizeWidth"))
@@ -133,8 +144,7 @@ func (c_ CropAndResizeBilinear) ResizeWidth() int {
 }
 
 
-// SetResizeWidth sets the value of the resizeWidth property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
 func (c_ CropAndResizeBilinear) SetResizeWidth(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeWidth:"), value)

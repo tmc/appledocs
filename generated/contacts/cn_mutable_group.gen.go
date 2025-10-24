@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNMutableGroup] class.
@@ -30,8 +31,8 @@ type _CNMutableGroupClass struct {
 type ICNMutableGroup interface {
 	ICNGroup
 	// properties:
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewCNMutableGroup() CNMutableGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
-func (c_ CNMutableGroup) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ CNMutableGroup) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (c_ CNMutableGroup) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
-func (c_ CNMutableGroup) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ CNMutableGroup) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 

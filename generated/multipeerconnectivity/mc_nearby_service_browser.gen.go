@@ -31,17 +31,23 @@ type _MCNearbyServiceBrowserClass struct {
 // An interface definition for the [MCNearbyServiceBrowser] class.
 type IMCNearbyServiceBrowser interface {
 	objectivec.IObject
-	InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context foundation.IData, timeout foundation.ITimeInterval)
-	StartBrowsingForPeers()
-	StopBrowsingForPeers()
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	MyPeerID() MCPeerID
-	ServiceType() string
+	MyPeerID() IMCPeerID
+	ServiceType() objc.IObject /* cross-framework: NSString */
+	// methods:
+	InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context objc.IObject /* cross-framework: NSData */, timeout float64)
+	StartBrowsingForPeers()
+	StopBrowsingForPeers()
 }
 
 // Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session ( ).
+
+
+// Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session ( ).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser
 type MCNearbyServiceBrowser struct {
 	objectivec.Object
@@ -87,41 +93,49 @@ func NewMCNearbyServiceBrowser() MCNearbyServiceBrowser {
 
 
 
-
 // Initializes the nearby service browser object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/init(peer:serviceType:)
-func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID IMCPeerID, serviceType string) MCNearbyServiceBrowser {
+func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID IMCPeerID, serviceType objc.IObject /* cross-framework: NSString */) MCNearbyServiceBrowser {
 	instance := getMCNearbyServiceBrowserClass().Alloc()
-	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, objc.String(serviceType))
+	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, serviceType)
 	rv.Autorelease()
 	return rv
 }
 
 
+
 // Invites a discovered peer to join a Multipeer Connectivity session.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)
-func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context foundation.IData, timeout foundation.ITimeInterval) {
+func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context objc.IObject /* cross-framework: NSData */, timeout float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invitePeer:toSession:withContext:timeout:"), peerID, session, context, timeout)
 }
 
+
 // Starts browsing for peers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/startBrowsingForPeers()
 func (m_ MCNearbyServiceBrowser) StartBrowsingForPeers() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startBrowsingForPeers"))
 }
 
+
 // Stops browsing for peers.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/stopBrowsingForPeers()
 func (m_ MCNearbyServiceBrowser) StopBrowsingForPeers() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stopBrowsingForPeers"))
 }
 
+
 // The delegate object that handles browser-related events.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/delegate
 func (m_ MCNearbyServiceBrowser) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
@@ -129,28 +143,31 @@ func (m_ MCNearbyServiceBrowser) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The delegate object that handles browser-related events.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/delegate
 func (m_ MCNearbyServiceBrowser) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
+
 // The local peer ID for this instance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/myPeerID
-func (m_ MCNearbyServiceBrowser) MyPeerID() MCPeerID {
+func (m_ MCNearbyServiceBrowser) MyPeerID() IMCPeerID {
 	rv := objc.Send[MCPeerID](m_.ID, objc.Sel("myPeerID"))
 	return rv
 }
 
+
 // The service type to browse for.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/serviceType
-func (m_ MCNearbyServiceBrowser) ServiceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceBrowser) ServiceType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

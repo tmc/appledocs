@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -33,32 +33,34 @@ type _TextLayoutFragmentClass struct {
 // An interface definition for the [TextLayoutFragment] class.
 type ITextLayoutFragment interface {
 	objectivec.IObject
+	// properties:
 	BottomMargin() float64
 	SetBottomMargin(value float64)
-	LayoutFragmentFrame() coregraphics.CGRect
-	SetLayoutFragmentFrame(value coregraphics.CGRect)
-	LayoutQueue() foundation.OperationQueue
-	SetLayoutQueue(value foundation.IOperationQueue)
+	LayoutFragmentFrame() objc.IObject /* cross-framework: Rect */
+	SetLayoutFragmentFrame(value objc.IObject /* cross-framework: Rect */)
+	LayoutQueue() objc.IObject /* cross-framework: OperationQueue */
+	SetLayoutQueue(value objc.IObject /* cross-framework: OperationQueue */)
 	LeadingPadding() float64
 	SetLeadingPadding(value float64)
-	RangeInElement() NSTextRange
-	SetRangeInElement(value ITextRange)
-	RenderingSurfaceBounds() coregraphics.CGRect
-	SetRenderingSurfaceBounds(value coregraphics.CGRect)
-	State() coreml.State
-	SetState(value coreml.State)
-	TextAttachmentViewProviders() NSTextAttachmentViewProvider
-	SetTextAttachmentViewProviders(value ITextAttachmentViewProvider)
-	TextElement() NSTextElement
-	SetTextElement(value ITextElement)
-	TextLayoutManager() NSTextLayoutManager
-	SetTextLayoutManager(value ITextLayoutManager)
-	TextLineFragments() NSTextLineFragment
-	SetTextLineFragments(value ITextLineFragment)
+	RangeInElement() objc.IObject /* cross-framework: TextRange */
+	SetRangeInElement(value objc.IObject /* cross-framework: TextRange */)
+	RenderingSurfaceBounds() objc.IObject /* cross-framework: Rect */
+	SetRenderingSurfaceBounds(value objc.IObject /* cross-framework: Rect */)
+	State() objc.IObject /* cross-framework: State */
+	SetState(value objc.IObject /* cross-framework: State */)
+	TextAttachmentViewProviders() objc.IObject /* cross-framework: TextAttachmentViewProvider */
+	SetTextAttachmentViewProviders(value objc.IObject /* cross-framework: TextAttachmentViewProvider */)
+	TextElement() objc.IObject /* cross-framework: TextElement */
+	SetTextElement(value objc.IObject /* cross-framework: TextElement */)
+	TextLayoutManager() objc.IObject /* cross-framework: TextLayoutManager */
+	SetTextLayoutManager(value objc.IObject /* cross-framework: TextLayoutManager */)
+	TextLineFragments() objc.IObject /* cross-framework: TextLineFragment */
+	SetTextLineFragments(value objc.IObject /* cross-framework: TextLineFragment */)
 	TopMargin() float64
 	SetTopMargin(value float64)
 	TrailingPadding() float64
 	SetTrailingPadding(value float64)
+	// methods:
 }
 
 // A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.
@@ -135,8 +137,8 @@ func (t_ TextLayoutFragment) SetBottomMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
-func (t_ TextLayoutFragment) LayoutFragmentFrame() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("layoutFragmentFrame"))
+func (t_ TextLayoutFragment) LayoutFragmentFrame() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("layoutFragmentFrame"))
 	return rv
 }
 
@@ -145,7 +147,7 @@ func (t_ TextLayoutFragment) LayoutFragmentFrame() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutfragmentframe
-func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
+func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutFragmentFrame:"), value)
 }
 
@@ -154,7 +156,7 @@ func (t_ TextLayoutFragment) SetLayoutFragmentFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
+func (t_ TextLayoutFragment) LayoutQueue() objc.IObject /* cross-framework: OperationQueue */ {
 	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (t_ TextLayoutFragment) LayoutQueue() foundation.OperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/layoutqueue
-func (t_ TextLayoutFragment) SetLayoutQueue(value foundation.IOperationQueue) {
+func (t_ TextLayoutFragment) SetLayoutQueue(value objc.IObject /* cross-framework: OperationQueue */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -192,8 +194,8 @@ func (t_ TextLayoutFragment) SetLeadingPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
-	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("rangeInElement"))
+func (t_ TextLayoutFragment) RangeInElement() objc.IObject /* cross-framework: TextRange */ {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("rangeInElement"))
 	return rv
 }
 
@@ -202,7 +204,7 @@ func (t_ TextLayoutFragment) RangeInElement() NSTextRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/rangeinelement
-func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
+func (t_ TextLayoutFragment) SetRangeInElement(value objc.IObject /* cross-framework: TextRange */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeInElement:"), value)
 }
 
@@ -211,8 +213,8 @@ func (t_ TextLayoutFragment) SetRangeInElement(value ITextRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
-func (t_ TextLayoutFragment) RenderingSurfaceBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("renderingSurfaceBounds"))
+func (t_ TextLayoutFragment) RenderingSurfaceBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("renderingSurfaceBounds"))
 	return rv
 }
 
@@ -221,7 +223,7 @@ func (t_ TextLayoutFragment) RenderingSurfaceBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/renderingsurfacebounds
-func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect) {
+func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingSurfaceBounds:"), value)
 }
 
@@ -230,7 +232,7 @@ func (t_ TextLayoutFragment) SetRenderingSurfaceBounds(value coregraphics.CGRect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-func (t_ TextLayoutFragment) State() coreml.State {
+func (t_ TextLayoutFragment) State() objc.IObject /* cross-framework: State */ {
 	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
 	return rv
 }
@@ -240,7 +242,7 @@ func (t_ TextLayoutFragment) State() coreml.State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.property
-func (t_ TextLayoutFragment) SetState(value coreml.State) {
+func (t_ TextLayoutFragment) SetState(value objc.IObject /* cross-framework: State */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
 
@@ -249,8 +251,8 @@ func (t_ TextLayoutFragment) SetState(value coreml.State) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewProvider {
-	rv := objc.Send[NSTextAttachmentViewProvider](t_.ID, objc.Sel("textAttachmentViewProviders"))
+func (t_ TextLayoutFragment) TextAttachmentViewProviders() objc.IObject /* cross-framework: TextAttachmentViewProvider */ {
+	rv := objc.Send[TextAttachmentViewProvider](t_.ID, objc.Sel("textAttachmentViewProviders"))
 	return rv
 }
 
@@ -259,7 +261,7 @@ func (t_ TextLayoutFragment) TextAttachmentViewProviders() NSTextAttachmentViewP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textattachmentviewproviders
-func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmentViewProvider) {
+func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value objc.IObject /* cross-framework: TextAttachmentViewProvider */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextAttachmentViewProviders:"), value)
 }
 
@@ -268,8 +270,8 @@ func (t_ TextLayoutFragment) SetTextAttachmentViewProviders(value ITextAttachmen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-func (t_ TextLayoutFragment) TextElement() NSTextElement {
-	rv := objc.Send[NSTextElement](t_.ID, objc.Sel("textElement"))
+func (t_ TextLayoutFragment) TextElement() objc.IObject /* cross-framework: TextElement */ {
+	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElement"))
 	return rv
 }
 
@@ -278,7 +280,7 @@ func (t_ TextLayoutFragment) TextElement() NSTextElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textelement
-func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
+func (t_ TextLayoutFragment) SetTextElement(value objc.IObject /* cross-framework: TextElement */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextElement:"), value)
 }
 
@@ -287,8 +289,8 @@ func (t_ TextLayoutFragment) SetTextElement(value ITextElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
-	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextLayoutFragment) TextLayoutManager() objc.IObject /* cross-framework: TextLayoutManager */ {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -297,7 +299,7 @@ func (t_ TextLayoutFragment) TextLayoutManager() NSTextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlayoutmanager
-func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
+func (t_ TextLayoutFragment) SetTextLayoutManager(value objc.IObject /* cross-framework: TextLayoutManager */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
 }
 
@@ -306,8 +308,8 @@ func (t_ TextLayoutFragment) SetTextLayoutManager(value ITextLayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
-	rv := objc.Send[NSTextLineFragment](t_.ID, objc.Sel("textLineFragments"))
+func (t_ TextLayoutFragment) TextLineFragments() objc.IObject /* cross-framework: TextLineFragment */ {
+	rv := objc.Send[TextLineFragment](t_.ID, objc.Sel("textLineFragments"))
 	return rv
 }
 
@@ -316,7 +318,7 @@ func (t_ TextLayoutFragment) TextLineFragments() NSTextLineFragment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutfragment/textlinefragments
-func (t_ TextLayoutFragment) SetTextLineFragments(value ITextLineFragment) {
+func (t_ TextLayoutFragment) SetTextLineFragments(value objc.IObject /* cross-framework: TextLineFragment */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLineFragments:"), value)
 }
 

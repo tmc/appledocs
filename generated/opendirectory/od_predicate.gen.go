@@ -30,9 +30,13 @@ type _odPredicateClass struct {
 // An interface definition for the [odPredicate] class.
 type IodPredicate interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-c.ivar
 type odPredicate struct {
 	objectivec.Object

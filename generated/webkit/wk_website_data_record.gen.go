@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,21 @@ type _WebsiteDataRecordClass struct {
 // An interface definition for the [WebsiteDataRecord] class.
 type IWebsiteDataRecord interface {
 	objectivec.IObject
+	// properties:
 	DataTypes() unsafe.Pointer
-	DisplayName() string
-	SetDisplayName(value string)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A record of the data that a particular website stores persistently.
 //
 // Use objects to discover the types of information that a website stores. Records identify the data types a website stores, but don’t identify the actual data. You might use this information to help the user manage website data. For example, Safari provides a way for users to view and remove website data. The domain name of each record contains the website’s domain name and suffix. You don’t create objects directly. WebKit creates these records and stores them in the web view’s data store. Use the of that data store to retrieve the current record objects. You also use that object to remove unwanted records.
+
+
+// A record of the data that a particular website stores persistently.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataRecord
 type WebsiteDataRecord struct {
 	objectivec.Object
@@ -83,30 +90,33 @@ func NewWebsiteDataRecord() WebsiteDataRecord {
 }
 
 
+
 // The types of data associated with the record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataRecord/dataTypes
 func (w_ WebsiteDataRecord) DataTypes() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("dataTypes"))
 	return rv
 }
 
+
 // The display name for the data record.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) DisplayName() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("displayName"))
+func (w_ WebsiteDataRecord) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 
-// SetDisplayName sets the value of the displayName property.
 // The display name for the data record.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) SetDisplayName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (w_ WebsiteDataRecord) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 

@@ -30,7 +30,7 @@ type _AXMathExpressionTableRowClass struct {
 type IAXMathExpressionTableRow interface {
 	IAXMathExpression
 	// properties:
-	Expressions() []AXMathExpression /* primitive/slice/pointer. */
+	Expressions() []IAXMathExpression
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewAXMathExpressionTableRow() AXMathExpressionTableRow {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableRow/init(expressions:)
-func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression /* primitive/slice/pointer. */) AXMathExpressionTableRow {
+func NewAXMathExpressionTableRowWithExpressions(expressions []IAXMathExpression) AXMathExpressionTableRow {
 	instance := getAXMathExpressionTableRowClass().Alloc()
 	rv := objc.Send[AXMathExpressionTableRow](instance.ID, objc.Sel("initWithExpressions:"), expressions)
 	rv.Autorelease()
@@ -95,7 +95,7 @@ func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression /
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableRow/expressions
-func (a_ AXMathExpressionTableRow) Expressions() []AXMathExpression /* primitive/slice/pointer. */ {
+func (a_ AXMathExpressionTableRow) Expressions() []IAXMathExpression {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv
 }

@@ -30,20 +30,24 @@ type _PHVideoRequestOptionsClass struct {
 // An interface definition for the [PHVideoRequestOptions] class.
 type IPHVideoRequestOptions interface {
 	objectivec.IObject
-	DeliveryMode() PHVideoRequestOptionsDeliveryMode
-	SetDeliveryMode(value PHVideoRequestOptionsDeliveryMode)
-	NetworkAccessAllowed() bool
-	SetNetworkAccessAllowed(value bool)
-	ProgressHandler() unsafe.Pointer
-	SetProgressHandler(value unsafe.Pointer)
-	Version() PHVideoRequestOptionsVersion
-	SetVersion(value IPHVideoRequestOptionsVersion)
+	// properties:
+	DeliveryMode() unsafe.Pointer
+	SetDeliveryMode(value unsafe.Pointer)
 	IsNetworkAccessAllowed() bool
 	SetIsNetworkAccessAllowed(value bool)
+	ProgressHandler() unsafe.Pointer
+	SetProgressHandler(value unsafe.Pointer)
+	Version() unsafe.Pointer
+	SetVersion(value unsafe.Pointer)
+	// methods:
 }
 
 // A set of options affecting the delivery of video asset data that you request from an image manager.
+
+
+// A set of options affecting the delivery of video asset data that you request from an image manager.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions
 type PHVideoRequestOptions struct {
 	objectivec.Object
@@ -88,80 +92,29 @@ func NewPHVideoRequestOptions() PHVideoRequestOptions {
 }
 
 
+
 // A mode specifying the requested video quality and delivery priority.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/deliveryMode
-func (p_ PHVideoRequestOptions) DeliveryMode() PHVideoRequestOptionsDeliveryMode {
-	rv := objc.Send[PHVideoRequestOptionsDeliveryMode](p_.ID, objc.Sel("deliveryMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/deliverymode
+func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deliveryMode"))
 	return rv
 }
 
 
-// SetDeliveryMode sets the value of the deliveryMode property.
 // A mode specifying the requested video quality and delivery priority.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/deliveryMode
-func (p_ PHVideoRequestOptions) SetDeliveryMode(value PHVideoRequestOptionsDeliveryMode) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/deliverymode
+func (p_ PHVideoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
 
-// A Boolean value that specifies whether Photos can download the requested video from iCloud.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/isNetworkAccessAllowed
-func (p_ PHVideoRequestOptions) NetworkAccessAllowed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("networkAccessAllowed"))
-	return rv
-}
-
-
-// SetNetworkAccessAllowed sets the value of the networkAccessAllowed property.
-// A Boolean value that specifies whether Photos can download the requested video from iCloud.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/isNetworkAccessAllowed
-func (p_ PHVideoRequestOptions) SetNetworkAccessAllowed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
-}
-
-// A block Photos calls periodically while downloading the video.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/progressHandler
-func (p_ PHVideoRequestOptions) ProgressHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
-	return rv
-}
-
-
-// SetProgressHandler sets the value of the progressHandler property.
-// A block Photos calls periodically while downloading the video.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/progressHandler
-func (p_ PHVideoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
-}
-
-// The version of the video to request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
-func (p_ PHVideoRequestOptions) Version() PHVideoRequestOptionsVersion {
-	rv := objc.Send[PHVideoRequestOptionsVersion](p_.ID, objc.Sel("version"))
-	return rv
-}
-
-
-// SetVersion sets the value of the version property.
-// The version of the video to request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
-func (p_ PHVideoRequestOptions) SetVersion(value IPHVideoRequestOptionsVersion) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
-}
 
 // A Boolean value that specifies whether Photos can download the requested video from iCloud.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
 func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isNetworkAccessAllowed"))
@@ -169,13 +122,50 @@ func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
 }
 
 
-// SetIsNetworkAccessAllowed sets the value of the isNetworkAccessAllowed property.
 // A Boolean value that specifies whether Photos can download the requested video from iCloud.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed
 func (p_ PHVideoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
+}
+
+
+// A block Photos calls periodically while downloading the video.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/progresshandler
+func (p_ PHVideoRequestOptions) ProgressHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
+	return rv
+}
+
+
+// A block Photos calls periodically while downloading the video.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/progresshandler
+func (p_ PHVideoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
+}
+
+
+// The version of the video to request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/version
+func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("version"))
+	return rv
+}
+
+
+// The version of the video to request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/photos/phvideorequestoptions/version
+func (p_ PHVideoRequestOptions) SetVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
 
 

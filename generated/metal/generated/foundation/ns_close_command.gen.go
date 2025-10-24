@@ -30,7 +30,8 @@ type _CloseCommandClass struct {
 type ICloseCommand interface {
 	IScriptCommand
 	// properties:
-	SaveOptions() SaveOptions
+	SaveOptions() SaveOptions /* not a class type */
+	SetSaveOptions(value SaveOptions /* not a class type */)
 	// methods:
 }
 
@@ -92,10 +93,19 @@ func NewCloseCommand() CloseCommand {
 // Returns a constant indicating how to deal with closing any modified documents.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand/saveOptions
-func (c_ CloseCommand) SaveOptions() SaveOptions {
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclosecommand/saveoptions
+func (c_ CloseCommand) SaveOptions() SaveOptions /* not a class type */ {
 	rv := objc.Send[SaveOptions](c_.ID, objc.Sel("saveOptions"))
 	return rv
+}
+
+
+// Returns a constant indicating how to deal with closing any modified documents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclosecommand/saveoptions
+func (c_ CloseCommand) SetSaveOptions(value SaveOptions /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSaveOptions:"), value)
 }
 
 

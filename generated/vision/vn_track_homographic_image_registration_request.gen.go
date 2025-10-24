@@ -29,13 +29,20 @@ type _TrackHomographicImageRegistrationRequestClass struct {
 // An interface definition for the [TrackHomographicImageRegistrationRequest] class.
 type ITrackHomographicImageRegistrationRequest interface {
 	IStatefulRequest
-	Results() []ImageHomographicAlignmentObservation
+	// properties:
+	Results() IVNImageHomographicAlignmentObservation
+	SetResults(value IVNImageHomographicAlignmentObservation)
+	// methods:
 }
 
 // An image-analysis request, as a stateful request you track over time, that determines the perspective warp matrix necessary to align the content of two images.
 //
 // This request is similar to . However, as a , it automatically computes the registration against the previous frame.
+
+
+// An image-analysis request, as a stateful request you track over time, that determines the perspective warp matrix necessary to align the content of two images.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackHomographicImageRegistrationRequest
 type TrackHomographicImageRegistrationRequest struct {
 	StatefulRequest
@@ -82,12 +89,23 @@ func NewTrackHomographicImageRegistrationRequest() TrackHomographicImageRegistra
 }
 
 
+
 // The observed homographic image alignment request.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTrackHomographicImageRegistrationRequest/results
-func (t_ TrackHomographicImageRegistrationRequest) Results() []ImageHomographicAlignmentObservation {
-	rv := objc.Send[[]ImageHomographicAlignmentObservation](t_.ID, objc.Sel("results"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackhomographicimageregistrationrequest/results
+func (t_ TrackHomographicImageRegistrationRequest) Results() IVNImageHomographicAlignmentObservation {
+	rv := objc.Send[ImageHomographicAlignmentObservation](t_.ID, objc.Sel("results"))
 	return rv
+}
+
+
+// The observed homographic image alignment request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vntrackhomographicimageregistrationrequest/results
+func (t_ TrackHomographicImageRegistrationRequest) SetResults(value IVNImageHomographicAlignmentObservation) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)
 }
 
 

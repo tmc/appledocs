@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,7 +118,7 @@ func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
 func (d_ DraggingImageComponent) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[Rect](d_.ID, objc.Sel("frame"))
+	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("frame"))
 	return rv
 }
 

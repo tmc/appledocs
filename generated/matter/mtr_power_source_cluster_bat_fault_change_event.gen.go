@@ -30,13 +30,17 @@ type _MTRPowerSourceClusterBatFaultChangeEventClass struct {
 // An interface definition for the [MTRPowerSourceClusterBatFaultChangeEvent] class.
 type IMTRPowerSourceClusterBatFaultChangeEvent interface {
 	objectivec.IObject
+	// properties:
 	Current() unsafe.Pointer
 	SetCurrent(value unsafe.Pointer)
 	Previous() unsafe.Pointer
 	SetPrevious(value unsafe.Pointer)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatFaultChangeEvent
 type MTRPowerSourceClusterBatFaultChangeEvent struct {
 	objectivec.Object
@@ -79,7 +83,8 @@ func NewMTRPowerSourceClusterBatFaultChangeEvent() MTRPowerSourceClusterBatFault
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangeevent/current
 func (m_ MTRPowerSourceClusterBatFaultChangeEvent) Current() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
@@ -87,14 +92,14 @@ func (m_ MTRPowerSourceClusterBatFaultChangeEvent) Current() unsafe.Pointer {
 }
 
 
-// SetCurrent sets the value of the current property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangeevent/current
 func (m_ MTRPowerSourceClusterBatFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangeevent/previous
 func (m_ MTRPowerSourceClusterBatFaultChangeEvent) Previous() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
@@ -102,8 +107,7 @@ func (m_ MTRPowerSourceClusterBatFaultChangeEvent) Previous() unsafe.Pointer {
 }
 
 
-// SetPrevious sets the value of the previous property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatfaultchangeevent/previous
 func (m_ MTRPowerSourceClusterBatFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)

@@ -34,7 +34,6 @@ type IHKLiveWorkoutDataSource interface {
 	TypesToCollect() IHKQuantityType
 	SetTypesToCollect(value IHKQuantityType)
 	// methods:
-	DisableCollectionForType(quantityType IHKQuantityType)
 }
 
 // A data source that automatically provides live data from an active workout session.
@@ -88,15 +87,6 @@ func NewHKLiveWorkoutDataSource() HKLiveWorkoutDataSource {
 
 
 
-// Stops automatically calculating statistics for the quantity type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutDataSource/disableCollection(for:)
-func (h_ HKLiveWorkoutDataSource) DisableCollectionForType(quantityType IHKQuantityType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("disableCollectionForType:"), quantityType)
-}
-
-
 // The quantity type samples that the data source automatically sends to the workout builder.
 //
 // [Full Topic]
@@ -114,6 +104,5 @@ func (h_ HKLiveWorkoutDataSource) TypesToCollect() IHKQuantityType {
 func (h_ HKLiveWorkoutDataSource) SetTypesToCollect(value IHKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setTypesToCollect:"), value)
 }
-
 
 

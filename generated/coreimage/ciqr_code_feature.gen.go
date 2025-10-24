@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [QRCodeFeature] class.
@@ -31,14 +32,14 @@ type _QRCodeFeatureClass struct {
 type IQRCodeFeature interface {
 	IFeature
 	// properties:
-	BottomLeft() coregraphics.CGPoint
-	BottomRight() coregraphics.CGPoint
-	Bounds() coregraphics.CGRect
-	MessageString() string /* primitive/slice/pointer. */
+	BottomLeft() objc.IObject /* cross-framework: Point */
+	BottomRight() objc.IObject /* cross-framework: Point */
+	Bounds() objc.IObject /* cross-framework: Rect */
+	MessageString() objc.IObject /* cross-framework: NSString */
 	SymbolDescriptor() ICIQRCodeDescriptor
-	TopLeft() coregraphics.CGPoint
-	TopRight() coregraphics.CGPoint
-	CIDetectorTypeQRCode() string /* primitive/slice/pointer. */
+	TopLeft() objc.IObject /* cross-framework: Point */
+	TopRight() objc.IObject /* cross-framework: Point */
+	CIDetectorTypeQRCode() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -101,8 +102,8 @@ func NewQRCodeFeature() QRCodeFeature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomLeft-swift.property
-func (q_ QRCodeFeature) BottomLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("bottomLeft"))
+func (q_ QRCodeFeature) BottomLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](q_.ID, objc.Sel("bottomLeft"))
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (q_ QRCodeFeature) BottomLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bottomRight-swift.property
-func (q_ QRCodeFeature) BottomRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("bottomRight"))
+func (q_ QRCodeFeature) BottomRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](q_.ID, objc.Sel("bottomRight"))
 	return rv
 }
 
@@ -121,8 +122,8 @@ func (q_ QRCodeFeature) BottomRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/bounds-swift.property
-func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](q_.ID, objc.Sel("bounds"))
+func (q_ QRCodeFeature) Bounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](q_.ID, objc.Sel("bounds"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
-func (q_ QRCodeFeature) MessageString() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
+func (q_ QRCodeFeature) MessageString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](q_.ID, objc.Sel("messageString"))
 	return rv
 }
 
@@ -151,8 +152,8 @@ func (q_ QRCodeFeature) SymbolDescriptor() ICIQRCodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topLeft-swift.property
-func (q_ QRCodeFeature) TopLeft() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("topLeft"))
+func (q_ QRCodeFeature) TopLeft() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](q_.ID, objc.Sel("topLeft"))
 	return rv
 }
 
@@ -161,8 +162,8 @@ func (q_ QRCodeFeature) TopLeft() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/topRight-swift.property
-func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](q_.ID, objc.Sel("topRight"))
+func (q_ QRCodeFeature) TopRight() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](q_.ID, objc.Sel("topRight"))
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
-func (q_ QRCodeFeature) CIDetectorTypeQRCode() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
+func (q_ QRCodeFeature) CIDetectorTypeQRCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv
 }
 

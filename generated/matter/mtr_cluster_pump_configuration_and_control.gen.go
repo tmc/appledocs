@@ -29,9 +29,13 @@ type _MTRClusterPumpConfigurationAndControlClass struct {
 // An interface definition for the [MTRClusterPumpConfigurationAndControl] class.
 type IMTRClusterPumpConfigurationAndControl interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPumpConfigurationAndControl
 type MTRClusterPumpConfigurationAndControl struct {
 	MTRGenericCluster

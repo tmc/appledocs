@@ -30,11 +30,16 @@ type _QCCompositionPickerPanelClass struct {
 // An interface definition for the [QCCompositionPickerPanel] class.
 type IQCCompositionPickerPanel interface {
 	appkit.IPanel
-	CompositionPickerView() QCCompositionPickerView
+	// properties:
+	// methods:
 }
 
 // The class represents a utility window that allows users to browse compositions that are in the Quartz Composer composition repository and, if supported, preview the composition. The class cannot be subclassed.
+
+
+// The class represents a utility window that allows users to browse compositions that are in the Quartz Composer composition repository and, if supported, preview the composition. The class cannot be subclassed.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerPanel
 type QCCompositionPickerPanel struct {
 	appkit.Panel
@@ -80,14 +85,6 @@ func NewQCCompositionPickerPanel() QCCompositionPickerPanel {
 	return getQCCompositionPickerPanelClass().New()
 }
 
-
-// Returns the composition picker view used by the panel so that it can be configured.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerPanel/compositionPickerView()
-func (q_ QCCompositionPickerPanel) CompositionPickerView() QCCompositionPickerView {
-	rv := objc.Send[QCCompositionPickerView](q_.ID, objc.Sel("compositionPickerView"))
-	return rv
-}
 
 
 

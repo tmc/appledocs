@@ -29,9 +29,13 @@ type _PadGradientNodeClass struct {
 // An interface definition for the [PadGradientNode] class.
 type IPadGradientNode interface {
 	IGradientFilterNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradientNode
 type PadGradientNode struct {
 	GradientFilterNode
@@ -76,9 +80,10 @@ func NewPadGradientNode() PadGradientNode {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradientNode/init(sourceGradient:sourceImage:gradientState:)
-func NewPadGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) PadGradientNode {
+func NewPadGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState GradientStateNode /* not a class type */) PadGradientNode {
 	instance := getPadGradientNodeClass().Alloc()
 	rv := objc.Send[PadGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()

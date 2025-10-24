@@ -31,15 +31,19 @@ type _MTRGroupsClusterGetGroupMembershipResponseParamsClass struct {
 // An interface definition for the [MTRGroupsClusterGetGroupMembershipResponseParams] class.
 type IMTRGroupsClusterGetGroupMembershipResponseParams interface {
 	objectivec.IObject
-	Capacity() foundation.Number
-	SetCapacity(value foundation.INumber)
+	// properties:
+	Capacity() objc.IObject /* cross-framework: NSNumber */
+	SetCapacity(value objc.IObject /* cross-framework: NSNumber */)
 	GroupList() unsafe.Pointer
 	SetGroupList(value unsafe.Pointer)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterGetGroupMembershipResponseParams
 type MTRGroupsClusterGetGroupMembershipResponseParams struct {
 	objectivec.Object
@@ -82,22 +86,23 @@ func NewMTRGroupsClusterGetGroupMembershipResponseParams() MTRGroupsClusterGetGr
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/capacity
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) Capacity() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("capacity"))
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) Capacity() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("capacity"))
 	return rv
 }
 
 
-// SetCapacity sets the value of the capacity property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/capacity
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetCapacity(value foundation.INumber) {
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetCapacity(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCapacity:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) GroupList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupList"))
@@ -105,25 +110,24 @@ func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) GroupList() unsafe.Po
 }
 
 
-// SetGroupList sets the value of the groupList property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetGroupList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupList:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

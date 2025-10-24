@@ -32,9 +32,9 @@ type INotificationQueue interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint /* primitive/slice/pointer. */)
+	DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint)
 	EnqueueNotificationPostingStyle(notification INotification, postingStyle PostingStyle)
-	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask NotificationCoalescing, modes []string /* primitive/slice/pointer. */)
+	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask NotificationCoalescing, modes []string)
 }
 
 // A notification center buffer.
@@ -116,7 +116,7 @@ func (nc _NotificationQueueClass) DefaultQueue() NotificationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/dequeueNotifications(matching:coalesceMask:)
-func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint /* primitive/slice/pointer. */) {
+func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("dequeueNotificationsMatching:coalesceMask:"), notification, coalesceMask)
 }
 
@@ -134,7 +134,7 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)
-func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask NotificationCoalescing, modes []string /* primitive/slice/pointer. */) {
+func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle PostingStyle, coalesceMask NotificationCoalescing, modes []string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:coalesceMask:forModes:"), notification, postingStyle, coalesceMask, modes)
 }
 

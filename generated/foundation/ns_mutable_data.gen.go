@@ -30,19 +30,27 @@ type _MutableDataClass struct {
 type IMutableData interface {
 	IData
 	// properties:
-	NSCompressionErrorMaximum() int /* primitive/slice/pointer. */
-	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */)
-	NSCompressionErrorMinimum() int /* primitive/slice/pointer. */
-	SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */)
-	NSCompressionFailedError() int /* primitive/slice/pointer. */
-	SetNSCompressionFailedError(value int /* primitive/slice/pointer. */)
-	NSDecompressionFailedError() int /* primitive/slice/pointer. */
-	SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */)
-	Length() int /* primitive/slice/pointer. */
-	SetLength(value int /* primitive/slice/pointer. */)
+	Length() uint
+	SetLength(value uint)
 	MutableBytes() unsafe.Pointer
-	SetMutableBytes(value unsafe.Pointer)
+	NSCompressionErrorMaximum() int
+	SetNSCompressionErrorMaximum(value int)
+	NSCompressionErrorMinimum() int
+	SetNSCompressionErrorMinimum(value int)
+	NSCompressionFailedError() int
+	SetNSCompressionFailedError(value int)
+	NSDecompressionFailedError() int
+	SetNSDecompressionFailedError(value int)
 	// methods:
+	AppendData(other IData)
+	AppendBytesLength(bytes unsafe.Pointer, length uint)
+	CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool
+	DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool
+	IncreaseLengthBy(extraLength uint)
+	ReplaceBytesInRangeWithBytes(range_ objc.IObject /* cross-framework: Range */, bytes unsafe.Pointer)
+	ReplaceBytesInRangeWithBytesLength(range_ objc.IObject /* cross-framework: Range */, replacementBytes unsafe.Pointer, replacementLength uint)
+	ResetBytesInRange(range_ objc.IObject /* cross-framework: Range */)
+	SetData(data IData)
 }
 
 // An object representing a dynamic byte buffer in memory.
@@ -100,11 +108,168 @@ func NewMutableData() MutableData {
 
 
 
+// Returns an initialized mutable data object capable of holding the specified number of bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/init(capacity:)
+func NewMutableDataWithCapacity(capacity uint) MutableData {
+	instance := getMutableDataClass().Alloc()
+	rv := objc.Send[MutableData](instance.ID, objc.Sel("initWithCapacity:"), capacity)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns a mutable data object containing a given number of zeroed bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/init(length:)
+func NewMutableDataWithLength(length uint) MutableData {
+	instance := getMutableDataClass().Alloc()
+	rv := objc.Send[MutableData](instance.ID, objc.Sel("initWithLength:"), length)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a mutable data object capable of holding the specified number of bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithCapacity:
+func (mc _MutableDataClass) DataWithCapacity(aNumItems uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithCapacity:"), aNumItems)
+	return rv
+}
+
+
+// Creates and returns an mutable data object containing a given number of zeroed bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithLength:
+func (mc _MutableDataClass) DataWithLength(length uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithLength:"), length)
+	return rv
+}
+
+
+// Appends the content of another data object to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/append(_:)
+func (m_ MutableData) AppendData(other IData) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendData:"), other)
+}
+
+
+// Appends to the receiver a given number of bytes from a given buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/append(_:length:)
+func (m_ MutableData) AppendBytesLength(bytes unsafe.Pointer, length uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendBytes:length:"), bytes, length)
+}
+
+
+// Compresses the data object’s bytes using an algorithm that you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/compress(using:)
+func (m_ MutableData) CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("compressUsingAlgorithm:error:"), algorithm, error_)
+	return rv
+}
+
+
+// Decompresses the data object’s bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/decompress(using:)
+func (m_ MutableData) DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("decompressUsingAlgorithm:error:"), algorithm, error_)
+	return rv
+}
+
+
+// Increases the length of the receiver by a given number of bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/increaseLength(by:)
+func (m_ MutableData) IncreaseLengthBy(extraLength uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("increaseLengthBy:"), extraLength)
+}
+
+
+// Replaces with a given set of bytes a given range within the contents of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:)
+func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ objc.IObject /* cross-framework: Range */, bytes unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:"), range_, bytes)
+}
+
+
+// Replaces with a given set of bytes a given range within the contents of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:length:)
+func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ objc.IObject /* cross-framework: Range */, replacementBytes unsafe.Pointer, replacementLength uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:length:"), range_, replacementBytes, replacementLength)
+}
+
+
+// Replaces with zeroes the contents of the receiver in a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/resetBytes(in:)
+func (m_ MutableData) ResetBytesInRange(range_ objc.IObject /* cross-framework: Range */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("resetBytesInRange:"), range_)
+}
+
+
+// Replaces the entire contents of the receiver with the contents of another data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/setData(_:)
+func (m_ MutableData) SetData(data IData) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), data)
+}
+
+
+// The number of bytes contained in the mutable data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/length
+func (m_ MutableData) Length() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// The number of bytes contained in the mutable data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/length
+func (m_ MutableData) SetLength(value uint) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
+}
+
+
+// A pointer to the data contained by the mutable data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/mutableBytes
+func (m_ MutableData) MutableBytes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableBytes"))
+	return rv
+}
+
+
 // The end of the range of error codes reserved for compression errors.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer. */ {
+func (m_ MutableData) NSCompressionErrorMaximum() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMaximum"))
 	return rv
 }
@@ -114,7 +279,7 @@ func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */) {
+func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
@@ -123,7 +288,7 @@ func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer. */ {
+func (m_ MutableData) NSCompressionErrorMinimum() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
 	return rv
 }
@@ -133,7 +298,7 @@ func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */) {
+func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
@@ -142,7 +307,7 @@ func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer. */ {
+func (m_ MutableData) NSCompressionFailedError() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionFailedError"))
 	return rv
 }
@@ -152,7 +317,7 @@ func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/pointer. */) {
+func (m_ MutableData) SetNSCompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
 
@@ -161,7 +326,7 @@ func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointer. */ {
+func (m_ MutableData) NSDecompressionFailedError() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
 }
@@ -171,47 +336,8 @@ func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */) {
+func (m_ MutableData) SetNSDecompressionFailedError(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
-
-
-// The number of bytes contained in the mutable data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) Length() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](m_.ID, objc.Sel("length"))
-	return rv
-}
-
-
-// The number of bytes contained in the mutable data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) SetLength(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
-}
-
-
-// A pointer to the data contained by the mutable data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-func (m_ MutableData) MutableBytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableBytes"))
-	return rv
-}
-
-
-// A pointer to the data contained by the mutable data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/mutablebytes
-func (m_ MutableData) SetMutableBytes(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableBytes:"), value)
-}
-
 
 

@@ -2,12 +2,12 @@
 
 // Package soundanalysis provides Go bindings for the SoundAnalysis framework.
 //
-// Classify various sounds by analyzing audio files or streams. [Full Topic]
+// Classify various sounds by analyzing audio files or streams.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SoundAnalysis without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis
+// See: https://developer.apple.com/documentation/SoundAnalysis
 package soundanalysis
 
 import (

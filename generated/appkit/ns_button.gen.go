@@ -43,44 +43,44 @@ type IButton interface {
 	SetBorderShape(value ControlBorderShape /* not a class type */)
 	ContentTintColor() IColor
 	SetContentTintColor(value IColor)
-	Bordered() bool /* primitive/slice/pointer. */
-	SetBordered(value bool /* primitive/slice/pointer. */)
-	Transparent() bool /* primitive/slice/pointer. */
-	SetTransparent(value bool /* primitive/slice/pointer. */)
+	Bordered() bool
+	SetBordered(value bool)
+	Transparent() bool
+	SetTransparent(value bool)
 	KeyEquivalentModifierMask() EventModifierFlags
 	SetKeyEquivalentModifierMask(value EventModifierFlags)
 	Sound() ISound
 	SetSound(value ISound)
-	AllowsMixedState() bool /* primitive/slice/pointer. */
-	SetAllowsMixedState(value bool /* primitive/slice/pointer. */)
+	AllowsMixedState() bool
+	SetAllowsMixedState(value bool)
 	AlternateImage() IImage
 	SetAlternateImage(value IImage)
 	AlternateTitle() objc.IObject /* cross-framework: NSString */
 	SetAlternateTitle(value objc.IObject /* cross-framework: NSString */)
 	BezelStyle() unsafe.Pointer
 	SetBezelStyle(value unsafe.Pointer)
-	HasDestructiveAction() bool /* primitive/slice/pointer. */
-	SetHasDestructiveAction(value bool /* primitive/slice/pointer. */)
+	HasDestructiveAction() bool
+	SetHasDestructiveAction(value bool)
 	Image() IImage
 	SetImage(value IImage)
-	ImageHugsTitle() bool /* primitive/slice/pointer. */
-	SetImageHugsTitle(value bool /* primitive/slice/pointer. */)
+	ImageHugsTitle() bool
+	SetImageHugsTitle(value bool)
 	ImagePosition() unsafe.Pointer
 	SetImagePosition(value unsafe.Pointer)
 	ImageScaling() ImageScaling
 	SetImageScaling(value ImageScaling)
-	IsBordered() bool /* primitive/slice/pointer. */
-	SetIsBordered(value bool /* primitive/slice/pointer. */)
-	IsSpringLoaded() bool /* primitive/slice/pointer. */
-	SetIsSpringLoaded(value bool /* primitive/slice/pointer. */)
-	IsTransparent() bool /* primitive/slice/pointer. */
-	SetIsTransparent(value bool /* primitive/slice/pointer. */)
+	IsBordered() bool
+	SetIsBordered(value bool)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
+	IsTransparent() bool
+	SetIsTransparent(value bool)
 	KeyEquivalent() objc.IObject /* cross-framework: NSString */
 	SetKeyEquivalent(value objc.IObject /* cross-framework: NSString */)
-	MaxAcceleratorLevel() int /* primitive/slice/pointer. */
-	SetMaxAcceleratorLevel(value int /* primitive/slice/pointer. */)
-	ShowsBorderOnlyWhileMouseInside() bool /* primitive/slice/pointer. */
-	SetShowsBorderOnlyWhileMouseInside(value bool /* primitive/slice/pointer. */)
+	MaxAcceleratorLevel() int
+	SetMaxAcceleratorLevel(value int)
+	ShowsBorderOnlyWhileMouseInside() bool
+	SetShowsBorderOnlyWhileMouseInside(value bool)
 	State() unsafe.Pointer
 	SetState(value unsafe.Pointer)
 	SymbolConfiguration() IImageSymbolConfiguration
@@ -90,9 +90,9 @@ type IButton interface {
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions /* primitive/slice/pointer. */)
+	CompressWithPrioritizedCompressionOptions(prioritizedOptions []objc.IObject /* cross-framework: UserInterfaceCompressionOptions */)
 	SetButtonType(type_ ButtonType /* not a class type */)
-	SetPeriodicDelayInterval(delay float32 /* primitive/slice/pointer. */, interval float32 /* primitive/slice/pointer. */)
+	SetPeriodicDelayInterval(delay float32, interval float32)
 }
 
 // A control that defines an area on the screen that a user clicks to trigger an action.
@@ -154,7 +154,7 @@ func NewButton() Button {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-func NewButtonCheckboxWithTitleTargetAction(title objc.IObject /* cross-framework NSString */, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonCheckboxWithTitleTargetAction(title objc.IObject /* cross-framework: NSString */, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), title, target, action)
 	return rv
 }
@@ -164,7 +164,7 @@ func NewButtonCheckboxWithTitleTargetAction(title objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-func NewButtonWithTitleImageTargetAction(title objc.IObject /* cross-framework NSString */, image IImage, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonWithTitleImageTargetAction(title objc.IObject /* cross-framework: NSString */, image IImage, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), title, image, target, action)
 	return rv
 }
@@ -174,7 +174,7 @@ func NewButtonWithTitleImageTargetAction(title objc.IObject /* cross-framework N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func NewButtonWithTitleTargetAction(title objc.IObject /* cross-framework NSString */, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonWithTitleTargetAction(title objc.IObject /* cross-framework: NSString */, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), title, target, action)
 	return rv
 }
@@ -185,7 +185,7 @@ func NewButtonWithTitleTargetAction(title objc.IObject /* cross-framework NSStri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-func (bc _ButtonClass) CheckboxWithTitleTargetAction(title objc.IObject /* cross-framework NSString */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) CheckboxWithTitleTargetAction(title objc.IObject /* cross-framework: NSString */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("checkboxWithTitle:target:action:"), title, target, action)
 	return rv
 }
@@ -195,7 +195,7 @@ func (bc _ButtonClass) CheckboxWithTitleTargetAction(title objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title objc.IObject /* cross-framework NSString */, image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title objc.IObject /* cross-framework: NSString */, image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:image:target:action:"), title, image, target, action)
 	return rv
 }
@@ -205,7 +205,7 @@ func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func (bc _ButtonClass) ButtonWithTitleTargetAction(title objc.IObject /* cross-framework NSString */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) ButtonWithTitleTargetAction(title objc.IObject /* cross-framework: NSString */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:target:action:"), title, target, action)
 	return rv
 }
@@ -215,7 +215,7 @@ func (bc _ButtonClass) ButtonWithTitleTargetAction(title objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)
-func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions /* primitive/slice/pointer. */) {
+func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []objc.IObject /* cross-framework: UserInterfaceCompressionOptions */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("compressWithPrioritizedCompressionOptions:"), prioritizedOptions)
 }
 
@@ -233,7 +233,7 @@ func (b_ Button) SetButtonType(type_ ButtonType /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
-func (b_ Button) SetPeriodicDelayInterval(delay float32 /* primitive/slice/pointer. */, interval float32 /* primitive/slice/pointer. */) {
+func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
 
@@ -253,7 +253,7 @@ func (b_ Button) ActiveCompressionOptions() objc.IObject /* cross-framework: Use
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
 func (b_ Button) AttributedAlternateTitle() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
 	return rv
 }
 
@@ -272,7 +272,7 @@ func (b_ Button) SetAttributedAlternateTitle(value objc.IObject /* cross-framewo
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
 func (b_ Button) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedTitle"))
+	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -343,7 +343,7 @@ func (b_ Button) SetContentTintColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-func (b_ Button) Bordered() bool /* primitive/slice/pointer. */ {
+func (b_ Button) Bordered() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -353,7 +353,7 @@ func (b_ Button) Bordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-func (b_ Button) SetBordered(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetBordered(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -362,7 +362,7 @@ func (b_ Button) SetBordered(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-func (b_ Button) Transparent() bool /* primitive/slice/pointer. */ {
+func (b_ Button) Transparent() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("transparent"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (b_ Button) Transparent() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-func (b_ Button) SetTransparent(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetTransparent(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTransparent:"), value)
 }
 
@@ -419,7 +419,7 @@ func (b_ Button) SetSound(value ISound) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
-func (b_ Button) AllowsMixedState() bool /* primitive/slice/pointer. */ {
+func (b_ Button) AllowsMixedState() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsMixedState"))
 	return rv
 }
@@ -429,7 +429,7 @@ func (b_ Button) AllowsMixedState() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
-func (b_ Button) SetAllowsMixedState(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetAllowsMixedState(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsMixedState:"), value)
 }
 
@@ -495,7 +495,7 @@ func (b_ Button) SetBezelStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
-func (b_ Button) HasDestructiveAction() bool /* primitive/slice/pointer. */ {
+func (b_ Button) HasDestructiveAction() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("hasDestructiveAction"))
 	return rv
 }
@@ -505,7 +505,7 @@ func (b_ Button) HasDestructiveAction() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
-func (b_ Button) SetHasDestructiveAction(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetHasDestructiveAction(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setHasDestructiveAction:"), value)
 }
 
@@ -533,7 +533,7 @@ func (b_ Button) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
-func (b_ Button) ImageHugsTitle() bool /* primitive/slice/pointer. */ {
+func (b_ Button) ImageHugsTitle() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("imageHugsTitle"))
 	return rv
 }
@@ -543,7 +543,7 @@ func (b_ Button) ImageHugsTitle() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
-func (b_ Button) SetImageHugsTitle(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetImageHugsTitle(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImageHugsTitle:"), value)
 }
 
@@ -590,7 +590,7 @@ func (b_ Button) SetImageScaling(value ImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-func (b_ Button) IsBordered() bool /* primitive/slice/pointer. */ {
+func (b_ Button) IsBordered() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -600,7 +600,7 @@ func (b_ Button) IsBordered() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-func (b_ Button) SetIsBordered(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetIsBordered(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -609,7 +609,7 @@ func (b_ Button) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-func (b_ Button) IsSpringLoaded() bool /* primitive/slice/pointer. */ {
+func (b_ Button) IsSpringLoaded() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSpringLoaded"))
 	return rv
 }
@@ -619,7 +619,7 @@ func (b_ Button) IsSpringLoaded() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-func (b_ Button) SetIsSpringLoaded(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetIsSpringLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
 
@@ -628,7 +628,7 @@ func (b_ Button) SetIsSpringLoaded(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-func (b_ Button) IsTransparent() bool /* primitive/slice/pointer. */ {
+func (b_ Button) IsTransparent() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
 	return rv
 }
@@ -638,7 +638,7 @@ func (b_ Button) IsTransparent() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-func (b_ Button) SetIsTransparent(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetIsTransparent(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
 }
 
@@ -666,7 +666,7 @@ func (b_ Button) SetKeyEquivalent(value objc.IObject /* cross-framework: NSStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
-func (b_ Button) MaxAcceleratorLevel() int /* primitive/slice/pointer. */ {
+func (b_ Button) MaxAcceleratorLevel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("maxAcceleratorLevel"))
 	return rv
 }
@@ -676,7 +676,7 @@ func (b_ Button) MaxAcceleratorLevel() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
-func (b_ Button) SetMaxAcceleratorLevel(value int /* primitive/slice/pointer. */) {
+func (b_ Button) SetMaxAcceleratorLevel(value int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMaxAcceleratorLevel:"), value)
 }
 
@@ -685,7 +685,7 @@ func (b_ Button) SetMaxAcceleratorLevel(value int /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/showsborderonlywhilemouseinside
-func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool /* primitive/slice/pointer. */ {
+func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("showsBorderOnlyWhileMouseInside"))
 	return rv
 }
@@ -695,7 +695,7 @@ func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/showsborderonlywhilemouseinside
-func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool /* primitive/slice/pointer. */) {
+func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setShowsBorderOnlyWhileMouseInside:"), value)
 }
 

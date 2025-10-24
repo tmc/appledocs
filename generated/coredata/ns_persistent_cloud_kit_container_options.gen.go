@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _PersistentCloudKitContainerOptionsClass struct {
 type IPersistentCloudKitContainerOptions interface {
 	objectivec.IObject
 	// properties:
-	ContainerIdentifier() string /* primitive/slice/pointer. */
+	ContainerIdentifier() objc.IObject /* cross-framework: NSString */
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
 	// methods:
@@ -94,9 +95,9 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
-func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string /* primitive/slice/pointer. */) PersistentCloudKitContainerOptions {
+func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier objc.IObject /* cross-framework: NSString */) PersistentCloudKitContainerOptions {
 	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
-	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
+	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), containerIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -107,8 +108,8 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
-func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
+func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

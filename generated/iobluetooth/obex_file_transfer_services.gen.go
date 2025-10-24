@@ -37,21 +37,21 @@ type IOBEXFileTransferServices interface {
 	// methods:
 	Abort() OBEXError /* typedef */
 	ChangeCurrentFolderBackward() OBEXError /* typedef */
-	ChangeCurrentFolderForwardToPath(inDirName string /* primitive/slice/pointer. */) OBEXError /* typedef */
+	ChangeCurrentFolderForwardToPath(inDirName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
 	ChangeCurrentFolderToRoot() OBEXError /* typedef */
 	ConnectToFTPService() OBEXError /* typedef */
 	ConnectToObjectPushService() OBEXError /* typedef */
-	CopyRemoteFileToLocalPath(inRemoteFileName string /* primitive/slice/pointer. */, inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */
-	CreateFolder(inDirName string /* primitive/slice/pointer. */) OBEXError /* typedef */
+	CopyRemoteFileToLocalPath(inRemoteFileName objc.IObject /* cross-framework: NSString */, inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
+	CreateFolder(inDirName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
 	CurrentPath() objc.IObject /* cross-framework: String */
 	Disconnect() OBEXError /* typedef */
-	GetDefaultVCard(inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */
-	IsBusy() bool /* primitive/slice/pointer. */
-	IsConnected() bool /* primitive/slice/pointer. */
-	RemoveItem(inItemName string /* primitive/slice/pointer. */) OBEXError /* typedef */
+	GetDefaultVCard(inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
+	IsBusy() bool
+	IsConnected() bool
+	RemoveItem(inItemName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
 	RetrieveFolderListing() OBEXError /* typedef */
-	SendDataTypeName(inData foundation.objc.IObject /* cross-framework NSData */, inType string /* primitive/slice/pointer. */, inName string /* primitive/slice/pointer. */) OBEXError /* typedef */
-	SendFile(inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */
+	SendDataTypeName(inData objc.IObject /* cross-framework: NSData */, inType objc.IObject /* cross-framework: NSString */, inName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
+	SendFile(inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */
 }
 
 // Implements advanced OBEX operations in addition to simple PUT and GET.
@@ -111,7 +111,7 @@ func NewOBEXFileTransferServices() OBEXFileTransferServices {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/init(obexSession:)
-func NewOBEXFileTransferServicesWithOBEXSession(inOBEXSession BluetoothOBEXSession /* already interface */) OBEXFileTransferServices {
+func NewOBEXFileTransferServicesWithOBEXSession(inOBEXSession IOBluetoothOBEXSession) OBEXFileTransferServices {
 	instance := getOBEXFileTransferServicesClass().Alloc()
 	rv := objc.Send[OBEXFileTransferServices](instance.ID, objc.Sel("initWithOBEXSession:"), inOBEXSession)
 	rv.Autorelease()
@@ -124,7 +124,7 @@ func NewOBEXFileTransferServicesWithOBEXSession(inOBEXSession BluetoothOBEXSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/withOBEXSession(_:)
-func (oc _OBEXFileTransferServicesClass) WithOBEXSession(inOBEXSession BluetoothOBEXSession /* already interface */) unsafe.Pointer {
+func (oc _OBEXFileTransferServicesClass) WithOBEXSession(inOBEXSession IOBluetoothOBEXSession) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("withOBEXSession:"), inOBEXSession)
 	return rv
 }
@@ -154,8 +154,8 @@ func (o_ OBEXFileTransferServices) ChangeCurrentFolderBackward() OBEXError /* ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/changeCurrentFolderForward(toPath:)
-func (o_ OBEXFileTransferServices) ChangeCurrentFolderForwardToPath(inDirName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderForwardToPath:"), objc.String(inDirName))
+func (o_ OBEXFileTransferServices) ChangeCurrentFolderForwardToPath(inDirName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("changeCurrentFolderForwardToPath:"), inDirName)
 	return rv
 }
 
@@ -194,8 +194,8 @@ func (o_ OBEXFileTransferServices) ConnectToObjectPushService() OBEXError /* typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/copyRemoteFile(_:toLocalPath:)
-func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName string /* primitive/slice/pointer. */, inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("copyRemoteFile:toLocalPath:"), objc.String(inRemoteFileName), objc.String(inLocalPathAndName))
+func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName objc.IObject /* cross-framework: NSString */, inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("copyRemoteFile:toLocalPath:"), inRemoteFileName, inLocalPathAndName)
 	return rv
 }
 
@@ -204,8 +204,8 @@ func (o_ OBEXFileTransferServices) CopyRemoteFileToLocalPath(inRemoteFileName st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/createFolder(_:)
-func (o_ OBEXFileTransferServices) CreateFolder(inDirName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("createFolder:"), objc.String(inDirName))
+func (o_ OBEXFileTransferServices) CreateFolder(inDirName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("createFolder:"), inDirName)
 	return rv
 }
 
@@ -215,7 +215,7 @@ func (o_ OBEXFileTransferServices) CreateFolder(inDirName string /* primitive/sl
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/currentPath()
 func (o_ OBEXFileTransferServices) CurrentPath() objc.IObject /* cross-framework: String */ {
-	rv := objc.Send[String](o_.ID, objc.Sel("currentPath"))
+	rv := objc.Send[foundation.String](o_.ID, objc.Sel("currentPath"))
 	return rv
 }
 
@@ -234,8 +234,8 @@ func (o_ OBEXFileTransferServices) Disconnect() OBEXError /* typedef */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/getDefaultVCard(_:)
-func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("getDefaultVCard:"), objc.String(inLocalPathAndName))
+func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("getDefaultVCard:"), inLocalPathAndName)
 	return rv
 }
 
@@ -244,7 +244,7 @@ func (o_ OBEXFileTransferServices) GetDefaultVCard(inLocalPathAndName string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/isBusy()
-func (o_ OBEXFileTransferServices) IsBusy() bool /* primitive/slice/pointer. */ {
+func (o_ OBEXFileTransferServices) IsBusy() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isBusy"))
 	return rv
 }
@@ -254,7 +254,7 @@ func (o_ OBEXFileTransferServices) IsBusy() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/isConnected()
-func (o_ OBEXFileTransferServices) IsConnected() bool /* primitive/slice/pointer. */ {
+func (o_ OBEXFileTransferServices) IsConnected() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -264,8 +264,8 @@ func (o_ OBEXFileTransferServices) IsConnected() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/removeItem(_:)
-func (o_ OBEXFileTransferServices) RemoveItem(inItemName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("removeItem:"), objc.String(inItemName))
+func (o_ OBEXFileTransferServices) RemoveItem(inItemName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("removeItem:"), inItemName)
 	return rv
 }
 
@@ -284,8 +284,8 @@ func (o_ OBEXFileTransferServices) RetrieveFolderListing() OBEXError /* typedef 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/send(_:type:name:)
-func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.objc.IObject /* cross-framework NSData */, inType string /* primitive/slice/pointer. */, inName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, objc.String(inType), objc.String(inName))
+func (o_ OBEXFileTransferServices) SendDataTypeName(inData objc.IObject /* cross-framework: NSData */, inType objc.IObject /* cross-framework: NSString */, inName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, inType, inName)
 	return rv
 }
 
@@ -294,8 +294,8 @@ func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/sendFile(_:)
-func (o_ OBEXFileTransferServices) SendFile(inLocalPathAndName string /* primitive/slice/pointer. */) OBEXError /* typedef */ {
-	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendFile:"), objc.String(inLocalPathAndName))
+func (o_ OBEXFileTransferServices) SendFile(inLocalPathAndName objc.IObject /* cross-framework: NSString */) OBEXError /* typedef */ {
+	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendFile:"), inLocalPathAndName)
 	return rv
 }
 

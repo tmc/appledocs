@@ -32,7 +32,6 @@ type IScriptWhoseTest interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	IsTrue() bool /* primitive/slice/pointer. */
 }
 
 // An abstract class that provides the basis for testing specifiers one at a time or in groups.
@@ -97,15 +96,5 @@ func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 	return rv
 }
 
-
-
-// Returns a Boolean value that indicates whether the test represented by the receiver evaluates to true.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/isTrue()
-func (s_ ScriptWhoseTest) IsTrue() bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isTrue"))
-	return rv
-}
 
 

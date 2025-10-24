@@ -29,20 +29,26 @@ type _GraphSingleGateRNNDescriptorClass struct {
 // An interface definition for the [GraphSingleGateRNNDescriptor] class.
 type IGraphSingleGateRNNDescriptor interface {
 	IGraphObject
+	// properties:
+	Activation() GraphRNNActivation
+	SetActivation(value GraphRNNActivation)
 	Bidirectional() bool
 	SetBidirectional(value bool)
-	Activation() GraphRNNActivation
-	SetActivation(value IGraphRNNActivation)
 	Reverse() bool
 	SetReverse(value bool)
 	Training() bool
 	SetTraining(value bool)
+	// methods:
 }
 
 // The class that defines the parameters for a single gate RNN operation.
 //
 // Use this descriptor with the following methods:
+
+
+// The class that defines the parameters for a single gate RNN operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor
 type GraphSingleGateRNNDescriptor struct {
 	GraphObject
@@ -89,34 +95,10 @@ func NewGraphSingleGateRNNDescriptor() GraphSingleGateRNNDescriptor {
 }
 
 
-// Creates a single gate RNN descriptor with default values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor/descriptor
-func (gc _GraphSingleGateRNNDescriptorClass) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptor"))
-	return rv
-}
-
-// A parameter that defines a bidirectional RNN layer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor/bidirectional
-func (g_ GraphSingleGateRNNDescriptor) Bidirectional() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("bidirectional"))
-	return rv
-}
-
-
-// SetBidirectional sets the value of the bidirectional property.
-// A parameter that defines a bidirectional RNN layer.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor/bidirectional
-func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
-}
 
 // A parameter that defines the activation function to use with the RNN operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
 func (g_ GraphSingleGateRNNDescriptor) Activation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("activation"))
@@ -124,17 +106,37 @@ func (g_ GraphSingleGateRNNDescriptor) Activation() GraphRNNActivation {
 }
 
 
-// SetActivation sets the value of the activation property.
 // A parameter that defines the activation function to use with the RNN operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
-func (g_ GraphSingleGateRNNDescriptor) SetActivation(value IGraphRNNActivation) {
+func (g_ GraphSingleGateRNNDescriptor) SetActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
 }
 
+
+// A parameter that defines a bidirectional RNN layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/bidirectional
+func (g_ GraphSingleGateRNNDescriptor) Bidirectional() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("bidirectional"))
+	return rv
+}
+
+
+// A parameter that defines a bidirectional RNN layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/bidirectional
+func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
+}
+
+
 // A parameter that defines time direction of the input sequence.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/reverse
 func (g_ GraphSingleGateRNNDescriptor) Reverse() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
@@ -142,17 +144,18 @@ func (g_ GraphSingleGateRNNDescriptor) Reverse() bool {
 }
 
 
-// SetReverse sets the value of the reverse property.
 // A parameter that defines time direction of the input sequence.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/reverse
 func (g_ GraphSingleGateRNNDescriptor) SetReverse(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
 }
 
+
 // A parameter that makes the RNN layer support training.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/training
 func (g_ GraphSingleGateRNNDescriptor) Training() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
@@ -160,10 +163,9 @@ func (g_ GraphSingleGateRNNDescriptor) Training() bool {
 }
 
 
-// SetTraining sets the value of the training property.
 // A parameter that makes the RNN layer support training.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/training
 func (g_ GraphSingleGateRNNDescriptor) SetTraining(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)

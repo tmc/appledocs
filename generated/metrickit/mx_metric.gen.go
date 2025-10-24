@@ -31,13 +31,18 @@ type _MXMetricClass struct {
 // An interface definition for the [MXMetric] class.
 type IMXMetric interface {
 	objectivec.IObject
-	DictionaryRepresentation() foundation.Dictionary
-	JSONRepresentation() foundation.Data
-	MXErrorDomain() string
+	// properties:
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An abstract data class for a metric.
+
+
+// An abstract data class for a metric.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetric
 type MXMetric struct {
 	objectivec.Object
@@ -82,29 +87,24 @@ func NewMXMetric() MXMetric {
 }
 
 
-// Returns the contents of a metric as a Dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetric/DictionaryRepresentation-4728j
-func (m_ MXMetric) DictionaryRepresentation() foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("DictionaryRepresentation"))
-	return rv
-}
 
 // Returns the contents of the metric in JSON format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetric/jsonRepresentation()
-func (m_ MXMetric) JSONRepresentation() foundation.Data {
+func (m_ MXMetric) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
+
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXMetric) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXMetric) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
-
 
 

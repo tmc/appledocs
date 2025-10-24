@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchPhoneNumber] class.
@@ -30,8 +31,8 @@ type _DDMatchPhoneNumberClass struct {
 type IDDMatchPhoneNumber interface {
 	IDDMatch
 	// properties:
-	Label() string /* primitive/slice/pointer. */
-	PhoneNumber() string /* primitive/slice/pointer. */
+	Label() objc.IObject /* cross-framework: NSString */
+	PhoneNumber() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -94,8 +95,8 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
-func (d_ DDMatchPhoneNumber) Label() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("label"))
+func (d_ DDMatchPhoneNumber) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (d_ DDMatchPhoneNumber) Label() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
-func (d_ DDMatchPhoneNumber) PhoneNumber() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
+func (d_ DDMatchPhoneNumber) PhoneNumber() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

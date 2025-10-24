@@ -31,17 +31,21 @@ type _MTRDishwasherAlarmClusterNotifyEventClass struct {
 // An interface definition for the [MTRDishwasherAlarmClusterNotifyEvent] class.
 type IMTRDishwasherAlarmClusterNotifyEvent interface {
 	objectivec.IObject
-	Active() foundation.Number
-	SetActive(value foundation.INumber)
-	Inactive() foundation.Number
-	SetInactive(value foundation.INumber)
-	Mask() foundation.Number
-	SetMask(value foundation.INumber)
-	State() foundation.Number
-	SetState(value foundation.INumber)
+	// properties:
+	Active() objc.IObject /* cross-framework: NSNumber */
+	SetActive(value objc.IObject /* cross-framework: NSNumber */)
+	Inactive() objc.IObject /* cross-framework: NSNumber */
+	SetInactive(value objc.IObject /* cross-framework: NSNumber */)
+	Mask() objc.IObject /* cross-framework: NSNumber */
+	SetMask(value objc.IObject /* cross-framework: NSNumber */)
+	State() objc.IObject /* cross-framework: NSNumber */
+	SetState(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent
 type MTRDishwasherAlarmClusterNotifyEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRDishwasherAlarmClusterNotifyEvent() MTRDishwasherAlarmClusterNotifyEv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/active
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("active"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("active"))
 	return rv
 }
 
 
-// SetActive sets the value of the active property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/active
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/inactive
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("inactive"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("inactive"))
 	return rv
 }
 
 
-// SetInactive sets the value of the inactive property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/inactive
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/mask
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mask"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mask"))
 	return rv
 }
 
 
-// SetMask sets the value of the mask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/mask
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/state
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("state"))
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// SetState sets the value of the state property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/state
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageReduceColumnMax] class.
@@ -29,21 +28,29 @@ type _ImageReduceColumnMaxClass struct {
 
 // An interface definition for the [ImageReduceColumnMax] class.
 type IImageReduceColumnMax interface {
-	objectivec.IObject
+	IImageReduceUnary
+	// properties:
+	// methods:
 }
 
 // A filter that returns the maximum value for each column in an image.
+
+
+// A filter that returns the maximum value for each column in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageReduceColumnMax
 type ImageReduceColumnMax struct {
-	objectivec.Object
+	ImageReduceUnary
 }
 
 // ImageReduceColumnMaxFrom constructs a [ImageReduceColumnMax] from an unsafe.Pointer.
 //
 // A filter that returns the maximum value for each column in an image.
 func ImageReduceColumnMaxFrom(ptr unsafe.Pointer) ImageReduceColumnMax {
-	return ImageReduceColumnMax{objectivec.Object{objc.ID(ptr)}}
+	return ImageReduceColumnMax{
+		ImageReduceUnary: ImageReduceUnaryFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

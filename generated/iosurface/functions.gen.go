@@ -18,54 +18,54 @@ var (
 	_IOSurfaceDecrementUseCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceIncrementUseCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_IOSurfaceAlignProperty func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceAllowsPixelSizeCasting func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCopyAllValues func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCopyValue func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCreate func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCreateMachPort func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCreateXPCObject func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceGetAllocSize func(unsafe.Pointer) uintptr
-	_IOSurfaceGetBaseAddress func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceGetBaseAddressOfPlane func(unsafe.Pointer, uintptr) unsafe.Pointer
-	_IOSurfaceGetBitDepthOfComponentOfPlane func(unsafe.Pointer, uintptr, uintptr) uintptr
-	_IOSurfaceGetBitOffsetOfComponentOfPlane func(unsafe.Pointer, uintptr, uintptr) uintptr
-	_IOSurfaceGetBytesPerElement func(unsafe.Pointer) uintptr
-	_IOSurfaceGetBytesPerElementOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetBytesPerRow func(unsafe.Pointer) uintptr
-	_IOSurfaceGetBytesPerRowOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetElementHeight func(unsafe.Pointer) uintptr
-	_IOSurfaceGetElementHeightOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetElementWidth func(unsafe.Pointer) uintptr
-	_IOSurfaceGetElementWidthOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetHeight func(unsafe.Pointer) uintptr
-	_IOSurfaceGetHeightOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetID func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceGetNameOfComponentOfPlane func(unsafe.Pointer, uintptr, uintptr) unsafe.Pointer
-	_IOSurfaceGetNumberOfComponentsOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceGetPixelFormat func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceGetPlaneCount func(unsafe.Pointer) uintptr
+	_IOSurfaceAllowsPixelSizeCasting func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceCopyAllValues func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceCopyValue func(SurfaceRef, unsafe.Pointer) unsafe.Pointer
+	_IOSurfaceCreate func(unsafe.Pointer) SurfaceRef
+	_IOSurfaceCreateMachPort func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceCreateXPCObject func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceGetAllocSize func(SurfaceRef) uintptr
+	_IOSurfaceGetBaseAddress func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceGetBaseAddressOfPlane func(SurfaceRef, uintptr) unsafe.Pointer
+	_IOSurfaceGetBitDepthOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) uintptr
+	_IOSurfaceGetBitOffsetOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) uintptr
+	_IOSurfaceGetBytesPerElement func(SurfaceRef) uintptr
+	_IOSurfaceGetBytesPerElementOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetBytesPerRow func(SurfaceRef) uintptr
+	_IOSurfaceGetBytesPerRowOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetElementHeight func(SurfaceRef) uintptr
+	_IOSurfaceGetElementHeightOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetElementWidth func(SurfaceRef) uintptr
+	_IOSurfaceGetElementWidthOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetHeight func(SurfaceRef) uintptr
+	_IOSurfaceGetHeightOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetID func(SurfaceRef) SurfaceID
+	_IOSurfaceGetNameOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetNumberOfComponentsOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceGetPixelFormat func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceGetPlaneCount func(SurfaceRef) uintptr
 	_IOSurfaceGetPropertyAlignment func(unsafe.Pointer) uintptr
 	_IOSurfaceGetPropertyMaximum func(unsafe.Pointer) uintptr
-	_IOSurfaceGetRangeOfComponentOfPlane func(unsafe.Pointer, uintptr, uintptr) unsafe.Pointer
-	_IOSurfaceGetSeed func(unsafe.Pointer) uint32
-	_IOSurfaceGetSubsampling func(unsafe.Pointer) unsafe.Pointer
+	_IOSurfaceGetRangeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetSeed func(SurfaceRef) uint32
+	_IOSurfaceGetSubsampling func(SurfaceRef) unsafe.Pointer
 	_IOSurfaceGetTypeID func() unsafe.Pointer
-	_IOSurfaceGetTypeOfComponentOfPlane func(unsafe.Pointer, uintptr, uintptr) unsafe.Pointer
-	_IOSurfaceGetUseCount func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceGetWidth func(unsafe.Pointer) uintptr
-	_IOSurfaceGetWidthOfPlane func(unsafe.Pointer, uintptr) uintptr
-	_IOSurfaceIsInUse func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceLock func(unsafe.Pointer, unsafe.Pointer, []uint32) unsafe.Pointer
-	_IOSurfaceLookup func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceLookupFromMachPort func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceLookupFromXPCObject func(unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceRemoveAllValues func(unsafe.Pointer)
-	_IOSurfaceRemoveValue func(unsafe.Pointer, unsafe.Pointer)
-	_IOSurfaceSetOwnershipIdentity func(unsafe.Pointer, unsafe.Pointer, int, uint32) unsafe.Pointer
-	_IOSurfaceSetPurgeable func(unsafe.Pointer, uint32, []uint32) unsafe.Pointer
-	_IOSurfaceSetValue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-	_IOSurfaceSetValues func(unsafe.Pointer, unsafe.Pointer)
-	_IOSurfaceUnlock func(unsafe.Pointer, unsafe.Pointer, []uint32) unsafe.Pointer
+	_IOSurfaceGetTypeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetUseCount func(SurfaceRef) int32
+	_IOSurfaceGetWidth func(SurfaceRef) uintptr
+	_IOSurfaceGetWidthOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceIsInUse func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceLock func(SurfaceRef, unsafe.Pointer, []uint32) unsafe.Pointer
+	_IOSurfaceLookup func(SurfaceID) SurfaceRef
+	_IOSurfaceLookupFromMachPort func(unsafe.Pointer) SurfaceRef
+	_IOSurfaceLookupFromXPCObject func(unsafe.Pointer) SurfaceRef
+	_IOSurfaceRemoveAllValues func(SurfaceRef)
+	_IOSurfaceRemoveValue func(SurfaceRef, unsafe.Pointer)
+	_IOSurfaceSetOwnershipIdentity func(SurfaceRef, unsafe.Pointer, int, uint32) unsafe.Pointer
+	_IOSurfaceSetPurgeable func(SurfaceRef, uint32, []uint32) unsafe.Pointer
+	_IOSurfaceSetValue func(SurfaceRef, unsafe.Pointer, unsafe.Pointer)
+	_IOSurfaceSetValues func(SurfaceRef, unsafe.Pointer)
+	_IOSurfaceUnlock func(SurfaceRef, unsafe.Pointer, []uint32) unsafe.Pointer
 )
 
 func init() {
@@ -178,7 +178,7 @@ func IOSurfaceAlignProperty(property unsafe.Pointer, value uintptr) uintptr {
 // Added in macOS 10.12.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceAllowsPixelSizeCasting(_:)
-func IOSurfaceAllowsPixelSizeCasting(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceAllowsPixelSizeCasting(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceAllowsPixelSizeCasting(buffer)
 }
 
@@ -187,7 +187,7 @@ func IOSurfaceAllowsPixelSizeCasting(buffer unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCopyAllValues(_:)
-func IOSurfaceCopyAllValues(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCopyAllValues(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceCopyAllValues(buffer)
 }
 
@@ -198,7 +198,7 @@ func IOSurfaceCopyAllValues(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCopyValue(_:_:)
-func IOSurfaceCopyValue(buffer unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCopyValue(buffer SurfaceRef, key unsafe.Pointer) unsafe.Pointer {
 	return _IOSurfaceCopyValue(buffer, key)
 }
 
@@ -209,7 +209,7 @@ func IOSurfaceCopyValue(buffer unsafe.Pointer, key unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreate(_:)
-func IOSurfaceCreate(properties unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCreate(properties unsafe.Pointer) SurfaceRef {
 	return _IOSurfaceCreate(properties)
 }
 
@@ -220,7 +220,7 @@ func IOSurfaceCreate(properties unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreateMachPort(_:)
-func IOSurfaceCreateMachPort(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCreateMachPort(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceCreateMachPort(buffer)
 }
 
@@ -231,7 +231,7 @@ func IOSurfaceCreateMachPort(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreateXPCObject(_:)
-func IOSurfaceCreateXPCObject(aSurface unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCreateXPCObject(aSurface SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceCreateXPCObject(aSurface)
 }
 
@@ -242,7 +242,7 @@ func IOSurfaceCreateXPCObject(aSurface unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetAllocSize(_:)
-func IOSurfaceGetAllocSize(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetAllocSize(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetAllocSize(buffer)
 }
 
@@ -253,7 +253,7 @@ func IOSurfaceGetAllocSize(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBaseAddress(_:)
-func IOSurfaceGetBaseAddress(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceGetBaseAddress(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceGetBaseAddress(buffer)
 }
 
@@ -264,7 +264,7 @@ func IOSurfaceGetBaseAddress(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBaseAddressOfPlane(_:_:)
-func IOSurfaceGetBaseAddressOfPlane(buffer unsafe.Pointer, planeIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetBaseAddressOfPlane(buffer SurfaceRef, planeIndex uintptr) unsafe.Pointer {
 	return _IOSurfaceGetBaseAddressOfPlane(buffer, planeIndex)
 }
 
@@ -273,7 +273,7 @@ func IOSurfaceGetBaseAddressOfPlane(buffer unsafe.Pointer, planeIndex uintptr) u
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBitDepthOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetBitDepthOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintptr, componentIndex uintptr) uintptr {
+func IOSurfaceGetBitDepthOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) uintptr {
 	return _IOSurfaceGetBitDepthOfComponentOfPlane(buffer, planeIndex, componentIndex)
 }
 
@@ -282,7 +282,7 @@ func IOSurfaceGetBitDepthOfComponentOfPlane(buffer unsafe.Pointer, planeIndex ui
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBitOffsetOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetBitOffsetOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintptr, componentIndex uintptr) uintptr {
+func IOSurfaceGetBitOffsetOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) uintptr {
 	return _IOSurfaceGetBitOffsetOfComponentOfPlane(buffer, planeIndex, componentIndex)
 }
 
@@ -293,7 +293,7 @@ func IOSurfaceGetBitOffsetOfComponentOfPlane(buffer unsafe.Pointer, planeIndex u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerElement(_:)
-func IOSurfaceGetBytesPerElement(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetBytesPerElement(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetBytesPerElement(buffer)
 }
 
@@ -304,7 +304,7 @@ func IOSurfaceGetBytesPerElement(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerElementOfPlane(_:_:)
-func IOSurfaceGetBytesPerElementOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetBytesPerElementOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetBytesPerElementOfPlane(buffer, planeIndex)
 }
 
@@ -315,7 +315,7 @@ func IOSurfaceGetBytesPerElementOfPlane(buffer unsafe.Pointer, planeIndex uintpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerRow(_:)
-func IOSurfaceGetBytesPerRow(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetBytesPerRow(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetBytesPerRow(buffer)
 }
 
@@ -326,7 +326,7 @@ func IOSurfaceGetBytesPerRow(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerRowOfPlane(_:_:)
-func IOSurfaceGetBytesPerRowOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetBytesPerRowOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetBytesPerRowOfPlane(buffer, planeIndex)
 }
 
@@ -337,7 +337,7 @@ func IOSurfaceGetBytesPerRowOfPlane(buffer unsafe.Pointer, planeIndex uintptr) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementHeight(_:)
-func IOSurfaceGetElementHeight(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetElementHeight(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetElementHeight(buffer)
 }
 
@@ -348,7 +348,7 @@ func IOSurfaceGetElementHeight(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementHeightOfPlane(_:_:)
-func IOSurfaceGetElementHeightOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetElementHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetElementHeightOfPlane(buffer, planeIndex)
 }
 
@@ -359,7 +359,7 @@ func IOSurfaceGetElementHeightOfPlane(buffer unsafe.Pointer, planeIndex uintptr)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementWidth(_:)
-func IOSurfaceGetElementWidth(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetElementWidth(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetElementWidth(buffer)
 }
 
@@ -370,7 +370,7 @@ func IOSurfaceGetElementWidth(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementWidthOfPlane(_:_:)
-func IOSurfaceGetElementWidthOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetElementWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetElementWidthOfPlane(buffer, planeIndex)
 }
 
@@ -381,7 +381,7 @@ func IOSurfaceGetElementWidthOfPlane(buffer unsafe.Pointer, planeIndex uintptr) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetHeight(_:)
-func IOSurfaceGetHeight(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetHeight(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetHeight(buffer)
 }
 
@@ -392,7 +392,7 @@ func IOSurfaceGetHeight(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetHeightOfPlane(_:_:)
-func IOSurfaceGetHeightOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetHeightOfPlane(buffer, planeIndex)
 }
 
@@ -403,7 +403,7 @@ func IOSurfaceGetHeightOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetID(_:)
-func IOSurfaceGetID(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceGetID(buffer SurfaceRef) SurfaceID {
 	return _IOSurfaceGetID(buffer)
 }
 
@@ -412,7 +412,7 @@ func IOSurfaceGetID(buffer unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetNameOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetNameOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetNameOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
 	return _IOSurfaceGetNameOfComponentOfPlane(buffer, planeIndex, componentIndex)
 }
 
@@ -421,7 +421,7 @@ func IOSurfaceGetNameOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintpt
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetNumberOfComponentsOfPlane(_:_:)
-func IOSurfaceGetNumberOfComponentsOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetNumberOfComponentsOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetNumberOfComponentsOfPlane(buffer, planeIndex)
 }
 
@@ -432,7 +432,7 @@ func IOSurfaceGetNumberOfComponentsOfPlane(buffer unsafe.Pointer, planeIndex uin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPixelFormat(_:)
-func IOSurfaceGetPixelFormat(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceGetPixelFormat(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceGetPixelFormat(buffer)
 }
 
@@ -441,7 +441,7 @@ func IOSurfaceGetPixelFormat(buffer unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPlaneCount(_:)
-func IOSurfaceGetPlaneCount(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetPlaneCount(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetPlaneCount(buffer)
 }
 
@@ -472,7 +472,7 @@ func IOSurfaceGetPropertyMaximum(property unsafe.Pointer) uintptr {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetRangeOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetRangeOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetRangeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
 	return _IOSurfaceGetRangeOfComponentOfPlane(buffer, planeIndex, componentIndex)
 }
 
@@ -481,7 +481,7 @@ func IOSurfaceGetRangeOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintp
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetSeed(_:)
-func IOSurfaceGetSeed(buffer unsafe.Pointer) uint32 {
+func IOSurfaceGetSeed(buffer SurfaceRef) uint32 {
 	return _IOSurfaceGetSeed(buffer)
 }
 
@@ -490,7 +490,7 @@ func IOSurfaceGetSeed(buffer unsafe.Pointer) uint32 {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetSubsampling(_:)
-func IOSurfaceGetSubsampling(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceGetSubsampling(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceGetSubsampling(buffer)
 }
 
@@ -508,7 +508,7 @@ func IOSurfaceGetTypeID() unsafe.Pointer {
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetTypeOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetTypeOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetTypeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
 	return _IOSurfaceGetTypeOfComponentOfPlane(buffer, planeIndex, componentIndex)
 }
 
@@ -519,7 +519,7 @@ func IOSurfaceGetTypeOfComponentOfPlane(buffer unsafe.Pointer, planeIndex uintpt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetUseCount(_:)
-func IOSurfaceGetUseCount(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceGetUseCount(buffer SurfaceRef) int32 {
 	return _IOSurfaceGetUseCount(buffer)
 }
 
@@ -530,7 +530,7 @@ func IOSurfaceGetUseCount(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetWidth(_:)
-func IOSurfaceGetWidth(buffer unsafe.Pointer) uintptr {
+func IOSurfaceGetWidth(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetWidth(buffer)
 }
 
@@ -541,7 +541,7 @@ func IOSurfaceGetWidth(buffer unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetWidthOfPlane(_:_:)
-func IOSurfaceGetWidthOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr {
+func IOSurfaceGetWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetWidthOfPlane(buffer, planeIndex)
 }
 
@@ -552,7 +552,7 @@ func IOSurfaceGetWidthOfPlane(buffer unsafe.Pointer, planeIndex uintptr) uintptr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceIsInUse(_:)
-func IOSurfaceIsInUse(buffer unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceIsInUse(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceIsInUse(buffer)
 }
 
@@ -563,7 +563,7 @@ func IOSurfaceIsInUse(buffer unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLock(_:_:_:)
-func IOSurfaceLock(buffer unsafe.Pointer, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
+func IOSurfaceLock(buffer SurfaceRef, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
 	return _IOSurfaceLock(buffer, options, seed)
 }
 
@@ -574,7 +574,7 @@ func IOSurfaceLock(buffer unsafe.Pointer, options unsafe.Pointer, seed []uint32)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookup(_:)
-func IOSurfaceLookup(csid unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceLookup(csid SurfaceID) SurfaceRef {
 	return _IOSurfaceLookup(csid)
 }
 
@@ -585,7 +585,7 @@ func IOSurfaceLookup(csid unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookupFromMachPort(_:)
-func IOSurfaceLookupFromMachPort(port unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceLookupFromMachPort(port unsafe.Pointer) SurfaceRef {
 	return _IOSurfaceLookupFromMachPort(port)
 }
 
@@ -594,7 +594,7 @@ func IOSurfaceLookupFromMachPort(port unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.7.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookupFromXPCObject(_:)
-func IOSurfaceLookupFromXPCObject(xobj unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceLookupFromXPCObject(xobj unsafe.Pointer) SurfaceRef {
 	return _IOSurfaceLookupFromXPCObject(xobj)
 }
 
@@ -603,7 +603,7 @@ func IOSurfaceLookupFromXPCObject(xobj unsafe.Pointer) unsafe.Pointer {
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceRemoveAllValues(_:)
-func IOSurfaceRemoveAllValues(buffer unsafe.Pointer) {
+func IOSurfaceRemoveAllValues(buffer SurfaceRef) {
 	_IOSurfaceRemoveAllValues(buffer)
 }
 
@@ -614,7 +614,7 @@ func IOSurfaceRemoveAllValues(buffer unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceRemoveValue(_:_:)
-func IOSurfaceRemoveValue(buffer unsafe.Pointer, key unsafe.Pointer) {
+func IOSurfaceRemoveValue(buffer SurfaceRef, key unsafe.Pointer) {
 	_IOSurfaceRemoveValue(buffer, key)
 }
 
@@ -623,7 +623,7 @@ func IOSurfaceRemoveValue(buffer unsafe.Pointer, key unsafe.Pointer) {
 // Added in macOS 14.4.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetOwnershipIdentity(_:_:_:_:)
-func IOSurfaceSetOwnershipIdentity(buffer unsafe.Pointer, task_id_token unsafe.Pointer, newLedgerTag int, newLedgerOptions uint32) unsafe.Pointer {
+func IOSurfaceSetOwnershipIdentity(buffer SurfaceRef, task_id_token unsafe.Pointer, newLedgerTag int, newLedgerOptions uint32) unsafe.Pointer {
 	return _IOSurfaceSetOwnershipIdentity(buffer, task_id_token, newLedgerTag, newLedgerOptions)
 }
 
@@ -632,7 +632,7 @@ func IOSurfaceSetOwnershipIdentity(buffer unsafe.Pointer, task_id_token unsafe.P
 // Added in macOS 10.12.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetPurgeable(_:_:_:)
-func IOSurfaceSetPurgeable(buffer unsafe.Pointer, newState uint32, oldState []uint32) unsafe.Pointer {
+func IOSurfaceSetPurgeable(buffer SurfaceRef, newState uint32, oldState []uint32) unsafe.Pointer {
 	return _IOSurfaceSetPurgeable(buffer, newState, oldState)
 }
 
@@ -643,7 +643,7 @@ func IOSurfaceSetPurgeable(buffer unsafe.Pointer, newState uint32, oldState []ui
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetValue(_:_:_:)
-func IOSurfaceSetValue(buffer unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
+func IOSurfaceSetValue(buffer SurfaceRef, key unsafe.Pointer, value unsafe.Pointer) {
 	_IOSurfaceSetValue(buffer, key, value)
 }
 
@@ -652,7 +652,7 @@ func IOSurfaceSetValue(buffer unsafe.Pointer, key unsafe.Pointer, value unsafe.P
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetValues(_:_:)
-func IOSurfaceSetValues(buffer unsafe.Pointer, keysAndValues unsafe.Pointer) {
+func IOSurfaceSetValues(buffer SurfaceRef, keysAndValues unsafe.Pointer) {
 	_IOSurfaceSetValues(buffer, keysAndValues)
 }
 
@@ -663,7 +663,7 @@ func IOSurfaceSetValues(buffer unsafe.Pointer, keysAndValues unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceUnlock(_:_:_:)
-func IOSurfaceUnlock(buffer unsafe.Pointer, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
+func IOSurfaceUnlock(buffer SurfaceRef, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
 	return _IOSurfaceUnlock(buffer, options, seed)
 }
 

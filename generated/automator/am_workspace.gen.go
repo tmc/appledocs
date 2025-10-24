@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IAMWorkspace interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	RunWorkflowAtPathWithInputError(path string /* primitive/slice/pointer. */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
+	RunWorkflowAtPathWithInputError(path objc.IObject /* cross-framework: NSString */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
 }
 
 // A workspace for running an Automator workflow.
@@ -101,8 +102,8 @@ func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
-func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string /* primitive/slice/pointer. */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), objc.String(path), input, error_)
+func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path objc.IObject /* cross-framework: NSString */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), path, input, error_)
 	return rv
 }
 

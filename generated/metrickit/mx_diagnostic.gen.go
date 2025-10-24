@@ -31,16 +31,22 @@ type _MXDiagnosticClass struct {
 // An interface definition for the [MXDiagnostic] class.
 type IMXDiagnostic interface {
 	objectivec.IObject
-	DictionaryRepresentation() foundation.Dictionary
-	JSONRepresentation() foundation.Data
-	ApplicationVersion() string
-	MetaData() MXMetaData
-	SignpostData() []MXSignpostRecord
-	MXErrorDomain() string
+	// properties:
+	ApplicationVersion() objc.IObject /* cross-framework: NSString */
+	MetaData() IMXMetaData
+	SignpostData() []IMXSignpostRecord
+	MXErrorDomain() objc.IObject /* cross-framework: NSString */
+	// methods:
+	DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */
+	JSONRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An abstract data class for a diagnostic.
+
+
+// An abstract data class for a diagnostic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic
 type MXDiagnostic struct {
 	objectivec.Object
@@ -85,50 +91,61 @@ func NewMXDiagnostic() MXDiagnostic {
 }
 
 
+
 // Returns the contents of a diagnostic as a dictionary.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/dictionaryRepresentation()
-func (m_ MXDiagnostic) DictionaryRepresentation() foundation.Dictionary {
+func (m_ MXDiagnostic) DictionaryRepresentation() objc.IObject /* cross-framework: Dictionary */ {
 	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
+
 // Returns the contents of the diagnostic in JSON format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/jsonRepresentation()
-func (m_ MXDiagnostic) JSONRepresentation() foundation.Data {
+func (m_ MXDiagnostic) JSONRepresentation() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
+
 // The value of the bundle version key, short form, in the app’s property list.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/applicationVersion
-func (m_ MXDiagnostic) ApplicationVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationVersion"))
+func (m_ MXDiagnostic) ApplicationVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("applicationVersion"))
 	return rv
 }
 
+
 // A set of system-level information for the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/metaData
-func (m_ MXDiagnostic) MetaData() MXMetaData {
+func (m_ MXDiagnostic) MetaData() IMXMetaData {
 	rv := objc.Send[MXMetaData](m_.ID, objc.Sel("metaData"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/signpostData
-func (m_ MXDiagnostic) SignpostData() []MXSignpostRecord {
+func (m_ MXDiagnostic) SignpostData() []IMXSignpostRecord {
 	rv := objc.Send[[]MXSignpostRecord](m_.ID, objc.Sel("signpostData"))
 	return rv
 }
 
+
 // Error domain for error values from app metrics.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXDiagnostic) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXDiagnostic) MXErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

@@ -88,4 +88,23 @@ func NewUnitElectricPotentialDifference() UnitElectricPotentialDifference {
 
 
 
+// The volts unit of electric potential difference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+func (uc _UnitElectricPotentialDifferenceClass) Volts() UnitElectricPotentialDifference {
+	rv := objc.Send[UnitElectricPotentialDifference](objc.ID(uc.class), objc.Sel("volts"))
+	return rv
+}
+
+// The volts unit of electric potential difference.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+func (u_ UnitElectricPotentialDifference) Volts() IUnitElectricPotentialDifference {
+	rv := objc.Send[UnitElectricPotentialDifference](u_.ID, objc.Sel("volts"))
+	return rv
+}
+
+
 

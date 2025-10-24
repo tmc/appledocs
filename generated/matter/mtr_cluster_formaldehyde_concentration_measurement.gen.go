@@ -29,9 +29,13 @@ type _MTRClusterFormaldehydeConcentrationMeasurementClass struct {
 // An interface definition for the [MTRClusterFormaldehydeConcentrationMeasurement] class.
 type IMTRClusterFormaldehydeConcentrationMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterFormaldehydeConcentrationMeasurement
 type MTRClusterFormaldehydeConcentrationMeasurement struct {
 	MTRGenericCluster

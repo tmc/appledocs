@@ -30,6 +30,8 @@ type _VZAudioInputStreamSourceClass struct {
 // An interface definition for the [VZAudioInputStreamSource] class.
 type IVZAudioInputStreamSource interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for an audio input stream source.

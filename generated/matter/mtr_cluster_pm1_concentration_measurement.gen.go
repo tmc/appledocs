@@ -29,9 +29,13 @@ type _MTRClusterPM1ConcentrationMeasurementClass struct {
 // An interface definition for the [MTRClusterPM1ConcentrationMeasurement] class.
 type IMTRClusterPM1ConcentrationMeasurement interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPM1ConcentrationMeasurement
 type MTRClusterPM1ConcentrationMeasurement struct {
 	MTRGenericCluster

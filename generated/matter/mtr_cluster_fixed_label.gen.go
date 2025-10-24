@@ -29,9 +29,13 @@ type _MTRClusterFixedLabelClass struct {
 // An interface definition for the [MTRClusterFixedLabel] class.
 type IMTRClusterFixedLabel interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterFixedLabel
 type MTRClusterFixedLabel struct {
 	MTRGenericCluster

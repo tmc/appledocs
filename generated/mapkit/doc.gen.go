@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MapKit without requiring cgo.
-
-// Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit
+// See: https://developer.apple.com/documentation/MapKit
 package mapkit
 
 import (

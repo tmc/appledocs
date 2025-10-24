@@ -31,15 +31,15 @@ type _CBMutableCharacteristicClass struct {
 type ICBMutableCharacteristic interface {
 	ICBCharacteristic
 	// properties:
-	Descriptors() []CBDescriptor /* primitive/slice/pointer. */
-	SetDescriptors(value []CBDescriptor /* primitive/slice/pointer. */)
+	Descriptors() []ICBDescriptor
+	SetDescriptors(value []ICBDescriptor)
 	Permissions() CBAttributePermissions
 	SetPermissions(value CBAttributePermissions)
 	Properties() CBCharacteristicProperties
 	SetProperties(value CBCharacteristicProperties)
-	SubscribedCentrals() []CBCentral /* primitive/slice/pointer. */
-	Value() foundation.objc.IObject /* cross-framework: NSData */
-	SetValue(value foundation.objc.IObject /* cross-framework: NSData */)
+	SubscribedCentrals() []ICBCentral
+	Value() objc.IObject /* cross-framework: NSData */
+	SetValue(value objc.IObject /* cross-framework: NSData */)
 	// methods:
 }
 
@@ -102,7 +102,7 @@ func NewCBMutableCharacteristic() CBMutableCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/init(type:properties:value:permissions:)
-func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties CBCharacteristicProperties, value foundation.objc.IObject /* cross-framework NSData */, permissions CBAttributePermissions) CBMutableCharacteristic {
+func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties CBCharacteristicProperties, value objc.IObject /* cross-framework: NSData */, permissions CBAttributePermissions) CBMutableCharacteristic {
 	instance := getCBMutableCharacteristicClass().Alloc()
 	rv := objc.Send[CBMutableCharacteristic](instance.ID, objc.Sel("initWithType:properties:value:permissions:"), UUID, properties, value, permissions)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/descriptors
-func (c_ CBMutableCharacteristic) Descriptors() []CBDescriptor /* primitive/slice/pointer. */ {
+func (c_ CBMutableCharacteristic) Descriptors() []ICBDescriptor {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (c_ CBMutableCharacteristic) Descriptors() []CBDescriptor /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/descriptors
-func (c_ CBMutableCharacteristic) SetDescriptors(value []CBDescriptor /* primitive/slice/pointer. */) {
+func (c_ CBMutableCharacteristic) SetDescriptors(value []ICBDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -182,7 +182,7 @@ func (c_ CBMutableCharacteristic) SetProperties(value CBCharacteristicProperties
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/subscribedCentrals
-func (c_ CBMutableCharacteristic) SubscribedCentrals() []CBCentral /* primitive/slice/pointer. */ {
+func (c_ CBMutableCharacteristic) SubscribedCentrals() []ICBCentral {
 	rv := objc.Send[[]CBCentral](c_.ID, objc.Sel("subscribedCentrals"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (c_ CBMutableCharacteristic) SubscribedCentrals() []CBCentral /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-func (c_ CBMutableCharacteristic) Value() foundation.objc.IObject /* cross-framework: NSData */ {
+func (c_ CBMutableCharacteristic) Value() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
 }
@@ -202,7 +202,7 @@ func (c_ CBMutableCharacteristic) Value() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-func (c_ CBMutableCharacteristic) SetValue(value foundation.objc.IObject /* cross-framework: NSData */) {
+func (c_ CBMutableCharacteristic) SetValue(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 

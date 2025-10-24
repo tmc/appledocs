@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,8 +36,8 @@ type ICKQuery interface {
 	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
-	SortDescriptors() SortDescriptor /* not a class type */
-	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */
+	SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */)
 	// methods:
 }
 
@@ -98,7 +99,7 @@ func NewCKQuery() CKQuery {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/predicate
 func (c_ CKQuery) Predicate() objc.IObject /* cross-framework: Predicate */ {
-	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -135,7 +136,7 @@ func (c_ CKQuery) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/sortdescriptors
-func (c_ CKQuery) SortDescriptors() SortDescriptor /* not a class type */ {
+func (c_ CKQuery) SortDescriptors() objc.IObject /* cross-framework: SortDescriptor */ {
 	rv := objc.Send[SortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
@@ -145,7 +146,7 @@ func (c_ CKQuery) SortDescriptors() SortDescriptor /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/sortdescriptors
-func (c_ CKQuery) SetSortDescriptors(value SortDescriptor /* not a class type */) {
+func (c_ CKQuery) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

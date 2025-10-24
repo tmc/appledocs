@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,21 +34,21 @@ type _AccessPointClass struct {
 type IAccessPoint interface {
 	objectivec.IObject
 	// properties:
-	Visible() bool /* primitive/slice/pointer. */
-	ShowHighlights() bool /* primitive/slice/pointer. */
-	SetShowHighlights(value bool /* primitive/slice/pointer. */)
-	FrameInScreenCoordinates() coregraphics.CGRect
-	SetFrameInScreenCoordinates(value coregraphics.CGRect)
-	IsActive() bool /* primitive/slice/pointer. */
-	SetIsActive(value bool /* primitive/slice/pointer. */)
-	IsFocused() bool /* primitive/slice/pointer. */
-	SetIsFocused(value bool /* primitive/slice/pointer. */)
-	IsPresentingGameCenter() bool /* primitive/slice/pointer. */
-	SetIsPresentingGameCenter(value bool /* primitive/slice/pointer. */)
-	IsVisible() bool /* primitive/slice/pointer. */
-	SetIsVisible(value bool /* primitive/slice/pointer. */)
-	Location() corelocation.objc.IObject /* cross-framework: Location */
-	SetLocation(value corelocation.objc.IObject /* cross-framework: Location */)
+	Visible() bool
+	ShowHighlights() bool
+	SetShowHighlights(value bool)
+	FrameInScreenCoordinates() objc.IObject /* cross-framework: Rect */
+	SetFrameInScreenCoordinates(value objc.IObject /* cross-framework: Rect */)
+	IsActive() bool
+	SetIsActive(value bool)
+	IsFocused() bool
+	SetIsFocused(value bool)
+	IsPresentingGameCenter() bool
+	SetIsPresentingGameCenter(value bool)
+	IsVisible() bool
+	SetIsVisible(value bool)
+	Location() objc.IObject /* cross-framework: Location */
+	SetLocation(value objc.IObject /* cross-framework: Location */)
 	ParentWindow() objc.IObject /* cross-framework: Window */
 	SetParentWindow(value objc.IObject /* cross-framework: Window */)
 	// methods:
@@ -130,7 +131,7 @@ func (a_ AccessPoint) TriggerAccessPointForPlayTogetherWithHandler(handler unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/isVisible
-func (a_ AccessPoint) Visible() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) Visible() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("visible"))
 	return rv
 }
@@ -140,7 +141,7 @@ func (a_ AccessPoint) Visible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/showHighlights
-func (a_ AccessPoint) ShowHighlights() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) ShowHighlights() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showHighlights"))
 	return rv
 }
@@ -150,7 +151,7 @@ func (a_ AccessPoint) ShowHighlights() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAccessPoint/showHighlights
-func (a_ AccessPoint) SetShowHighlights(value bool /* primitive/slice/pointer. */) {
+func (a_ AccessPoint) SetShowHighlights(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowHighlights:"), value)
 }
 
@@ -159,8 +160,8 @@ func (a_ AccessPoint) SetShowHighlights(value bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/frameinscreencoordinates
-func (a_ AccessPoint) FrameInScreenCoordinates() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("frameInScreenCoordinates"))
+func (a_ AccessPoint) FrameInScreenCoordinates() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](a_.ID, objc.Sel("frameInScreenCoordinates"))
 	return rv
 }
 
@@ -169,7 +170,7 @@ func (a_ AccessPoint) FrameInScreenCoordinates() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/frameinscreencoordinates
-func (a_ AccessPoint) SetFrameInScreenCoordinates(value coregraphics.CGRect) {
+func (a_ AccessPoint) SetFrameInScreenCoordinates(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameInScreenCoordinates:"), value)
 }
 
@@ -178,7 +179,7 @@ func (a_ AccessPoint) SetFrameInScreenCoordinates(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isactive
-func (a_ AccessPoint) IsActive() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) IsActive() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -188,7 +189,7 @@ func (a_ AccessPoint) IsActive() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isactive
-func (a_ AccessPoint) SetIsActive(value bool /* primitive/slice/pointer. */) {
+func (a_ AccessPoint) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -197,7 +198,7 @@ func (a_ AccessPoint) SetIsActive(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isfocused
-func (a_ AccessPoint) IsFocused() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) IsFocused() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isFocused"))
 	return rv
 }
@@ -207,7 +208,7 @@ func (a_ AccessPoint) IsFocused() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isfocused
-func (a_ AccessPoint) SetIsFocused(value bool /* primitive/slice/pointer. */) {
+func (a_ AccessPoint) SetIsFocused(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsFocused:"), value)
 }
 
@@ -216,7 +217,7 @@ func (a_ AccessPoint) SetIsFocused(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/ispresentinggamecenter
-func (a_ AccessPoint) IsPresentingGameCenter() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) IsPresentingGameCenter() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPresentingGameCenter"))
 	return rv
 }
@@ -226,7 +227,7 @@ func (a_ AccessPoint) IsPresentingGameCenter() bool /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/ispresentinggamecenter
-func (a_ AccessPoint) SetIsPresentingGameCenter(value bool /* primitive/slice/pointer. */) {
+func (a_ AccessPoint) SetIsPresentingGameCenter(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPresentingGameCenter:"), value)
 }
 
@@ -235,7 +236,7 @@ func (a_ AccessPoint) SetIsPresentingGameCenter(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isvisible
-func (a_ AccessPoint) IsVisible() bool /* primitive/slice/pointer. */ {
+func (a_ AccessPoint) IsVisible() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -245,7 +246,7 @@ func (a_ AccessPoint) IsVisible() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/isvisible
-func (a_ AccessPoint) SetIsVisible(value bool /* primitive/slice/pointer. */) {
+func (a_ AccessPoint) SetIsVisible(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVisible:"), value)
 }
 
@@ -254,7 +255,7 @@ func (a_ AccessPoint) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
-func (a_ AccessPoint) Location() corelocation.objc.IObject /* cross-framework: Location */ {
+func (a_ AccessPoint) Location() objc.IObject /* cross-framework: Location */ {
 	rv := objc.Send[corelocation.Location](a_.ID, objc.Sel("location"))
 	return rv
 }
@@ -264,7 +265,7 @@ func (a_ AccessPoint) Location() corelocation.objc.IObject /* cross-framework: L
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
-func (a_ AccessPoint) SetLocation(value corelocation.objc.IObject /* cross-framework: Location */) {
+func (a_ AccessPoint) SetLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -274,7 +275,7 @@ func (a_ AccessPoint) SetLocation(value corelocation.objc.IObject /* cross-frame
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
 func (a_ AccessPoint) ParentWindow() objc.IObject /* cross-framework: Window */ {
-	rv := objc.Send[Window](a_.ID, objc.Sel("parentWindow"))
+	rv := objc.Send[appkit.Window](a_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 

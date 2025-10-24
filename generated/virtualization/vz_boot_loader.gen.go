@@ -30,6 +30,8 @@ type _VZBootLoaderClass struct {
 // An interface definition for the [VZBootLoader] class.
 type IVZBootLoader interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class that defines the management of the initial process of the guest system.

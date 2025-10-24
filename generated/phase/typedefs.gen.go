@@ -6,6 +6,6 @@ package phase
 // PHASESpatialCategory - Sound resonance effects for spatial mixing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialCategory
-// PHASESpatialCategory has base type: NSString *
-type PHASESpatialCategory uintptr
+// PHASESpatialCategory is a string typedef
+type PHASESpatialCategory = string
 

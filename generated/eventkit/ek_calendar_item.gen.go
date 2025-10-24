@@ -31,32 +31,31 @@ type _EKCalendarItemClass struct {
 type IEKCalendarItem interface {
 	IEKObject
 	// properties:
-	Alarms() []EKAlarm /* primitive/slice/pointer. */
-	SetAlarms(value []EKAlarm /* primitive/slice/pointer. */)
-	Attendees() []EKParticipant /* primitive/slice/pointer. */
+	Alarms() []IEKAlarm
+	SetAlarms(value []IEKAlarm)
+	Attendees() []IEKParticipant
 	Calendar() IEKCalendar
 	SetCalendar(value IEKCalendar)
-	CalendarItemExternalIdentifier() string /* primitive/slice/pointer. */
-	CalendarItemIdentifier() string /* primitive/slice/pointer. */
-	CreationDate() foundation.objc.IObject /* cross-framework: NSDate */
-	HasAlarms() bool /* primitive/slice/pointer. */
-	HasAttendees() bool /* primitive/slice/pointer. */
-	HasNotes() bool /* primitive/slice/pointer. */
-	HasRecurrenceRules() bool /* primitive/slice/pointer. */
-	LastModifiedDate() foundation.objc.IObject /* cross-framework: NSDate */
-	Location() string /* primitive/slice/pointer. */
-	SetLocation(value string /* primitive/slice/pointer. */)
-	Notes() string /* primitive/slice/pointer. */
-	SetNotes(value string /* primitive/slice/pointer. */)
-	RecurrenceRules() []EKRecurrenceRule /* primitive/slice/pointer. */
-	SetRecurrenceRules(value []EKRecurrenceRule /* primitive/slice/pointer. */)
+	CalendarItemExternalIdentifier() objc.IObject /* cross-framework: NSString */
+	CalendarItemIdentifier() objc.IObject /* cross-framework: NSString */
+	CreationDate() objc.IObject /* cross-framework: NSDate */
+	HasAlarms() bool
+	HasAttendees() bool
+	HasNotes() bool
+	HasRecurrenceRules() bool
+	LastModifiedDate() objc.IObject /* cross-framework: NSDate */
+	Location() objc.IObject /* cross-framework: NSString */
+	SetLocation(value objc.IObject /* cross-framework: NSString */)
+	Notes() objc.IObject /* cross-framework: NSString */
+	SetNotes(value objc.IObject /* cross-framework: NSString */)
+	RecurrenceRules() []IEKRecurrenceRule
+	SetRecurrenceRules(value []IEKRecurrenceRule)
 	TimeZone() objc.IObject /* cross-framework: TimeZone */
 	SetTimeZone(value objc.IObject /* cross-framework: TimeZone */)
-	Title() string /* primitive/slice/pointer. */
-	SetTitle(value string /* primitive/slice/pointer. */)
-	URL() foundation.objc.IObject /* cross-framework: URL */
-	SetURL(value foundation.objc.IObject /* cross-framework: URL */)
-	UUID() string /* primitive/slice/pointer. */
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	URL() objc.IObject /* cross-framework: NSURL */
+	SetURL(value objc.IObject /* cross-framework: NSURL */)
 	// methods:
 	AddAlarm(alarm IEKAlarm)
 	AddRecurrenceRule(rule IEKRecurrenceRule)
@@ -159,7 +158,7 @@ func (e_ EKCalendarItem) RemoveRecurrenceRule(rule IEKRecurrenceRule) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/alarms
-func (e_ EKCalendarItem) Alarms() []EKAlarm /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) Alarms() []IEKAlarm {
 	rv := objc.Send[[]EKAlarm](e_.ID, objc.Sel("alarms"))
 	return rv
 }
@@ -169,7 +168,7 @@ func (e_ EKCalendarItem) Alarms() []EKAlarm /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/alarms
-func (e_ EKCalendarItem) SetAlarms(value []EKAlarm /* primitive/slice/pointer. */) {
+func (e_ EKCalendarItem) SetAlarms(value []IEKAlarm) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -188,7 +187,7 @@ func (e_ EKCalendarItem) SetAlarms(value []EKAlarm /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/attendees
-func (e_ EKCalendarItem) Attendees() []EKParticipant /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) Attendees() []IEKParticipant {
 	rv := objc.Send[[]EKParticipant](e_.ID, objc.Sel("attendees"))
 	return rv
 }
@@ -217,8 +216,8 @@ func (e_ EKCalendarItem) SetCalendar(value IEKCalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemExternalIdentifier
-func (e_ EKCalendarItem) CalendarItemExternalIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
+func (e_ EKCalendarItem) CalendarItemExternalIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
 	return rv
 }
 
@@ -227,8 +226,8 @@ func (e_ EKCalendarItem) CalendarItemExternalIdentifier() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemIdentifier
-func (e_ EKCalendarItem) CalendarItemIdentifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemIdentifier"))
+func (e_ EKCalendarItem) CalendarItemIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("calendarItemIdentifier"))
 	return rv
 }
 
@@ -237,7 +236,7 @@ func (e_ EKCalendarItem) CalendarItemIdentifier() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/creationDate
-func (e_ EKCalendarItem) CreationDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (e_ EKCalendarItem) CreationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -247,7 +246,7 @@ func (e_ EKCalendarItem) CreationDate() foundation.objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/hasAlarms
-func (e_ EKCalendarItem) HasAlarms() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) HasAlarms() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasAlarms"))
 	return rv
 }
@@ -257,7 +256,7 @@ func (e_ EKCalendarItem) HasAlarms() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/hasAttendees
-func (e_ EKCalendarItem) HasAttendees() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) HasAttendees() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasAttendees"))
 	return rv
 }
@@ -267,7 +266,7 @@ func (e_ EKCalendarItem) HasAttendees() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/hasNotes
-func (e_ EKCalendarItem) HasNotes() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) HasNotes() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasNotes"))
 	return rv
 }
@@ -277,7 +276,7 @@ func (e_ EKCalendarItem) HasNotes() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/hasRecurrenceRules
-func (e_ EKCalendarItem) HasRecurrenceRules() bool /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) HasRecurrenceRules() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasRecurrenceRules"))
 	return rv
 }
@@ -287,7 +286,7 @@ func (e_ EKCalendarItem) HasRecurrenceRules() bool /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/lastModifiedDate
-func (e_ EKCalendarItem) LastModifiedDate() foundation.objc.IObject /* cross-framework: NSDate */ {
+func (e_ EKCalendarItem) LastModifiedDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("lastModifiedDate"))
 	return rv
 }
@@ -297,8 +296,8 @@ func (e_ EKCalendarItem) LastModifiedDate() foundation.objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) Location() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("location"))
+func (e_ EKCalendarItem) Location() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -307,8 +306,8 @@ func (e_ EKCalendarItem) Location() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) SetLocation(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), objc.String(value))
+func (e_ EKCalendarItem) SetLocation(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), value)
 }
 
 
@@ -316,8 +315,8 @@ func (e_ EKCalendarItem) SetLocation(value string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) Notes() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("notes"))
+func (e_ EKCalendarItem) Notes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("notes"))
 	return rv
 }
 
@@ -326,8 +325,8 @@ func (e_ EKCalendarItem) Notes() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) SetNotes(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), objc.String(value))
+func (e_ EKCalendarItem) SetNotes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), value)
 }
 
 
@@ -335,7 +334,7 @@ func (e_ EKCalendarItem) SetNotes(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/recurrenceRules
-func (e_ EKCalendarItem) RecurrenceRules() []EKRecurrenceRule /* primitive/slice/pointer. */ {
+func (e_ EKCalendarItem) RecurrenceRules() []IEKRecurrenceRule {
 	rv := objc.Send[[]EKRecurrenceRule](e_.ID, objc.Sel("recurrenceRules"))
 	return rv
 }
@@ -345,7 +344,7 @@ func (e_ EKCalendarItem) RecurrenceRules() []EKRecurrenceRule /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/recurrenceRules
-func (e_ EKCalendarItem) SetRecurrenceRules(value []EKRecurrenceRule /* primitive/slice/pointer. */) {
+func (e_ EKCalendarItem) SetRecurrenceRules(value []IEKRecurrenceRule) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -365,7 +364,7 @@ func (e_ EKCalendarItem) SetRecurrenceRules(value []EKRecurrenceRule /* primitiv
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/timeZone
 func (e_ EKCalendarItem) TimeZone() objc.IObject /* cross-framework: TimeZone */ {
-	rv := objc.Send[TimeZone](e_.ID, objc.Sel("timeZone"))
+	rv := objc.Send[foundation.TimeZone](e_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -383,8 +382,8 @@ func (e_ EKCalendarItem) SetTimeZone(value objc.IObject /* cross-framework: Time
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) Title() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKCalendarItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -393,8 +392,8 @@ func (e_ EKCalendarItem) Title() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) SetTitle(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (e_ EKCalendarItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
 }
 
 
@@ -402,8 +401,8 @@ func (e_ EKCalendarItem) SetTitle(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) URL() foundation.objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
+func (e_ EKCalendarItem) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](e_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -412,19 +411,8 @@ func (e_ EKCalendarItem) URL() foundation.objc.IObject /* cross-framework: URL *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) SetURL(value foundation.objc.IObject /* cross-framework: URL */) {
+func (e_ EKCalendarItem) SetURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setURL:"), value)
 }
-
-
-// The calendar item’s unique identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/uuid
-func (e_ EKCalendarItem) UUID() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("UUID"))
-	return rv
-}
-
 
 

@@ -31,13 +31,17 @@ type _MTRRVCCleanModeClusterChangeToModeResponseParamsClass struct {
 // An interface definition for the [MTRRVCCleanModeClusterChangeToModeResponseParams] class.
 type IMTRRVCCleanModeClusterChangeToModeResponseParams interface {
 	objectivec.IObject
-	Status() foundation.Number
-	SetStatus(value foundation.INumber)
-	StatusText() string
-	SetStatusText(value string)
+	// properties:
+	Status() objc.IObject /* cross-framework: NSNumber */
+	SetStatus(value objc.IObject /* cross-framework: NSNumber */)
+	StatusText() objc.IObject /* cross-framework: NSString */
+	SetStatusText(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCCleanModeClusterChangeToModeResponseParams
 type MTRRVCCleanModeClusterChangeToModeResponseParams struct {
 	objectivec.Object
@@ -80,34 +84,34 @@ func NewMTRRVCCleanModeClusterChangeToModeResponseParams() MTRRVCCleanModeCluste
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
-func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) Status() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("status"))
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("status"))
 	return rv
 }
 
 
-// SetStatus sets the value of the status property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
-func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatus(value foundation.INumber) {
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
-func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) StatusText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) StatusText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
 
-// SetStatusText sets the value of the statusText property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
-func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatusText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatusText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
 
 

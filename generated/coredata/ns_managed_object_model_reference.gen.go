@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,8 +34,8 @@ type IManagedObjectModelReference interface {
 	// properties:
 	ResolvedModel() IManagedObjectModel
 	SetResolvedModel(value IManagedObjectModel)
-	VersionChecksum() string /* primitive/slice/pointer. */
-	SetVersionChecksum(value string /* primitive/slice/pointer. */)
+	VersionChecksum() objc.IObject /* cross-framework: NSString */
+	SetVersionChecksum(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -112,8 +113,8 @@ func (m_ ManagedObjectModelReference) SetResolvedModel(value IManagedObjectModel
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) VersionChecksum() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
+func (m_ ManagedObjectModelReference) VersionChecksum() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (m_ ManagedObjectModelReference) VersionChecksum() string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) SetVersionChecksum(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
+func (m_ ManagedObjectModelReference) SetVersionChecksum(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
 }
 
 

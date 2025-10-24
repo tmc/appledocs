@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ActionCell] class.
@@ -29,47 +29,24 @@ type _ActionCellClass struct {
 
 // An interface definition for the [ActionCell] class.
 type IActionCell interface {
-	ICell
+	objectivec.IObject
 	// properties:
-	Action() objc.SEL
-	SetAction(value objc.SEL)
-	Tag() int /* primitive/slice/pointer. */
-	SetTag(value int /* primitive/slice/pointer. */)
-	Target() objc.ID
-	SetTarget(value objc.ID)
-	ControlView() IView
-	SetControlView(value IView)
-	FloatValue() float32 /* primitive/slice/pointer. */
-	SetFloatValue(value float32 /* primitive/slice/pointer. */)
-	IntValue() unsafe.Pointer
-	SetIntValue(value unsafe.Pointer)
-	IntegerValue() int /* primitive/slice/pointer. */
-	SetIntegerValue(value int /* primitive/slice/pointer. */)
-	StringValue() objc.IObject /* cross-framework: NSString */
-	SetStringValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
-// An active area inside a control.
-//
-// An does three things: it displays text or an icon; it provides the target object and action method used by its object; and it handles mouse (cursor) tracking by properly highlighting its area and sending action messages to its target based on cursor movement. The of an is the view in which the receiver was last drawn.
+// A parent class referenced by other AppKit classes.
 
 
-// An active area inside a control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell
+// A parent class referenced by other AppKit classes. [Full Topic]
 type ActionCell struct {
-	Cell
+	objectivec.Object
 }
 
 // ActionCellFrom constructs a [ActionCell] from an unsafe.Pointer.
 //
-// An active area inside a control.
+// A parent class referenced by other AppKit classes.
 func ActionCellFrom(ptr unsafe.Pointer) ActionCell {
-	return ActionCell{
-		Cell: CellFrom(ptr),
-	}
+	return ActionCell{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -103,158 +80,6 @@ func NewActionCell() ActionCell {
 	return getActionCellClass().New()
 }
 
-
-
-// Returns the receiver’s action-message selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
-func (a_ ActionCell) Action() objc.SEL {
-	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// Returns the receiver’s action-message selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/action
-func (a_ ActionCell) SetAction(value objc.SEL) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAction:"), value)
-}
-
-
-// Returns the receiver’s tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
-func (a_ ActionCell) Tag() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
-	return rv
-}
-
-
-// Returns the receiver’s tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
-func (a_ ActionCell) SetTag(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
-}
-
-
-// Returns the receiver’s target object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
-func (a_ ActionCell) Target() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// Returns the receiver’s target object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/target
-func (a_ ActionCell) SetTarget(value objc.ID) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
-}
-
-
-// The view associated with the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
-func (a_ ActionCell) ControlView() IView {
-	rv := objc.Send[View](a_.ID, objc.Sel("controlView"))
-	return rv
-}
-
-
-// The view associated with the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
-func (a_ ActionCell) SetControlView(value IView) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setControlView:"), value)
-}
-
-
-// The cell’s value as a single-precision floating-point number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) FloatValue() float32 /* primitive/slice/pointer. */ {
-	rv := objc.Send[float32](a_.ID, objc.Sel("floatValue"))
-	return rv
-}
-
-
-// The cell’s value as a single-precision floating-point number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) SetFloatValue(value float32 /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFloatValue:"), value)
-}
-
-
-// The cell’s value as an integer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/intvalue
-func (a_ ActionCell) IntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("intValue"))
-	return rv
-}
-
-
-// The cell’s value as an integer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/intvalue
-func (a_ ActionCell) SetIntValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIntValue:"), value)
-}
-
-
-// The cell’s value as an integer value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
-func (a_ ActionCell) IntegerValue() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](a_.ID, objc.Sel("integerValue"))
-	return rv
-}
-
-
-// The cell’s value as an integer value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
-func (a_ ActionCell) SetIntegerValue(value int /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIntegerValue:"), value)
-}
-
-
-// The cell’s value as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) StringValue() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// The cell’s value as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), value)
-}
 
 
 

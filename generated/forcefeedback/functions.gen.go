@@ -16,15 +16,15 @@ import (
 
 var (
 	_FFCreateDevice func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_FFDeviceCreateEffect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_FFDeviceGetForceFeedbackCapabilities func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_FFDeviceCreateEffect func(FFDeviceObjectReference, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_FFDeviceGetForceFeedbackCapabilities func(FFDeviceObjectReference, unsafe.Pointer) unsafe.Pointer
 	_FFEffectEscape func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_FFEffectGetEffectStatus func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_FFEffectSetParameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_FFEffectStart func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_FFEffectUnload func(unsafe.Pointer) unsafe.Pointer
 	_FFIsForceFeedback func(unsafe.Pointer) unsafe.Pointer
-	_FFReleaseDevice func(unsafe.Pointer) unsafe.Pointer
+	_FFReleaseDevice func(FFDeviceObjectReference) unsafe.Pointer
 )
 
 func init() {
@@ -76,7 +76,7 @@ func FFCreateDevice(hidDevice unsafe.Pointer, pDeviceReference unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFDeviceCreateEffect(_:_:_:_:)
-func FFDeviceCreateEffect(deviceReference unsafe.Pointer, uuidRef unsafe.Pointer, pEffectDefinition unsafe.Pointer, pEffectReference unsafe.Pointer) unsafe.Pointer {
+func FFDeviceCreateEffect(deviceReference FFDeviceObjectReference, uuidRef unsafe.Pointer, pEffectDefinition unsafe.Pointer, pEffectReference unsafe.Pointer) unsafe.Pointer {
 	return _FFDeviceCreateEffect(deviceReference, uuidRef, pEffectDefinition, pEffectReference)
 }
 
@@ -87,7 +87,7 @@ func FFDeviceCreateEffect(deviceReference unsafe.Pointer, uuidRef unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFDeviceGetForceFeedbackCapabilities(_:_:)
-func FFDeviceGetForceFeedbackCapabilities(deviceReference unsafe.Pointer, pFFCapabilities unsafe.Pointer) unsafe.Pointer {
+func FFDeviceGetForceFeedbackCapabilities(deviceReference FFDeviceObjectReference, pFFCapabilities unsafe.Pointer) unsafe.Pointer {
 	return _FFDeviceGetForceFeedbackCapabilities(deviceReference, pFFCapabilities)
 }
 
@@ -164,7 +164,7 @@ func FFIsForceFeedback(hidDevice unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ForceFeedback/FFReleaseDevice(_:)
-func FFReleaseDevice(deviceReference unsafe.Pointer) unsafe.Pointer {
+func FFReleaseDevice(deviceReference FFDeviceObjectReference) unsafe.Pointer {
 	return _FFReleaseDevice(deviceReference)
 }
 

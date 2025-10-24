@@ -31,15 +31,19 @@ type _MTRAudioOutputClusterOutputInfoStructClass struct {
 // An interface definition for the [MTRAudioOutputClusterOutputInfoStruct] class.
 type IMTRAudioOutputClusterOutputInfoStruct interface {
 	objectivec.IObject
-	Index() foundation.Number
-	SetIndex(value foundation.INumber)
-	Name() string
-	SetName(value string)
-	OutputType() foundation.Number
-	SetOutputType(value foundation.INumber)
+	// properties:
+	Index() objc.IObject /* cross-framework: NSNumber */
+	SetIndex(value objc.IObject /* cross-framework: NSNumber */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	OutputType() objc.IObject /* cross-framework: NSNumber */
+	SetOutputType(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAudioOutputClusterOutputInfoStruct
 type MTRAudioOutputClusterOutputInfoStruct struct {
 	objectivec.Object
@@ -82,48 +86,48 @@ func NewMTRAudioOutputClusterOutputInfoStruct() MTRAudioOutputClusterOutputInfoS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
-func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("index"))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("index"))
 	return rv
 }
 
 
-// SetIndex sets the value of the index property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value foundation.INumber) {
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
-func (m_ MTRAudioOutputClusterOutputInfoStruct) OutputType() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("outputType"))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) OutputType() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("outputType"))
 	return rv
 }
 
 
-// SetOutputType sets the value of the outputType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value foundation.INumber) {
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
 }
 

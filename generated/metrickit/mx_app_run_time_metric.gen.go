@@ -29,14 +29,20 @@ type _MXAppRunTimeMetricClass struct {
 // An interface definition for the [MXAppRunTimeMetric] class.
 type IMXAppRunTimeMetric interface {
 	IMXMetric
+	// properties:
 	CumulativeBackgroundAudioTime() unsafe.Pointer
 	CumulativeBackgroundLocationTime() unsafe.Pointer
 	CumulativeBackgroundTime() unsafe.Pointer
 	CumulativeForegroundTime() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the amount of time the app is active.
+
+
+// An object representing metrics about the amount of time the app is active.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppRunTimeMetric
 type MXAppRunTimeMetric struct {
 	MXMetric
@@ -83,32 +89,40 @@ func NewMXAppRunTimeMetric() MXAppRunTimeMetric {
 }
 
 
+
 // The total time the app is in the background and playing audio.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppRunTimeMetric/cumulativeBackgroundAudioTime
 func (m_ MXAppRunTimeMetric) CumulativeBackgroundAudioTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeBackgroundAudioTime"))
 	return rv
 }
 
+
 // The total time the app is in the background and using location services.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppRunTimeMetric/cumulativeBackgroundLocationTime
 func (m_ MXAppRunTimeMetric) CumulativeBackgroundLocationTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeBackgroundLocationTime"))
 	return rv
 }
 
+
 // The total time the app is active in the background.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppRunTimeMetric/cumulativeBackgroundTime
 func (m_ MXAppRunTimeMetric) CumulativeBackgroundTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeBackgroundTime"))
 	return rv
 }
 
+
 // The total time the app is in the foreground.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppRunTimeMetric/cumulativeForegroundTime
 func (m_ MXAppRunTimeMetric) CumulativeForegroundTime() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeForegroundTime"))

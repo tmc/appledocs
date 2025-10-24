@@ -31,10 +31,10 @@ type _QRCodeDescriptorClass struct {
 type IQRCodeDescriptor interface {
 	IBarcodeDescriptor
 	// properties:
-	ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */
+	ErrorCorrectedPayload() objc.IObject /* cross-framework: NSData */
 	ErrorCorrectionLevel() QRCodeErrorCorrectionLevel
-	MaskPattern() unsafe.Pointer
-	SymbolVersion() int /* primitive/slice/pointer. */
+	MaskPattern() uint8 /* not a class type */
+	SymbolVersion() int
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewQRCodeDescriptor() QRCodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/init(payload:symbolVersion:maskPattern:errorCorrectionLevel:)
-func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, symbolVersion int /* primitive/slice/pointer. */, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) QRCodeDescriptor {
+func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload objc.IObject /* cross-framework: NSData */, symbolVersion int, maskPattern uint8 /* not a class type */, errorCorrectionLevel QRCodeErrorCorrectionLevel) QRCodeDescriptor {
 	instance := getQRCodeDescriptorClass().Alloc()
 	rv := objc.Send[QRCodeDescriptor](instance.ID, objc.Sel("initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:
-func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, symbolVersion int /* primitive/slice/pointer. */, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) unsafe.Pointer {
+func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload objc.IObject /* cross-framework: NSData */, symbolVersion int, maskPattern uint8 /* not a class type */, errorCorrectionLevel QRCodeErrorCorrectionLevel) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	return rv
 }
@@ -120,7 +120,7 @@ func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectedPayload-swift.property
-func (q_ QRCodeDescriptor) ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */ {
+func (q_ QRCodeDescriptor) ErrorCorrectedPayload() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](q_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
@@ -140,8 +140,8 @@ func (q_ QRCodeDescriptor) ErrorCorrectionLevel() QRCodeErrorCorrectionLevel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/maskPattern-swift.property
-func (q_ QRCodeDescriptor) MaskPattern() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("maskPattern"))
+func (q_ QRCodeDescriptor) MaskPattern() uint8 /* not a class type */ {
+	rv := objc.Send[uint8](q_.ID, objc.Sel("maskPattern"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (q_ QRCodeDescriptor) MaskPattern() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/symbolVersion-swift.property
-func (q_ QRCodeDescriptor) SymbolVersion() int /* primitive/slice/pointer. */ {
+func (q_ QRCodeDescriptor) SymbolVersion() int {
 	rv := objc.Send[int](q_.ID, objc.Sel("symbolVersion"))
 	return rv
 }

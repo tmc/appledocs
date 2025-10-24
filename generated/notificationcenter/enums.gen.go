@@ -13,15 +13,4 @@ type NCUpdateResult uint
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetDisplayMode
 type NCWidgetDisplayMode uint
 
-const (
-	// NCWidgetDisplayModeCompact - The current height of the widget is compact.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetDisplayMode/compact
-	NCWidgetDisplayModeCompact NCWidgetDisplayMode = 0
-	// NCWidgetDisplayModeExpanded - The current height of the widget is expanded.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetDisplayMode/expanded
-	NCWidgetDisplayModeExpanded NCWidgetDisplayMode = 0
-)
-
 

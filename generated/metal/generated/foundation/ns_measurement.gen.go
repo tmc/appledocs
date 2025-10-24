@@ -31,8 +31,8 @@ type _MeasurementClass struct {
 type IMeasurement interface {
 	objectivec.IObject
 	// properties:
-	DoubleValue() float64 /* primitive/slice/pointer. */
-	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
+	DoubleValue() float64
+	SetDoubleValue(value float64)
 	Unit() IUnit
 	SetUnit(value IUnit)
 	// methods:
@@ -95,7 +95,7 @@ func NewMeasurement() Measurement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) DoubleValue() float64 /* primitive/slice/pointer. */ {
+func (m_ Measurement) DoubleValue() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (m_ Measurement) DoubleValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/doublevalue
-func (m_ Measurement) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
+func (m_ Measurement) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

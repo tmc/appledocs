@@ -31,15 +31,14 @@ type _IndexPathClass struct {
 type IIndexPath interface {
 	objectivec.IObject
 	// properties:
-	Item() int /* primitive/slice/pointer. */
-	Length() uint /* primitive/slice/pointer. */
-	Row() int /* primitive/slice/pointer. */
-	Section() int /* primitive/slice/pointer. */
+	Item() int
+	Length() uint
+	Section() int
 	// methods:
-	IndexPathByAddingIndex(index uint /* primitive/slice/pointer. */) IIndexPath
+	IndexPathByAddingIndex(index uint) IIndexPath
 	Compare(otherObject IIndexPath) ComparisonResult
-	GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework Range */)
-	IndexAtPosition(position uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
+	GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework: Range */)
+	IndexAtPosition(position uint) uint
 	IndexPathByRemovingLastIndex() IIndexPath
 }
 
@@ -100,7 +99,7 @@ func NewIndexPath() IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forItem:inSection:)
-func NewIndexPathForItemInSection(item int /* primitive/slice/pointer. */, section int /* primitive/slice/pointer. */) IndexPath {
+func NewIndexPathForItemInSection(item int, section int) IndexPath {
 	rv := objc.Send[IndexPath](objc.ID(getIndexPathClass().class), objc.Sel("indexPathForItem:inSection:"), item, section)
 	return rv
 }
@@ -110,7 +109,7 @@ func NewIndexPathForItemInSection(item int /* primitive/slice/pointer. */, secti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forRow:inSection:)
-func NewIndexPathForRowInSection(row int /* primitive/slice/pointer. */, section int /* primitive/slice/pointer. */) IndexPath {
+func NewIndexPathForRowInSection(row int, section int) IndexPath {
 	rv := objc.Send[IndexPath](objc.ID(getIndexPathClass().class), objc.Sel("indexPathForRow:inSection:"), row, section)
 	return rv
 }
@@ -120,7 +119,7 @@ func NewIndexPathForRowInSection(row int /* primitive/slice/pointer. */, section
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(index:)
-func NewIndexPathWithIndex(index uint /* primitive/slice/pointer. */) IndexPath {
+func NewIndexPathWithIndex(index uint) IndexPath {
 	instance := getIndexPathClass().Alloc()
 	rv := objc.Send[IndexPath](instance.ID, objc.Sel("initWithIndex:"), index)
 	rv.Autorelease()
@@ -132,7 +131,7 @@ func NewIndexPathWithIndex(index uint /* primitive/slice/pointer. */) IndexPath 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(indexes:length:)
-func NewIndexPathWithIndexesLength(indexes []uint /* primitive/slice/pointer. */, length uint /* primitive/slice/pointer. */) IndexPath {
+func NewIndexPathWithIndexesLength(indexes []uint, length uint) IndexPath {
 	instance := getIndexPathClass().Alloc()
 	rv := objc.Send[IndexPath](instance.ID, objc.Sel("initWithIndexes:length:"), indexes, length)
 	rv.Autorelease()
@@ -145,7 +144,7 @@ func NewIndexPathWithIndexesLength(indexes []uint /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/indexPathWithIndex:
-func (ic _IndexPathClass) IndexPathWithIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (ic _IndexPathClass) IndexPathWithIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathWithIndex:"), index)
 	return rv
 }
@@ -155,7 +154,7 @@ func (ic _IndexPathClass) IndexPathWithIndex(index uint /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/indexPathWithIndexes:length:
-func (ic _IndexPathClass) IndexPathWithIndexesLength(indexes uint /* primitive/slice/pointer. */, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (ic _IndexPathClass) IndexPathWithIndexesLength(indexes uint, length uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathWithIndexes:length:"), indexes, length)
 	return rv
 }
@@ -165,7 +164,7 @@ func (ic _IndexPathClass) IndexPathWithIndexesLength(indexes uint /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forItem:inSection:)
-func (ic _IndexPathClass) IndexPathForItemInSection(item int /* primitive/slice/pointer. */, section int /* primitive/slice/pointer. */) IIndexPath {
+func (ic _IndexPathClass) IndexPathForItemInSection(item int, section int) IIndexPath {
 	rv := objc.Send[IndexPath](objc.ID(ic.class), objc.Sel("indexPathForItem:inSection:"), item, section)
 	return rv
 }
@@ -175,7 +174,7 @@ func (ic _IndexPathClass) IndexPathForItemInSection(item int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(forRow:inSection:)
-func (ic _IndexPathClass) IndexPathForRowInSection(row int /* primitive/slice/pointer. */, section int /* primitive/slice/pointer. */) unsafe.Pointer {
+func (ic _IndexPathClass) IndexPathForRowInSection(row int, section int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathForRow:inSection:"), row, section)
 	return rv
 }
@@ -185,7 +184,7 @@ func (ic _IndexPathClass) IndexPathForRowInSection(row int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/adding(_:)
-func (i_ IndexPath) IndexPathByAddingIndex(index uint /* primitive/slice/pointer. */) IIndexPath {
+func (i_ IndexPath) IndexPathByAddingIndex(index uint) IIndexPath {
 	rv := objc.Send[IndexPath](i_.ID, objc.Sel("indexPathByAddingIndex:"), index)
 	return rv
 }
@@ -205,7 +204,7 @@ func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/getIndexes(_:range:)
-func (i_ IndexPath) GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework Range */) {
+func (i_ IndexPath) GetIndexesRange(indexes UInteger /* not a class type */, positionRange objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("getIndexes:range:"), indexes, positionRange)
 }
 
@@ -214,7 +213,7 @@ func (i_ IndexPath) GetIndexesRange(indexes UInteger /* not a class type */, pos
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/index(atPosition:)
-func (i_ IndexPath) IndexAtPosition(position uint /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+func (i_ IndexPath) IndexAtPosition(position uint) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexAtPosition:"), position)
 	return rv
 }
@@ -234,7 +233,7 @@ func (i_ IndexPath) IndexPathByRemovingLastIndex() IIndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/item
-func (i_ IndexPath) Item() int /* primitive/slice/pointer. */ {
+func (i_ IndexPath) Item() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("item"))
 	return rv
 }
@@ -244,18 +243,8 @@ func (i_ IndexPath) Item() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/length
-func (i_ IndexPath) Length() uint /* primitive/slice/pointer. */ {
+func (i_ IndexPath) Length() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("length"))
-	return rv
-}
-
-
-// An index number identifying a row in a section of a table view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/row
-func (i_ IndexPath) Row() int /* primitive/slice/pointer. */ {
-	rv := objc.Send[int](i_.ID, objc.Sel("row"))
 	return rv
 }
 
@@ -264,7 +253,7 @@ func (i_ IndexPath) Row() int /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/section
-func (i_ IndexPath) Section() int /* primitive/slice/pointer. */ {
+func (i_ IndexPath) Section() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("section"))
 	return rv
 }

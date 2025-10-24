@@ -30,10 +30,14 @@ type _commentClass struct {
 // An interface definition for the [comment] class.
 type Icomment interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/comment-c.ivar
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-c.ivar
 type comment struct {
 	objectivec.Object
 }

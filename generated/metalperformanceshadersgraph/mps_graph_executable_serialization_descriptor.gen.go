@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GraphExecutableSerializationDescriptor] class.
@@ -29,16 +30,22 @@ type _GraphExecutableSerializationDescriptorClass struct {
 // An interface definition for the [GraphExecutableSerializationDescriptor] class.
 type IGraphExecutableSerializationDescriptor interface {
 	IGraphObject
+	// properties:
 	Append() bool
 	SetAppend(value bool)
 	DeploymentPlatform() GraphDeploymentPlatform
-	SetDeploymentPlatform(value IGraphDeploymentPlatform)
-	MinimumDeploymentTarget() string
-	SetMinimumDeploymentTarget(value string)
+	SetDeploymentPlatform(value GraphDeploymentPlatform)
+	MinimumDeploymentTarget() objc.IObject /* cross-framework: NSString */
+	SetMinimumDeploymentTarget(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A class that consists of all the levers to serialize an executable.
+
+
+// A class that consists of all the levers to serialize an executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor
 type GraphExecutableSerializationDescriptor struct {
 	GraphObject
@@ -85,8 +92,10 @@ func NewGraphExecutableSerializationDescriptor() GraphExecutableSerializationDes
 }
 
 
+
 // Flag to append to an existing .mpsgraphpackage if found at provided url.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
 func (g_ GraphExecutableSerializationDescriptor) Append() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("append"))
@@ -94,17 +103,18 @@ func (g_ GraphExecutableSerializationDescriptor) Append() bool {
 }
 
 
-// SetAppend sets the value of the append property.
 // Flag to append to an existing .mpsgraphpackage if found at provided url.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutableSerializationDescriptor/append
 func (g_ GraphExecutableSerializationDescriptor) SetAppend(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAppend:"), value)
 }
 
+
 // The deployment platform used to serialize the executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
 func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() GraphDeploymentPlatform {
 	rv := objc.Send[GraphDeploymentPlatform](g_.ID, objc.Sel("deploymentPlatform"))
@@ -112,31 +122,31 @@ func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() GraphDeplo
 }
 
 
-// SetDeploymentPlatform sets the value of the deploymentPlatform property.
 // The deployment platform used to serialize the executable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
-func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value IGraphDeploymentPlatform) {
+func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value GraphDeploymentPlatform) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDeploymentPlatform:"), value)
 }
 
+
 // The minimum deployment target to serialize the executable.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("minimumDeploymentTarget"))
+func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("minimumDeploymentTarget"))
 	return rv
 }
 
 
-// SetMinimumDeploymentTarget sets the value of the minimumDeploymentTarget property.
 // The minimum deployment target to serialize the executable.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), objc.String(value))
+func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), value)
 }
 
 

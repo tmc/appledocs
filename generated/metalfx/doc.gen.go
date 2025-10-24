@@ -2,12 +2,12 @@
 
 // Package metalfx provides Go bindings for the MetalFX framework.
 //
-// Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time. [Full Topic]
+// Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MetalFX without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetalFX
+// See: https://developer.apple.com/documentation/MetalFX
 package metalfx
 
 import (

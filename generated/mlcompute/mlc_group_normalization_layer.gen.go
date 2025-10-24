@@ -29,24 +29,30 @@ type _CGroupNormalizationLayerClass struct {
 // An interface definition for the [CGroupNormalizationLayer] class.
 type ICGroupNormalizationLayer interface {
 	ICLayer
-	Beta() MLCTensor
+	// properties:
+	Beta() IMLCTensor
 	SetBeta(value IMLCTensor)
-	BetaParameter() MLCTensorParameter
-	SetBetaParameter(value IMLCTensorParameter)
+	BetaParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
 	FeatureChannelCount() int
 	SetFeatureChannelCount(value int)
-	Gamma() MLCTensor
+	Gamma() IMLCTensor
 	SetGamma(value IMLCTensor)
-	GammaParameter() MLCTensorParameter
-	SetGammaParameter(value IMLCTensorParameter)
+	GammaParameter() objc.IObject /* cross-framework: CTensorParameter */
+	SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
 	GroupCount() int
 	SetGroupCount(value int)
 	VarianceEpsilon() float32
 	SetVarianceEpsilon(value float32)
+	// methods:
 }
 
 // A layer that divides the channels into groups for normalization.
+
+
+// A layer that divides the channels into groups for normalization.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGroupNormalizationLayer
 type CGroupNormalizationLayer struct {
 	CLayer
@@ -93,44 +99,48 @@ func NewCGroupNormalizationLayer() CGroupNormalizationLayer {
 }
 
 
+
 // The beta tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
-func (c_ CGroupNormalizationLayer) Beta() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("beta"))
+func (c_ CGroupNormalizationLayer) Beta() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
 
-// SetBeta sets the value of the beta property.
 // The beta tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/beta
 func (c_ CGroupNormalizationLayer) SetBeta(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
+
 // The beta tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
-func (c_ CGroupNormalizationLayer) BetaParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("betaParameter"))
+func (c_ CGroupNormalizationLayer) BetaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
 
-// SetBetaParameter sets the value of the betaParameter property.
 // The beta tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/betaparameter
-func (c_ CGroupNormalizationLayer) SetBetaParameter(value IMLCTensorParameter) {
+func (c_ CGroupNormalizationLayer) SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
+
 // The number of feature channels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
 func (c_ CGroupNormalizationLayer) FeatureChannelCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
@@ -138,53 +148,56 @@ func (c_ CGroupNormalizationLayer) FeatureChannelCount() int {
 }
 
 
-// SetFeatureChannelCount sets the value of the featureChannelCount property.
 // The number of feature channels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/featurechannelcount
 func (c_ CGroupNormalizationLayer) SetFeatureChannelCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
 }
 
+
 // The gamma tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/gamma
-func (c_ CGroupNormalizationLayer) Gamma() MLCTensor {
-	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("gamma"))
+func (c_ CGroupNormalizationLayer) Gamma() IMLCTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("gamma"))
 	return rv
 }
 
 
-// SetGamma sets the value of the gamma property.
 // The gamma tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/gamma
 func (c_ CGroupNormalizationLayer) SetGamma(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
+
 // The gamma tensor parameter you use for optimizer updates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/gammaparameter
-func (c_ CGroupNormalizationLayer) GammaParameter() MLCTensorParameter {
-	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("gammaParameter"))
+func (c_ CGroupNormalizationLayer) GammaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("gammaParameter"))
 	return rv
 }
 
 
-// SetGammaParameter sets the value of the gammaParameter property.
 // The gamma tensor parameter you use for optimizer updates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/gammaparameter
-func (c_ CGroupNormalizationLayer) SetGammaParameter(value IMLCTensorParameter) {
+func (c_ CGroupNormalizationLayer) SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
 }
 
+
 // The number of groups into which you separate the channels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/groupcount
 func (c_ CGroupNormalizationLayer) GroupCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("groupCount"))
@@ -192,17 +205,18 @@ func (c_ CGroupNormalizationLayer) GroupCount() int {
 }
 
 
-// SetGroupCount sets the value of the groupCount property.
 // The number of groups into which you separate the channels.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/groupcount
 func (c_ CGroupNormalizationLayer) SetGroupCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupCount:"), value)
 }
 
+
 // The variance epsilon you use for numerical stability.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
 func (c_ CGroupNormalizationLayer) VarianceEpsilon() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
@@ -210,10 +224,9 @@ func (c_ CGroupNormalizationLayer) VarianceEpsilon() float32 {
 }
 
 
-// SetVarianceEpsilon sets the value of the varianceEpsilon property.
 // The variance epsilon you use for numerical stability.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer/varianceepsilon
 func (c_ CGroupNormalizationLayer) SetVarianceEpsilon(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)

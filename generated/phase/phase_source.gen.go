@@ -29,17 +29,23 @@ type _PHASESourceClass struct {
 // An interface definition for the [PHASESource] class.
 type IPHASESource interface {
 	IPHASEObject
+	// properties:
 	Gain() float64
 	SetGain(value float64)
-	Shapes() []PHASEShape
+	Shapes() []IPHASEShape
 	Transform() unsafe.Pointer
 	SetTransform(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that plays audio from a 3D location and orientation in a scene.
 //
 // This class represents a sound-emitting point or area in a virtual environment, positioned and oriented by a 3D . A spatial mixer, , adds environmental effects to sound sources. To tie a mixer to a sound source, create a object and pass it into the argument of a sound event’s initializer. For an example that demonstrates sound sources, see .
+
+
+// An object that plays audio from a 3D location and orientation in a scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource
 type PHASESource struct {
 	PHASEObject
@@ -87,9 +93,9 @@ func NewPHASESource() PHASESource {
 
 
 
-
 // Creates a single point in the environment from which sound emanates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/init(engine:)
 func NewPHASESourceWithEngine(engine IPHASEEngine) PHASESource {
 	instance := getPHASESourceClass().Alloc()
@@ -99,11 +105,11 @@ func NewPHASESourceWithEngine(engine IPHASEEngine) PHASESource {
 }
 
 
-
 // Creates a voluminous area in the environment from which sound emanates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/init(engine:shapes:)
-func NewPHASESourceWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PHASESource {
+func NewPHASESourceWithEngineShapes(engine IPHASEEngine, shapes []IPHASEShape) PHASESource {
 	instance := getPHASESourceClass().Alloc()
 	rv := objc.Send[PHASESource](instance.ID, objc.Sel("initWithEngine:shapes:"), engine, shapes)
 	rv.Autorelease()
@@ -111,8 +117,10 @@ func NewPHASESourceWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PH
 }
 
 
+
 // The amount of sound the source emanates.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/gain
 func (p_ PHASESource) Gain() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("gain"))
@@ -120,25 +128,28 @@ func (p_ PHASESource) Gain() float64 {
 }
 
 
-// SetGain sets the value of the gain property.
 // The amount of sound the source emanates.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/gain
 func (p_ PHASESource) SetGain(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGain:"), value)
 }
 
+
 // An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/shapes
-func (p_ PHASESource) Shapes() []PHASEShape {
+func (p_ PHASESource) Shapes() []IPHASEShape {
 	rv := objc.Send[[]PHASEShape](p_.ID, objc.Sel("shapes"))
 	return rv
 }
 
+
 // A matrix, in local coordinates, that determines the object’s pose in the scene.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
 func (p_ PHASESource) Transform() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transform"))
@@ -146,10 +157,9 @@ func (p_ PHASESource) Transform() unsafe.Pointer {
 }
 
 
-// SetTransform sets the value of the transform property.
 // A matrix, in local coordinates, that determines the object’s pose in the scene.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseobject/transform
 func (p_ PHASESource) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransform:"), value)

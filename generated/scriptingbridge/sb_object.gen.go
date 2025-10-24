@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,11 +32,13 @@ type _SBObjectClass struct {
 // An interface definition for the [SBObject] class.
 type ISBObject interface {
 	objectivec.IObject
-	ElementArrayWithCode(code unsafe.Pointer) SBElementArray
+	// properties:
+	// methods:
+	ElementArrayWithCode(code unsafe.Pointer) ISBElementArray
 	Get() objc.ID
-	LastError() foundation.Error
-	PropertyWithClassCode(cls objc.Class, code unsafe.Pointer) SBObject
-	PropertyWithCode(code unsafe.Pointer) SBObject
+	LastError() objc.IObject /* cross-framework: Error */
+	PropertyWithClassCode(cls objc.Class, code unsafe.Pointer) ISBObject
+	PropertyWithCode(code unsafe.Pointer) ISBObject
 	SendEventIdParameters(eventClass unsafe.Pointer, eventID unsafe.Pointer, firstParamCode unsafe.Pointer) objc.ID
 	SetTo(value objectivec.IObject)
 }
@@ -43,7 +46,11 @@ type ISBObject interface {
 // The class declares methods that can be invoked on any object in a scriptable application. It defines methods for getting elements and properties of an object, as well as setting a given object to a new value.
 //
 // Each is built around an object specifier, which tells Scripting Bridge how to locate the object. Therefore, you can think of an as a reference to an object in an target application rather than an object itself. To bypass this reference-based approach and force evaluation, use the method. Typically, rather than create instances explictly, you receive objects by calling methods of an subclass. For example, if you wanted to get an representing the current iTunes track, you would use code like this (where is a subclass of ): You can discover the names of dynamically generated classes such as and by examining the header file created by the tool. Alternatively, you give these variables the dynamic Objective-C type .
+
+
+// The class declares methods that can be invoked on any object in a scriptable application. It defines methods for getting elements and properties of an object, as well as setting a given object to a new value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject
 type SBObject struct {
 	objectivec.Object
@@ -89,9 +96,9 @@ func NewSBObject() SBObject {
 
 
 
-
 // Returns an instance of an subclass initialized with the given data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/init(data:)
 func NewSBObjectWithData(data objectivec.IObject) SBObject {
 	instance := getSBObjectClass().Alloc()
@@ -101,11 +108,11 @@ func NewSBObjectWithData(data objectivec.IObject) SBObject {
 }
 
 
-
 // Returns an instance of an subclass initialized with the specified properties and data and added to the designated element array.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/init(elementCode:properties:data:)
-func NewSBObjectWithElementCodePropertiesData(code unsafe.Pointer, properties unsafe.Pointer, data objectivec.IObject) SBObject {
+func NewSBObjectWithElementCodePropertiesData(code unsafe.Pointer, properties foundation.IDictionary, data objectivec.IObject) SBObject {
 	instance := getSBObjectClass().Alloc()
 	rv := objc.Send[SBObject](instance.ID, objc.Sel("initWithElementCode:properties:data:"), code, properties, data)
 	rv.Autorelease()
@@ -113,11 +120,11 @@ func NewSBObjectWithElementCodePropertiesData(code unsafe.Pointer, properties un
 }
 
 
-
 // Returns an instance of an subclass initialized with the specified properties.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/init(properties:)
-func NewSBObjectWithProperties(properties objectivec.IObject) SBObject {
+func NewSBObjectWithProperties(properties objc.IObject /* cross-framework: NSDictionary */) SBObject {
 	instance := getSBObjectClass().Alloc()
 	rv := objc.Send[SBObject](instance.ID, objc.Sel("initWithProperties:"), properties)
 	rv.Autorelease()
@@ -125,56 +132,70 @@ func NewSBObjectWithProperties(properties objectivec.IObject) SBObject {
 }
 
 
+
 // Returns an array containing every child of the receiver with the given class-type code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/elementArray(withCode:)
-func (s_ SBObject) ElementArrayWithCode(code unsafe.Pointer) SBElementArray {
+func (s_ SBObject) ElementArrayWithCode(code unsafe.Pointer) ISBElementArray {
 	rv := objc.Send[SBElementArray](s_.ID, objc.Sel("elementArrayWithCode:"), code)
 	return rv
 }
 
+
 // Forces evaluation of the receiver, causing the real object to be returned immediately.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/get()
 func (s_ SBObject) Get() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("get"))
 	return rv
 }
 
+
 // The error from the last event this object sent, or nil if it succeeded.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/lastError()
-func (s_ SBObject) LastError() foundation.Error {
-	rv := objc.Send[foundation.Error](s_.ID, objc.Sel("lastError"))
+func (s_ SBObject) LastError() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](s_.ID, objc.Sel("lastError"))
 	return rv
 }
 
+
 // Returns an object of the designated scripting class representing the specified property of the receiver
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/property(with:code:)
 func (s_ SBObject) PropertyWithClassCode(cls objc.Class, code unsafe.Pointer) SBObject {
 	rv := objc.Send[SBObject](s_.ID, objc.Sel("propertyWithClass:code:"), cls, code)
 	return rv
 }
 
+
 // Returns an object representing the specified property of the receiver.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/property(withCode:)
 func (s_ SBObject) PropertyWithCode(code unsafe.Pointer) SBObject {
 	rv := objc.Send[SBObject](s_.ID, objc.Sel("propertyWithCode:"), code)
 	return rv
 }
 
+
 // Sends an Apple event with the given event class, event ID, and format to the target application.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/sendEvent:id:parameters:
 func (s_ SBObject) SendEventIdParameters(eventClass unsafe.Pointer, eventID unsafe.Pointer, firstParamCode unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sendEvent:id:parameters:"), eventClass, eventID, firstParamCode)
 	return rv
 }
 
+
 // Sets the receiver to a specified value.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBObject/setTo(_:)
 func (s_ SBObject) SetTo(value objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTo:"), value)

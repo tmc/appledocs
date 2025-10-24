@@ -30,15 +30,19 @@ type _MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParamsClass struct {
 // An interface definition for the [MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams] class.
 type IMTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams interface {
 	IMTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams
-	Action() foundation.Number
-	SetAction(value foundation.INumber)
-	DelayedActionTime() foundation.Number
-	SetDelayedActionTime(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Action() objc.IObject /* cross-framework: NSNumber */
+	SetAction(value objc.IObject /* cross-framework: NSNumber */)
+	DelayedActionTime() objc.IObject /* cross-framework: NSNumber */
+	SetDelayedActionTime(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams-92als
 type MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams struct {
 	MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams
@@ -83,48 +87,48 @@ func NewMTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams() MTROtaSof
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/action
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) Action() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("action"))
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) Action() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// SetAction sets the value of the action property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/action
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetAction(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetAction(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/delayedactiontime
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) DelayedActionTime() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("delayedActionTime"))
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) DelayedActionTime() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("delayedActionTime"))
 	return rv
 }
 
 
-// SetDelayedActionTime sets the value of the delayedActionTime property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/delayedactiontime
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetDelayedActionTime(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetDelayedActionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayedActionTime:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterapplyupdateresponseparams-92als/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

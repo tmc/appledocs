@@ -32,10 +32,10 @@ type ISplitViewController interface {
 	// properties:
 	SplitView() ISplitView
 	SetSplitView(value ISplitView)
-	IsVertical() bool /* primitive/slice/pointer. */
-	SetIsVertical(value bool /* primitive/slice/pointer. */)
-	MinimumThicknessForInlineSidebars() float64 /* primitive/slice/pointer. */
-	SetMinimumThicknessForInlineSidebars(value float64 /* primitive/slice/pointer. */)
+	IsVertical() bool
+	SetIsVertical(value bool)
+	MinimumThicknessForInlineSidebars() float64
+	SetMinimumThicknessForInlineSidebars(value float64)
 	SplitViewItems() ISplitViewItem
 	SetSplitViewItems(value ISplitViewItem)
 	// methods:
@@ -119,7 +119,7 @@ func (s_ SplitViewController) SetSplitView(value ISplitView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-func (s_ SplitViewController) IsVertical() bool /* primitive/slice/pointer. */ {
+func (s_ SplitViewController) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (s_ SplitViewController) IsVertical() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
-func (s_ SplitViewController) SetIsVertical(value bool /* primitive/slice/pointer. */) {
+func (s_ SplitViewController) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }
 
@@ -138,7 +138,7 @@ func (s_ SplitViewController) SetIsVertical(value bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/minimumthicknessforinlinesidebars
-func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 /* primitive/slice/pointer. */ {
+func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThicknessForInlineSidebars"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewcontroller/minimumthicknessforinlinesidebars
-func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64 /* primitive/slice/pointer. */) {
+func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThicknessForInlineSidebars:"), value)
 }
 

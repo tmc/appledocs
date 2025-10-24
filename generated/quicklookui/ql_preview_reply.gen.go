@@ -7,9 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PreviewReply] class.
@@ -32,18 +33,24 @@ type _PreviewReplyClass struct {
 // An interface definition for the [PreviewReply] class.
 type IPreviewReply interface {
 	objectivec.IObject
-	Attachments() unsafe.Pointer
-	SetAttachments(value unsafe.Pointer)
-	StringEncoding() unsafe.Pointer
-	SetStringEncoding(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
+	// properties:
+	StringEncoding() StringEncoding /* not a class type */
+	SetStringEncoding(value StringEncoding /* not a class type */)
+	Attachments() IQLPreviewReplyAttachment
+	SetAttachments(value IQLPreviewReplyAttachment)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // The class you create when providing a data-based Quick Look preview extension.
 //
 // Create an instance of from the method in your subclass of . Create an instance to return data; for example, an image, PDF, or HTML; that the system displays as the preview for the content that the system indicates with .
+
+
+// The class you create when providing a data-based Quick Look preview extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply
 type PreviewReply struct {
 	objectivec.Object
@@ -88,27 +95,30 @@ func NewPreviewReply() PreviewReply {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initForPDFWithPageSize:documentCreationBlock:
-func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize coregraphics.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize objc.IObject /* cross-framework: Size */, documentCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initForPDFWithPageSize:documentCreationBlock:"), defaultPageSize, documentCreationBlock)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initWithContextSize:isBitmap:drawingBlock:
-func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize objc.IObject /* cross-framework: Size */, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithContextSize:isBitmap:drawingBlock:"), contextSize, isBitmap, drawingBlock)
 	rv.Autorelease()
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
-func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType unsafe.Pointer, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType objc.IObject /* cross-framework: UTType */, contentSize objc.IObject /* cross-framework: Size */, dataCreationBlock Data  * (^)( QLPreviewReply  *  reply ,  NSError  * *  error /* not a class type */) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
 	rv.Autorelease()
@@ -116,11 +126,11 @@ func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentTyp
 }
 
 
-
 // Creates a preview reply from an existing file URL.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL foundation.IURL) PreviewReply {
+func NewPreviewReplyWithFileURL(fileURL objc.IObject /* cross-framework: NSURL */) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
@@ -128,58 +138,61 @@ func NewPreviewReplyWithFileURL(fileURL foundation.IURL) PreviewReply {
 }
 
 
-// The attachments for a preview reply that provide additional data for the system to display the preview.
+
+// String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/attachments
-func (p_ PreviewReply) Attachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attachments"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/stringEncoding-1k9kb
+func (p_ PreviewReply) StringEncoding() StringEncoding /* not a class type */ {
+	rv := objc.Send[StringEncoding](p_.ID, objc.Sel("stringEncoding"))
 	return rv
 }
 
 
-// SetAttachments sets the value of the attachments property.
-// The attachments for a preview reply that provide additional data for the system to display the preview.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/attachments
-func (p_ PreviewReply) SetAttachments(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
-}
-
 // String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/stringEncoding-1k9kb
-func (p_ PreviewReply) StringEncoding() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringEncoding"))
-	return rv
-}
-
-
-// SetStringEncoding sets the value of the stringEncoding property.
-// String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReply/stringEncoding-1k9kb
-func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
+func (p_ PreviewReply) SetStringEncoding(value StringEncoding /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStringEncoding:"), value)
 }
 
-// The title for the system to display with the preview.
+
+// The attachments for a preview reply that provide additional data for the system to display the preview.
 //
-// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
+func (p_ PreviewReply) Attachments() IQLPreviewReplyAttachment {
+	rv := objc.Send[PreviewReplyAttachment](p_.ID, objc.Sel("attachments"))
 	return rv
 }
 
 
-// SetTitle sets the value of the title property.
-// The title for the system to display with the preview.
-
+// The attachments for a preview reply that provide additional data for the system to display the preview.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
+func (p_ PreviewReply) SetAttachments(value IQLPreviewReplyAttachment) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
+}
+
+
+// The title for the system to display with the preview.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
-func (p_ PreviewReply) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PreviewReply) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The title for the system to display with the preview.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/title
+func (p_ PreviewReply) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

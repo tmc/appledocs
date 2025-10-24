@@ -31,11 +31,15 @@ type _MTRTimeSynchronizationClusterSetTimeZoneResponseParamsClass struct {
 // An interface definition for the [MTRTimeSynchronizationClusterSetTimeZoneResponseParams] class.
 type IMTRTimeSynchronizationClusterSetTimeZoneResponseParams interface {
 	objectivec.IObject
-	DstOffsetRequired() foundation.Number
-	SetDstOffsetRequired(value foundation.INumber)
+	// properties:
+	DstOffsetRequired() objc.IObject /* cross-framework: NSNumber */
+	SetDstOffsetRequired(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams
 type MTRTimeSynchronizationClusterSetTimeZoneResponseParams struct {
 	objectivec.Object
@@ -79,11 +83,11 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParams() MTRTimeSynchron
 
 
 
-
 // Initialize an MTRTimeSynchronizationClusterSetTimeZoneResponseParams with a response-value dictionary of the sort that MTRDeviceResponseHandler would receive.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/init(responseValue:)
-func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParamsWithResponseValueError(responseValue unsafe.Pointer, error_ unsafe.Pointer) MTRTimeSynchronizationClusterSetTimeZoneResponseParams {
+func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParamsWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTRTimeSynchronizationClusterSetTimeZoneResponseParams {
 	instance := getMTRTimeSynchronizationClusterSetTimeZoneResponseParamsClass().Alloc()
 	rv := objc.Send[MTRTimeSynchronizationClusterSetTimeZoneResponseParams](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
 	rv.Autorelease()
@@ -91,18 +95,18 @@ func NewMTRTimeSynchronizationClusterSetTimeZoneResponseParamsWithResponseValueE
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/dstOffsetRequired
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequired() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("dstOffsetRequired"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequired() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("dstOffsetRequired"))
 	return rv
 }
 
 
-// SetDstOffsetRequired sets the value of the dstOffsetRequired property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/dstOffsetRequired
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value foundation.INumber) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetRequired:"), value)
 }
 

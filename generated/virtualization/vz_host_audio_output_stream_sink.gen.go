@@ -29,12 +29,18 @@ type _VZHostAudioOutputStreamSinkClass struct {
 // An interface definition for the [VZHostAudioOutputStreamSink] class.
 type IVZHostAudioOutputStreamSink interface {
 	IVZAudioOutputStreamSink
+	// properties:
+	// methods:
 }
 
 // Host audio output stream sink plays audio to the host system’s default output device.
 //
 // Host output data goes to the same device that uses.
+
+
+// Host audio output stream sink plays audio to the host system’s default output device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZHostAudioOutputStreamSink
 type VZHostAudioOutputStreamSink struct {
 	VZAudioOutputStreamSink

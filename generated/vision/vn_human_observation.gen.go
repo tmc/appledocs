@@ -29,12 +29,18 @@ type _HumanObservationClass struct {
 // An interface definition for the [HumanObservation] class.
 type IHumanObservation interface {
 	IDetectedObjectObservation
+	// properties:
 	UpperBodyOnly() bool
 	SetUpperBodyOnly(value bool)
+	// methods:
 }
 
 // An object that represents a person that the request detects.
+
+
+// An object that represents a person that the request detects.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanObservation
 type HumanObservation struct {
 	DetectedObjectObservation
@@ -81,8 +87,10 @@ func NewHumanObservation() HumanObservation {
 }
 
 
+
 // A Boolean value that indicates whether the observation represents an upper-body or full-body rectangle.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanobservation/upperbodyonly
 func (h_ HumanObservation) UpperBodyOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("upperBodyOnly"))
@@ -90,10 +98,9 @@ func (h_ HumanObservation) UpperBodyOnly() bool {
 }
 
 
-// SetUpperBodyOnly sets the value of the upperBodyOnly property.
 // A Boolean value that indicates whether the observation represents an upper-body or full-body rectangle.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanobservation/upperbodyonly
 func (h_ HumanObservation) SetUpperBodyOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUpperBodyOnly:"), value)

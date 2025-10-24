@@ -29,16 +29,22 @@ type _CSplitLayerClass struct {
 // An interface definition for the [CSplitLayer] class.
 type ICSplitLayer interface {
 	ICLayer
+	// properties:
 	Dimension() int
 	SetDimension(value int)
 	SplitCount() int
 	SetSplitCount(value int)
 	SplitSectionLengths() int
 	SetSplitSectionLengths(value int)
+	// methods:
 }
 
 // A layer that splits a tensor value into a list of subtensors.
+
+
+// A layer that splits a tensor value into a list of subtensors.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSplitLayer
 type CSplitLayer struct {
 	CLayer
@@ -85,8 +91,10 @@ func NewCSplitLayer() CSplitLayer {
 }
 
 
+
 // The dimension or axis along which to split the tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/dimension
 func (c_ CSplitLayer) Dimension() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
@@ -94,17 +102,18 @@ func (c_ CSplitLayer) Dimension() int {
 }
 
 
-// SetDimension sets the value of the dimension property.
 // The dimension or axis along which to split the tensor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/dimension
 func (c_ CSplitLayer) SetDimension(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
 }
 
+
 // The number of splits.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/splitcount
 func (c_ CSplitLayer) SplitCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("splitCount"))
@@ -112,17 +121,18 @@ func (c_ CSplitLayer) SplitCount() int {
 }
 
 
-// SetSplitCount sets the value of the splitCount property.
 // The number of splits.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/splitcount
 func (c_ CSplitLayer) SetSplitCount(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSplitCount:"), value)
 }
 
+
 // An array that contains the lengths of each split section.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/splitsectionlengths-5abch
 func (c_ CSplitLayer) SplitSectionLengths() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("splitSectionLengths"))
@@ -130,10 +140,9 @@ func (c_ CSplitLayer) SplitSectionLengths() int {
 }
 
 
-// SetSplitSectionLengths sets the value of the splitSectionLengths property.
 // An array that contains the lengths of each split section.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsplitlayer/splitsectionlengths-5abch
 func (c_ CSplitLayer) SetSplitSectionLengths(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSplitSectionLengths:"), value)

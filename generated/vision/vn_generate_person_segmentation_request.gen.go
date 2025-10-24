@@ -29,18 +29,25 @@ type _GeneratePersonSegmentationRequestClass struct {
 // An interface definition for the [GeneratePersonSegmentationRequest] class.
 type IGeneratePersonSegmentationRequest interface {
 	IStatefulRequest
-	OutputPixelFormat() unsafe.Pointer
-	SetOutputPixelFormat(value unsafe.Pointer)
-	Results() []PixelBufferObservation
+	// properties:
+	OutputPixelFormat() uint32 /* not a class type */
+	SetOutputPixelFormat(value uint32 /* not a class type */)
 	QualityLevel() unsafe.Pointer
 	SetQualityLevel(value unsafe.Pointer)
+	Results() IVNPixelBufferObservation
+	SetResults(value IVNPixelBufferObservation)
 	VNGeneratePersonSegmentationRequestRevision1() int
+	// methods:
 }
 
 // An object that produces a matte image for a person it finds in the input image.
 //
 // Perform this request to detect and generate an image mask for a person in an image. The request returns the resulting image mask in an instance of .
+
+
+// An object that produces a matte image for a person it finds in the input image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest
 type GeneratePersonSegmentationRequest struct {
 	StatefulRequest
@@ -87,34 +94,29 @@ func NewGeneratePersonSegmentationRequest() GeneratePersonSegmentationRequest {
 }
 
 
+
 // The pixel format of the output image.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
-func (g_ GeneratePersonSegmentationRequest) OutputPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputPixelFormat"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/outputpixelformat
+func (g_ GeneratePersonSegmentationRequest) OutputPixelFormat() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](g_.ID, objc.Sel("outputPixelFormat"))
 	return rv
 }
 
 
-// SetOutputPixelFormat sets the value of the outputPixelFormat property.
 // The pixel format of the output image.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/outputPixelFormat
-func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/outputpixelformat
+func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
-// The results of the segmentation request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/results
-func (g_ GeneratePersonSegmentationRequest) Results() []PixelBufferObservation {
-	rv := objc.Send[[]PixelBufferObservation](g_.ID, objc.Sel("results"))
-	return rv
-}
 
 // A value that indicates how the request balances accuracy and performance.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
 func (g_ GeneratePersonSegmentationRequest) QualityLevel() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("qualityLevel"))
@@ -122,17 +124,37 @@ func (g_ GeneratePersonSegmentationRequest) QualityLevel() unsafe.Pointer {
 }
 
 
-// SetQualityLevel sets the value of the qualityLevel property.
 // A value that indicates how the request balances accuracy and performance.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
 func (g_ GeneratePersonSegmentationRequest) SetQualityLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setQualityLevel:"), value)
 }
 
+
+// The results of the segmentation request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
+func (g_ GeneratePersonSegmentationRequest) Results() IVNPixelBufferObservation {
+	rv := objc.Send[PixelBufferObservation](g_.ID, objc.Sel("results"))
+	return rv
+}
+
+
+// The results of the segmentation request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
+func (g_ GeneratePersonSegmentationRequest) SetResults(value IVNPixelBufferObservation) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
+}
+
+
 // A constant for specifying revision 1 of the person segmentation generation request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestrevision1
 func (g_ GeneratePersonSegmentationRequest) VNGeneratePersonSegmentationRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGeneratePersonSegmentationRequestRevision1"))

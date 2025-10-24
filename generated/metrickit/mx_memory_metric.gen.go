@@ -29,12 +29,18 @@ type _MXMemoryMetricClass struct {
 // An interface definition for the [MXMemoryMetric] class.
 type IMXMemoryMetric interface {
 	IMXMetric
+	// properties:
 	AverageSuspendedMemory() unsafe.Pointer
 	PeakMemoryUsage() unsafe.Pointer
+	// methods:
 }
 
 // An object representing metrics about the app’s memory use.
+
+
+// An object representing metrics about the app’s memory use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMemoryMetric
 type MXMemoryMetric struct {
 	MXMetric
@@ -81,16 +87,20 @@ func NewMXMemoryMetric() MXMemoryMetric {
 }
 
 
+
 // The average amount of memory in use by the app when it’s suspended.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMemoryMetric/averageSuspendedMemory
 func (m_ MXMemoryMetric) AverageSuspendedMemory() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averageSuspendedMemory"))
 	return rv
 }
 
+
 // The largest amount of memory used by the app.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMemoryMetric/peakMemoryUsage
 func (m_ MXMemoryMetric) PeakMemoryUsage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("peakMemoryUsage"))

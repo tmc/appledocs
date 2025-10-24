@@ -31,13 +31,17 @@ type _MTRValveConfigurationAndControlClusterCloseParamsClass struct {
 // An interface definition for the [MTRValveConfigurationAndControlClusterCloseParams] class.
 type IMTRValveConfigurationAndControlClusterCloseParams interface {
 	objectivec.IObject
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterCloseParams
 type MTRValveConfigurationAndControlClusterCloseParams struct {
 	objectivec.Object
@@ -80,33 +84,33 @@ func NewMTRValveConfigurationAndControlClusterCloseParams() MTRValveConfiguratio
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustercloseparams/serversideprocessingtimeout
-func (m_ MTRValveConfigurationAndControlClusterCloseParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRValveConfigurationAndControlClusterCloseParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustercloseparams/serversideprocessingtimeout
-func (m_ MTRValveConfigurationAndControlClusterCloseParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterCloseParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustercloseparams/timedinvoketimeoutms
-func (m_ MTRValveConfigurationAndControlClusterCloseParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRValveConfigurationAndControlClusterCloseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustercloseparams/timedinvoketimeoutms
-func (m_ MTRValveConfigurationAndControlClusterCloseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRValveConfigurationAndControlClusterCloseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

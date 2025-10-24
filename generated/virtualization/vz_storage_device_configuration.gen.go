@@ -30,14 +30,20 @@ type _VZStorageDeviceConfigurationClass struct {
 // An interface definition for the [VZStorageDeviceConfiguration] class.
 type IVZStorageDeviceConfiguration interface {
 	objectivec.IObject
-	Attachment() VZStorageDeviceAttachment
+	// properties:
+	Attachment() IVZStorageDeviceAttachment
 	SetAttachment(value IVZStorageDeviceAttachment)
+	// methods:
 }
 
 // The common configuration traits for storage device requests.
 //
 // Don’t create a object directly. Instead, instantiate one of its subclasses, such as . Use the property of this class to access the device’s underlying storage.
+
+
+// The common configuration traits for storage device requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZStorageDeviceConfiguration
 type VZStorageDeviceConfiguration struct {
 	objectivec.Object
@@ -82,19 +88,20 @@ func NewVZStorageDeviceConfiguration() VZStorageDeviceConfiguration {
 }
 
 
+
 // The attachment object that provides the underlying storage for the device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration/attachment
-func (v_ VZStorageDeviceConfiguration) Attachment() VZStorageDeviceAttachment {
+func (v_ VZStorageDeviceConfiguration) Attachment() IVZStorageDeviceAttachment {
 	rv := objc.Send[VZStorageDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
 
-// SetAttachment sets the value of the attachment property.
 // The attachment object that provides the underlying storage for the device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration/attachment
 func (v_ VZStorageDeviceConfiguration) SetAttachment(value IVZStorageDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)

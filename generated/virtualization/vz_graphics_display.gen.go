@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +31,25 @@ type _VZGraphicsDisplayClass struct {
 // An interface definition for the [VZGraphicsDisplay] class.
 type IVZGraphicsDisplay interface {
 	objectivec.IObject
+	// properties:
+	SizeInPixels() objc.IObject /* cross-framework: Size */
+	Displays() IVZGraphicsDisplay
+	SetDisplays(value IVZGraphicsDisplay)
+	// methods:
 	AddObserver(observer objectivec.IObject)
 	ReconfigureWithConfigurationError(configuration IVZGraphicsDisplayConfiguration, error_ unsafe.Pointer) bool
-	ReconfigureWithSizeInPixelsError(sizeInPixels coregraphics.CGSize, error_ unsafe.Pointer) bool
+	ReconfigureWithSizeInPixelsError(sizeInPixels objc.IObject /* cross-framework: Size */, error_ unsafe.Pointer) bool
 	RemoveObserver(observer objectivec.IObject)
-	SizeInPixels() coregraphics.CGSize
-	Displays() VZGraphicsDisplay
-	SetDisplays(value IVZGraphicsDisplay)
 }
 
 // A class that represents a graphics display in a VM.
 //
 // Don’t instantiate a directly. Graphics displays are first configured on a subclass. When you create a from the configuration, the displays are available through the property of the configuration’s .
+
+
+// A class that represents a graphics display in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay
 type VZGraphicsDisplay struct {
 	objectivec.Object
@@ -88,57 +94,68 @@ func NewVZGraphicsDisplay() VZGraphicsDisplay {
 }
 
 
+
 // Adds an observer to notify about display configuration changes.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/addObserver(_:)
 func (v_ VZGraphicsDisplay) AddObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addObserver:"), observer)
 }
 
+
 // Reconfigure this display with the new display configuration you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/reconfigure(configuration:)
 func (v_ VZGraphicsDisplay) ReconfigureWithConfigurationError(configuration IVZGraphicsDisplayConfiguration, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("reconfigureWithConfiguration:error:"), configuration, error_)
 	return rv
 }
 
+
 // Resize this display with the new dimensions you provide.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/reconfigure(sizeInPixels:)
-func (v_ VZGraphicsDisplay) ReconfigureWithSizeInPixelsError(sizeInPixels coregraphics.CGSize, error_ unsafe.Pointer) bool {
+func (v_ VZGraphicsDisplay) ReconfigureWithSizeInPixelsError(sizeInPixels objc.IObject /* cross-framework: Size */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("reconfigureWithSizeInPixels:error:"), sizeInPixels, error_)
 	return rv
 }
 
+
 // Removes a display configuration change observer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/removeObserver(_:)
 func (v_ VZGraphicsDisplay) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeObserver:"), observer)
 }
 
+
 // Returns the size of the display, in pixels.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/sizeInPixels
-func (v_ VZGraphicsDisplay) SizeInPixels() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("sizeInPixels"))
+func (v_ VZGraphicsDisplay) SizeInPixels() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](v_.ID, objc.Sel("sizeInPixels"))
 	return rv
 }
 
+
 // The list of graphics displays configured for this graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
-func (v_ VZGraphicsDisplay) Displays() VZGraphicsDisplay {
+func (v_ VZGraphicsDisplay) Displays() IVZGraphicsDisplay {
 	rv := objc.Send[VZGraphicsDisplay](v_.ID, objc.Sel("displays"))
 	return rv
 }
 
 
-// SetDisplays sets the value of the displays property.
 // The list of graphics displays configured for this graphics device.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
 func (v_ VZGraphicsDisplay) SetDisplays(value IVZGraphicsDisplay) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), value)

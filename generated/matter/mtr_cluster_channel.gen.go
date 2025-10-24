@@ -29,9 +29,13 @@ type _MTRClusterChannelClass struct {
 // An interface definition for the [MTRClusterChannel] class.
 type IMTRClusterChannel interface {
 	IMTRGenericCluster
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterChannel
 type MTRClusterChannel struct {
 	MTRGenericCluster

@@ -30,9 +30,9 @@ type _PolygonObstacleClass struct {
 type IPolygonObstacle interface {
 	IObstacle
 	// properties:
-	VertexCount() uint /* primitive/slice/pointer. */
+	VertexCount() uint
 	// methods:
-	VertexAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer
+	VertexAtIndex(index uint) unsafe.Pointer
 }
 
 // A polygon-shaped impassable area in a 2D game world.
@@ -117,7 +117,7 @@ func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertex(at:)
-func (p_ PolygonObstacle) VertexAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
+func (p_ PolygonObstacle) VertexAtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("vertexAtIndex:"), index)
 	return rv
 }
@@ -127,7 +127,7 @@ func (p_ PolygonObstacle) VertexAtIndex(index uint /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertexCount
-func (p_ PolygonObstacle) VertexCount() uint /* primitive/slice/pointer. */ {
+func (p_ PolygonObstacle) VertexCount() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("vertexCount"))
 	return rv
 }

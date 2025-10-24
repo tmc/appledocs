@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,9 @@ type _GeocoderClass struct {
 type IGeocoder interface {
 	objectivec.IObject
 	// properties:
-	Geocoding() bool /* primitive/slice/pointer. */
-	IsGeocoding() bool /* primitive/slice/pointer. */
-	SetIsGeocoding(value bool /* primitive/slice/pointer. */)
+	Geocoding() bool
+	IsGeocoding() bool
+	SetIsGeocoding(value bool)
 	// methods:
 }
 
@@ -94,7 +95,7 @@ func NewGeocoder() Geocoder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/isGeocoding
-func (g_ Geocoder) Geocoding() bool /* primitive/slice/pointer. */ {
+func (g_ Geocoder) Geocoding() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("geocoding"))
 	return rv
 }
@@ -104,7 +105,7 @@ func (g_ Geocoder) Geocoding() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clgeocoder/isgeocoding
-func (g_ Geocoder) IsGeocoding() bool /* primitive/slice/pointer. */ {
+func (g_ Geocoder) IsGeocoding() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isGeocoding"))
 	return rv
 }
@@ -114,9 +115,8 @@ func (g_ Geocoder) IsGeocoding() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clgeocoder/isgeocoding
-func (g_ Geocoder) SetIsGeocoding(value bool /* primitive/slice/pointer. */) {
+func (g_ Geocoder) SetIsGeocoding(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsGeocoding:"), value)
 }
-
 
 

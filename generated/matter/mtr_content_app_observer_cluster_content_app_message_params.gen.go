@@ -31,17 +31,21 @@ type _MTRContentAppObserverClusterContentAppMessageParamsClass struct {
 // An interface definition for the [MTRContentAppObserverClusterContentAppMessageParams] class.
 type IMTRContentAppObserverClusterContentAppMessageParams interface {
 	objectivec.IObject
-	Data() string
-	SetData(value string)
-	EncodingHint() string
-	SetEncodingHint(value string)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Data() objc.IObject /* cross-framework: NSString */
+	SetData(value objc.IObject /* cross-framework: NSString */)
+	EncodingHint() objc.IObject /* cross-framework: NSString */
+	SetEncodingHint(value objc.IObject /* cross-framework: NSString */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams
 type MTRContentAppObserverClusterContentAppMessageParams struct {
 	objectivec.Object
@@ -84,69 +88,71 @@ func NewMTRContentAppObserverClusterContentAppMessageParams() MTRContentAppObser
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("data"))
 	return rv
 }
 
 
-// SetData sets the value of the data property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("encodingHint"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("encodingHint"))
 	return rv
 }
 
 
-// SetEncodingHint sets the value of the encodingHint property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), value)
 }
+
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/serverSideProcessingTimeout
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/serverSideProcessingTimeout
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/timedInvokeTimeoutMs
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/timedInvokeTimeoutMs
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

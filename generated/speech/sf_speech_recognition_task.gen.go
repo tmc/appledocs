@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,20 +31,26 @@ type _SFSpeechRecognitionTaskClass struct {
 // An interface definition for the [SFSpeechRecognitionTask] class.
 type ISFSpeechRecognitionTask interface {
 	objectivec.IObject
-	Error() foundation.Error
-	SetError(value foundation.IError)
+	// properties:
+	Error() objc.IObject /* cross-framework: Error */
+	SetError(value objc.IObject /* cross-framework: Error */)
 	IsCancelled() bool
 	SetIsCancelled(value bool)
 	IsFinishing() bool
 	SetIsFinishing(value bool)
 	State() SFSpeechRecognitionTaskState
 	SetState(value SFSpeechRecognitionTaskState)
+	// methods:
 }
 
 // A task object for monitoring the speech recognition progress.
 //
 // Use an object to determine the state of a speech recognition task, to cancel an ongoing task, or to signal the end of the task. You don’t create speech recognition task objects directly. Instead, you receive one of these objects after calling or on your object.
+
+
+// A task object for monitoring the speech recognition progress.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionTask
 type SFSpeechRecognitionTask struct {
 	objectivec.Object
@@ -89,26 +95,29 @@ func NewSFSpeechRecognitionTask() SFSpeechRecognitionTask {
 }
 
 
+
 // An error object that specifies the error that occurred during a speech recognition task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
-func (s_ SFSpeechRecognitionTask) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](s_.ID, objc.Sel("error"))
+func (s_ SFSpeechRecognitionTask) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
 
-// SetError sets the value of the error property.
 // An error object that specifies the error that occurred during a speech recognition task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
-func (s_ SFSpeechRecognitionTask) SetError(value foundation.IError) {
+func (s_ SFSpeechRecognitionTask) SetError(value objc.IObject /* cross-framework: Error */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
+
 // A Boolean value that indicates whether the speech recognition task was canceled.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/iscancelled
 func (s_ SFSpeechRecognitionTask) IsCancelled() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isCancelled"))
@@ -116,17 +125,18 @@ func (s_ SFSpeechRecognitionTask) IsCancelled() bool {
 }
 
 
-// SetIsCancelled sets the value of the isCancelled property.
 // A Boolean value that indicates whether the speech recognition task was canceled.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/iscancelled
 func (s_ SFSpeechRecognitionTask) SetIsCancelled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
+
 // A Boolean value that indicates whether audio input has stopped.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/isfinishing
 func (s_ SFSpeechRecognitionTask) IsFinishing() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isFinishing"))
@@ -134,17 +144,18 @@ func (s_ SFSpeechRecognitionTask) IsFinishing() bool {
 }
 
 
-// SetIsFinishing sets the value of the isFinishing property.
 // A Boolean value that indicates whether audio input has stopped.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/isfinishing
 func (s_ SFSpeechRecognitionTask) SetIsFinishing(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsFinishing:"), value)
 }
 
+
 // The current state of the speech recognition task.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
 func (s_ SFSpeechRecognitionTask) State() SFSpeechRecognitionTaskState {
 	rv := objc.Send[SFSpeechRecognitionTaskState](s_.ID, objc.Sel("state"))
@@ -152,10 +163,9 @@ func (s_ SFSpeechRecognitionTask) State() SFSpeechRecognitionTaskState {
 }
 
 
-// SetState sets the value of the state property.
 // The current state of the speech recognition task.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
 func (s_ SFSpeechRecognitionTask) SetState(value SFSpeechRecognitionTaskState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setState:"), value)

@@ -29,10 +29,16 @@ type _VZVirtioGraphicsScanoutClass struct {
 // An interface definition for the [VZVirtioGraphicsScanout] class.
 type IVZVirtioGraphicsScanout interface {
 	IVZGraphicsDisplay
+	// properties:
+	// methods:
 }
 
 // A Virtio graphics scanout that corresponds to a Virtio graphics scanout configuration.
+
+
+// A Virtio graphics scanout that corresponds to a Virtio graphics scanout configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsScanout
 type VZVirtioGraphicsScanout struct {
 	VZGraphicsDisplay

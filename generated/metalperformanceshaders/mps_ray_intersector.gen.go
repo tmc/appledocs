@@ -29,34 +29,40 @@ type _RayIntersectorClass struct {
 // An interface definition for the [RayIntersector] class.
 type IRayIntersector interface {
 	IKernel
-	BoundingBoxIntersectionTestType() unsafe.Pointer
-	SetBoundingBoxIntersectionTestType(value unsafe.Pointer)
-	CullMode() unsafe.Pointer
-	SetCullMode(value unsafe.Pointer)
-	FrontFacingWinding() unsafe.Pointer
-	SetFrontFacingWinding(value unsafe.Pointer)
-	IntersectionDataType() unsafe.Pointer
-	SetIntersectionDataType(value unsafe.Pointer)
+	// properties:
+	BoundingBoxIntersectionTestType() BoundingBoxIntersectionTestType /* not a class type */
+	SetBoundingBoxIntersectionTestType(value BoundingBoxIntersectionTestType /* not a class type */)
+	CullMode() CullMode /* not a class type */
+	SetCullMode(value CullMode /* not a class type */)
+	FrontFacingWinding() Winding /* not a class type */
+	SetFrontFacingWinding(value Winding /* not a class type */)
+	IntersectionDataType() IntersectionDataType /* not a class type */
+	SetIntersectionDataType(value IntersectionDataType /* not a class type */)
 	IntersectionStride() int
 	SetIntersectionStride(value int)
-	RayDataType() unsafe.Pointer
-	SetRayDataType(value unsafe.Pointer)
-	RayIndexDataType() unsafe.Pointer
-	SetRayIndexDataType(value unsafe.Pointer)
+	RayDataType() RayDataType /* not a class type */
+	SetRayDataType(value RayDataType /* not a class type */)
+	RayIndexDataType() DataType /* not a class type */
+	SetRayIndexDataType(value DataType /* not a class type */)
 	RayMask() unsafe.Pointer
 	SetRayMask(value unsafe.Pointer)
-	RayMaskOperator() unsafe.Pointer
-	SetRayMaskOperator(value unsafe.Pointer)
-	RayMaskOptions() unsafe.Pointer
-	SetRayMaskOptions(value unsafe.Pointer)
+	RayMaskOperator() RayMaskOperator /* not a class type */
+	SetRayMaskOperator(value RayMaskOperator /* not a class type */)
+	RayMaskOptions() RayMaskOptions /* not a class type */
+	SetRayMaskOptions(value RayMaskOptions /* not a class type */)
 	RayStride() int
 	SetRayStride(value int)
-	TriangleIntersectionTestType() unsafe.Pointer
-	SetTriangleIntersectionTestType(value unsafe.Pointer)
+	TriangleIntersectionTestType() TriangleIntersectionTestType /* not a class type */
+	SetTriangleIntersectionTestType(value TriangleIntersectionTestType /* not a class type */)
+	// methods:
 }
 
 // A kernel that performs intersection tests between rays and geometry.
+
+
+// A kernel that performs intersection tests between rays and geometry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayIntersector
 type RayIntersector struct {
 	Kernel
@@ -103,67 +109,68 @@ func NewRayIntersector() RayIntersector {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayIntersector/boundingBoxIntersectionTestType
-func (r_ RayIntersector) BoundingBoxIntersectionTestType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("boundingBoxIntersectionTestType"))
+func (r_ RayIntersector) BoundingBoxIntersectionTestType() BoundingBoxIntersectionTestType /* not a class type */ {
+	rv := objc.Send[BoundingBoxIntersectionTestType](r_.ID, objc.Sel("boundingBoxIntersectionTestType"))
 	return rv
 }
 
 
-// SetBoundingBoxIntersectionTestType sets the value of the boundingBoxIntersectionTestType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSRayIntersector/boundingBoxIntersectionTestType
-func (r_ RayIntersector) SetBoundingBoxIntersectionTestType(value unsafe.Pointer) {
+func (r_ RayIntersector) SetBoundingBoxIntersectionTestType(value BoundingBoxIntersectionTestType /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBoundingBoxIntersectionTestType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/cullmode
-func (r_ RayIntersector) CullMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("cullMode"))
+func (r_ RayIntersector) CullMode() CullMode /* not a class type */ {
+	rv := objc.Send[CullMode](r_.ID, objc.Sel("cullMode"))
 	return rv
 }
 
 
-// SetCullMode sets the value of the cullMode property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/cullmode
-func (r_ RayIntersector) SetCullMode(value unsafe.Pointer) {
+func (r_ RayIntersector) SetCullMode(value CullMode /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCullMode:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/frontfacingwinding
-func (r_ RayIntersector) FrontFacingWinding() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("frontFacingWinding"))
+func (r_ RayIntersector) FrontFacingWinding() Winding /* not a class type */ {
+	rv := objc.Send[Winding](r_.ID, objc.Sel("frontFacingWinding"))
 	return rv
 }
 
 
-// SetFrontFacingWinding sets the value of the frontFacingWinding property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/frontfacingwinding
-func (r_ RayIntersector) SetFrontFacingWinding(value unsafe.Pointer) {
+func (r_ RayIntersector) SetFrontFacingWinding(value Winding /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFrontFacingWinding:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/intersectiondatatype
-func (r_ RayIntersector) IntersectionDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("intersectionDataType"))
+func (r_ RayIntersector) IntersectionDataType() IntersectionDataType /* not a class type */ {
+	rv := objc.Send[IntersectionDataType](r_.ID, objc.Sel("intersectionDataType"))
 	return rv
 }
 
 
-// SetIntersectionDataType sets the value of the intersectionDataType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/intersectiondatatype
-func (r_ RayIntersector) SetIntersectionDataType(value unsafe.Pointer) {
+func (r_ RayIntersector) SetIntersectionDataType(value IntersectionDataType /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIntersectionDataType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/intersectionstride
 func (r_ RayIntersector) IntersectionStride() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("intersectionStride"))
@@ -171,44 +178,44 @@ func (r_ RayIntersector) IntersectionStride() int {
 }
 
 
-// SetIntersectionStride sets the value of the intersectionStride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/intersectionstride
 func (r_ RayIntersector) SetIntersectionStride(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIntersectionStride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raydatatype
-func (r_ RayIntersector) RayDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rayDataType"))
+func (r_ RayIntersector) RayDataType() RayDataType /* not a class type */ {
+	rv := objc.Send[RayDataType](r_.ID, objc.Sel("rayDataType"))
 	return rv
 }
 
 
-// SetRayDataType sets the value of the rayDataType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raydatatype
-func (r_ RayIntersector) SetRayDataType(value unsafe.Pointer) {
+func (r_ RayIntersector) SetRayDataType(value RayDataType /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayDataType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/rayindexdatatype
-func (r_ RayIntersector) RayIndexDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rayIndexDataType"))
+func (r_ RayIntersector) RayIndexDataType() DataType /* not a class type */ {
+	rv := objc.Send[DataType](r_.ID, objc.Sel("rayIndexDataType"))
 	return rv
 }
 
 
-// SetRayIndexDataType sets the value of the rayIndexDataType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/rayindexdatatype
-func (r_ RayIntersector) SetRayIndexDataType(value unsafe.Pointer) {
+func (r_ RayIntersector) SetRayIndexDataType(value DataType /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayIndexDataType:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymask
 func (r_ RayIntersector) RayMask() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rayMask"))
@@ -216,44 +223,44 @@ func (r_ RayIntersector) RayMask() unsafe.Pointer {
 }
 
 
-// SetRayMask sets the value of the rayMask property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymask
 func (r_ RayIntersector) SetRayMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayMask:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymaskoperator
-func (r_ RayIntersector) RayMaskOperator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rayMaskOperator"))
+func (r_ RayIntersector) RayMaskOperator() RayMaskOperator /* not a class type */ {
+	rv := objc.Send[RayMaskOperator](r_.ID, objc.Sel("rayMaskOperator"))
 	return rv
 }
 
 
-// SetRayMaskOperator sets the value of the rayMaskOperator property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymaskoperator
-func (r_ RayIntersector) SetRayMaskOperator(value unsafe.Pointer) {
+func (r_ RayIntersector) SetRayMaskOperator(value RayMaskOperator /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayMaskOperator:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymaskoptions
-func (r_ RayIntersector) RayMaskOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rayMaskOptions"))
+func (r_ RayIntersector) RayMaskOptions() RayMaskOptions /* not a class type */ {
+	rv := objc.Send[RayMaskOptions](r_.ID, objc.Sel("rayMaskOptions"))
 	return rv
 }
 
 
-// SetRayMaskOptions sets the value of the rayMaskOptions property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raymaskoptions
-func (r_ RayIntersector) SetRayMaskOptions(value unsafe.Pointer) {
+func (r_ RayIntersector) SetRayMaskOptions(value RayMaskOptions /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayMaskOptions:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raystride
 func (r_ RayIntersector) RayStride() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("rayStride"))
@@ -261,25 +268,24 @@ func (r_ RayIntersector) RayStride() int {
 }
 
 
-// SetRayStride sets the value of the rayStride property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/raystride
 func (r_ RayIntersector) SetRayStride(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRayStride:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/triangleintersectiontesttype
-func (r_ RayIntersector) TriangleIntersectionTestType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("triangleIntersectionTestType"))
+func (r_ RayIntersector) TriangleIntersectionTestType() TriangleIntersectionTestType /* not a class type */ {
+	rv := objc.Send[TriangleIntersectionTestType](r_.ID, objc.Sel("triangleIntersectionTestType"))
 	return rv
 }
 
 
-// SetTriangleIntersectionTestType sets the value of the triangleIntersectionTestType property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector/triangleintersectiontesttype
-func (r_ RayIntersector) SetTriangleIntersectionTestType(value unsafe.Pointer) {
+func (r_ RayIntersector) SetTriangleIntersectionTestType(value TriangleIntersectionTestType /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTriangleIntersectionTestType:"), value)
 }
 

@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CryptoTokenKit without requiring cgo.
-
-// Access security tokens and the cryptographic assets they store.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit
+// See: https://developer.apple.com/documentation/CryptoTokenKit
 package cryptotokenkit
 
 import (

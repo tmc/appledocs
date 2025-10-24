@@ -29,12 +29,18 @@ type _CMatMulLayerClass struct {
 // An interface definition for the [CMatMulLayer] class.
 type ICMatMulLayer interface {
 	ICLayer
-	Descriptor() unsafe.Pointer
-	SetDescriptor(value unsafe.Pointer)
+	// properties:
+	Descriptor() CMatMulDescriptor /* not a class type */
+	SetDescriptor(value CMatMulDescriptor /* not a class type */)
+	// methods:
 }
 
 // A layer that multiplies matrices.
+
+
+// A layer that multiplies matrices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMatMulLayer
 type CMatMulLayer struct {
 	CLayer
@@ -81,21 +87,22 @@ func NewCMatMulLayer() CMatMulLayer {
 }
 
 
+
 // The configuration object you use to create the matrix multiplication layer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmatmullayer/descriptor
-func (c_ CMatMulLayer) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CMatMulLayer) Descriptor() CMatMulDescriptor /* not a class type */ {
+	rv := objc.Send[CMatMulDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 
-// SetDescriptor sets the value of the descriptor property.
 // The configuration object you use to create the matrix multiplication layer.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmatmullayer/descriptor
-func (c_ CMatMulLayer) SetDescriptor(value unsafe.Pointer) {
+func (c_ CMatMulLayer) SetDescriptor(value CMatMulDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 

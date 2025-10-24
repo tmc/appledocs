@@ -30,9 +30,13 @@ type _MTRPumpConfigurationAndControlClusterMotorTemperatureHighEventClass struct
 // An interface definition for the [MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent] class.
 type IMTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent
 type MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent struct {
 	objectivec.Object

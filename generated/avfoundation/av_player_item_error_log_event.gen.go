@@ -40,8 +40,8 @@ type IPlayerItemErrorLogEvent interface {
 	SetErrorComment(value objc.IObject /* cross-framework: NSString */)
 	ErrorDomain() objc.IObject /* cross-framework: NSString */
 	SetErrorDomain(value objc.IObject /* cross-framework: NSString */)
-	ErrorStatusCode() int /* primitive/slice/pointer. */
-	SetErrorStatusCode(value int /* primitive/slice/pointer. */)
+	ErrorStatusCode() int
+	SetErrorStatusCode(value int)
 	PlaybackSessionID() objc.IObject /* cross-framework: NSString */
 	SetPlaybackSessionID(value objc.IObject /* cross-framework: NSString */)
 	ServerAddress() objc.IObject /* cross-framework: NSString */
@@ -184,7 +184,7 @@ func (p_ PlayerItemErrorLogEvent) SetErrorDomain(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlogevent/errorstatuscode
-func (p_ PlayerItemErrorLogEvent) ErrorStatusCode() int /* primitive/slice/pointer. */ {
+func (p_ PlayerItemErrorLogEvent) ErrorStatusCode() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("errorStatusCode"))
 	return rv
 }
@@ -194,7 +194,7 @@ func (p_ PlayerItemErrorLogEvent) ErrorStatusCode() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlogevent/errorstatuscode
-func (p_ PlayerItemErrorLogEvent) SetErrorStatusCode(value int /* primitive/slice/pointer. */) {
+func (p_ PlayerItemErrorLogEvent) SetErrorStatusCode(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setErrorStatusCode:"), value)
 }
 

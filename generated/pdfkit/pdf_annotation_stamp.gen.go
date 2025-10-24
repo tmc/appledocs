@@ -29,12 +29,18 @@ type _PDFAnnotationStampClass struct {
 // An interface definition for the [PDFAnnotationStamp] class.
 type IPDFAnnotationStamp interface {
 	IPDFAnnotation
+	// properties:
+	// methods:
 }
 
 // A object allows you to display a word or phrase, such as “Confidential,” in a PDF page.
 //
 // A object should have an appearance stream associated with it; otherwise, nothing useful is rendered.
+
+
+// A object allows you to display a word or phrase, such as “Confidential,” in a PDF page.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationStamp
 type PDFAnnotationStamp struct {
 	PDFAnnotation

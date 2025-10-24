@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FSKit without requiring cgo.
-
-// Implement a file system that runs in user space.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit
+// See: https://developer.apple.com/documentation/FSKit
 package fskit
 
 import (

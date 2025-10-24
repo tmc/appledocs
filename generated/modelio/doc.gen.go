@@ -2,12 +2,12 @@
 
 // Package modelio provides Go bindings for the ModelIO framework.
 //
-// Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit. [Full Topic]
+// Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ModelIO without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/ModelIO
+// See: https://developer.apple.com/documentation/ModelIO
 package modelio
 
 import (

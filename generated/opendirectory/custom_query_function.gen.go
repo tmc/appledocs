@@ -30,9 +30,13 @@ type _customQueryFunctionClass struct {
 // An interface definition for the [customQueryFunction] class.
 type IcustomQueryFunction interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/customQueryFunction-c.ivar
 type customQueryFunction struct {
 	objectivec.Object

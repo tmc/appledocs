@@ -31,13 +31,19 @@ type _FilePreviewRequestClass struct {
 // An interface definition for the [FilePreviewRequest] class.
 type IFilePreviewRequest interface {
 	objectivec.IObject
-	FileURL() foundation.URL
+	// properties:
+	FileURL() objc.IObject /* cross-framework: NSURL */
+	// methods:
 }
 
 // A Quick Look preview request that indicates the content to preview.
 //
 // The system provides a to the method of your data-based Quick Look extension.
+
+
+// A Quick Look preview request that indicates the content to preview.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLFilePreviewRequest
 type FilePreviewRequest struct {
 	objectivec.Object
@@ -82,11 +88,13 @@ func NewFilePreviewRequest() FilePreviewRequest {
 }
 
 
+
 // The URL that indicates the content to preview.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLFilePreviewRequest/fileURL
-func (f_ FilePreviewRequest) FileURL() foundation.URL {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("fileURL"))
+func (f_ FilePreviewRequest) FileURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](f_.ID, objc.Sel("fileURL"))
 	return rv
 }
 

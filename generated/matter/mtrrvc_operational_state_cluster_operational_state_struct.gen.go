@@ -31,13 +31,17 @@ type _MTRRVCOperationalStateClusterOperationalStateStructClass struct {
 // An interface definition for the [MTRRVCOperationalStateClusterOperationalStateStruct] class.
 type IMTRRVCOperationalStateClusterOperationalStateStruct interface {
 	objectivec.IObject
-	OperationalStateID() foundation.Number
-	SetOperationalStateID(value foundation.INumber)
-	OperationalStateLabel() string
-	SetOperationalStateLabel(value string)
+	// properties:
+	OperationalStateID() objc.IObject /* cross-framework: NSNumber */
+	SetOperationalStateID(value objc.IObject /* cross-framework: NSNumber */)
+	OperationalStateLabel() objc.IObject /* cross-framework: NSString */
+	SetOperationalStateLabel(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterOperationalStateStruct
 type MTRRVCOperationalStateClusterOperationalStateStruct struct {
 	objectivec.Object
@@ -80,34 +84,34 @@ func NewMTRRVCOperationalStateClusterOperationalStateStruct() MTRRVCOperationalS
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstateid
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("operationalStateID"))
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("operationalStateID"))
 	return rv
 }
 
 
-// SetOperationalStateID sets the value of the operationalStateID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstateid
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.INumber) {
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
 
-// SetOperationalStateLabel sets the value of the operationalStateLabel property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
 }
 
 

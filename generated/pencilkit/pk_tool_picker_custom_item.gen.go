@@ -30,22 +30,20 @@ type _ToolPickerCustomItemClass struct {
 // An interface definition for the [ToolPickerCustomItem] class.
 type IToolPickerCustomItem interface {
 	IToolPickerItem
-	ReloadImage()
-	AllowsColorSelection() bool
-	SetAllowsColorSelection(value bool)
-	Color() appkit.Color
-	SetColor(value appkit.IColor)
-	Configuration() PKToolPickerCustomItemConfiguration
-	Width() float64
-	SetWidth(value float64)
-	ImageProvider() appkit.Image
-	SetImageProvider(value appkit.IImage)
+	// properties:
+	ImageProvider() objc.IObject /* cross-framework: Image */
+	SetImageProvider(value objc.IObject /* cross-framework: Image */)
+	// methods:
 }
 
 // An item that represents a custom tool in the tool picker.
 //
 // A custom tool item represents a tool that isn’t one of the system tools. You configure details about a custom tool item yourself using , including providing custom images to draw the body of the tool. The following code shows how to create a tool picker with a custom tool item. This basic implementation of retrieves an image for the tool body from an asset catalog. A full app might use a more advanced drawing implementation for the image provider, such as using . For a more complete example of creating a custom tool item, see .
+
+
+// An item that represents a custom tool in the tool picker.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem
 type ToolPickerCustomItem struct {
 	ToolPickerItem
@@ -93,9 +91,9 @@ func NewToolPickerCustomItem() ToolPickerCustomItem {
 
 
 
-
 // Creates a new custom item with the specified configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/initWithConfiguration:
 func NewToolPickerCustomItemWithConfiguration(configuration IPKToolPickerCustomItemConfiguration) ToolPickerCustomItem {
 	instance := getToolPickerCustomItemClass().Alloc()
@@ -105,90 +103,22 @@ func NewToolPickerCustomItemWithConfiguration(configuration IPKToolPickerCustomI
 }
 
 
-// Requests a new image for the custom tool item from the image provider.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/reloadImage()
-func (t_ ToolPickerCustomItem) ReloadImage() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("reloadImage"))
-}
-
-// Present color selection UI to the user. Defaults to the value set in .
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/allowsColorSelection
-func (t_ ToolPickerCustomItem) AllowsColorSelection() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("allowsColorSelection"))
-	return rv
-}
-
-
-// SetAllowsColorSelection sets the value of the allowsColorSelection property.
-// Present color selection UI to the user. Defaults to the value set in .
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/allowsColorSelection
-func (t_ ToolPickerCustomItem) SetAllowsColorSelection(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsColorSelection:"), value)
-}
-
-// The current color of the custom tool item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
-func (t_ ToolPickerCustomItem) Color() appkit.Color {
-	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("color"))
-	return rv
-}
-
-
-// SetColor sets the value of the color property.
-// The current color of the custom tool item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
-func (t_ ToolPickerCustomItem) SetColor(value appkit.IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
-}
-
-// The configuration of the custom tool item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/configuration-v7e5
-func (t_ ToolPickerCustomItem) Configuration() PKToolPickerCustomItemConfiguration {
-	rv := objc.Send[PKToolPickerCustomItemConfiguration](t_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-// The current width of the custom tool item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/width
-func (t_ ToolPickerCustomItem) Width() float64 {
-	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
-	return rv
-}
-
-
-// SetWidth sets the value of the width property.
-// The current width of the custom tool item.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/width
-func (t_ ToolPickerCustomItem) SetWidth(value float64) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
-}
 
 // A closure to provide an image that represents the custom tool item.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) ImageProvider() appkit.Image {
+func (t_ ToolPickerCustomItem) ImageProvider() objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("imageProvider"))
 	return rv
 }
 
 
-// SetImageProvider sets the value of the imageProvider property.
 // A closure to provide an image that represents the custom tool item.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) SetImageProvider(value appkit.IImage) {
+func (t_ ToolPickerCustomItem) SetImageProvider(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageProvider:"), value)
 }
 

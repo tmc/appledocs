@@ -51,12 +51,12 @@ type IURL interface {
 	SetFileSystemRepresentation(value unsafe.Pointer)
 	Fragment() IString
 	SetFragment(value IString)
-	HasDirectoryPath() bool /* primitive/slice/pointer. */
-	SetHasDirectoryPath(value bool /* primitive/slice/pointer. */)
+	HasDirectoryPath() bool
+	SetHasDirectoryPath(value bool)
 	Host() IString
 	SetHost(value IString)
-	IsFileURL() bool /* primitive/slice/pointer. */
-	SetIsFileURL(value bool /* primitive/slice/pointer. */)
+	IsFileURL() bool
+	SetIsFileURL(value bool)
 	LastPathComponent() IString
 	SetLastPathComponent(value IString)
 	ParameterString() IString
@@ -88,16 +88,6 @@ type IURL interface {
 	User() IString
 	SetUser(value IString)
 	// methods:
-	URLByAppendingPathComponent(pathComponent IString) IURL
-	URLByAppendingPathComponentIsDirectory(pathComponent IString, isDirectory bool /* primitive/slice/pointer. */) IURL
-	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions /* not a class type */, keys []string /* primitive/slice/pointer. */, relativeURL IURL, error_ IError) IData
-	GetResourceValueForKeyError(value unsafe.Pointer, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool /* primitive/slice/pointer. */
-	RemoveAllCachedResourceValues()
-	RemoveCachedResourceValueForKey(key objc.IObject /* cross-framework: URLResourceKey */)
-	ResourceValuesForKeysError(keys []string /* primitive/slice/pointer. */, error_ IError) IDictionary /* already interface */
-	SetResourceValueForKeyError(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool /* primitive/slice/pointer. */
-	SetResourceValuesError(keyedValues IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */)
 }
 
 // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
@@ -151,194 +141,6 @@ func NewURL() URL {
 	return getURLClass().New()
 }
 
-
-
-// Initializes a newly created NSURL referencing the local file or directory at .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:)
-func NewURLFileURLWithPath(path IString) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:"), path)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a newly created NSURL referencing the local file or directory at .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:)
-func NewURLFileURLWithPathIsDirectory(path IString, isDir bool /* primitive/slice/pointer. */) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:"), path, isDir)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
-func NewURLFileURLWithPathIsDirectoryRelativeToURL(path IString, isDir bool /* primitive/slice/pointer. */, baseURL IURL) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
-func NewURLFileURLWithPathRelativeToURL(path IString, baseURL IURL) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), path, baseURL)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a new URL made by resolving bookmark data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:
-func (uc _URLClass) URLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData IData, options URLBookmarkResolutionOptions /* not a class type */, relativeURL IURL, isStale bool /* primitive/slice/pointer. */, error_ IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
-	return rv
-}
-
-
-// Initializes and returns a newly created NSURL object as a file URL with a specified path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:)
-func (uc _URLClass) FileURLWithPath(path IString) IURL {
-	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:"), path)
-	return rv
-}
-
-
-// Initializes and returns a newly created NSURL object as a file URL with a specified path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:)
-func (uc _URLClass) FileURLWithPathIsDirectory(path IString, isDir bool /* primitive/slice/pointer. */) IURL {
-	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:"), path, isDir)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:isDirectory:relativeTo:)
-func (uc _URLClass) FileURLWithPathIsDirectoryRelativeToURL(path IString, isDir bool /* primitive/slice/pointer. */, baseURL IURL) IURL {
-	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fileURL(withPath:relativeTo:)
-func (uc _URLClass) FileURLWithPathRelativeToURL(path IString, baseURL IURL) IURL {
-	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("fileURLWithPath:relativeToURL:"), path, baseURL)
-	return rv
-}
-
-
-// Returns a new URL by appending a path component to the original URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:)
-func (u_ URL) URLByAppendingPathComponent(pathComponent IString) IURL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:"), pathComponent)
-	return rv
-}
-
-
-// Returns a new URL by appending a path component to the original URL, along with a trailing slash if the component is a directory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:isDirectory:)
-func (u_ URL) URLByAppendingPathComponentIsDirectory(pathComponent IString, isDirectory bool /* primitive/slice/pointer. */) IURL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:isDirectory:"), pathComponent, isDirectory)
-	return rv
-}
-
-
-// Returns a bookmark for the URL, created with specified options and resource values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/bookmarkData(options:includingResourceValuesForKeys:relativeTo:)
-func (u_ URL) BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions /* not a class type */, keys []string /* primitive/slice/pointer. */, relativeURL IURL, error_ IError) IData {
-	rv := objc.Send[Data](u_.ID, objc.Sel("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), options, keys, relativeURL, error_)
-	return rv
-}
-
-
-// Returns the value of the resource property for the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/getResourceValue(_:forKey:)
-func (u_ URL) GetResourceValueForKeyError(value unsafe.Pointer, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("getResourceValue:forKey:error:"), value, key, error_)
-	return rv
-}
-
-
-// Removes all cached resource values and temporary resource values from the URL object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/removeAllCachedResourceValues()
-func (u_ URL) RemoveAllCachedResourceValues() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllCachedResourceValues"))
-}
-
-
-// Removes the cached resource value identified by a given key from the URL object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/removeCachedResourceValue(forKey:)
-func (u_ URL) RemoveCachedResourceValueForKey(key objc.IObject /* cross-framework: URLResourceKey */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeCachedResourceValueForKey:"), key)
-}
-
-
-// Returns the resource values for the properties identified by specified array of keys.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/resourceValues(forKeys:)
-func (u_ URL) ResourceValuesForKeysError(keys []string /* primitive/slice/pointer. */, error_ IError) IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](u_.ID, objc.Sel("resourceValuesForKeys:error:"), keys, error_)
-	return rv
-}
-
-
-// Sets the URL’s resource property for a given key to a given value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValue(_:forKey:)
-func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValue:forKey:error:"), value, key, error_)
-	return rv
-}
-
-
-// Sets the URL’s resource properties for a given set of keys to a given set of values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValues(_:)
-func (u_ URL) SetResourceValuesError(keyedValues IDictionary /* already interface */, error_ IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValues:error:"), keyedValues, error_)
-	return rv
-}
-
-
-// Sets a temporary resource value on the URL object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setTemporaryResourceValue(_:forKey:)
-func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTemporaryResourceValue:forKey:"), value, key)
-}
 
 
 // The base URL. (read-only)
@@ -528,7 +330,7 @@ func (u_ URL) SetFragment(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/hasdirectorypath
-func (u_ URL) HasDirectoryPath() bool /* primitive/slice/pointer. */ {
+func (u_ URL) HasDirectoryPath() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasDirectoryPath"))
 	return rv
 }
@@ -538,7 +340,7 @@ func (u_ URL) HasDirectoryPath() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/hasdirectorypath
-func (u_ URL) SetHasDirectoryPath(value bool /* primitive/slice/pointer. */) {
+func (u_ URL) SetHasDirectoryPath(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHasDirectoryPath:"), value)
 }
 
@@ -566,7 +368,7 @@ func (u_ URL) SetHost(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) IsFileURL() bool /* primitive/slice/pointer. */ {
+func (u_ URL) IsFileURL() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isFileURL"))
 	return rv
 }
@@ -576,7 +378,7 @@ func (u_ URL) IsFileURL() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurl/isfileurl
-func (u_ URL) SetIsFileURL(value bool /* primitive/slice/pointer. */) {
+func (u_ URL) SetIsFileURL(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsFileURL:"), value)
 }
 
@@ -864,5 +666,6 @@ func (u_ URL) User() IString {
 func (u_ URL) SetUser(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), value)
 }
+
 
 

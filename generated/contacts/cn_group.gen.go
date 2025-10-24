@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,12 @@ type _CNGroupClass struct {
 type ICNGroup interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string /* primitive/slice/pointer. */
-	SetIdentifier(value string /* primitive/slice/pointer. */)
-	Name() string /* primitive/slice/pointer. */
-	SetName(value string /* primitive/slice/pointer. */)
-	CNGroupIdentifierKey() string /* primitive/slice/pointer. */
-	CNGroupNameKey() string /* primitive/slice/pointer. */
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	CNGroupIdentifierKey() objc.IObject /* cross-framework: NSString */
+	CNGroupNameKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -97,8 +98,8 @@ func NewCNGroup() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/identifier
-func (c_ CNGroup) Identifier() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNGroup) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -107,8 +108,8 @@ func (c_ CNGroup) Identifier() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/identifier
-func (c_ CNGroup) SetIdentifier(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ CNGroup) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -116,8 +117,8 @@ func (c_ CNGroup) SetIdentifier(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/name
-func (c_ CNGroup) Name() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ CNGroup) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (c_ CNGroup) Name() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/name
-func (c_ CNGroup) SetName(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ CNGroup) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -135,8 +136,8 @@ func (c_ CNGroup) SetName(value string /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
-func (c_ CNGroup) CNGroupIdentifierKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
+func (c_ CNGroup) CNGroupIdentifierKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNGroupIdentifierKey"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (c_ CNGroup) CNGroupIdentifierKey() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
-func (c_ CNGroup) CNGroupNameKey() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
+func (c_ CNGroup) CNGroupNameKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv
 }
 

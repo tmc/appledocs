@@ -29,16 +29,22 @@ type _RecognizeAnimalsRequestClass struct {
 // An interface definition for the [RecognizeAnimalsRequest] class.
 type IRecognizeAnimalsRequest interface {
 	IImageBasedRequest
-	Results() VNRecognizedObjectObservation
+	// properties:
+	Results() IVNRecognizedObjectObservation
 	SetResults(value IVNRecognizedObjectObservation)
 	VNRecognizeAnimalsRequestRevision1() int
 	VNRecognizeAnimalsRequestRevision2() int
+	// methods:
 }
 
 // A request that recognizes animals in an image.
 //
 // Use the method to determine which animals the request supports.
+
+
+// A request that recognizes animals in an image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeAnimalsRequest
 type RecognizeAnimalsRequest struct {
 	ImageBasedRequest
@@ -85,34 +91,39 @@ func NewRecognizeAnimalsRequest() RecognizeAnimalsRequest {
 }
 
 
+
 // The results of the request to recognize animals.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
-func (r_ RecognizeAnimalsRequest) Results() VNRecognizedObjectObservation {
-	rv := objc.Send[VNRecognizedObjectObservation](r_.ID, objc.Sel("results"))
+func (r_ RecognizeAnimalsRequest) Results() IVNRecognizedObjectObservation {
+	rv := objc.Send[RecognizedObjectObservation](r_.ID, objc.Sel("results"))
 	return rv
 }
 
 
-// SetResults sets the value of the results property.
 // The results of the request to recognize animals.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
 func (r_ RecognizeAnimalsRequest) SetResults(value IVNRecognizedObjectObservation) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResults:"), value)
 }
 
+
 // A constant for specifying revision 1 of the animal recognition request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision1
 func (r_ RecognizeAnimalsRequest) VNRecognizeAnimalsRequestRevision1() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeAnimalsRequestRevision1"))
 	return rv
 }
 
+
 // A constant for specifying revision 2 of the animal recognition request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision2
 func (r_ RecognizeAnimalsRequest) VNRecognizeAnimalsRequestRevision2() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("VNRecognizeAnimalsRequestRevision2"))

@@ -31,11 +31,15 @@ type _MTRBridgedDeviceBasicInformationClusterActiveChangedEventClass struct {
 // An interface definition for the [MTRBridgedDeviceBasicInformationClusterActiveChangedEvent] class.
 type IMTRBridgedDeviceBasicInformationClusterActiveChangedEvent interface {
 	objectivec.IObject
-	PromisedActiveDuration() foundation.Number
-	SetPromisedActiveDuration(value foundation.INumber)
+	// properties:
+	PromisedActiveDuration() objc.IObject /* cross-framework: NSNumber */
+	SetPromisedActiveDuration(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent
 type MTRBridgedDeviceBasicInformationClusterActiveChangedEvent struct {
 	objectivec.Object
@@ -78,18 +82,18 @@ func NewMTRBridgedDeviceBasicInformationClusterActiveChangedEvent() MTRBridgedDe
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent/promisedActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActiveDuration() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("promisedActiveDuration"))
+func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActiveDuration() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("promisedActiveDuration"))
 	return rv
 }
 
 
-// SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent/promisedActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value foundation.INumber) {
+func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

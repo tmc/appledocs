@@ -30,9 +30,13 @@ type _NDArrayLUTDequantizeClass struct {
 // An interface definition for the [NDArrayLUTDequantize] class.
 type INDArrayLUTDequantize interface {
 	INDArrayMultiaryKernel
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTDequantize
 type NDArrayLUTDequantize struct {
 	NDArrayMultiaryKernel
@@ -77,7 +81,8 @@ func NewNDArrayLUTDequantize() NDArrayLUTDequantize {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTDequantize/init(device:)
 func NewNDArrayLUTDequantizeWithDevice(device objectivec.IObject) NDArrayLUTDequantize {
 	instance := getNDArrayLUTDequantizeClass().Alloc()

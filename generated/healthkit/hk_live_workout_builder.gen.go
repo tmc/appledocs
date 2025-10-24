@@ -36,10 +36,10 @@ type IHKLiveWorkoutBuilder interface {
 	SetDataSource(value IHKLiveWorkoutDataSource)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	ElapsedTime() unsafe.Pointer
-	SetElapsedTime(value unsafe.Pointer)
-	ShouldCollectWorkoutEvents() bool /* primitive/slice/pointer. */
-	SetShouldCollectWorkoutEvents(value bool /* primitive/slice/pointer. */)
+	ElapsedTime() float64
+	SetElapsedTime(value float64)
+	ShouldCollectWorkoutEvents() bool
+	SetShouldCollectWorkoutEvents(value bool)
 	WorkoutSession() IHKWorkoutSession
 	SetWorkoutSession(value IHKWorkoutSession)
 	// methods:
@@ -161,8 +161,8 @@ func (h_ HKLiveWorkoutBuilder) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/elapsedtime
-func (h_ HKLiveWorkoutBuilder) ElapsedTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("elapsedTime"))
+func (h_ HKLiveWorkoutBuilder) ElapsedTime() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("elapsedTime"))
 	return rv
 }
 
@@ -171,7 +171,7 @@ func (h_ HKLiveWorkoutBuilder) ElapsedTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/elapsedtime
-func (h_ HKLiveWorkoutBuilder) SetElapsedTime(value unsafe.Pointer) {
+func (h_ HKLiveWorkoutBuilder) SetElapsedTime(value float64) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setElapsedTime:"), value)
 }
 
@@ -180,7 +180,7 @@ func (h_ HKLiveWorkoutBuilder) SetElapsedTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/shouldcollectworkoutevents
-func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool /* primitive/slice/pointer. */ {
+func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("shouldCollectWorkoutEvents"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/shouldcollectworkoutevents
-func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool /* primitive/slice/pointer. */) {
+func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setShouldCollectWorkoutEvents:"), value)
 }
 

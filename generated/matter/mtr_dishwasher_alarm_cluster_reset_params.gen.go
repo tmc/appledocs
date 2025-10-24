@@ -31,15 +31,19 @@ type _MTRDishwasherAlarmClusterResetParamsClass struct {
 // An interface definition for the [MTRDishwasherAlarmClusterResetParams] class.
 type IMTRDishwasherAlarmClusterResetParams interface {
 	objectivec.IObject
-	Alarms() foundation.Number
-	SetAlarms(value foundation.INumber)
-	ServerSideProcessingTimeout() foundation.Number
-	SetServerSideProcessingTimeout(value foundation.INumber)
-	TimedInvokeTimeoutMs() foundation.Number
-	SetTimedInvokeTimeoutMs(value foundation.INumber)
+	// properties:
+	Alarms() objc.IObject /* cross-framework: NSNumber */
+	SetAlarms(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams
 type MTRDishwasherAlarmClusterResetParams struct {
 	objectivec.Object
@@ -82,54 +86,56 @@ func NewMTRDishwasherAlarmClusterResetParams() MTRDishwasherAlarmClusterResetPar
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/alarms
-func (m_ MTRDishwasherAlarmClusterResetParams) Alarms() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("alarms"))
+func (m_ MTRDishwasherAlarmClusterResetParams) Alarms() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("alarms"))
 	return rv
 }
 
 
-// SetAlarms sets the value of the alarms property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/alarms
-func (m_ MTRDishwasherAlarmClusterResetParams) SetAlarms(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetAlarms(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarms:"), value)
 }
 
+
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterResetParams) ServerSideProcessingTimeout() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+func (m_ MTRDishwasherAlarmClusterResetParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
 }
 
 
-// SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 // Controls how much time, in seconds, we will allow for the server to process the command.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterResetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
+
 // Controls whether the command is a timed command (using Timed Invoke).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterResetParams) TimedInvokeTimeoutMs() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
+func (m_ MTRDishwasherAlarmClusterResetParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
 }
 
 
-// SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 // Controls whether the command is a timed command (using Timed Invoke).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterResetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

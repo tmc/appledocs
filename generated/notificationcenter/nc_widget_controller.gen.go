@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,18 @@ type _NCWidgetControllerClass struct {
 // An interface definition for the [NCWidgetController] class.
 type INCWidgetController interface {
 	objectivec.IObject
-	SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID string)
+	// properties:
+	// methods:
 }
 
 // An object used to specify whether a Today widget has content to display.
 //
 // The class defines an object that both a Today widget and the containing app that delivers the widget can use to specify whether the widget has content to display. Because this class helps a widget and its containing app coordinate the display of the widget’s content, a widget that doesn’t communicate with its containing app is unlikely to use this class. Typically, a widget appears in the Today view when it has content to display. If a currently running widget no longer has content to display, it can get a widget controller and set the flag in the method to . If the containing app later determines that there is content this widget should display, the app can get a widget controller and update the flag, even while the widget isn’t running. The class should not be subclassed.
+
+
+// An object used to specify whether a Today widget has content to display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController
 type NCWidgetController struct {
 	objectivec.Object
@@ -81,26 +87,22 @@ func NewNCWidgetController() NCWidgetController {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController/default()
 func (nc _NCWidgetControllerClass) DefaultWidgetController() NCWidgetController {
 	rv := objc.Send[NCWidgetController](objc.ID(nc.class), objc.Sel("defaultWidgetController"))
 	return rv
 }
 
+
 // Returns a widget controller used to specify whether a widget has content to display.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController/widgetController()
 func (nc _NCWidgetControllerClass) WidgetController() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("widgetController"))
 	return rv
-}
-
-// Sets whether the specified widget has content to display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController/setHasContent(_:forWidgetWithBundleIdentifier:)
-func (n_ NCWidgetController) SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHasContent:forWidgetWithBundleIdentifier:"), flag, objc.String(bundleID))
 }
 
 

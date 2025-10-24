@@ -33,14 +33,14 @@ type ICKUserIdentity interface {
 	objectivec.IObject
 	// properties:
 	UserRecordID() objc.IObject /* cross-framework: CKRecordID */
-	ContactIdentifiers() string /* primitive/slice/pointer. */
-	SetContactIdentifiers(value string /* primitive/slice/pointer. */)
-	HasiCloudAccount() bool /* primitive/slice/pointer. */
-	SetHasiCloudAccount(value bool /* primitive/slice/pointer. */)
+	ContactIdentifiers() objc.IObject /* cross-framework: NSString */
+	SetContactIdentifiers(value objc.IObject /* cross-framework: NSString */)
+	HasiCloudAccount() bool
+	SetHasiCloudAccount(value bool)
 	LookupInfo() ICKUserIdentityLookupInfo
 	SetLookupInfo(value ICKUserIdentityLookupInfo)
-	NameComponents() foundation.objc.IObject /* cross-framework: PersonNameComponents */
-	SetNameComponents(value foundation.objc.IObject /* cross-framework: PersonNameComponents */)
+	NameComponents() objc.IObject /* cross-framework: PersonNameComponents */
+	SetNameComponents(value objc.IObject /* cross-framework: PersonNameComponents */)
 	// methods:
 }
 
@@ -111,8 +111,8 @@ func (c_ CKUserIdentity) UserRecordID() objc.IObject /* cross-framework: CKRecor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKUserIdentity) ContactIdentifiers() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
+func (c_ CKUserIdentity) ContactIdentifiers() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
 }
 
@@ -121,8 +121,8 @@ func (c_ CKUserIdentity) ContactIdentifiers() string /* primitive/slice/pointer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKUserIdentity) SetContactIdentifiers(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
+func (c_ CKUserIdentity) SetContactIdentifiers(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), value)
 }
 
 
@@ -130,7 +130,7 @@ func (c_ CKUserIdentity) SetContactIdentifiers(value string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKUserIdentity) HasiCloudAccount() bool /* primitive/slice/pointer. */ {
+func (c_ CKUserIdentity) HasiCloudAccount() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (c_ CKUserIdentity) HasiCloudAccount() bool /* primitive/slice/pointer. */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKUserIdentity) SetHasiCloudAccount(value bool /* primitive/slice/pointer. */) {
+func (c_ CKUserIdentity) SetHasiCloudAccount(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
 }
 
@@ -168,7 +168,7 @@ func (c_ CKUserIdentity) SetLookupInfo(value ICKUserIdentityLookupInfo) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/namecomponents
-func (c_ CKUserIdentity) NameComponents() foundation.objc.IObject /* cross-framework: PersonNameComponents */ {
+func (c_ CKUserIdentity) NameComponents() objc.IObject /* cross-framework: PersonNameComponents */ {
 	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (c_ CKUserIdentity) NameComponents() foundation.objc.IObject /* cross-frame
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/namecomponents
-func (c_ CKUserIdentity) SetNameComponents(value foundation.objc.IObject /* cross-framework: PersonNameComponents */) {
+func (c_ CKUserIdentity) SetNameComponents(value objc.IObject /* cross-framework: PersonNameComponents */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNameComponents:"), value)
 }
 

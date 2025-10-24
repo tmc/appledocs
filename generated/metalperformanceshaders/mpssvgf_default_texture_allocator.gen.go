@@ -30,14 +30,18 @@ type _SVGFDefaultTextureAllocatorClass struct {
 // An interface definition for the [SVGFDefaultTextureAllocator] class.
 type ISVGFDefaultTextureAllocator interface {
 	objectivec.IObject
-	ReturnTexture(texture objectivec.IObject)
+	// properties:
 	AllocatedTextureCount() int
 	SetAllocatedTextureCount(value int)
-	Device() unsafe.Pointer
-	SetDevice(value unsafe.Pointer)
+	Device() Device /* not a class type */
+	SetDevice(value Device /* not a class type */)
+	// methods:
+	ReturnTexture(texture objectivec.IObject)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDefaultTextureAllocator
 type SVGFDefaultTextureAllocator struct {
 	objectivec.Object
@@ -80,13 +84,15 @@ func NewSVGFDefaultTextureAllocator() SVGFDefaultTextureAllocator {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDefaultTextureAllocator/return(_:)
 func (s_ SVGFDefaultTextureAllocator) ReturnTexture(texture objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("returnTexture:"), texture)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/allocatedtexturecount
 func (s_ SVGFDefaultTextureAllocator) AllocatedTextureCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("allocatedTextureCount"))
@@ -94,25 +100,24 @@ func (s_ SVGFDefaultTextureAllocator) AllocatedTextureCount() int {
 }
 
 
-// SetAllocatedTextureCount sets the value of the allocatedTextureCount property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/allocatedtexturecount
 func (s_ SVGFDefaultTextureAllocator) SetAllocatedTextureCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllocatedTextureCount:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/device
-func (s_ SVGFDefaultTextureAllocator) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("device"))
+func (s_ SVGFDefaultTextureAllocator) Device() Device /* not a class type */ {
+	rv := objc.Send[Device](s_.ID, objc.Sel("device"))
 	return rv
 }
 
 
-// SetDevice sets the value of the device property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator/device
-func (s_ SVGFDefaultTextureAllocator) SetDevice(value unsafe.Pointer) {
+func (s_ SVGFDefaultTextureAllocator) SetDevice(value Device /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDevice:"), value)
 }
 

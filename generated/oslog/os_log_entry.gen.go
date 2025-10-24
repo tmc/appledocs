@@ -31,13 +31,21 @@ type _OSLogEntryClass struct {
 // An interface definition for the [OSLogEntry] class.
 type IOSLogEntry interface {
 	objectivec.IObject
-	ComposedMessage() string
-	Date() foundation.NSDate
-	StoreCategory() OSLogEntryStoreCategory
+	// properties:
+	ComposedMessage() objc.IObject /* cross-framework: NSString */
+	Date() objc.IObject /* cross-framework: Date */
+	SetDate(value objc.IObject /* cross-framework: Date */)
+	StoreCategory() unsafe.Pointer
+	SetStoreCategory(value unsafe.Pointer)
+	// methods:
 }
 
 // A single entry from the unified logging system.
+
+
+// A single entry from the unified logging system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry
 type OSLogEntry struct {
 	objectivec.Object
@@ -82,28 +90,52 @@ func NewOSLogEntry() OSLogEntry {
 }
 
 
+
 // The fully formatted message for the entry.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/composedMessage
-func (o_ OSLogEntry) ComposedMessage() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("composedMessage"))
+func (o_ OSLogEntry) ComposedMessage() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("composedMessage"))
 	return rv
 }
+
 
 // The timestamp of the entry.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/date
-func (o_ OSLogEntry) Date() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("date"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentry/date
+func (o_ OSLogEntry) Date() objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[foundation.Date](o_.ID, objc.Sel("date"))
 	return rv
 }
 
+
+// The timestamp of the entry.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentry/date
+func (o_ OSLogEntry) SetDate(value objc.IObject /* cross-framework: Date */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDate:"), value)
+}
+
+
 // The current log entry’s storage tag.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/storeCategory-swift.property
-func (o_ OSLogEntry) StoreCategory() OSLogEntryStoreCategory {
-	rv := objc.Send[OSLogEntryStoreCategory](o_.ID, objc.Sel("storeCategory"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.property
+func (o_ OSLogEntry) StoreCategory() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("storeCategory"))
 	return rv
+}
+
+
+// The current log entry’s storage tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.property
+func (o_ OSLogEntry) SetStoreCategory(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setStoreCategory:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,23 @@ type _UserContentControllerClass struct {
 // An interface definition for the [UserContentController] class.
 type IUserContentController interface {
 	objectivec.IObject
-	RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld IWKContentWorld)
-	UserScripts() WKUserScript
+	// properties:
+	UserScripts() IWKUserScript
 	SetUserScripts(value IWKUserScript)
-	UserContentController() WKUserContentController
+	UserContentController() IWKUserContentController
 	SetUserContentController(value IWKUserContentController)
+	// methods:
+	RemoveScriptMessageHandlerForNameContentWorld(name objc.IObject /* cross-framework: NSString */, contentWorld IWKContentWorld)
 }
 
 // An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
 //
 // A object provides a bridge between your app and the JavaScript code running in the web view. Use this object to do the following: Inject JavaScript code into webpages running in your web view. Install custom JavaScript functions that call through to your app’s native code. Specify custom filters to prevent the webpage from loading restricted content. Create and configure a object as part of your overall web view setup. Assign the object to the property of your object before creating your web view.
+
+
+// An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserContentController
 type UserContentController struct {
 	objectivec.Object
@@ -85,44 +92,48 @@ func NewUserContentController() UserContentController {
 }
 
 
+
 // Uninstalls a custom message handler from the specified content world in your JavaScript code.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)
-func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld IWKContentWorld) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), objc.String(name), contentWorld)
+func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name objc.IObject /* cross-framework: NSString */, contentWorld IWKContentWorld) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), name, contentWorld)
 }
+
 
 // The user scripts associated with the user content controller.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
-func (u_ UserContentController) UserScripts() WKUserScript {
-	rv := objc.Send[WKUserScript](u_.ID, objc.Sel("userScripts"))
+func (u_ UserContentController) UserScripts() IWKUserScript {
+	rv := objc.Send[UserScript](u_.ID, objc.Sel("userScripts"))
 	return rv
 }
 
 
-// SetUserScripts sets the value of the userScripts property.
 // The user scripts associated with the user content controller.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
 func (u_ UserContentController) SetUserScripts(value IWKUserScript) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserScripts:"), value)
 }
 
+
 // The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (u_ UserContentController) UserContentController() WKUserContentController {
-	rv := objc.Send[WKUserContentController](u_.ID, objc.Sel("userContentController"))
+func (u_ UserContentController) UserContentController() IWKUserContentController {
+	rv := objc.Send[UserContentController](u_.ID, objc.Sel("userContentController"))
 	return rv
 }
 
 
-// SetUserContentController sets the value of the userContentController property.
 // The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
 func (u_ UserContentController) SetUserContentController(value IWKUserContentController) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserContentController:"), value)

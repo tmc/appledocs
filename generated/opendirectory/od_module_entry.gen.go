@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,24 @@ type _ODModuleEntryClass struct {
 // An interface definition for the [ODModuleEntry] class.
 type IODModuleEntry interface {
 	objectivec.IObject
-	Option(optionName string) objc.ID
-	SetOptionValue(optionName string, value objectivec.IObject)
-	Mappings() ODMappings
+	// properties:
+	Mappings() IODMappings
 	SetMappings(value IODMappings)
-	Name() string
-	SetName(value string)
-	SupportedOptions() objc.ID
-	UuidString() string
-	SetUuidString(value string)
-	XpcServiceName() string
-	SetXpcServiceName(value string)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	SupportedOptions() objc.IObject /* cross-framework: NSArray */
+	UuidString() objc.IObject /* cross-framework: NSString */
+	SetUuidString(value objc.IObject /* cross-framework: NSString */)
+	XpcServiceName() objc.IObject /* cross-framework: NSString */
+	SetXpcServiceName(value objc.IObject /* cross-framework: NSString */)
+	// methods:
+	Option(optionName objc.IObject /* cross-framework: NSString */) objc.ID
+	SetOptionValue(optionName objc.IObject /* cross-framework: NSString */, value objectivec.IObject)
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry
 type ODModuleEntry struct {
 	objectivec.Object
@@ -86,99 +91,104 @@ func NewODModuleEntry() ODModuleEntry {
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/init(name:xpcServiceName:)
-func NewODModuleEntryWithNameXpcServiceName(name string, xpcServiceName string) ODModuleEntry {
-	rv := objc.Send[ODModuleEntry](objc.ID(getODModuleEntryClass().class), objc.Sel("moduleEntryWithName:xpcServiceName:"), objc.String(name), objc.String(xpcServiceName))
+func NewODModuleEntryWithNameXpcServiceName(name objc.IObject /* cross-framework: NSString */, xpcServiceName objc.IObject /* cross-framework: NSString */) ODModuleEntry {
+	rv := objc.Send[ODModuleEntry](objc.ID(getODModuleEntryClass().class), objc.Sel("moduleEntryWithName:xpcServiceName:"), name, xpcServiceName)
 	return rv
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/init(name:xpcServiceName:)
-func (oc _ODModuleEntryClass) ModuleEntryWithNameXpcServiceName(name string, xpcServiceName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("moduleEntryWithName:xpcServiceName:"), objc.String(name), objc.String(xpcServiceName))
+func (oc _ODModuleEntryClass) ModuleEntryWithNameXpcServiceName(name objc.IObject /* cross-framework: NSString */, xpcServiceName objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("moduleEntryWithName:xpcServiceName:"), name, xpcServiceName)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/option(_:)
-func (o_ ODModuleEntry) Option(optionName string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("option:"), objc.String(optionName))
+func (o_ ODModuleEntry) Option(optionName objc.IObject /* cross-framework: NSString */) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("option:"), optionName)
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/setOption(_:value:)
-func (o_ ODModuleEntry) SetOptionValue(optionName string, value objectivec.IObject) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setOption:value:"), objc.String(optionName), value)
+func (o_ ODModuleEntry) SetOptionValue(optionName objc.IObject /* cross-framework: NSString */, value objectivec.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setOption:value:"), optionName, value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/mappings-swift.property
-func (o_ ODModuleEntry) Mappings() ODMappings {
+func (o_ ODModuleEntry) Mappings() IODMappings {
 	rv := objc.Send[ODMappings](o_.ID, objc.Sel("mappings"))
 	return rv
 }
 
 
-// SetMappings sets the value of the mappings property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/mappings-swift.property
 func (o_ ODModuleEntry) SetMappings(value IODMappings) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMappings:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-swift.property
-func (o_ ODModuleEntry) Name() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("name"))
+func (o_ ODModuleEntry) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// SetName sets the value of the name property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/name-swift.property
-func (o_ ODModuleEntry) SetName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+func (o_ ODModuleEntry) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/supportedOptions-swift.property
-func (o_ ODModuleEntry) SupportedOptions() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("supportedOptions"))
+func (o_ ODModuleEntry) SupportedOptions() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("supportedOptions"))
 	return rv
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-swift.property
-func (o_ ODModuleEntry) UuidString() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("uuidString"))
+func (o_ ODModuleEntry) UuidString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
 
-// SetUuidString sets the value of the uuidString property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-swift.property
-func (o_ ODModuleEntry) SetUuidString(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUuidString:"), objc.String(value))
+func (o_ ODModuleEntry) SetUuidString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUuidString:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-swift.property
-func (o_ ODModuleEntry) XpcServiceName() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("xpcServiceName"))
+func (o_ ODModuleEntry) XpcServiceName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("xpcServiceName"))
 	return rv
 }
 
 
-// SetXpcServiceName sets the value of the xpcServiceName property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/xpcServiceName-swift.property
-func (o_ ODModuleEntry) SetXpcServiceName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setXpcServiceName:"), objc.String(value))
+func (o_ ODModuleEntry) SetXpcServiceName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setXpcServiceName:"), value)
 }
 
 

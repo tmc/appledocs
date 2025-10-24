@@ -30,8 +30,8 @@ type _ImageLaplacianClass struct {
 type IImageLaplacian interface {
 	IUnaryImageKernel
 	// properties:
-	Bias() float32 /* primitive/slice/pointer. */
-	SetBias(value float32 /* primitive/slice/pointer. */)
+	Bias() float32
+	SetBias(value float32)
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewImageLaplacian() ImageLaplacian {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian/bias
-func (i_ ImageLaplacian) Bias() float32 /* primitive/slice/pointer. */ {
+func (i_ ImageLaplacian) Bias() float32 {
 	rv := objc.Send[float32](i_.ID, objc.Sel("bias"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (i_ ImageLaplacian) Bias() float32 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian/bias
-func (i_ ImageLaplacian) SetBias(value float32 /* primitive/slice/pointer. */) {
+func (i_ ImageLaplacian) SetBias(value float32) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBias:"), value)
 }
 

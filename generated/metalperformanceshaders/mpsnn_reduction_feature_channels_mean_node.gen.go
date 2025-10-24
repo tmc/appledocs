@@ -29,9 +29,13 @@ type _ReductionFeatureChannelsMeanNodeClass struct {
 // An interface definition for the [ReductionFeatureChannelsMeanNode] class.
 type IReductionFeatureChannelsMeanNode interface {
 	IUnaryReductionNode
+	// properties:
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionFeatureChannelsMeanNode
 type ReductionFeatureChannelsMeanNode struct {
 	UnaryReductionNode

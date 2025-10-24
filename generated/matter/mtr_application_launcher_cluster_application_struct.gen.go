@@ -31,17 +31,21 @@ type _MTRApplicationLauncherClusterApplicationStructClass struct {
 // An interface definition for the [MTRApplicationLauncherClusterApplicationStruct] class.
 type IMTRApplicationLauncherClusterApplicationStruct interface {
 	objectivec.IObject
-	ApplicationID() string
-	SetApplicationID(value string)
-	ApplicationId() string
-	SetApplicationId(value string)
-	CatalogVendorID() foundation.Number
-	SetCatalogVendorID(value foundation.INumber)
-	CatalogVendorId() foundation.Number
-	SetCatalogVendorId(value foundation.INumber)
+	// properties:
+	ApplicationID() objc.IObject /* cross-framework: NSString */
+	SetApplicationID(value objc.IObject /* cross-framework: NSString */)
+	ApplicationId() objc.IObject /* cross-framework: NSString */
+	SetApplicationId(value objc.IObject /* cross-framework: NSString */)
+	CatalogVendorID() objc.IObject /* cross-framework: NSNumber */
+	SetCatalogVendorID(value objc.IObject /* cross-framework: NSNumber */)
+	CatalogVendorId() objc.IObject /* cross-framework: NSNumber */
+	SetCatalogVendorId(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationLauncherClusterApplicationStruct
 type MTRApplicationLauncherClusterApplicationStruct struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRApplicationLauncherClusterApplicationStruct() MTRApplicationLauncherC
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t05a
-func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationID"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("applicationID"))
 	return rv
 }
 
 
-// SetApplicationID sets the value of the applicationID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t05a
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), objc.String(value))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t04e
-func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationId() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationId"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationId() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("applicationId"))
 	return rv
 }
 
 
-// SetApplicationId sets the value of the applicationId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t04e
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationId(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), objc.String(value))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationId(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb5w
-func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("catalogVendorID"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("catalogVendorID"))
 	return rv
 }
 
 
-// SetCatalogVendorID sets the value of the catalogVendorID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb5w
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorID(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb6s
-func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorId() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("catalogVendorId"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorId() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("catalogVendorId"))
 	return rv
 }
 
 
-// SetCatalogVendorId sets the value of the catalogVendorId property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb6s
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorId(value foundation.INumber) {
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorId:"), value)
 }
 

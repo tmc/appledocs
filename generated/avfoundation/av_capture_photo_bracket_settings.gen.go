@@ -33,10 +33,10 @@ type ICapturePhotoBracketSettings interface {
 	// properties:
 	BracketedSettings() objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */
 	SetBracketedSettings(value objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */)
-	IsLensStabilizationEnabled() bool /* primitive/slice/pointer. */
-	SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer. */)
-	IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer. */
-	SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer. */)
+	IsLensStabilizationEnabled() bool
+	SetIsLensStabilizationEnabled(value bool)
+	IsHighResolutionPhotoEnabled() bool
+	SetIsHighResolutionPhotoEnabled(value bool)
 	PreviewPhotoFormat() objc.IObject /* cross-framework: NSString */
 	SetPreviewPhotoFormat(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -120,7 +120,7 @@ func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value objc.IObject /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled
-func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationEnabled"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled
-func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationEnabled:"), value)
 }
 
@@ -139,7 +139,7 @@ func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled
-func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer. */ {
+func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighResolutionPhotoEnabled"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled
-func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer. */) {
+func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighResolutionPhotoEnabled:"), value)
 }
 

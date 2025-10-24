@@ -31,17 +31,21 @@ type _MTRMessagesClusterMessageCompleteEventClass struct {
 // An interface definition for the [MTRMessagesClusterMessageCompleteEvent] class.
 type IMTRMessagesClusterMessageCompleteEvent interface {
 	objectivec.IObject
-	FutureMessagesPreference() foundation.Number
-	SetFutureMessagesPreference(value foundation.INumber)
-	MessageID() foundation.NSData
-	SetMessageID(value foundation.IData)
-	Reply() string
-	SetReply(value string)
-	ResponseID() foundation.Number
-	SetResponseID(value foundation.INumber)
+	// properties:
+	FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */
+	SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */)
+	MessageID() objc.IObject /* cross-framework: NSData */
+	SetMessageID(value objc.IObject /* cross-framework: NSData */)
+	Reply() objc.IObject /* cross-framework: NSString */
+	SetReply(value objc.IObject /* cross-framework: NSString */)
+	ResponseID() objc.IObject /* cross-framework: NSNumber */
+	SetResponseID(value objc.IObject /* cross-framework: NSNumber */)
+	// methods:
 }
 
-//
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent
 type MTRMessagesClusterMessageCompleteEvent struct {
 	objectivec.Object
@@ -84,63 +88,63 @@ func NewMTRMessagesClusterMessageCompleteEvent() MTRMessagesClusterMessageComple
 }
 
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("futureMessagesPreference"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("futureMessagesPreference"))
 	return rv
 }
 
 
-// SetFutureMessagesPreference sets the value of the futureMessagesPreference property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFutureMessagesPreference:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/messageID
-func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() foundation.NSData {
+func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
 	return rv
 }
 
 
-// SetMessageID sets the value of the messageID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/messageID
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value foundation.IData) {
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("reply"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("reply"))
 	return rv
 }
 
 
-// SetReply sets the value of the reply property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), objc.String(value))
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), value)
 }
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
-func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("responseID"))
+func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("responseID"))
 	return rv
 }
 
 
-// SetResponseID sets the value of the responseID property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value foundation.INumber) {
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseID:"), value)
 }
 

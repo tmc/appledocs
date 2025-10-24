@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MusicPlayerPlayParametersQueueDescriptor] class.
@@ -30,18 +29,18 @@ type _MusicPlayerPlayParametersQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerPlayParametersQueueDescriptor] class.
 type IMusicPlayerPlayParametersQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItemWithPlayParameters(endTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
-	SetStartTimeForItemWithPlayParameters(startTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
-	PlayParametersQueue() []MusicPlayerPlayParameters
-	SetPlayParametersQueue(value []MusicPlayerPlayParameters)
-	StartItemPlayParameters() MPMusicPlayerPlayParameters
-	SetStartItemPlayParameters(value IMPMusicPlayerPlayParameters)
+	// properties:
+	// methods:
 }
 
 // A set of properties and methods for modifying how to play items, based on play parameters the framework returns.
 //
 // Use this class to modify the player queue created by a query before the queue begins to play. You can modify when individual items start and stop playing, along with setting the first item for playing.
+
+
+// A set of properties and methods for modifying how to play items, based on play parameters the framework returns.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor
 type MusicPlayerPlayParametersQueueDescriptor struct {
 	MusicPlayerQueueDescriptor
@@ -89,76 +88,16 @@ func NewMusicPlayerPlayParametersQueueDescriptor() MusicPlayerPlayParametersQueu
 
 
 
-
 // Creates a new queue descriptor using the designated queue of play parameters.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/init(playParametersQueue:)
-func NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(playParametersQueue []MusicPlayerPlayParameters) MusicPlayerPlayParametersQueueDescriptor {
+func NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(playParametersQueue []IMusicPlayerPlayParameters) MusicPlayerPlayParametersQueueDescriptor {
 	instance := getMusicPlayerPlayParametersQueueDescriptorClass().Alloc()
 	rv := objc.Send[MusicPlayerPlayParametersQueueDescriptor](instance.ID, objc.Sel("initWithPlayParametersQueue:"), playParametersQueue)
 	rv.Autorelease()
 	return rv
 }
 
-
-// Sets the time the item with the associated play parameters is to stop playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/setEndTime(_:forItemWith:)
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetEndTimeForItemWithPlayParameters(endTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithPlayParameters:"), endTime, playParameters)
-}
-
-// Sets the time the item with the associated play parameters is to start playing.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/setStartTime(_:forItemWith:)
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartTimeForItemWithPlayParameters(startTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithPlayParameters:"), startTime, playParameters)
-}
-
-// An array containing the play parameters returned from querying MusicKit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/playParametersQueue
-func (m_ MusicPlayerPlayParametersQueueDescriptor) PlayParametersQueue() []MusicPlayerPlayParameters {
-	rv := objc.Send[[]MusicPlayerPlayParameters](m_.ID, objc.Sel("playParametersQueue"))
-	return rv
-}
-
-
-// SetPlayParametersQueue sets the value of the playParametersQueue property.
-// An array containing the play parameters returned from querying MusicKit.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/playParametersQueue
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value []MusicPlayerPlayParameters) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayParametersQueue:"), nsArray)
-}
-
-// The item identified by the play parameters to play first.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/startItemPlayParameters
-func (m_ MusicPlayerPlayParametersQueueDescriptor) StartItemPlayParameters() MPMusicPlayerPlayParameters {
-	rv := objc.Send[MPMusicPlayerPlayParameters](m_.ID, objc.Sel("startItemPlayParameters"))
-	return rv
-}
-
-
-// SetStartItemPlayParameters sets the value of the startItemPlayParameters property.
-// The item identified by the play parameters to play first.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/startItemPlayParameters
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartItemPlayParameters(value IMPMusicPlayerPlayParameters) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemPlayParameters:"), value)
-}
 
 

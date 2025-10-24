@@ -6,11 +6,8 @@
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeveloperToolsSupport without requiring cgo.
-
-// Expose custom views and modifiers in the Xcode library.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DeveloperToolsSupport
+// See: https://developer.apple.com/documentation/DeveloperToolsSupport
 package developertoolssupport
 
 import (

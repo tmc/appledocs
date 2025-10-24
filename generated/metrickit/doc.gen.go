@@ -2,12 +2,12 @@
 
 // Package metrickit provides Go bindings for the MetricKit framework.
 //
-// Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics. [Full Topic]
+// Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MetricKit without requiring cgo.
 //
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit
+// See: https://developer.apple.com/documentation/MetricKit
 package metrickit
 
 import (
